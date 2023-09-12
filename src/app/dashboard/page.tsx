@@ -1,4 +1,6 @@
 import Head from "next/head";
+import Navbar from "./components/navbar";
+import Pagination from "./components/pagination";
 
 const Dashboard = () => {
   return (
@@ -6,7 +8,10 @@ const Dashboard = () => {
       <Head>
         <title>Settings - RentRightGh</title>
       </Head>
-      <main></main>
+      <main>
+        
+        
+      </main>
     </>
   );
 };
