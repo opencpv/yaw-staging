@@ -2,6 +2,27 @@
 import { styled } from "@stitches/react";
 import Image from "next/image";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { AiOutlineLink } from "react-icons/ai";
+import { FaFacebook, FaLinkedin, FaTwitter, FaWhatsapp } from "react-icons/fa";
+
+const IconField = ({ icon, label, type, name, className }) => {
+  return (
+    <div className="form-div relative">
+      <div className="flex gap-2 items-center">
+        {icon}
+        <label>{label}:</label>
+      </div>
+      <AiOutlineLink className="link-icon absolute" size="16" color="#737373" />
+
+      <Field
+        type={type}
+        name={name}
+        className={`${className} px-5 !important`}
+      />
+      <ErrorMessage name={name} />
+    </div>
+  );
+};
 
 const Profile = () => {
   return (
@@ -22,7 +43,17 @@ const Profile = () => {
         </div>
       </div>
       <Formik
-        initialValues={{ firstName: "", password: "" }}
+        initialValues={{
+          firstName: "John",
+          lastName: "Doe",
+          email: "JohnDoe@gmail.com",
+          country: "Ghana",
+          twitter: "https://twitter.com/abcd",
+          facebook: "https://facebook.com/abcd",
+          linkedIn: "https://facebook.com/abcd",
+          whatsapp: "https://wa.whatsapp.com/abcd",
+          bio: "Enter your bio",
+        }}
         onSubmit={(values) => {
           // Handle form submission
         }}>
@@ -48,53 +79,70 @@ const Profile = () => {
                 </div>
                 <div className="form-div">
                   <label>Country:</label>
-                  <Field type="text" name="Country" className="form-input" />
+                  <Field type="text" name="country" className="form-input" />
                   <ErrorMessage name="country" />
                 </div>
               </div>
             </div>
             <div className="col-span-1">
               <p className="font-semibold mb-5">My Social Media Accounts</p>
-             <div className="flex flex-col gap-5">
-                  <div className="form-div">
-                    <label>Twitter:</label>
-                    <Field type="text" name="firstName" className="form-input" />
-                    <ErrorMessage name="firstName" />
-                  </div>
-                  <div className="form-div">
-                    <label>LinkedIn:</label>
-                    <Field type="text" name="lastName" className="form-input" />
-                    <ErrorMessage name="lastName" />
-                  </div>
-                  <div className="form-div">
-                    <label>Facebook:</label>
-                    <Field type="email" name="email" className="form-input" />
-                    <ErrorMessage name="email" />
-                  </div>
-                  <div className="form-div">
-                    <label>WhatsApp:</label>
-                    <Field type="text" name="Country" className="form-input" />
-                    <ErrorMessage name="country" />
-                  </div>
-                  <div className="form-div">
-                    <label>WhatsApp:</label>
-                    <Field type="text" name="Country" className="form-input" />
-                    <ErrorMessage name="country" />
-                  </div>
-             </div>
+              <div className="flex flex-col gap-5">
+                <IconField
+                  icon={<FaTwitter size={24} />}
+                  name={"twitter"}
+                  className={"form-input"}
+                  label={"Twitter"}
+                  type={"text"}
+                />
+                <IconField
+                  icon={<FaLinkedin size={24}/>}
+                  name={"linkedIn"}
+                  className={"form-input"}
+                  label={"LinkedIn"}
+                  type={"text"}
+                />
+                <IconField
+                  icon={<FaFacebook size={24}/>}
+                  name={"facebook"}
+                  className={"form-input"}
+                  label={"Facebook"}
+                  type={"text"}
+                />
+                <IconField
+                  icon={<FaWhatsapp size={24}/>}
+                  name={"whatsapp"}
+                  className={"form-input"}
+                  label={"WhatsApp"}
+                  type={"text"}
+                />
+                <IconField
+                  icon={<FaWhatsapp size={24}/>}
+                  name={"whatsapp"}
+                  className={"form-input"}
+                  label={"WhatsApp"}
+                  type={"text"}
+                />
+              </div>
             </div>
             <div className="col-span-1">
-              <div className="form-div max-h-auto">
-                <label htmlFor="message">Bio:</label>
+              <div className="form-div">
+                <label htmlFor="bio" className="mb-5">
+                  Bio:
+                </label>
                 <Field
                   as="textarea" // Use 'textarea' as the component
-                  id="message"
-                  name="message"
+                  id="bio"
+                  name="bio"
                   className="form-input-textarea"
                   rows="7" // Optional: Set the number of rows for the text area
                   cols="50" // Optional: Set the number of columns for the text area
                 />
               </div>
+              <button
+                type="submit"
+                className="max-w-[160px] max-h-[52px] w-full aspect-[160/52] bg-[#DDB771] text-[#ffff] rounded-[8px]">
+                Update Profile
+              </button>
             </div>
           </div>
         </Form>
@@ -116,15 +164,22 @@ const Root = styled("div", {
     aspectRatio: "422/52",
     border: "1px solid #E6E6E6",
     borderRadius: "4px",
+    color: "#737373",
   },
-  "form-input-textarea":{
+  "form-input-textarea": {
     padding: "0.9375rem",
     maxWidth: "541px",
-    width:"100%",
+    width: "100%",
     aspectRatio: "541/368",
     border: "1px solid #E6E6E6",
     borderRadius: "4px",
-  }
+    color: "#737373",
+  },
+  "& .link-icon": {
+    top: "75%",
+    transform: "translateY(-75%)",
+    left: "1rem",
+  },
 });
 
 const Navigation = styled("button", {

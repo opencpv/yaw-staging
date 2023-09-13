@@ -5,16 +5,27 @@ import { styled } from "@stitches/react";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { FcSettings } from "react-icons/fc";
 import Link from "next/link";
+import useViewport from "@/lib/custom-hooks/useViewport";
+import { useEffect, useState } from "react";
+import { IoMdSettings } from "react-icons/io";
 
 const Pagination = () => {
+    const vw  = useViewport()
+    const [isActive, setisActive] = useState("")
+
+    useEffect(()=>{
+
+    }, [])
   return (
     <Root className="flex gap-5">
       <div
         className="w-full max-w-[83px]
                 max-h-[83px] aspect-square bg-[#396261] rounded-full flex
                 items-center justify-center">
-        <MdKeyboardArrowLeft color="white" size={24} />
-      </div>
+<Link href="/dashboard">
+            <MdKeyboardArrowLeft color="white" size={24} />
+    
+</Link>      </div>
       <div className="flex gap-8 flex-wrap">
         <PgItem>
           <CaSubscriptions width="24" height={"24"} />
@@ -22,7 +33,7 @@ const Pagination = () => {
         </PgItem>
         <Link href="/dashboard/settings">
             <PgItem type={"active"}>
-                  <FcSettings size="24" color="red" />
+                  <IoMdSettings size="24" color="white" />
                   <p>Settings</p>
             </PgItem>
         </Link>
@@ -49,6 +60,11 @@ const PgItem = styled("button", {
   fontWeight:"600",
   gap:"0.875rem",
   borderRadius:"0.75rem",  
+
+  "&:hover":{
+    backgroundColor:"#396261",
+    color:"white",
+  },
 
   variants: {
     type: {
