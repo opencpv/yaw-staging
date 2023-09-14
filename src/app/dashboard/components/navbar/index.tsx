@@ -12,7 +12,7 @@ const Navbar = () => {
   
   return (
     <Root className="flex items-center flex-wrap">
-      <div className="flex gap-5 md:gap-20">
+      <div className="flex gap-6 md:gap-10 lg:gap-20">
         <Image
           src={icons.Logo}
           alt="Logo"
