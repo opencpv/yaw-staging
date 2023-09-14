@@ -5,6 +5,8 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { AiOutlineLink } from "react-icons/ai";
 import { FaFacebook, FaLinkedin, FaTwitter, FaWhatsapp } from "react-icons/fa";
 import { IoLogoWhatsapp } from "react-icons/io";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const IconField = ({ icon, label, type, name, className, placeholder }) => {
   return (
@@ -19,7 +21,7 @@ const IconField = ({ icon, label, type, name, className, placeholder }) => {
         type={type}
         name={name}
         className={`${className}`}
-        style={{paddingInline:"2.5rem"}}
+        style={{ paddingInline: "2.5rem" }}
         placeholder={placeholder}
       />
 
@@ -29,6 +31,18 @@ const IconField = ({ icon, label, type, name, className, placeholder }) => {
 };
 
 const Profile = () => {
+  const [countries, setCountries] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("https://restcountries.com/v3.1/all")
+      .then((response) => {
+        setCountries(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
   return (
     <Root>
       <div className="flex gap-5 mt-3">
@@ -51,15 +65,16 @@ const Profile = () => {
           // firstName: "John",
           // lastName: "Doe",
           // email: "JohnDoe@gmail.com",
-          // country: "Ghana",
+          country: "Ghana",
           // twitter: "https://twitter.com/abcd",
           // facebook: "https://facebook.com/abcd",
           // linkedIn: "https://facebook.com/abcd",
           // whatsapp: "https://wa.whatsapp.com/abcd",
           // bio: "Enter your bio",
+          number: "+233",
         }}
         onSubmit={(values) => {
-          // Handle form submission
+          console.log(values);
         }}>
         <Form className="">
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
@@ -68,27 +83,97 @@ const Profile = () => {
               <div className="flex flex-col gap-5">
                 <div className="form-div">
                   <label>First Name:</label>
-                  <Field type="text" name="firstName"
-                  placeholder="John" className="form-input" />
+                  <Field
+                    type="text"
+                    name="firstName"
+                    placeholder="John"
+                    className="form-input"
+                  />
                   <ErrorMessage name="firstName" />
                 </div>
                 <div className="form-div">
                   <label>Last Name:</label>
-                  <Field type="text" name="lastName" 
-                  placeholder="Doe" className="form-input" />
+                  <Field
+                    type="text"
+                    name="lastName"
+                    placeholder="Doe"
+                    className="form-input"
+                  />
                   <ErrorMessage name="lastName" />
                 </div>
                 <div className="form-div">
                   <label>Email Address:</label>
-                  <Field type="email" name="email" 
-                  placeholder="johndoe@gmail.com" className="form-input" />
+                  <Field
+                    type="email"
+                    name="email"
+                    placeholder="johndoe@gmail.com"
+                    className="form-input"
+                  />
                   <ErrorMessage name="email" />
                 </div>
                 <div className="form-div">
-                  <label>Country:</label>
-                  <Field type="text" name="country" 
-                  placeholder="Ghana" className="form-input" />
-                  <ErrorMessage name="country" />
+                  <label htmlFor="country">Country:</label>
+                  <Field
+                    as="select"
+                    id="country"
+                    name="country"
+                    className="form-input bg-white">
+                    {countries.map((country, index) => (
+                      <option
+                        key={index}
+                        value={country.name.common}
+                        className="py-5">
+                        <div>{country.name.common}</div>
+                      </option>
+                    ))}
+                  </Field>
+
+                  <ErrorMessage
+                    name="country"
+                    component="div"
+                    className="error"
+                  />
+                </div>
+
+                <div className="form-div">
+                  <label htmlFor="phone">Phone:</label>
+                  <div className="flex gap-4 max-w-[422px]">
+                    <div className="max-w-[100px]">
+                      <Field
+                        as="select"
+                        id="phone"
+                        name="phone"
+                        className="form-input w-full">
+                        <option value="" label="Select a country" />
+                        {countries.map((country, index) => (
+                          <option key={index} value={country.name.common}>
+                            {country.flags && (
+                              <Image
+                                src={country.flags.png}
+                                alt={`Flag of ${country.name.common}`}
+                                width={20}
+                                height={20}
+                              />
+                            )}
+                            <div className="py-5 bg-[#3d1c1c] max-w-[422px]">
+                              {country.idd.root}{country.idd.suffixes} {country.name.common}
+                            </div>
+                          </option>
+                        ))}
+                      </Field>
+                    </div>
+                    <Field
+                      type="number"
+                      name="number"
+                      className="form-input w-full"
+                    />
+                  </div>
+
+                  <ErrorMessage
+                    name="country"
+                    component="div"
+                    className="error"
+                  />
                 </div>
               </div>
             </div>
@@ -104,31 +189,20 @@ const Profile = () => {
                   placeholder="https://twitter.com/abcd"
                 />
                 <IconField
-                  icon={<FaLinkedin size={24}/>}
+                  icon={<FaLinkedin size={24} />}
                   name={"linkedIn"}
                   className={"form-input"}
                   label={"LinkedIn"}
                   type={"text"}
                   placeholder="https://facebook.com/abcd"
-
                 />
                 <IconField
-                  icon={<FaFacebook size={24}/>}
+                  icon={<FaFacebook size={24} />}
                   name={"facebook"}
                   className={"form-input"}
                   label={"Facebook"}
                   type={"text"}
                   placeholder="https://linkedin.com/abcd"
-
-                />
-                <IconField
-                  icon={<IoLogoWhatsapp size={24}/>}
-                  name={"whatsapp"}
-                  className={"form-input"}
-                  label={"WhatsApp"}
-                  type={"text"}
-                  placeholder="https://wa.whatsapp.com/abc"
-
                 />
                 <IconField
                   icon={<IoLogoWhatsapp size={24} />}
@@ -137,7 +211,14 @@ const Profile = () => {
                   label={"WhatsApp"}
                   type={"text"}
                   placeholder="https://wa.whatsapp.com/abc"
-
+                />
+                <IconField
+                  icon={<IoLogoWhatsapp size={24} />}
+                  name={"whatsapp"}
+                  className={"form-input"}
+                  label={"WhatsApp"}
+                  type={"text"}
+                  placeholder="https://wa.whatsapp.com/abc"
                 />
               </div>
             </div>
@@ -185,6 +266,14 @@ const Root = styled("div", {
     border: "1px solid #E6E6E6",
     borderRadius: "4px",
     color: "#737373",
+    backgroundColor: "white",
+  },
+
+  ".form-input option": {
+    backgroundColor: "white",
+  },
+  ".form-input option:hover": {
+    backgroundColor: "green",
   },
   "form-input-textarea": {
     padding: "0.9375rem",
@@ -206,10 +295,10 @@ const Navigation = styled("button", {
   fontSize: "16px",
   fontWeight: "400",
   color: "#8A8A8A",
-  padding:"0.5rem",
-  "&:hover":{
-    backgroundColor:"#8a8a8a05",
-    color:"black",
+  padding: "0.5rem",
+  "&:hover": {
+    backgroundColor: "#8a8a8a05",
+    color: "black",
   },
 
   variants: {
