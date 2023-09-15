@@ -1,6 +1,6 @@
 "use client";
 
-import CaSubscriptions from "@/icons/CaSubscriptions";
+import CaSubscriptions from "@/app/components/icons/CaSubscriptions";
 import { styled } from "@stitches/react";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { FcSettings } from "react-icons/fc";

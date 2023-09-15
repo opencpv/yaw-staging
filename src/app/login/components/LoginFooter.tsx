@@ -2,7 +2,7 @@ import { montserat } from "@/app/styles/font";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 
-export const Footer = () => {
+export const LoginFooter = () => {
   const { icons } = useAssets();
   return (
     <>
