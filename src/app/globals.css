@@ -25,3 +25,11 @@ body {
     )
     rgb(var(--background-start-rgb)); */
 }
+
+.green-gradient {
+  background: linear-gradient(
+    103deg,
+    #21a19f 38.96%,
+    rgba(30, 169, 166, 0.63) 90.07%
+  );
+}
