@@ -1,4 +1,6 @@
 import Head from "next/head";
+import Navbar from "../components/navbar";
+import Profile from "./components/profile";
 
 const Settings = () => {
   return (
@@ -6,7 +8,11 @@ const Settings = () => {
       <Head>
         <title>Dashboard - RentRightGh</title>
       </Head>
-      <main></main>
+      <main>
+        <p className="text-[31px] font-semibold mt-8">Settings</p>
+        <Profile/>
+
+      </main>
     </>
   );
 };

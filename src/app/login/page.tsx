@@ -2,7 +2,8 @@ import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Head from "next/head";
 import Image from "next/image";
 import { LoginForm } from "./components/LoginForm";
-import { Footer } from "./components/Footer";
+import { LoginFooter } from "./components/LoginFooter";
+import Footer from "../components/Footer";
 
 const Login = () => {
   const { images } = useAssets();
@@ -24,8 +25,11 @@ const Login = () => {
         <div className="w-full relative h-[100vh] bg-plane-pattern lg:px-[39.5px] lg:py-[58px]">
           <LoginForm />
           <div className="absolute bottom-[69px] left-0 w-full">
-            <Footer />
+            <LoginFooter />
           </div>
+        </div>
+        <div className="w-full col-span-2">
+          <Footer />
         </div>
       </main>
     </>
