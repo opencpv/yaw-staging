@@ -44,13 +44,7 @@ export const LoginButton = ({ icon, text, onClick }: LoginButtonProps) => {
         </div>
       ) : (
         <>
-          <Image
-            src={selectedIcon}
-            priority={true}
-            alt={icon}
-            height={41}
-            width={41}
-          />
+          <Image src={selectedIcon} alt={icon} height={41} width={41} />
           <p
             className={`${openSans.className} text-[#073B3A] text-base font-semibold py-5 lg:py-[30px]`}
           >
