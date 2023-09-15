@@ -1,12 +1,11 @@
 import Navbar from "@/components/__shared/Navbar";
 import Head from "next/head";
 import FaqHeader from "./components/FaqHeader";
-import { sanityClient } from "@/lib/utils/sanityClient";
-import fetchFaqData from "./lib/fetchFaqData";
+import BreadCrumb from "./components/Breadcrumb";
+import { openSans } from "@/lib/utils/fonts";
+import FAQBrowser from "./components/FAQBrowser";
 
 const FAQ = async () => {
-  const data = await fetchFaqData();
-
   return (
     <>
       <Head>
@@ -15,27 +14,16 @@ const FAQ = async () => {
       <main className="w-full">
         <Navbar />
         <FaqHeader />
+        <BreadCrumb link="FAQ" />
+        <h1
+          className={`px-[39px] font-semibold mb-[100px] text-[#000] text-[39px] ${openSans.className}`}
+        >
+          Frequently Asked Questions
+        </h1>
+        <FAQBrowser />
       </main>
     </>
   );
 };
-
-// export async function getStaticProps() {
-//   const query = `*[_type == "faqItem"]{
-//     _id,
-//     title,
-//     description,
-//     category->{title}
-
-//   }`;
-
-//   const data = await sanityClient.fetch(query);
-
-//   return {
-//     props: {
-//       data,
-//     },
-//   };
-// }
 
 export default FAQ;

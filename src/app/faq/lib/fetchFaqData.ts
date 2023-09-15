@@ -1,8 +1,7 @@
 import { sanityClient } from "@/lib/utils/sanityClient";
 
-
 const fetchFaqData = async () => {
-    const query = `*[_type == "faqItem"]{
+  const query = `*[_type == "faqItem"]{
         _id,
         title,
         description,
@@ -10,8 +9,8 @@ const fetchFaqData = async () => {
         
       }`;
 
-    const data = await sanityClient.fetch(query);
-    return data;
-}
+  const data = await sanityClient.fetch(query);
+  return await data;
+};
 
 export default fetchFaqData;

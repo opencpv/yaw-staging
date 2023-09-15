@@ -1,5 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import { Inter, Poppins, Open_Sans } from "next/font/google";
 
 export const metadata: Metadata = {
   title: "Create Next App",
