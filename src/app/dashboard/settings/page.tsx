@@ -9,7 +9,7 @@ const Settings = () => {
         <title>Dashboard - RentRightGh</title>
       </Head>
       <main>
-        <p className="text-[31px] font-semibold mt-8">Settings</p>
+        <p className="text-[31px] font-semibold mt-2">Settings</p>
         <Profile/>
 
       </main>
