@@ -1,9 +1,15 @@
+"use client";
+
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import Link from "next/link";
 import { montserat } from "@/app/styles/font";
+import { useState } from "react";
+import Menu from "../NavMenu";
 
-const Navbar = () => {
+const Navbar = (props) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const { icons } = useAssets();
   return (
     <nav className="w-full px-[30px] py-[15px] flex justify-between items-center bg-[#333333]">
@@ -16,14 +22,14 @@ const Navbar = () => {
       </Link>
       <div className="flex items-center lg:gap-[73px] md:gap-[31px]">
         <button
-          className={`hidden lg:block px-[130px] py-[23px] rounded-2xl border-2 border-[#fff] bg-[#305A61] text-white text-base font-semibold ${montserat.className}`}
-        >
+          className={`hidden lg:block px-[130px] py-[23px] rounded-2xl border-2 border-[#fff] bg-[#305A61] text-white text-base font-semibold ${montserat.className}`}>
           Start Here
         </button>
-        <button>
+        <button onClick={(e) => props?.toggleMenu()}>
           <Image src={icons.Hamburger} alt="menu" />
         </button>
       </div>
+
     </nav>
   );
 };

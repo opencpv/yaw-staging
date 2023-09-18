@@ -12,7 +12,6 @@ const FAQ = async () => {
         <title>FAQ - RentRightGh</title>
       </Head>
       <main className="w-full">
-        <Navbar />
         <FaqHeader />
         <BreadCrumb link="FAQ" />
         <h1
