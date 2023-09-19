@@ -75,6 +75,8 @@ const Profile = () => {
         }}
         onSubmit={(values) => {
           console.log(values);
+        }}>
+        <Form className="border-t-2 border-[#E0E4EC] pt-8">
         }}
       >
         <Form className="">

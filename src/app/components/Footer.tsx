@@ -151,16 +151,16 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="hidden lg:flex  flex-row justify-between px-8 items-center  bg-transparent pt-20 mb-10 text-2xl">
-        <div className={"flex flex-row items-center gap-4"}>
+      <div className="hidden lg:flex  flex-row justify-between px-8 items-center  bg-transparent pt-20 mb-10 text-xl">
+        <div className={"flex flex-row items-center gap-4 whitespace-nowrap"}>
           <p className="text-[#B0B0B0]">
             Copyright © 2023 RentRightGH 2023. All rights reserved
           </p>
-          <p size={"p4"} className="text-[#B0B0B0]">
+          <p  className="text-[#B0B0B0]">
             | Terms
           </p>
         </div>
-        <div className={"flex flex-row items-center gap-4 "}>
+        <div className={"flex flex-row items-center gap-4 whitespace-nowrap"}>
           <div className={"flex flex-row items-center gap-1"}>
             <svg
               width="24"

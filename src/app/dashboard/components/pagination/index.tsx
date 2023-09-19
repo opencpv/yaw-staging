@@ -36,7 +36,7 @@ const Pagination = () => {
         href={"/dashboard"}
         className="w-full md:max-w-[83px]
                 max-w-[52px] aspect-square bg-[#396261] rounded-full flex
-                items-center justify-center">
+                items-center justify-center hover:scale-[1.02]">
         <MdKeyboardArrowLeft color="white" size={24} />
       </Link>
       <div className="flex gap-8 flex-wrap">
@@ -61,8 +61,10 @@ const Pagination = () => {
 };
 
 const Root = styled("div", {
-  boxSshadow:
+  boxShadow:
     "0px 1px 2px 0px rgba(0, 0, 0, 0.06), 0px 1px 3px 0px rgba(0, 0, 0, 0.10)",
+    paddingInline:"3rem",
+    paddingBlock:"1rem",
 });
 
 const PgItem = styled("button", {
@@ -90,6 +92,7 @@ const PgItem = styled("button", {
   "&:hover": {
     backgroundColor: "#8a8a8a25",
     color: "black",
+    scale:"1.05"
   },
 
   variants: {
