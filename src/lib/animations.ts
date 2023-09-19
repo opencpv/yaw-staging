@@ -25,7 +25,7 @@ export const HideShow = {
 };
 
 export const ExpandCircle = {
-  open: (height = 1000) => ({
+  open: (height = 2000) => ({
     clipPath: `circle(${height * 2 + 200}px at right top)`,
     transition: {
       type: 'spring',
@@ -55,7 +55,7 @@ export const FadeInOut = {
       duration: '1',
     },
     transitionEnd: {
-      display: 'unset',
+      display: 'flex',
     },
   },
   closed: {

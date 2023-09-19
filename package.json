@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@radix-ui/react-collapsible": "^1.0.3",
+    "@radix-ui/react-separator": "^1.0.3",
     "@sanity/client": "^6.4.11",
     "@stitches/react": "^1.2.8",
     "@supabase/supabase-js": "^2.33.2",

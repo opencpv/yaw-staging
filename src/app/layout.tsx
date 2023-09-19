@@ -1,5 +1,5 @@
 "use client";
-import Menu from "@/components/NavMenu";
+import Menu from "@/components/NavMenu.tsx";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter, Poppins, Open_Sans } from "next/font/google";
@@ -15,13 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Menu
-          isOpen={isMenuOpen}
-          layout
-          toggleMenu={() => setIsMenuOpen((r) => !r)}
-        />
-        <Navbar toggleMenu={() => setIsMenuOpen((r) => !r)}/>
-        {children}
+              {children}
       </body>
     </html>
   );
