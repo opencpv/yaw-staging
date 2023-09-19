@@ -75,7 +75,8 @@ const Profile = () => {
         }}
         onSubmit={(values) => {
           console.log(values);
-        }}>
+        }}
+      >
         <Form className="">
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
             <div className="col-span-1">
@@ -117,12 +118,14 @@ const Profile = () => {
                     as="select"
                     id="country"
                     name="country"
-                    className="form-input bg-white">
+                    className="form-input bg-white"
+                  >
                     {countries.map((country, index) => (
                       <option
                         key={index}
                         value={country.name.common}
-                        className="py-5">
+                        className="py-5"
+                      >
                         <div>{country.name.common}</div>
                       </option>
                     ))}
@@ -143,7 +146,8 @@ const Profile = () => {
                         as="select"
                         id="phone"
                         name="phone"
-                        className="form-input w-full">
+                        className="form-input w-full"
+                      >
                         <option value="" label="Select a country" />
                         {countries.map((country, index) => (
                           <option key={index} value={country.name.common}>
@@ -156,7 +160,8 @@ const Profile = () => {
                               />
                             )}
                             <div className="py-5 bg-[#3d1c1c] max-w-[422px]">
-                              {country.idd.root}{country.idd.suffixes} {country.name.common}
+                              {country.idd.root}
+                              {country.idd.suffixes} {country.name.common}
                             </div>
                           </option>
                         ))}
@@ -241,7 +246,8 @@ const Profile = () => {
               <button
                 type="submit"
                 className="max-w-[160px] max-h-[52px] w-full aspect-[160/52]
-                mt-5 bg-[#DDB771] text-[#ffff] rounded-[8px]">
+                mt-5 bg-[#DDB771] text-[#ffff] rounded-[8px]"
+              >
                 Update Profile
               </button>
             </div>

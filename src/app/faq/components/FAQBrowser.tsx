@@ -29,13 +29,13 @@ const FAQBrowser = () => {
   }, []);
 
   return (
-    <div className="px-[39px] flex flex-col lg:flex-row  items-start">
+    <div className="px-[15px] md:px-[39px] flex flex-col lg:flex-row  items-start">
       <div className="flex flex-wrap lg:pr-[109px] lg:border-r-[1px] md:mt-[56px] lg:mr-[109px] flex-row  lg:flex-col gap-[50px]  md:mb-[56px] ">
         {categories.map((category, index) => (
           <div
             key={index}
             className={`lg:px-0 px-[10px] py-[5px] transition-all duration-200 lg:bg-none ${
-              active == index ? "  md:bg-[#EFEFEF]" : ""
+              active == index ? "md:bg-[#EFEFEF]" : ""
             }`}
           >
             <button
