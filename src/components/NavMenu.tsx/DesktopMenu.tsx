@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { links } from "./content";
 import { motion } from "framer-motion";
@@ -9,10 +9,10 @@ import { FadeInOut } from "@/lib/animations";
 export const DesktopMenu = (props: any) => {
     const [active, setActive] = useState(null);
     const [subId, setSubId] = useState(null);
-    // const router = useRouter();
+    const router = useRouter();
     return (
-      <div className={`flex-row px-4 gap-12 h-full ${props?.className}`}>
-        <div className={"flex flex-col gap-10 flex-[0_1_30%]"}>
+      <div className={`flex-row px-4 gap-12  ${props?.className} `}>
+        <div className={"flex flex-col gap-10 flex-[0_1_30%] border-r-[1px] border-r-[#fff] pr-10"}>
           {links.map((r, idx) => (
             <motion.button
               key={idx}
@@ -21,10 +21,11 @@ export const DesktopMenu = (props: any) => {
               onClick={() => {
                 if (r?.sub) {
                   setActive(idx);
+                  setSubId(null)
                 } else {
                   setActive(null);
                   router.push(r?.url);
-                  props?.toggleMenu();
+                  // props?.toggleMenu();
                 }
               }}>
               <div
@@ -49,7 +50,6 @@ export const DesktopMenu = (props: any) => {
             </motion.button>
           ))}
         </div>
-        <Separator color={"white"} orientation={"vertical"} />
         {active !== null && (
           <>
             <motion.div
@@ -96,7 +96,7 @@ export const DesktopMenu = (props: any) => {
         )}
         {subId !== null && (
           <>
-            <Separator color={"white"} orientation={"vertical"} />
+            <Separator color={"white"} orientation={"vertical"} className="h-full min-h-[350px]" />
             <motion.div
               className={"flex flex-col flex-[0_0_30%] text-[#FCAB10]"}
               animate={FadeInOut.open}

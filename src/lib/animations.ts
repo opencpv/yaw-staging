@@ -31,7 +31,7 @@ export const ExpandCircle = {
       type: 'spring',
       stiffness: 20,
       restDelta: 2,
-      duration: '1.5',
+      duration: '5.5',
     },
   }),
   closed: {
@@ -41,7 +41,7 @@ export const ExpandCircle = {
       type: 'spring',
       stiffness: 400,
       damping: 40,
-      duration: '1.5',
+      duration: '5.5',
     },
   },
 };

@@ -6,6 +6,8 @@ import { useState } from "react";
 import { links } from "./content";
 import Link from "next/link";
 import ArrowDownNav from "@/app/components/icons/CaArrowDownNav.";
+import {BsArrowDownCircleFill} from 'react-icons/bs'
+import { montserat } from "@/app/styles/font";
 
 const MenuOption = ({
   name,
@@ -25,7 +27,7 @@ const MenuOption = ({
     "div:first-child": {
       display: "flex",
     },
-    "div:nth-child(2)": {
+    "&[data-state=open] > div:nth-child(2)": {
       display: "flex",
       flexDirection: "column",
       gap: "10px",
@@ -40,6 +42,8 @@ const MenuOption = ({
       },
   });
 
+
+
   const [open, setOpen] = useState(false);
   return (
     <CollapsibleRoot open={open} onOpenChange={setOpen}>
@@ -47,18 +51,19 @@ const MenuOption = ({
         <div
           className={`
               "flex flex-row w-full justify-between items-center cursor-pointer
-              ${open ? "text-[#ddd]" : "text-[#fff]"}
+              font-[600]
+              ${open ? "text-[#FCAB10]" : "text-[#fff]"}
             `}>
           <p className={"uppercase !font-semibold"}>{name}</p>
-          <ArrowDownNav />
+          <ArrowDownNav color={open ? "#ddd" : "#fff"}/>
         </div>
       </Collapsible.Trigger>
       <Collapsible.Content className={"py-4"}>
         {sub?.map((r, index) => (
-          <Collapsible.Root key={index} className="text-white flex flex-col">
+          <Collapsible.Root key={index} className="text-white flex flex-col ">
             <Collapsible.Trigger className="text-left flex justify-between pr-20 ">
               {r?.name}
-              <ArrowDownNav />
+              <ArrowDownNav/>
             </Collapsible.Trigger>
             <Collapsible.Content>
               {sub2?.map((r2, index) => (
@@ -76,7 +81,7 @@ const MenuOption = ({
 
 export const MobileMenu = (props: any) => {
   return (
-    <div className={`flex flex-col px-4 gap-4  ${props?.className}`}>
+    <div className={`flex flex-col px-4 gap-4  ${props?.className} ${montserat.className}`}>
       {links.map((r, index) =>
         r?.sub ? (
           <MenuOption key={index} name={r.name} sub={r?.sub} sub2={r?.sub2} />

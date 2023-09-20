@@ -23,6 +23,7 @@ export default function Menu(props: any) {
 
   return (
     <Root
+    className="fixed w-full top-0 z-[1001]"
       variants={ExpandCircle}
       exit={{
         ...ExpandCircle.closed,
@@ -50,44 +51,46 @@ export default function Menu(props: any) {
       }}
       {...props}>
       <div className={"content-box flex-col flex"}>
-        <div className={"flex-flex-col px-8"}>
-          <div
-            className={
-              "flex flex-row items-center justify-between pt-8  w-full "
-            }>
+      <div className="">
+          <div className={"flex-flex-col px-8"}>
             <div
-              className="w-full  relative
-              max-w-[106px] max-h-[86px] aspect-[106/86]
-              lg:max-w-[150px] 
-            lg:max-h-[122px] h-full lg:aspect-[150/122] 
-            ">
-              <Image
-                src={icons.Logo}
-                alt="bg"
-                fill
-                objectPosition="center"
-                objectFit="cover"
-                className=" w-full h-full "
-              />
+              className={
+                "flex flex-row items-center justify-between pt-8  w-full "
+              }>
+              <div
+                className="w-full  relative
+                max-w-[106px] max-h-[86px] aspect-[106/86]
+                lg:max-w-[150px] 
+              lg:max-h-[122px] h-full lg:aspect-[150/122] 
+              ">
+                <Image
+                  src={icons.Logo}
+                  alt="bg"
+                  fill
+                  objectPosition="center"
+                  objectFit="cover"
+                  className=" w-full h-full "
+                />
+              </div>
+                <button className="hover:rotate-[360deg] duration-1000">
+                  <AiFillCloseCircle
+                    onClick={(e) => props.toggleMenu()}
+                    color="white"
+                    size={40}
+                  />
+                </button>
             </div>
-            <button>
-              <AiFillCloseCircle
-                onClick={(e) => props.toggleMenu()}
-                color="white"
-                size={40}
-              />
-            </button>
           </div>
-        </div>
-        <div className={"mt-10"}>
-          <MobileMenu className={"flex lg:hidden "} />
-          <DesktopMenu className={"hidden lg:flex"} />
-        </div>
+          <div className={"mt-10 "}>
+            <MobileMenu className={"flex lg:hidden "} />
+            <DesktopMenu className={"hidden lg:flex"} />
+          </div>
       </div>
-      <div className="hidden lg:flex h-[127px] bg-[#305A61] justify-center items-center gap-10">
+      </div>
+      <div className="hidden lg:flex h-[127px] min-h-[127px] bg-[#305A61] justify-center items-center gap-10">
         {
-          bottomLinks.map((r)=>(
-            <div className="text-[#fff]">
+          bottomLinks.map((r, index)=>(
+            <div key={index} className="text-[#fff] flex flex-col h-full items-center justify-center">
               {r?.name}
             </div>
           ))
@@ -100,15 +103,16 @@ const Root = styled(motion.aside, {
   background: "url(/svgs/bgMenuSmall.svg)",
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
-
+  gap:"20px",
   height: "100%",
   position: "absolute",
   top: "0px",
   left: "0px",
   right: "0px",
+  bottom:"0px",
   width:"100%",
-  minHeight: "100vh",
-  maxHeight:"130vh",
+  minHeight: "120vh",
+  maxHeight:"150vh",
   zIndex: "999",
   display: "flex",
   flexDirection: "column",

@@ -8,15 +8,14 @@ import { useState } from "react";
 import Menu from "../NavMenu.tsx";
 
 const Navbar = (props) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const { icons } = useAssets();
   return (
     <nav className="w-full px-[30px] py-[15px] flex justify-between items-center bg-[#333333]">
       <Menu
-        isOpen={isMenuOpen}
+        isOpen={props.isMenuOpen}
         layout
-        toggleMenu={() => setIsMenuOpen((r) => !r)}
+        toggleMenu={() => props?.toggleMenu((r) => !r)}
       />
       <Link href={"/"}>
         <Image
@@ -30,7 +29,7 @@ const Navbar = (props) => {
           className={`hidden lg:block px-[130px] py-[23px] rounded-2xl border-2 border-[#fff] bg-[#305A61] text-white text-base font-semibold ${montserat.className}`}>
           Start Here
         </button>
-        <button onClick={(e) => setIsMenuOpen(r => !r)}>
+        <button onClick={(e) => props?.toggleMenu(r => !r)}>
           <Image src={icons.Hamburger} alt="menu" />
         </button>
       </div>
