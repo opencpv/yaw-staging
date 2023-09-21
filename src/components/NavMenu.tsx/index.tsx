@@ -23,7 +23,7 @@ export default function Menu(props: any) {
 
   return (
     <Root
-    className="fixed w-full top-0 z-[1001]"
+    className="fixed w-full top-0 z gap-20 "
       variants={ExpandCircle}
       exit={{
         ...ExpandCircle.closed,
@@ -51,7 +51,7 @@ export default function Menu(props: any) {
       }}
       {...props}>
       <div className={"content-box flex-col flex"}>
-      <div className="">
+      <div className="flex flex-col lg:gap-10">
           <div className={"flex-flex-col px-8"}>
             <div
               className={
@@ -60,8 +60,8 @@ export default function Menu(props: any) {
               <div
                 className="w-full  relative
                 max-w-[106px] max-h-[86px] aspect-[106/86]
-                lg:max-w-[150px] 
-              lg:max-h-[122px] h-full lg:aspect-[150/122] 
+                xl:max-w-[150px]
+              xl:max-h-[122px] h-full xl:aspect-[150/122]
               ">
                 <Image
                   src={icons.Logo}
@@ -103,17 +103,15 @@ const Root = styled(motion.aside, {
   background: "url(/svgs/bgMenuSmall.svg)",
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
-  gap:"20px",
-  height: "100%",
+  // gap:"px",
+  // height: "100%",
   position: "absolute",
   top: "0px",
   left: "0px",
   right: "0px",
   bottom:"0px",
   width:"100%",
-  minHeight: "120vh",
-  maxHeight:"150vh",
-  zIndex: "999",
+  zIndex: "9999",
   display: "flex",
   flexDirection: "column",
   justifyContent:"space-between",
@@ -121,5 +119,6 @@ const Root = styled(motion.aside, {
     background: "url(/svgs/bgMenuLarge.svg)",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
+    bottom:"unset"
   },
 });

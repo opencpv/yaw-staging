@@ -41,7 +41,7 @@ const Page = () => {
   return (
     <Root className="sm:p-5 lg:p-10 flex flex-col items-center justify-center">
       <div
-        className={`banner flex flex-col lg:flex-row justify-between px-24 items-center lg:items-start min-h-[493px] md:h-[528px] text-white font-bold  lg::gap-20 ${openSans.className}`}>
+        className={`banner flex flex-col lg:flex-row justify-center lg:justify-between px-24 items-center lg:items-start min-h-[493px] md:h-[528px] text-white font-bold  lg::gap-20 ${openSans.className}`}>
         <div className="py-10 md:py-20 text-[32px] md:text-5xl lg:text-[61px]">
           <p>Get in touch with us</p>
         </div>
@@ -242,6 +242,7 @@ const Tab = styled("button", {
   transition: "background 200ms ease-in-out, font-weight 200ms ease-in",
   whiteSpace: "nowrap",
   display: "block",
+  // backgroundColor:"white",
 
   "&::after": {
     marginTop: "0px",
@@ -268,7 +269,7 @@ const Tab = styled("button", {
           width: "100%",
           borderBottom: "4px solid #45808B",
           height: "2px",
-          transition: "width 1000ms ease-in-out",
+          transition: "width 500ms ease-in-out",
         },
         // "&:active::after": {
         //   marginTop: "11px",

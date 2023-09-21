@@ -82,6 +82,12 @@ const MenuOption = ({
 export const MobileMenu = (props: any) => {
   return (
     <div className={`flex flex-col px-4 gap-4  ${props?.className} ${montserat.className}`}>
+      <Link href={'/login'} className="max-w-[309px] max-h-[59px] w-full aspect-[309/59]
+      bg-[#305A61] border-2 border-[#D9D9D9] text-white rounded-2xl mt-6 mb-10
+      font-semibold text-[24px] flex items-center justify-center
+      ">
+        Start here
+      </Link>
       {links.map((r, index) =>
         r?.sub ? (
           <MenuOption key={index} name={r.name} sub={r?.sub} sub2={r?.sub2} />
