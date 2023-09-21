@@ -7,6 +7,7 @@ import { FaFacebook, FaLinkedin, FaTwitter, FaWhatsapp } from "react-icons/fa";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import PhoneNumberInput from "@/components/__shared/PhoneInput";
 
 const IconField = ({ icon, label, type, name, className, placeholder }) => {
   return (
@@ -31,6 +32,11 @@ const IconField = ({ icon, label, type, name, className, placeholder }) => {
 };
 
 const Profile = () => {
+  const [phone, setPhone] = useState("+233");
+  const [loading, setLoading] = useState(false);
+  const handlePhone = (phoneNumber: string) => {
+    setPhone(phoneNumber);
+  };
   const [countries, setCountries] = useState([]);
 
   useEffect(() => {
@@ -62,19 +68,20 @@ const Profile = () => {
       </div>
       <Formik
         initialValues={{
-          // firstName: "John",
-          // lastName: "Doe",
-          // email: "JohnDoe@gmail.com",
+          firstName: "",
+          lastName: "",
+          email: "",
           country: "Ghana",
-          // twitter: "https://twitter.com/abcd",
-          // facebook: "https://facebook.com/abcd",
-          // linkedIn: "https://facebook.com/abcd",
-          // whatsapp: "https://wa.whatsapp.com/abcd",
+          twitter: "",
+          facebook: "",
+          linkedIn: "",
+          // whatsapp: "",
           // bio: "Enter your bio",
-          number: "+233",
         }}
         onSubmit={(values) => {
           console.log(values);
+          const val = values;
+          val.phone = phone;
         }}>
         <Form className="border-t-2 border-[#E0E4EC] pt-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
@@ -136,44 +143,10 @@ const Profile = () => {
                 </div>
 
                 <div className="form-div">
-                  <label htmlFor="phone">Phone:</label>
-                  <div className="flex gap-4 max-w-[422px]">
-                    <div className="max-w-[100px]">
-                      <Field
-                        as="select"
-                        id="phone"
-                        name="phone"
-                        className="form-input w-full">
-                        <option value="" label="Select a country" />
-                        {countries.map((country, index) => (
-                          <option key={index} value={country.name.common}>
-                            {country.flags && (
-                              <Image
-                                src={country.flags.png}
-                                alt={`Flag of ${country.name.common}`}
-                                width={20}
-                                height={20}
-                              />
-                            )}
-                            <div className="py-5 bg-[#3d1c1c] max-w-[422px]">
-                              {country.idd.root}{country.idd.suffixes} {country.name.common}
-                            </div>
-                          </option>
-                        ))}
-                      </Field>
-                    </div>
-                    <Field
-                      type="number"
-                      name="number"
-                      className="form-input w-full"
-                    />
-                  </div>
-
-                  <ErrorMessage
-                    name="country"
-                    component="div"
-                    className="error"
-                  />
+                  <label className="">
+                    Phone
+                  </label>
+                  <PhoneNumberInput phoneChange={handlePhone} />
                 </div>
               </div>
             </div>
@@ -181,7 +154,7 @@ const Profile = () => {
               <p className="font-semibold mb-5">My Social Media Accounts</p>
               <div className="flex flex-col gap-5">
                 <IconField
-                  icon={<FaTwitter size={24} />}
+                  icon={<FaTwitter size={24} color="black" />}
                   name={"twitter"}
                   className={"form-input"}
                   label={"Twitter"}
@@ -189,7 +162,7 @@ const Profile = () => {
                   placeholder="https://twitter.com/abcd"
                 />
                 <IconField
-                  icon={<FaLinkedin size={24} />}
+                  icon={<FaLinkedin size={24} color="black"/>}
                   name={"linkedIn"}
                   className={"form-input"}
                   label={"LinkedIn"}
@@ -197,7 +170,7 @@ const Profile = () => {
                   placeholder="https://facebook.com/abcd"
                 />
                 <IconField
-                  icon={<FaFacebook size={24} />}
+                  icon={<FaFacebook size={24} color="black" />}
                   name={"facebook"}
                   className={"form-input"}
                   label={"Facebook"}
@@ -205,7 +178,7 @@ const Profile = () => {
                   placeholder="https://linkedin.com/abcd"
                 />
                 <IconField
-                  icon={<IoLogoWhatsapp size={24} />}
+                  icon={<IoLogoWhatsapp size={24}  color="black"/>}
                   name={"whatsapp"}
                   className={"form-input"}
                   label={"WhatsApp"}
@@ -213,7 +186,7 @@ const Profile = () => {
                   placeholder="https://wa.whatsapp.com/abc"
                 />
                 <IconField
-                  icon={<IoLogoWhatsapp size={24} />}
+                  icon={<IoLogoWhatsapp size={24} color="black" />}
                   name={"whatsapp"}
                   className={"form-input"}
                   label={"WhatsApp"}
@@ -231,6 +204,7 @@ const Profile = () => {
                   as="textarea" // Use 'textarea' as the component
                   id="bio"
                   name="bio"
+                  placeholder="Enter your bio"
                   className="form-input-textarea px-4 max-w-[422px]
                   border-[#E6E6E6] rounded-[4px] text-[#737373]
                   border py-2"
@@ -257,6 +231,7 @@ const Root = styled("div", {
     display: "flex",
     flexDirection: "column",
     gap: "0.875rem",
+    color:"#6A6968",
   },
   " .form-input": {
     maxHeight: "52px",

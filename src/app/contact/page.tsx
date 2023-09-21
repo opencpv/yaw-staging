@@ -9,11 +9,19 @@ import { useRef, useState } from "react";
 import { montserat, openSans } from "../styles/font";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { BiRightArrowCircle } from "react-icons/bi";
+import PhoneNumberInput from "@/components/__shared/PhoneInput";
+import Switch from "../dashboard/components/navbar/switch";
+import FormSwitch from "./components/FormSwitch";
 
 const Page = () => {
   const [active, setActive] = useState("general");
   const { images } = useAssets();
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  const [phone, setPhone] = useState("+233");
+  const [loading, setLoading] = useState(false);
+  const handlePhone = (phoneNumber: string) => {
+    setPhone(phoneNumber);
+  };
 
   // Function to scroll to the bottom
   const scrollToRight = () => {
@@ -33,12 +41,13 @@ const Page = () => {
   return (
     <Root className="sm:p-5 lg:p-10 flex flex-col items-center justify-center">
       <div
-        className={`banner flex flex-col lg:flex-row justify-center items-center lg:items-start min-h-[493px] md:h-[528px] text-white font-bold  lg::gap-20 ${openSans.className}`}>
-        <div className="lg:py-20 text-[32px] md:text-5xl lg:text-[61px]">
+        className={`banner flex flex-col lg:flex-row justify-between px-24 items-center lg:items-start min-h-[493px] md:h-[528px] text-white font-bold  lg::gap-20 ${openSans.className}`}>
+        <div className="py-10 md:py-20 text-[32px] md:text-5xl lg:text-[61px]">
           <p>Get in touch with us</p>
         </div>
         <div
           className="w-full relative max-w-[450px]
+          min-h-[240px]
         aspect-[318/240]
         md:aspect-[414/303]
         lg:aspect-square lg:pb-5">
@@ -79,14 +88,14 @@ const Page = () => {
             </div>
           </div>
 
-          <div className="flex xl:flex-row flex-col gap-10 h-full">
+          <div className="flex xl:flex-row flex-col gap-10 h-full ">
             <Formik
               initialValues={{}}
               onSubmit={(values) => {
                 console.log(values);
               }}
               clasName="">
-              <Form className=" pt-8 xl:flex-[1_0_407px] 2xl:flex-[1_0_637px] ">
+              <Form className=" pt-8 xl:flex-[1_0_407px] 2xl:flex-[1_0_650px] xl:max-w-[400px] 2xl:min-w-[673px] 2xl:max-w-full">
                 <div className=" gap-5">
                   <div className="">
                     <div className="flex flex-col gap-5">
@@ -112,6 +121,13 @@ const Page = () => {
                         <ErrorMessage name="email" />
                       </div>
                       <UploadFile />
+                    </div>
+                    <div className="form-div max-w-[673px] mt-5">
+                      <label className="">Phone</label>
+                      <PhoneNumberInput phoneChange={handlePhone} />
+                      <div className="mb-2">
+                        <FormSwitch label="Available on whatsapp" />
+                      </div>{" "}
                     </div>
 
                     <div className="form-div">
@@ -149,6 +165,8 @@ const Page = () => {
                 alt="Faq IMAGE"
                 className="rounded-[8px] h-full max-h-[807px]"
                 fill
+                objectFit="cover"
+                objectPosition="bottom"
               />
             </div>
           </div>
@@ -187,7 +205,7 @@ const Root = styled("div", {
   " .form-input": {
     maxHeight: "52px",
     padding: "0.9375rem",
-    maxWidth: "673px",
+    // maxWidth: "673px",
     aspectRatio: "422/52",
     border: "1px solid #E6E6E6",
     borderRadius: "4px",
@@ -235,11 +253,9 @@ const Tab = styled("button", {
     // transition: "width 1000ms ease-in-out",
   },
 
-
   "&:hover": {
     backgroundColor: "#45808b1c",
   },
-
 
   variants: {
     type: {

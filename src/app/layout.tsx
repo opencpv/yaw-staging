@@ -41,9 +41,9 @@ export default function RootLayout({
         )}
         <div
           className={` ${
-            isMenuOpen ? "h-[80vh] overflow-hidden opacity-0" : "opacity-100"
+            isMenuOpen ? "h-[80vh] overflow-hidden opacity-50" : "opacity-100"
           }
-        transition duration-1000
+        transition duration-[1000ms]
         `}>
           {children}
         </div>
