@@ -25,8 +25,9 @@ export const HideShow = {
 };
 
 export const ExpandCircle = {
-  open: (height = 2000) => ({
-    clipPath: `circle(${height * 2 + 200}px at right top)`,
+  open: (d = window.screen.height >= window.screen.width ? window.screen.height : window.screen.width
+    ) => ({
+    clipPath: `circle(${d  + 300}px at right top)`,
     transition: {
       type: 'spring',
       stiffness: 20,
@@ -37,11 +38,11 @@ export const ExpandCircle = {
   closed: {
     clipPath: 'circle(0px at right top)',
     transition: {
-      delay: 0.5,
+      delay: 0.2,
       type: 'spring',
       stiffness: 400,
       damping: 40,
-      duration: '5.5',
+      duration: '5000ms',
     },
   },
 };
