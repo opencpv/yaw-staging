@@ -5,30 +5,22 @@ import Image from "next/image";
 import { openSans } from "@/app/styles/font";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { dateDefault } from "@/content/defaultPhone";
-// Sample data
-const COUNTRIES = [
-  {
-    name: "United States",
-    code: "+1",
-    image: "path_to_usa_flag_image.png",
-  },
-  {
-    name: "India",
-    code: "+91",
-    image: "path_to_india_flag_image.png",
-  },
-  // ... add other countries here
-];
+import { useClickAway } from "@uidotdev/usehooks";
 
 interface Props {
   phoneChange: (phoneNumber: string) => void;
+  defaultValue?: string;
 }
 
-const PhoneNumberInput = ({ phoneChange }: Props) => {
+const PhoneNumberInput = ({ phoneChange, defaultValue = "" }: Props) => {
   const [selectedCountry, setSelectedCountry] = useState<any>({});
   const [data, setData] = useState<any[]>([]);
   const { icons } = useAssets();
   const [toggle, setToggle] = useState(false);
+  const [phone, setphone] = useState(defaultValue);
+  const ref: any = useClickAway(() => {
+    setToggle(false);
+  });
 
   useEffect(() => {
     axios
@@ -42,9 +34,9 @@ const PhoneNumberInput = ({ phoneChange }: Props) => {
   }, []);
 
   return (
-    <div className="">
+    <div className="relative">
       {data.length > 0 && (
-        <div className="relative  flex gap-2">
+        <div className="relative  flex gap-2" ref={ref}>
           <button
             type="button"
             onClick={() => {
@@ -70,7 +62,7 @@ const PhoneNumberInput = ({ phoneChange }: Props) => {
             <Image src={icons.ArrowDown} alt={"down arrow"} />
           </button>
           {toggle && (
-            <ul className="absolute bg-[#fff] top-[70px] left-0 h-[200px] overflow-y-scroll overflow-x-hidden border-[1px]  border-[#EBEBEB] rounded-[4px] w-[150px]">
+            <ul className="absolute bg-[#fff] top-[-220px] left-0 h-[200px] overflow-y-scroll overflow-x-hidden border-[1px]  border-[#EBEBEB] rounded-[4px] w-[150px]">
               {data.map((country, index) => (
                 <li
                   key={index}
@@ -108,11 +100,13 @@ const PhoneNumberInput = ({ phoneChange }: Props) => {
           )}
           <input
             type="tel"
-            placeholder="0231119902"
+            placeholder={defaultValue}
+            value={phone}
             className="flex flex-auto border-[1px] rounded-[4px] border-[#EBEBEB] p-[15px]"
             onChange={(e) => {
               const prefix = `${selectedCountry.idd.root}${selectedCountry.idd.suffixes}`;
               phoneChange(`${prefix}${e.target.value}`);
+              setphone(e.target.value);
             }}
           />
         </div>

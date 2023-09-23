@@ -1,4 +1,5 @@
 "use client";
+
 import { styled } from "@stitches/react";
 import Image from "next/image";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -7,8 +8,29 @@ import { FaFacebook, FaLinkedin, FaTwitter, FaWhatsapp } from "react-icons/fa";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import PhoneNumberInput from "@/components/__shared/PhoneInput";
+import supabase from "@/lib/utils/supabaseClient";
+import Loader from "@/components/__shared/loader/Loader";
 
-const IconField = ({ icon, label, type, name, className, placeholder }) => {
+interface Props {
+  icon: any;
+  label: string;
+  type: any;
+  name: string;
+  className: string;
+  placeholder: string;
+  defaultValue?: string;
+}
+
+const IconField = ({
+  icon,
+  label,
+  type,
+  name,
+  className,
+  placeholder,
+  defaultValue,
+}: Props) => {
   return (
     <div className="form-div relative">
       <div className="flex gap-2 items-center">
@@ -30,9 +52,14 @@ const IconField = ({ icon, label, type, name, className, placeholder }) => {
   );
 };
 
-const Profile = () => {
+const Profile = ({ profileData }: { profileData: any }) => {
   const [countries, setCountries] = useState([]);
-
+  const [data, setData] = useState<any>({});
+  const [phone, setphone] = useState("");
+  const [loading, setloading] = useState(false);
+  const handlePhone = (str: string) => {
+    setphone(str);
+  };
   useEffect(() => {
     axios
       .get("https://restcountries.com/v3.1/all")
@@ -42,7 +69,11 @@ const Profile = () => {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, []);
+
+    setData(profileData);
+    console.log(profileData);
+  }, [profileData]);
+
   return (
     <Root>
       <div className="flex gap-5 mt-3">
@@ -51,31 +82,60 @@ const Profile = () => {
         <Navigation>Account Setting</Navigation>
       </div>
       <div className="py-10 pt-6">
+        <p>{data?.fullname}</p>
         <p>Your Profile Picture</p>
         <div className="max-w-[227px] max-h-[164px] w-full relative aspect-[227/164] rounded-[18px] mt-5 border-">
           <Image
-            src="/assets/images/sampleProfilePic.png"
+            src={data.avatar_url}
+            placeholder="blur"
+            loading="eager"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAHPAzcDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAECAwb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APJAAAAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAACAAAAIqAAAIqAAAAAIqAAAAAAAIqAAAAAAAoAAAAAAACooAAAAAAAAAAKAAAAAAADQAAAAAAACoAoAAAAAAAAAAAAAAAAAAAAAAAAAAACKgAAAACKgAAAACKgAACKgAAAACKgAAAAAACAAAAAAACiKAAAAAAAACgAAAAAAAAAKgCgAAAAA0AAAAAAAAAAqAKIoAAAAAAAAAAAAAAAAAAAAAICoAAAAAAIAAAAAACAAAAgAAAAAIAAAAAAACAAAAAAAAKgCgAAAAAAAKigAAAAAAAAAAAAAAogDYAAAAAAAAAAAAAAAKIAogCiAKIoAICiAKIAogCoAAAAAAAAgAAAAAAAgAAAIqAAAAAAgAAAAAACKgAAAAAAAAAAKIoAAAAAAAAKIAoAAAAAAAAAAAAANgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAIAAAAAIAAAAAAgAAAAAAAIAAAAAAAAAAAAAACiAKAAAAAAAAqAKIAoAAAAAAAAANiAKIAogCiAKIAogCiAKAAAAAAAACAogCiAKIAogAAAAAAAAAIAqAAAACAqAAAAAACAAAAAAAAgAAAAAAAAAAAAAAAAAACoAoigAAAAAAAAAAAAKgCiAKIA2AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAogCoAAAAAAICoAAAAAAAAgAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAKgCiAKAAAAAAAAAAAAADYAAAAAAAAAAAAAAAAAAAAAAgCiAKIAAAAAAAAACAKIAAAAAAAAACAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACiAKIAogCiAOgAAAAAAAAgCiAKIAqAAAAAAAAAAAAAAIAogAAAAAAAAAAAIAqAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2AAAAAAAAAAAAAAAAAACAogCiAAAAAAAAAAAAICiAAAAAAAAAAAAgCoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANgAAAAAAAAAAgKIAogAAAAAAAAAAAAACAogAAAAAAAAAAAIAqAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADYgCiAKIAAAAAAAAAAAAAAAAAAACAKgAAAAAAAAAAgKIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAKIAogCiAKIAogCiANgAAAAAAAAAAAAAAAAAAAAgKgAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAICiAKIAqAAAAAAAAAAAAAAAAAAAAADYAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAioAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAogCoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANgAAAAAAAAAAAAACAAAAAAAAAAAAAAAAACKgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADYgCiAKIAogCiAKgAAAAAAAAAAAAAAAAAAAAAAAgqAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoCCgIKAgoCgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgqAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgqAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAACgAAAAAAAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgqAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAACooAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAigIAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAACgAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAKIoAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAIqAAAAAAAAAAAAAAAAAAAAAAAAAAAKgCgAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAICoAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACiAKAAAAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACiAKIAogCgAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAioAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//2Q=="
             alt="User picture"
             fill
           />
         </div>
       </div>
       <Formik
+        key={JSON.stringify(profileData)}
         initialValues={{
-          // firstName: "John",
-          // lastName: "Doe",
-          // email: "JohnDoe@gmail.com",
-          country: "Ghana",
-          // twitter: "https://twitter.com/abcd",
-          // facebook: "https://facebook.com/abcd",
-          // linkedIn: "https://facebook.com/abcd",
-          // whatsapp: "https://wa.whatsapp.com/abcd",
-          // bio: "Enter your bio",
-          number: "+233",
+          firstName: data.firstname,
+          lastName: data.lastname,
+          email: data.email,
+          country: data.country,
+          twitter: data.twitter_url,
+          facebook: data.facebook_url,
+          linkedIn: data.linkedin_url,
+          whatsapp: data.whatsapp,
+          bio: data.bio,
+          number: data.phone,
         }}
         onSubmit={(values) => {
-          console.log(values);
+          const dto = values;
+          delete values.number;
+          dto.number = phone;
+          setloading(true);
+          supabase
+            .from("profiles")
+            .update({
+              firstname: values.firstName,
+              lastname: values.lastName,
+              country: values.country,
+              twitter_url: values.twitter,
+              facebook_url: values.facebook,
+              linkedin_url: values.linkedIn,
+              whatsapp: values.whatsapp,
+              phone: values.number,
+              bio: values.bio,
+            })
+            .eq("full_name", profileData.full_name)
+            .select()
+            .then(({ data, error }) => {
+              setloading(false);
+              console.log(data);
+            });
+          console.log(dto);
         }}
+        enableReinitialize={true}
       >
         <Form className="border-t-2 border-[#E0E4EC] pt-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
@@ -87,7 +147,7 @@ const Profile = () => {
                   <Field
                     type="text"
                     name="firstName"
-                    placeholder="John"
+                    // placeholder={firstname}
                     className="form-input"
                   />
                   <ErrorMessage name="firstName" />
@@ -97,7 +157,7 @@ const Profile = () => {
                   <Field
                     type="text"
                     name="lastName"
-                    placeholder="Doe"
+                    // placeholder="Doe"
                     className="form-input"
                   />
                   <ErrorMessage name="lastName" />
@@ -108,6 +168,7 @@ const Profile = () => {
                     type="email"
                     name="email"
                     placeholder="johndoe@gmail.com"
+                    disabled
                     className="form-input"
                   />
                   <ErrorMessage name="email" />
@@ -120,7 +181,7 @@ const Profile = () => {
                     name="country"
                     className="form-input bg-white"
                   >
-                    {countries.map((country, index) => (
+                    {countries.map((country: any, index) => (
                       <option
                         key={index}
                         value={country.name.common}
@@ -140,45 +201,12 @@ const Profile = () => {
 
                 <div className="form-div">
                   <label htmlFor="phone">Phone:</label>
-                  <div className="flex gap-4 max-w-[422px]">
-                    <div className="max-w-[100px]">
-                      <Field
-                        as="select"
-                        id="phone"
-                        name="phone"
-                        className="form-input w-full"
-                      >
-                        <option value="" label="Select a country" />
-                        {countries.map((country, index) => (
-                          <option key={index} value={country.name.common}>
-                            {country.flags && (
-                              <Image
-                                src={country.flags.png}
-                                alt={`Flag of ${country.name.common}`}
-                                width={20}
-                                height={20}
-                              />
-                            )}
-                            <div className="py-5 bg-[#3d1c1c] max-w-[422px]">
-                              {country.idd.root}
-                              {country.idd.suffixes} {country.name.common}
-                            </div>
-                          </option>
-                        ))}
-                      </Field>
-                    </div>
-                    <Field
-                      type="number"
-                      name="number"
-                      className="form-input w-full"
+                  <div className="flex gap-4 max-w-[422px] ">
+                    <PhoneNumberInput
+                      phoneChange={handlePhone}
+                      defaultValue={data.phone}
                     />
                   </div>
-
-                  <ErrorMessage
-                    name="country"
-                    component="div"
-                    className="error"
-                  />
                 </div>
               </div>
             </div>
@@ -217,14 +245,6 @@ const Profile = () => {
                   type={"text"}
                   placeholder="https://wa.whatsapp.com/abc"
                 />
-                <IconField
-                  icon={<IoLogoWhatsapp size={24} />}
-                  name={"whatsapp"}
-                  className={"form-input"}
-                  label={"WhatsApp"}
-                  type={"text"}
-                  placeholder="https://wa.whatsapp.com/abc"
-                />
               </div>
             </div>
             <div className="col-span-1">
@@ -243,13 +263,21 @@ const Profile = () => {
                   cols="50" // Optional: Set the number of columns for the text area
                 />
               </div>
-              <button
-                type="submit"
-                className="max-w-[160px] max-h-[52px] w-full aspect-[160/52]
+              <>
+                {loading ? (
+                  <div className="flex justify-center mt-8">
+                    <Loader />
+                  </div>
+                ) : (
+                  <button
+                    type="submit"
+                    className="max-w-[160px] max-h-[52px] w-full aspect-[160/52]
                 mt-5 bg-[#DDB771] text-[#ffff] rounded-[8px]"
-              >
-                Update Profile
-              </button>
+                  >
+                    Update Profile
+                  </button>
+                )}
+              </>
             </div>
           </div>
         </Form>

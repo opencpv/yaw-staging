@@ -12,6 +12,9 @@ export const LoginForm = () => {
   const handleLogin = async (provider: Provider) => {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: provider,
+      options: {
+        redirectTo: "http://localhost:3000/dashboard/settings",
+      },
     });
 
     return { data, error };
@@ -35,7 +38,6 @@ export const LoginForm = () => {
             icon="google"
             onClick={async () => {
               const { data, error } = await handleLogin("google");
-              console.log(data);
             }}
           />
           <LoginButton
@@ -43,7 +45,6 @@ export const LoginForm = () => {
             icon="facebook"
             onClick={async () => {
               const { data, error } = await handleLogin("facebook");
-              console.log(data);
             }}
           />
           <LoginButton text="Continue with Apple" icon="apple" />
