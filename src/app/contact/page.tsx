@@ -5,13 +5,25 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import Image from "next/image";
 import { AiOutlineLink } from "react-icons/ai";
 import { UploadFile } from "./components/UploadFile";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { montserat, openSans } from "../styles/font";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { BiRightArrowCircle } from "react-icons/bi";
 import PhoneNumberInput from "@/components/__shared/PhoneInput";
-import Switch from "../dashboard/components/navbar/switch";
+import emailjs from "@emailjs/browser";
 import FormSwitch from "./components/FormSwitch";
+import { sendContactUsEmail } from "./api";
+import supabase from "@/lib/utils/supabaseClient";
+import * as Yup from "yup";
+import Loader from "@/components/__shared/loader/Loader";
+
+const ContactSchema = Yup.object().shape({
+  fullname: Yup.string()
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required("This field is required"),
+  email: Yup.string().email("Invalid email").required("This field is required"),
+});
 
 const Page = () => {
   const [active, setActive] = useState("general");
@@ -19,11 +31,12 @@ const Page = () => {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const [phone, setPhone] = useState("+233");
   const [loading, setLoading] = useState(false);
+  const [isWhatsapp, setIsWhatsapp] = useState(false);
   const handlePhone = (phoneNumber: string) => {
     setPhone(phoneNumber);
   };
 
-  // Function to scroll to the bottom
+  const formRef = useRef<HTMLFormElement>(null);
   const scrollToRight = () => {
     const scrollContainer = scrollContainerRef.current;
     if (scrollContainer) {
@@ -90,12 +103,57 @@ const Page = () => {
 
           <div className="flex xl:flex-row flex-col gap-10 h-full ">
             <Formik
-              initialValues={{}}
-              onSubmit={(values) => {
-                console.log(values);
+              initialValues={{
+                fullname: "",
+                email: "",
+                message: "",
+                companyName: "",
+                phone: "",
+                isWhatsapp: false,
+                fileUrl: "",
+                contactType: "",
+                reportLink: "",
+              }}
+              validationSchema={ContactSchema}
+              onSubmit={(values, { resetForm }) => {
+                values.contactType = active;
+                values.isWhatsapp = isWhatsapp;
+                values.phone = phone;
+
+                // console.log(formRef.current)
+                sendContactUsEmail(formRef.current);
+                setLoading(true);
+                supabase
+                  .from("contact us")
+                  .insert([
+                    {
+                      fullname: values.fullname,
+                      email: values.email,
+                      phone: phone,
+                      message: values.message,
+                      isWhatsapp: values.isWhatsapp,
+                      companyName: "",
+                      fileUrl: "",
+                      reportLink: "",
+                      contactType: values.contactType,
+                    },
+                  ])
+                  .select()
+                  .then(({ data, error }) => {
+                    if (error) {
+                      setLoading(false);
+                      console.log(error);
+                    } else {
+                      console.log(data);
+                      setLoading(false);
+                      resetForm();
+                    }
+                  });
               }}
               clasName="">
-              <Form className=" pt-8 xl:flex-[1_0_407px] 2xl:flex-[1_0_650px] xl:max-w-[400px] 2xl:min-w-[673px] 2xl:max-w-full">
+              <Form
+                ref={formRef}
+                className=" pt-8 xl:flex-[1_0_407px] 2xl:flex-[1_0_650px] xl:max-w-[400px] 2xl:min-w-[673px] 2xl:max-w-full">
                 <div className=" gap-5">
                   <div className="">
                     <div className="flex flex-col gap-5">
@@ -103,11 +161,15 @@ const Page = () => {
                         <label>Full Name:</label>
                         <Field
                           type="text"
-                          name="name"
+                          name="fullname"
                           placeholder="Enter your full name"
                           className="form-input"
                         />
-                        <ErrorMessage name="name" />
+                        <ErrorMessage
+                          className={`text-[#073B3A] text-[13px] ${openSans.className}`}
+                          name="fullname"
+                          component="p"
+                        />
                       </div>
 
                       <div className="form-div">
@@ -118,7 +180,11 @@ const Page = () => {
                           placeholder="Enter your email address"
                           className="form-input"
                         />
-                        <ErrorMessage name="email" />
+                        <ErrorMessage
+                          className={`text-[#073B3A] text-[13px] ${openSans.className}`}
+                          name="email"
+                          component="p"
+                        />
                       </div>
                       <UploadFile />
                     </div>
@@ -126,18 +192,21 @@ const Page = () => {
                       <label className="">Phone</label>
                       <PhoneNumberInput phoneChange={handlePhone} />
                       <div className="mb-2">
-                        <FormSwitch label="Available on whatsapp" />
-                      </div>{" "}
+                        <FormSwitch
+                          label="Available on whatsapp"
+                          onChange={(checked) => setIsWhatsapp(checked)}
+                        />
+                      </div>
                     </div>
 
                     <div className="form-div">
-                      <label htmlFor="bio" className="mt-5">
+                      <label htmlFor="message" className="mt-5">
                         Message:
                       </label>
                       <Field
                         as="textarea" // Use 'textarea' as the component
-                        id="bio"
-                        name="bio"
+                        id="message"
+                        name="message"
                         placeholder="Type your message"
                         className="form-input-textarea px-4 max-w-[673px]
                       border-[#E6E6E6] rounded-[4px] text-[#737373]
@@ -148,12 +217,18 @@ const Page = () => {
                     </div>
                   </div>
                 </div>
-                <button
-                  className="bg-[#DDB771] rounded-[8px] h-[52px] 
-                w-[135px] flex items-center justify-center text-white mt-5"
-                  type="submit">
-                  Submit
-                </button>
+                {loading ? (
+                  <Loader />
+                ) : (
+                  <button
+                    className="bg-[#DDB771] rounded-[8px] h-[52px] 
+              w-[135px] flex items-center justify-center text-white mt-5
+              hover:scale-[1.05]
+              "
+                    type="submit">
+                    Submit
+                  </button>
+                )}
               </Form>
             </Formik>
             <div

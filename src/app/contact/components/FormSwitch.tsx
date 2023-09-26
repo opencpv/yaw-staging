@@ -4,12 +4,13 @@ import { styled } from "@stitches/react";
 
 type Props = {
   label: string;
+  onChange: (checked: boolean) => void
 };
 
-const FormSwitch = ({ label }: Props) => (
+const FormSwitch = ({ label, onChange }: Props) => (
   <form>
     <div className="flex items-center  gap-5">
-      <SwitchRoot id="switch">
+      <SwitchRoot id="switch" onCheckedChange={onChange}>
         <SwitchThumb />
       </SwitchRoot>
       <p htmlFor="switch" className="text-[#6A6968] text-[16px]">

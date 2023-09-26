@@ -70,7 +70,7 @@ const PhoneNumberInput = ({ phoneChange }: Props) => {
             <Image src={icons.ArrowDown} alt={"down arrow"} />
           </button>
           {toggle && (
-            <ul className="absolute bg-[#fff] top-[70px] left-0 h-[200px] overflow-y-scroll overflow-x-hidden border-[1px]  border-[#EBEBEB] rounded-[4px] w-[150px]">
+            <ul className="absolute bg-[#fff] top-[70px] left-0 h-[200px] overflow-y-scroll overflow-x-hidden border-[1px]  border-[#EBEBEB] rounded-[4px] w-[150px] z-[100]">
               {data.map((country, index) => (
                 <li
                   key={index}

@@ -9,7 +9,16 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import PhoneNumberInput from "@/components/__shared/PhoneInput";
 
-const IconField = ({ icon, label, type, name, className, placeholder }) => {
+type IconFieldProps = {
+  icon: React.ReactNode
+  label: string,
+  type:string,
+  className: string,
+  placeholder: string,
+  name: string
+}
+
+const IconField = ({ icon, label, type, name, className, placeholder } : IconFieldProps) => {
   return (
     <div className="form-div relative">
       <div className="flex gap-2 items-center">
@@ -75,6 +84,7 @@ const Profile = () => {
           twitter: "",
           facebook: "",
           linkedIn: "",
+          phone: ""
           // whatsapp: "",
           // bio: "Enter your bio",
         }}

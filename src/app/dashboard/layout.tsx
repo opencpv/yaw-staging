@@ -2,7 +2,11 @@ import { openSans } from "../styles/font";
 import Navbar from "./components/navbar";
 import Pagination from "./components/pagination";
 
-const Layout = ({ children }) => {
+type LayoutProps = {
+  children: React.ReactNode
+}
+
+const Layout = ({ children } : LayoutProps) => {
   return (
     <div>
       <Navbar />
