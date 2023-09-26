@@ -2,7 +2,6 @@ import RichTextRenderer from "@/app/components/RichTextRenderer";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import Link from "next/link";
-import { string } from "yup";
 
 const MainView = ({ data }: { data: any }) => {
   const { icons, images } = useAssets();
