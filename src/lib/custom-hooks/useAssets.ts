@@ -13,6 +13,7 @@ import StockImage from "../../../public/assets/images/Stock.jpg";
 import ArrowDown from "../../../public/assets/icons/drop-down.svg";
 import FeedbackButton from "../../../public/assets/icons//Feedback.svg";
 import Seperator from "../../../public/assets/icons/seperator.svg";
+import TermsImage from "../../../public/assets/images/cuate.svg";
 
 export const useAssets = () => {
   return {
@@ -34,6 +35,7 @@ export const useAssets = () => {
       StockImage,
       FaqImage,
       ContactImage,
+      TermsImage,
     },
   };
 };

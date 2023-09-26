@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@portabletext/react": "^3.0.7",
+    "@sanity/block-content-to-react": "^3.0.0",
     "@sanity/client": "^6.4.11",
     "@stitches/react": "^1.2.8",
     "@supabase/auth-helpers-nextjs": "^0.8.1",

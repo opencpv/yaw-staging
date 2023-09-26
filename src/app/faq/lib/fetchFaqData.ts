@@ -10,7 +10,7 @@ const fetchFaqData = async () => {
       }`;
 
   const data = await sanityClient.fetch(query);
-  return await data;
+  return data;
 };
 
 export default fetchFaqData;
