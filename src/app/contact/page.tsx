@@ -27,6 +27,7 @@ const ContactSchema = Yup.object().shape({
 
 const Page = () => {
   const [active, setActive] = useState("general");
+
   const { images } = useAssets();
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const [phone, setPhone] = useState("+233");
@@ -34,6 +35,13 @@ const Page = () => {
   const [isWhatsapp, setIsWhatsapp] = useState(false);
   const handlePhone = (phoneNumber: string) => {
     setPhone(phoneNumber);
+  };
+
+  const activeImages = {
+    general: images.StockImage,
+    report: images.niceHome,
+    writers: images.StockImage,
+    advertise: images.niceHome,
   };
 
   const formRef = useRef<HTMLFormElement>(null);
@@ -236,7 +244,7 @@ const Page = () => {
             max-h-[402px] md:max-h-[807px] lg:mt-10
             aspect-[398/402] md:aspect-[774/807] lg:aspect-auto">
               <Image
-                src={images.StockImage}
+                src={activeImages[active]}
                 alt="Faq IMAGE"
                 className="rounded-[8px] h-full max-h-[807px]"
                 fill

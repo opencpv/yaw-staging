@@ -10,6 +10,7 @@ import FaqImage from "../../../public/assets/images/faq/faq-image.svg";
 import FaqArrowIcon from "../../../public/assets/icons/arrow-circle-right.svg";
 import ContactImage from "../../../public/assets/images/rafiki.png";
 import StockImage from "../../../public/assets/images/Stock.jpg";
+import niceHome from  "../../../public/assets/images/niceHome.png";
 import ArrowDown from "../../../public/assets/icons/drop-down.svg";
 import FeedbackButton from "../../../public/assets/icons//Feedback.svg";
 import Seperator from "../../../public/assets/icons/seperator.svg";
@@ -34,6 +35,7 @@ export const useAssets = () => {
       StockImage,
       FaqImage,
       ContactImage,
+      niceHome
     },
   };
 };
