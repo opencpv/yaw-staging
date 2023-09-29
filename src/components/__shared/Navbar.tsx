@@ -45,7 +45,7 @@ const Navbar = (props: any) => {
         >
           Start Here
         </button>
-        <button onClick={(e: any) => props?.toggleMenu((r) => !r)}>
+        <button onClick={(e: any) => props?.toggleMenu((r: boolean) => !r)}>
           <Image src={icons.Hamburger} alt="menu" />
         </button>
       </div>
