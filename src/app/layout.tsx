@@ -35,12 +35,19 @@ export default function RootLayout({
         ) : (
           <Navbar
             isMenuOpen={isMenuOpen}
-            toggleMenu={() => setIsMenuOpen((r) => !r)}
+            toggleMenu={() => {
+              window.scrollTo({
+                top: 0,
+              });
+              setIsMenuOpen((r) => !r);
+            }}
           />
         )}
         <div
           className={` ${
-            isMenuOpen ? "h-[80vh] overflow-hidden opacity-50" : "opacity-100"
+            isMenuOpen
+              ? "h-[100vh] overflow-hidden brightness-50"
+              : "opacity-100"
           }
         transition duration-[1000ms]
         `}
