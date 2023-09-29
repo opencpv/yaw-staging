@@ -46,20 +46,23 @@ export default function Menu(props: any) {
           // display: 'none',
         },
       }}
-      {...props}>
+      {...props}
+    >
       <div className={" flex-col flex "}>
         <div className="flex flex-col lg:gap-10">
           <div className={"flex-flex-col px-8"}>
             <div
               className={
                 "flex flex-row items-center justify-between pt-8  w-full "
-              }>
+              }
+            >
               <div
                 className="w-full  relative
                 max-w-[106px] max-h-[86px] aspect-[106/86]
                 2xl:max-w-[150px]
               2xl:max-h-[122px] h-full 2xl:aspect-[150/122]
-              ">
+              "
+              >
                 <Image
                   src={icons.Logo}
                   alt="bg"
@@ -71,7 +74,7 @@ export default function Menu(props: any) {
               </div>
               <button className="hover:rotate-[360deg] duration-1000">
                 <AiFillCloseCircle
-                  onClick={(e) => props.toggleMenu()}
+                  onClick={(e: any) => props.toggleMenu()}
                   color="white"
                   size={40}
                 />
@@ -93,12 +96,13 @@ export default function Menu(props: any) {
       <div className="hidden lg:flex h-[127px] min-h-[127px] bg-[#305A61] justify-center items-center gap-10 ">
         {bottomLinks.map((r, index) => (
           <button
-            onClick={(e) => {
+            onClick={(e: any) => {
               router.push(r?.url);
               props?.toggleMenu();
             }}
             key={index}
-            className="text-[#fff] flex flex-col h-full items-center justify-center bottomLink">
+            className="text-[#fff] flex flex-col h-full items-center justify-center bottomLink"
+          >
             {r?.name}
           </button>
         ))}

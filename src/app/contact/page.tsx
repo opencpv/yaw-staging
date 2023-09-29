@@ -84,25 +84,25 @@ const Page = () => {
           <div className="flex  items-center " ref={scrollContainerRef}>
             <div className="flex gap-[50px] overflow-x-scroll lg:overflow-x-auto relative ">
               <Tab
-                onClick={(e) => setActive("general")}
+                onClick={(e: any) => setActive("general")}
                 type={active === "general" ? "active" : undefined}
               >
                 General
               </Tab>
               <Tab
-                onClick={(e) => setActive("report")}
+                onClick={(e: any) => setActive("report")}
                 type={active === "general" ? "active" : undefined}
               >
                 Report an issue
               </Tab>
               <Tab
-                onClick={(e) => setActive("advertise")}
+                onClick={(e: any) => setActive("advertise")}
                 type={active === "general" ? "active" : undefined}
               >
                 Advertise with us
               </Tab>
               <Tab
-                onClick={(e) => setActive("writers")}
+                onClick={(e: any) => setActive("writers")}
                 className="sc"
                 type={active === "general" ? "active" : undefined}
               >

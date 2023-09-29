@@ -103,7 +103,7 @@ const PhoneNumberInput = ({ phoneChange, defaultValue = "" }: Props) => {
             placeholder={defaultValue}
             value={phone}
             className="flex flex-auto border-[1px] rounded-[4px] border-[#EBEBEB] p-[15px]"
-            onChange={(e) => {
+            onChange={(e: any) => {
               const prefix = `${selectedCountry.idd.root}${selectedCountry.idd.suffixes}`;
               phoneChange(`${prefix}${e.target.value}`);
               setphone(e.target.value);

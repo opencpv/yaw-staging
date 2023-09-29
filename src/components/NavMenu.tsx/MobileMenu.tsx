@@ -87,7 +87,7 @@ export const MobileMenu = (props: any) => {
       className={`flex flex-col px-4 gap-4  ${props?.className} ${montserat.className}`}
     >
       <div
-        onClick={(e) => {
+        onClick={(e: any) => {
           router.push("/login");
           props?.toggleMenu();
         }}
@@ -103,7 +103,7 @@ export const MobileMenu = (props: any) => {
           <MenuOption key={index} name={r.name} sub={r?.sub} sub2={r?.sub2} />
         ) : (
           <div
-            onClick={(e) => {
+            onClick={(e: any) => {
               router.push(r?.url);
               props?.toggleMenu();
             }}

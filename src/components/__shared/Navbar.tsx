@@ -12,7 +12,11 @@ const Navbar = (props) => {
   const { icons } = useAssets();
   const router = useRouter();
   return (
-    <nav className={`w-full px-[30px] py-4 flex justify-between items-center bg-[#333333]  z-[100] ${props.isMenuOpen ? "absolute" : "fixed"}  top-0` }>
+    <nav
+      className={`w-full px-[30px] py-4 flex justify-between items-center bg-[#333333]  z-[100] ${
+        props.isMenuOpen ? "absolute" : "fixed"
+      }  top-0`}
+    >
       <Menu
         isOpen={props.isMenuOpen}
         layout
@@ -31,16 +35,17 @@ const Navbar = (props) => {
       </Link>
       <div className="flex items-center lg:gap-[73px] md:gap-[31px] w-full justify-end">
         <button
-          onClick={(e) => {
+          onClick={(e: any) => {
             router.push("/login");
           }}
           className={`hidden lg:block w-full 2xl:aspect-[387/75]
           aspect-[278/55]
           2xl:max-w-[387px] max-w-[278px]
-          rounded-2xl border-2 border-[#fff] bg-[#305A61] text-white text-base font-semibold ${montserat.className}`}>
+          rounded-2xl border-2 border-[#fff] bg-[#305A61] text-white text-base font-semibold ${montserat.className}`}
+        >
           Start Here
         </button>
-        <button onClick={(e) => props?.toggleMenu((r) => !r)}>
+        <button onClick={(e: any) => props?.toggleMenu((r) => !r)}>
           <Image src={icons.Hamburger} alt="menu" />
         </button>
       </div>
