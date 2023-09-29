@@ -214,7 +214,7 @@ const Profile = ({ profileData }: { profileData: any }) => {
               <p className="font-semibold mb-5">My Social Media Accounts</p>
               <div className="flex flex-col gap-5">
                 <IconField
-                  icon={<FaTwitter size={24} />}
+                  icon={<FaTwitter size={24} color="black" />}
                   name={"twitter"}
                   className={"form-input"}
                   label={"Twitter"}
@@ -222,7 +222,7 @@ const Profile = ({ profileData }: { profileData: any }) => {
                   placeholder="https://twitter.com/abcd"
                 />
                 <IconField
-                  icon={<FaLinkedin size={24} />}
+                  icon={<FaLinkedin size={24} color="black" />}
                   name={"linkedIn"}
                   className={"form-input"}
                   label={"LinkedIn"}
@@ -230,7 +230,7 @@ const Profile = ({ profileData }: { profileData: any }) => {
                   placeholder="https://facebook.com/abcd"
                 />
                 <IconField
-                  icon={<FaFacebook size={24} />}
+                  icon={<FaFacebook size={24} color="black" />}
                   name={"facebook"}
                   className={"form-input"}
                   label={"Facebook"}
@@ -238,7 +238,7 @@ const Profile = ({ profileData }: { profileData: any }) => {
                   placeholder="https://linkedin.com/abcd"
                 />
                 <IconField
-                  icon={<IoLogoWhatsapp size={24} />}
+                  icon={<IoLogoWhatsapp size={24} color="black" />}
                   name={"whatsapp"}
                   className={"form-input"}
                   label={"WhatsApp"}
@@ -256,6 +256,7 @@ const Profile = ({ profileData }: { profileData: any }) => {
                   as="textarea" // Use 'textarea' as the component
                   id="bio"
                   name="bio"
+                  placeholder="Enter your bio"
                   className="form-input-textarea px-4 max-w-[422px]
                   border-[#E6E6E6] rounded-[4px] text-[#737373]
                   border py-2"
@@ -291,6 +292,7 @@ const Root = styled("div", {
     display: "flex",
     flexDirection: "column",
     gap: "0.875rem",
+    color: "#6A6968",
   },
   " .form-input": {
     maxHeight: "52px",
