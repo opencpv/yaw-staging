@@ -40,6 +40,8 @@ export const useAssets = () => {
       ContactImage,
       niceHome,
       AboutImage,
+      SplashImage,
+      TermsImage,
     },
   };
 };
