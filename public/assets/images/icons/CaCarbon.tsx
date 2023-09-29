@@ -1,4 +1,4 @@
-export default function CaDeal(props) {
+export default function CaDeal(props: any) {
   return (
     <svg
       width="28"

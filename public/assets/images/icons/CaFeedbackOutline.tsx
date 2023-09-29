@@ -1,4 +1,4 @@
-export default function CaFeedbackOutline(props) {
+export default function CaFeedbackOutline(props: any) {
   return (
     <svg
       viewBox="0 0 54 54"
