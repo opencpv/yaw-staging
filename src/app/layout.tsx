@@ -1,5 +1,4 @@
 "use client";
-import Menu from "@/components/NavMenu.tsx";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter, Poppins, Open_Sans } from "next/font/google";
@@ -7,7 +6,7 @@ import { useEffect, useState } from "react";
 import Navbar from "@/components/__shared/Navbar";
 import { usePathname } from "next/navigation";
 
-const uniquePages = ["login"];
+const uniquePages = ["login", "terms-of-service"];
 
 export default function RootLayout({
   children,
@@ -20,13 +19,13 @@ export default function RootLayout({
 
   useEffect(() => {
     uniquePages.forEach((element) => {
-      if (pathname.includes(element)) {
+      if (pathname && pathname.includes(element)) {
         setNoNavbar(true);
       } else {
         setNoNavbar(false);
       }
     });
-  }, []);
+  }, [pathname]);
 
   return (
     <html lang="en">
@@ -44,7 +43,8 @@ export default function RootLayout({
             isMenuOpen ? "h-[80vh] overflow-hidden opacity-50" : "opacity-100"
           }
         transition duration-[1000ms]
-        `}>
+        `}
+        >
           {children}
         </div>
       </body>

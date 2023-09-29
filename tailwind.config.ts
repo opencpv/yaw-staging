@@ -15,6 +15,7 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         "plane-pattern": "url('/assets/images/13783 1.png')",
         "terms-bg": "url('/assets/images/terms-bg.png')",
+        "about-bg": "url('/assets/images/about-bg.png')",
       },
     },
     colors: {
