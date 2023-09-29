@@ -14,16 +14,13 @@ import { MobileMenu } from "./MobileMenu";
 import { DesktopMenu } from "./DesktopMenu";
 import { bottomLinks } from "./content";
 
-
-
-
-
 export default function Menu(props: any) {
   const { icons } = useAssets();
 
+  const router = useRouter();
   return (
     <Root
-    className="fixed w-full top-0 z gap-20 "
+      className="w-full top-0 gap-20"
       variants={ExpandCircle}
       exit={{
         ...ExpandCircle.closed,
@@ -50,8 +47,8 @@ export default function Menu(props: any) {
         },
       }}
       {...props}>
-      <div className={"content-box flex-col flex"}>
-      <div className="flex flex-col lg:gap-10">
+      <div className={" flex-col flex "}>
+        <div className="flex flex-col lg:gap-10">
           <div className={"flex-flex-col px-8"}>
             <div
               className={
@@ -60,8 +57,8 @@ export default function Menu(props: any) {
               <div
                 className="w-full  relative
                 max-w-[106px] max-h-[86px] aspect-[106/86]
-                xl:max-w-[150px]
-              xl:max-h-[122px] h-full xl:aspect-[150/122]
+                2xl:max-w-[150px]
+              2xl:max-h-[122px] h-full 2xl:aspect-[150/122]
               ">
                 <Image
                   src={icons.Logo}
@@ -72,29 +69,39 @@ export default function Menu(props: any) {
                   className=" w-full h-full "
                 />
               </div>
-                <button className="hover:rotate-[360deg] duration-1000">
-                  <AiFillCloseCircle
-                    onClick={(e) => props.toggleMenu()}
-                    color="white"
-                    size={40}
-                  />
-                </button>
+              <button className="hover:rotate-[360deg] duration-1000">
+                <AiFillCloseCircle
+                  onClick={(e) => props.toggleMenu()}
+                  color="white"
+                  size={40}
+                />
+              </button>
             </div>
           </div>
           <div className={"mt-10 "}>
-            <MobileMenu className={"flex lg:hidden "} />
-            <DesktopMenu className={"hidden lg:flex"} />
+            <MobileMenu
+              className={"flex lg:hidden "}
+              toggleMenu={props?.toggleMenu}
+            />
+            <DesktopMenu
+              className={"hidden lg:flex"}
+              toggleMenu={props?.toggleMenu}
+            />
           </div>
+        </div>
       </div>
-      </div>
-      <div className="hidden lg:flex h-[127px] min-h-[127px] bg-[#305A61] justify-center items-center gap-10">
-        {
-          bottomLinks.map((r, index)=>(
-            <div key={index} className="text-[#fff] flex flex-col h-full items-center justify-center">
-              {r?.name}
-            </div>
-          ))
-        }
+      <div className="hidden lg:flex h-[127px] min-h-[127px] bg-[#305A61] justify-center items-center gap-10 ">
+        {bottomLinks.map((r, index) => (
+          <button
+            onClick={(e) => {
+              router.push(r?.url);
+              props?.toggleMenu();
+            }}
+            key={index}
+            className="text-[#fff] flex flex-col h-full items-center justify-center bottomLink">
+            {r?.name}
+          </button>
+        ))}
       </div>
     </Root>
   );
@@ -104,21 +111,29 @@ const Root = styled(motion.aside, {
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
   // gap:"px",
-  // height: "100%",
+  // height: "100vh",
   position: "absolute",
+  minHeight: "100vh",
   top: "0px",
   left: "0px",
   right: "0px",
-  bottom:"0px",
-  width:"100%",
+  // bottom: "0px",
+  width: "100%",
   zIndex: "9999",
   display: "flex",
   flexDirection: "column",
-  justifyContent:"space-between",
+  justifyContent: "space-between",
   "@media screen and (min-width: 1024px) ": {
     background: "url(/svgs/bgMenuLarge.svg)",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
-    bottom:"unset"
+    // bottom:"unset"
+  },
+
+  ".bottomLink": {
+    "&:hover": {
+      color: "#FCAB10",
+      scale: "1.15",
+    },
   },
 });
