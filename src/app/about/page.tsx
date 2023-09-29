@@ -7,9 +7,7 @@ const About = () => {
       <Head>
         <title>About Us - RentRight Gh</title>
       </Head>
-      <main>
-        <Navbar />
-      </main>
+      <main></main>
     </>
   );
 };
