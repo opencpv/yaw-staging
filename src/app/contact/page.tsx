@@ -62,7 +62,8 @@ const Page = () => {
   return (
     <Root className="sm:p-5 lg:p-10 flex flex-col items-center justify-center">
       <div
-        className={`banner flex flex-col lg:flex-row justify-center lg:justify-between px-24 items-center lg:items-start min-h-[493px] md:h-[528px] text-white font-bold  lg::gap-20 ${openSans.className}`}>
+        className={`banner flex flex-col lg:flex-row justify-center lg:justify-between px-24 items-center lg:items-start min-h-[493px] md:h-[528px] text-white font-bold  lg::gap-20 ${openSans.className}`}
+      >
         <div className="py-10 md:py-20 text-[32px] md:text-5xl lg:text-[61px]">
           <p>Get in touch with us</p>
         </div>
@@ -71,40 +72,47 @@ const Page = () => {
           min-h-[240px]
         aspect-[318/240]
         md:aspect-[414/303]
-        lg:aspect-square lg:pb-5">
+        lg:aspect-square lg:pb-5"
+        >
           <Image src={"/svgs/contact1.svg"} alt="Contact" fill />
         </div>
       </div>
       <div
-        className={`max-w-full lg:max-w-[90%] relative lg:top-[-100px] z-[20] h-full w-full min-h-[500px] form-root p-5 sm:p-3 lg:p-8 pt-5 lg:pt-2  ${montserat.className}`}>
+        className={`max-w-full lg:max-w-[90%] relative lg:top-[-100px] z-[20] h-full w-full min-h-[500px] form-root p-5 sm:p-3 lg:p-8 pt-5 lg:pt-2  ${montserat.className}`}
+      >
         <div className="">
           <div className="flex  items-center " ref={scrollContainerRef}>
             <div className="flex gap-[50px] overflow-x-scroll lg:overflow-x-auto relative ">
               <Tab
                 onClick={(e) => setActive("general")}
-                type={active == "general" && "active"}>
+                type={active == "general" && "active"}
+              >
                 General
               </Tab>
               <Tab
                 onClick={(e) => setActive("report")}
-                type={active == "report" && "active"}>
+                type={active == "report" && "active"}
+              >
                 Report an issue
               </Tab>
               <Tab
                 onClick={(e) => setActive("advertise")}
-                type={active == "advertise" && "active"}>
+                type={active == "advertise" && "active"}
+              >
                 Advertise with us
               </Tab>
               <Tab
                 onClick={(e) => setActive("writers")}
                 className="sc"
-                type={active == "writers" && "active"}>
+                type={active == "writers" && "active"}
+              >
                 Writers
               </Tab>
             </div>
             <div
               className="md:hidden absolute right-5 pl-5 sc-button"
-              onClick={scrollToRight}>
+              onClick={scrollToRight}
+            >
               <BiRightArrowCircle color="#71C9C7" size="24" />
             </div>
           </div>
@@ -158,10 +166,12 @@ const Page = () => {
                     }
                   });
               }}
-              clasName="">
+              clasName=""
+            >
               <Form
                 ref={formRef}
-                className=" pt-8 xl:flex-[1_0_407px] 2xl:flex-[1_0_650px] xl:max-w-[400px] 2xl:min-w-[673px] 2xl:max-w-full">
+                className=" pt-8 xl:flex-[1_0_407px] 2xl:flex-[1_0_650px] xl:max-w-[400px] 2xl:min-w-[673px] 2xl:max-w-full"
+              >
                 <div className=" gap-5">
                   <div className="">
                     <div className="flex flex-col gap-5">
@@ -208,9 +218,7 @@ const Page = () => {
                     </div>
 
                     <div className="form-div">
-                      <label htmlFor="message" className="mt-5">
-                        Message:
-                      </label>
+                      <label className="mt-5">Message:</label>
                       <Field
                         as="textarea" // Use 'textarea' as the component
                         id="message"
@@ -233,7 +241,8 @@ const Page = () => {
               w-[135px] flex items-center justify-center text-white mt-5
               hover:scale-[1.05]
               "
-                    type="submit">
+                    type="submit"
+                  >
                     Submit
                   </button>
                 )}
@@ -242,7 +251,8 @@ const Page = () => {
             <div
               className="flex items-center relative w-full md:min-h-[807px]
             max-h-[402px] md:max-h-[807px] lg:mt-10
-            aspect-[398/402] md:aspect-[774/807] lg:aspect-auto">
+            aspect-[398/402] md:aspect-[774/807] lg:aspect-auto"
+            >
               <Image
                 src={activeImages[active]}
                 alt="Faq IMAGE"

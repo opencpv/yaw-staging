@@ -4,7 +4,7 @@ import { styled } from "@stitches/react";
 
 type Props = {
   label: string;
-  onChange: (checked: boolean) => void
+  onChange: (checked: boolean) => void;
 };
 
 const FormSwitch = ({ label, onChange }: Props) => (
@@ -13,9 +13,7 @@ const FormSwitch = ({ label, onChange }: Props) => (
       <SwitchRoot id="switch" onCheckedChange={onChange}>
         <SwitchThumb />
       </SwitchRoot>
-      <p htmlFor="switch" className="text-[#6A6968] text-[16px]">
-        {label}
-      </p>
+      <p className="text-[#6A6968] text-[16px]">{label}</p>
     </div>
   </form>
 );
@@ -29,9 +27,8 @@ const SwitchRoot = styled(Switch.Root, {
   position: "relative",
   boxShadow: `0 2px 2px #DDB771`,
   WebkitTapHighlightColor: "rgba(0, 0, 0, 0)",
-  border:"1px solid #DDB771",
-  '&[data-state="checked"]': { backgroundColor:"#DDB771" },
-
+  border: "1px solid #DDB771",
+  '&[data-state="checked"]': { backgroundColor: "#DDB771" },
 });
 
 const SwitchThumb = styled(Switch.Thumb, {
@@ -44,10 +41,10 @@ const SwitchThumb = styled(Switch.Thumb, {
   transition: "transform 100ms",
   transform: "translateX(2px)",
   willChange: "transform",
-  '&[data-state="checked"]': { transform: "translateX(22px)", 
-backgroundColor:"White" },
+  '&[data-state="checked"]': {
+    transform: "translateX(22px)",
+    backgroundColor: "White",
+  },
 });
-
-
 
 export default FormSwitch;

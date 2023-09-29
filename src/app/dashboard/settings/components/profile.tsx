@@ -174,7 +174,7 @@ const Profile = ({ profileData }: { profileData: any }) => {
                   <ErrorMessage name="email" />
                 </div>
                 <div className="form-div">
-                  <label htmlFor="country">Country:</label>
+                  <label>Country:</label>
                   <Field
                     as="select"
                     id="country"
@@ -200,7 +200,7 @@ const Profile = ({ profileData }: { profileData: any }) => {
                 </div>
 
                 <div className="form-div">
-                  <label htmlFor="phone">Phone:</label>
+                  <label>Phone:</label>
                   <div className="flex gap-4 max-w-[422px] ">
                     <PhoneNumberInput
                       phoneChange={handlePhone}
@@ -249,9 +249,7 @@ const Profile = ({ profileData }: { profileData: any }) => {
             </div>
             <div className="col-span-1">
               <div className="form-div">
-                <label htmlFor="bio" className="mb-5">
-                  Bio:
-                </label>
+                <label className="mb-5">Bio:</label>
                 <Field
                   as="textarea" // Use 'textarea' as the component
                   id="bio"
