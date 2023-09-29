@@ -15,10 +15,12 @@ const Admin = () => {
         <div className="w-[300px]">
           <input
             type="text"
+            placeholder="username"
             className="border-2 px-2 py-2 w-full border-darkGreenBg/25 rounded-md my-2"
           />
           <input
             type="password"
+            placeholder="password"
             onChange={(e: any) => setPassword(e.target.value)}
             className="border-2 px-2  py-2  w-full border-darkGreenBg/25 rounded-md my-2"
           />
@@ -36,11 +38,10 @@ const Admin = () => {
                     email,
                     password,
                   })
-                  .then(({ user, session, error }) => {
-                    if (user) {
+                  .then(({ error }) => {
+                    if (error) {
                       setLoading(false);
                     }
-                    console.log(session);
                   });
               }}
             >

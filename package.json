@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.11.0",
     "@portabletext/react": "^3.0.7",
     "@radix-ui/react-collapsible": "^1.0.3",
     "@radix-ui/react-separator": "^1.0.3",
