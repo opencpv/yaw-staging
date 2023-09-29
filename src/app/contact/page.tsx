@@ -26,8 +26,8 @@ const ContactSchema = Yup.object().shape({
 });
 
 const Page = () => {
-  const [active, setActive] = useState("general");
-
+  type ActiveKeys = "general" | "report" | "writers" | "advertise";
+  const [active, setActive] = useState<ActiveKeys>("general");
   const { images } = useAssets();
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const [phone, setPhone] = useState("+233");
@@ -85,26 +85,26 @@ const Page = () => {
             <div className="flex gap-[50px] overflow-x-scroll lg:overflow-x-auto relative ">
               <Tab
                 onClick={(e) => setActive("general")}
-                type={active == "general" && "active"}
+                type={active === "general" ? "active" : undefined}
               >
                 General
               </Tab>
               <Tab
                 onClick={(e) => setActive("report")}
-                type={active == "report" && "active"}
+                type={active === "general" ? "active" : undefined}
               >
                 Report an issue
               </Tab>
               <Tab
                 onClick={(e) => setActive("advertise")}
-                type={active == "advertise" && "active"}
+                type={active === "general" ? "active" : undefined}
               >
                 Advertise with us
               </Tab>
               <Tab
                 onClick={(e) => setActive("writers")}
                 className="sc"
-                type={active == "writers" && "active"}
+                type={active === "general" ? "active" : undefined}
               >
                 Writers
               </Tab>

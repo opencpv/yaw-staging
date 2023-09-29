@@ -16,6 +16,7 @@ import Seperator from "../../../public/assets/icons/seperator.svg";
 import TermsImage from "../../../public/assets/images/cuate.svg";
 import SplashImage from "../../../public/assets/images/splash.svg";
 import AboutImage from "../../../public/assets/images/about-image.svg";
+import niceHome from "../../../public/assets/images/niceHome.png";
 
 export const useAssets = () => {
   return {
@@ -37,9 +38,7 @@ export const useAssets = () => {
       StockImage,
       FaqImage,
       ContactImage,
-      TermsImage,
-      SplashImage,
-      AboutImage,
+      niceHome,
     },
   };
 };
