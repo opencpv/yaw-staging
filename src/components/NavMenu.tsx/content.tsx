@@ -1,9 +1,10 @@
 export const links = [
   {
+    id: "#",
     url: "",
     name: "HOMES FOR RENT",
     sub: [
-        { url: "#", name: "View All Listings", id: "#" },
+      { url: "#", name: "View All Listings", id: "#" },
 
       { url: "#", name: "Single Unit  Houses", id: "#" },
       { url: "#", name: "Duplex Houses", id: "#" },
@@ -13,25 +14,26 @@ export const links = [
     //sub2 is only used for mobile view
     sub2: [
       {
+        id: "#",
         url: "#",
         name: "stuff goes here",
       },
-
     ],
   },
   {
+    id: "#",
     url: "",
     name: "HIRE A PROFESSIONAL",
     sub: [
-      { url: "#", name: "Renter" },
-      { url: "#", name: "Property Owner" },
-      { url: "#", name: "Artisan" },
+      { id: "#", url: "#", name: "Renter" },
+      { id: "#", url: "#", name: "Property Owner" },
+      { id: "#", url: "#", name: "Artisan" },
     ],
   },
-  { url: "", name: "MOVING SALE" },
-  { url: "", name: "AREA VIBES" },
-  { url: "/faq", name: "FAQS" },
-  { url: "/contact", name: "CONTACT" },
+  { id: "#", url: "", name: "MOVING SALE" },
+  { id: "#", url: "", name: "AREA VIBES" },
+  { id: "#", url: "/faq", name: "FAQS" },
+  { id: "#", url: "/contact", name: "CONTACT" },
 ];
 
 export const bottomLinks = [
