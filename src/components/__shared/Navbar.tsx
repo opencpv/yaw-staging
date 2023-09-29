@@ -8,7 +8,7 @@ import { useState } from "react";
 import Menu from "../NavMenu.tsx";
 import { useRouter } from "next/navigation.js";
 
-const Navbar = (props) => {
+const Navbar = (props: any) => {
   const { icons } = useAssets();
   const router = useRouter();
   return (
@@ -20,7 +20,7 @@ const Navbar = (props) => {
       <Menu
         isOpen={props.isMenuOpen}
         layout
-        toggleMenu={() => props?.toggleMenu((r) => !r)}
+        toggleMenu={() => props?.toggleMenu((r: boolean) => !r)}
       />
       <Link href={"/"}>
         <Image
