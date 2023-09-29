@@ -36,18 +36,20 @@ const Pagination = () => {
         href={"/dashboard"}
         className="w-full md:max-w-[83px]
                 max-w-[52px] aspect-square bg-[#396261] rounded-full flex
-                items-center justify-center hover:scale-[1.02]">
+                items-center justify-center hover:scale-[1.02]"
+      >
         <MdKeyboardArrowLeft color="white" size={24} />
       </Link>
       <div className="flex gap-8 flex-wrap">
         <PgItem className={active == "subcriptions" ? "" : "!hidden md:!flex"}>
-          <CaSubscriptions width="24" height={"24"} />
+          <CaSubscriptions width={24} height={24} />
           <p>Subscriptions</p>
         </PgItem>
         <Link href="/dashboard/settings">
           <PgItem
-            type={active == "settings" ? "active" : ""}
-            className={active == "settings" ? "" : "!hidden md:!flex"}>
+            type={active == "settings" ? "active" : undefined}
+            className={active == "settings" ? "" : "!hidden md:!flex"}
+          >
             <IoMdSettings
               size="24"
               color={active == "settings" ? "white" : "#B0B0B0"}
@@ -63,8 +65,8 @@ const Pagination = () => {
 const Root = styled("div", {
   boxShadow:
     "0px 1px 2px 0px rgba(0, 0, 0, 0.06), 0px 1px 3px 0px rgba(0, 0, 0, 0.10)",
-    paddingInline:"3rem",
-    paddingBlock:"1rem",
+  paddingInline: "3rem",
+  paddingBlock: "1rem",
 });
 
 const PgItem = styled("button", {
@@ -86,13 +88,13 @@ const PgItem = styled("button", {
     flexDirection: "row",
     maxHeight: "52px",
     maxWidth: "155px",
-    minHeight:"40px",
+    minHeight: "40px",
   },
 
   "&:hover": {
     backgroundColor: "#8a8a8a25",
     color: "black",
-    scale:"1.05"
+    scale: "1.05",
   },
 
   variants: {
