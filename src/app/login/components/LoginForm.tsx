@@ -5,6 +5,7 @@ import { LoginButton } from "./LoginButton";
 import { poppins400 } from "@/app/styles/font";
 import supabase from "@/lib/utils/supabaseClient";
 import { Provider } from "@supabase/supabase-js";
+import { useRouter } from "next/navigation";
 
 export const LoginForm = () => {
   const { icons } = useAssets();
@@ -19,15 +20,17 @@ export const LoginForm = () => {
 
     return { data, error };
   };
-
+  const router = useRouter()
   return (
     <div className="w-full relative">
       <div className="absolute top-0 left-0">
         <button
-          className={`flex items-center px-[30px] py-[30px] lg:p-0 justify-center gap-4 outline-none ${poppins400}`}
+        onClick={router.back}
+          className={`flex items-center px-[30px] py-[30px] lg:p-0 justify-center gap-4 outline-none ${poppins400}
+          text-white hover:scale-[1.04]`}
         >
           <Image src={icons.ArrowIcon} alt="back icon" />
-          <p className="text-lg text-[#fff]">Go back</p>
+          <p className="text-lg ">Go back</p>
         </button>
       </div>
       <div className="w-full flex flex-col items-center justify-center">
