@@ -39,6 +39,7 @@ export const useAssets = () => {
       FaqImage,
       ContactImage,
       niceHome,
+      AboutImage,
     },
   };
 };
