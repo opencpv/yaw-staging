@@ -1,11 +1,11 @@
 import emailjs from "@emailjs/browser";
 
-export const sendContactUsEmail = (element:  HTMLFormElement | null) => {
+export const sendContactUsEmail = (element: HTMLFormElement | null) => {
   emailjs
     .sendForm(
       "service_ft1rqqu",
       "template_sjcqizd",
-      element,
+      element as HTMLFormElement,
       "qXvfKUtuslfUz23se"
     )
     .then(
@@ -17,4 +17,3 @@ export const sendContactUsEmail = (element:  HTMLFormElement | null) => {
       }
     );
 };
-
