@@ -1,4 +1,4 @@
-export default function CaDoubleArrow(props) {
+export default function CaDoubleArrow(props: any) {
   return (
     <svg
       width={66}
