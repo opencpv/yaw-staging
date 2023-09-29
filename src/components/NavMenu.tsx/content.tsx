@@ -30,8 +30,8 @@ export const links = [
   },
   { url: "", name: "MOVING SALE" },
   { url: "", name: "AREA VIBES" },
-  { url: "", name: "FAQS" },
-  { url: "", name: "CONTACT" },
+  { url: "/faq", name: "FAQS" },
+  { url: "/contact", name: "CONTACT" },
 ];
 
 export const bottomLinks = [
@@ -48,7 +48,7 @@ export const bottomLinks = [
     name: "Join Us",
   },
   {
-    url: "",
+    url: "/faq",
     name: "FAQS",
   },
   {

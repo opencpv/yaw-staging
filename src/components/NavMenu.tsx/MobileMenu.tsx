@@ -8,6 +8,7 @@ import Link from "next/link";
 import ArrowDownNav from "@/app/components/icons/CaArrowDownNav.";
 import {BsArrowDownCircleFill} from 'react-icons/bs'
 import { montserat } from "@/app/styles/font";
+import { useRouter } from "next/navigation";
 
 const MenuOption = ({
   name,
@@ -80,21 +81,33 @@ const MenuOption = ({
 };
 
 export const MobileMenu = (props: any) => {
+  const router = useRouter()
+
   return (
     <div className={`flex flex-col px-4 gap-4  ${props?.className} ${montserat.className}`}>
-      <Link href={'/login'} className="max-w-[309px] max-h-[59px] w-full aspect-[309/59]
+      <div 
+      onClick={e => {
+        router.push('/login')
+        props?.toggleMenu()
+      }}
+       className="max-w-[309px] max-h-[59px] w-full aspect-[309/59]
       bg-[#305A61] border-2 border-[#D9D9D9] text-white rounded-2xl mt-6 mb-10
       font-semibold text-[24px] flex items-center justify-center
       ">
         Start here
-      </Link>
+      </div>
       {links.map((r, index) =>
         r?.sub ? (
           <MenuOption key={index} name={r.name} sub={r?.sub} sub2={r?.sub2} />
         ) : (
-          <Link href={r?.url} key={index}>
+          <div 
+          onClick={e => {
+            router.push(r?.url)
+            props?.toggleMenu()
+          }}
+          key={index}>
             <p className={"uppercase !font-semibold text-[#fff]"}>{r?.name}</p>
-          </Link>
+          </div>
         )
       )}
     </div>
