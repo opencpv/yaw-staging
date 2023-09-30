@@ -1,6 +1,4 @@
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import Image from "next/image";
-import { useEffect } from "react";
 import TermItem from "./TermItem";
 
 const TermsMainView = ({ data }: { data: any }) => {
