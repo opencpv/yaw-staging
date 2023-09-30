@@ -1,4 +1,3 @@
-"use client";
 import Head from "next/head";
 import TermsNav from "./components/TermsNav";
 import fetchTermsData from "./lib/fetchTermsData";
@@ -8,25 +7,16 @@ import fetchFaqData from "../faq/lib/fetchFaqData";
 import MainView from "./components/MainView";
 import { openSans } from "../styles/font";
 
-const TermsOfService = (props: any) => {
-  const [data, setdata] = useState<any>();
+const TermsOfService = async (props: any) => {
+  const data = await fetchTermsData();
 
-  useEffect(() => {
-    fetchTermsData()
-      .then((data) => {
-        setdata(data);
-      })
-      .catch((error: any) => {
-        console.log(error.message);
-      });
-  }, []);
   return (
     <>
       <Head>
         <title>Terms of Service</title>
       </Head>
       <main
-        className={`bg-terms-bg bg-cover lg:h-[100vh] w-full ${openSans.className}`}
+        className={` max-w-[1728px] mx-auto bg-terms-bg bg-cover lg:h-[100vh] w-full ${openSans.className}`}
       >
         <div className="w-max-[1728px] mx-auto md:px-[30px] px-4 py-4">
           {data && <TermsNav data={data[0]} />}

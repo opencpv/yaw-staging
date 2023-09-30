@@ -1,7 +1,5 @@
 "use client";
 import "./globals.css";
-import type { Metadata } from "next";
-import { Inter, Poppins, Open_Sans } from "next/font/google";
 import { useEffect, useState } from "react";
 import Navbar from "@/components/__shared/Navbar";
 import { usePathname } from "next/navigation";
@@ -19,7 +17,7 @@ export default function RootLayout({
 
   useEffect(() => {
     uniquePages.forEach((element) => {
-      if (pathname && pathname.includes(element)) {
+      if (pathname && pathname.split("/").includes(element)) {
         setNoNavbar(true);
       } else {
         setNoNavbar(false);
@@ -29,8 +27,8 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body>
-        {noNavbar ? (
+      <body className="max-w-[1728px] mx-auto">
+        {/* {noNavbar ? (
           ""
         ) : (
           <Navbar
@@ -53,7 +51,8 @@ export default function RootLayout({
         `}
         >
           {children}
-        </div>
+        </div> */}
+        {children}
       </body>
     </html>
   );

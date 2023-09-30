@@ -1,4 +1,4 @@
-import { styled } from '@stitches/react';
+import { styled } from "@stitches/react";
 
 const CaFeedBack = () => {
   return (
@@ -52,7 +52,7 @@ const CaFeedBack = () => {
           width="128"
           height="128"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
           <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix

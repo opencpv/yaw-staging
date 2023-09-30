@@ -4,7 +4,6 @@ import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import Link from "next/link";
 import { montserat } from "@/app/styles/font";
-import { useState } from "react";
 import Menu from "../NavMenu.tsx";
 import { useRouter } from "next/navigation.js";
 

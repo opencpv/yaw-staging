@@ -24,7 +24,7 @@ const TermsNav = ({
     console.log(data);
     setCategories(data.termCategories);
     console.log(path);
-  }, []);
+  }, [data, path]);
 
   return (
     <nav

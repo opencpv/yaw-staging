@@ -1,5 +1,4 @@
 import RichTextRenderer from "@/app/components/RichTextRenderer";
-import { useEffect } from "react";
 
 const TermItem = ({ data, index }: { data: any; index: number }) => {
   const Bullet = () => (
@@ -19,9 +18,6 @@ const TermItem = ({ data, index }: { data: any; index: number }) => {
     <RichTextRenderer content={data.termsArray.description[0]} />
   );
 
-  useEffect(() => {
-    console.log(data);
-  }, []);
   return (
     <>
       <li className="hidden lg:flex lg:gap-5 gap-4 mb-8">

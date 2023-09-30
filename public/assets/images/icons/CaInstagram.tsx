@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 type Props = {
   width: string | number;
@@ -19,7 +19,7 @@ function CaInstagram(props: any) {
         r="51.48"
         fill="url(#paint0_radial_3536_15752)"
       />
-      <g clip-path="url(#clip0_3536_15752)">
+      <g clipPath="url(#clip0_3536_15752)">
         <rect
           width="58.3442"
           height="58.3442"
@@ -48,7 +48,7 @@ function CaInstagram(props: any) {
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(27.3487 110.929) rotate(-90) scale(102.041 94.9062)"
         >
-          <stop stop-color="#FFDD55" />
+          <stop stopColor="#FFDD55" />
           <stop offset="0.1" stopColor="#FFDD55" />
           <stop offset="0.5" stopColor="#FF543E" />
           <stop offset="0.921875" stopColor="#C837AB" />

@@ -22,9 +22,9 @@ const CaHeroGreenSm = () => {
           width="445"
           height="164"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -58,12 +58,12 @@ const CaHeroGreenSm = () => {
           y2="156"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#073B3A" />
-          <stop offset="1" stop-color="#092929" stop-opacity="0.7" />
+          <stop stopColor="#073B3A" />
+          <stop offset="1" stopColor="#092929" stopOpacity="0.7" />
         </linearGradient>
       </defs>
     </svg>
   );
 };
 
-export default CaHeroGreenSm
+export default CaHeroGreenSm;

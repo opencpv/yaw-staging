@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 type Props = {
   width: string | number;
@@ -44,9 +44,9 @@ function CaStarRainbow(props: Props) {
           width="248.96"
           height="248.961"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -86,8 +86,8 @@ function CaStarRainbow(props: Props) {
           y2="174.999"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#073B3A" />
-          <stop offset="1" stop-color="#092929" stop-opacity="0.7" />
+          <stop stopColor="#073B3A" />
+          <stop offset="1" stopColor="#092929" stopOpacity="0.7" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_3536_15776"
@@ -97,9 +97,9 @@ function CaStarRainbow(props: Props) {
           y2="126.037"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0.2656" stop-color="#EA4335" />
-          <stop offset="0.5" stop-color="#FBBC05" />
-          <stop offset="0.8073" stop-color="#08BC05" />
+          <stop offset="0.2656" stopColor="#EA4335" />
+          <stop offset="0.5" stopColor="#FBBC05" />
+          <stop offset="0.8073" stopColor="#08BC05" />
         </linearGradient>
       </defs>
     </svg>

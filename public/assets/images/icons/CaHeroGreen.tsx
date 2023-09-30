@@ -1,9 +1,9 @@
 type Props = {
-  width?:string,
-  height?:string
-}
+  width?: string;
+  height?: string;
+};
 
-const CaHeroGreen = ({width, height}:Props) => {
+const CaHeroGreen = ({ width, height }: Props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -25,13 +25,12 @@ const CaHeroGreen = ({width, height}:Props) => {
           y2="351"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#073B3A" />
-          <stop offset="1" stop-color="#092929" stop-opacity="0.7" />
+          <stop stopColor="#073B3A" />
+          <stop offset="1" stopColor="#092929" stopOpacity="0.7" />
         </linearGradient>
       </defs>
     </svg>
   );
 };
 
-
-export default CaHeroGreen
+export default CaHeroGreen;
