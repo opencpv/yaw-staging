@@ -5,7 +5,7 @@ import Image from "next/image";
 const FaqHeader = () => {
   const { images } = useAssets();
   return (
-    <section className="md:mx-[30px] md:mt-[48px] green-gradient justify-between md:rounded-[36px] flex flex-wrap pl-[29px] lg:pl-[141px] md:pl-[83px] mb-[89px] bg-white">
+    <section className="md:mx-[30px] lg:mt-[175.3px] mt-[109.77px] md:mt-[48px] green-gradient justify-between md:rounded-[36px] flex flex-wrap pl-[29px] lg:pl-[141px] md:pl-[83px] mb-[89px] bg-white">
       <div>
         <h1
           className={`font-bold  md:text-[31px] lg:text-[49px] ${openSans.className} text-white mt-[91px] md:mt-20 lg:mt-[160px]`}

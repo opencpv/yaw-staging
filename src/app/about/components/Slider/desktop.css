@@ -1,0 +1,22 @@
+.swiper-slide {
+  maxwidth: 772px;
+  maxheight: 699px;
+  width: 100%;
+  height: 100%;
+  backgroundcolor: #e9ecef;
+  boxshadow: 0px 50px 130px 0px rgba(0, 0, 0, 0.15);
+  borderradius: 16px;
+  minwidth: 357px;
+  minheight: 277px;
+  aspectratio: 772/600;
+  display: flex;
+  justifycontent: center;
+  alignitems: center;
+}
+
+.swiper-wrapper: {
+  display: flex;
+  justifycontent: center;
+  maxheight: 900px;
+  maxwidth: 1728px;
+}

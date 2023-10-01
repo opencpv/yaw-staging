@@ -16,7 +16,8 @@ const FAQ = () => {
       <Head>
         <title>FAQ - RentRightGh</title>
       </Head>
-      <main className="w-full relative">
+      <main className="max-w-[1728px] mx-auto relative">
+        <Navbar />
         <FaqHeader />
         <BreadCrumb link="FAQ" />
         <h1

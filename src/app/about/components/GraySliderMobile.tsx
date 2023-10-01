@@ -10,7 +10,6 @@ import {
   Navigation,
   Pagination,
 } from "swiper/modules";
-import "../styles/main.css";
 import { openSans } from "@/app/styles/font";
 
 const GraySliderMobile = ({ data }: { data: any }) => {

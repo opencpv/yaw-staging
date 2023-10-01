@@ -34,7 +34,7 @@ const FAQBrowser = () => {
         {categories.map((category, index) => (
           <div
             key={index}
-            className={`lg:px-0 px-[10px] py-[5px] transition-all duration-200 lg:bg-none ${
+            className={`lg:px-0 block flex-shrink px-[10px] py-[5px] transition-all duration-200 lg:bg-none ${
               active == index ? "md:bg-[#EFEFEF]" : ""
             }`}
           >
@@ -46,7 +46,7 @@ const FAQBrowser = () => {
               }}
               className={`${
                 montserat.className
-              } font-semibold transition-all duration-200  px-[5px] ${
+              } font-semibold transition-all  duration-200  px-[5px] ${
                 active == index ? "border-[#DDB771] border-l-4" : ""
               } text-[#45808B]`}
             >

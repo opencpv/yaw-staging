@@ -1,5 +1,3 @@
-"use client";
-
 import { styled } from "@stitches/react";
 import Image from "next/image";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -9,8 +7,8 @@ import { IoLogoWhatsapp } from "react-icons/io";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import PhoneNumberInput from "@/components/__shared/PhoneInput";
-import supabase from "@/lib/utils/supabaseClient";
 import Loader from "@/components/__shared/loader/Loader";
+import ProfilePhone from "./ProfilePhone";
 
 interface Props {
   icon: any;
@@ -52,14 +50,29 @@ const IconField = ({
   );
 };
 
-const Profile = ({ profileData }: { profileData: any }) => {
+const Profile = ({
+  profileData,
+  supabase,
+  loading,
+}: {
+  profileData: any;
+  supabase: any;
+  loading: boolean;
+}) => {
   const [countries, setCountries] = useState([]);
-  const [data, setData] = useState<any>({});
-  const [phone, setphone] = useState("");
-  const [loading, setloading] = useState(false);
+  const [currentData, setCurrentData] = useState<any>({});
+  const [phone, setphone] = useState<string>("");
+  const [code, setCode] = useState<string>("");
+  const [submitLoading, setSubmitLoading] = useState(false);
+
   const handlePhone = (str: string) => {
     setphone(str);
   };
+
+  const handleCode = (str: string) => {
+    setCode(str);
+  };
+
   useEffect(() => {
     axios
       .get("https://restcountries.com/v3.1/all")
@@ -70,8 +83,7 @@ const Profile = ({ profileData }: { profileData: any }) => {
         console.error("Error fetching data:", error);
       });
 
-    setData(profileData);
-    console.log(profileData);
+    setCurrentData(profileData);
   }, [profileData]);
 
   return (
@@ -81,206 +93,221 @@ const Profile = ({ profileData }: { profileData: any }) => {
         <Navigation>Blocking</Navigation>
         <Navigation>Account Setting</Navigation>
       </div>
-      <div className="py-10 pt-6">
-        <p>{data?.fullname}</p>
-        <p>Your Profile Picture</p>
-        <div className="max-w-[227px] max-h-[164px] w-full relative aspect-[227/164] rounded-[18px] mt-5 border-">
-          <Image
-            src={data.avatar_url}
-            placeholder="blur"
-            loading="eager"
-            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAHPAzcDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAECAwb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APJAAAAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAACAAAAIqAAAIqAAAAAIqAAAAAAAIqAAAAAAAoAAAAAAACooAAAAAAAAAAKAAAAAAADQAAAAAAACoAoAAAAAAAAAAAAAAAAAAAAAAAAAAACKgAAAACKgAAAACKgAACKgAAAACKgAAAAAACAAAAAAACiKAAAAAAAACgAAAAAAAAAKgCgAAAAA0AAAAAAAAAAqAKIoAAAAAAAAAAAAAAAAAAAAAICoAAAAAAIAAAAAACAAAAgAAAAAIAAAAAAACAAAAAAAAKgCgAAAAAAAKigAAAAAAAAAAAAAAogDYAAAAAAAAAAAAAAAKIAogCiAKIoAICiAKIAogCoAAAAAAAAgAAAAAAAgAAAIqAAAAAAgAAAAAACKgAAAAAAAAAAKIoAAAAAAAAKIAoAAAAAAAAAAAAANgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAIAAAAAIAAAAAAgAAAAAAAIAAAAAAAAAAAAAACiAKAAAAAAAAqAKIAoAAAAAAAAANiAKIAogCiAKIAogCiAKAAAAAAAACAogCiAKIAogAAAAAAAAAIAqAAAACAqAAAAAACAAAAAAAAgAAAAAAAAAAAAAAAAAACoAoigAAAAAAAAAAAAKgCiAKIA2AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAogCoAAAAAAICoAAAAAAAAgAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAKgCiAKAAAAAAAAAAAAADYAAAAAAAAAAAAAAAAAAAAAAgCiAKIAAAAAAAAACAKIAAAAAAAAACAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACiAKIAogCiAOgAAAAAAAAgCiAKIAqAAAAAAAAAAAAAAIAogAAAAAAAAAAAIAqAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2AAAAAAAAAAAAAAAAAACAogCiAAAAAAAAAAAAICiAAAAAAAAAAAAgCoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANgAAAAAAAAAAgKIAogAAAAAAAAAAAAACAogAAAAAAAAAAAIAqAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADYgCiAKIAAAAAAAAAAAAAAAAAAACAKgAAAAAAAAAAgKIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAKIAogCiAKIAogCiANgAAAAAAAAAAAAAAAAAAAAgKgAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAICiAKIAqAAAAAAAAAAAAAAAAAAAAADYAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAioAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAogCoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANgAAAAAAAAAAAAACAAAAAAAAAAAAAAAAACKgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADYgCiAKIAogCiAKgAAAAAAAAAAAAAAAAAAAAAAAgqAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoCCgIKAgoCgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgqAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgqAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAACgAAAAAAAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgqAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAACooAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAigIAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAACgAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAKIoAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAIqAAAAAAAAAAAAAAAAAAAAAAAAAAAKgCgAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAICoAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACiAKAAAAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACiAKIAogCgAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAioAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//2Q=="
-            alt="User picture"
-            fill
-          />
-        </div>
-      </div>
-      <Formik
-        key={JSON.stringify(profileData)}
-        initialValues={{
-          firstName: data.firstname,
-          lastName: data.lastname,
-          email: data.email,
-          country: data.country,
-          twitter: data.twitter_url,
-          facebook: data.facebook_url,
-          linkedIn: data.linkedin_url,
-          whatsapp: data.whatsapp,
-          bio: data.bio,
-          number: data.phone,
-        }}
-        onSubmit={(values) => {
-          const dto = values;
-          delete values.number;
-          dto.number = phone;
-          setloading(true);
-          supabase
-            .from("profiles")
-            .update({
-              firstname: values.firstName,
-              lastname: values.lastName,
-              country: values.country,
-              twitter_url: values.twitter,
-              facebook_url: values.facebook,
-              linkedin_url: values.linkedIn,
-              whatsapp: values.whatsapp,
-              phone: values.number,
-              bio: values.bio,
-            })
-            .eq("full_name", profileData.full_name)
-            .select()
-            .then(({ data, error }) => {
-              setloading(false);
-              console.log(data);
-            });
-          console.log(dto);
-        }}
-        enableReinitialize={true}
-      >
-        <Form className="border-t-2 border-[#E0E4EC] pt-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
-            <div className="col-span-1">
-              <p className="mb-5 font-semibold">My Profile Summary</p>
-              <div className="flex flex-col gap-5">
-                <div className="form-div">
-                  <label>First Name:</label>
-                  <Field
-                    type="text"
-                    name="firstName"
-                    // placeholder={firstname}
-                    className="form-input"
-                  />
-                  <ErrorMessage name="firstName" />
-                </div>
-                <div className="form-div">
-                  <label>Last Name:</label>
-                  <Field
-                    type="text"
-                    name="lastName"
-                    // placeholder="Doe"
-                    className="form-input"
-                  />
-                  <ErrorMessage name="lastName" />
-                </div>
-                <div className="form-div">
-                  <label>Email Address:</label>
-                  <Field
-                    type="email"
-                    name="email"
-                    placeholder="johndoe@gmail.com"
-                    disabled
-                    className="form-input"
-                  />
-                  <ErrorMessage name="email" />
-                </div>
-                <div className="form-div">
-                  <label>Country:</label>
-                  <Field
-                    as="select"
-                    id="country"
-                    name="country"
-                    className="form-input bg-white"
-                  >
-                    {countries.map((country: any, index) => (
-                      <option
-                        key={index}
-                        value={country.name.common}
-                        className="py-5"
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <div className="py-10 pt-6">
+            <p>{currentData?.fullname}</p>
+            <p>Your Profile Picture</p>
+            <div className="max-w-[227px] max-h-[164px] w-full relative aspect-[227/164] rounded-[18px] mt-5 border-">
+              <Image
+                src={currentData.avatar_url}
+                placeholder="blur"
+                loading="eager"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAHPAzcDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAECAwb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APJAAAAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAACAAAAIqAAAIqAAAAAIqAAAAAAAIqAAAAAAAoAAAAAAACooAAAAAAAAAAKAAAAAAADQAAAAAAACoAoAAAAAAAAAAAAAAAAAAAAAAAAAAACKgAAAACKgAAAACKgAACKgAAAACKgAAAAAACAAAAAAACiKAAAAAAAACgAAAAAAAAAKgCgAAAAA0AAAAAAAAAAqAKIoAAAAAAAAAAAAAAAAAAAAAICoAAAAAAIAAAAAACAAAAgAAAAAIAAAAAAACAAAAAAAAKgCgAAAAAAAKigAAAAAAAAAAAAAAogDYAAAAAAAAAAAAAAAKIAogCiAKIoAICiAKIAogCoAAAAAAAAgAAAAAAAgAAAIqAAAAAAgAAAAAACKgAAAAAAAAAAKIoAAAAAAAAKIAoAAAAAAAAAAAAANgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAIAAAAAIAAAAAAgAAAAAAAIAAAAAAAAAAAAAACiAKAAAAAAAAqAKIAoAAAAAAAAANiAKIAogCiAKIAogCiAKAAAAAAAACAogCiAKIAogAAAAAAAAAIAqAAAACAqAAAAAACAAAAAAAAgAAAAAAAAAAAAAAAAAACoAoigAAAAAAAAAAAAKgCiAKIA2AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAogCoAAAAAAICoAAAAAAAAgAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAKgCiAKAAAAAAAAAAAAADYAAAAAAAAAAAAAAAAAAAAAAgCiAKIAAAAAAAAACAKIAAAAAAAAACAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACiAKIAogCiAOgAAAAAAAAgCiAKIAqAAAAAAAAAAAAAAIAogAAAAAAAAAAAIAqAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2AAAAAAAAAAAAAAAAAACAogCiAAAAAAAAAAAAICiAAAAAAAAAAAAgCoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANgAAAAAAAAAAgKIAogAAAAAAAAAAAAACAogAAAAAAAAAAAIAqAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADYgCiAKIAAAAAAAAAAAAAAAAAAACAKgAAAAAAAAAAgKIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAKIAogCiAKIAogCiANgAAAAAAAAAAAAAAAAAAAAgKgAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAICiAKIAqAAAAAAAAAAAAAAAAAAAAADYAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAioAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAogCoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANgAAAAAAAAAAAAACAAAAAAAAAAAAAAAAACKgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADYgCiAKIAogCiAKgAAAAAAAAAAAAAAAAAAAAAAAgqAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoCCgIKAgoCgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgqAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgqAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAACgAAAAAAAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgqAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAACooAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAigIAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAACgAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAKIoAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAIqAAAAAAAAAAAAAAAAAAAAAAAAAAAKgCgAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAICoAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACiAKAAAAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACiAKIAogCgAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAioAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//2Q=="
+                alt="User picture"
+                fill
+              />
+            </div>
+          </div>
+          <Formik
+            key={JSON.stringify(profileData)}
+            initialValues={{
+              firstName: currentData.firstname,
+              lastName: currentData.lastname,
+              email: currentData.email,
+              country: currentData.country,
+              twitter: currentData.twitter_url,
+              facebook: currentData.facebook_url,
+              linkedIn: currentData.linkedin_url,
+              whatsapp: currentData.whatsapp,
+              bio: currentData.bio,
+              number: currentData.phone,
+            }}
+            onSubmit={async (values) => {
+              const dto = values;
+              delete values.number;
+              dto.number = phone;
+              setSubmitLoading(true);
+              try {
+                const { data, error } = await supabase
+                  .from("profiles")
+                  .update({
+                    firstname: values.firstName,
+                    lastname: values.lastName,
+                    country: values.country,
+                    twitter: values.twitter,
+                    facebook: values.facebook,
+                    linkedin: values.linkedIn,
+                    whatsapp: values.whatsapp,
+                    phone,
+                    code,
+                    bio: values.bio,
+                  })
+                  .select()
+                  .eq("id", profileData.id);
+
+                console.log("Response data:", data);
+                if (error) throw error;
+              } catch (error) {
+                console.log("Error updating profile:", error);
+              } finally {
+                setSubmitLoading(false);
+              }
+            }}
+            enableReinitialize={true}
+          >
+            <Form className="border-t-2 border-[#E0E4EC] pt-8">
+              <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
+                <div className="col-span-1">
+                  <p className="mb-5 font-semibold">My Profile Summary</p>
+                  <div className="flex flex-col gap-5">
+                    <div className="form-div">
+                      <label>First Name:</label>
+                      <Field
+                        type="text"
+                        name="firstName"
+                        // placeholder={firstname}
+                        className="form-input"
+                      />
+                      <ErrorMessage name="firstName" />
+                    </div>
+                    <div className="form-div">
+                      <label>Last Name:</label>
+                      <Field
+                        type="text"
+                        name="lastName"
+                        // placeholder="Doe"
+                        className="form-input"
+                      />
+                      <ErrorMessage name="lastName" />
+                    </div>
+                    <div className="form-div">
+                      <label>Email Address:</label>
+                      <Field
+                        type="email"
+                        name="email"
+                        placeholder="johndoe@gmail.com"
+                        disabled
+                        className="form-input"
+                      />
+                      <ErrorMessage name="email" />
+                    </div>
+                    <div className="form-div">
+                      <label>Country:</label>
+                      <Field
+                        as="select"
+                        id="country"
+                        name="country"
+                        className="form-input bg-white"
                       >
-                        <div>{country.name.common}</div>
-                      </option>
-                    ))}
-                  </Field>
+                        {countries.map((country: any, index) => (
+                          <option
+                            key={index}
+                            value={country.name.common}
+                            className="py-5"
+                          >
+                            {country.name.common}
+                          </option>
+                        ))}
+                      </Field>
 
-                  <ErrorMessage
-                    name="country"
-                    component="div"
-                    className="error"
-                  />
+                      <ErrorMessage
+                        name="country"
+                        component="div"
+                        className="error"
+                      />
+                    </div>
+
+                    <div className="form-div">
+                      <label>Phone:</label>
+                      <div className="flex gap-4 max-w-[422px] ">
+                        <ProfilePhone
+                          phoneChange={handlePhone}
+                          codeChange={handleCode}
+                          defaultValue={profileData.country}
+                          phone={profileData.country}
+                        />
+                      </div>
+                    </div>
+                  </div>
                 </div>
-
-                <div className="form-div">
-                  <label>Phone:</label>
-                  <div className="flex gap-4 max-w-[422px] ">
-                    <PhoneNumberInput
-                      phoneChange={handlePhone}
-                      defaultValue={data.phone}
+                <div className="col-span-1">
+                  <p className="font-semibold mb-5">My Social Media Accounts</p>
+                  <div className="flex flex-col gap-5">
+                    <IconField
+                      icon={<FaTwitter size={24} color="black" />}
+                      name={"twitter"}
+                      className={"form-input"}
+                      label={"Twitter"}
+                      type={"text"}
+                      placeholder="https://twitter.com/abcd"
+                    />
+                    <IconField
+                      icon={<FaLinkedin size={24} color="black" />}
+                      name={"linkedIn"}
+                      className={"form-input"}
+                      label={"LinkedIn"}
+                      type={"text"}
+                      placeholder="https://facebook.com/abcd"
+                    />
+                    <IconField
+                      icon={<FaFacebook size={24} color="black" />}
+                      name={"facebook"}
+                      className={"form-input"}
+                      label={"Facebook"}
+                      type={"text"}
+                      placeholder="https://linkedin.com/abcd"
+                    />
+                    <IconField
+                      icon={<IoLogoWhatsapp size={24} color="black" />}
+                      name={"whatsapp"}
+                      className={"form-input"}
+                      label={"WhatsApp"}
+                      type={"text"}
+                      placeholder="https://wa.whatsapp.com/abc"
                     />
                   </div>
                 </div>
-              </div>
-            </div>
-            <div className="col-span-1">
-              <p className="font-semibold mb-5">My Social Media Accounts</p>
-              <div className="flex flex-col gap-5">
-                <IconField
-                  icon={<FaTwitter size={24} color="black" />}
-                  name={"twitter"}
-                  className={"form-input"}
-                  label={"Twitter"}
-                  type={"text"}
-                  placeholder="https://twitter.com/abcd"
-                />
-                <IconField
-                  icon={<FaLinkedin size={24} color="black" />}
-                  name={"linkedIn"}
-                  className={"form-input"}
-                  label={"LinkedIn"}
-                  type={"text"}
-                  placeholder="https://facebook.com/abcd"
-                />
-                <IconField
-                  icon={<FaFacebook size={24} color="black" />}
-                  name={"facebook"}
-                  className={"form-input"}
-                  label={"Facebook"}
-                  type={"text"}
-                  placeholder="https://linkedin.com/abcd"
-                />
-                <IconField
-                  icon={<IoLogoWhatsapp size={24} color="black" />}
-                  name={"whatsapp"}
-                  className={"form-input"}
-                  label={"WhatsApp"}
-                  type={"text"}
-                  placeholder="https://wa.whatsapp.com/abc"
-                />
-              </div>
-            </div>
-            <div className="col-span-1">
-              <div className="form-div">
-                <label className="mb-5">Bio:</label>
-                <Field
-                  as="textarea" // Use 'textarea' as the component
-                  id="bio"
-                  name="bio"
-                  placeholder="Enter your bio"
-                  className="form-input-textarea px-4 max-w-[422px]
+                <div className="col-span-1">
+                  <div className="form-div">
+                    <label className="mb-5">Bio:</label>
+                    <Field
+                      as="textarea" // Use 'textarea' as the component
+                      id="bio"
+                      name="bio"
+                      placeholder="Enter your bio"
+                      className="form-input-textarea px-4 max-w-[422px]
                   border-[#E6E6E6] rounded-[4px] text-[#737373]
                   border py-2"
-                  rows="15" // Optional: Set the number of rows for the text area
-                  cols="50" // Optional: Set the number of columns for the text area
-                />
-              </div>
-              <>
-                {loading ? (
-                  <div className="flex justify-center mt-8">
-                    <Loader />
+                      rows="15" // Optional: Set the number of rows for the text area
+                      cols="50" // Optional: Set the number of columns for the text area
+                    />
                   </div>
-                ) : (
-                  <button
-                    type="submit"
-                    className="max-w-[160px] max-h-[52px] w-full aspect-[160/52]
+                  <>
+                    {submitLoading ? (
+                      <div className="flex justify-center mt-8">
+                        <div className="py-4 relative">
+                          <Loader />
+                        </div>
+                      </div>
+                    ) : (
+                      <button
+                        type="submit"
+                        className="max-w-[160px] max-h-[52px] w-full aspect-[160/52]
                 mt-5 bg-[#DDB771] text-[#ffff] rounded-[8px]"
-                  >
-                    Update Profile
-                  </button>
-                )}
-              </>
-            </div>
-          </div>
-        </Form>
-      </Formik>
+                      >
+                        Update Profile
+                      </button>
+                    )}
+                  </>
+                </div>
+              </div>
+            </Form>
+          </Formik>
+        </>
+      )}
     </Root>
   );
 };

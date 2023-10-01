@@ -12,7 +12,7 @@ const Navbar = (props: any) => {
   const router = useRouter();
   return (
     <nav
-      className={`w-full px-[30px] py-4 flex justify-between items-center bg-[#333333]  z-[100] ${
+      className={`w-full max-w-[1728px] px-[30px] py-4 flex justify-between items-center bg-[#333333]  z-[100] ${
         props.isMenuOpen ? "absolute" : "fixed"
       }  top-0`}
     >

@@ -16,6 +16,8 @@ import { sendContactUsEmail } from "./api";
 import supabase from "@/lib/utils/supabaseClient";
 import * as Yup from "yup";
 import Loader from "@/components/__shared/loader/Loader";
+import Navbar from "@/components/__shared/Navbar";
+import Footer from "../components/Footer";
 
 const ContactSchema = Yup.object().shape({
   fullname: Yup.string()
@@ -60,212 +62,216 @@ const Page = () => {
   };
 
   return (
-    <Root className="sm:p-5 lg:p-10 flex flex-col items-center justify-center">
-      <div
-        className={`banner flex flex-col lg:flex-row justify-center lg:justify-between px-24 items-center lg:items-start min-h-[493px] md:h-[528px] text-white font-bold  lg::gap-20 ${openSans.className}`}
-      >
-        <div className="py-10 md:py-20 text-[32px] md:text-5xl lg:text-[61px]">
-          <p>Get in touch with us</p>
-        </div>
+    <main className="max-w-[1728px] mx-auto">
+      <Navbar />
+      <Root className="sm:p-5 lg:mt-[143px] mt-[81.5px] lg:p-10 flex flex-col items-center justify-center">
         <div
-          className="w-full relative max-w-[450px]
+          className={`banner flex flex-col lg:flex-row justify-center lg:justify-between px-24 items-center lg:items-start min-h-[493px] md:h-[528px] text-white font-bold  lg::gap-20 ${openSans.className}`}
+        >
+          <div className="py-10 md:py-20 text-[32px] md:text-5xl lg:text-[61px]">
+            <p>Get in touch with us</p>
+          </div>
+          <div
+            className="w-full relative max-w-[450px]
           min-h-[240px]
         aspect-[318/240]
         md:aspect-[414/303]
         lg:aspect-square lg:pb-5"
-        >
-          <Image src={"/svgs/contact1.svg"} alt="Contact" fill />
-        </div>
-      </div>
-      <div
-        className={`max-w-full lg:max-w-[90%] relative lg:top-[-100px] z-[20] h-full w-full min-h-[500px] form-root p-5 sm:p-3 lg:p-8 pt-5 lg:pt-2  ${montserat.className}`}
-      >
-        <div className="">
-          <div className="flex  items-center " ref={scrollContainerRef}>
-            <div className="flex gap-[50px] overflow-x-scroll lg:overflow-x-auto relative ">
-              <Tab
-                onClick={(e: any) => setActive("general")}
-                type={active === "general" ? "active" : undefined}
-              >
-                General
-              </Tab>
-              <Tab
-                onClick={(e: any) => setActive("report")}
-                type={active === "general" ? "active" : undefined}
-              >
-                Report an issue
-              </Tab>
-              <Tab
-                onClick={(e: any) => setActive("advertise")}
-                type={active === "general" ? "active" : undefined}
-              >
-                Advertise with us
-              </Tab>
-              <Tab
-                onClick={(e: any) => setActive("writers")}
-                className="sc"
-                type={active === "general" ? "active" : undefined}
-              >
-                Writers
-              </Tab>
-            </div>
-            <div
-              className="md:hidden absolute right-5 pl-5 sc-button"
-              onClick={scrollToRight}
-            >
-              <BiRightArrowCircle color="#71C9C7" size="24" />
-            </div>
+          >
+            <Image src={"/svgs/contact1.svg"} alt="Contact" fill />
           </div>
-
-          <div className="flex xl:flex-row flex-col gap-10 h-full ">
-            <Formik
-              initialValues={{
-                fullname: "",
-                email: "",
-                message: "",
-                companyName: "",
-                phone: "",
-                isWhatsapp: false,
-                fileUrl: "",
-                contactType: "",
-                reportLink: "",
-              }}
-              validationSchema={ContactSchema}
-              onSubmit={(values, { resetForm }) => {
-                values.contactType = active;
-                values.isWhatsapp = isWhatsapp;
-                values.phone = phone;
-
-                // console.log(formRef.current)
-                sendContactUsEmail(formRef.current);
-                setLoading(true);
-                supabase
-                  .from("contact us")
-                  .insert([
-                    {
-                      fullname: values.fullname,
-                      email: values.email,
-                      phone: phone,
-                      message: values.message,
-                      isWhatsapp: values.isWhatsapp,
-                      companyName: "",
-                      fileUrl: "",
-                      reportLink: "",
-                      contactType: values.contactType,
-                    },
-                  ])
-                  .select()
-                  .then(({ data, error }) => {
-                    if (error) {
-                      setLoading(false);
-                      console.log(error);
-                    } else {
-                      console.log(data);
-                      setLoading(false);
-                      resetForm();
-                    }
-                  });
-              }}
-              clasName=""
-            >
-              <Form
-                ref={formRef}
-                className=" pt-8 xl:flex-[1_0_407px] 2xl:flex-[1_0_650px] xl:max-w-[400px] 2xl:min-w-[673px] 2xl:max-w-full"
+        </div>
+        <div
+          className={`max-w-full lg:max-w-[90%] relative lg:top-[-100px] z-[20] h-full w-full min-h-[500px] form-root p-5 sm:p-3 lg:p-8 pt-5 lg:pt-2  ${montserat.className}`}
+        >
+          <div className="">
+            <div className="flex  items-center " ref={scrollContainerRef}>
+              <div className="flex gap-[50px] overflow-x-scroll lg:overflow-x-auto relative ">
+                <Tab
+                  onClick={(e: any) => setActive("general")}
+                  type={active === "general" ? "active" : undefined}
+                >
+                  General
+                </Tab>
+                <Tab
+                  onClick={(e: any) => setActive("report")}
+                  type={active === "general" ? "active" : undefined}
+                >
+                  Report an issue
+                </Tab>
+                <Tab
+                  onClick={(e: any) => setActive("advertise")}
+                  type={active === "general" ? "active" : undefined}
+                >
+                  Advertise with us
+                </Tab>
+                <Tab
+                  onClick={(e: any) => setActive("writers")}
+                  className="sc"
+                  type={active === "general" ? "active" : undefined}
+                >
+                  Writers
+                </Tab>
+              </div>
+              <div
+                className="md:hidden absolute right-5 pl-5 sc-button"
+                onClick={scrollToRight}
               >
-                <div className=" gap-5">
-                  <div className="">
-                    <div className="flex flex-col gap-5">
-                      <div className="form-div">
-                        <label>Full Name:</label>
-                        <Field
-                          type="text"
-                          name="fullname"
-                          placeholder="Enter your full name"
-                          className="form-input"
-                        />
-                        <ErrorMessage
-                          className={`text-[#073B3A] text-[13px] ${openSans.className}`}
-                          name="fullname"
-                          component="p"
-                        />
+                <BiRightArrowCircle color="#71C9C7" size="24" />
+              </div>
+            </div>
+
+            <div className="flex xl:flex-row flex-col gap-10 h-full ">
+              <Formik
+                initialValues={{
+                  fullname: "",
+                  email: "",
+                  message: "",
+                  companyName: "",
+                  phone: "",
+                  isWhatsapp: false,
+                  fileUrl: "",
+                  contactType: "",
+                  reportLink: "",
+                }}
+                validationSchema={ContactSchema}
+                onSubmit={(values, { resetForm }) => {
+                  values.contactType = active;
+                  values.isWhatsapp = isWhatsapp;
+                  values.phone = phone;
+
+                  // console.log(formRef.current)
+                  sendContactUsEmail(formRef.current);
+                  setLoading(true);
+                  supabase
+                    .from("contact us")
+                    .insert([
+                      {
+                        fullname: values.fullname,
+                        email: values.email,
+                        phone: phone,
+                        message: values.message,
+                        isWhatsapp: values.isWhatsapp,
+                        companyName: "",
+                        fileUrl: "",
+                        reportLink: "",
+                        contactType: values.contactType,
+                      },
+                    ])
+                    .select()
+                    .then(({ data, error }) => {
+                      if (error) {
+                        setLoading(false);
+                        console.log(error);
+                      } else {
+                        console.log(data);
+                        setLoading(false);
+                        resetForm();
+                      }
+                    });
+                }}
+                clasName=""
+              >
+                <Form
+                  ref={formRef}
+                  className=" pt-8 xl:flex-[1_0_407px] 2xl:flex-[1_0_650px] xl:max-w-[400px] 2xl:min-w-[673px] 2xl:max-w-full"
+                >
+                  <div className=" gap-5">
+                    <div className="">
+                      <div className="flex flex-col gap-5">
+                        <div className="form-div">
+                          <label>Full Name:</label>
+                          <Field
+                            type="text"
+                            name="fullname"
+                            placeholder="Enter your full name"
+                            className="form-input"
+                          />
+                          <ErrorMessage
+                            className={`text-[#073B3A] text-[13px] ${openSans.className}`}
+                            name="fullname"
+                            component="p"
+                          />
+                        </div>
+
+                        <div className="form-div">
+                          <label>Email Address:</label>
+                          <Field
+                            type="email"
+                            name="email"
+                            placeholder="Enter your email address"
+                            className="form-input"
+                          />
+                          <ErrorMessage
+                            className={`text-[#073B3A] text-[13px] ${openSans.className}`}
+                            name="email"
+                            component="p"
+                          />
+                        </div>
+                        <UploadFile />
+                      </div>
+                      <div className="form-div max-w-[673px] mt-5">
+                        <label className="">Phone</label>
+                        <PhoneNumberInput phoneChange={handlePhone} />
+                        <div className="mb-2">
+                          <FormSwitch
+                            label="Available on whatsapp"
+                            onChange={(checked) => setIsWhatsapp(checked)}
+                          />
+                        </div>
                       </div>
 
                       <div className="form-div">
-                        <label>Email Address:</label>
+                        <label className="mt-5">Message:</label>
                         <Field
-                          type="email"
-                          name="email"
-                          placeholder="Enter your email address"
-                          className="form-input"
-                        />
-                        <ErrorMessage
-                          className={`text-[#073B3A] text-[13px] ${openSans.className}`}
-                          name="email"
-                          component="p"
-                        />
-                      </div>
-                      <UploadFile />
-                    </div>
-                    <div className="form-div max-w-[673px] mt-5">
-                      <label className="">Phone</label>
-                      <PhoneNumberInput phoneChange={handlePhone} />
-                      <div className="mb-2">
-                        <FormSwitch
-                          label="Available on whatsapp"
-                          onChange={(checked) => setIsWhatsapp(checked)}
-                        />
-                      </div>
-                    </div>
-
-                    <div className="form-div">
-                      <label className="mt-5">Message:</label>
-                      <Field
-                        as="textarea" // Use 'textarea' as the component
-                        id="message"
-                        name="message"
-                        placeholder="Type your message"
-                        className="form-input-textarea px-4 max-w-[673px]
+                          as="textarea" // Use 'textarea' as the component
+                          id="message"
+                          name="message"
+                          placeholder="Type your message"
+                          className="form-input-textarea px-4 max-w-[673px]
                       border-[#E6E6E6] rounded-[4px] text-[#737373]
                       border py-2"
-                        rows="15" // Optional: Set the number of rows for the text area
-                        cols="50" // Optional: Set the number of columns for the text area
-                      />
+                          rows="15" // Optional: Set the number of rows for the text area
+                          cols="50" // Optional: Set the number of columns for the text area
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-                {loading ? (
-                  <Loader />
-                ) : (
-                  <button
-                    className="bg-[#DDB771] rounded-[8px] h-[52px] 
+                  {loading ? (
+                    <Loader />
+                  ) : (
+                    <button
+                      className="bg-[#DDB771] rounded-[8px] h-[52px] 
               w-[135px] flex items-center justify-center text-white mt-5
               hover:scale-[1.05]
               "
-                    type="submit"
-                  >
-                    Submit
-                  </button>
-                )}
-              </Form>
-            </Formik>
-            <div
-              className="flex items-center relative w-full md:min-h-[807px]
+                      type="submit"
+                    >
+                      Submit
+                    </button>
+                  )}
+                </Form>
+              </Formik>
+              <div
+                className="flex items-center relative w-full md:min-h-[807px]
             max-h-[402px] md:max-h-[807px] lg:mt-10
             aspect-[398/402] md:aspect-[774/807] lg:aspect-auto"
-            >
-              <Image
-                src={activeImages[active]}
-                alt="Faq IMAGE"
-                className="rounded-[8px] h-full max-h-[807px]"
-                fill
-                objectFit="cover"
-                objectPosition="bottom"
-              />
+              >
+                <Image
+                  src={activeImages[active]}
+                  alt="Faq IMAGE"
+                  className="rounded-[8px] h-full max-h-[807px]"
+                  fill
+                  objectFit="cover"
+                  objectPosition="bottom"
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </Root>
+      </Root>
+      <Footer />
+    </main>
   );
 };
 

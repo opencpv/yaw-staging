@@ -12,6 +12,9 @@ const oauthSignIn = async (
     },
   });
 
+  if (data) {
+    localStorage.setItem("session", JSON.stringify(data));
+  }
   return { data, error };
 };
 

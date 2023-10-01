@@ -75,7 +75,6 @@ const GraySliderDesktop = ({ data }: { data: any }) => {
                 slideShadows: true,
               }}
               modules={[EffectCoverflow, Navigation]}
-              className="coverflow"
             >
               <SwiperSlide>
                 <MdOutlineImage size={196} color="#9E9E9E" />

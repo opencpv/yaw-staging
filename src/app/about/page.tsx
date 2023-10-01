@@ -7,6 +7,10 @@ import AboutBanner from "./components/AboutBanner";
 import { MdOutlineImage } from "react-icons/md";
 import GraySliderDesktop from "./components/GraySliderDesktop";
 import GraySliderMobile from "./components/GraySliderMobile";
+import Navbar from "@/components/__shared/Navbar";
+import Footer from "../components/Footer";
+import SimpleSlider from "./components/Slider/SimpleSlider";
+import "swiper/css";
 
 const About = async () => {
   const data = await fetchAboutData();
@@ -21,7 +25,8 @@ const About = async () => {
         <title>About Us - RentRight Gh</title>
       </Head>
       <main className="max-w-[1728px] mx-auto ">
-        <div className="px-4 md:px-[30px] grid grid-cols-1 md:grid-cols-2 mt-8 items-center">
+        <Navbar />
+        <div className="px-4 lg:mt-[143.3px] mt-[109.77px] md:px-[30px] grid grid-cols-1 md:grid-cols-2 items-center">
           <p className="text-[31px] md:text-[49px] font-bold text-[#305A61]">
             {heading1}
           </p>
@@ -44,11 +49,11 @@ const About = async () => {
             <AboutItem key={index} index={index + 1} data={data} />
           ))}
         </div>
-        {/* <div className="w-full relative ">
-          <AboutBanner data={bannerData} />
-          <GraySliderDesktop data={{}} />
-          <GraySliderMobile data={{}} />
-        </div> */}
+        <div className="w-full relative">
+          {/* <AboutBanner data={bannerData} /> */}
+          <SimpleSlider />
+        </div>
+        <Footer />
       </main>
     </>
   );

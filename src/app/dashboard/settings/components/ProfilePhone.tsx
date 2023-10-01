@@ -6,18 +6,22 @@ import { openSans } from "@/app/styles/font";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { dateDefault } from "@/content/defaultPhone";
 import { useClickAway } from "@uidotdev/usehooks";
+import isEmptyObj from "@/lib/utils/isEmptyObj";
 
 interface Props {
-  phoneChange: (phoneNumber: string) => void;
-  defaultValue?: string;
+  phoneChange: (code: string) => void;
+  defaultValue: any;
+  codeChange: (phoneNumber: string) => void;
+  phone: string;
 }
 
-const PhoneNumberInput = ({ phoneChange, defaultValue = "" }: Props) => {
-  const [selectedCountry, setSelectedCountry] = useState<any>({});
+const ProfilePhone = ({ phoneChange, defaultValue, codeChange }: Props) => {
+  const [selectedCountry, setSelectedCountry] = useState<any>();
   const [data, setData] = useState<any[]>([]);
   const { icons } = useAssets();
   const [toggle, setToggle] = useState(false);
   const [phone, setphone] = useState(defaultValue);
+
   const ref: any = useClickAway(() => {
     setToggle(false);
   });
@@ -28,14 +32,19 @@ const PhoneNumberInput = ({ phoneChange, defaultValue = "" }: Props) => {
       .then((res) => {
         const resData = res.data;
         setData(resData);
-        setSelectedCountry(dateDefault);
+        const defaultCountry = resData.filter((obj: any) => {
+          return obj.name.common == defaultValue;
+        });
+
+        setSelectedCountry(defaultCountry);
+        console.log(defaultCountry);
       })
       .catch((error) => console.log(error.message));
-  }, []);
+  }, [defaultValue]);
 
   return (
     <div className="relative">
-      {data.length > 0 && (
+      {isEmptyObj(defaultValue) && (
         <div className="relative  flex gap-2" ref={ref}>
           <button
             type="button"
@@ -50,7 +59,8 @@ const PhoneNumberInput = ({ phoneChange, defaultValue = "" }: Props) => {
                 alt={selectedCountry.flags.alt}
                 fill
                 sizes="1.25rem"
-                style={{ objectFit: "cover", objectPosition: "center" }}
+                objectFit="cover"
+                objectPosition="center"
                 className="rounded-[4px] "
               />
             </div>
@@ -71,6 +81,7 @@ const PhoneNumberInput = ({ phoneChange, defaultValue = "" }: Props) => {
                     type="button"
                     onClick={() => {
                       setSelectedCountry(country);
+                      codeChange(`${country.idd.root}${country.idd.suffixes}`);
                       setToggle(false);
                     }}
                     className="flex w-full py-2  justify-start gap-2 items-center px-[15px] rounded-[4px] "
@@ -114,4 +125,4 @@ const PhoneNumberInput = ({ phoneChange, defaultValue = "" }: Props) => {
   );
 };
 
-export default PhoneNumberInput;
+export default ProfilePhone;

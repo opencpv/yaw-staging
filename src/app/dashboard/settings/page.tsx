@@ -1,61 +1,21 @@
-"use client";
 import Head from "next/head";
-import Profile from "./components/profile";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import { SanityClient } from "@sanity/client";
-import { SupabaseClient } from "@supabase/supabase-js";
-import supabase from "@/lib/utils/supabaseClient";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import ProfileMainView from "./components/ProfileMainView";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
-const Settings = () => {
-  const router = useRouter();
-  const [profileData, setProfileData] = useState<any>({
-    username: "",
-    fullname: "",
-    avatar_url: "",
-    firstname: "",
-    lastname: "",
-    country: "",
-    phone: "",
-    bio: "",
-    twitter_url: "",
-    facebook_url: "",
-    linkedin_url: "",
-    whatsapp: "",
-  });
+const Settings = async () => {
+  const supabase = createServerComponentClient({ cookies });
 
-  useEffect(() => {
-    const getUserData = async () => {
-      let { data } = await supabase.auth.getUser();
-      let res: any = await supabase.from("profiles").select("*");
-      const userData: any = await data.user;
-      const { email } = await userData;
-      const profileData = { ...res.data[0] };
-      const newData = { ...profileData, email };
-      setProfileData({ ...newData });
-    };
-    getUserData();
-  }, []);
-
-  useEffect(() => {
-    supabase.auth
-      .getSession()
-      .then(({ data, error }: { data: any; error: any }) => {
-        if (!data.session) {
-          router.push("/login");
-        }
-      });
-  }, []);
-
+  if (!supabase) {
+    redirect("/");
+  }
   return (
     <>
       <Head>
         <title>Dashboard - RentRightGh</title>
       </Head>
-      <main className="pb-[60px]">
-        <p className="text-[31px] font-semibold mt-2">Settings</p>
-        <Profile profileData={profileData} />
-      </main>
+      {supabase && <ProfileMainView />}
     </>
   );
 };
