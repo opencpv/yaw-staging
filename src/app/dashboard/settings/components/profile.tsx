@@ -6,7 +6,6 @@ import { FaFacebook, FaLinkedin, FaTwitter, FaWhatsapp } from "react-icons/fa";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import PhoneNumberInput from "@/components/__shared/PhoneInput";
 import Loader from "@/components/__shared/loader/Loader";
 import ProfilePhone from "./ProfilePhone";
 
