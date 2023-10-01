@@ -49,7 +49,7 @@ const IconField = ({
   );
 };
 
-const Profile = ({
+const ProfileInfo = ({
   profileData,
   supabase,
   loading,
@@ -371,4 +371,4 @@ const Navigation = styled("button", {
   },
 });
 
-export default Profile;
+export default ProfileInfo;
