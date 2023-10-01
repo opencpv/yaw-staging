@@ -1,7 +1,7 @@
 "use client";
-import Profile from "./Profile";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useEffect, useState } from "react";
+import ProfileInfo from "./Profile";
 
 const ProfileMainView = () => {
   const supabase = createClientComponentClient();
@@ -44,7 +44,7 @@ const ProfileMainView = () => {
   return (
     <main className="pb-[60px]">
       <p className="text-[31px] font-semibold mt-2">Settings</p>
-      <Profile
+      <ProfileInfo
         profileData={profileData}
         supabase={supabase}
         loading={loading}
