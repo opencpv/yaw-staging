@@ -6,6 +6,8 @@ import Image from "next/image";
 import Switch from "./switch";
 import Search from "./search";
 import { IoMdNotifications, IoMdNotificationsOutline } from "react-icons/io";
+import MessagesPopover from "../../notifications/components/NotificationsPopover";
+import NotificationsPopover from "../../notifications/components/NotificationsPopover";
 
 const Navbar = () => {
   const { icons } = useAssets();
@@ -32,7 +34,7 @@ const Navbar = () => {
           text-[14px] right-[0px] top-0">
             3
           </div>
-          <IoMdNotifications color="white" size="28"/>
+          <NotificationsPopover/>
         </button>
       <div className="relative w-full min-w-[50px] min-h-[50px]">
         <Image
