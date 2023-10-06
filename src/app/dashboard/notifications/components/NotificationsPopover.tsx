@@ -6,20 +6,42 @@ import { MixerHorizontalIcon, Cross2Icon } from "@radix-ui/react-icons";
 import { IoMdNotifications } from "react-icons/io";
 import NotificationItem from "./NotificationItem";
 import { demoNotifications } from "../content/demoNotifications";
+import CaMarkAsRead from "../icons/CaMarkAsRead";
+import { CustomScroll } from "../page";
 
 const NotificationsPopover = () => {
   const [currentNotification, setCurrentNotification] = useState("");
   return (
     <Popover.Root>
       <Popover.Trigger asChild>
-        <IconButton aria-label="Update dimensions">
-          <IoMdNotifications color="white" size="28" />
-        </IconButton>
+        <button className="relative min-w-[52px] min-h-[52px] w-full aspect-square flex justify-center items-center">
+          <div
+            className="absolute bg-[#B71851] text-[#fff]
+          rounded-full w-[26px] h-[26px] flex items-center justify-center
+          text-[14px] right-[0px] top-0">
+            3
+          </div>
+          <IconButton aria-label="Update dimensions">
+            <IoMdNotifications color="white" size="28" />
+          </IconButton>
+        </button>
       </Popover.Trigger>
       <Popover.Portal>
-        <PopoverContent sideOffset={5} >
-            <p className="font-bold text-[25px] mb-5">Notifications</p>
-          <div className="flex flex-col gap-8 max-h-[60vh] overflow-y-scroll">
+        <PopoverContent sideOffset={5}>
+          <div className="flex justify-between items-center ">
+            <p className="font-bold text-[25px] ">Notifications</p>
+            <p className="text-[10px] text-[#DDB771] font-bold">See All</p>
+          </div>
+
+          <div className="w-full flex justify-end">
+            <button className="flex justify-end items-center gap-2 hover:bg-[#073b3a12] p-2">
+              <div className="flex gap-0">
+                <CaMarkAsRead />
+              </div>
+              <p className="text-[10px] font-bold">Mark all as read</p>
+            </button>
+          </div>
+          <CustomScroll className="flex flex-col gap-8 max-h-[60vh] overflow-y-scroll">
             {demoNotifications.map((r, index) => (
               <div key={index} onClick={(e) => setCurrentNotification(r?.name)}>
                 <NotificationItem
@@ -30,7 +52,7 @@ const NotificationsPopover = () => {
                 />
               </div>
             ))}
-          </div>
+          </CustomScroll>
           <PopoverClose aria-label="Close">
             <Cross2Icon />
           </PopoverClose>
@@ -65,8 +87,8 @@ const PopoverContent = styled(Popover.Content, {
   borderRadius: 17,
   padding: 20,
   backgroundColor: "white",
-  width:"100%",
-  maxWidth:"520px",
+  width: "100%%",
+  maxWidth: "540px",
   boxShadow:
     "hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px",
   animationDuration: "400ms",
@@ -80,6 +102,9 @@ const PopoverContent = styled(Popover.Content, {
   },
   "&:focus": {
     boxShadow: `hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px, 0 0 0 2px ${violet.violet7}`,
+  },
+  "@madia screen and (max-width: 1024px)": {
+    width: "75%",
   },
 });
 

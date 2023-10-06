@@ -1,29 +1,33 @@
 import CaSubscriptions from "@/app/components/icons/CaSubscriptions";
+import { AiFillHeart } from "react-icons/ai";
 import { IoMdNotificationsOutline, IoMdSettings } from "react-icons/io";
+import CaOverview from "../icons/CaOverview";
+import CaDAshMessages from "../icons/CaDashMessages";
+import CaDashSave from "../icons/CaDashSave";
 
 export const PgRoutes = [
   {
     name: "overview",
     url: "",
-    icon: <CaSubscriptions width={24} height={24} />,
+    icon: <CaOverview   />,
     link: "/",
   },
   {
     name: "messages",
     url: "",
-    icon: <CaSubscriptions width={24} height={24} />,
+    icon: <CaDAshMessages  />,
     link: "/dashboard/messages",
   },
   {
     name: "favourite",
     url: "",
-    icon: <CaSubscriptions width={24} height={24} />,
+    icon: <AiFillHeart width={24} height={24} />,
     link: "/",
   },
   {
     name: "saved search",
     url: "",
-    icon: <CaSubscriptions width={24} height={24} />,
+    icon: <CaDashSave />,
     link: "/",
   },
   {

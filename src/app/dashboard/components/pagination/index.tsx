@@ -44,7 +44,7 @@ const Pagination = () => {
       const currentURL = pathname;
       PgRoutes.forEach((r) => {
         if (currentURL.includes(r?.name)) {
-          setActive(r?.name)
+          setActive(r?.name);
         }
       });
     }
@@ -54,12 +54,12 @@ const Pagination = () => {
       <Link
         href={"/dashboard"}
         className="w-full md:max-w-[83px]
-                max-w-[52px] aspect-square bg-[#396261] rounded-full flex
-                items-center justify-center hover:scale-[1.02]">
+                  max-w-[52px] aspect-square bg-[#396261] rounded-full flex
+                  items-center justify-center hover:scale-[1.02]">
         <MdKeyboardArrowLeft color="white" size={24} />
       </Link>
 
-      <div className="flex gap-8 flex-nowrap items-center overflow-x-scroll pg-row justify-center">
+      <div className="flex gap-8  items-center overflow-x-scroll pg-row justify-start w-full">
         {PgRoutes.map((r, index) => (
           <PaginationTab
             key={index}
@@ -87,7 +87,6 @@ const Root = styled("div", {
 
 const PgItem = styled("button", {
   display: "flex",
-  minWidth: "123px",
   minHeight: "67px",
   flexDirection: "column",
   paddingBlock: "0.875rem",

@@ -95,20 +95,20 @@ const Page = () => {
                 </Tab>
                 <Tab
                   onClick={(e: any) => setActive("report")}
-                  type={active === "general" ? "active" : undefined}
+                  type={active === "report" ? "active" : undefined}
                 >
                   Report an issue
                 </Tab>
                 <Tab
                   onClick={(e: any) => setActive("advertise")}
-                  type={active === "general" ? "active" : undefined}
+                  type={active === "advertise" ? "active" : undefined}
                 >
                   Advertise with us
                 </Tab>
                 <Tab
                   onClick={(e: any) => setActive("writers")}
                   className="sc"
-                  type={active === "general" ? "active" : undefined}
+                  type={active === "writers" ? "active" : undefined}
                 >
                   Writers
                 </Tab>

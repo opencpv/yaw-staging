@@ -8,12 +8,13 @@ import Search from "./search";
 import { IoMdNotifications, IoMdNotificationsOutline } from "react-icons/io";
 import MessagesPopover from "../../notifications/components/NotificationsPopover";
 import NotificationsPopover from "../../notifications/components/NotificationsPopover";
+import { montserat } from "@/app/styles/font";
 
 const Navbar = () => {
   const { icons } = useAssets();
-  
+
   return (
-    <Root className="flex items-center flex-wrap">
+    <Root className={`flex items-center flex-wrap ${montserat.className}`}>
       <div className="flex gap-6 md:gap-10 lg:gap-20">
         <Image
           src={icons.Logo}
@@ -28,24 +29,18 @@ const Navbar = () => {
         <div>
           <p className="text-[#fff] whitespace-nowrap">John Doe</p>
         </div>
-        <button className="relative min-w-[52px] min-h-[52px] w-full aspect-square flex justify-center items-center">
-          <div className="absolute bg-[#B71851] text-[#fff]
-          rounded-full w-[26px] h-[26px] flex items-center justify-center
-          text-[14px] right-[0px] top-0">
-            3
-          </div>
-          <NotificationsPopover/>
-        </button>
-      <div className="relative w-full min-w-[50px] min-h-[50px]">
-        <Image
-          src="/assets/images/dashboard-navbar.png"
-          alt="User picture"
-          width={50}
-          height={50}
-        />
-      </div>
-      </div>
+     
+        <NotificationsPopover />
 
+        <div className="relative w-full min-w-[50px] min-h-[50px]">
+          <Image
+            src="/assets/images/dashboard-navbar.png"
+            alt="User picture"
+            width={50}
+            height={50}
+          />
+        </div>
+      </div>
     </Root>
   );
 };
@@ -59,9 +54,9 @@ const Root = styled("div", {
   justifyContent: "space-between",
   padding: "1.875rem",
 
-  "@media screen and (max-width:768px)":{
-    padding:"1rem",
-  }
+  "@media screen and (max-width:768px)": {
+    padding: "1rem",
+  },
 });
 
 export default Navbar;
