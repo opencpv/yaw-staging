@@ -34,3 +34,11 @@ interface AdCardInterface {
     images: AdImage[];
     className?: string;
 }
+
+interface MessagesInterface {
+  href: string;
+  image: string;
+  name: string;
+  last_message: string;
+  messages_count: number;
+}

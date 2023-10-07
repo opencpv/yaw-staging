@@ -1,15 +1,25 @@
 "use client";
-import React from "react";
-import MessageBubble from "../components/messages/MessageBubble";
-import BlockUserPopOver from "../components/messages/BlockUserPopOver";
+import React, { useMemo } from "react";
+import MessageBubble from "../../components/messages/MessageBubble";
+import BlockUserPopOver from "../../components/messages/BlockUserPopOver";
 
-type Props = {};
+const Messages = ({ params }: { params: { chat: string } }) => {
+  const {chat} = params
+  let contactName = useMemo(() => {   // Algorithm for getting contact name
+    let nameSplit = chat.split("-")
+    let nameSplitCapitalized = nameSplit.map((name) => (
+      name.slice(0, 1).toUpperCase() + name.slice(1)
+    ))
+    if (nameSplitCapitalized.length >= 2){
+      return nameSplitCapitalized.join(" ")
+    }
+    return nameSplitCapitalized.join(" ")
+  }, [chat])
 
-const Messages = (props: Props) => {
   return (
     <>
       <div className="flex items-center justify-between p-4 text-white rounded-xl bg-primary-400">
-        <h2 className="text-xl">Mary Jane</h2>
+        <h2 className="text-xl">{contactName}</h2>
         <BlockUserPopOver />
       </div>
 
