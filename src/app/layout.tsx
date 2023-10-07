@@ -3,6 +3,7 @@ import "./globals.css";
 import { useEffect, useState } from "react";
 import Navbar from "@/components/__shared/Navbar";
 import { usePathname } from "next/navigation";
+import Providers from "@/context/Providers";
 
 const uniquePages = ["login", "terms-of-service"];
 
@@ -52,7 +53,9 @@ export default function RootLayout({
         >
           {children}
         </div> */}
-        {children}
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );
