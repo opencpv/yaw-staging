@@ -2,17 +2,23 @@
 import React from "react";
 import Image from "next/image";
 import Chat from "../components/messages/Chat";
+import { usePathname } from "next/navigation";
 
 type Props = {
   children: React.ReactNode;
 };
 
 const MessagesLayout = ({ children }: Props) => {
+  const pathname = usePathname();
   return (
     <>
       <h2 className="text-2xl font-[500] mb-5 text-neutral-900">Messages</h2>
       <section className="grid-cols-6 gap-5 lg:grid">
-        <aside className="max-h-screen col-span-2 p-4 px-0 overflow-y-scroll lg:px-4 lg:border-r hidden-scrollbar">
+        <aside
+          className={`${
+            pathname !== "/dashboard/messages" && "hidden"
+          } lg:block max-h-screen col-span-2 p-4 px-0 overflow-y-scroll lg:px-4 lg:border-r hidden-scrollbar`}
+        >
           <Chat
             href="/dashboard/messages/mary-jane"
             image="/assets/images/dashboard-navbar.png"
@@ -70,11 +76,15 @@ const MessagesLayout = ({ children }: Props) => {
             messages_count={3}
           />
         </aside>
-        <div className="hidden col-span-4 lg:block">
+        <div
+          className={`${
+            pathname == "/dashboard/messages" && "hidden"
+          } lg:block col-span-4`}
+        >
           {children}
           <form
             action=""
-            className="fixed bottom-0 flex items-center w-8/12 gap-4 mb-5"
+            className="fixed bottom-0 flex items-center w-full lg:w-8/12 gap-4 mb-5"
           >
             <input
               type="text"

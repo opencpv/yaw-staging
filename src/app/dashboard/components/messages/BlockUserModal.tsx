@@ -20,7 +20,10 @@ const BlockUserModal = ({ isOpen ,onOpenChange }: Props) => {
 
   return (
     <>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center" classNames={{
+        wrapper: "",
+        base: "absolute z-50 translate-y-[-100%] sm:translate-y-0"
+      }}>
         <ModalContent>
           {(onClose) => (
             <>
