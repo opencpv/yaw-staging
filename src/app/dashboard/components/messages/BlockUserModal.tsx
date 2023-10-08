@@ -15,23 +15,28 @@ type Props = {
   onOpenChange: () => void;
 };
 
-const BlockUserModal = ({ isOpen ,onOpenChange }: Props) => {
+const BlockUserModal = ({ isOpen, onOpenChange }: Props) => {
   const { onClose } = useDisclosure();
 
   return (
     <>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center" classNames={{
-        wrapper: "",
-        base: "absolute z-50 translate-y-[-100%] sm:translate-y-0"
-      }}>
-        <ModalContent>
+      <Modal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        placement="center"
+        classNames={{
+          wrapper: "",
+          base: "max-md:top-32",
+        }}
+      >
+        <ModalContent className="">
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
                 <div className="bg-[#FEF3F2] rounded-full w-16 h-16 flex items-center justify-center">
-                    <div className="flex items-center justify-center rounded-full w-11 h-11 bg-neutral-200">
-                        <HiOutlineExclamationCircle className="text-xl rotate-180" />
-                    </div>
+                  <div className="flex items-center justify-center rounded-full w-11 h-11 bg-neutral-200">
+                    <HiOutlineExclamationCircle className="text-xl rotate-180" />
+                  </div>
                 </div>
               </ModalHeader>
               <ModalBody>
@@ -41,10 +46,13 @@ const BlockUserModal = ({ isOpen ,onOpenChange }: Props) => {
                 </p>
               </ModalBody>
               <ModalFooter>
-                <button className="bg-red-500 text-white font-[500] py-1 max-w-[8rem] w-32 rounded-lg" >
+                <button className="bg-red-500 text-white font-[500] py-1 max-w-[8rem] w-32 rounded-lg">
                   Yes
                 </button>
-                <button className="bg-neutral-200 text-neutral-500 font-[500] py-1 max-w-[8rem] w-32 rounded-lg" onClick={onClose}>
+                <button
+                  className="bg-neutral-200 text-neutral-500 font-[500] py-1 max-w-[8rem] w-32 rounded-lg"
+                  onClick={onClose}
+                >
                   No
                 </button>
               </ModalFooter>
