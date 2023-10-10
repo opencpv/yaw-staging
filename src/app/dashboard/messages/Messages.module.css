@@ -1,0 +1,13 @@
+.messageBubble {
+    margin-top: 1.25rem;
+}
+.messageBubble + .messageBubble {
+    margin-top: 0.225rem;
+}
+
+.messageBubble2 {
+    margin-top: 1.25rem;
+}
+.messageBubble2 + .messageBubble2 {
+    margin-top: 0.225rem;
+}

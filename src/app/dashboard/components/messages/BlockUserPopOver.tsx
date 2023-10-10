@@ -16,7 +16,7 @@ const BlockUserPopOver = () => {
     <>    
       <Popover placement="right"
         classNames={{
-          base: "flex items-center py-2 px-6 gap-2 min-[1977px]:translate-x-[-120%]",
+          base: "flex items-center py-2 px-6 gap-2 top-8 min-[1977px]:translate-x-[-120%]",
         }}
       >
         <PopoverTrigger>

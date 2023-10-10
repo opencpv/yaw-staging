@@ -12,12 +12,14 @@ const MessagesLayout = ({ children }: Props) => {
   const pathname = usePathname();
   return (
     <>
-      <h2 className="text-2xl font-[500] mb-5 text-neutral-900">Messages</h2>
-      <section className="grid-cols-6 gap-5 lg:grid">
+      <h2 className="text-2xl font-[500] mb-5 text-neutral-900">
+        Messages
+      </h2>
+      <section className="max-h-screen grid-cols-6 gap-5 lg:grid">
         <aside
           className={`${
             pathname !== "/dashboard/messages" && "hidden"
-          } lg:block max-h-screen col-span-2 p-4 px-0 overflow-y-scroll lg:px-4 lg:border-r hidden-scrollbar`}
+          } lg:block col-span-2 max-h-screen p-4 px-0 overflow-y-scroll lg:px-4 lg:border-r hidden-scrollbar`}
         >
           <Chat
             href="/dashboard/messages/mary-jane"
@@ -76,31 +78,33 @@ const MessagesLayout = ({ children }: Props) => {
             messages_count={3}
           />
         </aside>
-        <div
+        <main
           className={`${
             pathname == "/dashboard/messages" && "hidden"
-          } lg:block col-span-4`}
+          } lg:block col-span-4 h-full`}
         >
-          {children}
-          <form
-            action=""
-            className="fixed bottom-0 flex items-center w-full lg:w-8/12 gap-4 mb-5"
-          >
-            <input
-              type="text"
-              className="w-8/12 p-3 border rounded-md placeholder:text-sm"
-              placeholder="Type your message"
-            />
-            <button type="submit">
-              <Image
-                src="/assets/icons/messages/send-btn.svg"
-                alt="send"
-                width={30}
-                height={30}
+          {children} {/* messages */}
+          <div className="fixed bottom-0 w-11/12 py-5 bg-white lg:w-5/12">
+            <form
+              action=""
+              className="flex items-center w-full gap-4"
+            >
+              <input
+                type="text"
+                className="w-full p-3 border rounded-md placeholder:text-sm"
+                placeholder="Type your message"
               />
-            </button>
-          </form>
-        </div>
+              <button type="submit">
+                <Image
+                  src="/assets/icons/messages/send-btn.svg"
+                  alt="send"
+                  width={30}
+                  height={30}
+                />
+              </button>
+            </form>
+          </div>
+        </main>
       </section>
     </>
   );

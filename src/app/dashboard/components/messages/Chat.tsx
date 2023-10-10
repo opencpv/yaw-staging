@@ -6,7 +6,7 @@ type Props = {
 
 };
 
-const Chat = ({href, image, name, last_message, messages_count}: MessagesInterface) => {
+const Chat = ({href, image, name, last_message, messages_count}: ChatInterface) => {
   return (
     <Link href={`${href}`}>
       <div className="grid items-start grid-cols-8 gap-6 pt-8 pb-2 first:pt-2 border-b min-h-[3.5rem] cursor-default hover:scale-[1.02] transition-all">

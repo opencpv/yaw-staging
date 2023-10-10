@@ -35,10 +35,15 @@ interface AdCardInterface {
     className?: string;
 }
 
-interface MessagesInterface {
+interface ChatInterface {
   href: string;
   image: string;
   name: string;
   last_message: string;
   messages_count: number;
+}
+
+interface MessageInterface {
+  body: string;
+  time: string;
 }

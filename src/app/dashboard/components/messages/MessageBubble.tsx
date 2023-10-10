@@ -1,12 +1,13 @@
 import React from "react";
+import style from "../../messages/Messages.module.css";
 
-type Props = {};
-
-const MessageBubble = (props: Props) => {
+const MessageBubble = ({ body, time }: MessageInterface) => {
   return (
-    <div className="flex flex-col max-w-xs gap-1 p-3 pb-1 bg-neutral-100 text-neutral-800 rounded-2xl">
-      <p>Lorem ipsum dolor sit amet.</p>
-      <small className="text-sm text-end">11:00 am</small>
+    <div
+      className={`${style.messageBubble} flex flex-col self-end max-w-xl gap-1 p-3 pb-1 ml-10 xs:ml-20 bg-neutral-100 text-neutral-800 rounded-2xl first:mt-auto`}
+    >
+      <p>{body}</p>
+      <small className="text-sm text-end">{time}</small>
     </div>
   );
 };
