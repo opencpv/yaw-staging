@@ -3,10 +3,13 @@ import React, { HTMLAttributes, useEffect, useMemo, useRef } from "react";
 import MessageBubble from "../../components/messages/MessageBubble";
 import BlockUserPopOver from "../../components/messages/BlockUserPopOver";
 import MessageBubble2 from "../../components/messages/MessageBubble2";
-import { FaLongArrowAltLeft } from "react-icons/fa";
+import { HiOutlineArrowLongLeft } from "react-icons/hi2";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import { useAssets } from "@/lib/custom-hooks/useAssets";
 
 const Messages = ({ params }: { params: { chat: string } }) => {
+  const { icons } = useAssets()
   const router = useRouter();
   const messageContainerRef = useRef<HTMLDivElement>(null);
 
@@ -31,9 +34,11 @@ const Messages = ({ params }: { params: { chat: string } }) => {
   return (
     <>
       <div className="sticky top-0 flex items-center justify-between p-4 text-white rounded-xl bg-primary-400">
-        <FaLongArrowAltLeft
+        <Image
+          src={icons.ArrowIcon}
+          alt="go back"
           onClick={() => router.back()}
-          className="inline-flex lg:hidden"
+          className="inline-flex text-3xl lg:hidden"
         />
         <h2 className="text-xl">{contactName}</h2>
         <BlockUserPopOver />

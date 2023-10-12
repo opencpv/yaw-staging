@@ -81,13 +81,13 @@ const MessagesLayout = ({ children }: Props) => {
         <main
           className={`${
             pathname == "/dashboard/messages" && "hidden"
-          } lg:block col-span-4 h-full`}
+          } lg:block relative w-full col-span-4 h-full`}
         >
           {children} {/* messages */}
-          <div className="fixed bottom-0 w-11/12 py-5 bg-white lg:w-5/12">
+          <div className="fixed bottom-0 w-11/12 py-5 bg-white lg:w-[64%]">
             <form
               action=""
-              className="flex items-center w-full gap-4"
+              className="flex items-center gap-4"
             >
               <input
                 type="text"

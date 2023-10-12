@@ -13,8 +13,8 @@ const Login = () => {
       <Head>
         <title>Login - RentRightGh</title>
       </Head>
-      <main className="w-full  bg-darkGreenBg grid grid-cols-1 lg:grid-cols-2">
-        <div className="hidden lg:block lg:relative w-full md:h-[100vh]">
+      <main className="grid w-full grid-cols-1 bg-darkGreenBg lg:grid-cols-2">
+        <div className="hidden w-full min-h-screen lg:block lg:relative">
           <Image
             src={images.StockImage}
             alt="bg"
@@ -22,15 +22,15 @@ const Login = () => {
             style={{ objectFit: "cover", objectPosition: "center" }}
           />
         </div>
-        <div className="w-full relative md:h-[100vh] bg-plane-pattern lg:px-[39.5px] lg:py-[58px]">
+        <div className="relative w-full py-5 bg-plane-pattern lg:px-8 lg:py-16">
           <LoginForm />
-          <div className="  mt-[265px] md:mt-[127px] lg:mt-[110px] md:bottom-[69px]  left-0 w-full">
+          <div className="left-0 w-full mt-28 md:bottom-28">
             <LoginFooter />
           </div>
         </div>
-        <div className="w-full col-span-2 ">
+        {/* <div className="w-full col-span-2 ">
           <Footer />
-        </div>
+        </div> */}
       </main>
     </>
   );

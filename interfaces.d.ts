@@ -10,15 +10,15 @@ interface ListingCardInterface {
     | "Bi-Annually"
     | "Quarterly"
     | "Every-6-Months"
-    | "Every-3-Years" | string
+    | "Every-3-Years"
     ;
   monthlyAmount: number;
   price: number;
-  deal: "Editor's Choice" | "Price Drop" | "Best Value" | "None" | "none" | "" | string;
+  deal: "Editor's Choice" | "Price Drop" | "Best Value" | "None" | "none" | "";
   liked: boolean;
-  membership: "Certified" | "Verified" | "Unverified" | "None" | "none" | "" | string;
+  membership: "Certified" | "Verified" | "Unverified" | "None" | "none" | "";
   className?: string;
-  link: string;
+  href: string;
 }
 
 interface AdImage {

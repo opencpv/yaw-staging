@@ -22,8 +22,8 @@ const DesktopVersion = () => {
   }, []);
 
   return (
-    <div className=" hidden lg:block relative ">
-      <div className=" md:px-[77px]  h-fit ">
+    <div className="relative hidden mx-auto lg:block max-w-screen-2xl">
+      <div className=" md:px-[77px] h-fit ">
         <Swiper
           ref={sliderRef}
           centeredSlides={true}
@@ -52,15 +52,15 @@ const DesktopVersion = () => {
       <div className="flex px-[311px] justify-between items-center md:mt-[40px] mt-[32px] md:pb-[107px] pb-[30px]">
         <button
           onClick={handlePrev}
-          className="w-[40px]  h-[40px] md:w-[70px] md:h-[70px] flex items-center justify-center bg-white rounded-full"
+          className="w-[40px] h-[40px] md:w-[70px] md:h-[70px] flex items-center justify-center bg-white rounded-full"
         >
-          <MdChevronLeft />
+          <MdChevronLeft className="text-3xl" />
         </button>
         <button
           onClick={handleNext}
-          className="w-[40px]  h-[40px] md:w-[70px] md:h-[70px] flex items-center justify-center bg-white rounded-full"
+          className="w-[40px] h-[40px] md:w-[70px] md:h-[70px] flex items-center justify-center bg-white rounded-full"
         >
-          <MdChevronRight />
+          <MdChevronRight className="text-3xl" />
         </button>
       </div>
     </div>

@@ -28,7 +28,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className="max-w-[1728px] mx-auto">
+      <body className="">
         {/* {noNavbar ? (
           ""
         ) : (

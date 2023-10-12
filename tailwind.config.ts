@@ -23,6 +23,7 @@ const config: Config = {
       colors: {
         darkGreenBg: "#073B3A ",
         primary: {
+          300: "#E6F6EE",
           400: "#396261",
           500: "#073B3A",
           600: "#063635",

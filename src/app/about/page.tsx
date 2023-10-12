@@ -11,6 +11,11 @@ import Navbar from "@/components/__shared/Navbar";
 import Footer from "../components/Footer";
 import SimpleSlider from "./components/Slider/SimpleSlider";
 import "swiper/css";
+import { useAssets } from "@/lib/custom-hooks/useAssets";
+import ListingCard from "./components/ListingCard";
+import ListingCardSlider from "./components/ListingCardsSlider";
+import listings from "@/content/demodb/listings";
+import VerticalSlider from "./components/Slider/VerticalSlider";
 
 const About = async () => {
   const data = await fetchAboutData();
@@ -19,40 +24,115 @@ const About = async () => {
   const aboutDescription = await data[0].about_descriptions;
   const bannerData = await data[0].banner;
 
+  const { images } = useAssets();
+
   return (
     <>
       <Head>
         <title>About Us - RentRight Gh</title>
       </Head>
-      <main className="max-w-[1728px] mx-auto ">
-        <Navbar />
-        <div className="px-4 lg:mt-[143.3px] mt-[109.77px] md:px-[30px] grid grid-cols-1 md:grid-cols-2 items-center">
-          <p className="text-[31px] md:text-[49px] font-bold text-[#305A61]">
-            {heading1}
-          </p>
-          <div className="text-[25px]  lg:pl-[] text-[#65969F]">
-            <p>{heading2}</p>
+      <Navbar />
+      <main className="pt-10 overflow-x-hidden">
+        <div className="flex items-center justify-center mx-auto mb-10 max-w-screen-2xl">
+          <div className="grid items-center px-5 xs:px-10 lg:grid-cols-2 gap-x-36 gap-y-5">
+            <h1 className="font-[700] text-2xl sm:text-4xl text-[#305A61] leading-snug ">
+              {heading1}
+            </h1>
+            <h2 className="text-[#65969F] font-[500] text-lg max-w-2xl">
+              {heading2}
+            </h2>
           </div>
         </div>
-        <div className="w-full h-[464px] aspect-[1728/728] md:h-[728px] relative">
-          <Image
-            src={urlFor(data[0].featuredImage).width(1728).url() as string}
-            fill
-            objectFit="cover"
-            objectPosition="center"
-            alt="banner image"
-            className="py-8 border-b-[1px] border-[#D9D9D9] mb-[32.5px] md:mb-[64px]"
-          />
-        </div>
-        <div className="px-4 md:px-[30px] pt-[64px]">
-          {aboutDescription.map((data: any, index: number) => (
-            <AboutItem key={index} index={index + 1} data={data} />
-          ))}
-        </div>
-        <div className="w-full relative">
+        <section className="flex items-center justify-center mx-auto max-w-screen-2xl">
+          <div className="relative w-full h-96">
+            {/* <Image
+              src={urlFor(data[0].featuredImage).width(1728).url() as string}
+              fill
+              objectFit="cover"
+              objectPosition="center"
+              alt="banner image"
+              className="py-8 border-b-[1px] border-[#D9D9D9] mb-[32.5px] md:mb-[64px]"
+            /> */}
+            <Image
+              src="/assets/images/about/about1.webp"
+              alt=""
+              fill
+              style={{ objectFit: "cover" }}
+            />
+          </div>
+        </section>
+        <section className="flex items-center justify-center px-5 pb-10 mx-auto min-h-max xs:px-10 max-w-screen-2xl">
+          <div className="min-h-max">
+            {aboutDescription.map((data: any, index: number) => (
+              <AboutItem key={index} index={index + 1} data={data} />
+            ))}
+          </div>
+        </section>
+        <section className="relative w-full">
+          <div className="relative flex flex-col lg:flex-row items-center xs:items-start gap-10 justify-between fhd:mx-auto bg-gradient-to-r from-[#21A19F] to-[#1EA9A6A1] text-white p-5 xs:p-10 max-w-screen-xl bg-opacity-90 lg:top-20">
+            <div className="">
+              <h2 className="font-[700] text-2xl md:text-3xl">Ipsum Lorem</h2>
+              <p className="max-w-2xl mt-5 font-[500] text-base md:text-lg">
+                Lorem ipsum dolor sit amet consectetur. Orci suspendisse
+                fringilla consequat placerat velit dui. Sit in condimentum sed a
+                orci ac. Porttitor sagittis facilisi consequat morbi tortor dui.
+              </p>
+            </div>
+            <Image
+              src={images.HouseSearchingCuate}
+              height={250}
+              width={250}
+              alt="House searching cuate"
+              className="xs:self-end"
+            />
+          </div>
           {/* <AboutBanner data={bannerData} /> */}
           <SimpleSlider />
-        </div>
+        </section>
+        <section className="w-full xl:w-10/12 ml-auto fhd:mx-auto pt-0 pb-10 xl:py-10 h-[60rem] min-[480px]:h-[50rem] xl:h-[45rem] px-5 xs:px-10 flex max-w-screen-2xl">
+          <VerticalSlider />
+        </section>
+        <section className="w-full py-10 px-5 xs:px-10 mx-auto h-[38rem] max-w-screen-2xl">
+          {
+            <ListingCardSlider
+              listings={listings.map((listing) => {
+                return {
+                  id: listing.id,
+                  propertyType: listing.propertyType,
+                  deal: listing.deal as
+                    | "Editor's Choice"
+                    | "Price Drop"
+                    | "Best Value"
+                    | "None"
+                    | "none"
+                    | "",
+                  images: listing.images,
+                  liked: listing.liked,
+                  membership: listing.membership as
+                    | "Certified"
+                    | "Verified"
+                    | "Unverified"
+                    | "None"
+                    | "none"
+                    | "",
+                  listing: listing.monthlyAmount,
+                  paymentStructure: listing.paymentStructure as
+                    | "Yearly"
+                    | "Bi-Annually"
+                    | "Quarterly"
+                    | "Every-6-Months"
+                    | "Every-3-Years",
+                  price: listing.price,
+                  propertyDescription: listing.propertyDescription,
+                  rating: listing.rating,
+                  ratingCount: listing.ratingCount,
+                  monthlyAmount: listing.monthlyAmount,
+                  href: listing.href,
+                };
+              })}
+            />
+          }
+        </section>
         <Footer />
       </main>
     </>
