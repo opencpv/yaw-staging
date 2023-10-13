@@ -4,12 +4,12 @@ import Image from "next/image";
 import { date } from "yup";
 
 const AboutItem = ({ data, index }: { data: any; index: number }) => {
-  console.log(data);
+  // console.log(data);
   const { images } = useAssets();
 
   const Heading1 = () => (
     <div className="relative mt-8 w-fit">
-      <h2 className="border-l-8 text-[#2A4E55] border-[#DDB771] px-4 font-bold text-2xl md:text-3xl">
+      <h2 className="border-l-8 text-[#2A4E55] border-[#DDB771] px-4 font-bold text-2xl md:text-4xl">
         {data.title}
       </h2>
       <Image
@@ -22,7 +22,7 @@ const AboutItem = ({ data, index }: { data: any; index: number }) => {
 
   const Heading2 = () => (
     <div className="relative w-fit ">
-      <h2 className="border-l-8 mt-8 text-[#2A4E55] border-[#DDB771] px-4 font-bold text-2xl md:text-3xl">
+      <h2 className="border-l-8 mt-8 text-[#2A4E55] border-[#DDB771] px-4 font-bold text-2xl md:text-4xl">
         {data.title}
       </h2>
     </div>

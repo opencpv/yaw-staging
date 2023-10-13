@@ -8,7 +8,7 @@ import {
   FaRegStar,
   FaStar,
 } from "react-icons/fa";
-import style from "../components/ListingSlider.module.css"
+import style from "../components/ListingSlider.module.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
@@ -21,8 +21,10 @@ import { HiOutlineHomeModern } from "react-icons/hi2";
 import Link from "next/link";
 import Image from "next/image";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import { useAssets } from "@/lib/custom-hooks/useAssets";
 
 const ListingCard = (props: ListingCardInterface) => {
+  const { icons } = useAssets();
   const [isLiked, setIsLiked] = useState<boolean>(false);
   const toggleLiked = () => {
     setIsLiked((prevState) => !prevState);
@@ -55,7 +57,7 @@ const ListingCard = (props: ListingCardInterface) => {
                   alt={props.propertyType.toLowerCase()}
                   fill
                   className="brightness-[0.8]"
-                  style={{objectFit: "cover"}}
+                  style={{ objectFit: "cover" }}
                 />
               </div>
             </Link>
@@ -140,12 +142,13 @@ const ListingCard = (props: ListingCardInterface) => {
           </div>
           <div className="flex justify-between">
             <small className=" inline rounded-xl bg-[#E7F8F2] px-3 py-1 text-[0.55rem]">
-              - GHS{" "}
+              {/* - GHS{" "}
               {props.monthlyAmount?.toLocaleString("en-US", {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
               })}{" "}
-              / Month
+              / Month */}
+              One Year Advance
             </small>
           </div>
         </div>
@@ -161,7 +164,7 @@ const ListingCard = (props: ListingCardInterface) => {
             {props.deal === "Best Value" && (
               <>
                 <Image
-                  src="/svg/deals/best-value.svg"
+                  src={icons.BestValue}
                   alt={props.deal?.toLowerCase()}
                   height={14}
                   width={14}
@@ -172,8 +175,8 @@ const ListingCard = (props: ListingCardInterface) => {
             {props.deal === "Editor's Choice" && (
               <>
                 <Image
-                  src="/svg/deals/editors-choice.svg"
-                  alt="deal"
+                  src={icons.EditorsChoice}
+                  alt={props.deal?.toLowerCase()}
                   height={14}
                   width={14}
                 />
@@ -183,8 +186,8 @@ const ListingCard = (props: ListingCardInterface) => {
             {props.deal === "Price Drop" && (
               <>
                 <Image
-                  src="/svg/deals/price-drop.svg"
-                  alt="deal"
+                  src={icons.PriceDrop}
+                  alt={props.deal?.toLowerCase()}
                   height={14}
                   width={14}
                 />
@@ -200,7 +203,7 @@ const ListingCard = (props: ListingCardInterface) => {
         {props.membership === "Certified" && (
           <div className="mr-4 shadow-2xl">
             <Image
-              src="/svg/badge/certified.svg"
+              src={icons.Certified}
               alt={props.membership?.toLowerCase()}
               title={props.membership?.toLowerCase()}
               height={35}
@@ -212,7 +215,7 @@ const ListingCard = (props: ListingCardInterface) => {
         {props.membership === "Verified" && (
           <div className="mr-4 shadow-2xl">
             <Image
-              src="/svg/badge/verified.svg"
+              src={icons.Verified}
               alt={props.membership?.toLowerCase()}
               title={props.membership?.toLowerCase()}
               height={35}

@@ -34,8 +34,8 @@ const Pagination = () => {
     <Root className="flex gap-7 items-center">
       <Link
         href={"/dashboard"}
-        className="w-full md:max-w-[83px]
-                max-w-[52px] aspect-square bg-[#396261] rounded-full flex
+        className=" md:max-w-[83px]
+                max-w-[52px] aspect-square w-14 h-14 bg-[#396261] rounded-full flex
                 items-center justify-center hover:scale-[1.02]"
       >
         <MdKeyboardArrowLeft color="white" size={24} />
@@ -43,7 +43,7 @@ const Pagination = () => {
       <div className="flex gap-8 flex-wrap">
         <PgItem className={active == "subcriptions" ? "" : "!hidden md:!flex"}>
           <CaSubscriptions width={24} height={24} />
-          <p>Subscriptions</p>
+          <p className="text-xl">Subscriptions</p>
         </PgItem>
         <Link href="/dashboard/settings">
           <PgItem
@@ -54,7 +54,7 @@ const Pagination = () => {
               size="24"
               color={active == "settings" ? "white" : "#B0B0B0"}
             />
-            <p>Settings</p>
+            <p className="text-xl">Settings</p>
           </PgItem>
         </Link>
       </div>

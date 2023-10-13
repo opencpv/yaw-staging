@@ -1,8 +1,8 @@
 "use client";
 import React, { HTMLAttributes, useEffect, useMemo, useRef } from "react";
-import MessageBubble from "../../components/messages/MessageBubble";
-import BlockUserPopOver from "../../components/messages/BlockUserPopOver";
-import MessageBubble2 from "../../components/messages/MessageBubble2";
+import MessageBubble from "../components/MessageBubble";
+import BlockUserPopOver from "../components/BlockUserPopOver";
+import MessageBubble2 from "../components/MessageBubble2";
 import { HiOutlineArrowLongLeft } from "react-icons/hi2";
 import { useRouter } from "next/navigation";
 import Image from "next/image";

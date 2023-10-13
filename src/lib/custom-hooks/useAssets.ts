@@ -21,6 +21,12 @@ import SplashImage from "../../../public/assets/images/splash.svg";
 import AboutImage from "/public/assets/images/about-image.svg";
 import niceHome from "../../../public/assets/images/niceHome.png";
 import HouseSearchingCuate from "../../../public/assets/images/about/house-searching-cuate.png";
+import EditorsChoice from "/public/assets/icons/editors-choice.svg"
+import BestValue from "/public/assets/icons/best-value.svg"
+import PriceDrop from "/public/assets/icons/price-drop.svg"
+import Certified from "/public/assets/icons/certified.svg"
+import Unverified from "/public/assets/icons/unverified.svg"
+import Verified from "/public/assets/icons/verified.svg"
 
 export const useAssets = () => {
   return {
@@ -40,6 +46,12 @@ export const useAssets = () => {
       ArrowDown,
       FeedbackButton,
       Seperator,
+      EditorsChoice,
+      BestValue,
+      PriceDrop,
+      Certified,
+      Verified,
+      Unverified
     },
     images: {
       StockImage,

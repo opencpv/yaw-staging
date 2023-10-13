@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import BlockUserPopOver from "../components/messages/BlockUserPopOver";
+import BlockUserPopOver from "./components/BlockUserPopOver";
 
 type Props = {};
 

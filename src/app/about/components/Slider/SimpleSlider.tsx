@@ -32,7 +32,7 @@ const SimpleSlider = () => {
   return (
     <div className="w-full lg:px-0 px-5 xs:px-10 md:mb-16 bg-[#333]">
       <div className="flex lg:justify-center">
-        <p className="max-w-5xl mt-10 mb-8 font-semibold text-white lg:mt-40 lg:text-center md:mb-20 lg:mb-24">
+        <p className="max-w-5xl mt-10 mb-8 text-sm font-semibold text-white lg:mt-40 lg:text-center md:mb-20 lg:mb-24">
           Lorem ipsum dolor sit amet consectetur. Sit consequat a elit
           scelerisque felis fames. In fames feugiat est risus in. Elit vulputate
           viverra duis nunc nulla nulla. Facilisi suspendisse libero praesent

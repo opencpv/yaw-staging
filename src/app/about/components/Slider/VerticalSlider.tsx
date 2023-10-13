@@ -27,7 +27,7 @@ const VerticalSlider = () => {
         // }}
         // touchEventsTarget="container"
         modules={[Pagination, Autoplay]}
-        className={`mySwiper vertical-slider flex-[2] order-2 relative rounded-[3rem] w-full h-full bg-neutral-800 text-white`}
+        className={`mySwiper vertical-slider flex-[2] order-2 relative rounded-[3rem] w-full h-full bg-neutral-700 text-white`}
       >
         {/* Promotee info from database */}
         <SwiperSlide>
@@ -35,7 +35,7 @@ const VerticalSlider = () => {
             <h2 className="text-2xl font-[700]">
               Lorem ipsum dolor, sit amet consectetur. Onarne.
             </h2>
-            <p className="">
+            <p className="text-sm">
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab
               fugit, reiciendis voluptatum doloremque, accusantium aperiam
               magnam at veniam corrupti iusto eaque quam odio animi sit dolores
@@ -48,7 +48,7 @@ const VerticalSlider = () => {
             <h2 className="text-2xl font-[700]">
               Lorem ipsum dolor, sit amet consectetur. Onarne
             </h2>
-            <p className="">
+            <p className="text-sm">
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab
               fugit, reiciendis voluptatum doloremque, accusantium aperiam
               magnam at veniam corrupti iusto eaque quam odio animi sit dolores
@@ -61,7 +61,20 @@ const VerticalSlider = () => {
             <h2 className="text-2xl font-[700]">
               Lorem ipsum dolor, sit amet consectetur. Onarne
             </h2>
-            <p className="">
+            <p className="text-sm">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab
+              fugit, reiciendis voluptatum doloremque, accusantium aperiam
+              magnam at veniam corrupti iusto eaque quam odio animi sit dolores
+              quod molestias inventore beatae?
+            </p>
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="w-full max-w-2xl py-20 pl-10 pr-24 space-y-5 xl:ml-auto">
+            <h2 className="text-2xl font-[700]">
+              Lorem ipsum dolor, sit amet consectetur. Onarne
+            </h2>
+            <p className="text-sm">
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab
               fugit, reiciendis voluptatum doloremque, accusantium aperiam
               magnam at veniam corrupti iusto eaque quam odio animi sit dolores
@@ -70,7 +83,7 @@ const VerticalSlider = () => {
           </div>
         </SwiperSlide>
       </Swiper>
-      <div className="relative top-10 xl:-top-[30rem] z-10 w-60 h-40 min-[480px]:w-[24rem] xl:w-[34rem] min-[480px]:h-80 xl:-left-60">
+      <div className="relative top-10 xl:top-[-27rem] z-10 w-60 h-40 min-[480px]:w-[24rem] xl:w-[34rem] min-[480px]:h-80 xl:-left-60">
         <Image
           src={images.niceHome}
           alt=""

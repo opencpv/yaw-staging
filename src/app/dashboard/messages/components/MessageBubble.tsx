@@ -1,5 +1,5 @@
 import React from "react";
-import style from "../../messages/Messages.module.css";
+import style from "../Messages.module.css";
 
 const MessageBubble = ({ body, time }: MessageInterface) => {
   return (

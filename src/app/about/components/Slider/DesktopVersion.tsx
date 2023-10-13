@@ -6,6 +6,7 @@ import { useCallback, useRef } from "react";
 import SlideItem from "./SlideItem";
 import "./desktop.css";
 import "swiper/css";
+import Image from "next/image";
 
 const DesktopVersion = () => {
   const { images } = useAssets();
@@ -23,29 +24,38 @@ const DesktopVersion = () => {
 
   return (
     <div className="relative hidden mx-auto lg:block max-w-screen-2xl">
-      <div className=" md:px-[77px] h-fit ">
+      <div className=" md:px-[77px] h-fit">
         <Swiper
           ref={sliderRef}
           centeredSlides={true}
+          // spaceBetween={100}
           slidesPerView={2}
+          initialSlide={1}
           coverflowEffect={{
             rotate: 0,
-            stretch: 0,
-            depth: 500,
+            stretch: -240,
+            depth: 600,
             modifier: 1,
-            slideShadows: true,
+            slideShadows: false,
           }}
           effect={"coverflow"}
           modules={[EffectCoverflow, Navigation]}
+          className="mySwiper"
         >
           <SwiperSlide>
-            <SlideItem image={images.niceHome} />
+            <div className="relative w-[40rem] h-[30rem]">
+                <Image src={images.niceHome} alt="" fill style={{objectFit: "cover"}} className="rounded-2xl" />
+            </div>
           </SwiperSlide>
           <SwiperSlide>
-            <SlideItem image={images.niceHome} />
+            <div className="relative w-[40rem] h-[30rem]">
+                <Image src={images.niceHome} alt="" fill style={{objectFit: "cover"}} className="rounded-2xl" />
+            </div>
           </SwiperSlide>
           <SwiperSlide>
-            <SlideItem image={images.niceHome} />
+            <div className="relative w-[40rem] h-[30rem]">
+                <Image src={images.niceHome} alt="" fill style={{objectFit: "cover"}} className="rounded-2xl" />
+            </div>
           </SwiperSlide>
         </Swiper>
       </div>

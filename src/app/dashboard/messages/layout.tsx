@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import Chat from "../components/messages/Chat";
+import Chat from "./components/Chat";
 import { usePathname } from "next/navigation";
 
 type Props = {

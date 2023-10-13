@@ -35,7 +35,7 @@ const About = async () => {
       <main className="pt-10 overflow-x-hidden">
         <div className="flex items-center justify-center mx-auto mb-10 max-w-screen-2xl">
           <div className="grid items-center px-5 xs:px-10 lg:grid-cols-2 gap-x-36 gap-y-5">
-            <h1 className="font-[700] text-2xl sm:text-4xl text-[#305A61] leading-snug ">
+            <h1 className="font-[700] text-2xl sm:text-4xl text-[#305A61] leading-normal">
               {heading1}
             </h1>
             <h2 className="text-[#65969F] font-[500] text-lg max-w-2xl">
@@ -44,7 +44,7 @@ const About = async () => {
           </div>
         </div>
         <section className="flex items-center justify-center mx-auto max-w-screen-2xl">
-          <div className="relative w-full h-96">
+          <div className="relative w-full h-[30rem]">
             {/* <Image
               src={urlFor(data[0].featuredImage).width(1728).url() as string}
               fill
@@ -71,7 +71,7 @@ const About = async () => {
         <section className="relative w-full">
           <div className="relative flex flex-col lg:flex-row items-center xs:items-start gap-10 justify-between fhd:mx-auto bg-gradient-to-r from-[#21A19F] to-[#1EA9A6A1] text-white p-5 xs:p-10 max-w-screen-xl bg-opacity-90 lg:top-20">
             <div className="">
-              <h2 className="font-[700] text-2xl md:text-3xl">Ipsum Lorem</h2>
+              <h2 className="font-[700] text-2xl md:text-4xl">Ipsum Lorem</h2>
               <p className="max-w-2xl mt-5 font-[500] text-base md:text-lg">
                 Lorem ipsum dolor sit amet consectetur. Orci suspendisse
                 fringilla consequat placerat velit dui. Sit in condimentum sed a
@@ -83,14 +83,15 @@ const About = async () => {
               height={250}
               width={250}
               alt="House searching cuate"
-              className="xs:self-end"
+              className="xs:self-end lg:mt-14"
             />
           </div>
           {/* <AboutBanner data={bannerData} /> */}
           <SimpleSlider />
         </section>
-        <section className="w-full xl:w-10/12 ml-auto fhd:mx-auto pt-0 pb-10 xl:py-10 h-[60rem] min-[480px]:h-[50rem] xl:h-[45rem] px-5 xs:px-10 flex max-w-screen-2xl">
+        <section className="relative w-full xl:w-10/12 ml-auto fhd:mx-auto pt-0 pb-10 xl:py-10 h-[60rem] min-[340px]:h-[50rem] xl:h-[37rem] px-5 xs:px-10 flex max-w-[1100px]">
           <VerticalSlider />
+          <div className="absolute top-0 left-0 z-10 w-[87%] h-full bg-transparent xl:hidden"></div>
         </section>
         <section className="w-full py-10 px-5 xs:px-10 mx-auto h-[38rem] max-w-screen-2xl">
           {
