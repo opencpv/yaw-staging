@@ -91,7 +91,7 @@ const MessagesLayout = ({ children }: Props) => {
             >
               <input
                 type="text"
-                className="w-full p-3 border rounded-md placeholder:text-sm"
+                className="w-full p-3 border rounded-md text-neutral-800 placeholder:text-sm"
                 placeholder="Type your message"
               />
               <button type="submit">

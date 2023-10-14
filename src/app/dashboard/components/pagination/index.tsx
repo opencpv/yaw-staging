@@ -31,7 +31,7 @@ const Pagination = () => {
     }
   }, [pathname]);
   return (
-    <Root className="flex gap-7 items-center">
+    <Root className="flex items-center gap-7">
       <Link
         href={"/dashboard"}
         className=" md:max-w-[83px]
@@ -40,7 +40,7 @@ const Pagination = () => {
       >
         <MdKeyboardArrowLeft color="white" size={24} />
       </Link>
-      <div className="flex gap-8 flex-wrap">
+      <div className="flex flex-wrap gap-8">
         <PgItem className={active == "subcriptions" ? "" : "!hidden md:!flex"}>
           <CaSubscriptions width={24} height={24} />
           <p className="text-xl">Subscriptions</p>

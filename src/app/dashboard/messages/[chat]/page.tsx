@@ -7,6 +7,7 @@ import { HiOutlineArrowLongLeft } from "react-icons/hi2";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
+import {motion} from "framer-motion";
 
 const Messages = ({ params }: { params: { chat: string } }) => {
   const { icons } = useAssets()
@@ -72,6 +73,17 @@ const Messages = ({ params }: { params: { chat: string } }) => {
           time="8:57 pm"
         />
       </div>
+      {/* No message yet state */}
+      {/* <div className="flex items-center justify-center h-[70vh]">
+        <div className="flex flex-col items-center text-center gap-y-2 text-primary-400">
+          <motion.div whileInView={{x: 0}} initial={{x: 20}}>
+            <Image src={icons.ChatIcon} alt="chat" width={80} height={90} className="" />
+          </motion.div>
+          <h1 className="text-2xl font-[600] mt-3">Messages</h1>
+          <p className="">Send and receive messages with rentright</p>
+          <p className="capitalize text-[#8DA5A4]">Happy messaging</p>
+        </div>
+      </div> */}
     </>
   );
 };
