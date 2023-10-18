@@ -42,6 +42,9 @@ const config: Config = {
         },
         white: "#fff",
       },
+      gridTemplateColumns: {
+        "autofit-listing-card": "repeat(auto-fit, minmax(380px, 1fr))",
+      },
     },
     screens: {
       xs: "425px",

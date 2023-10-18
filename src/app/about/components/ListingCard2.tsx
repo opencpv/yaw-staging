@@ -23,14 +23,14 @@ import Image from "next/image";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 
-const ListingCard = (props: ListingCardInterface) => {
+const ListingCard2 = (props: ListingCardInterface) => {
   const { icons } = useAssets();
   const [isLiked, setIsLiked] = useState<boolean>(false);
   const toggleLiked = () => {
     setIsLiked((prevState) => !prevState);
   };
   return (
-    <div className={`relative min-w-80 cursor-default shadow-lg ${props.className}`}>
+    <div className={`relative min-w-80 cursor-default ${props.className}`}>
       <Swiper
         pagination={{
           clickable: true,
@@ -45,7 +45,7 @@ const ListingCard = (props: ListingCardInterface) => {
           prevEl: ".custom-l-prev",
         }}
         modules={[Pagination, Navigation]}
-        className={`relative w-full rounded-t-lg mySwiper ${style.listingCard} listing-card h-52`}
+        className={`relative w-full rounded-2xl mySwiper ${style.listingCard2} listing-card h-80`}
       >
         {/* Mapping through Featured listings from database */}
         {props.images.map((image, index) => (
@@ -65,16 +65,16 @@ const ListingCard = (props: ListingCardInterface) => {
         ))}
 
         {/* Pagination bullets and button */}
-        <div className="custom-l-prev absolute bottom-20 left-[5%] z-10 flex h-8 w-8 shrink-0 cursor-default items-center justify-center rounded-full bg-white">
+        <div className="custom-l-prev absolute bottom-32 left-[5%] z-10 flex h-8 w-8 shrink-0 cursor-default items-center justify-center rounded-full bg-white">
           <MdChevronLeft className="text-lg text-neutral-700" />
         </div>
         <div className="w-full space-x-3 text-center custom-l-pagination bottom-40"></div>
-        <div className="custom-l-next absolute bottom-20 right-[5%] z-10 flex h-8 w-8 shrink-0 cursor-default items-center justify-center rounded-full bg-white">
+        <div className="custom-l-next absolute bottom-32 right-[5%] z-10 flex h-8 w-8 shrink-0 cursor-default items-center justify-center rounded-full bg-white">
           <MdChevronRight className="text-lg text-neutral-700" />
         </div>
       </Swiper>
       {/* Card info */}
-      <div className="w-full px-5 py-4 space-y-6 bg-white rounded-b-lg">
+      <div className="w-full px-5 py-4 space-y-6">
         <div className="space-y-3 text-xs">
           <div className="flex flex-wrap justify-between gap-x-3 gap-y-1">
             <div className="flex items-center gap-2">
@@ -118,12 +118,12 @@ const ListingCard = (props: ListingCardInterface) => {
                       minimumFractionDigits: 2,
                       maximumFractionDigits: 2,
                     })}{" "}
-                    {/** Rounds to 2d.p and adds a comma to the figure if necessary */}
+                    / Month
                   </span>
                 </p>
               </div>
-              <small className="font-[600] text-neutral-500">
-                paid {props.paymentStructure}
+              <small className=" inline rounded-xl bg-[#E7F8F2] px-3 py-1 text-[0.55rem]">
+                One Year Advance
               </small>
             </div>
             {props.liked || isLiked ? (
@@ -139,17 +139,6 @@ const ListingCard = (props: ListingCardInterface) => {
                 onClick={toggleLiked}
               />
             )}
-          </div>
-          <div className="flex justify-between">
-            <small className=" inline rounded-xl bg-[#E7F8F2] px-3 py-1 text-[0.55rem]">
-              {/* - GHS{" "}
-              {props.monthlyAmount?.toLocaleString("en-US", {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-              })}{" "}
-              / Month */}
-              One Year Advance
-            </small>
           </div>
         </div>
       </div>
@@ -243,4 +232,4 @@ const ListingCard = (props: ListingCardInterface) => {
   );
 };
 
-export default ListingCard;
+export default ListingCard2;

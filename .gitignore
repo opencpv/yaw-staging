@@ -35,4 +35,4 @@ yarn.lock
 *.tsbuildinfo
 next-env.d.ts
 
-notes.txt
+/notes.txt

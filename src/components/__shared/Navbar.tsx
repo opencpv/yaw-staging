@@ -6,15 +6,19 @@ import Link from "next/link";
 import { montserat } from "@/app/styles/font";
 import Menu from "../NavMenu.tsx";
 import { useRouter } from "next/navigation.js";
+import { usePathname } from "next/navigation.js";
+import { IoIosShareAlt } from "react-icons/io";
+import { HiOutlineHeart } from "react-icons/hi2";
 
 const Navbar = (props: any) => {
+  const pathname = usePathname()
   const { icons } = useAssets();
   const router = useRouter();
   return (
     <nav
-      className={`w-full px-8 py-4 bg-[#333333] z-[100] ${
-        props.isMenuOpen ? "absolute" : "sticky"
-      }  top-0`}
+      className={`w-full px-8 py-4  z-[100] ${
+        props.isMenuOpen ? "absolute" : "fixed"
+      } ${!pathname.includes("/properties/") ? "bg-[#333333]" : "bg-transparent"} top-0`}
     >
       <div className="flex items-center justify-between mx-auto max-w-screen-2xl">
         <Menu
@@ -34,7 +38,7 @@ const Navbar = (props: any) => {
           />
         </Link>
         <div className="flex items-center lg:gap-[73px] md:gap-[31px] w-full justify-end">
-          <button
+          {!pathname.includes("/properties/") ? ( <button
             onClick={(e: any) => {
               router.push("/login");
             }}
@@ -44,7 +48,13 @@ const Navbar = (props: any) => {
             rounded-2xl border-2 border-[#fff] bg-[#305A61] text-white text-base font-semibold ${montserat.className}`}
           >
             Start Here
-          </button>
+          </button>) : (
+            <div className="flex items-center gap-4">
+              <HiOutlineHeart className="text-white text-5xl cursor-pointer" />
+              <IoIosShareAlt className="text-white text-5xl cursor-pointer" />
+            </div>
+          )}
+         
           <button onClick={(e: any) => props?.toggleMenu((r: boolean) => !r)}>
             <Image src={icons.Hamburger} alt="menu" />
           </button>

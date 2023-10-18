@@ -1,0 +1,10 @@
+.properties-li li::before{
+    @apply bg-accent-50;
+    content: "";
+    font-weight: bold;
+    display: inline-block;
+    margin-right: 0.4rem;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+  }
