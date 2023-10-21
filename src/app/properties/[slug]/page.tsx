@@ -6,17 +6,12 @@ import style from "./PropertyDetails.module.css";
 import Link from "next/link";
 import {
   FaCaretDown,
-  FaExclamationCircle,
   FaPlusCircle,
-  FaShieldAlt,
   FaStar,
-  FaWifi,
 } from "react-icons/fa";
 import Button from "../components/Button";
 import AdditionalInfo from "../components/AdditionalInfo";
 import {
-  HiExclamationCircle,
-  HiHomeModern,
   HiMiniShieldCheck,
   HiOutlineExclamationCircle,
   HiOutlineHomeModern,
@@ -28,9 +23,9 @@ import ListingCardSlider from "@/app/about/components/ListingCardsSlider";
 import listings from "@/content/demodb/listings";
 import Footer from "@/app/components/Footer";
 import { Rate } from "antd";
-import { BsShieldFillCheck } from "react-icons/bs";
 import Navbar from "@/components/__shared/Navbar";
 import ReviewCount from "../components/ReviewCount";
+import Feature from "../components/Feature";
 
 type Props = {};
 
@@ -38,7 +33,7 @@ const PropertyDetailsPage = (props: Props) => {
   const { images } = useAssets();
   return (
     <>
-    <Navbar />
+      <Navbar />
       <main>
         <section className={`${style.shape} relative w-full min-h-[50rem]`}>
           <Image
@@ -48,7 +43,10 @@ const PropertyDetailsPage = (props: Props) => {
             style={{ objectFit: "cover" }}
           />
           {/* View */}
-          <Link href="" className="absolute bottom-20 right-32">
+          <Link
+            href=""
+            className="absolute scale-75 bottom-32 right-10 md:right-32 md:bottom-20 md:scale-100"
+          >
             <div className="border border-[#305A61] w-48 h-48 rounded-full flex items-center justify-center">
               <div className="bg-[#305A61] w-32 h-32 rounded-full text-white flex items-center justify-center">
                 View
@@ -56,15 +54,16 @@ const PropertyDetailsPage = (props: Props) => {
             </div>
           </Link>
         </section>
-        <section className="px-10 py-10 mx-auto max-w-screen-2xl xs:px-10">
+        <section className="px-5 py-10 mx-auto max-w-screen-2xl xs:px-10">
           <div className="text-[#305A61] font-[600] text-xl">
             <Link href="" className="text-neutral-300">
               Home
             </Link>{" "}
             / <span className="">2 Bedroom house at Kasoa</span>
           </div>
-          <section className="grid grid-cols-2 gap-10 mt-16">
-            <div className="grid grid-cols-2 gap-3">
+          {/* Property images */}
+          <section className="grid-cols-2 gap-10 mt-16 xl:grid">
+            <div className="hidden grid-cols-2 gap-3 xl:grid">
               <div className="relative">
                 <Image
                   src={images.niceHome}
@@ -149,7 +148,7 @@ const PropertyDetailsPage = (props: Props) => {
             <div className="">
               <section className="">
                 <div className="space-y-5">
-                  <div className="flex gap-16">
+                  <div className="flex flex-wrap gap-x-16 gap-y-2">
                     <h2 className="text-[#305A61] font-[600] text-xl">
                       2 Bedroom house at Kasoa
                     </h2>
@@ -158,7 +157,7 @@ const PropertyDetailsPage = (props: Props) => {
                       <p className="text-sm">Verified Listing</p>
                     </div>
                   </div>
-                  <p className="text-sm text-neutral-800">
+                  <p className="max-w-2xl text-sm text-neutral-800">
                     Splendid Homes - Gated community of two and four bedroom
                     Gated community of two and four bedroom ...Gated community
                     of two and four bedroom ...Gated community of two and four
@@ -170,27 +169,31 @@ const PropertyDetailsPage = (props: Props) => {
                   <Button className="capitalize text-white text-xl p-4 px-10 font-[600] bg-gradient-to-r rounded-xl from-[#21A19F] to-[#1EA9A6A1]">
                     Apply Now
                   </Button>
-                  <div className="flex justify-between px-2 py-8 text-sm bg-white border border-gray-500 shadow-xl text-primary-400 rounded-xl last:border-r-0">
-                    <div className="px-5 space-y-1 border-r border-gray-500 last:border-r-0">
-                      <h3 className="flex items-center justify-between gap-x-4">
+                  <div className="flex flex-col justify-between px-10 py-8 text-sm bg-white border border-gray-500 shadow-xl text-primary-400 rounded-xl sm:flex-row sm:items-center sm:px-2">
+                    <div className="px-5 py-2 space-y-1 border-b border-gray-400 sm:border-r sm:border-b-0 sm:last:border-r-0 sm:py-0">
+                      <h3 className="items-center justify-between text-center gap-x-4 sm:flex sm:text-start ">
                         Monthly Rent{" "}
-                        <HiOutlineExclamationCircle className="text-lg rotate-180" />{" "}
+                        <HiOutlineExclamationCircle className="inline text-lg rotate-180 sm:inline-flex" />{" "}
                       </h3>
-                      <p className="">
+                      <p className="text-center sm:text-start">
                         <span className="mr-2 font-[600]">GHS</span>22,200.00
                       </p>
                     </div>
-                    <div className="px-5 space-y-1 border-r border-gray-400 last:border-r-0">
-                      <h3 className="text-primary-400">Bedrooms</h3>
+                    <div className="px-5 py-2 space-y-1 border-b border-gray-400 sm:border-r sm:border-b-0 sm:last:border-r-0 sm:py-0">
+                      <h3 className="text-center text-primary-400">Bedrooms</h3>
                       <p className="text-center">3</p>
                     </div>
-                    <div className="px-5 space-y-1 border-r border-gray-400 last:border-r-0">
-                      <h3 className="text-primary-400">Bathrooms</h3>
+                    <div className="px-5 py-2 space-y-1 border-b border-gray-400 sm:border-r sm:border-b-0 sm:last:border-r-0 sm:py-0">
+                      <h3 className="text-center text-primary-400">
+                        Bathrooms
+                      </h3>
                       <p className="text-center">3</p>
                     </div>
-                    <div className="px-5 space-y-1 border-r border-gray-400 last:border-r-0">
-                      <h3 className="text-primary-400">Square Meter</h3>
-                      <p className="">
+                    <div className="px-5 py-2 space-y-1 border-b border-gray-400 sm:border-r sm:border-b-0 sm:last:border-r-0 sm:py-0">
+                      <h3 className="text-center text-primary-400">
+                        Square Meter
+                      </h3>
+                      <p className="text-center sm:text-start">
                         483 - 965 M<sup>2</sup>
                       </p>
                     </div>
@@ -199,8 +202,8 @@ const PropertyDetailsPage = (props: Props) => {
                     One Year Advance
                   </p>
                 </div>
-                <div className="flex items-center justify-center">
-                  <div className="flex flex-col items-center w-11/12 gap-10 mt-12">
+                <div className="flex items-center justify-center max-w-lg mx-auto">
+                  <div className="flex flex-col items-center w-full gap-10 mt-12 sm:w-11/12">
                     <div className="flex items-center gap-10 font-[600]">
                       <div className="relative w-24 h-24 rounded-full">
                         <Image
@@ -215,11 +218,11 @@ const PropertyDetailsPage = (props: Props) => {
                         <FaStar className="text-yellow-400" />
                         3.2
                       </div>
-                      <p className="">120 Reviews</p>
+                      <p className="text-neutral-800">120 Reviews</p>
                     </div>
                     {/* Contact this property */}
-                    <div className="flex flex-col items-center w-9/12 gap-2 px-10 py-8 border border-neutral-300 rounded-xl">
-                      <h2 className="text-center capitalize text-neutral-800 font-[600]">
+                    <div className="flex flex-col items-center w-full gap-2 px-10 py-8 border border-neutral-300 rounded-xl">
+                      <h2 className="text-center capitalize text-neutral-800 font-[600] sm:w-9/12">
                         Contact This Property
                       </h2>
                       <Button className="w-full text-white">
@@ -253,8 +256,10 @@ const PropertyDetailsPage = (props: Props) => {
                 </AdditionalInfo>
                 <AdditionalInfo>
                   <div className="grid grid-cols-4">
-                    <p className="col-span-1">Available from: </p>
-                    <p className="col-span-3">DD-MM-YY</p>
+                    <p className="col-span-2 sm:col-span-1">Available from: </p>
+                    <p className="col-span-2 text-right sm:col-span-3 sm:text-left">
+                      DD-MM-YY
+                    </p>
                   </div>
                 </AdditionalInfo>
               </section>
@@ -274,20 +279,20 @@ const PropertyDetailsPage = (props: Props) => {
                   Atque illo dolore voluptatum eum.
                 </div>
                 <AdditionalInfo className="">
-                  <div className="grid items-center grid-cols-4 py-2 border-b last:border-b-0">
-                    <p className="col-span-1">Agent</p>
-                    <p className="col-span-2">GHS 500.00</p>
-                    <button className="col-span-1 justify-self-end bg-[#99B3B2] text-white flex items-center gap-2 w-32 p-2 rounded-lg justify-center">
+                  <div className="flex flex-wrap items-center py-2 border-b gap-x-24 gap-y-2 last:border-b-0">
+                    <p className="flex-1 w-full">Agent</p>
+                    <p className="flex-1 w-full">GHS 500.00</p>
+                    <button className="flex-1 justify-self-end bg-[#99B3B2] text-white flex items-center gap-2 w-32 p-2 rounded-lg justify-center">
                       Add to cart
                       <FaPlusCircle />
                     </button>
                   </div>
                 </AdditionalInfo>
                 <AdditionalInfo>
-                  <div className="grid items-center grid-cols-4 py-2 border-b last:border-b-0">
-                    <p className="col-span-1">Viewing</p>
-                    <p className="col-span-2">GHS 500.00</p>
-                    <button className="col-span-1 justify-self-end bg-[#99B3B2] text-white flex items-center gap-2 w-32 p-2 rounded-lg justify-center">
+                  <div className="flex flex-wrap items-center py-2 border-b gap-x-24 gap-y-2 last:border-b-0">
+                    <p className="flex-1 w-full">Viewing</p>
+                    <p className="flex-1 w-full">GHS 500.00</p>
+                    <button className="flex-1 justify-self-end bg-[#99B3B2] text-white flex items-center gap-2 w-32 p-2 rounded-lg justify-center">
                       Add to cart
                       <FaPlusCircle />
                     </button>
@@ -295,20 +300,20 @@ const PropertyDetailsPage = (props: Props) => {
                 </AdditionalInfo>
                 <AdditionalInfoTitle title="Property Fees" />
                 <AdditionalInfo>
-                  <div className="flex justify-between">
+                  <div className="flex flex-wrap justify-between gap-2">
                     <p className="">Refundable Security Deposit</p>
                     <p className="">GHS 500.00</p>
                   </div>
                 </AdditionalInfo>
                 <AdditionalInfoTitle title="Utilities included" />
                 <AdditionalInfo>
-                  <ul className="grid grid-cols-2 gap-x-20 gap-y-3 properties-li">
-                    <li>Water</li>
-                    <li>Gas</li>
-                    <li>Electricity</li>
-                    <li>Kitchen Appliances</li>
-                    <li>Satellite TV</li>
-                    <li>Internet</li>
+                  <ul className="flex flex-wrap gap-x-20 gap-y-3 properties-li">
+                    <li className="">Water</li>
+                    <li className="">Gas</li>
+                    <li className="">Electricity</li>
+                    <li className="">Kitchen Appliances</li>
+                    <li className="">Satellite TV</li>
+                    <li className="">Internet</li>
                   </ul>
                 </AdditionalInfo>
                 <AdditionalInfoTitle title="Things to know" />
@@ -339,45 +344,19 @@ const PropertyDetailsPage = (props: Props) => {
           <h2 className="text-neutral-800 font-[600] text-xl">
             Features and Amenities
           </h2>
-          <div className="grid w-10/12 grid-cols-3 mt-14 gap-x-8 gap-y-4">
-            <div className="flex items-center gap-x-3">
-              <FaWifi className="text-[#65969F]" />
-              <p className="capitalize text-neutral-800">Wifi</p>
-            </div>
-            <div className="flex items-center gap-3">
-              <FaWifi className="text-[#65969F]" />
-              <p className="capitalize text-neutral-800">
-                Security cameras on property
-              </p>
-            </div>
-            <div className="flex items-center gap-3">
-              <FaWifi className="text-[#65969F]" />
-              <p className="capitalize text-neutral-800">Pool</p>
-            </div>
-            <div className="flex items-center gap-3">
-              <FaWifi className="text-[#65969F]" />
-              <p className="capitalize text-neutral-800">Fire Extinguisher</p>
-            </div>
-            <div className="flex items-center gap-3">
-              <FaWifi className="text-[#65969F]" />
-              <p className="capitalize text-neutral-800">Air conditioning</p>
-            </div>
-            <div className="flex items-center gap-3">
-              <FaWifi className="text-[#65969F]" />
-              <p className="capitalize text-neutral-800">Hot tub</p>
-            </div>
-            <div className="flex items-center gap-3">
-              <FaWifi className="text-[#65969F]" />
-              <p className="capitalize text-neutral-800">Fire Extinguisher</p>
-            </div>
-            <div className="flex items-center gap-3">
-              <FaWifi className="text-[#65969F]" />
-              <p className="capitalize text-neutral-800">Air conditioning</p>
-            </div>
-            <div className="flex items-center gap-3">
-              <FaWifi className="text-[#65969F]" />
-              <p className="capitalize text-neutral-800">Hot tub</p>
-            </div>
+          <div className="flex flex-wrap w-10/12 mt-14 gap-x-8 gap-y-4">
+            <Feature label="Wifi" />
+            <Feature label="Security Cameras on Property" />
+            <Feature label="Hot Tub" />
+            <Feature label="Air Conditioning" />
+            <Feature label="Fire Extinguisher" />
+            <Feature label="Free Parking on Premises" />
+            <Feature label="Gas" />
+            <Feature label="Kitchen" />
+            <Feature label="Pool" />
+            <Feature label="Smoke Alarm" />
+            <Feature label="Pool Table" />
+            <Feature label="Satellite TV" />
           </div>
           <button className="flex items-center ml-auto text-sm gap-1 text-[#305A61] mt-10">
             Show more <FaCaretDown className="text-neutral-800" />
@@ -385,8 +364,8 @@ const PropertyDetailsPage = (props: Props) => {
         </section>
         {/* Rating */}
         <section className="px-5 py-10 mx-auto my-10 max-w-screen-2xl xs:px-10">
-          <div className="pt-10 pb-32 border-3 border-neutral-200 px-14 rounded-xl">
-            <div className="flex justify-between bg-[#99B3B2] text-white rounded-xl p-10">
+          <div className="px-5 pt-10 pb-32 border-3 border-neutral-200 xs:px-14 rounded-xl">
+            <div className="flex flex-wrap justify-between gap-5 bg-[#99B3B2] text-white rounded-xl p-10">
               <div className="flex gap-2">
                 <p className="text-xl font-[600]">
                   How would you rate this property?
@@ -398,8 +377,8 @@ const PropertyDetailsPage = (props: Props) => {
               </Button>
             </div>
             {/* Rating count */}
-            <div className="grid items-start grid-cols-3 gap-20 mt-20">
-              <div className="col-span-1 flex items-center gap-10 font-[600]">
+            <div className="grid items-start grid-cols-3 mt-20 gap-x-20 gap-y-10">
+              <div className="col-span-3 flex items-center text-neutral-800 gap-10 font-[600] xl:col-span-1">
                 <div className="flex items-center gap-1.5">
                   <HiOutlineHomeModern />
                   <HiStar className="text-yellow-500" />
@@ -407,7 +386,7 @@ const PropertyDetailsPage = (props: Props) => {
                 </div>
                 <p className="">10 reviews</p>
               </div>
-              <div className="grid grid-cols-2 col-span-2 gap-x-8 gap-y-4">
+              <div className="grid justify-between grid-cols-1 col-span-3 gap-x-8 gap-y-4 min-[900px]:grid-cols-2 xl:col-span-2">
                 <ReviewCount />
                 <ReviewCount />
                 <ReviewCount />

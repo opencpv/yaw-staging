@@ -10,8 +10,7 @@ interface ListingCardInterface {
     | "Bi-Annually"
     | "Quarterly"
     | "Every-6-Months"
-    | "Every-3-Years"
-    ;
+    | "Every-3-Years";
   monthlyAmount: number;
   price: number;
   deal: "Editor's Choice" | "Price Drop" | "Best Value" | "None" | "none" | "";
@@ -22,17 +21,17 @@ interface ListingCardInterface {
 }
 
 interface AdImage {
-    /**
-    * What property is being advertise?
-    */
-    propertyType: string;
-    image: string;
-    link: string;
+  /**
+   * What property is being advertise?
+   */
+  propertyType: string;
+  image: string;
+  link: string;
 }
 
 interface AdCardInterface {
-    images: AdImage[];
-    className?: string;
+  images: AdImage[];
+  className?: string;
 }
 
 interface ChatInterface {
@@ -41,6 +40,22 @@ interface ChatInterface {
   name: string;
   last_message: string;
   messages_count: number;
+}
+
+interface FeatureInterface {
+  label:
+    | "Fire Extinguisher"
+    | "Smoke Alarm"
+    | "Satellite TV"
+    | "Pool Table"
+    | "Wifi"
+    | "Gas"
+    | "Air Conditioning"
+    | "Security Cameras on Property"
+    | "Kitchen"
+    | "Free Parking on Premises"
+    | "Hot Tub"
+    | "Pool";
 }
 
 interface MessageInterface {

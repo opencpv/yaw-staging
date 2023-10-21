@@ -7,6 +7,8 @@ import { FaCaretDown } from "react-icons/fa";
 import ListingCard from "../about/components/ListingCard";
 import listings from "@/content/demodb/listings";
 import ListingCard2 from "../about/components/ListingCard2";
+import TagsSelect from "./components/TagsSelect";
+import { Switch } from "@nextui-org/react";
 
 type Props = {};
 
@@ -26,27 +28,20 @@ const PropertiesPage = (props: Props) => {
         </div>
         {/* Search */}
         <section className="px-5 mx-auto max-w-screen-2xl xs:px-10">
-          <div className="relative w-10/12 px-12 py-10 mx-auto bg-white shadow-xl bottom-20 rounded-xl">
+          <div className="relative w-full px-12 py-10 mx-auto bg-white shadow-xl bottom-20 rounded-xl lg:w-10/12">
             <input
-              type="text"
-              className="border block shadow-xl border-[#21A19F] rounded-xl w-10/12 py-6 pl-12 mx-auto uppercase"
+              type="search"
+              className="border block shadow-xl text-neutral-800 border-[#21A19F] rounded-xl w-full py-6 p-4 sm:pl-12 mx-auto uppercase lg:w-10/12"
               placeholder="Madina, Accra"
             />
           </div>
-          <ul className="flex items-center justify-center w-10/12 gap-16 mx-auto text-neutral-500">
-            <li>All</li>
-            <li>Top Rated</li>
-            <li>Editor&apos;s choice</li>
-            <li>Price Drop</li>
-            <li>Best Value</li>
-            <li>
-              <FaCaretDown className="text-[#21A19F]" />
-            </li>
-            <li>Advanced search</li>
-          </ul>
+          <div className="w-full mx-auto text-neutral-500">
+            <TagsSelect />
+          </div>
+         
         </section>
         {/* Listing */}
-        <section className="grid px-5 mx-auto mt-32 grid-cols-autofit-listing-card gap-x-3 gap-y-10 max-w-screen-2xl">
+        <section className="px-5 mx-auto mt-32 mb-10 space-y-5 sm:space-y-0 sm:grid grid-cols-autofit-listing-card gap-x-3 gap-y-10 max-w-screen-2xl">
           {listings.map((listing) => (
             <ListingCard2
               key={listing.id}

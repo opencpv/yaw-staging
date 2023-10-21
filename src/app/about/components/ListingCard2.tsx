@@ -122,7 +122,7 @@ const ListingCard2 = (props: ListingCardInterface) => {
                   </span>
                 </p>
               </div>
-              <small className=" inline rounded-xl bg-[#E7F8F2] px-3 py-1 text-[0.55rem]">
+              <small className=" inline rounded-xl text-neutral-800 bg-[#E7F8F2] px-3 py-1 text-[0.55rem]">
                 One Year Advance
               </small>
             </div>
