@@ -6,13 +6,21 @@ import {
   DropdownTrigger,
 } from "@nextui-org/react";
 import { Switch } from "@nextui-org/react";
-import React from "react";
+import React, { useState } from "react";
 import { FaCaretDown } from "react-icons/fa";
+import AdvancedForm from "./AdvancedForm";
 
 type Props = {};
 
 const TagsSelect = (props: Props) => {
+  const [isAdvancedActive, setIsAdvancedActive] = useState<boolean>(false)
+
+  const handleIsActive = () => {
+    setIsAdvancedActive(prevState => !prevState)
+  }
+
   return (
+    <> 
     <section className="grid gap-4 lg:justify-center lg:items-center lg:grid-cols-6 xl:grid-cols-7">
       <div className="w-full cursor-pointer text-white p-4 text-center lg:w-40 font-[600] bg-gradient-to-r rounded-xl from-[#21A19F] to-[#1EA9A6A1]">
         All
@@ -40,11 +48,13 @@ const TagsSelect = (props: Props) => {
       </div>
       <div className="flex items-center justify-center w-full gap-2 mx-auto">
         <div className="">
-          <Switch size="sm" color="warning" />
+          <Switch size="sm" color="warning" isSelected={isAdvancedActive} onValueChange={handleIsActive} />
           Advanced search
         </div>
       </div>
     </section>
+    <AdvancedForm isActive={isAdvancedActive} />
+    </>
   );
 };
 
