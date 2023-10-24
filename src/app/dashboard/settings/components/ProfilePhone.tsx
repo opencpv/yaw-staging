@@ -44,7 +44,7 @@ const ProfilePhone = ({ phoneChange, defaultValue, codeChange }: Props) => {
 
   return (
     <div className="relative">
-      {isEmptyObj(defaultValue) && (
+      {defaultValue && (
         <div className="relative  flex gap-2" ref={ref}>
           <button
             type="button"
