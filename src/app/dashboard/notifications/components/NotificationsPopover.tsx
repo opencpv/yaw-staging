@@ -7,7 +7,7 @@ import { IoMdNotifications } from "react-icons/io";
 import NotificationItem from "./NotificationItem";
 import { demoNotifications } from "../content/demoNotifications";
 import CaMarkAsRead from "../icons/CaMarkAsRead";
-import { CustomScroll } from "../page";
+import { CustomScroll } from "./CustomScroll";
 
 const NotificationsPopover = () => {
   const [currentNotification, setCurrentNotification] = useState("");
@@ -18,7 +18,8 @@ const NotificationsPopover = () => {
           <div
             className="absolute bg-[#B71851] text-[#fff]
           rounded-full w-[26px] h-[26px] flex items-center justify-center
-          text-[14px] right-[0px] top-0">
+          text-[14px] right-[0px] top-0"
+          >
             3
           </div>
           <IconButton aria-label="Update dimensions">
@@ -42,7 +43,7 @@ const NotificationsPopover = () => {
             </button>
           </div>
           <CustomScroll className="flex flex-col gap-8 max-h-[60vh] overflow-y-scroll">
-            {demoNotifications.map((r, index) => (
+            {demoNotifications.map((r: any, index) => (
               <div key={index} onClick={(e) => setCurrentNotification(r?.name)}>
                 <NotificationItem
                   type={r?.type}

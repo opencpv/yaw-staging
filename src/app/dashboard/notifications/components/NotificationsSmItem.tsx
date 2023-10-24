@@ -12,7 +12,7 @@ type Notification = {
   time: string;
   notification: string;
   subject: string;
-  type: string;
+  type: "message" | "admin" | "contact";
 };
 type Props = {
   currentNotification: Notification;

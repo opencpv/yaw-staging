@@ -1,12 +1,11 @@
 "use client";
-import { openSans } from "@/app/styles/font";
 import { useEffect, useState } from "react";
 import NotificationItem from "./components/NotificationItem";
 import NotificationDetailsFull from "./components/NotificationDetails";
 import { demoNotifications } from "./content/demoNotifications";
-import NotificationsSmDialog from "./components/NotificationsSmItem";
 import NotificationsSmItem from "./components/NotificationsSmItem";
 import { styled } from "@stitches/react";
+import { CustomScroll } from "./components/CustomScroll";
 
 type Notification = {
   date: string;
@@ -36,7 +35,8 @@ const Page = () => {
               key={index}
               onClick={(e) => {
                 setCurrentNotification(r);
-              }}>
+              }}
+            >
               <NotificationItem
                 type={r?.type}
                 subject={r?.subject}
@@ -52,37 +52,20 @@ const Page = () => {
               key={index}
               onClick={(e) => {
                 setCurrentNotification(r);
-              }}>
+              }}
+            >
               <NotificationsSmItem currentNotification={r} />
             </div>
           ))}
         </div>
       </div>
       <div className="hidden lg:flex col-span-2 h-full min-h-[50vh]">
-        <NotificationDetailsFull currentNotification={currentNotification} />
+        <NotificationDetailsFull
+          currentNotification={currentNotification as Notification}
+        />
       </div>
     </div>
   );
 };
-
-export const CustomScroll = styled("div", {
-    "&::-webkit-scrollbar-track": {
-      width: "4px",
-      backgroundColor: "#F1F1F1",
-      borderRadius: "4px",
-    },
-    "&::-webkit-scrollbar-thumb": {
-      width: "2px",
-      maxHeight: "181px",
-      backgroundColor: "#073B3A88",
-      borderRadius: "4px",
-    },
-    "&::-webkit-scrollbar": {
-      width: "4px",
-      borderRadius: "4px",
-      backgroundColor: "#F1F1F1",
-    },
-  
-});
 
 export default Page;

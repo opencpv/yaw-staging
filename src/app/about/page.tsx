@@ -1,18 +1,12 @@
 import Head from "next/head";
 import fetchAboutData from "./lib/fetchAboutData";
 import Image from "next/image";
-import urlFor from "@/lib/utils/urlFor";
 import AboutItem from "./components/AboutItem";
-import AboutBanner from "./components/AboutBanner";
-import { MdOutlineImage } from "react-icons/md";
-import GraySliderDesktop from "./components/GraySliderDesktop";
-import GraySliderMobile from "./components/GraySliderMobile";
 import Navbar from "@/components/__shared/Navbar";
 import Footer from "../components/Footer";
 import SimpleSlider from "./components/Slider/SimpleSlider";
 import "swiper/css";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import ListingCard from "./components/ListingCard";
 import ListingCardSlider from "./components/ListingCardsSlider";
 import listings from "@/content/demodb/listings";
 import VerticalSlider from "./components/Slider/VerticalSlider";

@@ -1,10 +1,11 @@
 import React from "react";
 
 type Props = {
-    width:string
-}
+  width: string;
+  color: string;
+};
 
-function MessageIcon({width}:Props) {
+function MessageIcon({ width }: Props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

@@ -1,4 +1,12 @@
-export const demoNotifications = [
+interface Props {
+  type: "message" | "admin" | "contact";
+  subject: string;
+  time: string;
+  date: string;
+  notification: string;
+}
+
+export const demoNotifications: Props[] = [
   {
     type: "admin",
     subject: "Emergency Maintenance Required",
@@ -37,7 +45,7 @@ export const demoNotifications = [
     time: "3mins ago",
     date: "3rd September, 2023",
     notification:
-      "Hi Micheal, I have received your inquiry about your property. Let's discuss the details further.Hi Micheal, I have received your inquiry about your property. Let's discuss the details further.Hi Micheal, I have received your inquiry about your property. Let's discuss the details further.Hi Micheal, I have received your inquiry about your property. Let's discuss the details further."
+      "Hi Micheal, I have received your inquiry about your property. Let's discuss the details further.Hi Micheal, I have received your inquiry about your property. Let's discuss the details further.Hi Micheal, I have received your inquiry about your property. Let's discuss the details further.Hi Micheal, I have received your inquiry about your property. Let's discuss the details further.",
   },
   {
     type: "contact",

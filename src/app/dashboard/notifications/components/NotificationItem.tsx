@@ -6,15 +6,20 @@ import MessageIcon from "../icons/CaMessageIcon";
 import { IoPersonOutline } from "react-icons/io5";
 import MarkAndDeletePopup from "./MarkAndDeletePopup";
 import { motion } from "framer-motion";
+import { ReactHTMLElement } from "react";
 
 type Props = {
-  type: string | "message" | "admin" | "contact";
+  type: "message" | "admin" | "contact";
   notification: string;
   subject: string;
   time: string;
 };
 
-const notificationItems = {
+const notificationItems: {
+  admin: React.JSX.Element;
+  message: React.JSX.Element;
+  contact: React.JSX.Element;
+} = {
   admin: <MdOutlineAdminPanelSettings size={24} color="#E32636" />,
 
   message: <MessageIcon width={"24"} color="#DCA847" />,
@@ -35,11 +40,12 @@ const NotificationItem: React.FC<Props> = ({
         initial={{ y: 100 }}
         animate={{ y: 0 }}
         transition={{
-          duration:"5000ms",
+          duration: "5000ms",
           type: "spring",
           stiffness: 50,
           damping: 10,
-        }}>
+        }}
+      >
         <div className="pt-1">{notificationItems[type]}</div>
 
         <div className="flex flex-col gap-1">
@@ -52,7 +58,8 @@ const NotificationItem: React.FC<Props> = ({
             <div className="font-[400] text-[16px]">{subject}</div>
             <div
               className="text-[#0000008F] max-h-[36px] overflow-hidden
-            text-[13px] leading-[18.2px]">
+            text-[13px] leading-[18.2px]"
+            >
               {notification}
             </div>
           </div>
