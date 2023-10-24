@@ -4,11 +4,7 @@ import Image from "next/image";
 import React from "react";
 import style from "./PropertyDetails.module.css";
 import Link from "next/link";
-import {
-  FaCaretDown,
-  FaPlusCircle,
-  FaStar,
-} from "react-icons/fa";
+import { FaCaretDown, FaPlusCircle, FaStar } from "react-icons/fa";
 import Button from "../components/Button";
 import AdditionalInfo from "../components/AdditionalInfo";
 import {
