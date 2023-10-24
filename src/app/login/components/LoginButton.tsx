@@ -37,7 +37,10 @@ export const LoginButton = ({ icon, text, onClick }: LoginButtonProps) => {
       className="lg:px-8 px-4 w-full max-w-md rounded-lg flex items-center gap-5 xs:gap-16 bg-[#fff] --font-open-sans hover:opacity-90 transition-all duration-200"
       onClick={async () => {
         setLoader(true);
-        const { data, error } = await oauthSignIn(icon);
+        const { data, error } = await oauthSignIn(
+          icon,
+          process.env.NEXT_PUBLIC_LOGIN_REDIRECT_URL
+        );
         if (error) {
           setLoader(false);
         }
