@@ -3,21 +3,18 @@ import Navbar from "./components/navbar";
 import Pagination from "./components/pagination";
 
 type LayoutProps = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
-const Layout = ({ children } : LayoutProps) => {
+const Layout = ({ children }: LayoutProps) => {
   return (
     <div>
       <Navbar />
       <div className={`mt-2 ${openSans.className}`}>
         <Pagination />
       </div>
-   
-      <div className={`mt-6 px-5 sm:px-10 ${openSans.className}`}>
-        {children}
-      </div>
-   
+
+      <div className={`mt-6 px-4 ${openSans.className}`}>{children}</div>
     </div>
   );
 };

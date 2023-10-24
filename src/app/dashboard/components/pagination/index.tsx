@@ -10,6 +10,28 @@ import { useEffect, useState } from "react";
 import { IoMdSettings } from "react-icons/io";
 import { usePathname, useRouter } from "next/navigation";
 import path from "path";
+import { PgRoutes } from "./links";
+
+type PaginationTabProps = {
+  active: string;
+  icon: React.ReactNode;
+  name: string;
+  link: string;
+};
+
+const PaginationTab = ({ active, icon, name, link }: PaginationTabProps) => {
+  return (
+    <Link href={link}>
+      <PgItem
+        type={active == name ? "active" : undefined}
+        className={active == name ? "" : ""}
+      >
+        {icon}
+        <p className="capitalize whitespace-nowrap">{name}</p>
+      </PgItem>
+    </Link>
+  );
+};
 
 const Pagination = () => {
   const vw = useViewport();
@@ -18,45 +40,37 @@ const Pagination = () => {
   const pathname = usePathname();
 
   useEffect(() => {
-    // Check if the router is ready before accessing its properties
     if (pathname) {
       console.log(pathname);
-      const currentURL = pathname; // Use router.asPath to get the current URL
-
-      if (currentURL.includes("settings")) {
-        setActive("settings");
-      } else {
-        setActive("not");
-      }
+      const currentURL = pathname;
+      PgRoutes.forEach((r) => {
+        if (currentURL.includes(r?.name)) {
+          setActive(r?.name);
+        }
+      });
     }
   }, [pathname]);
   return (
     <Root className="flex items-center gap-7">
       <Link
         href={"/dashboard"}
-        className=" md:max-w-[83px]
-                max-w-[52px] aspect-square w-14 h-14 bg-[#396261] rounded-full flex
-                items-center justify-center hover:scale-[1.02]"
+        className="w-full md:max-w-[83px]
+                  max-w-[52px] aspect-square bg-[#396261] rounded-full flex
+                  items-center justify-center hover:scale-[1.02]"
       >
         <MdKeyboardArrowLeft color="white" size={24} />
       </Link>
-      <div className="flex flex-wrap gap-8">
-        <PgItem className={active == "subcriptions" ? "" : "!hidden md:!flex"}>
-          <CaSubscriptions width={24} height={24} />
-          <p className="text-xl">Subscriptions</p>
-        </PgItem>
-        <Link href="/dashboard/settings">
-          <PgItem
-            type={active == "settings" ? "active" : undefined}
-            className={active == "settings" ? "" : "!hidden md:!flex"}
-          >
-            <IoMdSettings
-              size="24"
-              color={active == "settings" ? "white" : "#B0B0B0"}
-            />
-            <p className="text-xl">Settings</p>
-          </PgItem>
-        </Link>
+
+      <div className="flex gap-8  items-center overflow-x-scroll pg-row justify-start w-full">
+        {PgRoutes.map((r, index) => (
+          <PaginationTab
+            key={index}
+            name={r?.name}
+            active={active}
+            icon={r?.icon}
+            link={r?.link}
+          />
+        ))}
       </div>
     </Root>
   );
@@ -67,11 +81,14 @@ const Root = styled("div", {
     "0px 1px 2px 0px rgba(0, 0, 0, 0.06), 0px 1px 3px 0px rgba(0, 0, 0, 0.10)",
   paddingInline: "3rem",
   paddingBlock: "1rem",
+
+  ".pg-row::-webkit-scrollbar": {
+    width: 0,
+  },
 });
 
 const PgItem = styled("button", {
   display: "flex",
-  minWidth: "123px",
   minHeight: "67px",
   flexDirection: "column",
   paddingBlock: "0.875rem",
@@ -87,7 +104,6 @@ const PgItem = styled("button", {
   "@media screen and (max-width:768px)": {
     flexDirection: "row",
     maxHeight: "52px",
-    maxWidth: "155px",
     minHeight: "40px",
   },
 
