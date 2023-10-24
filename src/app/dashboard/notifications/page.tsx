@@ -6,6 +6,8 @@ import { demoNotifications } from "./content/demoNotifications";
 import NotificationsSmItem from "./components/NotificationsSmItem";
 import { styled } from "@stitches/react";
 import { CustomScroll } from "./components/CustomScroll";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { redirect } from "next/navigation";
 
 type Notification = {
   date: string;
@@ -19,6 +21,13 @@ const Page = () => {
   const [currentNotification, setCurrentNotification] =
     useState<Notification>();
   const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    const supabase = createClientComponentClient();
+    if (!supabase) {
+      redirect("/");
+    }
+  }, []);
 
   useEffect(() => {
     setCurrentNotification(demoNotifications[0]);
