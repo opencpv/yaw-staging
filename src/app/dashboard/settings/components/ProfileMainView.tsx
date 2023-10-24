@@ -1,5 +1,8 @@
 "use client";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import {
+  User,
+  createClientComponentClient,
+} from "@supabase/auth-helpers-nextjs";
 import { useEffect, useState } from "react";
 import ProfileInfo from "./ProfileIInfo";
 
@@ -29,8 +32,8 @@ const ProfileMainView = () => {
       let { data } = await supabase.auth.getUser(session.access_token);
       let res: any = await supabase.from("profiles").select("*");
       console.log(res);
-      const userData: any = data.user;
-      const { email } = await userData;
+      const { user } = data;
+      const { email } = (await user) as User;
       const profileData = { ...res.data[0] };
       const newData = { ...profileData, email };
       setProfileData({ ...newData });
