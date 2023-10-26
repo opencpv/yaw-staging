@@ -3,30 +3,34 @@ import { useSwiper } from "swiper/react";
 
 type Props = {
   setActiveIndex: Dispatch<SetStateAction<number>>;
-  buttonLabel1?: string,
-  buttonLabel2? : string
+  buttonLabel1?: string;
+  buttonLabel2?: string;
 };
 
 const SwiperSlideControls = React.forwardRef<HTMLInputElement, Props>(
-  ({ setActiveIndex, buttonLabel1="Back", 
-buttonLabel2="Continue" }, ref) => {
+  (
+    { setActiveIndex, buttonLabel1 = "Back", buttonLabel2 = "Continue" },
+    ref
+  ) => {
     const swiper = useSwiper();
 
     const scrollToTop = () => {
-      const scrollContainer = ref.current;
-      if (scrollContainer) {
-        const childElement = scrollContainer.querySelector(".sc"); // Replace with your desired selector
-        if (childElement) {
-          childElement.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-            inline: "start",
-          });
+      if (ref && typeof ref !== "function") {
+        const scrollContainer = ref.current;
+        if (scrollContainer) {
+          const childElement = scrollContainer.querySelector(".sc");
+          if (childElement) {
+            childElement.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+              inline: "start",
+            });
+          }
         }
       }
     };
 
-    const scrollToRight = (className) => {
+    const scrollToRight = (className: string) => {
       const element = document.querySelector(`.${className}`);
 
       if (element) {
@@ -61,7 +65,8 @@ buttonLabel2="Continue" }, ref) => {
                   return prevIndex;
                 }
               });
-            }}>
+            }}
+          >
             {buttonLabel1}
           </button>
 
@@ -83,9 +88,9 @@ buttonLabel2="Continue" }, ref) => {
                   return prevIndex + 1;
                 }
               });
-            }}>
-                        {buttonLabel2}
-
+            }}
+          >
+            {buttonLabel2}
           </button>
         </div>
       </div>

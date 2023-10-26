@@ -48,6 +48,32 @@ export const ExpandCircle = {
     },
   },
 };
+
+export const ExpandCircleFromBottom = {
+  open: (
+    d = window.screen.height >= window.screen.width
+      ? window.screen.height
+      : window.screen.width
+  ) => ({
+    clipPath: `circle(${d * 2 + 300}px at right bottom)`,
+    transition: {
+      type: "spring",
+      damping: 30,
+      stiffness: 5,
+      restDelta: 2,
+      duration: "10",
+    },
+  }),
+  closed: {
+    clipPath: "circle(0px at right bottom)",
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 40,
+      duration: "0.5",
+    },
+  },
+};
 export const FadeInOut = {
   open: {
     opacity: 1,

@@ -21,7 +21,7 @@ export const Root = styled(motion.aside, {
   },
 });
 
-export const GreyAnimation = ({ animation }) => {
+export const GreyAnimation = ({ animation }: { animation: any }) => {
   return (
     <Root
       className="absolute bg-black z-[100] w-full left-0 top-0  h-full right-0 text-white "
@@ -46,9 +46,9 @@ export const GreyAnimation = ({ animation }) => {
       }
       initial={{
         ...ExpandCircleFromBottom.closed,
-        transitionEnd: {
-          // display: 'none',
-        },
+        // transitionEnd: {
+        //   // display: 'none',
+        // },
       }}
     >
       <p className="text-md lg:text-2xl">

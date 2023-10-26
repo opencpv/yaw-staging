@@ -46,6 +46,7 @@
     "react-day-picker": "^8.9.1",
     "react-dom": "18.2.0",
     "react-icons": "^4.11.0",
+    "react-responsive-masonry": "^2.1.7",
     "rsuite": "^5.40.0",
     "swiper": "^10.3.0",
     "swr": "^2.2.4",

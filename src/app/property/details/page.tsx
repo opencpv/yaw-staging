@@ -1,8 +1,6 @@
 "use client";
 import { styled } from "@stitches/react";
 import PDHero from "./components/PDHero";
-import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
-import Image from "next/image";
 
 export default function Page() {
   return (
@@ -19,6 +17,4 @@ export default function Page() {
   );
 }
 
-const Root = styled("div", {
-  
-});
+const Root = styled("div", {});

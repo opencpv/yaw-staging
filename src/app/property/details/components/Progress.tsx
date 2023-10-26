@@ -58,7 +58,7 @@ export const Progress = ({
     >
       <div className="flex flex-row gap-4 items-center j pl-5">
         <ProgressCount
-          type={active && "active"}
+          type={active ? "active" : "inactive"}
           className="hover:bg-gray-300 
           cursor-pointer"
         >

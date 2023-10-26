@@ -60,14 +60,14 @@ const CountryInput = ({
       .get("https://restcountries.com/v3.1/all?fields=name,flags")
       .then((res) => {
         const resData = res.data;
-        const newCountryData = resData.map((element) => ({
+        const newCountryData = resData.map((element: any) => ({
           label: element?.name?.official,
           value: element?.name?.official,
           flags: element?.flags?.png,
         }));
 
         // Sort the newCountryData array alphabetically by label
-        newCountryData.sort((a, b) => a.label.localeCompare(b.label));
+        newCountryData.sort((a: any, b: any) => a.label.localeCompare(b.label));
 
         setCountryData(newCountryData);
         // console.log(resData);
@@ -79,7 +79,8 @@ const CountryInput = ({
     <div>
       <Root>
         <div
-          className={`font-[400] ${openSans.className} text-[#6A6968] capitalize`}>
+          className={`font-[400] ${openSans.className} text-[#6A6968] capitalize`}
+        >
           <label>{label}</label>
         </div>
         <Popover open={open} onOpenChange={setOpen}>
@@ -90,7 +91,8 @@ const CountryInput = ({
               aria-expanded={open}
               className={`w-full justify-between  ${
                 value ? "text-[#6A6968] capitalize" : "text-[#B4B2AF] "
-              } whitespace-nowrap h-[52px]`}>
+              } whitespace-nowrap h-[52px]`}
+            >
               {value ? value : placeholder}
               <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
             </Button>
@@ -108,7 +110,8 @@ const CountryInput = ({
                       onChange(currentValue);
                       setValue(currentValue === value ? "" : currentValue);
                       setOpen(false);
-                    }}>
+                    }}
+                  >
                     {/* <Check
                       className={cn(
                         "mr-2 h-4 w-4",

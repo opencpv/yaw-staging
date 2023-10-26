@@ -16,17 +16,22 @@ import {
 type Props = {
   label: string;
   onChange: (value: any) => void;
-  disabled?: boolean | string ;
-  placeholderDate?: string
+  disabled?: any;
+  placeholderDate?: string;
 };
-export function CustomDatePicker({ label, onChange, disabled, placeholderDate }: Props) {
+export function CustomDatePicker({
+  label,
+  onChange,
+  disabled,
+  placeholderDate,
+}: Props) {
   const [date, setDate] = React.useState<Date>();
 
-  React.useEffect(()=> {
-    if (placeholderDate){
-      setDate(new Date(placeholderDate))
+  React.useEffect(() => {
+    if (placeholderDate) {
+      setDate(new Date(placeholderDate));
     }
-  }, [])
+  }, []);
 
   return (
     <div className="flex flex-col text-[#6A6968] text-[1rem] font-[400] gap-[0.9375rem] w-full">
@@ -38,7 +43,8 @@ export function CustomDatePicker({ label, onChange, disabled, placeholderDate }:
             className={cn(
               "w-full justify-start text-left font-normal h-[52px]",
               !date && "text-muted-foreground"
-            )}>
+            )}
+          >
             <CalendarIcon className="mr-2 h-4 w-4" />
             {date ? format(date, "PPP") : <span>DD/MM/YYYY</span>}
           </Button>
