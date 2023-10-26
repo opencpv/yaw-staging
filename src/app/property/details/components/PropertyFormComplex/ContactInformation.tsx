@@ -13,6 +13,11 @@ import axios from "axios";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { PropertyDataType } from "../propertyDataType";
 import TextFieldInput from "@/app/components/TextFieldInput ";
+import CountryInput from "@/components/__shared/CountryInput";
+import PhoneNumberInputv2 from "@/components/__shared/PhoneInputv2";
+import FormSwitch from "@/app/contact/components/FormSwitch";
+import CustomTextAreaInput from "@/app/components/CustomTextAreaInput";
+import CustomSelect from "@/app/components/CustomSelect";
 
 type Props = {
   setActiveIndex: Dispatch<SetStateAction<number>>;
