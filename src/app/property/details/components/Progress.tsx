@@ -26,7 +26,7 @@ export const Progress = ({
   const [active, setActive] = useState(false);
   const swiper = useSwiper();
 
-  const scrollToRight = (className) => {
+  const scrollToRight = (className: string) => {
     const element = document.querySelector(`.${className}`);
 
     if (element) {
@@ -54,12 +54,14 @@ export const Progress = ({
   return (
     <div
       className={` flex flex-col gap-6 w-full ${classes}`}
-      onClick={handleSwipe}>
+      onClick={handleSwipe}
+    >
       <div className="flex flex-row gap-4 items-center j pl-5">
         <ProgressCount
           type={active && "active"}
           className="hover:bg-gray-300 
-          cursor-pointer">
+          cursor-pointer"
+        >
           {number}
         </ProgressCount>
         <ProgressLine />
@@ -67,7 +69,8 @@ export const Progress = ({
       <p
         className={`text-[13px] font-[400] ${
           active && "font-[700] text-[#8DA5A4]"
-        } `}>
+        } `}
+      >
         {label}
       </p>
     </div>
@@ -79,7 +82,7 @@ const ProgressCount = styled("div", {
   fontWeight: "700",
   width: "64px",
   maxWidth: "64px",
-  minWidth:"60px",
+  minWidth: "60px",
   aspectRatio: "64/64",
   color: "#8A8A8A",
   display: "flex",
@@ -98,7 +101,7 @@ const ProgressCount = styled("div", {
       active: {
         backgroundColor: "#8DA5A4",
         fontWeight: "700",
-        color:"white"
+        color: "white",
       },
       inactive: {},
     },

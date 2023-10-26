@@ -6,9 +6,9 @@ export const Root = styled(motion.aside, {
   background: "url(/svgs/bgMenuSmall.svg)",
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
-  paddingInline:"2rem",
-  bottom:"0px",
-  height:"100%",
+  paddingInline: "2rem",
+  bottom: "0px",
+  height: "100%",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -16,7 +16,7 @@ export const Root = styled(motion.aside, {
     background: "url(/svgs/bgMenuLarge.svg)",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
-    maxHeight:"100%"
+    maxHeight: "100%",
     // bottom:"unset"
   },
 });
@@ -49,8 +49,12 @@ export const GreyAnimation = ({ animation }) => {
         transitionEnd: {
           // display: 'none',
         },
-      }}>
-      <p className="text-md lg:text-2xl"> Congratulations. You have completed the form successfully!!!</p>
+      }}
+    >
+      <p className="text-md lg:text-2xl">
+        {" "}
+        Congratulations. You have completed the form successfully!!!
+      </p>
     </Root>
   );
 };
