@@ -3,8 +3,6 @@ import { MdChevronRight, MdChevronLeft } from "react-icons/md";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { useCallback, useRef } from "react";
-import SlideItem from "./SlideItem";
-import "./desktop.css";
 import "swiper/css";
 import Image from "next/image";
 
@@ -44,17 +42,35 @@ const DesktopVersion = () => {
         >
           <SwiperSlide>
             <div className="relative w-[40rem] h-[30rem]">
-                <Image src={images.niceHome} alt="" fill style={{objectFit: "cover"}} className="rounded-2xl" />
+              <Image
+                src={images.niceHome}
+                alt=""
+                fill
+                style={{ objectFit: "cover" }}
+                className="rounded-2xl"
+              />
             </div>
           </SwiperSlide>
           <SwiperSlide>
             <div className="relative w-[40rem] h-[30rem]">
-                <Image src={images.niceHome} alt="" fill style={{objectFit: "cover"}} className="rounded-2xl" />
+              <Image
+                src={images.niceHome}
+                alt=""
+                fill
+                style={{ objectFit: "cover" }}
+                className="rounded-2xl"
+              />
             </div>
           </SwiperSlide>
           <SwiperSlide>
             <div className="relative w-[40rem] h-[30rem]">
-                <Image src={images.niceHome} alt="" fill style={{objectFit: "cover"}} className="rounded-2xl" />
+              <Image
+                src={images.niceHome}
+                alt=""
+                fill
+                style={{ objectFit: "cover" }}
+                className="rounded-2xl"
+              />
             </div>
           </SwiperSlide>
         </Swiper>
