@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { useCallback, useRef } from "react";
 import SlideItem from "./SlideItem";
-import "./desktop.css";
+// import "./desktop.css";
 import "swiper/css";
 import Image from "next/image";
 

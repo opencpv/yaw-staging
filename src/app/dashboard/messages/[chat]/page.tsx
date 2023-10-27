@@ -1,5 +1,11 @@
 "use client";
-import React, { HTMLAttributes, useEffect, useMemo, useRef } from "react";
+import React, {
+  HTMLAttributes,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import MessageBubble from "../components/MessageBubble";
 import BlockUserPopOver from "../components/BlockUserPopOver";
 import MessageBubble2 from "../components/MessageBubble2";
@@ -7,12 +13,26 @@ import { HiOutlineArrowLongLeft } from "react-icons/hi2";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import {motion} from "framer-motion";
+import { motion } from "framer-motion";
+import supabase from "@/lib/utils/supabaseClient";
+import { Spinner } from "@nextui-org/react";
+
+type fetchedMessageType = {
+  id: number;
+  content: string;
+  sent_at: string;
+};
 
 const Messages = ({ params }: { params: { chat: string } }) => {
-  const { icons } = useAssets()
+  const { icons } = useAssets();
   const router = useRouter();
   const messageContainerRef = useRef<HTMLDivElement>(null);
+
+  const [fetchedMessages, setFetchedMessages] = useState<
+    fetchedMessageType[] | null
+  >(null);
+
+  const [messagesLoading, setMessagesLoading] = useState<boolean>(true);
 
   const { chat } = params;
   let contactName = useMemo(() => {
@@ -24,12 +44,48 @@ const Messages = ({ params }: { params: { chat: string } }) => {
     return nameSplitCapitalized.join(" ");
   }, [chat]);
 
-  // Scrolls to the bottom on mount
-  useEffect(() => {
+  const scrollToBottom = () => {
     if (messageContainerRef.current) {
       messageContainerRef.current.scrollTop =
         messageContainerRef.current.scrollHeight;
     }
+  };
+
+  const getMessages = async () => {
+    try {
+      const {
+        data: messages,
+        error,
+        status: messagesStatus,
+      } = await supabase.from("messages").select("*");
+
+      if (messages) {
+        setFetchedMessages(messages);
+      }
+
+      if (messagesStatus === 200) {
+        setMessagesLoading(false);
+      }
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  };
+
+  // Scrolls to the bottom on mount
+  useEffect(() => {
+    scrollToBottom;
+    getMessages();
+    const messages = supabase
+      .channel("custom-all-channel")
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "messages" },
+        (payload) => {
+          getMessages();
+        }
+      )
+      .subscribe();
   }, []);
 
   return (
@@ -44,46 +100,47 @@ const Messages = ({ params }: { params: { chat: string } }) => {
         <h2 className="text-xl">{contactName}</h2>
         <BlockUserPopOver />
       </div>
-
-      <div
-        className="flex flex-col w-full h-[70dvh] mt-5 mb-20 sm:mb-0 overflow-y-scroll hidden-scrollbar py-5"
-        ref={messageContainerRef}
-      >
-        <MessageBubble body="Hello" time="9:00 am" />
-        <MessageBubble2 body="Hi. Good morning" time="9:30 am" />
-        <MessageBubble body="Lorem ipsum dolor sit amet." time="11:41 am" />
-        <MessageBubble body="Lorem ipsum dolor sit amet 2." time="11:50 am" />
-        <MessageBubble2 body="Sure" time="11:50 am" />
-        <MessageBubble
-          body="This is the best service you can have"
-          time="11:54 am"
-        />
-        <MessageBubble body="Lorem ipsum dolor sit amet." time="12:10 pm" />
-        <MessageBubble2 body="I am intrigued. Thanks" time="12:11 pm" />
-        <MessageBubble2
-          body="Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet."
-          time="12:11 pm"
-        />
-        <MessageBubble body="Lorem ipsum dolor sit amet." time="12:10 pm" />
-        <MessageBubble2 body="Follow up." time="9:10 pm" />
-        <MessageBubble body="Sure." time="4:10 pm" />
-        <MessageBubble body="Sure." time="4:10 pm" />
-        <MessageBubble
-          body="You may start the process. Thanks"
-          time="8:57 pm"
-        />
-      </div>
-      {/* No message yet state */}
-      {/* <div className="flex items-center justify-center h-[70vh]">
-        <div className="flex flex-col items-center text-center gap-y-2 text-primary-400">
-          <motion.div whileInView={{x: 0}} initial={{x: 20}}>
-            <Image src={icons.ChatIcon} alt="chat" width={80} height={90} className="" />
-          </motion.div>
-          <h1 className="text-2xl font-[600] mt-3">Messages</h1>
-          <p className="">Send and receive messages with rentright</p>
-          <p className="capitalize text-[#8DA5A4]">Happy messaging</p>
+      {messagesLoading && (
+        <div className="flex items-center justify-center h-[70vh]:">
+          <Spinner color="success" />
         </div>
-      </div> */}
+      )}
+      {fetchedMessages && fetchedMessages?.length > 0 ? (
+        <div
+          className="flex flex-col w-full h-[70dvh] mt-5 mb-20 sm:mb-0 overflow-y-scroll hidden-scrollbar py-5"
+          ref={messageContainerRef}
+        >
+          {fetchedMessages?.map((message) => {
+            return (
+              <MessageBubble
+                key={message.id}
+                content={message.content}
+                time={message.sent_at}
+              />
+            );
+          })}
+          {/* <MessageBubble2 content="Hi. Good morning" time="9:30 am" /> */}
+        </div>
+      ) : (
+        <div className="flex items-center justify-center h-[70vh]">
+          {" "}
+          {/* will render when there is no messages */}
+          <div className="flex flex-col items-center text-center gap-y-2 text-primary-400">
+            <motion.div whileInView={{ x: 0 }} initial={{ x: 20 }}>
+              <Image
+                src={icons.ChatIcon}
+                alt="chat"
+                width={80}
+                height={90}
+                className=""
+              />
+            </motion.div>
+            <h1 className="text-2xl font-[600] mt-3">Messages</h1>
+            <p className="">Send and receive messages with rentright</p>
+            <p className="capitalize text-[#8DA5A4]">Happy messaging</p>
+          </div>
+        </div>
+      )}
     </>
   );
 };

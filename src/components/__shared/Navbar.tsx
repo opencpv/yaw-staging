@@ -17,10 +17,10 @@ const Navbar = (props: any) => {
   return (
     <nav
       className={`w-full px-8 py-4  z-[100] ${
-        props.isMenuOpen ? "absolute" : "fixed"
-      } ${!pathname.includes("/properties/") ? "bg-[#333333]" : "bg-transparent"} top-0`}
+        props.isMenuOpen && "absolute"
+      } ${!pathname.includes("/properties/") ? "sticky bg-[#333333]" : "fixed bg-transparent"} top-0`}
     >
-      <div className="flex items-center justify-between mx-auto max-w-screen-2xl">
+      <div className="flex items-center justify-between">
         <Menu
           isOpen={props.isMenuOpen}
           layout

@@ -264,15 +264,11 @@ const PropertyDetailsPage = (props: Props) => {
                 </AdditionalInfo>
               </section>
               <section className="my-12">
-                <AdditionalInfoTitle title="Advance Rent" />
-                <AdditionalInfo>
-                  <p className="">One Year Advance</p>
-                </AdditionalInfo>
 
                 <h2 className="text-neutral-800 font-[600] text-xl mt-6">
                   Additional Information
                 </h2>
-                <AdditionalInfoTitle title="Agent Fees" />
+                <AdditionalInfoTitle title="Agency Fees" />
                 <div className="p-5 bg-[#FFF7E7] text-[#65969F] rounded-xl mt-2 flex items-center gap-5 text-sm">
                   <HiOutlineExclamationCircle className="text-5xl text-yellow-500 rotate-180" />
                   Lorem ipsum dolor sit amet consectetur, adipisicing elit.

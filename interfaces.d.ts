@@ -59,6 +59,6 @@ interface FeatureInterface {
 }
 
 interface MessageInterface {
-  body: string;
+  content: string;
   time: string;
 }

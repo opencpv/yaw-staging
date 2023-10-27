@@ -102,7 +102,7 @@ const ListingCard2 = (props: ListingCardInterface) => {
               )}
             </div>
           </div>
-          <p className="max-w-xl line-clamp-3 text-neutral-500 sm:line-clamp-2 ">
+          <p className="max-w-xs line-clamp-3 text-neutral-500 sm:line-clamp-2 ">
             {props.propertyDescription}
           </p>
         </div>

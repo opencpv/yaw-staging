@@ -13,7 +13,7 @@ const Login = () => {
       <Head>
         <title>Login - RentRightGh</title>
       </Head>
-      <main className="grid w-full grid-cols-1 bg-darkGreenBg lg:grid-cols-2">
+      <main className="grid w-full min-h-screen grid-cols-1 bg-darkGreenBg lg:grid-cols-2">
         <div className="hidden w-full min-h-screen lg:block lg:relative">
           <Image
             src={images.StockImage}
@@ -24,7 +24,7 @@ const Login = () => {
         </div>
         <div className="relative w-full py-5 bg-plane-pattern lg:px-8 lg:py-16">
           <LoginForm />
-          <div className="left-0 w-full mt-28 md:bottom-28">
+          <div className="left-0 w-full mt-28 bottom-28">
             <LoginFooter />
           </div>
         </div>

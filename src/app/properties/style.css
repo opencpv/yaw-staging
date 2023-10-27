@@ -1,5 +1,5 @@
 .properties-li li::before{
-    @apply bg-accent-50;
+    background-color: #DDB771;
     content: "";
     font-weight: bold;
     display: inline-block;
