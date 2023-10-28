@@ -23,11 +23,7 @@ const TextFieldInput = ({
       className={`font-[400] ${openSans.className} text-[#6A6968] capitalize w-full`}>
       <label className="text-[16px]">{label}</label>
       <Field name={name}>
-        {({
-          field, 
-          form: { touched, errors }, 
-          meta,
-        } : any) => (
+        {({ field, form: { touched, errors }, meta }: any) => (
           <div>
             <input
               type={type}
@@ -39,12 +35,21 @@ const TextFieldInput = ({
               }}
               className="form-input w-full"
             />
-        
-        {errors[name] && <p className="mt-3 text-[#851e1e] font-[400] text-[13px]" >{errors[name]}</p>}
+
+            {/* {errors[name] && (
+              <p className="mt-3 text-[#851e1e] font-[400] text-[13px]">
+                {errors[name]}
+              </p>
+            )} */}
           </div>
         )}
       </Field>
-  
+
+      <ErrorMessage
+        className={`text-[#851e1e] font-[400] text-[13px] ${openSans.className}`}
+        name={name}
+        component="p"
+      />
     </TFormDiv>
   );
 };

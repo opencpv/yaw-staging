@@ -26,6 +26,7 @@ import ViewProperty from "../components/ViewProperty";
 import ReportIssue from "@/components/ReportIssue";
 import { BsBookmarkStar, BsBookmarkStarFill } from "react-icons/bs";
 import PropertyDetailsSlider from "../components/PropertyDetailsSlider";
+import ApplyNowModal from "@/app/property/details/components/ApplyNowModal";
 
 type Props = {};
 
@@ -168,9 +169,13 @@ const PropertyDetailsPage = (props: Props) => {
                   <Rate allowHalf defaultValue={4.5} disabled />
                 </div>
                 <div className="mt-20 space-y-10">
+<<<<<<< HEAD
                   <Button className="bg-gradient-to-r  from-[#21A19F] to-[#1EA9A6A1] p-4 text-xl text-white capitalize py-7 w-60">
                     Apply Now
                   </Button>
+=======
+                  <ApplyNowModal type="simple"/>
+>>>>>>> 276129c (apply modal)
                   <div className="flex flex-col justify-between px-10 py-8 text-sm bg-white border border-gray-500 shadow-xl text-primary-400 rounded-xl sm:flex-row sm:items-center sm:px-2">
                     <div className="px-5 py-2 space-y-1 border-b border-gray-400 sm:border-r sm:border-b-0 sm:last:border-r-0 sm:py-0">
                       <h3 className="items-center justify-between text-center gap-x-4 sm:flex sm:text-start ">
