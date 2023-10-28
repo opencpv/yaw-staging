@@ -27,9 +27,13 @@ import * as Yup from 'yup';
 import { PropertyDataType } from "../propertyDataType";
 
 
+type Props = {
+  setOpen:  React.Dispatch<React.SetStateAction<boolean>>
+};
 
 
-export default function PropertyFormComplex() {
+
+export default function PropertyFormComplex({setOpen}: Props) {
   const [activeIndex, setActiveIndex] = useState(1);
   const formRef = React.createRef<any>();
 

@@ -14,26 +14,39 @@ import { PropertyDataType } from "../propertyDataType";
 
 import * as Yup from "yup";
 import supabase from "@/lib/utils/supabaseClient";
+import { useEffect, useState } from "react";
+import Loader from "@/components/__shared/loader/Loader";
 
 type Props = {
   animation: boolean;
   setAnimation: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function PropertyFormSimple({ setAnimation, animation }: Props) {
-  const [propertyData, setPropertyData] = useLocalStorage<PropertyDataType>(
-    "property1"
-  );
+export default function PropertyFormSimple({
+  setAnimation,
+  animation,
+  setOpen,
+}: Props) {
+  const [loading, setLoading] = useState(false);
+  const [propertyData, setPropertyData] =
+    useLocalStorage<PropertyDataType>("property1");
   const [applicantsForm, setApplicantsForm] =
     useLocalStorage<any>("applicantsForm");
 
   const validationSchema = Yup.object().shape({
     firstName: Yup.string().required("First name is required"),
     lastName: Yup.string().required("Last name is required"),
-    email: Yup.string().email().required("Email is required"),
+    email: Yup.string().email("Invalid Email").required("Email is required"),
     currentAddress1: Yup.string().required("Address is required"),
-    phoneNumber: Yup.number().required("Field is required")
+    // phoneNumber: Yup.number().required("Field is required")
   });
+
+  useEffect(() => {
+    if (loading) {
+      setOpen(false);
+    }
+  }, [loading]);
 
   async function handleSubmit() {
     try {
@@ -56,13 +69,10 @@ export default function PropertyFormSimple({ setAnimation, animation }: Props) {
             lease_term: propertyData?.leaseTerm,
             is_more_applicants: propertyData?.otherApplicants,
             additional_information: propertyData?.additionalInformation,
-            more_applicants: propertyData?.otherPersonsArray
-
-
+            more_applicants: propertyData?.otherPersonsArray,
           },
         ])
         .select();
-
     } catch (error) {
       console.log(error);
     }
@@ -93,34 +103,42 @@ export default function PropertyFormSimple({ setAnimation, animation }: Props) {
             ...propertyData,
             ...applicantsForm,
           }}
-          onSubmit={(values) => {
-            console.log("submiting");
+          onSubmit={(values, formikProps) => {
+            // formikProps.validateForm()
+            setLoading(true);
             handleSubmit();
           }}
           validationSchema={validationSchema}>
-          <Form>
-            <PersonalInformationForm1 formType="simple" />
+          {({ errors, touched }) => (
+            <Form>
+              <PersonalInformationForm1 formType="simple" />
 
-            <div className="mt-10 lg:mt-5 flex justify-start lg:justify-end w-full gap-5">
-              <div className="flex gap-5 flex-col lg:flex-row font-semibold">
-                <button
-                  className="w-[224.5px]  h-max max-h-[52px] aspect-[224/52]
-                  border-[1px] 
-                  border-[#AD842A] flex justify-center items-center text-[#AD842A]
-                  rounded-lg hover:bg-slate-100">
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="w-[224.5px] [52px] aspect-[224/52] bg-[#DDB771]
-                  flex justify-center items-center text-[#ffff] rounded-lg hover:scale-[1.05]
-
-             ">
-                  Submit Application
-                </button>
+              <div className="mt-10 lg:mt-5 flex justify-start lg:justify-end w-full gap-5">
+                <div className="flex gap-5 flex-col lg:flex-row font-semibold">
+                  <button
+                    onClick={() => setOpen(false)}
+                    className="w-[224.5px]  h-max max-h-[52px] aspect-[224/52]
+                      border-[1px] 
+                      border-[#AD842A] flex justify-center items-center text-[#AD842A]
+                      rounded-lg hover:bg-slate-100">
+                    Cancel
+                  </button>
+                  {!loading ? (
+                    <button
+                      type="submit"
+                      className="w-[224.5px] [52px] aspect-[224/52] bg-[#DDB771]
+                      flex justify-center items-center text-[#ffff] rounded-lg hover:scale-[1.05]
+    
+                 ">
+                      Submit Application
+                    </button>
+                  ) : (
+                    <Loader />
+                  )}
+                </div>
               </div>
-            </div>
-          </Form>
+            </Form>
+          )}
         </Formik>
       </div>
     </Root>

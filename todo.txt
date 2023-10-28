@@ -1,0 +1,9 @@
+fname, lname, gender, martial statis, email b4 phone  
+email optional 
+available on whatsapp too bulky
+country sync with phone numer
+swiper slide should swipe left or right to page on mobile
+gender -> marital status in that order in complex
+email -> phone -> country -> phone
+verify employer's phone component
+info bubble as come button

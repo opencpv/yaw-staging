@@ -38,7 +38,7 @@ const PersonalInformationForm1 = React.forwardRef<HTMLInputElement, Props>(
         maritalStatus: "single",
         mostRecentEmployment: "employed",
         preferredMethodOfContact: "phone",
-        otherApplicants: "no",
+        otherApplicants: false,
         availableOnWhatsapp: false,
       }
     );
@@ -197,9 +197,10 @@ const PersonalInformationForm1 = React.forwardRef<HTMLInputElement, Props>(
           </div>
           <div className="col-span-3 lg:col-span-1  form-col">
             <CustomTextAreaInput
-              label="Any Additional Information ?"
-              placeholder={propertyData?.additionalInformation || "Message"}
+              label="Any Additional Information?"
+              placeholder={"Message"}
               classes="h-[216px]"
+              initialValues={propertyData?.additionalInformation}
               name="additionalInformation"
               onChange={(e) =>
                 setPropertyData({

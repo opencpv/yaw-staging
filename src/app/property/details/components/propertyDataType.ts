@@ -36,7 +36,7 @@ export type PropertyDataType = Partial<{
     currentAddress1: string;
     currentAddress2: string;
     reasonsForMoving: string;
-    otherApplicants: string;
+    otherApplicants: boolean;
     otherPersonsArray?: any;
     availableOnWhatsapp?: boolean;
     additionalInformation? : string

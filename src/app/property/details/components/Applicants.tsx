@@ -23,7 +23,7 @@ const FullNameAndRelationship = ({ index, fullName, relationship }: any) => {
 
     const updatedPropertyData = {
       ...propertyData,
-      otherPersons: updatedOtherPersons,
+      otherPersonsArray: updatedOtherPersons,
     };
 
     setPropertyData(updatedPropertyData);
@@ -39,7 +39,7 @@ const FullNameAndRelationship = ({ index, fullName, relationship }: any) => {
           type="text"
           className="form-input"
           value={fullName}
-          placeholder="Enter ull name"
+          placeholder="Enter full name"
           onChange={(e) => handleInputChange(`fullName`, e.target.value)}
         />
       </TFormDiv>
@@ -66,7 +66,7 @@ const Applicants = ({}) => {
     useLocalStorage<PropertyDataType>("property1");
 
   const [applicants, setApplicants] = useState(
-    propertyData?.otherApplicants == "yes" ? true : false
+    propertyData?.otherApplicants 
   );
 
   const [applicantsLength, setApplicantsLength] = useState<any>(
@@ -89,17 +89,17 @@ const Applicants = ({}) => {
     <div>
       <div className="col-span-3 lg:col-span-1 flex flex-col  gap-2">
         <CustomRadioInput
-          defaultValue={propertyData?.otherApplicants}
+          defaultValue={`${propertyData?.otherApplicants ? "yes" : "no"}`}
           label={"Are there additional applicants"}
           onChange={(value) => {
-            setPropertyData({ ...propertyData, otherApplicants: value });
+            setPropertyData({ ...propertyData, otherApplicants: value == "yes" ? true : false });
             value == "yes" && setApplicants(true);
             value == "no" && setApplicants(false);
           }}
         />
 
         {applicants && (
-          <div>
+          <div className={`${applicantsLength >= 1 ? "mt-5" : ""}`}>
             {Array.from({ length: applicantsLength }).map((_, index) => (
               <div key={index} className="mb-2">
                 <FullNameAndRelationship
@@ -124,8 +124,8 @@ const Applicants = ({}) => {
             ))}
           </div>
         )}
-        {propertyData?.otherApplicants == "yes" && (
-          <button
+        {propertyData?.otherApplicants && (
+          <button type="button"
             className="font-normal text-[#AD842A] h-38 justify-start items-center text-13 flex gap-1 whitespace-nowrap  hover:bg-[#ad832a20] p-2 w-fit"
             onClick={() => {
               setApplicantsLength((init: any) => init + 1);

@@ -24,8 +24,8 @@ const TextFieldInput = ({
       <label className="text-[16px]">{label}</label>
       <Field name={name}>
         {({
-          field, // { name, value, onChange, onBlur }
-          form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+          field, 
+          form: { touched, errors }, 
           meta,
         } : any) => (
           <div>
@@ -40,14 +40,11 @@ const TextFieldInput = ({
               className="form-input w-full"
             />
         
+        {errors[name] && <p className="mt-3 text-[#851e1e] font-[400] text-[13px]" >{errors[name]}</p>}
           </div>
         )}
       </Field>
-      <ErrorMessage
-        className={`text-[#851e1e] font-[400] text-[13px] ${openSans.className}`}
-        name={name}
-        component="p"
-      />
+  
     </TFormDiv>
   );
 };
