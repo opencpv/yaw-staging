@@ -13,7 +13,7 @@ const listings = [
     rating: 3.5,
     ratingCount: 200,
     liked: false,
-    href: "#",
+    href: "/properties/details",
   },
   {
     id: 2,
@@ -29,7 +29,7 @@ const listings = [
     rating: 0,
     ratingCount: 0,
     liked: true,
-    href: "#",
+    href: "/properties/details",
   },
   {
     id: 3,
@@ -45,7 +45,7 @@ const listings = [
     rating: 4.2,
     ratingCount: 400,
     liked: false,
-    href: "#",
+    href: "/properties/details",
   },
   {
     id: 4,
@@ -61,7 +61,7 @@ const listings = [
     rating: 4.2,
     ratingCount: 400,
     liked: false,
-    href: "#",
+    href: "/properties/details",
   },
   {
     id: 5,
@@ -77,7 +77,7 @@ const listings = [
     rating: 4.2,
     ratingCount: 400,
     liked: false,
-    href: "#",
+    href: "/properties/details",
   },
   {
     id: 6,
@@ -93,7 +93,7 @@ const listings = [
     rating: 4.2,
     ratingCount: 400,
     liked: true,
-    href: "#",
+    href: "/properties/details",
   },
   {
     id: 7,
@@ -109,7 +109,7 @@ const listings = [
     rating: 1.2,
     ratingCount: 100,
     liked: false,
-    href: "#",
+    href: "/properties/details",
   },
   {
     id: 8,
@@ -125,7 +125,7 @@ const listings = [
     rating: 1.2,
     ratingCount: 100,
     liked: false,
-    href: "#",
+    href: "/properties/details",
   },
   {
     id: 9,
@@ -141,7 +141,7 @@ const listings = [
     rating: 1.2,
     ratingCount: 100,
     liked: false,
-    href: "#",
+    href: "/properties/details",
   },
   {
     id: 10,
@@ -157,7 +157,7 @@ const listings = [
     rating: 1.2,
     ratingCount: 100,
     liked: false,
-    href: "#",
+    href: "/properties/details",
   },
   {
     id: 11,
@@ -173,7 +173,7 @@ const listings = [
     rating: 1.2,
     ratingCount: 100,
     liked: false,
-    href: "#",
+    href: "/properties/details",
   },
   {
     id: 12,
@@ -189,7 +189,7 @@ const listings = [
     rating: 1.2,
     ratingCount: 100,
     liked: false,
-    href: "#",
+    href: "/properties/details",
   },
   {
     id: 13,
@@ -205,7 +205,7 @@ const listings = [
     rating: 1.2,
     ratingCount: 100,
     liked: false,
-    href: "#",
+    href: "/properties/details",
   },
   {
     id: 14,
@@ -221,7 +221,7 @@ const listings = [
     rating: 1.2,
     ratingCount: 100,
     liked: false,
-    href: "#",
+    href: "/properties/details",
   },
   {
     id: 15,
@@ -237,7 +237,7 @@ const listings = [
     rating: 1.2,
     ratingCount: 100,
     liked: false,
-    href: "#",
+    href: "/properties/details",
   },
   {
     id: 16,
@@ -253,7 +253,7 @@ const listings = [
     rating: 1.2,
     ratingCount: 100,
     liked: false,
-    href: "#",
+    href: "/properties/details",
   },
 ];
 

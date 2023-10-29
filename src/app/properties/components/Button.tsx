@@ -1,29 +1,40 @@
+"use client";
 import React from "react";
+import { Button as NextUIButton } from "@nextui-org/react";
 
 type Props = {
   className?: string;
   children?: React.ReactNode;
-  variant?: "default" | "outline";
+  variant?: "default" | "outline" | "ghost";
   borderColor?: string;
 };
 
 const Button = ({ className, children, borderColor, variant }: Props) => {
   if (variant === "outline") {
     return (
-      <button
-        className={`p-4 text-center w-60 font-[600] rounded-xl border ${className}`}
+      <NextUIButton
+        className={`text-center font-[600] rounded-xl bg-transparent border ${className}`}
         style={{ borderColor: borderColor ? borderColor : "" }}
       >
         {children}
-      </button>
+      </NextUIButton>
     );
   }
+  else if (variant === "ghost"){
+    return (
+      <NextUIButton
+        className={`bg-transparent ${className}`}
+      >
+        {children}
+      </NextUIButton>
+    )
+  }
   return (
-    <button
-      className={`p-4 text-center w-60 font-[600] bg-gradient-to-r rounded-xl from-[#21A19F] to-[#1EA9A6A1] ${className}`}
+    <NextUIButton
+      className={`text-center font-[600] rounded-xl ${className}`}
     >
       {children}
-    </button>
+    </NextUIButton>
   );
 };
 

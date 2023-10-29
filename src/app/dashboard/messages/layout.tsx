@@ -13,23 +13,21 @@ type Props = {
 const MessagesLayout = ({ children }: Props) => {
   const pathname = usePathname();
 
-  const [currentUserId, setCurrentUserId] = useState(null);
-
-  const getUser = async () => {
-    const {
-      data: { user },
-      error,
-    } = await supabase.auth.getUser();
-
-    console.log(user)
-  };
+  const [currentUserId, setCurrentUserId] = useState<string | null>(null);
 
   useEffect(() => {
-    getUser()
+    const getUserSession = async () => {
+      // const data = await userSession()
+      // console.log(data?.session.user.email)
+      // const id = String(data?.session.user.id)
+      const {data: {session}} = await supabase.auth.getSession()
+      console.log(session?.user.email)
+      const id = String(session?.user.id)
+      setCurrentUserId(id)
+    }
+    getUserSession()
   }, []);
 
-  const data = userSession();
-  console.log("Data: ", data);
 
   const [messageContent, setMessageContent] = useState<string>("");
 
@@ -39,7 +37,7 @@ const MessagesLayout = ({ children }: Props) => {
       .from("messages")
       .insert({
         content: e.target[0].value,
-        sender_id: "d7caa3c8-e767-4d24-ab5d-44699d8a41ab",
+        sender_id: currentUserId,
         recipient_id: "5f297aa7-18f5-42ff-9270-8ba8061cae95",
       })
       .select();

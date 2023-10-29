@@ -1,7 +1,5 @@
-interface ListingCardInterface {
+interface ListingCardInterface extends ListingInterface {
   id?: number | string;
-  images: string[];
-  propertyType: string;
   propertyDescription: string;
   rating: number;
   ratingCount: number;
@@ -17,7 +15,6 @@ interface ListingCardInterface {
   liked: boolean;
   membership: "Certified" | "Verified" | "Unverified" | "None" | "none" | "";
   className?: string;
-  href: string;
 }
 
 interface AdImage {
@@ -32,6 +29,7 @@ interface AdImage {
 interface AdCardInterface {
   images: AdImage[];
   className?: string;
+  href?: string;
 }
 
 interface ChatInterface {
@@ -56,6 +54,12 @@ interface FeatureInterface {
     | "Free Parking on Premises"
     | "Hot Tub"
     | "Pool";
+}
+
+interface ListingInterface {
+  images: string[]
+  propertyType: string;
+  href?: string;
 }
 
 interface MessageInterface {
