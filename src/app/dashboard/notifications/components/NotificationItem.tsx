@@ -49,7 +49,7 @@ const NotificationItem: React.FC<Props> = ({
         <div className="pt-1">{notificationItems[type]}</div>
 
         <div className="flex flex-col gap-1">
-          <div className="flex text-[10px] uppercase gap-2 items-center text-[#0000008F]">
+          <div className="flex text-[10px] uppercase gap-2 items-center text-black lg:text-[#0000008F]">
             <div className="font-semibold">{type}</div>
             <div className="w-[3px] h-[3px] bg-[#0000008F] rounded-full">.</div>
             <div className="font-bold">{time}</div>

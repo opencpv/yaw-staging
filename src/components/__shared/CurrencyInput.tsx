@@ -19,12 +19,12 @@ import {
 import { ErrorMessage, Field } from "formik";
 import { styled } from "@stitches/react";
 import { SelectSearchInput } from "@/app/components/SelectSearchInput";
-import { LeaseData } from "@/app/property/details/components/content";
+import { LeaseData } from "@/app/application-form/details/components/content";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { openSans } from "@/app/styles/font";
 import Image from "next/image";
-import { InfoBubble } from "@/app/property/details/components/InfoBubble";
+import { InfoBubble } from "@/app/application-form/details/components/InfoBubble";
 import { boolean } from "yup";
 
 type DataItem = {

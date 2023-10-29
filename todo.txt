@@ -6,4 +6,6 @@ swiper slide should swipe left or right to page on mobile
 gender -> marital status in that order in complex
 email -> phone -> country -> phone
 verify employer's phone component
-info bubble as come button
+form touch errors
+UploadFile component
+pagination fix on settings page

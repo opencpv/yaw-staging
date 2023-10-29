@@ -42,11 +42,15 @@ export default function PropertyFormSimple({
     // phoneNumber: Yup.number().required("Field is required")
   });
 
-  useEffect(() => {
-    if (loading) {
-      setOpen(false);
-    }
-  }, [loading]);
+  // useEffect(() => {
+  //   if (loading) {
+  //     setOpen(false);
+  //   }
+  // }, [loading]);
+  const Adams = "c8efbc31-b932-4536-87a5-816303bd5011"  
+  const Akowuah = "5f297aa7-18f5-42ff-9270-8ba8061cae95"
+  const me = "d7caa3c8-e767-4d24-ab5d-44699d8a41ab"
+
 
   async function handleSubmit() {
     try {
@@ -78,6 +82,22 @@ export default function PropertyFormSimple({
     }
   }
 
+  async function notify() {
+    try {
+      const { data, error } = await supabase
+        .from("notifications")
+        .insert([{
+          sender_id : Adams,
+          type:"contact",
+          message: "User has just submitted a property form",
+          receiver_id : me
+        }])
+        .select();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
     <Root className={`flex flex-col gap-8 ${openSans.className}`}>
       <div className="flex flex-col gap-6 text-[#073B3A] text-[1.5625rem]">
@@ -106,7 +126,9 @@ export default function PropertyFormSimple({
           onSubmit={(values, formikProps) => {
             // formikProps.validateForm()
             setLoading(true);
-            handleSubmit();
+            handleSubmit()
+            .then(()=> notify())
+
           }}
           validationSchema={validationSchema}>
           {({ errors, touched }) => (

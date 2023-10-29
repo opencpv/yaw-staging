@@ -21,7 +21,7 @@ const NotificationDetailsFull: React.FC<Props> = ({ currentNotification }) => {
   <div>
       <Root className="flex flex-col h-full justify-start gap-8">
         <div className="flex flex-col gap-4">
-          <div className="text-[31px] font-bold">
+          <div className="text-[24px] 2xl:text-[31px] font-bold">
             <p>{currentNotification?.subject}</p>
           </div>
           <div className="text-[10px]  leading-[14px] uppercase text-[#0000008F] flex gap-2">

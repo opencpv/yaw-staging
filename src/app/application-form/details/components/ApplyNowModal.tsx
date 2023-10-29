@@ -25,13 +25,13 @@ const ApplyNowModal = ({ type, variant = "rectangle" }: Type) => {
           {variant == "rectangle" && (
             <button
               className="capitalize text-white text-xl p-4 px-10 font-[600] bg-gradient-to-r from-[#21A19F] to-[#1EA9A6A1]
-            max-w-[294px] max-h-[75px] flex items-center justify-center aspect-[294/75] rounded-2xl w-full hover:scale-[1.05] hover:
+            max-w-[294px] max-h-[61px] lg:max-h-[75px] flex items-center justify-center aspect-[294/61] lg:aspect-[294/75] rounded-2xl w-full hover:scale-[1.05] hover:
             ">
               Apply Now
             </button>
           )}
           {variant == "circle" && (
-            <button className="w-full max-w-[150px] 2xl:max-w-[355px] aspect-square rounded-full  border-2 border-[#45808B] text-white flex items-center justify-center">
+            <button className="w-full max-w-[150px] 2xl:max-w-[355px] aspect-square rounded-full  border-2 border-[#45808B] text-white flex items-center justify-center ">
               <div
                 className="bg-[#45808B] flex w-full 
               aspect-square items-center justify-center rounded-full m-5 p-5 whitespace-nowrap
@@ -43,12 +43,12 @@ const ApplyNowModal = ({ type, variant = "rectangle" }: Type) => {
         </div>
       </Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className="bg-blackA6 data-[state=open]:animate-overlayShow fixed inset-0" />
+        <Dialog.Overlay className="bg-blackA6 data-[state=open]:animate-overlayShow fixed inset-0 " />
         <Dialog.Content
-          className={`data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] translate-x-[-50%]   ${
+          className={`data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] translate-x-[-50%] z-[1000]  ${
             animation ? " overflow-y-hidden" : "overflow-y-scroll"
           } translate-y-[-50%] rounded-[8px] bg-white shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none `}>
-          <div className={`relative p-5 `}>
+          <div className={`relative p-5 z-[1001]`}>
             {type == "simple" ? (
               <PropertyFormSimple
                 animation={animation}

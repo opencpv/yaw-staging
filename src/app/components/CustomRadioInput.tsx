@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import * as RadioGroup from "@radix-ui/react-radio-group";
-import { InfoBubble } from "../property/details/components/InfoBubble";
+import { InfoBubble } from "../application-form/details/components/InfoBubble";
 
 type Props = {
   label: string;

@@ -20,10 +20,10 @@ import {
 import { ErrorMessage, Field } from "formik";
 import { styled } from "@stitches/react";
 import { SelectSearchInput } from "@/app/components/SelectSearchInput";
-import { LeaseData } from "@/app/property/details/components/content";
+import { LeaseData } from "@/app/application-form/details/components/content";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { openSans } from "@/app/styles/font";
+import { montserat, openSans } from "@/app/styles/font";
 import Image from "next/image";
 import { dateDefault } from "@/enum/defaultPhone";
 
@@ -38,10 +38,11 @@ type Props = {
   placeholder?: string;
   label: string;
   onChange: (value: any) => void;
-  onChange2: (value: any) => void;
+  onChange2?: (value: any) => void;
 
   initialValue?: any;
   name?: string;
+  font?: "Montserrat" | "OpenSans"
 };
 
 const PhoneNumberInputv2 = ({
@@ -52,6 +53,7 @@ const PhoneNumberInputv2 = ({
   onChange,
   onChange2,
   name,
+  font
 }: Props) => {
   const [countryData, setCountryData] = useState<DataItem[]>();
   const [selectedCountry, setSelectedCountry] = useState<any>({});
@@ -83,7 +85,7 @@ const PhoneNumberInputv2 = ({
   }, [value, value2]);
 
   useEffect(() => {
-    if (totalNumber) {
+    if (totalNumber && onChange2) {
       onChange2(selectedCountry);
     }
   }, [selectedCountry?.name, selectedCountry?.label]);
@@ -144,7 +146,7 @@ const PhoneNumberInputv2 = ({
                     className="rounded-[4px] "
                   />
                 </div>
-                <p className={`text-[13px] text-[#000] ${openSans.className}`}>
+                <p className={`text-[13px] text-[#000] `}>
                   {selectedCountry.idd?.root}
                   {selectedCountry.idd?.suffixes}
                 </p>
