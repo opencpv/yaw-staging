@@ -5,7 +5,7 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import { styled } from "@stitches/react";
 import { openSans } from "@/app/styles/font";
 import { PropertyDataType } from "./propertyDataType";
-import CustomRadioInput from "@/app/components/CustomRadioInput ";
+import CustomRadioInput from "@/app/components/CustomRadioInput";
 
 const FullNameAndRelationship = ({ index, fullName, relationship }: any) => {
   const [propertyData, setPropertyData] =

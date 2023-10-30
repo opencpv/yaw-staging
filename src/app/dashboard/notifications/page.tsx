@@ -17,12 +17,15 @@ type Notification = {
   notification: string;
   subject: string;
   type: string;
+  sender: string;
 };
 
 const Page = () => {
   const [currentNotification, setCurrentNotification] =
     useState<Notification>();
   const [showModal, setShowModal] = useState(false);
+  const [notifications, setNotifications] = useState();
+  const [notificationsLoading, setNotificationsLoading] = useState();
 
   useEffect(() => {
     const supabase = createClientComponentClient();
@@ -35,29 +38,49 @@ const Page = () => {
     setCurrentNotification(demoNotifications[0]);
   }, []);
 
+  const getNotifications = async () => {
+    try {
+      const {
+        data: data,
+        error,
+        status: dataStatus,
+      } = await supabase.from("notifications").select("*");
 
-  const notifications = supabase
-    .channel("custom-filter-channel")
-    .on(
-      "postgres_changes",
-      {
-        event: "*",
-        schema: "public",
-        table: "notifications",
-        filter: "column_name=eq.someValue",
-      },
-      (payload) => {
-        console.log("Change received!", payload);
+      if (data) {
+        setNotifications(data);
       }
-    )
-    .subscribe();
 
+      if (dataStatus === 200) {
+        setNotificationsLoading(true);
+      }
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  };
+
+  // Scrolls to the bottom on mount
+  useEffect(() => {
+    getNotifications();
+    const notifications = supabase
+      .channel("custom-all-channel")
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "notifications" },
+        (payload) => {
+          getNotifications();
+        }
+      )
+      .subscribe();
+  }, []);
 
   return (
     <div className={`flex lg:grid grid-cols-3 gap-5 `}>
       <div className=" lg:col-span-1  ">
         <div className="mb-2 px-3">
-          <p className="text-[24px] 2xl:text-[31px] font font-semibold">Notifications</p>
+          <p className="text-[24px] 2xl:text-[31px] font font-semibold">
+            Notifications
+          </p>
 
           <div className="w-full flex justify-end">
             <button className="flex justify-end items-center gap-2 hover:bg-[#073b3a12] p-2">
@@ -69,7 +92,7 @@ const Page = () => {
           </div>
         </div>
         <CustomScroll className="hidden lg:flex flex-col gap-6 max-h-[70vh] overflow-y-scroll ">
-          {demoNotifications.map((r, index) => (
+          {notifications?.map((r, index) => (
             <div
               key={index}
               onClick={(e) => {
@@ -77,15 +100,23 @@ const Page = () => {
               }}>
               <NotificationItem
                 type={r?.type}
+                sender={r?.sender}
+                subject={r?.message}
+                time={r?.sent}
+                notification={r?.message}
+              />
+              {/* <NotificationItem
+                type={r?.type}
+                sender={r?.sender}
                 subject={r?.subject}
                 time={r?.time}
                 notification={r?.notification}
-              />
+              /> */}
             </div>
           ))}
         </CustomScroll>
         <div className="flex flex-col lg:hidden lex-col gap-8  w-full overflow-y-scroll ">
-          {demoNotifications.map((r, index) => (
+          {notifications?.map((r, index) => (
             <div
               key={index}
               onClick={(e) => {

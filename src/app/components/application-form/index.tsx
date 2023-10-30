@@ -2,20 +2,20 @@
 import React, { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Cross2Icon } from "@radix-ui/react-icons";
-import PropertyFormSimple from "./PropertyFormSimple";
-import ProperyFormComplex from "./PropertyFormComplex";
-import PropertyFormComplex from "./PropertyFormComplex";
-import { SaveAndExit } from "./PropertyFormComplex/SaveAndExit";
+import PropertyFormSimple from "./components/PropertyFormSimple";
+import ProperyFormComplex from "./components/PropertyFormComplex";
+import PropertyFormComplex from "./components/PropertyFormComplex";
+import { SaveAndExit } from "./components/PropertyFormComplex/SaveAndExit";
 import { styled } from "@stitches/react";
 import { motion } from "framer-motion";
-import { GreyAnimation } from "./GreyAnimation";
+import { GreyAnimation } from "./components/GreyAnimation";
 
 type Type = {
   type: "simple" | "complex";
   variant?: string;
 };
 
-const ApplyNowModal = ({ type, variant = "rectangle" }: Type) => {
+const ApplicationForm = ({ type, variant = "rectangle" }: Type) => {
   const [animation, setAnimation] = useState(false);
   const [open, setOpen] = useState(false);
   return (
@@ -76,4 +76,4 @@ const ApplyNowModal = ({ type, variant = "rectangle" }: Type) => {
   );
 };
 
-export default ApplyNowModal;
+export default ApplicationForm;

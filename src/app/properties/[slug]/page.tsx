@@ -26,7 +26,7 @@ import ViewProperty from "../components/ViewProperty";
 import ReportIssue from "@/components/ReportIssue";
 import { BsBookmarkStar, BsBookmarkStarFill } from "react-icons/bs";
 import PropertyDetailsSlider from "../components/PropertyDetailsSlider";
-import ApplyNowModal from "@/app/application-form/details/components/ApplyNowModal";
+import ApplyNowModal from "@/app/components/application-form/details/components/ApplyNowModal";
 
 type Props = {};
 

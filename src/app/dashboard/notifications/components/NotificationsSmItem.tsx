@@ -24,9 +24,9 @@ const NotificationsSmItem: React.FC<Props> = ({ currentNotification }) => (
       <button className="">
         <NotificationItem
           type={currentNotification?.type}
-          subject={currentNotification?.subject}
-          time={currentNotification?.time}
-          notification={currentNotification?.notification}
+          subject={currentNotification?.message}
+          time={currentNotification?.sent}
+          notification={currentNotification?.message}
         />
       </button>
     </Dialog.Trigger>

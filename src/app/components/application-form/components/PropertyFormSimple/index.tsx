@@ -42,11 +42,11 @@ export default function PropertyFormSimple({
     // phoneNumber: Yup.number().required("Field is required")
   });
 
-  // useEffect(() => {
-  //   if (loading) {
-  //     setOpen(false);
-  //   }
-  // }, [loading]);
+  useEffect(() => {
+    if (loading) {
+      setOpen(false);
+    }
+  }, [loading]);
   const Adams = "c8efbc31-b932-4536-87a5-816303bd5011"  
   const Akowuah = "5f297aa7-18f5-42ff-9270-8ba8061cae95"
   const me = "d7caa3c8-e767-4d24-ab5d-44699d8a41ab"

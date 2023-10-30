@@ -14,7 +14,7 @@ const Layout = ({ children }: LayoutProps) => {
         <Pagination />
       </div>
 
-      <div className={`mt-6 px-4 ${openSans.className}`}>{children}</div>
+      <div className={`mt-6 px-4 text-black ${openSans.className}`}>{children}</div>
     </div>
   );
 };
