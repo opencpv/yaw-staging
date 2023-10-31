@@ -1,4 +1,6 @@
 import Image from "next/image";
+import SlideEnter from "./SlideEnter";
+import { useRef } from "react";
 
 export const Number = ({ number }: { number: string }) => {
   return (
@@ -21,7 +23,7 @@ type StepsProps = {
 
 const Steps = ({ number, headerText, subText, image }: StepsProps) => {
   return (
-    <div className="w-full">
+    <div className="w-full" >
       <div className="hidden lg:grid grid-cols-7 justify-center items-center w-full h-full border-b-[1px] border-b-[B0B0B0] py-3 hover:scale-[1.01]">
         <div className="col-span-5 flex  items-center justify-start w-full gap-6  max-w-[670px]">
           <Number number={number} />
@@ -68,34 +70,36 @@ const Steps = ({ number, headerText, subText, image }: StepsProps) => {
 
 export default function GetStarted() {
   return (
-    <div className="flex flex-col items-center justify-center w-full p-5 lg:px-20  py-5 lg:py-20">
-      <div className="grid grid-cols-7  items-center justify-center mt-10 lg:mt-0  gap-y-5">
-        <div className="col-span-5 w-full">
-          <p className="text-[1.9375rem] font-semibold max-w-[772px] leading-[43.4px] w-full">
-            Getting underway on Rentright is a straightforward process.
-          </p>
-        </div>
-        <div className="col-span-7 flex flex-col items-center justify-center gap-8 w-full h-full">
-          <Steps
-            number="01"
-            headerText="Tell us about your place"
-            subText="Provide essential details, such as its location and maximum guest capacity."
-            image="/assets/images/leaseform/lease-form-1.png"
-          />
-          <Steps
-            number="02"
-            headerText="Set it apart and make it exceptional"
-            subText="Add 10 images, a title, and a description, and rest assured, we're here to support you every step of the way."
-            image="/assets/images/leaseform/lease-form-2.jpeg"
-          />
-          <Steps
-            number="03"
-            headerText="Finish up and publish"
-            subText="Publish your listing"
-            image="/assets/images/leaseform/lease-form-3.jpeg"
-          />{" "}
+    <SlideEnter>
+      <div className="flex flex-col items-center justify-center w-full lg:px-20 ">
+        <div className="grid grid-cols-7  items-center justify-center  gap-y-5">
+          <div className="col-span-5 w-full">
+            <p className="text-[1.9375rem] font-semibold max-w-[772px] leading-[43.4px] w-full">
+              Getting underway on Rentright is a straightforward process.
+            </p>
+          </div>
+          <div className="col-span-7 flex flex-col items-center justify-center gap-8 w-full h-full">
+            <Steps
+              number="01"
+              headerText="Tell us about your place"
+              subText="Provide essential details, such as its location and maximum guest capacity."
+              image="/assets/images/leaseform/lease-form-1.png"
+            />
+            <Steps
+              number="02"
+              headerText="Set it apart and make it exceptional"
+              subText="Add 10 images, a title, and a description, and rest assured, we're here to support you every step of the way."
+              image="/assets/images/leaseform/lease-form-2.jpeg"
+            />
+            <Steps
+              number="03"
+              headerText="Finish up and publish"
+              subText="Publish your listing"
+              image="/assets/images/leaseform/lease-form-3.jpeg"
+            />{" "}
+          </div>
         </div>
       </div>
-    </div>
+    </SlideEnter>
   );
 }

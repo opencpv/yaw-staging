@@ -39,6 +39,9 @@ const config: Config = {
           50: "#DDB771",
           100: "#F1B346",
         },
+        warning:{
+          400: "#FFB733"
+        },
         white: "#fff",
       },
       gridTemplateColumns: {
