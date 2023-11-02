@@ -3,6 +3,7 @@ import { styled } from "@stitches/react";
 import { useState } from "react";
 import ApplicationForm from "../components/application-form";
 import LeaseForm from "../components/lease-form";
+import ImageOptionsPopover from "../components/lease-form/components/ChooseImages/ImageOptionsPopover";
 
 export default function PDHero() {
   const [heroUrl, setHeroUrl] = useState(
@@ -19,6 +20,8 @@ export default function PDHero() {
           <ApplicationForm type="complex" />
           <ApplicationForm type="simple" />
           <LeaseForm/>
+          <ImageOptionsPopover />
+
        </div>
 
       </div>

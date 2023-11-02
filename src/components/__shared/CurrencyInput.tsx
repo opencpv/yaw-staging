@@ -37,10 +37,10 @@ type Props = {
 
   initialValue?:  any;
 
-  placeholder: string;
+  placeholder?: string;
   label: string;
   onChange: (value: any) => void;
-  onChange2: (value: any) => void;
+  onChange2?: (value: any) => void;
   placeholderMonthlyIncomeCurrency?: string;
   placeholderMonthlyIncome?: string;
   infoBubble?: boolean;
@@ -87,7 +87,7 @@ const CurrencyInput = ({
   }, [value, value2]);
 
   useEffect(() => {
-    onChange2(selectedCurrency);
+    onChange2 && onChange2(selectedCurrency);
     onChange(totalValue);
   }, [totalValue]);
   useEffect(() => {

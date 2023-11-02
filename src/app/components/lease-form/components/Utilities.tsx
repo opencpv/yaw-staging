@@ -1,53 +1,81 @@
 import { styled } from "@stitches/react";
 import { FaWifi } from "react-icons/fa";
 import SlideEnter from "./SlideEnter";
+import { MdOutlineLocalGasStation } from "react-icons/md";
+import Internet from "./icons/Internet";
+import SateliteTv from "./icons/SateliteTv";
+import Electricity from "./icons/Electricity";
+import Water from "./icons/Water";
+import Amenity from "./Amenity";
+import { useEffect, useState } from "react";
+import { useLocalStorage } from "@uidotdev/usehooks";
 
-type AmenityProp = {
-  icon: any;
-  name: string;
-};
-export const Amenity = ({ icon, name }: AmenityProp) => {
-  return (
-    <div
-      className="flex flex-col aspect-[261/161] max-w-[261px] w-full gap-4 items-center justify-center hover:bg-slate-200 hover:scale-[1.05] cursor-pointer rounded-xl"
-      style={{
-        boxShadow:
-          "0px 1px 2px 0px rgba(0, 0, 0, 0.06), 0px 1px 3px 0px rgba(0, 0, 0, 0.10)",
-      }}>
-      {icon}
-      {name}
-    </div>
-  );
-};
+const data = [
+  { name: "water", icon: <Water size="44" /> },
+  { name: "gas", icon: <MdOutlineLocalGasStation size="44" /> },
+  { name: "electricity", icon: <Electricity size="44" /> },
+  { name: "satelite tv", icon: <SateliteTv size="44" /> },
+  { name: "internet", icon: <Internet size="44" /> },
+];
 
 export default function Utilities() {
+
+  const [selected, setSelected] = useState<any>([]);
+
+  const [leaseFormData, setLeaseFormData] = useLocalStorage("lease-form", {
+    utilities: [],
+  });
+
+  const handleAmenityClick = (r: any) => {
+    if (selected.includes(r?.name)) {
+      setSelected(selected.filter((item: any) => item !== r?.name));
+    } else {
+      setSelected([...selected, r?.name]);
+    }
+  };
+
+  useEffect(() => {
+    setLeaseFormData((prevData: any) => ({
+      ...prevData,
+      utilities: selected,
+    }));
+  }, [selected?.length]);
+
+  useEffect(() => {
+    if (leaseFormData?.utilities) {
+      setSelected(leaseFormData?.utilities);
+    }
+  }, []);
   return (
- <SlideEnter>
-        <Root className="flex flex-col w-full items-center justify-center ">
-          <div className="w-full lg:w-[75%] flex flex-col items-center justify-center gap-6">
-            <div className="w-full flex flex-col gap-2">
-              <p className="text-[25px] lg:text-[31px] font-semibold">Utilities</p>
-              <p className="text-[16px] font-[400]">
-                You can add more amenities after you publish your listing
-              </p>
-            </div>
-            <div className="grid grid-cols-4 w-full gap-2  lg:gap-y-0">
-              <div className="col-span-2 lg:col-span-1  amenity-col">
-                <Amenity icon={<FaWifi />} name="wifi" />
-              </div>
-              <div className="col-span-2 lg:col-span-1  amenity-col">
-                <Amenity icon={<FaWifi />} name="wifi" />
-              </div>{" "}
-              <div className="col-span-2 lg:col-span-1  amenity-col">
-                <Amenity icon={<FaWifi />} name="wifi" />
-              </div>{" "}
-              <div className="col-span-2 lg:col-span-1  amenity-col">
-                <Amenity icon={<FaWifi />} name="wifi" />
-              </div>
-            </div>
+    <SlideEnter>
+      <Root className="flex flex-col w-full items-center justify-center ">
+        <div className="w-full lg:w-[75%] flex flex-col items-center justify-center gap-6">
+          <div className="w-full flex flex-col gap-2">
+            <p className="text-[25px] lg:text-[31px] font-semibold">
+              Utilities
+            </p>
+            <p className="text-[16px] font-[400]">
+              You can add more utilities after you publish your listing
+            </p>
           </div>
-        </Root>
- </SlideEnter>
+          <div className="grid grid-cols-4 w-full gap-2  lg:gap-y-0">
+            {data.map((r: any, index: number) => (
+              <div
+                key={index}
+                className="col-span-2 lg:col-span-1"
+                onClick={() => handleAmenityClick(r)}>
+                <Amenity
+                  n={index}
+                  name={r?.name}
+                  icon={r?.icon}
+                  selected={selected?.includes(r?.name)}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </Root>
+    </SlideEnter>
   );
 }
 
@@ -58,8 +86,8 @@ const Root = styled("div", {
     gap: "16px",
     justifyContent: "center",
     alignItems: "center",
-    "@media screen and (min-width: 1024px)":{
-        justifyContent: "start",
-    }
+    "@media screen and (min-width: 1024px)": {
+      justifyContent: "start",
+    },
   },
 });

@@ -1,30 +1,21 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import styles from "../index.module.css";
 import Image from "next/image";
 import { AddMoreImages, AddMoreImagesXl } from "./AddMoreImages";
 import BannerImage from "./BannerImage";
 import SlideEnter from "../SlideEnter";
-
-const ImageCard = ({ file }) => {
-  return (
-    <div
-      className="rounded-2xl w-full aspect-[328/232] max-w-[328px]"
-      style={{
-        backgroundImage: `url(${file?.preview})`,
-        backgroundPosition: "50%",
-        backgroundSize: "cover",
-        backgroundColor: "100%",
-
-        backgroundRepeat: "no-repeat",
-      }}>
-      <div className="flex flex-col  w-full "></div>
-    </div>
-  );
-};
+import ImageOptionsPopover from "./ImageOptionsPopover";
+import { ImageCard } from "./ImageCard";
+import { useLocalStorage } from "@uidotdev/usehooks";
 
 export default function ChooseImages() {
   const [files, setFiles] = useState<any>([]);
+  const [listingImages, setListingimages] = useLocalStorage(
+    "listing-images",
+    []
+  );
+
   const onDrop = useCallback((acceptedFiles: any) => {
     if (acceptedFiles?.length) {
       setFiles((previousFiles: any) => [
@@ -35,22 +26,56 @@ export default function ChooseImages() {
       ]);
     }
   }, []);
+
+  useEffect(() => {
+    if (files?.length >= 1) {
+      setListingimages(files);
+    }
+  }, [files]);
+
+  useEffect(() => {
+    if (listingImages) {
+      setFiles(listingImages);
+    }
+  }, []);
+
+  const remove = (index: any) => {
+    setFiles((previousFiles: any) => {
+      const updatedFiles = [...previousFiles];
+      updatedFiles.splice(index, 1);
+      return updatedFiles;
+    });
+  };
+
+  const makeBannerImage = (index: any) => {
+    if (index >= 0 && index < files.length) {
+      const fileToMove = files[index];
+      const updatedFiles = [...files];
+
+      updatedFiles.splice(index, 1);
+      updatedFiles.unshift(fileToMove);
+      setFiles(updatedFiles);
+    }
+  };
+
+  const addCaption = (index: any) => {};
+
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
     <SlideEnter>
       <form className="w-full flex flex-col items-center justify-center h-full px-24 gap-[2rem]">
-        <div className="w-full lg:w-[75%] flex flex-col gap-8 items-center justify-center max-w-[1108px]">
-          <div className="w-full ">
+        <div className="w-full flex flex-col gap-8 items-start justify-center max-w-[1108px]">
+          <div className=" ">
             <p className={`${styles.title} w-fit`}>
               Choose your property images
             </p>
-            <p className="w-full">
+            <p className="">
               You can remove or add an image after you publish your listing.
             </p>
           </div>
           <div className="flex flex-col items-end justify-center w-full h-full max-w-[1108px]">
-            {files.length >= 1 && <AddMoreImages />}
+            {files.length >= 1 && <AddMoreImages setFiles={setFiles} />}
             {files.length < 1 && (
               <div
                 {...getRootProps({})}
@@ -80,11 +105,22 @@ export default function ChooseImages() {
         {files.length >= 1 && (
           <div className="grid grid-cols-3 gap-5 w-full max-w-[1108px]">
             <div className="col-span-3 h-full">
-              <BannerImage file={files?.[0]} />
+              <BannerImage
+                file={files?.[0]}
+                remove={() => remove(0)}
+                makeBannerImage={() => makeBannerImage}
+                addCaption={() => addCaption}
+              />
             </div>
-            {files?.map((file, index) => (
-              <div className="col-span-3 lg:col-span-1">
-                <ImageCard key={index} file={file} />
+            {files?.slice(1)?.map((file: any, index: number) => (
+              <div className="col-span-3 lg:col-span-1" key={index}>
+                <ImageCard
+                  key={index}
+                  file={file}
+                  remove={() => remove(index + 1)}
+                  makeBannerImage={() => makeBannerImage(index + 1)}
+                  addCaption={() => addCaption}
+                />
               </div>
             ))}
 

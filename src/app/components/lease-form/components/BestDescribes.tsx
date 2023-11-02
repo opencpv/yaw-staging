@@ -2,8 +2,6 @@ import { FaWifi } from "react-icons/fa";
 import { styled } from "@stitches/react";
 import SlideEnter from "./SlideEnter";
 
-
-
 import {
   MdApartment,
   MdOutlineHouse,
@@ -22,7 +20,7 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 const properties = [
   { name: "apartment", icon: <MdApartment size="44" /> },
   { name: "house", icon: <MdOutlineHouse size="44" /> },
-  { name: "townhouse", icon: <TownHouse size="44" /> },
+  { name: "town house", icon: <TownHouse size="44" /> },
   { name: "detached house", icon: <DetachedHouse size="44" /> },
   { name: "semi-detached house", icon: <BsHouse size="44" /> },
   { name: "self contain", icon: <LuWarehouse size="44" /> },
@@ -31,32 +29,30 @@ const properties = [
   { name: "penthouse", icon: <PentHouse size="44" /> },
 ];
 
-
-
 export default function BestDescribes() {
-  const [selected, setSelected] = useState<any>([]);
+  const [selected, setSelected] = useState<any>();
   const [leaseFormData, setLeaseFormData] = useLocalStorage("lease-form", {
-    amenities: [],
+    bestDescribes: "",
   });
 
-  const handleAmenityClick = (r :any) => {
-    if (selected.includes(r?.name)) {
-      setSelected(selected.filter((item :any) => item !== r?.name));
+  const handleAmenityClick = (r: any) => {
+    if (selected == r?.name) {
+      setSelected("");
     } else {
-      setSelected([...selected, r?.name]);
+      setSelected(r?.name);
     }
   };
 
   useEffect(() => {
     setLeaseFormData((prevData: any) => ({
       ...prevData,
-      amenities: selected,
+      bestDescribes: selected,
     }));
-  }, [selected.length]);
+  }, [selected]);
 
-  useEffect(()=>{
-    setSelected(leaseFormData?.amenities)
-  }, [])
+  useEffect(() => {
+    setSelected(leaseFormData?.bestDescribes);
+  }, []);
 
   return (
     <SlideEnter>
@@ -81,7 +77,7 @@ export default function BestDescribes() {
                   n={index}
                   name={r?.name}
                   icon={r?.icon}
-                  selected={selected?.includes(r?.name)}
+                  selected={selected == r?.name}
                 />
               </div>
             ))}

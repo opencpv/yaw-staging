@@ -22,24 +22,30 @@ import ProgressBar from "../../ProgressBar";
 import ChooseImages from "./ChooseImages";
 import RentInformation from "./RentInformation";
 import AgencyInformation from "./AgencyInformation";
+import { useLocalStorage } from "@uidotdev/usehooks";
 
 const iconSize = 44;
 
 const views = [
+  <ChooseImages />,
+
+  <Utilities />,
+
+  <FeaturesAndAmenities />,
+
+  <PropertyInformation />,
+
+  <AgencyInformation />,
+
+  <RentInformation />,
   <TypeOfPlace />,
   <SuitedFor />,
   <BestDescribes />,
-  <RentInformation />,
-  <AgencyInformation />,
-  <ChooseImages />,
   <GetStarted />,
   <ChooseTemplate />,
   <TellUsAboutYourPlace />,
   <SetItApart />,
-  <FeaturesAndAmenities />,
-  <Utilities />,
   <FinishAndPublish />,
-  <PropertyInformation />,
   <Congratulations />,
 ];
 
@@ -47,7 +53,13 @@ export default function LeaseForm() {
   const leaseRef = useRef<any>();
   const [progressValue, setProgressValue] = useState<any>(1);
   const [activeSlide, setActiveSlide] = useState(0);
-
+  const [leaseFormData, setLeaseFormData] = useLocalStorage("lease-form", {});
+  const handleOnChange = (name: any, value: any) => {
+    setLeaseFormData({
+      ...leaseFormData,
+      [name]: value,
+    });
+  };
   const scrollToTop = () => {
     if (leaseRef.current) {
       leaseRef.current.scrollIntoView();
@@ -67,7 +79,11 @@ export default function LeaseForm() {
         <div className="w-full  pt-16 px-10" ref={leaseRef}>
           <ProgressBar value={progressValue} />
         </div>
-        <Formik>
+        <Formik
+        initialValues={{
+          ...leaseFormData
+        }}
+        >
           <Form className="w-full">
             <div>{views[activeSlide]}</div>
           </Form>

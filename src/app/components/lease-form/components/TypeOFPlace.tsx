@@ -4,30 +4,24 @@ import { useEffect, useState } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 
 export default function TypeOfPlace() {
-  const [selected, setSelected] = useState<any>();
+  const [selected, setSelected] = useState<any>("");
   const [leaseFormData, setLeaseFormData] = useLocalStorage("lease-form", {
-    suitedFor: [],
+    typeOfPlace:""
   });
 
-
-  const handleOptionsClick = (r: any) => {
-    if (selected.includes(r?.name)) {
-      setSelected(selected.filter((item: any) => item !== r?.name));
-    } else {
-      setSelected([...selected, r?.name]);
-    }
-  };
-
   useEffect(() => {
-    setLeaseFormData((prevData: any) => ({
-      ...prevData,
-      typeOfPlace: selected,
-    }));
+    if (selected) {
+      setLeaseFormData((prevData: any) => ({
+        ...prevData,
+        typeOfPlace: selected,
+      }));
+    }
   }, [selected]);
 
   useEffect(() => {
-    setSelected(leaseFormData?.suitedFor);
+    setSelected(leaseFormData?.typeOfPlace);
   }, []);
+
   return (
     <SlideEnter>
       <Root className="w-full h-full flex-col items-center justify-center grid grid-cols-8">
@@ -37,14 +31,22 @@ export default function TypeOfPlace() {
             What type of place will guests have?
           </p>
           <div className="w-full flex flex-col gap-6">
-            <div className="example" onClick={()=> setSelected('furnished')}>
+            <div
+              className={`example ${
+                selected == "furnished" && "active-example"
+              } `}
+              onClick={() => setSelected("furnished")}>
               <p className="example-header">Furnished</p>
               <p className="example-p">
                 Guests will enjoy a fully furnished retreat, complete with all
                 the comforts and conveniences needed for a relaxing stay.
               </p>
             </div>
-            <div className="example" onClick={()=> setSelected('semi furnished')}>
+            <div
+              className={`example ${
+                selected == "semi furnished" && "active-example"
+              } `}
+              onClick={() => setSelected("semi furnished")}>
               <p className="example-header">Semi Furnished</p>
               <p className="example-p">
                 Our semi-furnished accommodations strike the perfect balance,
@@ -52,7 +54,11 @@ export default function TypeOfPlace() {
                 add their personal touch to the space.
               </p>
             </div>
-            <div className="example" onClick={()=> setSelected('not furnished')}>
+            <div
+              className={`example ${
+                selected == "not furnished" && "active-example"
+              } `}
+              onClick={() => setSelected("not furnished")}>
               <p className="example-header">Not Furnished</p>
               <p className="example-p">
                 Guests can look forward to a blank canvas, allowing them to
@@ -68,13 +74,17 @@ export default function TypeOfPlace() {
 }
 
 const Root = styled("div", {
+  ".active-example": {
+    border: "1px solid #0B0B0B0",
+    boxShadow: "0px 1px 2px 0px rgba(0, 0, 0, 0.06), 0px 1px 3px 0px rgba(0, 0, 0, 0.10)"
+  },
   ".example": {
     display: "flex",
     flexDirection: "column",
     cursor: "pointer",
     gap: "1rem",
-    paddingInline:"1rem",
-    paddingBlock:"1rem",
+    paddingInline: "1rem",
+    paddingBlock: "1.3rem",
 
     "&:hover": {
       scale: "1.02",

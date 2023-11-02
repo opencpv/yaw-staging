@@ -29,7 +29,7 @@ const CustomRadioInput = ({
           setValue(value)
           onChange(value)}}
         className="flex flex-col  gap-[0.9375rem] text-[#6A6968]"
-        defaultValue="default"
+        defaultValue={defaultValue}
         aria-label="View density">
         <div className="text-[1rem] whitespace-nowrap flex gap-2">
           {label}

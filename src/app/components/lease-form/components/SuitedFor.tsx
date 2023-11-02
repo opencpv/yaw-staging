@@ -33,7 +33,7 @@ export default function SuitedFor() {
       ...prevData,
       suitedFor: selected,
     }));
-  }, [selected.length]);
+  }, [selected?.length]);
 
   useEffect(() => {
     setSelected(leaseFormData?.suitedFor);
