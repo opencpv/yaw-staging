@@ -64,7 +64,7 @@ export default function ChooseImages() {
 
   return (
     <SlideEnter>
-      <form className="w-full flex flex-col items-center justify-center h-full px-24 gap-[2rem]">
+      <form className="w-full flex flex-col items-center justify-center h-full lg:px-24 gap-[2rem]">
         <div className="w-full flex flex-col gap-8 items-start justify-center max-w-[1108px]">
           <div className=" ">
             <p className={`${styles.title} w-fit`}>

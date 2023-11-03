@@ -118,7 +118,7 @@ const PhoneNumberInputv2 = ({
   }, []);
 
   return (
-    <div>
+    <div className="w-full">
       <Root className=" gap-3">
         <div
           className={`font-[400] ${openSans.className} text-[#6A6968] capitalize flex gap-2`}

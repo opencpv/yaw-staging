@@ -23,10 +23,17 @@ import ChooseImages from "./ChooseImages";
 import RentInformation from "./RentInformation";
 import AgencyInformation from "./AgencyInformation";
 import { useLocalStorage } from "@uidotdev/usehooks";
+import OTP1 from "./OTP/OTP1";
+import OTP2 from "./OTP/OTP2";
+
 
 const iconSize = 44;
 
 const views = [
+  <Congratulations />,
+
+  <OTP1/>,
+  <OTP2/>,
   <ChooseImages />,
 
   <Utilities />,
@@ -46,7 +53,6 @@ const views = [
   <TellUsAboutYourPlace />,
   <SetItApart />,
   <FinishAndPublish />,
-  <Congratulations />,
 ];
 
 export default function LeaseForm() {
@@ -69,12 +75,12 @@ export default function LeaseForm() {
   useEffect(() => {
     const value = (activeSlide / views.length) * 100;
     console.log(value);
-    setProgressValue(value);
+    // setProgressValue(value);
   }, [activeSlide]);
 
   return (
     <Root
-      className={`${openSans.className} flex flex-col max-h-[80vh] min-h-[90vh] justify-between gap-10`}>
+      className={`${openSans.className} flex flex-col max-h-[90vh] min-h-[85vh] h-full justify-between gap-10`}>
       <div className="flex flex-col w-full h-full items-center justify-start gap-16">
         <div className="w-full  pt-16 px-10" ref={leaseRef}>
           <ProgressBar value={progressValue} />
@@ -111,7 +117,6 @@ export default function LeaseForm() {
             if (activeSlide < views.length) {
               setActiveSlide((init) => init + 1);
 
-              setProgressValue((activeSlide / views.length) * 100);
               scrollToTop();
             }
           }}>

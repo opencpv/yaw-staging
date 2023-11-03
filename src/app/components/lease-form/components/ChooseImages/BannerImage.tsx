@@ -21,7 +21,7 @@ export default function BannerImage({ file , makeBannerImage, addCaption, remove
         backgroundRepeat: "no-repeat",
       }}>
 
-        <div className="max-w-[137px] max-h-[54px] w-full aspect-[137/54] text-[16px] font-[400]">
+        <div className="max-w-[137px] max-h-[54px] w-full aspect-[137/54] text-[16px] font-[400] bg-white flex items-center justify-center rounded-2xl">
             Banner Image
         </div>
       <ImageOptionsPopover
