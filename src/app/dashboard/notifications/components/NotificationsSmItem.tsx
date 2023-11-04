@@ -6,16 +6,10 @@ import MessageIcon from "../icons/CaMessageIcon";
 import { IoPersonOutline } from "react-icons/io5";
 import NotificationDetailsFull from "./NotificationDetails";
 import NotificationItem from "./NotificationItem";
+import { NotificationType } from "./types";
 
-type Notification = {
-  date: string;
-  time: string;
-  notification: string;
-  subject: string;
-  type: "message" | "admin" | "contact";
-};
 type Props = {
-  currentNotification: Notification;
+  currentNotification: NotificationType;
 };
 
 const NotificationsSmItem: React.FC<Props> = ({ currentNotification }) => (

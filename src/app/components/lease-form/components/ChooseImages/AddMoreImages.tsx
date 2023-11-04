@@ -2,7 +2,11 @@ import { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import ImageAddIcon from "../icons/ImageAdd";
 
-export const AddMoreImages = ({ setFiles }) => {
+type Props = {
+  setFiles : any
+}
+
+export const AddMoreImages = ({ setFiles } : Props) => {
   const onDrop = useCallback((acceptedFiles: any) => {
     if (acceptedFiles?.length) {
       setFiles((previousFiles: any) => [
@@ -29,7 +33,7 @@ export const AddMoreImages = ({ setFiles }) => {
   );
 };
 
-export const AddMoreImagesXl = ({ setFiles }) => {
+export const AddMoreImagesXl = ({ setFiles } : Props) => {
   const onDrop = useCallback((acceptedFiles: any) => {
     if (acceptedFiles?.length) {
       setFiles((previousFiles: any) => [

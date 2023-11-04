@@ -20,7 +20,6 @@ export default function PDHero() {
           <ApplicationForm type="complex" />
           <ApplicationForm type="simple" />
           <LeaseForm/>
-          <ImageOptionsPopover />
 
        </div>
 

@@ -10,22 +10,15 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { redirect } from "next/navigation";
 import CaMarkAsRead from "./icons/CaMarkAsRead";
 import supabase from "@/lib/utils/supabaseClient";
+import { NotificationType } from "./components/types";
 
-type Notification = {
-  date: string;
-  time: string;
-  notification: string;
-  subject: string;
-  type: string;
-  sender: string;
-};
 
 const Page = () => {
   const [currentNotification, setCurrentNotification] =
-    useState<Notification>();
+    useState<NotificationType>();
   const [showModal, setShowModal] = useState(false);
-  const [notifications, setNotifications] = useState();
-  const [notificationsLoading, setNotificationsLoading] = useState();
+  const [notifications, setNotifications] = useState<NotificationType | any>();
+  const [notificationsLoading, setNotificationsLoading] = useState<boolean | null>();
 
   useEffect(() => {
     const supabase = createClientComponentClient();
@@ -34,9 +27,9 @@ const Page = () => {
     }
   }, []);
 
-  useEffect(() => {
-    setCurrentNotification(demoNotifications[0]);
-  }, []);
+  // useEffect(() => {
+  //   setCurrentNotification(demoNotifications[0]);
+  // }, []);
 
   const getNotifications = async () => {
     try {
@@ -92,7 +85,7 @@ const Page = () => {
           </div>
         </div>
         <CustomScroll className="hidden lg:flex flex-col gap-6 max-h-[70vh] overflow-y-scroll ">
-          {notifications?.map((r, index) => (
+          {notifications?.map((r : any, index : number) => (
             <div
               key={index}
               onClick={(e) => {
@@ -116,7 +109,7 @@ const Page = () => {
           ))}
         </CustomScroll>
         <div className="flex flex-col lg:hidden lex-col gap-8  w-full overflow-y-scroll ">
-          {notifications?.map((r, index) => (
+          {notifications?.map((r : any, index: number) => (
             <div
               key={index}
               onClick={(e) => {
@@ -129,7 +122,7 @@ const Page = () => {
       </div>
       <div className="hidden lg:flex col-span-2 h-full min-h-[50vh] mt-14">
         <NotificationDetailsFull
-          currentNotification={currentNotification as Notification}
+          currentNotification={currentNotification}
         />
       </div>
     </div>

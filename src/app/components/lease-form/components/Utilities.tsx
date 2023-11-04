@@ -11,11 +11,11 @@ import { useEffect, useState } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 
 const data = [
-  { name: "water", icon: <Water size="44" /> },
+  { name: "water", icon: <Water  /> },
   { name: "gas", icon: <MdOutlineLocalGasStation size="44" /> },
-  { name: "electricity", icon: <Electricity size="44" /> },
-  { name: "satelite tv", icon: <SateliteTv size="44" /> },
-  { name: "internet", icon: <Internet size="44" /> },
+  { name: "electricity", icon: <Electricity /> },
+  { name: "satelite tv", icon: <SateliteTv  /> },
+  { name: "internet", icon: <Internet /> },
 ];
 
 export default function Utilities() {

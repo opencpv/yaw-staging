@@ -20,7 +20,6 @@ import {
 import { ErrorMessage, Field } from "formik";
 import { styled } from "@stitches/react";
 import { SelectSearchInput } from "@/app/components/SelectSearchInput";
-import { LeaseData } from "@/app/components/application-form/details/components/content";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { montserat, openSans } from "@/app/styles/font";

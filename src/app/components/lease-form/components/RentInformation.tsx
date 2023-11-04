@@ -3,12 +3,13 @@ import SlideEnter from "./SlideEnter";
 import CustomRadioInput from "../../CustomRadioInput";
 import styles from "./index.module.css";
 import { useLocalStorage } from "@uidotdev/usehooks";
+import { ListingForm } from "./types";
 
 export default function RentInformation() {
-  const [leaseFormData, setLeaseFormData] = useLocalStorage("lease-form", {});
+  const [listingFormData, setListingFormData] = useLocalStorage<ListingForm>("listing-form", {});
   const handleOnChange = (name: any, value: any) => {
-    setLeaseFormData({
-      ...leaseFormData,
+    setListingFormData({
+      ...listingFormData,
       [name]: value,
     });
   };
@@ -21,18 +22,18 @@ export default function RentInformation() {
           <div className="grid grid-cols-3 gap-x-5">
             <div className="flex flex-col gap-6 col-span-3 lg:col-span-1">
               <CurrencyInput
-                initialValue={leaseFormData?.monthlyAmount}
+                initialValue={listingFormData?.monthlyAmount}
                 label="Monthly Amount"
                 onChange={(value) => handleOnChange("monthlyAmount", value)}
               />
               <CustomRadioInput
-                defaultValue={leaseFormData?.advancePayment}
+                defaultValue={listingFormData?.advancePayment}
                 label="Do you require advance payment"
                 onChange={(value) => handleOnChange("advancePayment", value)}
               />
 
               <CustomRadioInput
-                defaultValue={leaseFormData?.refundableSecurityDeposit}
+                defaultValue={listingFormData?.refundableSecurityDeposit}
                 label="Do you require a refundable security deposit?"
                 onChange={(value) =>
                   handleOnChange("refundableSecurityDeposit", value)
@@ -40,7 +41,7 @@ export default function RentInformation() {
               />
 
               <CurrencyInput
-                initialValue={leaseFormData?.refundableSecurityDepositAmount}
+                initialValue={listingFormData?.refundableSecurityDepositAmount}
                 label="Refundable Security Deposit Amount"
                 onChange={(value) =>
                   handleOnChange("refundableSecurityDepositAmount", value)
@@ -49,7 +50,7 @@ export default function RentInformation() {
             </div>
             <div>
               <CustomRadioInput
-                defaultValue={leaseFormData?.additionalFees}
+                defaultValue={listingFormData?.additionalFees}
                 label="Do you require other fees?"
                 onChange={(value) =>
                   handleOnChange("additionalFees", value)

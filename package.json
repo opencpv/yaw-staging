@@ -65,6 +65,7 @@
   },
   "devDependencies": {
     "@tanstack/eslint-plugin-query": "^5.6.0",
-    "@types/node-schedule": "^2.1.2"
+    "@types/node-schedule": "^2.1.2",
+    "nodemon": "^3.0.1"
   }
 }

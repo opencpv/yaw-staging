@@ -1,17 +1,11 @@
 "use client";
 import { styled } from "@stitches/react";
 import { Field, Form, Formik } from "formik";
+import { NotificationType } from "./types";
 
-type Notification = {
-  date: string,
-  time: string, 
-  notification: string, 
-  subject: string
-  type: string
-}
 
 type Props = {
-  currentNotification: Notification
+  currentNotification?: NotificationType
 };
 
 

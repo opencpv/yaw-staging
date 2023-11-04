@@ -321,7 +321,7 @@ const Page = () => {
   );
 };
 
-const SlideUpAnimation = ({ children }) => {
+const SlideUpAnimation = ({ children } : {children : React.ReactNode}) => {
   return (
     <motion.div
       className="w-full h-full"

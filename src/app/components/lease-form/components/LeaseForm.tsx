@@ -26,34 +26,28 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import OTP1 from "./OTP/OTP1";
 import OTP2 from "./OTP/OTP2";
 
-
 const iconSize = 44;
 
 const views = [
-  <Congratulations />,
-
-  <OTP1/>,
-  <OTP2/>,
-  <ChooseImages />,
-
-  <Utilities />,
-
-  <FeaturesAndAmenities />,
-
-  <PropertyInformation />,
-
-  <AgencyInformation />,
-
-  <RentInformation />,
-  <TypeOfPlace />,
-  <SuitedFor />,
-  <BestDescribes />,
-  <GetStarted />,
-  <ChooseTemplate />,
-  <TellUsAboutYourPlace />,
-  <SetItApart />,
-  <FinishAndPublish />,
+  <GetStarted key="get-started" />,
+  <TellUsAboutYourPlace key="tell-us-about-your-place" />,
+  <ChooseTemplate key="choose-template" />,
+  <PropertyInformation key="property-information" />,
+  <AgencyInformation key="agency-information" />,
+  <RentInformation key="rent-information" />,
+  <TypeOfPlace key="type-of-place" />,
+  <SuitedFor key="suited-for" />,
+  <BestDescribes key="best-describes" />,
+  <Utilities key="utilities" />,
+  <FeaturesAndAmenities key="features-and-amenities" />,
+  <SetItApart key="set-it-apart" />,
+  <ChooseImages key="choose-images" />,
+  <FinishAndPublish key="finish-and-publish" />,
+  <OTP1 key="otp1" />,
+  <OTP2 key="otp2" />,
+  <Congratulations key="congratulations" />,
 ];
+
 
 export default function LeaseForm() {
   const leaseRef = useRef<any>();
@@ -80,16 +74,17 @@ export default function LeaseForm() {
 
   return (
     <Root
-      className={`${openSans.className} flex flex-col max-h-[90vh] min-h-[85vh] h-full justify-between gap-10`}>
+      className={`${openSans.className} flex flex-col max-h-[90vh] min-h-[85vh] h-full justify-between gap-10 text-black`}>
       <div className="flex flex-col w-full h-full items-center justify-start gap-16">
         <div className="w-full  pt-16 px-10" ref={leaseRef}>
           <ProgressBar value={progressValue} />
         </div>
         <Formik
-        initialValues={{
-          ...leaseFormData
-        }}
-        >
+          initialValues={{
+            ...leaseFormData,
+          }}
+          onSubmit={() => alert('sibm')}
+          >
           <Form className="w-full">
             <div>{views[activeSlide]}</div>
           </Form>

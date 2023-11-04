@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
+import React from "react";
 
-export default function SlideEnter({ children }) {
+export default function SlideEnter({ children } : { children : React.ReactNode}) {
   return (
     <motion.div
       className="w-full h-full"

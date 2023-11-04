@@ -38,6 +38,7 @@ const config: Config = {
         accent: {
           50: "#DDB771",
           100: "#F1B346",
+          400: "#F5C771"
         },
         warning:{
           400: "#FFB733"

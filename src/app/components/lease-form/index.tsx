@@ -7,12 +7,9 @@ import { SaveAndExit } from "../application-form/components/PropertyFormComplex/
 import LeaseForm from "./components/LeaseForm";
 import { openSans } from "@/app/styles/font";
 
-type Type = {
-  type: "simple" | "complex";
-  variant?: string;
-};
 
-const LeaseFormModal = ({ type, variant = "rectangle" }: Type) => {
+
+const LeaseFormModal = () => {
   const [animation, setAnimation] = useState(false);
   const [open, setOpen] = useState(false);
   return (

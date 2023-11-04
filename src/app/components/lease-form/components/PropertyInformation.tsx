@@ -5,12 +5,13 @@ import CustomTextAreaInput from "../../CustomTextAreaInput";
 import { CustomDatePicker } from "../../CustomDatePicker";
 import SlideEnter from "./SlideEnter";
 import { useLocalStorage } from "@uidotdev/usehooks";
+import { ListingForm } from "./types";
 
 export default function PropertyInformation() {
-  const [leaseFormData, setLeaseFormData] = useLocalStorage("lease-form", {});
+  const [listingFormData, setListingFormData] = useLocalStorage<ListingForm>("listing-form", {});
   const handleOnChange = (name: any, value: any) => {
-    setLeaseFormData({
-      ...leaseFormData,
+    setListingFormData({
+      ...listingFormData,
       [name]: value,
     });
   };
@@ -31,7 +32,7 @@ export default function PropertyInformation() {
                 onChange={(e) => handleOnChange("propertyName", e.target.value)}
               />
               <CustomTextAreaInput
-                initialValues={leaseFormData?.propertyDescription}
+                initialValues={listingFormData?.propertyDescription}
                 placeholder="Enter the description"
                 name="propertyDescription"
                 label="Brief Description"
@@ -42,7 +43,7 @@ export default function PropertyInformation() {
               />
 
               <CustomTextAreaInput
-                initialValues={leaseFormData?.renterKnowledge}
+                initialValues={listingFormData?.renterKnowledge}
                 placeholder="Enter the description"
                 name="renterKnowledge"
                 label="Things For Renter To Know"
@@ -101,7 +102,7 @@ export default function PropertyInformation() {
                 }
               />
               <CustomDatePicker 
-              placeholderDate={leaseFormData?.availableDate}
+              placeholderDate={listingFormData?.availableDate}
               label="Available Date" 
                    onChange={(value) =>
                     handleOnChange("availableDate", value)

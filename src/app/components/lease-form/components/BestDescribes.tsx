@@ -20,13 +20,13 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 const properties = [
   { name: "apartment", icon: <MdApartment size="44" /> },
   { name: "house", icon: <MdOutlineHouse size="44" /> },
-  { name: "town house", icon: <TownHouse size="44" /> },
-  { name: "detached house", icon: <DetachedHouse size="44" /> },
+  { name: "town house", icon: <TownHouse /> },
+  { name: "detached house", icon: <DetachedHouse  /> },
   { name: "semi-detached house", icon: <BsHouse size="44" /> },
   { name: "self contain", icon: <LuWarehouse size="44" /> },
   { name: "compound house", icon: <MdOutlineWarehouse size="44" /> },
   { name: "mansion", icon: <GiFamilyHouse size="44" /> },
-  { name: "penthouse", icon: <PentHouse size="44" /> },
+  { name: "penthouse", icon: <PentHouse  /> },
 ];
 
 export default function BestDescribes() {

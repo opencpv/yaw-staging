@@ -1,7 +1,7 @@
 "use client";
 import { styled } from "@stitches/react";
 import { useState } from "react";
-import ApplyNowModal from "./ApplyNowModal";
+import ApplicationForm from "..";
 
 export default function PDHero() {
   const [heroUrl, setHeroUrl] = useState(
@@ -15,8 +15,8 @@ export default function PDHero() {
           backgroundImage: `url('${heroUrl}')`,
         }}>
        <div className="flex flex-col gap-5">
-          <ApplyNowModal type="complex" />
-          <ApplyNowModal type="simple" />
+          <ApplicationForm type="complex" />
+          <ApplicationForm type="simple" />
        </div>
 
       </div>

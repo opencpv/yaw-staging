@@ -10,10 +10,10 @@ import { ReactHTMLElement } from "react";
 
 type Props = {
   type: "message" | "admin" | "alert";
-  notification: string;
-  subject: string;
-  time: string;
-  sender : string
+  notification?: string;
+  subject?: string;
+  time?: string;
+  sender? : string
 };
 
 const notificationItems: {

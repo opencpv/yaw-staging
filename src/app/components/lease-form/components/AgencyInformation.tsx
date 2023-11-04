@@ -3,12 +3,13 @@ import SlideEnter from "./SlideEnter";
 import CustomRadioInput from "../../CustomRadioInput";
 import styles from "./index.module.css";
 import { useLocalStorage } from "@uidotdev/usehooks";
+import { ListingForm } from "./types";
 
 export default function AgencyInformation() {
-  const [leaseFormData, setLeaseFormData] = useLocalStorage("lease-form", {});
+  const [listingFormData, setListingFormData] = useLocalStorage<ListingForm>("listing-form", {});
   const handleOnChange = (name: any, value: any) => {
-    setLeaseFormData({
-      ...leaseFormData,
+    setListingFormData({
+      ...listingFormData,
       [name]: value,
     });
   };
@@ -21,12 +22,12 @@ export default function AgencyInformation() {
           <div className="grid grid-cols-3 gap-x-5">
             <div className="flex flex-col gap-6  col-span-3 lg:col-span-1">
               <CustomRadioInput
-                defaultValue={leaseFormData?.agentFee}
+                defaultValue={listingFormData?.agentFee}
                 label="Do you charge an Agent Fee?"
                 onChange={(value) => handleOnChange("agentFee", value)}
               />
               <CurrencyInput
-                initialValue={leaseFormData?.agentFeeAmount}
+                initialValue={listingFormData?.agentFeeAmount}
                 label="Agent Fee"
                 onChange={(value) =>
                   handleOnChange("agentFeeAmount", value)
@@ -34,13 +35,13 @@ export default function AgencyInformation() {
               />
 
               <CustomRadioInput
-                defaultValue={leaseFormData?.viewingFee}
+                defaultValue={listingFormData?.viewingFee}
                 label="Do you charge a Viewing Fee?"
                 onChange={(value) => handleOnChange("viewingFee", value)}
               />
 
               <CurrencyInput
-                initialValue={leaseFormData?.viewingFeeAmount}
+                initialValue={listingFormData?.viewingFeeAmount}
                 label="Viewing Fee"
                 onChange={(value) =>
                   handleOnChange("viewingFeeAmount", value)

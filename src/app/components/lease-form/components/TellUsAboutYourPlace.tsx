@@ -28,15 +28,10 @@ export default function TellUsAboutYourPlace() {
                 </p>
               </div>
             </div>
-            <FadeIn>
               <div
                 className="relative w-full max-w-[683px] aspect-[683/617] rounded-2xl h-full "
-                initial={{
-                  opacity: 0,
-                }}
-                animate={{
-                  opacity: 1,
-                }}>
+              
+                >
                 <Image
                   src="/assets/images/leaseform/lease-form-1.png"
                   alt="Lease Image Form"
@@ -44,7 +39,6 @@ export default function TellUsAboutYourPlace() {
                   className="w-full h-full object-cover rounded-2xl"
                 />
               </div>
-            </FadeIn>
           </div>
         </div>
         <div className="mt-20 lg:hidden p-5 w -full flex items-center justify-center h-full">
