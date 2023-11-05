@@ -6,7 +6,6 @@ type Props = {
 };
 
 const Providers = ({ children }: Props) => {
-  // Wrap NextUIProvider at the root of your app
   return <NextUIProvider>{children}</NextUIProvider>;
 };
 

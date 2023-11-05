@@ -8,17 +8,18 @@ import React, {
 } from "react";
 import MessageBubble from "../components/MessageBubble";
 import BlockUserPopOver from "../components/BlockUserPopOver";
-import MessageBubble2 from "../components/MessageBubble2";
-import { HiOutlineArrowLongLeft } from "react-icons/hi2";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { motion } from "framer-motion";
 import supabase from "@/lib/utils/supabaseClient";
 import { Spinner } from "@nextui-org/react";
+import userSession from "@/lib/utils/userSession";
+import MessageBubble2 from "../components/MessageBubble2";
 
 type fetchedMessageType = {
-  id: number;
+  sender_id: string;
+  recipient_id: string;
   content: string;
   sent_at: string;
 };
@@ -33,11 +34,12 @@ const Messages = ({ params }: { params: { chat: string } }) => {
   >(null);
 
   const [messagesLoading, setMessagesLoading] = useState<boolean>(true);
+  const [currentUserId, setCurrentUserId] = useState<string | null>(null);
 
   const { chat } = params;
   let contactName = useMemo(() => {
     // Algorithm for getting contact name
-    let nameSplit = chat.split("-");
+    let nameSplit = chat.split("%20");
     let nameSplitCapitalized = nameSplit.map(
       (name) => name.slice(0, 1).toUpperCase() + name.slice(1)
     );
@@ -57,7 +59,10 @@ const Messages = ({ params }: { params: { chat: string } }) => {
         data: messages,
         error,
         status: messagesStatus,
-      } = await supabase.from("messages").select("*");
+      } = await supabase
+        .from("messages")
+        .select("*")
+        .or(`sender_id.eq.${currentUserId}, recipient_id.eq.${currentUserId}`);
 
       if (messages) {
         setFetchedMessages(messages);
@@ -75,6 +80,13 @@ const Messages = ({ params }: { params: { chat: string } }) => {
   // Scrolls to the bottom on mount
   useEffect(() => {
     scrollToBottom;
+    const getUserId = async () => {
+      const data = await userSession();
+      const id = String(data?.session.user.id);
+      setCurrentUserId(id);
+    };
+
+    getUserId();
     getMessages();
     const messages = supabase
       .channel("custom-all-channel")
@@ -111,9 +123,18 @@ const Messages = ({ params }: { params: { chat: string } }) => {
           ref={messageContainerRef}
         >
           {fetchedMessages?.map((message) => {
-            return (
+            if (message.sender_id === currentUserId){
+              return (
               <MessageBubble
-                key={message.id}
+                key={message.sent_at}
+                content={message.content}
+                time={message.sent_at}
+              />
+              )
+            }
+            return (
+              <MessageBubble2
+                key={message.sent_at}
                 content={message.content}
                 time={message.sent_at}
               />

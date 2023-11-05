@@ -10,26 +10,44 @@ type Props = {
   children: React.ReactNode;
 };
 
+type Message = {
+  created_at: string;
+  recipient_id: { id: string; full_name: string; profile_img: string | null };
+  sender_id: string;
+  content: string;
+  // created_at: string;
+};
+
 const MessagesLayout = ({ children }: Props) => {
   const pathname = usePathname();
 
   const [currentUserId, setCurrentUserId] = useState<string | null>(null);
+  const [messages, setMessages] = useState<Message[] | null>(null);
+  // console.log(currentUserId);
+  // console.log(messages);
 
   useEffect(() => {
-    const getUserSession = async () => {
-      // const data = await userSession()
-      // console.log(data?.session.user.email)
-      // const id = String(data?.session.user.id)
-      const {data: {session}} = await supabase.auth.getSession()
-      console.log(session?.user.email)
-      const id = String(session?.user.id)
-      setCurrentUserId(id)
-    }
-    getUserSession()
-  }, []);
+    const getUserId = async () => {
+      const data = await userSession();
+      const id = String(data?.session.user.id);
+      setCurrentUserId(id);
+    };
 
+    const getMessages = async () => {
+      const { data: allMessages } = await supabase
+        .from("messages")
+        .select(
+          "sender_id, recipient_id (id, full_name, profile_img), created_at, content"
+        )
+        .eq("sender_id", currentUserId)
+        .order("created_at", { ascending: false })
+      // console.log(allMessages);
+      setMessages(allMessages);
+    };
 
-  const [messageContent, setMessageContent] = useState<string>("");
+    getUserId();
+    getMessages();
+  }, [currentUserId]);
 
   const handleAddMessage = async (e: any) => {
     e.preventDefault();
@@ -54,62 +72,16 @@ const MessagesLayout = ({ children }: Props) => {
             pathname !== "/dashboard/messages" && "hidden"
           } lg:block col-span-2 max-h-screen p-4 px-0 overflow-y-scroll lg:px-4 lg:border-r hidden-scrollbar`}
         >
-          <Chat
-            href="/dashboard/messages/mary-jane"
-            image="/assets/images/dashboard-navbar.png"
-            name="Mary Jane"
-            last_message=" Lorem ipsum dolor, sit amet consectetur"
-            messages_count={3}
-          />
-          <Chat
-            href="/dashboard/messages/john-doe"
-            image="/assets/images/dashboard-navbar.png"
-            name="John Doe"
-            last_message=" Lorem ipsum dolor, sit amet consectetur"
-            messages_count={3}
-          />
-          <Chat
-            href="/dashboard/messages/kwame"
-            image="/assets/images/dashboard-navbar.png"
-            name="Kwame"
-            last_message=" Lorem ipsum dolor, sit amet consectetur"
-            messages_count={3}
-          />
-          <Chat
-            href="/dashboard/messages/andor"
-            image="/assets/images/dashboard-navbar.png"
-            name="Andor"
-            last_message=" Lorem ipsum dolor, sit amet consectetur"
-            messages_count={3}
-          />
-          <Chat
-            href="/dashboard/messages/lydia"
-            image="/assets/images/dashboard-navbar.png"
-            name="Lydia"
-            last_message=" Lorem ipsum dolor, sit amet consectetur"
-            messages_count={3}
-          />
-          <Chat
-            href="/dashboard/messages/mary-jane"
-            image="/assets/images/dashboard-navbar.png"
-            name="Mary Jane"
-            last_message=" Lorem ipsum dolor, sit amet consectetur"
-            messages_count={3}
-          />
-          <Chat
-            href="/dashboard/messages/kwame"
-            image="/assets/images/dashboard-navbar.png"
-            name="Kwame"
-            last_message=" Lorem ipsum dolor, sit amet consectetur"
-            messages_count={3}
-          />
-          <Chat
-            href="/dashboard/messages/andor"
-            image="/assets/images/dashboard-navbar.png"
-            name="Andor"
-            last_message=" Lorem ipsum dolor, sit amet consectetur"
-            messages_count={3}
-          />
+          {messages?.map((message) => (
+            <Chat
+              key={message.recipient_id.id}
+              href={`/dashboard/messages/${message.recipient_id.full_name}`}
+              image="/assets/images/dashboard-navbar.png"
+              name={message.recipient_id.full_name}
+              last_message={message.content}
+              messages_count={3}
+            />
+          ))}
         </aside>
         <main
           className={`${

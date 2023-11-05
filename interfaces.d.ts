@@ -17,6 +17,11 @@ interface ListingCardInterface extends ListingInterface {
   className?: string;
 }
 
+interface RenterPaidFeatureInterface {
+  title: "Be My Agent" | "Be The First To Know";
+  className?: string;
+}
+
 interface AdImage {
   /**
    * What property is being advertise?
@@ -65,4 +70,16 @@ interface ListingInterface {
 interface MessageInterface {
   content: string;
   time: string;
+}
+
+interface ManagePropertiesInterface {
+  propertyTitle: string;
+  image: string;
+  posted_on: string;
+  price: number;
+  status: "Paid" | "Not paid";
+}
+
+interface PropertyStatus {
+  status: "available" | "contract pending" | "leased" | "dormant"
 }

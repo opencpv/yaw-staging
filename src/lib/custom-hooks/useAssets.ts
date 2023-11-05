@@ -29,6 +29,10 @@ import Certified from "/public/assets/icons/certified.svg";
 import Unverified from "/public/assets/icons/unverified.svg";
 import Verified from "/public/assets/icons/verified.svg";
 import ChatIcon from "/public/assets/icons/messages/chat-icon.svg";
+import HouseSearch from "/public/assets/icons/overview/house-search.svg";
+import PeopleSell from "/public/assets/icons/overview/people-sell.svg";
+import Rafiki from "/public/assets/icons/overview/rafiki.svg";
+import ProfileImage from "/public/assets/images/profile-image.jpg";
 
 export const useAssets = () => {
   return {
@@ -55,6 +59,9 @@ export const useAssets = () => {
       Verified,
       Unverified,
       ChatIcon,
+      HouseSearch,
+      PeopleSell,
+      Rafiki,
     },
     images: {
       StockImage,
@@ -66,6 +73,7 @@ export const useAssets = () => {
       TermsImage,
       HouseSearchingCuate,
       PropertyDetailsBanner,
+      ProfileImage,
     },
   };
 };

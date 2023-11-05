@@ -30,7 +30,7 @@ export default function Home() {
       const {
         data: { session },
       } = await supabase.auth.getSession();
-      console.log("SESSION:", session);
+      console.log("SESSION:", session?.user.email);
     };
 
     getUserSession();
