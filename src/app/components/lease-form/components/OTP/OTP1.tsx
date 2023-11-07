@@ -40,7 +40,7 @@ const OTP1 = ({ phoneNumber } : Props) => {
     inputRef.current?.focus();
   }, [activeOTPIndex]);
   return (
-   <SlideEnter>
+   <>
       <div className="flex flex-col gap-5 items-center justify-center w-full">
         <div className="w-fit flex flex-col items-center justify-center gap-5">
           <div className="relative w-full max-w-[542px] aspect-[542/248] mt-20">
@@ -68,7 +68,7 @@ const OTP1 = ({ phoneNumber } : Props) => {
           </div>
         </div>
       </div>
-   </SlideEnter>
+   </>
   );
 };
 

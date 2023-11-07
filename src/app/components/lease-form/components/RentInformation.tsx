@@ -4,9 +4,14 @@ import CustomRadioInput from "../../CustomRadioInput";
 import styles from "./index.module.css";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { ListingForm } from "./types";
+import CustomCheckBoxes from "../../CustomCheckBoxes";
+import AdditionalFees from "./AdditionalFees";
 
 export default function RentInformation() {
-  const [listingFormData, setListingFormData] = useLocalStorage<ListingForm>("listing-form", {});
+  const [listingFormData, setListingFormData] = useLocalStorage<ListingForm>(
+    "listing-form",
+    {}
+  );
   const handleOnChange = (name: any, value: any) => {
     setListingFormData({
       ...listingFormData,
@@ -19,8 +24,8 @@ export default function RentInformation() {
         <div className="w-full lg:w-[75%] flex flex-col gap-4">
           <p className={`${styles.title}`}>Rent Infomation</p>
 
-          <div className="grid grid-cols-3 gap-x-5">
-            <div className="flex flex-col gap-6 col-span-3 lg:col-span-1">
+          <div className="grid grid-cols-4 gap-x-5 gap-y-5">
+            <div className="flex flex-col gap-6 col-span-3 lg:col-span-2">
               <CurrencyInput
                 initialValue={listingFormData?.monthlyAmount}
                 label="Monthly Amount"
@@ -28,9 +33,26 @@ export default function RentInformation() {
               />
               <CustomRadioInput
                 defaultValue={listingFormData?.advancePayment}
-                label="Do you require advance payment"
+                label="Do you require advance payment?"
                 onChange={(value) => handleOnChange("advancePayment", value)}
               />
+              {listingFormData?.advancePayment == "yes" && (
+                <CustomCheckBoxes
+                  onChange={(value: any) =>
+                    handleOnChange("advancePaymentDuration", value)
+                  }
+                  data={[
+                    {
+                      name: "1 year",
+                      value: "1",
+                    },
+                    { name: "2 years", value: "2" },
+                    { name: "3 years", value: "3" },
+                    { name: "4 years", value: "4" },
+                    { name: "5 years", value: "5" },
+                  ]}
+                />
+              )}
 
               <CustomRadioInput
                 defaultValue={listingFormData?.refundableSecurityDeposit}
@@ -39,23 +61,20 @@ export default function RentInformation() {
                   handleOnChange("refundableSecurityDeposit", value)
                 }
               />
-
-              <CurrencyInput
-                initialValue={listingFormData?.refundableSecurityDepositAmount}
-                label="Refundable Security Deposit Amount"
-                onChange={(value) =>
-                  handleOnChange("refundableSecurityDepositAmount", value)
-                }
-              />
+              {listingFormData?.refundableSecurityDeposit == "yes" && (
+                <CurrencyInput
+                  initialValue={
+                    listingFormData?.refundableSecurityDepositAmount
+                  }
+                  label="Refundable Security Deposit Amount"
+                  onChange={(value) =>
+                    handleOnChange("refundableSecurityDepositAmount", value)
+                  }
+                />
+              )}
             </div>
-            <div>
-              <CustomRadioInput
-                defaultValue={listingFormData?.additionalFees}
-                label="Do you require other fees?"
-                onChange={(value) =>
-                  handleOnChange("additionalFees", value)
-                }
-              />
+            <div className="flex flex-col gap-6 col-span-3 lg:col-span-2">
+              <AdditionalFees />
             </div>
           </div>
         </div>

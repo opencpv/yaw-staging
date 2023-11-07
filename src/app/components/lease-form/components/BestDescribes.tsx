@@ -31,7 +31,7 @@ const properties = [
 
 export default function BestDescribes() {
   const [selected, setSelected] = useState<any>();
-  const [leaseFormData, setLeaseFormData] = useLocalStorage("lease-form", {
+  const [listingFormData, setListingFormData] = useLocalStorage("listing-form", {
     bestDescribes: "",
   });
 
@@ -44,22 +44,22 @@ export default function BestDescribes() {
   };
 
   useEffect(() => {
-    setLeaseFormData((prevData: any) => ({
+    setListingFormData((prevData: any) => ({
       ...prevData,
       bestDescribes: selected,
     }));
   }, [selected]);
 
   useEffect(() => {
-    setSelected(leaseFormData?.bestDescribes);
+    setSelected(listingFormData?.bestDescribes);
   }, []);
 
   return (
-    <SlideEnter>
+    <>
       <Root className="flex flex-col w-full items-center justify-center ">
         <div className="w-full lg:w-[75%] flex flex-col items-center justify-center gap-6">
           <div className="w-full flex flex-col gap-2">
-            <p className="text-[1.9375rem] font-semibold">
+            <p className="text-[20px] lg:text-[1.9375rem] font-semibold">
               Which of these best describes your property?
             </p>
             <p className="text-[1.25rem] font-[400]">Property Type </p>
@@ -84,7 +84,7 @@ export default function BestDescribes() {
           </div>
         </div>
       </Root>
-    </SlideEnter>
+    </>
   );
 }
 

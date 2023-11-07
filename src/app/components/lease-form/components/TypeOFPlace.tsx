@@ -5,13 +5,13 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 
 export default function TypeOfPlace() {
   const [selected, setSelected] = useState<any>("");
-  const [leaseFormData, setLeaseFormData] = useLocalStorage("lease-form", {
+  const [listingFormData, setlistingFormData] = useLocalStorage("listing-form", {
     typeOfPlace:""
   });
 
   useEffect(() => {
     if (selected) {
-      setLeaseFormData((prevData: any) => ({
+      setlistingFormData((prevData: any) => ({
         ...prevData,
         typeOfPlace: selected,
       }));
@@ -19,15 +19,15 @@ export default function TypeOfPlace() {
   }, [selected]);
 
   useEffect(() => {
-    setSelected(leaseFormData?.typeOfPlace);
+    setSelected(listingFormData?.typeOfPlace);
   }, []);
 
   return (
     <SlideEnter>
       <Root className="w-full h-full flex-col items-center justify-center grid grid-cols-8">
         <div></div>
-        <div className="col-span-5 flex flex-col w-full items-start justify-center  gap-8">
-          <p className="text-[31px] font-semibold ">
+        <div className="col-span-8 lg:col-span-5 flex flex-col w-full items-start justify-center  gap-8">
+          <p className="text-[20px] lg:text-[31px] font-semibold ">
             What type of place will guests have?
           </p>
           <div className="w-full flex flex-col gap-6">
@@ -76,7 +76,7 @@ export default function TypeOfPlace() {
 const Root = styled("div", {
   ".active-example": {
     border: "1px solid #0B0B0B0",
-    boxShadow: "0px 1px 2px 0px rgba(0, 0, 0, 0.06), 0px 1px 3px 0px rgba(0, 0, 0, 0.10)"
+    boxShadow: "0px 1px 2px 0px rgba(0, 0, 0, 0.06), 0px 1px 3px 0px rgba(0, 0, 0, 0.10)",
   },
   ".example": {
     display: "flex",
@@ -85,6 +85,8 @@ const Root = styled("div", {
     gap: "1rem",
     paddingInline: "1rem",
     paddingBlock: "1.3rem",
+    borderRadius:"1rem",
+
 
     "&:hover": {
       scale: "1.02",
@@ -94,6 +96,9 @@ const Root = styled("div", {
   ".example-header": {
     fontSize: "1.5625rem",
     fontWeight: "600",
+    "@media screen and (max-width:1024px)":{
+      fontSize: "20px"
+    }
   },
   ".example-p": {
     fontSize: "1rem",

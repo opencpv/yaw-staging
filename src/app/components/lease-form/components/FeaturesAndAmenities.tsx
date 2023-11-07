@@ -39,7 +39,7 @@ const data = [
 
 export default function FeaturesAndAmenities() {
   const [selected, setSelected] = useState<any>([]);
-  const [leaseFormData, setLeaseFormData] = useLocalStorage("lease-form", {
+  const [listingFormData, setlistingFormData] = useLocalStorage("listing-form", {
     featuresAndAmenties: [],
   });
 
@@ -53,23 +53,23 @@ export default function FeaturesAndAmenities() {
   };
 
   useEffect(() => {
-    setLeaseFormData((prevData: any) => ({
+    setlistingFormData((prevData: any) => ({
       ...prevData,
       featuresAndAmenties: selected,
     }));
   }, [selected?.length]);
 
   useEffect(() => {
-    if (leaseFormData?.featuresAndAmenties) {
-      setSelected(leaseFormData?.featuresAndAmenties);
+    if (listingFormData?.featuresAndAmenties) {
+      setSelected(listingFormData?.featuresAndAmenties);
     }  }, []);
 
   return (
-    <SlideEnter>
+    <>
       <Root className="flex flex-col w-full items-center justify-center ">
         <div className="w-full lg:w-[75%] flex flex-col items-center justify-center gap-6">
           <div className="w-full flex flex-col gap-2">
-            <p className="text-[25px] lg:text-[31px] font-semibold">
+            <p className="text-[20px] lg:text-[31px] font-semibold">
               Features & Amenities
             </p>
             <p className="text-[16px] font-[400]">
@@ -93,7 +93,7 @@ export default function FeaturesAndAmenities() {
           </div>
         </div>
       </Root>
-    </SlideEnter>
+    </>
   );
 }
 

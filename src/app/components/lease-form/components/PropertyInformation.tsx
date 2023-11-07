@@ -20,7 +20,7 @@ export default function PropertyInformation() {
       <Root className=" flex flex-col w-full  h-full items-center justify-center ">
         <div className="flex flex-col items-center justify-center w-full lg:w-[65%] ">
           <div className="grid grid-cols-2 w-full">
-            <p className={`${styles.title}`}>Property Information</p>
+            <p className={`${styles.title} col-span-2`}>Property Information</p>
           </div>
           <div className="grid grid-cols-2 gap-x-4 w-full">
             <div className="col-span-2 lg:col-span-1 flex flex-col gap-6">

@@ -4,6 +4,8 @@ import FormSwitch from "@/app/contact/components/FormSwitch";
 import { useState } from "react";
 import CircleTick from "./CircleTick";
 import CircleWrong from "./CircleWrong";
+import styles from './index.module.css'
+
 
 const differences = [
   "Lorem ipsum dolor sit amet consectetur.",
@@ -32,10 +34,10 @@ export default function ChooseTemplate() {
   const [showComparison, setShowComparison] = useState(false);
   return (
     <SlideEnter>
-      <Root className="flex flex-col items-center justify-center w-full px-5 lg:px-20 h-full">
+      <Root className="flex flex-col items-center justify-center w-full lg:px-20 h-full">
         <div className="flex flex-col gap-8 w-full lg:w-[75%]">
           <div className="grid grid-cols-8 w-full">
-            <div className="col-span-8 lg:col-span-5 text-[31px] font-semibold leading-[43.4p]">
+            <div className={`col-span-8 lg:col-span-5 text-[31px] font-semibold leading-[43.4px] ${styles.title}`}>
               <p>Choose your preferred template to list your property</p>
             </div>
           </div>
@@ -47,7 +49,7 @@ export default function ChooseTemplate() {
           </div>
           {showComparison && (
             <div className="border-x-[1px] border-x-[#E6E6E6] mb-20">
-              <div className="grid grid-cols-3 text-white bg-accent-400 font-semibold">
+              <div className="grid grid-cols-3 text-white bg-accent-400 font-semibold text-[13px] lg:text-[16px]">
                 <div className="feature-header">Features</div>
                 <div className="feature-header">Basic Template</div>
                 <div className="feature-header">Professional Template</div>
@@ -55,9 +57,9 @@ export default function ChooseTemplate() {
               {differences?.map((r, index) => (
                 <SlideEnter key={index}>
                   <div
-                    className="grid grid-cols-3 py-[10px] border-b-[#E6E6E6] border-b-[1px]"
+                    className="grid grid-cols-3 py-[10px] border-b-[#E6E6E6] border-b-[1px] "
                     key={index}>
-                    <div className="text-center h-[80px] flex items-center justify-center font-semibold">
+                    <div className="text-left lg:text-center h-[80px] flex items-center justify-center font-semibold text-[13px] lg:text-[16px] pl-3 lg:pl-0">
                       {r}
                     </div>
                     <div className="flex items-center justify-center">

@@ -12,7 +12,7 @@ import SuitedFor from "./SuitedFor";
 import Utilities from "./Utilities";
 import { useEffect, useRef, useState } from "react";
 import GetStarted from "./GetStarted";
-import { motion } from "framer-motion";
+import { motion, progress } from "framer-motion";
 import SlideEnter from "./SlideEnter";
 import TypeOfPlace from "./TypeOFPlace";
 import Congratulations from "./Congratulations";
@@ -25,6 +25,7 @@ import AgencyInformation from "./AgencyInformation";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import OTP1 from "./OTP/OTP1";
 import OTP2 from "./OTP/OTP2";
+import Progress from "./Progress";
 
 const iconSize = 44;
 
@@ -32,31 +33,49 @@ const views = [
   <GetStarted key="get-started" />,
   <TellUsAboutYourPlace key="tell-us-about-your-place" />,
   <ChooseTemplate key="choose-template" />,
-  <PropertyInformation key="property-information" />,
-  <AgencyInformation key="agency-information" />,
-  <RentInformation key="rent-information" />,
-  <TypeOfPlace key="type-of-place" />,
-  <SuitedFor key="suited-for" />,
   <BestDescribes key="best-describes" />,
-  <Utilities key="utilities" />,
-  <FeaturesAndAmenities key="features-and-amenities" />,
+  <SuitedFor key="suited-for" />,
+
+  <TypeOfPlace key="type-of-place" />,
+
+  <PropertyInformation key="property-information" />,
   <SetItApart key="set-it-apart" />,
+  <FeaturesAndAmenities key="features-and-amenities" />,
+
+  <Utilities key="utilities" />,
   <ChooseImages key="choose-images" />,
   <FinishAndPublish key="finish-and-publish" />,
+
+  <RentInformation key="rent-information" />,
+
+  <AgencyInformation key="agency-information" />,
   <OTP1 key="otp1" />,
   <OTP2 key="otp2" />,
   <Congratulations key="congratulations" />,
 ];
 
+type Props ={
+  setOpen : React.Dispatch<React.SetStateAction<boolean>>
 
-export default function LeaseForm() {
+}
+
+export default function LeaseForm({setOpen}: Props) {
   const leaseRef = useRef<any>();
-  const [progressValue, setProgressValue] = useState<any>(1);
+  const [progressValue, setProgressValue] = useState<number>(1);
   const [activeSlide, setActiveSlide] = useState(0);
-  const [leaseFormData, setLeaseFormData] = useLocalStorage("lease-form", {});
+  const [firstSlide, setFirstSlide] = useState(true);
+  const [lastSlide, setLastSlide] = useState(false);
+  const [hideLeft, setHideLeft] = useState(false);
+  const [hideRight, setHideRight] = useState(false);
+
+  const [listingFormData, setListingFormData] = useLocalStorage(
+    "listing-form",
+    {}
+  );
+
   const handleOnChange = (name: any, value: any) => {
-    setLeaseFormData({
-      ...leaseFormData,
+    setListingFormData({
+      ...listingFormData,
       [name]: value,
     });
   };
@@ -67,55 +86,90 @@ export default function LeaseForm() {
   };
 
   useEffect(() => {
+    if (activeSlide < 1) {
+      setFirstSlide(true);
+    }
+    if (activeSlide > 0) {
+      setFirstSlide(false);
+    }
+
+    if (activeSlide > 15) {
+      setHideLeft(true);
+      setHideRight(true);
+      
+
+    }else{
+      setHideLeft(false)
+      setHideRight(false)
+    }
+
     const value = (activeSlide / views.length) * 100;
     console.log(value);
-    // setProgressValue(value);
+    setProgressValue(value + 5);
   }, [activeSlide]);
+
+  const handleBack = () => {
+    
+    firstSlide && setOpen(false)
+    if (activeSlide > 0) {
+      setActiveSlide((init) => init - 1);
+
+      scrollToTop();
+    }
+  };
+
+  const handleForward = () => {
+    activeSlide > 15 && submit() 
+    if (activeSlide < views.length - 1) {
+      setActiveSlide((init) => init + 1);
+
+      scrollToTop();
+    }
+  };
+
+  const submit = () => {
+
+  }
 
   return (
     <Root
       className={`${openSans.className} flex flex-col max-h-[90vh] min-h-[85vh] h-full justify-between gap-10 text-black`}>
-      <div className="flex flex-col w-full h-full items-center justify-start gap-16">
-        <div className="w-full  pt-16 px-10" ref={leaseRef}>
-          <ProgressBar value={progressValue} />
+      <div className="flex flex-col w-full h-full items-center justify-start gap-8 lg:gap-16">
+        <div className="w-full mt-16 px-4 lg:px-10" ref={leaseRef}>
+          <Progress value={progressValue} />
         </div>
         <Formik
           initialValues={{
-            ...leaseFormData,
+            ...listingFormData,
           }}
-          onSubmit={() => alert('sibm')}
-          >
-          <Form className="w-full">
+          onSubmit={() => alert("sibm")}>
+          <Form className="w-full px-7 lg:px-0">
             <div>{views[activeSlide]}</div>
           </Form>
         </Formik>
       </div>
 
       <div
-        className="flex flex-col lg:flex-row items-center  justify-center lg:justify-end w-full  gap-5 px-14 py-7
-      border-t-[1px] border-t-[#C1C1C1]
-      ">
+        className={`${
+          hideLeft && hideRight
+            ? "hidden"
+            : "grid grid-cols-2 lg:flex lg:justify-end lg:items-center w-full gap-1 px-7 py-7 border-t-[1px] border-t-[#C1C1C1]"
+        }`}>
         <NavigationButton
-          className="  border-2 bprder-[#AD842A] font-semibold"
-          onClick={() => {
-            if (activeSlide > 0) {
-              setActiveSlide((init) => init - 1);
-
-              scrollToTop();
-            }
-          }}>
-          Back
+          className={` ${
+            hideLeft && "hidden"
+          } col-span-1  border-[1px] border-[#AD842A] font-semibold text-[#AD842A] rounded-lg`}
+          onClick={handleBack}>
+          {firstSlide ? "Exit" : "Back"}
         </NavigationButton>
         <NavigationButton
-          className="bg-[#DDB771]  text-white font-semibold"
-          onClick={() => {
-            if (activeSlide < views.length) {
-              setActiveSlide((init) => init + 1);
-
-              scrollToTop();
-            }
-          }}>
-          Next
+          className={` ${
+            hideRight && "hidden"
+          } col-span-1 bg-[#DDB771]  text-white font-semibold rounded-lg`}
+          onClick={handleForward}>
+          {firstSlide && "Get Started"}
+          {!firstSlide && !lastSlide && "Continue"}
+          {lastSlide && "Submit"}
         </NavigationButton>
       </div>
     </Root>
@@ -123,11 +177,8 @@ export default function LeaseForm() {
 }
 
 const Root = styled("div", {
-  ".swiper-slide": {
-    minHeight: "70vh",
-    // "@media screen and (min-width: 1024px)": {
-    //   marginBlock: "auto",
-    // },
+  ".progress-emoji": {
+    boxShadow: "0px 24px 48px -12px rgba(0, 0, 0, 0.18)",
   },
 });
 
@@ -136,9 +187,17 @@ export const NavigationButton = styled("button", {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  aspectRatio: "224/52",
   maxWidth: "224px",
   borderRadius: "0.5rem",
   fontWeight: "600",
+  fontSize: "16px",
   minHeight: "52px",
+  aspectRatio: "224/52",
+
+  "@media screen and (max-width:1024px)": {
+    fontSize: "13px",
+    aspectRatio: "195/48",
+    minHeight: "48px",
+    maxWidth: "195px",
+  },
 });

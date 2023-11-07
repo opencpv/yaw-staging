@@ -6,7 +6,10 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import { ListingForm } from "./types";
 
 export default function AgencyInformation() {
-  const [listingFormData, setListingFormData] = useLocalStorage<ListingForm>("listing-form", {});
+  const [listingFormData, setListingFormData] = useLocalStorage<ListingForm>(
+    "listing-form",
+    {}
+  );
   const handleOnChange = (name: any, value: any) => {
     setListingFormData({
       ...listingFormData,
@@ -26,13 +29,13 @@ export default function AgencyInformation() {
                 label="Do you charge an Agent Fee?"
                 onChange={(value) => handleOnChange("agentFee", value)}
               />
-              <CurrencyInput
-                initialValue={listingFormData?.agentFeeAmount}
-                label="Agent Fee"
-                onChange={(value) =>
-                  handleOnChange("agentFeeAmount", value)
-                }
-              />
+              {listingFormData?.agentFee == "yes" && (
+                <CurrencyInput
+                  initialValue={listingFormData?.agentFeeAmount}
+                  label="Agent Fee"
+                  onChange={(value) => handleOnChange("agentFeeAmount", value)}
+                />
+              )}
 
               <CustomRadioInput
                 defaultValue={listingFormData?.viewingFee}
@@ -40,13 +43,15 @@ export default function AgencyInformation() {
                 onChange={(value) => handleOnChange("viewingFee", value)}
               />
 
-              <CurrencyInput
-                initialValue={listingFormData?.viewingFeeAmount}
-                label="Viewing Fee"
-                onChange={(value) =>
-                  handleOnChange("viewingFeeAmount", value)
-                }
-              />
+              {listingFormData?.viewingFee == "yes" && (
+                <CurrencyInput
+                  initialValue={listingFormData?.viewingFeeAmount}
+                  label="Viewing Fee"
+                  onChange={(value) =>
+                    handleOnChange("viewingFeeAmount", value)
+                  }
+                />
+              )}
             </div>
           </div>
         </div>

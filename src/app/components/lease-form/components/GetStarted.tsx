@@ -28,7 +28,7 @@ const Steps = ({ number, headerText, subText, image }: StepsProps) => {
         <div className="col-span-5 flex  items-center justify-start w-full gap-6  max-w-[670px]">
           <Number number={number} />
           <div className="flex flex-col gap-4 w-full">
-            <p className="text-[25px] font-semibold">{headerText}</p>
+            <p className="text-[20px] lg:text-[25px] font-semibold">{headerText}</p>
             <p className="text-[16px] font-[400] text-[#8A8A8A] max-w-[461px]">
               {subText}
             </p>
@@ -74,7 +74,7 @@ export default function GetStarted() {
       <div className="flex flex-col items-center justify-center w-full lg:px-20 ">
         <div className="grid grid-cols-7  items-center justify-center  gap-y-5">
           <div className="col-span-5 w-full">
-            <p className="text-[1.9375rem] font-semibold max-w-[772px] leading-[43.4px] w-full">
+            <p className="text-[20px] lg:text-[1.9375rem] font-semibold max-w-[772px] leading-[28px] lg:leading-[43.4px] w-full">
               Getting underway on Rentright is a straightforward process.
             </p>
           </div>

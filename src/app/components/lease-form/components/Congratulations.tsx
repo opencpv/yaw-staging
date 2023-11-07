@@ -7,7 +7,7 @@ import FeedBack from "./FeedBack";
 export default function Congratulations() {
   return (
     <SlideEnter>
-      <Root className="w-full flex items-start lg:items-center justify-center h-full flex-col gap-2  px-10 lg:px-24">
+      <Root className="w-full flex items-center justify-center h-full flex-col gap-2 lg:px-24">
         <div className="relative w-full max-w-[448px] aspect-square rounded-full h-full animate animate-ping cel-image ">
           <Image
             src="/assets/images/balloon-congratulation.png"

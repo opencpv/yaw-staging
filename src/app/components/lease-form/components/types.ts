@@ -11,7 +11,8 @@ export type ListingForm = {
     advancePayment? : string 
     refundableSecurityDeposit? : string
     refundableSecurityDepositAmount? :string | number
-    additionalFees? : string
+    additionalFees? : boolean
+    additionalFeesArray? : any
     agentFee? :string 
     agentFeeAmount? :string | number 
     viewingFee? :string 

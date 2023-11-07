@@ -3,15 +3,13 @@ import * as Progress from '@radix-ui/react-progress';
 
 const ProgressBar = ({value}: {value: number}) => {
   const [progress, setProgress] = React.useState(1)
-  React.useEffect(() => {
-    const timer = setTimeout(() => setProgress(value), 500);
-    return () => clearTimeout(timer);
-  }, []);
 
-  React.useEffect(() => {
-    const timer = setTimeout(() => setProgress(value), 500);
-    return () => clearTimeout(timer);
-  }, [value]);
+  // React.useEffect(() => {
+  //   const timer = setTimeout(() => setProgress(value), 500);
+  //   return () => clearTimeout(timer);
+  // }, [value]);
+
+
 
   return (
     <Progress.Root

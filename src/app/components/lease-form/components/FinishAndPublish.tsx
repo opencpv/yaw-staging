@@ -18,7 +18,7 @@ export default function FinishAndPublish() {
                 </p>
                 <p
                   className="text-[1.25rem] font-[400]
-                  max-w-[684px] leading-[28px]
+                  max-w-[684px] leading-[28px] text[#8A8A8A]
                   ">
                   Lorem ipsum dolor sit amet consectetur. Curabitur ut placerat
                   fermentum est sed integer. Tempor quam interdum bibendum in.
@@ -37,7 +37,7 @@ export default function FinishAndPublish() {
             </div>
           </div>
         </div>
-        <div className="mt-20 lg:hidden p-5 w -full flex items-center justify-center h-full">
+        <div className=" lg:hidden lg:p-5 w -full flex items-center justify-center h-full">
           <div className="flex flex-col gap-x-16">
             <div className="flex justify-center flex-col gap-6">
               <div className="animate animate-bounce">
@@ -52,12 +52,12 @@ export default function FinishAndPublish() {
                 />
               </div>
               <div className="flex flex-col gap-6">
-                <p className="text-[2.5rem] lg:text-[3.0625rem] font-bold">
+                <p className="text-[25px] lg:text-[3.0625rem] font-bold">
                   Finish Up and Publish
                 </p>
                 <p
                   className="text-[1rem] lg:text-[1.25rem] font-[400]
-                  max-w-[684px] leading-[28px]
+                  max-w-[684px] leading-[28px] text-[#8A8A8A]
                   ">
                   Lorem ipsum dolor sit amet consectetur. Curabitur ut placerat
                   fermentum est sed integer. Tempor quam interdum bibendum in.

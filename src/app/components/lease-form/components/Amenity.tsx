@@ -22,7 +22,7 @@ const Amenity = ({ icon, name, n = 2, selected }: AmenityProp) => {
         damping: 15,
         duration: 1000,
       }}
-      className={`flex flex-col aspect-[261/161] w-full gap-4 items-center justify-center hover:bg-slate-200 hover:scale-[1.05] cursor-pointer rounded-xl ${selected && "border-[1px] border-[#073B3A"} capitalize`}
+      className={`flex flex-col aspect-[180/140] lg:aspect-[261/161] w-full gap-4 items-center justify-center hover:bg-slate-200 hover:scale-[1.05] cursor-pointer rounded-xl ${selected && "border-[1px] border-[#000]"} capitalize text-[16px] lg:text-[20px] py-4 lg:py-0 px-6 lg:px-0 text-center`}
       style={{
         boxShadow: selected
           ? "0px 1px 2px 0px rgba(0, 0, 0, 0.06), 0px 1px 3px 0px rgba(0, 0, 0, 0.10)"

@@ -9,11 +9,13 @@ type Props = {
   makeBannerImage: () => void;
 
   addCaption: () => void;
+  bannerImage? : boolean
 };
 const ImageOptionsPopover = ({
   remove,
   makeBannerImage,
   addCaption,
+  bannerImage=true
 }: Props) => (
   <Popover.Root>
     <Popover.Trigger asChild>
@@ -33,9 +35,9 @@ const ImageOptionsPopover = ({
         align="start"
         side="bottom">
         <div className="flex flex-col gap-4 text-[13px] font-[400] whitespace-nowrap items-start">
-          <button className="" type="button" onClick={makeBannerImage}>
+        {bannerImage ?  <button className="" type="button" onClick={makeBannerImage}>
             Make Banner Image
-          </button>
+          </button> : null}
           <Caption />
           <button className="" type="button" onClick={remove}>
             Remove

@@ -113,7 +113,7 @@ export default function ChooseImages() {
               />
             </div>
             {files?.slice(1)?.map((file: any, index: number) => (
-              <div className="col-span-3 lg:col-span-1" key={index}>
+              <div className="col-span-3 md:col-span-1" key={index}>
                 <ImageCard
                   key={index}
                   file={file}
@@ -123,8 +123,9 @@ export default function ChooseImages() {
                 />
               </div>
             ))}
-
-            <AddMoreImagesXl setFiles={setFiles} />
+            <div className="col-span-3 md:col-span-1">
+              <AddMoreImagesXl setFiles={setFiles} />
+            </div>{" "}
           </div>
         )}
       </form>

@@ -19,16 +19,16 @@ const FeedBack = () => {
     <div>
       <Dialog.Root>
         <Dialog.Trigger asChild>
-          <button className="bg-accent-50 text-white mt-5 animate animate-bounce py-[15px] px-8 font-semibold rounded-lg">
+          <button className="bg-accent-50 text-white mt-5 animate animate-bounce py-[15px] px-8 font-semibold rounded-lg whitespace-nowrap text-[13px] md;text-[16px]">
             How was the property listing process?
           </button>
         </Dialog.Trigger>
         <Dialog.Portal>
           <Dialog.Overlay className="z-[3000] bg-[#00000066] data-[state=open]:animate-overlayShow fixed inset-0" />
-          <Dialog.Content className="z-[3000] data-[state=open] rounded-2xl :animate-contentShow fixed top-[50%] left-[50%] max-h-[75vh]  max-w-[795px] w-[60vw] translate-x-[-50%] translate-y-[-50%]  bg-white focus:outline-none flex flex-col items-center justify-center py-6 px-20  overflow-y-scroll gap-4">
-            <p className="text-[31px] font-bold w-full text-left ">Feedback</p>
+          <Dialog.Content className="z-[3000] data-[state=open] rounded-2xl :animate-contentShow fixed top-[50%] left-[50%] max-h-[75vh]  max-w-[795px] w-[80vw] translate-x-[-50%] translate-y-[-50%]  bg-white focus:outline-none flex flex-col items-center justify-center py-6 px-5 lg:px-20  overflow-y-scroll gap-4">
+            <p className="text-[20px] lg:text-[31px] font-bold w-full text-left ">Feedback</p>
 
-            <div className="w-fit flex flex-col items-center justify-center px-8 gap-8 ">
+            <div className="w-fit flex flex-col items-center justify-center px-2 lg:px-8 gap-8 ">
               {!submitted ? (
                 <div className="relative w-full max-w-[356px]  aspect-[356/298]">
                   <Image fill src={"/svgs/feedback1.svg"} alt="OTP Image" />
@@ -46,7 +46,7 @@ const FeedBack = () => {
               {!submitted && (
                 <div className="flex flex-col items-center justify-center w-full h-full gap-5">
                   <div className="flex flex-col gap-6">
-                    <p className="text-[25px] font-semibold">
+                    <p className="text-[16px] lg:text-[25px] font-semibold">
                       How easy was it to list your property?
                     </p>{" "}
                     <div className="flex gap-8 justify-center items-center">
@@ -71,12 +71,12 @@ const FeedBack = () => {
                     </div>
                   )}
 
-                  <div className="font-semibold flex items-center justify-center gap-6 w-full">
-                    <button className="border-[1px] border-[#AD842A] rounded-lg text-[#AD842A] w-full  h-[52px] max-w-[155px]">
+                  <div className="font-semibold flex items-center justify-center gap-2 lg:gap-5 w-full text-[16px]">
+                    <button className="border-[1px] border-[#AD842A] rounded-lg text-[#AD842A] w-full  h-[40px] max-w-[155px] ">
                       Skip
                     </button>
                     <button
-                      className="bg-accent-50 text-white w-full  h-[52px] max-w-[155px] rounded-lg"
+                      className="bg-accent-50 text-white w-full  h-[40px] max-w-[155px] rounded-lg"
                       onClick={() => setSubmitted(true)}>
                       Submit
                     </button>
@@ -86,7 +86,7 @@ const FeedBack = () => {
               {submitted && (
                 <div className="flex flex-col gap-8 w-full ">
                   <p>Thank you for your feedback</p>
-                  <button className="bg-accent-50 font-semibold rounded-lg max-w-[314px] h-[52px] text-white">
+                  <button className="bg-accent-50 font-semibold rounded-lg max-w-[314px] h-[40px] text-white">
                     Preview
                   </button>
                 </div>

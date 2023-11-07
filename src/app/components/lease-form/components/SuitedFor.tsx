@@ -7,6 +7,8 @@ import { FaPersonWalkingLuggage } from "react-icons/fa6";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { useEffect, useState } from "react";
 import Amenity from "./Amenity";
+import InfoText from "./InfoText";
+import styles from './index.module.css'
 
 const data = [
   { name: "students", icon: <PiStudentDuotone size="44" /> },
@@ -16,12 +18,12 @@ const data = [
 
 export default function SuitedFor() {
   const [selected, setSelected] = useState<any>([]);
-  const [leaseFormData, setLeaseFormData] = useLocalStorage("lease-form", {
+  const [listingFormData, setlistingFormData] = useLocalStorage("listing-form", {
     suitedFor: [],
   });
 
   const handleOptionsClick = (r: any) => {
-    if (selected.includes(r?.name)) {
+    if (selected?.includes(r?.name)) {
       setSelected(selected.filter((item: any) => item !== r?.name));
     } else {
       setSelected([...selected, r?.name]);
@@ -29,14 +31,16 @@ export default function SuitedFor() {
   };
 
   useEffect(() => {
-    setLeaseFormData((prevData: any) => ({
+    setlistingFormData((prevData: any) => ({
       ...prevData,
       suitedFor: selected,
     }));
   }, [selected?.length]);
 
   useEffect(() => {
-    setSelected(leaseFormData?.suitedFor);
+    if (listingFormData?.suitedFor) {
+      setSelected(listingFormData?.suitedFor);
+    }
   }, []);
 
   return (
@@ -44,11 +48,13 @@ export default function SuitedFor() {
       <Root className="flex flex-col w-full items-center justify-center h-full ">
         <div className="w-full lg:w-[75%] flex flex-col items-center justify-center gap-6">
           <div className="w-full flex flex-col gap-2">
-            <p className="text-[25px] lg:text-[31px] font-semibold">
+            <p className={`${styles.title} font-semibold`}>
               What type of renter is your property best suited for?{" "}
             </p>
           </div>
-          <div className="grid grid-cols-4 w-full
+          <InfoText content="You may select more than one response" />
+          <div
+            className="grid grid-cols-4 w-full
             gap-y-5 gap-x-5">
             {data.map((r: any, index: number) => (
               <div

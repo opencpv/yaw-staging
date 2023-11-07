@@ -10,3 +10,5 @@ form touch errors
 UploadFile component
 pagination fix on settings page
 currency input fix
+currency input is behind
+back and continue options
