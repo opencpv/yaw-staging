@@ -10,7 +10,7 @@ import { ReactHTMLElement } from "react";
 
 type Props = {
   type: "message" | "admin" | "alert";
-  notification?: string;
+  content?: string;
   subject?: string;
   time?: string;
   sender? : string
@@ -30,7 +30,7 @@ const notificationItems: {
 
 const NotificationItem: React.FC<Props> = ({
   type,
-  notification,
+  content,
   time,
   subject,
   sender
@@ -70,7 +70,7 @@ const NotificationItem: React.FC<Props> = ({
               className="text-[#0000008F] max-h-[36px] overflow-hidden
             text-[13px] leading-[18.2px]"
             >
-              {notification}
+              {content}
             </div>
           </div>
         </div>

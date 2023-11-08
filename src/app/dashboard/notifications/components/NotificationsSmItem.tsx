@@ -17,10 +17,11 @@ const NotificationsSmItem: React.FC<Props> = ({ currentNotification }) => (
     <Dialog.Trigger asChild>
       <button className="">
         <NotificationItem
+          sender={currentNotification?.sender_name}
           type={currentNotification?.type}
-          subject={currentNotification?.message}
+          subject={currentNotification?.subject}
           time={currentNotification?.sent}
-          notification={currentNotification?.message}
+          content={currentNotification?.content}
         />
       </button>
     </Dialog.Trigger>
@@ -31,8 +32,7 @@ const NotificationsSmItem: React.FC<Props> = ({ currentNotification }) => (
         <Dialog.Close asChild>
           <button
             className="text-violet11 hover:bg-violet4 focus:shadow-violet7 absolute top-[10px] right-[10px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full focus:shadow-[0_0_0_2px] focus:outline-none"
-            aria-label="Close"
-          >
+            aria-label="Close">
             <Cross2Icon />
           </button>
         </Dialog.Close>

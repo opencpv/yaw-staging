@@ -1,7 +1,7 @@
 import { styled } from "@stitches/react";
 import SlideEnter from "./SlideEnter";
 import Image from "next/image";
-import { NavigationButton } from "./LeaseForm";
+import { NavigationButton } from "./ListingFormForm";
 import FeedBack from "./FeedBack";
 
 export default function Congratulations() {

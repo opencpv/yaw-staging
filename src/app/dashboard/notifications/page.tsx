@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import NotificationItem from "./components/NotificationItem";
 import NotificationDetailsFull from "./components/NotificationDetails";
 import { demoNotifications } from "./content/demoNotifications";
@@ -11,14 +11,14 @@ import { redirect } from "next/navigation";
 import CaMarkAsRead from "./icons/CaMarkAsRead";
 import supabase from "@/lib/utils/supabaseClient";
 import { NotificationType } from "./components/types";
+import { AppContext } from "../layout";
 
 
 const Page = () => {
   const [currentNotification, setCurrentNotification] =
     useState<NotificationType>();
-  const [showModal, setShowModal] = useState(false);
-  const [notifications, setNotifications] = useState<NotificationType | any>();
-  const [notificationsLoading, setNotificationsLoading] = useState<boolean | null>();
+  // const [notifications, setNotifications] = useState<NotificationType | any>();
+  const { notifications } = useContext(AppContext).user
 
   useEffect(() => {
     const supabase = createClientComponentClient();
@@ -59,18 +59,12 @@ const Page = () => {
               }}>
               <NotificationItem
                 type={r?.type}
-                sender={r?.sender}
-                subject={r?.message}
-                time={r?.sent}
-                notification={r?.message}
-              />
-              {/* <NotificationItem
-                type={r?.type}
-                sender={r?.sender}
+                sender={r?.sender_name}
                 subject={r?.subject}
-                time={r?.time}
-                notification={r?.notification}
-              /> */}
+                time={r?.sent}
+                content={r?.content}
+              />
+          
             </div>
           ))}
         </CustomScroll>

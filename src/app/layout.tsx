@@ -29,31 +29,8 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className="">
-        {/* {noNavbar ? (
-          ""
-        ) : (
-          <Navbar
-            isMenuOpen={isMenuOpen}
-            toggleMenu={() => {
-              window.scrollTo({
-                top: 0,
-              });
-              setIsMenuOpen((r) => !r);
-            }}
-          />
-        )}
-        <div
-          className={` ${
-            isMenuOpen
-              ? "h-[100vh] overflow-hidden brightness-50"
-              : "opacity-100"
-          }
-        transition duration-[1000ms]
-        `}
-        >
-          {children}
-        </div> */}
+      <body className="text-black">
+   
         <Providers>
           {children}
         </Providers>

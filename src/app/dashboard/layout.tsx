@@ -61,7 +61,7 @@ const Layout = ({ children }: LayoutProps) => {
       if (data) {
         setUser((prevUser) => ({
           ...prevUser,
-          notifications: { ...data },
+          notifications: [ ...data ],
         }));
       }
 

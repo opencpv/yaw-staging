@@ -4,11 +4,11 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { styled } from "@stitches/react";
 import { motion } from "framer-motion";
 import { SaveAndExit } from "../application-form/components/PropertyFormComplex/SaveAndExit";
-import LeaseForm from "./components/LeaseForm";
 import { openSans } from "@/app/styles/font";
 import CaComment from "./components/icons/CaComment";
+import ListingFormForm from "./components/ListingFormForm";
 
-const LeaseFormModal = () => {
+const ListingFormModal = () => {
   const [animation, setAnimation] = useState(false);
   const [open, setOpen] = useState(false);
   return (
@@ -33,7 +33,7 @@ const LeaseFormModal = () => {
             animation ? " overflow-y-hidden" : "overflow-y-scroll"
           } translate-y-[-50%] rounded-[8px] bg-white shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none `}>
           <div className={`relative ${openSans.className} z-[1001]`}>
-            <LeaseForm setOpen={setOpen} />
+            <ListingFormForm setOpen={setOpen} />
           </div>
 
           <Dialog.Close asChild>
@@ -50,4 +50,4 @@ const LeaseFormModal = () => {
   );
 };
 
-export default LeaseFormModal;
+export default ListingFormModal;

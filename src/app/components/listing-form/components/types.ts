@@ -1,4 +1,6 @@
 export type ListingForm = {
+    propertyType? : string
+    propertyName? : string
     propertyDescription? : string
     renterKnowledge? : string
     propertySize? : string | number
@@ -17,6 +19,9 @@ export type ListingForm = {
     agentFeeAmount? :string | number 
     viewingFee? :string 
     viewingFeeAmount? :string | number 
+    
+    featuresAndAmenities? : []
+    
 
 
 }

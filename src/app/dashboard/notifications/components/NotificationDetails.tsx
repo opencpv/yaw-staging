@@ -16,7 +16,7 @@ const NotificationDetailsFull: React.FC<Props> = ({ currentNotification }) => {
       <Root className="flex flex-col h-full justify-start gap-8">
         <div className="flex flex-col gap-4">
           <div className="text-[24px] 2xl:text-[31px] text-black font-bold">
-            <p>{currentNotification?.message}</p>
+            <p>{currentNotification?.subject}</p>
           </div>
           <div className="text-[10px]  leading-[14px] uppercase text-[#0000008F] flex gap-2">
             <p className="font-bold">Date</p> 
@@ -25,7 +25,7 @@ const NotificationDetailsFull: React.FC<Props> = ({ currentNotification }) => {
           </div>
         </div>
         <div className="text-[16px] text-[#00000066] leading-[22.4px] font-[400]">
-          {currentNotification?.message}
+          {currentNotification?.content}
         </div>
         {
           currentNotification?.type == "message" && 
