@@ -6,8 +6,7 @@ import { motion } from "framer-motion";
 import { SaveAndExit } from "../application-form/components/PropertyFormComplex/SaveAndExit";
 import LeaseForm from "./components/LeaseForm";
 import { openSans } from "@/app/styles/font";
-
-
+import CaComment from "./components/icons/CaComment";
 
 const LeaseFormModal = () => {
   const [animation, setAnimation] = useState(false);
@@ -16,11 +15,14 @@ const LeaseFormModal = () => {
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>
         <div
-          className="aspect-[402/112] max-w-[402px] flex-grow w-full flex items-center justify-center rounded-xl 
-         cursor-pointer"
+          className="aspect-[402/112] max-w-[402px] flex-grow w-full flex items-center justify-start rounded-xl 
+         cursor-pointer gap-2 px-8 py-6 text-[20px]"
           style={{
             boxShadow: "0px 24px 48px -12px rgba(0, 0, 0, 0.18)",
           }}>
+          <div className="rounded-full flex items-center justify-center w-full max-w-[64px] aspect-square bg-[#F1F1F1] ">
+            <CaComment />
+          </div>{" "}
           Create a New Listing
         </div>
       </Dialog.Trigger>

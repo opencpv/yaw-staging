@@ -31,41 +31,7 @@ const Page = () => {
   //   setCurrentNotification(demoNotifications[0]);
   // }, []);
 
-  const getNotifications = async () => {
-    try {
-      const {
-        data: data,
-        error,
-        status: dataStatus,
-      } = await supabase.from("notifications").select("*");
 
-      if (data) {
-        setNotifications(data);
-      }
-
-      if (dataStatus === 200) {
-        setNotificationsLoading(true);
-      }
-    } catch (error) {
-      console.log(error);
-      return error;
-    }
-  };
-
-  // Scrolls to the bottom on mount
-  useEffect(() => {
-    getNotifications();
-    const notifications = supabase
-      .channel("custom-all-channel")
-      .on(
-        "postgres_changes",
-        { event: "*", schema: "public", table: "notifications" },
-        (payload) => {
-          getNotifications();
-        }
-      )
-      .subscribe();
-  }, []);
 
   return (
     <div className={`flex lg:grid grid-cols-3 gap-5 `}>

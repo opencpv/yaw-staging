@@ -26,6 +26,8 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import OTP1 from "./OTP/OTP1";
 import OTP2 from "./OTP/OTP2";
 import Progress from "./Progress";
+import supabase from "@/lib/utils/supabaseClient";
+import userSession from "@/lib/utils/userSession";
 
 const iconSize = 44;
 
@@ -54,12 +56,11 @@ const views = [
   <Congratulations key="congratulations" />,
 ];
 
-type Props ={
-  setOpen : React.Dispatch<React.SetStateAction<boolean>>
+type Props = {
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
-}
-
-export default function LeaseForm({setOpen}: Props) {
+export default function LeaseForm({ setOpen }: Props) {
   const leaseRef = useRef<any>();
   const [progressValue, setProgressValue] = useState<number>(1);
   const [activeSlide, setActiveSlide] = useState(0);
@@ -67,6 +68,7 @@ export default function LeaseForm({setOpen}: Props) {
   const [lastSlide, setLastSlide] = useState(false);
   const [hideLeft, setHideLeft] = useState(false);
   const [hideRight, setHideRight] = useState(false);
+  const [otp, setOtp] = useState(false);
 
   const [listingFormData, setListingFormData] = useLocalStorage(
     "listing-form",
@@ -96,11 +98,9 @@ export default function LeaseForm({setOpen}: Props) {
     if (activeSlide > 15) {
       setHideLeft(true);
       setHideRight(true);
-      
-
-    }else{
-      setHideLeft(false)
-      setHideRight(false)
+    } else {
+      setHideLeft(false);
+      setHideRight(false);
     }
 
     const value = (activeSlide / views.length) * 100;
@@ -109,8 +109,7 @@ export default function LeaseForm({setOpen}: Props) {
   }, [activeSlide]);
 
   const handleBack = () => {
-    
-    firstSlide && setOpen(false)
+    firstSlide && setOpen(false);
     if (activeSlide > 0) {
       setActiveSlide((init) => init - 1);
 
@@ -119,7 +118,7 @@ export default function LeaseForm({setOpen}: Props) {
   };
 
   const handleForward = () => {
-    activeSlide > 15 && submit() 
+    activeSlide > 15 && submit();
     if (activeSlide < views.length - 1) {
       setActiveSlide((init) => init + 1);
 
@@ -128,8 +127,17 @@ export default function LeaseForm({setOpen}: Props) {
   };
 
   const submit = () => {
+    console.log(userSession)
+    // const { data, error } = await supabase
+    //   .from("property")
+    //   .insert([{ owner_id: "someValue", other_column: "otherValue" }])
+    //   .select();
+  };
 
-  }
+  useEffect(()=> {
+    console.log(userSession())
+
+  }, [])
 
   return (
     <Root

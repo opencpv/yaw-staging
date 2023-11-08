@@ -12,7 +12,7 @@ type Props = {
   onChange: any;
 };
 const CustomCheckBoxes = ({ data, onChange }: Props) => {
-  const [selected, setSelected] = useState([]);
+  const [selected, setSelected] = useState<any>([]);
   const [listingFormData, setlistingFormData] = useLocalStorage(
     "listing-form",
     {
@@ -42,7 +42,7 @@ const CustomCheckBoxes = ({ data, onChange }: Props) => {
 
   return (
     <form className="flex flex-wrap gap-5 w-full">
-      {data.map((r: any, index: number) => (
+      {data?.map((r: any, index: number) => (
         <div className="flex items-center gap-3 w-fit" key={index}>
           <Checkbox.Root
             checked={selected?.includes(r?.name)}

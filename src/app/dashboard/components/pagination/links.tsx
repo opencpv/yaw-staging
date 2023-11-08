@@ -10,7 +10,7 @@ export const PgRoutes = [
     name: "overview",
     url: "",
     icon: <CaOverview   />,
-    link: "/",
+    link: "/dashboard",
   },
   {
     name: "messages",

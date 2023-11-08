@@ -9,9 +9,13 @@ import { IoMdNotifications, IoMdNotificationsOutline } from "react-icons/io";
 import MessagesPopover from "../../notifications/components/NotificationsPopover";
 import NotificationsPopover from "../../notifications/components/NotificationsPopover";
 import { montserat } from "@/app/styles/font";
+import { useContext } from "react";
+import { AppContext } from "../../layout";
 
 const Navbar = () => {
   const { icons } = useAssets();
+  const { profileData } = useContext(AppContext)?.user || { full_name : "User",  avatar_url : "/assets/images/dashboard-navbar.png"}
+
 
   return (
     <Root
@@ -29,14 +33,14 @@ const Navbar = () => {
       <div className="flex gap-2 lg:gap-10 w-fit relative items-center">
         <Switch />
         <div>
-          <p className="text-[#fff] text-[14px] md:text-[16px] whitespace-nowrap">John Doe</p>
+          <p className="text-[#fff] text-[14px] md:text-[16px] whitespace-nowrap">{profileData?.full_name}</p>
         </div>
 
         <NotificationsPopover />
 
-        <div className="relative w-full flex items-center justify-center min-w-[40px] md:min-w-[50px] min-h-[50px]">
+        <div className="relative w-full flex items-center justify-center min-w-[40px] md:min-w-[50px] min-h-[50px] rounded-full overflow-hidden">
           <Image
-            src="/assets/images/dashboard-navbar.png"
+            src={profileData?.avatar_url}
             alt="User picture"
             width={50}
             height={50}
