@@ -9,10 +9,11 @@ import { demoNotifications } from "../content/demoNotifications";
 import CaMarkAsRead from "../icons/CaMarkAsRead";
 import { CustomScroll } from "./CustomScroll";
 import { AppContext } from "../../layout";
+import { AppContextType } from "../../types";
 
 const NotificationsPopover = () => {
   const [currentNotification, setCurrentNotification] = useState("");
-  const { notifications } = useContext(AppContext).user
+  const { notifications } = useContext(AppContext)?.user 
 
   return (
     <Popover.Root>

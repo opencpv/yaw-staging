@@ -6,12 +6,13 @@ import {
 import { useContext, useEffect, useState } from "react";
 import ProfileInfo from "./ProfileIInfo";
 import { AppContext } from "../../layout";
+import { AppContextType } from "../../types";
 
 const ProfileMainView = () => {
   const supabase = createClientComponentClient();
   const [loading, setLoading] = useState<boolean>(false);
   
-  const {user, setUser} = useContext(AppContext)
+  const {user, setUser} = useContext(AppContext) as AppContextType
 
   useEffect(()=> {
     !user?.profileData && setLoading(true)

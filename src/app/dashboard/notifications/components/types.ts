@@ -5,4 +5,5 @@ export type NotificationType = {
     subject?: string;
     type: "message" | "admin" | "alert";
     sent ? : string
+    sender_name? :string
   };

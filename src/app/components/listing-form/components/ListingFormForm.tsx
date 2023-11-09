@@ -30,6 +30,7 @@ import supabase from "@/lib/utils/supabaseClient";
 import userSession from "@/lib/utils/userSession";
 import { submitListing } from "./api";
 import { AppContext } from "@/app/dashboard/layout";
+import { AppContextType } from "@/app/dashboard/types";
 
 const iconSize = 44;
 
@@ -65,13 +66,13 @@ type Props = {
 export default function ListingFormForm({ setOpen }: Props) {
   const leaseRef = useRef<any>();
   const [progressValue, setProgressValue] = useState<number>(1);
-  const [activeSlide, setActiveSlide] = useState(14);
+  const [activeSlide, setActiveSlide] = useState(10);
   const [firstSlide, setFirstSlide] = useState(true);
   const [lastSlide, setLastSlide] = useState(false);
   const [hideLeft, setHideLeft] = useState(false);
   const [hideRight, setHideRight] = useState(false);
   const [otp, setOtp] = useState(false);
-  const {user} = useContext(AppContext)
+  const { user } = useContext(AppContext) as AppContextType;
 
   const [listingFormData, setListingFormData] = useLocalStorage(
     "listing-form",
@@ -128,7 +129,6 @@ export default function ListingFormForm({ setOpen }: Props) {
       scrollToTop();
     }
   };
-
 
   return (
     <Root
@@ -190,13 +190,13 @@ export const NavigationButton = styled("button", {
   borderRadius: "0.5rem",
   fontWeight: "600",
   fontSize: "16px",
-  minHeight: "52px",
+  height: "52px",
   aspectRatio: "224/52",
 
   "@media screen and (max-width:1024px)": {
     fontSize: "13px",
     aspectRatio: "195/48",
     minHeight: "48px",
-    maxWidth: "195px",
+    maxWidth: "100%",
   },
 });

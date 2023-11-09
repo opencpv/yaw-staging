@@ -6,12 +6,13 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { redirect } from "next/navigation";
 import { createContext, useEffect, useState } from "react";
 import { NotificationType } from "./notifications/components/types";
+import { AppContextType } from "./types";
 
 type LayoutProps = {
   children: React.ReactNode;
 };
 
-export const AppContext = createContext(null);
+export const AppContext = createContext<AppContextType | undefined>(undefined);
 
 const Layout = ({ children }: LayoutProps) => {
   const [notifications, setNotifications] = useState<NotificationType | any>();

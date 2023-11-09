@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { styled } from "@stitches/react";
 import { motion } from "framer-motion";
@@ -7,10 +7,21 @@ import { SaveAndExit } from "../application-form/components/PropertyFormComplex/
 import { openSans } from "@/app/styles/font";
 import CaComment from "./components/icons/CaComment";
 import ListingFormForm from "./components/ListingFormForm";
+import { useLocalStorage } from "@uidotdev/usehooks";
+import { submitListing } from "./components/api";
+import { AppContext } from "@/app/dashboard/layout";
+import { AppContextType } from "@/app/dashboard/types";
 
 const ListingFormModal = () => {
   const [animation, setAnimation] = useState(false);
   const [open, setOpen] = useState(false);
+  const [listingFormData, setListingFormData] = useLocalStorage(
+    "listing-form",
+    {}
+  );
+  const { user } = useContext(AppContext) as AppContextType;
+  const owner_id = user?.profileData?.id;
+
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>
@@ -38,8 +49,9 @@ const ListingFormModal = () => {
 
           <Dialog.Close asChild>
             <button
+              onClick={() => submitListing(owner_id, listingFormData)}
               className="focus:shadow-violet7 absolute top-[15px] right-[25px] appearance-none items-center justify-center rounded-full focus:shadow-[0_0_0_2px] 
-              z-[1000] focus:outline-none"
+              z-[2000] focus:outline-none "
               aria-label="Close">
               <SaveAndExit />
             </button>

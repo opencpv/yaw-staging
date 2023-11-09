@@ -32,7 +32,7 @@ const properties = [
 export default function BestDescribes() {
   const [selected, setSelected] = useState<any>();
   const [listingFormData, setListingFormData] = useLocalStorage("listing-form", {
-    bestDescribes: "",
+    propertyType: "",
   });
 
   const handleAmenityClick = (r: any) => {
@@ -46,12 +46,12 @@ export default function BestDescribes() {
   useEffect(() => {
     setListingFormData((prevData: any) => ({
       ...prevData,
-      bestDescribes: selected,
+      propertyType: selected,
     }));
   }, [selected]);
 
   useEffect(() => {
-    setSelected(listingFormData?.bestDescribes);
+    setSelected(listingFormData?.propertyType);
   }, []);
 
   return (

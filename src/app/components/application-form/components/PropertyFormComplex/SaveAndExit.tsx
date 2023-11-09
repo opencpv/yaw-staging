@@ -28,15 +28,11 @@ export default SaveIcon;
 
 export const SaveAndExit = () => {
   return (
-    // <div className="flex gap-8 items-center ">
-    //   <div className="flex gap-3 text-[#8A8A8A]">
-    //     <SaveIcon />
-    //     Saved
-    //   </div>{" "}
+
       <Root
         className="w-[115px] h-[35px]  flex items-center justify-center  rounded-[16px]
           hover:scale-[1.05] hover:bg-gray-100
-       
+       cursor-pointer
           text-[13px] font-[600] text-[#8A8A8A]">
         Save & Exit
       </Root>

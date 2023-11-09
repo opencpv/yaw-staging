@@ -22,7 +22,7 @@ const FeeTitleAndAmount = ({ index, feeTitle, amount }: any) => {
 
     updatedAdditionalFees[index][field] = value;
 
-    const updatedlisitingFormData = {
+    const updatedlisitingFormData : any = {
       ...lisitingFormData,
       additionalFeesArray: updatedAdditionalFees,
     };

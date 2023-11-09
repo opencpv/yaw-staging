@@ -1,22 +1,19 @@
 import { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import ImageAddIcon from "../icons/ImageAdd";
+import { handleFileDrop } from "./api";
 
 type Props = {
-  setFiles : any
-}
+  setFiles: any;
+};
 
-export const AddMoreImages = ({ setFiles } : Props) => {
-  const onDrop = useCallback((acceptedFiles: any) => {
-    if (acceptedFiles?.length) {
-      setFiles((previousFiles: any) => [
-        ...previousFiles,
-        ...acceptedFiles.map((file: any) =>
-          Object.assign(file, { preview: URL.createObjectURL(file) })
-        ),
-      ]);
-    }
-  }, []);
+export const AddMoreImages = ({ setFiles }: Props) => {
+  const onDrop = useCallback(
+    (acceptedFiles : any) => {
+      handleFileDrop(acceptedFiles, setFiles);
+    },
+    [setFiles]
+  );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
@@ -33,17 +30,13 @@ export const AddMoreImages = ({ setFiles } : Props) => {
   );
 };
 
-export const AddMoreImagesXl = ({ setFiles } : Props) => {
-  const onDrop = useCallback((acceptedFiles: any) => {
-    if (acceptedFiles?.length) {
-      setFiles((previousFiles: any) => [
-        ...previousFiles,
-        ...acceptedFiles.map((file: any) =>
-          Object.assign(file, { preview: URL.createObjectURL(file) })
-        ),
-      ]);
-    }
-  }, []);
+export const AddMoreImagesXl = ({ setFiles }: Props) => {
+  const onDrop = useCallback(
+    (acceptedFiles : any) => {
+      handleFileDrop(acceptedFiles, setFiles);
+    },
+    [setFiles]
+  );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 

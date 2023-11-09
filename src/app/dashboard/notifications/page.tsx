@@ -18,7 +18,7 @@ const Page = () => {
   const [currentNotification, setCurrentNotification] =
     useState<NotificationType>();
   // const [notifications, setNotifications] = useState<NotificationType | any>();
-  const { notifications } = useContext(AppContext).user
+  const { notifications } = useContext(AppContext)?.user
 
   useEffect(() => {
     const supabase = createClientComponentClient();

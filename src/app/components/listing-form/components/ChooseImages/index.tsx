@@ -8,6 +8,7 @@ import SlideEnter from "../SlideEnter";
 import ImageOptionsPopover from "./ImageOptionsPopover";
 import { ImageCard } from "./ImageCard";
 import { useLocalStorage } from "@uidotdev/usehooks";
+import { handleFileDrop, uploadToCloudinary } from "./api";
 
 export default function ChooseImages() {
   const [files, setFiles] = useState<any>([]);
@@ -16,16 +17,12 @@ export default function ChooseImages() {
     []
   );
 
-  const onDrop = useCallback((acceptedFiles: any) => {
-    if (acceptedFiles?.length) {
-      setFiles((previousFiles: any) => [
-        ...previousFiles,
-        ...acceptedFiles.map((file: any) =>
-          Object.assign(file, { preview: URL.createObjectURL(file) })
-        ),
-      ]);
-    }
-  }, []);
+  const onDrop = useCallback(
+    (acceptedFiles: any) => {
+      handleFileDrop(acceptedFiles, setFiles);
+    },
+    [setFiles]
+  );
 
   useEffect(() => {
     if (files?.length >= 1) {
