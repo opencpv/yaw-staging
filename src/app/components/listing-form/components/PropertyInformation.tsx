@@ -16,7 +16,7 @@ export default function PropertyInformation() {
     });
   };
   return (
-    <SlideEnter>
+    <>
       <Root className=" flex flex-col w-full  h-full items-center justify-center ">
         <div className="flex flex-col items-center justify-center w-full lg:w-[65%] ">
           <div className="grid grid-cols-2 w-full">
@@ -112,7 +112,7 @@ export default function PropertyInformation() {
           </div>
         </div>
       </Root>
-    </SlideEnter>
+    </>
   );
 }
 

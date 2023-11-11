@@ -44,7 +44,7 @@ export default function SuitedFor() {
   }, []);
 
   return (
-    <SlideEnter>
+    <>
       <Root className="flex flex-col w-full items-center justify-center h-full ">
         <div className="w-full lg:w-[75%] flex flex-col items-center justify-center gap-6">
           <div className="w-full flex flex-col gap-2">
@@ -72,7 +72,7 @@ export default function SuitedFor() {
           </div>
         </div>
       </Root>
-    </SlideEnter>
+    </>
   );
 }
 

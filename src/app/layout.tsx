@@ -5,8 +5,10 @@ import { useEffect, useState } from "react";
 import Navbar from "@/components/__shared/Navbar";
 import { usePathname } from "next/navigation";
 import Providers from "@/context/Providers";
+import Script from "next/script";
 
 const uniquePages = ["login", "terms-of-service"];
+
 
 export default function RootLayout({
   children,
@@ -28,8 +30,10 @@ export default function RootLayout({
   }, [pathname]);
 
   return (
-    <html lang="en">
+    <html lang="en" className="text-[14px] lg:text-[14.5px] 2xl:text-[15px] 3xl:text-[16px]">
+      <Script src="https://widget.cloudinary.com/v2.0/global/all.js" />
       <body className="text-black">
+        
    
         <Providers>
           {children}

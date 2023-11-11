@@ -20,7 +20,7 @@ const Navbar = (props: any) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (pathname.includes("/properties/") && window.scrollY > 1) {
+      if (pathname?.includes("/properties/") && window.scrollY > 1) {
         setIsScrolling(true);
       } else {
         setIsScrolling(false);
@@ -36,9 +36,9 @@ const Navbar = (props: any) => {
   return (
     <nav
       className={`w-full px-8 py-4 z-[100] ${props.isMenuOpen && "absolute"} ${
-        !pathname.includes("/properties/")
+        !pathname?.includes("/properties/")
           ? "sticky bg-[#333333]"
-          : isScrolling && pathname.includes("/properties")
+          : isScrolling && pathname?.includes("/properties")
           ? "fixed bg-[#333333] transition-all"
           : "fixed bg-transparent transition-all"
       } top-0`}
@@ -61,7 +61,7 @@ const Navbar = (props: any) => {
           />
         </Link>
         <div className="flex items-center lg:gap-[73px] md:gap-[31px] w-full justify-end">
-          {!pathname.includes("/properties/") ? (
+          {!pathname?.includes("/properties/") ? (
             <button
               onClick={(e: any) => {
                 router.push("/login");

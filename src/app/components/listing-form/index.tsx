@@ -8,7 +8,7 @@ import { openSans } from "@/app/styles/font";
 import CaComment from "./components/icons/CaComment";
 import ListingFormForm from "./components/ListingFormForm";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import { submitListing } from "./components/api";
+import { submitListing, submitOrEditListing } from "./components/api";
 import { AppContext } from "@/app/dashboard/layout";
 import { AppContextType } from "@/app/dashboard/types";
 
@@ -21,6 +21,7 @@ const ListingFormModal = () => {
   );
   const { user } = useContext(AppContext) as AppContextType;
   const owner_id = user?.profileData?.id;
+  const [template_id, setTemplateId] = useState(25)
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
@@ -49,7 +50,7 @@ const ListingFormModal = () => {
 
           <Dialog.Close asChild>
             <button
-              onClick={() => submitListing(owner_id, listingFormData)}
+              onClick={() => submitOrEditListing(owner_id, listingFormData, template_id)}
               className="focus:shadow-violet7 absolute top-[15px] right-[25px] appearance-none items-center justify-center rounded-full focus:shadow-[0_0_0_2px] 
               z-[2000] focus:outline-none "
               aria-label="Close">

@@ -66,12 +66,13 @@ type Props = {
 export default function ListingFormForm({ setOpen }: Props) {
   const leaseRef = useRef<any>();
   const [progressValue, setProgressValue] = useState<number>(1);
-  const [activeSlide, setActiveSlide] = useState(10);
+  const [activeSlide, setActiveSlide] = useState(0);
   const [firstSlide, setFirstSlide] = useState(true);
   const [lastSlide, setLastSlide] = useState(false);
   const [hideLeft, setHideLeft] = useState(false);
   const [hideRight, setHideRight] = useState(false);
   const [otp, setOtp] = useState(false);
+  
   const { user } = useContext(AppContext) as AppContextType;
 
   const [listingFormData, setListingFormData] = useLocalStorage(
@@ -122,7 +123,7 @@ export default function ListingFormForm({ setOpen }: Props) {
   };
 
   const handleForward = () => {
-    activeSlide > 13 && submitListing(user?.profileData?.id, listingFormData);
+    activeSlide > 13 && submitListing(user?.profileData?.id, listingFormData, true);
     if (activeSlide < views.length - 1) {
       setActiveSlide((init) => init + 1);
 
@@ -152,7 +153,7 @@ export default function ListingFormForm({ setOpen }: Props) {
         className={`${
           hideLeft && hideRight
             ? "hidden"
-            : "grid grid-cols-2 lg:flex lg:justify-end lg:items-center w-full gap-1 px-7 py-7 border-t-[1px] border-t-[#C1C1C1]"
+            : "grid grid-cols-2 lg:flex lg:justify-end lg:items-center w-full gap-1 px-7 py-7 border-t-[1px] border-t-[#C1C1C1] z-[3000] relative"
         }`}>
         <NavigationButton
           className={` ${

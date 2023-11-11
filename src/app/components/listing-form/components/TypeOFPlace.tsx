@@ -23,11 +23,11 @@ export default function TypeOfPlace() {
   }, []);
 
   return (
-    <SlideEnter>
+    <>
       <Root className="w-full h-full flex-col items-center justify-center grid grid-cols-8">
         <div></div>
         <div className="col-span-8 lg:col-span-5 flex flex-col w-full items-start justify-center  gap-8">
-          <p className="text-[20px] lg:text-[31px] font-semibold ">
+          <p className="text-[1.25rem] lg:text-[1.9375rem] font-semibold ">
             What type of place will guests have?
           </p>
           <div className="w-full flex flex-col gap-6">
@@ -69,7 +69,7 @@ export default function TypeOfPlace() {
           </div>
         </div>
       </Root>
-    </SlideEnter>
+    </>
   );
 }
 

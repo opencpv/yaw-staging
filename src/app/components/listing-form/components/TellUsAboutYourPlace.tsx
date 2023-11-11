@@ -5,7 +5,7 @@ import FadeIn from "./FadeIn";
 
 export default function TellUsAboutYourPlace() {
   return (
-    <SlideEnter>
+    <>
       <div className="w-full   flex flex-col items-center justify-center h-full my-auto">
         <div className="hidden w-[75%] lg:flex items-center justify-center h-full">
           <div className="grid grid-cols-2 gap-x-16">
@@ -14,7 +14,7 @@ export default function TellUsAboutYourPlace() {
                 <Number number="01" />
               </div>
               <div className="flex flex-col gap-6">
-                <p className="text-[25px] lg:text-[3.0625rem] font-bold">
+                <p className="text-[1.5625rem] lg:text-[3.0625rem] font-bold">
                   Tell us about your place
                 </p>
                 <p
@@ -56,7 +56,7 @@ export default function TellUsAboutYourPlace() {
                 />
               </div>
               <div className="flex flex-col gap-6">
-                <p className="text-[25px] lg:text-[3.0625rem] font-bold">
+                <p className="text-[1.5625rem] lg:text-[3.0625rem] font-bold">
                   Tell us about your place
                 </p>
                 <p
@@ -73,6 +73,6 @@ export default function TellUsAboutYourPlace() {
           </div>
         </div>
       </div>
-    </SlideEnter>
+    </>
   );
 }

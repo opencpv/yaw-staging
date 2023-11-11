@@ -16,7 +16,7 @@ export default function PDHero() {
         style={{
           backgroundImage: `url('${heroUrl}')`,
         }}>
-       <div className="flex gap-5 w-full items-center justify-center px-5">
+       <div className="flex lg:flex-row flex-col gap-5 w-full items-center justify-center px-5">
           <ApplicationForm type="complex" />
           <ApplicationForm type="simple" />
           <ListingFormModal/>

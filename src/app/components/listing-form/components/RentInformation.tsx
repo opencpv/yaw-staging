@@ -19,7 +19,7 @@ export default function RentInformation() {
     });
   };
   return (
-    <SlideEnter>
+    <>
       <div className="w-full h-full flex flex-col items-center justify-center">
         <div className="w-full lg:w-[75%] flex flex-col gap-4">
           <p className={`${styles.title}`}>Rent Infomation</p>
@@ -79,6 +79,6 @@ export default function RentInformation() {
           </div>
         </div>
       </div>
-    </SlideEnter>
+    </>
   );
 }

@@ -60,7 +60,7 @@ export default function ChooseImages() {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
-    <SlideEnter>
+    <>
       <form className="w-full flex flex-col items-center justify-center h-full lg:px-24 gap-[2rem]">
         <div className="w-full flex flex-col gap-8 items-start justify-center max-w-[1108px]">
           <div className=" ">
@@ -77,12 +77,15 @@ export default function ChooseImages() {
               <div
                 {...getRootProps({})}
                 className="max-w-[1108px] max-h-[640px] aspect-[1108/640] w-full h-full rounded-[0.47181rem] border-[0.755px] border-[#00000040] flex items-center justify-center">
-                <input {...getInputProps()} />
+                <input
+                {...getInputProps()}
+                />
                 {isDragActive ? (
                   <p>Drop the files here</p>
                 ) : (
                   <div className="flex flex-col gap-2 items-center justify-center">
-                    <p className="text-[0.8125rem] text-center font-[400] ">
+                    <p
+                      className="text-[0.8125rem] text-center font-[400] ">
                       Select or drag and drop images here <br /> ( Maximum 10 )
                     </p>
                     <p></p>
@@ -126,6 +129,6 @@ export default function ChooseImages() {
           </div>
         )}
       </form>
-    </SlideEnter>
+    </>
   );
 }

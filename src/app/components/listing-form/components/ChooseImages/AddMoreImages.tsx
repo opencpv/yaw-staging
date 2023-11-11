@@ -20,7 +20,7 @@ export const AddMoreImages = ({ setFiles }: Props) => {
   return (
     <div
       {...getRootProps({})}
-      className=" w-fit rounded-lg border-[0.755px] border-[#B4B4B4] b flex items-center justify-center px-5 h-[38px] py-2 text-[13px]
+      className=" w-fit rounded-lg border-[0.755px] border-[#B4B4B4] b flex items-center justify-center px-5 h-[38px] py-2 text-[0.8125rem]
       cursor-pointer text-[#B4B4B4] gap-2
       ">
       <input {...getInputProps()} />

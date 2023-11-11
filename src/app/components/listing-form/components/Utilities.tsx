@@ -51,10 +51,10 @@ export default function Utilities() {
       <Root className="flex flex-col w-full items-center justify-center ">
         <div className="w-full lg:w-[75%] flex flex-col items-center justify-center gap-6">
           <div className="w-full flex flex-col gap-2">
-            <p className="text-[20px] lg:text-[31px] font-semibold">
+            <p className="text-[1.25rem] lg:text-[1.93755rem] font-semibold">
               Utilities
             </p>
-            <p className="text-[16px] font-[400]">
+            <p className="text-[1rem] font-[400]">
               You can add more utilities after you publish your listing
             </p>
           </div>

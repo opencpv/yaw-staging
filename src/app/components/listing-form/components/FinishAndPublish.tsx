@@ -4,7 +4,7 @@ import SlideEnter from "./SlideEnter";
 
 export default function FinishAndPublish() {
   return (
-    <SlideEnter>
+    <>
       <div className="w-full flex flex-col items-center justify-center h-full my-auto">
         <div className="hidden w-[75%] lg:flex items-center justify-center h-full">
           <div className="grid grid-cols-2 gap-x-16">
@@ -69,6 +69,6 @@ export default function FinishAndPublish() {
           </div>
         </div>
       </div>
-    </SlideEnter>
+    </>
   );
 }

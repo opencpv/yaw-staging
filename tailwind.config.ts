@@ -56,6 +56,7 @@ const config: Config = {
       fhd: "1920px",
       "2k": "2040px",
       "4k": "3840px",
+      "3xl" : "1728px",
     },
   },
   plugins: [nextui()],
