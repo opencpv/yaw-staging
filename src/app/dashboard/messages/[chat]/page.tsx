@@ -8,14 +8,16 @@ import React, {
 } from "react";
 import MessageBubble from "../components/MessageBubble";
 import BlockUserPopOver from "../components/BlockUserPopOver";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import { motion } from "framer-motion";
-import supabase from "@/lib/utils/supabaseClient";
 import { Spinner } from "@nextui-org/react";
-import userSession from "@/lib/utils/userSession";
 import MessageBubble2 from "../components/MessageBubble2";
+import { useCurrentUserId } from "@/lib/custom-hooks/useCurrentUserId";
+import NoMessageState from "../components/NoMessageState";
+import { fetchTable } from "@/services/fetch";
+import { useFetchTable, useRealTimeSubscription } from "@/lib/custom-hooks/useFetch";
+import { useMessagesStore } from "@/store/dashboard/store";
 
 type fetchedMessageType = {
   sender_id: string;
@@ -25,16 +27,13 @@ type fetchedMessageType = {
 };
 
 const Messages = ({ params }: { params: { chat: string } }) => {
+  const pathname = usePathname();
   const { icons } = useAssets();
   const router = useRouter();
   const messageContainerRef = useRef<HTMLDivElement>(null);
-
-  const [fetchedMessages, setFetchedMessages] = useState<
-    fetchedMessageType[] | null
-  >(null);
-
-  const [messagesLoading, setMessagesLoading] = useState<boolean>(true);
-  const [currentUserId, setCurrentUserId] = useState<string | null>(null);
+  const currentUserId = useCurrentUserId();
+  const name = useMessagesStore((state) => state.name)
+  console.log(name)
 
   const { chat } = params;
   let contactName = useMemo(() => {
@@ -53,84 +52,79 @@ const Messages = ({ params }: { params: { chat: string } }) => {
     }
   };
 
-  const getMessages = async () => {
-    try {
-      const {
-        data: messages,
-        error,
-        status: messagesStatus,
-      } = await supabase
-        .from("messages")
-        .select("*")
-        .or(`sender_id.eq.${currentUserId}, recipient_id.eq.${currentUserId}`);
-
-      if (messages) {
-        setFetchedMessages(messages);
-      }
-
-      if (messagesStatus === 200) {
-        setMessagesLoading(false);
-      }
-    } catch (error) {
-      console.log(error);
-      return error;
-    }
+  const getMessages = () => {
+    const data = fetchTable("messages", {
+      or: `sender_id.eq.${currentUserId}, recipient_id.eq.${currentUserId}`,
+    });
+    return data;
   };
 
-  // Scrolls to the bottom on mount
   useEffect(() => {
-    scrollToBottom;
-    const getUserId = async () => {
-      const data = await userSession();
-      const id = String(data?.session.user.id);
-      setCurrentUserId(id);
-    };
-
-    getUserId();
-    getMessages();
-    const messages = supabase
-      .channel("custom-all-channel")
-      .on(
-        "postgres_changes",
-        { event: "*", schema: "public", table: "messages" },
-        (payload) => {
-          getMessages();
-        }
-      )
-      .subscribe();
+    scrollToBottom; // Scrolls to the bottom on mount
+    // getMessages();
+    // realTime("messages-realtime", "messages", getMessages);
+    
   }, []);
+
+  useRealTimeSubscription({
+    channelName: "distinct_messages_realtime",
+    tableName: "distinct_messages",
+    payload: getMessages,
+  });
+
+  const {
+    data: messages,
+    error,
+    isLoading,
+    isValidating,
+    count,
+  } = useFetchTable({
+    tableName: "messages",
+    order: { column: "created_at", ascending: true },
+    or: `sender_id.eq.${currentUserId}, recipient_id.eq.${currentUserId}`,
+    select: "id, created_at, sender_id, sent_at, content ",
+  });
+
+  console.log(messages)
 
   return (
     <>
-      <div className="sticky top-0 flex items-center justify-between p-4 text-white rounded-xl bg-primary-400">
-        <Image
-          src={icons.ArrowIcon}
-          alt="go back"
-          onClick={() => router.back()}
-          className="inline-flex text-3xl lg:hidden"
-        />
-        <h2 className="text-xl">{contactName}</h2>
-        <BlockUserPopOver />
-      </div>
-      {messagesLoading && (
+      {/* {currentUserId === null && router.push("/login")} */}
+      {pathname !== "/dashboard/messages" && (
+        <div className="sticky top-0 z-40 flex items-center justify-between p-4 text-white rounded-xl bg-primary-400">
+          <Image
+            src={icons.ArrowIcon}
+            alt="go back"
+            onClick={() => router.back()}
+            className="inline-flex text-3xl lg:hidden"
+          />
+          <h2 className="text-xl">{contactName}</h2>
+          <BlockUserPopOver />
+        </div>
+      )}
+
+      {isLoading ? (
         <div className="flex items-center justify-center h-[70vh]:">
           <Spinner color="success" />
         </div>
+      ) : (
+        error && <p>Error: {error.message}</p>
       )}
-      {fetchedMessages && fetchedMessages?.length > 0 ? (
+
+      {messages ? (
         <div
-          className="flex flex-col w-full h-[70dvh] mt-5 mb-20 sm:mb-0 overflow-y-scroll hidden-scrollbar py-5"
+          className="flex flex-col w-full h-[80%] mt-5 overflow-y-scroll hidden-scrollbar py-5"
           ref={messageContainerRef}
         >
-          {fetchedMessages?.map((message) => {
-            if (message.sender_id === currentUserId){
+          {messages?.map((message) => {
+            if (message.sender_id === currentUserId) {
               return (
-              <MessageBubble
-                key={message.sent_at}
-                content={message.content}
-                time={message.sent_at}
-              />
-              )
+                <MessageBubble
+                  key={message.sent_at}
+                  content={message.content}
+                  time={message.sent_at}
+                />
+              );
             }
             return (
               <MessageBubble2
@@ -146,20 +140,7 @@ const Messages = ({ params }: { params: { chat: string } }) => {
         <div className="flex items-center justify-center h-[70vh]">
           {" "}
           {/* will render when there is no messages */}
-          <div className="flex flex-col items-center text-center gap-y-2 text-primary-400">
-            <motion.div whileInView={{ x: 0 }} initial={{ x: 20 }}>
-              <Image
-                src={icons.ChatIcon}
-                alt="chat"
-                width={80}
-                height={90}
-                className=""
-              />
-            </motion.div>
-            <h1 className="text-2xl font-[600] mt-3">Messages</h1>
-            <p className="">Send and receive messages with rentright</p>
-            <p className="capitalize text-[#8DA5A4]">Happy messaging</p>
-          </div>
+          <NoMessageState />
         </div>
       )}
     </>

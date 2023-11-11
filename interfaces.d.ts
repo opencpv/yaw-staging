@@ -37,6 +37,15 @@ interface AdCardInterface {
   href?: string;
 }
 
+interface ApplicationsInterface {
+  propertyTitle: string;
+  propertyImage: string;
+  applicantImage: string;
+  applicantName: string;
+  date: string;
+  propertyPrice: number;
+}
+
 interface ChatInterface {
   href: string;
   image: string;
@@ -77,9 +86,10 @@ interface ManagePropertiesInterface {
   image: string;
   posted_on: string;
   price: number;
-  status: "Paid" | "Not paid";
+  isPaidFor: boolean;
+  status: PropertyStatusInterface
 }
 
-interface PropertyStatus {
+interface PropertyStatusInterface {
   status: "available" | "contract pending" | "leased" | "dormant"
 }

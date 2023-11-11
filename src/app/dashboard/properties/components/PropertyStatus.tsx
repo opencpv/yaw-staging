@@ -1,49 +1,54 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import PaymentWarning from "./PaymentWarning";
 import Button from "../../components/Button";
-import {
-  FaRegCheckCircle,
-  FaRegTimesCircle,
-} from "react-icons/fa";
+import { FaRegCheckCircle, FaRegTimesCircle } from "react-icons/fa";
 import Select from "../../components/Select";
+import Schedule from "node-schedule";
 
 type Props = {
-  status: "Paid" | "Not paid";
+  isPaidFor: boolean
+  status: PropertyStatusInterface
 };
 
-const PropertyStatus = ({ status }: Props) => {
+const PropertyStatus = ({ isPaidFor, status }: Props) => {
+
   const [value, setValue] = useState<
     "available" | "contract pending" | "leased" | "dormant"
   >("available");
 
   const handleSelectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setValue(e.target.value as "available" | "contract pending" | "leased" | "dormant");
+    setValue(
+      e.target.value as "available" | "contract pending" | "leased" | "dormant"
+    );
   };
 
-  if (status === "Not paid") return <PaymentWarning />;
-  else if (status === "Paid")
+  if (isPaidFor === false) return <PaymentWarning />;
+  else if (isPaidFor)
     return (
       <>
         <Select
           options={["Available", "Contract Pending", "Leased", "Dormant"]}
-          value={value}
+          value={status}
           handleSelectionChange={handleSelectionChange}
         />
-        {(value === "available" || value === "contract pending") && (
+        {(status as unknown === "available" || status as unknown === "contract pending") && (
           <div className="flex items-center justify-center gap-2 text-xs font-[600] mt-3">
             Still Available?
             <Button
               isIconOnly
-              className="bg-white rounded-md p-1 shadow-large border-0"
+              className="p-1 bg-white border-0 rounded-md shadow-large"
             >
-              <FaRegCheckCircle className="text-green-500 text-xl" />
+              <FaRegCheckCircle className="text-xl text-green-500" />
             </Button>
             <Button
               isIconOnly
-              className="bg-white rounded-md p-1 shadow-large border-0"
+              className="p-1 bg-white border-0 rounded-md shadow-large"
             >
-              <FaRegTimesCircle className="text-red-500 text-xl" />
+              <FaRegTimesCircle
+                className="text-xl text-red-500"
+                onClick={() => setValue("leased")}
+              />
             </Button>
           </div>
         )}

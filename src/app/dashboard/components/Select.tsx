@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { Select as NextUISelect, SelectItem } from "@nextui-org/react";
 import { FaCaretDown } from "react-icons/fa";
 
 type Props = {
   options: string[];
   value: string;
-  handleSelectionChange: () => void
+  handleSelectionChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
 const Select = ({ options, handleSelectionChange, value }: Props) => {
-
   return (
     <NextUISelect
       size="sm"

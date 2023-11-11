@@ -1,10 +1,18 @@
 "use client";
-import React, { FormEvent, useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Chat from "./components/Chat";
 import { usePathname } from "next/navigation";
 import supabase from "@/lib/utils/supabaseClient";
-import userSession from "@/lib/utils/userSession";
+import { useCurrentUserId } from "@/lib/custom-hooks/useCurrentUserId";
+import NoMessageState from "./components/NoMessageState";
+import { fetchTable } from "@/services/fetch";
+import Spinner from "../components/shared/Spinner";
+import {
+  useFetchTable,
+  useRealTimeSubscription,
+} from "@/lib/custom-hooks/useFetch";
+import { useProtectedRoute } from "@/lib/custom-hooks/useProtectedRoute";
 
 type Props = {
   children: React.ReactNode;
@@ -12,42 +20,44 @@ type Props = {
 
 type Message = {
   created_at: string;
-  recipient_id: { id: string; full_name: string; profile_img: string | null };
+  recipient_id: string;
+  recipient_full_name: string;
+  recipient_profile_image: string;
   sender_id: string;
   content: string;
-  // created_at: string;
 };
 
 const MessagesLayout = ({ children }: Props) => {
+  useProtectedRoute()
+
   const pathname = usePathname();
+  const [messageContent, setMessageContent] = useState<string>("");
+  const currentUserId = useCurrentUserId();
 
-  const [currentUserId, setCurrentUserId] = useState<string | null>(null);
-  const [messages, setMessages] = useState<Message[] | null>(null);
-  // console.log(currentUserId);
-  // console.log(messages);
+  const getMessages = () => {
+    const data = fetchTable("distinct_messages", {
+      or: `sender_id.eq.${currentUserId}, recipient_id.eq.${currentUserId}`,
+    });
+    return data;
+  };
 
-  useEffect(() => {
-    const getUserId = async () => {
-      const data = await userSession();
-      const id = String(data?.session.user.id);
-      setCurrentUserId(id);
-    };
+  useRealTimeSubscription({
+    channelName: "distinct_messages_realtime",
+    tableName: "distinct_messages",
+    payload: getMessages,
+  });
 
-    const getMessages = async () => {
-      const { data: allMessages } = await supabase
-        .from("messages")
-        .select(
-          "sender_id, recipient_id (id, full_name, profile_img), created_at, content"
-        )
-        .eq("sender_id", currentUserId)
-        .order("created_at", { ascending: false })
-      // console.log(allMessages);
-      setMessages(allMessages);
-    };
-
-    getUserId();
-    getMessages();
-  }, [currentUserId]);
+  const {
+    data: messages,
+    error,
+    isLoading,
+    isValidating,
+    count,
+  } = useFetchTable({
+    tableName: "distinct_messages",
+    or: `sender_id.eq.${currentUserId}, recipient_id.eq.${currentUserId}`,
+    select: "recipient_id, recipient_full_name, content ",
+  });
 
   const handleAddMessage = async (e: any) => {
     e.preventDefault();
@@ -56,7 +66,8 @@ const MessagesLayout = ({ children }: Props) => {
       .insert({
         content: e.target[0].value,
         sender_id: currentUserId,
-        recipient_id: "5f297aa7-18f5-42ff-9270-8ba8061cae95",
+        recipient_id: "5f297aa7-18f5-42ff-9270-8ba8061cae95", // will change once getting
+                                                              // the recipient_id is implemented
       })
       .select();
 
@@ -64,56 +75,71 @@ const MessagesLayout = ({ children }: Props) => {
   };
 
   return (
-    <>
-      <h2 className="text-2xl font-[500] mb-5 text-neutral-900">Messages</h2>
-      <section className="max-h-screen grid-cols-6 gap-5 lg:grid">
+    <div className="h-screen">
+      <h2 className="sticky top-0 z-40 bg-white pb-5 text-2xl font-[500] mb-5 text-neutral-900">
+        Messages
+      </h2>
+      {messages && messages?.length < 0 && (
+        <NoMessageState className="mt-20 lg:hidden" />
+      )}
+
+      <section className="h-full max-h-screen grid-cols-6 gap-5 lg:grid">
         <aside
           className={`${
             pathname !== "/dashboard/messages" && "hidden"
-          } lg:block col-span-2 max-h-screen p-4 px-0 overflow-y-scroll lg:px-4 lg:border-r hidden-scrollbar`}
+          } col-span-2 max-h-screen max-w-lg p-4 px-0 overflow-y-scroll lg:block lg:px-4 lg:border-r hidden-scrollbar`}
         >
-          {messages?.map((message) => (
-            <Chat
-              key={message.recipient_id.id}
-              href={`/dashboard/messages/${message.recipient_id.full_name}`}
-              image="/assets/images/dashboard-navbar.png"
-              name={message.recipient_id.full_name}
-              last_message={message.content}
-              messages_count={3}
-            />
-          ))}
+          {isLoading ? (
+            <Spinner />
+          ) : error ? (
+            <p>Error: {error.message}</p>
+          ) : (
+            messages?.map((message) => (
+              <Chat
+                key={message.recipient_id}
+                href={`/dashboard/messages/${message.recipient_full_name}`}
+                image="/assets/images/dashboard-navbar.png"
+                name={message.recipient_full_name}
+                last_message={message.content}
+                messages_count={3}
+              />
+            ))
+          )}
         </aside>
         <main
           className={`${
             pathname == "/dashboard/messages" && "hidden"
-          } lg:block relative w-full col-span-4 h-full`}
+          } lg:block relative w-full col-span-4 h-full max-h-screen`}
         >
           {children} {/* messages */}
-          <div className="fixed bottom-0 w-11/12 py-5 bg-white lg:w-[64%]">
-            <form
-              action=""
-              onSubmit={handleAddMessage}
-              className="flex items-center gap-4"
-            >
-              <input
-                type="text"
-                className="w-full p-3 border rounded-md text-neutral-800 placeholder:text-sm"
-                placeholder="Type your message"
-                onChange={(e) => setMessageContent(e.target.value)}
-              />
-              <button type="submit">
-                <Image
-                  src="/assets/icons/messages/send-btn.svg"
-                  alt="send"
-                  width={30}
-                  height={30}
+          {pathname.includes("/dashboard/messages/") && (
+            <div className="sticky bottom-0 w-full py-5 bg-white">
+              <form
+                action=""
+                onSubmit={handleAddMessage}
+                className="flex items-center gap-4"
+              >
+                <input
+                  type="text"
+                  className="w-full p-3 border rounded-md text-neutral-800 placeholder:text-sm"
+                  placeholder="Type your message"
+                  value={messageContent}
+                  onChange={(e) => setMessageContent(e.target.value)}
                 />
-              </button>
-            </form>
-          </div>
+                <button type="submit">
+                  <Image
+                    src="/assets/icons/messages/send-btn.svg"
+                    alt="send"
+                    width={30}
+                    height={30}
+                  />
+                </button>
+              </form>
+            </div>
+          )}
         </main>
       </section>
-    </>
+    </div>
   );
 };
 

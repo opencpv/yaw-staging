@@ -6,7 +6,7 @@ type Props = {};
 
 const PaymentWarning = (props: Props) => {
   return (
-    <div className="w-full p-2 bg-[#FCE9EB] text-[0.7rem]">
+    <div className="w-full p-2 bg-[#FCE9EB] text-[0.7rem] py-10 lg:py-2 rounded-xl lg:rounded-none">
       <div className="w-10/12 mx-auto space-y-1.5 2xl:w-8/12">
         <p className="text-red-400 text-start">Payment required !!</p>
         <div className="flex items-center text-start gap-1.5">

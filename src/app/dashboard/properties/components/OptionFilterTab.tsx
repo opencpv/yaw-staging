@@ -13,16 +13,18 @@ const OptionFilterTab = () => {
   >("all");
 
   return (
-    <div className="flex flex-wrap gap-4">
+    <>
       <Tabs
         variant="light"
         aria-label="Tabs variants"
-        radius="full"
+        // radius="full"
         classNames={{
-          tab: "bg-slate-100 min-w-[5rem] px-8",
+          base: "bg-transparent",
+          tabList: "flex-wrap xl:flex-nowrap",
+          tab: "bg-slate-100 px-8 min-w-[2rem] max-w-[10rem] rounded-large",
           tabContent:
             "text-primary-500 text-[0.6rem] group-data-[selected=true]:text-white",
-          cursor: "bg-[#45808B] text-white",
+          cursor: "bg-[#45808B] sm:bg-[#45808B] text-white rounded-large",
           panel: "bg-primary-400",
         }}
         selectedKey={selected}
@@ -35,7 +37,7 @@ const OptionFilterTab = () => {
         <Tab key="dormant" title="Dormant" />
         <Tab key="payment pending" title="Payment Pending" />
       </Tabs>
-    </div>
+    </>
   );
 };
 

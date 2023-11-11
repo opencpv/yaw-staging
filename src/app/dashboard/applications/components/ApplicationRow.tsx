@@ -1,25 +1,25 @@
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import React, { useMemo } from "react";
-import { BiPencil } from "react-icons/bi";
 import { FiTrash2 } from "react-icons/fi";
 import Button from "../../components/Button";
-import PropertyStatus from "./PropertyStatus";
 import { formatPrice } from "@/lib/utils/formatPrice";
 import { formatDate, formatTime } from "@/lib/utils/formatDatetime";
+import { AiOutlineEye } from "react-icons/ai";
+import ApplicationStatus from "./ApplicationStatus";
 
-const PropertyRow = ({
-  isPaidFor,
-  image,
+const ApplicationRow = ({
+  propertyImage,
+  applicantImage,
   propertyTitle,
-  posted_on,
-  price,
-  status
-}: ManagePropertiesInterface) => {
+  date,
+  propertyPrice,
+  applicantName,
+}: ApplicationsInterface) => {
   const { images } = useAssets();
 
   const daysDifference = useMemo(() => {
-    let firstDate: Date = new Date(posted_on);
+    let firstDate: Date = new Date(date);
     let secondDate: Date = new Date(); // today;
 
     // Calculate the difference in milliseconds
@@ -29,16 +29,31 @@ const PropertyRow = ({
     let daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
 
     return daysDifference;
-  }, [posted_on]);
+  }, [date]);
 
   return (
     <tr className="border border-t-0 h-fit">
+      {/* Applicant */}
+      <td className="p-2 pt-3">
+        <div className="flex items-center gap-2">
+          <div className="relative w-16 h-16 rounded-full">
+            <Image
+              src={applicantImage}
+              alt={applicantName}
+              fill
+              style={{ objectFit: "cover" }}
+              className="rounded-full"
+            />
+          </div>
+          <p className="text-[600] text-sm">{applicantName}</p>
+        </div>
+      </td>
       {/* Property */}
       <td className="p-2 pt-3 ">
         <div className="flex gap-2">
-          <div className="relative w-32 h-24">
+          <div className="relative w-16 h-16">
             <Image
-              src={image}
+              src={propertyImage}
               alt={propertyTitle}
               fill
               style={{ objectFit: "cover" }}
@@ -49,7 +64,7 @@ const PropertyRow = ({
             <h4 className="capitalize font-[600] text-sm">{propertyTitle}</h4>
             <p className="mt-2 text-sm text-neutral-400">{propertyTitle}</p>
             <p className="text-sm text-neutral-500 font-[700] mt-auto">
-              GHS {formatPrice(price)}
+              GHS {formatPrice(propertyPrice)}
             </p>
           </div>
         </div>
@@ -57,7 +72,7 @@ const PropertyRow = ({
       {/* Posted On */}
       <td className="p-2 pt-3 text-center align-middle">
         <h4 className="font-[600] text-sm">
-          {formatDate(posted_on)} {formatTime(posted_on)}
+          {formatDate(date)} {formatTime(date)}
         </h4>
         <small className="inline-block text-neutral-400 text-[0.6rem]">
           {daysDifference} Days Ago
@@ -65,16 +80,16 @@ const PropertyRow = ({
       </td>
       {/* Status */}
       <td className="pt-3 text-center align-middle">
-        <PropertyStatus isPaidFor={isPaidFor} status={status} />
+        <ApplicationStatus />
       </td>
       {/* Actions */}
-      <td className="flex items-center justify-center h-full pt-3">
+      <td className="flex items-center justify-center h-full -translate-y-4">
         <div className="flex gap-1.5 mt-10">
           <Button
             isIconOnly
             className="flex items-center justify-center w-6 py-3 rounded-md bg-[#F1F1F1]"
           >
-            <BiPencil className="text-xl" />
+            <AiOutlineEye className="text-xl" />
           </Button>
           <Button
             isIconOnly
@@ -88,4 +103,4 @@ const PropertyRow = ({
   );
 };
 
-export default PropertyRow;
+export default ApplicationRow;

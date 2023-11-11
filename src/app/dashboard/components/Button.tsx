@@ -8,6 +8,8 @@ type Props = {
   variant?: "default" | "outline" | "ghost";
   borderColor?: string;
   isIconOnly?: boolean;
+  disabled?: boolean;
+  onClick?: () => void;
 };
 
 const Button = ({
@@ -16,13 +18,17 @@ const Button = ({
   borderColor,
   variant,
   isIconOnly,
+  disabled,
+  onClick,
 }: Props) => {
   if (variant === "outline") {
     return (
       <NextUIButton
+        disabled={disabled}
         isIconOnly={isIconOnly}
-        className={`text-center font-[600] rounded-xl bg-transparent border ${className}`}
+        className={`text-center font-[600] rounded-xl bg-transparent border ${disabled && "cursor-not-allowed text-neutral-600"} ${className}`}
         style={{ borderColor: borderColor ? borderColor : "" }}
+        onClick={onClick}
       >
         {children}
       </NextUIButton>
@@ -30,8 +36,9 @@ const Button = ({
   } else if (variant === "ghost") {
     return (
       <NextUIButton
+        disabled={disabled}
         isIconOnly={isIconOnly}
-        className={`bg-transparent ${className}`}
+        className={`bg-transparent ${disabled && "cursor-not-allowed text-neutral-600"} ${className}`}
       >
         {children}
       </NextUIButton>
@@ -39,8 +46,11 @@ const Button = ({
   }
   return (
     <NextUIButton
+      disabled={disabled}
       isIconOnly={isIconOnly}
-      className={`text-center font-[600] rounded-xl ${className}`}
+      className={`text-center font-[600] rounded-xl ${
+        disabled && "cursor-not-allowed bg-gray-300 text-neutral-600"
+      } ${className}`}
     >
       {children}
     </NextUIButton>
