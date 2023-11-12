@@ -45,7 +45,7 @@ const AboutItem = ({ data, index }: { data: any; index: number }) => {
   );
   if (index == 1) {
     return (
-      <div className="grid items-center w-full grid-cols-1 gap-5 mt-8 lg:grid-cols-2 min-h-max">
+      <div className="grid items-center w-full grid-cols-1 gap-5 mt-16 lg:grid-cols-2 min-h-max">
         <div className="flex flex-col justify-center lg:py-36">
           <Heading1 />
           <Description />
@@ -70,7 +70,7 @@ const AboutItem = ({ data, index }: { data: any; index: number }) => {
   } else {
     return (
       <>
-        <div className="grid items-center w-full grid-cols-1 gap-5 lg:grid-cols-2 min-h-max">
+        <div className="grid items-center w-full grid-cols-1 mt-8 gap-5 lg:grid-cols-2 min-h-max">
           <div className="flex min-h-max justify-center flex-col lg:py-[9rem]">
             <Heading2 />
             <Description />

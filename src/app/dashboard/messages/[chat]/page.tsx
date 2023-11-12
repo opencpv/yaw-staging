@@ -1,89 +1,138 @@
+//@ts-nocheck
 "use client";
-import React, { HTMLAttributes, useEffect, useMemo, useRef } from "react";
+import React, {
+  HTMLAttributes,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import MessageBubble from "../components/MessageBubble";
 import BlockUserPopOver from "../components/BlockUserPopOver";
-import MessageBubble2 from "../components/MessageBubble2";
-import { HiOutlineArrowLongLeft } from "react-icons/hi2";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import {motion} from "framer-motion";
+import { Spinner } from "@nextui-org/react";
+import MessageBubble2 from "../components/MessageBubble2";
+import { useCurrentUserId } from "@/lib/custom-hooks/useCurrentUserId";
+import NoMessageState from "../components/NoMessageState";
+import { fetchTable } from "@/services/fetch";
+import { useFetchTable, useRealTimeSubscription } from "@/lib/custom-hooks/useFetch";
+import { useCapitalizeName } from "@/lib/custom-hooks/useCapitalizeName";
+
+type fetchedMessageType = {
+  sender_id: string;
+  recipient_id: string;
+  content: string;
+  sent_at: string;
+};
 
 const Messages = ({ params }: { params: { chat: string } }) => {
-  const { icons } = useAssets()
+  const pathname = usePathname();
+  const { icons } = useAssets();
   const router = useRouter();
   const messageContainerRef = useRef<HTMLDivElement>(null);
+  const currentUserId = useCurrentUserId();
 
   const { chat } = params;
-  let contactName = useMemo(() => {
-    // Algorithm for getting contact name
-    let nameSplit = chat.split("-");
-    let nameSplitCapitalized = nameSplit.map(
-      (name) => name.slice(0, 1).toUpperCase() + name.slice(1)
-    );
-    return nameSplitCapitalized.join(" ");
-  }, [chat]);
+  let contactName = useCapitalizeName(chat, "%20")
 
-  // Scrolls to the bottom on mount
-  useEffect(() => {
+  const scrollToBottom = () => {
     if (messageContainerRef.current) {
       messageContainerRef.current.scrollTop =
         messageContainerRef.current.scrollHeight;
     }
+  };
+
+  const getMessages = () => {
+    const data = fetchTable("messages", {
+      or: `sender_id.eq.${currentUserId}, recipient_id.eq.${currentUserId}`,
+    });
+    return data;
+  };
+
+  useEffect(() => {
+    scrollToBottom; // Scrolls to the bottom on mount
+    // getMessages();
+    // realTime("messages-realtime", "messages", getMessages);
   }, []);
+
+  useRealTimeSubscription({
+    channelName: "distinct_messages_realtime",
+    tableName: "distinct_messages",
+    payload: getMessages,
+  });
+
+  const {
+    data: messages,
+    error,
+    isLoading,
+    isValidating,
+    count,
+  } = useFetchTable({
+    tableName: "messages",
+    order: { column: "created_at", ascending: true },
+    or: `sender_id.eq.${currentUserId}, recipient_id.eq.${currentUserId}`,
+    select: "id, created_at, sender_id, sent_at, content ",
+  });
+
+  console.log(messages)
 
   return (
     <>
-      <div className="sticky top-0 flex items-center justify-between p-4 text-white rounded-xl bg-primary-400">
-        <Image
-          src={icons.ArrowIcon}
-          alt="go back"
-          onClick={() => router.back()}
-          className="inline-flex text-3xl lg:hidden"
-        />
-        <h2 className="text-xl">{contactName}</h2>
-        <BlockUserPopOver />
-      </div>
-
-      <div
-        className="flex flex-col w-full h-[70dvh] mt-5 mb-20 sm:mb-0 overflow-y-scroll hidden-scrollbar py-5"
-        ref={messageContainerRef}
-      >
-        <MessageBubble body="Hello" time="9:00 am" />
-        <MessageBubble2 body="Hi. Good morning" time="9:30 am" />
-        <MessageBubble body="Lorem ipsum dolor sit amet." time="11:41 am" />
-        <MessageBubble body="Lorem ipsum dolor sit amet 2." time="11:50 am" />
-        <MessageBubble2 body="Sure" time="11:50 am" />
-        <MessageBubble
-          body="This is the best service you can have"
-          time="11:54 am"
-        />
-        <MessageBubble body="Lorem ipsum dolor sit amet." time="12:10 pm" />
-        <MessageBubble2 body="I am intrigued. Thanks" time="12:11 pm" />
-        <MessageBubble2
-          body="Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet."
-          time="12:11 pm"
-        />
-        <MessageBubble body="Lorem ipsum dolor sit amet." time="12:10 pm" />
-        <MessageBubble2 body="Follow up." time="9:10 pm" />
-        <MessageBubble body="Sure." time="4:10 pm" />
-        <MessageBubble body="Sure." time="4:10 pm" />
-        <MessageBubble
-          body="You may start the process. Thanks"
-          time="8:57 pm"
-        />
-      </div>
-      {/* No message yet state */}
-      {/* <div className="flex items-center justify-center h-[70vh]">
-        <div className="flex flex-col items-center text-center gap-y-2 text-primary-400">
-          <motion.div whileInView={{x: 0}} initial={{x: 20}}>
-            <Image src={icons.ChatIcon} alt="chat" width={80} height={90} className="" />
-          </motion.div>
-          <h1 className="text-2xl font-[600] mt-3">Messages</h1>
-          <p className="">Send and receive messages with rentright</p>
-          <p className="capitalize text-[#8DA5A4]">Happy messaging</p>
+      {/* {currentUserId === null && router.push("/login")} */}
+      {pathname !== "/dashboard/messages" && (
+        <div className="sticky top-0 z-40 flex items-center justify-between p-4 text-white rounded-xl bg-primary-400">
+          <Image
+            src={icons.ArrowIcon}
+            alt="go back"
+            onClick={() => router.back()}
+            className="inline-flex text-3xl lg:hidden"
+          />
+          <h2 className="text-xl">{contactName}</h2>
+          <BlockUserPopOver />
         </div>
-      </div> */}
+      )}
+
+      {isLoading ? (
+        <div className="flex items-center justify-center h-[70vh]:">
+          <Spinner color="success" />
+        </div>
+      ) : (
+        error && <p>Error: {error.message}</p>
+      )}
+
+      {messages ? (
+        <div
+          className="flex flex-col w-full h-[80%] mt-5 overflow-y-scroll hidden-scrollbar py-5"
+          ref={messageContainerRef}
+        >
+          {messages?.map((message) => {
+            if (message.sender_id === currentUserId) {
+              return (
+                <MessageBubble
+                  key={message.sent_at}
+                  content={message.content}
+                  time={message.sent_at}
+                />
+              );
+            }
+            return (
+              <MessageBubble2
+                key={message.sent_at}
+                content={message.content}
+                time={message.sent_at}
+              />
+            );
+          })}
+          {/* <MessageBubble2 content="Hi. Good morning" time="9:30 am" /> */}
+        </div>
+      ) : (
+        <div className="flex items-center justify-center h-[70vh]">
+          {" "}
+          {/* will render when there is no messages */}
+          <NoMessageState />
+        </div>
+      )}
     </>
   );
 };

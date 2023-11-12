@@ -22,6 +22,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
+import { formatPrice } from "@/lib/utils/formatPrice";
 
 const ListingCard = (props: ListingCardInterface) => {
   const { icons } = useAssets();
@@ -114,10 +115,7 @@ const ListingCard = (props: ListingCardInterface) => {
                   GHS
                   <span className="font-[500]">
                     {" "}
-                    {props.price?.toLocaleString("en-US", {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    })}{" "}
+                    {formatPrice(props?.price)}{" "}
                     {/** Rounds to 2d.p and adds a comma to the figure if necessary */}
                   </span>
                 </p>

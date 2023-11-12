@@ -1,7 +1,5 @@
-interface ListingCardInterface {
+interface ListingCardInterface extends ListingInterface {
   id?: number | string;
-  images: string[];
-  propertyType: string;
   propertyDescription: string;
   rating: number;
   ratingCount: number;
@@ -17,7 +15,11 @@ interface ListingCardInterface {
   liked: boolean;
   membership: "Certified" | "Verified" | "Unverified" | "None" | "none" | "";
   className?: string;
-  href: string;
+}
+
+interface RenterPaidFeatureInterface {
+  title: "Be My Agent" | "Be The First To Know";
+  className?: string;
 }
 
 interface AdImage {
@@ -32,6 +34,16 @@ interface AdImage {
 interface AdCardInterface {
   images: AdImage[];
   className?: string;
+  href?: string;
+}
+
+interface ApplicationsInterface {
+  propertyTitle: string;
+  propertyImage: string;
+  applicantImage: string;
+  applicantName: string;
+  date: string;
+  propertyPrice: number;
 }
 
 interface ChatInterface {
@@ -58,7 +70,26 @@ interface FeatureInterface {
     | "Pool";
 }
 
+interface ListingInterface {
+  images: string[]
+  propertyType: string;
+  href?: string;
+}
+
 interface MessageInterface {
-  body: string;
+  content: string;
   time: string;
+}
+
+interface ManagePropertiesInterface {
+  propertyTitle: string;
+  image: string;
+  posted_on: string;
+  price: number;
+  isPaidFor: boolean;
+  status: PropertyStatusInterface
+}
+
+interface PropertyStatusInterface {
+  status: "available" | "contract pending" | "leased" | "dormant"
 }

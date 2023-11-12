@@ -8,7 +8,7 @@ import SimpleSlider from "./components/Slider/SimpleSlider";
 import "swiper/css";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import ListingCardSlider from "./components/ListingCardsSlider";
-import listings from "@/content/demodb/listings";
+import listings from "@/enum/demodb/listings";
 import VerticalSlider from "./components/Slider/VerticalSlider";
 
 const About = async () => {
@@ -74,8 +74,8 @@ const About = async () => {
             </div>
             <Image
               src={images.HouseSearchingCuate}
-              height={250}
-              width={250}
+              height={400}
+              width={400}
               alt="House searching cuate"
               className="xs:self-end lg:mt-14"
             />
@@ -85,7 +85,7 @@ const About = async () => {
         </section>
         <section className="relative w-full xl:w-10/12 ml-auto fhd:mx-auto pt-0 pb-10 xl:py-10 h-[60rem] min-[340px]:h-[50rem] xl:h-[37rem] px-5 xs:px-10 flex max-w-[1100px]">
           <VerticalSlider />
-          <div className="absolute top-0 left-0 z-10 w-[87%] h-full bg-transparent xl:hidden"></div>
+          {/* <div className="absolute top-0 left-0 z-10 w-[87%] h-full bg-transparent xl:hidden"></div> */}
         </section>
         <section className="w-full py-10 px-5 xs:px-10 mx-auto h-[38rem] max-w-screen-2xl">
           {

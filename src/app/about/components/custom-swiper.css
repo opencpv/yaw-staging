@@ -1,59 +1,59 @@
 .listing-cards-slider .swiper-pagination-bullet {
-    background-color: #d8d8d8 !important;
-    opacity: 1 !important;
-    width: 14px !important;
-    height:14px !important;
-    margin-bottom: 70px !important;
-  }
-  
-  .listing-cards-slider .swiper-pagination-bullet-active {
-    background-color: #DDB771 !important;
-  }
-  
-  .swiper-slider  {
-    height: calc((100% - 30px) / 4) !important;
-  }
-  
-  .listing-card .swiper-pagination-bullet {
-    height: 12px !important;
-    width: 12px !important;
-    margin: 0 2px 10px !important;
-  }
-  
-  .listing-card .swiper-pagination-bullet-active {
-    background-color: #FFFFFF !important;
-  }
+  background-color: #d8d8d8 !important;
+  opacity: 1 !important;
+  width: 14px !important;
+  height: 14px !important;
+  margin-bottom: 70px !important;
+}
 
-  .vertical-slider .swiper-pagination-vertical {
-    margin-right: 2rem !important;
-  }
+.listing-cards-slider .swiper-pagination-bullet-active {
+  background-color: #DDB771 !important;
+}
+
+.swiper-slider {
+  height: calc((100% - 30px) / 4) !important;
+}
+
+.listing-card .swiper-pagination-bullet {
+  height: 12px !important;
+  width: 12px !important;
+  margin: 0 2px 10px !important;
+}
+
+.listing-card .swiper-pagination-bullet-active {
+  background-color: #FFFFFF !important;
+}
+
+.vertical-slider .swiper-pagination-vertical {
+  margin-right: 2rem !important;
+}
 
 .vertical-slider .swiper-pagination-bullet {
-    height: 20px !important;
-    width: 20px !important;
-    margin: 0 2px 10px !important;
-    background-color: #93B5BC !important;
-  }
+  height: 20px !important;
+  width: 20px !important;
+  margin: 0 2px 10px !important;
+  background-color: #93B5BC !important;
+}
 
-  .vertical-slider .swiper-pagination-bullet-active {
-    height: 60px !important;
-    border-top-left-radius: 4rem !important;
-    border-top-right-radius: 4rem !important;
-    border-bottom-left-radius: 4rem !important;
-    border-bottom-right-radius: 4rem !important;
-    background-color: #305A61 !important;
+.vertical-slider .swiper-pagination-bullet-active {
+  height: 60px !important;
+  border-top-left-radius: 4rem !important;
+  border-top-right-radius: 4rem !important;
+  border-bottom-left-radius: 4rem !important;
+  border-bottom-right-radius: 4rem !important;
+  background-color: #305A61 !important;
+}
+
+@media (min-width: 640px) {
+  .listing-cards-slider .swiper-pagination-bullet {
+    width: 20px !important;
+    height: 20px !important;
   }
-  
-  @media (min-width: 640px) {
-    .listing-cards-slider .swiper-pagination-bullet {
-      width: 20px !important;
-      height: 20px !important;
-    }
+}
+
+@media (min-width: 640px) {
+  .listing-card .swiper-pagination-bullet {
+    width: 12px !important;
+    height: 12px !important;
   }
-  
-  @media (min-width: 640px) {
-    .listing-card .swiper-pagination-bullet {
-      width: 12px !important;
-      height: 12px !important;
-    }
-  }
+}

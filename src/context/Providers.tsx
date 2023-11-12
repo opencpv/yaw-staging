@@ -1,13 +1,19 @@
 import * as React from "react";
 import { NextUIProvider } from "@nextui-org/react";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
 type Props = {
   children: React.ReactNode;
 };
 
+const queryClient = new QueryClient();
+
 const Providers = ({ children }: Props) => {
-  // Wrap NextUIProvider at the root of your app
-  return <NextUIProvider>{children}</NextUIProvider>;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <NextUIProvider>{children}</NextUIProvider>;
+    </QueryClientProvider>
+  );
 };
 
 export default Providers;
