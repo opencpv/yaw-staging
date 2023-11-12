@@ -5,14 +5,15 @@ import {
 } from "@supabase/auth-helpers-nextjs";
 import { useContext, useEffect, useState } from "react";
 import ProfileInfo from "./ProfileIInfo";
-import { AppContext } from "../../layout";
 import { AppContextType } from "../../types";
+import { AppContext } from "../../AppContextProvider";
+import { useAppStore } from "@/store/dashboard/AppStore";
 
 const ProfileMainView = () => {
   const supabase = createClientComponentClient();
   const [loading, setLoading] = useState<boolean>(false);
   
-  const {user, setUser} = useContext(AppContext) as AppContextType
+  const {user} = useAppStore()
 
   useEffect(()=> {
     !user?.profileData && setLoading(true)

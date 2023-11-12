@@ -9,6 +9,7 @@ import { SaveAndExit } from "./components/PropertyFormComplex/SaveAndExit";
 import { styled } from "@stitches/react";
 import { motion } from "framer-motion";
 import { GreyAnimation } from "./components/GreyAnimation";
+import { openSans } from "@/app/styles/font";
 
 type Type = {
   type: "simple" | "complex";
@@ -19,7 +20,7 @@ const ApplicationForm = ({ type, variant = "rectangle" }: Type) => {
   const [animation, setAnimation] = useState(false);
   const [open, setOpen] = useState(false);
   return (
-    <Dialog.Root open={open} onOpenChange={setOpen}>
+    <Dialog.Root open={open} onOpenChange={setOpen} >
       <Dialog.Trigger asChild>
         <div>
           {variant == "rectangle" && (
@@ -48,7 +49,7 @@ const ApplicationForm = ({ type, variant = "rectangle" }: Type) => {
           className={`data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] translate-x-[-50%] z-[1000]  ${
             animation ? " overflow-y-hidden" : "overflow-y-scroll"
           } translate-y-[-50%] rounded-[8px] bg-white shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none `}>
-          <div className={`relative p-5 z-[1001]`}>
+          <div className={`relative p-5 z-[1001] ${openSans.className}`}>
             {type == "simple" ? (
               <PropertyFormSimple
                 animation={animation}

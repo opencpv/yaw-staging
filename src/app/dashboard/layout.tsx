@@ -4,15 +4,16 @@ import Navbar from "./components/navbar";
 import Pagination from "./components/pagination";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { redirect } from "next/navigation";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { NotificationType } from "./notifications/components/types";
 import { AppContextType } from "./types";
+import AppContextProvider, { AppContext } from "./AppContextProvider";
+import { useAppStore } from "@/store/dashboard/AppStore";
 
 type LayoutProps = {
   children: React.ReactNode;
 };
 
-export const AppContext = createContext<AppContextType | undefined>(undefined);
 
 const Layout = ({ children }: LayoutProps) => {
   const [notifications, setNotifications] = useState<NotificationType | any>();
@@ -21,7 +22,8 @@ const Layout = ({ children }: LayoutProps) => {
   >();
 
   const supabase = createClientComponentClient();
-  const [user, setUser] = useState({});
+  // const {user, setUser} = useContext(AppContext) as AppContextType
+  const {user, setUser} = useAppStore()
 
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -40,7 +42,7 @@ const Layout = ({ children }: LayoutProps) => {
       const { user } = data;
       const profileData = { ...res.data[0], email: user?.email };
       const newData = { ...profileData };
-      setUser((prevUser) => ({
+      setUser((prevUser : any) => ({
         ...prevUser,
         profileData: { ...newData },
       }));
@@ -60,9 +62,9 @@ const Layout = ({ children }: LayoutProps) => {
       } = await supabase.from("notifications").select("*");
 
       if (data) {
-        setUser((prevUser) => ({
+        setUser((prevUser: any) => ({
           ...prevUser,
-          notifications: [ ...data ],
+          notifications: [...data],
         }));
       }
 
@@ -89,7 +91,7 @@ const Layout = ({ children }: LayoutProps) => {
       .subscribe();
   }, []);
   return (
-    <AppContext.Provider value={{ user, setUser }}>
+    <AppContextProvider>
       <Navbar />
       <div className={`mt-2 ${openSans.className}`}>
         <Pagination />
@@ -98,7 +100,7 @@ const Layout = ({ children }: LayoutProps) => {
       <div className={`mt-6 px-4 text-black ${openSans.className}`}>
         {children}
       </div>
-    </AppContext.Provider>
+    </AppContextProvider>
   );
 };
 

@@ -22,7 +22,7 @@ export default function PropertyInformation() {
           <div className="grid grid-cols-2 w-full">
             <p className={`${styles.title} col-span-2`}>Property Information</p>
           </div>
-          <div className="grid grid-cols-2 gap-x-4 w-full">
+          <div className="grid grid-cols-2 gap-x-7 w-full">
             <div className="col-span-2 lg:col-span-1 flex flex-col gap-6">
               <TextFieldInput
                 type="text"

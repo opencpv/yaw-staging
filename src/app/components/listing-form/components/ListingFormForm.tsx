@@ -29,7 +29,7 @@ import Progress from "./Progress";
 import supabase from "@/lib/utils/supabaseClient";
 import userSession from "@/lib/utils/userSession";
 import { submitListing } from "./api";
-import { AppContext } from "@/app/dashboard/layout";
+import { AppContext } from "@/app/dashboard/AppContextProvider";
 import { AppContextType } from "@/app/dashboard/types";
 
 const iconSize = 44;
@@ -133,9 +133,9 @@ export default function ListingFormForm({ setOpen }: Props) {
 
   return (
     <Root
-      className={`${openSans.className} flex flex-col max-h-[90vh] min-h-[85vh] h-full justify-between gap-10 text-black`}>
+      className={`${openSans.className} flex flex-col max-h-[90vh] min-h-[80vh] h-full justify-between gap-10 text-black`} ref={leaseRef}>
       <div className="flex flex-col w-full h-full items-center justify-start gap-8 lg:gap-16">
-        <div className="w-full mt-16 px-4 lg:px-10" ref={leaseRef}>
+        <div className="w-full mt-16 px-4 lg:px-10" >
           <Progress value={progressValue} />
         </div>
         <Formik

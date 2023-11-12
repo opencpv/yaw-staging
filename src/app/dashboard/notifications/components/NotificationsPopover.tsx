@@ -8,12 +8,13 @@ import NotificationItem from "./NotificationItem";
 import { demoNotifications } from "../content/demoNotifications";
 import CaMarkAsRead from "../icons/CaMarkAsRead";
 import { CustomScroll } from "./CustomScroll";
-import { AppContext } from "../../layout";
 import { AppContextType } from "../../types";
+import { AppContext } from "../../AppContextProvider";
+import { useAppStore } from "@/store/dashboard/AppStore";
 
 const NotificationsPopover = () => {
   const [currentNotification, setCurrentNotification] = useState("");
-  const { notifications } = useContext(AppContext)?.user 
+  const { user } = useAppStore()
 
   return (
     <Popover.Root>
@@ -47,7 +48,7 @@ const NotificationsPopover = () => {
             </button>
           </div>
           <CustomScroll className="flex flex-col gap-8 max-h-[60vh] overflow-y-scroll">
-            {notifications?.map((r: any, index: number) => (
+            {user?.notifications?.map((r: any, index: number) => (
               <div key={index} onClick={(e) => setCurrentNotification(r?.name)}>
                 <NotificationItem
                   type={r?.type}

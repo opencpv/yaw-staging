@@ -12,10 +12,10 @@ import PropertyRow2 from "./components/PropertyRow2";
 import Spinner from "../components/shared/Spinner";
 import ManagePropertiesTable from "./components/ManagePropertiesTable";
 import ManagePropertiesSmallScreenView from "./components/ManagePropertiesSmallScreenView";
+import ListingFormModal from "@/app/components/listing-form";
 
 const PropertiesPage = () => {
   const { images } = useAssets();
-
 
   return (
     <main className="mx-auto max-w-screen-2xl text-neutral-800">
@@ -30,10 +30,11 @@ const PropertiesPage = () => {
           </div>
         </div>
         <div className="flex flex-wrap gap-5">
-          <ActionMain
+          {/* <ActionMain
             label="Create New Listing"
             icon={<LuMessageSquarePlus />}
-          />
+          /> */}
+          <ListingFormModal />
           <ActionMain label="Leads" icon={<HiOutlineUserGroup />} />
         </div>
       </section>

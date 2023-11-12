@@ -9,8 +9,8 @@ import CaComment from "./components/icons/CaComment";
 import ListingFormForm from "./components/ListingFormForm";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { submitListing, submitOrEditListing } from "./components/api";
-import { AppContext } from "@/app/dashboard/layout";
 import { AppContextType } from "@/app/dashboard/types";
+import { AppContext } from "@/app/dashboard/AppContextProvider";
 
 const ListingFormModal = () => {
   const [animation, setAnimation] = useState(false);
@@ -21,12 +21,12 @@ const ListingFormModal = () => {
   );
   const { user } = useContext(AppContext) as AppContextType;
   const owner_id = user?.profileData?.id;
-  const [template_id, setTemplateId] = useState(25)
+  const [template_id, setTemplateId] = useState(25);
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>
-        <div
+        <button
           className="aspect-[402/112] max-w-[402px] flex-grow w-full flex items-center justify-start rounded-xl 
          cursor-pointer gap-2 px-8 py-6 text-[20px]"
           style={{
@@ -34,9 +34,9 @@ const ListingFormModal = () => {
           }}>
           <div className="rounded-full flex items-center justify-center w-full max-w-[64px] aspect-square bg-[#F1F1F1] ">
             <CaComment />
-          </div>{" "}
+          </div>
           Create a New Listing
-        </div>
+        </button>
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="bg-blackA6 data-[state=open]:animate-overlayShow fixed inset-0 " />
@@ -50,7 +50,9 @@ const ListingFormModal = () => {
 
           <Dialog.Close asChild>
             <button
-              onClick={() => submitOrEditListing(owner_id, listingFormData, template_id)}
+              onClick={() =>
+                submitOrEditListing(owner_id, listingFormData, template_id)
+              }
               className="focus:shadow-violet7 absolute top-[15px] right-[25px] appearance-none items-center justify-center rounded-full focus:shadow-[0_0_0_2px] 
               z-[2000] focus:outline-none "
               aria-label="Close">

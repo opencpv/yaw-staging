@@ -17,13 +17,23 @@ export default function ChooseImages() {
     []
   );
 
-  const onDrop = useCallback(
-    (acceptedFiles: any) => {
-      handleFileDrop(acceptedFiles, setFiles);
-    },
-    [setFiles]
-  );
+  // const onDrop = useCallback(
+  //   (acceptedFiles: any) => {
+  //     handleFileDrop(acceptedFiles, setFiles);
+  //   },
+  //   [setFiles]
+  // );
 
+  const onDrop = useCallback((acceptedFiles: any) => {
+    if (acceptedFiles?.length) {
+      setFiles((previousFiles: any) => [
+        ...previousFiles,
+        ...acceptedFiles.map((file: any) =>
+          Object.assign(file, { preview: URL.createObjectURL(file) })
+        ),
+      ]);
+    }
+  }, []);
   useEffect(() => {
     if (files?.length >= 1) {
       setListingimages(files);
@@ -77,15 +87,12 @@ export default function ChooseImages() {
               <div
                 {...getRootProps({})}
                 className="max-w-[1108px] max-h-[640px] aspect-[1108/640] w-full h-full rounded-[0.47181rem] border-[0.755px] border-[#00000040] flex items-center justify-center">
-                <input
-                {...getInputProps()}
-                />
+                <input {...getInputProps()} />
                 {isDragActive ? (
                   <p>Drop the files here</p>
                 ) : (
                   <div className="flex flex-col gap-2 items-center justify-center">
-                    <p
-                      className="text-[0.8125rem] text-center font-[400] ">
+                    <p className="text-[0.8125rem] text-center font-[400] ">
                       Select or drag and drop images here <br /> ( Maximum 10 )
                     </p>
                     <p></p>

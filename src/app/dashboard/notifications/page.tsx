@@ -11,14 +11,15 @@ import { redirect } from "next/navigation";
 import CaMarkAsRead from "./icons/CaMarkAsRead";
 import supabase from "@/lib/utils/supabaseClient";
 import { NotificationType } from "./components/types";
-import { AppContext } from "../layout";
+import { AppContext } from "../AppContextProvider";
+import { useAppStore } from "@/store/dashboard/AppStore";
 
 
 const Page = () => {
   const [currentNotification, setCurrentNotification] =
     useState<NotificationType>();
   // const [notifications, setNotifications] = useState<NotificationType | any>();
-  const { notifications } = useContext(AppContext)?.user
+  const {user} = useAppStore()
 
   useEffect(() => {
     const supabase = createClientComponentClient();
@@ -51,8 +52,9 @@ const Page = () => {
           </div>
         </div>
         <CustomScroll className="hidden lg:flex flex-col gap-6 max-h-[70vh] overflow-y-scroll ">
-          {notifications?.map((r : any, index : number) => (
+          {user?.notifications?.map((r : any, index : number) => (
             <div
+              className="w-full"
               key={index}
               onClick={(e) => {
                 setCurrentNotification(r);
@@ -69,7 +71,7 @@ const Page = () => {
           ))}
         </CustomScroll>
         <div className="flex flex-col lg:hidden lex-col gap-8  w-full overflow-y-scroll ">
-          {notifications?.map((r : any, index: number) => (
+          {user?.notifications?.map((r : any, index: number) => (
             <div
               key={index}
               onClick={(e) => {

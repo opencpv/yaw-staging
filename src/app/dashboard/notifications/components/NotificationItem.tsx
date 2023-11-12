@@ -13,7 +13,7 @@ type Props = {
   content?: string;
   subject?: string;
   time?: string;
-  sender? : string
+  sender?: string;
 };
 
 const notificationItems: {
@@ -33,12 +33,12 @@ const NotificationItem: React.FC<Props> = ({
   content,
   time,
   subject,
-  sender
+  sender,
 }) => {
   return (
     <Root className="flex items-start justify-between w-full p-4">
       <motion.div
-        className="flex gap-4 "
+        className="flex gap-4 w-full justify-between"
         initial={{ y: 100 }}
         animate={{ y: 0 }}
         transition={{
@@ -46,31 +46,29 @@ const NotificationItem: React.FC<Props> = ({
           type: "spring",
           stiffness: 50,
           damping: 10,
-        }}
-      >
-        <div className="pt-1">{notificationItems[type]}</div>
+        }}>
+        <div className="flex gap-4">
+          <div className="pt-1">{notificationItems[type]}</div>
 
-        <div className="flex flex-col gap-1">
-          <div className="flex text-[10px] uppercase gap-2 items-center text-[#0000008F]">
-            <div className="font-semibold">
-              
-            {type == "message"  && type }
-            {type == "admin"  && type }
-            {type == "alert" && sender }
-
-
-              
+          <div className="flex flex-col gap-1">
+            <div className="flex text-[10px] uppercase gap-2 items-center text-[#0000008F]">
+              <div className="font-semibold">
+                {type == "message" && type}
+                {type == "admin" && type}
+                {type == "alert" && sender}
               </div>
-            <div className="w-[3px] h-[3px] bg-[#0000008F] rounded-full">.</div>
-            <div className="font-bold">{time}</div>
-          </div>
-          <div className="flex flex-col items-start text-[16px] gap-1 text-left">
-            <div className="text-black font-[400] text-[16px]">{subject}</div>
-            <div
-              className="text-[#0000008F] max-h-[36px] overflow-hidden
-            text-[13px] leading-[18.2px]"
-            >
-              {content}
+              <div className="w-[3px] h-[3px] bg-[#0000008F] rounded-full">
+                .
+              </div>
+              <div className="font-bold">{time}</div>
+            </div>
+            <div className="flex flex-col items-start text-[16px] gap-1 text-left">
+              <div className="text-black font-[400] text-[16px]">{subject}</div>
+              <div
+                className="text-[#0000008F] max-h-[36px] overflow-hidden
+              text-[13px] leading-[18.2px]">
+                {content}
+              </div>
             </div>
           </div>
         </div>

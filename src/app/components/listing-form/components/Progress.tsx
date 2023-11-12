@@ -23,13 +23,13 @@ export default function Progress({ value }: Props) {
   }, [value]);
 
   useEffect(() => {
-    if (value > 50 && value < 60) {
+    if (value > 50 && value < 55) {
       showMessageFor3Seconds("Halfway there!!!");
     }
   }, [value]);
 
   useEffect(() => {
-    if (value > 80 && value < 90) {
+    if (value > 80 && value < 85) {
       showMessageFor3Seconds("Almost there");
     }
   }, [value]);
@@ -37,7 +37,7 @@ export default function Progress({ value }: Props) {
   return (
     <div className="w-full  h-[16px] rounded-2xl bg-[#FEF8ED]">
       <div
-        className=" bg-warning-400 h-[16px] rounded-2xl transition-width duration-1000 relative justify-end"
+        className=" bg-warning-400 h-[16px] rounded-2xl transition-width duration-3000 relative justify-end"
         style={{ width: `${value}%` }}>
         <div
           className={` ${

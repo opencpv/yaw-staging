@@ -2,8 +2,8 @@
 import supabase from "@/lib/utils/supabaseClient";
 import Head from "next/head";
 import { useContext, useEffect } from "react";
-import { AppContext } from "./layout";
 import { AppContextType } from "./types";
+import { AppContext } from "./AppContextProvider";
 
 const Dashboard = () => {
   const { user, setUser } = useContext(AppContext) as AppContextType
