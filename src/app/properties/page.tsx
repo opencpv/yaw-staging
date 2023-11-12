@@ -3,7 +3,7 @@ import Navbar from "@/components/__shared/Navbar";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import React from "react";
-import listings from "@/content/demodb/listings";
+import listings from "@/enum/demodb/listings";
 import ListingCard2 from "../about/components/ListingCard2";
 import TagsSelect from "./components/TagsSelect";
 import { Button, Switch } from "@nextui-org/react";

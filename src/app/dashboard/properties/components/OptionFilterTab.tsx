@@ -1,16 +1,13 @@
+//@ts-nocheck
+
 "use client";
+import { useManagePropertiesStore } from "@/store/dashboard/propertiesStore";
 import { Selection, Tab, Tabs } from "@nextui-org/react";
 import React, { useState } from "react";
 
 const OptionFilterTab = () => {
-  const [selected, setSelected] = useState<
-    | "all"
-    | "available"
-    | "contract pending"
-    | "leased"
-    | "dormant"
-    | "payment pending"
-  >("all");
+  const optionSelect = useManagePropertiesStore((state) => state.filterOption);
+  const handleOptionChange = useManagePropertiesStore((state) => state.changeOption);
 
   return (
     <>
@@ -27,8 +24,10 @@ const OptionFilterTab = () => {
           cursor: "bg-[#45808B] sm:bg-[#45808B] text-white rounded-large",
           panel: "bg-primary-400",
         }}
-        selectedKey={selected}
-        onSelectionChange={setSelected}
+        selectedKey={optionSelect}
+        onSelectionChange={(selectedOption) =>
+          handleOptionChange(selectedOption)
+        }
       >
         <Tab key="all" title="All" />
         <Tab key="available" title="Available" />

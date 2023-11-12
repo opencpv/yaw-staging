@@ -1,5 +1,7 @@
+//@ts-nocheck
+
 "use client";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useState } from "react";
 import PaymentWarning from "./PaymentWarning";
 import Button from "../../components/Button";
 import { FaRegCheckCircle, FaRegTimesCircle } from "react-icons/fa";
@@ -7,12 +9,11 @@ import Select from "../../components/Select";
 import Schedule from "node-schedule";
 
 type Props = {
-  isPaidFor: boolean
-  status: PropertyStatusInterface
+  isPaidFor: boolean;
+  status: PropertyStatusInterface;
 };
 
 const PropertyStatus = ({ isPaidFor, status }: Props) => {
-
   const [value, setValue] = useState<
     "available" | "contract pending" | "leased" | "dormant"
   >("available");
@@ -32,7 +33,8 @@ const PropertyStatus = ({ isPaidFor, status }: Props) => {
           value={status}
           handleSelectionChange={handleSelectionChange}
         />
-        {(status as unknown === "available" || status as unknown === "contract pending") && (
+        {((status as unknown) === "available" ||
+          (status as unknown) === "contract pending") && (
           <div className="flex items-center justify-center gap-2 text-xs font-[600] mt-3">
             Still Available?
             <Button

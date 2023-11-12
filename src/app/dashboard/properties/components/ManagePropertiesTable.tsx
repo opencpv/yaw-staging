@@ -1,14 +1,16 @@
+//@ts-nocheck
+
 import React, { useState } from "react";
 import PropertyRow from "./PropertyRow";
 import { useFetchTableWithPagination } from "@/lib/custom-hooks/useFetch";
 import TableSkeleton from "../../components/shared/skeleton/TableSkeleton";
 import Spinner from "../../components/shared/Spinner";
+import { useManagePropertiesStore } from "@/store/dashboard/propertiesStore";
 
 type Props = {};
 
 const ManagePropertiesTable = (props: Props) => {
-  const [count, setCount] = useState<number>(0);
-  const pageSize = 5;
+  const filterOption = useManagePropertiesStore((state) => state.filterOption);
 
   const {
     currentPage,
@@ -22,6 +24,10 @@ const ManagePropertiesTable = (props: Props) => {
     pageSize: 5,
     order: { column: "created_at", ascending: false },
     select: "id, created_at, status, is_paid_for",
+    revalidateOnFocus: false,
+    ...(filterOption !== "all" && {
+      eq: { column: "status", match: filterOption.toUpperCase() },
+    }),
   });
 
   return (
@@ -45,6 +51,11 @@ const ManagePropertiesTable = (props: Props) => {
           </tr>
         </thead>
         <tbody>
+          {currentPage?.length === 0 && (
+            <tr className="italic mt-4">
+              <td>There are no properties in this category</td>
+            </tr>
+          )}
           {isLoading ? (
             <TableSkeleton rows={5} columns={4} />
           ) : (
@@ -75,7 +86,6 @@ const ManagePropertiesTable = (props: Props) => {
           disabled={previousPage === null ? true : false}
           onClick={() => {
             if (previousPage) previousPage();
-            setCount((currentCount) => currentCount - 1);
           }}
         >
           Previous
@@ -89,7 +99,6 @@ const ManagePropertiesTable = (props: Props) => {
           disabled={nextPage === null ? true : false}
           onClick={() => {
             if (nextPage) nextPage();
-            setCount((currentCount) => currentCount + 1);
           }}
         >
           Next

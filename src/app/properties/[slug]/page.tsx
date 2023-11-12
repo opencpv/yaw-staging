@@ -16,7 +16,7 @@ import {
 import ReviewComment from "../components/ReviewComment";
 import AdditionalInfoTitle from "../components/AdditionalInfoTitle";
 import ListingCardSlider from "@/app/about/components/ListingCardsSlider";
-import listings from "@/content/demodb/listings";
+import listings from "@/enum/demodb/listings";
 import Footer from "@/app/components/Footer";
 import { Rate } from "antd";
 import Navbar from "@/components/__shared/Navbar";

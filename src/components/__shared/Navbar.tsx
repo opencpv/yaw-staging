@@ -35,10 +35,13 @@ const Navbar = (props: any) => {
 
   return (
     <nav
-      className={`w-full px-8 py-4  z-[100] ${props.isMenuOpen && "absolute"} ${
+      className={`w-full px-8 py-4 z-[100] ${props.isMenuOpen && "absolute"} ${
         !pathname.includes("/properties/")
-          && "sticky bg-[#333333]"
-      } ${isScrolling ? "fixed bg-[#333333] transition-all": "fixed bg-transparent transition-all"} top-0`}
+          ? "sticky bg-[#333333]"
+          : isScrolling && pathname.includes("/properties")
+          ? "fixed bg-[#333333] transition-all"
+          : "fixed bg-transparent transition-all"
+      } top-0`}
     >
       <div className="flex items-center justify-between">
         <Menu

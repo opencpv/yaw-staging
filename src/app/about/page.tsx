@@ -14,7 +14,7 @@ import "swiper/css";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import ListingCard from "./components/ListingCard";
 import ListingCardSlider from "./components/ListingCardsSlider";
-import listings from "@/content/demodb/listings";
+import listings from "@/enum/demodb/listings";
 import VerticalSlider from "./components/Slider/VerticalSlider";
 
 const About = async () => {

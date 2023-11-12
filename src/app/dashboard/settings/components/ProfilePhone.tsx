@@ -4,7 +4,7 @@ import axios from "axios";
 import Image from "next/image";
 import { openSans } from "@/app/styles/font";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import { dateDefault } from "@/content/defaultPhone";
+import { dateDefault } from "@/enum/defaultPhone";
 import { useClickAway } from "@uidotdev/usehooks";
 import isEmptyObj from "@/lib/utils/isEmptyObj";
 

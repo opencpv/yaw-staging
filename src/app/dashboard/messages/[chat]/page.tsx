@@ -1,8 +1,8 @@
+//@ts-nocheck
 "use client";
 import React, {
   HTMLAttributes,
   useEffect,
-  useMemo,
   useRef,
   useState,
 } from "react";
@@ -17,7 +17,7 @@ import { useCurrentUserId } from "@/lib/custom-hooks/useCurrentUserId";
 import NoMessageState from "../components/NoMessageState";
 import { fetchTable } from "@/services/fetch";
 import { useFetchTable, useRealTimeSubscription } from "@/lib/custom-hooks/useFetch";
-import { useMessagesStore } from "@/store/dashboard/store";
+import { useCapitalizeName } from "@/lib/custom-hooks/useCapitalizeName";
 
 type fetchedMessageType = {
   sender_id: string;
@@ -32,18 +32,9 @@ const Messages = ({ params }: { params: { chat: string } }) => {
   const router = useRouter();
   const messageContainerRef = useRef<HTMLDivElement>(null);
   const currentUserId = useCurrentUserId();
-  const name = useMessagesStore((state) => state.name)
-  console.log(name)
 
   const { chat } = params;
-  let contactName = useMemo(() => {
-    // Algorithm for getting contact name
-    let nameSplit = chat.split("%20");
-    let nameSplitCapitalized = nameSplit.map(
-      (name) => name.slice(0, 1).toUpperCase() + name.slice(1)
-    );
-    return nameSplitCapitalized.join(" ");
-  }, [chat]);
+  let contactName = useCapitalizeName(chat, "%20")
 
   const scrollToBottom = () => {
     if (messageContainerRef.current) {
@@ -63,7 +54,6 @@ const Messages = ({ params }: { params: { chat: string } }) => {
     scrollToBottom; // Scrolls to the bottom on mount
     // getMessages();
     // realTime("messages-realtime", "messages", getMessages);
-    
   }, []);
 
   useRealTimeSubscription({

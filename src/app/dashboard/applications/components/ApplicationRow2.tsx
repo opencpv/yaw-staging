@@ -1,12 +1,13 @@
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
-import React, { useMemo } from "react";
+import React from "react";
 import { FiTrash2 } from "react-icons/fi";
 import Button from "../../components/Button";
 import { formatPrice } from "@/lib/utils/formatPrice";
 import { formatDate, formatTime } from "@/lib/utils/formatDatetime";
 import ApplicationStatus from "./ApplicationStatus";
 import { AiOutlineEye } from "react-icons/ai";
+import { useDaysDifference } from "@/lib/custom-hooks/useDaysDifference";
 
 const ApplicationRow2 = ({
   propertyImage,
@@ -18,18 +19,7 @@ const ApplicationRow2 = ({
 }: ApplicationsInterface) => {
   const { images } = useAssets();
 
-  const daysDifference = useMemo(() => {
-    let firstDate: Date = new Date(date);
-    let secondDate: Date = new Date(); // today;
-
-    // Calculate the difference in milliseconds
-    let timeDifference = secondDate.getTime() - firstDate.getTime();
-
-    // Convert milliseconds to days (1 day = 24 hours * 60 minutes * 60 seconds * 1000 milliseconds)
-    let daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-
-    return daysDifference;
-  }, [date]);
+  const daysDifference = useDaysDifference(date);
 
   return (
     <div className="p-3 border border-neutral-600 rounded-xl xs:p-8">

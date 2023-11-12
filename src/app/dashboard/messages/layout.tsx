@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
@@ -13,6 +15,8 @@ import {
   useRealTimeSubscription,
 } from "@/lib/custom-hooks/useFetch";
 import { useProtectedRoute } from "@/lib/custom-hooks/useProtectedRoute";
+import { useCapitalizeName } from "@/lib/custom-hooks/useCapitalizeName";
+import capitalizeName from "@/lib/utils/capitalizeName";
 
 type Props = {
   children: React.ReactNode;
@@ -28,7 +32,7 @@ type Message = {
 };
 
 const MessagesLayout = ({ children }: Props) => {
-  useProtectedRoute()
+  useProtectedRoute();
 
   const pathname = usePathname();
   const [messageContent, setMessageContent] = useState<string>("");
@@ -67,7 +71,7 @@ const MessagesLayout = ({ children }: Props) => {
         content: e.target[0].value,
         sender_id: currentUserId,
         recipient_id: "5f297aa7-18f5-42ff-9270-8ba8061cae95", // will change once getting
-                                                              // the recipient_id is implemented
+        // the recipient_id is implemented
       })
       .select();
 
@@ -94,16 +98,22 @@ const MessagesLayout = ({ children }: Props) => {
           ) : error ? (
             <p>Error: {error.message}</p>
           ) : (
-            messages?.map((message) => (
-              <Chat
-                key={message.recipient_id}
-                href={`/dashboard/messages/${message.recipient_full_name}`}
-                image="/assets/images/dashboard-navbar.png"
-                name={message.recipient_full_name}
-                last_message={message.content}
-                messages_count={3}
-              />
-            ))
+            messages?.map((message) => {
+              let capitalizedName = capitalizeName(
+                message?.recipient_full_name,
+                " "
+              );
+              return (
+                <Chat
+                  key={message.recipient_id}
+                  href={`/dashboard/messages/${message.recipient_full_name}`}
+                  image="/assets/images/dashboard-navbar.png"
+                  name={capitalizedName}
+                  last_message={message.content}
+                  messages_count={3}
+                />
+              );
+            })
           )}
         </aside>
         <main

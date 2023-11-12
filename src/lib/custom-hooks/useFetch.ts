@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import {
   useInfiniteOffsetPaginationQuery,
   useOffsetInfiniteScrollQuery,
@@ -13,6 +15,9 @@ type FetchTableType = {
   select?: string;
   eq?: { column: string; match: string };
   or?: string;
+  revalidateOnReconnect?: boolean;
+  revalidateOnFocus?: boolean;
+  revalidateIfStale?: boolean;
 };
 
 const useFetchTable = ({
@@ -21,6 +26,9 @@ const useFetchTable = ({
   select,
   eq,
   or,
+  revalidateIfStale,
+  revalidateOnFocus,
+  revalidateOnReconnect,
 }: FetchTableType) => {
   let query = supabase
     .from(tableName)
@@ -31,12 +39,11 @@ const useFetchTable = ({
   if (or) query.or(or);
   if (order) query.order(order.column, { ascending: order.ascending });
 
-  const { isValidating, count, data, error, isLoading } = useQuery(query, 
-//     {
-//     revalidateOnReconnect: false,
-//     revalidateOnFocus: false,
-//   }
-  );
+  const { isValidating, count, data, error, isLoading } = useQuery(query, {
+    revalidateOnReconnect: revalidateOnReconnect ? revalidateOnReconnect : true,
+    revalidateOnFocus: revalidateOnFocus ? revalidateOnFocus : true,
+    revalidateIfStale: revalidateIfStale ? revalidateIfStale : true,
+  });
 
   return {
     data,
@@ -54,6 +61,9 @@ const useFetchTableWithPagination = ({
   select,
   eq,
   or,
+  revalidateIfStale,
+  revalidateOnFocus,
+  revalidateOnReconnect,
 }: FetchTableType) => {
   let query = supabase
     .from(tableName)
@@ -72,7 +82,9 @@ const useFetchTableWithPagination = ({
     isLoading,
   } = useInfiniteOffsetPaginationQuery(query, {
     pageSize,
-    revalidateOnReconnect: true,
+    revalidateOnReconnect: revalidateOnReconnect ? revalidateOnReconnect : true,
+    revalidateOnFocus: revalidateOnFocus ? revalidateOnFocus : true,
+    revalidateIfStale: revalidateIfStale ? revalidateIfStale : true,
   });
 
   return {
@@ -92,6 +104,9 @@ const useFetchTableWithInfiniteScroll = ({
   select,
   eq,
   or,
+  revalidateIfStale,
+  revalidateOnFocus,
+  revalidateOnReconnect,
 }: FetchTableType) => {
   let query = supabase
     .from(tableName)
@@ -102,7 +117,14 @@ const useFetchTableWithInfiniteScroll = ({
   if (or) query.or(or);
 
   const { data, loadMore, isLoading, isValidating, error } =
-    useOffsetInfiniteScrollQuery(query, { pageSize });
+    useOffsetInfiniteScrollQuery(query, {
+      pageSize,
+      revalidateOnReconnect: revalidateOnReconnect
+        ? revalidateOnReconnect
+        : true,
+      revalidateOnFocus: revalidateOnFocus ? revalidateOnFocus : true,
+      revalidateIfStale: revalidateIfStale ? revalidateIfStale : true,
+    });
 
   return { data, loadMore, isLoading, isValidating, error };
 };
@@ -130,7 +152,7 @@ const useRealTimeSubscription = ({
     { callback: () => payload() }
   );
 
-  return { status, channel }
+  return { status, channel };
 };
 
 export {
