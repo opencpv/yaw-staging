@@ -25,7 +25,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { openSans } from "@/app/styles/font";
 import Image from "next/image";
-import { dateDefault } from "@/content/defaultPhone";
+import { dateDefault } from "@/enum/defaultPhone";
 
 type DataItem = {
   label: string;
@@ -73,9 +73,8 @@ const PhoneNumberInputv2 = ({
   useEffect(() => {
     if (initialCountry && (initialCountry.name || initialCountry.label)) {
       setSelectedCountry(initialCountry);
-    }
-    else{
-      setSelectedCountry(dateDefault)
+    } else {
+      setSelectedCountry(dateDefault);
     }
   }, []);
 
@@ -88,7 +87,6 @@ const PhoneNumberInputv2 = ({
       onChange2(selectedCountry);
     }
   }, [selectedCountry?.name, selectedCountry?.label]);
-
 
   useEffect(() => {
     if (totalNumber) {
@@ -121,7 +119,8 @@ const PhoneNumberInputv2 = ({
     <div>
       <Root className=" gap-3">
         <div
-          className={`font-[400] ${openSans.className} text-[#6A6968] capitalize flex gap-2`}>
+          className={`font-[400] ${openSans.className} text-[#6A6968] capitalize flex gap-2`}
+        >
           <label>{label}</label>
         </div>
         <div className="flex gap-3">
@@ -133,7 +132,8 @@ const PhoneNumberInputv2 = ({
                 aria-expanded={open}
                 className={`w-fit flex gap-2 justify-between  ${
                   value ? "text-[#6A6968] capitalize" : "text-[#B4B2AF] "
-                } whitespace-nowrap h-[52px]`}>
+                } whitespace-nowrap h-[52px]`}
+              >
                 <div className="relative w-5 h-[18px] rounded-[4px]">
                   <Image
                     src={selectedCountry.flags?.png}
@@ -163,7 +163,8 @@ const PhoneNumberInputv2 = ({
                         setValue(currentValue);
                         setSelectedCountry(data);
                         setOpen(false);
-                      }}>
+                      }}
+                    >
                       <div className="relative w-[20px] aspect-square">
                         <Image src={data.flags?.png} alt="flag" fill />
                       </div>
