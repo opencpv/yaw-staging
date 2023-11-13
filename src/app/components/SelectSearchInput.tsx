@@ -22,32 +22,34 @@ import { openSans } from "../styles/font";
 import { styled } from "@stitches/react";
 
 type DataItem = {
-  value: string;
+  value: number;
   label: string;
 };
 
 type Props = {
   data: DataItem[];
   placeholder: string;
-  label:string
-  onChange: (value: any) => void
+  label: string;
+  onChange: (value: any) => void;
 };
 
-
-export function SelectSearchInput({ data, placeholder, label, onChange }: Props) {
+export function SelectSearchInput({
+  data,
+  placeholder,
+  label,
+  onChange,
+}: Props) {
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState("");
+  const [value, setValue] = React.useState<number>();
 
   return (
     <Root>
       <div
         className={`font-[400] ${openSans.className} text-[#6A6968] capitalize`}>
         <label>{label}</label>
-        
-        
       </div>
-      <Popover open={open} onOpenChange={setOpen} >
-        <PopoverTrigger asChild >
+      <Popover open={open} onOpenChange={setOpen}>
+        <PopoverTrigger asChild>
           <Button
             variant="outline"
             role="combobox"
@@ -55,22 +57,24 @@ export function SelectSearchInput({ data, placeholder, label, onChange }: Props)
             className="w-full justify-between text-[#6A6968] whitespace-nowrap h-[52px]">
             {value
               ? data.find((data) => data.value === value)?.label
-              :  placeholder }
+              : placeholder}
             <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-fit p-0 z-[200] bg-white " >
-          <Command >
+        <PopoverContent className="w-fit p-0 z-[200] bg-white ">
+          <Command>
             <CommandInput placeholder="Search data..." />
             <CommandEmpty>No data found.</CommandEmpty>
-            <CommandGroup  >
+            <CommandGroup>
               {data.map((data) => (
                 <CommandItem
-               
                   key={data.value}
                   onSelect={(currentValue) => {
-                    onChange(currentValue)
-                    setValue(currentValue === value ? currentValue : "");
+                    onChange(data.value);
+                    const numericCurrentValue = parseFloat(currentValue);
+                    setValue(
+                      numericCurrentValue === value ? numericCurrentValue : data.value
+                    );
                     setOpen(false);
                   }}>
                   <Check
@@ -90,15 +94,15 @@ export function SelectSearchInput({ data, placeholder, label, onChange }: Props)
   );
 }
 const Root = styled("div", {
-    fontSize: "1rem",
-    display: "flex",
-    flexDirection: "column",
-    gap: "0.9375rem",
-    ".form-input": {
-      height: "52px",
-      padding: "15px",
-      fontSize: " 0.8125rem",
-      border: "1px solid #E6E6E6",
-      borderRadius: "4px",
-    },
-  });
+  fontSize: "1rem",
+  display: "flex",
+  flexDirection: "column",
+  gap: "0.9375rem",
+  ".form-input": {
+    height: "52px",
+    padding: "15px",
+    fontSize: " 0.8125rem",
+    border: "1px solid #E6E6E6",
+    borderRadius: "4px",
+  },
+});

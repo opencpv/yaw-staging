@@ -12,7 +12,8 @@ import { GreyAnimation } from "../GreyAnimation";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { PropertyDataType } from "../propertyDataType";
 
-import * as Yup from 'yup';
+import * as Yup from "yup";
+import supabase from "@/lib/utils/supabaseClient";
 
 type Props = {
   animation: boolean;
@@ -21,25 +22,51 @@ type Props = {
 
 export default function PropertyFormSimple({ setAnimation, animation }: Props) {
   const [propertyData, setPropertyData] = useLocalStorage<PropertyDataType>(
-    "property1",
-    {
-      gender: "Male",
-      leaseTerm: "12months",
-      maritalStatus: "single",
-      identificationType: "Ghana Card",
-      government: "Ghana",
-      preferredMethodOfContact: "phone",
-      monthlyIncomeCurrency: "GHS",
-      otherApplicants: "no",
-    }
+    "property1"
   );
   const [applicantsForm, setApplicantsForm] =
     useLocalStorage<any>("applicantsForm");
 
   const validationSchema = Yup.object().shape({
-    firstName: Yup.string()
-      .required("Email is required"),
+    firstName: Yup.string().required("First name is required"),
+    lastName: Yup.string().required("Last name is required"),
+    email: Yup.string().email().required("Email is required"),
+    currentAddress1: Yup.string().required("Address is required"),
+    phoneNumber: Yup.number().required("Field is required")
   });
+
+  async function handleSubmit() {
+    try {
+      const { data, error } = await supabase
+        .from("regular_application")
+        .insert([
+          {
+            firstname: propertyData?.firstName,
+            lastname: propertyData?.lastName,
+            email: propertyData?.email,
+            gender: propertyData?.gender,
+            marital_status: propertyData?.maritalStatus,
+            phone: propertyData?.phoneNumber,
+            is_whatsapp: propertyData?.availableOnWhatsapp,
+            address: propertyData?.currentAddress1,
+            address_2: propertyData?.currentAddress2,
+            employment_status: propertyData?.mostRecentEmployment,
+            contact_method: propertyData?.preferredMethodOfContact,
+            move_in_date: propertyData?.moveInDate,
+            lease_term: propertyData?.leaseTerm,
+            is_more_applicants: propertyData?.otherApplicants,
+            additional_information: propertyData?.additionalInformation,
+            more_applicants: propertyData?.otherPersonsArray
+
+
+          },
+        ])
+        .select();
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <Root className={`flex flex-col gap-8 ${openSans.className}`}>
@@ -66,9 +93,11 @@ export default function PropertyFormSimple({ setAnimation, animation }: Props) {
             ...propertyData,
             ...applicantsForm,
           }}
-          onSubmit={() => console.log()}
-          validationSchema={validationSchema}
-          >
+          onSubmit={(values) => {
+            console.log("submiting");
+            handleSubmit();
+          }}
+          validationSchema={validationSchema}>
           <Form>
             <PersonalInformationForm1 formType="simple" />
 
@@ -82,14 +111,11 @@ export default function PropertyFormSimple({ setAnimation, animation }: Props) {
                   Cancel
                 </button>
                 <button
+                  type="submit"
                   className="w-[224.5px] [52px] aspect-[224/52] bg-[#DDB771]
                   flex justify-center items-center text-[#ffff] rounded-lg hover:scale-[1.05]
 
-                  
-          "
-                  onClick={() => {
-                    setAnimation((init) => !init);
-                  }}>
+             ">
                   Submit Application
                 </button>
               </div>

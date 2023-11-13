@@ -10,7 +10,7 @@ import CustomRadioInput from "@/app/components/CustomRadioInput ";
 const FullNameAndRelationship = ({ index, fullName, relationship }: any) => {
   const [propertyData, setPropertyData] =
     useLocalStorage<PropertyDataType>("property1");
-  const otherPersonsArray = propertyData?.otherPersons || [];
+  const otherPersonsArray = propertyData?.otherPersonsArray || [];
 
   const handleInputChange = (field: any, value: any) => {
     const updatedOtherPersons = [...otherPersonsArray];
@@ -70,7 +70,7 @@ const Applicants = ({}) => {
   );
 
   const [applicantsLength, setApplicantsLength] = useState<any>(
-    propertyData?.otherPersons?.length
+    propertyData?.otherPersonsArray?.length || 0
   );
   const handleRemove = (index: any) => {
     const updatedPropertyData: any = { ...propertyData };
@@ -105,9 +105,9 @@ const Applicants = ({}) => {
                 <FullNameAndRelationship
                   key={index}
                   index={index}
-                  fullName={propertyData?.otherPersons?.[index]?.fullName}
+                  fullName={propertyData?.otherPersonsArray?.[index]?.fullName}
                   relationship={
-                    propertyData?.otherPersons?.[index]?.relationship
+                    propertyData?.otherPersonsArray?.[index]?.relationship
                   }
                 />
                 <button

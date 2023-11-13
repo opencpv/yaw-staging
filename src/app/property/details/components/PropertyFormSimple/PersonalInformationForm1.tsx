@@ -34,11 +34,12 @@ const PersonalInformationForm1 = React.forwardRef<HTMLInputElement, Props>(
       "property1",
       {
         gender: "Male",
-        leaseTerm: "12 months",
+        leaseTerm: 12,
         maritalStatus: "single",
         mostRecentEmployment: "employed",
         preferredMethodOfContact: "phone",
         otherApplicants: "no",
+        availableOnWhatsapp: false,
       }
     );
     const [phoneNumberSelectedCountry, setPhoneNumberSelectedCountry] =
@@ -46,7 +47,6 @@ const PersonalInformationForm1 = React.forwardRef<HTMLInputElement, Props>(
 
     return (
       <Root className="p1 px-2 ">
-   
         <div className="grid grid-cols-3 gap-x-5 gap-y-5 ">
           <div className="col-span-3 lg:col-span-1 form-col w-full">
             <TextFieldInput
@@ -129,7 +129,7 @@ const PersonalInformationForm1 = React.forwardRef<HTMLInputElement, Props>(
           </div>
           <div className="col-span-3 lg:col-span-1  form-col">
             <TextFieldInput
-              name="address1"
+              name="currentAddress1"
               type="text"
               label="address 1"
               placeholder="Please provide your address"
@@ -141,7 +141,7 @@ const PersonalInformationForm1 = React.forwardRef<HTMLInputElement, Props>(
               }
             />
             <TextFieldInput
-              name="address2"
+              name="currentAddress2"
               type="text"
               label="address 2 ( optional )"
               placeholder="Please provide your address"
@@ -185,7 +185,9 @@ const PersonalInformationForm1 = React.forwardRef<HTMLInputElement, Props>(
             />
             <SelectSearchInput
               data={LeaseData}
-              placeholder={propertyData?.leaseTerm || "Enter lease term"}
+              placeholder={
+                `${propertyData?.leaseTerm} months` || "Enter lease term"
+              }
               label="Lease term"
               onChange={(value) => {
                 console.log(value);
@@ -196,17 +198,17 @@ const PersonalInformationForm1 = React.forwardRef<HTMLInputElement, Props>(
           <div className="col-span-3 lg:col-span-1  form-col">
             <CustomTextAreaInput
               label="Any Additional Information ?"
-              placeholder={propertyData?.reasonsForMoving || "Message"}
+              placeholder={propertyData?.additionalInformation || "Message"}
               classes="h-[216px]"
               name="additionalInformation"
               onChange={(e) =>
                 setPropertyData({
                   ...propertyData,
-                  reasonsForMoving: e.target.value,
+                  additionalInformation: e.target.value,
                 })
               }
             />
-            <Applicants />
+              <Applicants />
           </div>
         </div>
       </Root>

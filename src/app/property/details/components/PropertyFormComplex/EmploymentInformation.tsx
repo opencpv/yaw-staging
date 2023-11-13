@@ -25,16 +25,17 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
       "property1",
       {
         gender: "Male",
-        leaseTerm: "12months",
+        leaseTerm: 12,
         maritalStatus: "single",
         identificationType: "Ghana Card",
         government: "Ghana",
         mostRecentEmployment: "employed",
         preferredMethodOfContact: "phone",
         monthlyIncomeCurrency: "GHS",
-        otherApplicants: "no",
+        otherApplicants: false,
         employersCountry: "Ghana",
         country: "Ghana",
+        availableOnWhatsapp:false
       }
     );
     const [selectedCurrency, setSelectedCurrency] =

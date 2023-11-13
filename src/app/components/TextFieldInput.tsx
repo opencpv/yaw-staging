@@ -44,7 +44,7 @@ const TextFieldInput = ({
         )}
       </Field>
       <ErrorMessage
-        className={`text-[#B4B2AF] font-[400] text-[13px] ${openSans.className}`}
+        className={`text-[#851e1e] font-[400] text-[13px] ${openSans.className}`}
         name={name}
         component="p"
       />

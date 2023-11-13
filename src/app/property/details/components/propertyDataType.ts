@@ -4,7 +4,7 @@ export type PropertyDataType = Partial<{
     lastName: string;
     title: string;
     moveInDate: string;
-    leaseTerm: string;
+    leaseTerm: number;
     maritalStatus: string;
     dateOfBirth: string;
     identificationType: string;
@@ -37,6 +37,7 @@ export type PropertyDataType = Partial<{
     currentAddress2: string;
     reasonsForMoving: string;
     otherApplicants: string;
-    otherPersons?: any;
+    otherPersonsArray?: any;
     availableOnWhatsapp?: boolean;
+    additionalInformation? : string
   }>;

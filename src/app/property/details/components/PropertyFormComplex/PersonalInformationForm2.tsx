@@ -82,7 +82,7 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
             />
             <SelectSearchInput
               data={LeaseData}
-              placeholder={propertyData?.leaseTerm || "Enter lease term"}
+              placeholder={`${propertyData?.leaseTerm} months` || "Enter lease term"}
               label="Lease term"
               onChange={(value) => {
                 console.log(value);

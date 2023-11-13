@@ -1,11 +1,11 @@
 type DataItem = {
-  value: string;
+  value: number;
   label: string;
 };
 export const LeaseData: DataItem[] = [
-  { label: "12 months", value: "12months" },
-  { label: "6 months", value: "6months" },
-  { label: "3 months", value: "3months" },
+  { label: "12 months", value: 12 },
+  { label: "6 months", value: 6 },
+  { label: "3 months", value: 3 },
 
 ];
 
