@@ -15,12 +15,14 @@ const Navbar = (props: any) => {
   const pathname = usePathname();
   const { icons } = useAssets();
   const router = useRouter();
-
   const [isScrolling, setIsScrolling] = useState<boolean>(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (pathname.includes("/properties/") && window.scrollY > 1) {
+      if (
+        (pathname.includes("/properties/") || pathname === "/") &&
+        window.scrollY > 1
+      ) {
         setIsScrolling(true);
       } else {
         setIsScrolling(false);
@@ -33,12 +35,18 @@ const Navbar = (props: any) => {
     };
   }, [pathname]);
 
+  const shouldChangeColor =
+    (isScrolling && pathname.includes("/properties/")) ||
+    (isScrolling && pathname === "/");
+  const isNotTargetPage =
+    !pathname.includes("/properties/") && pathname !== "/";
+
   return (
     <nav
-      className={`w-full px-8 py-4 z-[100] ${props.isMenuOpen && "absolute"} ${
-        !pathname.includes("/properties/")
+      className={`w-full px-8 py-4 z-40 ${props.isMenuOpen && "absolute"} ${
+        isNotTargetPage
           ? "sticky bg-[#333333]"
-          : isScrolling && pathname.includes("/properties")
+          : shouldChangeColor
           ? "fixed bg-[#333333] transition-all"
           : "fixed bg-transparent transition-all"
       } top-0`}

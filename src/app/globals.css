@@ -44,3 +44,24 @@ body {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+.section {
+  max-width: 1536px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.shape-3 {
+  clip-path: polygon(10% 0, 0 20%, 0 100%, 90% 100%, 100% 80%, 100% 0);
+}
+
+
+
+@media (min-width: 640px){
+  .section {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}

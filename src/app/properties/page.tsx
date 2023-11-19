@@ -9,7 +9,7 @@ import TagsSelect from "./components/TagsSelect";
 import { Button, Switch } from "@nextui-org/react";
 import Footer from "../components/Footer";
 import FixedSocials from "@/components/FixedSocials";
-import ScrollTop from "@/components/ScrollTop";
+import ScrollTop from "@/components/__shared/ScrollTop";
 
 type Props = {};
 

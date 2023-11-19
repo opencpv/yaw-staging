@@ -12,7 +12,6 @@ import {
 type Props = {};
 
 const FixedSocials = (props: Props) => {
-  // STATE
   const [shouldShowSocials, setShouldShowSocials] = useState<boolean>(false);
   const [shouldShowArrow, setShouldShowArrow] = useState<boolean>(false);
 
@@ -20,13 +19,16 @@ const FixedSocials = (props: Props) => {
     setShouldShowSocials((prevState) => !prevState);
   };
 
-  // USEEFECT
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY < 900 || window.scrollY > 5400) {
+      // const threshHold = 10;
+      const scrollPosition = window.scrollY + window.innerHeight;
+      const scrollHeight = document.body.scrollHeight;
+
+      if (scrollPosition < scrollHeight / 6 || scrollPosition > scrollHeight - 1900) {
         setShouldShowSocials(false);
         setShouldShowArrow(false);
-      } else if (window.scrollY > 1034) {
+      } else if (scrollPosition > 100) {
         setShouldShowSocials(false);
         setShouldShowArrow(true);
       } else {
@@ -48,22 +50,22 @@ const FixedSocials = (props: Props) => {
         } relative  w-10 rounded-r-lg border border-primary-800 bg-white py-4 transition-transform`}
       >
         <ul className="flex flex-col gap-2">
-          <li className="grid h-8 w-8 place-items-center rounded-full bg-neutral-200">
+          <li className="grid w-8 h-8 rounded-full place-items-center bg-neutral-200">
             <Link href="" target="_blank">
               <FaLinkedinIn className="text-primary-800" />
             </Link>
           </li>
-          <li className="grid h-8 w-8 place-items-center rounded-full bg-neutral-200">
+          <li className="grid w-8 h-8 rounded-full place-items-center bg-neutral-200">
             <Link href="" target="_blank">
               <FaTwitter className="text-primary-800" />
             </Link>
           </li>
-          <li className="grid h-8 w-8 place-items-center rounded-full bg-neutral-200">
+          <li className="grid w-8 h-8 rounded-full place-items-center bg-neutral-200">
             <Link href="" target="_blank">
               <FaFacebookF className="text-primary-800" />
             </Link>
           </li>
-          <li className="grid h-8 w-8 place-items-center rounded-full bg-neutral-200">
+          <li className="grid w-8 h-8 rounded-full place-items-center bg-neutral-200">
             <Link href="" target="_blank">
               <FaInstagramSquare className="text-primary-800" />
             </Link>

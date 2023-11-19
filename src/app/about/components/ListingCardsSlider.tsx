@@ -44,7 +44,7 @@ const ListingCardSlider = ({ listings }: Props) => {
             slidesPerView: 4,
           },
         }}
-        className="w-full h-full mySwiper listing-cards-slider listing-group"
+        className="w-full h-full listing-cards-slider"
       >
         {/* Mapping through Featured listings from database */}
         {listings.map((listing) => (

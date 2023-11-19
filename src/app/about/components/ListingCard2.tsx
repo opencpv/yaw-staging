@@ -45,7 +45,7 @@ const ListingCard2 = (props: ListingCardInterface) => {
           prevEl: ".custom-l-prev",
         }}
         modules={[Pagination, Navigation]}
-        className={`relative w-full rounded-2xl mySwiper ${style.listingCard2} listing-card h-80`}
+        className={`relative w-full rounded-2xl listing-card h-80`}
       >
         {/* Mapping through Featured listings from database */}
         {props.images.map((image, index) => (

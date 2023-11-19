@@ -23,7 +23,7 @@ import Navbar from "@/components/__shared/Navbar";
 import ReviewCount from "../components/ReviewCount";
 import Feature from "../components/Feature";
 import ViewProperty from "../components/ViewProperty";
-import ReportIssue from "@/components/ReportIssue";
+import ReportIssue from "@/components/__shared/ReportIssue";
 import { BsBookmarkStar, BsBookmarkStarFill } from "react-icons/bs";
 import PropertyDetailsSlider from "../components/PropertyDetailsSlider";
 

@@ -1,7 +1,6 @@
 import type { Config } from "tailwindcss";
 import defaultTheme from "tailwindcss/defaultTheme";
-const {nextui} = require("@nextui-org/react");
-
+const { nextui } = require("@nextui-org/react");
 
 const config: Config = {
   content: [
@@ -23,6 +22,7 @@ const config: Config = {
       colors: {
         darkGreenBg: "#073B3A ",
         primary: {
+          200: "#45808B",
           300: "#E6F6EE",
           400: "#396261",
           500: "#073B3A",
@@ -39,11 +39,13 @@ const config: Config = {
         accent: {
           50: "#DDB771",
           100: "#F1B346",
+          200: "#AD842A",
         },
         white: "#fff",
       },
       gridTemplateColumns: {
         "autofit-listing-card": "repeat(auto-fit, minmax(380px, 1fr))",
+        "autofit-ad-card": "repeat(1, minmax(200px, 1fr))",
       },
     },
     screens: {

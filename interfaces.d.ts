@@ -3,17 +3,12 @@ interface ListingCardInterface extends ListingInterface {
   propertyDescription: string;
   rating: number;
   ratingCount: number;
-  paymentStructure:
-    | "Yearly"
-    | "Bi-Annually"
-    | "Quarterly"
-    | "Every-6-Months"
-    | "Every-3-Years";
+  paymentStructure: PaymentStructure
   monthlyAmount: number;
   price: number;
-  deal: "Editor's Choice" | "Price Drop" | "Best Value" | "None" | "none" | "";
+  deal: Deal;
   liked: boolean;
-  membership: "Certified" | "Verified" | "Unverified" | "None" | "none" | "";
+  membership: Membership
   className?: string;
 }
 
@@ -28,7 +23,7 @@ interface AdImage {
    */
   propertyType: string;
   image: string;
-  link: string;
+  href: string;
 }
 
 interface AdCardInterface {

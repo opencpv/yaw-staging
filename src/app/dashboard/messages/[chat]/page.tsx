@@ -1,11 +1,5 @@
-//@ts-nocheck
 "use client";
-import React, {
-  HTMLAttributes,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { HTMLAttributes, useEffect, useRef, useState } from "react";
 import MessageBubble from "../components/MessageBubble";
 import BlockUserPopOver from "../components/BlockUserPopOver";
 import { usePathname, useRouter } from "next/navigation";
@@ -16,15 +10,14 @@ import MessageBubble2 from "../components/MessageBubble2";
 import { useCurrentUserId } from "@/lib/custom-hooks/useCurrentUserId";
 import NoMessageState from "../components/NoMessageState";
 import { fetchTable } from "@/services/fetch";
-import { useFetchTable, useRealTimeSubscription } from "@/lib/custom-hooks/useFetch";
+import {
+  useFetchTable,
+  useFetchTableForRealtime,
+  useRealTimeSubscription,
+} from "@/lib/custom-hooks/useFetch";
 import { useCapitalizeName } from "@/lib/custom-hooks/useCapitalizeName";
-
-type fetchedMessageType = {
-  sender_id: string;
-  recipient_id: string;
-  content: string;
-  sent_at: string;
-};
+import { useQuery } from "@tanstack/react-query";
+import supabase from "@/lib/utils/supabaseClient";
 
 const Messages = ({ params }: { params: { chat: string } }) => {
   const pathname = usePathname();
@@ -33,8 +26,18 @@ const Messages = ({ params }: { params: { chat: string } }) => {
   const messageContainerRef = useRef<HTMLDivElement>(null);
   const currentUserId = useCurrentUserId();
 
+  const {
+    data: messages,
+    error,
+    isLoading,
+  } = useFetchTableForRealtime({
+    tableName: "messages",
+    select: "id, created_at, sender_id, recipient_id, sent_at, content",
+    or: `sender_id.eq.${currentUserId}, recipient_id.eq.${currentUserId}`,
+  });
+
   const { chat } = params;
-  let contactName = useCapitalizeName(chat, "%20")
+  let contactName = useCapitalizeName(chat, "%20");
 
   const scrollToBottom = () => {
     if (messageContainerRef.current) {
@@ -50,32 +53,48 @@ const Messages = ({ params }: { params: { chat: string } }) => {
     return data;
   };
 
+  const getMessagesDistinct = () => {
+    const data = fetchTable("distinct_messages", {
+      or: `sender_id.eq.${currentUserId}, recipient_id.eq.${currentUserId}`,
+    });
+    return data;
+  };
+
   useEffect(() => {
     scrollToBottom; // Scrolls to the bottom on mount
-    // getMessages();
     // realTime("messages-realtime", "messages", getMessages);
   }, []);
 
+  // useRealTimeSubscription({
+  //   channelName: "distinct_messages_realtime",
+  //   tableName: "messages",
+  //   payload: getMessagesDistinct,
+  // });
+
   useRealTimeSubscription({
-    channelName: "distinct_messages_realtime",
-    tableName: "distinct_messages",
+    channelName: "messages_realtime",
+    tableName: "messages",
     payload: getMessages,
   });
 
-  const {
-    data: messages,
-    error,
-    isLoading,
-    isValidating,
-    count,
-  } = useFetchTable({
-    tableName: "messages",
-    order: { column: "created_at", ascending: true },
-    or: `sender_id.eq.${currentUserId}, recipient_id.eq.${currentUserId}`,
-    select: "id, created_at, sender_id, sent_at, content ",
-  });
+  //  useRealTimeSubscription({
+  //   channelName: "messages_realtime",
+  //   tableName: "messages",
+  //   payload: getMessages,
+  // });
 
-  console.log(messages)
+  // const {
+  //   data: messages,
+  //   error,
+  //   isLoading,
+  //   isValidating,
+  //   // count,
+  // } = useFetchTable({
+  //   tableName: "messages",
+  //   order: { column: "created_at", ascending: true },
+  //   or: `sender_id.eq.${currentUserId}, recipient_id.eq.${currentUserId}`,
+  //   select: "id, created_at, sender_id, sent_at, content ",
+  // });
 
   return (
     <>
@@ -98,7 +117,7 @@ const Messages = ({ params }: { params: { chat: string } }) => {
           <Spinner color="success" />
         </div>
       ) : (
-        error && <p>Error: {error.message}</p>
+        error && <p>Error: {error}</p>
       )}
 
       {messages ? (
@@ -106,7 +125,7 @@ const Messages = ({ params }: { params: { chat: string } }) => {
           className="flex flex-col w-full h-[80%] mt-5 overflow-y-scroll hidden-scrollbar py-5"
           ref={messageContainerRef}
         >
-          {messages?.map((message) => {
+          {messages?.map((message: Message) => {
             if (message.sender_id === currentUserId) {
               return (
                 <MessageBubble

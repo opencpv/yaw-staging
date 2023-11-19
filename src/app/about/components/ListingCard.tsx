@@ -1,18 +1,11 @@
 "use client";
 import React, { useState } from "react";
-import {
-  FaChevronLeft,
-  FaChevronRight,
-  FaHeart,
-  FaRegHeart,
-  FaRegStar,
-  FaStar,
-} from "react-icons/fa";
-import style from "../components/ListingSlider.module.css";
+import { FaHeart, FaRegHeart, FaRegStar, FaStar } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 import "./custom-swiper.css";
 
@@ -31,22 +24,21 @@ const ListingCard = (props: ListingCardInterface) => {
     setIsLiked((prevState) => !prevState);
   };
   return (
-    <div className={`relative min-w-80 cursor-default shadow-lg ${props.className}`}>
+    <div
+      className={`relative min-w-80 cursor-default shadow-lg ${props.className}`}
+    >
       <Swiper
         pagination={{
           clickable: true,
-          //   el: ".custom-l-pagination",
           dynamicBullets: true,
           dynamicMainBullets: 3,
-          //   bulletActiveClass: 'listing-p-bullet-active',
-          //   bulletClass: 'listing-p-bullet'
         }}
         navigation={{
           nextEl: ".custom-l-next",
           prevEl: ".custom-l-prev",
         }}
         modules={[Pagination, Navigation]}
-        className={`relative w-full rounded-t-lg mySwiper ${style.listingCard} listing-card h-52`}
+        className={`relative w-full rounded-t-lg listing-card h-52`}
       >
         {/* Mapping through Featured listings from database */}
         {props.images.map((image, index) => (
@@ -75,7 +67,7 @@ const ListingCard = (props: ListingCardInterface) => {
         </div>
       </Swiper>
       {/* Card info */}
-      <div className="w-full px-5 py-4 space-y-6 bg-white rounded-b-lg">
+      <div className="w-full px-5 py-4 space-y-6 bg-white rounded-b-lg text-neutral-800">
         <div className="space-y-3 text-xs">
           <div className="flex flex-wrap justify-between gap-x-3 gap-y-1">
             <div className="flex items-center gap-2">
@@ -114,20 +106,19 @@ const ListingCard = (props: ListingCardInterface) => {
                 <p className="text-sm font-[700] text-neutral-900">
                   GHS
                   <span className="font-[500]">
-                    {" "}
-                    {formatPrice(props?.price)}{" "}
+                    {formatPrice(props?.price)} / Month
                     {/** Rounds to 2d.p and adds a comma to the figure if necessary */}
                   </span>
                 </p>
               </div>
-              <small className="font-[600] text-neutral-500">
+              {/* <small className="font-[600] text-neutral-500">
                 paid {props.paymentStructure}
-              </small>
+              </small> */}
             </div>
             {props.liked || isLiked ? (
               <FaHeart
                 className={`cursor-pointer text-lg text-primary-800 ${
-                  isLiked && "pulsate-bck"
+                  isLiked && "ping"
                 }`}
                 onClick={toggleLiked}
               />

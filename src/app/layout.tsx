@@ -1,5 +1,6 @@
 "use client";
 import "./globals.css";
+import "./styles/animations.css"
 import "@radix-ui/themes/styles.css";
 import { useEffect, useState } from "react";
 import Navbar from "@/components/__shared/Navbar";

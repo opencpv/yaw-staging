@@ -1,5 +1,3 @@
-//@ts-nocheck
-
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
@@ -12,11 +10,13 @@ import { fetchTable } from "@/services/fetch";
 import Spinner from "../components/shared/Spinner";
 import {
   useFetchTable,
+  useFetchTableForRealtime,
   useRealTimeSubscription,
 } from "@/lib/custom-hooks/useFetch";
 import { useProtectedRoute } from "@/lib/custom-hooks/useProtectedRoute";
 import { useCapitalizeName } from "@/lib/custom-hooks/useCapitalizeName";
 import capitalizeName from "@/lib/utils/capitalizeName";
+import { useInsertMutation } from "@supabase-cache-helpers/postgrest-swr";
 
 type Props = {
   children: React.ReactNode;
@@ -38,6 +38,13 @@ const MessagesLayout = ({ children }: Props) => {
   const [messageContent, setMessageContent] = useState<string>("");
   const currentUserId = useCurrentUserId();
 
+  const getMessagesDistinct = () => {
+    const data = fetchTable("distinct_messages", {
+      or: `sender_id.eq.${currentUserId}, recipient_id.eq.${currentUserId}`,
+    });
+    return data;
+  };
+
   const getMessages = () => {
     const data = fetchTable("distinct_messages", {
       or: `sender_id.eq.${currentUserId}, recipient_id.eq.${currentUserId}`,
@@ -45,27 +52,43 @@ const MessagesLayout = ({ children }: Props) => {
     return data;
   };
 
-  useRealTimeSubscription({
-    channelName: "distinct_messages_realtime",
-    tableName: "distinct_messages",
-    payload: getMessages,
-  });
+  // useRealTimeSubscription({
+  //   channelName: "distinct_messages_realtime",
+  //   tableName: "distinct_messages",
+  //   payload: getMessagesDistinct,
+  // });
+
+  // useRealTimeSubscription({
+  //   channelName: "messages_realtime",
+  //   tableName: "messages",
+  //   payload: getMessages,
+  // });
+
+  // const {
+  //   data: messages,
+  //   error,
+  //   isLoading,
+  //   isValidating,
+  //   count,
+  // } = useFetchTable({
+  //   tableName: "distinct_messages",
+  //   or: `sender_id.eq.${currentUserId}, recipient_id.eq.${currentUserId}`,
+  //   select: "recipient_id, recipient_full_name, content ",
+  // });
 
   const {
     data: messages,
     error,
     isLoading,
-    isValidating,
-    count,
-  } = useFetchTable({
+  } = useFetchTableForRealtime({
     tableName: "distinct_messages",
+    select: "recipient_id, recipient_full_name, content",
     or: `sender_id.eq.${currentUserId}, recipient_id.eq.${currentUserId}`,
-    select: "recipient_id, recipient_full_name, content ",
   });
 
   const handleAddMessage = async (e: any) => {
     e.preventDefault();
-    const { data: message, error } = await supabase
+    await supabase
       .from("messages")
       .insert({
         content: e.target[0].value,
@@ -77,6 +100,24 @@ const MessagesLayout = ({ children }: Props) => {
 
     e.target[0].value = ""; // reset message field
   };
+
+  // const addTodo = async (msgContent: string) => {
+  //   await supabase
+  //     .from("messages")
+  //     .insert({
+  //       content: msgContent,
+  //       sender_id: currentUserId,
+  //       recipient_id: "5f297aa7-18f5-42ff-9270-8ba8061cae95", // will change once getting
+  //       // the recipient_id is implemented
+  //     })
+  // }
+
+  // const { mutate, error: mutateError, reset, isPending, isError} = useMutation({
+  //   mutationFn: addTodo,
+  //   onSuccess: () => {
+  //     queryClient.invalidateQueries({queryKey: ["messages"]})
+  //   }
+  // });
 
   return (
     <div className="h-screen">
