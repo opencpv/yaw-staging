@@ -5,8 +5,6 @@ import {
 } from "@supabase/auth-helpers-nextjs";
 import { useContext, useEffect, useState } from "react";
 import ProfileInfo from "./ProfileIInfo";
-import { AppContextType } from "../../types";
-import { AppContext } from "../../AppContextProvider";
 import { useAppStore } from "@/store/dashboard/AppStore";
 
 const ProfileMainView = () => {

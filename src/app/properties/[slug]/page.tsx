@@ -171,7 +171,8 @@ const PropertyDetailsPage = (props: Props) => {
                 <div className="mt-20 space-y-10">
                   {/* <Button className="bg-gradient-to-r  from-[#21A19F] to-[#1EA9A6A1] p-4 text-xl text-white capitalize py-7 w-60">
                     Apply Now
-                  </Button> */}
+                  </Button>
+                  <ApplyNowModal type="simple"/> */}
 
                   <ApplicationForm type="simple"/>
                   <div className="flex flex-col justify-between px-10 py-8 text-sm bg-white border border-gray-500 shadow-xl text-primary-400 rounded-xl sm:flex-row sm:items-center sm:px-2">

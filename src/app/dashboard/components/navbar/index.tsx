@@ -10,7 +10,6 @@ import MessagesPopover from "../../notifications/components/NotificationsPopover
 import NotificationsPopover from "../../notifications/components/NotificationsPopover";
 import { montserat } from "@/app/styles/font";
 import { useContext } from "react";
-import { AppContext } from "../../AppContextProvider";
 import { useAppStore } from "@/store/dashboard/AppStore";
 
 const Navbar = () => {

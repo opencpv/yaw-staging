@@ -6,14 +6,12 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { redirect } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
 import { NotificationType } from "./notifications/components/types";
-import { AppContextType } from "./types";
-import AppContextProvider, { AppContext } from "./AppContextProvider";
+
 import { useAppStore } from "@/store/dashboard/AppStore";
 
 type LayoutProps = {
   children: React.ReactNode;
 };
-
 
 const Layout = ({ children }: LayoutProps) => {
   const [notifications, setNotifications] = useState<NotificationType | any>();
@@ -22,8 +20,7 @@ const Layout = ({ children }: LayoutProps) => {
   >();
 
   const supabase = createClientComponentClient();
-  // const {user, setUser} = useContext(AppContext) as AppContextType
-  const {user, setUser} = useAppStore()
+  const { user, setUser } = useAppStore();
 
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -42,10 +39,7 @@ const Layout = ({ children }: LayoutProps) => {
       const { user } = data;
       const profileData = { ...res.data[0], email: user?.email };
       const newData = { ...profileData };
-      setUser((prevUser : any) => ({
-        ...prevUser,
-        profileData: { ...newData },
-      }));
+      setUser({ profileData: { ...newData } });
     };
 
     getUserData().then(() => {
@@ -62,10 +56,9 @@ const Layout = ({ children }: LayoutProps) => {
       } = await supabase.from("notifications").select("*");
 
       if (data) {
-        setUser((prevUser: any) => ({
-          ...prevUser,
+        setUser({
           notifications: [...data],
-        }));
+        });
       }
 
       if (dataStatus === 200) {
@@ -91,7 +84,7 @@ const Layout = ({ children }: LayoutProps) => {
       .subscribe();
   }, []);
   return (
-    <AppContextProvider>
+    <>
       <Navbar />
       <div className={`mt-2 ${openSans.className}`}>
         <Pagination />
@@ -100,7 +93,7 @@ const Layout = ({ children }: LayoutProps) => {
       <div className={`mt-6 px-4 text-black ${openSans.className}`}>
         {children}
       </div>
-    </AppContextProvider>
+    </>
   );
 };
 

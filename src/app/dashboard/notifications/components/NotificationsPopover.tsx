@@ -8,8 +8,7 @@ import NotificationItem from "./NotificationItem";
 import { demoNotifications } from "../content/demoNotifications";
 import CaMarkAsRead from "../icons/CaMarkAsRead";
 import { CustomScroll } from "./CustomScroll";
-import { AppContextType } from "../../types";
-import { AppContext } from "../../AppContextProvider";
+
 import { useAppStore } from "@/store/dashboard/AppStore";
 
 const NotificationsPopover = () => {

@@ -8,9 +8,9 @@ import { openSans } from "@/app/styles/font";
 import CaComment from "./components/icons/CaComment";
 import ListingFormForm from "./components/ListingFormForm";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import { submitListing, submitOrEditListing } from "./components/api";
-import { AppContextType } from "@/app/dashboard/types";
-import { AppContext } from "@/app/dashboard/AppContextProvider";
+import { submitListing, submitOrEditListing } from "./components/api/submit";
+import { useAppStore } from "@/store/dashboard/AppStore";
+
 
 const ListingFormModal = () => {
   const [animation, setAnimation] = useState(false);
@@ -19,7 +19,7 @@ const ListingFormModal = () => {
     "listing-form",
     {}
   );
-  const { user } = useContext(AppContext) as AppContextType;
+  const { user } = useAppStore();
   const owner_id = user?.profileData?.id;
   const [template_id, setTemplateId] = useState(25);
 

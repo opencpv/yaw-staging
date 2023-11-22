@@ -14,7 +14,7 @@ export const ImageCard = ({ file, remove, makeBannerImage, addCaption } :Props) 
       <div
         className="rounded-2xl w-full aspect-[328/232] max-w-[328px] p-5"
         style={{
-          backgroundImage: `url(${file?.preview})`,
+          backgroundImage: `url(${file?.preview?.secure_url})`,
           backgroundPosition: "50%",
           backgroundSize: "cover",
           backgroundColor: "100%",

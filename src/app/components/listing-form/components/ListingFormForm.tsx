@@ -28,9 +28,9 @@ import OTP2 from "./OTP/OTP2";
 import Progress from "./Progress";
 import supabase from "@/lib/utils/supabaseClient";
 import userSession from "@/lib/utils/userSession";
-import { submitListing } from "./api";
-import { AppContext } from "@/app/dashboard/AppContextProvider";
-import { AppContextType } from "@/app/dashboard/types";
+import { submitListing } from "./api/submit";
+import { useAppStore } from "@/store/dashboard/AppStore";
+
 
 const iconSize = 44;
 
@@ -66,14 +66,14 @@ type Props = {
 export default function ListingFormForm({ setOpen }: Props) {
   const leaseRef = useRef<any>();
   const [progressValue, setProgressValue] = useState<number>(1);
-  const [activeSlide, setActiveSlide] = useState(0);
+  const [activeSlide, setActiveSlide] = useState(10);
   const [firstSlide, setFirstSlide] = useState(true);
   const [lastSlide, setLastSlide] = useState(false);
   const [hideLeft, setHideLeft] = useState(false);
   const [hideRight, setHideRight] = useState(false);
   const [otp, setOtp] = useState(false);
   
-  const { user } = useContext(AppContext) as AppContextType;
+  const { user } = useAppStore()
 
   const [listingFormData, setListingFormData] = useLocalStorage(
     "listing-form",

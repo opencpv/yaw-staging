@@ -8,7 +8,8 @@ import SlideEnter from "../SlideEnter";
 import ImageOptionsPopover from "./ImageOptionsPopover";
 import { ImageCard } from "./ImageCard";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import { handleFileDrop, uploadToCloudinary } from "./api";
+import { deleteFromCloudinary, handleFileDrop, uploadToCloudinary } from "./api";
+import deleteImage from "./delete-image";
 
 export default function ChooseImages() {
   const [files, setFiles] = useState<any>([]);
@@ -17,21 +18,10 @@ export default function ChooseImages() {
     []
   );
 
-  // const onDrop = useCallback(
-  //   (acceptedFiles: any) => {
-  //     handleFileDrop(acceptedFiles, setFiles);
-  //   },
-  //   [setFiles]
-  // );
 
   const onDrop = useCallback((acceptedFiles: any) => {
     if (acceptedFiles?.length) {
-      setFiles((previousFiles: any) => [
-        ...previousFiles,
-        ...acceptedFiles.map((file: any) =>
-          Object.assign(file, { preview: URL.createObjectURL(file) })
-        ),
-      ]);
+      handleFileDrop(acceptedFiles, setFiles);
     }
   }, []);
   useEffect(() => {
@@ -46,12 +36,13 @@ export default function ChooseImages() {
     }
   }, []);
 
-  const remove = (index: any) => {
-    setFiles((previousFiles: any) => {
-      const updatedFiles = [...previousFiles];
-      updatedFiles.splice(index, 1);
-      return updatedFiles;
-    });
+  const remove = (publicId : any, index: any) => {
+    // setFiles((previousFiles: any) => {
+      deleteImage(publicId)
+      // const updatedFiles = [...previousFiles];
+      // updatedFiles.splice(index, 1);
+      // return previousFiles;
+    // });
   };
 
   const makeBannerImage = (index: any) => {
@@ -114,7 +105,7 @@ export default function ChooseImages() {
             <div className="col-span-3 h-full">
               <BannerImage
                 file={files?.[0]}
-                remove={() => remove(0)}
+                remove={() => remove(files?.[0]?.preview?.public_id, 0)}
                 makeBannerImage={() => makeBannerImage}
                 addCaption={() => addCaption}
               />
@@ -124,7 +115,7 @@ export default function ChooseImages() {
                 <ImageCard
                   key={index}
                   file={file}
-                  remove={() => remove(index + 1)}
+                  remove={() => remove(file?.preview?.public_id,index + 1)}
                   makeBannerImage={() => makeBannerImage(index + 1)}
                   addCaption={() => addCaption}
                 />
