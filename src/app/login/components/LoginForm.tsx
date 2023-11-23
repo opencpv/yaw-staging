@@ -2,7 +2,7 @@
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import { LoginButton } from "./LoginButton";
-import { poppins400 } from "@/app/styles/font";
+import { poppins400 } from "@/styles/font";
 import { useRouter } from "next/navigation";
 
 export const LoginForm = () => {

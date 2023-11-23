@@ -1,4 +1,4 @@
-import Button from "@/app/properties/components/Button";
+import Button from "@/components/__shared/Button";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { icons } from "antd/es/image/PreviewGroup";
 import Image from "next/image";
@@ -28,11 +28,11 @@ const FeatureUpgradeCard = ({
             Unlock your dream home before anyone else
           </p>
           <div className="flex flex-row flex-wrap justify-between gap-x-5 gap-y-3 mt-1 items-center  min-[535px]:flex-row">
-            <Button className="p-2 px-4 text-xs text-white capitalize bg-primary-500">
+            <Button color="primary" className="p-2 px-4 text-xs">
               Upgrade Now
             </Button>
-            <Link href="" className="capitalize">
-              Learn more
+            <Link href="">
+              Learn More
             </Link>
           </div>
         </div>

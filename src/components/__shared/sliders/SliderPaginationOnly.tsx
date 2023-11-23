@@ -1,14 +1,18 @@
 "use client";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import "@/app/about/components/custom-swiper.css";
-
-import { Pagination } from "swiper/modules";
 import Image from "next/image";
 
-const SliderPaginationOnly = ({images, className}: SliderPaginationOnlyProps) => {
+import { Pagination } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/pagination";
+import "@/styles/custom-swiper.css";
+
+const SliderPaginationOnly = ({
+  images,
+  className,
+}: SliderPaginationOnlyProps) => {
   return (
     <div className={`relative h-80 w-72 ${className}`}>
       <Swiper
@@ -22,7 +26,7 @@ const SliderPaginationOnly = ({images, className}: SliderPaginationOnlyProps) =>
       >
         {images.map((image, idx) => (
           <SwiperSlide key={idx + 1}>
-            <div className="relative h-full w-full">
+            <div className="relative w-full h-full">
               <Image
                 src={image.src}
                 alt={image.name}
@@ -34,7 +38,7 @@ const SliderPaginationOnly = ({images, className}: SliderPaginationOnlyProps) =>
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="relative bottom-10 z-10 bg-neutral-600 h-10 bg-opacity-30 rounded-b-lg"></div>
+      <div className="relative h-10 rounded-b-lg bottom-10 z-10 bg-neutral-600 bg-opacity-30"></div>
     </div>
   );
 };

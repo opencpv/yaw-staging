@@ -5,7 +5,7 @@ import { GetServerSideProps } from "next";
 import { useEffect, useState } from "react";
 import fetchFaqData from "../faq/lib/fetchFaqData";
 import MainView from "./components/MainView";
-import { openSans } from "../styles/font";
+import { openSans } from "../../styles/font";
 
 const TermsOfService = async (props: any) => {
   const data = await fetchTermsData();

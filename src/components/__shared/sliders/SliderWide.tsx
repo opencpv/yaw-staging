@@ -1,14 +1,16 @@
 "use client";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import Image from "next/image";
+import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import Link from "next/link";
+
+import { Navigation, Pagination } from "swiper/modules";
+
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "@/app/about/components/custom-swiper.css";
-
-import { Navigation, Pagination } from "swiper/modules";
-import Image from "next/image";
-import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import "@/styles/custom-swiper.css";
 
 const SliderWide = ({ images, className }: SliderWideProps) => {
   return (
@@ -24,19 +26,21 @@ const SliderWide = ({ images, className }: SliderWideProps) => {
           dynamicMainBullets: 3,
         }}
         modules={[Navigation, Pagination]}
-        className="h-60 w-full rounded-lg slider-wide sm:h-80"
+        className="w-full rounded-lg h-60 slider-wide sm:h-80"
       >
         {images.map((image, idx) => (
           <SwiperSlide key={idx + 1}>
-            <div className="relative h-full w-full">
-              <Image
-                src={image.src}
-                alt={image.name}
-                className=""
-                fill
-                style={{ objectFit: "cover" }}
-              />
-            </div>
+            <Link href={`${image.href}`}>
+              <div className="relative w-full h-full">
+                <Image
+                  src={image.src}
+                  alt={image.name}
+                  className=""
+                  fill
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>

@@ -10,12 +10,8 @@ import ScrollDownBtn from "./components/landing/ScrollDownBtn";
 import PromotionSlider from "./components/slider/promotion/PromotionSlider";
 import listingsdb from "@/enum/demodb/listings";
 import rentalDeals from "@/enum/deals/rentalDeals";
-import ListingCard from "./about/components/ListingCard";
-import ListingCardSlider from "./about/components/ListingCardsSlider";
-import Link from "next/link";
-import AdCard from "./components/slider/ad/AdCard";
-import ListingCardSliderGrid from "./about/components/ListingCardsSliderGrid";
-import { IoIosArrowRoundForward } from "react-icons/io";
+import ListingCard from "../components/__shared/listing/ListingCard";
+import SliderGrid from "../components/__shared/sliders/SliderGrid";
 import DealCard from "./components/DealCard";
 import ManagePropertiesInfo2 from "./components/ManagePropertiesInfo2";
 import ManagePropertiesInfo from "./components/ManagePropertiesInfo";
@@ -72,7 +68,7 @@ export default function Home() {
           {/* Find your new home */}
           <div className="relative z-10 grid w-full gap-16 overflow-x-hidden top-52 md:grid-cols-5 lg:gap-28">
             <div className="col-span-5 w-11/12 space-y-4 px-5 capitalize md:col-span-2 md:order-2 md:w-full md:translate-x-[-10%] xs:px-10 md:pl-0">
-              <AOSWrapper animation="fade-right" >
+              <AOSWrapper animation="fade-right">
                 <h1 className="font-[900] text-2xl min-[300px]:max-md:text-3xl xl:text-4xl">
                   Find your new home with RentRightGH
                 </h1>
@@ -133,25 +129,26 @@ export default function Home() {
               <div className="relative col-span-6 pb-5">
                 {/* Shows when number of listings is more than 9 */}
                 <div className="relative h-fit w-full">
-                  <ListingCardSliderGrid
-                    listings={listingsdb.map((listing) => {
-                      return {
-                        id: listing.id,
-                        propertyType: listing.propertyType,
-                        deal: listing.deal as Deal,
-                        images: listing.images,
-                        liked: listing.liked,
-                        membership: listing.membership as Membership,
-                        monthlyAmount: listing.monthlyAmount,
-                        paymentStructure:
-                          listing.paymentStructure as PaymentStructure,
-                        price: listing.price,
-                        propertyDescription: listing.propertyDescription,
-                        rating: listing.rating,
-                        ratingCount: listing.ratingCount,
-                        href: listing.href,
-                      };
-                    })}
+                  <SliderGrid
+                    items={listingsdb.map((listing) => (
+                      <ListingCard
+                        key={listing.id}
+                        propertyType={listing.propertyType}
+                        propertyDescription={listing.propertyDescription}
+                        images={listing.images}
+                        price={listing.price}
+                        paymentStructure={
+                          listing.paymentStructure as PaymentStructure
+                        }
+                        monthlyAmount={listing.monthlyAmount}
+                        deal={listing.deal as Deal}
+                        membership={listing.membership as Membership}
+                        rating={listing.rating}
+                        ratingCount={listing.ratingCount}
+                        liked={listing.liked}
+                        href={listing.href}
+                      />
+                    ))}
                   />
                 </div>
               </div>
@@ -287,7 +284,7 @@ export default function Home() {
           <div className="items-center hidden grid-cols-2 gap-5 pb-20 lg:grid lg:grid-cols-3">
             {[1, 2, 3, 4, 5, 6, 7, 8].map((city, idx) => {
               return (
-                <AOSWrapper key={idx+1} animation="zoom-in" duration="1000">
+                <AOSWrapper key={idx + 1} animation="zoom-in" duration="1000">
                   <PopularCitiesCard
                     // key={idx + 1}
                     location="Kumasi"

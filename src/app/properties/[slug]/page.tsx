@@ -5,7 +5,7 @@ import React from "react";
 import style from "./PropertyDetails.module.css";
 import Link from "next/link";
 import { FaCaretDown, FaPlusCircle, FaStar } from "react-icons/fa";
-import Button from "../components/Button";
+import Button from "@/components/__shared/Button";
 import AdditionalInfo from "../components/AdditionalInfo";
 import {
   HiMiniShieldCheck,
@@ -15,7 +15,6 @@ import {
 } from "react-icons/hi2";
 import ReviewComment from "../components/ReviewComment";
 import AdditionalInfoTitle from "../components/AdditionalInfoTitle";
-import ListingCardSlider from "@/app/about/components/ListingCardsSlider";
 import listings from "@/enum/demodb/listings";
 import Footer from "@/app/components/Footer";
 import { Rate } from "antd";
@@ -26,6 +25,9 @@ import ViewProperty from "../components/ViewProperty";
 import ReportIssue from "@/components/__shared/ReportIssue";
 import { BsBookmarkStar, BsBookmarkStarFill } from "react-icons/bs";
 import PropertyDetailsSlider from "../components/PropertyDetailsSlider";
+import ListingCard from "@/components/__shared/listing/ListingCard";
+import listingsdb from "@/enum/demodb/listings";
+import SliderMultiItems from "@/components/__shared/sliders/SliderMultiItems";
 
 type Props = {};
 
@@ -34,7 +36,7 @@ const PropertyDetailsPage = (props: Props) => {
   return (
     <>
       <Navbar />
-      <main>
+      <main className="pb-40">
         <section className={`${style.shape} relative w-full min-h-[50rem]`}>
           <Image
             src={images.StockImage}
@@ -140,7 +142,10 @@ const PropertyDetailsPage = (props: Props) => {
               {/* Slider */}
               <div className="w-full h-80 lg:hidden">
                 <PropertyDetailsSlider
-                  images={["/assets/images/niceHome.png", "/assets/images/Stock.jpg"]}
+                  images={[
+                    "/assets/images/niceHome.png",
+                    "/assets/images/Stock.jpg",
+                  ]}
                   propertyType="2 bedroom house at Kasoa"
                 />
               </div>
@@ -156,7 +161,9 @@ const PropertyDetailsPage = (props: Props) => {
                     </h2>
                     <div className="flex items-center gap-2">
                       <HiMiniShieldCheck className="text-lg text-green-700" />
-                      <p className="text-sm text-neutral-800">Verified Listing</p>
+                      <p className="text-sm text-neutral-800">
+                        Verified Listing
+                      </p>
                     </div>
                   </div>
                   <p className="max-w-2xl text-sm text-neutral-800">
@@ -168,7 +175,7 @@ const PropertyDetailsPage = (props: Props) => {
                   <Rate allowHalf defaultValue={4.5} disabled />
                 </div>
                 <div className="mt-20 space-y-10">
-                  <Button className="bg-gradient-to-r  from-[#21A19F] to-[#1EA9A6A1] p-4 text-xl text-white capitalize py-7 w-60">
+                  <Button color="gradient" className="p-4 text-xl capitalize py-7 w-60">
                     Apply Now
                   </Button>
                   <div className="flex flex-col justify-between px-10 py-8 text-sm bg-white border border-gray-500 shadow-xl text-primary-400 rounded-xl sm:flex-row sm:items-center sm:px-2">
@@ -227,13 +234,13 @@ const PropertyDetailsPage = (props: Props) => {
                       <h2 className="text-center capitalize text-neutral-800 font-[600] sm:w-9/12">
                         Contact This Property
                       </h2>
-                      <Button className="bg-gradient-to-r  from-[#21A19F] to-[#1EA9A6A1] w-full p-4 text-white py-7">
+                      <Button color="gradient" className="w-full p-4 py-7">
                         Send Message
                       </Button>
                       <Button
                         variant="outline"
-                        borderColor="#21A19F"
-                        className="p-4 py-7 w-full text-[#21A19F]"
+                        color="gradient"
+                        className="p-4 py-7 w-full"
                       >
                         Call
                       </Button>
@@ -420,50 +427,53 @@ const PropertyDetailsPage = (props: Props) => {
         </Button>
         {/* Recommended Listings */}
         <section className="px-5 mx-auto max-w-screen-2xl sm:px-10">
-          <h2 className="text-neutral-800 text-xl ml-10 mb-2 font-[600]">
+          <h2 className="text-neutral-800 text-xl mb-5 font-[600] md:ml-10">
             Recommended Listings
           </h2>
-          <div className="w-full py-10 px-5 sm:px-10 mx-auto h-[38rem] max-w-screen-2xl">
-            {
-              <ListingCardSlider
-                listings={listings.map((listing) => {
-                  return {
-                    id: listing.id,
-                    propertyType: listing.propertyType,
-                    deal: listing.deal as
-                      | "Editor's Choice"
-                      | "Price Drop"
-                      | "Best Value"
-                      | "None"
-                      | "none"
-                      | "",
-                    images: listing.images,
-                    liked: listing.liked,
-                    membership: listing.membership as
-                      | "Certified"
-                      | "Verified"
-                      | "Unverified"
-                      | "None"
-                      | "none"
-                      | "",
-                    listing: listing.monthlyAmount,
-                    paymentStructure: listing.paymentStructure as
-                      | "Yearly"
-                      | "Bi-Annually"
-                      | "Quarterly"
-                      | "Every-6-Months"
-                      | "Every-3-Years",
-                    price: listing.price,
-                    propertyDescription: listing.propertyDescription,
-                    rating: listing.rating,
-                    ratingCount: listing.ratingCount,
-                    monthlyAmount: listing.monthlyAmount,
-                    href: listing.href,
-                  };
-                })}
-              />
-            }
-          </div>
+          <div className="w-full h-fit">
+          {
+            <SliderMultiItems
+              hasNavAndPagination={false}
+              slidesPerView={1}
+              breakpoints={{
+                500: {
+                  slidesPerView: 1.5,
+                },
+                768: {
+                  slidesPerView: 2.5,
+                },
+                1200: {
+                  slidesPerView: 3,
+                },
+                1300: {
+                  slidesPerView: 3.5,
+                },
+                1536: {
+                  slidesPerView: 4,
+                },
+              }}
+              items={listingsdb.map((listing) => (
+                <ListingCard
+                  key={listing.id}
+                  propertyType={listing.propertyType}
+                  propertyDescription={listing.propertyDescription}
+                  images={listing.images}
+                  price={listing.price}
+                  paymentStructure={
+                    listing.paymentStructure as PaymentStructure
+                  }
+                  monthlyAmount={listing.monthlyAmount}
+                  deal={listing.deal as Deal}
+                  membership={listing.membership as Membership}
+                  rating={listing.rating}
+                  ratingCount={listing.ratingCount}
+                  liked={listing.liked}
+                  href={listing.href}
+                />
+              ))}
+            />
+          }
+        </div>
         </section>
       </main>
       <Footer />

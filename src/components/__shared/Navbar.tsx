@@ -3,7 +3,7 @@
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import Link from "next/link";
-import { montserat } from "@/app/styles/font";
+import { montserat } from "@/styles/font";
 import Menu from "../NavMenu.tsx";
 import { useRouter } from "next/navigation.js";
 import { usePathname } from "next/navigation.js";

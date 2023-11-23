@@ -2,7 +2,7 @@ import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import React from "react";
 import { FiTrash2 } from "react-icons/fi";
-import Button from "../../components/Button";
+import Button from "@/components/__shared/Button";
 import { formatPrice } from "@/lib/utils/formatPrice";
 import { formatDate, formatTime } from "@/lib/utils/formatDatetime";
 import ApplicationStatus from "./ApplicationStatus";

@@ -2,7 +2,7 @@ import React from "react";
 import { HiOutlineExclamationCircle, HiOutlinePencil } from "react-icons/hi2";
 import Callout from "../components/Callout";
 import Image from "next/image";
-import Button from "@/app/properties/components/Button";
+import Button from "@/components/__shared/Button";
 import { FaArrowRight, FaRegEnvelope } from "react-icons/fa";
 import { BsTelephone } from "react-icons/bs";
 import FeatureExplainer from "./components/FeatureExplainer";
@@ -122,7 +122,7 @@ const OverviewPage = () => {
                 <p className="capitalize text-neutral-600">
                   Your Exclusive Marketplace, Completely Fee-Free
                 </p>
-                <Button className="w-10/12 p-2 px-4 mt-1 text-xs text-white capitalize bg-primary-500">
+                <Button color="primary" className="w-10/12 p-2 px-4 mt-1 text-xs capitalize">
                   Add New Product <FaArrowRight />
                 </Button>
               </div>

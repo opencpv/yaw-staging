@@ -1,13 +1,20 @@
 "use client";
 import React, { useState } from "react";
-import { FaHeart, FaRegHeart, FaRegStar, FaStar } from "react-icons/fa";
+import {
+  FaChevronLeft,
+  FaChevronRight,
+  FaHeart,
+  FaRegHeart,
+  FaRegStar,
+  FaStar,
+} from "react-icons/fa";
+import style from "../components/ListingSlider.module.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import "swiper/css/pagination";
-import "swiper/css/navigation";
 
-import "./custom-swiper.css";
+import "@/styles/custom-swiper.css";
 
 import { Pagination, Navigation } from "swiper/modules";
 import { HiOutlineHomeModern } from "react-icons/hi2";
@@ -15,30 +22,30 @@ import Link from "next/link";
 import Image from "next/image";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import { formatPrice } from "@/lib/utils/formatPrice";
 
-const ListingCard = (props: ListingCardInterface) => {
+const ListingCard2 = (props: ListingCardInterface) => {
   const { icons } = useAssets();
   const [isLiked, setIsLiked] = useState<boolean>(false);
   const toggleLiked = () => {
     setIsLiked((prevState) => !prevState);
   };
   return (
-    <div
-      className={`relative min-w-80 cursor-default shadow-lg ${props.className}`}
-    >
+    <div className={`relative min-w-80 cursor-default ${props.className}`}>
       <Swiper
         pagination={{
           clickable: true,
+          //   el: ".custom-l-pagination",
           dynamicBullets: true,
           dynamicMainBullets: 3,
+          //   bulletActiveClass: 'listing-p-bullet-active',
+          //   bulletClass: 'listing-p-bullet'
         }}
         navigation={{
           nextEl: ".custom-l-next",
           prevEl: ".custom-l-prev",
         }}
         modules={[Pagination, Navigation]}
-        className={`relative w-full rounded-t-lg listing-card h-52`}
+        className={`relative w-full rounded-2xl listing-card-slider h-80`}
       >
         {/* Mapping through Featured listings from database */}
         {props.images.map((image, index) => (
@@ -58,16 +65,16 @@ const ListingCard = (props: ListingCardInterface) => {
         ))}
 
         {/* Pagination bullets and button */}
-        <div className="custom-l-prev absolute bottom-20 left-[5%] z-10 flex h-8 w-8 shrink-0 cursor-default items-center justify-center rounded-full bg-white">
+        <div className="custom-l-prev absolute bottom-32 left-[5%] z-10 flex h-8 w-8 shrink-0 cursor-default items-center justify-center rounded-full bg-white">
           <MdChevronLeft className="text-lg text-neutral-700" />
         </div>
         <div className="w-full space-x-3 text-center custom-l-pagination bottom-40"></div>
-        <div className="custom-l-next absolute bottom-20 right-[5%] z-10 flex h-8 w-8 shrink-0 cursor-default items-center justify-center rounded-full bg-white">
+        <div className="custom-l-next absolute bottom-32 right-[5%] z-10 flex h-8 w-8 shrink-0 cursor-default items-center justify-center rounded-full bg-white">
           <MdChevronRight className="text-lg text-neutral-700" />
         </div>
       </Swiper>
       {/* Card info */}
-      <div className="w-full px-5 py-4 space-y-6 bg-white rounded-b-lg text-neutral-800">
+      <div className="w-full px-5 py-4 space-y-6">
         <div className="space-y-3 text-xs">
           <div className="flex flex-wrap justify-between gap-x-3 gap-y-1">
             <div className="flex items-center gap-2">
@@ -95,7 +102,7 @@ const ListingCard = (props: ListingCardInterface) => {
               )}
             </div>
           </div>
-          <p className="max-w-xl line-clamp-3 text-neutral-500 sm:line-clamp-2 ">
+          <p className="max-w-xs line-clamp-3 text-neutral-500 sm:line-clamp-2 ">
             {props.propertyDescription}
           </p>
         </div>
@@ -106,19 +113,23 @@ const ListingCard = (props: ListingCardInterface) => {
                 <p className="text-sm font-[700] text-neutral-900">
                   GHS
                   <span className="font-[500]">
-                    {formatPrice(props?.price)} / Month
-                    {/** Rounds to 2d.p and adds a comma to the figure if necessary */}
+                    {" "}
+                    {props.price?.toLocaleString("en-US", {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}{" "}
+                    / Month
                   </span>
                 </p>
               </div>
-              {/* <small className="font-[600] text-neutral-500">
-                paid {props.paymentStructure}
-              </small> */}
+              <small className=" inline rounded-xl text-neutral-800 bg-[#E7F8F2] px-3 py-1 text-[0.55rem]">
+                One Year Advance
+              </small>
             </div>
             {props.liked || isLiked ? (
               <FaHeart
                 className={`cursor-pointer text-lg text-primary-800 ${
-                  isLiked && "ping"
+                  isLiked && "pulsate-bck"
                 }`}
                 onClick={toggleLiked}
               />
@@ -128,17 +139,6 @@ const ListingCard = (props: ListingCardInterface) => {
                 onClick={toggleLiked}
               />
             )}
-          </div>
-          <div className="flex justify-between">
-            <small className=" inline rounded-xl bg-[#E7F8F2] px-3 py-1 text-[0.55rem]">
-              {/* - GHS{" "}
-              {props.monthlyAmount?.toLocaleString("en-US", {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-              })}{" "}
-              / Month */}
-              One Year Advance
-            </small>
           </div>
         </div>
       </div>
@@ -232,4 +232,4 @@ const ListingCard = (props: ListingCardInterface) => {
   );
 };
 
-export default ListingCard;
+export default ListingCard2;

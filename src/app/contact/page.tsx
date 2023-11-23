@@ -6,7 +6,7 @@ import Image from "next/image";
 import { AiOutlineLink } from "react-icons/ai";
 import { UploadFile } from "./components/UploadFile";
 import { useEffect, useRef, useState } from "react";
-import { montserat, openSans } from "../styles/font";
+import { montserat, openSans } from "../../styles/font";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { BiRightArrowCircle } from "react-icons/bi";
 import PhoneNumberInput from "@/components/__shared/PhoneInput";

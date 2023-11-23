@@ -1,10 +1,13 @@
-//@ts-nocheck
-
 import { create } from "zustand";
 
-const useManagePropertiesStore = create((set) => ({
+type ManagePropertiesStore = {
+  filterOption: string;
+  changeOption: (key: string) => void;
+};
+
+const useManagePropertiesStore = create<ManagePropertiesStore>((set) => ({
   filterOption: "all",
-  changeOption: (option) => set({ filterOption: option }),
+  changeOption: (option: string) => set({ filterOption: option }),
 }));
 
 export { useManagePropertiesStore };

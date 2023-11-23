@@ -1,4 +1,4 @@
-import { montserat } from "@/app/styles/font";
+import { montserat } from "@/styles/font";
 
 const FAQTab = (props: any) => {
   const { text, activeIndex, index, onClick } = props;

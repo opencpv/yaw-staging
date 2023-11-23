@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
-import { openSans } from "@/app/styles/font";
+import { openSans } from "@/styles/font";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { dateDefault } from "@/enum/defaultPhone";
 import { useClickAway } from "@uidotdev/usehooks";

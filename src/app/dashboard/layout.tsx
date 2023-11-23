@@ -1,4 +1,4 @@
-import { openSans } from "../styles/font";
+import { openSans } from "../../styles/font";
 import Navbar from "./components/navbar";
 import Pagination from "./components/pagination";
 

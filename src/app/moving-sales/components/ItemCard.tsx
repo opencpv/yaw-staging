@@ -16,8 +16,8 @@ const ItemCard = ({ description, title, image, price, href }: ItemProps) => {
           />
         </div>
         <h3 className="text-primary-500 font-[600] mb-2">{title}</h3>
-        <p className="max-w-sm mb-2">{description}</p>
-        <p className="text-lg font-[600] text-primary-500">GHS {price}</p>
+        <p className="max-w-sm mb-2 text-neutral-500 line-clamp-3">{description}</p>
+        <h3 className="text-lg font-[700] text-primary-500">GHS {price}</h3>
       </div>
     </Link>
   );

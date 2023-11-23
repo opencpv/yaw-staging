@@ -1,17 +1,19 @@
 import { Rate } from "antd";
 import Image from "next/image";
 import React from "react";
-import { RiTwitterXLine } from "react-icons/ri";
-import { FaFacebookF, FaRegStar, FaShare, FaWhatsapp } from "react-icons/fa";
+import { FaShare } from "react-icons/fa";
 import { HiPrinter } from "react-icons/hi2";
 import Link from "next/link";
 import socialLinks from "@/enum/links/socials";
-import OtherPosts from "../components/OtherPosts";
+import OtherPosts from "../../components/post/OtherPosts";
 import Button from "@/components/__shared/Button";
 import Navbar from "@/components/__shared/Navbar";
 import Footer from "@/app/components/Footer";
 import SliderPaginationOnly from "@/components/__shared/sliders/SliderPaginationOnly";
 import SliderWide from "@/components/__shared/sliders/SliderWide";
+import ListingCard from "@/components/__shared/listing/ListingCard";
+import listingsdb from "@/enum/demodb/listings";
+import SliderMultiItems from "@/components/__shared/sliders/SliderMultiItems";
 
 type Props = {};
 
@@ -19,7 +21,7 @@ const page = (props: Props) => {
   return (
     <>
       <Navbar />
-      <main className="section text-neutral-400 mt-10 overflow-x-hidden">
+      <main className="pb-20 mt-10 section text-neutral-500">
         <h3 className="text-xl font-[500] mb-8">
           Blog - Posted by <span className="text-primary-500">Jane Doe</span>
         </h3>
@@ -28,7 +30,7 @@ const page = (props: Props) => {
         </h1>
         <div className="relative w-full h-60 shape-3 mb-16 lg:h-[30rem]">
           <Image
-            src="/assets/images/niceHome.png"
+            src="/assets/images/about/about-slider-img.webp"
             alt=""
             className=""
             fill
@@ -36,7 +38,7 @@ const page = (props: Props) => {
           />
         </div>
         <h3 className="text-xl font-[500] mb-8">Category / Blog title</h3>
-        <section className="grid-cols-4 gap-5 sm:grid">
+        <section className="grid-cols-4 gap-5 mb-20 sm:grid">
           <div className="col-span-3">
             {/* Blog content */}
             <div className="mb-20">
@@ -77,9 +79,9 @@ const page = (props: Props) => {
             </h3>
             <div className="flex flex-wrap items-center justify-between gap-5 mb-16">
               <Rate allowHalf allowClear defaultValue={0} />
-              <div className="flex gap-3 text-2xl items-center text-primary-200">
+              <div className="flex items-center gap-3 text-2xl text-primary-200">
                 <p className="text-neutral-800 text-base font-[500]">Share</p>
-                <FaShare />
+                <FaShare className="text-neutral-800" />
                 {socialLinks.map((link) => (
                   <Link key={link.name} href={link.href} title={link.name}>
                     {link.icon}
@@ -102,7 +104,7 @@ const page = (props: Props) => {
                 }))}
               />
             </section>
-            <Button className="bg-accent-50 text-white text-lg uppercase mb-14 px-8 py-8 md:hidden">
+            <Button color="accent" className="px-8 py-8 text-lg uppercase mb-14 md:hidden">
               Subscribe to our blog
             </Button>
           </div>
@@ -114,7 +116,8 @@ const page = (props: Props) => {
               title="Recent posts"
               posts={[1, 2, 3].map((post, idx) => ({
                 title: "Market Voice: Interview with the wild bunch",
-                postedBy: "Jane Doe",
+                author: "Jane Doe",
+                image: "/assets/images/about/about-slider-img.webp",
               }))}
             />
             {/* Popular posts */}
@@ -123,7 +126,8 @@ const page = (props: Props) => {
               title="Popular posts"
               posts={[1, 2, 3].map((post, idx) => ({
                 title: "Market Voice: Interview with the wild bunch",
-                postedBy: "Jane Doe",
+                author: "Jane Doe",
+                image: "/assets/images/about/about-slider-img.webp",
               }))}
             />
             {/* Related posts */}
@@ -132,21 +136,23 @@ const page = (props: Props) => {
               title="Related posts"
               posts={[1, 2, 3].map((post, idx) => ({
                 title: "Market Voice: Interview with the wild bunch",
-                postedBy: "Jane Doe",
+                author: "Jane Doe",
+                image: "/assets/images/about/black-businessman.webp",
               }))}
             />
-            <Button className="bg-accent-50 text-white text-lg uppercase w-full py-8 mb-10 min-h-fit hidden md:inline-flex">
+            <Button className="hidden w-full py-8 mb-10 text-lg text-white uppercase bg-accent-50 min-h-fit md:inline-flex">
               Subscribe to our blog
             </Button>
           </div>
         </section>
-        <section className="grid gap-5 mb-10 xs:grid-cols-2 md:hidden">
+        <section className="grid-cols-2 gap-5 mb-10 space-y-5 xs:grid md:hidden">
           {/* Recent posts */}
           <OtherPosts
             title="Recent posts"
             posts={[1, 2, 3].map((post, idx) => ({
               title: "Market Voice: Interview with the wild bunch",
-              postedBy: "Jane Doe",
+              author: "Jane Doe",
+              image: "/assets/images/about/about-slider-img.webp",
             }))}
           />
           {/* Popular posts */}
@@ -154,7 +160,8 @@ const page = (props: Props) => {
             title="Popular posts"
             posts={[1, 2, 3].map((post, idx) => ({
               title: "Market Voice: Interview with the wild bunch",
-              postedBy: "Jane Doe",
+              author: "Jane Doe",
+              image: "/assets/images/about/black-businessman.webp",
             }))}
           />
           {/* Related posts */}
@@ -162,11 +169,12 @@ const page = (props: Props) => {
             title="Related posts"
             posts={[1, 2, 3].map((post, idx) => ({
               title: "Market Voice: Interview with the wild bunch",
-              postedBy: "Jane Doe",
+              author: "Jane Doe",
+              image: "",
             }))}
           />
         </section>
-        <section className="h-fit w-full md:hidden">
+        <section className="w-full mb-20 h-fit md:hidden">
           <SliderWide
             images={[1, 2, 3, 4, 5].map((image) => ({
               src: "/assets/images/niceHome.png",
@@ -174,8 +182,52 @@ const page = (props: Props) => {
             }))}
           />
         </section>
+        <section className="w-full h-fit">
+          {
+            <SliderMultiItems
+              hasNavAndPagination={false}
+              slidesPerView={1}
+              breakpoints={{
+                500: {
+                  slidesPerView: 1.5,
+                },
+                768: {
+                  slidesPerView: 2.5,
+                },
+                1200: {
+                  slidesPerView: 3,
+                },
+                1300: {
+                  slidesPerView: 3.5,
+                },
+                1536: {
+                  slidesPerView: 4,
+                },
+              }}
+              items={listingsdb.map((listing) => (
+                <ListingCard
+                  key={listing.id}
+                  propertyType={listing.propertyType}
+                  propertyDescription={listing.propertyDescription}
+                  images={listing.images}
+                  price={listing.price}
+                  paymentStructure={
+                    listing.paymentStructure as PaymentStructure
+                  }
+                  monthlyAmount={listing.monthlyAmount}
+                  deal={listing.deal as Deal}
+                  membership={listing.membership as Membership}
+                  rating={listing.rating}
+                  ratingCount={listing.ratingCount}
+                  liked={listing.liked}
+                  href={listing.href}
+                />
+              ))}
+            />
+          }
+        </section>
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };

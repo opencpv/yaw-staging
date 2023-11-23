@@ -6,16 +6,14 @@ import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { LuMessageSquarePlus } from "react-icons/lu";
 import { HiOutlineUserGroup } from "react-icons/hi2";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import PropertyRow from "./components/PropertyRow";
-import OptionFilterTab from "./components/OptionFilterTab";
-import PropertyRow2 from "./components/PropertyRow2";
-import Spinner from "../components/shared/Spinner";
+import OptionFilterTabs from "../../../components/__shared/OptionFilterTabs";
 import ManagePropertiesTable from "./components/ManagePropertiesTable";
 import ManagePropertiesSmallScreenView from "./components/ManagePropertiesSmallScreenView";
+import { useManagePropertiesStore } from "@/store/dashboard/propertiesStore";
+import ManagePropertiesTabs from "./components/ManagePropertiesTabs";
 
 const PropertiesPage = () => {
   const { images } = useAssets();
-
 
   return (
     <main className="mx-auto max-w-screen-2xl text-neutral-800">
@@ -45,7 +43,7 @@ const PropertiesPage = () => {
           </small>
         </div>
         <div className="col-span-2 mt-3 md:mt-0">
-          <OptionFilterTab />
+          <ManagePropertiesTabs />
         </div>
       </section>
       {/* Table */}

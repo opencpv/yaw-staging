@@ -28,7 +28,7 @@ const MovingSalesPage = (props: Props) => {
         {/* Banner */}
         <section className="relative flex items-center w-full mb-20 text-white rounded-xl h-60 sm:h-96">
           <Image
-            src="/assets/images/niceHome.png"
+            src="/assets/images/about/young-couple.webp"
             alt=""
             className="rounded-xl"
             fill
@@ -38,10 +38,10 @@ const MovingSalesPage = (props: Props) => {
           <h1 className="relative z-20 font-[700] text-4xl pl-5 xs:pl-20 sm:text-5xl">Shop</h1>
         </section>
         {/* Categories */}
-        <section className="flex justify-center mb-10">
-          <div className="flex flex-wrap gap-5 mx-auto">
+        <section className="flex justify-center mx-auto mb-10">
+          <div className="flex flex-wrap justify-center gap-5 mx-auto">
             {[1, 2, 3, 4, 5, 6].map((category, idx) => (
-              <Category key={idx + 1} category="Category" image="/assets/images/niceHome.png" count={20} className="w-full min-[345px]:w-fit" />
+              <Category key={idx + 1} category="Category" image="/assets/images/about/young-couple.webp" count={20} className="w-full min-[345px]:w-fit" />
             ))}
           </div>
         </section>
@@ -61,7 +61,7 @@ const MovingSalesPage = (props: Props) => {
               value={value}
               handleSelectionChange={handleSelectionChange}
             />
-            <Button className="text-white rounded-md bg-accent-50">
+            <Button color="accent">
               Filter
             </Button>
           </div>
@@ -74,7 +74,7 @@ const MovingSalesPage = (props: Props) => {
               href={`/moving-sales/${1}`}
               title="Lorem ipsum dolor sit amet"
               description="Lorem ipsum dolor sit amet consectetur. Viverra mattis lacus mi dolor sed et leo id mus ultrices."
-              image="/assets/images/niceHome.png"
+              image="/assets/images/about/young-couple.webp"
               price={16.48}
             />
           ))}

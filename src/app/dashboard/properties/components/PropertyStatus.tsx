@@ -3,7 +3,7 @@
 "use client";
 import React, { useState } from "react";
 import PaymentWarning from "./PaymentWarning";
-import Button from "../../components/Button";
+import Button from "@/components/__shared/Button";
 import { FaRegCheckCircle, FaRegTimesCircle } from "react-icons/fa";
 import Select from "../../components/Select";
 import Schedule from "node-schedule";
