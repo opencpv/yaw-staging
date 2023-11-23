@@ -38,10 +38,21 @@ const config: Config = {
         accent: {
           50: "#DDB771",
           100: "#F1B346",
-          400: "#F5C771"
+          400: "#F5C771",
         },
-        warning:{
-          400: "#FFB733"
+        warning: {
+          400: "#FFB733",
+        },
+        shade: {
+          200: "#8A8A8A",
+          300: "#545454",
+          50: "#E6E6E6",
+        },
+        success: {
+          100: "#B0E3C9",
+        },
+        error: {
+          50: "#FEF3F2",
         },
         white: "#fff",
       },
@@ -56,7 +67,7 @@ const config: Config = {
       fhd: "1920px",
       "2k": "2040px",
       "4k": "3840px",
-      "3xl" : "1728px",
+      "3xl": "1728px",
     },
   },
   plugins: [nextui()],
