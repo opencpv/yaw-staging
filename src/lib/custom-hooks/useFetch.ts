@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {
   useInfiniteOffsetPaginationQuery,
   useInsertMutation,
@@ -49,9 +50,9 @@ const useFetchTable = ({
 
   const { isValidating, count, data, error, isLoading } = useQuery(query, {
     revalidateOnReconnect:
-      revalidateOnReconnect === false ? revalidateOnReconnect : true,
-    revalidateOnFocus: revalidateOnFocus === false ? revalidateOnFocus : true,
-    revalidateIfStale: revalidateIfStale === false ? revalidateIfStale : true,
+      revalidateOnReconnect === true ? revalidateOnReconnect : false,
+    revalidateOnFocus: revalidateOnFocus === true ? revalidateOnFocus : false,
+    revalidateIfStale: revalidateIfStale === true ? revalidateIfStale : false,
   });
 
   return {
@@ -82,6 +83,17 @@ const useFetchTableWithPagination = ({
   if (eq) query.eq(eq.column, eq.match);
   if (or) query.or(or);
 
+
+  const [totalCount, setTotalCount] = useState<number | null>(null)
+
+  const getCount = async () => {
+    let {count} =  await supabase.from(tableName).select("*", {count: "exact", head: true})
+    setTotalCount(count)
+  }
+
+  getCount()
+
+
   const {
     currentPage,
     nextPage,
@@ -92,9 +104,9 @@ const useFetchTableWithPagination = ({
   } = useInfiniteOffsetPaginationQuery(query, {
     pageSize,
     revalidateOnReconnect:
-      revalidateOnReconnect === false ? revalidateOnReconnect : true,
-    revalidateOnFocus: revalidateOnFocus === false ? revalidateOnFocus : true,
-    revalidateIfStale: revalidateIfStale === false ? revalidateIfStale : true,
+      revalidateOnReconnect === true ? revalidateOnReconnect : false,
+    revalidateOnFocus: revalidateOnFocus === true ? revalidateOnFocus : false,
+    revalidateIfStale: revalidateIfStale === true ? revalidateIfStale : false,
   });
 
   return {
@@ -104,6 +116,7 @@ const useFetchTableWithPagination = ({
     isValidating,
     error,
     isLoading,
+    totalCount
   };
 };
 
@@ -130,9 +143,9 @@ const useFetchTableWithInfiniteScroll = ({
     useOffsetInfiniteScrollQuery(query, {
       pageSize,
       revalidateOnReconnect:
-        revalidateOnReconnect === false ? revalidateOnReconnect : true,
-      revalidateOnFocus: revalidateOnFocus === false ? revalidateOnFocus : true,
-      revalidateIfStale: revalidateIfStale === false ? revalidateIfStale : true,
+        revalidateOnReconnect === true ? revalidateOnReconnect : false,
+      revalidateOnFocus: revalidateOnFocus === true ? revalidateOnFocus : false,
+      revalidateIfStale: revalidateIfStale === true ? revalidateIfStale : false,
     });
 
   return { data, loadMore, isLoading, isValidating, error };

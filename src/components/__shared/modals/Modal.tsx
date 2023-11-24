@@ -21,6 +21,7 @@ const Modal = ({
   size,
   isDismissible,
   closeButton,
+  footerAlignment
 }: ModalProps) => {
   return (
     <>
@@ -31,6 +32,7 @@ const Modal = ({
         scrollBehavior="inside"
         size={size ? size : "sm"}
         isDismissable={isDismissible === false ? isDismissible : true}
+        placement="center"
         isOpen={isOpen}
         onClose={onClose}
         onOpenChange={onOpenChange}
@@ -51,7 +53,7 @@ const Modal = ({
                 {header}
               </ModalHeader>
               <ModalBody>{body}</ModalBody>
-              <ModalFooter>{footer}</ModalFooter>
+              <ModalFooter style={{justifyContent: footerAlignment ? footerAlignment : "start"}}>{footer}</ModalFooter>
             </>
           )}
         </ModalContent>

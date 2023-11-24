@@ -1,7 +1,5 @@
 "use client";
-import supabase from "@/lib/utils/supabaseClient";
 import Image from "next/image";
-
 import { useEffect } from "react";
 import ShapedLanding from "./components/landing/ShapedLanding";
 import Navbar from "@/components/__shared/Navbar";
@@ -62,8 +60,10 @@ export default function Home() {
         <ShapedLanding
           property="2 Bedroom house at Amasaman"
           image="/assets/images/home/landing.jpg"
-          href=""
+          href="/properties/2 Bedroom house at Amasaman"
           className="text-white"
+          position="right"
+          disableOnSmallScreens={true}
         >
           {/* Find your new home */}
           <div className="relative z-10 grid w-full gap-16 overflow-x-hidden top-52 md:grid-cols-5 lg:gap-28">

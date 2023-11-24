@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import Navbar from "@/components/__shared/Navbar";
 import { usePathname } from "next/navigation";
 import Providers from "@/context/Providers";
+import LoadingIndicator from "@/components/LoadingIndicator";
 
 const uniquePages = ["login", "terms-of-service"];
 
@@ -56,6 +57,7 @@ export default function RootLayout({
           {children}
         </div> */}
         <Providers>
+          <LoadingIndicator />
           {children}
         </Providers>
       </body>

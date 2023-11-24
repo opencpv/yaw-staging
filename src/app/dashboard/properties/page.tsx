@@ -6,14 +6,15 @@ import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { LuMessageSquarePlus } from "react-icons/lu";
 import { HiOutlineUserGroup } from "react-icons/hi2";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import OptionFilterTabs from "../../../components/__shared/OptionFilterTabs";
 import ManagePropertiesTable from "./components/ManagePropertiesTable";
 import ManagePropertiesSmallScreenView from "./components/ManagePropertiesSmallScreenView";
-import { useManagePropertiesStore } from "@/store/dashboard/propertiesStore";
 import ManagePropertiesTabs from "./components/ManagePropertiesTabs";
+import { useManagePropertiesStore } from "@/store/dashboard/propertiesStore";
 
 const PropertiesPage = () => {
   const { images } = useAssets();
+
+  const fetchCount = useManagePropertiesStore((state) => state.fetchCount);
 
   return (
     <main className="mx-auto max-w-screen-2xl text-neutral-800">
@@ -39,7 +40,10 @@ const PropertiesPage = () => {
         <div className="col-span-1 space-y-4">
           <h2 className="text-2xl font-[600]">Manage Properties</h2>
           <small className="inline-block text-sm capitalize">
-            Showing 05 Results
+            {fetchCount &&
+              `Showing ${
+                (fetchCount as number) > 9 ? fetchCount : `0${fetchCount}`
+              } Results`}
           </small>
         </div>
         <div className="col-span-2 mt-3 md:mt-0">
@@ -47,7 +51,6 @@ const PropertiesPage = () => {
         </div>
       </section>
       {/* Table */}
-
       <ManagePropertiesTable />
       {/* Small screen view */}
       <ManagePropertiesSmallScreenView />

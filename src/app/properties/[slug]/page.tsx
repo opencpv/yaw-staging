@@ -1,8 +1,8 @@
+"use client";
 import "../style.css";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import React from "react";
-import style from "./PropertyDetails.module.css";
 import Link from "next/link";
 import { FaCaretDown, FaPlusCircle, FaStar } from "react-icons/fa";
 import Button from "@/components/__shared/Button";
@@ -15,19 +15,20 @@ import {
 } from "react-icons/hi2";
 import ReviewComment from "../components/ReviewComment";
 import AdditionalInfoTitle from "../components/AdditionalInfoTitle";
-import listings from "@/enum/demodb/listings";
 import Footer from "@/app/components/Footer";
 import { Rate } from "antd";
 import Navbar from "@/components/__shared/Navbar";
 import ReviewCount from "../components/ReviewCount";
 import Feature from "../components/Feature";
-import ViewProperty from "../components/ViewProperty";
 import ReportIssue from "@/components/__shared/ReportIssue";
-import { BsBookmarkStar, BsBookmarkStarFill } from "react-icons/bs";
-import PropertyDetailsSlider from "../components/PropertyDetailsSlider";
+import { BsBookmarkStarFill } from "react-icons/bs";
 import ListingCard from "@/components/__shared/listing/ListingCard";
 import listingsdb from "@/enum/demodb/listings";
 import SliderMultiItems from "@/components/__shared/sliders/SliderMultiItems";
+import Info from "@/components/__shared/Info";
+import ShapedLanding from "@/app/components/landing/ShapedLanding";
+import SliderWide from "@/components/__shared/sliders/SliderWide";
+import AOSWrapper from "@/components/__shared/AOSWrapper";
 
 type Props = {};
 
@@ -37,16 +38,11 @@ const PropertyDetailsPage = (props: Props) => {
     <>
       <Navbar />
       <main className="pb-40">
-        <section className={`${style.shape} relative w-full min-h-[50rem]`}>
-          <Image
-            src={images.StockImage}
-            alt=""
-            fill
-            style={{ objectFit: "cover" }}
-          />
-          {/* View */}
-          <ViewProperty href="#" />
-        </section>
+        <ShapedLanding
+          property="2 Bedroom house at Amasaman"
+          image="/assets/images/home/landing.jpg"
+          position="left"
+        ></ShapedLanding>
         <section className="px-5 py-10 mx-auto max-w-screen-2xl sm:px-10">
           <div className="text-[#305A61] font-[600] text-xl">
             <Link href="" className="text-neutral-300">
@@ -58,95 +54,25 @@ const PropertyDetailsPage = (props: Props) => {
           <section className="grid grid-cols-1 gap-10 mt-8 md:mt-16 lg:grid-cols-2">
             <div className="h-full">
               <div className="hidden h-full grid-cols-2 gap-3 lg:grid">
-                <div className="relative">
-                  <Image
-                    src={images.niceHome}
-                    alt=""
-                    fill
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-                <div className="relative">
-                  <Image
-                    src={images.niceHome}
-                    alt=""
-                    fill
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-                <div className="relative">
-                  <Image
-                    src={images.niceHome}
-                    alt=""
-                    fill
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-                <div className="relative">
-                  <Image
-                    src={images.niceHome}
-                    alt=""
-                    fill
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-                <div className="relative">
-                  <Image
-                    src={images.niceHome}
-                    alt=""
-                    fill
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-                <div className="relative">
-                  <Image
-                    src={images.niceHome}
-                    alt=""
-                    fill
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-                <div className="relative">
-                  <Image
-                    src={images.niceHome}
-                    alt=""
-                    fill
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-                <div className="relative">
-                  <Image
-                    src={images.niceHome}
-                    alt=""
-                    fill
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-                <div className="relative">
-                  <Image
-                    src={images.niceHome}
-                    alt=""
-                    fill
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-                <div className="relative">
-                  <Image
-                    src={images.niceHome}
-                    alt=""
-                    fill
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((image, idx) => (
+                  <div key={idx + 1} className="relative max-h-[32rem]">
+                    <Image
+                      src={images.StockImage}
+                      alt=""
+                      fill
+                      className="rounded-md"
+                      style={{ objectFit: "cover" }}
+                    />
+                  </div>
+                ))}
               </div>
               {/* Slider */}
-              <div className="w-full h-80 lg:hidden">
-                <PropertyDetailsSlider
-                  images={[
-                    "/assets/images/niceHome.png",
-                    "/assets/images/Stock.jpg",
-                  ]}
-                  propertyType="2 bedroom house at Kasoa"
+              <div className="w-full h-fit lg:hidden">
+                <SliderWide
+                  images={[1, 2, 3, 4, 5].map((image) => ({
+                    src: "/assets/images/Stock.jpg",
+                    name: "",
+                  }))}
                 />
               </div>
               <ReportIssue href="" className="mt-5" />
@@ -175,7 +101,10 @@ const PropertyDetailsPage = (props: Props) => {
                   <Rate allowHalf defaultValue={4.5} disabled />
                 </div>
                 <div className="mt-20 space-y-10">
-                  <Button color="gradient" className="p-4 text-xl capitalize py-7 w-60">
+                  <Button
+                    color="gradient"
+                    className="p-4 text-xl capitalize py-7 w-60"
+                  >
                     Apply Now
                   </Button>
                   <div className="flex flex-col justify-between px-10 py-8 text-sm bg-white border border-gray-500 shadow-xl text-primary-400 rounded-xl sm:flex-row sm:items-center sm:px-2">
@@ -234,16 +163,22 @@ const PropertyDetailsPage = (props: Props) => {
                       <h2 className="text-center capitalize text-neutral-800 font-[600] sm:w-9/12">
                         Contact This Property
                       </h2>
-                      <Button color="gradient" className="w-full p-4 py-7">
+                      <Button
+                        color="gradient"
+                        className="w-full p-4 py-7"
+                        onClick={() => console.log("sending message")}
+                      >
                         Send Message
                       </Button>
-                      <Button
-                        variant="outline"
-                        color="gradient"
-                        className="p-4 py-7 w-full"
-                      >
-                        Call
-                      </Button>
+                      <Link href="tel:00001111122">
+                        <Button
+                          variant="outline"
+                          color="gradient"
+                          className="p-4 py-7 w-full"
+                        >
+                          Call
+                        </Button>
+                      </Link>
                     </div>
                     {/* Report issue */}
                     <div className="relative self-start -top-6">
@@ -258,7 +193,7 @@ const PropertyDetailsPage = (props: Props) => {
                 <AdditionalInfoTitle title="Advance Payment Options" />
                 <AdditionalInfo>
                   <ul className="properties-li">
-                    <li>1, 2</li>
+                    <li>1, 2 year(s)</li>
                   </ul>
                 </AdditionalInfo>
                 <AdditionalInfo>
@@ -275,11 +210,11 @@ const PropertyDetailsPage = (props: Props) => {
                   Additional Information
                 </h2>
                 <AdditionalInfoTitle title="Agency Fees" />
-                <div className="p-5 bg-[#FFF7E7] text-[#65969F] rounded-xl mt-2 flex items-center gap-5 text-sm">
-                  <HiOutlineExclamationCircle className="text-5xl text-yellow-500 rotate-180" />
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Atque illo dolore voluptatum eum.
-                </div>
+                <Info
+                  text="Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                  Atque illo dolore voluptatum."
+                  className="mt-2"
+                />
                 <AdditionalInfo className="">
                   <div className="flex flex-wrap items-center justify-between py-2 border-b gap-x-5 gap-y-2 last:border-b-0">
                     <p className="flex-1 w-full">Agent</p>
@@ -372,50 +307,49 @@ const PropertyDetailsPage = (props: Props) => {
           </Button>
         </section>
         {/* Rating */}
-        <section className="px-5 py-10 mx-auto my-10 max-w-screen-2xl sm:px-10">
-          <div className=" border-neutral-200 md:px-14 rounded-xl md:border-3 md:pt-10 md:pb-32">
-            <div className="flex flex-wrap justify-between gap-5 bg-[#65969F] text-white rounded-xl p-10">
-              <div className="flex flex-wrap items-center gap-3">
-                <p className="text-xl font-[600]">
-                  How would you rate this property?
-                </p>
-                <BsBookmarkStarFill className="text-lg shrink-0" />
-              </div>
-              <Button
-                variant="outline"
-                borderColor="white"
-                className="p-4 text-white py-7 w-60"
-              >
-                Write a review
-              </Button>
-            </div>
-            {/* Rating count */}
-            <div className="grid items-start grid-cols-3 mt-20 gap-x-20 gap-y-10">
-              <div className="col-span-3 flex items-center text-neutral-800 gap-10 font-[600] xl:col-span-1">
-                <div className="flex items-center gap-1.5">
-                  <HiOutlineHomeModern />
-                  <HiStar className="text-yellow-500" />
-                  <p className="">3.2</p>
+        <AOSWrapper animation="fade-up" duration="800">
+          <section className="px-5 py-10 mx-auto my-10 max-w-screen-2xl sm:px-10">
+            <div className=" border-neutral-200 md:px-14 rounded-xl md:border-3 md:pt-10 md:pb-32">
+              <div className="flex flex-wrap justify-between gap-5 bg-[#65969F] text-white rounded-xl p-10">
+                <div className="flex flex-wrap items-center gap-3">
+                  <p className="text-xl font-[600]">
+                    How would you rate this property?
+                  </p>
+                  <BsBookmarkStarFill className="text-lg shrink-0" />
                 </div>
-                <p className="">10 reviews</p>
+                <Button
+                  variant="outline"
+                  borderColor="white"
+                  className="p-4 text-white py-7 w-60"
+                >
+                  Write a review
+                </Button>
               </div>
-              <div className="grid justify-between grid-cols-1 w-full col-span-3 gap-x-8 gap-y-4 min-[900px]:grid-cols-2 xl:col-span-2">
-                <ReviewCount />
-                <ReviewCount />
-                <ReviewCount />
-                <ReviewCount />
-                <ReviewCount />
-                <ReviewCount />
+              {/* Rating count */}
+              <div className="grid items-start grid-cols-3 mt-20 gap-x-20 gap-y-10">
+                <div className="col-span-3 flex items-center text-neutral-800 gap-10 font-[600] xl:col-span-1">
+                  <div className="flex items-center gap-1.5">
+                    <HiOutlineHomeModern />
+                    <HiStar className="text-yellow-500" />
+                    <p className="">3.2</p>
+                  </div>
+                  <p className="">10 reviews</p>
+                </div>
+                <div className="grid justify-between grid-cols-1 w-full col-span-3 gap-x-8 gap-y-4 min-[900px]:grid-cols-2 xl:col-span-2">
+                  {[1, 2, 3, 4, 5, 6].map((count, idx) => (
+                    <ReviewCount key={idx + 1} />
+                  ))}
+                </div>
+              </div>
+              {/* Review comment */}
+              <div className="mt-24 space-y-10">
+                {[1, 2, 3].map((comment, idx) => (
+                  <ReviewComment key={idx + 1} />
+                ))}
               </div>
             </div>
-            {/* Review comment */}
-            <div className="mt-24 space-y-10">
-              <ReviewComment />
-              <ReviewComment />
-              <ReviewComment />
-            </div>
-          </div>
-        </section>
+          </section>
+        </AOSWrapper>
         <section className="relative px-5 mx-auto -top-14 max-w-screen-2xl sm:px-10">
           <ReportIssue href="" />
         </section>
@@ -431,49 +365,49 @@ const PropertyDetailsPage = (props: Props) => {
             Recommended Listings
           </h2>
           <div className="w-full h-fit">
-          {
-            <SliderMultiItems
-              hasNavAndPagination={false}
-              slidesPerView={1}
-              breakpoints={{
-                500: {
-                  slidesPerView: 1.5,
-                },
-                768: {
-                  slidesPerView: 2.5,
-                },
-                1200: {
-                  slidesPerView: 3,
-                },
-                1300: {
-                  slidesPerView: 3.5,
-                },
-                1536: {
-                  slidesPerView: 4,
-                },
-              }}
-              items={listingsdb.map((listing) => (
-                <ListingCard
-                  key={listing.id}
-                  propertyType={listing.propertyType}
-                  propertyDescription={listing.propertyDescription}
-                  images={listing.images}
-                  price={listing.price}
-                  paymentStructure={
-                    listing.paymentStructure as PaymentStructure
-                  }
-                  monthlyAmount={listing.monthlyAmount}
-                  deal={listing.deal as Deal}
-                  membership={listing.membership as Membership}
-                  rating={listing.rating}
-                  ratingCount={listing.ratingCount}
-                  liked={listing.liked}
-                  href={listing.href}
-                />
-              ))}
-            />
-          }
-        </div>
+            {
+              <SliderMultiItems
+                hasNavAndPagination={false}
+                slidesPerView={1}
+                breakpoints={{
+                  500: {
+                    slidesPerView: 1.5,
+                  },
+                  768: {
+                    slidesPerView: 2.5,
+                  },
+                  1200: {
+                    slidesPerView: 3,
+                  },
+                  1300: {
+                    slidesPerView: 3.5,
+                  },
+                  1536: {
+                    slidesPerView: 4,
+                  },
+                }}
+                items={listingsdb.map((listing) => (
+                  <ListingCard
+                    key={listing.id}
+                    propertyType={listing.propertyType}
+                    propertyDescription={listing.propertyDescription}
+                    images={listing.images}
+                    price={listing.price}
+                    paymentStructure={
+                      listing.paymentStructure as PaymentStructure
+                    }
+                    monthlyAmount={listing.monthlyAmount}
+                    deal={listing.deal as Deal}
+                    membership={listing.membership as Membership}
+                    rating={listing.rating}
+                    ratingCount={listing.ratingCount}
+                    liked={listing.liked}
+                    href={listing.href}
+                  />
+                ))}
+              />
+            }
+          </div>
         </section>
       </main>
       <Footer />

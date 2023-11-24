@@ -26,7 +26,7 @@ const Button = ({
   if (variant === "outline") {
     return (
       <NextUIButton
-        disabled={disabled}
+        isDisabled={disabled}
         isIconOnly={isIconOnly}
         className={`whitespace-normal font-[600] rounded-md bg-transparent max-w-sm px-3 py-3 border ${
           color === "primary"
@@ -48,7 +48,7 @@ const Button = ({
   } else if (variant === "ghost") {
     return (
       <NextUIButton
-        disabled={disabled}
+        isDisabled={disabled}
         isIconOnly={isIconOnly}
         className={`bg-transparent ${
           color === "primary"
@@ -67,7 +67,7 @@ const Button = ({
   }
   return (
     <NextUIButton
-      disabled={disabled}
+      isDisabled={disabled}
       isIconOnly={isIconOnly}
       className={`whitespace-normal font-[600] rounded-md max-w-sm px-3 py-3 ${
         color === "primary"

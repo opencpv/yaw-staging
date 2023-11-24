@@ -4,12 +4,9 @@ import Footer from "@/app/components/Footer";
 import PostSummary from "../components/post/PostSummary";
 import Link from "next/link";
 import { LuChevronsRight } from "react-icons/lu";
-import ListingCard from "@/components/__shared/listing/ListingCard";
-import listingsdb from "@/enum/demodb/listings";
-import SliderMultiItems from "@/components/__shared/sliders/SliderMultiItems";
-import SearchInput from "@/components/__shared/form/SearchInput";
-import CategoryTabs from "../components/category/CategoryTabs";
 import BackgroundImage from "../components/category/BackgroundImage";
+import TabsAndSearch from "../components/category/TabsAndSearch";
+import RecommendedListings from "@/components/__shared/listing/RecommendedListings";
 
 type Props = {};
 
@@ -30,12 +27,7 @@ const page = (props: Props) => {
       </div>
       <main className="section">
         <div className="mb-14 flex flex-col items-center justify-between gap-5 sm:flex-row">
-          <div className="flex-1">
-            <CategoryTabs />  
-          </div>
-          <div className="flex-1 w-full md:w-9/12">
-            <SearchInput />
-          </div>
+          <TabsAndSearch />
         </div>
         <div className="flex items-center justify-center pb-10 text-neutral-500">
           <section className="space-y-10">
@@ -60,48 +52,7 @@ const page = (props: Props) => {
         </div>
         <p className="text-center mb-20">pagination</p>
       </main>
-      <section className="w-full mb-40 h-fit section">
-        {
-          <SliderMultiItems
-            hasNavAndPagination={false}
-            slidesPerView={1}
-            breakpoints={{
-              500: {
-                slidesPerView: 1.5,
-              },
-              768: {
-                slidesPerView: 2.5,
-              },
-              1200: {
-                slidesPerView: 3,
-              },
-              1300: {
-                slidesPerView: 3.5,
-              },
-              1536: {
-                slidesPerView: 4,
-              },
-            }}
-            items={listingsdb.map((listing) => (
-              <ListingCard
-                key={listing.id}
-                propertyType={listing.propertyType}
-                propertyDescription={listing.propertyDescription}
-                images={listing.images}
-                price={listing.price}
-                paymentStructure={listing.paymentStructure as PaymentStructure}
-                monthlyAmount={listing.monthlyAmount}
-                deal={listing.deal as Deal}
-                membership={listing.membership as Membership}
-                rating={listing.rating}
-                ratingCount={listing.ratingCount}
-                liked={listing.liked}
-                href={listing.href}
-              />
-            ))}
-          />
-        }
-      </section>
+      <RecommendedListings className="section mb-40" />
       <Footer />
     </>
   );

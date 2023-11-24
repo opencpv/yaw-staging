@@ -29,7 +29,7 @@ const OtherPosts = ({ title, posts, className }: OtherPostsProps) => {
                     style={{ objectFit: "cover" }}
                   />
                 </div>
-                <div className="py-1 flex flex-col justify-between flex-[2] min-w-[8rem]">
+                <div className="py-1 flex flex-col justify-between flex-[2] min-w-[8rem] line-clamp-3">
                   <h3 className="font-[500] text-neutral-800 leading-tight">
                     {post.title}
                   </h3>

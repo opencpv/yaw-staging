@@ -8,9 +8,7 @@ import Footer from "@/app/components/Footer";
 import SliderWide from "@/components/__shared/sliders/SliderWide";
 import CategoryCard from "./components/CategoryCard";
 import Authors from "./components/author/Authors";
-import ListingCard from "../../components/__shared/listing/ListingCard";
-import listingsdb from "@/enum/demodb/listings";
-import SliderMultiItems from "@/components/__shared/sliders/SliderMultiItems";
+import RecommendedListings from "@/components/__shared/listing/RecommendedListings";
 
 type Props = {};
 
@@ -94,50 +92,7 @@ const page = (props: Props) => {
             <Authors />
           </div>
         </section>
-        <section className="w-full h-fit">
-          {
-            <SliderMultiItems
-              hasNavAndPagination={false}
-              slidesPerView={1}
-              breakpoints={{
-                500: {
-                  slidesPerView: 1.5,
-                },
-                768: {
-                  slidesPerView: 2.5,
-                },
-                1200: {
-                  slidesPerView: 3,
-                },
-                1300: {
-                  slidesPerView: 3.5,
-                },
-                1536: {
-                  slidesPerView: 4,
-                },
-              }}
-              items={listingsdb.map((listing) => (
-                <ListingCard
-                  key={listing.id}
-                  propertyType={listing.propertyType}
-                  propertyDescription={listing.propertyDescription}
-                  images={listing.images}
-                  price={listing.price}
-                  paymentStructure={
-                    listing.paymentStructure as PaymentStructure
-                  }
-                  monthlyAmount={listing.monthlyAmount}
-                  deal={listing.deal as Deal}
-                  membership={listing.membership as Membership}
-                  rating={listing.rating}
-                  ratingCount={listing.ratingCount}
-                  liked={listing.liked}
-                  href={listing.href}
-                />
-              ))}
-            />
-          }
-        </section>
+        <RecommendedListings />
       </main>
       <Footer />
     </>

@@ -1,8 +1,9 @@
+"use client";
 import React from "react";
 import { ConfigProvider, Input } from "antd";
 import { CiSearch } from "react-icons/ci";
 
-const SearchInput = ({ placeholder }: SearchInputProps) => {
+const SearchInput = ({ placeholder, onPressEnter }: SearchInputProps) => {
   return (
     <ConfigProvider
       theme={{
@@ -19,6 +20,7 @@ const SearchInput = ({ placeholder }: SearchInputProps) => {
         placeholder={placeholder ? placeholder : "Search"}
         prefix={<CiSearch className="text-neutral-500" />}
         allowClear
+        onPressEnter={onPressEnter}
       />
     </ConfigProvider>
   );

@@ -18,17 +18,16 @@ const PropertiesPage = (props: Props) => {
   return (
     <>
       <Navbar />
-      <main className="overflow-x-hidden">
-        <div className="relative w-full h-72">
-          <Image
-            src="/assets/images/Stock.jpg"
-            alt=""
-            fill
-            style={{ objectFit: "cover" }}
-          />
-        </div>
+      <div className="relative w-full h-72">
+        <Image
+          src="/assets/images/Stock.jpg"
+          alt=""
+          fill
+          style={{ objectFit: "cover" }}
+        />
+      </div>
         {/* Search */}
-        <section className="px-5 mx-auto max-w-screen-2xl xs:px-10">
+        <section className="section mb-32">
           <div className="relative w-full px-4 py-10 mx-auto bg-white shadow-xl xs:px-12 bottom-20 rounded-xl lg:w-10/12">
             <input
               type="search"
@@ -40,8 +39,9 @@ const PropertiesPage = (props: Props) => {
             <TagsSelect />
           </div>
         </section>
+      <main className="overflow-x-hidden section">
         {/* Listing */}
-        <section className="px-5 mx-auto mt-32 mb-10 space-y-5 sm:space-y-0 sm:grid grid-cols-autofit-listing-card gap-x-3 gap-y-10 max-w-screen-2xl">
+        <section className="mb-5 space-y-5 sm:space-y-0 sm:grid grid-cols-autofit-listing-card gap-x-3 gap-y-10">
           {listings.map((listing) => (
             <ListingCard2
               key={listing.id}
@@ -83,7 +83,7 @@ const PropertiesPage = (props: Props) => {
             />
           ))}
         </section>
-        <div className="flex justify-center">
+        <div className="flex justify-center mb-40">
           <Button className="my-8 text-white bg-accent-50">Load more</Button>
         </div>
       </main>
