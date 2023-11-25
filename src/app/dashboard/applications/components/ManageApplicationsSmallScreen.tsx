@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 import ApplicationRow2 from "./ApplicationRow2";
 import { useFetchTableWithInfiniteScroll } from "@/lib/custom-hooks/useFetch";

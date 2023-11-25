@@ -1,21 +1,14 @@
 import Head from "next/head";
 import fetchAboutData from "./lib/fetchAboutData";
 import Image from "next/image";
-import urlFor from "@/lib/utils/urlFor";
 import AboutItem from "./components/AboutItem";
-import AboutBanner from "./components/AboutBanner";
-import { MdOutlineImage } from "react-icons/md";
-import GraySliderDesktop from "./components/GraySliderDesktop";
-import GraySliderMobile from "./components/GraySliderMobile";
 import Navbar from "@/components/__shared/Navbar";
 import Footer from "../components/Footer";
 import SimpleSlider from "./components/Slider/SimpleSlider";
 import "swiper/css";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import ListingCard from "../../components/__shared/listing/ListingCard";
-import listingsdb from "@/enum/demodb/listings";
 import VerticalSlider from "./components/Slider/VerticalSlider";
-import SliderMultiItems from "@/components/__shared/sliders/SliderMultiItems";
+import RecommendedListings from "@/components/__shared/listing/RecommendedListings";
 
 const About = async () => {
   const data = await fetchAboutData();
@@ -93,49 +86,7 @@ const About = async () => {
           <VerticalSlider />
           {/* <div className="absolute top-0 left-0 z-10 w-[87%] h-full bg-transparent xl:hidden"></div> */}
         </section>
-        <section className="w-full py-10 h-fit section">
-          {
-            <SliderMultiItems
-              slidesPerView={1}
-              breakpoints={{
-                500: {
-                  slidesPerView: 1.5,
-                },
-                768: {
-                  slidesPerView: 2.5,
-                },
-                1200: {
-                  slidesPerView: 3,
-                },
-                1300: {
-                  slidesPerView: 3.5,
-                },
-                1536: {
-                  slidesPerView: 4,
-                },
-              }}
-              items={listingsdb.map((listing) => (
-                <ListingCard
-                  key={listing.id}
-                  propertyType={listing.propertyType}
-                  propertyDescription={listing.propertyDescription}
-                  images={listing.images}
-                  price={listing.price}
-                  paymentStructure={
-                    listing.paymentStructure as PaymentStructure
-                  }
-                  monthlyAmount={listing.monthlyAmount}
-                  deal={listing.deal as Deal}
-                  membership={listing.membership as Membership}
-                  rating={listing.rating}
-                  ratingCount={listing.ratingCount}
-                  liked={listing.liked}
-                  href={listing.href}
-                />
-              ))}
-            />
-          }
-        </section>
+        <RecommendedListings className="py-10 section" />
       </main>
       <Footer />
     </>

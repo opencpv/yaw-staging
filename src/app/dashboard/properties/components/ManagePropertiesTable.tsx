@@ -1,5 +1,5 @@
 // @ts-nocheck
-
+"use client"
 import React from "react";
 import PropertyRow from "./PropertyRow";
 import { useFetchTableWithPagination } from "@/lib/custom-hooks/useFetch";

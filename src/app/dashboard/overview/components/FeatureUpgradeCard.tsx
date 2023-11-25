@@ -1,3 +1,4 @@
+import AOSWrapper from "@/components/__shared/AOSWrapper";
 import Button from "@/components/__shared/Button";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { icons } from "antd/es/image/PreviewGroup";
@@ -16,12 +17,14 @@ const FeatureUpgradeCard = ({
       <div
         className={`flex flex-col gap-x-10 gap-y-5 text-white bg-[#99B3B2] xs:max-[500px]:px-16 rounded-xl text-xs p-5 pr-8 pb-12 min-[500px]:flex-row ${className}`}
       >
-        <Image
-          src={icons.HouseSearch}
-          alt="house search"
-          width={200}
-          height={200}
-        />
+        <AOSWrapper animation="zoom-in" duration="900">
+          <Image
+            src={icons.HouseSearch}
+            alt="house search"
+            width={200}
+            height={200}
+          />
+        </AOSWrapper>
         <div className="space-y-3">
           <h4 className="font-[600] text-sm">{title}</h4>
           <p className="capitalize text-white/90">
@@ -31,9 +34,7 @@ const FeatureUpgradeCard = ({
             <Button color="primary" className="p-2 px-4 text-xs">
               Upgrade Now
             </Button>
-            <Link href="">
-              Learn More
-            </Link>
+            <Link href="">Learn More</Link>
           </div>
         </div>
       </div>
@@ -43,12 +44,7 @@ const FeatureUpgradeCard = ({
       <div
         className={`flex flex-col gap-x-10 gap-y-5 text-white bg-[#99B3B2] xs:max-[500px]:px-16 rounded-xl text-xs p-5 pr-8 pb-12 min-[500px]:flex-row ${className}`}
       >
-        <Image
-          src={icons.Rafiki}
-          alt="house search"
-          width={200}
-          height={200}
-        />
+        <Image src={icons.Rafiki} alt="house search" width={200} height={200} />
         <div className="space-y-3">
           <h4 className="font-[600] text-sm">{title}</h4>
           <p className="capitalize text-white/90">

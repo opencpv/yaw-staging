@@ -1,4 +1,5 @@
 //@ts-nocheck
+"use client";
 
 import React from "react";
 import PropertyRow2 from "./PropertyRow2";

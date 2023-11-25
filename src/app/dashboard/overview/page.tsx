@@ -8,13 +8,15 @@ import { BsTelephone } from "react-icons/bs";
 import FeatureExplainer from "./components/FeatureExplainer";
 import FeatureUpgradeCard from "./components/FeatureUpgradeCard";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
+import RecommendedListings from "@/components/__shared/listing/RecommendedListings";
+import AOSWrapper from "@/components/__shared/AOSWrapper";
 
 const OverviewPage = () => {
   const { icons, images } = useAssets();
   return (
-    <main className="mt-10 text-neutral-800">
+    <main className="my-10 text-neutral-800 section">
       {/* Overview */}
-      <section className="justify-between grid-cols-3 mx-auto mb-20 gap-x-16 max-w-screen-2xl xl:gap-x-32 lg:grid lg:mb-32">
+      <section className="justify-between grid-cols-3 mx-auto mb-20 gap-x-16 xl:gap-x-32 lg:grid lg:mb-32">
         <div className="col-span-2">
           <h2 className="text-2xl font-[600] mb-6">Overview</h2>
           <h3 className="text-neutral-700 font-[500] text-lg mb-6 md:hidden">
@@ -52,7 +54,7 @@ const OverviewPage = () => {
                 </div>
                 <div className="space-y-2">
                   <h4 className="">John Doe</h4>
-                  <div className="flex flex-wrap items-center mb-2 text-sm gap-x-5 gap-y-3">
+                  <div className="flex flex-wrap items-center mb-4 text-sm gap-x-5 gap-y-3">
                     <div className="flex items-center gap-2 text-neutral-700">
                       <FaRegEnvelope className="text-primary-400" />
                       johndoe@gmail.com
@@ -62,7 +64,7 @@ const OverviewPage = () => {
                       (+233) 647 748 927
                     </div>
                   </div>
-                  <Button className="flex items-center gap-1.5 font-[400] text-xs text-white p-1 px-4 mt-2 rounded-md bg-[#597C7B]">
+                  <Button className="flex items-center gap-1.5 font-[400] text-xs text-white p-1 px-4 rounded-md bg-[#597C7B]">
                     Complete your profile <HiOutlinePencil />{" "}
                   </Button>
                 </div>
@@ -82,7 +84,7 @@ const OverviewPage = () => {
             </div>
             <div className="flex flex-col items-center gap-y-2 xs:items-start">
               <h4 className="">John Doe</h4>
-              <div className="flex flex-wrap items-center mb-2 text-sm gap-x-5 gap-y-3">
+              <div className="flex flex-wrap items-center mb-4 text-sm gap-x-5 gap-y-3">
                 <div className="flex items-center gap-2 text-neutral-700">
                   <FaRegEnvelope className="text-primary-400" />
                   johndoe@gmail.com
@@ -92,7 +94,7 @@ const OverviewPage = () => {
                   (+233) 647 748 927
                 </div>
               </div>
-              <Button className="flex items-center gap-1.5 font-[400] text-xs text-white p-1 px-4 mt-2 rounded-md bg-[#597C7B]">
+              <Button className="flex items-center gap-1.5 font-[400] text-xs text-white p-1 px-4 rounded-md bg-[#597C7B]">
                 Complete your profile <HiOutlinePencil />{" "}
               </Button>
             </div>
@@ -105,7 +107,7 @@ const OverviewPage = () => {
         </div>
       </section>
       {/* Explore */}
-      <section className="mx-auto mb-20 max-w-screen-2xl">
+      <section className="mx-auto mb-20">
         <h2 className="text-2xl font-[600] mb-6">Explore</h2>
         <div className="flex flex-col gap-5 lg:flex-row">
           <div className="space-y-5">
@@ -114,15 +116,20 @@ const OverviewPage = () => {
           </div>
           <div className="flex items-center justify-center p-5 text-xs border rounded-xl ">
             <div className="flex flex-col gap-y-3 xs:max-[500px]:px-16 min-[500px]:flex-row">
-              <Image src={icons.PeopleSell} alt="" width={200} height={200} />
+              <AOSWrapper animation="zoom-in" duration="900">
+                <Image src={icons.PeopleSell} alt="" width={200} height={200} />
+              </AOSWrapper>
               <div className="space-y-3 ">
                 <h4 className="font-[600] text-sm capitalize">
                   Sell Your Item
                 </h4>
-                <p className="capitalize text-neutral-600">
+                <p className="capitalize text-neutral-600 mb-1">
                   Your Exclusive Marketplace, Completely Fee-Free
                 </p>
-                <Button color="primary" className="w-10/12 p-2 px-4 mt-1 text-xs capitalize">
+                <Button
+                  color="primary"
+                  className="w-10/12 p-2 px-4 text-xs capitalize"
+                >
                   Add New Product <FaArrowRight />
                 </Button>
               </div>
@@ -130,8 +137,9 @@ const OverviewPage = () => {
           </div>
         </div>
       </section>
-      <section className="mx-auto max-w-screen-2xl">
+      <section className="mx-auto">
         <h2 className="text-2xl font-[600] mb-6">Recommended Listings</h2>
+        <RecommendedListings />
       </section>
     </main>
   );

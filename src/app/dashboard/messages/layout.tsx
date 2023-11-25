@@ -137,7 +137,7 @@ const MessagesLayout = ({ children }: Props) => {
           {isLoading ? (
             <Spinner />
           ) : error ? (
-            <p>Error: {error.message}</p>
+            <p>Error: {error}</p>
           ) : (
             messages?.map((message) => {
               let capitalizedName = capitalizeName(
@@ -163,7 +163,7 @@ const MessagesLayout = ({ children }: Props) => {
           } lg:block relative w-full col-span-4 h-full max-h-screen`}
         >
           {children} {/* messages */}
-          {pathname.includes("/dashboard/messages/") && (
+          {pathname?.includes("/dashboard/messages/") && (
             <div className="sticky bottom-0 w-full py-5 bg-white">
               <form
                 action=""

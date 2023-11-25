@@ -33,7 +33,7 @@ const OptionFilterTabs = ({
             radius === "small" ? "rounded-lg" : "rounded-large",
           ],
           tabContent:
-            "text-primary-500 text-[0.6rem] group-data-[selected=true]:text-white",
+            "text-primary-500 text-[0.6rem] md:text-sm group-data-[selected=true]:text-white",
           cursor: [
             "bg-[#45808B]",
             "sm:bg-[#45808B]",
@@ -43,7 +43,7 @@ const OptionFilterTabs = ({
           panel: "bg-primary-400",
         }}
         selectedKey={selectedKey}
-        onSelectionChange={(key) => onSelectionChange(key)}
+        onSelectionChange={(key) => onSelectionChange(key as string)}
       >
         {options.map((option) => (
           <Tab key={option} title={capitalizeName(option, " ")} />

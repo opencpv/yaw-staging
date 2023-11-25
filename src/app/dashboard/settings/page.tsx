@@ -1,15 +1,27 @@
+"use client";
 import Head from "next/head";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import {
+  createClientComponentClient,
+  createServerComponentClient,
+} from "@supabase/auth-helpers-nextjs";
 import ProfileMainView from "./components/ProfileMainView";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { useContext, useEffect, useState } from "react";
 
-const Settings = async () => {
-  const supabase = createServerComponentClient({ cookies });
+const Settings = () => {
+  const [supabase, setsupabase] = useState<any>();
 
-  if (!supabase) {
-    redirect("/");
-  }
+  useEffect(() => {
+    const supabase = createClientComponentClient();
+    if (!supabase) {
+      redirect("/");
+    } else {
+      setsupabase(supabase);
+    }
+  }, []);
+
+
   return (
     <>
       <Head>

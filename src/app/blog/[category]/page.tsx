@@ -7,6 +7,7 @@ import { LuChevronsRight } from "react-icons/lu";
 import BackgroundImage from "../components/category/BackgroundImage";
 import TabsAndSearch from "../components/category/TabsAndSearch";
 import RecommendedListings from "@/components/__shared/listing/RecommendedListings";
+import AOSWrapper from "@/components/__shared/AOSWrapper";
 
 type Props = {};
 
@@ -22,7 +23,9 @@ const page = (props: Props) => {
             <LuChevronsRight />
             <Link href="/blog">Blogs</Link>
           </div>
-          <h1 className="text-5xl font-[700]">Blog</h1>
+          <AOSWrapper animation="fade-up" duration="2000">
+            <h1 className="text-5xl font-[700]">Blog</h1>
+          </AOSWrapper>
         </div>
       </div>
       <main className="section">

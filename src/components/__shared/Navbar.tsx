@@ -20,9 +20,10 @@ const Navbar = (props: any) => {
   useEffect(() => {
     const handleScroll = () => {
       if (
-        (pathname.includes("/properties/") || pathname === "/") &&
+        (pathname?.includes("/properties/") || pathname === "/") &&
         window.scrollY > 1
       ) {
+
         setIsScrolling(true);
       } else {
         setIsScrolling(false);
@@ -36,10 +37,10 @@ const Navbar = (props: any) => {
   }, [pathname]);
 
   const shouldChangeColor =
-    (isScrolling && pathname.includes("/properties/")) ||
+    (isScrolling && pathname?.includes("/properties/")) ||
     (isScrolling && pathname === "/");
   const isNotTargetPage =
-    !pathname.includes("/properties/") && pathname !== "/";
+    !pathname?.includes("/properties/") && pathname !== "/";
 
   return (
     <nav
@@ -69,7 +70,7 @@ const Navbar = (props: any) => {
           />
         </Link>
         <div className="flex items-center lg:gap-[73px] md:gap-[31px] w-full justify-end">
-          {!pathname.includes("/properties/") ? (
+          {!pathname?.includes("/properties/") ? (
             <button
               onClick={(e: any) => {
                 router.push("/login");

@@ -87,7 +87,13 @@ const useFetchTableWithPagination = ({
   const [totalCount, setTotalCount] = useState<number | null>(null)
 
   const getCount = async () => {
-    let {count} =  await supabase.from(tableName).select("*", {count: "exact", head: true})
+    let query = supabase
+    .from(tableName)
+    .select("*", {count: "exact", head: true})
+    if (eq) query.eq(eq.column, eq.match)
+    if (or) query.or(or)
+
+    let {count} =  await query
     setTotalCount(count)
   }
 

@@ -1,20 +1,17 @@
-"use client";
+"use client"
 import Navbar from "@/components/__shared/Navbar";
-import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import React from "react";
 import listings from "@/enum/demodb/listings";
 import ListingCard2 from "../../components/__shared/listing/ListingCard2";
 import TagsSelect from "./components/TagsSelect";
-import { Button, Switch } from "@nextui-org/react";
 import Footer from "../components/Footer";
 import FixedSocials from "@/components/FixedSocials";
 import ScrollTop from "@/components/__shared/ScrollTop";
+import Button from "@/components/__shared/Button";
 
-type Props = {};
 
-const PropertiesPage = (props: Props) => {
-  const { images } = useAssets();
+const page = () => {
   return (
     <>
       <Navbar />
@@ -84,7 +81,7 @@ const PropertiesPage = (props: Props) => {
           ))}
         </section>
         <div className="flex justify-center mb-40">
-          <Button className="my-8 text-white bg-accent-50">Load more</Button>
+          <Button color="accent" className="my-8">Load more</Button>
         </div>
       </main>
       <FixedSocials />
@@ -94,4 +91,4 @@ const PropertiesPage = (props: Props) => {
   );
 };
 
-export default PropertiesPage;
+export default page;

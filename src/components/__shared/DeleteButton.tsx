@@ -6,7 +6,7 @@ type Props = {
   onOpen: () => void;
 };
 
-const DeleteIcon = ({ onOpen }: Props) => {
+const DeleteButton = ({ onOpen }: Props) => {
   return (
     <Button
       isIconOnly
@@ -18,4 +18,4 @@ const DeleteIcon = ({ onOpen }: Props) => {
   );
 };
 
-export default DeleteIcon;
+export default DeleteButton;

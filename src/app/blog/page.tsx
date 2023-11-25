@@ -9,6 +9,7 @@ import SliderWide from "@/components/__shared/sliders/SliderWide";
 import CategoryCard from "./components/CategoryCard";
 import Authors from "./components/author/Authors";
 import RecommendedListings from "@/components/__shared/listing/RecommendedListings";
+import AOSWrapper from "@/components/__shared/AOSWrapper";
 
 type Props = {};
 
@@ -16,7 +17,7 @@ const page = (props: Props) => {
   return (
     <>
       <Navbar />
-      <main className="pb-40 mt-10 section">
+      <main className="pb-40 mt-10 section overflow-x-hidden">
         <div className="relative w-full h-60 shape-3 mb-16 lg:h-[30rem]">
           <Image
             src="/assets/images/about/about-slider-img.webp"
@@ -49,17 +50,19 @@ const page = (props: Props) => {
                 }))}
               />
             </section>
-            <section className="grid gap-x-3.5 gap-y-7 xs:grid-cols-2 md:grid-cols-3">
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((category, idx) => (
-                <CategoryCard
-                  key={idx + 1}
-                  href="/blog/category"
-                  category="Category"
-                  image="/assets/images/about/black-businessman.webp"
-                  className="w-full"
-                />
-              ))}
-            </section>
+            <AOSWrapper animation="fade-up" duration="900">
+              <section className="grid gap-x-3.5 gap-y-7 xs:grid-cols-2 md:grid-cols-3">
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((category, idx) => (
+                  <CategoryCard
+                    key={idx + 1}
+                    href="/blog/category"
+                    category="Category"
+                    image="/assets/images/about/black-businessman.webp"
+                    className="w-full"
+                  />
+                ))}
+              </section>
+            </AOSWrapper>
           </div>
           {/* Other posts -- right side of Grid */}
           <div className="col-span-1 space-y-5">
@@ -85,9 +88,14 @@ const page = (props: Props) => {
                 href: "/blog/c/p",
               }))}
             />
-            <Button color="accent" className="w-full py-8 mb-20 text-lg uppercase min-h-fit">
-              Subscribe to our blog
-            </Button>
+            <AOSWrapper animation="fade-left" duration="1000">
+              <Button
+                color="accent"
+                className="w-full py-8 mb-20 text-lg uppercase min-h-fit"
+              >
+                Subscribe to our blog
+              </Button>
+            </AOSWrapper>
             {/* Authors */}
             <Authors />
           </div>

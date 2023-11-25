@@ -11,7 +11,7 @@ import { useDaysDifference } from "@/lib/custom-hooks/useDaysDifference";
 import capitalizeName from "@/lib/utils/capitalizeName";
 import { useDisclosure } from "@nextui-org/react";
 import DestructiveModal from "@/components/__shared/modals/DestructiveModal";
-import DeleteIcon from "@/components/__shared/DeleteIcon";
+import DeleteButton from "@/components/__shared/DeleteButton";
 
 const ApplicationRow2 = ({
   propertyImage,
@@ -93,7 +93,8 @@ const ApplicationRow2 = ({
               {formatDate(date)} {formatTime(date)}
             </h4>
             <small className="inline-block text-neutral-400 text-[0.6rem]">
-              {daysDifference} Days Ago
+              {daysDifference < 1 ? `Less Than A Day Ago` : `${daysDifference} Days Ago`}
+
             </small>
           </div>
         </div>
@@ -107,7 +108,7 @@ const ApplicationRow2 = ({
             >
               <AiOutlineEye className="text-xl" />
             </Button>
-            <DeleteIcon onOpen={onOpen} />
+            <DeleteButton onOpen={onOpen} />
           </div>
         </div>
       </div>

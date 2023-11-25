@@ -22,13 +22,13 @@ import ReviewCount from "../components/ReviewCount";
 import Feature from "../components/Feature";
 import ReportIssue from "@/components/__shared/ReportIssue";
 import { BsBookmarkStarFill } from "react-icons/bs";
-import ListingCard from "@/components/__shared/listing/ListingCard";
-import listingsdb from "@/enum/demodb/listings";
-import SliderMultiItems from "@/components/__shared/sliders/SliderMultiItems";
 import Info from "@/components/__shared/Info";
 import ShapedLanding from "@/app/components/landing/ShapedLanding";
 import SliderWide from "@/components/__shared/sliders/SliderWide";
 import AOSWrapper from "@/components/__shared/AOSWrapper";
+import ApplicationForm from "@/app/components/application-form";
+import RecommendedListings from "@/components/__shared/listing/RecommendedListings";
+
 
 type Props = {};
 
@@ -60,7 +60,7 @@ const PropertyDetailsPage = (props: Props) => {
                       src={images.StockImage}
                       alt=""
                       fill
-                      className="rounded-md"
+                      className="rounded-md transition-all hover:scale-[1.02]"
                       style={{ objectFit: "cover" }}
                     />
                   </div>
@@ -101,13 +101,13 @@ const PropertyDetailsPage = (props: Props) => {
                   <Rate allowHalf defaultValue={4.5} disabled />
                 </div>
                 <div className="mt-20 space-y-10">
-                  <Button
-                    color="gradient"
-                    className="p-4 text-xl capitalize py-7 w-60"
-                  >
+
+                  {/* <Button className="green-gradient p-4 text-xl text-white capitalize py-7 w-60">
                     Apply Now
-                  </Button>
-                  <div className="flex flex-col justify-between px-10 py-8 text-sm bg-white border border-gray-500 shadow-xl text-primary-400 rounded-xl sm:flex-row sm:items-center sm:px-2">
+                  </Button> */}
+
+                  <ApplicationForm type="simple"/>
+                  <div className="flex flex-col justify-between px-10 py-8 text-sm bg-white border border-gray-500 shadow-xl text-primary-400 rounded-xl transition-all hover:scale-105 sm:flex-row sm:items-center sm:px-2">
                     <div className="px-5 py-2 space-y-1 border-b border-gray-400 sm:border-r sm:border-b-0 sm:last:border-r-0 sm:py-0">
                       <h3 className="items-center justify-between text-center gap-x-4 sm:flex sm:text-start ">
                         Monthly Rent{" "}
@@ -146,7 +146,7 @@ const PropertyDetailsPage = (props: Props) => {
                       <div className="relative w-24 h-24 rounded-full">
                         <Image
                           src={images.StockImage}
-                          className="rounded-full"
+                          className="rounded-full transition-all hover:scale-105"
                           alt=""
                           fill
                           style={{ objectFit: "cover" }}
@@ -170,7 +170,7 @@ const PropertyDetailsPage = (props: Props) => {
                       >
                         Send Message
                       </Button>
-                      <Link href="tel:00001111122">
+                      <Link className="w-full" href="tel:00001111122">
                         <Button
                           variant="outline"
                           color="gradient"
@@ -364,50 +364,7 @@ const PropertyDetailsPage = (props: Props) => {
           <h2 className="text-neutral-800 text-xl mb-5 font-[600] md:ml-10">
             Recommended Listings
           </h2>
-          <div className="w-full h-fit">
-            {
-              <SliderMultiItems
-                hasNavAndPagination={false}
-                slidesPerView={1}
-                breakpoints={{
-                  500: {
-                    slidesPerView: 1.5,
-                  },
-                  768: {
-                    slidesPerView: 2.5,
-                  },
-                  1200: {
-                    slidesPerView: 3,
-                  },
-                  1300: {
-                    slidesPerView: 3.5,
-                  },
-                  1536: {
-                    slidesPerView: 4,
-                  },
-                }}
-                items={listingsdb.map((listing) => (
-                  <ListingCard
-                    key={listing.id}
-                    propertyType={listing.propertyType}
-                    propertyDescription={listing.propertyDescription}
-                    images={listing.images}
-                    price={listing.price}
-                    paymentStructure={
-                      listing.paymentStructure as PaymentStructure
-                    }
-                    monthlyAmount={listing.monthlyAmount}
-                    deal={listing.deal as Deal}
-                    membership={listing.membership as Membership}
-                    rating={listing.rating}
-                    ratingCount={listing.ratingCount}
-                    liked={listing.liked}
-                    href={listing.href}
-                  />
-                ))}
-              />
-            }
-          </div>
+          <RecommendedListings />
         </section>
       </main>
       <Footer />

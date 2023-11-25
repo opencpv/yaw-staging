@@ -7,7 +7,7 @@ import fetchFaqData from "../faq/lib/fetchFaqData";
 import MainView from "./components/MainView";
 import { openSans } from "../../styles/font";
 
-const TermsOfService = async (props: any) => {
+const page = async () => {
   const data = await fetchTermsData();
 
   return (
@@ -31,4 +31,4 @@ const TermsOfService = async (props: any) => {
   );
 };
 
-export default TermsOfService;
+export default page;

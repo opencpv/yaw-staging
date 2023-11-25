@@ -41,6 +41,10 @@ const config: Config = {
           50: "#DDB771",
           100: "#F1B346",
           200: "#AD842A",
+          400: "#F5C771"
+        },
+        warning:{
+          400: "#FFB733"
         },
         white: "#fff",
       },
@@ -56,6 +60,7 @@ const config: Config = {
       fhd: "1920px",
       "2k": "2040px",
       "4k": "3840px",
+      "3xl" : "1728px",
     },
   },
   plugins: [nextui()],

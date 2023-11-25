@@ -1,3 +1,4 @@
+"use client";
 import CaInstagram from "./icons/CaInstagram";
 import CaStarRainbow from "./icons/CaStarRainbow";
 import CaTwitter from "./icons/CaTwitter";

@@ -1,21 +1,17 @@
 "use client";
+
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
 import ActionMain from "./components/ActionMain";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
-import { LuMessageSquarePlus } from "react-icons/lu";
 import { HiOutlineUserGroup } from "react-icons/hi2";
-import { useAssets } from "@/lib/custom-hooks/useAssets";
 import ManagePropertiesTable from "./components/ManagePropertiesTable";
 import ManagePropertiesSmallScreenView from "./components/ManagePropertiesSmallScreenView";
 import ManagePropertiesTabs from "./components/ManagePropertiesTabs";
-import { useManagePropertiesStore } from "@/store/dashboard/propertiesStore";
+import ListingFormModal from "@/app/components/listing-form";
+import FetchCount from "../components/shared/FetchCount";
 
-const PropertiesPage = () => {
-  const { images } = useAssets();
-
-  const fetchCount = useManagePropertiesStore((state) => state.fetchCount);
-
+const page = () => {
   return (
     <main className="mx-auto max-w-screen-2xl text-neutral-800">
       <section className="mb-20">
@@ -29,22 +25,14 @@ const PropertiesPage = () => {
           </div>
         </div>
         <div className="flex flex-wrap gap-5">
-          <ActionMain
-            label="Create New Listing"
-            icon={<LuMessageSquarePlus />}
-          />
+          {/* <ListingFormModal /> */}
           <ActionMain label="Leads" icon={<HiOutlineUserGroup />} />
         </div>
       </section>
       <section className="items-center justify-between grid-cols-3 mb-6 gap-x-3 md:grid">
         <div className="col-span-1 space-y-4">
           <h2 className="text-2xl font-[600]">Manage Properties</h2>
-          <small className="inline-block text-sm capitalize">
-            {fetchCount &&
-              `Showing ${
-                (fetchCount as number) > 9 ? fetchCount : `0${fetchCount}`
-              } Results`}
-          </small>
+          <FetchCount data="manage-properties" />
         </div>
         <div className="col-span-2 mt-3 md:mt-0">
           <ManagePropertiesTabs />
@@ -58,4 +46,4 @@ const PropertiesPage = () => {
   );
 };
 
-export default PropertiesPage;
+export default page;

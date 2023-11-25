@@ -61,7 +61,8 @@ const PropertyRow2 = ({
               {formatDate(posted_on)} {formatTime(posted_on)}
             </h4>
             <small className="inline-block text-neutral-400 text-[0.6rem]">
-              {daysDifference} Days Ago
+              {daysDifference < 1 ? `Less Than A Day Ago` : `${daysDifference} Days Ago`}
+
             </small>
           </div>
         </div>

@@ -44,17 +44,35 @@ const DesktopVersion = () => {
         >
           <SwiperSlide>
             <div className="relative w-[40rem] h-[30rem]">
-                <Image src={images.niceHome} alt="" fill style={{objectFit: "cover"}} className="rounded-2xl" />
+              <Image
+                src={images.niceHome}
+                alt=""
+                fill
+                style={{ objectFit: "cover" }}
+                className="rounded-2xl"
+              />
             </div>
           </SwiperSlide>
           <SwiperSlide>
             <div className="relative w-[40rem] h-[30rem]">
-                <Image src={images.niceHome} alt="" fill style={{objectFit: "cover"}} className="rounded-2xl" />
+              <Image
+                src={images.niceHome}
+                alt=""
+                fill
+                style={{ objectFit: "cover" }}
+                className="rounded-2xl"
+              />
             </div>
           </SwiperSlide>
           <SwiperSlide>
             <div className="relative w-[40rem] h-[30rem]">
-                <Image src={images.niceHome} alt="" fill style={{objectFit: "cover"}} className="rounded-2xl" />
+              <Image
+                src={images.niceHome}
+                alt=""
+                fill
+                style={{ objectFit: "cover" }}
+                className="rounded-2xl"
+              />
             </div>
           </SwiperSlide>
         </Swiper>

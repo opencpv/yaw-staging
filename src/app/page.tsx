@@ -167,7 +167,7 @@ export default function Home() {
             </div>
           </div>
           <ArrowLink
-            href=""
+            href="/properties"
             text="Show all"
             color="#202457"
             className="mb-16"
@@ -255,7 +255,7 @@ export default function Home() {
                 ) : (
                   <ManagePropertiesInfo
                     key={idx + 1}
-                    href=""
+                    href="/dashboard/properties"
                     activity="Manage your property"
                     image="/assets/images/Stock.jpg"
                     title="Want to rent your property?"

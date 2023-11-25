@@ -12,7 +12,9 @@ const NavMenuProvider = ({ children }: { children: React.ReactNode }) => {
 
   const openNavMenu = () => {
     setIsNavMenuShowing(true);
-    sessionStorage.setItem("currentRoute", pathname);
+    if (pathname !== null) {
+      sessionStorage.setItem("currentRoute", pathname);
+    }
   };
   const closeNavMenu = () => {
     setIsNavMenuShowing(false);
@@ -29,8 +31,7 @@ const NavMenuProvider = ({ children }: { children: React.ReactNode }) => {
         openNavMenu,
         closeNavMenu,
         setIsNavMenuShowing,
-      }}
-    >
+      }}>
       {children}
     </NavMenuContext.Provider>
   );
