@@ -66,7 +66,7 @@ type Props = {
 export default function ListingFormForm({ setOpen }: Props) {
   const leaseRef = useRef<any>();
   const [progressValue, setProgressValue] = useState<number>(1);
-  const [activeSlide, setActiveSlide] = useState(10);
+  const [activeSlide, setActiveSlide] = useState(0);
   const [firstSlide, setFirstSlide] = useState(true);
   const [lastSlide, setLastSlide] = useState(false);
   const [hideLeft, setHideLeft] = useState(false);

@@ -12,3 +12,7 @@ pagination fix on settings page
 currency input fix
 currency input is behind
 back and continue options
+make sure remove button in Application
+clear localstorage after submited
+rent advance options component savinf
+sch

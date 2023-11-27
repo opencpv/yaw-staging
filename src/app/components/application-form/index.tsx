@@ -20,9 +20,9 @@ const ApplicationForm = ({ type, variant = "rectangle" }: Type) => {
   const [animation, setAnimation] = useState(false);
   const [open, setOpen] = useState(false);
   return (
-    <Dialog.Root open={open} onOpenChange={setOpen} >
+    <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>
-        <div>
+        <div className="flex">
           {variant == "rectangle" && (
             <button
               className="capitalize text-white text-xl p-4 px-10 font-[600] bg-gradient-to-r from-[#21A19F] to-[#1EA9A6A1]
@@ -39,6 +39,11 @@ const ApplicationForm = ({ type, variant = "rectangle" }: Type) => {
             text-sm text-md">
                 Apply Now
               </div>
+            </button>
+          )}
+          {variant == "agent-form" && (
+            <button className="w-full  max-w-[284px] h-[60px] rounded-2xl  bg-[#45808B] text-white flex items-center justify-center font-semibold ">
+              Rent it
             </button>
           )}
         </div>
