@@ -4,8 +4,8 @@ import CaAgentNoMatches from "./icons/CaAgentNoMatches";
 export default function NoMatchesYet() {
   return (
     <div className="flex flex-col gap-8 mt-10 w-full">
-      <p className="text-[1.5625rem] font-semibold">Your matches</p>
-      <div className="grid grid-cols-3 text-white bg-primary-400 py-[1rem] px-[0.63rem] text-center font-semibold">
+      <p className="text-[1.25rem] lg:text-[1.5625rem] font-semibold">Your Matches</p>
+      <div className="hidden lg:grid grid-cols-3 text-white bg-primary-400 py-[1rem] px-[0.63rem] text-center font-semibold">
         <div className=" text-center ">Property</div>
         <div></div>
         <div>Actions</div>

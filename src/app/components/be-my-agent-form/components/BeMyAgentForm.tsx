@@ -45,31 +45,40 @@ export default function BeMyAgentForm({ setOpen }: Props) {
   const [hideRight, setHideRight] = useState(false);
   const [otp, setOtp] = useState(false);
 
-  const [agentFormData, setagentFormData] = useLocalStorage(
-    "agent-form",
-    {}
-  );
+  const [agentFormData, setagentFormData] = useLocalStorage("agent-form", {});
 
   const scrollToTop = () => {
     if (leaseRef.current) {
       leaseRef.current.scrollIntoView();
     }
   };
-  
-  useEffect(()=>{
-    if (activeSlide < 1){
-      setFirstSlide(true)
+
+  useEffect(() => {
+    if (activeSlide < 1) {
+      setFirstSlide(true);
     }
-    else {
-      setFirstSlide(false)
+    if (activeSlide > 0) {
+      setFirstSlide(false);
     }
-  }, [activeSlide])
+
+    if (activeSlide > 9) {
+      setHideLeft(true);
+      setHideRight(true);
+    } else {
+      setHideLeft(false);
+      setHideRight(false);
+    }
+
+    const value = (activeSlide / views.length) * 100;
+    console.log(value);
+    setProgressValue(value + 5);
+  }, [activeSlide]);
 
   const handleBack = () => {
     firstSlide && setOpen(false);
     if (activeSlide > 0) {
       setActiveSlide((init) => init - 1);
-      setProgressValue((init) => init - 6)
+      setProgressValue((init) => init - 6);
 
       scrollToTop();
     }
@@ -79,7 +88,7 @@ export default function BeMyAgentForm({ setOpen }: Props) {
     // activeSlide > 13 && submitListing(user?.profileData?.id, agentFormData, true);
     if (activeSlide < views.length - 1) {
       setActiveSlide((init) => init + 1);
-      setProgressValue((init) => init + 6)
+      setProgressValue((init) => init + 6);
       scrollToTop();
     }
   };
@@ -95,7 +104,7 @@ export default function BeMyAgentForm({ setOpen }: Props) {
             <Progress value={progressValue} />
           </div>
         </div>
-        <div className="flex flex-col lg:flex-row gap-20 my-10 h-full">
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-20 my-10 h-full">
           <div className="lg:flex-[40%_0_0] lg:pr-10 w-full">
             <div className="relative w-full h-full min-h-[222px]   rounded-2xl overflow-hidden ">
               <Image
@@ -106,7 +115,7 @@ export default function BeMyAgentForm({ setOpen }: Props) {
               />
             </div>{" "}
           </div>
-          <div className="flex flex-col w-full h-full min-h-[80vh] justify-center gap-1 ">
+          <div className="flex flex-col w-full h-full lg:min-h-[80vh] justify-center gap-1 ">
             <div className="flex flex-col w-full h-full items-center justify-start ">
               <Formik
                 initialValues={{

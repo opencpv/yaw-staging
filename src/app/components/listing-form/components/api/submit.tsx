@@ -6,7 +6,7 @@ export const submitListing = async (
   owner: string,
   listingData: ListingForm,
   is_complete = false,
-  image: any
+  image?: any
 ) => {
   const { data, error } = await supabase
     .from("property")

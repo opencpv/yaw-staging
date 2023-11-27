@@ -58,7 +58,7 @@ export default function Utilities() {
               You can add more utilities after you publish your listing
             </p>
           </div>
-          <div className="grid grid-cols-3 w-full gap-2  lg:gap-y-0">
+          <div className="grid grid-cols-4 lg:grid-cols-3 w-full gap-2  lg:gap-y-0">
             {data.map((r: any, index: number) => (
               <div
                 key={index}

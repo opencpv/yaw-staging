@@ -15,4 +15,9 @@ back and continue options
 make sure remove button in Application
 clear localstorage after submited
 rent advance options component savinf
-sch
+schedule a live tour modal
+rounded landing page 
+city location row in laptop 
+progress bar in agent form 
+date picker select a year 
+agent services not prices

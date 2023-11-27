@@ -12,24 +12,24 @@ type Props = {
 
 export default function AgentButtons({ variant, content, onClick }: Props) {
   return (
-    <div className="font-semibold">
+    <div className="font-semibold w-full">
       {variant == "agent" && (
         <Button
-          className="bg-success-100 flex items-center justify-center rounded-2xl px-[1.5rem] py-[0.75rem]"
+          className="bg-success-100 flex items-center justify-center rounded-2xl h-[52px] w-full max-w-[184px] text-[1.25rem]"
           onPress={onClick}>
           {content}
         </Button>
       )}
       {variant == "price" && (
         <Button
-          className="bg-[#E6F6EE] flex items-center justify-center rounded-2xl  px-[0.63rem] font-bold h-[3rem] min-w-[260px] text-[1.25rem] text-shade-300"
+          className="bg-[#E6F6EE] flex items-center justify-center rounded-2xl  px-[0.63rem] font-bold h-[3rem] lg:w-[260px] text-[1.25rem] text-shade-300 w-full max-w-md"
           onPress={onClick}>
           {content}
         </Button>
       )}
       {variant == "green-dark" && (
         <Button
-          className="h-[52px] px-[2.5rem]  rounded-lg bg-[#073B3A] text-white font-semibold"
+          className="h-[52px] flex items-center justify-center  rounded-lg bg-[#073B3A] text-white font-semibold w-full max-w-md lg:max-w-[218px] px-8"
           onPress={onClick}>
           {content}
           <GoArrowRight size={20} color="white" />
@@ -44,10 +44,17 @@ export default function AgentButtons({ variant, content, onClick }: Props) {
       )}
       {variant == "learn-more" && (
         <Button
-          className="h-[52px] px-[2.5rem]  rounded-lg border-[#073B3A] text-[#073B3A] border-[1px] bg-transparent font-semibold"
+          className="h-[52px] flex items-center justify-center  rounded-lg border-[#073B3A] text-[#073B3A] border-[1px] bg-transparent font-semibold w-full max-w-[218px]"
           onPress={onClick}>
           {content}
           <CaLearnMore />
+        </Button>
+      )}
+      {variant == "explore" && (
+        <Button
+          className="h-[52px] flex itemsc-center justify-center  rounded-lg border-[#073B3A] text-[#073B3A] border-[1px] bg-transparent font-semibold w-full lg:max-w-[218px] lg:px-10"
+          onPress={onClick}>
+          {content}
         </Button>
       )}
       {variant == "green-fade-light" && (

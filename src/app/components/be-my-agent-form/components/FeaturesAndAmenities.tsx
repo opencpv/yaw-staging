@@ -75,7 +75,7 @@ export default function FeaturesAndAmenities() {
               You can add more amenities after you publish your listing
             </p>
           </div>
-          <div className="grid grid-cols-3 gap-2 w-full">
+          <div className="grid grid-cols-4 lg:grid-cols-3 gap-2 w-full">
             {data.map((r: any, index: number) => (
               <div
                 key={index}

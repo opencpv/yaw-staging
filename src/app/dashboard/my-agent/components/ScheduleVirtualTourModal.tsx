@@ -13,13 +13,17 @@ import { MdInfoOutline } from "react-icons/md";
 import { MdOutlineCall } from "react-icons/md";
 import CaAgentCall from "./icons/CaAgentCall";
 
+type Props = {
+  active? : boolean
+}
 
-export default function ScheduleVirtualTourModal() {
+
+export default function ScheduleVirtualTourModal({active} : Props) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
-    <>
-      <Button onPress={onOpen} className="bg-[#ECF2F3] font-semibold gap-2  text-shade-200 h-[60px] max-w-[284px] w-full">
+    <div className="w-full">
+      <Button onPress={onOpen} className={`bg-[#ECF2F3] font-semibold gap-2  text-shade-200 h-[38px] lg:h-[60px] lg:max-w-[284px] w-full ${active && "bg-[#45808B] && text-white"}`}>
         Schedule a virtual tour
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
@@ -56,6 +60,6 @@ export default function ScheduleVirtualTourModal() {
           )}
         </ModalContent>
       </Modal>
-    </>
+    </div>
   );
 }

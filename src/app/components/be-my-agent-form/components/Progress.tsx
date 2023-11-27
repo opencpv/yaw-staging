@@ -42,7 +42,7 @@ export default function Progress({ value }: Props) {
         <div
           className={` ${
             message ? "flex" : "hidden"
-          } absolute right-[-30px] top-[30px] px-3 py-4 w-fit whitespace-nowrap bg-[#00A651] text-white rounded-2xl progress-emoji text-[13px] lg:text-[16px] flex items-center justify-center gap-3`}>
+          } absolute right-[-30px] top-[30px] px-3 py-4 w-fit whitespace-nowrap bg-[#00A651] text-white rounded-2xl progress-emoji text-[13px] lg:text-[16px] flex items-center justify-center gap-3 z-[7000]`}>
           {message}
           <FaRegThumbsUp color="white"/>
         </div>{" "}

@@ -23,8 +23,8 @@ const BeMyAgentModal = () => {
   );
 
   return (
-    <Dialog.Root onOpenChange={setOpen} open={open}>
-      <Dialog.Trigger asChild>
+    <Dialog.Root onOpenChange={setOpen} open={open} >
+      <Dialog.Trigger asChild className="w-full">
         <AgentButtons content="Hire Us Now !!" variant={"green-dark"} />
       </Dialog.Trigger>
       <Dialog.Portal>

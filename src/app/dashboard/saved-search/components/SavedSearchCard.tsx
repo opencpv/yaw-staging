@@ -3,7 +3,6 @@ import { MdOutlineEdit } from "react-icons/md";
 import CaDelete from "./CaDelete";
 import Link from "next/link";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
-import EditModal from "./EditModal";
 import DeleteModal from "./DeleteModal";
 import { useState } from "react";
 import { Button } from "@nextui-org/react";
@@ -28,7 +27,7 @@ export default function SavedSearchCard({ data }: Props) {
       <div className="flex w-full justify-between gap-2">
         {!edit ? (
           <div className="flex flex-col gap-1 w-full">
-            <p className="text-[1.5625rem] font-semibold">My Kasoa Search</p>
+            <p className="text-[1.25rem] lg:text-[1.5625rem] font-semibold">My Kasoa Search</p>
             <p className="text-[1rem]">Date Created</p>
           </div>
         ) : (

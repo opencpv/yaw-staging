@@ -82,13 +82,13 @@ export default function BestDescribes({ infoText }: Props) {
             <p className="text-[1.25rem] font-[400]">Property Type </p>
           </div>
           <div
-            className="grid grid-cols-3 w-full
+            className="grid grid-cols-4 lg:grid-cols-3 w-full
             gap-y-5 gap-x-5
             ">
             {properties.map((r: any, index: number) => (
               <div
                 key={index}
-                className="col-span-2lg:col-span-1"
+                className="col-span-2 lg:col-span-1"
                 onClick={() => handleAmenityClick(r)}>
                 <Amenity
                   n={index}

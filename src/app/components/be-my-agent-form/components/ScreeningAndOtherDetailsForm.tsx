@@ -9,6 +9,7 @@ import CountryInput from "@/components/__shared/CountryInput";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { IdentificationType } from "../../application-form/components/content";
 import { BeMyAgentFormType } from "./types";
+import styles from "./index.module.css";
 
 type Props = {};
 
@@ -29,7 +30,7 @@ const ScreeningAndOtherDetailsForm = React.forwardRef<HTMLInputElement, Props>(
       });
     return (
       <Root className="p4 px-2">
-        <p className="text-[1.5625rem]  text-[#073B3A] font-semibold ">
+          <p className={`${styles.title}  font-semibold`}>
           Screening & Other Details
         </p>
         <div>

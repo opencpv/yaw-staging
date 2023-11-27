@@ -1,4 +1,6 @@
 import Image from "next/image";
+import EditModal from "./EditModal";
+import CaAgentTickGreenBg from "./icons/CaAgentTickGreenBg";
 
 export default function Agent() {
   return (
@@ -11,14 +13,17 @@ export default function Agent() {
             alt="Agent Icon"
           />
         </div>
-        Edit
+        <EditModal />
       </div>
       <div>
         <p className="text-[1.25rem] font-semibold">My Agent one</p>
-        <p className="text-shade-200 text-[1.25rem]">Date created: </p>
+        <p className="text-shade-200 lg:text-[1.25rem]">Date Created : 15 Aug. 2023 13:55pm </p>
         <div className="flex gap-4 items-center">
-          <p>Completed</p>
-          <p className="text-[1.25rem] text-shade-200">5 Auf 202</p>
+          <div className="flex gap-2 items-center rounded-xl bg-[#F1F1F1] px-2 py-1 ">
+            <CaAgentTickGreenBg />
+            <p>Completed</p>
+          </div>{" "}
+          <p className="lg:text-[1.25rem] text-shade-200">5 Aug. 2023 13:55pm</p>
         </div>
       </div>
     </div>

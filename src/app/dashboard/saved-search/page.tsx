@@ -17,18 +17,15 @@ export default function Page() {
           </p>
         </div>
       )}
-      {
-        savedSearches && (
-            <div className="grid grid-cols-3 gap-x-5 gap-y-5 w-full max-w-[1669px]">
-                {
-                    Array.from({length: 5})
-                    .map((r,index)=>(
-                        <SavedSearchCard key={index} data={r}/>
-                    ))
-                }
+      {savedSearches && (
+        <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-3 gap-x-5 gap-y-5 w-full max-w-[1669px]">
+          {Array.from({ length: 5 }).map((r, index) => (
+            <div className="col-span-3 md:col-span-2 lg:col-span-1" key={index}>
+              <SavedSearchCard  data={r} />
             </div>
-        )
-      }
+          ))}
+        </div>
+      )}
     </div>
   );
 }

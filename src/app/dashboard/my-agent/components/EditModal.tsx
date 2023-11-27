@@ -10,24 +10,18 @@ import {
 } from "@nextui-org/react";
 
 import { MdInfoOutline } from "react-icons/md";
+import { MdOutlineModeEdit } from "react-icons/md";
+
 import CaAgentMessage from "./icons/CaAgentMessage";
+import CaDelete from "../../saved-search/components/CaDelete";
 
-type Props = {
-  active?: boolean;
-};
-
-export default function ScheduleLiveTourModal({ active }: Props) {
+export default function EditModal() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
-    <div className="w-full">
-      <Button
-        onPress={onOpen}
-        className={`bg-[#ECF2F3] font-semibold gap-2  text-shade-200 h-[38px] lg:h-[60px] lg:max-w-[284px] w-full ${
-          active && "bg-[#45808B] text-white"
-        }`}>
-        {" "}
-        Schedule a live tour
+    <>
+      <Button onPress={onOpen} className="bg-[#F1F1F1] p-4 aspect-square">
+        <MdOutlineModeEdit size={24}/>
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
@@ -63,6 +57,6 @@ export default function ScheduleLiveTourModal({ active }: Props) {
           )}
         </ModalContent>
       </Modal>
-    </div>
+    </>
   );
 }

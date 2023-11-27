@@ -14,6 +14,7 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import PhoneNumberInputv2 from "@/components/__shared/PhoneInputv2";
 import { MostRecentEmployment } from "../../application-form/components/content";
 import { BeMyAgentFormType } from "./types";
+import styles from './index.module.css'
 
 type Props = {};
 
@@ -37,7 +38,7 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
 
     return (
       <Root className="p3 px-2">
-        <p className="text-[1.5625rem] text-[#073B3A] font-semibold ">
+          <p className={`${styles.title}  font-semibold`}>
           Employment Information
         </p>
         <div className="pt-7">

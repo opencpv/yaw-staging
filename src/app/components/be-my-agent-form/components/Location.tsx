@@ -29,7 +29,7 @@ const FullNameAndRelationship = ({ index, city, neighbourhood }: any) => {
   };
 
   return (
-    <div className="flex flex-col xl:flex-row gap-3 w-full">
+    <div className="flex flex-col lg:flex-row gap-3 w-full">
       <TFormDiv
         className={`font-[400] ${openSans.className} text-[#6A6968] capitalize w-full`}>
         <label htmlFor="">City</label>
