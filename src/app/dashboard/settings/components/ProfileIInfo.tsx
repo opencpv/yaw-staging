@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Loader from "@/components/__shared/loader/Loader";
 import ProfilePhone from "./ProfilePhone";
+import { useManageAccountStore } from "@/store/dashboard/propertiesStore";
 
 interface Props {
   icon: any;
@@ -87,11 +88,8 @@ const ProfileInfo = ({
 
   return (
     <Root>
-      <div className="flex gap-5 mt-3">
-        <Navigation type={"active"}>Profile</Navigation>
-        <Navigation>Blocking</Navigation>
-        <Navigation>Account Setting</Navigation>
-      </div>
+
+
       {loading ? (
         <Loader />
       ) : (
@@ -155,8 +153,7 @@ const ProfileInfo = ({
                 setSubmitLoading(false);
               }
             }}
-            enableReinitialize={true}
-          >
+            enableReinitialize={true}>
             <Form className="border-t-2 border-[#E0E4EC] pt-8">
               <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
                 <div className="col-span-1">
@@ -199,14 +196,12 @@ const ProfileInfo = ({
                         as="select"
                         id="country"
                         name="country"
-                        className="form-input bg-white"
-                      >
+                        className="form-input bg-white">
                         {countries.map((country: any, index) => (
                           <option
                             key={index}
                             value={country.name.common}
-                            className="py-5"
-                          >
+                            className="py-5">
                             {country.name.common}
                           </option>
                         ))}
@@ -295,8 +290,7 @@ const ProfileInfo = ({
                       <button
                         type="submit"
                         className="max-w-[160px] max-h-[52px] w-full aspect-[160/52]
-                mt-5 bg-[#DDB771] text-[#ffff] rounded-[8px]"
-                      >
+                mt-5 bg-[#DDB771] text-[#ffff] rounded-[8px]">
                         Update Profile
                       </button>
                     )}

@@ -21,3 +21,4 @@ city location row in laptop
 progress bar in agent form 
 date picker select a year 
 agent services not prices
+edit modal and reviews
