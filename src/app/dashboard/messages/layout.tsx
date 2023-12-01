@@ -79,7 +79,7 @@ const MessagesLayout = ({ children }: Props) => {
   };
 
   return (
-    <div className="h-screen">
+    <div className="h-screen px-6">
       <h2 className="sticky top-0 z-40 bg-white pb-5 text-2xl font-[500] mb-5 text-neutral-900">
         Messages
       </h2>

@@ -18,6 +18,7 @@ const config: Config = {
         "plane-pattern": "url('/assets/images/13783 1.png')",
         "terms-bg": "url('/assets/images/terms-bg.png')",
         "about-bg": "url('/assets/images/about-bg.png')",
+        "my-search-bg": "url('/assets/images/my-search-bg.png')",
       },
       colors: {
         darkGreenBg: "#073B3A ",

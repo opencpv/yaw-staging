@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 
 const Settings = () => {
   const [supabase, setsupabase] = useState<any>();
-
+  
   useEffect(() => {
     const supabase = createClientComponentClient();
     if (!supabase) {

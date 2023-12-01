@@ -27,7 +27,9 @@ const PaginationTab = ({ active, icon, name, link }: PaginationTabProps) => {
         className={active == name ? "" : ""}
       >
         {icon}
-        <p className="capitalize whitespace-nowrap">{name}</p>
+        <p className="capitalize whitespace-nowrap">
+          {name.split("-").join(" ")}
+        </p>
       </PgItem>
     </Link>
   );
@@ -51,27 +53,40 @@ const Pagination = () => {
     }
   }, [pathname]);
   return (
-    <Root className="flex items-center gap-7">
-      <Link
-        href={"/dashboard"}
-        className="w-full md:max-w-[83px]
+    <Root className="">
+      <div className="flex items-center gap-7">
+        <Link
+          href={"/dashboard"}
+          className="w-full md:max-w-[83px]
                   max-w-[52px] aspect-square bg-[#396261] rounded-full flex
                   items-center justify-center hover:scale-[1.02]"
-      >
-        <MdKeyboardArrowLeft color="white" size={24} />
-      </Link>
+        >
+          <MdKeyboardArrowLeft color="white" size={24} />
+        </Link>
 
-      <div className="flex gap-8  items-center overflow-x-scroll pg-row justify-start w-full">
-        {PgRoutes.map((r, index) => (
-          <PaginationTab
-            key={index}
-            name={r?.name}
-            active={active}
-            icon={r?.icon}
-            link={r?.link}
-          />
-        ))}
+        <div className="flex gap-8  items-center overflow-x-scroll pg-row justify-start w-full">
+          {PgRoutes.map((r, index) => (
+            <PaginationTab
+              key={index}
+              name={r?.name}
+              active={active}
+              icon={r?.icon}
+              link={r?.link}
+            />
+          ))}
+        </div>
       </div>
+      {/* {pathname.split("/").includes("be-the-first-to-know") ? (
+        <header className="mt-[30px] block flex-0">
+          <h1 className="mb-4 text-3xl font-bold ">Be the first to Know</h1>
+          <div className="flex gap-4">
+            <p className="">Package Price </p>
+            <p className="px-24 bg-[#E6F6EE] rounded-lg text-[20px] font-bold">
+              GHS 50
+            </p>
+          </div>
+        </header>
+      ) : null} */}
     </Root>
   );
 };

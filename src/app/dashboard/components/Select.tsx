@@ -5,10 +5,11 @@ import { FaCaretDown } from "react-icons/fa";
 type Props = {
   options: string[];
   value: string;
+  width?: string;
   handleSelectionChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
-const Select = ({ options, handleSelectionChange, value }: Props) => {
+const Select = ({ options, handleSelectionChange, value, width }: Props) => {
   return (
     <NextUISelect
       size="sm"
@@ -18,7 +19,7 @@ const Select = ({ options, handleSelectionChange, value }: Props) => {
       labelPlacement="outside"
       selectedKeys={[value]}
       classNames={{
-        base: "w-48 mx-auto text-xs",
+        base: `${width ? width : "w-48"}  mx-auto text-xs `,
         value: "text-xs",
         selectorIcon: "mr-5",
         trigger: "px-10",

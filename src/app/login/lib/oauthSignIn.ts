@@ -8,7 +8,7 @@ const oauthSignIn = async (
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider,
     options: {
-      redirectTo,
+      redirectTo: "http://localhost:3000/",
     },
   });
 

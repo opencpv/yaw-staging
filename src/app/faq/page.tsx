@@ -1,5 +1,4 @@
 "use client";
-import Navbar from "@/components/__shared/Navbar";
 import Head from "next/head";
 import FaqHeader from "./components/FaqHeader";
 import BreadCrumb from "./components/Breadcrumb";
@@ -8,6 +7,7 @@ import FAQBrowser from "./components/FAQBrowser";
 import Footer from "../components/Footer";
 import ContactSection from "./components/ContactSection";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
+import Navbar from "@/components/__shared/Navbar";
 
 const FAQ = () => {
   const { icons } = useAssets();

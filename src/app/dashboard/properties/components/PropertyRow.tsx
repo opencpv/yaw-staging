@@ -15,10 +15,10 @@ const PropertyRow = ({
   propertyTitle,
   posted_on,
   price,
-  status
+  status,
 }: ManagePropertiesInterface) => {
   const { images } = useAssets();
-  const daysDifference = useDaysDifference(posted_on)
+  const daysDifference = useDaysDifference(posted_on);
 
   return (
     <tr className="border border-t-0 h-fit">
