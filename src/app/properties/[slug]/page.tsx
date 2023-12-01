@@ -1,11 +1,11 @@
+"use client";
 import "../style.css";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import React from "react";
-import style from "./PropertyDetails.module.css";
 import Link from "next/link";
 import { FaCaretDown, FaPlusCircle, FaStar } from "react-icons/fa";
-import Button from "../components/Button";
+import Button from "@/components/__shared/Button";
 import AdditionalInfo from "../components/AdditionalInfo";
 import {
   HiMiniShieldCheck,
@@ -15,17 +15,20 @@ import {
 } from "react-icons/hi2";
 import ReviewComment from "../components/ReviewComment";
 import AdditionalInfoTitle from "../components/AdditionalInfoTitle";
-import ListingCardSlider from "@/app/about/components/ListingCardsSlider";
-import listings from "@/enum/demodb/listings";
 import Footer from "@/app/components/Footer";
 import { Rate } from "antd";
 import Navbar from "@/components/__shared/Navbar";
 import ReviewCount from "../components/ReviewCount";
 import Feature from "../components/Feature";
-import ViewProperty from "../components/ViewProperty";
-import ReportIssue from "@/components/ReportIssue";
-import { BsBookmarkStar, BsBookmarkStarFill } from "react-icons/bs";
-import PropertyDetailsSlider from "../components/PropertyDetailsSlider";
+import ReportIssue from "@/components/__shared/ReportIssue";
+import { BsBookmarkStarFill } from "react-icons/bs";
+import Info from "@/components/__shared/Info";
+import ShapedLanding from "@/app/components/landing/ShapedLanding";
+import SliderWide from "@/components/__shared/sliders/SliderWide";
+import AOSWrapper from "@/components/__shared/AOSWrapper";
+import ApplicationForm from "@/app/components/application-form";
+import RecommendedListings from "@/components/__shared/listing/RecommendedListings";
+
 
 type Props = {};
 
@@ -34,17 +37,12 @@ const PropertyDetailsPage = (props: Props) => {
   return (
     <>
       <Navbar />
-      <main>
-        <section className={`${style.shape} relative w-full min-h-[50rem]`}>
-          <Image
-            src={images.StockImage}
-            alt=""
-            fill
-            style={{ objectFit: "cover" }}
-          />
-          {/* View */}
-          <ViewProperty href="#" />
-        </section>
+      <main className="pb-40">
+        <ShapedLanding
+          property="2 Bedroom house at Amasaman"
+          image="/assets/images/home/landing.jpg"
+          position="left"
+        ></ShapedLanding>
         <section className="px-5 py-10 mx-auto max-w-screen-2xl sm:px-10">
           <div className="text-[#305A61] font-[600] text-xl">
             <Link href="" className="text-neutral-300">
@@ -56,92 +54,25 @@ const PropertyDetailsPage = (props: Props) => {
           <section className="grid grid-cols-1 gap-10 mt-8 md:mt-16 lg:grid-cols-2">
             <div className="h-full">
               <div className="hidden h-full grid-cols-2 gap-3 lg:grid">
-                <div className="relative">
-                  <Image
-                    src={images.niceHome}
-                    alt=""
-                    fill
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-                <div className="relative">
-                  <Image
-                    src={images.niceHome}
-                    alt=""
-                    fill
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-                <div className="relative">
-                  <Image
-                    src={images.niceHome}
-                    alt=""
-                    fill
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-                <div className="relative">
-                  <Image
-                    src={images.niceHome}
-                    alt=""
-                    fill
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-                <div className="relative">
-                  <Image
-                    src={images.niceHome}
-                    alt=""
-                    fill
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-                <div className="relative">
-                  <Image
-                    src={images.niceHome}
-                    alt=""
-                    fill
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-                <div className="relative">
-                  <Image
-                    src={images.niceHome}
-                    alt=""
-                    fill
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-                <div className="relative">
-                  <Image
-                    src={images.niceHome}
-                    alt=""
-                    fill
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-                <div className="relative">
-                  <Image
-                    src={images.niceHome}
-                    alt=""
-                    fill
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-                <div className="relative">
-                  <Image
-                    src={images.niceHome}
-                    alt=""
-                    fill
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((image, idx) => (
+                  <div key={idx + 1} className="relative max-h-[32rem]">
+                    <Image
+                      src={images.StockImage}
+                      alt=""
+                      fill
+                      className="rounded-md transition-all hover:scale-[1.02]"
+                      style={{ objectFit: "cover" }}
+                    />
+                  </div>
+                ))}
               </div>
               {/* Slider */}
-              <div className="w-full h-80 lg:hidden">
-                <PropertyDetailsSlider
-                  images={["/assets/images/niceHome.png", "/assets/images/Stock.jpg"]}
-                  propertyType="2 bedroom house at Kasoa"
+              <div className="w-full h-fit lg:hidden">
+                <SliderWide
+                  images={[1, 2, 3, 4, 5].map((image) => ({
+                    src: "/assets/images/Stock.jpg",
+                    name: "",
+                  }))}
                 />
               </div>
               <ReportIssue href="" className="mt-5" />
@@ -156,7 +87,9 @@ const PropertyDetailsPage = (props: Props) => {
                     </h2>
                     <div className="flex items-center gap-2">
                       <HiMiniShieldCheck className="text-lg text-green-700" />
-                      <p className="text-sm text-neutral-800">Verified Listing</p>
+                      <p className="text-sm text-neutral-800">
+                        Verified Listing
+                      </p>
                     </div>
                   </div>
                   <p className="max-w-2xl text-sm text-neutral-800">
@@ -168,10 +101,13 @@ const PropertyDetailsPage = (props: Props) => {
                   <Rate allowHalf defaultValue={4.5} disabled />
                 </div>
                 <div className="mt-20 space-y-10">
-                  <Button className="bg-gradient-to-r  from-[#21A19F] to-[#1EA9A6A1] p-4 text-xl text-white capitalize py-7 w-60">
+
+                  {/* <Button className="green-gradient p-4 text-xl text-white capitalize py-7 w-60">
                     Apply Now
-                  </Button>
-                  <div className="flex flex-col justify-between px-10 py-8 text-sm bg-white border border-gray-500 shadow-xl text-primary-400 rounded-xl sm:flex-row sm:items-center sm:px-2">
+                  </Button> */}
+
+                  <ApplicationForm type="simple"/>
+                  <div className="flex flex-col justify-between px-10 py-8 text-sm bg-white border border-gray-500 shadow-xl text-primary-400 rounded-xl transition-all hover:scale-105 sm:flex-row sm:items-center sm:px-2">
                     <div className="px-5 py-2 space-y-1 border-b border-gray-400 sm:border-r sm:border-b-0 sm:last:border-r-0 sm:py-0">
                       <h3 className="items-center justify-between text-center gap-x-4 sm:flex sm:text-start ">
                         Monthly Rent{" "}
@@ -210,7 +146,7 @@ const PropertyDetailsPage = (props: Props) => {
                       <div className="relative w-24 h-24 rounded-full">
                         <Image
                           src={images.StockImage}
-                          className="rounded-full"
+                          className="rounded-full transition-all hover:scale-105"
                           alt=""
                           fill
                           style={{ objectFit: "cover" }}
@@ -227,16 +163,22 @@ const PropertyDetailsPage = (props: Props) => {
                       <h2 className="text-center capitalize text-neutral-800 font-[600] sm:w-9/12">
                         Contact This Property
                       </h2>
-                      <Button className="bg-gradient-to-r  from-[#21A19F] to-[#1EA9A6A1] w-full p-4 text-white py-7">
+                      <Button
+                        color="gradient"
+                        className="w-full p-4 py-7"
+                        onClick={() => console.log("sending message")}
+                      >
                         Send Message
                       </Button>
-                      <Button
-                        variant="outline"
-                        borderColor="#21A19F"
-                        className="p-4 py-7 w-full text-[#21A19F]"
-                      >
-                        Call
-                      </Button>
+                      <Link className="w-full" href="tel:00001111122">
+                        <Button
+                          variant="outline"
+                          color="gradient"
+                          className="p-4 py-7 w-full"
+                        >
+                          Call
+                        </Button>
+                      </Link>
                     </div>
                     {/* Report issue */}
                     <div className="relative self-start -top-6">
@@ -251,7 +193,7 @@ const PropertyDetailsPage = (props: Props) => {
                 <AdditionalInfoTitle title="Advance Payment Options" />
                 <AdditionalInfo>
                   <ul className="properties-li">
-                    <li>1, 2</li>
+                    <li>1, 2 year(s)</li>
                   </ul>
                 </AdditionalInfo>
                 <AdditionalInfo>
@@ -268,11 +210,11 @@ const PropertyDetailsPage = (props: Props) => {
                   Additional Information
                 </h2>
                 <AdditionalInfoTitle title="Agency Fees" />
-                <div className="p-5 bg-[#FFF7E7] text-[#65969F] rounded-xl mt-2 flex items-center gap-5 text-sm">
-                  <HiOutlineExclamationCircle className="text-5xl text-yellow-500 rotate-180" />
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Atque illo dolore voluptatum eum.
-                </div>
+                <Info
+                  text="Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                  Atque illo dolore voluptatum."
+                  className="mt-2"
+                />
                 <AdditionalInfo className="">
                   <div className="flex flex-wrap items-center justify-between py-2 border-b gap-x-5 gap-y-2 last:border-b-0">
                     <p className="flex-1 w-full">Agent</p>
@@ -365,50 +307,49 @@ const PropertyDetailsPage = (props: Props) => {
           </Button>
         </section>
         {/* Rating */}
-        <section className="px-5 py-10 mx-auto my-10 max-w-screen-2xl sm:px-10">
-          <div className=" border-neutral-200 md:px-14 rounded-xl md:border-3 md:pt-10 md:pb-32">
-            <div className="flex flex-wrap justify-between gap-5 bg-[#65969F] text-white rounded-xl p-10">
-              <div className="flex flex-wrap items-center gap-3">
-                <p className="text-xl font-[600]">
-                  How would you rate this property?
-                </p>
-                <BsBookmarkStarFill className="text-lg shrink-0" />
-              </div>
-              <Button
-                variant="outline"
-                borderColor="white"
-                className="p-4 text-white py-7 w-60"
-              >
-                Write a review
-              </Button>
-            </div>
-            {/* Rating count */}
-            <div className="grid items-start grid-cols-3 mt-20 gap-x-20 gap-y-10">
-              <div className="col-span-3 flex items-center text-neutral-800 gap-10 font-[600] xl:col-span-1">
-                <div className="flex items-center gap-1.5">
-                  <HiOutlineHomeModern />
-                  <HiStar className="text-yellow-500" />
-                  <p className="">3.2</p>
+        <AOSWrapper animation="fade-up" duration="800">
+          <section className="px-5 py-10 mx-auto my-10 max-w-screen-2xl sm:px-10">
+            <div className=" border-neutral-200 md:px-14 rounded-xl md:border-3 md:pt-10 md:pb-32">
+              <div className="flex flex-wrap justify-between gap-5 bg-[#65969F] text-white rounded-xl p-10">
+                <div className="flex flex-wrap items-center gap-3">
+                  <p className="text-xl font-[600]">
+                    How would you rate this property?
+                  </p>
+                  <BsBookmarkStarFill className="text-lg shrink-0" />
                 </div>
-                <p className="">10 reviews</p>
+                <Button
+                  variant="outline"
+                  borderColor="white"
+                  className="p-4 text-white py-7 w-60"
+                >
+                  Write a review
+                </Button>
               </div>
-              <div className="grid justify-between grid-cols-1 w-full col-span-3 gap-x-8 gap-y-4 min-[900px]:grid-cols-2 xl:col-span-2">
-                <ReviewCount />
-                <ReviewCount />
-                <ReviewCount />
-                <ReviewCount />
-                <ReviewCount />
-                <ReviewCount />
+              {/* Rating count */}
+              <div className="grid items-start grid-cols-3 mt-20 gap-x-20 gap-y-10">
+                <div className="col-span-3 flex items-center text-neutral-800 gap-10 font-[600] xl:col-span-1">
+                  <div className="flex items-center gap-1.5">
+                    <HiOutlineHomeModern />
+                    <HiStar className="text-yellow-500" />
+                    <p className="">3.2</p>
+                  </div>
+                  <p className="">10 reviews</p>
+                </div>
+                <div className="grid justify-between grid-cols-1 w-full col-span-3 gap-x-8 gap-y-4 min-[900px]:grid-cols-2 xl:col-span-2">
+                  {[1, 2, 3, 4, 5, 6].map((count, idx) => (
+                    <ReviewCount key={idx + 1} />
+                  ))}
+                </div>
+              </div>
+              {/* Review comment */}
+              <div className="mt-24 space-y-10">
+                {[1, 2, 3].map((comment, idx) => (
+                  <ReviewComment key={idx + 1} />
+                ))}
               </div>
             </div>
-            {/* Review comment */}
-            <div className="mt-24 space-y-10">
-              <ReviewComment />
-              <ReviewComment />
-              <ReviewComment />
-            </div>
-          </div>
-        </section>
+          </section>
+        </AOSWrapper>
         <section className="relative px-5 mx-auto -top-14 max-w-screen-2xl sm:px-10">
           <ReportIssue href="" />
         </section>
@@ -420,50 +361,10 @@ const PropertyDetailsPage = (props: Props) => {
         </Button>
         {/* Recommended Listings */}
         <section className="px-5 mx-auto max-w-screen-2xl sm:px-10">
-          <h2 className="text-neutral-800 text-xl ml-10 mb-2 font-[600]">
+          <h2 className="text-neutral-800 text-xl mb-5 font-[600] md:ml-10">
             Recommended Listings
           </h2>
-          <div className="w-full py-10 px-5 sm:px-10 mx-auto h-[38rem] max-w-screen-2xl">
-            {
-              <ListingCardSlider
-                listings={listings.map((listing) => {
-                  return {
-                    id: listing.id,
-                    propertyType: listing.propertyType,
-                    deal: listing.deal as
-                      | "Editor's Choice"
-                      | "Price Drop"
-                      | "Best Value"
-                      | "None"
-                      | "none"
-                      | "",
-                    images: listing.images,
-                    liked: listing.liked,
-                    membership: listing.membership as
-                      | "Certified"
-                      | "Verified"
-                      | "Unverified"
-                      | "None"
-                      | "none"
-                      | "",
-                    listing: listing.monthlyAmount,
-                    paymentStructure: listing.paymentStructure as
-                      | "Yearly"
-                      | "Bi-Annually"
-                      | "Quarterly"
-                      | "Every-6-Months"
-                      | "Every-3-Years",
-                    price: listing.price,
-                    propertyDescription: listing.propertyDescription,
-                    rating: listing.rating,
-                    ratingCount: listing.ratingCount,
-                    monthlyAmount: listing.monthlyAmount,
-                    href: listing.href,
-                  };
-                })}
-              />
-            }
-          </div>
+          <RecommendedListings />
         </section>
       </main>
       <Footer />

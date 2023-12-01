@@ -33,8 +33,7 @@ import HouseSearch from "/public/assets/icons/overview/house-search.svg";
 import PeopleSell from "/public/assets/icons/overview/people-sell.svg";
 import Rafiki from "/public/assets/icons/overview/rafiki.svg";
 import ProfileImage from "/public/assets/images/profile-image.jpg";
-import SearchIcon from "/public/assets/images/search-icon.png";
-import Clipboard from "/public/assets/images/clipboards.png";
+import HomeLanding from "/public/assets/images/home/landing.jpg";
 
 export const useAssets = () => {
   return {
@@ -77,7 +76,7 @@ export const useAssets = () => {
       PropertyDetailsBanner,
       ProfileImage,
       SearchIcon,
-      Clipboard
+      Clipboard,
     },
   };
 };

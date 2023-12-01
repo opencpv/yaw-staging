@@ -1,6 +1,6 @@
 "use client";
 import { ErrorMessage, Field, Formik, useFormik } from "formik";
-import { openSans } from "../styles/font";
+import { openSans } from "../../styles/font";
 import { styled } from "@stitches/react";
 
 type TextFieldInputProps = {
@@ -23,11 +23,7 @@ const TextFieldInput = ({
       className={`font-[400] ${openSans.className} text-[#6A6968] capitalize w-full`}>
       <label className="text-[16px]">{label}</label>
       <Field name={name}>
-        {({
-          field, // { name, value, onChange, onBlur }
-          form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
-          meta,
-        } : any) => (
+        {({ field, form: { touched, errors }, meta }: any) => (
           <div>
             <input
               type={type}
@@ -39,12 +35,18 @@ const TextFieldInput = ({
               }}
               className="form-input w-full"
             />
-        
+
+            {/* {errors[name] && (
+              <p className="mt-3 text-[#851e1e] font-[400] text-[13px]">
+                {errors[name]}
+              </p>
+            )} */}
           </div>
         )}
       </Field>
+
       <ErrorMessage
-        className={`text-[#B4B2AF] font-[400] text-[13px] ${openSans.className}`}
+        className={`text-[#851e1e] font-[400] text-[13px] ${openSans.className}`}
         name={name}
         component="p"
       />

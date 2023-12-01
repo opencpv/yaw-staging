@@ -3,7 +3,7 @@ import Image from "next/image";
 import React from "react";
 import { BiPencil } from "react-icons/bi";
 import { FiTrash2 } from "react-icons/fi";
-import Button from "../../components/Button";
+import Button from "@/components/__shared/Button";
 import PropertyStatus from "./PropertyStatus";
 import { formatPrice } from "@/lib/utils/formatPrice";
 import { formatDate, formatTime } from "@/lib/utils/formatDatetime";
@@ -61,7 +61,8 @@ const PropertyRow2 = ({
               {formatDate(posted_on)} {formatTime(posted_on)}
             </h4>
             <small className="inline-block text-neutral-400 text-[0.6rem]">
-              {daysDifference} Days Ago
+              {daysDifference < 1 ? `Less Than A Day Ago` : `${daysDifference} Days Ago`}
+
             </small>
           </div>
         </div>

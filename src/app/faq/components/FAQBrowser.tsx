@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { montserat } from "@/app/styles/font";
+import { montserat } from "@/styles/font";
 import fetchFaqData from "../lib/fetchFaqData";
 import onlyUnique from "@/lib/utils/onlyUnique,";
 import groupByCategory from "../lib/groupFAQ";

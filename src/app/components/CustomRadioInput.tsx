@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import * as RadioGroup from "@radix-ui/react-radio-group";
-import { InfoBubble } from "../property/details/components/InfoBubble";
+import { InfoBubble } from "@/app/components/application-form/components/InfoBubble";
 
 type Props = {
   label: string;
@@ -29,7 +29,7 @@ const CustomRadioInput = ({
           setValue(value)
           onChange(value)}}
         className="flex flex-col  gap-[0.9375rem] text-[#6A6968]"
-        defaultValue="default"
+        defaultValue={defaultValue}
         aria-label="View density">
         <div className="text-[1rem] whitespace-nowrap flex gap-2">
           {label}

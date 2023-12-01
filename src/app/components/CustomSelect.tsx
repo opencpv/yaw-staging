@@ -34,7 +34,7 @@ const CustomSelect = ({
         <SelectTrigger className={`w-full form-input capitalize ${fadeText && "text-[#B4B2AF]"}`}>
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
-        <SelectContent className="">
+        <SelectContent className="z-[1001]">
           {options.map((r, index) => (
             <SelectItem key={index} value={r?.value} className="capitalize">
               {r?.name}

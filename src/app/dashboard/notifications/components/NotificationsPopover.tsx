@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import * as Popover from "@radix-ui/react-popover";
 import { styled, keyframes } from "@stitches/react";
 import { violet, mauve, blackA } from "@radix-ui/colors";
@@ -8,9 +8,14 @@ import NotificationItem from "./NotificationItem";
 import { demoNotifications } from "../content/demoNotifications";
 import CaMarkAsRead from "../icons/CaMarkAsRead";
 import { CustomScroll } from "./CustomScroll";
+import { AppContextType } from "../../types";
+import { AppContext } from "../../AppContextProvider";
+import { useAppStore } from "@/store/dashboard/AppStore";
 
 const NotificationsPopover = () => {
   const [currentNotification, setCurrentNotification] = useState("");
+  const { user } = useAppStore()
+
   return (
     <Popover.Root>
       <Popover.Trigger asChild>
@@ -43,13 +48,14 @@ const NotificationsPopover = () => {
             </button>
           </div>
           <CustomScroll className="flex flex-col gap-8 max-h-[60vh] overflow-y-scroll">
-            {demoNotifications.map((r: any, index) => (
+            {user?.notifications?.map((r: any, index: number) => (
               <div key={index} onClick={(e) => setCurrentNotification(r?.name)}>
                 <NotificationItem
                   type={r?.type}
+                  sender={r?.sender_name}
                   subject={r?.subject}
-                  time={r?.time}
-                  notification={r?.notification}
+                  time={r?.sent}
+                  content={r?.content}
                 />
               </div>
             ))}

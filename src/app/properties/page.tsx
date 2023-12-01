@@ -1,34 +1,30 @@
-"use client";
+"use client"
 import Navbar from "@/components/__shared/Navbar";
-import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import React from "react";
 import listings from "@/enum/demodb/listings";
-import ListingCard2 from "../about/components/ListingCard2";
+import ListingCard2 from "../../components/__shared/listing/ListingCard2";
 import TagsSelect from "./components/TagsSelect";
-import { Button, Switch } from "@nextui-org/react";
 import Footer from "../components/Footer";
 import FixedSocials from "@/components/FixedSocials";
-import ScrollTop from "@/components/ScrollTop";
+import ScrollTop from "@/components/__shared/ScrollTop";
+import Button from "@/components/__shared/Button";
 
-type Props = {};
 
-const PropertiesPage = (props: Props) => {
-  const { images } = useAssets();
+const page = () => {
   return (
     <>
       <Navbar />
-      <main className="overflow-x-hidden">
-        <div className="relative w-full h-72">
-          <Image
-            src="/assets/images/Stock.jpg"
-            alt=""
-            fill
-            style={{ objectFit: "cover" }}
-          />
-        </div>
+      <div className="relative w-full h-72">
+        <Image
+          src="/assets/images/Stock.jpg"
+          alt=""
+          fill
+          style={{ objectFit: "cover" }}
+        />
+      </div>
         {/* Search */}
-        <section className="px-5 mx-auto max-w-screen-2xl xs:px-10">
+        <section className="section mb-32">
           <div className="relative w-full px-4 py-10 mx-auto bg-white shadow-xl xs:px-12 bottom-20 rounded-xl lg:w-10/12">
             <input
               type="search"
@@ -40,8 +36,9 @@ const PropertiesPage = (props: Props) => {
             <TagsSelect />
           </div>
         </section>
+      <main className="overflow-x-hidden section">
         {/* Listing */}
-        <section className="px-5 mx-auto mt-32 mb-10 space-y-5 sm:space-y-0 sm:grid grid-cols-autofit-listing-card gap-x-3 gap-y-10 max-w-screen-2xl">
+        <section className="mb-5 space-y-5 sm:space-y-0 sm:grid grid-cols-autofit-listing-card gap-x-3 gap-y-10">
           {listings.map((listing) => (
             <ListingCard2
               key={listing.id}
@@ -83,8 +80,8 @@ const PropertiesPage = (props: Props) => {
             />
           ))}
         </section>
-        <div className="flex justify-center">
-          <Button className="my-8 text-white bg-accent-50">Load more</Button>
+        <div className="flex justify-center mb-40">
+          <Button color="accent" className="my-8">Load more</Button>
         </div>
       </main>
       <FixedSocials />
@@ -94,4 +91,4 @@ const PropertiesPage = (props: Props) => {
   );
 };
 
-export default PropertiesPage;
+export default page;

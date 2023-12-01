@@ -19,13 +19,12 @@ import {
 import { ErrorMessage, Field } from "formik";
 import { styled } from "@stitches/react";
 import { SelectSearchInput } from "@/app/components/SelectSearchInput";
-import { LeaseData } from "@/app/property/details/components/content";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { openSans } from "@/app/styles/font";
+import { openSans } from "@/styles/font";
 import Image from "next/image";
-import { InfoBubble } from "@/app/property/details/components/InfoBubble";
 import { boolean } from "yup";
+import { InfoBubble } from "@/app/components/application-form/components/InfoBubble";
 
 type DataItem = {
   label: string;
@@ -38,10 +37,10 @@ type Props = {
 
   initialValue?:  any;
 
-  placeholder: string;
+  placeholder?: string;
   label: string;
   onChange: (value: any) => void;
-  onChange2: (value: any) => void;
+  onChange2?: (value: any) => void;
   placeholderMonthlyIncomeCurrency?: string;
   placeholderMonthlyIncome?: string;
   infoBubble?: boolean;
@@ -88,7 +87,7 @@ const CurrencyInput = ({
   }, [value, value2]);
 
   useEffect(() => {
-    onChange2(selectedCurrency);
+    onChange2 && onChange2(selectedCurrency);
     onChange(totalValue);
   }, [totalValue]);
   useEffect(() => {

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import fetchTermsData from "../lib/fetchTermsData";
 import TermsNav from "../components/TermsNav";
-import { openSans } from "@/app/styles/font";
+import { openSans } from "@/styles/font";
 import TermsMainView from "./components/TermsMainVie";
 import Footer from "@/app/components/Footer";
 

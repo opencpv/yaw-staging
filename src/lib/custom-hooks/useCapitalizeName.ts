@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 
 const useCapitalizeName = (initialName: string, delimiter?: string) => {
-  let contactName = useMemo(() => {
+  let capitalizedName = useMemo(() => {
     // Algorithm for getting contact name
     let nameSplit = initialName.split(delimiter ? delimiter : "%20");
     let nameSplitCapitalized = nameSplit.map(
@@ -10,7 +10,7 @@ const useCapitalizeName = (initialName: string, delimiter?: string) => {
     return nameSplitCapitalized.join(" ");
   }, [initialName, delimiter]);
 
-  return contactName;
+  return capitalizedName;
 };
 
 export { useCapitalizeName };

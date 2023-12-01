@@ -9,34 +9,36 @@ import { motion } from "framer-motion";
 import { ReactHTMLElement } from "react";
 
 type Props = {
-  type: "message" | "admin" | "contact";
-  notification: string;
-  subject: string;
-  time: string;
+  type: "message" | "admin" | "alert";
+  content?: string;
+  subject?: string;
+  time?: string;
+  sender?: string;
 };
 
 const notificationItems: {
   admin: React.JSX.Element;
   message: React.JSX.Element;
-  contact: React.JSX.Element;
+  alert: React.JSX.Element;
 } = {
   admin: <MdOutlineAdminPanelSettings size={24} color="#E32636" />,
 
   message: <MessageIcon width={"24"} color="#DCA847" />,
 
-  contact: <IoPersonOutline size={24} color="#00974A" />,
+  alert: <IoPersonOutline size={24} color="#00974A" />,
 };
 
 const NotificationItem: React.FC<Props> = ({
   type,
-  notification,
+  content,
   time,
   subject,
+  sender,
 }) => {
   return (
     <Root className="flex items-start justify-between w-full p-4">
       <motion.div
-        className="flex gap-4 "
+        className="flex gap-4 w-full justify-between"
         initial={{ y: 100 }}
         animate={{ y: 0 }}
         transition={{
@@ -44,23 +46,29 @@ const NotificationItem: React.FC<Props> = ({
           type: "spring",
           stiffness: 50,
           damping: 10,
-        }}
-      >
-        <div className="pt-1">{notificationItems[type]}</div>
+        }}>
+        <div className="flex gap-4">
+          <div className="pt-1">{notificationItems[type]}</div>
 
-        <div className="flex flex-col gap-1">
-          <div className="flex text-[10px] uppercase gap-2 items-center text-[#0000008F]">
-            <div className="font-semibold">{type}</div>
-            <div className="w-[3px] h-[3px] bg-[#0000008F] rounded-full">.</div>
-            <div className="font-bold">{time}</div>
-          </div>
-          <div className="flex flex-col items-start text-[16px] gap-1 text-left">
-            <div className="font-[400] text-[16px]">{subject}</div>
-            <div
-              className="text-[#0000008F] max-h-[36px] overflow-hidden
-            text-[13px] leading-[18.2px]"
-            >
-              {notification}
+          <div className="flex flex-col gap-1">
+            <div className="flex text-[10px] uppercase gap-2 items-center text-[#0000008F]">
+              <div className="font-semibold">
+                {type == "message" && type}
+                {type == "admin" && type}
+                {type == "alert" && sender}
+              </div>
+              <div className="w-[3px] h-[3px] bg-[#0000008F] rounded-full">
+                .
+              </div>
+              <div className="font-bold">{time}</div>
+            </div>
+            <div className="flex flex-col items-start text-[16px] gap-1 text-left">
+              <div className="text-black font-[400] text-[16px]">{subject}</div>
+              <div
+                className="text-[#0000008F] max-h-[36px] overflow-hidden
+              text-[13px] leading-[18.2px]">
+                {content}
+              </div>
             </div>
           </div>
         </div>

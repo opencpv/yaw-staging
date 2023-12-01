@@ -1,17 +1,25 @@
 "use client";
+import supabase from "@/lib/utils/supabaseClient";
 import Head from "next/head";
-import Navbar from "./components/navbar";
-import Pagination from "./components/pagination";
-import { useEffect } from "react";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { redirect } from "next/navigation";
+import { useContext, useEffect } from "react";
+import { AppContextType } from "./types";
+import { AppContext } from "./AppContextProvider";
 
 const Dashboard = () => {
+  const { user, setUser } = useContext(AppContext) as AppContextType
+  const getProperties = async () => {
+    let {data: property, error}  = await supabase.from('property').select('*')
+
+      if (property) {
+        setUser((prevUser) => ({
+          ...prevUser,
+          properties: { property },
+        }));
+      }
+  };
+
   useEffect(() => {
-    const supabase = createClientComponentClient();
-    if (!supabase) {
-      redirect("/");
-    }
+    getProperties();
   }, []);
 
   return (

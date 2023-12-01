@@ -7,7 +7,7 @@
 
 # testing
 /coverage
-
+todo.txt
 # next.js
 /.next/
 /out/
@@ -36,3 +36,4 @@ yarn.lock
 next-env.d.ts
 
 /notes.txt
+/todo.txt

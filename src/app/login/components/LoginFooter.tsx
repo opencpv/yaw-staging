@@ -1,4 +1,4 @@
-import { montserat } from "@/app/styles/font";
+import { montserat } from "@/styles/font";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import Link from "next/link";

@@ -11,7 +11,7 @@ import {
   Pagination,
 } from "swiper/modules";
 import "../styles/main.css";
-import { openSans } from "@/app/styles/font";
+import { openSans } from "@/styles/font";
 
 const GraySliderDesktop = ({ data }: { data: any }) => {
   const sliderRef: any = useRef();

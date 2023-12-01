@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import fetchTermsData from "../lib/fetchTermsData";
 import Link from "next/link";
-import { openSans } from "@/app/styles/font";
+import { openSans } from "@/styles/font";
 import { usePathname } from "next/navigation";
 
 const TermsNav = ({

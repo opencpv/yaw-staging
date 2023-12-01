@@ -1,3 +1,4 @@
+"use client";
 import {
   Button,
   Dropdown,
@@ -10,9 +11,8 @@ import React, { useState } from "react";
 import { FaCaretDown } from "react-icons/fa";
 import AdvancedForm from "./AdvancedForm";
 
-type Props = {};
 
-const TagsSelect = (props: Props) => {
+const TagsSelect = () => {
   const [isAdvancedActive, setIsAdvancedActive] = useState<boolean>(false)
 
   const handleIsActive = () => {

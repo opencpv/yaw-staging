@@ -9,7 +9,7 @@ const MarkAndDeletePopup = () => (
       <button
         className="inline-flex items-center justify-center text-violet11  focus:shadow-black cursor-pointer outline-none"
         aria-label="Update dimensions">
-        <BiDotsVerticalRounded size={24} />
+        <BiDotsVerticalRounded size={24} color="black"/>
       </button>
     </Popover.Trigger>
     <Popover.Portal>

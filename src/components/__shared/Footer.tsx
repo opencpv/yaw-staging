@@ -6,7 +6,7 @@ import Link from "next/link";
 import CaFacebook from "../../app/components/icons/CaFacebook";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
-import { montserat } from "../../app/styles/font";
+import { montserat } from "../../styles/font";
 
 const Footer = () => {
   const { icons } = useAssets();
@@ -56,7 +56,7 @@ const Footer = () => {
       <div className="flex flex-col gap-10 lg:w-8/12 mx-auto px-6 text-[#fff] items-center">
         <p
           className={
-            "max-w-[1077px] text-[32px] xl:text-[48px] font-[500] 2xl:tracking-[-1.92px]"
+            "max-w-[1077px] text-[2rem] xl:text-[3rem] font-[500] 2xl:tracking-[-1.92px]"
           }
         >
           Sign up to get the{" "}
@@ -95,7 +95,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="flex flex-col items-center gap-10 pb-14 mt-10 text-[32px] text-[#fff] ">
+      <div className="flex flex-col items-center gap-10 pb-14 mt-10 text-[2rem] text-[#fff] ">
         <h2 className="font-bold">Connect with us:</h2>
 
         <div className="flex w-4/5 items-center gap-4 md:w-2/5 md:gap-8">

@@ -1,3 +1,4 @@
+"use client";
 import CaInstagram from "./icons/CaInstagram";
 import CaStarRainbow from "./icons/CaStarRainbow";
 import CaTwitter from "./icons/CaTwitter";
@@ -6,7 +7,7 @@ import Link from "next/link";
 import CaFacebook from "./icons/CaFacebook";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
-import { montserat } from "../styles/font";
+import { montserat } from "../../styles/font";
 
 const Footer = () => {
   const { icons } = useAssets();

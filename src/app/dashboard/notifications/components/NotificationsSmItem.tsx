@@ -6,16 +6,10 @@ import MessageIcon from "../icons/CaMessageIcon";
 import { IoPersonOutline } from "react-icons/io5";
 import NotificationDetailsFull from "./NotificationDetails";
 import NotificationItem from "./NotificationItem";
+import { NotificationType } from "./types";
 
-type Notification = {
-  date: string;
-  time: string;
-  notification: string;
-  subject: string;
-  type: "message" | "admin" | "contact";
-};
 type Props = {
-  currentNotification: Notification;
+  currentNotification: NotificationType;
 };
 
 const NotificationsSmItem: React.FC<Props> = ({ currentNotification }) => (
@@ -23,10 +17,11 @@ const NotificationsSmItem: React.FC<Props> = ({ currentNotification }) => (
     <Dialog.Trigger asChild>
       <button className="">
         <NotificationItem
+          sender={currentNotification?.sender_name}
           type={currentNotification?.type}
           subject={currentNotification?.subject}
-          time={currentNotification?.time}
-          notification={currentNotification?.notification}
+          time={currentNotification?.sent}
+          content={currentNotification?.content}
         />
       </button>
     </Dialog.Trigger>
@@ -37,8 +32,7 @@ const NotificationsSmItem: React.FC<Props> = ({ currentNotification }) => (
         <Dialog.Close asChild>
           <button
             className="text-violet11 hover:bg-violet4 focus:shadow-violet7 absolute top-[10px] right-[10px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full focus:shadow-[0_0_0_2px] focus:outline-none"
-            aria-label="Close"
-          >
+            aria-label="Close">
             <Cross2Icon />
           </button>
         </Dialog.Close>

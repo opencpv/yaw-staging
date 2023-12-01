@@ -5,27 +5,34 @@ import { FaCaretDown } from "react-icons/fa";
 type Props = {
   options: string[];
   value: string;
-  width?: string;
+  radius?: "full" | "lg" | "md" | "none";
+  selectorIcon?: React.ReactNode;
   handleSelectionChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
-const Select = ({ options, handleSelectionChange, value, width }: Props) => {
+const Select = ({
+  options,
+  handleSelectionChange,
+  value,
+  radius,
+  selectorIcon,
+}: Props) => {
   return (
     <NextUISelect
       size="sm"
-      radius="full"
-      label="available"
+      radius={radius ? radius : "full"}
+      label="select"
       //   selectionMode="single"
       labelPlacement="outside"
       selectedKeys={[value]}
       classNames={{
         base: `${width ? width : "w-48"}  mx-auto text-xs `,
         value: "text-xs",
-        selectorIcon: "mr-5",
+        selectorIcon: "mr-5 h-3 w-3",
         trigger: "px-10",
         label: "hidden",
       }}
-      selectorIcon={<FaCaretDown />}
+      selectorIcon={selectorIcon ? selectorIcon : <FaCaretDown />}
       onChange={handleSelectionChange}
     >
       {options.map((option) => (

@@ -7,14 +7,15 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import { FaBan, FaEllipsisV } from "react-icons/fa";
-import BlockUserModal from "./BlockUserModal";
+import DestructiveModal from "@/components/__shared/modals/DestructiveModal";
 
 const BlockUserPopOver = () => {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
 
   return (
-    <>    
-      <Popover placement="right"
+    <>
+      <Popover
+        placement="right"
         classNames={{
           base: "flex items-center py-2 px-6 gap-2 top-8 min-[1977px]:translate-x-[-120%]",
         }}
@@ -24,7 +25,8 @@ const BlockUserPopOver = () => {
             <FaEllipsisV className="text-white" />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="bg-primary-400 text-white cursor-pointer font-[300]"
+        <PopoverContent
+          className="bg-primary-400 text-white cursor-pointer font-[300]"
           onClick={onOpen}
         >
           <div className="flex items-center gap-2">
@@ -34,7 +36,12 @@ const BlockUserPopOver = () => {
         </PopoverContent>
       </Popover>
 
-      <BlockUserModal onOpen={onOpen} isOpen={isOpen} onOpenChange={onOpenChange} />
+      <DestructiveModal
+        label="Are you sure you want to delete this user??"
+        onClose={onClose}
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+      />
     </>
   );
 };

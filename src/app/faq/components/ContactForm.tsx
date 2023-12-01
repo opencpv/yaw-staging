@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import PhoneNumberInput from "@/components/__shared/PhoneInput";
 import supabase from "@/lib/utils/supabaseClient";
 import Loader from "@/components/__shared/loader/Loader";
-import { openSans } from "@/app/styles/font";
+import { openSans } from "@/styles/font";
 
 const ContactForm = () => {
   const [phone, setPhone] = useState("+233");

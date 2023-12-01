@@ -1,12 +1,16 @@
 "use client";
 import "./globals.css";
+import "../styles/animations.css";
 import "@radix-ui/themes/styles.css";
 import { useEffect, useState } from "react";
-import Navbar from "@/components/__shared/Navbar";
 import { usePathname } from "next/navigation";
 import Providers from "@/context/Providers";
+import LoadingIndicator from "@/components/LoadingIndicator";
+import Script from "next/script";
+import { openSans } from "@/lib/utils/fonts";
 
 const uniquePages = ["login", "terms-of-service"];
+
 
 export default function RootLayout({
   children,
@@ -28,33 +32,14 @@ export default function RootLayout({
   }, [pathname]);
 
   return (
-    <html lang="en">
-      <body className="">
-        {/* {noNavbar ? (
-          ""
-        ) : (
-          <Navbar
-            isMenuOpen={isMenuOpen}
-            toggleMenu={() => {
-              window.scrollTo({
-                top: 0,
-              });
-              setIsMenuOpen((r) => !r);
-            }}
-          />
-        )}
-        <div
-          className={` ${
-            isMenuOpen
-              ? "h-[100vh] overflow-hidden brightness-50"
-              : "opacity-100"
-          }
-        transition duration-[1000ms]
-        `}
-        >
-          {children}
-        </div> */}
+    <html
+      lang="en"
+      className="text-[14px] lg:text-[14.5px] 2xl:text-[15px] 3xl:text-[16px]"
+    >
+      <Script src="https://widget.cloudinary.com/v2.0/global/all.js" />
+      <body className={`text-neutral-800 ${openSans.className}`}>
         <Providers>
+          <LoadingIndicator />
           {children}
         </Providers>
       </body>

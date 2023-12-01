@@ -1,17 +1,11 @@
 "use client";
 import { styled } from "@stitches/react";
 import { Field, Form, Formik } from "formik";
+import { NotificationType } from "./types";
 
-type Notification = {
-  date: string,
-  time: string, 
-  notification: string, 
-  subject: string
-  type: string
-}
 
 type Props = {
-  currentNotification: Notification
+  currentNotification?: NotificationType
 };
 
 
@@ -21,17 +15,17 @@ const NotificationDetailsFull: React.FC<Props> = ({ currentNotification }) => {
   <div>
       <Root className="flex flex-col h-full justify-start gap-8">
         <div className="flex flex-col gap-4">
-          <div className="text-[31px] font-bold">
+          <div className="text-[24px] 2xl:text-[31px] text-black font-bold">
             <p>{currentNotification?.subject}</p>
           </div>
           <div className="text-[10px]  leading-[14px] uppercase text-[#0000008F] flex gap-2">
             <p className="font-bold">Date</p> 
-            <p className="font-semibold">{currentNotification?.date} </p>
+            <p className="font-semibold">{currentNotification?.sent} </p>
             <p className="font-bold">{currentNotification?.time}</p>
           </div>
         </div>
         <div className="text-[16px] text-[#00000066] leading-[22.4px] font-[400]">
-          {currentNotification?.notification}
+          {currentNotification?.content}
         </div>
         {
           currentNotification?.type == "message" && 

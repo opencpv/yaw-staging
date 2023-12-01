@@ -8,15 +8,18 @@ type Props = {
     onChange : (e: any) => void
     placeholder: string
     name ? : string
+    initialValues? :string
 }
 
-const CustomTextAreaInput = ({label,  classes, onChange, placeholder, name}: Props) => {
+const CustomTextAreaInput = ({label,  classes, onChange, placeholder, name, initialValues}: Props) => {
     return(
         <Root className="text-[#6A6968]">
             <label htmlFor="">{label}</label>
             <textarea className={`form-input ${classes}`} 
             placeholder={placeholder}
-            onChange={onChange} name={name} />
+            onChange={onChange} name={name}
+            defaultValue={initialValues}
+            />
         </Root>
     )
 }

@@ -7,7 +7,7 @@ import {
 import ProfileMainView from "./components/ProfileMainView";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 const Settings = () => {
   const [supabase, setsupabase] = useState<any>();
@@ -20,6 +20,7 @@ const Settings = () => {
       setsupabase(supabase);
     }
   }, []);
+
 
   return (
     <>

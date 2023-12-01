@@ -1,5 +1,5 @@
 "use client";
-import { openSans } from "@/app/styles/font";
+import { openSans } from "@/styles/font";
 import Loader from "@/components/__shared/loader/Loader";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { LoginButtonProps } from "@/lib/typings";

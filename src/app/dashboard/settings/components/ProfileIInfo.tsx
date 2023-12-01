@@ -225,8 +225,8 @@ const ProfileInfo = ({
                         <ProfilePhone
                           phoneChange={handlePhone}
                           codeChange={handleCode}
-                          defaultValue={profileData.country}
-                          phone={profileData.country}
+                          defaultValue={profileData?.country}
+                          phone={profileData?.country}
                         />
                       </div>
                     </div>
