@@ -17,7 +17,7 @@ const quickLinks = [
     },
     {
         label: "Report Fraud",
-        href: "/contact#c__rep"
+        href: "/contact#c_ta#rea"
     },
     {
         label: "Feedback",

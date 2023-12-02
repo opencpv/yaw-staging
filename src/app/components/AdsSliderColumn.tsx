@@ -14,6 +14,7 @@ const AdsSliderColumn = () => {
     <div className="col-span-2 hidden h-full gap-4 flex-col lg:flex">
       {images.map((imageOuter, idx) => (
         <SliderPaginationOnly
+          disabledOnInteraction
           key={idx + 1}
           className="h-full w-full flex-1 last:flex-[2]"
           images={[1, 2, 3].map((image) => ({

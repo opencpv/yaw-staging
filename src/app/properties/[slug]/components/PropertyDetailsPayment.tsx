@@ -74,7 +74,7 @@ const PropertyDetailsPayment = (props: Props) => {
         <AdditionalInfo>
           <div className="flex flex-wrap justify-between gap-2">
             <p className="">Refundable Security Deposit</p>
-            <p className="">GHS {props.refundableSecurityDeposit}</p>
+            <p className="">GHS {formatPrice(props.refundableSecurityDeposit)}</p>
           </div>
         </AdditionalInfo>
         <AdditionalInfoTitle title="Utilities included" />

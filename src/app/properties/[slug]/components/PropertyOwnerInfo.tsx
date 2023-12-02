@@ -72,7 +72,7 @@ const PropertyOwnerInfo = (props: Props) => {
         </div>
         {/* Report issue */}
         <div className="relative self-start -top-6 mb-10">
-          <ReportIssue href="" />
+          <ReportIssue />
         </div>
       </div>
     </AOSWrapper>

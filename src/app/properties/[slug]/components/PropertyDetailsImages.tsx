@@ -39,7 +39,7 @@ const PropertyDetailsImages = (props: Props) => {
           }))}
         />
       </div>
-      <ReportIssue href="" className="mt-5" />
+      <ReportIssue className="mt-5" />
     </AOSWrapper>
   );
 };
