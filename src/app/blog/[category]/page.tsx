@@ -1,12 +1,9 @@
 import React from "react";
-import Navbar from "@/components/__shared/Navbar";
-import Footer from "@/app/components/Footer";
 import PostSummary from "../components/post/PostSummary";
 import Link from "next/link";
 import { LuChevronsRight } from "react-icons/lu";
 import BackgroundImage from "../components/category/BackgroundImage";
 import TabsAndSearch from "../components/category/TabsAndSearch";
-import RecommendedListings from "@/components/__shared/listing/RecommendedListings";
 import AOSWrapper from "@/components/__shared/AOSWrapper";
 
 type Props = {};
@@ -14,7 +11,6 @@ type Props = {};
 const page = (props: Props) => {
   return (
     <>
-      <Navbar />
       <div className="relative flex items-center justify-center bg-gradient-to-b from-primary-500 to-primary-500/80 text-white w-full h-60 mb-10 lg:h-[27rem]">
         <BackgroundImage />
         <div className="flex flex-col items-center gap-3">
@@ -29,11 +25,11 @@ const page = (props: Props) => {
         </div>
       </div>
       <main className="section">
-        <div className="mb-14 flex flex-col items-center justify-between gap-5 sm:flex-row">
+        <div className="mb-10 flex flex-col items-center justify-between gap-5 sm:flex-row">
           <TabsAndSearch />
         </div>
         <div className="flex items-center justify-center pb-10 text-neutral-500">
-          <section className="space-y-10">
+          <section className="space-y-16">
             {[1, 2, 3, 4, 5, 6].map((post, idx) => (
               <PostSummary
                 key={idx + 1}
@@ -48,6 +44,7 @@ const page = (props: Props) => {
                 molestias nihil tenetur expedita deleniti fuga dicta in distinctio
                 ipsam cupiditate."
                 postedAt="November 7th 2023"
+                rating={3.5}
                 href="/blog/c/p"
               />
             ))}
@@ -55,8 +52,6 @@ const page = (props: Props) => {
         </div>
         <p className="text-center mb-20">pagination</p>
       </main>
-      <RecommendedListings className="section mb-40" />
-      <Footer />
     </>
   );
 };

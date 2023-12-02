@@ -1,3 +1,12 @@
+const capitalizeName = (initialName: string, delimiter?: string) => {
+  // Algorithm for getting contact name
+  let nameSplit = initialName.split(delimiter ? delimiter : "%20");
+  let nameSplitCapitalized = nameSplit.map(
+    (name) => name.slice(0, 1).toUpperCase() + name.slice(1)
+  );
+  return nameSplitCapitalized.join(" ");
+};
+
 export const formatTime = (dateTime: string) => {
   const date = new Date(dateTime);
   const formattedTime = new Intl.DateTimeFormat("en-US", {
@@ -28,3 +37,6 @@ export const formatDate = (dateTime: string) => {
 
   return finalDate;
 };
+
+
+export default capitalizeName

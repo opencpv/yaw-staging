@@ -3,9 +3,9 @@ import Navbar from "@/components/__shared/Navbar";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import React, { useState } from "react";
-import Footer from "../components/Footer";
+import Footer from "@/components/__shared/Footer";
 import Category from "./components/Category";
-import Info from "@/components/__shared/Info";
+import CallOut from "@/components/__shared/ui/CallOut";
 import Select from "../dashboard/components/Select";
 import Button from "@/components/__shared/Button";
 import { FaChevronDown } from "react-icons/fa";
@@ -46,7 +46,7 @@ const MovingSalesPage = (props: Props) => {
           </div>
         </section>
         <div className="flex items-center justify-center mb-20">
-          <Info
+          <CallOut
             text="You may select more than one response"
             className="w-full md:w-9/12"
           />

@@ -5,7 +5,7 @@ import FaqHeader from "./components/FaqHeader";
 import BreadCrumb from "./components/Breadcrumb";
 import { openSans } from "@/lib/utils/fonts";
 import FAQBrowser from "./components/FAQBrowser";
-import Footer from "../components/Footer";
+import Footer from "@/components/__shared/Footer";
 import ContactSection from "./components/ContactSection";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 

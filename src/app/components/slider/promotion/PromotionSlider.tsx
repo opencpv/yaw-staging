@@ -29,7 +29,7 @@ const PromotionSlider = () => {
           el: ".custom-pagination-ver",
         }}
         modules={[Pagination, Autoplay]}
-        className={`mySwiper relative rounded-3xl w-full h-full`}
+        className={`mySwiper relative rounded-3xl w-full h-[38rem] xs:h-[29rem]`}
       >
         {/* Promotee info from database */}
         {images.map((image, idx) => (
@@ -43,25 +43,29 @@ const PromotionSlider = () => {
                 className="brightness-[0.60]"
               />
             </div>
+            {/* Promotion label */}
+            <div className="absolute z-50 top-32 left-3 space-y-20 min-[300px]:left-10">
+              <div className="space-y-3 text-sm ">
+                <h1 className="text-accent-100 font-[700] text-3xl">
+                  Promotion
+                </h1>
+                <p className="text-white">Lorem ipsum</p>
+                <Button className="flex items-center w-40 gap-3 text-white capitalize border-none rounded-md bg-accent-200 hover:bg-neutral-300 hover:text-neutral-600">
+                  View item <IoIosArrowRoundForward />
+                </Button>
+              </div>
+              {/* Promotion description */}
+                <p className="relative z-30 text-white text-sm font-[600] leading-relaxed w-10/12 line-clamp-[10] xs:line-clamp-5 lg:ml-10">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Exercitationem nulla possimus, eum amet minima dicta ducimus
+                  facilis? Libero, deserunt quam molestias tempore, assumenda
+                  modi mollitia pariatur et quas, exercitationem tenetur?
+                </p>
+            </div>
           </SwiperSlide>
         ))}
-        <div className="absolute bottom-0 left-0 z-10 space-y-8">
-          <div className="translate-x-[3%] space-y-3 text-sm">
-            <h1 className="text-accent-100 font-[700] text-3xl">Promotion</h1>
-            <p className="text-white">Lorem ipsum</p>
-            <Button className="flex items-center w-40 gap-3 text-white capitalize border-none rounded-md bg-accent-200">
-              View item <IoIosArrowRoundForward />
-            </Button>
-          </div>
-          <div className="relative flex items-center justify-center p-5 w-full min-h-[4rem] bg-primary-500/25 xs:p-10">
-            <p className="text-white text-sm font-[600] w-full leading-relaxed sm:w-10/12">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Exercitationem nulla possimus, eum amet minima dicta ducimus
-              facilis? Libero, deserunt quam molestias tempore, assumenda modi
-              mollitia pariatur et quas, exercitationem tenetur?
-            </p>
-            <div className="ml-5 custom-pagination-ver sm:ml-12"></div>
-          </div>
+        <div className="absolute z-10 bottom-0 left-0 p-5 w-full min-h-[20rem] bg-primary-500 bg-opacity-25 xs:min-h-[10rem] xs:p-10">
+          <div className="custom-pagination-ver absolute mr-3 -mt-10 md:mr-20"></div>
         </div>
       </Swiper>
     </>

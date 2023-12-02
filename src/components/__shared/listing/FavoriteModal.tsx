@@ -4,35 +4,40 @@ import Modal from "../modals/Modal";
 import { MdOutlineChat } from "react-icons/md";
 import Checkbox from "../form/Checkbox";
 import Button from "../Button";
+import { useListingStore } from "@/store/listing/useListingStore";
 
 type ModalProps = {
   isOpen: boolean;
   onOpenChange: () => void;
-  onClose: () => void;
+  onClose?: () => void;
 };
 
-type ModalFooterProps = {
-  onClose: () => void;
+type ModalHeaderProps = {
+  onClose?: () => void;
 }
 
 const FavoriteModal = ({ isOpen, onOpenChange, onClose }: ModalProps) => {
   return (
     <Modal
       isDismissible={false}
-      header={<ModalHeader />}
-      body={<ModalBody />}
-      footer={<ModalFooter onClose={onClose} />}
+      header={<ModalHeader onClose={onClose}/>}
+      body={<ModalBody/>}
+      footer={<ModalFooter />}
       isOpen={isOpen}
       onOpenChange={onOpenChange}
+      hideCloseButton={true}
       size="md"
     />
   );
 };
 
-const ModalHeader = () => {
+const ModalHeader = ({onClose}: ModalHeaderProps) => {
   return (
-    <span className="border p-0.5 w-fit">
+    <span className="flex items-center justify-between gap-5 flex-wrap">
       <MdOutlineChat className="text-primary-200 text-xl shrink-0 md:text-4xl" />
+      <Button color="white" variant="outline" className="w-fit text-sm rounded-3xl h-6" onClick={onClose}>
+        Save
+      </Button>
     </span>
   );
 };
@@ -40,13 +45,23 @@ const ModalHeader = () => {
 const ModalBody = () => {
   return (
     <p className="font-[600] text-primary-200">
-      Do you want property owners to contact you when you favorite?
+      Do you want property owners to contact you when you favorite a home?
     </p>
   );
 };
 
-const ModalFooter = ({onClose}: ModalFooterProps) => {
+const ModalFooter = () => {
   const [isSelected, setIsSelected] = useState<boolean>(false);
+  const {contactUponFavorite, setContactUponFavorite} = useListingStore()
+
+  const handleYes = () => {
+    setContactUponFavorite(true)
+  }
+
+  const handleNo = () => {
+    setContactUponFavorite(false)
+  }
+
   return (
     <div className="flex flex-col justify-between gap-5 w-full xs:flex-row xs:items-center">
       <div className="flex order-2 xs:order-1">
@@ -58,10 +73,10 @@ const ModalFooter = ({onClose}: ModalFooterProps) => {
         />
       </div>
       <div className="flex items-center gap-2 order-1 xs:order-2">
-        <Button variant="outline" color="gradient" className="py-6" onClick={onClose}>
+        <Button variant={contactUponFavorite === false ? "default" : "outline"} color="gradient" className="py-6" onClick={handleNo} >
           No
         </Button>
-        <Button color="gradient" className="py-6">
+        <Button variant={contactUponFavorite ? "default" : "outline"} color="gradient" className="py-6" onClick={handleYes} >
           Yes
         </Button>
       </div>

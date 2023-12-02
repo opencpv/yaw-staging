@@ -9,22 +9,22 @@ type Props = {
   className?: string;
 };
 
-const ViewProperty = ({ href, className }: Props) => {
+const ViewPropertyBtn = ({ href, className }: Props) => {
   const pathname = usePathname();
   return (
     <Link
       href={`${href}`}
-      className={`absolute scale-75 ${
+      className={`absolute shadow-md scale-75 ${
         pathname === "/"
-          ? "bottom-28 right-5 min-[560px]:max-md:right-80 xs:max-md:bottom-28 min-[560px]:right-40 xs:bottom-52"
+          ? "bottom-28 right-5 min-[560px]:max-[680px]:right-80 xs:max-[690px]:bottom-28 min-[560px]:right-40 xs:bottom-60"
           : "bottom-32 right-10 md:right-32 md:bottom-20"
-      } md:scale-100 ${className}`}
+      } md:scale-100 hover:-translate-y-2 transition-all ${className}`}
     >
       <div
         className={`border ${
           pathname === "/"
             ? "w-32 h-32 border-white"
-            : "w-48 h-48 border-[#305A61]"
+            : "w-48 h-48 border-2 border-[#305A61]"
         } rounded-full flex items-center justify-center`}
       >
         <motion.div
@@ -37,7 +37,7 @@ const ViewProperty = ({ href, className }: Props) => {
             repeatType: "reverse",
           }}
           className={`bg-[#305A61] ${
-            pathname === "/" ? "w-16 h-16" : "w-32 h-32"
+            pathname === "/" ? "w-24 h-24" : "w-32 h-32"
           } rounded-full text-white flex items-center justify-center`}
         >
           View
@@ -47,4 +47,4 @@ const ViewProperty = ({ href, className }: Props) => {
   );
 };
 
-export default ViewProperty;
+export default ViewPropertyBtn;

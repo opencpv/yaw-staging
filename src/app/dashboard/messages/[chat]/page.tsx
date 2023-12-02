@@ -15,7 +15,7 @@ import {
   useFetchTableForRealtime,
   useRealTimeSubscription,
 } from "@/lib/custom-hooks/useFetch";
-import { useCapitalizeName } from "@/lib/custom-hooks/useCapitalizeName";
+import { useCapitalizeName } from "@/lib/custom-hooks/useStringManipulation";
 import { useQuery } from "@tanstack/react-query";
 import supabase from "@/lib/utils/supabaseClient";
 

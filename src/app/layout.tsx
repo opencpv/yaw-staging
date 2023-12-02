@@ -8,9 +8,11 @@ import Providers from "@/context/Providers";
 import LoadingIndicator from "@/components/LoadingIndicator";
 import Script from "next/script";
 import { openSans } from "@/lib/utils/fonts";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const uniquePages = ["login", "terms-of-service"];
-
 
 export default function RootLayout({
   children,
@@ -40,6 +42,7 @@ export default function RootLayout({
       <body className={`text-neutral-800 ${openSans.className}`}>
         <Providers>
           <LoadingIndicator />
+          <ToastContainer />
           {children}
         </Providers>
       </body>

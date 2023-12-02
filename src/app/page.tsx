@@ -14,21 +14,15 @@ import DealCard from "./components/DealCard";
 import ManagePropertiesInfo2 from "./components/ManagePropertiesInfo2";
 import ManagePropertiesInfo from "./components/ManagePropertiesInfo";
 import PopularCitiesCard from "./components/PopularCitiesCard";
-import Footer from "./components/Footer";
+import Footer from "@/components/__shared/Footer";
 import ArrowLink from "./components/link/ArrowLink";
-import FixedSocials from "@/components/FixedSocials";
-import ScrollTop from "@/components/__shared/ScrollTop";
-import SliderPaginationOnly from "@/components/__shared/sliders/SliderPaginationOnly";
 import SliderWide from "@/components/__shared/sliders/SliderWide";
 import SliderMultiItems from "@/components/__shared/sliders/SliderMultiItems";
-import Survey from "@/components/survey/Survey";
 import AOSWrapper from "@/components/__shared/AOSWrapper";
+import AdsSliderColumn from "./components/AdsSliderColumn";
+import SurveyToast from "./components/survey/SurveyToast";
+import ScrollTopAndSocial from "@/components/ui/ScrollTopAndSocial";
 
-let images = [
-  "/assets/images/home/promotion-1.jpg",
-  "/assets/images/home/promotion-1.jpg",
-  "/assets/images/home/promotion-1.jpg",
-];
 
 export default function Home() {
   useEffect(() => {
@@ -66,14 +60,14 @@ export default function Home() {
           disableOnSmallScreens={true}
         >
           {/* Find your new home */}
-          <div className="relative z-10 grid w-full gap-16 overflow-x-hidden top-52 md:grid-cols-5 lg:gap-28">
+          <div className="relative z-10 grid w-full gap-16 overflow-x-hidden top-60 md:top-72 md:grid-cols-5 lg:gap-28">
             <div className="col-span-5 w-11/12 space-y-4 px-5 capitalize md:col-span-2 md:order-2 md:w-full md:translate-x-[-10%] xs:px-10 md:pl-0">
-              <AOSWrapper animation="fade-right">
-                <h1 className="font-[900] text-2xl min-[300px]:max-md:text-3xl xl:text-4xl">
+              <AOSWrapper animation="fade-right" duration="2000">
+                <h1 className="font-[900] text-2xl leading-tight max-w-2xl min-[300px]:text-3xl xl:text-[2.5rem] xl:leading-snug">
                   Find your new home with RentRightGH
                 </h1>
               </AOSWrapper>
-              <AOSWrapper animation="fade-left">
+              <AOSWrapper animation="fade-left" duration="2000">
                 <h4 className="font-[500]">
                   Affordable houses and rooms without the stress
                 </h4>
@@ -86,7 +80,7 @@ export default function Home() {
 
         {/* Promotion */}
         <section className="relative mb-16 flex items-center justify-center px-5 pt-20 mx-auto max-w-screen-2xl xs:px-5">
-          <div className="h-[38rem] w-full max-w-[1100px] min-[290px]:h-[29rem]">
+          <div className="h-fit w-full max-w-[1100px]">
             <PromotionSlider />
             <div className="absolute left-0 top-[20%] z-10 h-[85%] w-full max-w-[90%] translate-y-[-10%] bg-red-400 opacity-0 sm:hidden"></div>
             {/*!!! Temporary fix of scrolling issue on mobile !!!*/}
@@ -102,7 +96,7 @@ export default function Home() {
           <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-8 lg:items-start">
             {/* Shows when number of listings is less than 10 */}
             {listingsdb.length <= 9 ? (
-              <div className="col-span-6 grid grid-cols-1 gap-5 min-[480px]:grid-cols-autofit-listing-card">
+              <div className="col-span-6 grid gap-5 grid-cols-1 sm:grid-cols-2 min-[950px]:max-lg:grid-cols-3 lg:grid-cols-2 min-[1180px]:grid-cols-3">
                 {listingsdb.map((listing) => {
                   return (
                     <ListingCard
@@ -153,18 +147,8 @@ export default function Home() {
                 </div>
               </div>
             )}
-            <div className="col-span-2 hidden h-full gap-4 flex-col lg:flex">
-              {images.map((imageOuter, idx) => (
-                <SliderPaginationOnly
-                  key={idx + 1}
-                  className="h-full w-full flex-1 last:flex-[2]"
-                  images={[1, 2, 3].map((image) => ({
-                    name: "4 bedroom apartment",
-                    src: imageOuter,
-                  }))}
-                />
-              ))}
-            </div>
+            {/* Ads */}
+            <AdsSliderColumn />
           </div>
           <ArrowLink
             href="/properties"
@@ -172,6 +156,7 @@ export default function Home() {
             color="#202457"
             className="mb-16"
           />
+          {/* Ads */}
           <section className="h-fit w-full lg:hidden">
             <SliderWide
               images={[1, 2, 3, 4, 5].map((image) => ({
@@ -246,7 +231,7 @@ export default function Home() {
                 (idx + 1) % 2 === 0 ? (
                   <ManagePropertiesInfo2
                     key={idx + 1}
-                    href=""
+                    href="/about"
                     activity="List your property"
                     image="/assets/images/Stock.jpg"
                     title="Want to rent your property?"
@@ -255,7 +240,7 @@ export default function Home() {
                 ) : (
                   <ManagePropertiesInfo
                     key={idx + 1}
-                    href="/dashboard/properties"
+                    href="/about"
                     activity="Manage your property"
                     image="/assets/images/Stock.jpg"
                     title="Want to rent your property?"
@@ -282,7 +267,7 @@ export default function Home() {
             </div>
           </div>
           <div className="items-center hidden grid-cols-2 gap-5 pb-20 lg:grid lg:grid-cols-3">
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((city, idx) => {
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((city, idx) => {
               return (
                 <AOSWrapper key={idx + 1} animation="zoom-in" duration="1000">
                   <PopularCitiesCard
@@ -310,13 +295,10 @@ export default function Home() {
             />
           </div>
         </section>
-        <AOSWrapper animation="fade-right" duration="1000">
-          <Survey />
-        </AOSWrapper>
+        <SurveyToast />
       </main>
-      <FixedSocials />
-      <ScrollTop />
+      <ScrollTopAndSocial />
       <Footer />
     </>
-  );
+  )
 }

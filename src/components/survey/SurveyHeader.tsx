@@ -17,7 +17,7 @@ const SurveyHeader = ({ handleClose }: Props) => {
           height={50}
           className="hidden xs:block"
         />
-        <h1 className="font-[700] text-neutral-800 text-2xl tracking-tighter">Feedback</h1>
+        <h1 className="font-[700] text-neutral-800 text-2xl tracking-tighter">Survey</h1>
       </div>
       {/* <FaTimesCircle
         className="relative bottom-2 left-5 ml-auto translate-x-[10%] translate-y-[-5%] cursor-pointer text-4xl text-red-500 xs:ml-0 xs:text-5xl"

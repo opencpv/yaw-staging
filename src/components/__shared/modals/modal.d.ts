@@ -9,5 +9,6 @@ type ModalProps = {
     size?: "xs"| "sm"| "md"| "lg"| "xl"| "2xl"| "3xl"| "4xl"| "5xl"| "full";
     footerAlignment?: "start" | "end" | "center" | "space-between" 
     isDismissible?: boolean;
-    closeButton?: React.ReactNode
+    closeButton?: React.ReactNode;
+    hideCloseButton?: boolean;
 }

@@ -4,3 +4,7 @@ export const formatPrice = (price: number) => {
     maximumFractionDigits: 2,
   });
 };
+
+export const getCurrentYear = () => {
+  return new Date().getFullYear();
+};

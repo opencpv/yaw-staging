@@ -22,7 +22,7 @@ const OverviewPage = () => {
           <h3 className="text-neutral-700 font-[500] text-lg mb-6 md:hidden">
             Welcome, John
           </h3>
-          {/* Info */}
+          {/* CallOut */}
           <Callout className="flex items-center w-full gap-5 mb-6 text sm:w-11/12">
             <HiOutlineExclamationCircle className="text-5xl rotate-180 text-accent-50" />
             <div className="space-y-1">
@@ -116,7 +116,7 @@ const OverviewPage = () => {
           </div>
           <div className="flex items-center justify-center p-5 text-xs border rounded-xl ">
             <div className="flex flex-col gap-y-3 xs:max-[500px]:px-16 min-[500px]:flex-row">
-              <AOSWrapper animation="zoom-in" duration="900">
+              <AOSWrapper animation="zoom-in" >
                 <Image src={icons.PeopleSell} alt="" width={200} height={200} />
               </AOSWrapper>
               <div className="space-y-3 ">

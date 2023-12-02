@@ -17,7 +17,7 @@ const FeatureUpgradeCard = ({
       <div
         className={`flex flex-col gap-x-10 gap-y-5 text-white bg-[#99B3B2] xs:max-[500px]:px-16 rounded-xl text-xs p-5 pr-8 pb-12 min-[500px]:flex-row ${className}`}
       >
-        <AOSWrapper animation="zoom-in" duration="900">
+        <AOSWrapper animation="zoom-in" >
           <Image
             src={icons.HouseSearch}
             alt="house search"

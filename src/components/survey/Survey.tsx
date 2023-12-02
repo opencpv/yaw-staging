@@ -1,12 +1,12 @@
 "use client";
 import { useDisclosure } from "@nextui-org/react";
-import Image from "next/image";
 import React from "react";
 import { HiOutlineChatBubbleOvalLeftEllipsis } from "react-icons/hi2";
 import Modal from "../__shared/modals/Modal";
 import { FaTimesCircle } from "react-icons/fa";
 import SurveyBody from "./SurveyBody";
 import SurveyHeader from "./SurveyHeader";
+import { useToastDisclosure } from "@/lib/custom-hooks/useToastDisclosure";
 
 type Props = {
   // handleClick: () => void;
@@ -15,6 +15,16 @@ type Props = {
 
 const Survey = ({ className }: Props) => {
   const { onOpen, isOpen, onOpenChange, onClose } = useDisclosure();
+  const { onOpen: toastOnOpen } = useToastDisclosure();
+
+  const handleSubmitFeedback = () => {
+    onClose();
+    toastOnOpen(
+      "👍 Thank you! Your feedback is invaluable and will contribute to improving our services.",
+      7000
+    );
+  };
+
   return (
     <>
       <Modal
@@ -26,7 +36,7 @@ const Survey = ({ className }: Props) => {
         }
         isDismissible={false}
         header={<SurveyHeader handleClose={onClose} />}
-        body={<SurveyBody />}
+        body={<SurveyBody handleSubmitFeedback={handleSubmitFeedback} />}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         size="lg"

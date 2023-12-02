@@ -3,26 +3,39 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Image from "next/image";
 
-import { Pagination } from "swiper/modules";
+import { Pagination, Autoplay } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/autoplay";
 import "@/styles/custom-swiper.css";
+import { useAdsSliderStore } from "@/store/ads/useAdsSliderStore";
+
 
 const SliderPaginationOnly = ({
   images,
   className,
 }: SliderPaginationOnlyProps) => {
+  const shouldAutoplay = useAdsSliderStore((state) => state.autoplay);
+  const setAutoplay = useAdsSliderStore((state) => state.setAutoplay)
+
   return (
     <div className={`relative h-80 w-72 ${className}`}>
       <Swiper
+        autoplay={{
+          delay: 6000,
+          disableOnInteraction: false,
+          waitForTransition: false,
+        }}
         pagination={{
           clickable: true,
           dynamicBullets: true,
           dynamicMainBullets: 3,
         }}
-        modules={[Pagination]}
+        modules={[Pagination, Autoplay]}
         className={`h-80 w-72 rounded-lg slider-pagination-only ${className}`}
+        // onSlideChange={() => setAutoplay(false)}
+        // onTransitionEnd={() => setAutoplay(true)}
       >
         {images.map((image, idx) => (
           <SwiperSlide key={idx + 1}>

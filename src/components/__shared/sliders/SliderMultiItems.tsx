@@ -3,22 +3,30 @@ import React from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { Pagination, Navigation } from "swiper/modules";
+import { Pagination, Navigation, Autoplay, FreeMode } from "swiper/modules";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import "swiper/css/autoplay";
+import "swiper/css/free-mode";
 
 const SliderMultiItems = ({
   items,
   slidesPerView,
   breakpoints,
   hasNavAndPagination,
+  autoplay
 }: SliderMultiItemsProps) => {
   return (
     <>
       <Swiper
+        autoplay={autoplay === false || autoplay === undefined ? false : {
+          delay: 1,
+          disableOnInteraction: true,
+          pauseOnMouseEnter: true
+        }}
         slidesPerView={slidesPerView ? slidesPerView : 1.5}
         spaceBetween={15}
         centeredSlides
@@ -28,6 +36,10 @@ const SliderMultiItems = ({
             spaceBetween: 20,
           },
         }}
+        freeMode={autoplay === false ? false : {
+          momentum: false
+        }}
+        speed={autoplay ? 30000 : undefined}
         pagination={{
           clickable: true,
           el: ".slider-multi-items-pagination",
@@ -38,7 +50,7 @@ const SliderMultiItems = ({
           nextEl: ".slider-multi-items-next",
           prevEl: ".slider-multi-items-prev",
         }}
-        modules={[Pagination, Navigation]}
+        modules={[Pagination, Navigation, Autoplay, FreeMode]}
         className="w-full h-fit mySwiper slider-multi-items"
       >
         {items.map((item, idx) => (
