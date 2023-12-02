@@ -8,10 +8,26 @@ const Admin = () => {
   const [email, setemail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+  const [hasAccess, setHasAccess] = useState<boolean>(false);
 
   return (
     <>
-      <main className="w-full h-[100vh] flex items-center justify-center ">
+      <div
+        className={`h-[100dvh] items-center justify-center ${
+          hasAccess ? "hidden" : "flex"
+        }`}
+        onClick={() => setHasAccess(true)}
+      >
+        <div className="divide-x-1 flex items-center gap-5">
+          <h1 className="text-3xl font-[600]">404</h1>
+          <p className="pl-5">Page not found</p>
+        </div>
+      </div>
+      <main
+        className={`w-full h-[100dvh] items-center justify-center ${
+          hasAccess ? "flex" : "hidden"
+        }`}
+      >
         <div className="w-[300px]">
           <input
             type="text"

@@ -15,6 +15,7 @@ import { useAdsSliderStore } from "@/store/ads/useAdsSliderStore";
 const SliderPaginationOnly = ({
   images,
   className,
+  disabledOnInteraction
 }: SliderPaginationOnlyProps) => {
   const shouldAutoplay = useAdsSliderStore((state) => state.autoplay);
   const setAutoplay = useAdsSliderStore((state) => state.setAutoplay)
@@ -24,7 +25,7 @@ const SliderPaginationOnly = ({
       <Swiper
         autoplay={{
           delay: 6000,
-          disableOnInteraction: false,
+          disableOnInteraction: disabledOnInteraction ? disabledOnInteraction : false,
           waitForTransition: false,
         }}
         pagination={{

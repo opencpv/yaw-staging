@@ -30,7 +30,7 @@ const PropertyRating = (props: Props) => {
           </div>
           {/* Rating count */}
           <div className="grid items-start grid-cols-3 mt-20 gap-x-20 gap-y-10">
-            <div className="col-span-3 flex items-center text-neutral-800 gap-10 font-[600] xl:col-span-1">
+            <div className="col-span-3 flex text-lg items-center text-neutral-800 gap-10 font-[600] xl:col-span-1">
               <div className="flex items-center gap-1.5">
                 <HiOutlineHomeModern />
                 <HiStar className="text-yellow-500" />

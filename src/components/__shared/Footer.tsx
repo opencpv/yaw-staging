@@ -10,18 +10,31 @@ import quickLinks from "@/enum/footer/quickLinks";
 import { getCurrentYear } from "@/lib/utils/numberManipulation";
 import Logo from "@/components/__shared/Logo";
 import SubscribeForm from "./ui/SubscribeForm";
+import { useContactStore } from "@/store/contact/useContactStore";
 
 const Footer = () => {
+  const setContactTabActiveKey = useContactStore((state) => state.setActiveKey);
+
   return (
     <footer
       className={`bg-[#131B1A] flex flex-col gap gap-[min(10vh,10rem)] ${montserat.className}`}
     >
       <div className="flex flex-col justify-center gap-10 bg-[#333] py-8 px-2 md:flex-row">
-        {quickLinks.map((r) => (
-          <Link key={r?.label} href={r?.href}>
-            <h3 className="text-[#8A8A8A] text-2xl">{r.label}</h3>
-          </Link>
-        ))}
+        {quickLinks.map((r) =>
+          r.label.toLowerCase() === "report fraud" ? (
+            <Link
+              key={r?.label}
+              href={r?.href}
+              onClick={() => setContactTabActiveKey("report")}
+            >
+              <h3 className="text-[#8A8A8A] text-2xl">{r.label}</h3>
+            </Link>
+          ) : (
+            <Link key={r?.label} href={r?.href}>
+              <h3 className="text-[#8A8A8A] text-2xl">{r.label}</h3>
+            </Link>
+          )
+        )}
       </div>
       <div
         className={"flex flex-row h-[184px]  lg:w-11/12 mx-auto w-full  px-5"}
@@ -74,13 +87,23 @@ const Footer = () => {
         </div>
       </div>
       <div className="flex flex-col w-full max-w-6xl gap-10 px-8 bg-transparent mb-10 text-xl min-[900px]:flex-row min-[900px]:mx-auto min-[900px]:justify-between min-[900px]:items-center">
-        <div className={"order-2 flex flex-row flex-wrap gap-x-1 gap-y-4 min-[900px]:order-1"}>
+        <div
+          className={
+            "order-2 flex flex-row flex-wrap gap-x-1 gap-y-4 min-[900px]:order-1"
+          }
+        >
           <p className="text-[#B0B0B0]">
             Copyright © {getCurrentYear()} ESODO LLC | All rights reserved
           </p>
-          <Link href="/legal" className="inline-block text-[#B0B0B0]">| Legal</Link>
+          <Link href="/legal" className="inline-block text-[#B0B0B0]">
+            | Legal
+          </Link>
         </div>
-        <div className={"order-1 flex flex-row flex-wrap gap-4 min-[900px]:order-2"}>
+        <div
+          className={
+            "order-1 flex flex-row flex-wrap gap-4 min-[900px]:order-2"
+          }
+        >
           <div className={"flex flex-row items-center gap-1"}>
             <svg
               width="24"

@@ -159,7 +159,7 @@ const PropertyDetailsPage = () => {
         {/* Rating */}
         <PropertyRating />
         <section className="relative px-5 mx-auto -top-14 max-w-screen-2xl sm:px-10">
-          <ReportIssue href="" />
+          <ReportIssue />
         </section>
         <Button
           variant="ghost"

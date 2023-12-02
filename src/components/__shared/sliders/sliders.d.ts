@@ -2,6 +2,7 @@ type SliderPaginationOnlyProps = {
   images: SliderPaginationOnlyImage[];
   className?: string;
   autoplay?: boolean;
+  disabledOnInteraction?: boolean;
 };
 
 interface SliderWideProps extends SliderPaginationOnlyProps {}
