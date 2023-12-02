@@ -12,6 +12,7 @@ const RecommendedListings = ({className}: Props) => {
     <section className={`w-full h-fit ${className}`}>
       {
         <SliderMultiItems
+          autoplay
           hasNavAndPagination={false}
           slidesPerView={1}
           breakpoints={{

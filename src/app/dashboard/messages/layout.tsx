@@ -14,8 +14,8 @@ import {
   useRealTimeSubscription,
 } from "@/lib/custom-hooks/useFetch";
 import { useProtectedRoute } from "@/lib/custom-hooks/useProtectedRoute";
-import { useCapitalizeName } from "@/lib/custom-hooks/useCapitalizeName";
-import capitalizeName from "@/lib/utils/capitalizeName";
+import { useCapitalizeName } from "@/lib/custom-hooks/useStringManipulation";
+import capitalizeName from "@/lib/utils/stringManipulation";
 import { useInsertMutation } from "@supabase-cache-helpers/postgrest-swr";
 
 type Props = {

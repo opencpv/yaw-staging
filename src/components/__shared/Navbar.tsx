@@ -2,7 +2,6 @@
 
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
-import Link from "next/link";
 import { montserat } from "@/styles/font";
 import Menu from "../NavMenu.tsx";
 import { useRouter } from "next/navigation.js";
@@ -10,6 +9,8 @@ import { usePathname } from "next/navigation.js";
 import { IoIosShareAlt } from "react-icons/io";
 import { HiOutlineHeart } from "react-icons/hi2";
 import { useEffect, useRef, useState } from "react";
+import Logo from "@/components/__shared/Logo";
+import Button from "@/components/__shared/Button";
 
 const Navbar = (props: any) => {
   const pathname = usePathname();
@@ -23,7 +24,6 @@ const Navbar = (props: any) => {
         (pathname?.includes("/properties/") || pathname === "/") &&
         window.scrollY > 1
       ) {
-
         setIsScrolling(true);
       } else {
         setIsScrolling(false);
@@ -46,9 +46,9 @@ const Navbar = (props: any) => {
     <nav
       className={`w-full px-8 py-4 z-40 ${props.isMenuOpen && "absolute"} ${
         isNotTargetPage
-          ? "sticky bg-[#333333]"
+          ? "sticky bg-primary-500"
           : shouldChangeColor
-          ? "fixed bg-[#333333] transition-all"
+          ? "fixed bg-primary-500 transition-all"
           : "fixed bg-transparent transition-all"
       } top-0`}
     >
@@ -58,30 +58,17 @@ const Navbar = (props: any) => {
           layout
           toggleMenu={() => props?.toggleMenu((r: boolean) => !r)}
         />
-        <Link href={"/"}>
-          <Image
-            quality={300}
-            src={icons.Logo}
-            alt="logo"
-            className="w-full h-full max-w-[76px] aspect-[76/62]
-            md:max-w-[92px] 
-            md:aspect-[92/74] 2xl:max-w-[150px] 
-            2xl:aspect-[150/122]"
-          />
-        </Link>
+        <Logo />
         <div className="flex items-center lg:gap-[73px] md:gap-[31px] w-full justify-end">
           {!pathname?.includes("/properties/") ? (
-            <button
+            <Button
               onClick={(e: any) => {
                 router.push("/login");
               }}
-              className={`hidden lg:block w-full 2xl:aspect-[387/75]
-            aspect-[278/55]
-            2xl:max-w-[387px] max-w-[278px]
-            rounded-2xl border-2 border-[#fff] bg-[#305A61] text-white text-base font-semibold ${montserat.className}`}
+              className={`hidden w-64 px-8 py-4 border h-14 border-white rounded-lg bg-primary-400 text-lg font-[600] capitalize text-white hover:bg-neutral-300 hover:text-neutral-600 lg:inline-flex`}
             >
               Start Here
-            </button>
+            </Button>
           ) : (
             <div className="flex items-center gap-4">
               <HiOutlineHeart className="text-5xl text-white cursor-pointer" />

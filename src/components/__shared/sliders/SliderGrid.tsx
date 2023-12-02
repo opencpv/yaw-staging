@@ -36,8 +36,13 @@ const SliderGrid = ({ items }: SliderGridProps) => {
         }}
         modules={[Grid, Pagination, Navigation]}
         breakpoints={{
+          460: {
+            centeredSlides: true,
+            slidesPerView: 1.5,
+          },
           640: {
             slidesPerView: 2,
+            centeredSlides: false,
             grid: {
               rows: 3,
             },

@@ -28,7 +28,7 @@ const AOSWrapper = ({
   return (
     <div
       data-aos={animation}
-      data-aos-duration={duration ? duration : "2000"}
+      data-aos-duration={duration ? duration : "900"}
       data-aos-delay={delay ? delay : "0"}
       data-aos-offset={offset ? offset : "0"}
       className={className}

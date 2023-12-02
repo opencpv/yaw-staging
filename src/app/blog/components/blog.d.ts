@@ -1,6 +1,8 @@
-type AuthorImageCircleProps = {
+type BlogAuthor = {
     image: string;
-    name: string;
+    name?: string;
+    about?: string;
+    onClick?: (idx?: number) => void;
     className?: string;
 }
 
@@ -24,4 +26,5 @@ type PostProps = {
     href?: string;
     postedAt?: string;
     body?: string;
+    rating?: number;
 }

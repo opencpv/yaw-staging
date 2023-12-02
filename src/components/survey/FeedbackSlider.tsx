@@ -7,19 +7,13 @@ import Image from "next/image";
 const FeedbackSlider = () => {
   const [value, setValue] = useState<number>(50);
 
-  const changeValue = (e: any) => {
-    if (e.value) {
-      setValue(e.value);
-    }
-  };
-
   return (
     <>
       <ConfigProvider
         theme={{
           components: {
             Slider: {
-              /* here is your component tokens */
+              /* component tokens */
               controlSize: 30,
               trackBg: "#44AF69",
               railBg: "#B2DEC2",
@@ -57,7 +51,7 @@ const FeedbackSlider = () => {
                         height={40}
                       />
                       <h4
-                        className={`text-center font-[600] capitalize leading-4 text-primary-400`}
+                        className={`text-center font-[600] capitalize leading-4 cursor-default text-primary-400`}
                       >
                         {label}
                       </h4>
@@ -65,7 +59,11 @@ const FeedbackSlider = () => {
                   );
                 }
                 return (
-                  <div key={id} className="flex w-2/12 flex-col items-center">
+                  <div
+                    key={id}
+                    className="flex w-2/12 flex-col items-center"
+                    onClick={() => setValue(fromValue + 8)}
+                  >
                     <Image
                       src={unmatchedImage}
                       alt={label.toLowerCase()}
@@ -73,7 +71,7 @@ const FeedbackSlider = () => {
                       height={40}
                     />
                     <h4
-                      className={`text-center font-[600] capitalize leading-4 text-neutral-400`}
+                      className={`text-center font-[600] capitalize leading-4 cursor-default text-neutral-400`}
                     >
                       {label}
                     </h4>
@@ -83,7 +81,7 @@ const FeedbackSlider = () => {
             </div>
             <div className="">
               <Slider
-                defaultValue={value}
+                value={value}
                 onChange={setValue}
                 trackStyle={{
                   borderRadius: "5px",

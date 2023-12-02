@@ -21,7 +21,8 @@ const Modal = ({
   size,
   isDismissible,
   closeButton,
-  footerAlignment
+  footerAlignment,
+  hideCloseButton,
 }: ModalProps) => {
   return (
     <>
@@ -35,6 +36,7 @@ const Modal = ({
         placement="center"
         isOpen={isOpen}
         onClose={onClose}
+        hideCloseButton={hideCloseButton ? true : false}
         onOpenChange={onOpenChange}
         closeButton={
           closeButton ? (

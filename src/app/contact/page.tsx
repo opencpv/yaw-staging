@@ -17,7 +17,7 @@ import supabase from "@/lib/utils/supabaseClient";
 import * as Yup from "yup";
 import Loader from "@/components/__shared/loader/Loader";
 import Navbar from "@/components/__shared/Navbar";
-import Footer from "../components/Footer";
+import Footer from "@/components/__shared/Footer";
 import { motion } from "framer-motion";
 import PhoneNumberInputv2 from "@/components/__shared/PhoneInputv2";
 
@@ -92,6 +92,7 @@ const Page = () => {
                   General
                 </Tab>
                 <Tab
+                  id="c__rep"
                   onClick={(e: any) => setActive("report")}
                   type={active === "report" ? "active" : undefined}>
                   Report an issue

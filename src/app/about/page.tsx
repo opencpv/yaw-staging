@@ -3,12 +3,13 @@ import fetchAboutData from "./lib/fetchAboutData";
 import Image from "next/image";
 import AboutItem from "./components/AboutItem";
 import Navbar from "@/components/__shared/Navbar";
-import Footer from "../components/Footer";
+import Footer from "@/components/__shared/Footer";
 import SimpleSlider from "./components/Slider/SimpleSlider";
 import "swiper/css";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import VerticalSlider from "./components/Slider/VerticalSlider";
-import RecommendedListings from "@/components/__shared/listing/RecommendedListings";
+import AOSWrapper from "@/components/__shared/AOSWrapper";
+import FeaturedListings from "@/components/__shared/listing/FeaturedListings";
 
 const About = async () => {
   const data = await fetchAboutData();
@@ -36,7 +37,7 @@ const About = async () => {
             </h2>
           </div>
         </div>
-        <section className="flex items-center justify-center">
+        <AOSWrapper animation="fade-up" className="flex items-center justify-center">
           <div className="relative w-full h-60 md:h-[30rem]">
             {/* <Image
               src={urlFor(data[0].featuredImage).width(1728).url() as string}
@@ -53,16 +54,16 @@ const About = async () => {
               style={{ objectFit: "cover" }}
             />
           </div>
-        </section>
-        <section className="flex items-center justify-center pb-10 mx-auto min-h-max section">
+        </AOSWrapper>
+        <AOSWrapper animation="fade-up"  className="flex items-center justify-center pb-10 mx-auto min-h-max section">
           <div className="min-h-max">
             {aboutDescription.map((data: any, index: number) => (
               <AboutItem key={index} index={index + 1} data={data} />
             ))}
           </div>
-        </section>
-        <section className="relative w-full">
-          <div className="relative flex flex-col lg:flex-row items-center xs:items-start gap-10 justify-between fhd:mx-auto bg-gradient-to-r from-[#21A19F] to-[#1EA9A6A1] text-white p-5 xs:p-10 max-w-screen-xl bg-opacity-90 lg:top-20">
+        </AOSWrapper>
+        <AOSWrapper animation="fade-up"  className="relative w-full">
+          <div className="relative flex flex-col lg:flex-row items-center xs:items-start gap-10 justify-between fhd:mx-auto bg-gradient-to-r from-[#21A19F] to-[#1EA9A6A1] text-white p-5 xs:p-10 max-w-screen-xl bg-opacity-90 min-[1048px]:max-xl:w-11/12 lg:top-20">
             <div className="">
               <h2 className="font-[700] text-2xl md:text-4xl">Ipsum Lorem</h2>
               <p className="max-w-2xl mt-5 font-[500] text-base md:text-lg">
@@ -81,12 +82,12 @@ const About = async () => {
           </div>
           {/* <AboutBanner data={bannerData} /> */}
           <SimpleSlider />
-        </section>
-        <section className="relative flex w-full ml-auto pt-0 pb-10 h-[60rem] px-5 min-[340px]:h-[50rem] xl:py-10 xl:h-[37rem] xl:w-10/12 xs:px-10 max-w-[1100px] fhd:mx-auto">
+        </AOSWrapper>
+        <AOSWrapper animation="fade-up"  className="pb-20 h-fit section">
           <VerticalSlider />
           {/* <div className="absolute top-0 left-0 z-10 w-[87%] h-full bg-transparent xl:hidden"></div> */}
-        </section>
-        <RecommendedListings className="py-10 section" />
+        </AOSWrapper>
+        <FeaturedListings className="py-10 section" />
       </main>
       <Footer />
     </>

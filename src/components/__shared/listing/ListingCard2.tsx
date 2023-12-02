@@ -17,6 +17,7 @@ import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import FavoriteModal from "./FavoriteModal";
 import { useDisclosure } from "@nextui-org/react";
+import Tooltip from "@/components/ui/Tooltip";
 
 const ListingCard2 = (props: ListingCardInterface) => {
   const { icons } = useAssets();
@@ -94,7 +95,9 @@ const ListingCard2 = (props: ListingCardInterface) => {
                   <FaStar className="text-yellow-300" />
                 )}
 
-                <small className="underline">{props.rating}</small>
+                <small className="underline">
+                  <Link href="">{props.rating}</Link>
+                </small>
                 <small>( {props.ratingCount}+ )</small>
                 {(props.ratingCount === 0 || props.rating === 0) && (
                   <Link
@@ -115,7 +118,7 @@ const ListingCard2 = (props: ListingCardInterface) => {
               <div className="flex flex-wrap items-end gap-2">
                 <div>
                   <p className="text-sm font-[700] text-neutral-900">
-                    GHS
+                    GHS&nbsp;
                     <span className="font-[500]">
                       {" "}
                       {props.price?.toLocaleString("en-US", {
@@ -144,7 +147,7 @@ const ListingCard2 = (props: ListingCardInterface) => {
                     toggleLiked();
                     setTimeout(() => {
                       onOpen();
-                    }, 3000);
+                    }, 1000);
                   }}
                 />
               )}
@@ -200,26 +203,29 @@ const ListingCard2 = (props: ListingCardInterface) => {
           {/* Membership */}
           {props.membership === "Certified" && (
             <div className="mr-4 shadow-2xl">
-              <Image
-                src={icons.Certified}
-                alt={props.membership?.toLowerCase()}
-                title={props.membership?.toLowerCase()}
-                height={35}
-                width={35}
-                className="shadow-2xl"
-              />
+              <Tooltip content={props.membership}>
+                <Image
+                  src={icons.Certified}
+                  alt={props.membership?.toLowerCase()}
+                  height={35}
+                  width={35}
+                  className="shadow-2xl"
+                />
+              </Tooltip>
             </div>
           )}
           {props.membership === "Verified" && (
             <div className="mr-4 shadow-2xl">
-              <Image
-                src={icons.Verified}
-                alt={props.membership?.toLowerCase()}
-                title={props.membership?.toLowerCase()}
-                height={35}
-                width={35}
-                className="shadow-2xl"
-              />
+              <Tooltip content={props.membership}>
+                <Image
+                  src={icons.Verified}
+                  alt={props.membership?.toLowerCase()}
+                  title={props.membership?.toLowerCase()}
+                  height={35}
+                  width={35}
+                  className="shadow-2xl"
+                />
+              </Tooltip>
             </div>
           )}
           {props.membership === "Unverified" && (

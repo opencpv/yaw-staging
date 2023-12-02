@@ -1,62 +1,37 @@
-import CaInstagram from "../../app/components/icons/CaInstagram";
-import CaStarRainbow from "../../app/components/icons/CaStarRainbow";
-import CaTwitter from "../../app/components/icons/CaTwitter";
-import CaWhatsappBusiness from "../../app/components/icons/CaWhatsappBusiness";
+"use client";
+import CaInstagram from "@/app/components/icons/CaInstagram";
+import CaStarRainbow from "@/app/components/icons/CaStarRainbow";
+import CaTwitter from "@/app/components/icons/CaTwitter";
+import CaWhatsappBusiness from "@/app/components/icons/CaWhatsappBusiness";
 import Link from "next/link";
-import CaFacebook from "../../app/components/icons/CaFacebook";
-import { useAssets } from "@/lib/custom-hooks/useAssets";
-import Image from "next/image";
-import { montserat } from "../../styles/font";
+import CaFacebook from "@/app/components/icons/CaFacebook";
+import { montserat } from "@/styles/font";
+import quickLinks from "@/enum/footer/quickLinks";
+import { getCurrentYear } from "@/lib/utils/numberManipulation";
+import Logo from "@/components/__shared/Logo";
+import SubscribeForm from "./ui/SubscribeForm";
 
 const Footer = () => {
-  const { icons } = useAssets();
-  const Links = [
-    {
-      name: "Services",
-      href: "#",
-    },
-    {
-      name: "B2B",
-      href: "#",
-    },
-    {
-      name: "Jobs",
-      href: "#",
-    },
-    {
-      name: "FAQS",
-      href: "#",
-    },
-    {
-      name: "Report Fraud",
-      href: "#",
-    },
-    {
-      name: "Feedback",
-      href: "#",
-    },
-  ];
-
   return (
     <footer
-      className={`bg-[#131B1A] w-full flex flex-col gap gap-[min(10vh,10rem)] ${montserat.className}`}
+      className={`bg-[#131B1A] flex flex-col gap gap-[min(10vh,10rem)] ${montserat.className}`}
     >
       <div className="flex flex-col justify-center gap-10 bg-[#333] py-8 px-2 md:flex-row">
-        {Links.map((r) => (
-          <Link key={r?.name} href={r?.href}>
-            <h3 className="text-[#8A8A8A] text-2xl">{r.name}</h3>
+        {quickLinks.map((r) => (
+          <Link key={r?.label} href={r?.href}>
+            <h3 className="text-[#8A8A8A] text-2xl">{r.label}</h3>
           </Link>
         ))}
       </div>
       <div
         className={"flex flex-row h-[184px]  lg:w-11/12 mx-auto w-full  px-5"}
       >
-        <Image src={icons.Logo} alt="logo" className="" />
+        <Logo size="lg" />
       </div>
       <div className="flex flex-col gap-10 lg:w-8/12 mx-auto px-6 text-[#fff] items-center">
         <p
           className={
-            "max-w-[1077px] text-[2rem] xl:text-[3rem] font-[500] 2xl:tracking-[-1.92px]"
+            "max-w-[1077px] text-[32px] xl:text-[48px] font-[500] 2xl:tracking-[-1.92px]"
           }
         >
           Sign up to get the{" "}
@@ -71,34 +46,13 @@ const Footer = () => {
           </strong>
           .
         </p>
-        <div
-          className="flex flex-col gap-5 lg:gap-0 lg:flex-row w-full max-w-[1061px] h-[95px] rounded-[32px] 
-        "
-        >
-          <input
-            className="h-full rounded-l-[32px] px-10
-            rounded-[32px] lg:rounded-r-[0px]
-            min-h-[70px] md:min-h-[95px]
-            w-full lg:w-3/5 bg-[#D9D9D9]
-            text-[#B0B0B0] text-2xl"
-            placeholder={"Enter your email or phone number"}
-          />
-          <button
-            className="uppercase bg-[#DDB771]
-            rounded-[32px] lg:rounded-l-[0px] min-h-[70px]
-            md:min-h-[95px]
-          flex items-center justify-center rounded-r-[32px]
-          w-full lg:w-2/5 font-semibold text-2xl"
-          >
-            subscribe now!
-          </button>
-        </div>
+        <SubscribeForm />
       </div>
 
-      <div className="flex flex-col items-center gap-10 pb-14 mt-10 text-[2rem] text-[#fff] ">
+      <div className="flex flex-col items-center gap-10 pb-14 mt-10 text-[32px] text-[#fff] ">
         <h2 className="font-bold">Connect with us:</h2>
 
-        <div className="flex w-4/5 items-center gap-4 md:w-2/5 md:gap-8">
+        <div className="flex items-center w-4/5 gap-4 md:w-2/5 md:gap-8">
           <button className="hover:rotate-[360deg] w-full duration-1000">
             <CaInstagram width={"100%"} height={"100%"} />
           </button>
@@ -119,53 +73,14 @@ const Footer = () => {
           </button>
         </div>
       </div>
-      <div className={"flex lg:hidden flex-col gap-8 text-2xl px-3"}>
-        <div className={"flex flex-row items-center gap-1"}>
-          <svg
-            width="44"
-            height="44"
-            viewBox="0 0 44 44"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M7.33269 36.6654C6.32435 36.6654 5.46085 36.306 4.74219 35.5874C4.02352 34.8687 3.6648 34.0058 3.66602 32.9987V10.9987C3.66602 9.99037 4.02535 9.12687 4.74402 8.4082C5.46269 7.68953 6.32557 7.33081 7.33269 7.33203H36.666C37.6744 7.33203 38.5378 7.69137 39.2565 8.41003C39.9752 9.1287 40.3339 9.99159 40.3327 10.9987V32.9987C40.3327 34.007 39.9734 34.8705 39.2547 35.5892C38.536 36.3079 37.6731 36.6666 36.666 36.6654H7.33269ZM21.9994 23.832L36.666 14.6654V10.9987L21.9994 20.1654L7.33269 10.9987V14.6654L21.9994 23.832Z"
-              fill="#0B6E4F"
-            />
-          </svg>
-          <p className="text-[#fff] ">contact@contact.com</p>
-        </div>
-        <div className={"flex flex-row items-center gap-1 "}>
-          <svg
-            width="44"
-            height="44"
-            viewBox="0 0 44 44"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M7.33269 36.6654C6.32435 36.6654 5.46085 36.306 4.74219 35.5874C4.02352 34.8687 3.6648 34.0058 3.66602 32.9987V10.9987C3.66602 9.99037 4.02535 9.12687 4.74402 8.4082C5.46269 7.68953 6.32557 7.33081 7.33269 7.33203H36.666C37.6744 7.33203 38.5378 7.69137 39.2565 8.41003C39.9752 9.1287 40.3339 9.99159 40.3327 10.9987V32.9987C40.3327 34.007 39.9734 34.8705 39.2547 35.5892C38.536 36.3079 37.6731 36.6666 36.666 36.6654H7.33269ZM21.9994 23.832L36.666 14.6654V10.9987L21.9994 20.1654L7.33269 10.9987V14.6654L21.9994 23.832Z"
-              fill="#0B6E4F"
-            />
-          </svg>
-          <p className="text-[#fff]">contact@contact.com</p>
-        </div>
-        <div className="flex flex-col gap-4 lg:hidden  px-2 pt-20 text-2xl pb-12">
+      <div className="flex flex-col w-full max-w-6xl gap-10 px-8 bg-transparent mb-10 text-xl min-[900px]:flex-row min-[900px]:mx-auto min-[900px]:justify-between min-[900px]:items-center">
+        <div className={"order-2 flex flex-row flex-wrap gap-x-1 gap-y-4 min-[900px]:order-1"}>
           <p className="text-[#B0B0B0]">
-            Copyright © 2023 RentRightGH 2023. All rights reserved
+            Copyright © {getCurrentYear()} ESODO LLC | All rights reserved
           </p>
-          <p className="text-[#B0B0B0]">| Terms</p>
+          <Link href="/legal" className="inline-block text-[#B0B0B0]">| Legal</Link>
         </div>
-      </div>
-
-      <div className="hidden lg:flex  flex-row justify-between px-8 items-center  bg-transparent pt-20 mb-10 text-xl">
-        <div className={"flex flex-row items-center gap-4 whitespace-nowrap"}>
-          <p className="text-[#B0B0B0]">
-            Copyright © 2023 RentRightGH 2023. All rights reserved
-          </p>
-          <p className="text-[#B0B0B0]">| Terms</p>
-        </div>
-        <div className={"flex flex-row items-center gap-4 whitespace-nowrap"}>
+        <div className={"order-1 flex flex-row flex-wrap gap-4 min-[900px]:order-2"}>
           <div className={"flex flex-row items-center gap-1"}>
             <svg
               width="24"
@@ -179,7 +94,7 @@ const Footer = () => {
                 fill="#0B6E4F"
               />
             </svg>
-            <p className="text-[#ffff]">contact@contact.com</p>
+            <p className="text-[#ffff]">admin@rentrightgh.com</p>
           </div>
           <div className={"flex flex-row items-center gap-1"}>
             <svg

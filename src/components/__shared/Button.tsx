@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { Button as NextUIButton } from "@nextui-org/react";
+import { cn } from "@/lib/utils";
 
 type Props = {
   className?: string;
@@ -10,7 +11,7 @@ type Props = {
   borderColor?: string;
   isIconOnly?: boolean;
   disabled?: boolean;
-  onClick?: () => void;
+  onClick?: (e?: any) => void;
 };
 
 const Button = ({
@@ -28,17 +29,17 @@ const Button = ({
       <NextUIButton
         isDisabled={disabled}
         isIconOnly={isIconOnly}
-        className={`whitespace-normal font-[600] rounded-md bg-transparent max-w-sm px-3 py-3 border ${
+        className={cn(`whitespace-normal font-[600] rounded-md bg-transparent max-w-sm p-3 border ${
           color === "primary"
             ? "border-primary-500 text-primary-500"
             : color === "accent"
             ? "border-accent-50 text-accent-50"
             : color === "white"
-            ? "border-white text-neutral-800"
+            ? "text-neutral-800"
             : color === "gradient"
             ? "border-[#21A19F] text-[#21A19F]"
             : null
-        } ${disabled && "cursor-not-allowed text-neutral-600"} ${className}`}
+        } ${disabled && "cursor-not-allowed text-neutral-600"} hover:scale-[1.02]`, className)}
         style={{ borderColor: borderColor ? borderColor : "" }}
         onPress={onClick}
       >
@@ -50,7 +51,7 @@ const Button = ({
       <NextUIButton
         isDisabled={disabled}
         isIconOnly={isIconOnly}
-        className={`bg-transparent ${
+        className={cn(`bg-transparent ${
           color === "primary"
             ? "text-primary-500"
             : color === "accent"
@@ -58,7 +59,7 @@ const Button = ({
             : color === "white"
             ? "text-neutral-800"
             : null
-        }  ${disabled && "cursor-not-allowed text-neutral-600"} ${className}`}
+        }  ${disabled && "cursor-not-allowed text-neutral-600"} hover:scale-[1.02]`, className)}
         onPress={onClick}
       >
         {children}
@@ -69,7 +70,7 @@ const Button = ({
     <NextUIButton
       isDisabled={disabled}
       isIconOnly={isIconOnly}
-      className={`whitespace-normal font-[600] rounded-md max-w-sm px-3 py-3 ${
+      className={cn(`whitespace-normal font-[600] rounded-md max-w-sm p-3 ${
         color === "primary"
           ? "bg-primary-500 text-white"
           : color === "accent"
@@ -81,7 +82,7 @@ const Button = ({
           : null
       } ${
         disabled && "cursor-not-allowed bg-gray-300 text-neutral-600"
-      } ${className}`}
+      } hover:scale-[1.02]`, className)}
       onPress={onClick}
     >
       {children}

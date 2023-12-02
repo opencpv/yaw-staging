@@ -1,14 +1,13 @@
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import React from "react";
-import { FiTrash2 } from "react-icons/fi";
 import Button from "@/components/__shared/Button";
-import { formatPrice } from "@/lib/utils/formatPrice";
-import { formatDate, formatTime } from "@/lib/utils/formatDatetime";
+import { formatPrice } from "@/lib/utils/numberManipulation";
+import { formatDate, formatTime } from "@/lib/utils/stringManipulation";
 import { AiOutlineEye } from "react-icons/ai";
 import ApplicationStatus from "./ApplicationStatus";
 import { useDaysDifference } from "@/lib/custom-hooks/useDaysDifference";
-import capitalizeName from "@/lib/utils/capitalizeName";
+import capitalizeName from "@/lib/utils/stringManipulation";
 import DestructiveModal from "@/components/__shared/modals/DestructiveModal";
 import { useDisclosure } from "@nextui-org/react";
 import DeleteButton from "@/components/__shared/DeleteButton";
@@ -37,7 +36,7 @@ const ApplicationRow = ({
       />
       <tr className="border border-t-0 h-fit">
         {/* Applicant */}
-        <td className="p-2 pt-3">
+        <td className="p-2 py-5">
           <div className="flex items-center gap-2">
             <div className="relative w-16 h-16 rounded-full">
               <Image
@@ -54,7 +53,7 @@ const ApplicationRow = ({
           </div>
         </td>
         {/* Property */}
-        <td className="p-2 pt-3 ">
+        <td className="p-2 py-5 ">
           <div className="flex gap-2">
             <div className="relative w-16 h-16">
               <Image
@@ -75,7 +74,7 @@ const ApplicationRow = ({
           </div>
         </td>
         {/* Posted On */}
-        <td className="p-2 pt-3 text-center align-middle">
+        <td className="p-2 py-5 text-center align-middle">
           <h4 className="font-[600] text-sm">
             {formatDate(date)} {formatTime(date)}
           </h4>

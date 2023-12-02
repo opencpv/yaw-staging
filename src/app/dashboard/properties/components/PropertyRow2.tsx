@@ -5,8 +5,8 @@ import { BiPencil } from "react-icons/bi";
 import { FiTrash2 } from "react-icons/fi";
 import Button from "@/components/__shared/Button";
 import PropertyStatus from "./PropertyStatus";
-import { formatPrice } from "@/lib/utils/formatPrice";
-import { formatDate, formatTime } from "@/lib/utils/formatDatetime";
+import { formatPrice } from "@/lib/utils/numberManipulation";
+import { formatDate, formatTime } from "@/lib/utils/stringManipulation";
 import { useDaysDifference } from "@/lib/custom-hooks/useDaysDifference";
 
 const PropertyRow2 = ({

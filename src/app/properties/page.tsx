@@ -5,7 +5,7 @@ import React from "react";
 import listings from "@/enum/demodb/listings";
 import ListingCard2 from "../../components/__shared/listing/ListingCard2";
 import TagsSelect from "./components/TagsSelect";
-import Footer from "../components/Footer";
+import Footer from "@/components/__shared/Footer";
 import FixedSocials from "@/components/FixedSocials";
 import ScrollTop from "@/components/__shared/ScrollTop";
 import Button from "@/components/__shared/Button";

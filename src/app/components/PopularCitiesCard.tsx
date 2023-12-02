@@ -1,9 +1,8 @@
 "use client";
 import React from "react";
 import { FaHouseUser } from "react-icons/fa";
-import { HiArrowLongRight } from "react-icons/hi2";
 import Link from "next/link";
-import { useTruncateNumber } from "@/lib/custom-hooks/useTruncateNumber";
+import { useTruncateNumber } from "@/lib/custom-hooks/useNumberManipulation";
 import Image from "next/image";
 import { CgArrowLongRight } from "react-icons/cg";
 

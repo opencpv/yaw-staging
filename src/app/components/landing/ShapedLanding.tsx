@@ -1,5 +1,5 @@
 "use client";
-import ViewProperty from "@/app/properties/components/ViewProperty";
+import ViewPropertyBtn from "@/app/properties/components/ViewPropertyBtn";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import React from "react";
@@ -44,11 +44,11 @@ const ShapedLanding = ({
                 disableOnSmallScreens === undefined)
             ? style.shapeRight2
             : null
-        } relative w-full min-h-[50rem] ${className}`}
+        } relative w-full min-h-[50rem] sm:min-h-[65rem] ${className}`}
       >
         <Image src={image} alt={property} fill style={{ objectFit: "cover" }} />
         {children}
-        <ViewProperty href={`${href}`} />
+        <ViewPropertyBtn href={`${href}`} />
       </section>
     );
   else
@@ -68,11 +68,11 @@ const ShapedLanding = ({
                 disableOnSmallScreens === undefined)
             ? style.shapeRight2
             : null
-        } relative w-full min-h-[50rem] ${className}`}
+        } relative w-full min-h-[50rem] sm:min-h-[65rem] ${className}`}
       >
         <Image src={image} alt={property} fill style={{ objectFit: "cover" }} />
         {children}
-        <ViewProperty href={`${href === undefined ? "#" : href}`} />
+        <ViewPropertyBtn href={`${href === undefined ? "#" : href}`} />
       </section>
     );
 };

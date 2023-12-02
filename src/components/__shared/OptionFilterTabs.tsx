@@ -1,5 +1,5 @@
 "use client";
-import capitalizeName from "@/lib/utils/capitalizeName";
+import capitalizeName from "@/lib/utils/stringManipulation";
 import { Selection, Tab, Tabs } from "@nextui-org/react";
 import React from "react";
 
