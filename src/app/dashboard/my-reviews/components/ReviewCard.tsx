@@ -1,20 +1,52 @@
 import Image from "next/image";
 import ReviewButton from "./ReviewButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CaREviewsReply2 from "./icons/CaReviewsReply2";
 import DeleteModal from "./DeleteModal";
+import ReviewStarsFixed from "./ReviewStarsFixed";
+import CustomTextAreaInput from "@/app/components/CustomTextAreaInput";
 
 type Props = {
   data: any;
   property?: boolean;
   variant?: "reviewers-say";
+  index: number;
 };
 
-export default function ReviewCard({ data, variant, property }: Props) {
+export default function ReviewCard({ data, variant, property, index }: Props) {
   const [reply, setReply] = useState(false);
+  const [edit, setEdit] = useState(false);
+  const [editInput, setInput] = useState();
+
+  useEffect(() => {
+    const textareaEle = document.getElementById(`textarea-${index}`);
+
+    const handleInput = () => {
+      if (textareaEle) {
+        textareaEle.style.height = "auto";
+        textareaEle.style.height = `${textareaEle.scrollHeight}px`;
+        // setInput(textareaEle.value);
+      }
+    };
+
+    if (textareaEle) {
+      textareaEle.addEventListener("input", handleInput);
+    }
+
+    setInput(data?.review);
+    if (edit) {
+      handleInput();
+    }
+    return () => {
+      if (textareaEle) {
+        textareaEle.removeEventListener("input", handleInput);
+      }
+    };
+  }, [edit, data?.review]);
+
   return (
     <div className="w-full flex flex-col items-start gap-4   pb-4 max-w-[1103px] ">
-      <div className="flex flex-col items-start gap-4 border-l-4 border-l-[#00974A] pl-4 border-b-[1px] border-b-[#E9ECEF] pb-4">
+      <div className="flex flex-col items-start gap-4 border-l-4 border-l-[#00974A] pl-4 border-b-[1px] border-b-[#E9ECEF] pb-4 w-full">
         <div className="flex gap-4 justify-start items-center w-full">
           <div
             className={`relative w-full h-full  ${
@@ -34,16 +66,32 @@ export default function ReviewCard({ data, variant, property }: Props) {
               {data?.name}
             </p>
             <p>{data?.date}</p>
-            <p>{data?.ratings}</p>
+            {<ReviewStarsFixed rating={data?.ratings} />}{" "}
           </div>
         </div>
-        <div>
-          <p className="text-[#333] leading-[23.04px]">{data?.review}</p>{" "}
-        </div>
+
+        {edit && (
+          <div className="flex gap-5 w-full h-full">
+            <textarea
+              id={`textarea-${index}`}
+              className="w-full border-[1px] overflow-y-hidden border-[#E6E6E6] px-[0.94rem] text-[#333]"
+              defaultValue={editInput}></textarea>
+          </div>
+        )}
+        {!edit && (
+          <div>
+            <p className="text-[#333] leading-[23.04px]">{data?.review}</p>{" "}
+          </div>
+        )}
 
         {variant != "reviewers-say" && (
           <div className="flex gap-2">
-            <ReviewButton variant="edit" />
+            <ReviewButton
+              variant={edit ? "update" : "edit"}
+              onClick={() => {
+                !edit ? setEdit(true) : setEdit(false);
+              }}
+            />
             <DeleteModal />
           </div>
         )}
