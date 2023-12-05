@@ -10,6 +10,7 @@ import SliderPaginationOnly from "@/components/__shared/sliders/SliderPagination
 import SliderWide from "@/components/__shared/sliders/SliderWide";
 import OtherPostsGroup from "../../components/post/OtherPostsGroup";
 import AOSWrapper from "@/components/__shared/AOSWrapper";
+import BreadCrumbPreLink from "@/components/__shared/ui/BreadCrumbPreLink";
 
 type Props = {};
 
@@ -17,15 +18,13 @@ const page = (props: Props) => {
   return (
     <main className="mt-10 section text-neutral-500 overflow-x-hidden">
       <h3 className="text-xl font-[500] mb-8">
-        <Link href="/blog" className="border-b border-blue-700">
-          Blog{" "}
-        </Link>
-        - Posted by <span className="text-primary-500">Jane Doe</span>
+        <BreadCrumbPreLink label="Blog" href="/blog" /> - Posted by{" "}
+        <span className="text-primary-500">Jane Doe</span>
       </h3>
       <h1 className="text-2xl font-[700] text-primary-200 mb-5 md:text-4xl">
         Mastering the Art of Home Decor: Simple Tips for a Cozy Living Space
       </h1>
-      <AOSWrapper animation="fade-up" >
+      <AOSWrapper animation="fade-up">
         <div className="relative w-full h-60 shape-3 mb-16 lg:h-[30rem]">
           <Image
             src="/assets/images/about/about-slider-img.webp"
@@ -38,10 +37,8 @@ const page = (props: Props) => {
       </AOSWrapper>
 
       <h3 className="text-xl font-[500] mb-8">
-        <Link href="/blog" className="border-b border-blue-700">
-          Category{" "}
-        </Link>
-        /<span className=""> Blog title</span>
+        <BreadCrumbPreLink label="Category" href="/blog/Category" /> /
+        <span className=""> Blog title</span>
       </h3>
       <section className="grid-cols-4 gap-5 mb-20 sm:grid">
         <div className="col-span-3">
@@ -114,7 +111,7 @@ const page = (props: Props) => {
               />
             </section>
           </AOSWrapper>
-          <AOSWrapper animation="fade-right" >
+          <AOSWrapper animation="fade-right">
             <Button
               color="accent"
               className="px-8 py-8 text-lg uppercase mb-14 md:hidden"
@@ -128,7 +125,7 @@ const page = (props: Props) => {
           <div className="hidden md:block">
             <OtherPostsGroup />
           </div>
-          <AOSWrapper animation="fade-left" >
+          <AOSWrapper animation="fade-left">
             <Button className="hidden w-full py-8 mb-10 text-lg text-white uppercase bg-accent-50 min-h-fit md:inline-flex">
               Subscribe to our blog
             </Button>
@@ -139,7 +136,7 @@ const page = (props: Props) => {
         <OtherPostsGroup />
       </section>
       <section className="w-full mb-20 h-fit md:hidden">
-        <SliderWide
+        <SliderWide navigation
           images={[1, 2, 3, 4, 5].map((image) => ({
             src: "/assets/images/niceHome.png",
             name: "",

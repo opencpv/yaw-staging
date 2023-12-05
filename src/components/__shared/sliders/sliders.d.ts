@@ -1,3 +1,7 @@
+type CarouselProps = {
+  images: {src: string; label?: string}[]
+}
+
 type SliderPaginationOnlyProps = {
   images: SliderPaginationOnlyImage[];
   className?: string;
@@ -5,7 +9,9 @@ type SliderPaginationOnlyProps = {
   disabledOnInteraction?: boolean;
 };
 
-interface SliderWideProps extends SliderPaginationOnlyProps {}
+interface SliderWideProps extends SliderPaginationOnlyProps {
+  navigation?: boolean
+}
 
 type SliderPaginationOnlyImage = {
   name: string;

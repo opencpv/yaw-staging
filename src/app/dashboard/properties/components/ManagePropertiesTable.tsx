@@ -40,7 +40,7 @@ const ManagePropertiesTable = (props: Props) => {
   return (
     <section className="hidden lg:table">
       {error && <p>Error: {error.message}</p>}
-      <table className=" w-full mb-8 table-fixed">
+      <table className="w-full mb-8 table-fixed">
         <thead className="text-white bg-primary-400">
           <tr className="">
             <th className="p-3 text-center font-[500] capitalize text-sm">

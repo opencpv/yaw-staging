@@ -1,6 +1,6 @@
 "use client";
-import React, { useState } from "react";
-import { FaHeart, FaRegHeart, FaRegStar, FaStar } from "react-icons/fa";
+import React from "react";
+import { FaRegStar, FaStar } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
@@ -16,43 +16,15 @@ import Image from "next/image";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { formatPrice } from "@/lib/utils/numberManipulation";
-import FavoriteModal from "./FavoriteModal";
-import { useDisclosure } from "@nextui-org/react";
 import Tooltip from "@/components/ui/Tooltip";
-import { useToastDisclosure } from "@/lib/custom-hooks/useToastDisclosure";
-import { useListingStore } from "@/store/listing/useListingStore";
+import LikeHeart from "../ui/LikeHeart";
 
 const ListingCard = (props: ListingCardInterface) => {
   const { icons } = useAssets();
-  const [isLiked, setIsLiked] = useState<boolean>(false);
-  const toggleLiked = () => {
-    setIsLiked((prevState) => !prevState);
-  };
-
-  const { contactUponFavorite } = useListingStore();
-  const { onOpen, isOpen, onOpenChange, onClose } = useDisclosure();
-  const { onOpen: toastOnOpen } = useToastDisclosure();
-
-  const handleSaveFavoriteOption = () => {
-    onClose();
-    toastOnOpen(
-      contactUponFavorite
-        ? "Great choice! We've noted that you're open to being contacted by your property owners. Expect to hear from them soon!"
-        : "Noted! Your preference for privacy is important to us. Your property owners will not contact you unless necessary.",
-      9000
-    );
-  };
 
   return (
     <>
-      <FavoriteModal
-        isOpen={isOpen}
-        onOpenChange={onOpenChange}
-        onClose={handleSaveFavoriteOption}
-      />
-      <div
-        className={`relative cursor-default ${props.className}`}
-      >
+      <div className={`relative cursor-default ${props.className}`}>
         <Swiper
           pagination={{
             clickable: true,
@@ -93,7 +65,7 @@ const ListingCard = (props: ListingCardInterface) => {
           </div>
         </Swiper>
         {/* Card info */}
-        <div className="w-full px-5 py-4 space-y-6 bg-white rounded-b-lg border-b shadow-lg text-neutral-800">
+        <div className="w-full px-5 py-4 space-y-6 bg-white border-x border-b rounded-b-lg text-neutral-800">
           <div className="space-y-3 text-xs">
             <div className="flex flex-wrap justify-between gap-x-3 gap-y-1">
               <div className="flex items-center gap-2">
@@ -147,24 +119,10 @@ const ListingCard = (props: ListingCardInterface) => {
                   </p>
                 </div>
               </div>
-              {props.liked || isLiked ? (
-                <FaHeart
-                  className={`cursor-pointer text-lg text-primary-800 ${
-                    isLiked && "ping"
-                  }`}
-                  onClick={toggleLiked}
-                />
-              ) : (
-                <FaRegHeart
-                  className="text-lg cursor-pointer text-primary-800"
-                  onClick={() => {
-                    toggleLiked();
-                    setTimeout(() => {
-                      onOpen();
-                    }, 500);
-                  }}
-                />
-              )}
+              <LikeHeart
+                liked={props.liked}
+                className="text-lg text-primary-800"
+              />
             </div>
             <div className="flex justify-between">
               <small className=" inline rounded-xl bg-[#E7F8F2] px-3 py-1 text-[0.55rem]">

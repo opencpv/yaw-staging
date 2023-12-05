@@ -3,7 +3,7 @@ import fetchAboutData from "./lib/fetchAboutData";
 import Image from "next/image";
 import AboutItem from "./components/AboutItem";
 import Navbar from "@/components/__shared/Navbar";
-import Footer from "@/components/__shared/Footer";
+import Footer from "@/components/__shared/footer/Footer";
 import SimpleSlider from "./components/Slider/SimpleSlider";
 import "swiper/css";
 import { useAssets } from "@/lib/custom-hooks/useAssets";

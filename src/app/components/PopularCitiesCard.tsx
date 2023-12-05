@@ -24,35 +24,37 @@ const PopularCitiesCard = ({
   const propertyNumTruncated = useTruncateNumber(propertyNumber);
 
   return (
-    <div className={`relative flex min-h-[10rem] w-full items-center justify-center rounded-lg p-5 text-white sm:p-20 ${className}`}>
-      <Image
-        src="/assets/images/Stock.jpg"
-        alt={location}
-        fill
-        style={{ objectFit: "cover" }}
-        className="rounded-lg"
-      />
-      <div className="absolute left-0 top-0 h-full w-full rounded-lg bg-gradient-to-tl from-[#21A19F] to-[#131B1A] opacity-60"></div>
+    <Link href={`${href}`}>
+      <div className={`relative flex min-h-[10rem] w-full items-center justify-center rounded-lg p-5 text-white transition-all sm:p-20 hover:scale-105 ${className}`}>
+        <Image
+          src="/assets/images/Stock.jpg"
+          alt={location}
+          fill
+          style={{ objectFit: "cover" }}
+          className="rounded-lg"
+        />
+        <div className="absolute left-0 top-0 h-full w-full rounded-lg bg-gradient-to-tl from-[#21A19F] to-[#131B1A] opacity-60"></div>
 
-      <div className="relative z-10 space-y-3">
-        <div className="space-y-3">
-          <h2 className="font-[700]">{location}</h2>
-          <small className="inline-block font-[700]">{description}</small>
-        </div>
-        <Link
-          href={href}
-          className="flex items-center gap-2 visited:no-underline hover:no-underline active:no-underline"
-        >
-          <div className="flex items-center gap-1 text-accent-50">
-            <FaHouseUser />
-            <span className="text-accent font-[700]">
-              {propertyNumTruncated}
-            </span>
+        <div className="relative z-10 space-y-3">
+          <div className="space-y-3">
+            <h2 className="font-[700]">{location}</h2>
+            <small className="inline-block font-[700]">{description}</small>
           </div>
-          <CgArrowLongRight className="text-white" />
-        </Link>
+          <Link
+            href={`${href}`}
+            className="flex items-center gap-2 visited:no-underline hover:no-underline active:no-underline"
+          >
+            <div className="flex items-center gap-1 text-accent-50">
+              <FaHouseUser />
+              <span className="text-accent font-[700]">
+                {propertyNumTruncated}
+              </span>
+            </div>
+            <CgArrowLongRight className="text-white" />
+          </Link>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

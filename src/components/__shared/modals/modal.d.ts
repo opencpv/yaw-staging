@@ -11,4 +11,7 @@ type ModalProps = {
     isDismissible?: boolean;
     closeButton?: React.ReactNode;
     hideCloseButton?: boolean;
+    /** tailwindcss class */
+    backgroundColor?: string;
+    backdrop?: "blur" | "opaque" | "transparent"
 }

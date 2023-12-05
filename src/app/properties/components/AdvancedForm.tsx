@@ -11,16 +11,19 @@ type Props = {
 };
 
 const AdvancedForm = ({ isActive }: Props) => {
+  const variants = {
+    show: { opacity: 1, y: 0 },
+    hide: { opacity: 0, y: 30, transitionEnd: { display: "none" } },
+  };
+
   return (
     <motion.div
-      whileInView={{ y: 0 }}
-      transition={{duration: 0.4, ease: "easeIn"}}
-      initial={{ y: 20 }}
-      className={`${
-        isActive ? "block" : "hidden"
-      } flex flex-col items-start justify-between gap-5 p-5 mt-16 bg-white shadow-xl max-xl:max-w-xl mx-auto xl:items-center xl:flex-row text-neutral-800 rounded-xl`}
+      variants={variants}
+      animate={isActive ? "show" : "hide"}
+      transition={{ duration: 0.4 }}
+      className={` flex flex-col items-start justify-between gap-5 p-5 mt-16 bg-white shadow-xl max-xl:max-w-xl mx-auto xl:items-center xl:flex-row text-neutral-800 rounded-xl`}
     >
-      <Form className="flex flex-col items-start w-full gap-3 xl:w-[initial] xl:items-center xl:flex-row">
+      <div className="flex flex-col items-start w-full gap-3 xl:w-[initial] xl:items-center xl:flex-row">
         <Form.Item className="w-full xl:w-32">
           <Select className="" defaultValue="Price">
             <Select.Option value="demo">Demo</Select.Option>
@@ -51,7 +54,7 @@ const AdvancedForm = ({ isActive }: Props) => {
             <Select.Option value="demo">Demo</Select.Option>
           </Select>
         </Form.Item>
-      </Form>
+      </div>
       <div className="flex items-center gap-4">
         <button className="flex items-center gap-2">
           Sort <PiArrowsDownUp className="text-[#21A19F]" />

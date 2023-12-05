@@ -17,7 +17,7 @@ import supabase from "@/lib/utils/supabaseClient";
 import * as Yup from "yup";
 import Loader from "@/components/__shared/loader/Loader";
 import Navbar from "@/components/__shared/Navbar";
-import Footer from "@/components/__shared/Footer";
+import Footer from "@/components/__shared/footer/Footer";
 import { motion } from "framer-motion";
 import PhoneNumberInputv2 from "@/components/__shared/PhoneInputv2";
 import { useContactStore } from "@/store/contact/useContactStore";

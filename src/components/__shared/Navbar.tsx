@@ -2,15 +2,14 @@
 
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
-import { montserat } from "@/styles/font";
 import Menu from "../NavMenu.tsx";
 import { useRouter } from "next/navigation.js";
 import { usePathname } from "next/navigation.js";
-import { IoIosShareAlt } from "react-icons/io";
-import { HiOutlineHeart } from "react-icons/hi2";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Logo from "@/components/__shared/Logo";
 import Button from "@/components/__shared/Button";
+import LikeHeart from "./ui/LikeHeart";
+import ShareBtn from "./ui/ShareBtn";
 
 const Navbar = (props: any) => {
   const pathname = usePathname();
@@ -71,8 +70,15 @@ const Navbar = (props: any) => {
             </Button>
           ) : (
             <div className="flex items-center gap-4">
-              <HiOutlineHeart className="text-5xl text-white cursor-pointer" />
-              <IoIosShareAlt className="text-5xl text-white cursor-pointer" />
+              <LikeHeart liked={false} className="text-5xl text-white" />
+              <ShareBtn
+                shareData={{
+                  title: "Hello world",
+                  text: "Good share",
+                  url: "https://share.com",
+                }}
+                className="text-5xl text-white"
+              />
             </div>
           )}
 

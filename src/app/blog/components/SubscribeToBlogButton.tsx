@@ -18,6 +18,7 @@ const SubscribeToBlogButton = (props: Props) => {
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         onClose={onClose}
+        size="full"
       />
       <AOSWrapper animation="fade-up" duration="1000">
         <Button
@@ -33,7 +34,11 @@ const SubscribeToBlogButton = (props: Props) => {
 };
 
 export const SubscribeModalBody = () => {
-  return <SubscribeForm />;
+  return (
+    <div className="flex items-center justify-center">
+      <SubscribeForm />
+    </div>
+  );
 };
 
 export default SubscribeToBlogButton;

@@ -19,7 +19,7 @@ const SubscribeForm = (props: Props) => {
       />
       <button
         className="uppercase bg-[#DDB771] min-h-[70px] md:min-h-[95px]
-          flex items-center justify-center rounded-[4rem]
+          flex items-center text-white justify-center rounded-[4rem]
           w-full font-semibold text-2xl md:rounded-l-[0px] lg:w-2/5"
       >
         subscribe now!

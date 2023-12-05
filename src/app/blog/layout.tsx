@@ -1,4 +1,4 @@
-import Footer from "@/components/__shared/Footer";
+import Footer from "@/components/__shared/footer/Footer";
 import Navbar from "@/components/__shared/Navbar";
 import FeaturedListings from "@/components/__shared/listing/FeaturedListings";
 import ScrollTopAndSocial from "@/components/ui/ScrollTopAndSocial";

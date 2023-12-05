@@ -35,7 +35,7 @@ const ModalHeader = ({onClose}: ModalHeaderProps) => {
   return (
     <span className="flex items-center justify-between gap-5 flex-wrap">
       <MdOutlineChat className="text-primary-200 text-xl shrink-0 md:text-4xl" />
-      <Button color="white" variant="outline" className="w-fit text-sm rounded-3xl h-6" onClick={onClose}>
+      <Button color="white" variant="outline" className="w-fit text-sm rounded-3xl h-6 hover:bg-[#E7F8F2]" onClick={onClose}>
         Save
       </Button>
     </span>

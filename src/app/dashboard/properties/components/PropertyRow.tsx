@@ -33,7 +33,7 @@ const PropertyRow = ({
         onClose={onClose}
         onOpenChange={onOpenChange}
       />
-      <tr className="border border-t-0 h-fit">
+      <tr className="border-b h-fit">
         {/* Property */}
         <td className="p-2 pt-3 ">
           <div className="flex gap-2">
