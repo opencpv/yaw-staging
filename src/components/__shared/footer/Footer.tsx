@@ -9,8 +9,9 @@ import { montserat } from "@/styles/font";
 import quickLinks from "@/enum/footer/quickLinks";
 import { getCurrentYear } from "@/lib/utils/numberManipulation";
 import Logo from "@/components/__shared/Logo";
-import SubscribeForm from "./ui/SubscribeForm";
+import SubscribeForm from "../ui/SubscribeForm";
 import { useContactStore } from "@/store/contact/useContactStore";
+import style from "./Style.module.css"
 
 const Footer = () => {
   const setContactTabActiveKey = useContactStore((state) => state.setActiveKey);
@@ -41,7 +42,7 @@ const Footer = () => {
       >
         <Logo size="lg" />
       </div>
-      <div className="flex flex-col gap-10 lg:w-8/12 mx-auto px-6 text-[#fff] items-center">
+      <div className="flex flex-col gap-10 lg:w-10/12 mx-auto px-6 text-[#fff] items-center">
         <p
           className={
             "max-w-[1077px] text-[32px] xl:text-[48px] font-[500] 2xl:tracking-[-1.92px]"
@@ -86,7 +87,7 @@ const Footer = () => {
           </button>
         </div>
       </div>
-      <div className="flex flex-col w-full max-w-6xl gap-10 px-8 bg-transparent mb-10 text-xl min-[900px]:flex-row min-[900px]:mx-auto min-[900px]:justify-between min-[900px]:items-center">
+      <div className="flex flex-col w-full max-w-7xl gap-10 px-8 bg-transparent mb-10 text-xl min-[900px]:flex-row min-[900px]:mx-auto min-[900px]:justify-between min-[900px]:items-center">
         <div
           className={
             "order-2 flex flex-row flex-wrap gap-x-1 gap-y-4 min-[900px]:order-1"
@@ -117,7 +118,7 @@ const Footer = () => {
                 fill="#0B6E4F"
               />
             </svg>
-            <p className="text-[#ffff]">admin@rentrightgh.com</p>
+            <p className={`text-[#ffff] cq`}>admin@rentrightgh.com</p>
           </div>
           <div className={"flex flex-row items-center gap-1"}>
             <svg

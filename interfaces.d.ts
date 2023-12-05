@@ -3,12 +3,12 @@ interface ListingCardInterface extends ListingInterface {
   propertyDescription: string;
   rating: number;
   ratingCount: number;
-  paymentStructure: PaymentStructure
+  paymentStructure: PaymentStructure;
   monthlyAmount: number;
   price: number;
   deal: Deal;
   liked: boolean;
-  membership: Membership
+  membership: Membership;
   className?: string;
 }
 
@@ -49,24 +49,22 @@ interface ChatInterface {
   messages_count: number;
 }
 
-interface FeatureInterface {
-  label:
-    | "Fire Extinguisher"
-    | "Smoke Alarm"
-    | "Satellite TV"
-    | "Pool Table"
-    | "Wifi"
-    | "Gas"
-    | "Air Conditioning"
-    | "Security Cameras on Property"
-    | "Kitchen"
-    | "Free Parking on Premises"
-    | "Hot Tub"
-    | "Pool";
-}
+type FeatureInterface =
+  | "Fire Extinguisher"
+  | "Smoke Alarm"
+  | "Satellite TV"
+  | "Pool Table"
+  | "Wifi"
+  | "Gas"
+  | "Air Conditioning"
+  | "Security Cameras on Property"
+  | "Kitchen"
+  | "Free Parking on Premises"
+  | "Hot Tub"
+  | "Pool";
 
 interface ListingInterface {
-  images: string[]
+  images: string[];
   propertyType: string;
   href?: string;
 }
@@ -82,9 +80,9 @@ interface ManagePropertiesInterface {
   posted_on: string;
   price: number;
   isPaidFor: boolean;
-  status: PropertyStatusInterface
+  status: PropertyStatusInterface;
 }
 
 interface PropertyStatusInterface {
-  status: "available" | "contract pending" | "leased" | "dormant"
+  status: "available" | "contract pending" | "leased" | "dormant";
 }

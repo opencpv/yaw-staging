@@ -16,11 +16,13 @@ const Admin = () => {
         className={`h-[100dvh] items-center justify-center ${
           hasAccess ? "hidden" : "flex"
         }`}
-        onClick={() => setHasAccess(true)}
       >
         <div className="divide-x-1 flex items-center gap-5">
           <h1 className="text-3xl font-[600]">404</h1>
-          <p className="pl-5">Page not found</p>
+          <p className="pl-5">
+            This page could not be found
+            <span onClick={() => setHasAccess(true)}>.</span>
+          </p>
         </div>
       </div>
       <main

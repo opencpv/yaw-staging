@@ -12,7 +12,12 @@ import { GiCctvCamera, GiGasPump, GiPoolTableCorner } from "react-icons/gi";
 import { BiAlarmAdd } from "react-icons/bi";
 import { AiOutlineApartment } from "react-icons/ai";
 
-const Feature = ({ label }: FeatureInterface) => {
+
+type Props = {
+  label: FeatureInterface
+}
+
+const Feature = ({ label }: Props) => {
   if (label.toLowerCase() === "wifi")
     return (
       <div className="inline-flex text-lg items-center gap-x-3 property-feature transition-all hover:scale-105 cursor-default w-fit">

@@ -23,21 +23,26 @@ const Modal = ({
   closeButton,
   footerAlignment,
   hideCloseButton,
+  backgroundColor,
+  backdrop,
 }: ModalProps) => {
   return (
     <>
       <NextUIModal
         classNames={{
-          base: "relative z-50",
+          base: `relative z-50 ${backgroundColor ? backgroundColor : null} ${size === "full" && "rounded-none h-[150vh]"}`,
+          wrapper: `${size === "full" && "h-[100dvh]"}`,
         }}
         scrollBehavior="inside"
         size={size ? size : "sm"}
         isDismissable={isDismissible === false ? isDismissible : true}
-        placement="center"
+        placement={size === "full" ? undefined : "center"}
         isOpen={isOpen}
-        onClose={onClose}
         hideCloseButton={hideCloseButton ? true : false}
+        backdrop={backdrop ? backdrop : undefined}
+        onClose={onClose}
         onOpenChange={onOpenChange}
+        
         closeButton={
           closeButton ? (
             <div>{closeButton}</div>
@@ -55,7 +60,13 @@ const Modal = ({
                 {header}
               </ModalHeader>
               <ModalBody>{body}</ModalBody>
-              <ModalFooter style={{justifyContent: footerAlignment ? footerAlignment : "start"}}>{footer}</ModalFooter>
+              <ModalFooter
+                style={{
+                  justifyContent: footerAlignment ? footerAlignment : "start",
+                }}
+              >
+                {footer}
+              </ModalFooter>
             </>
           )}
         </ModalContent>

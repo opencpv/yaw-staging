@@ -34,7 +34,7 @@ const ApplicationRow = ({
         onOpenChange={onOpenChange}
         label="Are you sure you want to delete this application?"
       />
-      <tr className="border border-t-0 h-fit">
+      <tr className="border-b h-fit">
         {/* Applicant */}
         <td className="p-2 py-5">
           <div className="flex items-center gap-2">

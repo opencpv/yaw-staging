@@ -1,31 +1,14 @@
 "use client";
 import "../style.css";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import Image from "next/image";
 import React from "react";
-import Link from "next/link";
-import { FaCaretDown, FaPlusCircle, FaStar } from "react-icons/fa";
 import Button from "@/components/__shared/Button";
-import AdditionalInfo from "../components/AdditionalInfo";
-import {
-  HiMiniShieldCheck,
-  HiOutlineExclamationCircle,
-  HiOutlineHomeModern,
-  HiStar,
-} from "react-icons/hi2";
-import ReviewComment from "../components/ReviewComment";
-import AdditionalInfoTitle from "../components/AdditionalInfoTitle";
-import Footer from "@/components/__shared/Footer";
+import { HiMiniShieldCheck } from "react-icons/hi2";
+import Footer from "@/components/__shared/footer/Footer";
 import { Rate } from "antd";
 import Navbar from "@/components/__shared/Navbar";
-import ReviewCount from "../components/ReviewCount";
-import Feature from "../components/Feature";
 import ReportIssue from "@/components/__shared/ReportIssue";
-import { BsBookmarkStarFill } from "react-icons/bs";
-import CallOut from "@/components/__shared/ui/CallOut";
 import ShapedLanding from "@/app/components/landing/ShapedLanding";
-import SliderWide from "@/components/__shared/sliders/SliderWide";
-import AOSWrapper from "@/components/__shared/AOSWrapper";
 import ApplicationForm from "@/app/components/application-form";
 import RecommendedListings from "@/components/__shared/listing/RecommendedListings";
 import PropertyDetailsFigures from "./components/PropertyDetailsFigures";
@@ -34,23 +17,26 @@ import PropertyDetailsPayment from "./components/PropertyDetailsPayment";
 import PropertyRating from "./components/PropertyRating";
 import PropertyDetailsImages from "./components/PropertyDetailsImages";
 import PropertyDetailsFeatures from "./components/PropertyDetailsFeatures";
+import BreadCrumbPreLink from "@/components/__shared/ui/BreadCrumbPreLink";
 
 const PropertyDetailsPage = () => {
   const { images } = useAssets();
   return (
     <>
       <Navbar />
-      <main className="pb-40">
-        <ShapedLanding
-          property="2 Bedroom house at Amasaman"
-          image="/assets/images/home/landing.jpg"
-          position="left"
-        ></ShapedLanding>
-        <section className="px-5 py-10 mb-10 mx-auto max-w-screen-2xl sm:px-10">
+      <ShapedLanding
+        property="2 Bedroom house at Amasaman"
+        image="/assets/images/home/landing.jpg"
+        position="left"
+      ></ShapedLanding>
+      <main className="pb-40 section">
+        <section className="py-10 mb-10">
           <div className="text-[#305A61] font-[600] text-2xl">
-            <Link href="" className="text-neutral-300 border-b border-blue-500">
-              Home
-            </Link>{" "}
+            <BreadCrumbPreLink
+              label="Properties"
+              href="/properties"
+              className="text-neutral-300"
+            />{" "}
             / <span className="">2 Bedroom house at Kasoa</span>
           </div>
           {/* Property images */}
@@ -85,7 +71,7 @@ const PropertyDetailsPage = () => {
                   <Rate allowHalf defaultValue={4.5} disabled />
                 </div>
                 <div className="mt-20 space-y-10">
-                  {/* <Button className="green-gradient p-4 text-xl text-white capitalize py-7 w-60">
+                  {/* <Button className="p-4 text-xl text-white capitalize green-gradient py-7 w-60">
                     Apply Now
                   </Button> */}
 
@@ -142,36 +128,38 @@ const PropertyDetailsPage = () => {
         {/* Features and Amenities */}
         <PropertyDetailsFeatures
           features={[
-            { label: "Wifi" },
-            { label: "Security Cameras on Property" },
-            { label: "Hot Tub" },
-            { label: "Air Conditioning" },
-            { label: "Fire Extinguisher" },
-            { label: "Free Parking on Premises" },
-            { label: "Gas" },
-            { label: "Kitchen" },
-            { label: "Pool" },
-            { label: "Smoke Alarm" },
-            { label: "Pool Table" },
-            { label: "Satellite TV" },
+            "Wifi",
+            "Security Cameras on Property",
+            "Hot Tub",
+            "Air Conditioning",
+            "Fire Extinguisher",
+            "Free Parking on Premises",
+            "Gas",
+            "Kitchen",
+            "Pool",
+            "Smoke Alarm",
+            "Pool Table",
+            "Satellite TV",
           ]}
         />
         {/* Rating */}
         <PropertyRating />
-        <section className="relative px-5 mx-auto -top-14 max-w-screen-2xl sm:px-10">
+        <section className="relative -top-14">
           <ReportIssue />
         </section>
-        <Button
-          variant="ghost"
-          className="block px-5 ml-auto text-sm text-neutral-800 sm:px-10"
-        >
-          Show all
-        </Button>
         {/* Recommended Listings */}
-        <section className="px-5 mx-auto max-w-screen-2xl sm:px-10">
-          <h2 className="text-neutral-800 text-xl mb-5 font-[600] md:ml-10">
-            Recommended Listings
-          </h2>
+        <section className="">
+          <div className="flex flex-wrap justify-between gap-5 mb-5">
+            <h2 className="text-neutral-800 text-xl font-[600] md:ml-10">
+              Recommended Listings
+            </h2>
+            <Button
+              variant="ghost"
+              className="text-sm text-neutral-800"
+            >
+              Show all
+            </Button>
+          </div>
           <RecommendedListings />
         </section>
       </main>

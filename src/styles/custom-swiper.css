@@ -1,15 +1,3 @@
-/* .listing-cards-slider .swiper-pagination-bullet {
-  background-color: #d8d8d8 !important;
-  opacity: 1 !important;
-  width: 14px !important;
-  height: 14px !important;
-  margin-bottom: 70px !important;
-} */
-
-/* .listing-cards-slider .swiper-pagination-bullet-active {
-  background-color: #DDB771 !important;
-} */
-
 .listing-card-slider .swiper-pagination-bullet {
   background-color: #d8d8d8 !important;
   opacity: 1 !important;
@@ -70,7 +58,7 @@
 
 .slider-pagination-only .swiper-pagination-bullets {
   position: relative;
-  bottom: 1.6rem;
+  bottom: 1.6rem !important;
 }
 
 .slider-pagination-only .swiper-pagination-bullet {
@@ -89,7 +77,7 @@
 
 .slider-wide .swiper-pagination-bullets {
   position: relative;
-  bottom: 1.6rem;
+  bottom: 1.6rem !important;
 }
 
 .slider-wide .swiper-pagination-bullet {

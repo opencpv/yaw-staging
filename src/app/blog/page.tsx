@@ -14,13 +14,15 @@ type Props = {};
 const page = (props: Props) => {
   return (
     <main className="pb-20 mt-10 section">
-      <div className="relative w-full h-60 shape-3 mb-16 lg:h-[30rem]">
-        <Image
-          src="/assets/images/about/about-slider-img.webp"
-          alt=""
-          className=""
-          fill
-          style={{ objectFit: "cover" }}
+      <div className="relative w-full mb-16 h-fit">
+        <SliderWide
+          autoplay
+          className="h-60 shape-3 sm:h-[30rem] rounded-none"
+          images={[1, 2, 3].map((image) => ({
+            src: "/assets/images/about/about-slider-img.webp",
+            name: "",
+            href: "/blog/c/p",
+          }))}
         />
       </div>
       <section className="grid-cols-4 mb-5 gap-x-5 lg:grid">
@@ -39,6 +41,7 @@ const page = (props: Props) => {
           {/* Post slider */}
           <section className="w-full mb-10 h-fit">
             <SliderWide
+              navigation
               images={[1, 2, 3, 4, 5].map((image) => ({
                 src: "/assets/images/about/about-slider-img.webp",
                 name: "",
@@ -46,7 +49,7 @@ const page = (props: Props) => {
               }))}
             />
           </section>
-          <AOSWrapper animation="fade-up" >
+          <AOSWrapper animation="fade-up">
             <section className="grid gap-x-3.5 gap-y-7 xs:grid-cols-2 md:grid-cols-3">
               {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((category, idx) => (
                 <CategoryCard

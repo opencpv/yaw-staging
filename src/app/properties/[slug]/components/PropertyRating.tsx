@@ -11,7 +11,7 @@ type Props = {};
 const PropertyRating = (props: Props) => {
   return (
     <AOSWrapper animation="fade-up" duration="800">
-      <section className="px-5 py-10 mx-auto my-10 max-w-screen-2xl sm:px-10">
+      <section className="py-10 my-10">
         <div className=" border-neutral-200 md:px-14 rounded-xl md:border-3 md:pt-10 md:pb-32">
           <div className="flex flex-wrap justify-between gap-5 bg-[#65969F] text-white rounded-xl p-10">
             <div className="flex flex-wrap items-center gap-3">
@@ -31,7 +31,7 @@ const PropertyRating = (props: Props) => {
           {/* Rating count */}
           <div className="grid items-start grid-cols-3 mt-20 gap-x-20 gap-y-10">
             <div className="col-span-3 flex text-lg items-center text-neutral-800 gap-10 font-[600] xl:col-span-1">
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1.5 flex-wrap">
                 <HiOutlineHomeModern />
                 <HiStar className="text-yellow-500" />
                 <p className="">3.2</p>

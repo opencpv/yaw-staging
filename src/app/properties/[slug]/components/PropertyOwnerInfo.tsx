@@ -33,9 +33,9 @@ const PropertyOwnerInfo = (props: Props) => {
               style={{ objectFit: "cover" }}
             />
           </div>
-          <div className="flex items-center gap-2 text-primary-500 text-xl">
+          <div className="flex flex-col items-center gap-2 text-primary-500 text-xl min-[360px]:flex-row">
             <FaStar className="text-yellow-400" />
-            {props.rating}
+            <p className="underline cursor-pointer">{props.rating}</p>
           </div>
           <p className="text-[#93B5BC] text-xl">{props.reviews} Reviews</p>
         </div>

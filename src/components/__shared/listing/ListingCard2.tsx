@@ -18,23 +18,16 @@ import { useAssets } from "@/lib/custom-hooks/useAssets";
 import FavoriteModal from "./FavoriteModal";
 import { useDisclosure } from "@nextui-org/react";
 import Tooltip from "@/components/ui/Tooltip";
+import { useToastDisclosure } from "@/lib/custom-hooks/useToastDisclosure";
+import { useListingStore } from "@/store/listing/useListingStore";
+import LikeHeart from "../ui/LikeHeart";
 
 const ListingCard2 = (props: ListingCardInterface) => {
   const { icons } = useAssets();
-  const [isLiked, setIsLiked] = useState<boolean>(false);
-  const toggleLiked = () => {
-    setIsLiked((prevState) => !prevState);
-  };
 
-  const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
 
   return (
     <>
-      <FavoriteModal
-        isOpen={isOpen}
-        onOpenChange={onOpenChange}
-        onClose={onClose}
-      />
       <div className={`relative min-w-80 cursor-default ${props.className}`}>
         <Swiper
           pagination={{
@@ -133,24 +126,7 @@ const ListingCard2 = (props: ListingCardInterface) => {
                   One Year Advance
                 </small>
               </div>
-              {props.liked || isLiked ? (
-                <FaHeart
-                  className={`cursor-pointer text-lg text-primary-800 ${
-                    isLiked && "ping"
-                  }`}
-                  onClick={toggleLiked}
-                />
-              ) : (
-                <FaRegHeart
-                  className="text-lg cursor-pointer text-primary-800"
-                  onClick={() => {
-                    toggleLiked();
-                    setTimeout(() => {
-                      onOpen();
-                    }, 1000);
-                  }}
-                />
-              )}
+              <LikeHeart liked={props.liked} className="text-lg text-primary-800" />
             </div>
           </div>
         </div>

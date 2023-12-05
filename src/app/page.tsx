@@ -14,7 +14,7 @@ import DealCard from "./components/DealCard";
 import ManagePropertiesInfo2 from "./components/ManagePropertiesInfo2";
 import ManagePropertiesInfo from "./components/ManagePropertiesInfo";
 import PopularCitiesCard from "./components/PopularCitiesCard";
-import Footer from "@/components/__shared/Footer";
+import Footer from "@/components/__shared/footer/Footer";
 import ArrowLink from "./components/link/ArrowLink";
 import SliderWide from "@/components/__shared/sliders/SliderWide";
 import SliderMultiItems from "@/components/__shared/sliders/SliderMultiItems";
@@ -22,7 +22,6 @@ import AOSWrapper from "@/components/__shared/AOSWrapper";
 import AdsSliderColumn from "./components/AdsSliderColumn";
 import SurveyToast from "./components/survey/SurveyToast";
 import ScrollTopAndSocial from "@/components/ui/ScrollTopAndSocial";
-
 
 export default function Home() {
   useEffect(() => {
@@ -159,6 +158,7 @@ export default function Home() {
           {/* Ads */}
           <section className="h-fit w-full lg:hidden">
             <SliderWide
+              navigation
               images={[1, 2, 3, 4, 5].map((image) => ({
                 src: "/assets/images/niceHome.png",
                 name: "",
@@ -300,5 +300,5 @@ export default function Home() {
       <ScrollTopAndSocial />
       <Footer />
     </>
-  )
+  );
 }

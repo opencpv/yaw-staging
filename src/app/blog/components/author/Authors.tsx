@@ -13,25 +13,25 @@ let authorsDemoDB = [
   },
   {
     name: "Jane Doe",
-    image: "/assets/images/about/about-slider-img.webp",
+    image: "/assets/images/about/black-businessman.webp",
     about:
       "With a keen eye for design and a flair for creativity, Jane Doe is an aspiring graphic artist. Her journey in the world of visual storytelling has been marked by a dedication to pushing artistic boundaries. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, doloremque!",
   },
   {
     name: "Chris Arthur",
-    image: "/assets/images/about/about-slider-img.webp",
+    image: "/assets/images/about/young-couple.webp",
     about:
       "Chris Arthur, a strategic marketing specialist, brings a wealth of experience in crafting compelling brand narratives. His analytical approach and dynamic strategies have consistently driven successful marketing campaigns. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi, impedit!",
   },
   {
     name: "John Doe",
-    image: "/assets/images/about/about-slider-img.webp",
+    image: "/assets/images/about/hand-holding.webp",
     about:
       "John Doe, a dedicated environmental activist, strives to make a positive impact on our planet. Through community engagement and sustainable initiatives, he envisions a greener and healthier future for generations to come. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, consequatur!",
   },
   {
     name: "Mary Fordjour",
-    image: "/assets/images/about/about-slider-img.webp",
+    image: "/assets/images/about/about1.webp",
     about:
       "Mary Fordjour is a dynamic advocate for education accessibility. Her work in empowering underprivileged communities through educational initiatives has garnered widespread recognition. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, explicabo!",
   },
@@ -46,8 +46,8 @@ const Authors = () => {
       <div className="flex flex-wrap items-center gap-3 p-5 bg-white rounded-[5rem] shadow-large max-w-lg">
         <div className="relative w-20 h-20">
           <Image
-            src={"/assets/images/about/about-slider-img.webp"}
-            alt={""}
+            src={authorsDemo[currentAuthorIndex]?.image}
+            alt={authorsDemo[currentAuthorIndex]?.name}
             className="rounded-full shrink-0"
             fill
             style={{ objectFit: "cover" }}
