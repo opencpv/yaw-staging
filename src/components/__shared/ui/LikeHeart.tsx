@@ -24,7 +24,7 @@ const LikeHeart = ({ liked, className }: Props) => {
     onClose();
     toastOnOpen(
       contactUponFavorite
-        ? "Great choice! We've noted that you're open to being contacted by your property owners. Expect to hear from them soon!"
+        ? "👍 Great choice! We've noted that you're open to being contacted by your property owners. Expect to hear from them soon!"
         : "Noted! Your preference for privacy is important to us. Your property owners will not contact you unless necessary."
     );
   };

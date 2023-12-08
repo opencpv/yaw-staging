@@ -36,7 +36,7 @@ const PostSummary = ({
           <div className="mb-3">
             <Rate value={rating} allowHalf disabled />
           </div>
-          <h2 className="text-neutral-800 mb-3 text-2xl font-[600]">{title}</h2>
+          <h2 className="text-neutral-800 mb-3 text-2xl font-[700]">{title}</h2>
           <p className="line-clamp-4 mb-3 text-neutral-500">{body}</p>
           <Link
             href={`${href}`}

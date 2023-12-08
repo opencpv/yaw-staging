@@ -2,6 +2,7 @@
 import React from "react";
 import { Button as NextUIButton } from "@nextui-org/react";
 import { cn } from "@/lib/utils";
+import { FaArrowRight } from "react-icons/fa";
 
 type Props = {
   className?: string;
@@ -11,6 +12,7 @@ type Props = {
   borderColor?: string;
   isIconOnly?: boolean;
   disabled?: boolean;
+  arrowIcon?: boolean;
   onClick?: (e?: any) => void;
 };
 
@@ -22,6 +24,7 @@ const Button = ({
   color,
   isIconOnly,
   disabled,
+  arrowIcon,
   onClick,
 }: Props) => {
   if (variant === "outline") {
@@ -29,7 +32,7 @@ const Button = ({
       <NextUIButton
         isDisabled={disabled}
         isIconOnly={isIconOnly}
-        className={cn(`whitespace-normal font-[600] rounded-md bg-transparent max-w-sm p-3 border ${
+        className={cn(`whitespace-normal font-[600] rounded-md bg-transparent max-w-sm p-3 border space-x-2 ${
           color === "primary"
             ? "border-primary-500 text-primary-500"
             : color === "accent"
@@ -43,7 +46,7 @@ const Button = ({
         style={{ borderColor: borderColor ? borderColor : "" }}
         onPress={onClick}
       >
-        {children}
+        {children} {arrowIcon && <FaArrowRight />}
       </NextUIButton>
     );
   } else if (variant === "ghost") {
@@ -51,7 +54,7 @@ const Button = ({
       <NextUIButton
         isDisabled={disabled}
         isIconOnly={isIconOnly}
-        className={cn(`bg-transparent ${
+        className={cn(`bg-transparent space-x-2 justify-normal w-fit px-0 ${
           color === "primary"
             ? "text-primary-500"
             : color === "accent"
@@ -62,7 +65,7 @@ const Button = ({
         }  ${disabled && "cursor-not-allowed text-neutral-600"} hover:scale-[1.02]`, className)}
         onPress={onClick}
       >
-        {children}
+        {children} {arrowIcon && <FaArrowRight />}
       </NextUIButton>
     );
   }
@@ -70,7 +73,7 @@ const Button = ({
     <NextUIButton
       isDisabled={disabled}
       isIconOnly={isIconOnly}
-      className={cn(`whitespace-normal font-[600] rounded-md max-w-sm p-3 ${
+      className={cn(`whitespace-normal font-[600] rounded-md max-w-sm p-3 space-x-2 ${
         color === "primary"
           ? "bg-primary-500 text-white"
           : color === "accent"
@@ -85,7 +88,7 @@ const Button = ({
       } hover:scale-[1.02]`, className)}
       onPress={onClick}
     >
-      {children}
+      {children} {arrowIcon && <FaArrowRight />}
     </NextUIButton>
   );
 };

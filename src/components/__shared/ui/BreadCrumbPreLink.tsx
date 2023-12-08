@@ -9,7 +9,7 @@ type Props = {
 
 const BreadCrumbPreLink = ({ className, label, href }: Props) => {
   return (
-    <Link href={`${href}`} className={`border-b border-blue-700 ${className}`}>
+    <Link href={`${href}`} className={`border-b border-warning-400 ${className}`}>
       {label}
     </Link>
   );

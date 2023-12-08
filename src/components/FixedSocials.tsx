@@ -7,7 +7,7 @@ import {
   FaInstagramSquare,
 } from "react-icons/fa";
 import { IoLogoWhatsapp } from "react-icons/io";
-import { RiTwitterXFill } from "react-icons/ri";
+import { RiInstagramFill, RiTwitterXFill } from "react-icons/ri";
 
 type Props = {};
 
@@ -55,7 +55,7 @@ const FixedSocials = (props: Props) => {
         <ul className="flex flex-col gap-2">
           <li className="grid w-8 h-8 rounded-full place-items-center bg-neutral-200">
             <Link href="" target="_blank">
-              <FaInstagramSquare className="text-primary-800" title="instagram" />
+              <RiInstagramFill className="text-primary-800" title="instagram" />
             </Link>
           </li>
           <li className="grid w-8 h-8 rounded-full place-items-center bg-neutral-200">

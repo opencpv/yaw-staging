@@ -11,7 +11,6 @@ import rentalDeals from "@/enum/deals/rentalDeals";
 import ListingCard from "../components/__shared/listing/ListingCard";
 import SliderGrid from "../components/__shared/sliders/SliderGrid";
 import DealCard from "./components/DealCard";
-import ManagePropertiesInfo2 from "./components/ManagePropertiesInfo2";
 import ManagePropertiesInfo from "./components/ManagePropertiesInfo";
 import PopularCitiesCard from "./components/PopularCitiesCard";
 import Footer from "@/components/__shared/footer/Footer";
@@ -49,7 +48,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="bg-[#E9ECEF] pb-20 overflow-x-hidden">
+      <main className="pb-20 overflow-x-hidden">
         <ShapedLanding
           property="2 Bedroom house at Amasaman"
           image="/assets/images/home/landing.jpg"
@@ -157,7 +156,7 @@ export default function Home() {
           />
           {/* Ads */}
           <section className="h-fit w-full lg:hidden">
-            <SliderWide
+            <SliderWide pagination
               navigation
               images={[1, 2, 3, 4, 5].map((image) => ({
                 src: "/assets/images/niceHome.png",
@@ -229,8 +228,9 @@ export default function Home() {
             <ul className="space-y-10 sm:space-y-20">
               {[1, 2].map((item, idx) =>
                 (idx + 1) % 2 === 0 ? (
-                  <ManagePropertiesInfo2
+                  <ManagePropertiesInfo
                     key={idx + 1}
+                    position="right"
                     href="/about"
                     activity="List your property"
                     image="/assets/images/Stock.jpg"

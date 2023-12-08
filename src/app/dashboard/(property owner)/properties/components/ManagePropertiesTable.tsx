@@ -1,18 +1,20 @@
-"use client";
-
+// @ts-nocheck
+"use client"
 import React from "react";
-import ApplicationRow from "./ApplicationRow";
+import PropertyRow from "./PropertyRow";
 import { useFetchTableWithPagination } from "@/lib/custom-hooks/useFetch";
-import TableSkeleton from "../../components/shared/skeleton/TableSkeleton";
-import Spinner from "../../components/shared/Spinner";
-import { useApplicationsStore } from "@/store/dashboard/applicationsStore";
+import TableSkeleton from "../../../components/shared/skeleton/TableSkeleton";
+import Spinner from "../../../components/shared/Spinner";
+import { useManagePropertiesStore } from "@/store/dashboard/propertiesStore";
 import Pagination from "@/components/__shared/Pagination";
 
 type Props = {};
 
-const ManageApplicationsTable = (props: Props) => {
+const ManagePropertiesTable = (props: Props) => {
   let pageSize = 5;
-  const setCount = useApplicationsStore((state) => state.setFetchCount);
+
+  const filterOption = useManagePropertiesStore((state) => state.filterOption);
+  const setCount = useManagePropertiesStore((state) => state.setFetchCount);
 
   const {
     currentPage,
@@ -23,13 +25,15 @@ const ManageApplicationsTable = (props: Props) => {
     isValidating,
     totalCount,
   } = useFetchTableWithPagination({
-    tableName: "regular_application",
+    tableName: "property",
     pageSize,
     order: { column: "created_at", ascending: false },
-    select: "id, created_at, firstname, lastname",
-    // revalidateOnFocus: false,
+    select: "id, created_at, status, is_paid_for",
+    revalidateOnFocus: false,
+    ...(filterOption !== "all" && {
+      eq: { column: "status", match: filterOption.toUpperCase() },
+    }),
   });
-
 
   setCount(totalCount);
 
@@ -39,9 +43,6 @@ const ManageApplicationsTable = (props: Props) => {
       <table className="w-full mb-8 table-fixed">
         <thead className="text-white bg-primary-400">
           <tr className="">
-            <th className="p-3 text-center font-[500] capitalize text-sm">
-              Applicant
-            </th>
             <th className="p-3 text-center font-[500] capitalize text-sm">
               Property
             </th>
@@ -59,21 +60,23 @@ const ManageApplicationsTable = (props: Props) => {
         <tbody>
           {isValidating === false && !error && currentPage?.length === 0 && (
             <tr className="italic mt-4">
-              <td>There are no applications yet.</td>
+              <td>There are no properties in this category</td>
             </tr>
           )}
           {isLoading ? (
-            <TableSkeleton rows={5} columns={5} />
+            <TableSkeleton rows={5} columns={4} />
           ) : (
-            currentPage?.map((applicant) => (
-              <ApplicationRow
-                key={applicant.id as string}
+            currentPage?.map((property) => (
+              <PropertyRow
+                key={property.id as string}
                 propertyTitle="Property Title"
-                propertyImage="/assets/images/Stock.jpg"
-                applicantImage="/assets/images/profile-image.jpg"
-                applicantName={`${applicant.firstname} ${applicant.lastname}`}
-                propertyPrice={30000}
-                date={applicant.created_at as string}
+                image="/assets/images/Stock.jpg"
+                price={30000}
+                posted_on={property.created_at as string}
+                isPaidFor={property.is_paid_for as boolean}
+                status={
+                  property.status.toLowerCase() as PropertyStatusInterface
+                }
               />
             ))
           )}
@@ -97,4 +100,4 @@ const ManageApplicationsTable = (props: Props) => {
   );
 };
 
-export default ManageApplicationsTable;
+export default ManagePropertiesTable;

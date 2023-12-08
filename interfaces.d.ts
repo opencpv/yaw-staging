@@ -1,19 +1,21 @@
 interface ListingCardInterface extends ListingInterface {
+  propertyDescription?: string;
+  rating?: number;
+  ratingCount?: number;
+  paymentStructure?: PaymentStructure;
+  monthlyAmount?: number;
+  price?: number;
+  liked?: boolean;
   id?: number | string;
-  propertyDescription: string;
-  rating: number;
-  ratingCount: number;
-  paymentStructure: PaymentStructure;
-  monthlyAmount: number;
-  price: number;
-  deal: Deal;
-  liked: boolean;
-  membership: Membership;
+  deal?: Deal;
+  membership?: Membership;
   className?: string;
+  cardType?: "1" | "2"
 }
 
 interface RenterPaidFeatureInterface {
   title: "Be My Agent" | "Be The First To Know";
+  href: string;
   className?: string;
 }
 
@@ -64,8 +66,8 @@ type FeatureInterface =
   | "Pool";
 
 interface ListingInterface {
-  images: string[];
-  propertyType: string;
+  images?: string[];
+  propertyType?: string;
   href?: string;
 }
 

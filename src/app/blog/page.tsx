@@ -1,21 +1,21 @@
-import { Rate } from "antd";
-import Image from "next/image";
 import React from "react";
 import OtherPosts from "./components/post/OtherPosts";
-import Button from "@/components/__shared/Button";
 import SliderWide from "@/components/__shared/sliders/SliderWide";
 import CategoryCard from "./components/CategoryCard";
 import Authors from "./components/author/Authors";
 import AOSWrapper from "@/components/__shared/AOSWrapper";
 import SubscribeToBlogButton from "./components/SubscribeToBlogButton";
+import PostSlider from "./components/post/PostSlider";
 
 type Props = {};
 
 const page = (props: Props) => {
+
   return (
     <main className="pb-20 mt-10 section">
       <div className="relative w-full mb-16 h-fit">
         <SliderWide
+          pagination
           autoplay
           className="h-60 shape-3 sm:h-[30rem] rounded-none"
           images={[1, 2, 3].map((image) => ({
@@ -38,17 +38,7 @@ const page = (props: Props) => {
               href: "/blog/c/p",
             }))}
           />
-          {/* Post slider */}
-          <section className="w-full mb-10 h-fit">
-            <SliderWide
-              navigation
-              images={[1, 2, 3, 4, 5].map((image) => ({
-                src: "/assets/images/about/about-slider-img.webp",
-                name: "",
-                href: "/blog/c/p",
-              }))}
-            />
-          </section>
+          <PostSlider />
           <AOSWrapper animation="fade-up">
             <section className="grid gap-x-3.5 gap-y-7 xs:grid-cols-2 md:grid-cols-3">
               {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((category, idx) => (

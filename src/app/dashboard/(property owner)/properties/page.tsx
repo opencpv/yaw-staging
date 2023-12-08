@@ -9,14 +9,14 @@ import ManagePropertiesTable from "./components/ManagePropertiesTable";
 import ManagePropertiesSmallScreenView from "./components/ManagePropertiesSmallScreenView";
 import ManagePropertiesTabs from "./components/ManagePropertiesTabs";
 import ListingFormModal from "@/app/components/listing-form";
-import FetchCount from "../components/shared/FetchCount";
+import FetchCount from "../../components/shared/FetchCount";
 
 const page = () => {
   return (
     <main className="mx-auto max-w-screen-2xl text-neutral-800">
       <section className="mb-20">
         <div className="flex flex-wrap items-center gap-4 mb-5">
-          <h2 className="text-2xl font-[600]">Properties</h2>
+          <h2 className="text-2xl font-[700]">Properties</h2>
           <div className="flex items-center gap-4">
             <small className="flex gap-2 items-center p-2 px-3 text-xs bg-[#FEF8ED] rounded-xl">
               Members post for free <FaArrowRight />
@@ -31,7 +31,7 @@ const page = () => {
       </section>
       <section className="items-center justify-between grid-cols-3 mb-6 gap-x-3 md:grid">
         <div className="col-span-1 space-y-4">
-          <h2 className="text-2xl font-[600]">Manage Properties</h2>
+          <h2 className="text-2xl font-[700]">Manage Properties</h2>
           <FetchCount data="manage-properties" />
         </div>
         <div className="col-span-2 mt-3 md:mt-0">
