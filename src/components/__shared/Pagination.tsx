@@ -20,6 +20,7 @@ const Pagination = ({
   prevDisabled,
 }: Props) => {
   const [page, setPage] = React.useState(1);
+  // console.log(page)
 
   return (
     <div className="flex justify-center">
@@ -46,7 +47,7 @@ const Pagination = ({
           variant="bordered"
           color="secondary"
           page={page}
-          onChange={(setPage)}
+          onChange={setPage}
         />
         <Button
           isIconOnly

@@ -37,6 +37,8 @@ const ManagePropertiesTable = (props: Props) => {
 
   setCount(totalCount);
 
+  console.log(currentPage)
+
   return (
     <section className="hidden lg:table">
       {error && <p>Error: {error.message}</p>}

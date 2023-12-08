@@ -35,12 +35,6 @@ const OptionFilterTabs = ({
           ],
           tabContent:
             "text-primary-500 text-[0.6rem] md:text-sm group-data-[selected=true]:text-white",
-          // cursor: [
-          //   "bg-",
-          //   "sm:bg-[#45808B]",
-          //   "text-white",
-          //   radius === "small" ? "rounded-lg" : "rounded-large",
-          // ],
           panel: "bg-primary-400",
         }}
         selectedKey={selectedKey}
