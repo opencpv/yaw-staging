@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import Logo from "@/components/__shared/Logo";
 import Button from "@/components/__shared/Button";
 import LikeHeart from "./ui/LikeHeart";
-import ShareBtn from "./ui/ShareBtn";
+import ShareBtn from "./ui/share/ShareBtn";
 
 const Navbar = (props: any) => {
   const pathname = usePathname();
@@ -72,11 +72,8 @@ const Navbar = (props: any) => {
             <div className="flex items-center gap-4">
               <LikeHeart liked={false} className="text-5xl text-white" />
               <ShareBtn
-                shareData={{
-                  title: "Hello world",
-                  text: "Good share",
-                  url: "https://share.com",
-                }}
+                url="https://rentright.com.gh"
+                title="2 Bedroom Apartment at Kasoa"
                 className="text-5xl text-white"
               />
             </div>

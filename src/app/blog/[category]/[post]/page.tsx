@@ -12,6 +12,7 @@ import OtherPostsGroup from "../../components/post/OtherPostsGroup";
 import AOSWrapper from "@/components/__shared/AOSWrapper";
 import BreadCrumbPreLink from "@/components/__shared/ui/BreadCrumbPreLink";
 import SubscribeToBlogButton from "../../components/SubscribeToBlogButton";
+import ShareBtn from "@/components/__shared/ui/share/ShareBtn";
 
 type Props = {};
 
@@ -87,7 +88,11 @@ const page = (props: Props) => {
             <Rate allowHalf allowClear defaultValue={0} />
             <div className="flex items-center gap-3 text-2xl text-primary-200">
               <p className="text-neutral-800 text-base font-[500]">Share</p>
-              <FaShare className="text-neutral-800" />
+              <ShareBtn
+                url="https://rentright.com.gh"
+                title="Mastering the Art of Home Decor: Simple Tips for a Cozy Living Space"
+                className="text-neutral-800"
+              />
               {/* {socialLinks.map((link) => (
                 <Link key={link.name} href={link.href} title={link.name}>
                   {link.icon}
@@ -132,7 +137,8 @@ const page = (props: Props) => {
         <OtherPostsGroup />
       </section>
       <section className="w-full mb-20 h-fit md:hidden">
-        <SliderWide pagination
+        <SliderWide
+          pagination
           navigation
           images={[1, 2, 3, 4, 5].map((image) => ({
             src: "/assets/images/niceHome.png",
