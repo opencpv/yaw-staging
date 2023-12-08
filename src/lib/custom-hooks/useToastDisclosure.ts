@@ -12,7 +12,7 @@ const useToastDisclosure = () => {
       progress: undefined,
       theme: "light",
       progressStyle: { background: "#F1B346" },
-      bodyStyle: {paddingRight: "2rem"}
+      bodyStyle: {paddingRight: "2.5rem"}
       // style: { width: "30rem", maxWidth: "30rem" },
     });
 

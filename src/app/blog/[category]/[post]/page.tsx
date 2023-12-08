@@ -11,6 +11,7 @@ import SliderWide from "@/components/__shared/sliders/SliderWide";
 import OtherPostsGroup from "../../components/post/OtherPostsGroup";
 import AOSWrapper from "@/components/__shared/AOSWrapper";
 import BreadCrumbPreLink from "@/components/__shared/ui/BreadCrumbPreLink";
+import SubscribeToBlogButton from "../../components/SubscribeToBlogButton";
 
 type Props = {};
 
@@ -87,11 +88,11 @@ const page = (props: Props) => {
             <div className="flex items-center gap-3 text-2xl text-primary-200">
               <p className="text-neutral-800 text-base font-[500]">Share</p>
               <FaShare className="text-neutral-800" />
-              {socialLinks.map((link) => (
+              {/* {socialLinks.map((link) => (
                 <Link key={link.name} href={link.href} title={link.name}>
                   {link.icon}
                 </Link>
-              ))}
+              ))} */}
               <HiPrinter title="print" />
             </div>
           </div>
@@ -111,32 +112,28 @@ const page = (props: Props) => {
               />
             </section>
           </AOSWrapper>
-          <AOSWrapper animation="fade-right">
-            <Button
-              color="accent"
-              className="px-8 py-8 text-lg uppercase mb-14 md:hidden"
-            >
-              Subscribe to our blog
-            </Button>
-          </AOSWrapper>
+          <SubscribeToBlogButton
+            animation="fade-right"
+            className="px-8 mb-14 md:hidden"
+          />
         </div>
         {/* Other posts -- right side of Grid */}
         <div className="col-span-1 space-y-5">
           <div className="hidden md:block">
             <OtherPostsGroup />
           </div>
-          <AOSWrapper animation="fade-left">
-            <Button className="hidden w-full py-8 mb-10 text-lg text-white uppercase bg-accent-50 min-h-fit md:inline-flex">
-              Subscribe to our blog
-            </Button>
-          </AOSWrapper>
+          <SubscribeToBlogButton
+            animation="fade-left"
+            className="hidden md:inline-flex"
+          />
         </div>
       </section>
       <section className="grid-cols-2 gap-5 mb-10 xs:grid md:hidden">
         <OtherPostsGroup />
       </section>
       <section className="w-full mb-20 h-fit md:hidden">
-        <SliderWide navigation
+        <SliderWide pagination
+          navigation
           images={[1, 2, 3, 4, 5].map((image) => ({
             src: "/assets/images/niceHome.png",
             name: "",

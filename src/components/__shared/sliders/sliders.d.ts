@@ -10,7 +10,9 @@ type SliderPaginationOnlyProps = {
 };
 
 interface SliderWideProps extends SliderPaginationOnlyProps {
-  navigation?: boolean
+  navigation?: boolean;
+  pagination?: boolean;
+  onSlideChange?: (swiper: Swiper) => void;
 }
 
 type SliderPaginationOnlyImage = {

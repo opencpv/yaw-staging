@@ -32,7 +32,7 @@ const PropertyDetailsImages = (props: Props) => {
             >
               <Image
                 src={images.StockImage}
-                alt={props.images.propertyType}
+                alt={props.images.propertyType as string}
                 fill
                 className="transition-all hover:scale-[1.02]"
                 style={{ objectFit: "cover" }}
@@ -42,7 +42,7 @@ const PropertyDetailsImages = (props: Props) => {
         </div>
         {/* Slider */}
         <div className="w-full cursor-pointer h-fit lg:hidden" onClick={onOpen}>
-          <SliderWide navigation
+          <SliderWide pagination navigation
             images={[1, 2, 3, 4, 5].map((image) => ({
               src: "/assets/images/Stock.jpg",
               name: "",

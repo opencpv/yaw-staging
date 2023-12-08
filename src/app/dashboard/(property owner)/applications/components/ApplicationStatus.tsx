@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import Select from "../../components/Select";
+import Select from "../../../components/Select";
 
 const ApplicationStatus = () => {
   const [value, setValue] = useState<"accept" | "decline">("accept");

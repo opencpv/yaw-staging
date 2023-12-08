@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { FaRegStar, FaStar } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
@@ -10,18 +9,13 @@ import "swiper/css/navigation";
 import "@/styles/custom-swiper.css";
 
 import { Pagination, Navigation } from "swiper/modules";
-import { HiOutlineHomeModern } from "react-icons/hi2";
 import Link from "next/link";
 import Image from "next/image";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-import { useAssets } from "@/lib/custom-hooks/useAssets";
-import { formatPrice } from "@/lib/utils/numberManipulation";
-import Tooltip from "@/components/ui/Tooltip";
-import LikeHeart from "../ui/LikeHeart";
+import ListingInfo from "./ListingInfo";
+import ListingDeals from "./ListingDeals";
 
 const ListingCard = (props: ListingCardInterface) => {
-  const { icons } = useAssets();
-
   return (
     <>
       <div className={`relative cursor-default ${props.className}`}>
@@ -36,16 +30,20 @@ const ListingCard = (props: ListingCardInterface) => {
             prevEl: ".custom-l-prev",
           }}
           modules={[Pagination, Navigation]}
-          className={`relative w-full rounded-t-lg listing-card-slider shadow-sm h-52`}
+          className={`relative w-full listing-card-slider ${
+            props.cardType === "2"
+              ? "rounded-2xl h-80"
+              : "rounded-t-lg shadow-sm h-52"
+          } `}
         >
           {/* Mapping through Featured listings from database */}
-          {props.images.map((image, index) => (
+          {props.images?.map((image, index) => (
             <SwiperSlide key={index}>
               <Link href={`${props.href}`}>
                 <div className="relative w-full h-full">
                   <Image
                     src={image}
-                    alt={props.propertyType.toLowerCase()}
+                    alt={props.propertyType?.toLowerCase() as string}
                     fill
                     className="brightness-[0.8]"
                     style={{ objectFit: "cover" }}
@@ -56,169 +54,36 @@ const ListingCard = (props: ListingCardInterface) => {
           ))}
 
           {/* Pagination bullets and button */}
-          <div className="custom-l-prev absolute bottom-20 left-[5%] z-10 flex h-8 w-8 shrink-0 cursor-default items-center justify-center rounded-full bg-white">
+          <div
+            className={`custom-l-prev absolute left-[5%] z-10 flex h-8 w-8 shrink-0 cursor-default items-center justify-center rounded-full bg-white ${
+              props.cardType === "2" ? "bottom-32" : "bottom-20"
+            }`}
+          >
             <MdChevronLeft className="text-lg text-neutral-700" />
           </div>
           <div className="w-full space-x-3 text-center custom-l-pagination bottom-40"></div>
-          <div className="custom-l-next absolute bottom-20 right-[5%] z-10 flex h-8 w-8 shrink-0 cursor-default items-center justify-center rounded-full bg-white">
+          <div
+            className={`custom-l-next absolute right-[5%] z-10 flex h-8 w-8 shrink-0 cursor-default items-center justify-center rounded-full bg-white ${
+              props.cardType === "2" ? "bottom-32" : "bottom-20"
+            }`}
+          >
             <MdChevronRight className="text-lg text-neutral-700" />
           </div>
         </Swiper>
-        {/* Card info */}
-        <div className="w-full px-5 py-4 space-y-6 bg-white border-x border-b rounded-b-lg text-neutral-800">
-          <div className="space-y-3 text-xs">
-            <div className="flex flex-wrap justify-between gap-x-3 gap-y-1">
-              <div className="flex items-center gap-2">
-                <HiOutlineHomeModern className="text-primary-600" />
-                <p className="text-sm font-[600] text-primary-600">
-                  {props.propertyType?.toLowerCase()}
-                </p>
-              </div>
-              <div className="flex items-center gap-2">
-                {props.ratingCount === 0 ? (
-                  <FaRegStar className="text-yellow-300" />
-                ) : (
-                  <FaStar className="text-yellow-300" />
-                )}
-
-                {props.ratingCount > 0 && (
-                  <small className="underline">
-                    <Link href="">{props.rating}</Link>
-                  </small>
-                )}
-                <small>
-                  ({" "}
-                  {props.ratingCount > 0
-                    ? `${props.ratingCount}+`
-                    : `${props.ratingCount}`}{" "}
-                  )
-                </small>
-                {(props.ratingCount === 0 || props.rating === 0) && (
-                  <Link
-                    href=""
-                    className="underline text-neutral-900 hover:text-neutral-900 active:text-neutral-900"
-                  >
-                    <small>Rate</small>
-                  </Link>
-                )}
-              </div>
-            </div>
-            <p className="max-w-xl line-clamp-2 text-neutral-500 sm:line-clamp-2 ">
-              {props.propertyDescription}
-            </p>
-          </div>
-          <div className="space-y-2 ">
-            <div className="flex flex-wrap items-center justify-between text-xs gap-y-1">
-              <div className="flex flex-wrap items-end gap-2">
-                <div>
-                  <p className="text-sm font-[700] text-neutral-900">
-                    GHS&nbsp;
-                    <span className="font-[500]">
-                      {formatPrice(props?.price)} / Month
-                    </span>
-                  </p>
-                </div>
-              </div>
-              <LikeHeart
-                liked={props.liked}
-                className="text-lg text-primary-800"
-              />
-            </div>
-            <div className="flex justify-between">
-              <small className=" inline rounded-xl bg-[#E7F8F2] px-3 py-1 text-[0.55rem]">
-                One Year Advance
-              </small>
-            </div>
-          </div>
-        </div>
+        {/* Listing info */}
+        <ListingInfo
+          liked={props.liked}
+          monthlyAmount={props.monthlyAmount}
+          paymentStructure={props.paymentStructure}
+          price={props.price}
+          propertyDescription={props.propertyDescription}
+          propertyType={props.propertyType}
+          rating={props.rating}
+          ratingCount={props.ratingCount}
+          className="bg-white text-neutral-800"
+        />
         {/* Deals */}
-        <div className="absolute z-10 flex items-center justify-between w-full top-4 text-neutral-900">
-          <div
-            className={`ml-4 rounded-md bg-white px-3 py-2 shadow-md ${
-              props.membership === "Unverified" && "invisible"
-            }`}
-          >
-            <div className="flex items-center gap-2">
-              {props.deal === "Best Value" && (
-                <>
-                  <Image
-                    src={icons.BestValue}
-                    alt={props.deal?.toLowerCase()}
-                    height={14}
-                    width={14}
-                  />
-                  <p className="text-xs">Best Value</p>
-                </>
-              )}
-              {props.deal === "Editor's Choice" && (
-                <>
-                  <Image
-                    src={icons.EditorsChoice}
-                    alt={props.deal?.toLowerCase()}
-                    height={14}
-                    width={14}
-                  />
-                  <p className="text-xs">Editor&apos;s Choice</p>
-                </>
-              )}
-              {props.deal === "Price Drop" && (
-                <>
-                  <Image
-                    src={icons.PriceDrop}
-                    alt={props.deal?.toLowerCase()}
-                    height={14}
-                    width={14}
-                  />
-                  <p className="text-xs">Price Drop</p>
-                </>
-              )}
-              {(props.deal === "None" ||
-                props.deal === "none" ||
-                props.deal === "") && <></>}
-            </div>
-          </div>
-          {/* Membership */}
-          {props.membership === "Certified" && (
-            <div className="mr-4 shadow-2xl">
-              <Tooltip content={props.membership}>
-                <Image
-                  src={icons.Certified}
-                  alt={props.membership?.toLowerCase()}
-                  height={35}
-                  width={35}
-                  className="shadow-2xl"
-                />
-              </Tooltip>
-            </div>
-          )}
-          {props.membership === "Verified" && (
-            <div className="mr-4 shadow-2xl">
-              <Tooltip content={props.membership}>
-                <Image
-                  src={icons.Verified}
-                  alt={props.membership?.toLowerCase()}
-                  height={35}
-                  width={35}
-                  className="shadow-2xl"
-                />
-              </Tooltip>
-            </div>
-          )}
-          {props.membership === "Unverified" && (
-            <div className="mr-4 shadow-2xl">
-              <div className="ml-4 rounded-md bg-accent-50 px-4 py-2 text-xs font-[600] text-yellow-950 shadow-md">
-                Not Verified
-              </div>
-            </div>
-          )}
-          {(props.membership === "None" ||
-            props.membership === "none" ||
-            props.membership === "") && (
-            <div className="mr-4 shadow-2xl">
-              <></>
-            </div>
-          )}
-        </div>
+        <ListingDeals membership={props.membership} deal={props.deal} />
       </div>
     </>
   );

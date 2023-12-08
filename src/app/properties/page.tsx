@@ -3,12 +3,12 @@ import Navbar from "@/components/__shared/Navbar";
 import Image from "next/image";
 import React from "react";
 import listings from "@/enum/demodb/listings";
-import ListingCard2 from "../../components/__shared/listing/ListingCard2";
 import TagsSelect from "./components/TagsSelect";
 import Footer from "@/components/__shared/footer/Footer";
 import FixedSocials from "@/components/FixedSocials";
 import ScrollTop from "@/components/__shared/ScrollTop";
 import Button from "@/components/__shared/Button";
+import ListingCard from "@/components/__shared/listing/ListingCard";
 
 
 const page = () => {
@@ -40,8 +40,9 @@ const page = () => {
         {/* Listing */}
         <section className="mb-5 space-y-5 sm:space-y-0 sm:grid grid-cols-autofit-listing-card gap-x-3 gap-y-10">
           {listings.map((listing) => (
-            <ListingCard2
+            <ListingCard
               key={listing.id}
+              cardType="2"
               href={listing.href}
               images={listing.images}
               liked={listing.liked}

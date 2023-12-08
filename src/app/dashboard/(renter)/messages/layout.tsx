@@ -7,7 +7,7 @@ import supabase from "@/lib/utils/supabaseClient";
 import { useCurrentUserId } from "@/lib/custom-hooks/useCurrentUserId";
 import NoMessageState from "./components/NoMessageState";
 import { fetchTable } from "@/services/fetch";
-import Spinner from "../components/shared/Spinner";
+import Spinner from "../../components/shared/Spinner";
 import {
   useFetchTable,
   useFetchTableForRealtime,

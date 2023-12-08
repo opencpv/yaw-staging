@@ -35,7 +35,7 @@ const PropertyDetailsPage = () => {
             <BreadCrumbPreLink
               label="Properties"
               href="/properties"
-              className="text-neutral-300"
+              className="text-neutral-400"
             />{" "}
             / <span className="">2 Bedroom house at Kasoa</span>
           </div>

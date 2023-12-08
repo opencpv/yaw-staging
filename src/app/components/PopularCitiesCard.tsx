@@ -37,8 +37,8 @@ const PopularCitiesCard = ({
 
         <div className="relative z-10 space-y-3">
           <div className="space-y-3">
-            <h2 className="font-[700]">{location}</h2>
-            <small className="inline-block font-[700]">{description}</small>
+            <h2 className="font-[700] text-base">{location}</h2>
+            <p className="inline-block font-[700] text-sm">{description}</p>
           </div>
           <Link
             href={`${href}`}

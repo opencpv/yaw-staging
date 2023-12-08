@@ -11,7 +11,7 @@ const Category = ({ category, count, className, image }: CategoryProps) => {
       </div>
       <div className="relative z-10 p-10 space-y-2.5">
         <h2 className="font-[600] relative z-10">{category}</h2>
-        <p className="relative z-10">{count} items</p>
+        {/* <p className="relative z-10">{count} items</p> */}
       </div>
     </div>
   );
