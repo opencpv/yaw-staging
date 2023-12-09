@@ -29,7 +29,7 @@ const Select = ({
         base: `${width ? width : "w-48"}  mx-auto text-xs `,
         value: "text-xs",
         selectorIcon: "mr-5 h-3 w-3",
-        trigger: "px-10",
+        trigger: "px-10 z-30",
         label: "hidden",
       }}
       selectorIcon={selectorIcon ? selectorIcon : <FaCaretDown />}

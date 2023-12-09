@@ -21,11 +21,9 @@ body {
 }
 
 .green-gradient {
-  background: linear-gradient(
-    103deg,
-    #21a19f 38.96%,
-    rgba(30, 169, 166, 0.63) 90.07%
-  );
+  background: linear-gradient(103deg,
+      #21a19f 38.96%,
+      rgba(30, 169, 166, 0.63) 90.07%);
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -35,8 +33,10 @@ body {
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .hidden-scrollbar {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 .section {
@@ -51,9 +51,29 @@ body {
   clip-path: polygon(10% 0, 0 20%, 0 100%, 90% 100%, 100% 80%, 100% 0);
 }
 
+
 @media (min-width: 640px) {
   .section {
     padding-left: 2.5rem;
     padding-right: 2.5rem;
+  }
+}
+
+
+@media print {
+  @page {
+    size: A4
+  }
+
+  button {
+    display: none;
+  }
+
+  .print-content {
+    display: block;
+  }
+
+  .no-print  {
+    display: none;
   }
 }

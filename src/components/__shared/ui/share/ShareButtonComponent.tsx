@@ -1,13 +1,32 @@
 import React from "react";
 
-const ShareButtonComponent = (props: ShareDataProps) => {
+type Props = {
+  Icon: React.ComponentType<any>;
+  ShareButton: React.ComponentType<any>;
+  iconColor?: string;
+  socialName: string;
+};
+
+const ShareButtonComponent: React.FC<Props> = ({
+  Icon,
+  ShareButton,
+  iconColor,
+  socialName,
+  ...props
+}) => {
   return (
-    <props.ShareButton {...props} className="inline-block w-full">
-      <div className="flex items-center gap-3 p-4 w-full">
-        <props.Icon className={`text-[${props.iconColor}] rounded-full text-3xl`} />
-        <span className="text-neutral-800">{props.socialName}</span>
-      </div>
-    </props.ShareButton>
+    <div className="border rounded-lg hover:bg-slate-50">
+      <ShareButton {...props} className="inline-block w-full">
+        <div className="flex items-center gap-3 p-4 w-full">
+          <Icon
+            size={30}
+            round
+            className={`rounded-full text-3xl text-[${iconColor}]`}
+          />
+          <span className="text-neutral-800">{socialName}</span>
+        </div>
+      </ShareButton>
+    </div>
   );
 };
 

@@ -5,9 +5,10 @@ import React from "react";
 
 type Props = {
   radius?: "large" | "small";
-  onSelectionChange: (key: string) => void;
-  selectedKey?: string;
   options: string[];
+  onSelectionChange: (key: string) => void;
+  variant?: "default" | "gradient";
+  selectedKey?: string;
 };
 
 const OptionFilterTabs = ({
@@ -15,6 +16,7 @@ const OptionFilterTabs = ({
   options,
   selectedKey,
   onSelectionChange,
+  variant,
 }: Props) => {
   return (
     <>
@@ -23,19 +25,30 @@ const OptionFilterTabs = ({
         aria-label="Tabs variants"
         // radius="full"
         classNames={{
-          base: "bg-transparent",
-          tabList: "flex-wrap xl:flex-nowrap",
+          base: "bg-transparent transition-all",
+          tabList: [
+            variant === "gradient" ? "gap-x-16" : null,
+            "justify-center",
+            "flex-wrap",
+             "xl:flex-nowrap"
+          ],
           tab: [
-            "bg-slate-100",
-            "px-4",
+            variant === "gradient" ? null : "bg-slate-100",
+            variant === "gradient" ? "px-2 data-[selected=true]:px-12 h-10" : "px-4",
             "min-w-fit",
             "max-w-fit",
-            "data-[selected=true]:bg-[#45808B]",
+            variant === "gradient"
+              ? "data-[selected=true]:bg-gradient-to-r data-[selected=true]:from-[#21A19F] data-[selected=true]:to-[#1EA9A6A1]"
+              : "data-[selected=true]:bg-[#45808B]",
             radius === "small" ? "rounded-lg" : "rounded-large",
           ],
-          tabContent:
-            "text-primary-500 text-[0.6rem] md:text-sm group-data-[selected=true]:text-white",
-          panel: "bg-primary-400",
+          tabContent: [
+            variant === "gradient" ? "text-neutral-600" : "text-primary-500",
+            "text-[0.6rem]",
+            "text-sm",
+            "group-data-[selected=true]:text-white",
+          ],
+          // panel: "bg-primary-400",
         }}
         selectedKey={selectedKey}
         onSelectionChange={(key) => onSelectionChange(key as string)}

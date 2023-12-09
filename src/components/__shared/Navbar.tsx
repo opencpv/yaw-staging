@@ -43,7 +43,7 @@ const Navbar = (props: any) => {
 
   return (
     <nav
-      className={`w-full px-8 py-4 z-40 ${props.isMenuOpen && "absolute"} ${
+      className={`w-full px-8 py-4 z-40 no-print ${props.isMenuOpen && "absolute"} ${
         isNotTargetPage
           ? "sticky bg-primary-500"
           : shouldChangeColor

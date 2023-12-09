@@ -23,7 +23,9 @@ const PropertyDetailsFigures = ({
         <h3 className="items-center justify-between text-center gap-x-4 sm:flex sm:text-start ">
           Monthly Rent{" "}
           <Tooltip content="Lorem ipsum dolor sit amet.">
-            <HiOutlineExclamationCircle className="inline text-lg rotate-180 sm:inline-flex" />
+            <span className="">
+              <HiOutlineExclamationCircle className="inline text-lg rotate-180 sm:inline-flex" />
+            </span>
           </Tooltip>
         </h3>
         <p className="text-center sm:text-start">

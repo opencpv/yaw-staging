@@ -9,7 +9,7 @@ type Props = {
 
 const FeaturedListings = ({ className }: Props) => {
   return (
-    <section className={`w-full h-fit ${className}`}>
+    <section className={`w-full h-fit no-print ${className}`}>
       {
         <SliderMultiItems
           autoplay

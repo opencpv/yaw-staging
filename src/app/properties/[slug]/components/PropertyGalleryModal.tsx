@@ -55,7 +55,7 @@ const ModalHeader = ({ onClose }: { onClose?: () => void }) => {
         className="bg-neutral-900 rounded-full cursor-pointer p-1.5 shrink-0"
         onClick={onClose}
       />
-      <ShareBtn shareData={{url: ""}} />
+      <ShareBtn url="" />
     </div>
   );
 };
