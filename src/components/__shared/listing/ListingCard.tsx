@@ -31,9 +31,7 @@ const ListingCard = (props: ListingCardInterface) => {
           }}
           modules={[Pagination, Navigation]}
           className={`relative w-full listing-card-slider ${
-            props.cardType === "2"
-              ? "rounded-2xl h-80"
-              : "rounded-t-lg shadow-sm h-52"
+            props.cardType === "2" ? "rounded-2xl h-80" : "rounded-t-lg h-52"
           } `}
         >
           {/* Mapping through Featured listings from database */}
@@ -80,7 +78,9 @@ const ListingCard = (props: ListingCardInterface) => {
           propertyType={props.propertyType}
           rating={props.rating}
           ratingCount={props.ratingCount}
-          className="bg-white text-neutral-800"
+          className={`bg-white text-neutral-800 ${
+            props.cardType === "2" ? null : "shadow-md"
+          }`}
         />
         {/* Deals */}
         <ListingDeals membership={props.membership} deal={props.deal} />

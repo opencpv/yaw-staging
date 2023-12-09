@@ -36,9 +36,7 @@ const SliderMultiItems = ({
             spaceBetween: 20,
           },
         }}
-        freeMode={autoplay === false ? false : {
-          momentum: true
-        }}
+        freeMode={autoplay === false ? false : true}
         speed={autoplay ? 30000 : undefined}
         pagination={{
           clickable: true,

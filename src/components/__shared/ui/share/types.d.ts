@@ -3,8 +3,4 @@ type ShareDataProps = {
     title?: string;
     content?: string;
     className?: string;
-    Icon?: ReactType;
-    iconColor?: string;
-    socialName?: string;
-    ShareButton?: ReactType
 }

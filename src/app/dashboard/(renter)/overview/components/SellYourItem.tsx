@@ -3,6 +3,7 @@ import AOSWrapper from "@/components/__shared/AOSWrapper";
 import Button from "@/components/__shared/Button";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
@@ -23,13 +24,14 @@ const SellYourItem = (props: Props) => {
           <p className="capitalize text-neutral-600 mb-1 text-sm">
             Your Exclusive Marketplace, Completely Fee-Free
           </p>
-          <Button
-            color="primary"
-            className="w-10/12 p-2 px-4 text-sm capitalize"
-            onClick={() => router.push("/moving-sales")}
-          >
-            Add New Product <FaArrowRight />
-          </Button>
+          <Link href="/moving-sales" className="inline-block w-full">
+            <Button
+              color="primary"
+              className="p-2 w-full px-4 text-sm capitalize"
+            >
+              Add New Product <FaArrowRight />
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

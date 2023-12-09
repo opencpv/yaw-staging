@@ -3,6 +3,7 @@ import Button from "@/components/__shared/Button";
 import { useRouter } from "next/navigation";
 import React from "react";
 import style from "./Feature.module.css";
+import Link from "next/link";
 
 type Props = {
   title: string;
@@ -24,13 +25,14 @@ const ExploreFeatureCard = (props: Props) => {
       <div className="text-center space-y-5 text-white">
         <h2 className="text-2xl font-[700]">{props.title}</h2>
         <p className="text-sm line-clamp-3">{props.description}</p>
-        <Button
-          onClick={() => router.push(props.href)}
-          className="w-full bg-white/60 text-white"
-          arrowIcon
-        >
-          Explore
-        </Button>
+        <Link href={`${props.href}`} className="inline-block w-full">
+          <Button
+            className="w-full bg-white/60 text-white"
+            arrowIcon
+          >
+            Explore
+          </Button>
+        </Link>
       </div>
     </div>
   );

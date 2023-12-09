@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Navbar from "@/components/__shared/Navbar";
 import Image from "next/image";
 import React from "react";
@@ -9,7 +9,6 @@ import FixedSocials from "@/components/FixedSocials";
 import ScrollTop from "@/components/__shared/ScrollTop";
 import Button from "@/components/__shared/Button";
 import ListingCard from "@/components/__shared/listing/ListingCard";
-
 
 const page = () => {
   return (
@@ -23,22 +22,22 @@ const page = () => {
           style={{ objectFit: "cover" }}
         />
       </div>
-        {/* Search */}
-        <section className="section mb-32">
-          <div className="relative w-full px-4 py-10 mx-auto bg-white shadow-xl xs:px-12 bottom-20 rounded-xl lg:w-10/12">
-            <input
-              type="search"
-              className="border block shadow-xl text-neutral-800 border-[#21A19F] rounded-xl w-full py-6 p-4 sm:pl-12 mx-auto uppercase lg:w-10/12"
-              placeholder="Madina, Accra"
-            />
-          </div>
-          <div className="w-full mx-auto text-neutral-500">
-            <TagsSelect />
-          </div>
-        </section>
+      {/* Search */}
+      <section className="mb-32 px-5">
+        <div className="relative w-full px-4 py-10 mx-auto bg-white shadow-xl xs:px-12 bottom-20 rounded-xl lg:w-10/12">
+          <input
+            type="search"
+            className="border block shadow-xl text-neutral-800 border-[#21A19F] rounded-xl w-full py-6 p-4 sm:pl-12 mx-auto uppercase lg:w-10/12"
+            placeholder="Madina, Accra"
+          />
+        </div>
+        <div className="w-full mx-auto text-neutral-500">
+          <TagsSelect />
+        </div>
+      </section>
       <main className="overflow-x-hidden section">
         {/* Listing */}
-        <section className="mb-5 space-y-5 sm:space-y-0 sm:grid grid-cols-autofit-listing-card gap-x-3 gap-y-10">
+        <section className="mb-5 space-y-5 sm:space-y-0 sm:grid grid-cols-autofit-listing-card gap-x-3 gap-y-10 transition-all">
           {listings.map((listing) => (
             <ListingCard
               key={listing.id}
@@ -82,7 +81,9 @@ const page = () => {
           ))}
         </section>
         <div className="flex justify-center mb-40">
-          <Button color="accent" className="my-8">Load more</Button>
+          <Button color="accent" className="my-8">
+            Load more
+          </Button>
         </div>
       </main>
       <FixedSocials />

@@ -1,11 +1,6 @@
 import { Rate } from "antd";
 import Image from "next/image";
 import React from "react";
-import { FaShare } from "react-icons/fa";
-import { HiPrinter } from "react-icons/hi2";
-import Link from "next/link";
-import socialLinks from "@/enum/links/socials";
-import Button from "@/components/__shared/Button";
 import SliderPaginationOnly from "@/components/__shared/sliders/SliderPaginationOnly";
 import SliderWide from "@/components/__shared/sliders/SliderWide";
 import OtherPostsGroup from "../../components/post/OtherPostsGroup";
@@ -13,6 +8,7 @@ import AOSWrapper from "@/components/__shared/AOSWrapper";
 import BreadCrumbPreLink from "@/components/__shared/ui/BreadCrumbPreLink";
 import SubscribeToBlogButton from "../../components/SubscribeToBlogButton";
 import ShareBtn from "@/components/__shared/ui/share/ShareBtn";
+import Print from "@/components/__shared/ui/Print";
 
 type Props = {};
 
@@ -38,9 +34,9 @@ const page = (props: Props) => {
         </div>
       </AOSWrapper>
 
-      <h3 className="text-xl font-[500] mb-8">
+      <h3 className="text-xl font-[500] mb-8 no-print">
         <BreadCrumbPreLink label="Category" href="/blog/Category" /> /
-        <span className=""> Blog title</span>
+        <span className="">{" "}Blog title</span>
       </h3>
       <section className="grid-cols-4 gap-5 mb-20 sm:grid">
         <div className="col-span-3">
@@ -81,28 +77,25 @@ const page = (props: Props) => {
             </p>
           </div>
           {/* Rate blog */}
-          <h3 className="text-xl font-[500] text-neutral-800 mb-3">
+          <h3 className="text-xl font-[500] text-neutral-800 mb-3 no-print">
             Rate this blog
           </h3>
-          <div className="flex flex-wrap items-center justify-between gap-5 mb-16">
+          <div className="flex flex-wrap items-center justify-between gap-5 mb-16 no-print">
             <Rate allowHalf allowClear defaultValue={0} />
             <div className="flex items-center gap-3 text-2xl text-primary-200">
-              <p className="text-neutral-800 text-base font-[500]">Share</p>
+              <p className="text-neutral-800 text-base font-[500] cursor-pointer">
+                Share
+              </p>
               <ShareBtn
                 url="https://rentright.com.gh"
                 title="Mastering the Art of Home Decor: Simple Tips for a Cozy Living Space"
                 className="text-neutral-800"
               />
-              {/* {socialLinks.map((link) => (
-                <Link key={link.name} href={link.href} title={link.name}>
-                  {link.icon}
-                </Link>
-              ))} */}
-              <HiPrinter title="print" />
+              <Print />
             </div>
           </div>
           <AOSWrapper animation="fade-up" duration="1000">
-            <section className="h-fit w-full gap-8 flex-col hidden md:flex min-[1000px]:flex-row">
+            <section className="h-fit w-full gap-8 flex-col hidden no-print md:flex min-[1000px]:flex-row">
               <SliderPaginationOnly
                 images={[1, 2, 3, 4, 5].map((image) => ({
                   src: "/assets/images/niceHome.png",
@@ -119,11 +112,11 @@ const page = (props: Props) => {
           </AOSWrapper>
           <SubscribeToBlogButton
             animation="fade-right"
-            className="px-8 mb-14 md:hidden"
+            className="px-8 mb-14 no-print md:hidden"
           />
         </div>
         {/* Other posts -- right side of Grid */}
-        <div className="col-span-1 space-y-5">
+        <div className="col-span-1 space-y-5  ">
           <div className="hidden md:block">
             <OtherPostsGroup />
           </div>
@@ -133,10 +126,10 @@ const page = (props: Props) => {
           />
         </div>
       </section>
-      <section className="grid-cols-2 gap-5 mb-10 xs:grid md:hidden">
+      <section className="grid-cols-2 gap-5 mb-10 no-print xs:grid md:hidden">
         <OtherPostsGroup />
       </section>
-      <section className="w-full mb-20 h-fit md:hidden">
+      <section className="w-full mb-20 h-fit no-print md:hidden">
         <SliderWide
           pagination
           navigation

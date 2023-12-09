@@ -6,6 +6,7 @@ import { CiLock } from "react-icons/ci";
 import Button from "@/components/__shared/Button";
 import { useRouter } from "next/navigation";
 import { Router } from "lucide-react";
+import Link from "next/link";
 
 const FeatureExplainer = ({
   title,
@@ -27,22 +28,24 @@ const FeatureExplainer = ({
             renting experience
           </p>
           {title === "Be The First To Know" && (
-            <Button
-              variant="ghost"
-              className="text-[#45808B] capitalize underline font-[700]"
-              onClick={() => router.push(href)}
-            >
-              Learn more
-            </Button>
+            <Link href={`${href}`} className="inline-block">
+              <Button
+                variant="ghost"
+                className="text-[#45808B] capitalize underline font-[700]"
+              >
+                Learn more
+              </Button>
+            </Link>
           )}
           {title === "Be My Agent" && (
-            <Button
-              variant="ghost"
-              className="text-[#45808B] capitalize underline font-[700]"
-              onClick={() => router.push(href)}
-            >
-              Learn more
-            </Button>
+            <Link href={`${href}`} className="inline-block"> 
+              <Button
+                variant="ghost"
+                className="text-[#45808B] capitalize underline font-[700]"
+              >
+                Learn more
+              </Button>
+            </Link>
           )}
         </div>
       </Callout>

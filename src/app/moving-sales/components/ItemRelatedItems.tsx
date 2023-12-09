@@ -6,9 +6,9 @@ type Props = {};
 
 const ItemRelatedItems = (props: Props) => {
   return (
-    <section className="">
+    <section className="mb-40">
       {/* Related products */}
-      <h3 className="text-xl text-neutral-500 font-[500] mb-40">
+      <h3 className="text-xl text-neutral-500 font-[500] mb-6">
         Related products
       </h3>
       <SliderMultiItems

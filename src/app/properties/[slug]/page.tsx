@@ -149,7 +149,7 @@ const PropertyDetailsPage = () => {
         </section>
         {/* Recommended Listings */}
         <section className="">
-          <div className="flex flex-wrap justify-between gap-5 mb-5">
+          <div className="flex flex-wrap items-center justify-between gap-5 mb-5">
             <h2 className="text-neutral-800 text-xl font-[600] md:ml-10">
               Recommended Listings
             </h2>

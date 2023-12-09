@@ -8,6 +8,7 @@ import fetchTermsData from "../lib/fetchTermsData";
 import Link from "next/link";
 import { openSans } from "@/styles/font";
 import { usePathname } from "next/navigation";
+import Logo from "@/components/__shared/Logo";
 
 const TermsNav = ({
   data,
@@ -32,7 +33,8 @@ const TermsNav = ({
         primary ? "" : "bg-[#333333]"
       }`}
     >
-      <Image src={icons.Logo} alt="logo" />
+      {/* <Image src={icons.Logo} alt="logo" /> */}
+      <Logo size="sm" />
       <div className=" md:gap-[50px] hidden md:flex">
         <Link
           href={`/terms-of-service`}

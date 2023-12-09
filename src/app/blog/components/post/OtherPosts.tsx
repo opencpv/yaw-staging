@@ -6,7 +6,7 @@ import React from "react";
 
 const OtherPosts = ({ title, posts, className }: OtherPostsProps) => {
   return (
-    <div className={`max-w-lg ${className}`}>
+    <div className={`max-w-lg no-print ${className}`}>
       <div
         className={
           "bg-primary-200 text-white px-2 py-3 text-xl font-[600] rounded-md mb-2"
