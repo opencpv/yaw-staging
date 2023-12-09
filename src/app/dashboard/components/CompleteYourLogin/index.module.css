@@ -1,0 +1,9 @@
+.login_root {
+    /* Frame shadow */
+    box-shadow: 0px 1px 64px 10px rgba(0, 0, 0, 0.12);
+}
+
+.login_sub_root {
+    filter: blur(6.5px);
+    backdrop-filter: blur(37.5px);
+}

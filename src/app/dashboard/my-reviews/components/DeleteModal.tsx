@@ -10,7 +10,6 @@ import {
 } from "@nextui-org/react";
 
 import { MdInfoOutline } from "react-icons/md";
-import CaAgentMessage from "./icons/CaAgentMessage";
 import CaDelete from "../../saved-search/components/CaDelete";
 
 export default function DeleteModal() {

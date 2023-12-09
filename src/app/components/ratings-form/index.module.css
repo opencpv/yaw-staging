@@ -1,0 +1,8 @@
+.review_pagination{
+    background: var(--faq-banner, linear-gradient(103deg, #21A19F 38.96%, rgba(30, 169, 166, 0.63) 90.07%));
+    box-shadow: 0px 24px 48px -12px rgba(0, 0, 0, 0.18);
+}
+
+.review_button{
+    background: var(--faq-banner, linear-gradient(103deg, #21A19F 38.96%, rgba(30, 169, 166, 0.63) 90.07%));
+}

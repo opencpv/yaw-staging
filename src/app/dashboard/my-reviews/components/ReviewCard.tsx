@@ -5,6 +5,8 @@ import CaREviewsReply2 from "./icons/CaReviewsReply2";
 import DeleteModal from "./DeleteModal";
 import ReviewStarsFixed from "./ReviewStarsFixed";
 import CustomTextAreaInput from "@/app/components/CustomTextAreaInput";
+import CaThumbsUpYellow from "./icons/CaThumbsUpYellow";
+import CaThumbsDown from "./icons/CaThumbsDown";
 
 type Props = {
   data: any;
@@ -69,6 +71,9 @@ export default function ReviewCard({ data, variant, property, index }: Props) {
             {<ReviewStarsFixed rating={data?.ratings} />}{" "}
           </div>
         </div>
+
+        {data?.recommended == "yes" ? <CaThumbsUpYellow/> : <CaThumbsDown/>}
+
 
         {edit && (
           <div className="flex gap-5 w-full h-full">

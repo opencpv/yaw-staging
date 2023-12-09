@@ -8,6 +8,7 @@ const nextConfig = {
       "upload.wikimedia.org",
       "lh3.googleusercontent.com",
       "cdn.sanity.io",
+      "plus.unsplash.com",
     ],
   },
 };

@@ -20,6 +20,7 @@ const config: Config = {
         "about-bg": "url('/assets/images/about-bg.png')",
       },
       colors: {
+        modalOverlay: "#02020275",
         darkGreenBg: "#073B3A ",
         primary: {
           300: "#E6F6EE",
