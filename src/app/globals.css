@@ -70,7 +70,7 @@ body {
   }
 
   .print-content {
-    display: block;
+    grid-template-columns: 1;
   }
 
   .no-print  {

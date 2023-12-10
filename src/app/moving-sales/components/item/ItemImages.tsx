@@ -2,7 +2,7 @@ import Button from "@/components/__shared/Button";
 import Image from "next/image";
 import React from "react";
 import { MdWindow } from "react-icons/md";
-import ViewItemBtn from "./ViewItemBtn";
+import ViewItemBtn from "../ViewItemBtn";
 
 type Props = {};
 

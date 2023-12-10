@@ -85,6 +85,4 @@ interface ManagePropertiesInterface {
   status: PropertyStatusInterface;
 }
 
-interface PropertyStatusInterface {
-  status: "available" | "contract pending" | "leased" | "dormant";
-}
+type PropertyStatusInterface = "available" | "contract pending" | "leased" | "dormant";

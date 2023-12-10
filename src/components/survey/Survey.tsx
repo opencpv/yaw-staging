@@ -6,7 +6,7 @@ import Modal from "../__shared/modals/Modal";
 import { FaTimesCircle } from "react-icons/fa";
 import SurveyBody from "./SurveyBody";
 import SurveyHeader from "./SurveyHeader";
-import { useToastDisclosure } from "@/lib/custom-hooks/useToastDisclosure";
+import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 
 type Props = {
   // handleClick: () => void;

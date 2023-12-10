@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { toast } from "react-toastify";
 
 const useToastDisclosure = () => {
@@ -25,4 +26,15 @@ const useToastDisclosure = () => {
   return { onOpen };
 };
 
-export { useToastDisclosure };
+
+const useSelectDisclosure = <T extends string>(defaultOption: T) => {
+  const [value, setValue] = useState<T>(defaultOption);
+  const handleSelectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setValue(e.target.value as T);
+  };
+
+  return { value, setValue, handleSelectionChange}
+}
+
+
+export { useToastDisclosure, useSelectDisclosure };
