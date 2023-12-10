@@ -4,8 +4,10 @@ type SearchInputProps = {
 }
 
 type CheckboxProps = {
-    name: string;
-    isSelected: boolean;
-    onValueChange: () => void;
+    value: string;
+    isSelected?: boolean;
+    onValueChange?: () => void;
     label?: string;
+    labelColor?: string;
+    labelSize?: string;
 }

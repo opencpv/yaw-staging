@@ -1,12 +1,11 @@
-//@ts-nocheck
-
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import PaymentWarning from "./PaymentWarning";
 import Button from "@/components/__shared/Button";
 import { FaRegCheckCircle, FaRegTimesCircle } from "react-icons/fa";
 import Select from "../../../components/Select";
 import Schedule from "node-schedule";
+import { useSelectDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 
 type Props = {
   isPaidFor: boolean;
@@ -14,15 +13,8 @@ type Props = {
 };
 
 const PropertyStatus = ({ isPaidFor, status }: Props) => {
-  const [value, setValue] = useState<
-    "available" | "contract pending" | "leased" | "dormant"
-  >("available");
-
-  const handleSelectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setValue(
-      e.target.value as "available" | "contract pending" | "leased" | "dormant"
-    );
-  };
+  const { setValue, handleSelectionChange } =
+    useSelectDisclosure<PropertyStatusInterface>("available");
 
   if (isPaidFor === false) return <PaymentWarning />;
   else if (isPaidFor)

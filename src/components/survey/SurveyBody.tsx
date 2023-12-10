@@ -3,7 +3,7 @@ import Thumbs from "./Thumbs";
 import FeedbackSlider from "./FeedbackSlider";
 import Image from "next/image";
 import Button from "../__shared/Button";
-import { useToastDisclosure } from "@/lib/custom-hooks/useToastDisclosure";
+import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 
 
 const SurveyBody = ({handleSubmitFeedback}: {handleSubmitFeedback: () => void;}) => {

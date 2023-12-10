@@ -1,15 +1,10 @@
-import Button from "@/components/__shared/Button";
-import SliderMultiItems from "@/components/__shared/sliders/SliderMultiItems";
-import Image from "next/image";
-import Link from "next/link";
 import React from "react";
-import { FaChevronRight, FaWhatsapp } from "react-icons/fa";
-import ItemCard from "../components/ItemCard";
+import { FaChevronRight } from "react-icons/fa";
 import BreadCrumbPreLink from "@/components/__shared/ui/BreadCrumbPreLink";
-import ItemImages from "../components/ItemImages";
-import ItemDetails from "../components/ItemDetails";
-import ItemOwnerContact from "../components/ItemOwnerContact";
-import ItemRelatedItems from "../components/ItemRelatedItems";
+import ItemImages from "../components/item/ItemImages";
+import ItemDetails from "../components/item/ItemDetails";
+import ItemOwnerContact from "../components/item/ItemOwnerContact";
+import ItemRelatedItems from "../components/item/ItemRelatedItems";
 
 type Props = {};
 

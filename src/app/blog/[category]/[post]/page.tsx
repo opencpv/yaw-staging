@@ -38,7 +38,7 @@ const page = (props: Props) => {
         <BreadCrumbPreLink label="Category" href="/blog/Category" /> /
         <span className="">{" "}Blog title</span>
       </h3>
-      <section className="grid-cols-4 gap-5 mb-20 sm:grid">
+      <section className="grid-cols-4 gap-5 mb-20 print-content sm:grid">
         <div className="col-span-3">
           {/* Blog content --- CMS */}
           <div className="mb-20">

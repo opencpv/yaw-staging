@@ -67,7 +67,7 @@ const ModalFooter = () => {
       <div className="flex order-2 xs:order-1">
         <Checkbox
           label="Don't show this again"
-          name="favorite-show-again"
+          value="favorite-show-again"
           isSelected={isSelected}
           onValueChange={() => setIsSelected((prev) => !prev)}
         />
