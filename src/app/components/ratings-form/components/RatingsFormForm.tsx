@@ -13,24 +13,16 @@ import AllReviewsModal from "../../all-reviews-modal";
 type Props = {
   setOpen: any;
   variant?: "property" | "person";
-  preventDoubleModal : boolean
+  setOpen2: any;
 };
 
-function RatingsFormForm({ setOpen, variant="person", preventDoubleModal }: Props) {
+function RatingsFormForm({ setOpen, variant = "person", setOpen2 }: Props) {
   const [showAllReviews, setShowAllReviews] = useState(false);
   const [activeNumber, setActiveNumber] = useState(1);
 
   return (
     <Root className="flex flex-col gap-4 py-3 px-6">
-      <div className="absolute top-0">
-        <AllReviewsModal
-          hide
-          variant="person"
-          zindex={2001}
-          open={showAllReviews}
-          setOpen={setShowAllReviews}
-        />
-      </div>
+   
       <div className="flex flex-col gap-4">
         <p className="text-[1.5625rem] font-bold text-[#373737]">
           Write a review
@@ -47,7 +39,10 @@ function RatingsFormForm({ setOpen, variant="person", preventDoubleModal }: Prop
           </div>
           <p className="text-[1.25rem[ font-semibold">Jane Cooper</p>
           <p
-            onClick={() => setShowAllReviews(true)}
+            onClick={() => {
+              setOpen(false);
+              setOpen2(true);
+            }}
             className="text-[#073B3A] text-[1.25rem] bg-white border-b-[1px] border-[#073B3A] cursor-pointer">
             ( 150 reviews )
           </p>

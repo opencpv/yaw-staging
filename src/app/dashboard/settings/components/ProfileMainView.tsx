@@ -15,9 +15,11 @@ const ProfileMainView = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const { user } = useAppStore();
-  const optionSelect = useManageAccountStore((state) => state.filterOption);
+  const optionSelect = useManageAccountStore(
+    (state: any) => state.filterOption
+  );
   const handleOptionChange = useManageAccountStore(
-    (state) => state.changeOption
+    (state: any) => state.changeOption
   );
 
   useEffect(() => {
@@ -38,7 +40,8 @@ const ProfileMainView = () => {
           tab: "bg-white px-4 py-3  w-full  ",
           tabContent:
             "text-shade-200 group-data-[selected=true]:text-[#307A4A] group-data-[selected=true]:font-semibold  ",
-          cursor: "shadow-none border-b-[#45808B] border-b-2 rounded-none w-full",
+          cursor:
+            "shadow-none border-b-[#45808B] border-b-2 rounded-none w-full",
           panel: "pt-2",
         }}
         selectedKey={optionSelect}
@@ -46,7 +49,7 @@ const ProfileMainView = () => {
           handleOptionChange(selectedOption)
         }>
         <Tab key="profile" title="Profile">
-          <div type={"active"}>
+          <div>
             <p className="text-[1.5625rem] font-semibold">Profile</p>
             <ProfileInfo
               profileData={user?.profileData}
@@ -56,12 +59,12 @@ const ProfileMainView = () => {
           </div>
         </Tab>
         <Tab key="blocking" title="Blocking">
-          <div type={"active"}>
-            <Blocking/>
+          <div>
+            <Blocking />
           </div>
         </Tab>{" "}
         <Tab key="account-setting" title="Account Setting">
-          <div type={"active"}>Account Setting</div>
+          <div>Account Setting</div>
         </Tab>
       </Tabs>
     </main>

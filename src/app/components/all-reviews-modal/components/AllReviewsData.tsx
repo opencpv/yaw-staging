@@ -12,19 +12,16 @@ import RatingsForm from "../../ratings-form";
 
 type Props = {
   variant: "property" | "person";
-  preventDoubleModal? : boolean
-  
+  setOpen1: any;
+  setOpen2: any;
 };
 
-function AllReviewsData({ variant, preventDoubleModal }: Props) {
+function AllReviewsData({ variant, setOpen1, setOpen2 }: Props) {
   const [rate, setRate] = useState(false);
   return (
     <div>
       <SlideEnter>
         <div className="flex flex-col gap-8 items-start justify-center w-full">
-          <div className="absolute top-0">
-            <RatingsForm open={rate} zindex={2000} setOpen={setRate} />
-          </div>
           <div className="flex gap-4 items-center py-4 px-8 rounded-2xl bg-[#E9ECEF] w-full">
             <div
               className={`relative w-full h-full  ${
@@ -51,10 +48,15 @@ function AllReviewsData({ variant, preventDoubleModal }: Props) {
                 <FaStar color="#FFB800" size="24" />
                 <p
                   className="text-[#363C91] underline"
-                  onClick={() => setRate(true)}>
+                  onClick={() => {
+                    setOpen1(false);
+                    setOpen2(true);
+                  }}>
                   3.5
                 </p>
-                <p className="text-[#073B3A] whitespace-nowrap">( 3 ) Reviews</p>
+                <p className="text-[#073B3A] whitespace-nowrap">
+                  ( 3 ) Reviews
+                </p>
               </div>
             </div>
           </div>

@@ -7,9 +7,9 @@ import ServiceProsReviews from "./components/ServiceProsReviews";
 import { useManageReviewsStore } from "@/store/dashboard/propertiesStore";
 
 export default function MyReviews() {
-  const optionSelect = useManageReviewsStore((state) => state.filterOption);
+  const optionSelect = useManageReviewsStore((state: any) => state.filterOption);
   const handleOptionChange = useManageReviewsStore(
-    (state) => state.changeOption
+    (state : any) => state.changeOption
   );
 
   return (

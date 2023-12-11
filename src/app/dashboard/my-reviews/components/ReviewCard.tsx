@@ -128,7 +128,7 @@ export default function ReviewCard({ data, variant, property, index }: Props) {
               <CaREviewsReply2 />
             </div>
           )}
-          {data?.replies?.map((r, index) => (
+          {data?.replies?.map((r : any, index : number) => (
             <div
               className="flex gap-2 items-center justify-start    w-full"
               key={index}>
