@@ -23,6 +23,12 @@ const useManageAccountStore = create((set) => ({
   changeOption: (option) => set({ filterOption: option }),
 }));
 
+const useManageInvoicesStore = create((set) => ({
+  filterOption: "invoice",
+  changeOption: (option) => set({ filterOption: option }),
+}));
 
 
-export { useManageAccountStore };
+
+
+export { useManageAccountStore, useManageInvoicesStore };
