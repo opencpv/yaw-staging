@@ -12,13 +12,18 @@
   opacity: 1 !important;
 }
 
+.slider-multi-items > .swiper-wrapper {
+  transition-timing-function: linear !important;
+}
+
+.slider-multi-items {
+  padding-bottom: 5px !important;
+}
+
 .slider-grid {
   height: 100%;
   width: 100%;
-}
-
-.slider-multi-items > .swiper-wrapper {
-  transition-timing-function: linear !important;
+  padding-bottom: 20px !important;
 }
 
 .slider-grid-pagination .swiper-pagination-bullet,

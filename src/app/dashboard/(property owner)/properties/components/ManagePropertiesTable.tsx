@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client"
 import React from "react";
 import PropertyRow from "./PropertyRow";
@@ -36,8 +35,6 @@ const ManagePropertiesTable = (props: Props) => {
   });
 
   setCount(totalCount);
-
-  console.log(currentPage)
 
   return (
     <section className="hidden lg:table">
@@ -77,7 +74,7 @@ const ManagePropertiesTable = (props: Props) => {
                 posted_on={property.created_at as string}
                 isPaidFor={property.is_paid_for as boolean}
                 status={
-                  property.status.toLowerCase() as PropertyStatusInterface
+                  (property.status as PropertyStatusInterface).toLowerCase()
                 }
               />
             ))

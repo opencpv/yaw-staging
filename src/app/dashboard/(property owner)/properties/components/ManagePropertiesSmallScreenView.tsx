@@ -1,4 +1,3 @@
-//@ts-nocheck
 "use client";
 
 import React from "react";
@@ -6,7 +5,8 @@ import PropertyRow2 from "./PropertyRow2";
 import { useFetchTableWithInfiniteScroll } from "@/lib/custom-hooks/useFetch";
 import TableMobileSkeleton from "../../../components/shared/skeleton/TableMobileSkeleton";
 import { useManagePropertiesStore } from "@/store/dashboard/propertiesStore";
-import Button from "@/components/__shared/Button";
+import Button from "@/components/__shared/ui/data_fetchting/ButtonInfiniteLoading";
+import FetchingStates from "@/components/__shared/ui/data_fetchting/FetchingStates";
 
 const ManagePropertiesSmallScreenView = () => {
   const filterOption = useManagePropertiesStore((state) => state.filterOption);
@@ -29,14 +29,19 @@ const ManagePropertiesSmallScreenView = () => {
 
   return (
     <div className="lg:hidden">
-      {isLoading ? (
-        <TableMobileSkeleton rows={4} />
-      ) : (
-        error && <p>Error: Something went wrong while fetching</p>
-      )}
-      {isValidating === false && !error && properties?.length === 0 && (
-        <p className="italic mt-4">There are no properties in this category</p>
-      )}
+      <FetchingStates
+        data={properties}
+        error={error}
+        isLoading={isLoading}
+        isValidating={isValidating}
+        isLoadingComponent={<TableMobileSkeleton rows={4} />}
+        errorComponent={<p>Error: Something went wrong while fetching</p>}
+        noDataMessageComponent={
+          <p className="italic mt-4">
+            There are no properties in this category
+          </p>
+        }
+      />
       <section className="mt-3 mb-10 space-y-5">
         {properties?.map((property) => (
           <PropertyRow2
@@ -46,7 +51,7 @@ const ManagePropertiesSmallScreenView = () => {
             price={30000}
             posted_on={property.created_at as string}
             isPaidFor={property.is_paid_for as boolean}
-            status={property.status.toLowerCase()}
+            status={(property.status as PropertyStatusInterface).toLowerCase()}
           />
         ))}
       </section>
@@ -54,25 +59,13 @@ const ManagePropertiesSmallScreenView = () => {
         {isLoading && loadMore ? "Fetching..." : null}
       </div>
       <div className="flex justify-center mb-20">
-        {isLoading ? null : (
-          <Button
-            onClick={() => loadMore && loadMore()}
-            className={`${
-              loadMore === null
-                ? "bg-neutral-300 text-neutral-600 cursor-not-allowed"
-                : "bg-accent-50 text-white"
-            } ${
-              isLoading || (properties?.length === 0 && "hidden")
-            } rounded-xl font-[600] p-2 px-5`}
-            disabled={loadMore === null ? true : false}
-          >
-            {isValidating
-              ? "Loading More..."
-              : loadMore
-              ? "Load More"
-              : "No more properties"}
-          </Button>
-        )}
+        <Button
+          data={properties}
+          isLoading={isLoading}
+          isValidating={isValidating}
+          loadMore={loadMore}
+          noDataMessage="No more Properties"
+        />
       </div>
     </div>
   );

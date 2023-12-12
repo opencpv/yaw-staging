@@ -14,7 +14,7 @@ import "swiper/css/navigation";
 
 const SliderGrid = ({ items }: SliderGridProps) => {
   return (
-    <div className="w-full h-full pb-10">
+    <div className="w-full h-full mb-10">
       <Swiper
         slidesPerView={1}
         // centeredSlides
@@ -66,10 +66,10 @@ const SliderGrid = ({ items }: SliderGridProps) => {
             },
           },
         }}
-        className="w-full h-full pb-20 slider-grid"
+        className="w-full h-full slider-grid"
       >
         {/* Mapping through Featured listings from database */}
-        {items.map((item, idx) => (
+        {items?.map((item, idx) => (
           <SwiperSlide key={idx + 1} className="">
             {item}
           </SwiperSlide>

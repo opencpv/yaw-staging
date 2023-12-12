@@ -32,7 +32,7 @@ const PropertyDetailsImages = (props: Props) => {
             >
               <Image
                 src={images.StockImage}
-                alt={props.images.propertyType as string}
+                alt={props.images.propertyName as string}
                 fill
                 className="transition-all hover:scale-[1.02]"
                 style={{ objectFit: "cover" }}

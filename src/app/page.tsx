@@ -21,6 +21,8 @@ import AOSWrapper from "@/components/__shared/AOSWrapper";
 import AdsSliderColumn from "./components/AdsSliderColumn";
 import SurveyToast from "./components/survey/SurveyToast";
 import ScrollTopAndSocial from "@/components/ui/ScrollTopAndSocial";
+import FeaturedListingAndAds from "./components/FeaturedListingAndAds";
+import HomePopularCities from "./components/home_sections/HomePopularCities";
 
 export default function Home() {
   useEffect(() => {
@@ -84,91 +86,14 @@ export default function Home() {
             {/*!!! Temporary fix of scrolling issue on mobile !!!*/}
           </div>
         </section>
+        
+        {/* Featured Listings and Ads */}
+        <FeaturedListingAndAds />
 
-        {/* Featured Listings */}
-        <section className="px-5 mx-auto mb-12 max-w-screen-2xl xs:px-5">
-          <h2 className="text-2xl font-[700] text-neutral-900 mb-5">
-            Featured Listings
-          </h2>
-          {/* Listing cards */}
-          <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-8 lg:items-start">
-            {/* Shows when number of listings is less than 10 */}
-            {listingsdb.length <= 9 ? (
-              <div className="col-span-6 grid gap-5 grid-cols-1 sm:grid-cols-2 min-[950px]:max-lg:grid-cols-3 lg:grid-cols-2 min-[1180px]:grid-cols-3">
-                {listingsdb.map((listing) => {
-                  return (
-                    <ListingCard
-                      key={listing.id}
-                      propertyType={listing.propertyType}
-                      propertyDescription={listing.propertyDescription}
-                      images={listing.images}
-                      price={listing.price}
-                      paymentStructure={
-                        listing.paymentStructure as PaymentStructure
-                      }
-                      monthlyAmount={listing.monthlyAmount}
-                      deal={listing.deal as Deal}
-                      membership={listing.membership as Membership}
-                      rating={listing.rating}
-                      ratingCount={listing.ratingCount}
-                      liked={listing.liked}
-                      href={listing.href}
-                    />
-                  );
-                })}
-              </div>
-            ) : (
-              <div className="relative col-span-6 pb-5">
-                {/* Shows when number of listings is more than 9 */}
-                <div className="relative h-fit w-full">
-                  <SliderGrid
-                    items={listingsdb.map((listing) => (
-                      <ListingCard
-                        key={listing.id}
-                        propertyType={listing.propertyType}
-                        propertyDescription={listing.propertyDescription}
-                        images={listing.images}
-                        price={listing.price}
-                        paymentStructure={
-                          listing.paymentStructure as PaymentStructure
-                        }
-                        monthlyAmount={listing.monthlyAmount}
-                        deal={listing.deal as Deal}
-                        membership={listing.membership as Membership}
-                        rating={listing.rating}
-                        ratingCount={listing.ratingCount}
-                        liked={listing.liked}
-                        href={listing.href}
-                      />
-                    ))}
-                  />
-                </div>
-              </div>
-            )}
-            {/* Ads */}
-            <AdsSliderColumn />
-          </div>
-          <ArrowLink
-            href="/properties"
-            text="Show all"
-            color="#202457"
-            className="mb-16"
-          />
-          {/* Ads */}
-          <section className="h-fit w-full lg:hidden">
-            <SliderWide pagination
-              navigation
-              images={[1, 2, 3, 4, 5].map((image) => ({
-                src: "/assets/images/niceHome.png",
-                name: "",
-              }))}
-            />
-          </section>
-        </section>
         {/* Apartment Rentals */}
         <section className="px-5 mx-auto mb-16 space-y-8 max-w-screen-2xl xs:px-5 md:space-y-14">
           <div className="w-full space-y-3.5 min-[810px]:w-7/12">
-            <div className="flex items-start justify-between gap-2 min-[500px]:justify-start min-[500px]:gap-20">
+            <div className="flex gap-5">
               <h2 className="font-[500] text-2xl capitalize text-neutral-900">
                 Our Apartment Rental Deals
               </h2>
@@ -206,7 +131,7 @@ export default function Home() {
         {/* Manage Your Properties With Us */}
         <section className="px-5 mx-auto mb-20 space-y-8 max-w-screen-2xl xs:px-5 md:space-y-1">
           <div className="w-full space-y-3.5 mb-14 min-[810px]:w-7/12">
-            <div className="flex items-start justify-between gap-2 min-[500px]:justify-start min-[500px]:gap-20">
+            <div className="flex gap-5 ">
               <h2 className="font-[500] text-2xl capitalize text-neutral-900">
                 Manage Your Properties With Us
               </h2>
@@ -252,49 +177,7 @@ export default function Home() {
           </div>
         </section>
         {/* Find Apartments in Popular Cities */}
-        <section className="px-5 mx-auto space-y-5 max-w-screen-2xl xs:px-5">
-          <div className="w-full space-y-5 min-[810px]:w-7/12">
-            <div className="flex items-start justify-between gap-2 min-[500px]:justify-start min-[500px]:gap-20">
-              <h2 className="font-[700] text-2xl mb-3.5 capitalize text-neutral-900">
-                Find Apartments in Popular Cities
-              </h2>
-              <Image
-                src="/assets/icons/apartments.svg"
-                alt=""
-                width={25}
-                height={25}
-              />
-            </div>
-          </div>
-          <div className="items-center hidden grid-cols-2 gap-5 pb-20 lg:grid lg:grid-cols-3">
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((city, idx) => {
-              return (
-                <AOSWrapper key={idx + 1} animation="zoom-in" duration="1000">
-                  <PopularCitiesCard
-                    // key={idx + 1}
-                    location="Kumasi"
-                    description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, doloribus!"
-                    propertyNumber={232}
-                    href="/"
-                  />
-                </AOSWrapper>
-              );
-            })}
-          </div>
-          <div className="relative pb-20 h-fit lg:hidden">
-            <SliderMultiItems
-              items={[1, 2, 3, 4, 5, 6, 7, 8].map((item, idx) => (
-                <PopularCitiesCard
-                  key={idx + 1}
-                  location="Kumasi"
-                  description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, doloribus!"
-                  propertyNumber={232}
-                  href="/"
-                />
-              ))}
-            />
-          </div>
-        </section>
+        <HomePopularCities />
         <SurveyToast />
       </main>
       <ScrollTopAndSocial />
