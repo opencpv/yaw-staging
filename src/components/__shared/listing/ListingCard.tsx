@@ -41,7 +41,7 @@ const ListingCard = (props: ListingCardInterface) => {
                 <div className="relative w-full h-full">
                   <Image
                     src={image}
-                    alt={props.propertyType?.toLowerCase() as string}
+                    alt={props.propertyName as string}
                     fill
                     className="brightness-[0.8]"
                     style={{ objectFit: "cover" }}
@@ -53,7 +53,7 @@ const ListingCard = (props: ListingCardInterface) => {
 
           {/* Pagination bullets and button */}
           <div
-            className={`custom-l-prev absolute left-[5%] z-10 flex h-8 w-8 shrink-0 cursor-default items-center justify-center rounded-full bg-white ${
+            className={`custom-l-prev absolute left-[5%] z-10 flex h-10 w-10 shrink-0 cursor-default items-center justify-center rounded-full bg-white ${
               props.cardType === "2" ? "bottom-32" : "bottom-20"
             }`}
           >
@@ -61,7 +61,7 @@ const ListingCard = (props: ListingCardInterface) => {
           </div>
           <div className="w-full space-x-3 text-center custom-l-pagination bottom-40"></div>
           <div
-            className={`custom-l-next absolute right-[5%] z-10 flex h-8 w-8 shrink-0 cursor-default items-center justify-center rounded-full bg-white ${
+            className={`custom-l-next absolute right-[5%] z-10 flex h-10 w-10 shrink-0 cursor-default items-center justify-center rounded-full bg-white ${
               props.cardType === "2" ? "bottom-32" : "bottom-20"
             }`}
           >
@@ -75,11 +75,12 @@ const ListingCard = (props: ListingCardInterface) => {
           paymentStructure={props.paymentStructure}
           price={props.price}
           propertyDescription={props.propertyDescription}
-          propertyType={props.propertyType}
+          propertyName={props.propertyName}
+          city={props.city}
           rating={props.rating}
           ratingCount={props.ratingCount}
           className={`bg-white text-neutral-800 ${
-            props.cardType === "2" ? null : "shadow-md"
+            props.cardType === "2" ? null : "shadow-lg"
           }`}
         />
         {/* Deals */}

@@ -4,7 +4,8 @@ import React from "react";
 import ApplicationRow2 from "./ApplicationRow2";
 import { useFetchTableWithInfiniteScroll } from "@/lib/custom-hooks/useFetch";
 import TableMobileSkeleton from "../../../components/shared/skeleton/TableMobileSkeleton";
-import Button from "@/components/__shared/Button";
+import Button from "@/components/__shared/ui/data_fetchting/ButtonInfiniteLoading";
+import FetchingStates from "@/components/__shared/ui/data_fetchting/FetchingStates";
 
 type Props = {};
 
@@ -24,14 +25,17 @@ const ManageApplicationsSmallScreen = (props: Props) => {
 
   return (
     <div className="lg:hidden">
-      {isLoading ? (
-        <TableMobileSkeleton rows={4} />
-      ) : (
-        error && <p>Error: Something went wrong while fetching</p>
-      )}
-      {isValidating === false && !error && applicants?.length === 0 && (
-        <p className="italic mt-4">There are no applications yet.</p>
-      )}
+      <FetchingStates
+        data={applicants}
+        error={error}
+        isLoading={isLoading}
+        isValidating={isValidating}
+        isLoadingComponent={<TableMobileSkeleton rows={4} />}
+        errorComponent={<p>Error: Something went wrong while fetching</p>}
+        noDataMessageComponent={
+          <p className="italic mt-4">There are no applications yet.</p>
+        }
+      />
       <section className="mt-3 mb-10 space-y-5">
         {applicants?.map((applicant) => (
           <ApplicationRow2
@@ -49,25 +53,13 @@ const ManageApplicationsSmallScreen = (props: Props) => {
         {isLoading && loadMore ? "Fetching..." : null}
       </div>
       <div className="flex justify-center mb-20">
-        {isLoading ? null : (
-          <Button
-            onClick={() => loadMore && loadMore()}
-            className={`${
-              loadMore === null
-                ? "bg-neutral-300 text-neutral-600 cursor-not-allowed"
-                : "bg-accent-50 text-white"
-            } ${
-              isLoading || (applicants?.length === 0 && "hidden")
-            } rounded-xl font-[600] p-2 px-5`}
-            disabled={loadMore === null ? true : false}
-          >
-            {isValidating
-              ? "Loading More..."
-              : loadMore
-              ? "Load More"
-              : "No more applications"}
-          </Button>
-        )}
+        <Button
+          data={applicants}
+          isLoading={isLoading}
+          isValidating={isValidating}
+          loadMore={loadMore}
+          noDataMessage="No more applications"
+        />
       </div>
     </div>
   );

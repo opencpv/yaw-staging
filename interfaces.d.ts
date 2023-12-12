@@ -10,7 +10,8 @@ interface ListingCardInterface extends ListingInterface {
   deal?: Deal;
   membership?: Membership;
   className?: string;
-  cardType?: "1" | "2"
+  cardType?: "1" | "2";
+  city?: string;
 }
 
 interface RenterPaidFeatureInterface {
@@ -23,7 +24,7 @@ interface AdImage {
   /**
    * What property is being advertise?
    */
-  propertyType: string;
+  propertyName: string;
   image: string;
   href: string;
 }
@@ -67,7 +68,7 @@ type FeatureInterface =
 
 interface ListingInterface {
   images?: string[];
-  propertyType?: string;
+  propertyName?: string;
   href?: string;
 }
 
@@ -76,13 +77,18 @@ interface MessageInterface {
   time: string;
 }
 
-interface ManagePropertiesInterface {
+type ManagePropertiesInterface = {
   propertyTitle: string;
   image: string;
   posted_on: string;
   price: number;
   isPaidFor: boolean;
   status: PropertyStatusInterface;
-}
+};
 
-type PropertyStatusInterface = "available" | "contract pending" | "leased" | "dormant";
+type PropertyStatusInterface =
+  | "available"
+  | "contract pending"
+  | "leased"
+  | "dormant"
+  | string;

@@ -11,14 +11,19 @@ const ListingInfo = (props: ListingCardInterface) => {
       className={`w-full px-5 py-4 space-y-6 rounded-b-lg ${props.className}`}
     >
       <div className="space-y-3 text-sm">
-        <div className="flex flex-wrap justify-between gap-x-3 gap-y-1">
-          <div className="flex items-center gap-2">
-            <HiOutlineHomeModern className="text-primary-600" />
-            <p className="font-[600] text-primary-600">
-              {props.propertyType?.toLowerCase()}
+        <div className="grid grid-cols-3 items-center justify-between gap-1">
+          <div className="col-span-2 flex items-center gap-2">
+            <HiOutlineHomeModern className="text-primary-600 shrink-0" />
+            <p
+              className="font-[600] text-primary-600 truncate"
+              title={`${props.propertyName} in ${props.city}`}
+            >
+              <span>{props.propertyName}</span>
+              <span className=""> in </span>
+              <span className="capitalize">{props.city}</span>
             </p>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="col-span-1 flex items-center gap-2 ml-auto">
             {props.ratingCount === 0 ? (
               <FaRegStar className="text-yellow-300" />
             ) : (
@@ -63,7 +68,7 @@ const ListingInfo = (props: ListingCardInterface) => {
               </p>
             </div>
             <div className="flex justify-between">
-              <small className=" inline rounded-xl bg-[#E7F8F2] px-3 py-1 text-[0.55rem]">
+              <small className=" inline rounded-xl bg-[#E7F8F2] px-3 py-1 text-xs">
                 One Year Advance
               </small>
             </div>

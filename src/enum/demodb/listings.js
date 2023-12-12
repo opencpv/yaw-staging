@@ -1,7 +1,7 @@
 const listings = [
   {
     id: 1,
-    propertyType: "2 bedroom apartment",
+    propertyName: "2 bedroom apartment",
     propertyDescription:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odioqui repellat quibusdam ipsam.",
     images: [
@@ -28,7 +28,7 @@ const listings = [
   },
   {
     id: 2,
-    propertyType: "4 bedroom apartment",
+    propertyName: "4 bedroom apartment",
     propertyDescription:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odioqui repellat quibusdam ipsam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odioqui repellat quibusdam ipsam.",
     images: [
@@ -51,7 +51,7 @@ const listings = [
   },
   {
     id: 3,
-    propertyType: "4 bedroom apartment",
+    propertyName: "4 bedroom apartment",
     propertyDescription:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odioqui repellat quibusdam ipsam. Lorem ipsum dolor.",
     images: [
@@ -74,7 +74,7 @@ const listings = [
   },
   {
     id: 4,
-    propertyType: "4 bedroom apartment",
+    propertyName: "4 bedroom apartment",
     propertyDescription:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odioqui repellat quibusdam ipsam. Lorem ipsum dolor.",
     images: [
@@ -97,7 +97,7 @@ const listings = [
   },
   {
     id: 5,
-    propertyType: "3 bedroom apartment",
+    propertyName: "3 bedroom apartment",
     propertyDescription:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odioqui repellat quibusdam ipsam. Lorem ipsum dolor.",
     images: [
@@ -120,7 +120,7 @@ const listings = [
   },
   {
     id: 6,
-    propertyType: "3 bedroom apartment",
+    propertyName: "3 bedroom apartment",
     propertyDescription:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odioqui repellat quibusdam ipsam. Lorem ipsum dolor.",
     images: [
@@ -143,7 +143,7 @@ const listings = [
   },
   {
     id: 7,
-    propertyType: "3 bedroom apartment",
+    propertyName: "3 bedroom apartment",
     propertyDescription:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odioqui repellat quibusdam ipsam. Lorem ipsum dolor.",
     images: [
@@ -166,7 +166,7 @@ const listings = [
   },
   {
     id: 8,
-    propertyType: "3 bedroom apartment",
+    propertyName: "3 bedroom apartment",
     propertyDescription:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odioqui repellat quibusdam ipsam. Lorem ipsum dolor.",
     images: [
@@ -189,7 +189,7 @@ const listings = [
   },
   {
     id: 9,
-    propertyType: "3 bedroom apartment",
+    propertyName: "3 bedroom apartment",
     propertyDescription:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odioqui repellat quibusdam ipsam. Lorem ipsum dolor.",
     images: [
@@ -212,7 +212,7 @@ const listings = [
   },
   {
     id: 10,
-    propertyType: "3 bedroom apartment",
+    propertyName: "3 bedroom apartment",
     propertyDescription:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odioqui repellat quibusdam ipsam. Lorem ipsum dolor.",
     images: [
@@ -235,7 +235,7 @@ const listings = [
   },
   {
     id: 11,
-    propertyType: "3 bedroom apartment",
+    propertyName: "3 bedroom apartment",
     propertyDescription:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odioqui repellat quibusdam ipsam. Lorem ipsum dolor.",
     images: [
@@ -258,7 +258,7 @@ const listings = [
   },
   {
     id: 12,
-    propertyType: "3 bedroom apartment",
+    propertyName: "3 bedroom apartment",
     propertyDescription:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odioqui repellat quibusdam ipsam. Lorem ipsum dolor.",
     images: [
@@ -281,7 +281,7 @@ const listings = [
   },
   {
     id: 13,
-    propertyType: "3 bedroom apartment",
+    propertyName: "3 bedroom apartment",
     propertyDescription:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odioqui repellat quibusdam ipsam. Lorem ipsum dolor.",
     images: [
@@ -304,7 +304,7 @@ const listings = [
   },
   {
     id: 14,
-    propertyType: "3 bedroom apartment",
+    propertyName: "3 bedroom apartment",
     propertyDescription:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odioqui repellat quibusdam ipsam. Lorem ipsum dolor.",
     images: [
@@ -327,7 +327,7 @@ const listings = [
   },
   {
     id: 15,
-    propertyType: "3 bedroom apartment",
+    propertyName: "3 bedroom apartment",
     propertyDescription:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odioqui repellat quibusdam ipsam. Lorem ipsum dolor.",
     images: [
@@ -350,7 +350,7 @@ const listings = [
   },
   {
     id: 16,
-    propertyType: "3 bedroom apartment",
+    propertyName: "3 bedroom apartment",
     propertyDescription:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odioqui repellat quibusdam ipsam. Lorem ipsum dolor.",
     images: [

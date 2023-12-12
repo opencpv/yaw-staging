@@ -22,7 +22,7 @@ type SliderPaginationOnlyImage = {
 };
 
 type SliderMultiItemsProps = {
-  items: React.ReactNode[];
+  items: React.ReactNode[] | undefined;
   slidesPerView?: number;
   breakpoints?: { [key: number]: { [key: any]: any } };
   hasNavAndPagination?: boolean;
@@ -30,5 +30,5 @@ type SliderMultiItemsProps = {
 };
 
 type SliderGridProps = {
-  items: React.ReactNode[];
+  items: React.ReactNode[] | undefined;
 };

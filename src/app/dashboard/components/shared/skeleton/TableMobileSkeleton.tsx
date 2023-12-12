@@ -8,7 +8,7 @@ type Props = {
 const TableMobileSkeleton = ({ rows }: Props) => {
   let rowsArray = Array.from({ length: rows }, (_, idx) => idx + 1);
 
-  return rowsArray.map((row, idx) => (
+  return rowsArray.map((_, idx) => (
     <div
       key={idx + 1}
       className="p-3 border border-neutral-200 mb-5 rounded-xl xs:p-8"

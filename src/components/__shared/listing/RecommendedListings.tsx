@@ -35,7 +35,7 @@ const RecommendedListings = ({className}: Props) => {
           items={listingsdb.map((listing) => (
             <ListingCard
               key={listing.id}
-              propertyType={listing.propertyType}
+              propertyName={listing.propertyName}
               propertyDescription={listing.propertyDescription}
               images={listing.images}
               price={listing.price}

@@ -1,4 +1,3 @@
-"use client";
 import Navbar from "@/components/__shared/Navbar";
 import Image from "next/image";
 import React from "react";
@@ -9,6 +8,7 @@ import FixedSocials from "@/components/FixedSocials";
 import ScrollTop from "@/components/__shared/ScrollTop";
 import Button from "@/components/__shared/Button";
 import ListingCard from "@/components/__shared/listing/ListingCard";
+import PropertiesListing from "./components/PropertiesListing";
 
 const page = () => {
   return (
@@ -36,55 +36,7 @@ const page = () => {
         </div>
       </section>
       <main className="overflow-x-hidden section">
-        {/* Listing */}
-        <section className="mb-5 space-y-5 sm:space-y-0 sm:grid grid-cols-autofit-listing-card gap-x-3 gap-y-10 transition-all">
-          {listings.map((listing) => (
-            <ListingCard
-              key={listing.id}
-              cardType="2"
-              href={listing.href}
-              images={listing.images}
-              liked={listing.liked}
-              membership={
-                listing.membership as
-                  | "Certified"
-                  | "Verified"
-                  | "Unverified"
-                  | "None"
-                  | "none"
-                  | ""
-              }
-              monthlyAmount={listing.monthlyAmount}
-              paymentStructure={
-                listing.paymentStructure as
-                  | "Yearly"
-                  | "Bi-Annually"
-                  | "Quarterly"
-                  | "Every-6-Months"
-                  | "Every-3-Years"
-              }
-              propertyDescription={listing.propertyDescription}
-              price={listing.price}
-              propertyType={listing.propertyType}
-              rating={listing.rating}
-              ratingCount={listing.ratingCount}
-              deal={
-                listing.deal as
-                  | "Editor's Choice"
-                  | "Price Drop"
-                  | "Best Value"
-                  | "None"
-                  | "none"
-                  | ""
-              }
-            />
-          ))}
-        </section>
-        <div className="flex justify-center mb-40">
-          <Button color="accent" className="my-8">
-            Load more
-          </Button>
-        </div>
+        <PropertiesListing />
       </main>
       <FixedSocials />
       <Footer />

@@ -51,7 +51,7 @@ const SliderMultiItems = ({
         modules={[Pagination, Navigation, Autoplay, FreeMode]}
         className="w-full h-fit mySwiper slider-multi-items"
       >
-        {items.map((item, idx) => (
+        {items?.map((item, idx) => (
           <SwiperSlide key={idx + 1} className="">
             {item}
           </SwiperSlide>
