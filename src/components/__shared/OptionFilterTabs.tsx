@@ -5,6 +5,7 @@ import React from "react";
 
 type Props = {
   radius?: "large" | "small";
+  /** Preferably in lower case. Eg: ["first", "second"] */
   options: string[];
   onSelectionChange: (key: string) => void;
   variant?: "default" | "gradient";

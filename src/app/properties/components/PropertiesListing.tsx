@@ -5,21 +5,10 @@ import { useFetchTableWithInfiniteScroll } from "@/lib/custom-hooks/useFetch";
 import ListingCard from "@/components/__shared/listing/ListingCard";
 import FetchingStates from "@/components/__shared/ui/data_fetchting/FetchingStates";
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
+import images from "@/enum/temp/images";
+import { revalidationRule, fetchOrderRule } from "@/lib/utils/fetchRules";
 
 type Props = {};
-
-let images = [
-  "/assets/images/niceHome.png",
-  "/assets/images/Stock.jpg",
-  "/assets/images/niceHome.png",
-  "/assets/images/Stock.jpg",
-  "/assets/images/niceHome.png",
-  "/assets/images/Stock.jpg",
-  "/assets/images/niceHome.png",
-  "/assets/images/Stock.jpg",
-  "/assets/images/niceHome.png",
-  "/assets/images/Stock.jpg",
-];
 
 const PropertiesListing = (props: Props) => {
   const {
@@ -31,10 +20,9 @@ const PropertiesListing = (props: Props) => {
   } = useFetchTableWithInfiniteScroll({
     tableName: "standard_template",
     pageSize: 9,
-    order: { column: "created_at", ascending: false },
+    order: { column: "created_at", ...fetchOrderRule() },
     select: "id, property_name, property_id, description, monthly_amount, city",
-    revalidateOnFocus: true,
-    revalidateIfStale: true,
+    ...revalidationRule(),
   });
   return (
     <>

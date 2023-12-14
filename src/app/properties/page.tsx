@@ -6,8 +6,6 @@ import TagsSelect from "./components/TagsSelect";
 import Footer from "@/components/__shared/footer/Footer";
 import FixedSocials from "@/components/FixedSocials";
 import ScrollTop from "@/components/__shared/ScrollTop";
-import Button from "@/components/__shared/Button";
-import ListingCard from "@/components/__shared/listing/ListingCard";
 import PropertiesListing from "./components/PropertiesListing";
 
 const page = () => {

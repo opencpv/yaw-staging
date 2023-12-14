@@ -20,10 +20,39 @@ body {
   color: rgb(var(--foreground-rgb));
 }
 
+h2 {
+  @apply text-2xl font-[600]
+}
+
+h3 {
+  @apply text-lg font-[600]
+}
+
+h4 {
+  @apply text-base font-[600]
+}
+
+h5 {
+  @apply text-sm font-[600]
+}
+
+small {
+  @apply text-sm block
+}
+
+.gradient-bottom {
+  @apply bg-gradient-to-b from-primary-500 to-primary-800/50
+}
+
 .green-gradient {
   background: linear-gradient(103deg,
       #21a19f 38.96%,
       rgba(30, 169, 166, 0.63) 90.07%);
+}
+
+.grid-auto-min-200 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -37,6 +66,14 @@ body {
   /* IE and Edge */
   scrollbar-width: none;
   /* Firefox */
+}
+
+.overlay {
+  @apply relative before:absolute before:inset-0 before:bg-primary-500/60 before:w-full before:h-full
+}
+
+.overlay-rounded {
+  @apply relative before:absolute before:inset-0 before:z-10 before:bg-gradient-to-b before:from-primary-500/60 before:to-primary-500/50 before:w-full before:h-full before:rounded-2xl
 }
 
 .section {
@@ -57,7 +94,8 @@ body {
   gap: 1.25rem;
 }
 
-.skeleton-flex > div {
+.skeleton-flex>div {
+  width: 15rem;
   min-width: 15rem;
 }
 
@@ -67,20 +105,28 @@ body {
   overflow-x: hidden;
 }
 
-.skeleton-grid > div {
+.skeleton-grid>div {
+  width: 22rem;
   min-width: 22rem;
 }
 
 @media (min-width: 640px) {
+  .skeleton-flex {
+    width: 22rem;
+    min-width: 22rem;
+  }
+}
+
+@media (min-width: 640px) {
   .skeleton-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 1024px) {
   .skeleton-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -106,7 +152,7 @@ body {
     grid-template-columns: 1;
   }
 
-  .no-print  {
+  .no-print {
     display: none;
   }
 }

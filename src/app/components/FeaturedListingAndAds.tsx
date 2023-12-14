@@ -1,30 +1,24 @@
+//@ts-nocheck
 "use client";
 import ListingCard from "@/components/__shared/listing/ListingCard";
 import SliderGrid from "@/components/__shared/sliders/SliderGrid";
 import FetchingStates from "@/components/__shared/ui/data_fetchting/FetchingStates";
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
-import { useFetchTableWithInfiniteScroll } from "@/lib/custom-hooks/useFetch";
 import React from "react";
 import AdsSliderColumn from "./AdsSliderColumn";
 import ArrowLink from "./link/ArrowLink";
 import SliderWide from "@/components/__shared/sliders/SliderWide";
 import { useQuery } from "@supabase-cache-helpers/postgrest-swr";
 import supabase from "@/lib/utils/supabaseClient";
+import {
+  fetchCountRule,
+  fetchOrderRule,
+  revalidationRule,
+} from "@/lib/utils/fetchRules";
+import images from "@/enum/temp/images"
+
 
 type Props = {};
-
-let images = [
-  "/assets/images/niceHome.png",
-  "/assets/images/Stock.jpg",
-  "/assets/images/niceHome.png",
-  "/assets/images/Stock.jpg",
-  "/assets/images/niceHome.png",
-  "/assets/images/Stock.jpg",
-  "/assets/images/niceHome.png",
-  "/assets/images/Stock.jpg",
-  "/assets/images/niceHome.png",
-  "/assets/images/Stock.jpg",
-];
 
 const FeaturedListingAndAds = (props: Props) => {
   const {
@@ -35,15 +29,12 @@ const FeaturedListingAndAds = (props: Props) => {
   } = useQuery(
     supabase
       .from("standard_template")
-      .select("id, property_name, property_id, description, monthly_amount, city", {
-        count: "exact",
-      })
-      // .eq("username", "psteinroe"),
-      .order("created_at", { ascending: false }),
-    {
-      revalidateOnFocus: true,
-      revalidateOnReconnect: true,
-    }
+      .select(
+        "id, property_name, property_id, description, monthly_amount, city",
+        fetchCountRule()
+      )
+      .order("created_at", fetchOrderRule()),
+    revalidationRule()
   );
 
   return (
@@ -105,9 +96,7 @@ const FeaturedListingAndAds = (props: Props) => {
                 isValidating={isValidating}
                 isLoadingComponent={
                   <div className="skeleton-grid">
-                    <SkeletonListing
-                      count={3}
-                    />
+                    <SkeletonListing count={3} />
                   </div>
                 }
                 errorComponent={

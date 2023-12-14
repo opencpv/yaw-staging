@@ -83,22 +83,20 @@ const useFetchTableWithPagination = ({
   if (eq) query.eq(eq.column, eq.match);
   if (or) query.or(or);
 
-
-  const [totalCount, setTotalCount] = useState<number | null>(null)
+  const [totalCount, setTotalCount] = useState<number | null>(null);
 
   const getCount = async () => {
     let query = supabase
-    .from(tableName)
-    .select("*", {count: "exact", head: true})
-    if (eq) query.eq(eq.column, eq.match)
-    if (or) query.or(or)
+      .from(tableName)
+      .select("*", { count: "exact", head: true });
+    if (eq) query.eq(eq.column, eq.match);
+    if (or) query.or(or);
 
-    let {count} =  await query
-    setTotalCount(count)
-  }
+    let { count } = await query;
+    setTotalCount(count);
+  };
 
-  getCount()
-
+  getCount();
 
   const {
     currentPage,
@@ -122,7 +120,7 @@ const useFetchTableWithPagination = ({
     isValidating,
     error,
     isLoading,
-    totalCount
+    totalCount,
   };
 };
 
@@ -233,10 +231,33 @@ const useFetchTableForRealtime = ({
   return { isLoading, error, data };
 };
 
+const useRevalidationRule = (
+  revalidateOnFocus = false,
+  revalidateOnReconnect = true,
+  revalidateIfStale = false
+) => {
+  return {
+    revalidateOnFocus,
+    revalidateIfStale,
+    revalidateOnReconnect,
+  };
+};
+
+const useFetchOrder = (ascending = false) => {
+  return { ascending };
+};
+
+const useFetchCount = (head = true) => {
+  return { count: "exact", head };
+};
+
 export {
   useFetchTable,
   useFetchTableWithPagination,
   useFetchTableWithInfiniteScroll,
   useRealTimeSubscription,
   useFetchTableForRealtime,
+  useRevalidationRule,
+  useFetchOrder,
+  useFetchCount,
 };
