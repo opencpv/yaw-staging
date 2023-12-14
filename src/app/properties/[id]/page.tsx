@@ -24,11 +24,12 @@ import { Skeleton } from "@nextui-org/react";
 import SkeletonTextual from "@/components/__shared/ui/skeleton/SkeletonTextual";
 import SkeletonLong from "@/components/__shared/ui/skeleton/SkeletonLong";
 import SkeletonRectangle from "@/components/__shared/ui/skeleton/SkeletonRectangle";
+import FetchingStates from "@/components/__shared/ui/data_fetchting/FetchingStates";
+import style from "@/app/components/landing/Shape.module.css";
+import { revalidationRule } from "@/lib/utils/fetchRules";
 
 const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
   const { id: propertyId } = params;
-
-  const { images } = useAssets();
 
   const {
     data: listing,
@@ -39,209 +40,204 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
     supabase
       .from("standard_template")
       .select(
-        "id, property_name, property_id, description, monthly_amount, city",
-        {
-          count: "exact",
-        }
+        `id, property_name, property_id, 
+        description, monthly_amount, city, 
+        bedrooms, bathrooms, features_and_amenities`
       )
       .eq("property_id", propertyId)
       .single(),
-    {
-      revalidateOnFocus: true,
-      revalidateOnReconnect: true,
-    }
+    revalidationRule()
   );
   return (
     <>
       <Navbar />
-      <ShapedLanding
-        property={`${listing?.property_name} in ${listing?.city}`}
-        image="/assets/images/home/landing.jpg"
-        position="left"
-      ></ShapedLanding>
-      <main className="pb-40 section">
-        <section className="py-10 mb-10">
-          <div className="text-[#305A61] font-[600] text-2xl">
-            <BreadCrumbPreLink
-              label="Properties"
-              href="/properties"
-              className="text-neutral-400"
-            />{" "}
-            /{" "}
-            {isLoading ? (
-              <span>
-                <Skeleton className="w-44 h-4 inline-block" />
-              </span>
-            ) : (
-              <span className="">
-                {listing?.property_name} in {listing?.city}
-              </span>
-            )}
-          </div>
-          {/* Property images */}
-          <section className="grid grid-cols-1 gap-16 mt-8 md:mt-16 lg:grid-cols-2">
-            {isLoading ? (
-              <>
+      <FetchingStates
+        data={listing}
+        error={error}
+        isLoading={isLoading}
+        isValidating={isValidating}
+        isLoadingComponent={
+          <div className="">
+            <SkeletonLong
+              className={`${style.shapeLeft2} rounded-none h-[40rem] w-full mb-20`}
+            />
+            <div className="section gap-x-20 gap-y-10 lg:grid lg:grid-cols-2">
+              {/* grid col */}
+              <div className="space-y-10">
+                <Skeleton className="h-4 w-full md:w-9/12" />
                 <div className="hidden grid-cols-2 gap-3 lg:grid">
-                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((_, idx) => (
-                    <SkeletonLong key={idx + 1} className="mb-0" />
-                  ))}
+                  <SkeletonLong count={10} className="mb-0" />
                 </div>
-                <div className="h-60 mb-20 lg:hidden">
+                <div className="w-full h-60 mb-20 lg:hidden">
                   <SkeletonRectangle count={1} />
                 </div>
-              </>
-            ) : (
-              <PropertyDetailsImages
-                images={{
-                  images: [""],
-                  propertyName: `${listing?.property_name} in ${listing?.city}`,
-                }}
-              />
-            )}
+              </div>
+              {/* grid col */}
+              <div className="space-y-20">
+                <div className="space-y-10">
+                  <Skeleton className="w-full h-4 md:w-9/12" />
+                  <SkeletonTextual />
+                </div>
+                <div className="">
+                  <SkeletonLong count={4} />
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+        errorComponent={
+          <p className="text-center flex justify-center items-center h-[26rem]">
+            Error: Something went wrong while fetching
+          </p>
+        }
+      />
+      {listing && (
+        <>
+          <ShapedLanding
+            property={`${listing?.property_name} in ${listing?.city}`}
+            image="/assets/images/home/landing.jpg"
+            position="left"
+          ></ShapedLanding>
+          <main className="section">
+            <section className="py-10 mb-10">
+              <div className="text-[#305A61] font-[600] text-2xl">
+                <BreadCrumbPreLink
+                  label="Properties"
+                  href="/properties"
+                  className="text-neutral-300"
+                />{" "}
+                /{" "}
+                <span className="">
+                  {listing?.property_name} in {listing?.city}
+                </span>
+              </div>
+              {/* Property images */}
+              <section className="grid grid-cols-1 gap-16 mt-8 md:mt-16 lg:grid-cols-2">
+                <PropertyDetailsImages
+                  images={{
+                    images: [""],
+                    propertyName: `${listing?.property_name} in ${listing?.city}`,
+                  }}
+                />
 
-            {/* Grid col */}
-            <div className="">
-              <section className="">
-                <div className="space-y-5">
-                  <div className="flex flex-wrap gap-x-16 gap-y-2">
-                    {isLoading ? (
-                      <Skeleton className="w-40 h-4" />
-                    ) : (
-                      <h2 className="text-[#305A61] font-[600] text-2xl">
-                        {listing?.property_name} in {listing?.city}
-                      </h2>
-                    )}
+                {/* Grid col */}
+                <div className="">
+                  <section className="">
+                    <div className="space-y-5">
+                      <div className="flex flex-wrap gap-x-16 gap-y-2">
+                        <h2 className="text-[#305A61] font-[600] text-2xl">
+                          {listing?.property_name} in {listing?.city}
+                        </h2>
 
-                    <div className="flex items-center gap-2">
-                      <HiMiniShieldCheck className="text-lg text-green-700" />
-                      <p className="text-sm text-neutral-800">
-                        Verified Listing
+                        <div className="flex items-center gap-2">
+                          <HiMiniShieldCheck className="text-lg text-green-700" />
+                          <p className="text-sm text-neutral-800">
+                            Verified Listing
+                          </p>
+                        </div>
+                      </div>
+                      <p className="max-w-2xl text-neutral-800">
+                        {listing?.description}
+                      </p>
+                      <Rate allowHalf defaultValue={4.5} disabled />
+                    </div>
+                    <div className="mt-20 space-y-10">
+                      {/* <Button className="p-4 text-xl text-white capitalize green-gradient py-7 w-60">
+                        Apply Now
+                      </Button> */}
+
+                      <ApplicationForm type="simple" />
+                      <PropertyDetailsFigures
+                        monthlyRent={22000}
+                        bedroomTotal={listing?.bedrooms as number}
+                        bathroomTotal={listing?.bathrooms as number}
+                        squareMeter={{ from: 468, to: 967 }}
+                      />
+                      <p className="relative bottom-5 inline-block rounded-lg font-[500] bg-[#E7F8F2] text-gray-900 p-3 text-xs">
+                        One Year Advance
                       </p>
                     </div>
-                  </div>
-                  {isLoading && <SkeletonTextual />}{" "}
-                  {/** shows when description hasn't loaded */}
-                  <p className="max-w-2xl text-neutral-800">
-                    {listing?.description}
-                  </p>
-                  <Rate allowHalf defaultValue={4.5} disabled />
-                </div>
-                {isLoading ? (
-                  <SkeletonLong />
-                ) : (
-                  <div className="mt-20 space-y-10">
-                    {/* <Button className="p-4 text-xl text-white capitalize green-gradient py-7 w-60">
-                    Apply Now
-                  </Button> */}
-
-                    <ApplicationForm type="simple" />
-                    <PropertyDetailsFigures
-                      monthlyRent={22000}
-                      bedroomTotal={3}
-                      bathroomTotal={3}
-                      squareMeter={{ from: 468, to: 967 }}
+                    <PropertyOwnerInfo
+                      name="John Doe"
+                      picture=""
+                      rating={3.5}
+                      reviews={120}
+                      telephone="023455112"
+                      whatsappNumber="0234323444"
+                      id=""
                     />
-                    <p className="relative bottom-5 inline-block rounded-lg font-[500] bg-[#E7F8F2] text-gray-900 p-3 text-xs">
-                      One Year Advance
-                    </p>
-                  </div>
-                )}
-                {isLoading ? (
-                  <SkeletonLong />
-                ) : (
-                  <PropertyOwnerInfo
-                    name="John Doe"
-                    picture=""
-                    rating={3.5}
-                    reviews={120}
-                    telephone="023455112"
-                    whatsappNumber="0234323444"
-                    id=""
+                  </section>
+
+                  {/*  */}
+                  <PropertyDetailsPayment
+                    availableFrom="YY-MM-DD"
+                    agentFee={500}
+                    viewingFee={500}
+                    refundableSecurityDeposit={500}
+                    utilities={[
+                      "water",
+                      "gas",
+                      "electricity",
+                      "kitchen appliances",
+                      "satellite TV",
+                      "internet",
+                    ]}
+                    thingsToKnow="Lorem ipsum dolor sit amet consectetur. Et tellus viverra faucibus
+                  nunc mauris netus. Sem id tincidunt ante non a suspendisse tortor
+                  libero. Elementum in lectus varius mus accumsan. Volutpat nec mi
+                  pellentesque facilisi. Quisque facilisis nec bibendum dui nullam.
+                  Penatibus netus felis quam purus. Nascetur est lobortis egestas leo
+                  amet aenean. Vestibulum leo nibh ut pellentesque purus. Dolor
+                  gravida at ac pharetra amet malesuada molestie. Amet pretium donec
+                  odio dis. Sagittis interdum nibh consectetur pellentesque nunc diam
+                  eleifend eu turpis. Tempor urna fames interdum vitae mattis."
+                    // years={}
                   />
-                )}
+                </div>
               </section>
-
-              {/*  */}
-              {isLoading ? (
-                <SkeletonLong />
-              ) : (
-                <PropertyDetailsPayment
-                  availableFrom="YY-MM-DD"
-                  agentFee={500}
-                  viewingFee={500}
-                  refundableSecurityDeposit={500}
-                  utilities={[
-                    "water",
-                    "gas",
-                    "electricity",
-                    "kitchen appliances",
-                    "satellite TV",
-                    "internet",
-                  ]}
-                  thingsToKnow="Lorem ipsum dolor sit amet consectetur. Et tellus viverra faucibus
-              nunc mauris netus. Sem id tincidunt ante non a suspendisse tortor
-              libero. Elementum in lectus varius mus accumsan. Volutpat nec mi
-              pellentesque facilisi. Quisque facilisis nec bibendum dui nullam.
-              Penatibus netus felis quam purus. Nascetur est lobortis egestas leo
-              amet aenean. Vestibulum leo nibh ut pellentesque purus. Dolor
-              gravida at ac pharetra amet malesuada molestie. Amet pretium donec
-              odio dis. Sagittis interdum nibh consectetur pellentesque nunc diam
-              eleifend eu turpis. Tempor urna fames interdum vitae mattis."
-                  // years={}
-                />
-              )}
-            </div>
-          </section>
-        </section>
-        {/* Features and Amenities */}
-        {isLoading ? (
-          <SkeletonLong className="w-full h-60" />
-        ) : (
-          <PropertyDetailsFeatures
-            features={[
-              "Wifi",
-              "Security Cameras on Property",
-              "Hot Tub",
-              "Air Conditioning",
-              "Fire Extinguisher",
-              "Free Parking on Premises",
-              "Gas",
-              "Kitchen",
-              "Pool",
-              "Smoke Alarm",
-              "Pool Table",
-              "Satellite TV",
-            ]}
-          />
-        )}
-
-        {/* Rating */}
-        {isLoading ? (
-          <SkeletonLong className="w-full h-60" />
-        ) : (
-          <>
-            {" "}
-            <PropertyRating />
-            <section className="relative -top-14">
-              <ReportIssue />
             </section>
-          </>
-        )}
-
-        {/* Recommended Listings */}
-        <section className="">
-          <div className="flex flex-wrap items-center justify-between gap-5 mb-5">
-            <h2 className="text-neutral-800 text-xl font-[600] md:ml-10">
-              Recommended Listings
-            </h2>
-            <Button variant="ghost" className="text-sm text-neutral-800">
-              Show all
-            </Button>
-          </div>
-          <RecommendedListings />
-        </section>
-      </main>
+            {/* Features and Amenities */}
+            <div className={listing?.features_and_amenities ? "" : "hidden"}>
+              <PropertyDetailsFeatures
+                features={[
+                  "Wifi",
+                  "Security Cameras on Property",
+                  "Hot Tub",
+                  "Air Conditioning",
+                  "Fire Extinguisher",
+                  "Free Parking on Premises",
+                  "Gas",
+                  "Kitchen",
+                  "Pool",
+                  "Smoke Alarm",
+                  "Pool Table",
+                  "Satellite TV",
+                ]}
+              />
+            </div>
+            {/* Rating */}
+            <>
+              {" "}
+              <PropertyRating />
+              <section className="relative -top-14">
+                <ReportIssue />
+              </section>
+            </>
+          </main>
+        </>
+      )}
+      {/* Recommended Listings */}
+      <section className="section mb-40">
+        <div className="flex flex-wrap items-center justify-between gap-5 mb-5">
+          <h2 className="text-neutral-800 text-xl font-[600] md:ml-10">
+            Recommended Listings
+          </h2>
+          <Button variant="ghost" className="text-sm text-neutral-800">
+            Show all
+          </Button>
+        </div>
+        <RecommendedListings />
+      </section>
       <Footer />
     </>
   );

@@ -32,7 +32,7 @@ const Button = ({
       <NextUIButton
         isDisabled={disabled}
         isIconOnly={isIconOnly}
-        className={cn(`whitespace-normal font-[600] rounded-md bg-transparent max-w-sm p-3 border space-x-2 ${
+        className={cn(`whitespace-normal font-[600] rounded-md bg-transparent max-w-sm min-h-fit p-3 px-10 border space-x-2 ${
           color === "primary"
             ? "border-primary-500 text-primary-500"
             : color === "accent"
@@ -73,7 +73,7 @@ const Button = ({
     <NextUIButton
       isDisabled={disabled}
       isIconOnly={isIconOnly}
-      className={cn(`whitespace-normal font-[600] rounded-md max-w-sm p-3 space-x-2 ${
+      className={cn(`whitespace-normal font-[600] rounded-md max-w-sm min-h-fit p-3 px-10 space-x-2 ${
         color === "primary"
           ? "bg-primary-500 text-white"
           : color === "accent"

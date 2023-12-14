@@ -5,10 +5,10 @@ import PopularCitiesCard from "../PopularCitiesCard";
 import { useQuery } from "@supabase-cache-helpers/postgrest-swr";
 import supabase from "@/lib/utils/supabaseClient";
 import AOSWrapper from "@/components/__shared/AOSWrapper";
-import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
 import FetchingStates from "@/components/__shared/ui/data_fetchting/FetchingStates";
 import Image from "next/image";
 import SkeletonRectangle from "@/components/__shared/ui/skeleton/SkeletonRectangle";
+import { fetchOrderRule, revalidationRule } from "@/lib/utils/fetchRules";
 
 const HomePopularCities = () => {
   const {
@@ -19,15 +19,9 @@ const HomePopularCities = () => {
   } = useQuery(
     supabase
       .from("standard_template")
-      .select("id", {
-        count: "exact",
-      })
-      // .eq("username", "psteinroe"),
-      .order("created_at", { ascending: false }),
-    {
-      revalidateOnFocus: true,
-      revalidateOnReconnect: true,
-    }
+      .select("id")
+      .order("created_at", fetchOrderRule()),
+    revalidationRule()
   );
   return (
     <section
@@ -81,11 +75,8 @@ const HomePopularCities = () => {
           isLoading={isLoading}
           isValidating={isValidating}
           isLoadingComponent={
-            <div className="skeleton-flex">
-              <SkeletonRectangle
-                count={3}
-                childrenClassName="h-44"
-              />
+            <div className="skeleton-flex h-44">
+              <SkeletonRectangle count={2} />
             </div>
           }
           errorComponent={
