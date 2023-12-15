@@ -24,7 +24,7 @@ const Checkbox = ({
       classNames={{
         icon: "text-primary-200",
         // icon: "text-white bg-primary-200 text-xs rounded-md h-fit w-fit",
-        label: `${labelSize ? labelSize : "text-xs"} ${
+        label: `${labelSize ? labelSize : "text-sm"} ${
           labelColor ? labelColor : "text-neutral-800"
         }`,
       }}
