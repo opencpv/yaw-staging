@@ -22,3 +22,7 @@ progress bar in agent form
 date picker select a year 
 agent services not prices
 edit modal and reviews
+
+font size 10px to be bigger in b2b
+spacing
+border-bottom toggle for invoice

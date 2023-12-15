@@ -113,7 +113,7 @@ function Details({ variant }: Props) {
 
       {variant == "invoice" && (
         <div className="w-full  sticky bottom-0 2xl:static">
-          <div className="w-full pb-2 bg-white justify-end items-center lg:hidden gap-5 grid grid-cols-2">
+          <div className="w-full pb-2 bg-transparent justify-end items-center lg:hidden gap-1 grid grid-cols-2">
             <DownloadButton maxWidth="fit" />
             <CheckoutButton />
           </div>

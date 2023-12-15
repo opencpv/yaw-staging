@@ -19,8 +19,8 @@ function Invoices() {
         <Cost subTotal={200} tax={12} total={2000} variant={"invoice"} />
       </div>
       <div className="flex flex-col gap-1 lg:border-[1px] lg:border-shade-50">
-        <div className="flex gap-5 items-center w-full bg-white">
-          <div className="p-2.5 invisible">
+        <div className="flex gap-5 items-center w-full ">
+          <div className="p-2.5 hidden lg:invisible ">
             <YellowCheckBox />
           </div>{" "}
           <div className="hidden lg:grid grid-cols-6 bg-white py-4 text-center text-shade-300 font-semibold w-full">
@@ -48,7 +48,7 @@ function Invoices() {
       <div className="w-full  justify-start items-center hidden lg:flex">
         <DownloadButton maxWidth="fit" />
       </div>
-      <div className="w-full sticky bottom-0 pb-2 bg-white justify-end items-center lg:hidden gap-5 grid grid-cols-2">
+      <div className="w-full sticky bottom-0 pb-2 bg-transparent justify-end items-center lg:hidden gap-1 grid grid-cols-2">
         <DownloadButton maxWidth="fit" />
         <CheckoutButton />
       </div>

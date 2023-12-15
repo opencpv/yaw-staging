@@ -10,7 +10,7 @@ const YellowCheckBox = ({ id }: Props) => (
   <form className="flex items-center justify-center">
     <div className="flex items-center">
       <Checkbox.Root
-        className="shadow-blackA4 hover:bg-violet3 flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-[4px] bg-white -none focus:bg-[#DDA948] data-[state=checked]:bg-[#DDA948] data-[state=unchecked]:bg-white"
+        className="shadow-blackA4 hover:bg-violet3 flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-[4px] bg-white -none focus:bg-[#DDA948] data-[state=checked]:bg-[#DDA948] data-[state=unchecked]:bg-white data-[state=unchecked]:border-2"
         defaultChecked
         id={id}>
         <Checkbox.Indicator className="text-white">
