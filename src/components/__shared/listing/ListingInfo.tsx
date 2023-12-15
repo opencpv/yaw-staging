@@ -11,19 +11,19 @@ const ListingInfo = (props: ListingCardInterface) => {
       className={`w-full px-5 py-4 space-y-6 rounded-b-lg ${props.className}`}
     >
       <div className="space-y-3 text-sm">
-        <div className="grid grid-cols-3 items-center justify-between gap-1">
-          <div className="col-span-2 flex items-center gap-2">
+        <div className="grid items-center justify-between grid-cols-3 gap-1">
+          <div className="flex items-center col-span-2 gap-2">
             <HiOutlineHomeModern className="text-primary-600 shrink-0" />
             <p
               className="font-[600] text-primary-600 truncate"
-              title={`${props.propertyName} in ${props.city}`}
+              title={`${props.propertyName} at ${props.city}`}
             >
               <span>{props.propertyName}</span>
-              <span className=""> in </span>
+              <span className=""> at </span>
               <span className="capitalize">{props.city}</span>
             </p>
           </div>
-          <div className="col-span-1 flex items-center gap-2 ml-auto">
+          <div className="flex items-center col-span-1 gap-2 ml-auto">
             {props.ratingCount === 0 ? (
               <FaRegStar className="text-yellow-300" />
             ) : (
@@ -58,7 +58,7 @@ const ListingInfo = (props: ListingCardInterface) => {
       </div>
       <div className="space-y-2 ">
         <div className="flex flex-wrap items-center justify-between text-xs gap-y-1">
-          <div className="flex items-center flex-wrap gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <div>
               <p className="text-sm font-[700] text-neutral-900">
                 GHS&nbsp;

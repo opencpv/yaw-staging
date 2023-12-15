@@ -18,7 +18,7 @@ const LeadsSummary = (props: Props) => {
           </Button>
         </Link>
       </div>
-      <div className="space-y-3">
+      <div className="space-y-5">
         <LeadInfo />
         <LeadInfo />
       </div>

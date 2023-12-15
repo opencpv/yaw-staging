@@ -24,7 +24,7 @@ const ReviewComment = (props: Props) => {
         </div>
       </div>
       <div className="lg:ml-24">
-        <p className="max-w-2xl mt-10 text-sm text-neutral-700">
+        <p className="max-w-2xl mt-10 text-neutral-700">
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente
           dolores soluta accusamus culpa praesentium optio sed architecto, a
           voluptatem aliquam. Tempora dicta consectetur ea facilis reiciendis

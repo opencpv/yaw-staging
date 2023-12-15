@@ -5,7 +5,7 @@ import React from "react";
 
 type Props = {};
 
-const UpgradeMembership = (props: Props) => {
+const MembershipUpgradeCard = (props: Props) => {
   const { images } = useAssets();
   return (
     <div className="overlay-rounded relative rounded-xl mb-20 w-full h-fit mt-20 lg:mt-0">
@@ -27,4 +27,4 @@ const UpgradeMembership = (props: Props) => {
   );
 };
 
-export default UpgradeMembership;
+export default MembershipUpgradeCard;

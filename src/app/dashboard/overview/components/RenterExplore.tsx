@@ -1,6 +1,5 @@
 import React from "react";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import SellYourItem from "./SellYourItem";
 import ExploreFeatureCard from "./ExploreFeatureCard";
 
 type Props = {

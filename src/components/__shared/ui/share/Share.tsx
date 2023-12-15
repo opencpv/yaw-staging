@@ -5,7 +5,7 @@ import Modal from "../../modals/Modal";
 import { useDisclosure } from "@nextui-org/react";
 import ShareModalBody from "./ShareModalBody";
 
-const ShareBtn = (props: ShareDataProps) => {
+const Share = (props: ShareDataProps) => {
   const { onOpenChange, isOpen, onOpen } = useDisclosure();
 
   return (
@@ -34,4 +34,4 @@ const ShareModalHeader = ({ title }: { title: string }) => {
   );
 };
 
-export default ShareBtn;
+export default Share;
