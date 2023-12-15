@@ -41,7 +41,7 @@ small {
 }
 
 .gradient-bottom {
-  @apply bg-gradient-to-b from-primary-500 to-primary-800/50
+  @apply bg-gradient-to-b from-primary-500 to-[#1B9E9C5E]/80
 }
 
 .green-gradient {
