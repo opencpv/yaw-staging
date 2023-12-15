@@ -3,10 +3,11 @@ import Button from "@/components/__shared/Button";
 import Image from "next/image";
 import React from "react";
 import { BsTelephone } from "react-icons/bs";
-import { FaBuilding, FaRegEnvelope } from "react-icons/fa";
+import { FaRegEnvelope } from "react-icons/fa";
 import { HiOutlineExclamationCircle, HiOutlinePencil } from "react-icons/hi";
 import UserOverviewMV from "./UserOverviewMV";
 import ActionMain from "@/app/dashboard/properties/components/ActionMain";
+import { TbBuildingCommunity } from "react-icons/tb";
 
 const UserOverview = ({
   name,
@@ -19,7 +20,7 @@ const UserOverview = ({
   return (
     <div className={className}>
       <h2 className="mb-6">Overview</h2>
-      <h3 className="text-neutral-700 mb-6 md:hidden">
+      <h3 className="mb-6 text-neutral-700 md:hidden">
         Welcome, John
       </h3>
       <Callout className="flex items-center w-full gap-5 mb-6 sm:w-10/12">
@@ -49,7 +50,7 @@ const UserOverview = ({
       {type === "Property Manager" && (
         <ActionMain
           label="Add your property"
-          icon={<FaBuilding className="text-accent-200" />}
+          icon={<TbBuildingCommunity className="text-accent-200" />}
           className="mb-10"
         />
       )}
@@ -57,7 +58,7 @@ const UserOverview = ({
         <div className="w-11/12 mx-auto">
           <h3 className="text-white mb-4 font-[600] text-xl">Welcome, John</h3>
           <div className="flex items-center p-8 py-16 bg-white shadow-2xl gap-x-6 gap-y-3 rounded-xl max-h-60">
-            <div className="relative w-32 h-32 rounded-xl shadow-lg">
+            <div className="relative w-32 h-32 shadow-lg rounded-xl">
               <Image
                 src={picture}
                 alt={name}
