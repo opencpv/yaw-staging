@@ -39,9 +39,11 @@ export default function AllReviewCard({ data, variant }: Props) {
         </div>
 
         <div className="flex gap-1 w-full">
-          <p className="text-[#333] leading-[23.04px] flex">
+          <p className="text-[#333] leading-[23.04px]">
             {data?.recommended == "yes" ? (
-              <CaThumbsUpYellow />
+              <span className="">
+                <CaThumbsUpYellow />
+              </span>
             ) : (
               <CaThumbsDown />
             )}
@@ -59,7 +61,7 @@ export default function AllReviewCard({ data, variant }: Props) {
             <CaREviewsReply2 />
           </div>
         )}
-        {data?.replies?.map((r : any, index : number) => (
+        {data?.replies?.map((r: any, index: number) => (
           <div
             className="flex gap-2 items-center justify-start    w-full"
             key={index}>
