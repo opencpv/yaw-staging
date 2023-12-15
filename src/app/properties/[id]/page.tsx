@@ -130,7 +130,7 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
                     <div className="space-y-5">
                       <div className="flex flex-wrap gap-x-16 gap-y-2">
                         <h2 className="text-[#305A61] font-[600] text-2xl">
-                          {listing?.property_name} in {listing?.city}
+                          {listing?.property_name} at {listing?.city}
                         </h2>
 
                         <div className="flex items-center gap-2">

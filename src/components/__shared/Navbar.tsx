@@ -16,6 +16,7 @@ const Navbar = (props: any) => {
   const { icons } = useAssets();
   const router = useRouter();
   const [isScrolling, setIsScrolling] = useState<boolean>(false);
+  const [locationOrigin, setLocationOrigin] = useState<string>("");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,6 +34,9 @@ const Navbar = (props: any) => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
+
+    setLocationOrigin(location.origin)
+
   }, [pathname]);
 
   const shouldChangeColor =
@@ -72,7 +76,7 @@ const Navbar = (props: any) => {
             <div className="flex items-center gap-4">
               <LikeHeart liked={false} className="text-5xl text-white" />
               <Share
-                url={`${window.location}/properties/${props.propertyName}`}
+                url={`${locationOrigin}/properties/${props.propertyName}`}
                 title={props.propertyName}
                 className="text-5xl text-white"
               />

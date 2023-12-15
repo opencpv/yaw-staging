@@ -20,7 +20,7 @@ const PropertyDetailsFigures = ({
   return (
     <div className="grid grid-cols-1 justify-between px-10 py-8 divide-y-1 divide-x-0 divide-gray-400 text-sm bg-white border border-gray-500 shadow-xl text-primary-400 rounded-xl transition-all hover:scale-105 sm:divide-x-1 sm:divide-y-0 sm:grid-cols-4 sm:items-center sm:px-2">
       <div className="px-5 py-2 space-y-1 sm:py-0">
-        <h3 className="items-center justify-between text-center gap-x-4 sm:flex sm:text-start ">
+        <h3 className="items-center justify-between text-center gap-x-4 sm:flex sm:text-start font-[400]">
           Monthly Rent{" "}
           <Tooltip content="Lorem ipsum dolor sit amet.">
             <span className="">
@@ -34,15 +34,15 @@ const PropertyDetailsFigures = ({
         </p>
       </div>
       <div className="px-5 py-2 space-y-1 sm:py-0">
-        <h3 className="text-center text-primary-400">Bedrooms</h3>
+        <h3 className="text-center text-primary-400 font-[400]">Bedrooms</h3>
         <p className="text-center">{bedroomTotal}</p>
       </div>
       <div className="px-5 py-2 space-y-1 sm:py-0">
-        <h3 className="text-center text-primary-400">Bathrooms</h3>
+        <h3 className="text-center text-primary-400 font-[400]">Bathrooms</h3>
         <p className="text-center">{bathroomTotal}</p>
       </div>
       <div className="px-5 py-2 space-y-1 sm:py-0">
-        <h3 className="text-center text-primary-400">Square Meter</h3>
+        <h3 className="text-center text-primary-400 font-[400]">Square Meter</h3>
         <p className="text-center">
           {squareMeter.from} - {squareMeter.to} M<sup>2</sup>
         </p>
