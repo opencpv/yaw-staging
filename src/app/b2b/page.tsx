@@ -5,10 +5,10 @@ import Link from "next/link";
 function Page() {
   return (
     <div className=" flex flex-col items-center justify-start bg-[#F8F8F8] h-[100vh]">
-      <div className="bg-[url('/assets/images/b2b-home.png')] bg-no-repeat bg-cover h-[468px] w-full max-w-[1728px] text-[2.4375rem] font-bold text-white flex items-center justify-center">
+      <div className="bg-[url('/assets/images/b2b-home.png')] bg-no-repeat bg-cover h-[468px] w-full max-w-[1728px] text-[2.4375rem] font-bold text-white flex items-center justify-center ">
         <p className="uppercase">invoices & receipts</p>
       </div>
-      <div className="relative bg-white rounded-xl max-w-[495px] max-h-[234px] flex flex-col gap-2.5 px-6 py-8 w-full top-[-90px]">
+      <div className="relative bg-white rounded-xl w-[90%]  max-w-[398px] lg:max-w-[495px] max-h-[234px] flex flex-col gap-2.5 px-6 py-8 lg:w-full top-[-40px] lg:top-[-90px]">
         <div className="flex flex-col gap-4">
           <p className="text-[#6A6968]">Customer ID Number</p>
           <input

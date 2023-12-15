@@ -2,6 +2,7 @@ type Props = {
   subTotal: string | number;
   tax: string | number;
   total: string | number;
+  variant: "invoice" | "receipt";
 };
 
 type CostRowProps = {
@@ -20,7 +21,7 @@ const CostRow = ({ label, cost }: CostRowProps) => {
     </div>
   );
 };
-function Cost({ subTotal, tax, total }: Props) {
+function Cost({ subTotal, tax, total, variant }: Props) {
   return (
     <div className="flex flex-col gap-2.5 max-w-[203px] w-full">
       <div className="gap-5 flex flex-col">
@@ -29,7 +30,9 @@ function Cost({ subTotal, tax, total }: Props) {
         <CostRow label="total" cost={total} />
       </div>
       <div className="text-[0.625rem] text-[#DDB771] py-2.5 border-y-[1.5px] border-[#DDB771] flex justify-between items-center">
-        <p className=" font-bold  capitalize ">Amount Payable</p>
+        <p className=" font-bold  capitalize ">
+          {variant == "invoice" ? "Amount Payable" : "Amount Paid"}
+        </p>
         <p>
           <span className=" font-bold">GHS</span>{" "}
           <span className=" font-semibold">{total}</span>

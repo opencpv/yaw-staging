@@ -14,11 +14,9 @@ function Page() {
   );
 
   return (
-    <div className=" flex flex-col items-center justify-start bg-[#F8F8F8]">
-      <div className="bg-[url('/assets/images/b2b-home.png')] bg-no-repeat bg-cover h-[468px] w-full max-w-[1728px] text-[2.4375rem] font-bold text-white flex items-center justify-center">
-        <p className="uppercase">invoices & receipts</p>
-      </div>
-      <div className="w-full max-w-[1728px]">
+    <div className=" flex flex-col items-center justify-start bg-[#F8F8F8] pt-5">
+
+      <div className="w-full max-w-[1728px] px-5 2xl:px-0">
         <Tabs
           variant="light"
           aria-label="Tabs variants"
