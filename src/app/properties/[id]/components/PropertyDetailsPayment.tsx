@@ -1,7 +1,6 @@
 "use client";
 import Button from "@/components/__shared/Button";
-import { useAssets } from "@/lib/custom-hooks/useAssets";
-import React from "react";
+import React, { useState } from "react";
 import { FaPlusCircle, FaStar, FaWhatsapp } from "react-icons/fa";
 import AdditionalInfo from "../../components/AdditionalInfo";
 import AdditionalInfoTitle from "../../components/AdditionalInfoTitle";
@@ -9,6 +8,8 @@ import CallOut from "@/components/__shared/ui/CallOut";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import AOSWrapper from "@/components/__shared/AOSWrapper";
+import { AnimatePresence, motion } from "framer-motion";
+import { contentAccordionVariants } from "@/lib/utils/animation";
 
 type Props = {
   availableFrom: string;
@@ -21,10 +22,11 @@ type Props = {
 };
 
 const PropertyDetailsPayment = (props: Props) => {
-  const { images } = useAssets();
+  const [showMore, setShowMore] = useState(false);
+
   return (
     <>
-      <AOSWrapper animation="fade-up"  className="mb-12">
+      <AOSWrapper animation="fade-up" className="mb-12">
         <AdditionalInfoTitle title="Advance Payment Options" />
         <AdditionalInfo>
           <ul className="properties-li">
@@ -40,7 +42,7 @@ const PropertyDetailsPayment = (props: Props) => {
           </div>
         </AdditionalInfo>
       </AOSWrapper>
-      <AOSWrapper animation="fade-up"  className="my-12">
+      <AOSWrapper animation="fade-up" className="my-12">
         <h2 className="text-neutral-800 font-[600] text-2xl mt-6">
           Additional Information
         </h2>
@@ -74,7 +76,9 @@ const PropertyDetailsPayment = (props: Props) => {
         <AdditionalInfo>
           <div className="flex flex-wrap justify-between gap-2">
             <p className="">Refundable Security Deposit</p>
-            <p className="">GHS {formatPrice(props.refundableSecurityDeposit)}</p>
+            <p className="">
+              GHS {formatPrice(props.refundableSecurityDeposit)}
+            </p>
           </div>
         </AdditionalInfo>
         <AdditionalInfoTitle title="Utilities included" />
@@ -89,13 +93,23 @@ const PropertyDetailsPayment = (props: Props) => {
         </AdditionalInfo>
         <AdditionalInfoTitle title="Things to know" />
         <AdditionalInfo>
-          <p className="max-w-2xl leading-normal">{props.thingsToKnow}</p>
+          <motion.p
+            className="max-w-2xl leading-normal overflow-hidden"
+            initial="collapsed"
+            variants={contentAccordionVariants()}
+            animate={showMore ? "expanded" : "collapsed"}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            exit="collapsed"
+          >
+            {props.thingsToKnow}
+          </motion.p>
           <Button
             variant="outline"
             className="text-xs rounded-md border text-[#65969F] px-4 py-2 mt-3"
             borderColor="#65969F"
+            onClick={() => setShowMore((current) => !current)}
           >
-            Read More
+            {showMore ? "Show Less" : "Read More"}
           </Button>
         </AdditionalInfo>
       </AOSWrapper>

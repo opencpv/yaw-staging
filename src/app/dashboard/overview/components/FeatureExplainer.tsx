@@ -20,7 +20,7 @@ const FeatureExplainer = ({
         {title}
         <CiLock className="text-accent-100 font-[600] text-lg" />
       </div>
-      <Callout className="flex items-start gap-2">
+      <Callout className="flex gap-2">
         <BsPatchExclamation className="shrink-0 text-lg text-accent-50" />
         <div className="text-base">
           <p className="leading-normal">

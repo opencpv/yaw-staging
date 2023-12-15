@@ -138,7 +138,7 @@ small {
   }
 }
 
-
+/* Printing interface style */
 @media print {
   @page {
     size: A4

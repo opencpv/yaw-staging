@@ -7,7 +7,7 @@ import GradientBanner from "../GradientBanner";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import SellYourItem from "../../SellYourItem";
 import PMOverviewUpgradeSection from "./PMOverviewUpgradeSection";
-import UpgradeMembership from "./UpgradeMembership";
+import MembershipUpgradeCard from "./MembershipUpgradeCard";
 import PMActiveListingsSection from "./PMActiveListingsSection";
 
 type Props = {};
@@ -57,7 +57,7 @@ const PropManagerOverviewPage = (props: Props) => {
         </div>
         {/* Grid col */}
         <div className="col-span-1">
-          <UpgradeMembership />
+          <MembershipUpgradeCard />
           <PaidFeaturesSection
             type="Property manager"
             className="col-span-1 mb-24 hidden lg:block"

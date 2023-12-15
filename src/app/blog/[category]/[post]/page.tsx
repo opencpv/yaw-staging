@@ -7,7 +7,7 @@ import OtherPostsGroup from "../../components/post/OtherPostsGroup";
 import AOSWrapper from "@/components/__shared/AOSWrapper";
 import BreadCrumbPreLink from "@/components/__shared/ui/BreadCrumbPreLink";
 import SubscribeToBlogButton from "../../components/SubscribeToBlogButton";
-import ShareBtn from "@/components/__shared/ui/share/ShareBtn";
+import Share from "@/components/__shared/ui/share/ShaShare
 import Print from "@/components/__shared/ui/Print";
 
 type Props = {};
@@ -86,7 +86,7 @@ const page = (props: Props) => {
               <p className="text-neutral-800 text-base font-[500] cursor-pointer">
                 Share
               </p>
-              <ShareBtn
+              <Share
                 url="https://rentright.com.gh"
                 title="Mastering the Art of Home Decor: Simple Tips for a Cozy Living Space"
                 className="text-neutral-800"

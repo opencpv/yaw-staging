@@ -1,6 +1,6 @@
 import Modal from "@/components/__shared/modals/Modal";
 import Carousel from "@/components/__shared/sliders/Carousel";
-import ShareBtn from "@/components/__shared/ui/share/ShareBtn";
+import Share from "@/components/__shared/ui/share/Share";
 import { usePropertyCarouselStore } from "@/store/properties/usePropertiesStore";
 import React from "react";
 import { FaTimes } from "react-icons/fa";
@@ -55,7 +55,7 @@ const ModalHeader = ({ onClose }: { onClose?: () => void }) => {
         className="bg-neutral-900 rounded-full cursor-pointer p-1.5 shrink-0"
         onClick={onClose}
       />
-      <ShareBtn url="" />
+      <Share url="" />
     </div>
   );
 };

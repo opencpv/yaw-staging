@@ -1,6 +1,6 @@
 import React from "react";
 import Image, { StaticImageData } from "next/image";
-import { FaArrowRight, FaLongArrowAltRight } from "react-icons/fa";
+import { FaLongArrowAltRight } from "react-icons/fa";
 import Link from "next/link";
 import Button from "@/components/__shared/Button";
 
@@ -12,10 +12,10 @@ type Props = {
   alt?: string;
 };
 
-const UpgradeFeatureCard = (props: Props) => {
+const FeatureUpgradeCard = (props: Props) => {
   return (
     <div className="w-full">
-      <div className="relative aspect-video w-full rounded-xl mb-3">
+      <div className="relative w-full mb-3 aspect-video rounded-xl">
         <Image
           src={props.image}
           alt={props.alt ?? ""}
@@ -30,8 +30,14 @@ const UpgradeFeatureCard = (props: Props) => {
         incidunt optio error, aliquid qui temporibus corporis autem distinctio
         suscipit deserunt!
       </small>
-      <Link href={props.href} className="inline-block ml-5 mt-10 text-sm sm:mt-20">
-        <Button variant="ghost" className="flex items-center gap-2 text-neutral-400">
+      <Link
+        href={props.href}
+        className="inline-block mt-5 text-sm sm:mt-20 md:ml-5"
+      >
+        <Button
+          variant="ghost"
+          className="flex items-center gap-2 text-neutral-400"
+        >
           Purchase Now
           <FaLongArrowAltRight />
         </Button>
@@ -40,4 +46,4 @@ const UpgradeFeatureCard = (props: Props) => {
   );
 };
 
-export default UpgradeFeatureCard;
+export default FeatureUpgradeCard;

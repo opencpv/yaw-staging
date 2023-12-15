@@ -1,7 +1,7 @@
 "use client";
 import "../style.css";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import React from "react";
+import React, { useState } from "react";
 import Button from "@/components/__shared/Button";
 import { HiMiniShieldCheck } from "react-icons/hi2";
 import Footer from "@/components/__shared/footer/Footer";
@@ -31,6 +31,9 @@ import { revalidationRule } from "@/lib/utils/fetchRules";
 const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
   const { id: propertyId } = params;
 
+
+  const [] = useState()
+
   const {
     data: listing,
     isLoading,
@@ -48,9 +51,10 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
       .single(),
     revalidationRule()
   );
+  
   return (
     <>
-      <Navbar />
+      <Navbar propertyName={`${listing?.property_name} at ${listing?.city}`} />
       <FetchingStates
         data={listing}
         error={error}
@@ -108,7 +112,7 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
                 />{" "}
                 /{" "}
                 <span className="">
-                  {listing?.property_name} in {listing?.city}
+                  {listing?.property_name} at {listing?.city}
                 </span>
               </div>
               {/* Property images */}
@@ -116,7 +120,7 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
                 <PropertyDetailsImages
                   images={{
                     images: [""],
-                    propertyName: `${listing?.property_name} in ${listing?.city}`,
+                    propertyName: `${listing?.property_name} at ${listing?.city}`,
                   }}
                 />
 
@@ -212,6 +216,9 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
                   "Smoke Alarm",
                   "Pool Table",
                   "Satellite TV",
+                  "Wifi",
+                  "Security Cameras on Property",
+                  "Hot Tub",
                 ]}
               />
             </div>
