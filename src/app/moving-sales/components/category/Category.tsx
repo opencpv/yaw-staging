@@ -10,7 +10,7 @@ const Category = ({ category, count, className, image }: CategoryProps) => {
       <div className="absolute w-full h-full bg-opacity-30 bg-gradient-to-b from-primary-500 to-transparent">
       </div>
       <div className="relative z-10 p-10 space-y-2.5">
-        <h2 className="font-[600] relative z-10">{category}</h2>
+        <h4 className="font-[600] relative z-10">{category}</h4>
         {/* <p className="relative z-10">{count} items</p> */}
       </div>
     </div>

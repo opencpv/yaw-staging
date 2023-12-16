@@ -1,4 +1,4 @@
-//@ts-nocheck
+// @ts-nocheck
 "use client";
 import ListingCard from "@/components/__shared/listing/ListingCard";
 import SliderGrid from "@/components/__shared/sliders/SliderGrid";
@@ -15,8 +15,7 @@ import {
   fetchOrderRule,
   revalidationRule,
 } from "@/lib/utils/fetchRules";
-import images from "@/enum/temp/images"
-
+import images from "@/enum/temp/images";
 
 type Props = {};
 
@@ -29,19 +28,15 @@ const FeaturedListingAndAds = (props: Props) => {
   } = useQuery(
     supabase
       .from("standard_template")
-      .select(
-        "id, property_name, property_id, description, monthly_amount, city",
-        fetchCountRule()
-      )
+      .select("id, property_name, property_id, description, monthly_amount, city")
       .order("created_at", fetchOrderRule()),
     revalidationRule()
   );
 
+
   return (
     <section className="px-5 mx-auto mb-12 max-w-screen-2xl xs:px-5">
-      <h2 className="text-2xl font-[700] text-neutral-900 mb-5">
-        Featured Listings
-      </h2>
+      <h2 className="mb-5 text-neutral-900">Featured Listings</h2>
       {/* Listing cards */}
       <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-8 lg:items-start">
         {/* Shows when number of listings is less than 10 */}
@@ -59,7 +54,7 @@ const FeaturedListingAndAds = (props: Props) => {
                 </p>
               }
               noDataMessageComponent={
-                <p className="italic mt-4 text-center">
+                <p className="mt-4 italic text-center">
                   There are no properties yet.
                 </p>
               }
@@ -88,7 +83,7 @@ const FeaturedListingAndAds = (props: Props) => {
         ) : (
           <div className="relative col-span-6 pb-5">
             {/* Shows when number of listings is more than 9 */}
-            <div className="relative h-fit w-full">
+            <div className="relative w-full h-fit">
               <FetchingStates
                 data={listings}
                 error={error}
@@ -105,7 +100,7 @@ const FeaturedListingAndAds = (props: Props) => {
                   </p>
                 }
                 noDataMessageComponent={
-                  <p className="italic mt-4 text-center">
+                  <p className="mt-4 italic text-center">
                     There are no properties yet.
                   </p>
                 }
@@ -143,7 +138,7 @@ const FeaturedListingAndAds = (props: Props) => {
         className="mb-16"
       />
       {/* Ads */}
-      <section className="h-fit w-full lg:hidden">
+      <section className="w-full h-fit lg:hidden">
         <SliderWide
           pagination
           navigation

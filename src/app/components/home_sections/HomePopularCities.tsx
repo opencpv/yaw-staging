@@ -31,7 +31,7 @@ const HomePopularCities = () => {
     >
       <div className="w-full space-y-5 min-[810px]:w-7/12">
         <div className="flex items-start justify-between gap-2 min-[500px]:justify-start min-[500px]:gap-20">
-          <h2 className="font-[700] text-2xl mb-3.5 capitalize text-neutral-900">
+          <h2 className="mb-3.5 capitalize text-neutral-900">
             Find Apartments in Popular Cities
           </h2>
           <Image

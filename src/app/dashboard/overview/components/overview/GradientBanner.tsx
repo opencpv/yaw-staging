@@ -16,9 +16,9 @@ type Props = {
 const GradientBanner = (props: Props) => {
   return (
     <div
-      className={`flex gap-8 items-center flex-wrap text-white p-10 rounded-xl mb-20 gradient-bottom ${props.className}`}
+      className={`flex gap-8 items-center flex-wrap text-white p-10 rounded-xl mb-20 gradient-to-bottom ${props.className}`}
     >
-      <div className="relative aspect-square w-64">
+      <div className="relative w-64 aspect-square">
         <Image
           src={props.image}
           alt={props.alt}

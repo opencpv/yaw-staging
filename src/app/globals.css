@@ -40,8 +40,8 @@ small {
   @apply text-sm block
 }
 
-.gradient-bottom {
-  @apply bg-gradient-to-b from-primary-500 to-[#1B9E9C5E]/80
+.gradient-to-bottom {
+  @apply bg-gradient-to-b from-primary-500 to-primary-400/80
 }
 
 .green-gradient {

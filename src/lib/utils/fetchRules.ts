@@ -1,19 +1,22 @@
 export const revalidationRule = (
-    revalidateOnFocus = false,
-    revalidateOnReconnect = true,
-    revalidateIfStale = false
-  ) => {
-    return {
-      revalidateOnFocus,
-      revalidateIfStale,
-      revalidateOnReconnect,
-    };
+  revalidateOnFocus = false,
+  revalidateOnReconnect = true,
+  revalidateIfStale = false
+) => {
+  return {
+    revalidateOnFocus,
+    revalidateIfStale,
+    revalidateOnReconnect,
   };
-  
+};
+
 export const fetchOrderRule = (ascending = false) => {
-    return { ascending };
-  };
-  
-export const fetchCountRule = (head = true) => {
-    return { count: "exact", head };
-  };
+  return { ascending };
+};
+
+export const fetchCountRule = (
+  count: "exact" | "planned" | "estimated" | undefined = "exact",
+  head = true
+) => {
+  return { count, head };
+};
