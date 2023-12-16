@@ -1,4 +1,4 @@
-import Button from "@/components/__shared/Button";
+import Button from "@/components/__shared/ui/button/Button";
 import Modal from "@/components/__shared/modals/Modal";
 import React from "react";
 import CategoryCheckboxes from "./category/CategoryCheckboxes";

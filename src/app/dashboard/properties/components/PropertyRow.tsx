@@ -3,12 +3,12 @@ import Image from "next/image";
 import React from "react";
 import { BiPencil } from "react-icons/bi";
 import { FiTrash2 } from "react-icons/fi";
-import Button from "@/components/__shared/Button";
+import Button from "@/components/__shared/ui/button/Button";
 import PropertyStatus from "./PropertyStatus";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import { formatDate, formatTime } from "@/lib/utils/stringManipulation";
 import { useDaysDifference } from "@/lib/custom-hooks/useDaysDifference";
-import DeleteButton from "@/components/__shared/DeleteButton";
+import ButtonDelete from "@/components/__shared/ui/button/ButtonDelete";
 import DestructiveModal from "@/components/__shared/modals/DestructiveModal";
 import { useDisclosure } from "@nextui-org/react";
 
@@ -78,7 +78,7 @@ const PropertyRow = ({
             >
               <BiPencil className="text-xl" />
             </Button>
-            <DeleteButton onOpen={onOpen} />
+            <ButtonDelete onOpen={onOpen} />
           </div>
         </td>
       </tr>

@@ -1,4 +1,4 @@
-import Button from "@/components/__shared/Button";
+import Button from "@/components/__shared/ui/button/Button";
 import images from "@/enum/temp/images";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";

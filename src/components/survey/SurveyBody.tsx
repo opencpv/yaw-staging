@@ -2,7 +2,7 @@ import React from "react";
 import Thumbs from "./Thumbs";
 import FeedbackSlider from "./FeedbackSlider";
 import Image from "next/image";
-import Button from "../__shared/Button";
+import Button from "../__shared/ui/button/Button";
 import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 
 

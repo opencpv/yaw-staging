@@ -1,12 +1,13 @@
 "use client";
 import AOSWrapper from "@/components/__shared/AOSWrapper";
-import Button from "@/components/__shared/Button";
 import ReportIssue from "@/components/__shared/ReportIssue";
+import ButtonCall from "@/components/__shared/ui/button/ButtonCall";
+import ButtonMessage from "@/components/__shared/ui/button/ButtonMessage";
+import ButtonWhatsApp from "@/components/__shared/ui/button/ButtonWhatsApp";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
-import { FaStar, FaWhatsapp } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 
 type Props = {
   name: string;
@@ -21,7 +22,10 @@ type Props = {
 const PropertyOwnerInfo = (props: Props) => {
   const { images } = useAssets();
   return (
-    <AOSWrapper animation="fade-up" className="flex items-center justify-center w-full mx-auto">
+    <AOSWrapper
+      animation="fade-up"
+      className="flex items-center justify-center w-full mx-auto"
+    >
       <div className="flex flex-col items-center w-full gap-10 mt-12 sm:w-11/12">
         <div className="flex items-center gap-10 font-[600]">
           <div className="relative w-24 h-24 rounded-full">
@@ -44,31 +48,13 @@ const PropertyOwnerInfo = (props: Props) => {
           <h2 className="text-center capitalize text-neutral-800 font-[600] text-2xl sm:w-9/12">
             Contact This Property
           </h2>
-          <Button
+          <ButtonCall
             color="gradient"
-            className="w-full p-4 py-7"
-            onClick={() => console.log("sending message")} // create owner as recipient and navigate to message
-          >
-            Send Message
-          </Button>
-          <Link className="w-full flex justify-center" href={`tel:${props.telephone}`}>
-            <Button
-              variant="outline"
-              color="gradient"
-              className="p-4 py-7 w-full"
-            >
-              Call
-            </Button>
-          </Link>
-          <Link className="w-full flex justify-center" href={`tel:${props.whatsappNumber}`}>
-            <Button
-              color="gradient"
-              className="flex items-center gap-2 p-4 py-7 w-full"
-            >
-              <FaWhatsapp className="text-lg text-white" />
-              Whatsapp
-            </Button>
-          </Link>
+            phoneNumber="0023434331"
+            className="py-7"
+          />
+          <ButtonMessage color="gradient" className="py-7" />
+          <ButtonWhatsApp color="gradient" className="py-7" />
         </div>
         {/* Report issue */}
         <div className="relative self-start -top-6 mb-10">

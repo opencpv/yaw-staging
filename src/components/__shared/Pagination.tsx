@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Pagination as NextUIPagination } from "@nextui-org/react";
-import Button from "./Button";
+import Button from "./ui/button/Button";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
 type Props = {

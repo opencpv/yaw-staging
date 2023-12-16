@@ -1,7 +1,7 @@
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import React from "react";
-import Button from "@/components/__shared/Button";
+import Button from "@/components/__shared/ui/button/Button";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import { formatDate, formatTime } from "@/lib/utils/stringManipulation";
 import { AiOutlineEye } from "react-icons/ai";
@@ -10,7 +10,7 @@ import { useDaysDifference } from "@/lib/custom-hooks/useDaysDifference";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import DestructiveModal from "@/components/__shared/modals/DestructiveModal";
 import { useDisclosure } from "@nextui-org/react";
-import DeleteButton from "@/components/__shared/DeleteButton";
+import ButtonDelete from "@/components/__shared/ui/button/ButtonDelete";
 
 const ApplicationRow = ({
   propertyImage,
@@ -96,7 +96,7 @@ const ApplicationRow = ({
             >
               <AiOutlineEye className="text-xl" />
             </Button>
-            <DeleteButton onOpen={onOpen} />
+            <ButtonDelete onOpen={onOpen} />
           </div>
         </td>
       </tr>

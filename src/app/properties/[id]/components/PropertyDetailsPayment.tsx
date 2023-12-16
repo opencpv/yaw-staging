@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/components/__shared/Button";
+import Button from "@/components/__shared/ui/button/Button";
 import React, { useState } from "react";
 import { FaPlusCircle, FaStar, FaWhatsapp } from "react-icons/fa";
 import AdditionalInfo from "../../components/AdditionalInfo";

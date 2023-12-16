@@ -15,9 +15,9 @@ const ItemCard = ({ description, title, image, price, href }: ItemProps) => {
             style={{ objectFit: "cover" }}
           />
         </div>
-        <h3 className="text-primary-500 font-[600] mb-2">{title}</h3>
+        <h4 className="text-primary-500 mb-2">{title}</h4>
         <p className="max-w-sm mb-2 text-neutral-500 line-clamp-3">{description}</p>
-        <h3 className="text-lg font-[700] text-primary-500">GHS {price}</h3>
+        <h3 className="text-lg text-primary-500">GHS {price}</h3>
       </div>
     </Link>
   );

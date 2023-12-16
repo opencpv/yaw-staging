@@ -1,6 +1,6 @@
 "use client";
 import AOSWrapper from "@/components/__shared/AOSWrapper";
-import Button from "@/components/__shared/Button";
+import Button from "@/components/__shared/ui/button/Button";
 import Modal from "@/components/__shared/modals/Modal";
 import SubscribeForm from "@/components/__shared/ui/SubscribeForm";
 import { useDisclosure } from "@nextui-org/react";

@@ -2,7 +2,7 @@
 import "../style.css";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import React, { useState } from "react";
-import Button from "@/components/__shared/Button";
+import Button from "@/components/__shared/ui/button/Button";
 import { HiMiniShieldCheck } from "react-icons/hi2";
 import Footer from "@/components/__shared/footer/Footer";
 import { Rate } from "antd";

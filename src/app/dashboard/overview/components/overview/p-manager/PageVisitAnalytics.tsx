@@ -1,7 +1,7 @@
 import React from "react";
 import { Bar, Chart } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale } from "chart.js/auto";
-import Button from "@/components/__shared/Button";
+import Button from "@/components/__shared/ui/button/Button";
 import { HiEllipsisVertical } from "react-icons/hi2";
 ChartJS.register(CategoryScale);
 

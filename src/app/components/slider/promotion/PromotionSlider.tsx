@@ -10,7 +10,7 @@ import "./styles.css";
 import { Pagination, Autoplay } from "swiper/modules";
 import Image from "next/image";
 import { IoIosArrowRoundForward } from "react-icons/io";
-import Button from "@/components/__shared/Button";
+import Button from "@/components/__shared/ui/button/Button";
 
 let images = [
   "/assets/images/home/promotion-1.jpg",
