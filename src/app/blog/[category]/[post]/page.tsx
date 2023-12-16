@@ -7,7 +7,7 @@ import OtherPostsGroup from "../../components/post/OtherPostsGroup";
 import AOSWrapper from "@/components/__shared/AOSWrapper";
 import BreadCrumbPreLink from "@/components/__shared/ui/BreadCrumbPreLink";
 import SubscribeToBlogButton from "../../components/SubscribeToBlogButton";
-import Share from "@/components/__shared/ui/share/ShaShare
+import Share from "@/components/__shared/ui/share/Share";
 import Print from "@/components/__shared/ui/Print";
 
 type Props = {};

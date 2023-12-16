@@ -25,11 +25,11 @@ const RecommendedListings = ({ className }: Props) => {
   } = useQuery(
     supabase
       .from("standard_template")
-      .select(
-        "id, property_name, property_id, description, monthly_amount, city")
+      .select("id, property_name, property_id, description, monthly_amount, city")
       .order("created_at", fetchOrderRule()),
     revalidationRule()
   );
+
 
   return (
     <section className={`w-full h-fit no-print ${className}`}>

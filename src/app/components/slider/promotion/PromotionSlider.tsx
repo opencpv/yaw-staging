@@ -50,7 +50,7 @@ const PromotionSlider = () => {
                   Promotion
                 </h1>
                 <p className="text-white">Lorem ipsum</p>
-                <Button className="flex items-center w-40 gap-3 text-white capitalize border-none rounded-md bg-accent-200 hover:bg-neutral-300 hover:text-neutral-600">
+                <Button className="flex items-center min-w-fit gap-3 text-white capitalize border-none rounded-md bg-accent-200 hover:bg-neutral-300 hover:text-neutral-600">
                   View item <IoIosArrowRoundForward />
                 </Button>
               </div>
