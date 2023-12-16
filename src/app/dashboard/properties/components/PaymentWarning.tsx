@@ -1,6 +1,6 @@
 import React from "react";
 import { HiOutlineExclamationCircle } from "react-icons/hi2";
-import Button from "@/components/__shared/Button";
+import Button from "@/components/__shared/ui/button/Button";
 
 type Props = {};
 

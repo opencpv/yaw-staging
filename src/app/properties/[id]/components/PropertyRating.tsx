@@ -2,7 +2,7 @@ import React from "react";
 import ReviewComment from "../../components/ReviewComment";
 import ReviewCount from "../../components/ReviewCount";
 import { HiOutlineHomeModern, HiStar } from "react-icons/hi2";
-import Button from "@/components/__shared/Button";
+import Button from "@/components/__shared/ui/button/Button";
 import { BsBookmarkStarFill } from "react-icons/bs";
 import AOSWrapper from "@/components/__shared/AOSWrapper";
 

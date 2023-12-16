@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation.js";
 import { usePathname } from "next/navigation.js";
 import { useEffect, useState } from "react";
 import Logo from "@/components/__shared/Logo";
-import Button from "@/components/__shared/Button";
+import Button from "@/components/__shared/ui/button/Button";
 import LikeHeart from "./ui/LikeHeart";
 import Share from "./ui/share/Share";
 

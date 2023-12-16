@@ -3,7 +3,7 @@ import React from "react";
 import Callout from "@/app/dashboard/components/Callout";
 import { BsPatchExclamation } from "react-icons/bs";
 import { CiLock } from "react-icons/ci";
-import Button from "@/components/__shared/Button";
+import Button from "@/components/__shared/ui/button/Button";
 import { useRouter } from "next/navigation";
 import { Router } from "lucide-react";
 import Link from "next/link";

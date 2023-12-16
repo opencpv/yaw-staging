@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Category from "./components/category/Category";
 import CallOut from "@/components/__shared/ui/CallOut";
 import Select from "../dashboard/components/Select";
-import Button from "@/components/__shared/Button";
+import Button from "@/components/__shared/ui/button/Button";
 import { FaChevronDown } from "react-icons/fa";
 import ItemCard from "./components/item/ItemCard";
 import SliderWide from "@/components/__shared/sliders/SliderWide";
@@ -53,7 +53,7 @@ const MovingSalesPage = () => {
         {/* Categories */}
         <section className="flex justify-center mx-auto mb-10">
           <div className="flex flex-wrap justify-center gap-5 mx-auto">
-            {[1, 2, 3, 4, 5, 6].map((category, idx) => (
+            {[1, 2, 3, 4, 5, 6].map((_, idx) => (
               <Category
                 key={idx + 1}
                 category="Category"
@@ -92,7 +92,7 @@ const MovingSalesPage = () => {
         </div>
         {/* Items */}
         <section className="grid mb-20 gap-x-4 gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {[1, 2, 3, 4, 5, 6, 6, 7, 8, 4, 6, 7].map((item, idx) => (
+          {[1, 2, 3, 4, 5, 6, 12, 7, 8, 4, 20, 7].map((_, idx) => (
             <ItemCard
               key={idx + 1}
               href={`/moving-sales/${1}`}

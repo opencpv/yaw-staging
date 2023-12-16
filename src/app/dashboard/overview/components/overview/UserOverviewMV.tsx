@@ -1,4 +1,4 @@
-import Button from "@/components/__shared/Button";
+import Button from "@/components/__shared/ui/button/Button";
 import Image from "next/image";
 import React from "react";
 import { BsTelephone } from "react-icons/bs";

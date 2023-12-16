@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/components/__shared/Button";
+import Button from "@/components/__shared/ui/button/Button";
 import Feature from "../../components/Feature";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa";
 import AOSWrapper from "@/components/__shared/AOSWrapper";

@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/components/__shared/Button";
+import Button from "@/components/__shared/ui/button/Button";
 import { useRouter } from "next/navigation";
 import React from "react";
 import style from "./Feature.module.css";

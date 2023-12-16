@@ -2,7 +2,7 @@ import React from "react";
 import Image, { StaticImageData } from "next/image";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import Link from "next/link";
-import Button from "@/components/__shared/Button";
+import Button from "@/components/__shared/ui/button/Button";
 
 type Props = {
   image: string | StaticImageData;

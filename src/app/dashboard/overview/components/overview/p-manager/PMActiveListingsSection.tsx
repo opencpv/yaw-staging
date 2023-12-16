@@ -1,7 +1,7 @@
 import OptionFilterTabs from "@/components/__shared/OptionFilterTabs";
 import React, { useState } from "react";
 import ActiveListingCard from "./ActiveListingCard";
-import Button from "@/components/__shared/Button";
+import Button from "@/components/__shared/ui/button/Button";
 import LeadsSummary from "./LeadsSummary";
 import Link from "next/link";
 

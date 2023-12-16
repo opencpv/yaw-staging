@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Modal from "../modals/Modal";
 import { MdOutlineChat } from "react-icons/md";
 import Checkbox from "../form/Checkbox";
-import Button from "../Button";
+import Button from "../ui/button/Button";
 import { useListingStore } from "@/store/listing/useListingStore";
 
 type ModalProps = {
