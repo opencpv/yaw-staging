@@ -1,12 +1,13 @@
 "use client";
 import React from "react";
-import Button from "@/components/__shared/ui/data_fetchting/ButtonInfiniteLoading";
+import Button from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
 import { useFetchTableWithInfiniteScroll } from "@/lib/custom-hooks/useFetch";
 import ListingCard from "@/components/__shared/listing/ListingCard";
-import FetchingStates from "@/components/__shared/ui/data_fetchting/FetchingStates";
+import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
 import images from "@/enum/temp/images";
 import { revalidationRule, fetchOrderRule } from "@/lib/utils/fetchRules";
+import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
 
 type Props = {};
 
@@ -34,11 +35,7 @@ const PropertiesListing = (props: Props) => {
           isLoading={isLoading}
           isValidating={isValidating}
           isLoadingComponent={<SkeletonListing count={3} />}
-          errorComponent={
-            <p className="text-center">
-              Error: Something went wrong while fetching
-            </p>
-          }
+          errorComponent={<FetchErrorMessage specificData="properties" />}
           noDataMessageComponent={
             <p className="italic mt-4 text-center">
               There are no properties yet.

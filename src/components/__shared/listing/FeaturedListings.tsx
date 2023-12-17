@@ -6,14 +6,14 @@ import ListingCard from "./ListingCard";
 import supabase from "@/lib/utils/supabaseClient";
 import { useQuery } from "@supabase-cache-helpers/postgrest-swr";
 import SkeletonListing from "../ui/skeleton/SkeletonListing";
-import FetchingStates from "../ui/data_fetchting/FetchingStates";
+import FetchingStates from "../ui/data_fetching/FetchingStates";
 import { fetchOrderRule, revalidationRule } from "@/lib/utils/fetchRules";
 import images from "@/enum/temp/images";
+import FetchErrorMessage from "../ui/data_fetching/FetchErrorMessage";
 
 type Props = {
   className?: string;
 };
-
 
 const FeaturedListings = ({ className }: Props) => {
   const {
@@ -40,17 +40,10 @@ const FeaturedListings = ({ className }: Props) => {
         isValidating={isValidating}
         isLoadingComponent={
           <div className="skeleton-flex">
-            <SkeletonListing
-              count={5}
-              childrenClassName="min-w-[20rem]"
-            />
+            <SkeletonListing count={5} childrenClassName="min-w-[20rem]" />
           </div>
         }
-        errorComponent={
-          <p className="text-center">
-            Error: Something went wrong while fetching
-          </p>
-        }
+        errorComponent={<FetchErrorMessage specificData="featured listings" />}
         noDataMessageComponent={
           <p className="italic mt-4 text-center">
             There are no properties yet.

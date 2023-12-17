@@ -58,7 +58,7 @@ const ManagePropertiesTable = (props: Props) => {
         </thead>
         <tbody>
           {isValidating === false && !error && currentPage?.length === 0 && (
-            <tr className="italic mt-4">
+            <tr className="mt-4 italic">
               <td>There are no properties in this category</td>
             </tr>
           )}

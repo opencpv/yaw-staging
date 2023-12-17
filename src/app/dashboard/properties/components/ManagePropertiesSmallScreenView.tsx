@@ -5,8 +5,9 @@ import PropertyRow2 from "./PropertyRow2";
 import { useFetchTableWithInfiniteScroll } from "@/lib/custom-hooks/useFetch";
 import TableMobileSkeleton from "../../components/shared/skeleton/TableMobileSkeleton";
 import { useManagePropertiesStore } from "@/store/dashboard/propertiesStore";
-import Button from "@/components/__shared/ui/data_fetchting/ButtonInfiniteLoading";
-import FetchingStates from "@/components/__shared/ui/data_fetchting/FetchingStates";
+import Button from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
+import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
+import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
 
 const ManagePropertiesSmallScreenView = () => {
   const filterOption = useManagePropertiesStore((state) => state.filterOption);
@@ -35,7 +36,7 @@ const ManagePropertiesSmallScreenView = () => {
         isLoading={isLoading}
         isValidating={isValidating}
         isLoadingComponent={<TableMobileSkeleton rows={4} />}
-        errorComponent={<p>Error: Something went wrong while fetching</p>}
+        errorComponent={<FetchErrorMessage specificData="properties" />}
         noDataMessageComponent={
           <p className="italic mt-4">
             There are no properties in this category

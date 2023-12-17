@@ -4,8 +4,8 @@ import Feature from "../../components/Feature";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa";
 import AOSWrapper from "@/components/__shared/AOSWrapper";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { contentAccordionVariants } from "@/lib/utils/animation";
+import { motion } from "framer-motion";
+import { contentAccordionVariants } from "@/lib/animations";
 
 type Props = {
   features: FeatureInterface[];
@@ -20,7 +20,7 @@ const PropertyDetailsFeatures = ({ features }: Props) => {
         Features and Amenities
       </h2>
       <motion.div
-        className="grid justify-between w-full mt-8 gap-x-10 gap-y-4 overflow-hidden sm:grid-cols-2 lg:grid-cols-3"
+        className="grid justify-between w-full mt-8 overflow-hidden gap-x-10 gap-y-4 sm:grid-cols-2 lg:grid-cols-3"
         initial="collapsed"
         variants={contentAccordionVariants("11rem")}
         animate={showMore ? "expanded" : "collapsed"}

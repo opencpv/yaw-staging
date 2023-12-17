@@ -4,8 +4,9 @@ import React from "react";
 import ApplicationRow2 from "./ApplicationRow2";
 import { useFetchTableWithInfiniteScroll } from "@/lib/custom-hooks/useFetch";
 import TableMobileSkeleton from "../../components/shared/skeleton/TableMobileSkeleton";
-import Button from "@/components/__shared/ui/data_fetchting/ButtonInfiniteLoading";
-import FetchingStates from "@/components/__shared/ui/data_fetchting/FetchingStates";
+import Button from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
+import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
+import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
 
 type Props = {};
 
@@ -31,9 +32,9 @@ const ManageApplicationsSmallScreen = (props: Props) => {
         isLoading={isLoading}
         isValidating={isValidating}
         isLoadingComponent={<TableMobileSkeleton rows={4} />}
-        errorComponent={<p>Error: Something went wrong while fetching</p>}
+        errorComponent={<FetchErrorMessage specificData="applications" />}
         noDataMessageComponent={
-          <p className="italic mt-4">There are no applications yet.</p>
+          <p className="mt-4 italic">There are no applications yet.</p>
         }
       />
       <section className="mt-3 mb-10 space-y-5">

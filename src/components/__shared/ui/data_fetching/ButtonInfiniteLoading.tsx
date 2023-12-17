@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../../ui/button/Button";
+import Button from "../button/Button";
 
 type Props = {
   isLoading: boolean;

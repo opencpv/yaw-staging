@@ -5,10 +5,11 @@ import PopularCitiesCard from "../PopularCitiesCard";
 import { useQuery } from "@supabase-cache-helpers/postgrest-swr";
 import supabase from "@/lib/utils/supabaseClient";
 import AOSWrapper from "@/components/__shared/AOSWrapper";
-import FetchingStates from "@/components/__shared/ui/data_fetchting/FetchingStates";
+import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import Image from "next/image";
 import SkeletonRectangle from "@/components/__shared/ui/skeleton/SkeletonRectangle";
 import { fetchOrderRule, revalidationRule } from "@/lib/utils/fetchRules";
+import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
 
 const HomePopularCities = () => {
   const {
@@ -51,11 +52,7 @@ const HomePopularCities = () => {
           isLoadingComponent={
             <SkeletonRectangle count={3} childrenClassName="w-full h-[20rem]" />
           }
-          errorComponent={
-            <p className="text-center">
-              Error: Something went wrong while fetching cities
-            </p>
-          }
+          errorComponent={<FetchErrorMessage specificData="cities" />}
         />
         {cities?.map((city) => (
           <AOSWrapper key={city.id} animation="zoom-in" duration="1000">
@@ -79,11 +76,7 @@ const HomePopularCities = () => {
               <SkeletonRectangle count={2} />
             </div>
           }
-          errorComponent={
-            <p className="text-center">
-              Error: Something went wrong while fetching cities
-            </p>
-          }
+          errorComponent={<FetchErrorMessage specificData="cities" />}
         />
         <SliderMultiItems
           items={cities?.map((city) => (

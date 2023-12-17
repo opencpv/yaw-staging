@@ -2,7 +2,7 @@
 "use client";
 import ListingCard from "@/components/__shared/listing/ListingCard";
 import SliderGrid from "@/components/__shared/sliders/SliderGrid";
-import FetchingStates from "@/components/__shared/ui/data_fetchting/FetchingStates";
+import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
 import React from "react";
 import AdsSliderColumn from "./AdsSliderColumn";
@@ -16,6 +16,7 @@ import {
   revalidationRule,
 } from "@/lib/utils/fetchRules";
 import images from "@/enum/temp/images";
+import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
 
 type Props = {};
 
@@ -28,11 +29,12 @@ const FeaturedListingAndAds = (props: Props) => {
   } = useQuery(
     supabase
       .from("standard_template")
-      .select("id, property_name, property_id, description, monthly_amount, city")
+      .select(
+        "id, property_name, property_id, description, monthly_amount, city"
+      )
       .order("created_at", fetchOrderRule()),
     revalidationRule()
   );
-
 
   return (
     <section className="px-5 mx-auto mb-12 max-w-screen-2xl xs:px-5">
@@ -48,11 +50,7 @@ const FeaturedListingAndAds = (props: Props) => {
               isLoading={isLoading}
               isValidating={isValidating}
               isLoadingComponent={<SkeletonListing count={3} />}
-              errorComponent={
-                <p className="text-center">
-                  Error: Something went wrong while fetching
-                </p>
-              }
+              errorComponent={<FetchErrorMessage specificData="featured listing" />}
               noDataMessageComponent={
                 <p className="mt-4 italic text-center">
                   There are no properties yet.
@@ -93,11 +91,6 @@ const FeaturedListingAndAds = (props: Props) => {
                   <div className="skeleton-grid">
                     <SkeletonListing count={3} />
                   </div>
-                }
-                errorComponent={
-                  <p className="text-center">
-                    Error: Something went wrong while fetching
-                  </p>
                 }
                 noDataMessageComponent={
                   <p className="mt-4 italic text-center">
