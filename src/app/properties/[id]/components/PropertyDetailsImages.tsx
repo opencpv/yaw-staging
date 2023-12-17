@@ -16,13 +16,16 @@ const PropertyDetailsImages = (props: Props) => {
 
   return (
     <>
-    <PropertyGalleryModal
+      <PropertyGalleryModal
         onOpenChange={onOpenChange}
         onClose={onClose}
         isOpen={isOpen}
-      />  
-      <AOSWrapper animation="fade-up"  className="h-full mb-10">
-        <div className="hidden h-full grid-cols-2 gap-3 cursor-pointer lg:grid" onClick={onOpen}>
+      />
+      <AOSWrapper animation="fade-up" className="h-full mb-10 max-h-[150rem]">
+        <div
+          className="hidden h-full grid-cols-2 gap-3 cursor-pointer lg:grid"
+          onClick={onOpen}
+        >
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((_, idx) => (
             <div
               key={idx + 1}
@@ -42,7 +45,9 @@ const PropertyDetailsImages = (props: Props) => {
         </div>
         {/* Slider */}
         <div className="w-full cursor-pointer h-fit lg:hidden" onClick={onOpen}>
-          <SliderWide pagination navigation
+          <SliderWide
+            pagination
+            navigation
             images={[1, 2, 3, 4, 5].map((image) => ({
               src: "/assets/images/Stock.jpg",
               name: "",

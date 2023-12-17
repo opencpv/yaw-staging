@@ -8,8 +8,8 @@ import CallOut from "@/components/__shared/ui/CallOut";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import AOSWrapper from "@/components/__shared/AOSWrapper";
-import { AnimatePresence, motion } from "framer-motion";
-import { contentAccordionVariants } from "@/lib/utils/animation";
+import { motion } from "framer-motion";
+import { contentAccordionVariants } from "@/lib/animations";
 
 type Props = {
   availableFrom: string;

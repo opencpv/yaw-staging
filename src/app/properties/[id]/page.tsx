@@ -24,15 +24,15 @@ import { Skeleton } from "@nextui-org/react";
 import SkeletonTextual from "@/components/__shared/ui/skeleton/SkeletonTextual";
 import SkeletonLong from "@/components/__shared/ui/skeleton/SkeletonLong";
 import SkeletonRectangle from "@/components/__shared/ui/skeleton/SkeletonRectangle";
-import FetchingStates from "@/components/__shared/ui/data_fetchting/FetchingStates";
+import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import style from "@/app/components/landing/Shape.module.css";
 import { revalidationRule } from "@/lib/utils/fetchRules";
+import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
 
 const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
   const { id: propertyId } = params;
 
-
-  const [] = useState()
+  const [] = useState();
 
   const {
     data: listing,
@@ -51,7 +51,7 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
       .single(),
     revalidationRule()
   );
-  
+
   return (
     <>
       <Navbar propertyName={`${listing?.property_name} at ${listing?.city}`} />
@@ -68,18 +68,18 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
             <div className="section gap-x-20 gap-y-10 lg:grid lg:grid-cols-2">
               {/* grid col */}
               <div className="space-y-10">
-                <Skeleton className="h-4 w-full md:w-9/12" />
+                <Skeleton className="w-full h-4 md:w-9/12" />
                 <div className="hidden grid-cols-2 gap-3 lg:grid">
                   <SkeletonLong count={10} className="mb-0" />
                 </div>
-                <div className="w-full h-60 mb-20 lg:hidden">
+                <div className="w-full mb-20 h-60 lg:hidden">
                   <SkeletonRectangle count={1} />
                 </div>
               </div>
               {/* grid col */}
               <div className="space-y-20">
                 <div className="space-y-10">
-                  <Skeleton className="w-full h-4 md:w-9/12" />
+                  <Skeleton className="w-full h-4 mb-10 md:w-9/12" />
                   <SkeletonTextual />
                 </div>
                 <div className="">
@@ -89,11 +89,7 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
             </div>
           </div>
         }
-        errorComponent={
-          <p className="text-center flex justify-center items-center h-[26rem]">
-            Error: Something went wrong while fetching
-          </p>
-        }
+        errorComponent={<FetchErrorMessage />}
       />
       {listing && (
         <>
@@ -234,14 +230,16 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
         </>
       )}
       {/* Recommended Listings */}
-      <section className="section mb-40">
+      <section className="mb-40 section">
         <div className="flex flex-wrap items-center justify-between gap-5 mb-5">
           <h2 className="text-neutral-800 text-xl font-[600] md:ml-10">
             Recommended Listings
           </h2>
-          <Button variant="ghost" className="text-sm text-neutral-800">
-            Show all
-          </Button>
+          {listing && (
+            <Button variant="ghost" className="text-sm text-neutral-800">
+              Show all
+            </Button>
+          )}
         </div>
         <RecommendedListings />
       </section>

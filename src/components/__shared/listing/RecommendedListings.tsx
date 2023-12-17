@@ -7,16 +7,16 @@ import ListingCard from "./ListingCard";
 import supabase from "@/lib/utils/supabaseClient";
 import { useQuery } from "@supabase-cache-helpers/postgrest-swr";
 import SkeletonListing from "../ui/skeleton/SkeletonListing";
-import FetchingStates from "../ui/data_fetchting/FetchingStates";
+import FetchingStates from "../ui/data_fetching/FetchingStates";
 import { fetchOrderRule, revalidationRule } from "@/lib/utils/fetchRules";
-import images from "@/enum/temp/images"
+import images from "@/enum/temp/images";
+import FetchErrorMessage from "../ui/data_fetching/FetchErrorMessage";
 
 type Props = {
   className?: string;
 };
 
 const RecommendedListings = ({ className }: Props) => {
-
   const {
     data: listings,
     isLoading,
@@ -25,11 +25,12 @@ const RecommendedListings = ({ className }: Props) => {
   } = useQuery(
     supabase
       .from("standard_template")
-      .select("id, property_name, property_id, description, monthly_amount, city")
+      .select(
+        "id, property_name, property_id, description, monthly_amount, city"
+      )
       .order("created_at", fetchOrderRule()),
     revalidationRule()
   );
-
 
   return (
     <section className={`w-full h-fit no-print ${className}`}>
@@ -43,13 +44,9 @@ const RecommendedListings = ({ className }: Props) => {
             <SkeletonListing count={5} />
           </div>
         }
-        errorComponent={
-          <p className="text-center">
-            Error: Something went wrong while fetching
-          </p>
-        }
+        errorComponent={<FetchErrorMessage />}
         noDataMessageComponent={
-          <p className="italic mt-4 text-center">
+          <p className="mt-4 italic text-center">
             There are no properties yet.
           </p>
         }
