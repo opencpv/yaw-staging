@@ -38,6 +38,9 @@ import BusinessPersonWithHouseKeys from "/public/assets/images/dashboard/busines
 import LaptopDisplayingHome from "/public/assets/images/dashboard/laptop-displaying-homepage.png"
 import CoupleBlurred from "/public/assets/images/about/about-slider-img.webp"
 import PersonHoldingHouse from "/public/assets/images/dashboard/person-holding-house.jpeg"
+import _3DImage from "/public/assets/images/dashboard/overview/p-manager/3d-image.jpeg"
+import GetFeaturedImage from "/public/assets/images/dashboard/overview/p-manager/get-featured-image.jpeg"
+import VerifyListing from "/public/assets/images/dashboard/overview/p-manager/verify-listings-image.jpeg"
 
 export const useAssets = () => {
   return {
@@ -83,6 +86,9 @@ export const useAssets = () => {
       LaptopDisplayingHome,
       CoupleBlurred,
       PersonHoldingHouse,
+      _3DImage,
+      GetFeaturedImage,
+      VerifyListing,
     },
   };
 };

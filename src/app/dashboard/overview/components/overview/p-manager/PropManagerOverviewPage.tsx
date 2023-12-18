@@ -50,6 +50,8 @@ const PropManagerOverviewPage = (props: Props) => {
             heading="Get your listings on our main banner"
             description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, officiis."
             buttonLabel="Purchase Now"
+            imageWidth={400}
+            // imageHeight={240}
             href=""
           />
           <h2 className="mb-5">Moving sales</h2>
