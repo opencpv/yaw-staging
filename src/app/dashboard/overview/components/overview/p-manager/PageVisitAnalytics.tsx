@@ -85,6 +85,7 @@ const PageVisitAnalytics = (props: Props) => {
       </div>
       <div className="w-full">
         <Bar
+
           data={{
             labels: tempData.map((label) => label.month),
             datasets: [
@@ -92,12 +93,12 @@ const PageVisitAnalytics = (props: Props) => {
                 label: "Visits",
                 data: tempData.map((data) => data.pageVisit),
                 backgroundColor: "#21A19F",
-                barPercentage: 0.4,
+                barPercentage: 0.5,
                 borderRadius: 10,
-                pointStyle: "star"
               },
             ],
           }}
+          options={{}}
         />
       </div>
     </div>

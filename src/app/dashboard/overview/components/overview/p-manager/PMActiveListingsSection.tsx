@@ -38,12 +38,19 @@ const PMActiveListingsSection = (props: Props) => {
       </div>
       <div className="flex justify-end">
         <Link href="">
-            <Button className="bg-neutral-200 text-neutral-800 min-w-fit h-fit px-2 py-1 rounded-xl my-10">
-                See all
-            </Button>
+          <Button className="bg-neutral-200 text-neutral-800 min-w-fit h-fit px-2.5 py-1.5 rounded-xl my-10">
+            See all
+          </Button>
         </Link>
       </div>
-      <LeadsSummary />
+      <LeadsSummary
+        leads={[1, 2, 3].map((_, idx) => ({
+          name: "Leslie Alexander",
+          phone: "0232442111",
+          id: `${idx + 1}`,
+          email: "leslie@gmail.com"
+        }))}
+      />
     </section>
   );
 };

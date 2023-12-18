@@ -11,6 +11,8 @@ type Props = {
   alt: string;
   href: string;
   className?: string;
+  imageWidth?: number;
+  imageHeight?: number;
 };
 
 const GradientBanner = (props: Props) => {
@@ -18,14 +20,12 @@ const GradientBanner = (props: Props) => {
     <div
       className={`flex gap-8 items-center flex-wrap text-white p-10 rounded-xl mb-20 gradient-to-bottom ${props.className}`}
     >
-      <div className="relative w-64 aspect-square">
-        <Image
-          src={props.image}
-          alt={props.alt}
-          fill
-          style={{ objectFit: "contain" }}
-        />
-      </div>
+      <Image
+        src={props.image}
+        alt={props.alt}
+        width={props.imageWidth ?? 220}
+        height={props.imageHeight ?? 200}
+      />
       <div className="space-y-4 max-w-sm min-w-full xs:min-w-[100px]">
         <h2>{props.heading}</h2>
         <p>{props.description}</p>
