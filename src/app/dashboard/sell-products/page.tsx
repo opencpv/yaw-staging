@@ -1,6 +1,6 @@
 "use client";
 
-import { openSans } from "@/app/styles/font";
+import { openSans } from "@/styles/font";
 import { Button } from "@/components/ui/button";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import supabase from "@/lib/utils/supabaseClient";

@@ -2,7 +2,7 @@
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import CaSearchHomeIcon from "../../components/icons/CaOverview copy";
 import Image from "next/image";
-import { montserat, openSans } from "@/app/styles/font";
+import { montserat, openSans } from "@/styles/font";
 import CaDashAdd from "../../components/icons/CaDashAdd";
 import CaDashFilter from "../../components/icons/CaDashFilter";
 import CaDashEyeOff from "../../components/icons/CaDashEyeOff";
@@ -72,36 +72,21 @@ const BeTheFirstToKnow = () => {
               images={listing.images}
               liked={listing.liked}
               membership={
-                listing.membership as
-                  | "Certified"
-                  | "Verified"
-                  | "Unverified"
-                  | "None"
-                  | "none"
-                  | ""
+                listing.membership as Membership
               }
               monthlyAmount={listing.monthlyAmount}
               paymentStructure={
                 listing.paymentStructure as
-                  | "Yearly"
-                  | "Bi-Annually"
-                  | "Quarterly"
-                  | "Every-6-Months"
-                  | "Every-3-Years"
+                  PaymentStructure
               }
               propertyDescription={listing.propertyDescription}
               price={listing.price}
-              propertyType={listing.propertyType}
+              propertyName={listing.propertyName}
               rating={listing.rating}
               ratingCount={listing.ratingCount}
               deal={
                 listing.deal as
-                  | "Editor's Choice"
-                  | "Price Drop"
-                  | "Best Value"
-                  | "None"
-                  | "none"
-                  | ""
+                  Deal
               }
             />
           ))}

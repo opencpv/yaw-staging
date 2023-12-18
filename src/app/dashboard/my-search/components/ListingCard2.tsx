@@ -52,13 +52,13 @@ const ListingCard2 = (props: ListingCardInterface) => {
         className={`relative w-full rounded-2xl mySwiper ${style.listingCard2} listing-card h-80`}
       >
         {/* Mapping through Featured listings from database */}
-        {props.images.map((image, index) => (
+        {props.images?.map((image, index) => (
           <SwiperSlide key={index}>
             <Link href={`${props.href}`}>
               <div className="relative w-full h-full">
                 <Image
                   src={image}
-                  alt={props.propertyType.toLowerCase()}
+                  alt={props.propertyName as string}
                   fill
                   className=""
                   style={{ objectFit: "cover" }}

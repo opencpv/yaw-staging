@@ -1,5 +1,5 @@
 "use client";
-import { openSans } from "@/app/styles/font";
+import { openSans } from "@/styles/font";
 import { styled } from "@stitches/react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Formik, Form, Field, ErrorMessage } from "formik";
