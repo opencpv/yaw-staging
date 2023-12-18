@@ -91,6 +91,13 @@ export const useAssets = () => {
       _3DImage,
       GetFeaturedImage,
       VerifyListing,
+      BusinessPersonWithHouseKeys,
+      LaptopDisplayingHome,
+      CoupleBlurred,
+      PersonHoldingHouse,
+      _3DImage,
+      GetFeaturedImage,
+      VerifyListing,
     },
   };
 };
