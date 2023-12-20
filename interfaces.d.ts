@@ -46,10 +46,11 @@ interface ApplicationsInterface {
 
 interface ChatInterface {
   href: string;
-  image: string;
+  image: string | StaticImageData;
   name: string;
   last_message: string;
   messages_count: number;
+  id: string | null;
 }
 
 type FeatureInterface =

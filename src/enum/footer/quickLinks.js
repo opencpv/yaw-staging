@@ -19,10 +19,6 @@ const quickLinks = [
         label: "Report Fraud",
         href: "/contact#c_ta#rea"
     },
-    {
-        label: "Feedback",
-        href: ""
-    },
 ]
 
 

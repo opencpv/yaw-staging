@@ -11,7 +11,7 @@ const ItemOwnerContact = (props: Props) => {
     <div className="col-span-1 w-full xs:w-96 lg:w-full">
       <div className="bg-white p-8 space-y-3 w-full rounded-xl shadow-large lg:mt-12">
         <ButtonCall color="accent" phoneNumber="0023434331" />
-        <ButtonMessage color="accent" />
+        <ButtonMessage id="" color="accent" />
         <ButtonWhatsApp color="accent" />
       </div>
     </div>

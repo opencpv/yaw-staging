@@ -3,7 +3,7 @@ import supabase from "./supabaseClient";
 const userSession = async () => {
   try {
     const { data, error } = await supabase.auth.getSession();
-    console.log(data);
+    // console.log(data);
     if (error) {
       return null;
     } else {

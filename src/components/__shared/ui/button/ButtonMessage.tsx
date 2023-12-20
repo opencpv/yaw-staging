@@ -1,15 +1,37 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Button from "../../ui/button/Button";
+import { useMessageStore } from "@/store/dashboard/useMessageStore";
+import { useUserDetails } from "@/lib/custom-hooks/message/useUserDetails";
+import { useUserSession } from "@/lib/custom-hooks/database/useUserSession";
+import LoaderDots from "../../loader/LoaderDots";
+import { useRouter } from "next/navigation";
 
 type Props = {
+  id: string;
   color: "primary" | "gradient" | "accent" | "white";
   className?: string;
 };
 
-const ButtonMessage = ({ color, className }: Props) => {
-  const handleSendMessage = () => {
-    location.href = `tel:`;
+const ButtonMessage = ({ color, className, id }: Props) => {
+  const router = useRouter()
+  
+  const setRecipientId = useMessageStore((state) => state.setRecipientId);
+  const [loadingMessage, setLoadingMessage] = useState<boolean>(false);
+
+  const { userName } = useUserDetails(id);
+  const userSession = useUserSession()
+
+  const handleInternalMessaging = () => {
+    setLoadingMessage(true)
+      setRecipientId(id);
+      if (userSession?.session){
+        // if (userName) router.push(`/dashboard/messages/${id}`);
+        if (userName) location.href = `/dashboard/messages/${id}`
+      }
+      else {
+        router.push("/login")
+      }
   };
 
   return (
@@ -17,9 +39,9 @@ const ButtonMessage = ({ color, className }: Props) => {
       variant="outline"
       color={color}
       className={`p-4 w-full ${className}`}
-      onClick={handleSendMessage}
+      onClick={handleInternalMessaging}
     >
-      Send Message
+      {loadingMessage ? <LoaderDots /> : "Send Message"}
     </Button>
   );
 };
