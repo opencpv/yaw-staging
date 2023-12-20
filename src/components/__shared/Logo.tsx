@@ -5,23 +5,22 @@ import Link from "next/link";
 import React from "react";
 
 type Props = {
-    className?: string;
-    size?: "sm" | "md" | "lg"
+  className?: string;
+  size?: "sm" | "md" | "lg";
 };
 
-const Logo = ({className, size}: Props) => {
+const Logo = ({ className, size }: Props) => {
   const { icons } = useAssets();
   return (
-    <div className={`relative aspect-square ${size === "md" ? "w-28" : size === "lg" ? "w-32" : "w-24"} ${className}`}>
-      <Link href="/">
-        <Image
-          src={icons.Logo}
-          alt="RentRightGH logo"
-          fill
-          style={{ objectFit: "contain" }}
-        />
-      </Link>
-    </div>
+    <Link href="/">
+      <Image
+        src={icons.Logo}
+        alt="RentRightGH logo"
+        width={size === "md" ? 112 : size === "lg" ? 128 : 96}
+        quality={100}
+        className={`${className}`}
+      />
+    </Link>
   );
 };
 

@@ -35,6 +35,7 @@ const PropertyOwnerInfo = (props: Props) => {
               alt={props.name}
               fill
               style={{ objectFit: "cover" }}
+              title={props.name}
             />
           </div>
           <div className="flex flex-col items-center gap-2 text-primary-500 text-xl min-[360px]:flex-row">
@@ -53,7 +54,7 @@ const PropertyOwnerInfo = (props: Props) => {
             phoneNumber="0023434331"
             className="py-7"
           />
-          <ButtonMessage color="gradient" className="py-7" />
+          <ButtonMessage id={props.id as string} color="gradient" className="py-7" />
           <ButtonWhatsApp color="gradient" className="py-7" />
         </div>
         {/* Report issue */}

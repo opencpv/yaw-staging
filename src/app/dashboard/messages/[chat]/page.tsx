@@ -1,115 +1,68 @@
 "use client";
-import React, { HTMLAttributes, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import MessageBubble from "../components/MessageBubble";
-import BlockUserPopOver from "../components/BlockUserPopOver";
-import { usePathname, useRouter } from "next/navigation";
-import Image from "next/image";
-import { useAssets } from "@/lib/custom-hooks/useAssets";
+import { usePathname } from "next/navigation";
 import { Spinner } from "@nextui-org/react";
 import MessageBubble2 from "../components/MessageBubble2";
 import { useCurrentUserId } from "@/lib/custom-hooks/useCurrentUserId";
 import NoMessageState from "../components/NoMessageState";
-import { fetchTable } from "@/services/fetch";
-import {
-  useFetchTable,
-  useFetchTableForRealtime,
-  useRealTimeSubscription,
-} from "@/lib/custom-hooks/useFetch";
-import { useCapitalizeName } from "@/lib/custom-hooks/useStringManipulation";
-import { useQuery } from "@tanstack/react-query";
+// import { useQuery } from "@tanstack/react-query";
 import supabase from "@/lib/utils/supabaseClient";
+import { fetchOrderRule } from "@/lib/utils/fetchRules";
+import realTime from "@/lib/utils/realTime";
+import UsernameDisplayBar from "../components/UsernameDisplayBar";
+import { useUserDetails } from "@/lib/custom-hooks/message/useUserDetails";
+import { scrollToBottom } from "@/lib/utils/pageAction";
 
 const Messages = ({ params }: { params: { chat: string } }) => {
+  const { chat: chatID } = params;
+
   const pathname = usePathname();
-  const { icons } = useAssets();
-  const router = useRouter();
   const messageContainerRef = useRef<HTMLDivElement>(null);
   const currentUserId = useCurrentUserId();
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [error, setError] = useState<string | undefined>(undefined);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const {
-    data: messages,
-    error,
-    isLoading,
-  } = useFetchTableForRealtime({
-    tableName: "messages",
-    select: "id, created_at, sender_id, recipient_id, sent_at, content",
-    or: `sender_id.eq.${currentUserId}, recipient_id.eq.${currentUserId}`,
-  });
+  const { userName } = useUserDetails(chatID);
 
-  const { chat } = params;
-  let contactName = useCapitalizeName(chat, "%20");
-
-  const scrollToBottom = () => {
-    if (messageContainerRef.current) {
-      messageContainerRef.current.scrollTop =
-        messageContainerRef.current.scrollHeight;
-    }
-  };
-
-  const getMessages = () => {
-    const data = fetchTable("messages", {
-      or: `sender_id.eq.${currentUserId}, recipient_id.eq.${currentUserId}`,
-    });
-    return data;
-  };
-
-  const getMessagesDistinct = () => {
-    const data = fetchTable("distinct_messages", {
-      or: `sender_id.eq.${currentUserId}, recipient_id.eq.${currentUserId}`,
-    });
-    return data;
-  };
+  // console.log(currentUserId);
 
   useEffect(() => {
-    scrollToBottom; // Scrolls to the bottom on mount
-    // realTime("messages-realtime", "messages", getMessages);
-  }, []);
+    const getMessages = async () => {
+      let { data: messages, error } = await supabase
+        .from("messages")
+        .select("id, created_at, sender_id, recipient_id, sent_at, content")
+        .eq("recipient_id", chatID as string)
+        .order("created_at", fetchOrderRule(true));
 
-  // useRealTimeSubscription({
-  //   channelName: "distinct_messages_realtime",
-  //   tableName: "messages",
-  //   payload: getMessagesDistinct,
-  // });
+      setMessages(messages as Message[]);
+      setError(error?.message);
+      setIsLoading(false);
+    };
+    getMessages();
 
-  useRealTimeSubscription({
-    channelName: "messages_realtime",
-    tableName: "messages",
-    payload: getMessages,
-  });
+    if (messageContainerRef.current){
+      setTimeout(() => {
+        scrollToBottom(messageContainerRef.current?.scrollHeight);
+      }, 200);
+    }
 
-  //  useRealTimeSubscription({
-  //   channelName: "messages_realtime",
-  //   tableName: "messages",
-  //   payload: getMessages,
-  // });
+    realTime("message_realtime", "messages", getMessages);
+  }, [chatID]);
 
-  // const {
-  //   data: messages,
-  //   error,
-  //   isLoading,
-  //   isValidating,
-  //   // count,
-  // } = useFetchTable({
-  //   tableName: "messages",
-  //   order: { column: "created_at", ascending: true },
-  //   or: `sender_id.eq.${currentUserId}, recipient_id.eq.${currentUserId}`,
-  //   select: "id, created_at, sender_id, sent_at, content ",
-  // });
+  // const getMessages = () => {
+  //   const data = fetchTable("messages", {
+  //     or: `sender_id.eq.${currentUserId}, recipient_id.eq.${currentUserId}`,
+  //   });
+  //   return data;
+  // };
 
   return (
     <>
       {/* {currentUserId === null && router.push("/login")} */}
       {pathname !== "/dashboard/messages" && (
-        <div className="sticky top-0 z-40 flex items-center justify-between p-4 text-white rounded-xl bg-primary-400">
-          <Image
-            src={icons.ArrowIcon}
-            alt="go back"
-            onClick={() => router.back()}
-            className="inline-flex text-3xl lg:hidden"
-          />
-          <h2 className="text-xl">{contactName}</h2>
-          <BlockUserPopOver />
-        </div>
+        <UsernameDisplayBar userName={userName as string} />
       )}
 
       {isLoading ? (
@@ -143,12 +96,9 @@ const Messages = ({ params }: { params: { chat: string } }) => {
               />
             );
           })}
-          {/* <MessageBubble2 content="Hi. Good morning" time="9:30 am" /> */}
         </div>
       ) : (
         <div className="flex items-center justify-center h-[70vh]">
-          {" "}
-          {/* will render when there is no messages */}
           <NoMessageState />
         </div>
       )}

@@ -1,34 +1,19 @@
+//@ts-nocheck
 "use client";
-import React, { useState } from "react";
-import Image from "next/image";
-import Chat from "./components/Chat";
+import React, { FormEvent, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import supabase from "@/lib/utils/supabaseClient";
 import { useCurrentUserId } from "@/lib/custom-hooks/useCurrentUserId";
 import NoMessageState from "./components/NoMessageState";
-import { fetchTable } from "@/services/fetch";
-import Spinner from "../components/shared/Spinner";
-import {
-  useFetchTable,
-  useFetchTableForRealtime,
-  useRealTimeSubscription,
-} from "@/lib/custom-hooks/useFetch";
 import { useProtectedRoute } from "@/lib/custom-hooks/useProtectedRoute";
-import { useCapitalizeName } from "@/lib/custom-hooks/useStringManipulation";
-import capitalizeName from "@/lib/utils/stringManipulation";
-import { useInsertMutation } from "@supabase-cache-helpers/postgrest-swr";
+import { fetchOrderRule } from "@/lib/utils/fetchRules";
+import { useMessageStore } from "@/store/dashboard/useMessageStore";
+import realTime from "@/lib/utils/realTime";
+import MessageSendArea from "./components/MessageSendArea";
+import Chats from "./components/Chats";
 
 type Props = {
   children: React.ReactNode;
-};
-
-type Message = {
-  created_at: string;
-  recipient_id: string;
-  recipient_full_name: string;
-  recipient_profile_image: string;
-  sender_id: string;
-  content: string;
 };
 
 const MessagesLayout = ({ children }: Props) => {
@@ -36,81 +21,48 @@ const MessagesLayout = ({ children }: Props) => {
 
   const pathname = usePathname();
   const [messageContent, setMessageContent] = useState<string>("");
+  const [messages, setMessages] = useState<DistinctMessage[]>([]);
+  const [error, setError] = useState<string | undefined>(undefined);
+  const [isLoading, setIsLoading] = useState(true);
   const currentUserId = useCurrentUserId();
+  const recipientId = useMessageStore((state) => state.recipientId);
 
-  const getMessagesDistinct = () => {
-    const data = fetchTable("distinct_messages", {
-      or: `sender_id.eq.${currentUserId}, recipient_id.eq.${currentUserId}`,
-    });
-    return data;
-  };
+  // console.log(currentUserId)
 
-  const getMessages = () => {
-    const data = fetchTable("distinct_messages", {
-      or: `sender_id.eq.${currentUserId}, recipient_id.eq.${currentUserId}`,
-    });
-    return data;
-  };
+  useEffect(() => {
+    const getDistinctMessages = async () => {
+      let { data: messages, error } = await supabase
+        .from("distinct_messages")
+        .select("recipient_id, sender_id, recipient_full_name, recipient_profile_img, content")
+        .eq("sender_id", currentUserId as string)
+        .order("created_at", fetchOrderRule(true));
 
-  // useRealTimeSubscription({
-  //   channelName: "distinct_messages_realtime",
-  //   tableName: "distinct_messages",
-  //   payload: getMessagesDistinct,
-  // });
+      setMessages(messages as DistinctMessage[]);
+      setError(error?.message);
+      setIsLoading(false);
+    };
+    getDistinctMessages();
 
-  // useRealTimeSubscription({
-  //   channelName: "messages_realtime",
-  //   tableName: "messages",
-  //   payload: getMessages,
-  // });
+    realTime(
+      "distinct_message_realtime",
+      "distinct_messages",
+      getDistinctMessages
+    );
+  }, [currentUserId]);
 
-  // const {
-  //   data: messages,
-  //   error,
-  //   isLoading,
-  //   isValidating,
-  //   count,
-  // } = useFetchTable({
-  //   tableName: "distinct_messages",
-  //   or: `sender_id.eq.${currentUserId}, recipient_id.eq.${currentUserId}`,
-  //   select: "recipient_id, recipient_full_name, content ",
-  // });
-
-  const {
-    data: messages,
-    error,
-    isLoading,
-  } = useFetchTableForRealtime({
-    tableName: "distinct_messages",
-    select: "recipient_id, recipient_full_name, content",
-    or: `sender_id.eq.${currentUserId}, recipient_id.eq.${currentUserId}`,
-  });
-
-  const handleAddMessage = async (e: any) => {
+  const handleAddMessage = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await supabase
       .from("messages")
       .insert({
         content: e.target[0].value,
         sender_id: currentUserId,
-        recipient_id: "5f297aa7-18f5-42ff-9270-8ba8061cae95", // will change once getting
-        // the recipient_id is implemented
+        recipient_id: recipientId,
       })
       .select();
 
     e.target[0].value = ""; // reset message field
   };
-
-  // const addTodo = async (msgContent: string) => {
-  //   await supabase
-  //     .from("messages")
-  //     .insert({
-  //       content: msgContent,
-  //       sender_id: currentUserId,
-  //       recipient_id: "5f297aa7-18f5-42ff-9270-8ba8061cae95", // will change once getting
-  //       // the recipient_id is implemented
-  //     })
-  // }
 
   // const { mutate, error: mutateError, reset, isPending, isError} = useMutation({
   //   mutationFn: addTodo,
@@ -129,34 +81,9 @@ const MessagesLayout = ({ children }: Props) => {
       )}
 
       <section className="h-full max-h-screen grid-cols-6 gap-5 lg:grid">
-        <aside
-          className={`${
-            pathname !== "/dashboard/messages" && "hidden"
-          } col-span-2 max-h-screen max-w-lg p-4 px-0 overflow-y-scroll lg:block lg:px-4 lg:border-r hidden-scrollbar`}
-        >
-          {isLoading ? (
-            <Spinner />
-          ) : error ? (
-            <p>Error: {error}</p>
-          ) : (
-            messages?.map((message) => {
-              let capitalizedName = capitalizeName(
-                message?.recipient_full_name,
-                " "
-              );
-              return (
-                <Chat
-                  key={message.recipient_id}
-                  href={`/dashboard/messages/${message.recipient_full_name}`}
-                  image="/assets/images/dashboard-navbar.png"
-                  name={capitalizedName}
-                  last_message={message.content}
-                  messages_count={3}
-                />
-              );
-            })
-          )}
-        </aside>
+        {/* grid col */}
+        <Chats isLoading={isLoading} error={error} messages={messages} />
+        {/* grid col */}
         <main
           className={`${
             pathname == "/dashboard/messages" && "hidden"
@@ -164,29 +91,11 @@ const MessagesLayout = ({ children }: Props) => {
         >
           {children} {/* messages */}
           {pathname?.includes("/dashboard/messages/") && (
-            <div className="sticky bottom-0 w-full py-5 bg-white">
-              <form
-                action=""
-                onSubmit={handleAddMessage}
-                className="flex items-center gap-4"
-              >
-                <input
-                  type="text"
-                  className="w-full p-3 border rounded-md text-neutral-800 placeholder:text-sm"
-                  placeholder="Type your message"
-                  value={messageContent}
-                  onChange={(e) => setMessageContent(e.target.value)}
-                />
-                <button type="submit">
-                  <Image
-                    src="/assets/icons/messages/send-btn.svg"
-                    alt="send"
-                    width={30}
-                    height={30}
-                  />
-                </button>
-              </form>
-            </div>
+            <MessageSendArea
+              messageContent={messageContent}
+              onChange={(e) => setMessageContent(e.target.value)}
+              onSubmit={handleAddMessage}
+            />
           )}
         </main>
       </section>
