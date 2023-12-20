@@ -13,7 +13,7 @@ export type Data = {
 type Props = {
   variant: "invoice" | "receipt";
   data: Data;
-  index?: number | string;
+  index?:  string;
 };
 
 function DataRow({ data, variant, index }: Props) {

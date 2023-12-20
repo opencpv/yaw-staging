@@ -33,7 +33,7 @@ function Invoices() {
           </div>
         </div>
         <div className="w-full flex flex-col gap-6">
-          {invoiceData?.map((r: any, index: number) => (
+          {invoiceData?.map((r: any, index: any) => (
             <div className="w-full" key={index}>
               <div className="hidden lg:flex w-full">
                 <DataRow data={r} variant="invoice" index={index} />
