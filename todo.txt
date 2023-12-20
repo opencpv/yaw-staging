@@ -21,8 +21,20 @@ city location row in laptop
 progress bar in agent form 
 date picker select a year 
 agent services not prices
-edit modal and reviews
 
 font size 10px to be bigger in b2b
 spacing
 border-bottom toggle for invoice
+edit modal and reviews 
+
+underline in reviews 
+1 shadow gap-to space 
+gap between lorem ipsums
+close modal bigger 
+enoch recommend ui fix thumbs up coherence
+scrollbar in all review
+all reviews property circular not rectangular
+hover effect on links 3.5 etc 
+remove slide enter 
+border left green too long
+scrollbar
