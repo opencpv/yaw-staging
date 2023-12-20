@@ -92,3 +92,11 @@ type PropertyStatusInterface =
   | "leased"
   | "dormant"
   | string;
+
+export interface CartProp {
+  name: string;
+  cost: number;
+  quantity: number;
+  date: null | string;
+  isQuantityChangable: boolean;
+}

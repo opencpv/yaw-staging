@@ -41,7 +41,7 @@ type Props = {
 
   initialValue?: any;
   name?: string;
-  font?: "Montserrat" | "OpenSans"
+  font?: "Montserrat" | "OpenSans";
 };
 
 const PhoneNumberInputv2 = ({
@@ -52,7 +52,7 @@ const PhoneNumberInputv2 = ({
   onChange,
   onChange2,
   name,
-  font
+  font,
 }: Props) => {
   const [countryData, setCountryData] = useState<DataItem[]>();
   const [selectedCountry, setSelectedCountry] = useState<any>({});
@@ -133,7 +133,7 @@ const PhoneNumberInputv2 = ({
                 aria-expanded={open}
                 className={`w-fit flex gap-2 justify-between  ${
                   value ? "text-[#6A6968] capitalize" : "text-[#B4B2AF] "
-                } whitespace-nowrap h-[52px]`}
+                } whitespace-nowrap h-[53px]`}
               >
                 <div className="relative w-5 h-[18px] rounded-[4px]">
                   <Image
