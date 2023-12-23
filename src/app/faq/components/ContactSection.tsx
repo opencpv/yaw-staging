@@ -21,7 +21,7 @@ const ContactSection = () => {
             src={images.ContactImage}
             alt="contact image"
             fill
-            objectFit="cover"
+            style={{ objectFit: "cover" }}
             objectPosition="center"
           />
         </div>

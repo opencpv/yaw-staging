@@ -39,7 +39,7 @@ const AboutItem = ({ data, index }: { data: any; index: number }) => {
       src={urlFor(data.featuredImage).width(1728).url()}
       alt=""
       fill
-      objectFit="cover"
+      style={{ objectFit: "cover" }}
       objectPosition="center"
     />
   );
