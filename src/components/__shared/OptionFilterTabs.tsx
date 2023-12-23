@@ -4,9 +4,10 @@ import { Selection, Tab, Tabs } from "@nextui-org/react";
 import React from "react";
 
 type Props = {
-  radius?: "large" | "small";
-  /** Preferably in lower case. Eg: ["first", "second"] */
+  /** You can use any case. The key is converted to lowercase Eg: ["First", "SECOND"] --> "first", "second" */
   options: string[];
+  radius?: "large" | "small";
+  padding?: "small" | "wide";
   onSelectionChange: (key: string) => void;
   variant?: "default" | "gradient";
   selectedKey?: string;
@@ -18,6 +19,7 @@ const OptionFilterTabs = ({
   selectedKey,
   onSelectionChange,
   variant,
+  padding,
 }: Props) => {
   return (
     <>
@@ -42,6 +44,8 @@ const OptionFilterTabs = ({
               ? "data-[selected=true]:bg-gradient-to-r data-[selected=true]:from-[#21A19F] data-[selected=true]:to-[#1EA9A6A1]"
               : "data-[selected=true]:bg-[#45808B]",
             radius === "small" ? "rounded-lg" : "rounded-large",
+            padding === "wide" && "px-20",
+            "py-5"
           ],
           tabContent: [
             variant === "gradient" ? "text-neutral-600" : "text-primary-500",
