@@ -68,7 +68,7 @@ export default function Menu(props: any) {
                   alt="bg"
                   fill
                   objectPosition="center"
-                  style={{ objectFit: "cover" }}t: "cover" }}
+                  style={{ objectFit: "cover" }}
                   className=" w-full h-full "
                 />
               </div>
