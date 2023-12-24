@@ -182,7 +182,7 @@ const PhoneNumberInputv2 = ({
             name={name}
             value={value2}
             onChange={(e) => setValue2(e.target.value)}
-            className="flex flex-auto border-[1px] rounded-[4px] border-[#EBEBEB] p-[15px] w-full"
+            className="flex flex-auto border-[1px] rounded-[4px] border-[#EBEBEB] p-[15px] w-full outline-none"
           />
         </div>
       </Root>

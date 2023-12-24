@@ -1,3 +1,4 @@
+import CustomInputComponent from "@/app/components/CustomInputComponent";
 import CountryInput from "@/components/__shared/CountryInput";
 import CurrencyInput from "@/components/__shared/CurrencyInput";
 import PhoneNumberInputv2 from "@/components/__shared/PhoneInputv2";
@@ -26,36 +27,6 @@ interface InputProps {
   label: string;
   placeholder?: string;
 }
-const CustomInputComponent = ({
-  handleChange,
-  handleBlur,
-  values,
-  errors,
-  touched,
-  type,
-  name,
-  label,
-  placeholder,
-}: InputProps) => {
-  return (
-    <fieldset className="mb-4">
-      <label className="text-[#6A6968] ">{label}</label>
-      <input
-        type={type}
-        name={name}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        value={values[name] as string}
-        placeholder={placeholder ? placeholder : ""}
-        className="mt-4 w-full p-4 text-[13px] border-[1px] rounded-md outline-none text-[#B4B2AF]  "
-      />
-      <p className="text-[10px] text-green-700">
-        {" "}
-        {errors[name] && touched[name] && errors[name]}
-      </p>
-    </fieldset>
-  );
-};
 
 const BillingForm = () => {
   const [code, setcode] = useState<string>("");
