@@ -42,7 +42,7 @@ const About = async () => {
             {/* <Image
               src={urlFor(data[0].featuredImage).width(1728).url() as string}
               fill
-              objectFit="cover"
+              style={{ objectFit: "cover" }}
               objectPosition="center"
               alt="banner image"
               className="py-8 border-b-[1px] border-[#D9D9D9] mb-[32.5px] md:mb-[64px]"

@@ -19,7 +19,7 @@ const Footer = () => {
 
   return (
     <footer
-      className={`bg-[#131B1A] flex flex-col gap gap-[min(10vh,10rem)] no-print ${montserat.className}`}
+      className={`bg-[#131B1A] flex flex-col gap gap-[min(10vh,10rem)] mt-8 sm:mt-14 no-print ${montserat.className}`}
     >
       <div className="flex flex-col justify-center gap-10 text-[#8A8A8A] bg-[#333] py-8 px-2 md:flex-row">
         {quickLinks.map((r) =>

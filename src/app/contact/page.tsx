@@ -275,7 +275,7 @@ const Page = () => {
                       alt="Faq IMAGE"
                       className="rounded-[8px] h-full max-h-[807px]"
                       fill
-                      objectFit="cover"
+                      style={{ objectFit: "cover" }}
                       objectPosition="bottom"
                     />
                   </SlideUpAnimation>
@@ -287,7 +287,7 @@ const Page = () => {
                       alt="Faq IMAGE"
                       className="rounded-[8px] h-full max-h-[807px]"
                       fill
-                      objectFit="cover"
+                      style={{ objectFit: "cover" }}
                       objectPosition="bottom"
                     />
                   </SlideUpAnimation>
@@ -299,7 +299,7 @@ const Page = () => {
                       alt="Faq IMAGE"
                       className="rounded-[8px] h-full max-h-[807px]"
                       fill
-                      objectFit="cover"
+                      style={{ objectFit: "cover" }}
                       objectPosition="bottom"
                     />
                   </SlideUpAnimation>
@@ -311,7 +311,7 @@ const Page = () => {
                       alt="Faq IMAGE"
                       className="rounded-[8px] h-full max-h-[807px]"
                       fill
-                      objectFit="cover"
+                      style={{ objectFit: "cover" }}
                       objectPosition="bottom"
                     />
                   </SlideUpAnimation>
