@@ -9,6 +9,7 @@ import {
   ModalBody,
   ModalFooter,
 } from "@nextui-org/react";
+import { useModalFullscreenStore } from "@/store/modal/useModalStore";
 
 const Modal = ({
   onClose,
@@ -26,6 +27,10 @@ const Modal = ({
   backdrop,
   className,
 }: any) => {
+  const setHideWindowScrollbar = useModalFullscreenStore(
+    (state) => state.setHideWindowScrollbar
+  );
+
   return (
     <>
       <NextUIModal
@@ -38,7 +43,6 @@ const Modal = ({
           }`,
             className
           ),
-          // wrapper: `${size === "full" && "h-[100dvh]"}`,
         }}
         scrollBehavior={size === "full" ? "normal" : "inside"}
         size={size ? size : "sm"}
@@ -47,13 +51,16 @@ const Modal = ({
         isOpen={isOpen}
         hideCloseButton={hideCloseButton ? true : false}
         backdrop={backdrop ? backdrop : undefined}
-        onClose={onClose}
+        onClose={() => {
+          onClose && onClose();
+          setHideWindowScrollbar(false);
+        }}
         onOpenChange={onOpenChange}
         closeButton={
           closeButton ? (
-            <div>{closeButton}</div>
+            <div onClick={() => setHideWindowScrollbar(false)}>{closeButton}</div>
           ) : (
-            <div>
+            <div onClick={() => setHideWindowScrollbar(false)}>
               <LiaTimesSolid />
             </div>
           )
