@@ -1,6 +1,5 @@
 "use client";
 import SliderPaginationOnly from "@/components/__shared/sliders/SliderPaginationOnly";
-import { useAdsSliderStore } from "@/store/ads/useAdsSliderStore";
 import React from "react";
 
 let images = [

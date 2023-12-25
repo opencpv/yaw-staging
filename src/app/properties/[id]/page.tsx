@@ -235,7 +235,7 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
         </>
       )}
       {/* Recommended Listings */}
-      <section className="mb-40 section">
+      <section className="section">
         <div className="flex flex-wrap items-center justify-between gap-5 mb-5">
           <h2 className="text-neutral-800 text-xl font-[600] md:ml-10">
             Recommended Listings
