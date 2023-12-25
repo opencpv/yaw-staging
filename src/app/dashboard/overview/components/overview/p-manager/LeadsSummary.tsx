@@ -1,4 +1,5 @@
 import Button from "@/components/__shared/ui/button/Button";
+import ButtonMessage from "@/components/__shared/ui/button/ButtonMessage";
 import { initiatePhoneCall } from "@/lib/utils/initiatePhoneCall";
 import Image from "next/image";
 import Link from "next/link";
@@ -59,9 +60,9 @@ const LeadInfo = ({ name, email, phone, id }: Lead) => {
         <h4>{name}</h4>
         <p>{email}</p>
         <div className="flex gap-2 items-center">
-          <Button className="flex-1 bg-primary-100 text-white rounded-xl px-4 py-1 max-w-xs h-fit gap-2">
+          <ButtonMessage id=""  className="flex-1 bg-primary-100 text-white rounded-xl px-4 py-1 max-w-xs h-fit gap-2">
             Message <PiChatCenteredDotsFill className="shrink-0" />
-          </Button>
+          </ButtonMessage>
           <Button
             className="flex-1 bg-primary-100 text-white rounded-xl px-4 py-1 max-w-xs h-fit gap-2"
             onClick={() => initiatePhoneCall(phone)}
