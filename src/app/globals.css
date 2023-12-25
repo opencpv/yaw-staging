@@ -21,33 +21,35 @@ body {
 }
 
 h2 {
-  @apply text-2xl font-[600]
+  @apply text-2xl font-[600];
 }
 
 h3 {
-  @apply text-lg font-[600]
+  @apply text-lg font-[600];
 }
 
 h4 {
-  @apply text-base font-[600]
+  @apply text-base font-[600];
 }
 
 h5 {
-  @apply text-sm font-[600]
+  @apply text-sm font-[600];
 }
 
 small {
-  @apply text-sm block
+  @apply text-sm block;
 }
 
 .gradient-to-bottom {
-  @apply bg-gradient-to-b from-primary-500 to-primary-400/80
+  @apply bg-gradient-to-b from-primary-500 to-primary-400/80;
 }
 
 .green-gradient {
-  background: linear-gradient(103deg,
-      #21a19f 38.96%,
-      rgba(30, 169, 166, 0.63) 90.07%);
+  background: linear-gradient(
+    103deg,
+    #21a19f 38.96%,
+    rgba(30, 169, 166, 0.63) 90.07%
+  );
 }
 
 .grid-auto-min-200 {
@@ -69,11 +71,11 @@ small {
 }
 
 .overlay {
-  @apply relative before:absolute before:inset-0 before:bg-primary-500/60 before:w-full before:h-full
+  @apply relative before:absolute before:inset-0 before:bg-primary-500/60 before:w-full before:h-full;
 }
 
 .overlay-rounded {
-  @apply relative before:absolute before:inset-0 before:z-10 before:bg-gradient-to-b before:from-primary-500/60 before:to-primary-500/50 before:w-full before:h-full before:rounded-2xl
+  @apply relative before:absolute before:inset-0 before:z-10 before:bg-gradient-to-b before:from-primary-500/60 before:to-primary-500/50 before:w-full before:h-full before:rounded-2xl;
 }
 
 .section {
@@ -94,7 +96,7 @@ small {
   gap: 1.25rem;
 }
 
-.skeleton-flex>div {
+.skeleton-flex > div {
   width: 15rem;
   min-width: 15rem;
 }
@@ -105,7 +107,7 @@ small {
   overflow-x: hidden;
 }
 
-.skeleton-grid>div {
+.skeleton-grid > div {
   width: 22rem;
   min-width: 22rem;
 }
@@ -130,7 +132,6 @@ small {
   }
 }
 
-
 @media (min-width: 640px) {
   .section {
     padding-left: 2.5rem;
@@ -141,7 +142,7 @@ small {
 /* Printing interface style */
 @media print {
   @page {
-    size: A4
+    size: A4;
   }
 
   button {
@@ -154,20 +155,18 @@ small {
 
   .no-print {
     display: none;
-
+  }
+}
 
 @media screen and (min-width: 1024px) {
   .lg-hidden-scrollbar::-webkit-scrollbar {
-
     display: none;
   }
 }
 
-
 /* Hide scrollbar for IE, Edge and Firefox */
 @media screen and (min-width: 1024px) {
   .lg-hidden-scrollbar {
-
     -ms-overflow-style: none;
     /* IE and Edge */
     scrollbar-width: none;
