@@ -23,6 +23,8 @@ const ProfileMainView = () => {
   );
 
   useEffect(() => {
+    const result = supabase.auth.getUser();
+    console.log(result);
     !user?.profileData && setLoading(true);
     user?.profileData && setLoading(false);
   }, [user?.profileData]);
@@ -47,7 +49,8 @@ const ProfileMainView = () => {
         selectedKey={optionSelect}
         onSelectionChange={(selectedOption) =>
           handleOptionChange(selectedOption)
-        }>
+        }
+      >
         <Tab key="profile" title="Profile">
           <div>
             <p className="text-[1.5625rem] font-semibold">Profile</p>

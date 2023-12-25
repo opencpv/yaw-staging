@@ -55,7 +55,7 @@ export const PgRoutes = [
     name: "sell-products",
     url: "",
     icon: <CaSell />,
-    link: "dashboard/sell-products",
+    link: "/dashboard/sell-products",
   },
   {
     name: "subscriptions",

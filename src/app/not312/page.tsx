@@ -2,6 +2,7 @@
 
 import Loader from "@/components/__shared/loader/Loader";
 import supabase from "@/lib/utils/supabaseClient";
+import { useAppStore } from "@/store/dashboard/AppStore";
 import { useState } from "react";
 
 const Admin = () => {
@@ -9,6 +10,7 @@ const Admin = () => {
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [hasAccess, setHasAccess] = useState<boolean>(false);
+  const { user, setUser } = useAppStore();
 
   return (
     <>
