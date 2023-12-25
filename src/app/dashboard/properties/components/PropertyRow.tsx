@@ -74,7 +74,7 @@ const PropertyRow = ({
           <div className="flex gap-1.5 mt-10">
             <Button
               isIconOnly
-              className="flex items-center justify-center w-6 py-3 rounded-md bg-[#F1F1F1]"
+              className="flex items-center justify-center text-neutral-800 w-6 py-3 rounded-md bg-[#F1F1F1]"
             >
               <BiPencil className="text-xl" />
             </Button>
