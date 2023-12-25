@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Category from "./components/category/Category";
 import CallOut from "@/components/__shared/ui/CallOut";
 import Select from "../dashboard/components/Select";
@@ -30,7 +30,7 @@ const MovingSalesPage = () => {
         onOpenChange={onOpenChange}
         onClose={onClose}
       />
-      <main className="my-10 overflow-x-hidden section text-neutral-600">
+      <main className="mt-10 overflow-x-hidden section text-neutral-600">
         {/* Banner */}
         <section className="relative w-full mb-20 text-white h-60 sm:h-96">
           <SliderWide
