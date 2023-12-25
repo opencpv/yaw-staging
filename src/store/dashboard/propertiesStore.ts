@@ -1,8 +1,9 @@
+import React from "react";
 import { create } from "zustand";
 
 type ManagePropertiesStore = {
-  filterOption: string;
-  changeOption: (key: string) => void;
+  filterOption: React.Key;
+  changeOption: (key: React.Key) => void;
   fetchCount: number | null;
   setFetchCount: (key: number | null) => void;
 };
@@ -10,8 +11,8 @@ type ManagePropertiesStore = {
 const useManagePropertiesStore = create<ManagePropertiesStore>((set) => ({
   filterOption: "all",
   fetchCount: null,
-  changeOption: (option: string) => set({ filterOption: option }),
-  setFetchCount: (count: number | null) => set((state) => ({...state, fetchCount: count })),
+  changeOption: (option) => set({ filterOption: option }),
+  setFetchCount: (count) => set((state) => ({...state, fetchCount: count })),
 }));
 
 export { useManagePropertiesStore };
