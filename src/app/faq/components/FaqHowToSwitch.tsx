@@ -9,9 +9,9 @@ const FaqHowToSwitch = (props: Props) => {
   const setActivePage = useFaqHowToSwitchStore((state) => state.setActivePage);
 
   return (
-    <div className="border rounded-xl w-fit p-3 mb-8">
+    <div className="p-3 mb-8 border rounded-xl w-fit">
       <OptionFilterTabs
-        options={["FAQ", "How To"]}
+        options={["FAQ", "how to"]}
         selectedKey={activePage}
         onSelectionChange={setActivePage}
         radius="large"

@@ -27,7 +27,7 @@ const TagsSelect = () => {
     setIsAdvancedActive((prevState) => !prevState);
   };
 
-  const changeFilterOption = (option: string) => {
+  const changeFilterOption = (option: React.Key) => {
     setOption(option as FilterOption);
   };
 

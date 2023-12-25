@@ -10,10 +10,10 @@ const HowToPage = (props: Props) => {
   const setActiveTab = useHowToTabsStore((state) => state.setActiveTab);
 
   return (
-    <section>
+    <section id="G9mELbIrnVmy7A==">
       <div className="mb-8">
       <OptionFilterTabs
-        options={["All", "Renters", "Service Pros", "Listing", "Searching", "Payment"]}
+        options={["all", "renters", "service pros", "listing", "searching", "payment"]}
         selectedKey={activeTab}
         onSelectionChange={setActiveTab}
         radius="small"
