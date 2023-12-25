@@ -91,7 +91,7 @@ const MovingSalesPage = () => {
           </div>
         </div>
         {/* Items */}
-        <section className="grid mb-20 gap-x-4 gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <section className="grid gap-x-4 gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {[1, 2, 3, 4, 5, 6, 12, 7, 8, 4, 20, 7].map((_, idx) => (
             <ItemCard
               key={idx + 1}

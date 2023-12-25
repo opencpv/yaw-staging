@@ -8,8 +8,8 @@ const HomeManagePropertiesSection = (props: Props) => {
   return (
     <section className="px-5 mx-auto mb-20 space-y-8 max-w-screen-2xl xs:px-5 md:space-y-1">
       <div className="w-full space-y-3.5 mb-14 min-[810px]:w-7/12">
-        <div className="flex gap-5 ">
-          <h2 className="font-[500] capitalize text-neutral-900">
+        <div className="flex gap-5 items-start">
+          <h2 className="font-[500] w-fit capitalize text-neutral-900">
             Manage Your Properties With Us
           </h2>
           <Image src="/assets/icons/manage.svg" alt="" width={25} height={25} />

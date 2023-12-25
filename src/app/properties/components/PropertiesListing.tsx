@@ -62,7 +62,7 @@ const PropertiesListing = (props: Props) => {
           />
         ))}
       </section>
-      <div className="flex justify-center mb-40">
+      <div className="flex justify-center">
         <Button
           data={listings}
           isLoading={isLoading}
