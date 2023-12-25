@@ -10,16 +10,16 @@ import MessagesPopover from "../../notifications/components/NotificationsPopover
 import NotificationsPopover from "../../notifications/components/NotificationsPopover";
 import { montserat } from "@/styles/font";
 import { useContext } from "react";
-import { AppContext } from "../../AppContextProvider";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import Link from "next/link";
+import { useLocalStorage } from "@uidotdev/usehooks";
 
 const Navbar = () => {
   const { icons } = useAssets();
 
+  const { user } = useAppStore();
 
-  const {user} = useAppStore()
-
+  const [dashboardType, setDashboardType] = useLocalStorage<any>("dashboard-type");
 
   return (
     <Root
@@ -34,25 +34,27 @@ const Navbar = () => {
           />
         </Link>
 
-        <Search />
-      </div>
-      <div className="flex gap-2 lg:gap-10 w-fit relative items-center">
-        <Switch />
-        <div>
-          <p className="text-[#fff] text-[14px] md:text-[16px] whitespace-nowrap">{user?.profileData?.full_name}</p>
-        </div>
+            <Search />
+          </div>
+          <div className="flex gap-2 lg:gap-10 w-fit relative items-center">
+            <Switch />
+            <div>
+              <p className="text-[#fff] text-[14px] md:text-[16px] whitespace-nowrap">
+                {user?.profileData?.full_name}
+              </p>
+            </div>
 
-        <NotificationsPopover />
+            <NotificationsPopover />
 
-        <div className="relative w-full flex items-center justify-center min-w-[40px] md:min-w-[50px] min-h-[50px] rounded-full overflow-hidden">
-          <Image
-            src={user?.profileData?.avatar_url}
-            alt="User picture"
-            width={50}
-            height={50}
-          />
-        </div>
-      </div>
+            <div className="relative w-full flex items-center justify-center min-w-[40px] md:min-w-[50px] min-h-[50px] rounded-full overflow-hidden">
+              <Image
+                src={user?.profileData?.avatar_url}
+                alt="User picture"
+                width={50}
+                height={50}
+              />
+            </div>
+          </div>
     </Root>
   );
 };

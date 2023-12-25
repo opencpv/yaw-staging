@@ -1,9 +1,11 @@
 "use client";
 
 import { styled } from "@stitches/react";
+import { useLocalStorage } from "@uidotdev/usehooks";
 import { AiOutlineSearch } from "react-icons/ai";
 
 const Search = () => {
+
   return (
     <Root className="flex items-center  xl:min-w-[420px] lg:max-w-[620px] w-full max-w-[279px] h-[42px] 2xl:h-[52px] max-h-[52px] 2xl:aspefct-[620/52]">
       <div className="hidden md:flex w-full relative items-center h-full">

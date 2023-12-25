@@ -9,10 +9,6 @@ type AppStore = {
 };
 export const useAppStore = create<AppStore>((set) => ({
     user: {},
-    setUser: (newUserData) => (
-      set((prevUser) => ({
-        ...prevUser,
-        ...newUserData,
-      }))
-    ),
+    setUser: (update) => set((state) => ({ user: { ...state.user, ...update } })),
+
   }));

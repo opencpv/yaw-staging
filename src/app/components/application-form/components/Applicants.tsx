@@ -110,7 +110,7 @@ const Applicants = ({}) => {
                     propertyData?.otherPersonsArray?.[index]?.relationship
                   }
                 />
-                <button
+                <button type="button"
                   className="text-[#E9515E] h-[38px] justify-center items-center flex text-[13px] font-[400] gap-1 hover:bg-[#e9515e3a] px-2 "
                   onClick={() => {
                     handleRemove(index);

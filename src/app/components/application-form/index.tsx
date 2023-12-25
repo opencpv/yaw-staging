@@ -14,15 +14,16 @@ import { openSans } from "@/styles/font";
 type Type = {
   type: "simple" | "complex";
   variant?: string;
+  green? : boolean
 };
 
-const ApplicationForm = ({ type, variant = "rectangle" }: Type) => {
+const ApplicationForm = ({ type, variant = "rectangle", green }: Type) => {
   const [animation, setAnimation] = useState(false);
   const [open, setOpen] = useState(false);
   return (
-    <Dialog.Root open={open} onOpenChange={setOpen} >
+    <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>
-        <div>
+        <div className="flex w-full items-center justify-center">
           {variant == "rectangle" && (
             <button
               className="green-gradient p-4 font-[600] text-xl rounded-md text-white capitalize max-w-sm w-60">
@@ -37,6 +38,13 @@ const ApplicationForm = ({ type, variant = "rectangle" }: Type) => {
             text-sm text-md">
                 Apply Now
               </div>
+            </button>
+          )}
+          {variant == "agent-form" && (
+            <button className={`w-full  lg:max-w-[284px] 
+            ${green ? "bg-[#45808B] text-white" :"bg-[#ECF2F3] text-shade-200"}
+            h-[38px] lg:h-[60px] rounded-2xl  flex items-center justify-center font-semibold `}>
+              Rent it
             </button>
           )}
         </div>

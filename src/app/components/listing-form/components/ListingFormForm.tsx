@@ -28,9 +28,9 @@ import OTP2 from "./OTP/OTP2";
 import Progress from "./Progress";
 import supabase from "@/lib/utils/supabaseClient";
 import userSession from "@/lib/utils/userSession";
-import { submitListing } from "./api";
-import { AppContext } from "@/app/dashboard/AppContextProvider";
-import { AppContextType } from "@/app/dashboard/types";
+import { submitListing } from "./api/submit";
+import { useAppStore } from "@/store/dashboard/AppStore";
+
 
 const iconSize = 44;
 
@@ -73,7 +73,7 @@ export default function ListingFormForm({ setOpen }: Props) {
   const [hideRight, setHideRight] = useState(false);
   const [otp, setOtp] = useState(false);
   
-  const { user } = useContext(AppContext) as AppContextType;
+  const { user } = useAppStore()
 
   const [listingFormData, setListingFormData] = useLocalStorage(
     "listing-form",

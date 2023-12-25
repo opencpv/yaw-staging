@@ -1,16 +1,10 @@
-// import { generateSignature } from "@/lib/utils/cloudinary-upload";
+import axios from "axios";
+import * as shai from 'shai';
 
-// cloudinaryService.js
 const uploadToCloudinary = async (file: any) => {
-  const response = await fetch("/api/upload");
-  const { signature, timestamp, apiKey, uploadPreset } = await response.json();
-
   const formData = new FormData();
   formData.append("file", file);
-  formData.append("upload_preset", uploadPreset);
-  formData.append("signature", signature);
-  formData.append('api_key', apiKey);
-  formData.append('timestamp', timestamp);
+  formData.append("upload_preset", "property_images");
 
   try {
     const response = await fetch(
@@ -22,34 +16,56 @@ const uploadToCloudinary = async (file: any) => {
     );
 
     const data = await response.json();
-    return data.secure_url;
+    return data;
   } catch (error) {
     console.error("Error uploading image:", error);
     throw error;
   }
 };
 
-// export async function handleWidgetClick() {
-//   const widget = window.cloudinary.createUploadWidget(
-//     {
-//       cloudName: `${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}`,
-//       apiKey: `${process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY}`,
-//       uploadSignature: generateSignature,
-//       resourceType: "image",
-//     },
-//     (error, result) => {
-//       if (!error && result && result.event === "success") {
-//         console.log("Uploaded", result.info);
-//         setIsImageUploaded(true);
-//       } else if (error) {
-//         console.log(error);
-//       }
-//     }
-//   );
-//   widget.open();
-// }
-
 export { uploadToCloudinary };
+
+const deleteFromCloudinary = async (publicId: string) => {
+  // Delete image from Cloudinary
+  // try {
+  //   const deleteResponse = await fetch(
+  //     `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/destroy/${publicId}`,
+  //     {
+  //       method: "POST",
+  //       headers: {
+  //         Authorization: `Basic ${btoa(
+  //           `${process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY}:${process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET}`
+  //         )}`,
+  //       },
+  //     }
+  //   );
+
+  //   if (deleteResponse.ok) {
+  //     const deleteData = await deleteResponse.json();
+  //     // Return the result of the delete operation
+  //     return deleteData.result === "ok";
+  //   } else {
+  //     // Handle non-OK status codes
+  //     console.error("Error deleting image. Status:", deleteResponse.status);
+  //     throw new Error(
+  //       `Failed to delete image. Status: ${deleteResponse.status}`
+  //     );
+  //   }
+  // } catch (deleteError) {
+  //   console.error("Error deleting image:", deleteError);
+  //   throw deleteError;
+  // }
+  // const timestamp = new Date().getTime()
+
+  // const string = `public_id=${}&timestamp=${timestamp}`
+  // const signature = await shai(string)
+  // const formData = new FormData()
+  // formData.append("public_id", publicId)
+  // formData.append("signature",signature)
+  // formData.append("api_key", `${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}`)
+  // formData.append("timestamp",timestamp)
+  // const res = await axios.post("https://api.cloudinary.com/v1_1//image/destroy", formData)
+};
 
 const handleFileDrop = async (files: any, setFiles: any) => {
   if (files?.length) {
@@ -74,4 +90,4 @@ const handleFileDrop = async (files: any, setFiles: any) => {
   }
 };
 
-export { handleFileDrop };
+export { handleFileDrop, deleteFromCloudinary };

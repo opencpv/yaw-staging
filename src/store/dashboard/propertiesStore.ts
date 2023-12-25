@@ -15,3 +15,27 @@ const useManagePropertiesStore = create<ManagePropertiesStore>((set) => ({
 }));
 
 export { useManagePropertiesStore };
+
+
+const useManageReviewsStore = create((set) => ({
+  filterOption: "reviewers-say",
+  changeOption: (option) => set({ filterOption: option }),
+}));
+
+export { useManageReviewsStore };
+
+
+const useManageAccountStore = create((set) => ({
+  filterOption: "profile",
+  changeOption: (option) => set({ filterOption: option }),
+}));
+
+const useManageInvoicesStore = create((set) => ({
+  filterOption: "invoice",
+  changeOption: (option) => set({ filterOption: option }),
+}));
+
+
+
+
+export { useManageAccountStore, useManageInvoicesStore };

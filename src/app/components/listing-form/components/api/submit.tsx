@@ -1,11 +1,13 @@
 // @ts-nocheck
 import supabase from "@/lib/utils/supabaseClient";
-import { ListingForm } from "./types";
+import { ListingForm } from "../types";
+import { submitImage } from "./image";
 
 export const submitListing = async (
   owner: string,
   listingData: ListingForm,
-  is_complete = false
+  is_complete = false,
+  image?: any
 ) => {
   const { data, error } = await supabase
     .from("property")
@@ -20,7 +22,7 @@ export const submitListing = async (
         {
           property_id: property_id,
           property_type: listingData?.propertyType,
-          // property_name: "",
+          property_name: listingData?.propertyName,
           property_size: listingData?.propertySize,
           description: listingData?.propertyDescription,
           bedrooms: listingData?.bedrooms,
@@ -52,9 +54,11 @@ export const submitListing = async (
       .select();
 
     if (success1) {
+      let id = success1[0]?.id;
+      submitImage(id, image);
       const { data, error } = await supabase
         .from("property")
-        .update({ template_id: success1[0]?.id })
+        .update({ template_id: id })
         .eq("id", property_id)
         .select();
     }
@@ -65,7 +69,8 @@ export const editListing = async (
   owner: string,
   listingData: ListingForm,
   id?: number,
-  is_complete = false
+  is_complete = false,
+  image?: any
 ) => {
   const { data: success1, error } = await supabase
     .from("standard_template")
@@ -103,13 +108,19 @@ export const editListing = async (
     ])
     .eq("id", id)
     .select();
+
+  if (success1) {
+    let id = success1[0]?.id;
+    submitImage(id, image);
+  }
 };
 
 export const submitOrEditListing = async (
   owner: string,
   listingFormData: ListingForm,
   id?: number,
-  is_complete = false
+  is_complete = false,
+  image?: any
 ) => {
   const { data, error } = await supabase
     .from("standard_template")
@@ -117,8 +128,8 @@ export const submitOrEditListing = async (
     .eq("id", id);
 
   if (data) {
-    editListing(owner, listingFormData, id, true);
+    editListing(owner, listingFormData, id, true, image);
   } else {
-    submitListing(owner, listingFormData, false);
+    submitListing(owner, listingFormData, false, image);
   }
 };

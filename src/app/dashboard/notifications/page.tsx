@@ -11,7 +11,6 @@ import { redirect } from "next/navigation";
 import CaMarkAsRead from "./icons/CaMarkAsRead";
 import supabase from "@/lib/utils/supabaseClient";
 import { NotificationType } from "./components/types";
-import { AppContext } from "../AppContextProvider";
 import { useAppStore } from "@/store/dashboard/AppStore";
 
 

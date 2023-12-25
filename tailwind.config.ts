@@ -21,6 +21,7 @@ const config: Config = {
         "my-search-bg": "url('/assets/images/my-search-bg.png')",
       },
       colors: {
+        modalOverlay: "#02020275",
         darkGreenBg: "#073B3A ",
         primary: {
           50: "#B0E3C9",
@@ -47,6 +48,17 @@ const config: Config = {
         },
         warning: {
           400: "#FFB733",
+        },
+        shade: {
+          200: "#8A8A8A",
+          300: "#545454",
+          50: "#E6E6E6",
+        },
+        success: {
+          100: "#B0E3C9",
+        },
+        error: {
+          50: "#FEF3F2",
         },
         white: "#fff",
       },

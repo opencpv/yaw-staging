@@ -6,9 +6,11 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { redirect } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
 import { NotificationType } from "./notifications/components/types";
-import { AppContextType } from "./types";
-import AppContextProvider, { AppContext } from "./AppContextProvider";
+
 import { useAppStore } from "@/store/dashboard/AppStore";
+import { useLocalStorage } from "@uidotdev/usehooks";
+import CompleteYourLogin from "./components/CompleteYourLogin";
+import HowToSwitch from "./components/HowToSwitch";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -19,6 +21,13 @@ const Layout = ({ children }: LayoutProps) => {
   const [notificationsLoading, setNotificationsLoading] = useState<
     boolean | null
   >();
+  const [dashboardType, setDashboardType] = useLocalStorage("dashboard-type");
+  const [firstTIme, setFirstTime] = useLocalStorage(
+    "dashboard-first-time",
+    true
+  );
+  const [typeModalOpen, setTypeModalOpen] = useState(false);
+  const [firstTimeModalOpen, setFirstTimeModalOpen] = useState(false);
 
   const supabase = createClientComponentClient();
   // const {user, setUser} = useContext(AppContext) as AppContextType
@@ -32,6 +41,12 @@ const Layout = ({ children }: LayoutProps) => {
       redirect("/");
     }
   }, []);
+
+  useEffect(()=>{
+    dashboardType && firstTIme && setFirstTimeModalOpen(true)
+    dashboardType && setFirstTime(false)
+  }, [firstTIme, dashboardType])
+
   useEffect(() => {
     const getUserData = async () => {
       setLoading(true);
@@ -61,10 +76,9 @@ const Layout = ({ children }: LayoutProps) => {
       } = await supabase.from("notifications").select("*");
 
       if (data) {
-        setUser((prevUser: any) => ({
-          ...prevUser,
+        setUser({
           notifications: [...data],
-        }));
+        });
       }
 
       if (dataStatus === 200) {
@@ -90,16 +104,29 @@ const Layout = ({ children }: LayoutProps) => {
       .subscribe();
   }, []);
   return (
-    <AppContextProvider>
-      <Navbar />
-      <div className={`mt-2 ${openSans.className}`}>
-        <Pagination />
-      </div>
+    <div>
+      <div>
+        <Navbar />
+        <div className={`mt-2 ${openSans.className}`}>
+          <Pagination />
+        </div>
 
-      <div className={`mt-6 px-4 text-black ${openSans.className}`}>
-        {children}
+        <div className={`mt-6 px-4 text-black ${openSans.className}`}>
+          {children}
+        </div>
+          <HowToSwitch
+            dashboard
+            open={firstTimeModalOpen}
+            setOpen={setFirstTimeModalOpen}
+          />
+        
+        <CompleteYourLogin
+          dashboard
+          open={!dashboardType && open}
+          setOpen={setTypeModalOpen}
+        />
       </div>
-    </AppContextProvider>
+    </div>
   );
 };
 
