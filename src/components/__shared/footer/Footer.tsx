@@ -11,16 +11,17 @@ import { getCurrentYear } from "@/lib/utils/numberManipulation";
 import Logo from "@/components/__shared/Logo";
 import SubscribeForm from "../ui/SubscribeForm";
 import { useContactStore } from "@/store/contact/useContactStore";
-import style from "./Style.module.css"
+import style from "./Style.module.css";
+import Feedback from "@/components/feedback/Feedback";
 
 const Footer = () => {
   const setContactTabActiveKey = useContactStore((state) => state.setActiveKey);
 
   return (
     <footer
-      className={`bg-[#131B1A] flex flex-col gap gap-[min(10vh,10rem)] no-print ${montserat.className}`}
+      className={`bg-[#131B1A] flex flex-col gap gap-[min(10vh,10rem)] mt-8 sm:mt-14 no-print ${montserat.className}`}
     >
-      <div className="flex flex-col justify-center gap-10 bg-[#333] py-8 px-2 md:flex-row">
+      <div className="flex flex-col justify-center gap-10 text-[#8A8A8A] bg-[#333] py-8 px-2 md:flex-row">
         {quickLinks.map((r) =>
           r.label.toLowerCase() === "report fraud" ? (
             <Link
@@ -28,14 +29,15 @@ const Footer = () => {
               href={r?.href}
               onClick={() => setContactTabActiveKey("report")}
             >
-              <h3 className="text-[#8A8A8A] text-2xl">{r.label}</h3>
+              <h2 className="font-[400]">{r.label}</h2>
             </Link>
           ) : (
             <Link key={r?.label} href={r?.href}>
-              <h3 className="text-[#8A8A8A] text-2xl">{r.label}</h3>
+              <h2 className="font-[400]">{r.label}</h2>
             </Link>
           )
         )}
+        <Feedback />
       </div>
       <div
         className={"flex flex-row h-[184px]  lg:w-11/12 mx-auto w-full  px-5"}

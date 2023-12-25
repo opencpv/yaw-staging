@@ -38,4 +38,8 @@ export const formatDate = (dateTime: string) => {
 };
 
 
+export const LowerCase = (text: string) => {
+  return text.toLowerCase()
+}
+
 export default capitalizeName

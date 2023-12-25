@@ -21,11 +21,11 @@ body {
 }
 
 h2 {
-  @apply text-2xl font-[600];
+  @apply text-[1.563rem] leading-[2.2rem] font-[600];
 }
 
 h3 {
-  @apply text-lg font-[600];
+  @apply text-xl font-[600];
 }
 
 h4 {

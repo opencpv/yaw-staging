@@ -81,7 +81,7 @@ const PhoneNumberInput = ({ phoneChange, defaultValue = "" }: Props) => {
                         alt={country.flags.alt}
                         fill
                         sizes="1.25rem"
-                        objectFit="cover"
+                        style={{ objectFit: "cover" }}
                         objectPosition="center"
                         className="rounded-[4px] "
                       />

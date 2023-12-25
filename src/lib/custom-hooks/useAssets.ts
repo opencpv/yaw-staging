@@ -43,6 +43,7 @@ import GetFeaturedImage from "/public/assets/images/dashboard/overview/p-manager
 import VerifyListing from "/public/assets/images/dashboard/overview/p-manager/verify-listings-image.jpeg";
 import SearchIcon from "/public/svgs/SearchHomeIcon.svg";
 import Clipboard from "/public/assets/images/dashboard/clipboard.png";
+import UserNoImage from "/public/assets/images/placeholder/user-no-image.jpeg"
 
 export const useAssets = () => {
   return {
@@ -93,6 +94,7 @@ export const useAssets = () => {
       _3DImage,
       GetFeaturedImage,
       VerifyListing,
+      UserNoImage,
     },
   };
 };

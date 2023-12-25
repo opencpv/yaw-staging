@@ -1,7 +1,7 @@
+//@ts-nocheck
 "use client";
 import "../style.css";
-import { useAssets } from "@/lib/custom-hooks/useAssets";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "@/components/__shared/ui/button/Button";
 import { HiMiniShieldCheck } from "react-icons/hi2";
 import Footer from "@/components/__shared/footer/Footer";
@@ -28,11 +28,10 @@ import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingState
 import style from "@/app/components/landing/Shape.module.css";
 import { revalidationRule } from "@/lib/utils/fetchRules";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
+import { useUserDetails } from "@/lib/custom-hooks/message/useUserDetails";
 
 const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
   const { id: propertyId } = params;
-
-  const [] = useState();
 
   const {
     data: listing,
@@ -43,7 +42,7 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
     supabase
       .from("standard_template")
       .select(
-        `id, property_name, property_id, 
+        `id, property_name, property_id (owner_uid), 
         description, monthly_amount, city, 
         bedrooms, bathrooms, features_and_amenities`
       )
@@ -51,6 +50,9 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
       .single(),
     revalidationRule()
   );
+
+  const { userAvi: propertyOwnerAvi, userName: propertyOwnerName } =
+    useUserDetails(listing?.property_id.owner_uid);
 
   return (
     <>
@@ -158,13 +160,13 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
                       </p>
                     </div>
                     <PropertyOwnerInfo
-                      name="John Doe"
+                      name={propertyOwnerName as string}
                       picture=""
                       rating={3.5}
                       reviews={120}
                       telephone="023455112"
                       whatsappNumber="0234323444"
-                      id=""
+                      id={listing?.property_id.owner_uid}
                     />
                   </section>
 
