@@ -24,12 +24,11 @@ const Carousel = (props: CarouselProps) => {
           }}
           modules={[Navigation]}
           onActiveIndexChange={(slide) => setActiveIndex(slide.activeIndex)}
-          className={`relative w-8/12 rounded-2xl property-carousel shadow-sm h-[26rem] xl:h-[28rem]`}
+          className={`relative w-full max-w-4xl rounded-2xl property-carousel shadow-sm h-[26rem] xl:h-[28rem]`}
         >
-          {/* Mapping through Featured listings from database */}
           {props.images.map((image, index) => (
             <SwiperSlide key={index}>
-              <div className="relative w-full h-full mx-auto">
+              <div className="relative w-full h-full mx-auto ">
                 <Image
                   src={image.src}
                   alt={image.label as string}
