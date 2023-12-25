@@ -1,13 +1,14 @@
+import React from "react";
 import { create } from "zustand";
 
 type FaqHowToSwitchStore = {
-  activePage: string
-  setActivePage: (page: string) => void;
+  activePage: React.Key
+  setActivePage: (page: React.Key) => void;
 };
 
 type HowToTabsStore = {
-  activeTab: string
-  setActiveTab: (page: string) => void;
+  activeTab: React.Key
+  setActiveTab: (page: React.Key) => void;
 };
 
 export const useFaqHowToSwitchStore = create<FaqHowToSwitchStore>((set) => ({
@@ -17,5 +18,5 @@ export const useFaqHowToSwitchStore = create<FaqHowToSwitchStore>((set) => ({
 
 export const useHowToTabsStore = create<HowToTabsStore>((set) => ({
   activeTab: "all",
-  setActiveTab: (page: string) => set({ activeTab: page }),
+  setActiveTab: (page) => set({ activeTab: page }),
 }));

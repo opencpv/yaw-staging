@@ -23,12 +23,12 @@ const FAQ = () => {
         <title>FAQ - RentRightGh</title>
       </Head>
       <Navbar />
-      <main className="section relative">
+      <main className="relative section">
         <FaqHeader />
         {/* <BreadCrumb link="FAQ" /> */}
         <FaqHowToSwitch />
-        {LowerCase(activePage) === "faq" && <FaqPage />}
-        {LowerCase(activePage) === "how to" && <HowToPage />}
+        {LowerCase(activePage as string) === "faq" && <FaqPage />}
+        {LowerCase(activePage as string) === "how to" && <HowToPage />}
       </main>
       <Footer />
     </>

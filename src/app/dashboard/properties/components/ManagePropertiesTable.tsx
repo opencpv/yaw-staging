@@ -6,6 +6,7 @@ import TableSkeleton from "../../components/shared/skeleton/TableSkeleton";
 import Spinner from "../../components/shared/Spinner";
 import { useManagePropertiesStore } from "@/store/dashboard/propertiesStore";
 import Pagination from "@/components/__shared/Pagination";
+import { UpperCase } from "@/lib/utils/stringManipulation";
 import { PropertyStatusInterface } from "../../../../../interfaces";
 
 type Props = {};
@@ -31,7 +32,7 @@ const ManagePropertiesTable = (props: Props) => {
     select: "id, created_at, status, is_paid_for",
     revalidateOnFocus: false,
     ...(filterOption !== "all" && {
-      eq: { column: "status", match: filterOption.toUpperCase() },
+      eq: { column: "status", match: UpperCase(filterOption as string)},
     }),
   });
 
