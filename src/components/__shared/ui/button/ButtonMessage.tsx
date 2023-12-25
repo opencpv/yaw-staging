@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { ReactNode, useState } from "react";
 import Button from "../../ui/button/Button";
 import { useMessageStore } from "@/store/dashboard/useMessageStore";
 import { useUserDetails } from "@/lib/custom-hooks/message/useUserDetails";
@@ -9,11 +9,12 @@ import { useRouter } from "next/navigation";
 
 type Props = {
   id: string;
-  color: "primary" | "gradient" | "accent" | "white";
+  color?: "primary" | "gradient" | "accent" | "white";
   className?: string;
+  children?: ReactNode;
 };
 
-const ButtonMessage = ({ color, className, id }: Props) => {
+const ButtonMessage = ({ color, className, id, children }: Props) => {
   const router = useRouter()
   
   const setRecipientId = useMessageStore((state) => state.setRecipientId);
@@ -41,7 +42,7 @@ const ButtonMessage = ({ color, className, id }: Props) => {
       className={`p-4 w-full ${className}`}
       onClick={handleInternalMessaging}
     >
-      {loadingMessage ? <LoaderDots /> : "Send Message"}
+      {loadingMessage ? <LoaderDots /> : children ?? "Send Message"}
     </Button>
   );
 };
