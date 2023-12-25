@@ -13,5 +13,6 @@ type ModalProps = {
     hideCloseButton?: boolean;
     /** tailwindcss class */
     backgroundColor?: string;
-    backdrop?: "blur" | "opaque" | "transparent"
+    backdrop?: "blur" | "opaque" | "transparent";
+    className?: string;
 }

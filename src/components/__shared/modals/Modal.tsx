@@ -1,7 +1,6 @@
 "use client";
-import Image from "next/image";
 import { LiaTimesSolid } from "react-icons/lia";
-// import { Modal } from "rsuite";
+import { cn } from "@nextui-org/react";
 
 import {
   Modal as NextUIModal,
@@ -25,15 +24,21 @@ const Modal = ({
   hideCloseButton,
   backgroundColor,
   backdrop,
+  className,
 }: ModalProps) => {
   return (
     <>
       <NextUIModal
         classNames={{
-          base: `relative z-50 ${backgroundColor ? backgroundColor : null} ${size === "full" && "rounded-none h-[150vh]"}`,
-          wrapper: `${size === "full" && "h-[100dvh]"}`,
+          base: cn(
+            `relative z-50 ${backgroundColor ? backgroundColor : null} ${
+              size === "full" && "rounded-none"
+            }`,
+            className
+          ),
+          // wrapper: `${size === "full" && "h-[100dvh]"}`,
         }}
-        scrollBehavior="inside"
+        scrollBehavior={size === "full" ? "normal" : "inside"}
         size={size ? size : "sm"}
         isDismissable={isDismissible === false ? isDismissible : true}
         placement={size === "full" ? undefined : "center"}
@@ -42,7 +47,6 @@ const Modal = ({
         backdrop={backdrop ? backdrop : undefined}
         onClose={onClose}
         onOpenChange={onOpenChange}
-        
         closeButton={
           closeButton ? (
             <div>{closeButton}</div>
