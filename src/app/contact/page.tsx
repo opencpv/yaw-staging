@@ -82,7 +82,7 @@ const Page = () => {
         aspect-[318/240]
         md:aspect-[414/303]
         lg:aspect-square lg:pb-5">
-            <Image src={"/svgs/contact1.svg"} alt="Contact" fill id="c_ta#rea" />
+            <Image src={"/svgs/contact1.svg"} alt="Contact" fill id="jPFcRVJIZphajw==" />
           </div>
         </div>
         <div

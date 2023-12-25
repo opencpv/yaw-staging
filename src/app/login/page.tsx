@@ -3,7 +3,6 @@ import Head from "next/head";
 import Image from "next/image";
 import { LoginForm } from "./components/LoginForm";
 import { LoginFooter } from "./components/LoginFooter";
-import Footer from "@/components/__shared/footer/Footer";
 
 const Login = () => {
   const { images } = useAssets();
