@@ -13,9 +13,14 @@ import SubscribeForm from "../ui/SubscribeForm";
 import { useContactStore } from "@/store/contact/useContactStore";
 import style from "./Style.module.css";
 import Feedback from "@/components/feedback/Feedback";
+import { LowerCase } from "@/lib/utils/stringManipulation";
+import { useFaqHowToSwitchStore } from "@/store/faq/useFaqStore";
 
 const Footer = () => {
   const setContactTabActiveKey = useContactStore((state) => state.setActiveKey);
+  const setFaqActivePage = useFaqHowToSwitchStore(
+    (state) => state.setActivePage
+  );
 
   return (
     <footer
@@ -23,11 +28,19 @@ const Footer = () => {
     >
       <div className="flex flex-col justify-center gap-10 text-[#8A8A8A] bg-[#333] py-8 px-2 md:flex-row">
         {quickLinks.map((r) =>
-          r.label.toLowerCase() === "report fraud" ? (
+          LowerCase(r.label) === "report fraud" ? (
             <Link
               key={r?.label}
               href={r?.href}
               onClick={() => setContactTabActiveKey("report")}
+            >
+              <h2 className="font-[400]">{r.label}</h2>
+            </Link>
+          ) : LowerCase(r.label) === "how to" ? (
+            <Link
+              key={r?.label}
+              href={r?.href}
+              onClick={() => setFaqActivePage("how to")}
             >
               <h2 className="font-[400]">{r.label}</h2>
             </Link>

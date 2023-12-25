@@ -36,7 +36,6 @@ const PropertyGalleryModal = ({
 }: ModalProps) => {
   return (
     <Modal
-      backdrop="blur"
       isDismissible={false}
       header={<ModalHeader onClose={onClose} />}
       body={<ModalBody />}
