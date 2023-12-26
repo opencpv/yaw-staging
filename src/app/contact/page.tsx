@@ -68,7 +68,7 @@ const Page = () => {
     }
   };
 
-  useHashChangeScroll(-300)
+  useHashChangeScroll(-200)
 
   return (
     <main className="max-w-[1728px] mx-auto">
