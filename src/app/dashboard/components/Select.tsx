@@ -1,6 +1,7 @@
 import React from "react";
 import { Select as NextUISelect, SelectItem } from "@nextui-org/react";
 import { FaCaretDown } from "react-icons/fa";
+import { LowerCase } from "@/lib/utils/stringManipulation";
 
 type Props = {
   options: string[];
@@ -31,9 +32,9 @@ const Select = ({ options, handleSelectionChange, value, radius, selectorIcon }:
     >
       {options.map((option) => (
         <SelectItem
-          key={option.toLowerCase()}
+          key={LowerCase(option)}
           className="text-neutral-800"
-          value={option.toLowerCase()}
+          value={LowerCase(option)}
         >
           {option}
         </SelectItem>

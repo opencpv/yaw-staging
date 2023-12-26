@@ -21,6 +21,7 @@ import Footer from "@/components/__shared/footer/Footer";
 import { motion } from "framer-motion";
 import PhoneNumberInputv2 from "@/components/__shared/PhoneInputv2";
 import { useContactStore } from "@/store/contact/useContactStore";
+import { useHashChangeScroll } from "@/lib/custom-hooks/useWindowEvents";
 
 const ContactSchema = Yup.object().shape({
   fullname: Yup.string()
@@ -67,6 +68,8 @@ const Page = () => {
     }
   };
 
+  useHashChangeScroll(-200)
+
   return (
     <main className="max-w-[1728px] mx-auto">
       <Navbar />
@@ -82,7 +85,7 @@ const Page = () => {
         aspect-[318/240]
         md:aspect-[414/303]
         lg:aspect-square lg:pb-5">
-            <Image src={"/svgs/contact1.svg"} alt="Contact" fill id="c_ta#rea" />
+            <Image src={"/svgs/contact1.svg"} alt="Contact" fill id="jPFcRVJIZphajw==" />
           </div>
         </div>
         <div

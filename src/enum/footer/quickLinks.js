@@ -13,11 +13,11 @@ const quickLinks = [
     },
     {
         label: "How To",
-        href: ""
+        href: "/faq#G9mELbIrnVmy7A=="
     },
     {
         label: "Report Fraud",
-        href: "/contact#c_ta#rea"
+        href: "/contact#jPFcRVJIZphajw=="
     },
 ]
 

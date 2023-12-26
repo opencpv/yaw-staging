@@ -8,6 +8,7 @@ import { useManagePropertiesStore } from "@/store/dashboard/propertiesStore";
 import Button from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
+import { UpperCase } from "@/lib/utils/stringManipulation";
 
 const ManagePropertiesSmallScreenView = () => {
   const filterOption = useManagePropertiesStore((state) => state.filterOption);
@@ -23,7 +24,7 @@ const ManagePropertiesSmallScreenView = () => {
     pageSize: 5,
     order: { column: "created_at", ascending: false },
     ...(filterOption !== "all" && {
-      eq: { column: "status", match: filterOption.toUpperCase() },
+      eq: { column: "status", match: UpperCase(filterOption as string) },
     }),
     select: "id, created_at, status, is_paid_for",
   });

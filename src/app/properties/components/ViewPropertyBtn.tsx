@@ -3,8 +3,16 @@ import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { useDisclosure } from "@nextui-org/react";
+import {
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  useDisclosure,
+} from "@nextui-org/react";
 import PropertyGalleryModal from "../[id]/components/PropertyGalleryModal";
+import { useModalFullscreenStore } from "@/store/modal/useModalStore";
 
 type Props = {
   href: string;
@@ -13,6 +21,9 @@ type Props = {
 
 const ViewPropertyBtn = ({ href, className }: Props) => {
   const { isOpen, onClose, onOpen, onOpenChange } = useDisclosure();
+  const setHideWindowScrollbar = useModalFullscreenStore(
+    (state) => state.setHideWindowScrollbar
+  );
 
   const pathname = usePathname();
   return (
@@ -48,7 +59,10 @@ const ViewPropertyBtn = ({ href, className }: Props) => {
       ) : (
         <div
           className={`absolute shadow-md scale-75 bottom-32 right-10 md:right-32 md:bottom-20 md:scale-100 hover:-translate-y-2 transition-all cursor-pointer ${className}`}
-          onClick={onOpen}
+          onClick={() => {
+            onOpen();
+            setHideWindowScrollbar(true);
+          }}
         >
           <div
             className={`border w-48 h-48 border-[#305A61] rounded-full flex items-center justify-center`}

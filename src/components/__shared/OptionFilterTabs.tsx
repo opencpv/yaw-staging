@@ -1,6 +1,6 @@
 "use client";
-import capitalizeName from "@/lib/utils/stringManipulation";
-import { Selection, Tab, Tabs } from "@nextui-org/react";
+import capitalizeName, { LowerCase } from "@/lib/utils/stringManipulation";
+import { Tab, Tabs } from "@nextui-org/react";
 import React from "react";
 
 type Props = {
@@ -8,9 +8,9 @@ type Props = {
   options: string[];
   radius?: "large" | "small";
   padding?: "small" | "wide";
-  onSelectionChange: (key: string) => void;
+  onSelectionChange: (key: React.Key) => void;
   variant?: "default" | "gradient";
-  selectedKey?: string;
+  selectedKey?: React.Key;
 };
 
 const OptionFilterTabs = ({
@@ -56,11 +56,11 @@ const OptionFilterTabs = ({
           // panel: "bg-primary-400",
         }}
         selectedKey={selectedKey}
-        onSelectionChange={(key) => onSelectionChange(key as string)}
+        onSelectionChange={onSelectionChange}
         disableCursorAnimation
       >
         {options.map((option) => (
-          <Tab key={option} title={capitalizeName(option, " ")} />
+          <Tab key={LowerCase(option)} title={capitalizeName(option, " ")} />
         ))}
       </Tabs>
     </>

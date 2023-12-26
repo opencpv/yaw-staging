@@ -26,7 +26,7 @@ const About = async () => {
         <title>About Us - RentRight Gh</title>
       </Head>
       <Navbar />
-      <main className="pt-10 pb-40 overflow-x-hidden">
+      <main className="pt-10 overflow-x-hidden">
         <div className="flex items-center justify-center mx-auto mb-10 section">
           <div className="grid items-center lg:grid-cols-2 gap-x-36 gap-y-5">
             <h1 className="font-[700] text-2xl sm:text-4xl text-[#305A61] leading-normal">

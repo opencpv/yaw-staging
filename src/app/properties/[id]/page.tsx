@@ -29,9 +29,12 @@ import style from "@/app/components/landing/Shape.module.css";
 import { revalidationRule } from "@/lib/utils/fetchRules";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
 import { useUserDetails } from "@/lib/custom-hooks/message/useUserDetails";
+import { useModalFullscreenStore } from "@/store/modal/useModalStore";
 
 const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
   const { id: propertyId } = params;
+
+  const hideWindowScrollbar = useModalFullscreenStore((state) => state.hideWindowScrollbar)
 
   const {
     data: listing,
@@ -232,7 +235,7 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
         </>
       )}
       {/* Recommended Listings */}
-      <section className="mb-40 section">
+      <section className="section">
         <div className="flex flex-wrap items-center justify-between gap-5 mb-5">
           <h2 className="text-neutral-800 text-xl font-[600] md:ml-10">
             Recommended Listings

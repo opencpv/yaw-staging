@@ -37,7 +37,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="pb-20 overflow-x-hidden">
+      <main className="overflow-x-hidden">
         <HomeLandingPage />
         {/* Promotion */}
         <HomePromotionSection />

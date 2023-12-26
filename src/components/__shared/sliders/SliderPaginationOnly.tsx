@@ -9,7 +9,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import "@/styles/custom-swiper.css";
-import { useAdsSliderStore } from "@/store/ads/useAdsSliderStore";
 
 
 const SliderPaginationOnly = ({
@@ -17,8 +16,6 @@ const SliderPaginationOnly = ({
   className,
   disabledOnInteraction
 }: SliderPaginationOnlyProps) => {
-  const shouldAutoplay = useAdsSliderStore((state) => state.autoplay);
-  const setAutoplay = useAdsSliderStore((state) => state.setAutoplay)
 
   return (
     <div className={`relative h-80 w-72 ${className}`}>

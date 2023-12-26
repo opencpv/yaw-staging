@@ -17,7 +17,7 @@ const layout = ({ children }: Props) => {
       <div className="section">
         <FeaturedListings className="mb-20" />
       </div>
-      <div className="mb-20">
+      <div>
         <SurveyToast />
       </div>
       <ScrollTopAndSocial />

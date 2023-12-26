@@ -10,8 +10,8 @@ const HomeRentalDealsSection = (props: Props) => {
   return (
     <section className="px-5 mx-auto mb-16 space-y-8 max-w-screen-2xl xs:px-5 md:space-y-14">
       <div className="w-full space-y-3.5 min-[810px]:w-7/12">
-        <div className="flex gap-5">
-          <h2 className="font-[500] capitalize text-neutral-900">
+        <div className="flex items-start gap-5">
+          <h2 className="font-[500] capitalize w-fit text-neutral-900">
             Our Apartment Rental Deals
           </h2>
           <Image src="/assets/icons/deals.svg" alt="" width={25} height={25} />
