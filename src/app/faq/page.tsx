@@ -16,7 +16,7 @@ import Navbar from "@/components/__shared/Navbar";
 const FAQ = () => {
   const activePage = useFaqHowToSwitchStore((state) => state.activePage);
 
-  const { icons } = useAssets();
+  // const { icons } = useAssets();
   return (
     <>
       <Head>
