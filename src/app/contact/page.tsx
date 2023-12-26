@@ -21,6 +21,7 @@ import Footer from "@/components/__shared/footer/Footer";
 import { motion } from "framer-motion";
 import PhoneNumberInputv2 from "@/components/__shared/PhoneInputv2";
 import { useContactStore } from "@/store/contact/useContactStore";
+import { useHashChangeScroll } from "@/lib/custom-hooks/useWindowEvents";
 
 const ContactSchema = Yup.object().shape({
   fullname: Yup.string()
@@ -66,6 +67,8 @@ const Page = () => {
       }
     }
   };
+
+  useHashChangeScroll(-300)
 
   return (
     <main className="max-w-[1728px] mx-auto">

@@ -16,7 +16,7 @@ import HowToPage from "./components/pages/HowToPage";
 const FAQ = () => {
   const activePage = useFaqHowToSwitchStore((state) => state.activePage);
 
-  const { icons } = useAssets();
+  // const { icons } = useAssets();
   return (
     <>
       <Head>

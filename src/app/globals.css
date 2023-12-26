@@ -20,7 +20,6 @@ body {
   color: rgb(var(--foreground-rgb));
 }
 
-#anchor
 
 h2 {
   @apply text-[1.563rem] leading-[2.2rem] font-[600]
