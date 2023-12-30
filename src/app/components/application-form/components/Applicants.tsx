@@ -7,6 +7,7 @@ import { styled } from "@stitches/react";
 import { openSans } from "@/styles/font";
 import { PropertyDataType } from "./propertyDataType";
 import CustomRadioInput from "@/app/components/CustomRadioInput";
+import { ClientOnly } from "@/components/ui/ClientOnly";
 
 const FullNameAndRelationship = ({ index, fullName, relationship }: any) => {
   const [propertyData, setPropertyData] =
@@ -104,14 +105,18 @@ const Applicants = ({}) => {
           <div className={`${applicantsLength >= 1 ? "mt-5" : ""}`}>
             {Array.from({ length: applicantsLength }).map((_, index) => (
               <div key={index} className="mb-2">
-                <FullNameAndRelationship
-                  key={index}
-                  index={index}
-                  fullName={propertyData?.otherPersonsArray?.[index]?.fullName}
-                  relationship={
-                    propertyData?.otherPersonsArray?.[index]?.relationship
-                  }
-                />
+                <ClientOnly>
+                  <FullNameAndRelationship
+                    key={index}
+                    index={index}
+                    fullName={
+                      propertyData?.otherPersonsArray?.[index]?.fullName
+                    }
+                    relationship={
+                      propertyData?.otherPersonsArray?.[index]?.relationship
+                    }
+                  />
+                </ClientOnly>
                 <button
                   type="button"
                   className="text-[#E9515E] h-[38px] justify-center items-center flex text-[13px] font-[400] gap-1 hover:bg-[#e9515e3a] px-2 "

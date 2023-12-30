@@ -11,12 +11,13 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import CompleteYourLogin from "./components/CompleteYourLogin";
 import HowToSwitch from "./components/HowToSwitch";
+import { ClientOnly } from "@/components/ui/ClientOnly";
 
 type LayoutProps = {
   children: React.ReactNode;
 };
 
-const Layout = ({ children }: LayoutProps) => {
+const Wrapper = ({ children }: LayoutProps) => {
   const [notifications, setNotifications] = useState<NotificationType | any>();
   const [notificationsLoading, setNotificationsLoading] = useState<
     boolean | null
@@ -42,10 +43,10 @@ const Layout = ({ children }: LayoutProps) => {
     }
   }, []);
 
-  useEffect(()=>{
-    dashboardType && firstTIme && setFirstTimeModalOpen(true)
-    dashboardType && setFirstTime(false)
-  }, [firstTIme, dashboardType])
+  useEffect(() => {
+    dashboardType && firstTIme && setFirstTimeModalOpen(true);
+    dashboardType && setFirstTime(false);
+  }, [firstTIme, dashboardType]);
 
   useEffect(() => {
     const getUserData = async () => {
@@ -114,20 +115,29 @@ const Layout = ({ children }: LayoutProps) => {
         <div className={`mt-6 px-4 text-black ${openSans.className}`}>
           {children}
         </div>
+        <ClientOnly>
           <HowToSwitch
             dashboard
             open={firstTimeModalOpen}
             setOpen={setFirstTimeModalOpen}
           />
-        
-        <CompleteYourLogin
-          dashboard
-          open={!dashboardType && open}
-          setOpen={setTypeModalOpen}
-        />
+        </ClientOnly>
+        <ClientOnly>
+          <CompleteYourLogin
+            dashboard
+            open={!dashboardType && open}
+            setOpen={setTypeModalOpen}
+          />
+        </ClientOnly>
       </div>
     </div>
   );
+};
+
+const Layout = ({ children }: LayoutProps) => {
+  <ClientOnly>
+    <Wrapper>{children}</Wrapper>
+  </ClientOnly>;
 };
 
 export default Layout;

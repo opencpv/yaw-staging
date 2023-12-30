@@ -10,6 +10,7 @@ import ManagePropertiesSmallScreenView from "./components/ManagePropertiesSmallS
 import ManagePropertiesTabs from "./components/ManagePropertiesTabs";
 import ListingFormModal from "@/app/components/listing-form";
 import FetchCount from "../components/shared/FetchCount";
+import { ClientOnly } from "@/components/ui/ClientOnly";
 
 const page = () => {
   return (
@@ -25,7 +26,9 @@ const page = () => {
           </div>
         </div>
         <div className="flex flex-wrap gap-5">
-          {/* <ListingFormModal /> */}
+          {/* <ClientOnly>
+            <ListingFormModal />
+          </ClientOnly> */}
           <ActionMain label="Leads" icon={<HiOutlineUserGroup />} />
         </div>
       </section>

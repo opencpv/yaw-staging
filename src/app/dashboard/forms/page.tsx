@@ -8,6 +8,7 @@ import CompleteYourLogin from "../components/CompleteYourLogin";
 import HowToSwitch from "../components/HowToSwitch";
 import RatingsForm from "@/app/components/ratings-form";
 import AllReviewsModal from "@/app/components/all-reviews-modal";
+import { ClientOnly } from "@/components/ui/ClientOnly";
 
 export default function Page() {
   const [ratingsModal, setRatingsModal] = useState();
@@ -23,7 +24,9 @@ export default function Page() {
           <div className="flex lg:flex-row flex-wrap flex-col gap-5 w-full items-center justify-center px-5">
             <ApplicationForm type="complex" />
             <ApplicationForm type="simple" />
-            <ListingFormModal />
+            <ClientOnly>
+              <ListingFormModal />
+            </ClientOnly>
             <RatingsForm
               rated
               rating="2.5"
@@ -37,8 +40,12 @@ export default function Page() {
               setOpen2={setAllReviewsModal}
               open1={ratingsModal}
             /> */}
-            <CompleteYourLogin dashboard={false} />
-            <HowToSwitch dashboard={false} />
+            <ClientOnly>
+              <CompleteYourLogin dashboard={false} />
+            </ClientOnly>
+            <ClientOnly>
+              <HowToSwitch dashboard={false} />
+            </ClientOnly>
             <AllReviewsModal
               variant="property"
               open1={allREviewsModal}

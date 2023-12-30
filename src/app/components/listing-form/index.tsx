@@ -1,8 +1,6 @@
 "use client";
 import React, { useContext, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { styled } from "@stitches/react";
-import { motion } from "framer-motion";
 import { SaveAndExit } from "../application-form/components/PropertyFormComplex/SaveAndExit";
 import { openSans } from "@/styles/font";
 import CaComment from "./components/icons/CaComment";
@@ -10,7 +8,7 @@ import ListingFormForm from "./components/ListingFormForm";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { submitListing, submitOrEditListing } from "./components/api/submit";
 import { useAppStore } from "@/store/dashboard/AppStore";
-
+import { ClientOnly } from "@/components/ui/ClientOnly";
 
 const ListingFormModal = () => {
   const [animation, setAnimation] = useState(false);
@@ -31,7 +29,8 @@ const ListingFormModal = () => {
          cursor-pointer gap-2 px-8 py-6 text-[20px]"
           style={{
             boxShadow: "0px 24px 48px -12px rgba(0, 0, 0, 0.18)",
-          }}>
+          }}
+        >
           <div className="rounded-full flex items-center justify-center w-full max-w-[64px] aspect-square bg-[#F1F1F1] ">
             <CaComment />
           </div>
@@ -43,9 +42,12 @@ const ListingFormModal = () => {
         <Dialog.Content
           className={`data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] translate-x-[-50%] z-[1000]  ${
             animation ? " overflow-y-hidden" : "overflow-y-scroll"
-          } translate-y-[-50%] rounded-[8px] bg-white shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none `}>
+          } translate-y-[-50%] rounded-[8px] bg-white shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none `}
+        >
           <div className={`relative ${openSans.className} z-[1001]`}>
-            <ListingFormForm setOpen={setOpen} />
+            <ClientOnly>
+              <ListingFormForm setOpen={setOpen} />
+            </ClientOnly>
           </div>
 
           <Dialog.Close asChild>
@@ -55,7 +57,8 @@ const ListingFormModal = () => {
               }
               className="focus:shadow-violet7 absolute top-[15px] right-[25px] appearance-none items-center justify-center rounded-full focus:shadow-[0_0_0_2px] 
               z-[2000] focus:outline-none "
-              aria-label="Close">
+              aria-label="Close"
+            >
               <SaveAndExit />
             </button>
           </Dialog.Close>

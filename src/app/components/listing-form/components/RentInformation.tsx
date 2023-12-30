@@ -6,6 +6,7 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import { ListingForm } from "./types";
 import CustomCheckBoxes from "../../CustomCheckBoxes";
 import AdditionalFees from "./AdditionalFees";
+import { ClientOnly } from "@/components/ui/ClientOnly";
 
 export default function RentInformation() {
   const [listingFormData, setListingFormData] = useLocalStorage<ListingForm>(
@@ -37,21 +38,23 @@ export default function RentInformation() {
                 onChange={(value) => handleOnChange("advancePayment", value)}
               />
               {listingFormData?.advancePayment == "yes" && (
-                <CustomCheckBoxes
-                  onChange={(value: any) =>
-                    handleOnChange("advancePaymentDuration", value)
-                  }
-                  data={[
-                    {
-                      name: "1 year",
-                      value: "1",
-                    },
-                    { name: "2 years", value: "2" },
-                    { name: "3 years", value: "3" },
-                    { name: "4 years", value: "4" },
-                    { name: "5 years", value: "5" },
-                  ]}
-                />
+                <ClientOnly>
+                  <CustomCheckBoxes
+                    onChange={(value: any) =>
+                      handleOnChange("advancePaymentDuration", value)
+                    }
+                    data={[
+                      {
+                        name: "1 year",
+                        value: "1",
+                      },
+                      { name: "2 years", value: "2" },
+                      { name: "3 years", value: "3" },
+                      { name: "4 years", value: "4" },
+                      { name: "5 years", value: "5" },
+                    ]}
+                  />
+                </ClientOnly>
               )}
 
               <CustomRadioInput

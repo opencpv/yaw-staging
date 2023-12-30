@@ -12,15 +12,14 @@ import CustomRadioInput from "@/app/components/CustomRadioInput";
 import CustomSelect from "@/app/components/CustomSelect";
 import SwiperSlideControls from "../SwiperSliderControls";
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
-
 import { CustomDatePicker } from "@/app/components/CustomDatePicker";
 import Applicants from "../Applicants";
-import PhoneNumberInput from "@/components/__shared/PhoneInput";
 import CustomTextAreaInput from "@/app/components/CustomTextAreaInput";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import PhoneNumberInputv2 from "@/components/__shared/PhoneInputv2";
 import FormSwitch from "@/app/contact/components/FormSwitch";
 import { PropertyDataType } from "../propertyDataType";
+import { ClientOnly } from "@/components/ui/ClientOnly";
 
 type Props = {
   ref: any;
@@ -209,7 +208,9 @@ const PersonalInformationForm1 = React.forwardRef<HTMLInputElement, Props>(
                 })
               }
             />
-            <Applicants />
+            <ClientOnly>
+              <Applicants />
+            </ClientOnly>
           </div>
         </div>
       </Root>

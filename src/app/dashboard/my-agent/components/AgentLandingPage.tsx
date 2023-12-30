@@ -4,6 +4,7 @@ import styles from "../index.module.css";
 import CaRelume from "./icons/CaRelume";
 import CaAgentTick from "./icons/CaAgentTick";
 import BeMyAgentModal from "@/app/components/be-my-agent-form";
+import { ClientOnly } from "@/components/ui/ClientOnly";
 
 export default function AgentLandingPage() {
   return (
@@ -24,7 +25,9 @@ export default function AgentLandingPage() {
           </div>
           <div className="flex gap-5 w-full">
             <div className="w-full-">
-              <BeMyAgentModal />
+              <ClientOnly>
+                <BeMyAgentModal />
+              </ClientOnly>
             </div>{" "}
             <div className="w-full">
               {" "}
@@ -75,9 +78,11 @@ export default function AgentLandingPage() {
           </div>
         </div>
 
-        <div className="relative w-full aspect-[1728/597] bg-[url('/assets/images/agent-footer-mobile.svg')]  
+        <div
+          className="relative w-full aspect-[1728/597] bg-[url('/assets/images/agent-footer-mobile.svg')]  
          lg:bg-[url('/assets/images/agent-footer.svg')]  
-        bg-no-repeat bg-cover  items-start justify-center gap-5 mt-10 lg:mt-[150px] grid grid-cols-3 xl:px-14 2xl:px-24 gap-x-5 py-10 lg:py-0">
+        bg-no-repeat bg-cover  items-start justify-center gap-5 mt-10 lg:mt-[150px] grid grid-cols-3 xl:px-14 2xl:px-24 gap-x-5 py-10 lg:py-0"
+        >
           <div className="col-span-2 lg:col-span-1 relative w-full aspect-[543/579] lg:max-w-[543px] rounded-2xl overflow-hidden  left-[20px] lg:left-0 lg:bottom-[100px] max-w-[70%] ">
             <Image
               src={"/assets/images/agent-footer2.png"}

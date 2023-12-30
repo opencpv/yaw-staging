@@ -12,6 +12,7 @@ import { CustomDatePicker } from "@/app/components/CustomDatePicker";
 import Applicants from "../Applicants";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { PropertyDataType } from "../propertyDataType";
+import { ClientOnly } from "@/components/ui/ClientOnly";
 
 type Props = {
   ref: any;
@@ -105,7 +106,9 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
               }
             />
           </div>
-          <Applicants />
+          <ClientOnly>
+            <Applicants />
+          </ClientOnly>
         </div>
         {formType == "complex" && (
           <div className="mt-5 flex justify-start lg:justify-end w-full">

@@ -6,6 +6,7 @@ import { styled } from "@stitches/react";
 import CustomRadioInput from "@/app/components/CustomRadioInput";
 import { BeMyAgentFormType } from "./types";
 import { openSans } from "@/styles/font";
+import { ClientOnly } from "@/components/ui/ClientOnly";
 
 const FullNameAndRelationship = ({ index, city, neighbourhood }: any) => {
   const [agentFormData, setagentFormData] = useLocalStorage<any>("agent-form");
@@ -88,14 +89,17 @@ const Applicants = ({}) => {
         <div className={`${locationLength >= 1 ? "mt-5" : ""}`}>
           {Array.from({ length: locationLength }).map((_, index) => (
             <div key={index} className="mb-2">
-              <FullNameAndRelationship
-                key={index}
-                index={index}
-                city={agentFormData?.locationArray?.[index]?.city}
-                neighbourhood={
-                  agentFormData?.locationArray?.[index]?.neighbourhood
-                }
-              />
+              <ClientOnly>
+                {" "}
+                <FullNameAndRelationship
+                  key={index}
+                  index={index}
+                  city={agentFormData?.locationArray?.[index]?.city}
+                  neighbourhood={
+                    agentFormData?.locationArray?.[index]?.neighbourhood
+                  }
+                />
+              </ClientOnly>
               {locationLength > 1 && (
                 <button
                   type="button"

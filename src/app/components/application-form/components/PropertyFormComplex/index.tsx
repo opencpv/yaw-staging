@@ -1,39 +1,27 @@
 "use client";
 
 import { styled } from "@stitches/react";
-import {
-  ErrorMessage,
-  Field,
-  Form,
-  Formik,
-  FormikProps,
-  useFormik,
-} from "formik";
+import { Form, Formik, FormikProps } from "formik";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import { Progress } from "../Progress";
-import PersonalInformationForm from "../PropertyFormSimple/PersonalInformationForm1";
 import "swiper/css";
 import EmploymentInformationForm from "./EmploymentInformation";
 import ScreeningAndOtherDetailsForm from "./ScreeningAndOtherDetailsForm";
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { openSans } from "@/styles/font";
-import SwiperSlideControls from "../SwiperSliderControls";
 import React from "react";
 import ContactInformationForm from "./ContactInformation";
-import { SaveAndExit } from "./SaveAndExit";
 import PersonalInformationForm2 from "./PersonalInformationForm2";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import * as Yup from 'yup';
+import * as Yup from "yup";
 import { PropertyDataType } from "../propertyDataType";
-
+import { ClientOnly } from "@/components/ui/ClientOnly";
 
 type Props = {
-  setOpen:  React.Dispatch<React.SetStateAction<boolean>>
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-
-
-export default function PropertyFormComplex({setOpen}: Props) {
+export default function PropertyFormComplex({ setOpen }: Props) {
   const [activeIndex, setActiveIndex] = useState(1);
   const formRef = React.createRef<any>();
 
@@ -53,7 +41,8 @@ export default function PropertyFormComplex({setOpen}: Props) {
 
       <div className="flex justify-between items-center px-2">
         <div
-          className={`flex flex-row gap-5  overflow-x-scroll lg:overflow-x-hidden lg:flex-wrap  lg:pb:0`}>
+          className={`flex flex-row gap-5  overflow-x-scroll lg:overflow-x-hidden lg:flex-wrap  lg:pb:0`}
+        >
           <div className="feature">GHS 2/20000/month</div>
 
           <div className="feature">2 bedrroms</div>
@@ -68,12 +57,14 @@ export default function PropertyFormComplex({setOpen}: Props) {
             ...propertyData,
           }}
           validationSchema={validationSchema}
-          onSubmit={() => {}}>
+          onSubmit={() => {}}
+        >
           {(props: FormikProps<any>) => (
             <Form className="w-full">
               <Swiper spaceBetween={40}>
                 <div
-                  className={`flex gap-12 items-center overflow-x-scroll  w-full px-2 pl-6 mb-8 ${openSans.className}`}>
+                  className={`flex gap-12 items-center overflow-x-scroll  w-full px-2 pl-6 mb-8 ${openSans.className}`}
+                >
                   <Progress
                     number={1}
                     setActiveIndex={setActiveIndex}
@@ -106,29 +97,37 @@ export default function PropertyFormComplex({setOpen}: Props) {
                   />
                 </div>
                 <SwiperSlide>
-                  <PersonalInformationForm2
-                    formType="complex"
-                    ref={formRef}
-                    setActiveIndex={setActiveIndex}
-                  />
+                  <ClientOnly>
+                    <PersonalInformationForm2
+                      formType="complex"
+                      ref={formRef}
+                      setActiveIndex={setActiveIndex}
+                    />
+                  </ClientOnly>
                 </SwiperSlide>
                 <SwiperSlide>
-                  <ContactInformationForm
-                    ref={formRef}
-                    setActiveIndex={setActiveIndex}
-                  />
+                  <ClientOnly>
+                    <ContactInformationForm
+                      ref={formRef}
+                      setActiveIndex={setActiveIndex}
+                    />
+                  </ClientOnly>
                 </SwiperSlide>
                 <SwiperSlide>
-                  <EmploymentInformationForm
-                    ref={formRef}
-                    setActiveIndex={setActiveIndex}
-                  />
+                  <ClientOnly>
+                    <EmploymentInformationForm
+                      ref={formRef}
+                      setActiveIndex={setActiveIndex}
+                    />
+                  </ClientOnly>
                 </SwiperSlide>
                 <SwiperSlide>
-                  <ScreeningAndOtherDetailsForm
-                    ref={formRef}
-                    setActiveIndex={setActiveIndex}
-                  />
+                  <ClientOnly>
+                    <ScreeningAndOtherDetailsForm
+                      ref={formRef}
+                      setActiveIndex={setActiveIndex}
+                    />
+                  </ClientOnly>
                 </SwiperSlide>
               </Swiper>
             </Form>

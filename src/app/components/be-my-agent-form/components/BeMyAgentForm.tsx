@@ -16,19 +16,36 @@ import PersonalInformationForm2 from "./PersonalInformationForm2";
 import Image from "next/image";
 import Location from "./Location";
 import { openSans } from "@/styles/font";
+import { ClientOnly } from "@/components/ui/ClientOnly";
 
 const image = "/assets/images/agent-modal-image.jpeg";
 
 const views = [
-  <BestDescribes infoText key={"bes-describes"} />,
-  <PropertyInformation key={"property-information"} />,
+  <ClientOnly key={"bes-describes"}>
+    <BestDescribes infoText key={"bes-describes"} />
+  </ClientOnly>,
+  <ClientOnly key={"property-information"}>
+    <PropertyInformation key={"property-information"} />
+  </ClientOnly>,
   <Location key={"property-information"} />,
-  <Utilities key={"utitilities"} />,
-  <FeaturesAndAmenities key={"features"} />,
-  <PersonalInformationForm2 key={"personal-information"} />,
-  <ContactInformationForm key={"contact-informaiton"} />,
-  <EmploymentInformationForm key={"employment-information"} />,
-  <ScreeningAndOtherDetailsForm key={"screenign"} />,
+  <ClientOnly key={"utitilities"}>
+    <Utilities key={"utitilities"} />
+  </ClientOnly>,
+  <ClientOnly key={"features"}>
+    <FeaturesAndAmenities key={"features"} />
+  </ClientOnly>,
+  <ClientOnly key={"personal-information"}>
+    <PersonalInformationForm2 key={"personal-information"} />
+  </ClientOnly>,
+  <ClientOnly key={"contact-informaiton"}>
+    <ContactInformationForm key={"contact-informaiton"} />
+  </ClientOnly>,
+  <ClientOnly key={"employment-information"}>
+    <EmploymentInformationForm key={"employment-information"} />
+  </ClientOnly>,
+  <ClientOnly key={"screenign"}>
+    <ScreeningAndOtherDetailsForm key={"screenign"} />
+  </ClientOnly>,
 ];
 
 type Props = {
