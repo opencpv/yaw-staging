@@ -1,6 +1,7 @@
 import React from "react";
 import style from "../Messages.module.css";
 import { motion } from "framer-motion";
+import { MessageInterface } from "../../../../../interfaces";
 
 const MessageBubble2 = ({ content, time }: MessageInterface) => {
   const messageBubbleVariants = {

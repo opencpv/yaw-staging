@@ -8,6 +8,7 @@ import { useManagePropertiesStore } from "@/store/dashboard/propertiesStore";
 import Button from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
+import { PropertyStatusInterface } from "../../../../../interfaces";
 
 const ManagePropertiesSmallScreenView = () => {
   const filterOption = useManagePropertiesStore((state) => state.filterOption);

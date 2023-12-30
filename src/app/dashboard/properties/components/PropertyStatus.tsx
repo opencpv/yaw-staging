@@ -6,6 +6,7 @@ import { FaRegCheckCircle, FaRegTimesCircle } from "react-icons/fa";
 import Select from "../../components/Select";
 import Schedule from "node-schedule";
 import { useSelectDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import { PropertyStatusInterface } from "../../../../../interfaces";
 
 type Props = {
   isPaidFor: boolean;

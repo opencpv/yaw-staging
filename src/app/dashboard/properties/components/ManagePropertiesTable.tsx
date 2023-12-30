@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import PropertyRow from "./PropertyRow";
 import { useFetchTableWithPagination } from "@/lib/custom-hooks/useFetch";
@@ -6,6 +6,7 @@ import TableSkeleton from "../../components/shared/skeleton/TableSkeleton";
 import Spinner from "../../components/shared/Spinner";
 import { useManagePropertiesStore } from "@/store/dashboard/propertiesStore";
 import Pagination from "@/components/__shared/Pagination";
+import { PropertyStatusInterface } from "../../../../../interfaces";
 
 type Props = {};
 
@@ -73,9 +74,9 @@ const ManagePropertiesTable = (props: Props) => {
                 price={30000}
                 posted_on={property.created_at as string}
                 isPaidFor={property.is_paid_for as boolean}
-                status={
-                  (property.status as PropertyStatusInterface).toLowerCase()
-                }
+                status={(
+                  property.status as PropertyStatusInterface
+                ).toLowerCase()}
               />
             ))
           )}

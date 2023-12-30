@@ -5,7 +5,6 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import { Form, Formik } from "formik";
 import { useEffect, useRef, useState } from "react";
 import Progress from "./Progress";
-import { openSans } from "@/app/styles/font";
 import BestDescribes from "./BestDescribes";
 import PropertyInformation from "./PropertyRequirements";
 import Utilities from "./Utilities";
@@ -16,6 +15,7 @@ import ScreeningAndOtherDetailsForm from "./ScreeningAndOtherDetailsForm";
 import PersonalInformationForm2 from "./PersonalInformationForm2";
 import Image from "next/image";
 import Location from "./Location";
+import { openSans } from "@/styles/font";
 
 const image = "/assets/images/agent-modal-image.jpeg";
 
@@ -95,7 +95,8 @@ export default function BeMyAgentForm({ setOpen }: Props) {
   return (
     <Root
       className={`${openSans.className} max-h-[90vh]  flex flex-col justify-between`}
-      ref={leaseRef}>
+      ref={leaseRef}
+    >
       <div className="flex flex-col w-full h-full">
         <div className="flex flex-col gap-4">
           <p className="text-left w-full font-semibold">Be My Agent</p>
@@ -121,7 +122,8 @@ export default function BeMyAgentForm({ setOpen }: Props) {
                 initialValues={{
                   ...agentFormData,
                 }}
-                onSubmit={() => alert("sibm")}>
+                onSubmit={() => alert("sibm")}
+              >
                 <Form className="w-full">
                   <div>{views[activeSlide]}</div>
                 </Form>
@@ -135,19 +137,22 @@ export default function BeMyAgentForm({ setOpen }: Props) {
           hideLeft && hideRight
             ? "hidden"
             : "grid grid-cols-2 lg:flex lg:justify-end lg:items-center w-full gap-1 lg:px-7 py-7 border-t-[1px] border-t-[#C1C1C1] z-[3000] relative"
-        }`}>
+        }`}
+      >
         <NavigationButton
           className={` ${
             hideLeft && "hidden"
           } col-span-1  border-[1px] border-[#AD842A] font-semibold text-[#AD842A] rounded-lg`}
-          onClick={handleBack}>
+          onClick={handleBack}
+        >
           {firstSlide ? "Go back" : "Back"}
         </NavigationButton>
         <NavigationButton
           className={` ${
             hideRight && "hidden"
           } col-span-1 bg-[#DDB771]  text-white font-semibold rounded-lg`}
-          onClick={handleForward}>
+          onClick={handleForward}
+        >
           {firstSlide && "Next"}
           {!firstSlide && !lastSlide && "Continue"}
           {lastSlide && "Submit"}

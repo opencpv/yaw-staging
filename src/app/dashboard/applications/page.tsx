@@ -5,9 +5,8 @@ import ManageApplicationsTable from "./components/ManageApplicationsTable";
 import ManageApplicationsSmallScreen from "./components/ManageApplicationsSmallScreen";
 import { useApplicationsStore } from "@/store/dashboard/applicationsStore";
 
-
 const ApplicationsPage = () => {
-const fetchCount = useApplicationsStore((state) => state.fetchCount)
+  const fetchCount = useApplicationsStore((state) => state.fetchCount);
 
   const { images } = useAssets();
   return (
@@ -15,7 +14,10 @@ const fetchCount = useApplicationsStore((state) => state.fetchCount)
       <section className="mb-6">
         <h2 className="text-2xl font-[700] mb-2">Applications</h2>
         <small className="inline-block text-sm capitalize">
-          {fetchCount && `Showing ${fetchCount as number > 9 ? fetchCount : `0${fetchCount}`} Results`}
+          {fetchCount &&
+            `Showing ${
+              (fetchCount as number) > 9 ? fetchCount : `0${fetchCount}`
+            } Results`}
         </small>
       </section>
       {/* Table */}

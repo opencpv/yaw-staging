@@ -209,7 +209,7 @@ const PersonalInformationForm1 = React.forwardRef<HTMLInputElement, Props>(
                 })
               }
             />
-              <Applicants />
+            <Applicants />
           </div>
         </div>
       </Root>

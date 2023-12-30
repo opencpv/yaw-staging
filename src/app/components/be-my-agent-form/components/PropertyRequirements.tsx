@@ -69,7 +69,6 @@ export default function PropertyRequirements() {
                 </p>
 
                 <CustomCheckBoxes
-                
                   onChange={(value: any) =>
                     handleOnChange("rentAdvanceOptions", value)
                   }

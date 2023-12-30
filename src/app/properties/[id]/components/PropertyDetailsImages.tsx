@@ -5,6 +5,7 @@ import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { useDisclosure } from "@nextui-org/react";
 import Image from "next/image";
 import PropertyGalleryModal from "./PropertyGalleryModal";
+import { ListingInterface } from "../../../../../interfaces";
 
 type Props = {
   images: ListingInterface;

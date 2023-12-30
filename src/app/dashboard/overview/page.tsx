@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import RenterOverviewPage from "./components/overview/renter/RenterOverviewPage";
 import PropManagerOverviewPage from "./components/overview/p-manager/PropManagerOverviewPage";

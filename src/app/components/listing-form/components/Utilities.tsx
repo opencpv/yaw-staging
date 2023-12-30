@@ -11,20 +11,22 @@ import { useEffect, useState } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 
 const data = [
-  { name: "water", icon: <Water  /> },
+  { name: "water", icon: <Water /> },
   { name: "gas", icon: <MdOutlineLocalGasStation size="44" /> },
   { name: "electricity", icon: <Electricity /> },
-  { name: "satelite tv", icon: <SateliteTv  /> },
+  { name: "satelite tv", icon: <SateliteTv /> },
   { name: "internet", icon: <Internet /> },
 ];
 
 export default function Utilities() {
-
   const [selected, setSelected] = useState<any>([]);
 
-  const [listingFormData, setlistingFormData] = useLocalStorage("listing-form", {
-    utilities: [],
-  });
+  const [listingFormData, setlistingFormData] = useLocalStorage(
+    "listing-form",
+    {
+      utilities: [],
+    }
+  );
 
   const handleAmenityClick = (r: any) => {
     if (selected.includes(r?.name)) {
@@ -63,7 +65,8 @@ export default function Utilities() {
               <div
                 key={index}
                 className="col-span-2 lg:col-span-1"
-                onClick={() => handleAmenityClick(r)}>
+                onClick={() => handleAmenityClick(r)}
+              >
                 <Amenity
                   n={index}
                   name={r?.name}

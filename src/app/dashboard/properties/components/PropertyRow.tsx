@@ -11,6 +11,7 @@ import { useDaysDifference } from "@/lib/custom-hooks/useDaysDifference";
 import ButtonDelete from "@/components/__shared/ui/button/ButtonDelete";
 import DestructiveModal from "@/components/__shared/modals/DestructiveModal";
 import { useDisclosure } from "@nextui-org/react";
+import { ManagePropertiesInterface } from "../../../../../interfaces";
 
 const PropertyRow = ({
   isPaidFor,

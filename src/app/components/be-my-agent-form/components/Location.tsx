@@ -3,9 +3,9 @@ import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import React, { useEffect, useState } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { styled } from "@stitches/react";
-import { openSans } from "@/app/styles/font";
 import CustomRadioInput from "@/app/components/CustomRadioInput";
 import { BeMyAgentFormType } from "./types";
+import { openSans } from "@/styles/font";
 
 const FullNameAndRelationship = ({ index, city, neighbourhood }: any) => {
   const [agentFormData, setagentFormData] = useLocalStorage<any>("agent-form");
@@ -31,7 +31,8 @@ const FullNameAndRelationship = ({ index, city, neighbourhood }: any) => {
   return (
     <div className="flex flex-col lg:flex-row gap-3 w-full">
       <TFormDiv
-        className={`font-[400] ${openSans.className} text-[#6A6968] capitalize w-full`}>
+        className={`font-[400] ${openSans.className} text-[#6A6968] capitalize w-full`}
+      >
         <label htmlFor="">City</label>
         <input
           type="text"
@@ -43,7 +44,8 @@ const FullNameAndRelationship = ({ index, city, neighbourhood }: any) => {
       </TFormDiv>
 
       <TFormDiv
-        className={`font-[400] ${openSans.className} text-[#6A6968] capitalize w-full`}>
+        className={`font-[400] ${openSans.className} text-[#6A6968] capitalize w-full`}
+      >
         <label htmlFor="">Neighbourhood</label>
 
         <input
@@ -101,7 +103,8 @@ const Applicants = ({}) => {
                   onClick={() => {
                     handleRemove(index);
                     setlocationLength((init: any) => init - 1);
-                  }}>
+                  }}
+                >
                   Remove
                   <AiOutlineMinus size={20} />
                 </button>
@@ -109,19 +112,19 @@ const Applicants = ({}) => {
             </div>
           ))}
         </div>
-          <button
-            type="button"
-            className="font-normal text-[#AD842A] h-38 justify-start items-center text-13 flex gap-1 whitespace-nowrap  hover:bg-[#ad832a20] p-2 w-fit"
-            onClick={() => {
-              setlocationLength((init: any) => init + 1);
-            }}>
-            Add Additional Location
-            <div className="w-[20px]">
-              {" "}
-              <AiOutlinePlus size={20} className="w-[20px] aspect-square" />
-            </div>
-          </button>
-        
+        <button
+          type="button"
+          className="font-normal text-[#AD842A] h-38 justify-start items-center text-13 flex gap-1 whitespace-nowrap  hover:bg-[#ad832a20] p-2 w-fit"
+          onClick={() => {
+            setlocationLength((init: any) => init + 1);
+          }}
+        >
+          Add Additional Location
+          <div className="w-[20px]">
+            {" "}
+            <AiOutlinePlus size={20} className="w-[20px] aspect-square" />
+          </div>
+        </button>
       </div>
     </div>
   );

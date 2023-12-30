@@ -6,6 +6,7 @@ import AOSWrapper from "@/components/__shared/AOSWrapper";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { contentAccordionVariants } from "@/lib/animations";
+import { FeatureInterface } from "../../../../../interfaces";
 
 type Props = {
   features: FeatureInterface[];

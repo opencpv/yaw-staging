@@ -18,7 +18,8 @@ export default function Page() {
       <div className="w-full min-w-full">
         <div
           className="p-hero w-full flex items-center justify-center"
-          style={{}}>
+          style={{}}
+        >
           <div className="flex lg:flex-row flex-wrap flex-col gap-5 w-full items-center justify-center px-5">
             <ApplicationForm type="complex" />
             <ApplicationForm type="simple" />

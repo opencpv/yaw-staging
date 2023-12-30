@@ -13,7 +13,6 @@ import Applicants from "../Applicants";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { PropertyDataType } from "../propertyDataType";
 
-
 type Props = {
   ref: any;
   setActiveIndex: Dispatch<SetStateAction<number>>;
@@ -22,7 +21,8 @@ type Props = {
 
 const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
   ({ setActiveIndex, formType }, ref) => {
-    const [propertyData, setPropertyData] = useLocalStorage<PropertyDataType>("property1");
+    const [propertyData, setPropertyData] =
+      useLocalStorage<PropertyDataType>("property1");
 
     return (
       <Root className="p1 px-2">
@@ -82,7 +82,9 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
             />
             <SelectSearchInput
               data={LeaseData}
-              placeholder={`${propertyData?.leaseTerm} months` || "Enter lease term"}
+              placeholder={
+                `${propertyData?.leaseTerm} months` || "Enter lease term"
+              }
               label="Lease term"
               onChange={(value) => {
                 console.log(value);

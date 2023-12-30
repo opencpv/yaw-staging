@@ -26,6 +26,7 @@ import CaDashEye from "../../components/icons/CaDashEye";
 import CaDashChecked from "../../components/icons/CaDashChecked";
 import CaDashDelete from "../../components/icons/CaDashDelete";
 import CaDashEdit from "../../components/icons/CaDashEdit";
+import { ListingCardInterface } from "../../../../../interfaces";
 
 const ListingCard2 = (props: ListingCardInterface) => {
   const { icons } = useAssets();

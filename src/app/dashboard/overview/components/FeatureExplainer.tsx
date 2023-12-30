@@ -7,6 +7,7 @@ import Button from "@/components/__shared/ui/button/Button";
 import { useRouter } from "next/navigation";
 import { Router } from "lucide-react";
 import Link from "next/link";
+import { RenterPaidFeatureInterface } from "../../../../../interfaces";
 
 const FeatureExplainer = ({
   title,
@@ -38,7 +39,7 @@ const FeatureExplainer = ({
             </Link>
           )}
           {title === "Be My Agent" && (
-            <Link href={`${href}`} className="inline-block"> 
+            <Link href={`${href}`} className="inline-block">
               <Button
                 variant="ghost"
                 className="text-[#45808B] capitalize underline font-[700] text-base"

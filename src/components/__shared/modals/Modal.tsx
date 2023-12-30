@@ -25,12 +25,14 @@ const Modal = ({
   hideCloseButton,
   backgroundColor,
   backdrop,
-}: ModalProps) => {
+}: any) => {
   return (
     <>
       <NextUIModal
         classNames={{
-          base: `relative z-50 ${backgroundColor ? backgroundColor : null} ${size === "full" && "rounded-none h-[150vh]"}`,
+          base: `relative z-50 ${backgroundColor ? backgroundColor : null} ${
+            size === "full" && "rounded-none h-[150vh]"
+          }`,
           wrapper: `${size === "full" && "h-[100dvh]"}`,
         }}
         scrollBehavior="inside"
@@ -42,7 +44,6 @@ const Modal = ({
         backdrop={backdrop ? backdrop : undefined}
         onClose={onClose}
         onOpenChange={onOpenChange}
-        
         closeButton={
           closeButton ? (
             <div>{closeButton}</div>

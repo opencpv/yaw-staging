@@ -11,11 +11,11 @@ import { PiTelevision } from "react-icons/pi";
 import { GiCctvCamera, GiGasPump, GiPoolTableCorner } from "react-icons/gi";
 import { BiAlarmAdd } from "react-icons/bi";
 import { AiOutlineApartment } from "react-icons/ai";
-
+import { FeatureInterface } from "../../../../interfaces";
 
 type Props = {
-  label: FeatureInterface
-}
+  label: FeatureInterface;
+};
 
 const Feature = ({ label }: Props) => {
   if (label.toLowerCase() === "wifi")

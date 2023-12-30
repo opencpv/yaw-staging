@@ -14,6 +14,7 @@ import Image from "next/image";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import ListingInfo from "./ListingInfo";
 import ListingDeals from "./ListingDeals";
+import { ListingCardInterface } from "../../../../interfaces";
 
 const ListingCard = (props: ListingCardInterface) => {
   return (

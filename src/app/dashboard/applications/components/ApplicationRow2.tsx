@@ -12,6 +12,7 @@ import capitalizeName from "@/lib/utils/stringManipulation";
 import { useDisclosure } from "@nextui-org/react";
 import DestructiveModal from "@/components/__shared/modals/DestructiveModal";
 import ButtonDelete from "@/components/__shared/ui/button/ButtonDelete";
+import { ApplicationsInterface } from "../../../../../interfaces";
 
 const ApplicationRow2 = ({
   propertyImage,
@@ -93,8 +94,9 @@ const ApplicationRow2 = ({
               {formatDate(date)} {formatTime(date)}
             </h4>
             <small className="inline-block text-neutral-400 text-[0.6rem]">
-              {daysDifference < 1 ? `Less Than A Day Ago` : `${daysDifference} Days Ago`}
-
+              {daysDifference < 1
+                ? `Less Than A Day Ago`
+                : `${daysDifference} Days Ago`}
             </small>
           </div>
         </div>

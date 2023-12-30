@@ -32,7 +32,6 @@ const ProductStatus = ({ isAvailalbe, width, id }: Props) => {
         options={["available", "sold"]}
         value={value}
         handleSelectionChange={handleSelectionChange}
-        width={width}
       />
       {isAvailalbe ? (
         <div className="flex items-center justify-center gap-2 text-xs font-[600] mt-3">

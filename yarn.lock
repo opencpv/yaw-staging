@@ -6543,6 +6543,11 @@ set-function-name@^2.0.0:
     functions-have-names "^1.2.3"
     has-property-descriptors "^1.0.0"
 
+shai@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.npmjs.org/shai/-/shai-0.4.1.tgz"
+  integrity sha512-HW9Noc0DRcOFd+uUIkyH6ebjmbQm4/MkN3b/VjRzRhcMoAMRxoxZr5L769ERitC6duFMDskXOKhhCknn5cDdYw==
+
 sharp@^0.32.6:
   version "0.32.6"
   resolved "https://registry.npmjs.org/sharp/-/sharp-0.32.6.tgz"

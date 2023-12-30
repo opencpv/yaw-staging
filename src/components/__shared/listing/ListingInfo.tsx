@@ -4,6 +4,7 @@ import { FaRegStar, FaStar } from "react-icons/fa";
 import { HiOutlineHomeModern } from "react-icons/hi2";
 import Link from "next/link";
 import { formatPrice } from "@/lib/utils/numberManipulation";
+import { ListingCardInterface } from "../../../../interfaces";
 
 const ListingInfo = (props: ListingCardInterface) => {
   return (

@@ -2,6 +2,7 @@ import Tooltip from "@/components/ui/Tooltip";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import React from "react";
+import { ListingCardInterface } from "../../../../interfaces";
 
 const ListingDeals = (props: ListingCardInterface) => {
   const { icons } = useAssets();
