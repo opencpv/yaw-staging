@@ -1,7 +1,6 @@
 import Navbar from "@/components/__shared/Navbar";
 import Image from "next/image";
 import React from "react";
-import listings from "@/enum/demodb/listings";
 import TagsSelect from "./components/TagsSelect";
 import Footer from "@/components/__shared/footer/Footer";
 import FixedSocials from "@/components/FixedSocials";
