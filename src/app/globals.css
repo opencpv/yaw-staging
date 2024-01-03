@@ -92,7 +92,8 @@ small {
 }
 
 .skeleton-flex {
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
   overflow-x: hidden;
   gap: 1.25rem;
 }

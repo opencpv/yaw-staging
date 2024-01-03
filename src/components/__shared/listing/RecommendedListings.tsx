@@ -40,8 +40,8 @@ const RecommendedListings = ({ className }: Props) => {
         isLoading={isLoading}
         isValidating={isValidating}
         isLoadingComponent={
-          <div className="skeleton-flex">
-            <SkeletonListing count={5} />
+          <div className="skeleton-flex w-full">
+            <SkeletonListing count={5} childrenClassName="w-52" />
           </div>
         }
         errorComponent={<FetchErrorMessage />}

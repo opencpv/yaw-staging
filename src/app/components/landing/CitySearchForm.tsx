@@ -54,13 +54,13 @@ const CitySearchForm = ({className}: {className?: string;}) => {
           placeholder="Madina, Accra"
         /> */}
         <input
-          className="h-full w-full flex-[4] rounded-l-xl rounded-r-none bg-secondary-300 px-6 py-3 text-[0.9rem] font-[600] text-neutral-900 placeholder:text-neutral-400 focus:outline-none xs:flex-[5] xs:text-2xl"
+          className="h-full w-full flex-[4] rounded-l-xl rounded-r-none bg-secondary-300 px-6 py-3 font-[600] text-neutral-900 placeholder:text-neutral-400 focus:outline-none xs:flex-[5] xs:text-2xl"
           placeholder="Madina, Accra"
         />
 
         <button
           type="submit"
-          className="grid h-full w-16 place-items-center rounded-l-none rounded-r-xl border-y border-r border-secondary-300 bg-accent-50 flex-1"
+          className="grid flex-1 w-16 h-full border-r rounded-l-none place-items-center rounded-r-xl border-y border-secondary-300 bg-accent-50"
         >
           <FaSearch />
         </button>

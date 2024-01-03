@@ -6,6 +6,7 @@ import Footer from "@/components/__shared/footer/Footer";
 import FixedSocials from "@/components/FixedSocials";
 import ScrollTop from "@/components/__shared/ScrollTop";
 import PropertiesListing from "./components/PropertiesListing";
+import SearchCity from "./components/SearchCity";
 
 const page = () => {
   return (
@@ -20,14 +21,8 @@ const page = () => {
         />
       </div>
       {/* Search */}
-      <section className="mb-32 px-5">
-        <div className="relative w-full px-4 py-10 mx-auto bg-white shadow-xl xs:px-12 bottom-20 rounded-xl lg:w-10/12">
-          <input
-            type="search"
-            className="border block shadow-xl text-neutral-800 border-[#21A19F] rounded-xl w-full py-6 p-4 sm:pl-12 mx-auto uppercase lg:w-10/12"
-            placeholder="Madina, Accra"
-          />
-        </div>
+      <section className="mb-20 px-5">
+        <SearchCity />
         <div className="w-full mx-auto text-neutral-500">
           <TagsSelect />
         </div>
