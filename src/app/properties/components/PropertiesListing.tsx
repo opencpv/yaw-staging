@@ -28,7 +28,7 @@ const PropertiesListing = (props: Props) => {
   return (
     <>
       {/* Listing */}
-      <section className="justify-center mx-auto mb-10 space-y-5 gap-x-3 gap-y-10 transition-all sm:space-y-0 sm:grid" style={{gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))"}}>
+      <section className="justify-center mx-auto mb-10 space-y-5 transition-all gap-x-3 gap-y-10 sm:space-y-0 sm:grid" style={{gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))"}}>
         <FetchingStates
           data={listings}
           error={error}
@@ -37,7 +37,7 @@ const PropertiesListing = (props: Props) => {
           isLoadingComponent={<SkeletonListing count={3} />}
           errorComponent={<FetchErrorMessage specificData="properties" />}
           noDataMessageComponent={
-            <p className="italic mt-4 text-center">
+            <p className="mt-4 italic text-center">
               There are no properties yet.
             </p>
           }

@@ -45,13 +45,15 @@ const PropertyDetailsImages = (props: Props) => {
           ))}
         </div>
         {/* Slider */}
-        <div className="w-full cursor-pointer h-fit lg:hidden" onClick={onOpen}>
+        <div className="w-full cursor-pointer h-fit lg:hidden">
           <SliderWide
             pagination
             navigation
+            onClick={onOpen}
             images={[1, 2, 3, 4, 5].map((image) => ({
               src: "/assets/images/Stock.jpg",
               name: "",
+              href: ""
             }))}
           />
         </div>

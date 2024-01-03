@@ -37,7 +37,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="overflow-x-hidden">
+      <main className="overflow-x-hidden bg-[#F1F1F1]">
         <HomeLandingPage />
         {/* Promotion */}
         <HomePromotionSection />

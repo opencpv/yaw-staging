@@ -133,6 +133,7 @@ const FeaturedListingAndAds = (props: Props) => {
       {/* Ads */}
       <section className="w-full h-fit lg:hidden">
         <SliderWide
+          autoplay
           pagination
           navigation
           images={[1, 2, 3, 4, 5].map((image) => ({

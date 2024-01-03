@@ -30,7 +30,7 @@ const OptionFilterTabs = ({
         classNames={{
           base: "bg-transparent transition-all",
           tabList: [
-            variant === "gradient" ? "gap-x-16" : null,
+            variant === "gradient" ? "gap-x-8" : null,
             "justify-center",
             "flex-col sm:flex-row",
             "sm:flex-wrap",

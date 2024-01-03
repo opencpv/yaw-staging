@@ -68,7 +68,7 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
         isLoadingComponent={
           <div className="">
             <SkeletonLong
-              className={`${style.shapeLeft2} rounded-none h-[40rem] w-full mb-20`}
+              className={`${style.shapeLeft2} rounded-none h-[50rem] w-full mb-20`}
             />
             <div className="section gap-x-20 gap-y-10 lg:grid lg:grid-cols-2">
               {/* grid col */}
@@ -124,7 +124,6 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
                     propertyName: `${listing?.property_name} at ${listing?.city}`,
                   }}
                 />
-
                 {/* Grid col */}
                 <div className="">
                   <section className="">
