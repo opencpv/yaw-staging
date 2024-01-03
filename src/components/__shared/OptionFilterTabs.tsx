@@ -32,12 +32,13 @@ const OptionFilterTabs = ({
           tabList: [
             variant === "gradient" ? "gap-x-16" : null,
             "justify-center",
-            "flex-wrap",
-             "xl:flex-nowrap"
+            "flex-col sm:flex-row",
+            "sm:flex-wrap",
+            "xl:flex-nowrap"
           ],
           tab: [
             variant === "gradient" ? null : "bg-slate-100",
-            variant === "gradient" ? "px-2 data-[selected=true]:px-12 h-10" : "px-4",
+            variant === "gradient" ? "px-12 h-10" : "px-4",
             "min-w-fit",
             "max-w-fit",
             variant === "gradient"
