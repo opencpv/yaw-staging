@@ -40,16 +40,18 @@ export default function Home() {
       <main className="overflow-x-hidden bg-[#F1F1F1]">
         <HomeLandingPage />
         {/* Promotion */}
-        <HomePromotionSection />
-        {/* Featured Listings and Ads */}
-        <FeaturedListingAndAds />
-        {/* Apartment Rentals */}
-        <HomeRentalDealsSection />
-        {/* Manage Your Properties With Us */}
-        <HomeManagePropertiesSection />
-        {/* Find Apartments in Popular Cities */}
-        <HomePopularCities />
-        <SurveyToast />
+        <div className="section-2">
+          <HomePromotionSection />
+          {/* Featured Listings and Ads */}
+          <FeaturedListingAndAds />
+          {/* Apartment Rentals */}
+          <HomeRentalDealsSection />
+          {/* Manage Your Properties With Us */}
+          <HomeManagePropertiesSection />
+          {/* Find Apartments in Popular Cities */}
+          <HomePopularCities />
+          <SurveyToast />
+        </div>
       </main>
       <ScrollTopAndSocial />
       <Footer />
