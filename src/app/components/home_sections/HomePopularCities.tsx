@@ -28,7 +28,7 @@ const HomePopularCities = () => {
     <section
       className={`${
         cities && cities?.length < 1 && "hidden"
-      } px-5 mx-auto space-y-5 max-w-screen-2xl xs:px-5`}
+      } space-y-5`}
     >
       <div className="w-full space-y-5 min-[810px]:w-7/12">
         <div className="flex items-start gap-5">

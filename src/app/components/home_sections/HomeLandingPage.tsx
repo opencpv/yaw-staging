@@ -26,7 +26,7 @@ const HomeLandingPage = (props: Props) => {
           </AOSWrapper>
           <AOSWrapper animation="fade-left" duration="2000">
             <h4 className="font-[500]">
-              Affordable houses and rooms without the stress
+              Genuine Listings without the stress
             </h4>
           </AOSWrapper>
         </div>

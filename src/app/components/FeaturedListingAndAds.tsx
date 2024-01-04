@@ -37,7 +37,7 @@ const FeaturedListingAndAds = (props: Props) => {
   );
 
   return (
-    <section className="px-5 mx-auto mb-12 max-w-screen-2xl xs:px-5">
+    <section className="mb-12">
       <h2 className="mb-5 text-neutral-900">Featured Listings</h2>
       {/* Listing cards */}
       <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-8 lg:items-start">

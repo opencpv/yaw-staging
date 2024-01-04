@@ -8,7 +8,7 @@ type Props = {};
 
 const HomeRentalDealsSection = (props: Props) => {
   return (
-    <section className="px-5 mx-auto mb-16 space-y-8 max-w-screen-2xl xs:px-5 md:space-y-14">
+    <section className="mb-16 space-y-8 md:space-y-14">
       <div className="w-full space-y-3.5 min-[810px]:w-7/12">
         <div className="flex items-start gap-5">
           <h2 className="font-[500] capitalize w-fit text-neutral-900">
