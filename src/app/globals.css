@@ -80,7 +80,7 @@ small {
 }
 
 .section {
-  @apply pt-16 sm:pt-28
+  @apply pt-28
 }
 
 .shape-3 {

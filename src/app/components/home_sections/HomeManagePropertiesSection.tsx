@@ -6,7 +6,7 @@ type Props = {};
 
 const HomeManagePropertiesSection = (props: Props) => {
   return (
-    <section className="mb-20 space-y-8 md:space-y-1">
+    <section className="section space-y-8 md:space-y-1">
       <div className="w-full space-y-3.5 mb-14 min-[810px]:w-7/12">
         <div className="flex gap-5 items-start">
           <h2 className="font-[500] w-fit capitalize text-neutral-900">
