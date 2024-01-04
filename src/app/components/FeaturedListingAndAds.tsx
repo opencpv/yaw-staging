@@ -37,7 +37,7 @@ const FeaturedListingAndAds = (props: Props) => {
   );
 
   return (
-    <section className="">
+    <section className="section">
       <h2 className="mb-5 text-neutral-900">Featured Listings</h2>
       {/* Listing cards */}
       <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-8 lg:items-start">
@@ -128,10 +128,9 @@ const FeaturedListingAndAds = (props: Props) => {
         href="/properties"
         text="Show all"
         color="#202457"
-        className="mb-16"
       />
-      {/* Ads */}
-      <section className="w-full h-fit lg:hidden">
+      {/* Ads  mobile*/}
+      <section className="section w-full h-fit lg:hidden">
         <SliderWide
           autoplay
           pagination
