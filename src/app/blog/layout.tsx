@@ -14,7 +14,7 @@ const layout = ({ children }: Props) => {
     <>
       <Navbar />
       {children}
-      <div className="section">
+      <div className="wrapper">
         <FeaturedListings className="mb-20" />
       </div>
       <div>

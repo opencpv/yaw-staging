@@ -12,7 +12,7 @@ type Props = {};
 const page = (props: Props) => {
 
   return (
-    <main className="pb-20 mt-10 section">
+    <main className="pb-20 mt-10 wrapper">
       <div className="relative w-full mb-16 h-fit">
         <SliderWide
           pagination

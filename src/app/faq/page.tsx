@@ -23,7 +23,7 @@ const FAQ = () => {
         <title>FAQ - RentRightGh</title>
       </Head>
       <Navbar />
-      <main className="relative section">
+      <main className="relative wrapper">
         <FaqHeader />
         {/* <BreadCrumb link="FAQ" /> */}
         <FaqHowToSwitch />
