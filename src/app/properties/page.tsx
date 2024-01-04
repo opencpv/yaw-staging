@@ -27,7 +27,7 @@ const page = () => {
           <TagsSelect />
         </div>
       </section>
-      <main className="overflow-x-hidden section">
+      <main className="overflow-x-hidden wrapper">
         <PropertiesListing />
       </main>
       <FixedSocials />

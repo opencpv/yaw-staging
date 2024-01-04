@@ -37,7 +37,7 @@ const FeaturedListingAndAds = (props: Props) => {
   );
 
   return (
-    <section className="mb-12">
+    <section className="">
       <h2 className="mb-5 text-neutral-900">Featured Listings</h2>
       {/* Listing cards */}
       <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-8 lg:items-start">
@@ -137,7 +137,7 @@ const FeaturedListingAndAds = (props: Props) => {
           pagination
           navigation
           images={[1, 2, 3, 4, 5].map((image) => ({
-            src: "/assets/images/niceHome.png",
+            src: "/assets/images/home/promotion-1.jpg",
             name: "",
           }))}
         />

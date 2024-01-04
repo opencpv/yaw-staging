@@ -30,7 +30,7 @@ const MovingSalesPage = () => {
         onOpenChange={onOpenChange}
         onClose={onClose}
       />
-      <main className="mt-10 overflow-x-hidden section text-neutral-600">
+      <main className="wrapper mt-10 overflow-x-hidden text-neutral-600">
         {/* Banner */}
         <section className="relative w-full mb-20 text-white h-60 sm:h-96">
           <SliderWide

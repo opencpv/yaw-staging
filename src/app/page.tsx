@@ -40,7 +40,7 @@ export default function Home() {
       <main className="overflow-x-hidden bg-[#F1F1F1]">
         <HomeLandingPage />
         {/* Promotion */}
-        <div className="section-2">
+        <div className="wrapper-2">
           <HomePromotionSection />
           {/* Featured Listings and Ads */}
           <FeaturedListingAndAds />

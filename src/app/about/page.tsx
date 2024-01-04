@@ -27,7 +27,7 @@ const About = async () => {
       </Head>
       <Navbar />
       <main className="pt-10 overflow-x-hidden">
-        <div className="flex items-center justify-center mx-auto mb-10 section">
+        <div className="flex items-center justify-center mx-auto mb-10 wrapper">
           <div className="grid items-center lg:grid-cols-2 gap-x-36 gap-y-5">
             <h1 className="font-[700] text-2xl sm:text-4xl text-[#305A61] leading-normal">
               {heading1}
@@ -55,7 +55,7 @@ const About = async () => {
             />
           </div>
         </AOSWrapper>
-        <AOSWrapper animation="fade-up"  className="flex items-center justify-center pb-10 mx-auto min-h-max section">
+        <AOSWrapper animation="fade-up"  className="flex items-center justify-center pb-10 mx-auto min-h-max wrapper">
           <div className="min-h-max">
             {aboutDescription.map((data: any, index: number) => (
               <AboutItem key={index} index={index + 1} data={data} />
@@ -83,11 +83,11 @@ const About = async () => {
           {/* <AboutBanner data={bannerData} /> */}
           <SimpleSlider />
         </AOSWrapper>
-        <AOSWrapper animation="fade-up"  className="pb-20 h-fit section">
+        <AOSWrapper animation="fade-up"  className="pb-20 h-fit wrapper">
           <VerticalSlider />
           {/* <div className="absolute top-0 left-0 z-10 w-[87%] h-full bg-transparent xl:hidden"></div> */}
         </AOSWrapper>
-        <FeaturedListings className="py-10 section" />
+        <FeaturedListings className="py-10 wrapper" />
       </main>
       <Footer />
     </>

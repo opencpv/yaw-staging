@@ -79,17 +79,8 @@ small {
   @apply relative before:absolute before:inset-0 before:z-10 before:bg-gradient-to-b before:from-primary-500/60 before:to-primary-500/50 before:w-full before:h-full before:rounded-2xl;
 }
 
-.section, .section-2 {
-  max-width: 1536px;
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-  @apply pb-8 sm:pb-14;
-}
-
-.section-2 {
-  @apply px-5 sm:px-5
+.section {
+  @apply pt-16 sm:pt-28
 }
 
 .shape-3 {
@@ -119,30 +110,37 @@ small {
   min-width: 22rem;
 }
 
+.wrapper, .wrapper-2 {
+  max-width: 1536px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  @apply pb-8 sm:pb-14;
+}
+
+.wrapper-2 {
+  @apply px-5 sm:px-5
+}
+
 @media (min-width: 640px) {
   .skeleton-flex {
     width: 22rem;
     min-width: 22rem;
   }
-}
-
-@media (min-width: 640px) {
   .skeleton-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .wrapper {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
   }
 }
 
 @media (min-width: 1024px) {
   .skeleton-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 640px) {
-  .section {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
   }
 }
 
@@ -169,10 +167,7 @@ small {
   .lg-hidden-scrollbar::-webkit-scrollbar {
     display: none;
   }
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
-@media screen and (min-width: 1024px) {
+  /* Hide scrollbar for IE, Edge and Firefox */
   .lg-hidden-scrollbar {
     -ms-overflow-style: none;
     /* IE and Edge */
