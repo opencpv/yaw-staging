@@ -1,0 +1,39 @@
+.shapeLeft {
+    clip-path: polygon(0% 0%, 0% 81%, 38% 81%, 59% 100%, 100% 100%, 100% 0);
+}
+
+.shapeLeft2 {
+    clip-path: polygon(0% 0%, 0% 81%, 38% 81%, 59% 100%, 100% 100%, 100% 0);
+}
+
+.shapeRight {
+    clip-path: polygon(0% 0%, 0 100%, 41% 100%, 62% 81%, 100% 81%, 100% 0);
+}
+
+.shapeRight2 {
+    clip-path: polygon(0% 0%, 0 100%, 41% 100%, 62% 81%, 100% 81%, 100% 0);
+}
+
+.rectangle {
+    clip-path: polygon(0 0, 72% 0, 100% 100%, 0% 100%);
+}
+
+
+
+/* MEDIA QUERIES */
+
+@media (max-width: 560px) {
+    .shapeLeft {
+        clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%);
+    }
+
+    .shapeRight {
+        clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%);
+    }
+}
+
+@media (max-width: 640px) {
+    .rectangle {
+        clip-path: polygon(0 0, 90% 0, 100% 100%, 0% 100%);
+    }
+}

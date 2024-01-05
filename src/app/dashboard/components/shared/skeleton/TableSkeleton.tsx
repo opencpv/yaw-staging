@@ -10,7 +10,7 @@ const TableSkeleton = ({ rows, columns }: Props) => {
   let rowsArray = Array.from({ length: rows }, (_, idx) => idx + 1);
   let columnsArray = Array.from({ length: columns }, (_, idx) => idx + 1);
 
-  return rowsArray.map((row, idx) => (
+  return rowsArray.map((_, idx) => (
     <tr key={idx + 1} className="border border-t-0 h-fit">
       {columnsArray.map((column, idx) =>
         column % 2 === 0 ? (

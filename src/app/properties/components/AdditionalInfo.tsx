@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 
 type Props = {
@@ -7,11 +8,9 @@ type Props = {
 
 const AdditionalInfo = ({ children, className }: Props) => {
   return (
-    <>
-      <div className="w-full p-5 mt-2 font-[500] text-sm border rounded-xl text-neutral-800">
-        {children}
-      </div>
-    </>
+    <div className="w-full p-5 mt-2 font-[500] border rounded-xl text-neutral-800">
+      {children}
+    </div>
   );
 };
 

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import supabase from "@/lib/utils/supabaseClient";
 import { ListingForm } from "../types";
 import { submitImage } from "./image";

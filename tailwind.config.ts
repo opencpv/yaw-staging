@@ -18,11 +18,15 @@ const config: Config = {
         "plane-pattern": "url('/assets/images/13783 1.png')",
         "terms-bg": "url('/assets/images/terms-bg.png')",
         "about-bg": "url('/assets/images/about-bg.png')",
+        "my-search-bg": "url('/assets/images/my-search-bg.png')",
       },
       colors: {
         modalOverlay: "#02020275",
         darkGreenBg: "#073B3A ",
         primary: {
+          50: "#B0E3C9",
+          100: "#93B5BC",
+          200: "#45808B",
           300: "#E6F6EE",
           400: "#396261",
           500: "#073B3A",
@@ -39,6 +43,7 @@ const config: Config = {
         accent: {
           50: "#DDB771",
           100: "#F1B346",
+          200: "#AD842A",
           400: "#F5C771",
         },
         warning: {
@@ -59,6 +64,7 @@ const config: Config = {
       },
       gridTemplateColumns: {
         "autofit-listing-card": "repeat(auto-fit, minmax(380px, 1fr))",
+        "autofit-ad-card": "repeat(1, minmax(200px, 1fr))",
       },
       fontSize: {
         "20": "1.25rem",

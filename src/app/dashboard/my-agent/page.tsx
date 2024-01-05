@@ -11,6 +11,7 @@ import NoMatchesYet from "./components/NoMatches";
 import MatchesYet from "./components/Matches";
 import BeMyAgentModal from "@/app/components/be-my-agent-form";
 import Agent from "./components/Agent";
+import { ClientOnly } from "@/components/ui/ClientOnly";
 
 export default function Page() {
   const [beAgent, setBeAgent] = useState(false);
@@ -19,7 +20,8 @@ export default function Page() {
     <div className="flex justify-center items-center flex-col gap-8 max-w-[1728px]">
       <div
         className={`flex flex-col justify-center  w-full items-start bg-[#FEFEFE] p-[1.88rem]  ${styles.be_my_agent_row}
-  `}>
+  `}
+      >
         <p className="text-[1.25rem] lg:text-[1.9375rem] font-semibold">
           Be My Agent
         </p>
@@ -28,7 +30,9 @@ export default function Page() {
             <p className="text-[1.25rem] whitespace-nowrap">Starting From</p>
             <AgentButtons variant="price" content="GHS 250.00" />
           </div>
+          <ClientOnly>
             <BeMyAgentModal />
+          </ClientOnly>{" "}
         </div>
       </div>
       {beAgent && <AgentLandingPage />}

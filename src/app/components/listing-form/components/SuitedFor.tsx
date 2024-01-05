@@ -8,7 +8,7 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import { useEffect, useState } from "react";
 import Amenity from "./Amenity";
 import InfoText from "./InfoText";
-import styles from './index.module.css'
+import styles from "./index.module.css";
 
 const data = [
   { name: "students", icon: <PiStudentDuotone size="44" /> },
@@ -18,9 +18,12 @@ const data = [
 
 export default function SuitedFor() {
   const [selected, setSelected] = useState<any>([]);
-  const [listingFormData, setlistingFormData] = useLocalStorage("listing-form", {
-    suitedFor: [],
-  });
+  const [listingFormData, setlistingFormData] = useLocalStorage(
+    "listing-form",
+    {
+      suitedFor: [],
+    }
+  );
 
   const handleOptionsClick = (r: any) => {
     if (selected?.includes(r?.name)) {
@@ -55,12 +58,14 @@ export default function SuitedFor() {
           <InfoText content="You may select more than one response" />
           <div
             className="grid grid-cols-4 w-full
-            gap-y-5 gap-x-5">
+            gap-y-5 gap-x-5"
+          >
             {data.map((r: any, index: number) => (
               <div
                 key={index}
                 className="col-span-2 lg:col-span-1"
-                onClick={() => handleOptionsClick(r)}>
+                onClick={() => handleOptionsClick(r)}
+              >
                 <Amenity
                   n={index}
                   name={r?.name}

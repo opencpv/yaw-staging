@@ -1,16 +1,20 @@
-//@ts-nocheck
-
-import React, { useState } from "react";
+"use client";
+import React from "react";
 import PropertyRow from "./PropertyRow";
 import { useFetchTableWithPagination } from "@/lib/custom-hooks/useFetch";
 import TableSkeleton from "../../components/shared/skeleton/TableSkeleton";
 import Spinner from "../../components/shared/Spinner";
 import { useManagePropertiesStore } from "@/store/dashboard/propertiesStore";
+import Pagination from "@/components/__shared/Pagination";
+import { PropertyStatusInterface } from "../../../../../interfaces";
 
 type Props = {};
 
 const ManagePropertiesTable = (props: Props) => {
+  let pageSize = 5;
+
   const filterOption = useManagePropertiesStore((state) => state.filterOption);
+  const setCount = useManagePropertiesStore((state) => state.setFetchCount);
 
   const {
     currentPage,
@@ -19,9 +23,10 @@ const ManagePropertiesTable = (props: Props) => {
     error,
     isLoading,
     isValidating,
+    totalCount,
   } = useFetchTableWithPagination({
     tableName: "property",
-    pageSize: 5,
+    pageSize,
     order: { column: "created_at", ascending: false },
     select: "id, created_at, status, is_paid_for",
     revalidateOnFocus: false,
@@ -30,10 +35,12 @@ const ManagePropertiesTable = (props: Props) => {
     }),
   });
 
+  setCount(totalCount);
+
   return (
     <section className="hidden lg:table">
       {error && <p>Error: {error.message}</p>}
-      <table className=" w-full mb-14 table-fixed">
+      <table className="w-full mb-8 table-fixed">
         <thead className="text-white bg-primary-400">
           <tr className="">
             <th className="p-3 text-center font-[500] capitalize text-sm">
@@ -51,8 +58,8 @@ const ManagePropertiesTable = (props: Props) => {
           </tr>
         </thead>
         <tbody>
-          {currentPage?.length === 0 && (
-            <tr className="italic mt-4">
+          {isValidating === false && !error && currentPage?.length === 0 && (
+            <tr className="mt-4 italic">
               <td>There are no properties in this category</td>
             </tr>
           )}
@@ -67,42 +74,27 @@ const ManagePropertiesTable = (props: Props) => {
                 price={30000}
                 posted_on={property.created_at as string}
                 isPaidFor={property.is_paid_for as boolean}
-                status={
-                  property.status.toLowerCase() as PropertyStatusInterface
-                }
+                status={(
+                  property.status as PropertyStatusInterface
+                ).toLowerCase()}
               />
             ))
           )}
         </tbody>
       </table>
       {isValidating ? <Spinner color="default" /> : null}
-      <div className="flex gap-2 items-center mb-20">
-        <button
-          className={`${
-            previousPage === null
-              ? "bg-neutral-300 text-neutral-600 cursor-not-allowed"
-              : "bg-accent-50 text-white"
-          } rounded-xl font-[600] p-2 px-5`}
-          disabled={previousPage === null ? true : false}
-          onClick={() => {
+      <div className="mb-20">
+        <Pagination
+          total={totalCount ? totalCount / pageSize : 1}
+          handlePrev={() => {
             if (previousPage) previousPage();
           }}
-        >
-          Previous
-        </button>
-        <button
-          className={`${
-            nextPage === null
-              ? "bg-neutral-300 text-neutral-600 cursor-not-allowed"
-              : "bg-accent-50 text-white"
-          } rounded-xl font-[600] p-2 px-5`}
-          disabled={nextPage === null ? true : false}
-          onClick={() => {
+          handleNext={() => {
             if (nextPage) nextPage();
           }}
-        >
-          Next
-        </button>
+          nextDisabled={nextPage === null ? true : false}
+          prevDisabled={previousPage === null ? true : false}
+        />
       </div>
     </section>
   );

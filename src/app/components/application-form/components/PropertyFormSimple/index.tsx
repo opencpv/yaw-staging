@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use client";
 
 import { keyframes, styled } from "@stitches/react";
@@ -6,7 +7,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import PersonalInformationForm1 from "./PersonalInformationForm1";
 import { Progress } from "../Progress";
-import { openSans } from "@/app/styles/font";
+import { openSans } from "@/styles/font";
 import { ExpandCircle, ExpandCircleFromBottom } from "@/lib/animations";
 import { GreyAnimation } from "../GreyAnimation";
 import { useLocalStorage } from "@uidotdev/usehooks";
@@ -16,6 +17,7 @@ import * as Yup from "yup";
 import supabase from "@/lib/utils/supabaseClient";
 import { useEffect, useState } from "react";
 import Loader from "@/components/__shared/loader/Loader";
+import { ClientOnly } from "@/components/ui/ClientOnly";
 
 type Props = {
   animation: boolean;
@@ -47,10 +49,9 @@ export default function PropertyFormSimple({
       setOpen(false);
     }
   }, [loading]);
-  const Adams = "c8efbc31-b932-4536-87a5-816303bd5011"  
-  const Akowuah = "5f297aa7-18f5-42ff-9270-8ba8061cae95"
-  const me = "d7caa3c8-e767-4d24-ab5d-44699d8a41ab"
-
+  const Adams = "c8efbc31-b932-4536-87a5-816303bd5011";
+  const Akowuah = "5f297aa7-18f5-42ff-9270-8ba8061cae95";
+  const me = "d7caa3c8-e767-4d24-ab5d-44699d8a41ab";
 
   async function handleSubmit() {
     try {
@@ -86,12 +87,14 @@ export default function PropertyFormSimple({
     try {
       const { data, error } = await supabase
         .from("notifications")
-        .insert([{
-          sender_id : Adams,
-          type:"contact",
-          message: "User has just submitted a property form",
-          receiver_id : me
-        }])
+        .insert([
+          {
+            sender_id: Adams,
+            type: "contact",
+            message: "User has just submitted a property form",
+            receiver_id: me,
+          },
+        ])
         .select();
     } catch (err) {
       console.log(err);
@@ -109,7 +112,8 @@ export default function PropertyFormSimple({
       </div>
 
       <div
-        className={`flex flex-row gap-5  overflow-x-scroll lg:overflow-x-hidden lg:flex-wrap pb-1 lg:pb:0`}>
+        className={`flex flex-row gap-5  overflow-x-scroll lg:overflow-x-hidden lg:flex-wrap pb-1 lg:pb:0`}
+      >
         <div className="feature">GHS 2,2000.00 / Month</div>
 
         <div className="feature">2 Bedrooms</div>
@@ -126,14 +130,15 @@ export default function PropertyFormSimple({
           onSubmit={(values, formikProps) => {
             // formikProps.validateForm()
             setLoading(true);
-            handleSubmit()
-            .then(()=> notify())
-
+            handleSubmit().then(() => notify());
           }}
-          validationSchema={validationSchema}>
+          validationSchema={validationSchema}
+        >
           {({ errors, touched }) => (
             <Form>
-              <PersonalInformationForm1 formType="simple" />
+              <ClientOnly>
+                <PersonalInformationForm1 formType="simple" />
+              </ClientOnly>
 
               <div className="mt-10 lg:mt-5 flex justify-start lg:justify-end w-full gap-5">
                 <div className="flex gap-5 flex-col lg:flex-row font-semibold">
@@ -142,7 +147,8 @@ export default function PropertyFormSimple({
                     className="w-[224.5px]  h-max max-h-[52px] aspect-[224/52]
                       border-[1px] 
                       border-[#AD842A] flex justify-center items-center text-[#AD842A]
-                      rounded-lg hover:bg-slate-100">
+                      rounded-lg hover:bg-slate-100"
+                  >
                     Cancel
                   </button>
                   {!loading ? (
@@ -151,7 +157,8 @@ export default function PropertyFormSimple({
                       className="w-[224.5px] [52px] aspect-[224/52] bg-[#DDB771]
                       flex justify-center items-center text-[#ffff] rounded-lg hover:scale-[1.05]
     
-                 ">
+                 "
+                    >
                       Submit Application
                     </button>
                   ) : (

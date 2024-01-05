@@ -3,10 +3,11 @@ import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import React, { useEffect, useState } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { styled } from "@stitches/react";
-import { openSans } from "@/app/styles/font";
+import { openSans } from "@/styles/font";
 import CustomRadioInput from "@/app/components/CustomRadioInput";
 import { ListingForm } from "./types";
 import CurrencyInput from "@/components/__shared/CurrencyInput";
+import { ClientOnly } from "@/components/ui/ClientOnly";
 
 const FeeTitleAndAmount = ({ index, feeTitle, amount }: any) => {
   const [lisitingFormData, setlisitingFormData] =
@@ -22,7 +23,7 @@ const FeeTitleAndAmount = ({ index, feeTitle, amount }: any) => {
 
     updatedAdditionalFees[index][field] = value;
 
-    const updatedlisitingFormData : any = {
+    const updatedlisitingFormData: any = {
       ...lisitingFormData,
       additionalFeesArray: updatedAdditionalFees,
     };
@@ -33,7 +34,8 @@ const FeeTitleAndAmount = ({ index, feeTitle, amount }: any) => {
   return (
     <div className="flex flex-col xl:flex-row gap-3 w-full">
       <TFormDiv
-        className={`font-[400] ${openSans.className} text-[#6A6968] capitalize w-full`}>
+        className={`font-[400] ${openSans.className} text-[#6A6968] capitalize w-full`}
+      >
         <label htmlFor="">Fee Title</label>
         <input
           type="text"
@@ -99,22 +101,25 @@ const AdditionalFees = ({}) => {
           <div className={`${AdditionalFeesLength >= 1 ? "mt-5" : ""}`}>
             {Array.from({ length: AdditionalFeesLength }).map((_, index) => (
               <div key={index} className="mb-2">
-                <FeeTitleAndAmount
-                  key={index}
-                  index={index}
-                  feeTitle={
-                    lisitingFormData?.additionalFeesArray?.[index]?.feeTitle
-                  }
-                  amount={
-                    lisitingFormData?.additionalFeesArray?.[index]?.amount
-                  }
-                />
-                <button type="button"
+                <ClientOnly key={index}>
+                  <FeeTitleAndAmount
+                    index={index}
+                    feeTitle={
+                      lisitingFormData?.additionalFeesArray?.[index]?.feeTitle
+                    }
+                    amount={
+                      lisitingFormData?.additionalFeesArray?.[index]?.amount
+                    }
+                  />
+                </ClientOnly>
+                <button
+                  type="button"
                   className="text-[#E9515E] h-[38px] justify-center items-center flex text-[13px] font-[400] gap-1 hover:bg-[#e9515e3a] px-2 "
                   onClick={() => {
                     handleRemove(index);
                     setAdditionalFeesLength((init: any) => init - 1);
-                  }}>
+                  }}
+                >
                   Remove
                   <AiOutlineMinus size={20} />
                 </button>
@@ -128,7 +133,8 @@ const AdditionalFees = ({}) => {
             className="font-normal text-[#AD842A] h-38 justify-start items-center text-13 flex gap-1 whitespace-nowrap  hover:bg-[#ad832a20] p-2 w-fit"
             onClick={() => {
               setAdditionalFeesLength((init: any) => init + 1);
-            }}>
+            }}
+          >
             Add Another Fee
             <div className="w-[20px]">
               {" "}

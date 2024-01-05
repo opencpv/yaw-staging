@@ -22,7 +22,7 @@ import { styled } from "@stitches/react";
 import { SelectSearchInput } from "@/app/components/SelectSearchInput";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { montserat, openSans } from "@/app/styles/font";
+import { montserat, openSans } from "@/styles/font";
 import Image from "next/image";
 import { dateDefault } from "@/enum/defaultPhone";
 
@@ -41,7 +41,7 @@ type Props = {
 
   initialValue?: any;
   name?: string;
-  font?: "Montserrat" | "OpenSans"
+  font?: "Montserrat" | "OpenSans";
 };
 
 const PhoneNumberInputv2 = ({
@@ -52,7 +52,7 @@ const PhoneNumberInputv2 = ({
   onChange,
   onChange2,
   name,
-  font
+  font,
 }: Props) => {
   const [countryData, setCountryData] = useState<DataItem[]>();
   const [selectedCountry, setSelectedCountry] = useState<any>({});
@@ -133,7 +133,7 @@ const PhoneNumberInputv2 = ({
                 aria-expanded={open}
                 className={`w-fit flex gap-2 justify-between  ${
                   value ? "text-[#6A6968] capitalize" : "text-[#B4B2AF] "
-                } whitespace-nowrap h-[52px]`}
+                } whitespace-nowrap h-[53px]`}
               >
                 <div className="relative w-5 h-[18px] rounded-[4px]">
                   <Image
@@ -182,7 +182,7 @@ const PhoneNumberInputv2 = ({
             name={name}
             value={value2}
             onChange={(e) => setValue2(e.target.value)}
-            className="flex flex-auto border-[1px] rounded-[4px] border-[#EBEBEB] p-[15px] w-full"
+            className="flex flex-auto border-[1px] rounded-[4px] border-[#EBEBEB] p-[15px] w-full outline-none"
           />
         </div>
       </Root>

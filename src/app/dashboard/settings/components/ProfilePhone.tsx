@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
-import { openSans } from "@/app/styles/font";
+import { openSans } from "@/styles/font";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { dateDefault } from "@/enum/defaultPhone";
 import { useClickAway } from "@uidotdev/usehooks";
@@ -59,7 +59,7 @@ const ProfilePhone = ({ phoneChange, defaultValue, codeChange }: Props) => {
                 alt={selectedCountry.flags.alt}
                 fill
                 sizes="1.25rem"
-                objectFit="cover"
+                style={{ objectFit: "cover" }}
                 objectPosition="center"
                 className="rounded-[4px] "
               />
@@ -92,7 +92,7 @@ const ProfilePhone = ({ phoneChange, defaultValue, codeChange }: Props) => {
                         alt={country.flags.alt}
                         fill
                         sizes="1.25rem"
-                        objectFit="cover"
+                        style={{ objectFit: "cover" }}
                         objectPosition="center"
                         className="rounded-[4px] "
                       />

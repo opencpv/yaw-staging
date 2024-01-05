@@ -1,0 +1,23 @@
+.ribbonFree {
+  position: absolute;
+  background: #B0E3C9;
+  padding: 1rem;
+  font-size: 1.2rem;
+  box-shadow: 0 0 0 999px #B0E3C9;
+  clip-path: inset(0 -100%);
+  inset: 0 auto auto 0;
+  transform-origin: 100% 0;
+  transform: translate(-25%) rotate(-45deg);
+}
+
+.ribbonUpgrade {
+  position: absolute;
+  background: rgb(241 179 70);
+  padding: 1rem;
+  font-size: 1.2rem;
+  box-shadow: 0 0 0 999px rgb(241 179 70);
+  clip-path: inset(0 -100%);
+  inset: 0 auto auto 0;
+  transform-origin: 100% 0;
+  transform: translate(-25%) rotate(-45deg);
+}

@@ -21,7 +21,7 @@ import { styled } from "@stitches/react";
 import { SelectSearchInput } from "@/app/components/SelectSearchInput";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { openSans } from "@/app/styles/font";
+import { openSans } from "@/styles/font";
 import Image from "next/image";
 import { boolean } from "yup";
 import { InfoBubble } from "@/app/components/application-form/components/InfoBubble";

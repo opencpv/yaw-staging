@@ -14,7 +14,7 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import PhoneNumberInputv2 from "@/components/__shared/PhoneInputv2";
 import { MostRecentEmployment } from "../../application-form/components/content";
 import { BeMyAgentFormType } from "./types";
-import styles from './index.module.css'
+import styles from "./index.module.css";
 
 type Props = {};
 
@@ -38,7 +38,7 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
 
     return (
       <Root className="p3 px-2">
-          <p className={`${styles.title}  font-semibold`}>
+        <p className={`${styles.title}  font-semibold`}>
           Employment Information
         </p>
         <div className="pt-7">
@@ -59,47 +59,47 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
                 }
               />
               {agentFormData?.mostRecentEmployment == "employed" && (
-                  <div className="flex gap-3 items-center justify-start text-shade200] mt-[64px]">
-                    <input
-                      type="checkbox"
-                      name="currentlyEmployed"
-                      checked={agentFormData?.currentlyEmployed == "yes"}
-                      onChange={(e) => {
-                        setIsChecked(!isChecked);
-                        setagentFormData({
-                          ...agentFormData,
-                          currentlyEmployed: isChecked ? "yes" : "no",
-                        });
-                      }}
-                      className="bg-white "
-                    />
-                    <p className="text-[#737373]">Current</p>
-                  </div>
-                  )}
+                <div className="flex gap-3 items-center justify-start text-shade200] mt-[64px]">
+                  <input
+                    type="checkbox"
+                    name="currentlyEmployed"
+                    checked={agentFormData?.currentlyEmployed == "yes"}
+                    onChange={(e) => {
+                      setIsChecked(!isChecked);
+                      setagentFormData({
+                        ...agentFormData,
+                        currentlyEmployed: isChecked ? "yes" : "no",
+                      });
+                    }}
+                    className="bg-white "
+                  />
+                  <p className="text-[#737373]">Current</p>
+                </div>
+              )}
 
-                  {agentFormData?.mostRecentEmployment == "employed" &&(
-                  <div className="flex gap-3 mt-2">
-                    <CustomDatePicker
-                      placeholderDate={agentFormData?.employmentStartDate}
-                      label="Start Date"
-                      onChange={(value) =>
-                        setagentFormData({
-                          ...agentFormData,
-                          employmentStartDate: value,
-                        })
-                      }
-                    />
-                    <CustomDatePicker
-                      label="End Date"
-                      placeholderDate={agentFormData?.employmentEndDate}
-                      disabled={agentFormData?.currentlyEmployed && true}
-                      onChange={(value) =>
-                        setagentFormData({
-                          ...agentFormData,
-                          employmentEndDate: value,
-                        })
-                      }
-                    />
+              {agentFormData?.mostRecentEmployment == "employed" && (
+                <div className="flex gap-3 mt-2">
+                  <CustomDatePicker
+                    placeholderDate={agentFormData?.employmentStartDate}
+                    label="Start Date"
+                    onChange={(value) =>
+                      setagentFormData({
+                        ...agentFormData,
+                        employmentStartDate: value,
+                      })
+                    }
+                  />
+                  <CustomDatePicker
+                    label="End Date"
+                    placeholderDate={agentFormData?.employmentEndDate}
+                    disabled={agentFormData?.currentlyEmployed && true}
+                    onChange={(value) =>
+                      setagentFormData({
+                        ...agentFormData,
+                        employmentEndDate: value,
+                      })
+                    }
+                  />
                 </div>
               )}
               <TextFieldInput

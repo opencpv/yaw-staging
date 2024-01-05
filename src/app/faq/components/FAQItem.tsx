@@ -1,5 +1,5 @@
 "use client";
-import { openSans } from "@/app/styles/font";
+import { openSans } from "@/styles/font";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import { useEffect, useState } from "react";

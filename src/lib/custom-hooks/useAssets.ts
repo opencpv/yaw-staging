@@ -33,6 +33,17 @@ import HouseSearch from "/public/assets/icons/overview/house-search.svg";
 import PeopleSell from "/public/assets/icons/overview/people-sell.svg";
 import Rafiki from "/public/assets/icons/overview/rafiki.svg";
 import ProfileImage from "/public/assets/images/profile-image.jpg";
+import HomeLanding from "/public/assets/images/home/landing.jpg";
+import BusinessPersonWithHouseKeys from "/public/assets/images/dashboard/businessman-house-keys.png";
+import LaptopDisplayingHome from "/public/assets/images/dashboard/laptop-displaying-homepage.png";
+import CoupleBlurred from "/public/assets/images/about/about-slider-img.webp";
+import PersonHoldingHouse from "/public/assets/images/dashboard/person-holding-house.jpeg";
+import _3DImage from "/public/assets/images/dashboard/overview/p-manager/3d-image.jpeg";
+import GetFeaturedImage from "/public/assets/images/dashboard/overview/p-manager/get-featured-image.jpeg";
+import VerifyListing from "/public/assets/images/dashboard/overview/p-manager/verify-listings-image.jpeg";
+import SearchIcon from "/public/svgs/SearchHomeIcon.svg";
+import Clipboard from "/public/assets/images/dashboard/clipboard.png";
+import UserNoImage from "/public/assets/images/placeholder/user-no-image.jpeg"
 
 export const useAssets = () => {
   return {
@@ -74,6 +85,16 @@ export const useAssets = () => {
       HouseSearchingCuate,
       PropertyDetailsBanner,
       ProfileImage,
+      SearchIcon,
+      Clipboard,
+      BusinessPersonWithHouseKeys,
+      LaptopDisplayingHome,
+      CoupleBlurred,
+      PersonHoldingHouse,
+      _3DImage,
+      GetFeaturedImage,
+      VerifyListing,
+      UserNoImage,
     },
   };
 };

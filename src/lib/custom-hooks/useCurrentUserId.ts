@@ -8,8 +8,8 @@ export const useCurrentUserId = () => {
     const fetchUserId = async () => {
       try {
         const data = await userSession();
-        const id = String(data?.session.user.id);
-        setId(id);
+        const userId = String(data?.session.user.id);
+        setId(userId);
       } catch (error) {
         console.log(error);
       }

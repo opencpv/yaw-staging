@@ -1,11 +1,13 @@
-import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+"use client";
 
+import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import React, { useEffect, useState } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { styled } from "@stitches/react";
-import { openSans } from "@/app/styles/font";
+import { openSans } from "@/styles/font";
 import { PropertyDataType } from "./propertyDataType";
 import CustomRadioInput from "@/app/components/CustomRadioInput";
+import { ClientOnly } from "@/components/ui/ClientOnly";
 
 const FullNameAndRelationship = ({ index, fullName, relationship }: any) => {
   const [propertyData, setPropertyData] =
@@ -65,9 +67,7 @@ const Applicants = ({}) => {
   const [propertyData, setPropertyData] =
     useLocalStorage<PropertyDataType>("property1");
 
-  const [applicants, setApplicants] = useState(
-    propertyData?.otherApplicants 
-  );
+  const [applicants, setApplicants] = useState(propertyData?.otherApplicants);
 
   const [applicantsLength, setApplicantsLength] = useState<any>(
     propertyData?.otherPersonsArray?.length || 0
@@ -92,7 +92,10 @@ const Applicants = ({}) => {
           defaultValue={`${propertyData?.otherApplicants ? "yes" : "no"}`}
           label={"Are there additional applicants"}
           onChange={(value) => {
-            setPropertyData({ ...propertyData, otherApplicants: value == "yes" ? true : false });
+            setPropertyData({
+              ...propertyData,
+              otherApplicants: value == "yes" ? true : false,
+            });
             value == "yes" && setApplicants(true);
             value == "no" && setApplicants(false);
           }}
@@ -102,15 +105,20 @@ const Applicants = ({}) => {
           <div className={`${applicantsLength >= 1 ? "mt-5" : ""}`}>
             {Array.from({ length: applicantsLength }).map((_, index) => (
               <div key={index} className="mb-2">
-                <FullNameAndRelationship
-                  key={index}
-                  index={index}
-                  fullName={propertyData?.otherPersonsArray?.[index]?.fullName}
-                  relationship={
-                    propertyData?.otherPersonsArray?.[index]?.relationship
-                  }
-                />
-                <button type="button"
+                <ClientOnly>
+                  <FullNameAndRelationship
+                    key={index}
+                    index={index}
+                    fullName={
+                      propertyData?.otherPersonsArray?.[index]?.fullName
+                    }
+                    relationship={
+                      propertyData?.otherPersonsArray?.[index]?.relationship
+                    }
+                  />
+                </ClientOnly>
+                <button
+                  type="button"
                   className="text-[#E9515E] h-[38px] justify-center items-center flex text-[13px] font-[400] gap-1 hover:bg-[#e9515e3a] px-2 "
                   onClick={() => {
                     handleRemove(index);
@@ -125,7 +133,8 @@ const Applicants = ({}) => {
           </div>
         )}
         {propertyData?.otherApplicants && (
-          <button type="button"
+          <button
+            type="button"
             className="font-normal text-[#AD842A] h-38 justify-start items-center text-13 flex gap-1 whitespace-nowrap  hover:bg-[#ad832a20] p-2 w-fit"
             onClick={() => {
               setApplicantsLength((init: any) => init + 1);

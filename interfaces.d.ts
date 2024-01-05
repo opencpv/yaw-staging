@@ -1,24 +1,22 @@
 interface ListingCardInterface extends ListingInterface {
+  propertyDescription?: string;
+  rating?: number;
+  ratingCount?: number;
+  paymentStructure?: PaymentStructure;
+  monthlyAmount?: number;
+  price?: number;
+  liked?: boolean;
   id?: number | string;
-  propertyDescription: string;
-  rating: number;
-  ratingCount: number;
-  paymentStructure:
-    | "Yearly"
-    | "Bi-Annually"
-    | "Quarterly"
-    | "Every-6-Months"
-    | "Every-3-Years";
-  monthlyAmount: number;
-  price: number;
-  deal: "Editor's Choice" | "Price Drop" | "Best Value" | "None" | "none" | "";
-  liked: boolean;
-  membership: "Certified" | "Verified" | "Unverified" | "None" | "none" | "";
+  deal?: Deal;
+  membership?: Membership;
   className?: string;
+  cardType?: "1" | "2";
+  city?: string;
 }
 
 interface RenterPaidFeatureInterface {
   title: "Be My Agent" | "Be The First To Know";
+  href: string;
   className?: string;
 }
 
@@ -26,9 +24,9 @@ interface AdImage {
   /**
    * What property is being advertise?
    */
-  propertyType: string;
+  propertyName: string;
   image: string;
-  link: string;
+  href: string;
 }
 
 interface AdCardInterface {
@@ -48,31 +46,30 @@ interface ApplicationsInterface {
 
 interface ChatInterface {
   href: string;
-  image: string;
+  image: string | StaticImageData;
   name: string;
   last_message: string;
   messages_count: number;
+  id: string | null;
 }
 
-interface FeatureInterface {
-  label:
-    | "Fire Extinguisher"
-    | "Smoke Alarm"
-    | "Satellite TV"
-    | "Pool Table"
-    | "Wifi"
-    | "Gas"
-    | "Air Conditioning"
-    | "Security Cameras on Property"
-    | "Kitchen"
-    | "Free Parking on Premises"
-    | "Hot Tub"
-    | "Pool";
-}
+type FeatureInterface =
+  | "Fire Extinguisher"
+  | "Smoke Alarm"
+  | "Satellite TV"
+  | "Pool Table"
+  | "Wifi"
+  | "Gas"
+  | "Air Conditioning"
+  | "Security Cameras on Property"
+  | "Kitchen"
+  | "Free Parking on Premises"
+  | "Hot Tub"
+  | "Pool";
 
 interface ListingInterface {
-  images: string[]
-  propertyType: string;
+  images?: string[];
+  propertyName?: string;
   href?: string;
 }
 
@@ -81,15 +78,26 @@ interface MessageInterface {
   time: string;
 }
 
-interface ManagePropertiesInterface {
+type ManagePropertiesInterface = {
   propertyTitle: string;
   image: string;
   posted_on: string;
   price: number;
   isPaidFor: boolean;
-  status: PropertyStatusInterface
-}
+  status: PropertyStatusInterface;
+};
 
-interface PropertyStatusInterface {
-  status: "available" | "contract pending" | "leased" | "dormant"
+type PropertyStatusInterface =
+  | "available"
+  | "contract pending"
+  | "leased"
+  | "dormant"
+  | string;
+
+export interface CartProp {
+  name: string;
+  cost: number;
+  quantity: number;
+  date: null | string;
+  isQuantityChangable: boolean;
 }

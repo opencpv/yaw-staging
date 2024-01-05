@@ -1,10 +1,21 @@
 const listings = [
   {
     id: 1,
-    propertyType: "2 bedroom apartment",
+    propertyName: "2 bedroom apartment",
     propertyDescription:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odioqui repellat quibusdam ipsam.",
-    images: ["/assets/images/niceHome.png", "/assets/images/Stock.jpg"],
+    images: [
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+    ],
     price: 300000,
     paymentStructure: "Quarterly",
     monthlyAmount: 25000,
@@ -17,10 +28,17 @@ const listings = [
   },
   {
     id: 2,
-    propertyType: "4 bedroom apartment",
+    propertyName: "4 bedroom apartment",
     propertyDescription:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odioqui repellat quibusdam ipsam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odioqui repellat quibusdam ipsam.",
-    images: ["/assets/images/niceHome.png", "/assets/images/Stock.jpg"],
+    images: [
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+    ],
     price: 300000,
     paymentStructure: "Bi-Annually",
     monthlyAmount: 25000,
@@ -33,10 +51,17 @@ const listings = [
   },
   {
     id: 3,
-    propertyType: "4 bedroom apartment",
+    propertyName: "4 bedroom apartment",
     propertyDescription:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odioqui repellat quibusdam ipsam. Lorem ipsum dolor.",
-    images: ["/assets/images/niceHome.png", "/assets/images/Stock.jpg"],
+    images: [
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+    ],
     price: 200000,
     paymentStructure: "Bi-Annually",
     monthlyAmount: 11000,
@@ -49,10 +74,17 @@ const listings = [
   },
   {
     id: 4,
-    propertyType: "4 bedroom apartment",
+    propertyName: "4 bedroom apartment",
     propertyDescription:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odioqui repellat quibusdam ipsam. Lorem ipsum dolor.",
-    images: ["/assets/images/niceHome.png", "/assets/images/Stock.jpg"],
+    images: [
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+    ],
     price: 200000,
     paymentStructure: "Every-6-Months",
     monthlyAmount: 11000,
@@ -65,10 +97,17 @@ const listings = [
   },
   {
     id: 5,
-    propertyType: "3 bedroom apartment",
+    propertyName: "3 bedroom apartment",
     propertyDescription:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odioqui repellat quibusdam ipsam. Lorem ipsum dolor.",
-    images: ["/assets/images/niceHome.png", "/assets/images/Stock.jpg"],
+    images: [
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+    ],
     price: 200000,
     paymentStructure: "Yearly",
     monthlyAmount: 11000,
@@ -81,10 +120,17 @@ const listings = [
   },
   {
     id: 6,
-    propertyType: "3 bedroom apartment",
+    propertyName: "3 bedroom apartment",
     propertyDescription:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odioqui repellat quibusdam ipsam. Lorem ipsum dolor.",
-    images: ["/assets/images/niceHome.png", "/assets/images/Stock.jpg"],
+    images: [
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+    ],
     price: 200000,
     paymentStructure: "Every-3-Years",
     monthlyAmount: 11000,
@@ -97,10 +143,17 @@ const listings = [
   },
   {
     id: 7,
-    propertyType: "3 bedroom apartment",
+    propertyName: "3 bedroom apartment",
     propertyDescription:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odioqui repellat quibusdam ipsam. Lorem ipsum dolor.",
-    images: ["/assets/images/niceHome.png", "/assets/images/Stock.jpg"],
+    images: [
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+    ],
     price: 200000,
     paymentStructure: "Every-3-Years",
     monthlyAmount: 11000,
@@ -113,10 +166,17 @@ const listings = [
   },
   {
     id: 8,
-    propertyType: "3 bedroom apartment",
+    propertyName: "3 bedroom apartment",
     propertyDescription:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odioqui repellat quibusdam ipsam. Lorem ipsum dolor.",
-    images: ["/assets/images/niceHome.png", "/assets/images/Stock.jpg"],
+    images: [
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+    ],
     price: 200000,
     paymentStructure: "Every-3-Years",
     monthlyAmount: 11000,
@@ -129,10 +189,17 @@ const listings = [
   },
   {
     id: 9,
-    propertyType: "3 bedroom apartment",
+    propertyName: "3 bedroom apartment",
     propertyDescription:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odioqui repellat quibusdam ipsam. Lorem ipsum dolor.",
-    images: ["/assets/images/niceHome.png", "/assets/images/Stock.jpg"],
+    images: [
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+    ],
     price: 200000,
     paymentStructure: "Every-3-Years",
     monthlyAmount: 11000,
@@ -145,10 +212,17 @@ const listings = [
   },
   {
     id: 10,
-    propertyType: "3 bedroom apartment",
+    propertyName: "3 bedroom apartment",
     propertyDescription:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odioqui repellat quibusdam ipsam. Lorem ipsum dolor.",
-    images: ["/assets/images/niceHome.png", "/assets/images/Stock.jpg"],
+    images: [
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+    ],
     price: 200000,
     paymentStructure: "Every-3-Years",
     monthlyAmount: 11000,
@@ -161,10 +235,17 @@ const listings = [
   },
   {
     id: 11,
-    propertyType: "3 bedroom apartment",
+    propertyName: "3 bedroom apartment",
     propertyDescription:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odioqui repellat quibusdam ipsam. Lorem ipsum dolor.",
-    images: ["/assets/images/niceHome.png", "/assets/images/Stock.jpg"],
+    images: [
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+    ],
     price: 200000,
     paymentStructure: "Every-3-Years",
     monthlyAmount: 11000,
@@ -177,10 +258,17 @@ const listings = [
   },
   {
     id: 12,
-    propertyType: "3 bedroom apartment",
+    propertyName: "3 bedroom apartment",
     propertyDescription:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odioqui repellat quibusdam ipsam. Lorem ipsum dolor.",
-    images: ["/assets/images/niceHome.png", "/assets/images/Stock.jpg"],
+    images: [
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+    ],
     price: 200000,
     paymentStructure: "Every-3-Years",
     monthlyAmount: 11000,
@@ -193,10 +281,17 @@ const listings = [
   },
   {
     id: 13,
-    propertyType: "3 bedroom apartment",
+    propertyName: "3 bedroom apartment",
     propertyDescription:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odioqui repellat quibusdam ipsam. Lorem ipsum dolor.",
-    images: ["/assets/images/niceHome.png", "/assets/images/Stock.jpg"],
+    images: [
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+    ],
     price: 200000,
     paymentStructure: "Every-3-Years",
     monthlyAmount: 11000,
@@ -209,10 +304,17 @@ const listings = [
   },
   {
     id: 14,
-    propertyType: "3 bedroom apartment",
+    propertyName: "3 bedroom apartment",
     propertyDescription:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odioqui repellat quibusdam ipsam. Lorem ipsum dolor.",
-    images: ["/assets/images/niceHome.png", "/assets/images/Stock.jpg"],
+    images: [
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+    ],
     price: 200000,
     paymentStructure: "Every-3-Years",
     monthlyAmount: 11000,
@@ -225,10 +327,17 @@ const listings = [
   },
   {
     id: 15,
-    propertyType: "3 bedroom apartment",
+    propertyName: "3 bedroom apartment",
     propertyDescription:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odioqui repellat quibusdam ipsam. Lorem ipsum dolor.",
-    images: ["/assets/images/niceHome.png", "/assets/images/Stock.jpg"],
+    images: [
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+    ],
     price: 200000,
     paymentStructure: "Every-3-Years",
     monthlyAmount: 11000,
@@ -241,10 +350,17 @@ const listings = [
   },
   {
     id: 16,
-    propertyType: "3 bedroom apartment",
+    propertyName: "3 bedroom apartment",
     propertyDescription:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odioqui repellat quibusdam ipsam. Lorem ipsum dolor.",
-    images: ["/assets/images/niceHome.png", "/assets/images/Stock.jpg"],
+    images: [
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+      "/assets/images/niceHome.png",
+      "/assets/images/Stock.jpg",
+    ],
     price: 200000,
     paymentStructure: "Every-3-Years",
     monthlyAmount: 11000,

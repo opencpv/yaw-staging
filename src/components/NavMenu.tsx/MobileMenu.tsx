@@ -7,7 +7,7 @@ import { links } from "./content";
 import Link from "next/link";
 import ArrowDownNav from "@/app/components/icons/CaArrowDownNav.";
 import { BsArrowDownCircleFill } from "react-icons/bs";
-import { montserat } from "@/app/styles/font";
+import { montserat } from "@/styles/font";
 import { useRouter } from "next/navigation";
 
 const MenuOption = ({

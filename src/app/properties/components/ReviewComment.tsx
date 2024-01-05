@@ -8,7 +8,7 @@ const ReviewComment = (props: Props) => {
   const { images } = useAssets();
   return (
     <>
-      <div className="flex gap-5">
+      <div className="flex gap-x-5 gap-y-3 flex-wrap">
         <div className="relative w-20 h-20 rounded-full shrink-0">
           <Image
             src={images.StockImage}
@@ -24,7 +24,7 @@ const ReviewComment = (props: Props) => {
         </div>
       </div>
       <div className="lg:ml-24">
-        <p className="max-w-2xl mt-10 text-sm text-neutral-700">
+        <p className="max-w-2xl mt-10 text-neutral-700">
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente
           dolores soluta accusamus culpa praesentium optio sed architecto, a
           voluptatem aliquam. Tempora dicta consectetur ea facilis reiciendis

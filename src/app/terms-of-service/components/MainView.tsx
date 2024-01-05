@@ -12,10 +12,10 @@ const MainView = ({ data }: { data: any }) => {
           <Image src={icons.ArrowIcon} alt="back button" />
           <p className="text-[#fff] font-semibold text-base">Go Back</p>
         </Link>
-        <h1 className="lg:text-[61px] text-[39px] mt-4 font-bold">
+        <h1 className=" text-3xl mt-4 font-bold leading-normal lg:text-5xl">
           {data.title}
         </h1>
-        <h1 className="lg:text-[61px] text-[39px]  font-bold">
+        <h1 className=" text-3xl font-bold leading-normal lg:text-5xl">
           {data.subtitle}
         </h1>
         <div className="mt-8 ">

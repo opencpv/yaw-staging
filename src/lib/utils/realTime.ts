@@ -1,7 +1,7 @@
 import supabase from "./supabaseClient";
 
 const realTime = (channel: string, table: string, payload: () => void ) => {
-    const messages = supabase
+    supabase
       .channel(channel)
       .on(
         "postgres_changes",

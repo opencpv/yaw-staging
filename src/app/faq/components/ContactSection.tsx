@@ -1,4 +1,4 @@
-import { openSans } from "@/app/styles/font";
+import { openSans } from "@/styles/font";
 import ContactForm from "./ContactForm";
 import Image from "next/image";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
@@ -21,7 +21,7 @@ const ContactSection = () => {
             src={images.ContactImage}
             alt="contact image"
             fill
-            objectFit="cover"
+            style={{ objectFit: "cover" }}
             objectPosition="center"
           />
         </div>

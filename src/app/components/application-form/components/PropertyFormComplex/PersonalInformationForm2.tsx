@@ -1,6 +1,6 @@
 import { SelectSearchInput } from "@/app/components/SelectSearchInput";
 import TextFieldInput from "@/app/components/TextFieldInput";
-import { openSans } from "@/app/styles/font";
+import { openSans } from "@/styles/font";
 import { styled } from "@stitches/react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { LeaseData } from "../content";
@@ -12,7 +12,7 @@ import { CustomDatePicker } from "@/app/components/CustomDatePicker";
 import Applicants from "../Applicants";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { PropertyDataType } from "../propertyDataType";
-
+import { ClientOnly } from "@/components/ui/ClientOnly";
 
 type Props = {
   ref: any;
@@ -22,7 +22,8 @@ type Props = {
 
 const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
   ({ setActiveIndex, formType }, ref) => {
-    const [propertyData, setPropertyData] = useLocalStorage<PropertyDataType>("property1");
+    const [propertyData, setPropertyData] =
+      useLocalStorage<PropertyDataType>("property1");
 
     return (
       <Root className="p1 px-2">
@@ -82,7 +83,9 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
             />
             <SelectSearchInput
               data={LeaseData}
-              placeholder={`${propertyData?.leaseTerm} months` || "Enter lease term"}
+              placeholder={
+                `${propertyData?.leaseTerm} months` || "Enter lease term"
+              }
               label="Lease term"
               onChange={(value) => {
                 console.log(value);
@@ -103,7 +106,9 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
               }
             />
           </div>
-          <Applicants />
+          <ClientOnly>
+            <Applicants />
+          </ClientOnly>
         </div>
         {formType == "complex" && (
           <div className="mt-5 flex justify-start lg:justify-end w-full">

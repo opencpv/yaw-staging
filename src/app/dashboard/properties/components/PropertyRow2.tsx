@@ -3,11 +3,12 @@ import Image from "next/image";
 import React from "react";
 import { BiPencil } from "react-icons/bi";
 import { FiTrash2 } from "react-icons/fi";
-import Button from "../../components/Button";
+import Button from "@/components/__shared/ui/button/Button";
 import PropertyStatus from "./PropertyStatus";
-import { formatPrice } from "@/lib/utils/formatPrice";
-import { formatDate, formatTime } from "@/lib/utils/formatDatetime";
+import { formatPrice } from "@/lib/utils/numberManipulation";
+import { formatDate, formatTime } from "@/lib/utils/stringManipulation";
 import { useDaysDifference } from "@/lib/custom-hooks/useDaysDifference";
+import { ManagePropertiesInterface } from "../../../../../interfaces";
 
 const PropertyRow2 = ({
   isPaidFor,
@@ -19,7 +20,7 @@ const PropertyRow2 = ({
 }: ManagePropertiesInterface) => {
   const { images } = useAssets();
 
-  const daysDifference = useDaysDifference(posted_on)
+  const daysDifference = useDaysDifference(posted_on);
 
   return (
     <>
@@ -53,15 +54,15 @@ const PropertyRow2 = ({
         <hr className="mt-2" />
         {/* Posted on */}
         <div className="flex flex-wrap justify-between items-center gap-x-5 gap-y-3 py-3.5">
-          <h2 className="text-lg text-neutral-700 font-[700]">
-            Posted on
-          </h2>
+          <h2 className="text-lg text-neutral-700 font-[700]">Posted on</h2>
           <div className="flex flex-col items-center justify-center gap-y-1">
             <h4 className="font-[600] text-sm">
               {formatDate(posted_on)} {formatTime(posted_on)}
             </h4>
             <small className="inline-block text-neutral-400 text-[0.6rem]">
-              {daysDifference} Days Ago
+              {daysDifference < 1
+                ? `Less Than A Day Ago`
+                : `${daysDifference} Days Ago`}
             </small>
           </div>
         </div>

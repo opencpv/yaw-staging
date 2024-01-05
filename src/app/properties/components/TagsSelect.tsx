@@ -1,3 +1,4 @@
+"use client";
 import {
   Button,
   Dropdown,
@@ -9,52 +10,86 @@ import { Switch } from "@nextui-org/react";
 import React, { useState } from "react";
 import { FaCaretDown } from "react-icons/fa";
 import AdvancedForm from "./AdvancedForm";
+import OptionFilterTabs from "@/components/__shared/OptionFilterTabs";
 
-type Props = {};
+type FilterOption =
+  | "all"
+  | "top rated"
+  | "editor's choice"
+  | "price drop"
+  | "best value";
 
-const TagsSelect = (props: Props) => {
-  const [isAdvancedActive, setIsAdvancedActive] = useState<boolean>(false)
+const TagsSelect = () => {
+  const [isAdvancedActive, setIsAdvancedActive] = useState<boolean>(false);
+  const [option, setOption] = useState<FilterOption>("all");
 
   const handleIsActive = () => {
-    setIsAdvancedActive(prevState => !prevState)
-  }
+    setIsAdvancedActive((prevState) => !prevState);
+  };
+
+  const changeFilterOption = (option: string) => {
+    setOption(option as FilterOption);
+  };
 
   return (
-    <> 
-    <section className="grid gap-4 lg:justify-center lg:items-center lg:grid-cols-6 xl:grid-cols-7">
-      <div className="w-full cursor-pointer text-white p-4 text-center lg:w-40 font-[600] bg-gradient-to-r rounded-xl from-[#21A19F] to-[#1EA9A6A1]">
-        All
+    <div className="flex justify-center">
+      <div className="">
+        <section className="flex flex-wrap items-center justify-center gap-8">
+          <div className="">
+            <OptionFilterTabs
+              variant="gradient"
+              options={[
+                "all",
+                "top rated",
+                "editor's choice",
+                "price drop",
+                "best value",
+              ]}
+              selectedKey={option}
+              onSelectionChange={changeFilterOption}
+              radius="small"
+            />
+          </div>
+          <div>
+            <Dropdown>
+              <DropdownTrigger>
+                <Button isIconOnly className="bg-transparent">
+                  <FaCaretDown className="text-[#21A19F]" />
+                </Button>
+              </DropdownTrigger>
+              <DropdownMenu
+                aria-label="Static Actions"
+                className="text-neutral-800"
+              >
+                <DropdownItem key="no advanced fee">
+                  No Advance Fee
+                </DropdownItem>
+                <DropdownItem key="no viewing fee">No Viewing Fee</DropdownItem>
+                <DropdownItem key="family">Family</DropdownItem>
+                <DropdownItem key="student">Student</DropdownItem>
+                <DropdownItem key="expatriates">Expatriates</DropdownItem>
+                <DropdownItem key="singles">Singles</DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </div>
+          <div className="flex items-center justify-center gap-2">
+            <div className="">
+              <Switch
+                classNames={{
+                  base: "group-data-[selected=true]:bg-accent-50",
+                }}
+                size="sm"
+                color="warning"
+                isSelected={isAdvancedActive}
+                onValueChange={handleIsActive}
+              />
+              Advanced search
+            </div>
+          </div>
+        </section>
+        <AdvancedForm isActive={isAdvancedActive} />
       </div>
-      <div className="cursor-pointer lg:text-center">Top Rated</div>
-      <div className="cursor-pointer lg:text-center">Editor&apos;s choice</div>
-      <div className="cursor-pointer lg:text-center">Price Drop</div>
-      <div className="cursor-pointer lg:text-center">Best Value</div>
-      <div>
-        <Dropdown>
-          <DropdownTrigger>
-            <Button isIconOnly className="bg-transparent">
-              <FaCaretDown className="text-[#21A19F]" />
-            </Button>
-          </DropdownTrigger>
-          <DropdownMenu aria-label="Static Actions" className="text-neutral-800">
-            <DropdownItem key="new">No Advance Fee</DropdownItem>
-            <DropdownItem key="new">No Viewing Fee</DropdownItem>
-            <DropdownItem key="copy">Family</DropdownItem>
-            <DropdownItem key="copy">Student</DropdownItem>
-            <DropdownItem key="copy">Expatriates</DropdownItem>
-            <DropdownItem key="edit">Singles</DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-      </div>
-      <div className="flex items-center justify-center w-full gap-2 mx-auto">
-        <div className="">
-          <Switch size="sm" color="warning" isSelected={isAdvancedActive} onValueChange={handleIsActive} />
-          Advanced search
-        </div>
-      </div>
-    </section>
-    <AdvancedForm isActive={isAdvancedActive} />
-    </>
+    </div>
   );
 };
 

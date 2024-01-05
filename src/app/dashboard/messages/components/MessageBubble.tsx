@@ -1,6 +1,7 @@
 import React from "react";
 import style from "../Messages.module.css";
 import { motion } from "framer-motion";
+import { MessageInterface } from "../../../../../interfaces";
 
 const MessageBubble = ({ content, time }: MessageInterface) => {
   const date = new Date(time);
@@ -9,7 +10,9 @@ const MessageBubble = ({ content, time }: MessageInterface) => {
     hour: "2-digit",
     minute: "2-digit",
     hour12: true,
-  }).format(date).toLowerCase();
+  })
+    .format(date)
+    .toLowerCase();
   const messageBubbleVariants = {
     hidden: { opacity: 0, y: 10 },
     visible: { opacity: 1, y: 0 },

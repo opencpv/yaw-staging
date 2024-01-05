@@ -20,7 +20,7 @@ const NoMessageState = ({className}: Props) => {
           className=""
         />
       </motion.div>
-      <h1 className="text-2xl font-[600] mt-3">Messages</h1>
+      <h1 className="text-2xl font-[700] mt-3">Messages</h1>
       <p className="">Send and receive messages with rentright</p>
       <p className="capitalize text-[#8DA5A4]">Happy messaging</p>
     </div>

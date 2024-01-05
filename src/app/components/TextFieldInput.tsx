@@ -1,6 +1,6 @@
 "use client";
 import { ErrorMessage, Field, Formik, useFormik } from "formik";
-import { openSans } from "../styles/font";
+import { openSans } from "../../styles/font";
 import { styled } from "@stitches/react";
 
 type TextFieldInputProps = {

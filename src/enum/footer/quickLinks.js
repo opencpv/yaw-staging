@@ -1,33 +1,23 @@
 const quickLinks = [
     {
-        id: 1,
-        text: "Services",
-        path: ""
+        label: "Services",
+        href: "/about"
     },
     {
-        id: 2,
-        text: "B2B",
-        path: ""
+        label: "B2B",
+        href: "/"
     },
     {
-        id: 3,
-        text: "Join Us",
-        path: ""
+        label: "Join Us",
+        href: ""
     },
     {
-        id: 4,
-        text: "FAQs",
-        path: ""
+        label: "How To",
+        href: ""
     },
     {
-        id: 5,
-        text: "Report Fund",
-        path: ""
-    },
-    {
-        id: 6,
-        text: "Feedback",
-        path: ""
+        label: "Report Fraud",
+        href: "/contact#c_ta#rea"
     },
 ]
 

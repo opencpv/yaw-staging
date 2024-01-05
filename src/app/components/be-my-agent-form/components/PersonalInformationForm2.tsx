@@ -1,6 +1,5 @@
 import { SelectSearchInput } from "@/app/components/SelectSearchInput";
 import TextFieldInput from "@/app/components/TextFieldInput";
-import { openSans } from "@/app/styles/font";
 import { styled } from "@stitches/react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import CustomRadioInput from "@/app/components/CustomRadioInput";
@@ -9,19 +8,17 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { CustomDatePicker } from "@/app/components/CustomDatePicker";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { LeaseData } from "../../application-form/components/content";
-import Applicants from "../../application-form/components/Applicants";
-import styles from './index.module.css'
+import styles from "./index.module.css";
 import { BeMyAgentFormType } from "./types";
-type Props = {
-  
-}
+type Props = {};
 
 const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
-  ({ }, ref) => {
-    const [agentFormData, setagentFormData] = useLocalStorage<BeMyAgentFormType>("agent-form");
+  ({}, ref) => {
+    const [agentFormData, setagentFormData] =
+      useLocalStorage<BeMyAgentFormType>("agent-form");
 
     return (
-      <Root >
+      <Root>
         <div>
           <p className={`${styles.title}  font-semibold`}>
             Personal Information
@@ -44,7 +41,10 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
               label="First Name"
               placeholder="Enter your first name"
               onChange={(e) =>
-                setagentFormData({ ...agentFormData, firstName: e.target.value })
+                setagentFormData({
+                  ...agentFormData,
+                  firstName: e.target.value,
+                })
               }
             />
             <TextFieldInput
@@ -78,7 +78,9 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
             />
             <SelectSearchInput
               data={LeaseData}
-              placeholder={`${agentFormData?.leaseTerm} months` || "Enter lease term"}
+              placeholder={
+                `${agentFormData?.leaseTerm} months` || "Enter lease term"
+              }
               label="Lease term"
               onChange={(value) => {
                 console.log(value);
@@ -100,7 +102,6 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
             />
           </div>
         </div>
-
       </Root>
     );
   }

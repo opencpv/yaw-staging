@@ -24,7 +24,8 @@ const PaginationTab = ({ active, icon, name, link }: PaginationTabProps) => {
     <Link href={link}>
       <PgItem
         type={active == name ? "active" : undefined}
-        className={`flex  flex-row lg:flex-col min-w-[130px] min-h-[40px] max-h-[52px] lg:max-w-none lg:min-h-[101px] py-[0.875rem] px-[1rem] text-[#B0B0B0] items-center justify-center text-2xl font-semibold gap-[0.775rem] rounded-[.75rem] ${name}`}>
+        className={`flex  flex-row lg:flex-col min-w-[130px] min-h-[40px] max-h-[52px] lg:max-w-none lg:min-h-[101px] py-[0.875rem] px-[1rem] text-[#B0B0B0] items-center justify-center text-2xl font-semibold gap-[0.775rem] rounded-[.75rem] ${name}`}
+      >
         <div className="w-full h-full flex items-center justify-center">
           {icon}
         </div>{" "}
@@ -95,7 +96,8 @@ const Pagination = () => {
           onClick={handleScrollToLeft}
           className="w-full md:max-w-[83px]
                   max-w-[52px] aspect-square bg-[#396261] rounded-full flex
-                  items-center justify-center hover:scale-[1.02]">
+                  items-center justify-center hover:scale-[1.02]"
+        >
           <MdKeyboardArrowLeft color="white" size={24} />
         </button>
       )}
@@ -104,7 +106,8 @@ const Pagination = () => {
         ref={scrollableRef}
         style={{
           scrollBehavior: "smooth",
-        }}>
+        }}
+      >
         {PgRoutes.map((r, index) => (
           <PaginationTab
             key={index}
@@ -121,7 +124,8 @@ const Pagination = () => {
           onClick={handleScrollToRight}
           className="w-full md:max-w-[83px]
                   max-w-[52px] aspect-square bg-[#396261] rounded-full flex
-                  items-center justify-center hover:scale-[1.02]">
+                  items-center justify-center hover:scale-[1.02]"
+        >
           <MdKeyboardArrowRight color="white" size={24} />
         </button>
       )}

@@ -1,14 +1,18 @@
 "use client";
 import "./globals.css";
+import "../styles/animations.css";
 import "@radix-ui/themes/styles.css";
 import { useEffect, useState } from "react";
-import Navbar from "@/components/__shared/Navbar";
 import { usePathname } from "next/navigation";
 import Providers from "@/context/Providers";
+import LoadingIndicator from "@/components/LoadingIndicator";
 import Script from "next/script";
+import { openSans } from "@/lib/utils/fonts";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const uniquePages = ["login", "terms-of-service"];
-
 
 export default function RootLayout({
   children,
@@ -30,12 +34,16 @@ export default function RootLayout({
   }, [pathname]);
 
   return (
-    <html lang="en" className="text-[15px] lg:text-[15.5px] 3xl:text-[16px]">
+
+    <html
+      lang="en"
+      className="text-[14px] lg:text-[14.5px] 2xl:text-[15px] 3xl:text-[16px]"
+    >
       <Script src="https://widget.cloudinary.com/v2.0/global/all.js" />
-      <body className="text-black">
-        
-   
+      <body className={`text-neutral-800 bg-white  ${openSans.className}`}>
         <Providers>
+          <LoadingIndicator />
+          <ToastContainer />
           {children}
         </Providers>
       </body>

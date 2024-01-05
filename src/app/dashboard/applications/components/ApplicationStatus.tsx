@@ -1,13 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import Select from "../../components/Select";
+import { useSelectDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 
 const ApplicationStatus = () => {
-  const [value, setValue] = useState<"accept" | "decline">("accept");
-
-  const handleSelectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setValue(e.target.value as "accept" | "decline");
-  };
+  const { value, handleSelectionChange } = useSelectDisclosure<
+    "accept" | "decline"
+  >("accept");
 
   return (
     <>

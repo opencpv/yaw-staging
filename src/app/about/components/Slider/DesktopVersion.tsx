@@ -82,13 +82,13 @@ const DesktopVersion = () => {
           onClick={handlePrev}
           className="w-[40px] h-[40px] md:w-[70px] md:h-[70px] flex items-center justify-center bg-white rounded-full"
         >
-          <MdChevronLeft className="text-3xl" />
+          <MdChevronLeft className="text-3xl text-neutral-800" />
         </button>
         <button
           onClick={handleNext}
           className="w-[40px] h-[40px] md:w-[70px] md:h-[70px] flex items-center justify-center bg-white rounded-full"
         >
-          <MdChevronRight className="text-3xl" />
+          <MdChevronRight className="text-3xl text-neutral-800" />
         </button>
       </div>
     </div>

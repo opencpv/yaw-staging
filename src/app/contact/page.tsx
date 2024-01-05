@@ -5,8 +5,8 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import Image from "next/image";
 import { AiOutlineLink } from "react-icons/ai";
 import { UploadFile } from "./components/UploadFile";
-import React, { useEffect, useRef, useState } from "react";
-import { montserat, openSans } from "../styles/font";
+import { useEffect, useRef, useState } from "react";
+import { montserat, openSans } from "../../styles/font";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { BiRightArrowCircle } from "react-icons/bi";
 import PhoneNumberInput from "@/components/__shared/PhoneInput";
@@ -17,9 +17,10 @@ import supabase from "@/lib/utils/supabaseClient";
 import * as Yup from "yup";
 import Loader from "@/components/__shared/loader/Loader";
 import Navbar from "@/components/__shared/Navbar";
-import Footer from "../components/Footer";
+import Footer from "@/components/__shared/footer/Footer";
 import { motion } from "framer-motion";
 import PhoneNumberInputv2 from "@/components/__shared/PhoneInputv2";
+import { useContactStore } from "@/store/contact/useContactStore";
 
 const ContactSchema = Yup.object().shape({
   fullname: Yup.string()
@@ -30,8 +31,11 @@ const ContactSchema = Yup.object().shape({
 });
 
 const Page = () => {
-  type ActiveKeys = "general" | "report" | "writers" | "advertise";
-  const [active, setActive] = useState<ActiveKeys>("general");
+  // type ActiveKeys = "general" | "report" | "writers" | "advertise";
+  // const [active, setActive] = useState<ActiveKeys>("general");
+  const active = useContactStore((state) => state.activeKey)
+  const setActive = useContactStore((state) => state.setActiveKey)
+
   const { images } = useAssets();
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const [phone, setPhone] = useState("+233");
@@ -78,13 +82,14 @@ const Page = () => {
         aspect-[318/240]
         md:aspect-[414/303]
         lg:aspect-square lg:pb-5">
-            <Image src={"/svgs/contact1.svg"} alt="Contact" fill />
+            <Image src={"/svgs/contact1.svg"} alt="Contact" fill id="c_ta#rea" />
           </div>
         </div>
         <div
-          className={`max-w-full lg:max-w-[90%] relative lg:top-[-100px] z-[20] h-full w-full min-h-[500px] form-root p-5 sm:p-3 lg:p-8 pt-5 lg:pt-2 rounded-2xlu  ${montserat.className}`}>
+          className={`max-w-full lg:max-w-[90%] relative lg:top-[-100px] z-[20] h-full w-full min-h-[500px] form-root p-5 sm:p-3 lg:p-8 pt-5 lg:pt-2 rounded-2xlu  ${montserat.className}`}
+          >
           <div className="">
-            <div className="flex  items-center " ref={scrollContainerRef}>
+            <div className="flex items-center " ref={scrollContainerRef}>
               <div className="flex gap-[50px] overflow-x-scroll lg:overflow-x-auto relative ">
                 <Tab
                   onClick={(e: any) => setActive("general")}
@@ -270,7 +275,7 @@ const Page = () => {
                       alt="Faq IMAGE"
                       className="rounded-[8px] h-full max-h-[807px]"
                       fill
-                      objectFit="cover"
+                      style={{ objectFit: "cover" }}
                       objectPosition="bottom"
                     />
                   </SlideUpAnimation>
@@ -282,7 +287,7 @@ const Page = () => {
                       alt="Faq IMAGE"
                       className="rounded-[8px] h-full max-h-[807px]"
                       fill
-                      objectFit="cover"
+                      style={{ objectFit: "cover" }}
                       objectPosition="bottom"
                     />
                   </SlideUpAnimation>
@@ -294,7 +299,7 @@ const Page = () => {
                       alt="Faq IMAGE"
                       className="rounded-[8px] h-full max-h-[807px]"
                       fill
-                      objectFit="cover"
+                      style={{ objectFit: "cover" }}
                       objectPosition="bottom"
                     />
                   </SlideUpAnimation>
@@ -306,7 +311,7 @@ const Page = () => {
                       alt="Faq IMAGE"
                       className="rounded-[8px] h-full max-h-[807px]"
                       fill
-                      objectFit="cover"
+                      style={{ objectFit: "cover" }}
                       objectPosition="bottom"
                     />
                   </SlideUpAnimation>

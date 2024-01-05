@@ -3,7 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { LoginForm } from "./components/LoginForm";
 import { LoginFooter } from "./components/LoginFooter";
-import Footer from "../components/Footer";
+import Footer from "@/components/__shared/footer/Footer";
 
 const Login = () => {
   const { images } = useAssets();
@@ -22,9 +22,9 @@ const Login = () => {
             style={{ objectFit: "cover", objectPosition: "center" }}
           />
         </div>
-        <div className="relative w-full py-5 bg-plane-pattern lg:px-8 lg:py-16">
+        <div className="relative flex flex-col justify-between w-full h-full py-5 bg-plane-pattern lg:px-8 lg:py-8">
           <LoginForm />
-          <div className="left-0 w-full mt-28 bottom-28">
+          <div className="mt-auto">
             <LoginFooter />
           </div>
         </div>

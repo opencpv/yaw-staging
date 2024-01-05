@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import * as Checkbox from "@radix-ui/react-checkbox";
 import { CheckIcon } from "@radix-ui/react-icons";
@@ -48,14 +49,16 @@ const CustomCheckBoxes = ({ data, onChange }: Props) => {
             checked={selected?.includes(r?.name)}
             onCheckedChange={() => handleChange(r)}
             className="shadow-blackA4 hover:bg-violet3 flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-[4px] bg-white border-[1px] border-[#DCDCDC]"
-            id="c1">
+            id="c1"
+          >
             <Checkbox.Indicator className="text-violet11">
               <CheckIcon />
             </Checkbox.Indicator>
           </Checkbox.Root>
           <label
             className=" leading-none text-[#737373] font-[400] text-[16px]"
-            htmlFor="c1">
+            htmlFor="c1"
+          >
             {r?.name}
           </label>
         </div>

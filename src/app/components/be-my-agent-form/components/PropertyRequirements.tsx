@@ -5,6 +5,7 @@ import CustomTextAreaInput from "../../CustomTextAreaInput";
 import { CustomDatePicker } from "../../CustomDatePicker";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import CustomCheckBoxes from "../../CustomCheckBoxes";
+import { ClientOnly } from "@/components/ui/ClientOnly";
 
 export default function PropertyRequirements() {
   const [agentFormData, setagentFormData] = useLocalStorage<any>(
@@ -67,21 +68,21 @@ export default function PropertyRequirements() {
                 <p className="text-[1.25rem[ font-semibold">
                   Rent Advance Options
                 </p>
-
-                <CustomCheckBoxes
-                
-                  onChange={(value: any) =>
-                    handleOnChange("rentAdvanceOptions", value)
-                  }
-                  data={[
-                    {
-                      name: "1 year",
-                      value: "1",
-                    },
-                    { name: "2 years", value: "2" },
-                    { name: "3 years", value: "3" },
-                  ]}
-                />
+                <ClientOnly>
+                  <CustomCheckBoxes
+                    onChange={(value: any) =>
+                      handleOnChange("rentAdvanceOptions", value)
+                    }
+                    data={[
+                      {
+                        name: "1 year",
+                        value: "1",
+                      },
+                      { name: "2 years", value: "2" },
+                      { name: "3 years", value: "3" },
+                    ]}
+                  />
+                </ClientOnly>
               </div>
             </div>
             <div className="col-span-1 flex flex-col gap-6">
