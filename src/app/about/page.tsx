@@ -26,10 +26,10 @@ const About = async () => {
         <title>About Us - RentRight Gh</title>
       </Head>
       <Navbar />
-      <main className="section overflow-x-hidden">
-        <div className="flex items-center justify-center mx-auto mb-10 wrapper">
+      <main className="overflow-x-hidden mt-14">
+        <div className="flex items-center justify-center pb-0 mx-auto wrapper sm:pb-0">
           <div className="grid items-center lg:grid-cols-2 gap-x-36 gap-y-5">
-            <h1 className="font-[700] text-2xl sm:text-4xl text-[#305A61] leading-normal">
+            <h1 className="font-[700] text-2xl text-[#305A61] leading-normal sm:text-4xl">
               {heading1}
             </h1>
             <h2 className="text-[#65969F] font-[500] text-lg max-w-2xl">
@@ -37,57 +37,65 @@ const About = async () => {
             </h2>
           </div>
         </div>
-        <AOSWrapper animation="fade-up" className="flex items-center justify-center">
-          <div className="relative w-full h-60 md:h-[30rem]">
-            {/* <Image
-              src={urlFor(data[0].featuredImage).width(1728).url() as string}
-              fill
-              style={{ objectFit: "cover" }}
-              objectPosition="center"
-              alt="banner image"
-              className="py-8 border-b-[1px] border-[#D9D9D9] mb-[32.5px] md:mb-[64px]"
-            /> */}
-            <Image
-              src="/assets/images/about/about1.webp"
-              alt=""
-              fill
-              style={{ objectFit: "cover" }}
-            />
-          </div>
-        </AOSWrapper>
-        <AOSWrapper animation="fade-up"  className="section flex items-center justify-center mx-auto min-h-max wrapper">
-          <div className="min-h-max">
-            {aboutDescription.map((data: any, index: number) => (
-              <AboutItem key={index} index={index + 1} data={data} />
-            ))}
-          </div>
-        </AOSWrapper>
-        <AOSWrapper animation="fade-up"  className="relative w-full">
-          <div className="section relative flex flex-col lg:flex-row items-center xs:items-start gap-10 justify-between fhd:mx-auto bg-gradient-to-r from-[#21A19F] to-[#1EA9A6A1] text-white p-5 xs:p-10 max-w-screen-xl bg-opacity-90 min-[1048px]:max-xl:w-11/12">
-            <div className="">
-              <h2 className="font-[700] text-2xl md:text-4xl">Ipsum Lorem</h2>
-              <p className="max-w-2xl mt-5 font-[500] text-base md:text-lg">
-                Lorem ipsum dolor sit amet consectetur. Orci suspendisse
-                fringilla consequat placerat velit dui. Sit in condimentum sed a
-                orci ac. Porttitor sagittis facilisi consequat morbi tortor dui.
-              </p>
+        <AOSWrapper animation="fade-up" className="section">
+          <div className="flex items-center justify-center">
+            <div className="relative w-full h-60 md:h-[30rem]">
+              {/* <Image
+                src={urlFor(data[0].featuredImage).width(1728).url() as string}
+                fill
+                style={{ objectFit: "cover" }}
+                objectPosition="center"
+                alt="banner image"
+                className="py-8 border-b-[1px] border-[#D9D9D9] mb-[32.5px] md:mb-[64px]"
+              /> */}
+              <Image
+                src="/assets/images/about/about1.webp"
+                alt=""
+                fill
+                style={{ objectFit: "cover" }}
+              />
             </div>
-            <Image
-              src={images.HouseSearchingCuate}
-              height={400}
-              width={400}
-              alt="House searching cuate"
-              className="xs:self-end lg:mt-14"
-            />
           </div>
-          {/* <AboutBanner data={bannerData} /> */}
-          <SimpleSlider />
+          <AOSWrapper
+            animation="fade-up"
+            className="flex items-center justify-center mx-auto min-h-max wrapper wrapper-no-pb"
+          >
+            <div className="min-h-max">
+              {aboutDescription.map((data: any, index: number) => (
+                <AboutItem key={index} index={index + 1} data={data} />
+              ))}
+            </div>
+          </AOSWrapper>
         </AOSWrapper>
-        <AOSWrapper animation="fade-up"  className="section h-fit wrapper">
+        <section className="section">
+          {/* <AboutBanner data={bannerData} /> */}
+          <AOSWrapper animation="fade-up" className="relative w-full">
+            <div className="relative flex flex-col lg:flex-row items-center xs:items-start gap-10 justify-between fhd:mx-auto bg-gradient-to-r from-[#21A19F] to-[#1EA9A6A1] text-white p-5 xs:p-10 max-w-screen-xl bg-opacity-90 min-[1048px]:max-xl:w-11/12">
+              <div className="">
+                <h2 className="font-[700] text-2xl md:text-4xl">Ipsum Lorem</h2>
+                <p className="max-w-2xl mt-5 font-[500] text-base md:text-lg">
+                  Lorem ipsum dolor sit amet consectetur. Orci suspendisse
+                  fringilla consequat placerat velit dui. Sit in condimentum sed
+                  a orci ac. Porttitor sagittis facilisi consequat morbi tortor
+                  dui.
+                </p>
+              </div>
+              <Image
+                src={images.HouseSearchingCuate}
+                height={400}
+                width={400}
+                alt="House searching cuate"
+                className="xs:self-end lg:mt-14"
+              />
+            </div>
+          </AOSWrapper>
+          <SimpleSlider />
+        </section>
+        <AOSWrapper animation="fade-up" className="section h-fit wrapper wrapper-no-pb">
           <VerticalSlider />
           {/* <div className="absolute top-0 left-0 z-10 w-[87%] h-full bg-transparent xl:hidden"></div> */}
         </AOSWrapper>
-        <FeaturedListings className="py-10 wrapper" />
+        <FeaturedListings className="section wrapper" />
       </main>
       <Footer />
     </>
