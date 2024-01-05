@@ -12,7 +12,7 @@ const HomeManagePropertiesSection = (props: Props) => {
           <h2 className="font-[500] w-fit capitalize text-neutral-900">
             Manage Your Properties With Us
           </h2>
-          <Image src="/assets/icons/manage.svg" alt="" width={25} height={25} />
+          <Image src="/assets/icons/manage.svg" alt="shield" width={25} height={25} />
         </div>
         <p className="max-w-2xl font-[500] text-neutral-500">
           Effortlessly manage your rental properties with the most advanced
