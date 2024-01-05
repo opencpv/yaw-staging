@@ -26,7 +26,7 @@ const Footer = () => {
     <footer
       className={`bg-[#131B1A] flex flex-col gap gap-[min(10vh,10rem)] no-print ${montserat.className}`}
     >
-      <div className="flex flex-col justify-center gap-10 text-[#8A8A8A] bg-[#333] py-8 px-2 md:flex-row">
+      <div className="flex flex-col justify-center gap-10 text-[#8A8A8A] bg-[#333] py-8 px-5 md:flex-row">
         {quickLinks.map((r) =>
           LowerCase(r.label) === "report fraud" ? (
             <Link
@@ -53,7 +53,7 @@ const Footer = () => {
         <Feedback />
       </div>
       <div
-        className={"flex flex-row h-[184px]  lg:w-11/12 mx-auto w-full  px-5"}
+        className={"flex flex-row h-[184px] mx-auto w-full px-5 lg:w-11/12 "}
       >
         <Logo size="lg" />
       </div>
@@ -108,12 +108,15 @@ const Footer = () => {
             "order-2 flex flex-row flex-wrap gap-x-1 gap-y-4 min-[1110px]:order-1"
           }
         >
-          <p className="text-[#B0B0B0]">
-            Copyright © {getCurrentYear()} ESODO LLC | All rights reserved
-          </p>
-          <Link href="/legal" className="inline-block text-[#B0B0B0]">
-            | Legal
-          </Link>
+          <div className="flex flex-wrap gap-x-2 gap-y-4 text-[#B0B0B0]">
+            <span>Copyright &copy; {getCurrentYear()} ESODO LLC</span>
+            <span>
+              | All rights reserved{" "}
+              <Link href="/legal" className="inline-block text-[#B0B0B0]">
+                | Legal
+              </Link>
+            </span>
+          </div>
         </div>
         <div
           className={
@@ -133,7 +136,12 @@ const Footer = () => {
                 fill="#0B6E4F"
               />
             </svg>
-            <p className={`text-[#ffff] cq truncate`} title="admin@rentrightgh.com">admin@rentrightgh.com</p>
+            <p
+              className={`text-[#ffff] overflow-x-auto`}
+              title="admin@rentrightgh.com"
+            >
+              admin@rentrightgh.com
+            </p>
           </div>
           <div className={"flex flex-row items-center gap-1"}>
             <svg
