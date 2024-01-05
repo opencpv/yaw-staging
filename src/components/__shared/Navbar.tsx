@@ -7,15 +7,12 @@ import { useRouter } from "next/navigation.js";
 import { usePathname } from "next/navigation.js";
 import { useEffect, useState } from "react";
 import Logo from "@/components/__shared/Logo";
-import Button from "@/components/__shared/ui/button/Button";
 import LikeHeart from "./ui/LikeHeart";
 import Share from "./ui/share/Share";
 import Link from 'next/link'
-import {DesktopMenu} from "@/components/NavMenu.tsx/DesktopMenu";
 const Navbar = (props: any) => {
   const pathname = usePathname();
   const { icons } = useAssets();
-  const router = useRouter();
   const [isScrolling, setIsScrolling] = useState<boolean>(false);
   const [locationOrigin, setLocationOrigin] = useState<string>("");
   const [toggle, setToggle] = useState(false)
@@ -36,7 +33,6 @@ const Navbar = (props: any) => {
       window.removeEventListener("scroll", handleScroll);
     };
 
-    setLocationOrigin(location.origin)
 
   }, [pathname]);
 
