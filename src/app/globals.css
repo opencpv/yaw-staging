@@ -38,7 +38,7 @@ h5 {
 }
 
 small {
-  @apply text-sm block;
+  @apply block text-sm;
 }
 
 .gradient-to-bottom {
@@ -121,6 +121,10 @@ small {
 
 .wrapper-2 {
   @apply px-5 sm:px-5
+}
+
+.wrapper-no-pb {
+  @apply pb-0 sm:pb-0
 }
 
 @media (min-width: 640px) {
