@@ -34,6 +34,7 @@ export default function RootLayout({
   }, [pathname]);
 
   return (
+
     <html
       lang="en"
       className="text-[14px] lg:text-[14.5px] 2xl:text-[15px] 3xl:text-[16px]"
