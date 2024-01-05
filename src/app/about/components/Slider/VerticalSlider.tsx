@@ -74,10 +74,10 @@ const VerticalSlider = () => {
         ))}
       </Swiper>
       <Link href="/blog/Lifestyle/The Home You Have Been Longing For" className="block col-span-5 mx-auto w-9/12 lg:w-[26rem] lg:col-span-1">
-        <div className="relative top-20 z-10 h-60 transition-all  lg:h-80 min-[1120px]:left-28 lg:top-0 lg:left-10 xl:left-52">
+        <div className="relative top-20 z-10 h-60 transition-all lg:h-80 min-[1120px]:left-28 lg:top-0 lg:left-10 xl:left-52">
           <Image
             src={demoPost[activeIndex].image}
-            alt=""
+            alt={demoPost[activeIndex].title}
             fill
             style={{ objectFit: "cover" }}
             className="rounded-[3rem]"

@@ -91,9 +91,10 @@ const About = async () => {
           </AOSWrapper>
           <SimpleSlider />
         </section>
-        <AOSWrapper animation="fade-up" className="mt-12 h-fit wrapper wrapper-no-pb lg:mt-28">
+        <AOSWrapper animation="fade-up" className="relative mt-12 h-fit wrapper wrapper-no-pb lg:mt-28">
           <VerticalSlider />
-          {/* <div className="absolute top-0 left-0 z-10 w-[87%] h-full bg-transparent xl:hidden"></div> */}
+          <div className="absolute left-0 top-[25%] px-5 z-10 h-[85%] w-7/12 translate-y-[-10%] bg-red-400"></div>
+        {/*!!! Temporary fix of scrolling issue on mobile !!!*/}
         </AOSWrapper>
         <FeaturedListings className="section wrapper" />
       </main>

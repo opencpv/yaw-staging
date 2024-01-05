@@ -10,9 +10,10 @@ import FeedbackBody from "./FeedbackBody";
 type Props = {
   // handleClick: () => void;
   className?: string;
+  children: React.ReactNode
 };
 
-const Feedback = ({ className }: Props) => {
+const Feedback = ({ className, children }: Props) => {
   const { onOpen, isOpen, onOpenChange, onClose } = useDisclosure();
   const { onOpen: toastOnOpen } = useToastDisclosure();
 
@@ -39,9 +40,9 @@ const Feedback = ({ className }: Props) => {
         onOpenChange={onOpenChange}
         size="lg"
       />
-      <h2 className="font-[400] cursor-pointer" onClick={onOpen}>
-        Feedback
-      </h2>
+      <div className="cursor-pointer" onClick={onOpen}>
+        {children}
+      </div>
     </>
   );
 };
