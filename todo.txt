@@ -38,3 +38,7 @@ hover effect on links 3.5 etc
 remove slide enter 
 border left green too long
 scrollbar
+
+darker modaldarkgreenbg
+download and apply 
+show application title
