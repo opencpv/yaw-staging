@@ -24,6 +24,7 @@ const PromotionSlider = () => {
       <Swiper
         direction={"vertical"}
         allowTouchMove={false}
+        
         pagination={{
           clickable: true,
           el: ".custom-pagination-ver",
