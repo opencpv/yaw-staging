@@ -46,7 +46,7 @@ export const bottomLinks = [
     name: "B2B",
   },
   {
-    url: "/contact",
+    url: "/join-us",
     name: "Join Us",
   },
   {
