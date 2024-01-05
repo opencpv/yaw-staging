@@ -1,7 +1,7 @@
 export const links = [
   {
     id: "#",
-    url: "",
+    url: "/properties",
     name: "HOMES FOR RENT",
     sub: [
       { url: "#", name: "View All Listings", id: "#" },
