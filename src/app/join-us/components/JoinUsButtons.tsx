@@ -46,7 +46,7 @@ function JoinUsButtons({
         buttonClasses[variant]
       } gap-2.5 ${reverseIcon && "flex-row-reverse"}`}>
       {content}
-      {icon && iconTypeOptions[iconType]}
+      {icon && iconType && iconTypeOptions[iconType]}
     </Button>
   );
 }

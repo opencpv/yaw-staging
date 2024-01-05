@@ -23,7 +23,7 @@ function JobApplicationForm({ variant }: Props) {
           Go back
         </Button>
       </Link>
-      <Formik>
+      <Formik initialValues={{}} onSubmit={() => console.log("submitted")}>
         <Form>
           <div className="flex flex-col gap-4">
             <p className="text-[1.9375rem] font-semibold text-[#333] hidden lg:flex">
@@ -37,12 +37,14 @@ function JobApplicationForm({ variant }: Props) {
               </p>
               <div className="flex flex-col lg:flex-row gap-5">
                 <TextFieldInput
+                  onChange={() => console.log("first")}
                   label="First Name"
                   placeholder="Enter your first name"
                   type="text"
                   name="first_name"
                 />
                 <TextFieldInput
+                  onChange={() => console.log("first")}
                   label="Last Name"
                   placeholder="Enter your last name"
                   type="text"
@@ -51,6 +53,7 @@ function JobApplicationForm({ variant }: Props) {
               </div>
               <div className="flex gap-5  flex-col lg:flex-row ">
                 <TextFieldInput
+                  onChange={() => console.log("first")}
                   label="Email"
                   placeholder="Enter your email"
                   type="text"
@@ -87,7 +90,9 @@ function JobApplicationForm({ variant }: Props) {
             </div>
           </div>
           <div className="flex justify-center mt-12">
-            <Link href={"/join-us/open-positions/submitted"} className="w-full max-w-[248px]">
+            <Link
+              href={"/join-us/open-positions/submitted"}
+              className="w-full max-w-[248px]">
               <Button className="h-[52px] w-full max-w-[248px] bg-[#DDB771] rounded-lg text-white font-semibold">
                 Submit
               </Button>

@@ -3,9 +3,9 @@ import CaAttachment from "./icons/CaAttachment";
 import { InfoBubble } from "./application-form/components/InfoBubble";
 
 type Props = {
-  handleFile: (file: File | null) => void; // Specify the type of handleFile function
-  label: string;
-  infoContent: string;
+  handleFile?: (file: File | null) => void; // Specify the type of handleFile function
+  label?: string;
+  infoContent?: string;
 };
 function CustomFileInput({ handleFile, label, infoContent }: Props) {
   const [fileUploaded, setFileUploaded] = useState<File | null>(null);
@@ -20,7 +20,7 @@ function CustomFileInput({ handleFile, label, infoContent }: Props) {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0] || null;
     setFileUploaded(file);
-    handleFile(file);
+    handleFile && handleFile(file);
   };
 
   return (

@@ -1,7 +1,7 @@
 import { Tooltip } from "@nextui-org/react";
 
 type Props = {
-    content : string
+    content? : string
 }
 
 export const InfoBubble = ({content} : Props) => {
