@@ -52,9 +52,8 @@ const Footer = () => {
         )}
         <Feedback />
       </div>
-      <div
-        className={"flex flex-row h-[184px] mx-auto w-full px-5 lg:w-11/12 "}
-      >
+
+      <div className="w-fit px-8">
         <Logo size="lg" />
       </div>
       <div className="flex flex-col gap-10 lg:w-8/12 mx-auto px-6 text-[#fff] items-center">
@@ -136,10 +135,7 @@ const Footer = () => {
                 fill="#0B6E4F"
               />
             </svg>
-            <p
-              className="text-[#ffff]"
-              title="admin@rentrightgh.com"
-            >
+            <p className="text-[#ffff]" title="admin@rentrightgh.com">
               admin@rentrightgh.com
             </p>
           </div>
