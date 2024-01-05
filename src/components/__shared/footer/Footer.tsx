@@ -137,7 +137,7 @@ const Footer = () => {
               />
             </svg>
             <p
-              className={`text-[#ffff] overflow-x-auto`}
+              className="text-[#ffff]"
               title="admin@rentrightgh.com"
             >
               admin@rentrightgh.com
