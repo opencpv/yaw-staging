@@ -10,7 +10,6 @@ type Props = {
   location: string;
   description: string;
   propertyNumber: number;
-  href: string;
   className?: string;
 };
 
@@ -18,13 +17,12 @@ const PopularCitiesCard = ({
   location,
   description,
   propertyNumber,
-  href,
   className
 }: Props) => {
   const propertyNumTruncated = useTruncateNumber(propertyNumber);
 
   return (
-    <Link href={`${href}`}>
+    <Link href={`/properties/?location=${location}`}>
       <div className={`relative flex min-h-[10rem] w-full items-center justify-center rounded-lg p-5 text-white transition-all sm:p-20 hover:scale-105 ${className}`}>
         <Image
           src="/assets/images/Stock.jpg"
@@ -41,7 +39,7 @@ const PopularCitiesCard = ({
             <p className="inline-block font-[700] text-sm">{description}</p>
           </div>
           <Link
-            href={`${href}`}
+            href={`/properties/?location${location}`}
             className="flex items-center gap-2 visited:no-underline hover:no-underline active:no-underline"
           >
             <div className="flex items-center gap-1 text-accent-50">

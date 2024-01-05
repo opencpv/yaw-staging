@@ -5,10 +5,11 @@ import Modal from "@/components/__shared/modals/Modal";
 import SubscribeForm from "@/components/__shared/ui/SubscribeForm";
 import { useDisclosure } from "@nextui-org/react";
 import React from "react";
+import { AnimationStyle } from "@/components/__shared/types";
 
 type Props = {
   className?: string;
-  animation?: string;
+  animation?: AnimationStyle
 };
 
 const SubscribeToBlogButton = ({ className, animation }: Props) => {
