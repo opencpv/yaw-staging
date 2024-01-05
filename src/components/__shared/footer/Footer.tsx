@@ -50,7 +50,9 @@ const Footer = () => {
             </Link>
           )
         )}
-        <Feedback />
+        <Feedback>
+          <h2 className="font-[400]">Feedback</h2>
+        </Feedback>
       </div>
 
       <div className="w-fit px-8">
