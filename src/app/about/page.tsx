@@ -27,7 +27,7 @@ const About = async () => {
       </Head>
       <Navbar />
       <main className="overflow-x-hidden mt-14">
-        <div className="flex items-center justify-center pb-0 mx-auto wrapper sm:pb-0">
+        <div className="flex items-center justify-center mx-auto wrapper wrapper-no-pb">
           <div className="grid items-center lg:grid-cols-2 gap-x-36 gap-y-5">
             <h1 className="font-[700] text-2xl text-[#305A61] leading-normal sm:text-4xl">
               {heading1}
@@ -91,7 +91,7 @@ const About = async () => {
           </AOSWrapper>
           <SimpleSlider />
         </section>
-        <AOSWrapper animation="fade-up" className="section h-fit wrapper wrapper-no-pb">
+        <AOSWrapper animation="fade-up" className="mt-12 h-fit wrapper wrapper-no-pb lg:mt-28">
           <VerticalSlider />
           {/* <div className="absolute top-0 left-0 z-10 w-[87%] h-full bg-transparent xl:hidden"></div> */}
         </AOSWrapper>
