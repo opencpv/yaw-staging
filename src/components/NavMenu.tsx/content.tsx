@@ -30,7 +30,7 @@ export const links = [
       { id: "#", url: "#", name: "Artisan" },
     ],
   },
-  { id: "#", url: "", name: "MOVING SALE" },
+  { id: "#", url: "/moving-sale", name: "MOVING SALE" },
   { id: "#", url: "", name: "AREA VIBES" },
   { id: "#", url: "/faq", name: "FAQS" },
   { id: "#", url: "/contact", name: "CONTACT" },
@@ -42,11 +42,11 @@ export const bottomLinks = [
     name: "Services",
   },
   {
-    url: "",
+    url: "/b2b",
     name: "B2B",
   },
   {
-    url: "",
+    url: "/contact",
     name: "Join Us",
   },
   {
@@ -54,11 +54,11 @@ export const bottomLinks = [
     name: "FAQS",
   },
   {
-    url: "",
+    url: "/contact",
     name: "Report Fraud",
   },
   {
-    url: "",
+    url: "/contact",
     name: "Feedback",
   },
 ];

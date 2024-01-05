@@ -43,7 +43,6 @@ export default function Home() {
         <HomePromotionSection />
         {/* Featured Listings and Ads */}
         <FeaturedListingAndAds />
-
         {/* Apartment Rentals */}
         <HomeRentalDealsSection />
         {/* Manage Your Properties With Us */}
