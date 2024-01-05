@@ -84,6 +84,12 @@ const VerticalSlider = () => {
           />
         </div>
       </Link>
+
+      {/* For smooth vertical scrolling */}
+      <Link href="/blog/Lifestyle/The Home">
+        <div className="absolute bottom-0 left-0 z-10 opacity-0 h-full px-5 bg-red-400 w-[78%] xs:w-10/12"></div>
+      </Link>
+          {/*!!! Temporary fix of scrolling issue on mobile !!!*/}
     </div>
   );
 };
