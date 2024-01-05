@@ -71,8 +71,9 @@ const Page = () => {
   useHashChangeScroll(-200)
 
   return (
-    <main className="max-w-[1728px] mx-auto">
-      <Navbar />
+    <>
+    <Navbar />
+    <main className="wrapper">
       <Root className="sm:p-5 lg:mt-[143px] mt-[81.5px] lg:p-10 flex flex-col items-center justify-center">
         <div
           className={`banner flex flex-col lg:flex-row justify-center lg:justify-between px-24 items-center lg:items-start min-h-[453px] md:h-[528px] text-white font-bold  lg::gap-20 ${openSans.className}`}>
@@ -326,6 +327,7 @@ const Page = () => {
       </Root>
       <Footer />
     </main>
+    </>
   );
 };
 

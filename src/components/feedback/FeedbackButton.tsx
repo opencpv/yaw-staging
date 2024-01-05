@@ -7,9 +7,9 @@ type Props = {};
 
 const FeedbackButton = (props: Props) => {
   return (
-    <AOSWrapper animation="fade-right">
+    <AOSWrapper animation="fade-right" className="w-fit">
       <Feedback>
-        <div className="ml-5 w-fit inline-flex items-center">
+        <div className="inline-flex items-center ml-5 w-fit">
           <div
             className={`relative z-20 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-t from-primary-500 to-primary-400 shadow-lg`}
           >

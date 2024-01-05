@@ -50,7 +50,7 @@ const Navbar = (props: any) => {
                     : shouldChangeColor
                         ? "fixed bg-primary-500 transition-all"
                         : "fixed bg-transparent transition-all"
-            } top-0`}
+            } top-0 bg-primary-500`}
         >
           <div className="flex items-center justify-between">
             <Menu
