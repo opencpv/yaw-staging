@@ -26,7 +26,7 @@ const About = async () => {
         <title>About Us - RentRight Gh</title>
       </Head>
       <Navbar />
-      <main className="pt-10 overflow-x-hidden">
+      <main className="section overflow-x-hidden">
         <div className="flex items-center justify-center mx-auto mb-10 wrapper">
           <div className="grid items-center lg:grid-cols-2 gap-x-36 gap-y-5">
             <h1 className="font-[700] text-2xl sm:text-4xl text-[#305A61] leading-normal">
@@ -55,7 +55,7 @@ const About = async () => {
             />
           </div>
         </AOSWrapper>
-        <AOSWrapper animation="fade-up"  className="flex items-center justify-center pb-10 mx-auto min-h-max wrapper">
+        <AOSWrapper animation="fade-up"  className="section flex items-center justify-center mx-auto min-h-max wrapper">
           <div className="min-h-max">
             {aboutDescription.map((data: any, index: number) => (
               <AboutItem key={index} index={index + 1} data={data} />
@@ -63,7 +63,7 @@ const About = async () => {
           </div>
         </AOSWrapper>
         <AOSWrapper animation="fade-up"  className="relative w-full">
-          <div className="relative flex flex-col lg:flex-row items-center xs:items-start gap-10 justify-between fhd:mx-auto bg-gradient-to-r from-[#21A19F] to-[#1EA9A6A1] text-white p-5 xs:p-10 max-w-screen-xl bg-opacity-90 min-[1048px]:max-xl:w-11/12 lg:top-20">
+          <div className="section relative flex flex-col lg:flex-row items-center xs:items-start gap-10 justify-between fhd:mx-auto bg-gradient-to-r from-[#21A19F] to-[#1EA9A6A1] text-white p-5 xs:p-10 max-w-screen-xl bg-opacity-90 min-[1048px]:max-xl:w-11/12">
             <div className="">
               <h2 className="font-[700] text-2xl md:text-4xl">Ipsum Lorem</h2>
               <p className="max-w-2xl mt-5 font-[500] text-base md:text-lg">
@@ -83,7 +83,7 @@ const About = async () => {
           {/* <AboutBanner data={bannerData} /> */}
           <SimpleSlider />
         </AOSWrapper>
-        <AOSWrapper animation="fade-up"  className="pb-20 h-fit wrapper">
+        <AOSWrapper animation="fade-up"  className="section h-fit wrapper">
           <VerticalSlider />
           {/* <div className="absolute top-0 left-0 z-10 w-[87%] h-full bg-transparent xl:hidden"></div> */}
         </AOSWrapper>

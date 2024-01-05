@@ -44,7 +44,6 @@ const SliderMultiItems = ({
           enabled: autoplay === false ? false : true,
           momentumRatio: 0.4,
           momentumVelocityRatio: 0.4,
-          sticky: true,
         }}
         speed={autoplay ? 30000 : undefined}
         pagination={{

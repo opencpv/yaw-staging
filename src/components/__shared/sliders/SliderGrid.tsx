@@ -23,7 +23,7 @@ const SliderGrid = ({ items }: SliderGridProps) => {
           rows: 1,
         }}
         spaceBetween={20}
-        grabCursor
+        // grabCursor
         pagination={{
           clickable: true,
           dynamicBullets: true,

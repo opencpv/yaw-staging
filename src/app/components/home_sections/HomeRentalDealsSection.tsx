@@ -14,7 +14,7 @@ const HomeRentalDealsSection = (props: Props) => {
           <h2 className="font-[500] capitalize w-fit text-neutral-900">
             Our Apartment Rental Deals
           </h2>
-          <Image src="/assets/icons/deals.svg" alt="" width={25} height={25} />
+          <Image src="/assets/icons/deals.svg" alt="handshake" width={25} height={25} />
         </div>
         <p className="max-w-2xl font-[500] text-neutral-500">
           RentRightGH employs the latest data on rental rates and apartment
