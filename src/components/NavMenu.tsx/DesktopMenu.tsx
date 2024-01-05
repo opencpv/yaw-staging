@@ -4,7 +4,7 @@ import { links } from "./content";
 import { motion } from "framer-motion";
 import Separator from "../Separator";
 import { FadeInOut } from "@/lib/animations";
-
+import  Link from "next/link"
 export const DesktopMenu = (props: any) => {
   const [active, setActive] = useState<number | null>(null);
   const [subId, setSubId] = useState<number | null>(null);
@@ -37,7 +37,7 @@ export const DesktopMenu = (props: any) => {
                   ${active === idx ? "text-[#FCAB10]" : "text-[#fff]"}
                 `}
             >
-              <p className={"uppercase "}>{r?.name}</p>
+                <Link href={r?.url}>{r?.name}</Link>
               {r?.sub && (
                 <svg
                   width="24"
@@ -69,21 +69,15 @@ export const DesktopMenu = (props: any) => {
               <motion.button
                 key={ldx}
                 whileHover={{ scale: 1.05 }}
-                onClick={() => {
-                  if (l?.id) {
-                    setSubId(ldx);
-                  } else {
-                    setSubId(null);
-                    router.push(l?.url);
-                  }
-                }}
+
               >
                 <div
                   className={`flex flex-row w-full justify-between items-center cursor-pointer  gap-2
                       ${ldx === subId ? "text-[#FCAB10]" : "text-[#fff]"}
                     `}
                 >
-                  <p>{l?.name}</p>
+
+                    <Link href={l?.url}>{l?.name}</Link>
                   {l?.id && (
                     <svg
                       width="24"
