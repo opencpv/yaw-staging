@@ -60,6 +60,10 @@ const config: Config = {
       gridTemplateColumns: {
         "autofit-listing-card": "repeat(auto-fit, minmax(380px, 1fr))",
       },
+      fontSize: {
+        "20": "1.25rem",
+        "25": "1.5625rem",
+      },
     },
     screens: {
       xs: "425px",

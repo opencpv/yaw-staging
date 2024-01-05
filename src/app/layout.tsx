@@ -30,7 +30,7 @@ export default function RootLayout({
   }, [pathname]);
 
   return (
-    <html lang="en" className="text-[14px] lg:text-[14.5px] 2xl:text-[15px] 3xl:text-[16px]">
+    <html lang="en" className="text-[15px] lg:text-[15.5px] 3xl:text-[16px]">
       <Script src="https://widget.cloudinary.com/v2.0/global/all.js" />
       <body className="text-black">
         
