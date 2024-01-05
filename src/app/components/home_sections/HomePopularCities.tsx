@@ -60,7 +60,6 @@ const HomePopularCities = () => {
               location="Kumasi"
               description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, doloribus!"
               propertyNumber={232}
-              href="/"
             />
           </AOSWrapper>
         ))}
@@ -85,7 +84,6 @@ const HomePopularCities = () => {
               location="Kumasi"
               description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, doloribus!"
               propertyNumber={232}
-              href="/"
             />
           ))}
         />
