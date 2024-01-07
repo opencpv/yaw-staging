@@ -26,6 +26,8 @@ import ContactBanner from "./components/ContactBanner";
 import TextInput from "@/components/__shared/form/TextInput";
 import FormErrorMessage from "./components/FormErrorMessage";
 import ContactTabs from "./components/ContactTabs";
+import ScrollTopAndSocial from "../../components/ui/ScrollTopAndSocial";
+import FeedbackButton from "../../components/feedback/FeedbackButton";
 
 const ContactSchema = Yup.object().shape({
   fullname: Yup.string()
@@ -247,10 +249,12 @@ const Page = () => {
                     />
                   </SlideUpAnimation>
                 </div>
-              C</div>
+              </div>
             </div>
           </div>
         </Root>
+        <ScrollTopAndSocial />
+        <FeedbackButton />
       </main>
       <Footer />
     </>
