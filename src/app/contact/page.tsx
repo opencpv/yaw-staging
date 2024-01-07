@@ -58,7 +58,7 @@ const PhoneInput = () => {
 // };
 
 const LinkInput = () => {
-  return <TextInput name="reportLink" label="Link" className="p-3 py-7" />;
+  return <TextInput name="reportLink" placeholder="Paste URL link here (optional)" className="p-3 py-7" />;
 };
 
 const Page = () => {
@@ -149,7 +149,7 @@ const Page = () => {
                 >
                   <Form
                     ref={formRef}
-                    className="pt-8 xl:flex-[1_0_407px] 2xl:flex-[1_0_650px] xl:max-w-[400px] 2xl:min-w-[673px] 2xl:max-w-full"
+                    className="flex-1 pt-8"
                   >
                     <div className="gap-5 ">
                       <div className={``}>
@@ -170,15 +170,12 @@ const Page = () => {
                             />
                             <FormErrorMessage name="phone" />
                           </div>
-                          <div className="">
+                          {/* <div className="">
                             <FormSwitch
                               label="Available on whatsapp"
                               onChange={(checked) => setIsWhatsapp(checked)}
                             />
-                          </div>
-                          <div>
-                            <UploadFile />
-                          </div>
+                          </div> */}
                           <div className="form-div">
                             <Field
                               as="textarea" // Use 'textarea' as the component
@@ -186,10 +183,13 @@ const Page = () => {
                               name="message"
                               // component={MessageInput}
                               placeholder="Message"
-                              className="form-input-textarea p-4 max-w-[673px] border shadow-sm rounded-md"
+                              className="form-input-textarea p-4 max-w-[673px] border shadow-sm rounded-md focus:outline-none hover:border-black/50"
                               rows="8"
                               cols="50"
                             />
+                          </div>
+                          <div>
+                            <UploadFile />
                           </div>
 
                           <div className="form-div">
@@ -218,9 +218,7 @@ const Page = () => {
                   </Form>
                 </Formik>
                 <div
-                  className="flex items-center relative w-full md:min-h-[807px]
-            max-h-[402px] md:max-h-[807px] lg:mt-10
-            aspect-[398/402] md:aspect-[774/807] lg:aspect-auto"
+                  className="relative flex items-center flex-1 w-full aspect-square lg:mt-10 xl:aspect-auto"
                 >
                   <SlideUpAnimation>
                     <Image

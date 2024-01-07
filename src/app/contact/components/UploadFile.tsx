@@ -13,14 +13,14 @@ export const UploadFile = () => {
         <Form className="flex items-center w-full">
             <div className="flex items-center w-full">
               <div
-                className="flex items-center gap-2 border-l border-y text-neutral-400 rounded-l-sm p-3 py-4 min-w-[100px] w-full"
+                className="flex flex-col items-center gap-2 border text-neutral-400 rounded-l-sm p-3 py-4 min-w-[100px] w-full min-[390px]:flex-row min-[390px]:border-r-0"
               >
                 <AiOutlineLink
                   className=""
                   size="18"
                   color="#737373"
                 />
-                  Choose File
+                  Choose File (optional)
               </div>
               <button
                 className="rounded-[4px] bg-[#DDB771]

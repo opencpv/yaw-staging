@@ -2,7 +2,7 @@ import { Input, cn } from "@nextui-org/react";
 import React, { HTMLInputTypeAttribute } from "react";
 
 type Props = {
-  label: string;
+  label?: string;
   placeholder?: string;
   value?: string | null;
   name?: string;
@@ -18,7 +18,7 @@ const TextInput = ({ label, labelClassName, placeholder, value, name, onChangeVa
         classNames={{
             label: cn(`text-base text-neutral-500 mb-1.5 font-[400] ${labelClassName}`),
             inputWrapper: cn(`border rounded-md ${className}`),
-            input: cn(`text-base py-8 ${className}`),
+            input: cn(`text-base py-8 focus:border-accent-50 ${className}`),
             // innerWrapper: cn(`${className} text-base`)
         }}
       variant="bordered"
