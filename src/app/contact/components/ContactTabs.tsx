@@ -27,7 +27,7 @@ const ContactTabs = (props: Props) => {
 
   return (
     <div className="flex items-center" ref={scrollContainerRef}>
-      <div className="flex gap-[50px] overflow-x-scroll lg:overflow-x-auto relative ">
+      <div className="flex gap-12 overflow-x-scroll lg:overflow-x-auto relative ">
         <Tab
           onClick={(e: any) => setActive("general")}
           type={active === "general" ? "active" : undefined}

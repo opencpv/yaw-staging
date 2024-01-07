@@ -1,5 +1,5 @@
 import { styled } from "@stitches/react";
-import { ErrorMessage, Field, Form, Formik } from "formik";
+import { Form, Formik } from "formik";
 import { AiOutlineLink } from "react-icons/ai";
 
 export const UploadFile = () => {
@@ -9,26 +9,22 @@ export const UploadFile = () => {
         initialValues={{}}
         onSubmit={(values) => {
           console.log(values);
-        }}>
+        }}
+      >
         <Form className="flex items-center w-full">
-            <div className="flex items-center w-full">
-              <div
-                className="flex flex-col items-center gap-2 border text-neutral-400 rounded-l-sm p-3 py-4 min-w-[100px] w-full min-[390px]:flex-row min-[390px]:border-r-0"
-              >
-                <AiOutlineLink
-                  className=""
-                  size="18"
-                  color="#737373"
-                />
-                  Choose File (optional)
-              </div>
-              <button
-                className="rounded-[4px] bg-[#DDB771]
-               flex items-center justify-center upload-button
-              max-w-[128px] min-w-[128px] w-[128px] h-[52px] text-white -translate-x-2">
-                Upload
-              </button>
+          <div className="flex flex-col gap-y-3  w-full min-[390px]:items-center min-[390px]:flex-row">
+            <div className="flex items-center gap-2 border text-neutral-400 rounded-l-sm p-3 py-4 min-w-[100px] w-full min-[390px]:border-r-0">
+              <AiOutlineLink className="" size="18" color="#737373" />
+              Choose File (optional)
             </div>
+            <button
+              className="rounded-[4px] bg-[#DDB771]
+               flex items-center justify-center upload-button
+              max-w-[128px] min-w-[128px] w-[128px] h-[52px] text-white min-[390px]:-translate-x-2"
+            >
+              Upload
+            </button>
+          </div>
         </Form>
       </Formik>
     </Root>
@@ -40,8 +36,7 @@ const Root = styled("div", {
     display: "flex",
     flexDirection: "column",
     gap: "0.875rem",
-    color:"#6A6968",
-
+    color: "#6A6968",
   },
   " .form-input": {
     maxHeight: "52px",
