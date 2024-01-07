@@ -1,15 +1,22 @@
-"use client"
+"use client";
 import React from "react";
 import FixedSocials from "../FixedSocials";
 import ScrollTop from "../__shared/ScrollTop";
 
-type Props = {};
+type Props = {
+  socialHidden?: boolean;
+  scrollTopHidden?: boolean;
+};
 
-const ScrollTopAndSocial = (props: Props) => {
+const ScrollTopAndSocial = ({ scrollTopHidden, socialHidden }: Props) => {
   return (
     <>
-      <FixedSocials />
-      <ScrollTop />
+      <div style={{ display: socialHidden ? "none" : "block" }}>
+        <FixedSocials />
+      </div>
+      <div style={{ display: scrollTopHidden ? "none" : "block" }}>
+        <ScrollTop />
+      </div>
     </>
   );
 };
