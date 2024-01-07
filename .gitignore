@@ -37,3 +37,6 @@ next-env.d.ts
 
 /notes.txt
 /todo.txt
+
+# script
+/merge-push.sh

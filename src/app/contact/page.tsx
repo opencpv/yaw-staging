@@ -183,7 +183,7 @@ const Page = () => {
                               name="message"
                               // component={MessageInput}
                               placeholder="Message"
-                              className="form-input-textarea p-4 max-w-[673px] border shadow-sm rounded-md focus:outline-none hover:border-black/50 transition-all"
+                              className="p-4 max-w-[673px] border shadow-sm rounded-md outline-none hover:border-black/50 transition-all"
                               rows="8"
                               cols="50"
                             />
@@ -255,7 +255,7 @@ const SlideUpAnimation = ({ children }: { children: React.ReactNode }) => {
       transition={{
         type: "spring",
         stiffness: "10",
-        duration: "100",
+        duration: "1000",
       }}
     >
       {children}
