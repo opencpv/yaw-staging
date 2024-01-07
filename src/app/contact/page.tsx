@@ -1,14 +1,11 @@
 "use client";
 
 import { styled } from "@stitches/react";
-import { ErrorMessage, Field, Form, Formik } from "formik";
+import { Field, Form, Formik } from "formik";
 import Image from "next/image";
-import { AiOutlineLink } from "react-icons/ai";
 import { UploadFile } from "./components/UploadFile";
-import { useEffect, useRef, useState } from "react";
-import { montserat, openSans } from "../../styles/font";
+import { useRef, useState } from "react";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import { BiRightArrowCircle } from "react-icons/bi";
 import PhoneNumberInput from "@/components/__shared/PhoneInput";
 import emailjs from "@emailjs/browser";
 import FormSwitch from "./components/FormSwitch";
@@ -56,9 +53,9 @@ const PhoneInput = () => {
   return <TextInput name="phone" label="Phone" className="p-3 py-7" />;
 };
 
-const MessageInput = () => {
-  return <TextInput name="message" label="Message" className="p-3 py-7" />;
-};
+// const MessageInput = () => {
+//   return <TextInput name="message" label="Message" className="p-3 py-7" />;
+// };
 
 const LinkInput = () => {
   return <TextInput name="reportLink" label="Link" className="p-3 py-7" />;
@@ -66,13 +63,13 @@ const LinkInput = () => {
 
 const Page = () => {
   const active = useContactStore((state) => state.activeKey);
-  const setActive = useContactStore((state) => state.setActiveKey);
 
   const { images } = useAssets();
-  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+
   const [phone, setPhone] = useState("+233");
   const [loading, setLoading] = useState(false);
   const [isWhatsapp, setIsWhatsapp] = useState(false);
+
   const handlePhone = (phoneNumber: string) => {
     setPhone(phoneNumber);
   };
@@ -85,19 +82,6 @@ const Page = () => {
   };
 
   const formRef = useRef<HTMLFormElement>(null);
-  const scrollToRight = () => {
-    const scrollContainer = scrollContainerRef.current;
-    if (scrollContainer) {
-      const childElement = scrollContainer.querySelector(".sc"); // Replace with your desired selector
-      if (childElement) {
-        childElement.scrollIntoView({
-          behavior: "smooth",
-          block: "nearest",
-          inline: "end",
-        });
-      }
-    }
-  };
 
   useHashChangeScroll(-200);
 
@@ -200,11 +184,11 @@ const Page = () => {
                               as="textarea" // Use 'textarea' as the component
                               id="message"
                               name="message"
-                              component={MessageInput}
-                              // placeholder="Type your message"
-                              className="form-input-textarea px-4 max-w-[673px]"
-                              rows="15" // Optional: Set the number of rows for the text area
-                              cols="50" // Optional: Set the number of columns for the text area
+                              // component={MessageInput}
+                              placeholder="Message"
+                              className="form-input-textarea p-4 max-w-[673px] border shadow-sm rounded-md"
+                              rows="8"
+                              cols="50"
                             />
                           </div>
 
@@ -241,7 +225,7 @@ const Page = () => {
                   <SlideUpAnimation>
                     <Image
                       src={activeImages[active]}
-                      alt="Faq IMAGE"
+                      alt="ad"
                       className="rounded-[8px] h-full max-h-[807px]"
                       fill
                       style={{ objectFit: "cover" }}
