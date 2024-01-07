@@ -7,12 +7,13 @@ type Props = {
   value?: string | null;
   name?: string;
   onChangeValue?: (val: string) => void;
+  onChange?: (val: any) => void;
   className?: string;
   labelClassName?: string;
   type?: HTMLInputTypeAttribute
 };
 
-const TextInput = ({ label, labelClassName, placeholder, value, name, onChangeValue, className, type, ...props }: Props) => {
+const TextInput = ({ label, labelClassName, placeholder, value, name, onChange, onChangeValue, className, type, ...props }: Props) => {
   return (
     <Input
         classNames={{
@@ -24,6 +25,7 @@ const TextInput = ({ label, labelClassName, placeholder, value, name, onChangeVa
       variant="bordered"
       value={value as string}
       onValueChange={onChangeValue}
+      onChange={onChange}
       label={label}
       name={name}
       labelPlacement="outside"

@@ -82,6 +82,10 @@ small {
   @apply relative before:absolute before:inset-0 before:z-10 before:bg-gradient-to-b before:from-primary-500/60 before:to-primary-500/50 before:w-full before:h-full before:rounded-2xl;
 }
 
+.PhoneInputInput {
+  @apply border rounded-md px-3 py-4 shadow-sm focus:outline-none focus:border-black hover:border-black/50 
+}
+
 .section {
   @apply pt-28
 }

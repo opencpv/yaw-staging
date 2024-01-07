@@ -25,6 +25,8 @@ import FormErrorMessage from "./components/FormErrorMessage";
 import ContactTabs from "./components/ContactTabs";
 import ScrollTopAndSocial from "../../components/ui/ScrollTopAndSocial";
 import FeedbackButton from "../../components/feedback/FeedbackButton";
+import InputPhoneNumber from "@/components/__shared/form/InputPhoneNumber";
+import { E164Number } from "libphonenumber-js/core";
 
 const ContactSchema = Yup.object().shape({
   fullname: Yup.string()
@@ -49,8 +51,21 @@ const EmailInput = () => {
   );
 };
 
+const PhoneInputComponent = () => {
+  const [value, setValue] = useState<E164Number>();
+  return (
+    <TextInput
+      // placeholder="Phone"
+      name="phone"
+      className="px-3 py-7"
+      value={value}
+      onChange={setValue}
+    />
+  );
+};
+
 const PhoneInput = () => {
-  return <TextInput name="phone" label="Phone" className="p-3 py-7" />;
+  return <InputPhoneNumber name="phone" placeholder="Phone" />;
 };
 
 // const MessageInput = () => {
@@ -58,7 +73,13 @@ const PhoneInput = () => {
 // };
 
 const LinkInput = () => {
-  return <TextInput name="reportLink" placeholder="Paste URL link here (optional)" className="p-3 py-7" />;
+  return (
+    <TextInput
+      name="reportLink"
+      placeholder="Paste URL link here (optional)"
+      className="p-3 py-7"
+    />
+  );
 };
 
 const Page = () => {
@@ -147,10 +168,7 @@ const Page = () => {
                   }}
                   className=""
                 >
-                  <Form
-                    ref={formRef}
-                    className="flex-1 pt-8"
-                  >
+                  <Form ref={formRef} className="flex-1 pt-8">
                     <div className="gap-5 ">
                       <div className={``}>
                         <div className="flex flex-col gap-10">
@@ -183,7 +201,7 @@ const Page = () => {
                               name="message"
                               // component={MessageInput}
                               placeholder="Message"
-                              className="p-4 max-w-[673px] border shadow-sm rounded-md outline-none hover:border-black/50 transition-all"
+                              className="p-4 max-w-[673px] border shadow-sm rounded-md outline-none transition-all focus:border-black hover:border-black/50"
                               rows="8"
                               cols="50"
                             />
@@ -217,9 +235,7 @@ const Page = () => {
                     )}
                   </Form>
                 </Formik>
-                <div
-                  className="relative flex items-center flex-1 w-full aspect-square lg:mt-10 md:aspect-auto"
-                >
+                <div className="relative flex items-center flex-1 w-full aspect-square lg:mt-10 md:aspect-auto">
                   <SlideUpAnimation>
                     <Image
                       src={activeImages[active]}
