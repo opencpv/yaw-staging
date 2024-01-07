@@ -1,8 +1,16 @@
 import { styled } from "@stitches/react";
 import { Form, Formik } from "formik";
+import { ChangeEvent, useState } from "react";
 import { AiOutlineLink } from "react-icons/ai";
 
 export const UploadFile = () => {
+  const [file, setFile] = useState<string>("")
+  const handleFileUpload = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files){
+      setFile(e.target.files[0]?.name)
+    }
+  }
+
   return (
     <Root className="max-w-[673px]">
       <Formik
@@ -12,19 +20,19 @@ export const UploadFile = () => {
         }}
       >
         <Form className="flex items-center w-full">
-          <div className="flex flex-col gap-y-3  w-full min-[390px]:items-center min-[390px]:flex-row">
-            <div className="flex items-center gap-2 border text-neutral-400 rounded-l-sm p-3 py-4 min-w-[100px] w-full min-[390px]:border-r-0">
+          <label className="flex flex-col gap-y-3 w-full min-[390px]:items-center min-[390px]:flex-row min-[390px]:h-16" htmlFor="file">
+            <div className="flex items-center gap-2 border text-neutral-400 rounded-l-md h-16 p-3 py-4 min-w-[100px] w-full truncate min-[390px]:border-r-0 min-[390px]:h-full">
               <AiOutlineLink className="" size="18" color="#737373" />
-              Choose File (optional)
+              {file ? file : "Choose File (optional)"}
             </div>
-            <button
-              className="rounded-[4px] bg-[#DDB771]
-               flex items-center justify-center upload-button
-              max-w-[128px] min-w-[128px] w-[128px] h-[52px] text-white min-[390px]:-translate-x-2"
+            <div
+              // type=""
+              className="rounded-[4px] bg-[#DDB771] flex items-center justify-center upload-button max-w-[128px] min-w-[128px] w-[128px] h-16 text-white min-[390px]:h-full min-[390px]:-translate-x-2"
             >
               Upload
-            </button>
-          </div>
+              <input type="file" id="file" onChange={handleFileUpload} className="absolute right-[300%] top-0 opacity-0" />
+            </div>
+          </label>
         </Form>
       </Formik>
     </Root>
