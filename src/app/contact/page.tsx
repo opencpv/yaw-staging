@@ -232,16 +232,14 @@ const Page = () => {
                   </Form>
                 </Formik>
                 <div className="relative flex items-center flex-1 w-full aspect-square lg:mt-10 md:aspect-auto">
-                  <SlideUpAnimation>
-                    <Image
-                      src={activeImages[active]}
-                      alt="ad"
-                      className="rounded-[8px] h-full max-h-[807px]"
-                      fill
-                      style={{ objectFit: "cover" }}
-                      objectPosition="bottom"
-                    />
-                  </SlideUpAnimation>
+                  <Image
+                    src={activeImages[active]}
+                    alt="ad"
+                    className="rounded-[8px] h-full max-h-[807px]"
+                    fill
+                    style={{ objectFit: "cover" }}
+                    objectPosition="bottom"
+                  />
                 </div>
               </div>
             </div>
