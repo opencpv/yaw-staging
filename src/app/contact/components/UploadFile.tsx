@@ -11,9 +11,9 @@ export const UploadFile = () => {
           console.log(values);
         }}>
         <Form className="flex items-center w-full">
-            <div className="w-full flex items-center">
+            <div className="flex items-center w-full">
               <div
-                className="flex items-center gap-2 border text-neutral-400 rounded-l-sm p-3 py-4 min-w-[100px] w-full"
+                className="flex items-center gap-2 border-l border-y text-neutral-400 rounded-l-sm p-3 py-4 min-w-[100px] w-full"
               >
                 <AiOutlineLink
                   className=""
@@ -25,7 +25,7 @@ export const UploadFile = () => {
               <button
                 className="rounded-[4px] bg-[#DDB771]
                flex items-center justify-center upload-button
-              max-w-[128px] min-w-[128px] w-[128px] h-[52px] text-white">
+              max-w-[128px] min-w-[128px] w-[128px] h-[52px] text-white -translate-x-2">
                 Upload
               </button>
             </div>
