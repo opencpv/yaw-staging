@@ -11,32 +11,24 @@ export const UploadFile = () => {
           console.log(values);
         }}>
         <Form className="flex items-center w-full">
-          <div className="form-div relative w-full">
-            <label>Upload File</label>
-            <AiOutlineLink
-              className="link-icon absolute"
-              size="16"
-              color="#737373"
-            />
-
-            <div className="flex items-center">
-              <Field
-                type="email"
-                name="email"
-                placeholder="Choose File"
-                className="form-input min-w-[100px] w-full"
-                style={{ paddingInline: "2.5rem" }}
-              />
+            <div className="w-full flex items-center">
+              <div
+                className="flex items-center gap-2 border text-neutral-400 rounded-l-sm p-3 py-4 min-w-[100px] w-full"
+              >
+                <AiOutlineLink
+                  className=""
+                  size="18"
+                  color="#737373"
+                />
+                  Choose File
+              </div>
               <button
-                type="submit"
                 className="rounded-[4px] bg-[#DDB771]
                flex items-center justify-center upload-button
               max-w-[128px] min-w-[128px] w-[128px] h-[52px] text-white">
                 Upload
               </button>
             </div>
-            <ErrorMessage name="email" />
-          </div>
         </Form>
       </Formik>
     </Root>
