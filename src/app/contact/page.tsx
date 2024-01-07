@@ -68,10 +68,6 @@ const PhoneInput = () => {
   return <InputPhoneNumber name="phone" placeholder="Phone" />;
 };
 
-// const MessageInput = () => {
-//   return <TextInput name="message" label="Message" className="p-3 py-7" />;
-// };
-
 const LinkInput = () => {
   return (
     <TextInput
