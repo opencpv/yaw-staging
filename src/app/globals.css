@@ -20,6 +20,9 @@ body {
   color: rgb(var(--foreground-rgb));
 }
 
+h1 {
+  @apply text-3xl font-bold sm:text-6xl
+}
 
 h2 {
   @apply text-[1.563rem] leading-[2.2rem] font-[600];
