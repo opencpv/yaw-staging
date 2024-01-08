@@ -25,7 +25,7 @@ const page = (props: Props) => {
           }))}
         />
       </section>
-      <section className="grid-cols-4 gap-x-5 lg:grid">
+      <section className="grid-cols-4 gap-x-5 md:pt-28 lg:grid">
         <div className="col-span-3">
           {/* Recent posts */}
           <OtherPosts

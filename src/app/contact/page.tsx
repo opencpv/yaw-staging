@@ -31,10 +31,11 @@ import { E164Number } from "libphonenumber-js/core";
 const ContactSchema = Yup.object().shape({
   fullname: Yup.string()
     .min(2, "Too Short!")
-    .max(50, "Too Long!")
+    .max(255, "Too Long!")
     .required("This field is required"),
   email: Yup.string().email("Invalid email"),
   phone: Yup.string().required("This field is required"),
+  message: Yup.string().required("This field is required")
 });
 
 const NameInput = () => {
@@ -51,18 +52,6 @@ const EmailInput = () => {
   );
 };
 
-const PhoneInputComponent = () => {
-  const [value, setValue] = useState<E164Number>();
-  return (
-    <TextInput
-      // placeholder="Phone"
-      name="phone"
-      className="px-3 py-7"
-      value={value}
-      onChange={setValue}
-    />
-  );
-};
 
 const PhoneInput = () => {
   return <InputPhoneNumber name="phone" placeholder="Phone" />;
@@ -73,7 +62,7 @@ const LinkInput = () => {
     <TextInput
       name="reportLink"
       placeholder="Paste URL link here (optional)"
-      className="p-3 py-7"
+      className="p-3 py-7 placeholder:text-neutral-400"
     />
   );
 };
@@ -201,6 +190,7 @@ const Page = () => {
                               rows="8"
                               cols="50"
                             />
+                            <FormErrorMessage name="message" />
                           </div>
                           <div>
                             <UploadFile />

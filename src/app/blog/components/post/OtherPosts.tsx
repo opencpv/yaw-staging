@@ -65,7 +65,7 @@ const OtherPosts = ({ title, posts, className }: OtherPostsProps) => {
                   </div>
                   <div className="py-1 flex flex-col justify-between flex-[2] min-w-[8rem]">
                     <h4 className="font-[500] text-neutral-800 leading-tight">{post.title}</h4>
-                    <p className="mt-auto text-xs text-neutral-400">
+                    <p className="mt-2 text-xs text-neutral-400">
                       Posted by{" "}
                       <span className="text-neutral-800">{post.author}</span>
                     </p>
