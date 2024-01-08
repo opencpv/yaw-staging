@@ -1,6 +1,6 @@
 import { useContactStore } from "@/store/contact/useContactStore";
 import { styled } from "@stitches/react";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BiRightArrowCircle } from "react-icons/bi";
 
 type Props = {};
@@ -26,16 +26,18 @@ const ContactTabs = (props: Props) => {
     }
   };
 
-  scrollContainerRef?.current?.addEventListener("scroll", () => {
-    const scrollContainer = scrollContainerRef.current;
+  useEffect(() => {
+    scrollContainerRef?.current?.addEventListener("scroll", () => {
+      const scrollContainer = scrollContainerRef.current;
 
-    const endOfContainer =
-      scrollContainer?.scrollLeft &&
-      scrollContainer?.scrollLeft + scrollContainer?.offsetWidth >=
-        scrollContainer?.scrollWidth;
+      const endOfContainer =
+        scrollContainer?.scrollLeft &&
+        scrollContainer?.scrollLeft + scrollContainer?.offsetWidth >=
+          scrollContainer?.scrollWidth - scrollContainer?.scrollWidth / 10;
 
-    endOfContainer ? setIsEndOfContainer(true) : setIsEndOfContainer(false);
-  });
+      endOfContainer ? setIsEndOfContainer(true) : setIsEndOfContainer(false);
+    });
+  }, [active]);
 
   return (
     <div className="flex items-center">
@@ -70,9 +72,13 @@ const ContactTabs = (props: Props) => {
         </Tab>
       </div>
       <div
-        className="absolute pl-5 md:hidden right-5 transition-all sc-button"
+        className={`absolute pl-5 md:hidden right-5 transition-all sc-button ${
+          isEndOfContainer && "touch-none pointer-events-none"
+        }`}
         onClick={scrollToRight}
-        style={{ opacity: isEndOfContainer ? "0" : "1" }}
+        style={{
+          opacity: isEndOfContainer ? "0" : "1",
+        }}
       >
         <BiRightArrowCircle color="#71C9C7" size="24" />
       </div>
