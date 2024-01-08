@@ -11,7 +11,7 @@ import { useContext, useEffect, useState } from "react";
 
 const Settings = () => {
   const [supabase, setsupabase] = useState<any>();
-  
+
   useEffect(() => {
     const supabase = createClientComponentClient();
     if (!supabase) {
@@ -21,11 +21,10 @@ const Settings = () => {
     }
   }, []);
 
-
   return (
     <>
       <Head>
-        <title>Dashboard - RentRightGh</title>
+        <title>Dashboard - Settings</title>
       </Head>
       {supabase && <ProfileMainView />}
     </>
