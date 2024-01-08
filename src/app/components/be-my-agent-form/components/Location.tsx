@@ -90,7 +90,6 @@ const Applicants = ({}) => {
           {Array.from({ length: locationLength }).map((_, index) => (
             <div key={index} className="mb-2">
               <ClientOnly>
-                {" "}
                 <FullNameAndRelationship
                   key={index}
                   index={index}
