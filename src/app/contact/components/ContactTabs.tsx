@@ -1,6 +1,6 @@
 import { useContactStore } from "@/store/contact/useContactStore";
 import { styled } from "@stitches/react";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { BiRightArrowCircle } from "react-icons/bi";
 
 type Props = {};
@@ -8,6 +8,7 @@ type Props = {};
 const ContactTabs = (props: Props) => {
   const active = useContactStore((state) => state.activeKey);
   const setActive = useContactStore((state) => state.setActiveKey);
+  const [isEndOfContainer, setIsEndOfContainer] = useState<boolean>(false);
 
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
 
@@ -25,9 +26,23 @@ const ContactTabs = (props: Props) => {
     }
   };
 
+  scrollContainerRef?.current?.addEventListener("scroll", () => {
+    const scrollContainer = scrollContainerRef.current;
+
+    const endOfContainer =
+      scrollContainer?.scrollLeft &&
+      scrollContainer?.scrollLeft + scrollContainer?.offsetWidth >=
+        scrollContainer?.scrollWidth;
+
+    endOfContainer ? setIsEndOfContainer(true) : setIsEndOfContainer(false);
+  });
+
   return (
-    <div className="flex items-center" ref={scrollContainerRef}>
-      <div className="flex gap-12 overflow-x-scroll lg:overflow-x-auto relative ">
+    <div className="flex items-center">
+      <div
+        className="flex gap-12 overflow-x-scroll lg:overflow-x-auto relative"
+        ref={scrollContainerRef}
+      >
         <Tab
           onClick={(e: any) => setActive("general")}
           type={active === "general" ? "active" : undefined}
@@ -55,8 +70,9 @@ const ContactTabs = (props: Props) => {
         </Tab>
       </div>
       <div
-        className="absolute pl-5 md:hidden right-5 sc-button"
+        className="absolute pl-5 md:hidden right-5 transition-all sc-button"
         onClick={scrollToRight}
+        style={{ opacity: isEndOfContainer ? "0" : "1" }}
       >
         <BiRightArrowCircle color="#71C9C7" size="24" />
       </div>

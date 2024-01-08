@@ -7,15 +7,10 @@ import { RiInstagramFill, RiTwitterXFill } from "react-icons/ri";
 
 type Props = {
   threshHoldMin?: number;
-  threshHoldSocial?: number;
   threshHoldMax?: number;
 };
 
-const FixedSocials = ({
-  threshHoldMax,
-  threshHoldMin,
-  threshHoldSocial,
-}: Props) => {
+const FixedSocials = ({ threshHoldMax, threshHoldMin }: Props) => {
   const [shouldShowSocials, setShouldShowSocials] = useState<boolean>(false);
   const [shouldShowArrow, setShouldShowArrow] = useState<boolean>(false);
 
@@ -27,7 +22,7 @@ const FixedSocials = ({
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       // const scrollHeight = document.body.scrollHeight;
-      console.log(scrollPosition);
+      // console.log(scrollPosition);
 
       if (
         scrollPosition < (threshHoldMin ?? 100) ||
@@ -35,15 +30,9 @@ const FixedSocials = ({
       ) {
         setShouldShowSocials(false);
         setShouldShowArrow(false);
-      } else {
-        if (scrollPosition > (threshHoldMin ?? 100)) {
-          setShouldShowSocials(true);
-          setShouldShowArrow(false);
-        }
-        if (scrollPosition > (threshHoldSocial ?? threshHoldMin ?? 300)) {
-          setShouldShowSocials(false);
-          setShouldShowArrow(true);
-        }
+      } else if (scrollPosition > (threshHoldMin ?? 100)) {
+        setShouldShowArrow(true);
+        setShouldShowSocials(false);
       }
     };
 
@@ -51,7 +40,7 @@ const FixedSocials = ({
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [threshHoldMax, threshHoldSocial, threshHoldMin]);
+  }, [threshHoldMax, threshHoldMin]);
   return (
     <div className={`fixed left-0 top-[50%] z-20`}>
       <section
