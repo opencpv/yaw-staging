@@ -18,12 +18,12 @@ const FeedbackBody = ({handleSubmitFeedback}: {handleSubmitFeedback: () => void;
       />
       <form className="flex flex-col items-center gap-10">
         <div className="flex flex-col items-center gap-8">
-          <h2 className="font-[500] text-2xl text-neutral-700">Was the website easy to use?</h2>
+          <h2 className="font-[500] text-2xl text-neutral-700">Is the website easy to use?</h2>
           <FeedbackSlider />
         </div>
         <div className="flex flex-col items-center gap-8">
           <h2 className="font-[500] text-2xl text-neutral-700">
-            Was the website useful to you?
+            Is the website useful to you?
           </h2>
           <FeedbackSlider />
         </div>
