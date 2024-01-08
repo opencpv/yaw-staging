@@ -30,7 +30,7 @@ export const UploadFile = () => {
               className="rounded-[4px] bg-[#DDB771] flex items-center justify-center upload-button max-w-[128px] min-w-[128px] w-[128px] h-16 text-white min-[390px]:h-full min-[390px]:-translate-x-2"
             >
               Upload
-              <input type="file" id="file" onChange={handleFileUpload} className="absolute right-[300%] top-0 opacity-0" />
+              <input type="file" id="file" onChange={handleFileUpload} className="absolute right-[700%] top-0 opacity-0" />
             </div>
           </label>
         </Form>

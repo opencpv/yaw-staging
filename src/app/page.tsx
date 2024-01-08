@@ -53,7 +53,7 @@ export default function Home() {
           <FeedbackButton />
         </div>
       </main>
-      <ScrollTopAndSocial />
+      <ScrollTopAndSocial threshHoldMin={820} threshHoldSocial={924} threshHoldMax={5206} />
       <Footer />
     </>
   );
