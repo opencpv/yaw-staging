@@ -7,14 +7,12 @@ type Props = {
   socialHidden?: boolean;
   scrollTopHidden?: boolean;
   threshHoldMin?: number;
-  threshHoldSocial?: number;
   threshHoldMax?: number;
 };
 
 const ScrollTopAndSocial = ({
   scrollTopHidden,
   socialHidden,
-  threshHoldSocial,
   threshHoldMin,
   threshHoldMax,
 }: Props) => {
@@ -23,7 +21,6 @@ const ScrollTopAndSocial = ({
       <div style={{ display: socialHidden ? "none" : "block" }}>
         <FixedSocials
           threshHoldMin={threshHoldMin}
-          threshHoldSocial={threshHoldSocial}
           threshHoldMax={threshHoldMax}
         />
       </div>
