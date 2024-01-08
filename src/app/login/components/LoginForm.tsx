@@ -27,8 +27,8 @@ export const LoginForm = () => {
         <Logo size="md" />
         <div className="flex flex-col items-center justify-center w-full gap-6 px-4 mt-16 mb-auto lg:mt-24">
           <LoginButton text="Continue with Google" icon="google" />
-          <LoginButton text="Continue with Facebook" icon="facebook" />
-          <LoginButton text="Continue with Apple" icon="apple" />
+          {/*<LoginButton text="Continue with Facebook" icon="facebook" />*/}
+          {/*<LoginButton text="Continue with Apple" icon="apple" />*/}
         </div>
       </div>
     </div>

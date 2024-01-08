@@ -6,7 +6,6 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { redirect } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
 import { NotificationType } from "./notifications/components/types";
-
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import CompleteYourLogin from "./components/CompleteYourLogin";
@@ -61,6 +60,7 @@ const Wrapper = ({ children }: LayoutProps) => {
         ...prevUser,
         profileData: { ...newData },
       }));
+      console.log(newData);
     };
 
     getUserData().then(() => {
@@ -92,7 +92,6 @@ const Wrapper = ({ children }: LayoutProps) => {
   };
 
   useEffect(() => {
-    getNotifications();
     const notifications = supabase
       .channel("custom-all-channel")
       .on(
@@ -103,7 +102,8 @@ const Wrapper = ({ children }: LayoutProps) => {
         }
       )
       .subscribe();
-  }, []);
+  }, [supabase]);
+
   return (
     <div>
       <div>
@@ -115,7 +115,7 @@ const Wrapper = ({ children }: LayoutProps) => {
         <div className={`mt-6 px-4 text-black ${openSans.className}`}>
           {children}
         </div>
-        <ClientOnly>
+        {/* <ClientOnly>
           <HowToSwitch
             dashboard
             open={firstTimeModalOpen}
@@ -128,7 +128,7 @@ const Wrapper = ({ children }: LayoutProps) => {
             open={!dashboardType && open}
             setOpen={setTypeModalOpen}
           />
-        </ClientOnly>
+        </ClientOnly> */}
       </div>
     </div>
   );

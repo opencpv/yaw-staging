@@ -12,27 +12,7 @@ import HomeRentalDealsSection from "./components/home_sections/HomeRentalDealsSe
 import HomeManagePropertiesSection from "./components/home_sections/HomeManagePropertiesSection";
 
 export default function Home() {
-  useEffect(() => {
-    const hash = window.location.hash;
-    if (hash) {
-      const hashList = hash.split("&");
-      const access_token = hashList[0].split("=")[1];
-      const expires_at = hashList[1].split("=")[1];
-      const expires_in = hashList[2].split("=")[1];
-      const provider_token = hashList[3].split("=")[1];
-      const refresh_token = hashList[4].split("=")[1];
-      const token_type = hashList[5].split("=")[1];
-      const session = {
-        access_token,
-        expires_at,
-        expires_in,
-        provider_token,
-        refresh_token,
-        token_type,
-      };
-      localStorage.setItem("session", JSON.stringify(session));
-    }
-  }, []);
+
 
   return (
     <>
