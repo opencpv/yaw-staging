@@ -12,8 +12,8 @@ type Props = {};
 const page = (props: Props) => {
 
   return (
-    <main className="pb-20 mt-10 wrapper">
-      <div className="relative w-full mb-16 h-fit">
+    <div className="pb-20 mt-10">
+      <section className="relative w-full mb-16 h-fit section">
         <SliderWide
           pagination
           autoplay
@@ -24,12 +24,12 @@ const page = (props: Props) => {
             href: "/blog/c/p",
           }))}
         />
-      </div>
-      <section className="grid-cols-4 mb-5 gap-x-5 lg:grid">
+      </section>
+      <section className="grid-cols-4 mb-5 gap-x-5 section lg:grid">
         <div className="col-span-3 mb-10 lg:mb-0">
           {/* Recent posts */}
           <OtherPosts
-            className="mb-10 md:hidden"
+            className="mb-10 section md:hidden"
             title="Recent posts"
             posts={[1, 2, 3, 4, 5].map((post, idx) => ({
               title: "Market Voice: Interview with the wild bunch",
@@ -39,7 +39,7 @@ const page = (props: Props) => {
             }))}
           />
           <PostSlider />
-          <AOSWrapper animation="fade-up">
+          <AOSWrapper animation="fade-up" className="section">
             <section className="grid gap-x-3.5 gap-y-7 xs:grid-cols-2 md:grid-cols-3">
               {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((category, idx) => (
                 <CategoryCard
@@ -82,7 +82,7 @@ const page = (props: Props) => {
           <Authors />
         </div>
       </section>
-    </main>
+    </div>
   );
 };
 

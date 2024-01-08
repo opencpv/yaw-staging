@@ -13,14 +13,14 @@ const layout = ({ children }: Props) => {
   return (
     <>
       <Navbar />
-      {children}
-      <div className="wrapper">
-        <FeaturedListings className="mb-20" />
-      </div>
-      <div>
-        <FeedbackButton />
-      </div>
-      <ScrollTopAndSocial />
+      <main className="wrapper">
+        {children}
+        <FeaturedListings />
+        <div className="mt-20">
+          <FeedbackButton />
+        </div>
+        <ScrollTopAndSocial threshHoldMin={300} threshHoldMax={2500} />
+      </main>
       <Footer />
     </>
   );

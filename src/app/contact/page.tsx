@@ -245,7 +245,7 @@ const Page = () => {
             </div>
           </div>
         </Root>
-        <ScrollTopAndSocial />
+        <ScrollTopAndSocial threshHoldMin={450} threshHoldSocial={550} threshHoldMax={1400} />
         <div className="mt-20 lg:mt-0">
           <FeedbackButton />
         </div>
