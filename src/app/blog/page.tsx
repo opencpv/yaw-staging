@@ -12,8 +12,8 @@ type Props = {};
 const page = (props: Props) => {
 
   return (
-    <div className="pb-20 mt-10">
-      <section className="relative w-full mb-16 h-fit section">
+    <div>
+      <section className="relative mt-10 w-full h-fit">
         <SliderWide
           pagination
           autoplay
@@ -25,11 +25,11 @@ const page = (props: Props) => {
           }))}
         />
       </section>
-      <section className="grid-cols-4 mb-5 gap-x-5 section lg:grid">
-        <div className="col-span-3 mb-10 lg:mb-0">
+      <section className="grid-cols-4 gap-x-5 lg:grid">
+        <div className="col-span-3">
           {/* Recent posts */}
           <OtherPosts
-            className="mb-10 section md:hidden"
+            className="section md:hidden"
             title="Recent posts"
             posts={[1, 2, 3, 4, 5].map((post, idx) => ({
               title: "Market Voice: Interview with the wild bunch",
@@ -56,28 +56,28 @@ const page = (props: Props) => {
         {/* Other posts -- right side of Grid */}
         <div className="col-span-1 space-y-5">
           {/* Recent posts */}
-          <OtherPosts
-            className=""
-            title="Recent posts"
-            posts={[1, 2, 3].map((post, idx) => ({
-              title: "Market Voice: Interview with the wild bunch",
-              author: "Jane Doe",
-              image: "",
-              href: "/blog/c/p",
-            }))}
-          />
-          {/* Popular posts */}
-          <OtherPosts
-            className=""
-            title="Popular posts"
-            posts={[1, 2, 3].map((post, idx) => ({
-              title: "Market Voice: Interview with the wild bunch",
-              author: "Jane Doe",
-              image: "",
-              href: "/blog/c/p",
-            }))}
-          />
+          <div className="space-y-5 pt-28 lg:pt-0">
+            <OtherPosts
+              title="Recent posts"
+              posts={[1, 2, 3].map((post, idx) => ({
+                title: "Market Voice: Interview with the wild bunch",
+                author: "Jane Doe",
+                image: "",
+                href: "/blog/c/p",
+              }))}
+            />
+            {/* Popular posts */}
+            <OtherPosts
+              title="Popular posts"
+              posts={[1, 2, 3].map((post, idx) => ({
+                title: "Market Voice: Interview with the wild bunch",
+                author: "Jane Doe",
+                image: "",
+                href: "/blog/c/p",
+              }))}
+            />
           <SubscribeToBlogButton />
+          </div>
           {/* Authors */}
           <Authors />
         </div>
