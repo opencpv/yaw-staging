@@ -20,14 +20,14 @@ export const UploadFile = () => {
         }}
       >
         <Form className="flex items-center w-full">
-          <label className="flex flex-col gap-y-3 w-full min-[390px]:items-center min-[390px]:flex-row min-[390px]:h-16" htmlFor="file">
-            <div className="flex items-center gap-2 border text-neutral-400 rounded-l-md h-16 p-3 py-4 min-w-[100px] w-full truncate min-[390px]:border-r-0 min-[390px]:h-full">
-              <AiOutlineLink className="" size="18" color="#737373" />
-              {file ? file : "Choose File (optional)"}
+          <label className="flex flex-col gap-y-3 w-full max-w-xl min-[390px]:items-center min-[390px]:flex-row min-[390px]:h-16" htmlFor="file">
+            <div className="flex items-center gap-2 border text-neutral-400 rounded-l-md h-16 p-3 py-4 min-w-[100px] w-full min-[390px]:border-r-0 min-[390px]:h-full" title={file ?? ""}>
+              <AiOutlineLink className="shrink-0" size="18" color="#737373" />
+              <p className="truncate">{file ? file : "Choose File (optional)"}</p>
             </div>
             <div
               // type=""
-              className="rounded-[4px] bg-[#DDB771] flex items-center justify-center upload-button max-w-[128px] min-w-[128px] w-[128px] h-16 text-white min-[390px]:h-full min-[390px]:-translate-x-2"
+              className="rounded-[4px] bg-[#DDB771] flex items-center justify-center upload-button max-w-[128px] min-w-[128px] w-[128px] h-16 text-white cursor-pointer min-[390px]:h-full min-[390px]:-translate-x-2"
             >
               Upload
               <input type="file" id="file" onChange={handleFileUpload} className="absolute right-[700%] top-0 opacity-0" />

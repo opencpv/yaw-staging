@@ -37,7 +37,7 @@ const PostSlider = (props: Props) => {
   };
 
   return (
-    <section className="relative w-full h-fit mt-28 md:mt-0">
+    <section className="relative w-full h-fit mt-10 md:mt-0">
       <SliderWide
         navigation
         images={blogPostDemoDB.map((blog) => ({

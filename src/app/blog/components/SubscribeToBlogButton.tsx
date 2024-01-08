@@ -39,7 +39,7 @@ const SubscribeToBlogButton = ({ className, animation }: Props) => {
 
 export const SubscribeModalBody = () => {
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center pb-20 pt-6">
       <SubscribeForm />
     </div>
   );
