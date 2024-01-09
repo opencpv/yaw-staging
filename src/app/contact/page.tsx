@@ -27,7 +27,7 @@ const Page = () => {
           >
             <div className="">
               <ContactTabs />
-              <div className="flex flex-col h-full gap-10 md:flex-row ">
+              <div className="flex flex-col h-full grid-cols-2 gap-10 md:grid">
                 <ContactForm />
                 <ContactFormSideImage />
               </div>
