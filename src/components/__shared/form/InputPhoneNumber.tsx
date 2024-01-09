@@ -1,34 +1,38 @@
 "use client";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
-import React, { ElementType, useState } from "react";
+import React, {
+  useState,
+} from "react";
 import { E164Number, CountryCode } from "libphonenumber-js/core";
 
 type Props = {
-  name?: string;
-  inputComponent?: ElementType<any>;
-  placeholder?: string;
+  value: E164Number | undefined;
+  onCountryChange: (country: CountryCode | undefined) => void;
+  onChange: (value: E164Number | undefined) => void;
 };
 
-const InputPhoneNumber = ({ inputComponent, placeholder }: Props) => {
-  const [value, setValue] = useState<E164Number>();
+const InputPhoneNumber: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
+  value,
+  onChange,
+  onCountryChange,
+}) => {
+  // const [value, setValue] = useState<E164Number>();
 
-  const [country, setCountry] = useState<CountryCode>("GH");
+  const [country] = useState<CountryCode>("GH");
 
-  const handleCountryChange = (country: CountryCode) => {
-    setCountry(country);
-  };
+  // const handleCountryChange = (country: CountryCode) => {
+  //   setCountry(country);
+  // };
 
   return (
     <PhoneInput
       value={value}
-      onChange={setValue}
+      onChange={onChange}
       defaultCountry={country}
       international
       countryCallingCodeEditable={false}
-      inputComponent={inputComponent}
-      onCountryChange={handleCountryChange}
-      placeholder={placeholder}
+      onCountryChange={onCountryChange}
     />
   );
 };

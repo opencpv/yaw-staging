@@ -26,58 +26,41 @@ import ContactTabs from "./components/ContactTabs";
 import ScrollTopAndSocial from "../../components/ui/ScrollTopAndSocial";
 import FeedbackButton from "../../components/feedback/FeedbackButton";
 import InputPhoneNumber from "@/components/__shared/form/InputPhoneNumber";
-import { E164Number } from "libphonenumber-js/core";
+import { E164Number, CountryCode } from "libphonenumber-js/core";
 
 const ContactSchema = Yup.object().shape({
   fullname: Yup.string()
     .min(2, "Too Short!")
     .max(255, "Too Long!")
     .required("This field is required"),
-  email: Yup.string().email("Invalid email"),
-  phone: Yup.string().required("This field is required"),
-  message: Yup.string().required("This field is required")
+  // email: Yup.string().email("Invalid email"),
+  // phone: Yup.string().required("This field is required"),
+  message: Yup.string().required("This field is required"),
 });
-
-const NameInput = () => {
-  return <TextInput name="fullname" label="Full Name" className="p-3 py-7" />;
-};
-const EmailInput = () => {
-  return (
-    <TextInput
-      type="email"
-      name="email"
-      label="Email Address"
-      className="p-3 py-7"
-    />
-  );
-};
-
-
-const PhoneInput = () => {
-  return <InputPhoneNumber name="phone" placeholder="Phone" />;
-};
-
-const LinkInput = () => {
-  return (
-    <TextInput
-      name="reportLink"
-      placeholder="Paste URL link here (optional)"
-      className="p-3 py-7 placeholder:text-neutral-400"
-    />
-  );
-};
 
 const Page = () => {
   const active = useContactStore((state) => state.activeKey);
 
   const { images } = useAssets();
 
-  const [phone, setPhone] = useState("+233");
+  const [phone, setPhone] = useState<E164Number>();
+  const [country, setCountry] = useState<CountryCode>("GH");
   const [loading, setLoading] = useState(false);
   const [isWhatsapp, setIsWhatsapp] = useState(false);
+  const [file, setFile] = useState<string>("");
 
-  const handlePhone = (phoneNumber: string) => {
-    setPhone(phoneNumber);
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setFile(e.target.files[0]?.name);
+    }
+  };
+
+  const handleCountryChange = (country: CountryCode | undefined) => {
+    setCountry(country as CountryCode);
+  };
+
+  const handlePhone = (value: any) => {
+    setPhone(value as E164Number);
   };
 
   const activeImages = {
@@ -119,24 +102,25 @@ const Page = () => {
                   onSubmit={(values, { resetForm }) => {
                     values.contactType = active;
                     values.isWhatsapp = isWhatsapp;
-                    values.phone = phone;
+                    values.phone = phone as E164Number;
+                    values.fileUrl = file;
 
-                    // console.log(formRef.current)
+                    console.log(values);
                     sendContactUsEmail(formRef.current);
                     setLoading(true);
                     supabase
                       .from("contact us")
                       .insert([
                         {
+                          contactType: values.contactType,
                           fullname: values.fullname,
                           email: values.email,
-                          phone: phone,
+                          phone: values.phone,
                           message: values.message,
                           isWhatsapp: values.isWhatsapp,
-                          companyName: "",
-                          fileUrl: "",
-                          reportLink: "",
-                          contactType: values.contactType,
+                          companyName: values.companyName,
+                          fileUrl: values.fileUrl,
+                          reportLink: values.reportLink,
                         },
                       ])
                       .select()
@@ -145,7 +129,7 @@ const Page = () => {
                           setLoading(false);
                           console.log(error);
                         } else {
-                          console.log(data);
+                          console.log("Data:", data);
                           setLoading(false);
                           resetForm();
                         }
@@ -153,73 +137,94 @@ const Page = () => {
                   }}
                   className=""
                 >
-                  <Form ref={formRef} className="flex-1 pt-8">
-                    <div className="gap-5 ">
-                      <div className={``}>
-                        <div className="flex flex-col gap-10">
-                          <div className="form-div">
-                            <Field component={NameInput} />
-                            <FormErrorMessage name="fullname" />
-                          </div>
+                  {({ handleBlur, handleChange, values }) => (
+                    <Form ref={formRef} className="flex-1 pt-8">
+                      <div className="gap-5 ">
+                        <div className={``}>
+                          <div className="flex flex-col gap-10">
+                            <div className="form-div">
+                              <TextInput
+                                name="fullname"
+                                value={values.fullname}
+                                label="Full Name"
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                className="p-3 py-7"
+                              />
+                              <FormErrorMessage name="fullname" />
+                            </div>
 
-                          <div className="form-div">
-                            <Field type="email" component={EmailInput} />
-                          </div>
-                          <div className="form-div">
-                            <Field
-                              name="phone"
-                              component={PhoneInput}
-                              // onChange={handlePhone}
-                            />
-                            <FormErrorMessage name="phone" />
-                          </div>
-                          {/* <div className="">
+                            <div className="form-div">
+                              <TextInput
+                                name="email"
+                                value={values.email}
+                                type="email"
+                                label="Email"
+                                onChange={handleChange}
+                                className="p-3 py-7"
+                              />
+                            </div>
+                            <div className="form-div">
+                              <InputPhoneNumber
+                                name="phone"
+                                value={phone}
+                                placeholder="WhatsApp"
+                                onBlur={handleBlur}
+                                onChange={handlePhone}
+                                onInput={handleChange}
+                                onCountryChange={handleCountryChange}
+                              />
+                              <FormErrorMessage name="phone" />
+                            </div>
+                            {/* <div className="">
                             <FormSwitch
                               label="Available on whatsapp"
                               onChange={(checked) => setIsWhatsapp(checked)}
                             />
                           </div> */}
-                          <div className="form-div">
-                            <Field
-                              as="textarea" // Use 'textarea' as the component
-                              id="message"
-                              name="message"
-                              // component={MessageInput}
-                              placeholder="Message"
-                              className="p-4 max-w-[673px] border shadow-sm rounded-md outline-none transition-all focus:border-black hover:border-black/50"
-                              rows="8"
-                              cols="50"
-                            />
-                            <FormErrorMessage name="message" />
-                          </div>
-                          <div>
-                            <UploadFile />
-                          </div>
+                            <div className="form-div">
+                              <Field
+                                as="textarea" // Use 'textarea' as the component
+                                id="message"
+                                name="message"
+                                placeholder="Message"
+                                className="p-4 max-w-[673px] border shadow-sm rounded-md outline-none transition-all focus:border-black hover:border-black/50"
+                                rows="8"
+                                cols="50"
+                              />
+                              <FormErrorMessage name="message" />
+                            </div>
+                            <div>
+                              <UploadFile
+                                file={file}
+                                handleFileUpload={handleFileUpload}
+                              />
+                            </div>
 
-                          <div className="form-div">
-                            <Field
-                              type="text"
-                              name="link"
-                              component={LinkInput}
-                            />
+                            <div className="form-div">
+                              <TextInput
+                                name="reportLink"
+                                value={values.reportLink}
+                                onChange={handleChange}
+                                placeholder="Paste URL link here (optional)"
+                                className="p-3 py-7 placeholder:text-neutral-400"
+                              />
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    {loading ? (
-                      <Loader />
-                    ) : (
-                      <button
-                        className="bg-[#DDB771] rounded-[8px] h-[52px] 
-              w-[135px] flex items-center justify-center text-white mt-5
-              hover:scale-[1.05]
-              "
-                        type="submit"
-                      >
-                        Submit
-                      </button>
-                    )}
-                  </Form>
+                      {loading ? (
+                        <Loader />
+                      ) : (
+                        <button
+                          className="bg-[#DDB771] rounded-[8px] h-[52px] w-[135px] flex items-center justify-center text-white mt-5 hover:scale-[1.05]"
+                          type="submit"
+                        >
+                          Submit
+                        </button>
+                      )}
+                    </Form>
+                  )}
                 </Formik>
                 <div className="relative flex items-center flex-1 w-full aspect-square lg:mt-10 md:aspect-auto">
                   <Image
