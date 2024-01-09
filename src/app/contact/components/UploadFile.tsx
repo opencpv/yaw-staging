@@ -3,38 +3,40 @@ import { Form, Formik } from "formik";
 import { ChangeEvent, useState } from "react";
 import { AiOutlineLink } from "react-icons/ai";
 
-export const UploadFile = () => {
-  const [file, setFile] = useState<string>("")
-  const handleFileUpload = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files){
-      setFile(e.target.files[0]?.name)
-    }
-  }
+type Props = {
+  file: string;
+  handleFileUpload: (e: ChangeEvent<HTMLInputElement>) => void;
+};
 
+export const UploadFile = ({ file, handleFileUpload }: Props) => {
   return (
     <Root className="max-w-[673px]">
-      <Formik
-        initialValues={{}}
-        onSubmit={(values) => {
-          console.log(values);
-        }}
-      >
-        <Form className="flex items-center w-full">
-          <label className="flex flex-col gap-y-3 w-full max-w-xl min-[390px]:items-center min-[390px]:flex-row min-[390px]:h-16" htmlFor="file">
-            <div className="flex items-center gap-2 border text-neutral-400 rounded-l-md h-16 p-3 py-4 min-w-[100px] w-full min-[390px]:border-r-0 min-[390px]:h-full" title={file ?? ""}>
-              <AiOutlineLink className="shrink-0" size="18" color="#737373" />
-              <p className="truncate">{file ? file : "Choose File (optional)"}</p>
-            </div>
-            <div
-              // type=""
-              className="rounded-[4px] bg-[#DDB771] flex items-center justify-center upload-button max-w-[128px] min-w-[128px] w-[128px] h-16 text-white cursor-pointer min-[390px]:h-full min-[390px]:-translate-x-2"
-            >
-              Upload
-              <input type="file" id="file" onChange={handleFileUpload} className="absolute right-[700%] top-0 opacity-0" />
-            </div>
-          </label>
-        </Form>
-      </Formik>
+      <div className="flex items-center w-full">
+        <label
+          className="flex flex-col gap-y-3 w-full max-w-xl min-[390px]:items-center min-[390px]:flex-row min-[390px]:h-16"
+          htmlFor="file"
+        >
+          <div
+            className="flex items-center gap-2 border text-neutral-400 rounded-l-md h-16 p-3 py-4 min-w-[100px] w-full min-[390px]:border-r-0 min-[390px]:h-full"
+            title={file ?? ""}
+          >
+            <AiOutlineLink className="shrink-0" size="18" color="#737373" />
+            <p className="truncate">{file ? file : "Choose File (optional)"}</p>
+          </div>
+          <div
+            // type=""
+            className="rounded-[4px] bg-[#DDB771] flex items-center justify-center upload-button max-w-[128px] min-w-[128px] w-[128px] h-16 text-white cursor-pointer min-[390px]:h-full min-[390px]:-translate-x-2"
+          >
+            Upload
+            <input
+              type="file"
+              id="file"
+              onChange={handleFileUpload}
+              className="absolute right-[700%] top-0 opacity-0"
+            />
+          </div>
+        </label>
+      </div>
     </Root>
   );
 };
