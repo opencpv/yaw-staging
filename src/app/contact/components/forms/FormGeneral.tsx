@@ -101,9 +101,10 @@ const FormGeneral = (props: Props) => {
                 </div>
                 <div className="form-div">
                   <InputPhoneNumber
+                    id="phone"
                     name="phone"
                     value={phone}
-                    placeholder="WhatsApp"
+                    placeholder="WhatsApp number"
                     onBlur={handleBlur}
                     onChange={handlePhone}
                     onInput={handleChange}
