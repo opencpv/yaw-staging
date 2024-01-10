@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d14cbef1-a812-41e5-86d7-231c9c1cd920" name="Changes" comment="added join us link" />
+    <list default="true" id="d14cbef1-a812-41e5-86d7-231c9c1cd920" name="Changes" comment="added join us link">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/dashboard/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/dashboard/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/login/components/LoginForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/login/components/LoginForm.tsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,9 +20,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2aXdtplr5zRyjucrqqNmOWNBgxy" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -28,7 +32,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "staging",
+    "git-widget-placeholder": "development",
     "last_opened_file_path": "C:/Users/ARMOURY/Desktop/work/rentright/rr/rentright-frontend",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -39,15 +43,15 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="SpaceReviewFiltersPersistance"><![CDATA[{
-  "lastFilter": {
-    "state": "NeedsReview",
-    "reviewer": {
-      "id": "1hoOmI176P4c",
-      "fullName": "KASUADANA ADAMS"
+  <component name="SpaceReviewFiltersPersistance">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;NeedsReview&quot;,
+    &quot;reviewer&quot;: {
+      &quot;id&quot;: &quot;1hoOmI176P4c&quot;,
+      &quot;fullName&quot;: &quot;KASUADANA ADAMS&quot;
     }
   }
-}]]></component>
+}</component>
   <component name="SpaceReviewProjectSettings">
     <option name="selectedReviewProjectId" value="3ekSjJ4B3Vdl" />
   </component>
