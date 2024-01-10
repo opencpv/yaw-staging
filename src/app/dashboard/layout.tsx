@@ -134,10 +134,10 @@ const Wrapper = ({ children }: LayoutProps) => {
   );
 };
 
-const Layout = ({ children }: LayoutProps) => (
+const Layout = ({ children }: LayoutProps) =>
   <ClientOnly>
     <Wrapper>{children}</Wrapper>
   </ClientOnly>
-);
+;
 
 export default Layout;

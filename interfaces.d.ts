@@ -101,3 +101,29 @@ export interface CartProp {
   date: null | string;
   isQuantityChangable: boolean;
 }
+
+export  interface SentimentSpan {
+  skill: string;
+  type: string;
+  span: [number, number];
+  spanText: string;
+  span_text: string;
+  outputSpans: {
+    section: number;
+    start: number;
+    end: number;
+  }[];
+  value: string;
+  data: Record<string, unknown>;
+};
+
+export interface SentimentResponse  {
+  text: string;
+  requestId: string;
+  stats: {
+    concurrencyWaitTime: number;
+    wordCount: number;
+    transcriptionSecondsCount: number;
+  };
+  sentiments: SentimentSpan[];
+};
