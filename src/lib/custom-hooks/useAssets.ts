@@ -44,6 +44,7 @@ import VerifyListing from "/public/assets/images/dashboard/overview/p-manager/ve
 import SearchIcon from "/public/svgs/SearchHomeIcon.svg";
 import Clipboard from "/public/assets/images/dashboard/clipboard.png";
 import UserNoImage from "/public/assets/images/placeholder/user-no-image.jpeg"
+import Brochure from "/public/assets/images/contact/brochure.png"
 
 export const useAssets = () => {
   return {
@@ -95,6 +96,7 @@ export const useAssets = () => {
       GetFeaturedImage,
       VerifyListing,
       UserNoImage,
+      Brochure,
     },
   };
 };
