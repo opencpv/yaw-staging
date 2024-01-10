@@ -103,6 +103,7 @@ const FormWriters = (props: Props) => {
                 </div>
                 <div className="form-div">
                   <InputPhoneNumber
+                    id="phone"
                     name="phone"
                     value={phone}
                     placeholder="WhatsApp"

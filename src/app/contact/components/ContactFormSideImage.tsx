@@ -3,6 +3,7 @@ import SliderPaginationOnly from "@/components/__shared/sliders/SliderPagination
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { useContactStore } from "@/store/contact/useContactStore";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 type Props = {};
@@ -37,7 +38,7 @@ const ContactFormSideImage = (props: Props) => {
     );
   if (activeTab === "advertise")
     return (
-      <div className="flex items-center justify-center flex-1 w-full rounded-lg shadow-2xl bg-neutral-200 md:mt-10">
+      <Link href="pdf/brochure.pdf" target="_blank" title="brochure" className="flex items-center justify-center flex-1 w-full rounded-lg shadow-2xl bg-neutral-200 md:mt-10">
         <div className="relative w-full aspect-square md:h-fit md:right-2">
           <Image
             src={images.Brochure}
@@ -47,7 +48,7 @@ const ContactFormSideImage = (props: Props) => {
             // objectPosition="bottom"
           />
         </div>
-      </div>
+      </Link>
     );
   if (activeTab === "writers")
     return (

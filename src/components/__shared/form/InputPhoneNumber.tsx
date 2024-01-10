@@ -7,32 +7,47 @@ import React, {
 import { E164Number, CountryCode } from "libphonenumber-js/core";
 
 type Props = {
+  id: string;
+  name: string;
   value: E164Number | undefined;
   onCountryChange: (country: CountryCode | undefined) => void;
   onChange: (value: E164Number | undefined) => void;
+  placeholder?: string;
+  onBlur: (e: any) => void;
 };
 
 const InputPhoneNumber: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
   value,
+  name,
+  id,
   onChange,
+  onBlur,
   onCountryChange,
+  placeholder,
 }) => {
-  // const [value, setValue] = useState<E164Number>();
 
   const [country] = useState<CountryCode>("GH");
+  const [showCode, setShowCode] = useState<boolean>(false)
 
-  // const handleCountryChange = (country: CountryCode) => {
-  //   setCountry(country);
-  // };
+  const handleFocus = () => {
+      setShowCode(true)
+      setShowCode(true)
+      setShowCode(true) // intentionally called thrice as once doesn't work as intended
+  }
 
   return (
     <PhoneInput
+      id={id}
+      name={name}
       value={value}
       onChange={onChange}
       defaultCountry={country}
-      international
+      international={showCode}
       countryCallingCodeEditable={false}
       onCountryChange={onCountryChange}
+      placeholder={placeholder}
+      onFocus={handleFocus}
+      onBlur={onBlur}
     />
   );
 };
