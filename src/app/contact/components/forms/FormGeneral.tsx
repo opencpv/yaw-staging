@@ -36,7 +36,6 @@ const FormGeneral = (props: Props) => {
         message: "",
         phone: "",
         fileUrl: "",
-        reportLink: "",
       }}
       validationSchema={ContactSchema}
       onSubmit={(values, { resetForm }) => {
@@ -57,7 +56,6 @@ const FormGeneral = (props: Props) => {
               phone: values.phone,
               message: values.message,
               fileUrl: values.fileUrl,
-              reportLink: values.reportLink,
             },
           ])
           .select()
@@ -133,16 +131,6 @@ const FormGeneral = (props: Props) => {
                 </div>
                 <div>
                   <UploadFile file={file} handleFileUpload={handleFileUpload} />
-                </div>
-
-                <div className="form-div">
-                  <TextInput
-                    name="reportLink"
-                    value={values.reportLink}
-                    onChange={handleChange}
-                    placeholder="Paste URL link here (optional)"
-                    className="p-3 py-7 placeholder:text-neutral-400"
-                  />
                 </div>
               </div>
             </div>
