@@ -26,6 +26,7 @@ export const useContactForm = () => {
   };
 
   const tableName = "contact_us"
+  const phoneInputPlaceholder = "WhatsApp Number *"
 
   return {
     handleFileUpload,
@@ -38,5 +39,6 @@ export const useContactForm = () => {
     loading,
     setLoading,
     tableName,
+    phoneInputPlaceholder,
   };
 };

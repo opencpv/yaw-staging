@@ -1,5 +1,6 @@
 import { Input, cn } from "@nextui-org/react";
 import React, { HTMLInputTypeAttribute } from "react";
+import style from "./Form.module.css"
 
 type Props = {
   label?: string;
@@ -11,14 +12,15 @@ type Props = {
   onBlur?: (val?: any) => void;
   className?: string;
   labelClassName?: string;
-  type?: HTMLInputTypeAttribute
+  type?: HTMLInputTypeAttribute;
+  required?: boolean
 };
 
 const TextInput = ({ label, labelClassName, placeholder, value, name, onBlur, onChange, onChangeValue, className, type, ...props }: Props) => {
   return (
     <Input
         classNames={{
-            label: cn(`text-base text-neutral-500 mb-1.5 font-[400] ${labelClassName}`),
+            label: cn(`text-base text-neutral-500 mb-1.5 font-[400] ${props.required && `${style.required}`} ${labelClassName}`),
             inputWrapper: cn(`border rounded-md ${className}`),
             input: cn(`text-base py-8 focus:border-accent-50 ${className}`),
             // innerWrapper: cn(`${className} text-base`)
