@@ -13,7 +13,7 @@ const ListingInfo = (props: ListingCardInterface) => {
     >
       <div className="space-y-3 text-sm">
         <div className="grid items-center justify-between gap-x-1 gap-y-3 min-[320px]:grid-cols-3">
-          <div className="flex items-center min-[320px]:col-span-2">
+          <div className="flex gap-1 items-center min-[320px]:col-span-2">
             <HiOutlineHomeModern className="text-primary-600 shrink-0" />
             <p
               className="font-[600] text-primary-600 truncate"
@@ -67,13 +67,13 @@ const ListingInfo = (props: ListingCardInterface) => {
               </span>
             </p>
           </div>
-          <div className="flex items-center justify-between gap-x-2 gap-y-3">
-            <small className="inline rounded-xl bg-[#E7F8F2] px-3 py-1 text-xs">
+          <div className="flex-1 flex items-center justify-between gap-x-2 gap-y-3 w-full">
+            <small className="rounded-xl bg-[#E7F8F2] px-3 py-1 text-xs w-max">
               One Year Advance
             </small>
             <LikeHeart
               liked={props.liked}
-              className="inline-block text-lg text-primary-800 ml-auto"
+              className="inline-block text-lg text-primary-800"
             />
           </div>
         </div>

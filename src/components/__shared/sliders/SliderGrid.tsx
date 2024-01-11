@@ -7,7 +7,7 @@ import "@/styles/custom-swiper.css";
 import { Pagination, Navigation, Grid } from "swiper/modules";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-import "swiper/css/bundle"
+import "swiper/css/bundle";
 import "swiper/css";
 import "swiper/css/grid";
 import "swiper/css/pagination";
@@ -30,7 +30,7 @@ const SliderGrid = ({ items }: SliderGridProps) => {
   //     if (window.innerWidth === 640) {
   //       // initializeSwiper();
   //       // alert("reached 640px !")
-        
+
   //     }
   //   };
 
