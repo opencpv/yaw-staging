@@ -12,8 +12,8 @@ const ListingInfo = (props: ListingCardInterface) => {
       className={`w-full px-5 py-4 space-y-6 rounded-b-lg ${props.className}`}
     >
       <div className="space-y-3 text-sm">
-        <div className="grid items-center justify-between grid-cols-3 gap-1">
-          <div className="flex items-center col-span-2 gap-2">
+        <div className="grid items-center justify-between gap-x-1 gap-y-3 min-[320px]:grid-cols-3">
+          <div className="flex items-center min-[320px]:col-span-2">
             <HiOutlineHomeModern className="text-primary-600 shrink-0" />
             <p
               className="font-[600] text-primary-600 truncate"
@@ -24,7 +24,7 @@ const ListingInfo = (props: ListingCardInterface) => {
               <span className="capitalize">{props.city}</span>
             </p>
           </div>
-          <div className="flex items-center col-span-1 gap-2 ml-auto">
+          <div className="flex items-center gap-2 min-w-max min-[320px]:ml-auto">
             {props.ratingCount === 0 ? (
               <FaRegStar className="text-yellow-300" />
             ) : (
@@ -58,23 +58,24 @@ const ListingInfo = (props: ListingCardInterface) => {
         </p>
       </div>
       <div className="space-y-2 ">
-        <div className="flex flex-wrap items-center justify-between text-xs gap-y-1">
-          <div className="flex flex-wrap items-center gap-2">
-            <div>
-              <p className="text-sm font-[700] text-neutral-900">
-                GHS&nbsp;
-                <span className="font-[500]">
-                  {formatPrice(props?.price as number)} / Month
-                </span>
-              </p>
-            </div>
-            <div className="flex justify-between">
-              <small className=" inline rounded-xl bg-[#E7F8F2] px-3 py-1 text-xs">
-                One Year Advance
-              </small>
-            </div>
+        <div className="flex flex-wrap items-center gap-2 text-xs">
+          <div className="w-fit">
+            <p className="text-sm font-[700] text-neutral-900">
+              GHS&nbsp;
+              <span className="font-[500]">
+                {formatPrice(props?.price as number)} / Month
+              </span>
+            </p>
           </div>
-          <LikeHeart liked={props.liked} className="text-lg text-primary-800" />
+          <div className="flex items-center justify-between gap-x-2 gap-y-3">
+            <small className="inline rounded-xl bg-[#E7F8F2] px-3 py-1 text-xs">
+              One Year Advance
+            </small>
+            <LikeHeart
+              liked={props.liked}
+              className="inline-block text-lg text-primary-800 ml-auto"
+            />
+          </div>
         </div>
       </div>
     </div>
