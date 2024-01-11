@@ -1,6 +1,5 @@
 import { styled } from "@stitches/react";
-import { Form, Formik } from "formik";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent } from "react";
 import { AiOutlineLink } from "react-icons/ai";
 
 type Props = {
@@ -21,11 +20,12 @@ export const UploadFile = ({ file, handleFileUpload }: Props) => {
             title={file ?? ""}
           >
             <AiOutlineLink className="shrink-0" size="18" color="#737373" />
-            <p className="truncate">{file ? file : "Choose File (optional)"}</p>
+            <p className="truncate hidden min-[390px]:block">{file ? file : "Choose File (optional)"}</p>
+            <p className="truncate min-[390px]:hidden">{file ? file : "Upload File (optional)"}</p>
           </div>
           <div
             // type=""
-            className="rounded-[4px] bg-[#DDB771] flex items-center justify-center upload-button max-w-[128px] min-w-[128px] w-[128px] h-16 text-white cursor-pointer min-[390px]:h-full min-[390px]:-translate-x-2"
+            className="hidden rounded-[4px] bg-[#DDB771] items-center justify-center upload-button min-w-[128px] h-16 text-white cursor-pointer min-[390px]:h-full min-[390px]:-translate-x-2 w-[128px] min-[390px]:flex"
           >
             Upload
             <input
