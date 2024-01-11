@@ -40,6 +40,17 @@ const FormReport = (props: Props) => {
         reportLink: "",
       }}
       validationSchema={ContactSchema}
+      validateOnChange={false}
+      validateOnBlur={false}
+      validate={(values) => {
+        const errors: any = {};
+        if (!values.email && phone === undefined) {
+          alert("Email or WhatsApp Number is required");
+          errors.email = "Required";
+          errors.phone = "Required";
+        }
+        return errors;
+      }}
       onSubmit={(values, { resetForm }) => {
         values.contactType = activeTab;
         values.phone = phone as E164Number;

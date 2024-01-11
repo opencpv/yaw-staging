@@ -39,6 +39,17 @@ const FormGeneral = (props: Props) => {
         fileUrl: "",
       }}
       validationSchema={ContactSchema}
+      validateOnChange={false}
+      validateOnBlur={false}
+      validate={(values) => {
+        const errors: any = {};
+        if (!values.email && phone === undefined) {
+          alert("Email or WhatsApp Number is required");
+          errors.email = "Required";
+          errors.phone = "Required";
+        }
+        return errors;
+      }}
       onSubmit={(values, { resetForm }) => {
         values.contactType = activeTab;
         values.phone = phone as E164Number;
@@ -51,12 +62,12 @@ const FormGeneral = (props: Props) => {
           .from(tableName)
           .insert([
             {
-              contactType: values.contactType,
+              contact_type: values.contactType,
               fullname: values.fullname,
               email: values.email,
               phone: values.phone,
               message: values.message,
-              fileUrl: values.fileUrl,
+              file_url: values.fileUrl,
             },
           ])
           .select()
@@ -73,7 +84,7 @@ const FormGeneral = (props: Props) => {
       }}
       className=""
     >
-      {({ handleBlur, handleChange, values }) => (
+      {({ handleBlur, handleChange, values, errors }) => (
         <Form ref={formRef} className="flex-1 pt-8">
           <div className="gap-5 ">
             <div className={``}>
@@ -123,11 +134,7 @@ const FormGeneral = (props: Props) => {
               </div>
             </div>
           </div>
-          {loading ? (
-            <Loader />
-          ) : (
-            <ContactSubmitButton />
-          )}
+          {loading ? <Loader /> : <ContactSubmitButton />}
         </Form>
       )}
     </Formik>
