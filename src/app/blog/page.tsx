@@ -12,7 +12,7 @@ type Props = {};
 const page = (props: Props) => {
 
   return (
-    <div>
+    <div className="wrapper">
       <section className="relative mt-10 w-full h-fit">
         <SliderWide
           pagination
