@@ -7,12 +7,6 @@ import NoMessageState from "./components/NoMessageState";
 type Props = {};
 
 const Messages = (props: Props) => {
-  useEffect(() => {
-    const supabase = createClientComponentClient();
-    if (!supabase) {
-      redirect("/");
-    }
-  }, []);
   return (
     <>
       <NoMessageState />

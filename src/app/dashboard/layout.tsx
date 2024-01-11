@@ -1,10 +1,10 @@
 "use client";
-import { openSans } from "../../styles/font";
+import { openSans } from "@/styles/font";
 import Navbar from "./components/navbar";
 import Pagination from "./components/pagination";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { redirect } from "next/navigation";
-import { createContext, useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { NotificationType } from "./notifications/components/types";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useLocalStorage } from "@uidotdev/usehooks";
@@ -24,14 +24,14 @@ const Wrapper = ({ children }: LayoutProps) => {
   const [dashboardType, setDashboardType] = useLocalStorage("dashboard-type");
   const [firstTIme, setFirstTime] = useLocalStorage(
     "dashboard-first-time",
-    true
+    true,
   );
   const [typeModalOpen, setTypeModalOpen] = useState(false);
   const [firstTimeModalOpen, setFirstTimeModalOpen] = useState(false);
 
   const supabase = createClientComponentClient();
   // const {user, setUser} = useContext(AppContext) as AppContextType
-  const { user, setUser } = useAppStore();
+  const setUser = useAppStore((state) => state.setUser);
 
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -56,17 +56,13 @@ const Wrapper = ({ children }: LayoutProps) => {
       const { user } = data;
       const profileData = { ...res.data[0], email: user?.email };
       const newData = { ...profileData };
-      setUser((prevUser: any) => ({
-        ...prevUser,
-        profileData: { ...newData },
-      }));
-      console.log(newData);
+      setUser({ ...newData });
     };
 
     getUserData().then(() => {
       setLoading(false);
     });
-  }, [supabase]);
+  }, [supabase, setUser]);
 
   const getNotifications = async () => {
     try {
@@ -99,7 +95,7 @@ const Wrapper = ({ children }: LayoutProps) => {
         { event: "*", schema: "public", table: "notifications" },
         (payload) => {
           getNotifications();
-        }
+        },
       )
       .subscribe();
   }, [supabase]);
@@ -115,7 +111,7 @@ const Wrapper = ({ children }: LayoutProps) => {
         <div className={`mt-6 px-4 text-black ${openSans.className}`}>
           {children}
         </div>
-        {/* <ClientOnly>
+        <ClientOnly>
           <HowToSwitch
             dashboard
             open={firstTimeModalOpen}
@@ -128,16 +124,15 @@ const Wrapper = ({ children }: LayoutProps) => {
             open={!dashboardType && open}
             setOpen={setTypeModalOpen}
           />
-        </ClientOnly> */}
+        </ClientOnly>
       </div>
     </div>
   );
 };
 
-const Layout = ({ children }: LayoutProps) =>
+const Layout = ({ children }: LayoutProps) => (
   <ClientOnly>
     <Wrapper>{children}</Wrapper>
   </ClientOnly>
-;
-
+);
 export default Layout;

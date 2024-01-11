@@ -10,11 +10,14 @@ import { montserat } from "@/styles/font";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import Link from "next/link";
 import { useLocalStorage } from "@uidotdev/usehooks";
+import Loader from "@/components/__shared/loader/Loader";
+import LoaderDots from "@/components/__shared/loader/LoaderDots";
+import { BLUR_DATA_URL } from "@/enum/BLUR_DATA_URL";
 
 const Navbar = () => {
   const { icons } = useAssets();
 
-  const { user } = useAppStore();
+  const user = useAppStore((state) => state.user);
 
   const [dashboardType, setDashboardType] =
     useLocalStorage<any>("dashboard-type");
@@ -39,7 +42,7 @@ const Navbar = () => {
         <Switch />
         <div>
           <p className="text-[#fff] text-[14px] md:text-[16px] whitespace-nowrap">
-            {user?.profileData?.full_name}
+            {user?.full_name}
           </p>
         </div>
 
@@ -47,10 +50,12 @@ const Navbar = () => {
 
         <div className="relative w-full flex items-center justify-center min-w-[40px] md:min-w-[50px] min-h-[50px] rounded-full overflow-hidden">
           <Image
-            src={user?.profileData?.avatar_url}
+            src={user?.avatar_url}
             alt="User picture"
             width={50}
             height={50}
+            placeholder={"blur"}
+            blurDataURL={BLUR_DATA_URL}
           />
         </div>
       </div>

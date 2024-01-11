@@ -5,19 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d14cbef1-a812-41e5-86d7-231c9c1cd920" name="Changes" comment="facebook login fixed">
-      <change afterPath="$PROJECT_DIR$/src/app/api/sentiment/getSentimet.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/api/sentiment/route.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/api/summary/getSummary.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/api/summary/route.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/api/withErrorHandler.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/utils/countItemInArray.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/qodana.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/api/supabase/user_profile/route.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/enum/BLUR_DATA_URL.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interfaces.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/interfaces.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/middleware.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/auth/callback/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/auth/callback/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/dashboard/components/navbar/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/dashboard/components/navbar/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/dashboard/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/dashboard/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/dashboard/messages/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/dashboard/messages/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/dashboard/settings/components/ProfileIInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/dashboard/settings/components/ProfileIInfo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/dashboard/settings/components/ProfileMainView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/dashboard/settings/components/ProfileMainView.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/dashboard/settings/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/dashboard/settings/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/login/lib/oauthSignIn.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/login/lib/oauthSignIn.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/dashboard/AppStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/dashboard/AppStore.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +35,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -44,23 +49,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "development",
-    "last_opened_file_path": "C:/Users/ARMOURY/Desktop/work/rentright/rr/rentright-frontend",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "yarn",
-    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\ARMOURY\\Desktop\\work\\rentright\\rr\\rentright-frontend\\node_modules\\prettier",
-    "settings.editor.selected.configurable": "actions.on.save",
-    "ts.external.directory.path": "C:\\Users\\ARMOURY\\Desktop\\work\\rentright\\rr\\rentright-frontend\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;staging&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ARMOURY/Desktop/work/rentright/rr/rec-engine-api&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\ARMOURY\\Desktop\\work\\rentright\\rr\\rentright-frontend\\node_modules\\prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\ARMOURY\\Desktop\\work\\rentright\\rr\\rentright-frontend\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="QodanaHighlightedReportService">
+    <option name="localRunNotPublishedPersistedInfo">
+      <LocalReportPersistedInfo>
+        <option name="path" value="C:\Users\ARMOURY\AppData\Local\Temp\qodana_output\qodana.sarif.json" />
+        <option name="reportGuid" value="36e96325-e6b9-4bb3-a401-2b0c32469629" />
+        <option name="reportName" value="rentright-frontend/qodana/2024-01-11" />
+      </LocalReportPersistedInfo>
+    </option>
+  </component>
+  <component name="QodanaIsSelectedPersistenceService">
+    <option name="selectedOrLoading" value="true" />
+  </component>
+  <component name="QodanaReportsService">
+    <option name="descriptions">
+      <ReportDescription localRun="true" path="C:\Users\ARMOURY\AppData\Local\Temp\qodana_output\qodana.sarif.json" reportGuid="36e96325-e6b9-4bb3-a401-2b0c32469629" reportId="rentright-frontend/qodana/2024-01-11" />
+    </option>
+  </component>
   <component name="SpaceReviewFiltersPersistance">{
   &quot;lastFilter&quot;: {
     &quot;state&quot;: &quot;NeedsReview&quot;,
@@ -82,6 +104,8 @@
       <option name="presentableId" value="Default" />
       <updated>1704469074717</updated>
       <workItem from="1704469075881" duration="6095000" />
+      <workItem from="1704861386796" duration="28000" />
+      <workItem from="1704951702374" duration="7945000" />
     </task>
     <task id="LOCAL-00001" summary="fixed app navbar">
       <option name="closed" value="true" />
