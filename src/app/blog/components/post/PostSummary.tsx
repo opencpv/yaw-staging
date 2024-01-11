@@ -17,7 +17,7 @@ const PostSummary = ({
   return (
     <AOSWrapper animation="fade-up" >
       <div className="gap-x-10 gap-y-5 grid lg:grid-cols-3">
-        <div className="relative w-full min-h-[13rem] sm:max-w-sm md:h-full lg:col-span-1 lg:max-w-full">
+        <div className="relative w-full min-h-[13rem] md:h-full lg:col-span-1 lg:max-w-full">
           <Image
             src={image ? image : "/assets/images/Stock.jpg"}
             alt={title}

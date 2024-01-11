@@ -32,9 +32,9 @@ const OptionFilterTabs = ({
           tabList: [
             variant === "gradient" ? "gap-x-8" : null,
             "justify-center",
-            "flex-col sm:flex-row",
-            "sm:flex-wrap",
-            "xl:flex-nowrap"
+            variant === "gradient"
+              ? "flex-col sm:flex-row sm:flex-wrap xl:flex-nowrap"
+              : "flex flex-wrap",
           ],
           tab: [
             variant === "gradient" ? null : "bg-slate-100",
@@ -46,7 +46,7 @@ const OptionFilterTabs = ({
               : "data-[selected=true]:bg-[#45808B]",
             radius === "small" ? "rounded-lg" : "rounded-large",
             padding === "wide" && "px-20",
-            "py-5"
+            "py-5",
           ],
           tabContent: [
             variant === "gradient" ? "text-neutral-600" : "text-primary-500",

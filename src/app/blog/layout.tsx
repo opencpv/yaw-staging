@@ -13,9 +13,11 @@ const layout = ({ children }: Props) => {
   return (
     <>
       <Navbar />
-      <main className="wrapper">
+      <main className="pb-8 sm:pb-14">
         {children}
-        <FeaturedListings />
+        <div className="px-5 sm:px-10">
+          <FeaturedListings />
+        </div>
         <div className="mt-20">
           <FeedbackButton />
         </div>
