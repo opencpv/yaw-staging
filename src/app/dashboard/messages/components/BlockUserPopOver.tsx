@@ -37,7 +37,7 @@ const BlockUserPopOver = () => {
       </Popover>
 
       <DestructiveModal
-        label="Are you sure you want to delete this user??"
+        label="Are you sure you want to block this user??"
         onClose={onClose}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
