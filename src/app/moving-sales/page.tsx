@@ -43,8 +43,8 @@ const MovingSalesPage = () => {
               href: "/blog/c/p",
             }))}
           />
-          <div className="absolute inset-0 z-10 flex items-center w-full h-full rounded-xl">
-            <div className="absolute w-full h-full rounded-xl bg-gradient-to-r from-primary-500 to-transparent bg-opacity-30"></div>
+          <div className="absolute inset-0 z-10 flex items-center w-full h-full rounded-xl pointer-events-none">
+            <div className="absolute w-full h-full rounded-xl bg-gradient-to-r from-primary-500 to-transparent bg-opacity-20"></div>
             <h1 className="relative z-20 font-[700] text-4xl pl-5 xs:pl-20 sm:text-5xl">
               Shop
             </h1>
@@ -84,6 +84,7 @@ const MovingSalesPage = () => {
               ]}
               value={value}
               handleSelectionChange={handleSelectionChange}
+              className="mx-0"
             />
             <Button color="accent" onClick={onOpen}>
               Filter

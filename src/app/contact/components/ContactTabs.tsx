@@ -72,7 +72,7 @@ const ContactTabs = (props: Props) => {
         </Tab>
       </div>
       <div
-        className={`absolute pl-5 md:hidden right-5 transition-all sc-button ${
+        className={`absolute pl-5 md:hidden right-0 transition-all sc-button ${
           isEndOfContainer && "touch-none pointer-events-none"
         }`}
         onClick={scrollToRight}
