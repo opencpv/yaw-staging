@@ -14,7 +14,7 @@ type Props = {};
 
 const page = (props: Props) => {
   return (
-    <main className="wrapper mt-10 text-neutral-500 overflow-x-hidden">
+    <div className="mt-10 text-neutral-500 overflow-x-hidden">
       <h3 className="text-xl font-[500] mb-8">
         <BreadCrumbPreLink label="Blog" href="/blog" /> - Posted by{" "}
         <span className="text-primary-500">Jane Doe</span>

@@ -24,7 +24,7 @@ const page = (props: Props) => {
           </AOSWrapper>
         </div>
       </div>
-      <main className="wrapper">
+      <div>
         <div className="mb-10 flex flex-col items-center justify-between gap-5 sm:flex-row">
           <TabsAndSearch />
         </div>
