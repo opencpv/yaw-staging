@@ -1,9 +1,7 @@
 "use client";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
-import React, {
-  useState,
-} from "react";
+import React, { useRef, useState } from "react";
 import { E164Number, CountryCode } from "libphonenumber-js/core";
 
 type Props = {
@@ -25,15 +23,15 @@ const InputPhoneNumber: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
   onCountryChange,
   placeholder,
 }) => {
-
   const [country] = useState<CountryCode>("GH");
-  const [showCode, setShowCode] = useState<boolean>(false)
+  const [showCode, setShowCode] = useState<boolean>(false);
+
+  const inputRef = useRef(null);
 
   const handleFocus = () => {
-      setShowCode(true)
-      setShowCode(true)
-      setShowCode(true) // intentionally called thrice as once doesn't work as intended
-  }
+    // setShowCode(true);
+    setShowCode(true); // intentionally called thrice as once doesn't work as intended
+  };
 
   return (
     <PhoneInput
@@ -48,6 +46,7 @@ const InputPhoneNumber: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
       placeholder={placeholder}
       onFocus={handleFocus}
       onBlur={onBlur}
+      ref={inputRef}
     />
   );
 };

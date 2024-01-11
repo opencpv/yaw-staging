@@ -25,8 +25,8 @@ export const useContactForm = () => {
     setPhone(value as E164Number);
   };
 
-  const tableName = "contact_us"
-  const phoneInputPlaceholder = "WhatsApp Number *"
+  const tableName = "contact_us";
+  const phoneInputPlaceholder = "WhatsApp Number";
 
   return {
     handleFileUpload,
