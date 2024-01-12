@@ -29,9 +29,9 @@ const InputPhoneNumber: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
   const [country] = useState<CountryCode>("GH");
   const [showCode, setShowCode] = useState<boolean>(false)
 
-  document.querySelector(".PhoneInput")?.addEventListener("focus", () => {
-      console.log("FOCUS")
-  })
+  // document.querySelector(".PhoneInput")?.addEventListener("focus", () => {
+  //     console.log("FOCUS")
+  // })
 
   const handleFocus = (e: any) => {
       setShowCode(true)
