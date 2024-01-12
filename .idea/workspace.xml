@@ -5,16 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d14cbef1-a812-41e5-86d7-231c9c1cd920" name="Changes" comment="facebook login fixed">
-      <change afterPath="$PROJECT_DIR$/src/app/api/sentiment/getSentimet.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/api/sentiment/route.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/api/summary/getSummary.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/api/summary/route.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/api/withErrorHandler.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/utils/countItemInArray.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interfaces.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/interfaces.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
@@ -82,6 +73,9 @@
       <option name="presentableId" value="Default" />
       <updated>1704469074717</updated>
       <workItem from="1704469075881" duration="6095000" />
+      <workItem from="1705038463790" duration="1034000" />
+      <workItem from="1705040074611" duration="15000" />
+      <workItem from="1705094141103" duration="876000" />
     </task>
     <task id="LOCAL-00001" summary="fixed app navbar">
       <option name="closed" value="true" />
