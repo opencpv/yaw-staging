@@ -13,6 +13,7 @@ import Separator from "../Separator";
 import { MobileMenu } from "./MobileMenu";
 import { DesktopMenu } from "./DesktopMenu";
 import { bottomLinks } from "./content";
+import Logo from "../__shared/Logo";
 
 export default function Menu(props: any) {
   const { icons } = useAssets();
@@ -48,7 +49,7 @@ export default function Menu(props: any) {
       }}
       {...props}
     >
-      <div className={" flex-col flex "}>
+      <div className={"flex-col flex "}>
         <div className="flex flex-col lg:gap-10">
           <div className={"flex-flex-col px-8"}>
             <div
@@ -57,31 +58,24 @@ export default function Menu(props: any) {
               }
             >
               <div
-                className="w-full  relative
+                className="w-full relative
                 max-w-[106px] max-h-[86px] aspect-[106/86]
                 2xl:max-w-[150px]
               2xl:max-h-[122px] h-full 2xl:aspect-[150/122]
               "
               >
-                <Image
-                  src={icons.Logo}
-                  alt="bg"
-                  fill
-                  objectPosition="center"
-                  style={{ objectFit: "cover" }}
-                  className=" w-full h-full "
-                />
+                <Logo size="lg" />
               </div>
               <button className="hover:rotate-[360deg] duration-1000">
                 <AiFillCloseCircle
-                  onClick={(e: any) => props.toggleMenu()}
+                  onClick={() => props.toggleMenu()}
                   color="white"
                   size={40}
                 />
               </button>
             </div>
           </div>
-          <div className={"mt-10 "}>
+          <div className={"mt-10"}>
             <MobileMenu
               className={"flex lg:hidden "}
               toggleMenu={props?.toggleMenu}
@@ -117,7 +111,7 @@ const Root = styled(motion.aside, {
   // gap:"px",
   // height: "100vh",
   position: "absolute",
-  minHeight: "100vh",
+  minHeight: "100svh",
   top: "0px",
   left: "0px",
   right: "0px",
