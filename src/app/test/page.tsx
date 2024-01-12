@@ -25,7 +25,7 @@ const Dashboard = () => {
       <Head>
         <title>Dashboard - RentRightGh</title>
       </Head>
-      <main></main>
+      <main className="w-full h-[100vh] bg-black"></main>
     </>
   );
 };

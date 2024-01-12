@@ -19,8 +19,8 @@ const TextFieldInput = ({
   onChange,
 }: TextFieldInputProps) => {
   return (
-    <TFormDiv
-      className={`font-[400] ${openSans.className} text-[#6A6968] capitalize w-full`}>
+    <div
+      className={`font-[400] text-[#6A6968] capitalize w-full flex flex-col gap-[0.9375rem]`}>
       <label className="text-[16px]">{label}</label>
       <Field name={name}>
         {({ field, form: { touched, errors }, meta }: any) => (
@@ -33,7 +33,8 @@ const TextFieldInput = ({
                 field.onChange(e);
                 onChange(e);
               }}
-              className="form-input w-full"
+              className="form-input w-full h-[52px] px-4 text-[0.8125rem] border-[1px] border-[#E6E6E6]
+              rounded-[4px]"
             />
 
             {/* {errors[name] && (
@@ -50,21 +51,9 @@ const TextFieldInput = ({
         name={name}
         component="p"
       />
-    </TFormDiv>
+    </div>
   );
 };
-const TFormDiv = styled("div", {
-  fontSize: "1rem",
-  display: "flex",
-  flexDirection: "column",
-  gap: "0.9375rem",
-  ".form-input": {
-    height: "52px",
-    padding: "15px",
-    fontSize: " 0.8125rem",
-    border: "1px solid #E6E6E6",
-    borderRadius: "4px",
-  },
-});
+
 
 export default TextFieldInput;
