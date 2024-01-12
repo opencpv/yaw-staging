@@ -14,6 +14,7 @@ import { MobileMenu } from "./MobileMenu";
 import { DesktopMenu } from "./DesktopMenu";
 import { bottomLinks } from "./content";
 import Logo from "../__shared/Logo";
+import Feedback from "../feedback/Feedback";
 
 export default function Menu(props: any) {
   const { icons } = useAssets();
@@ -87,19 +88,25 @@ export default function Menu(props: any) {
           </div>
         </div>
       </div>
-      <div className="hidden lg:flex h-[127px] min-h-[127px] bg-[#305A61] justify-center items-center gap-10 ">
+      <div className="hidden lg:flex h-fit py-10 bg-[#305A61] justify-center items-center gap-10 ">
         {bottomLinks.map((r, index) => (
-          <button
-            onClick={(e: any) => {
-              router.push(r?.url);
-              props?.toggleMenu();
-            }}
-            key={index}
-            className="text-[#fff] flex flex-col h-full items-center justify-center bottomLink"
-          >
+          <Link key={index} href={r?.url} className="text-2xl bottomLink transition-all">
             {r?.name}
-          </button>
+          </Link>
+          // <button
+          //   onClick={(e: any) => {
+          //     router.push(r?.url);
+          //     props?.toggleMenu();
+          //   }}
+          //   key={index}
+          //   className=""
+          // >
+          //   {r?.name}
+          // </button>
         ))}
+        <Feedback>
+          <div className="text-2xl bottomLink transition-all">Feedback</div>
+        </Feedback>
       </div>
     </Root>
   );
@@ -129,6 +136,7 @@ const Root = styled(motion.aside, {
   },
 
   ".bottomLink": {
+    color: "White",
     "&:hover": {
       color: "#FCAB10",
       scale: "1.15",

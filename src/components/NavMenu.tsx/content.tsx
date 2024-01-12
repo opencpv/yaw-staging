@@ -39,11 +39,11 @@ export const links = [
 export const bottomLinks = [
   {
     url: "",
-    name: "Services",
+    name: "Our Services",
   },
   {
     url: "/b2b",
-    name: "B2B",
+    name: "Invoices",
   },
   {
     url: "/join-us",
@@ -51,14 +51,10 @@ export const bottomLinks = [
   },
   {
     url: "/faq",
-    name: "FAQS",
+    name: "How to",
   },
   {
     url: "/contact",
     name: "Report Fraud",
-  },
-  {
-    url: "/contact",
-    name: "Feedback",
   },
 ];
