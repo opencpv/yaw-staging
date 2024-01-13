@@ -79,7 +79,7 @@ export const FadeInOut = {
     opacity: 1,
     transition: {
       staggerChildren: 0.07,
-      delayChildren: 0.2,
+      // delayChildren: 0.2,
       ease: "linear",
       duration: "1",
     },

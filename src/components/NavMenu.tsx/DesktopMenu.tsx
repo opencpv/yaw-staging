@@ -4,18 +4,19 @@ import { links } from "./content";
 import { motion } from "framer-motion";
 import Separator from "../Separator";
 import { FadeInOut } from "@/lib/animations";
-import  Link from "next/link"
+import Link from "next/link";
 export const DesktopMenu = (props: any) => {
   const [active, setActive] = useState<number | null>(null);
   const [subId, setSubId] = useState<number | null>(null);
   const router = useRouter();
   return (
-    <div className={`flex-row px-4 gap-12  ${props?.className} `}>
+    <div className={`flex-row px-8 gap-12  ${props?.className} `}>
       <div
         className={
           "flex flex-col gap-10 flex-[0_1_30%] border-r-[1px] border-r-[#fff] pr-10"
         }
       >
+        {/* main links */}
         {links.map((r, idx) => (
           <motion.button
             key={idx}
@@ -37,7 +38,14 @@ export const DesktopMenu = (props: any) => {
                   ${active === idx ? "text-[#FCAB10]" : "text-[#fff]"}
                 `}
             >
-                <Link href={r?.url}>{r?.name}</Link>
+              {r?.sub ? (
+                <h2>{r?.name}</h2>
+              ) : (
+                <Link href={r?.url} className="text-2xl font-semibold">
+                  {r?.name}
+                </Link>
+              )}
+
               {r?.sub && (
                 <svg
                   width="24"
@@ -65,19 +73,15 @@ export const DesktopMenu = (props: any) => {
             initial={"closed"}
             exit={"closed"}
           >
+            {/* sub links */}
             {links[active]?.sub?.map((l, ldx) => (
-              <motion.button
-                key={ldx}
-                whileHover={{ scale: 1.05 }}
-
-              >
+              <motion.button key={ldx} className="hover:scale-105 transition-all">
                 <div
                   className={`flex flex-row w-full justify-between items-center cursor-pointer  gap-2
                       ${ldx === subId ? "text-[#FCAB10]" : "text-[#fff]"}
                     `}
                 >
-
-                    <Link href={l?.url}>{l?.name}</Link>
+                  <Link href={l?.url}>{l?.name}</Link>
                   {l?.id && (
                     <svg
                       width="24"
