@@ -25,7 +25,7 @@ const MenuArea = (props: any) => {
           </div>
           <button className="hover:rotate-[360deg] duration-300">
             <AiFillCloseCircle
-              onClick={() => props.toggleMenu()}
+              onClick={props.onClick}
               color="white"
               size={40}
             />

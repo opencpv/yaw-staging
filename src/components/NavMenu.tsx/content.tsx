@@ -25,9 +25,9 @@ export const links = [
     url: "",
     name: "HIRE A PROFESSIONAL",
     sub: [
-      { id: "#", url: "#", name: "Renter" },
-      { id: "#", url: "#", name: "Property Owner" },
-      { id: "#", url: "#", name: "Artisan" },
+      { url: "#", name: "Renter" },
+      { url: "#", name: "Property Owner" },
+      { url: "#", name: "Artisan" },
     ],
   },
   { id: "#", url: "/moving-sale", name: "MOVING SALE" },

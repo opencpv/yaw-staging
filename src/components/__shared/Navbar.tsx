@@ -9,6 +9,8 @@ import Logo from "@/components/__shared/Logo";
 import LikeHeart from "./ui/LikeHeart";
 import Share from "./ui/share/Share";
 import Link from 'next/link'
+
+
 const Navbar = (props: any) => {
   const pathname = usePathname();
   const { icons } = useAssets();

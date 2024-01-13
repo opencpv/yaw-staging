@@ -35,7 +35,7 @@ export const ExpandCircle = {
       type: "spring",
       stiffness: 10,
       restDelta: 2,
-      duration: "10",
+      duration: "4",
     },
   }),
   closed: {
@@ -44,7 +44,7 @@ export const ExpandCircle = {
       type: "spring",
       stiffness: 100,
       damping: 40,
-      duration: "0.5",
+      duration: "0.2",
     },
   },
 };
@@ -79,7 +79,7 @@ export const FadeInOut = {
     opacity: 1,
     transition: {
       staggerChildren: 0.07,
-      // delayChildren: 0.2,
+      delayChildren: 0.2,
       ease: "linear",
       duration: "1",
     },
