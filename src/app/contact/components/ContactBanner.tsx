@@ -16,7 +16,6 @@ const ContactBanner = (props: Props) => {
           src={"/svgs/contact1.png"}
           alt="Customer service personnel"
           fill
-          id="jPFcRVJIZphajw=="
           style={{ objectFit: "contain" }}
         />
       </div>

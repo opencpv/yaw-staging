@@ -31,14 +31,14 @@ export const links = [
     ],
   },
   { id: "#", url: "/moving-sale", name: "MOVING SALE" },
-  { id: "#", url: "", name: "AREA VIBES" },
+  { id: "#", url: "/blog", name: "AREA VIBES" },
   { id: "#", url: "/faq", name: "FAQS" },
   { id: "#", url: "/contact", name: "CONTACT" },
 ];
 
 export const bottomLinks = [
   {
-    url: "",
+    url: "/about",
     name: "Our Services",
   },
   {
