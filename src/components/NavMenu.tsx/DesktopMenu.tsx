@@ -39,7 +39,8 @@ export const DesktopMenu = (props: any) => {
       {active !== null && (
         <>
           <motion.div
-            className={"flex flex-col  gap-8"}
+            key={active}
+            className={"flex flex-col gap-8"}
             animate={"open"}
             variants={FadeInOut}
             initial={"closed"}
@@ -63,7 +64,7 @@ export const DesktopMenu = (props: any) => {
           <Separator
             color={"primary"}
             orientation={"vertical"}
-            className="h-full min-h-[350px] bg-red-400"
+            className="h-full min-h-[350px]"
           />
           <motion.div
             className={"flex flex-col flex-[0_0_30%] text-[#FCAB10]"}

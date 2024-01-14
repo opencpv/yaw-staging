@@ -78,10 +78,10 @@ export const FadeInOut = {
   open: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.07,
-      delayChildren: 0.2,
+      // staggerChildren: 0.07,
+      // delayChildren: 0.2,
       ease: "linear",
-      duration: "1",
+      duration: "0.3",
     },
     transitionEnd: {
       display: "flex",
@@ -90,10 +90,35 @@ export const FadeInOut = {
   closed: {
     opacity: 0,
     transition: {
-      staggerChildren: 0.05,
-      staggerDirection: -1,
+      // staggerChildren: 0.05,
+      // staggerDirection: -1,
       ease: "linear",
-      duration: "1",
+      duration: "0.3",
+    },
+    transitionEnd: {
+      display: "none",
+    },
+  },
+};
+
+export const SlideInFromLeft = {
+  open: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      ease: "linear",
+      duration: "0.8",
+    },
+    transitionEnd: {
+      display: "flex",
+    },
+  },
+  closed: {
+    x: '-100%', // Move the element 100% to the left
+    opacity: 0,
+    transition: {
+      ease: "linear",
+      duration: "0.8",
     },
     transitionEnd: {
       display: "none",

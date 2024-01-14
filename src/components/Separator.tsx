@@ -9,7 +9,7 @@ const Separator = (props: Props) => <SeparatorRoot {...props} />;
 
 const SeparatorRoot = styled(SeparatorInner.Root, {
   "&[data-orientation=horizontal]": { height: 1, width: "100%" },
-  "&[data-orientation=vertical]": { height: "100%", width: 1 },
+  "&[data-orientation=vertical]": { height: "100%", width: 2 },
   variants: {
     color: {
       primary: {
