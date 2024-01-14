@@ -18,14 +18,17 @@ export default function Menu(props: any) {
   const isInViewport = useIsElementInViewport(bottomLinksRef, menuRef);
 
   useEffect(() => {
-    window.addEventListener("resize", () => {
+    const handleInnerHeight = () => {
       if (window.innerHeight > 700){
         setWindowLimit(true)
       }
       else {
         setWindowLimit(false)
       }
-    })
+    }
+
+    handleInnerHeight()
+    window.addEventListener("resize", handleInnerHeight)
 
     const handleScroll = () => {
       if (menuRef.current && bottomLinksRef.current) {
