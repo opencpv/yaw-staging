@@ -4,11 +4,6 @@ import React from "react";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import {
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
   useDisclosure,
 } from "@nextui-org/react";
 import PropertyGalleryModal from "../[id]/components/PropertyGalleryModal";

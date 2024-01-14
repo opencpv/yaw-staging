@@ -137,8 +137,8 @@ const Footer = () => {
                 fill="#0B6E4F"
               />
             </svg>
-            <p className="text-[#ffff]" title="admin@rentrightgh.com">
-              admin@rentrightgh.com
+            <p className="text-[#ffff]" title="contact@rentright.com">
+              contact@rentright.com
             </p>
           </div>
           <div className={"flex flex-row items-center gap-1"}>

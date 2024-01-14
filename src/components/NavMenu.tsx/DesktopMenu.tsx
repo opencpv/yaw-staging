@@ -61,9 +61,9 @@ export const DesktopMenu = (props: any) => {
       {subId !== null && (
         <>
           <Separator
-            color={"white"}
+            color={"primary"}
             orientation={"vertical"}
-            className="h-full min-h-[350px]"
+            className="h-full min-h-[350px] bg-red-400"
           />
           <motion.div
             className={"flex flex-col flex-[0_0_30%] text-[#FCAB10]"}

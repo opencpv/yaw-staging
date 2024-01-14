@@ -1,25 +1,32 @@
-import { AiFillCloseCircle } from "react-icons/ai";
 import { styled } from "@stitches/react";
-
 import * as Collapsible from "@radix-ui/react-collapsible";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ExpandCircle, FadeInOut } from "@/lib/animations";
-import { MobileMenu } from "./MobileMenu";
-import { DesktopMenu } from "./DesktopMenu";
 import { bottomLinks } from "./content";
-import Logo from "../__shared/Logo";
 import { FaChevronDown } from "react-icons/fa";
 import MenuBottomLinks from "./components/MenuBottomLinks";
 import MenuArea from "./components/MenuArea";
+import { useIsElementInViewport } from "./hooks/useIsElementInViewport";
 
 export default function Menu(props: any) {
   const [hide, setHide] = useState(false);
+  const [windowLimit, setWindowLimit] = useState(false);
 
   const bottomLinksRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLElement>(null);
+  const isInViewport = useIsElementInViewport(bottomLinksRef, menuRef);
 
   useEffect(() => {
+    window.addEventListener("resize", () => {
+      if (window.innerHeight > 700){
+        setWindowLimit(true)
+      }
+      else {
+        setWindowLimit(false)
+      }
+    })
+
     const handleScroll = () => {
       if (menuRef.current && bottomLinksRef.current) {
         menuRef.current.addEventListener("scroll", () => {
@@ -53,7 +60,7 @@ export default function Menu(props: any) {
   return (
     <Root
       ref={menuRef}
-      className="w-full top-0 gap-20 hidden-scrollbar"
+      className="relative w-full top-0 gap-20 hidden-scrollbar"
       variants={ExpandCircle}
       exit={{
         ...ExpandCircle.closed,
@@ -82,11 +89,21 @@ export default function Menu(props: any) {
       {...props}
     >
       <MenuArea onClick={() => props.toggleMenu()} />
-      <FaChevronDown
-        className="relative bottom-5 mx-auto text-3xl text-accent-100 cursor-pointer shrink-0 animate-pulse transition-all duration-700"
+      {windowLimit ? (<FaChevronDown
+        className="relative bottom-5 mx-auto text-3xl text-accent-100 cursor-pointer shrink-0 transition-all duration-700"
         onClick={handleScrollIntoView}
-        style={{ visibility: hide ? "hidden" : "visible" }}
-      />
+        style={{
+          visibility: hide || isInViewport ? "hidden" : "visible",
+        }}
+      />) : (<FaChevronDown
+        className="absolute left-[50%] bottom-5  text-3xl text-accent-100 cursor-pointer shrink-0 transition-all duration-700"
+        onClick={handleScrollIntoView}
+        style={{
+          visibility: hide || isInViewport ? "hidden" : "visible",
+        }}
+      />)}
+    
+     
       {/* bottom links */}
       <MenuBottomLinks links={bottomLinks} ref={bottomLinksRef} />
     </Root>

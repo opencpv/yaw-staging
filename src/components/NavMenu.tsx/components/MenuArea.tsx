@@ -23,7 +23,7 @@ const MenuArea = (props: any) => {
           >
             <Logo size="lg" />
           </div>
-          <button className="hover:rotate-[360deg] duration-300">
+          <button className="relative duration-300 lg:right-20 hover:rotate-[360deg]">
             <AiFillCloseCircle
               onClick={props.onClick}
               color="white"
