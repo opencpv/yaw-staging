@@ -93,19 +93,26 @@ export default function Menu(props: any) {
     >
       <MenuArea />
       {windowLimit ? (<FaChevronDown
-        className="relative bottom-5 mx-auto text-3xl text-accent-100 cursor-pointer shrink-0 transition-all duration-700"
+        className="hidden relative bottom-5 mx-auto text-3xl text-accent-100 cursor-pointer shrink-0 transition-all duration-700 lg:block"
         onClick={handleScrollIntoView}
         style={{
           visibility: hide || isInViewport ? "hidden" : "visible",
         }}
       />) : (<FaChevronDown
-        className="absolute left-[50%] bottom-5  text-3xl text-accent-100 cursor-pointer shrink-0 transition-all duration-700"
+        className="hidden absolute left-[50%] bottom-5 text-3xl text-accent-100 cursor-pointer shrink-0 transition-all duration-700 lg:block"
         onClick={handleScrollIntoView}
         style={{
           visibility: hide || isInViewport ? "hidden" : "visible",
         }}
       />)}
-    
+      {/* mobile */}
+      {/* <FaChevronDown
+        className="absolute left-[50%] bottom-5 text-3xl text-blue-600 cursor-pointer shrink-0 transition-all duration-700 lg:hidden"
+        onClick={handleScrollIntoView}
+        style={{
+          visibility: hide || isInViewport ? "hidden" : "visible",
+        }}
+      /> */}
      
       {/* bottom links */}
       <MenuBottomLinks links={bottomLinks} ref={bottomLinksRef} />

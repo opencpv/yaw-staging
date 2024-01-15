@@ -4,7 +4,7 @@ export const links = [
     url: "/properties",
     name: "HOMES FOR RENT",
     sub: [
-      { url: "#", name: "View All Listings", id: "#" },
+      { url: "#", name: "View All Listings", id: "/properties" },
 
       { url: "#", name: "Single Unit  Houses", id: "#" },
       { url: "#", name: "Duplex Houses", id: "#" },

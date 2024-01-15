@@ -9,6 +9,8 @@ import ArrowDownNav from "@/app/components/icons/CaArrowDownNav.";
 import { BsArrowDownCircleFill } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 import ButtonStartHere from "../__shared/ui/button/ButtonStartHere";
+import { useMenuStore } from "@/store/navmenu/useMenuStore";
+
 
 const MenuOption = ({
   name,
@@ -44,6 +46,7 @@ const MenuOption = ({
   });
 
   const [open, setOpen] = useState(false);
+  const { setToggle } = useMenuStore()
   return (
     <CollapsibleRoot open={open} onOpenChange={setOpen}>
       <Collapsible.Trigger asChild>
@@ -67,7 +70,7 @@ const MenuOption = ({
             </Collapsible.Trigger>
             <Collapsible.Content>
               {sub2?.map((r2, index) => (
-                <Link href={r2?.url} key={index}>
+                <Link href={r2?.url} key={index} onClick={() => setToggle(false)}>
                   {r2?.name}
                 </Link>
               ))}
@@ -80,7 +83,7 @@ const MenuOption = ({
 };
 
 export const MobileMenu = (props: any) => {
-  const router = useRouter();
+  const { setToggle } = useMenuStore()
 
   return (
     <div
@@ -88,20 +91,21 @@ export const MobileMenu = (props: any) => {
     >
       <ButtonStartHere className="inline-flex my-14" />
       <div className="space-y-10">
-      {links.map((r, index) =>
-        
-        r?.sub ? (
-          <MenuOption key={index} name={r.name} sub={r?.sub} sub2={r?.sub2} />
-        ) : (
-          <Link
-            href={r?.url}
-            key={index}
-            className="block mb-10"
-          >
-            <p className={"uppercase !font-semibold text-[#fff] text-2xl"}>{r?.name}</p>
-          </Link>
-        )
-      )}
+        {links.map((r, index) =>
+
+          r?.sub ? (
+            <MenuOption key={index} name={r.name} sub={r?.sub} sub2={r?.sub2} />
+          ) : (
+            <Link
+              href={r?.url}
+              key={index}
+              className="block mb-10"
+              onClick={() => setToggle(false)}
+            >
+              <p className={"uppercase !font-semibold text-[#fff] text-2xl"}>{r?.name}</p>
+            </Link>
+          )
+        )}
       </div>
     </div>
   );
