@@ -16,7 +16,7 @@ const ButtonStartHere = ({ className }: Props) => {
           className
         )}
       >
-        Start Here
+        Hire Us
       </Button>
     </Link>
   );

@@ -14,7 +14,7 @@ export const useIsElementInViewport = (
         let viewportCheck =
           rect.top >= 0 &&
           rect.left >= 0 &&
-          rect.bottom - 0.375 <= // TODO: investigate why .375 is attached to the rect.bottom
+          rect.bottom <= // TODO: investigate why .375 is deducted from the rect.bottom
                                   // and correct it if necessary
             (window.innerHeight || document.documentElement.clientHeight) &&
           rect.right <=

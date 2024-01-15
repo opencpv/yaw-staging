@@ -10,7 +10,7 @@ import LikeHeart from "./ui/LikeHeart";
 import Share from "./ui/share/Share";
 import Link from 'next/link'
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
-import ButtonStartHere from "./ui/button/ButtonStartHere";
+import ButtonHireUs from "./ui/button/ButtonHireUs";
 
 
 const Navbar = (props: any) => {
@@ -77,7 +77,7 @@ const Navbar = (props: any) => {
           <Logo />
           <div className="flex items-center lg:gap-[73px] md:gap-[31px] w-full justify-end">
             {!pathname?.includes("/properties/") ? (
-              <ButtonStartHere />
+              <ButtonHireUs />
             ) : (
               <div className="flex items-center gap-4">
                 <LikeHeart liked={false} className="text-5xl text-white" />

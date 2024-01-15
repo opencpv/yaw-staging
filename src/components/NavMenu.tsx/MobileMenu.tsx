@@ -8,9 +8,8 @@ import Link from "next/link";
 import ArrowDownNav from "@/app/components/icons/CaArrowDownNav.";
 import { BsArrowDownCircleFill } from "react-icons/bs";
 import { useRouter } from "next/navigation";
-import ButtonStartHere from "../__shared/ui/button/ButtonStartHere";
+import ButtonHireUs from "../__shared/ui/button/ButtonHireUs";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
-
 
 const MenuOption = ({
   name,
@@ -46,7 +45,7 @@ const MenuOption = ({
   });
 
   const [open, setOpen] = useState(false);
-  const { setToggle } = useMenuStore()
+  const { setToggle } = useMenuStore();
   return (
     <CollapsibleRoot open={open} onOpenChange={setOpen}>
       <Collapsible.Trigger asChild>
@@ -70,7 +69,11 @@ const MenuOption = ({
             </Collapsible.Trigger>
             <Collapsible.Content>
               {sub2?.map((r2, index) => (
-                <Link href={r2?.url} key={index} onClick={() => setToggle(false)}>
+                <Link
+                  href={r2?.url}
+                  key={index}
+                  onClick={() => setToggle(false)}
+                >
                   {r2?.name}
                 </Link>
               ))}
@@ -83,28 +86,27 @@ const MenuOption = ({
 };
 
 export const MobileMenu = (props: any) => {
-  const { setToggle } = useMenuStore()
+  const { setToggle } = useMenuStore();
 
   return (
-    <div
-      className={`flex flex-col px-8 gap-4 ${props?.className}`}
-    >
+    <div className={`flex flex-col px-8 gap-4 ${props?.className}`}>
       <div className="flex justify-center my-14">
-        <ButtonStartHere className="inline-flex" />
+        <ButtonHireUs className="inline-flex text-2xl" />
       </div>
       <div className="space-y-10">
         {links.map((r, index) =>
-
           r?.sub ? (
             <MenuOption key={index} name={r.name} sub={r?.sub} sub2={r?.sub2} />
-          ) : (
+          ) : r?.name.toLowerCase() !== "faq" && (
             <Link
               href={r?.url}
               key={index}
               className="block mb-10"
               onClick={() => setToggle(false)}
             >
-              <p className={"uppercase !font-semibold text-[#fff] text-2xl"}>{r?.name}</p>
+              <p className={"uppercase !font-semibold text-[#fff] text-2xl"}>
+                {r?.name}
+              </p>
             </Link>
           )
         )}

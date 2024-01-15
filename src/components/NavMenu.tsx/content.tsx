@@ -1,6 +1,11 @@
 export const links = [
   {
     id: "#",
+    url: "/login",
+    name: "LOGIN",
+  },
+  {
+    id: "#",
     url: "/properties",
     name: "HOMES FOR RENT",
     sub: [
@@ -32,14 +37,49 @@ export const links = [
   },
   { id: "#", url: "/moving-sale", name: "MOVING SALE" },
   { id: "#", url: "/blog", name: "AREA VIBES" },
-  { id: "#", url: "/faq", name: "FAQS" },
-  { id: "#", url: "/contact", name: "CONTACT" },
+  { id: "#", url: "/faq", name: "FAQ" },
+  {
+    id: "#",
+    url: "",
+    name: "MORE",
+    sub: [
+      {
+        url: "/about",
+        name: "Our Services",
+      },
+      {
+        url: "/contact",
+        name: "Contact",
+      },
+      {
+        url: "/b2b",
+        name: "Invoices",
+      },
+      {
+        url: "/join-us",
+        name: "Join Us",
+      },
+      {
+        url: "/faq",
+        name: "How to",
+      },
+      {
+        url: "/contact",
+        name: "Report Fraud",
+      },
+    ],
+  },
+  // { id: "#", url: "/contact", name: "CONTACT" },
 ];
 
 export const bottomLinks = [
   {
     url: "/about",
     name: "Our Services",
+  },
+  {
+    url: "/contact",
+    name: "Contact",
   },
   {
     url: "/b2b",
