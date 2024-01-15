@@ -21,7 +21,17 @@ const Navbar = (props: any) => {
   const { toggle, setToggle } = useMenuStore()
 
 
+
   useEffect(() => {
+    if (toggle){
+      document.body.classList.add("hidden-scrollbar")
+    }
+    else {
+      setTimeout(() => {
+        document.body.classList.remove("hidden-scrollbar")
+      }, 1000);
+    }
+
     const handleScroll = () => {
       if (
         (pathname?.includes("/properties/") || pathname === "/") &&
@@ -39,7 +49,7 @@ const Navbar = (props: any) => {
     };
 
 
-  }, [pathname]);
+  }, [pathname, toggle]);
 
   const shouldChangeColor =
     (isScrolling && pathname?.includes("/properties/")) ||
