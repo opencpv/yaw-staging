@@ -89,7 +89,9 @@ export const MobileMenu = (props: any) => {
     <div
       className={`flex flex-col px-8 gap-4 ${props?.className}`}
     >
-      <ButtonStartHere className="inline-flex my-14" />
+      <div className="flex justify-center">
+        <ButtonStartHere className="my-14 mx-auto" />
+      </div>
       <div className="space-y-10">
         {links.map((r, index) =>
 
