@@ -33,9 +33,9 @@ export const ExpandCircle = {
     clipPath: `circle(${d * 2 + 300}px at right top)`,
     transition: {
       type: "spring",
-      stiffness: 10,
+      stiffness: 13,
       restDelta: 2,
-      duration: "4",
+      duration: "0.2",
     },
   }),
   closed: {

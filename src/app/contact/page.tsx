@@ -5,23 +5,26 @@ import Navbar from "@/components/__shared/Navbar";
 import Footer from "@/components/__shared/footer/Footer";
 import { motion } from "framer-motion";
 import PhoneNumberInputv2 from "@/components/__shared/PhoneInputv2";
-import { useHashChangeScroll } from "@/lib/custom-hooks/useWindowEvents";
+import { useScrollIntoView } from "@/lib/custom-hooks/useWindowEvents";
 import ContactBanner from "./components/ContactBanner";
 import ContactTabs from "./components/ContactTabs";
 import ScrollTopAndSocial from "../../components/ui/ScrollTopAndSocial";
 import FeedbackButton from "../../components/feedback/FeedbackButton";
 import ContactForm from "./components/ContactForm";
 import ContactFormSideImage from "./components/ContactFormSideImage";
+import { useRef } from "react";
 
 const Page = () => {
-  useHashChangeScroll(-200);
+  const contactRef = useRef(null)
+
+  useScrollIntoView(contactRef);
 
   return (
     <>
       <Navbar />
       <main className="wrapper">
         <Root className="flex flex-col items-center justify-center mt-12">
-          <ContactBanner />
+          <ContactBanner ref={contactRef} />
           <div
             className={`max-w-full relative z-[20] h-full w-full min-h-[500px] form-root sm:p-3 lg:p-8 pt-5 lg:pt-2 rounded-2xl lg:-top-36 lg:max-w-[90%]`}
           >

@@ -1,12 +1,13 @@
 import Image from "next/image";
-import React from "react";
+import React, { LegacyRef, forwardRef } from "react";
 
 type Props = {};
 
-const ContactBanner = (props: Props) => {
+const ContactBanner = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
   return (
     <div
       className={`banner flex flex-col gap-5 justify-center px-10 pt-10 items-center lg:items-start text-white md:pt-24 sm:px-24 lg:flex-row lg:justify-between`}
+      ref={ref}
     >
       <div className="">
         <h1 className="text-center">Get in touch with us</h1>
@@ -23,4 +24,4 @@ const ContactBanner = (props: Props) => {
   );
 };
 
-export default ContactBanner;
+export default forwardRef(ContactBanner);

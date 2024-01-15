@@ -29,7 +29,7 @@ const MenuBottomLinks = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
               key={index}
               href={r?.url}
               className="text-2xl transition-all bottomLink"
-              onClick={() => setFaqActivePage("how to")}
+              onClick={() => {setFaqActivePage("how to"); setToggle(false)}}
             >
               {r?.name}
             </Link>
@@ -47,6 +47,7 @@ const MenuBottomLinks = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
               key={index}
               href={r?.url}
               className="text-2xl transition-all bottomLink"
+              onClick={() => setToggle(false)}
             >
               {r?.name}
             </Link>

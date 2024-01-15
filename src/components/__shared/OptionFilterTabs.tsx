@@ -1,7 +1,8 @@
 "use client";
 import capitalizeName, { LowerCase } from "@/lib/utils/stringManipulation";
 import { Tab, Tabs } from "@nextui-org/react";
-import React from "react";
+import React, { LegacyRef, forwardRef } from "react";
+import {ReactRef} from "@nextui-org/react-utils"
 
 type Props = {
   /** You can use any case. The key is converted to lowercase Eg: ["First", "SECOND"] --> "first", "second" */
@@ -20,10 +21,11 @@ const OptionFilterTabs = ({
   onSelectionChange,
   variant,
   padding,
-}: Props) => {
+}: Props, ref: any) => {
   return (
     <>
       <Tabs
+        ref={ref}
         variant="light"
         aria-label="Tabs variants"
         // radius="full"
@@ -68,4 +70,4 @@ const OptionFilterTabs = ({
   );
 };
 
-export default OptionFilterTabs;
+export default forwardRef(OptionFilterTabs);

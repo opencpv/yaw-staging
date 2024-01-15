@@ -1,12 +1,17 @@
 import OptionFilterTabs from "@/components/__shared/OptionFilterTabs";
 import { useFaqHowToSwitchStore } from "@/store/faq/useFaqStore";
-import React from "react";
+import React, { useRef } from "react";
+import { useScrollIntoView } from "@/lib/custom-hooks/useWindowEvents";
 
 type Props = {};
 
 const FaqHowToSwitch = (props: Props) => {
   const activePage = useFaqHowToSwitchStore((state) => state.activePage);
   const setActivePage = useFaqHowToSwitchStore((state) => state.setActivePage);
+
+  const tabRef = useRef(null)
+  
+  useScrollIntoView(tabRef, "center")
 
   return (
     <div className="p-3 mb-8 border rounded-xl w-fit">
@@ -16,6 +21,7 @@ const FaqHowToSwitch = (props: Props) => {
         onSelectionChange={setActivePage}
         radius="large"
         padding="wide"
+        ref={tabRef}
       />
     </div>
   );
