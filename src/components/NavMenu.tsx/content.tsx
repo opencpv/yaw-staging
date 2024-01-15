@@ -13,11 +13,11 @@ export const links = [
     ],
     //sub2 is only used for mobile view
     sub2: [
-      {
-        id: "#",
-        url: "#",
-        name: "stuff goes here",
-      },
+      // {
+      //   id: "#",
+      //   url: "#",
+      //   name: "stuff goes here",
+      // },
     ],
   },
   {

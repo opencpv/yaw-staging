@@ -63,7 +63,7 @@ export default function Menu(props: any) {
   return (
     <Root
       ref={menuRef}
-      className="relative w-full top-0 gap-20 hidden-scrollbar"
+      className="relative w-full top-0 gap-20 hidden-scrollbar min-h-screen overflow-y-scroll pb-20 lg:pb-0"
       variants={ExpandCircle}
       exit={{
         ...ExpandCircle.closed,

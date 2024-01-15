@@ -6,47 +6,47 @@ import Logo from '@/components/__shared/Logo'
 import { useMenuStore } from '@/store/navmenu/useMenuStore'
 
 const MenuArea = (props: any) => {
-  const {setToggle} = useMenuStore()
-  
+  const { setToggle } = useMenuStore()
+
   return (
     <div className={"flex-col flex "}>
-    <div className="flex flex-col lg:gap-10">
-      <div className={"flex-flex-col px-8"}>
-        <div
-          className={
-            "flex flex-row items-center justify-between pt-8  w-full "
-          }
-        >
+      <div className="flex flex-col lg:gap-10">
+        <div className={"flex-flex-col px-8"}>
           <div
-            className="w-full relative
+            className={
+              "flex flex-row items-center justify-between pt-8 w-full "
+            }
+          >
+            <div
+              className="w-full relative
             max-w-[106px] max-h-[86px] aspect-[106/86]
             2xl:max-w-[150px]
           2xl:max-h-[122px] h-full 2xl:aspect-[150/122]
           "
-          >
-            <Logo size="lg" />
+            >
+              <Logo size="lg" />
+            </div>
+            <button className="relative duration-300 lg:right-10 hover:rotate-[360deg]">
+              <AiFillCloseCircle
+                onClick={() => setToggle(false)}
+                color="white"
+                size={40}
+              />
+            </button>
           </div>
-          <button className="relative duration-300 lg:right-10 hover:rotate-[360deg]">
-            <AiFillCloseCircle
-              onClick={() => setToggle(false)}
-              color="white"
-              size={40}
-            />
-          </button>
+        </div>
+        <div className={"mt-10"}>
+          <MobileMenu
+            className={"flex lg:hidden "}
+          // toggleMenu={props?.toggleMenu}
+          />
+          <DesktopMenu
+            className={"hidden lg:flex"}
+          // toggleMenu={props?.toggleMenu}
+          />
         </div>
       </div>
-      <div className={"mt-10"}>
-        <MobileMenu
-          className={"flex lg:hidden "}
-          // toggleMenu={props?.toggleMenu}
-        />
-        <DesktopMenu
-          className={"hidden lg:flex"}
-          // toggleMenu={props?.toggleMenu}
-        />
-      </div>
     </div>
-  </div>
   )
 }
 

@@ -7,8 +7,8 @@ import { links } from "./content";
 import Link from "next/link";
 import ArrowDownNav from "@/app/components/icons/CaArrowDownNav.";
 import { BsArrowDownCircleFill } from "react-icons/bs";
-import { montserat } from "@/styles/font";
 import { useRouter } from "next/navigation";
+import ButtonStartHere from "../__shared/ui/button/ButtonStartHere";
 
 const MenuOption = ({
   name,
@@ -31,7 +31,7 @@ const MenuOption = ({
     "&[data-state=open] > div:nth-child(2)": {
       display: "flex",
       flexDirection: "column",
-      gap: "10px",
+      gap: "20px",
     },
 
     "&[data-state=open] p:first-child": {
@@ -54,14 +54,14 @@ const MenuOption = ({
               ${open ? "text-[#FCAB10]" : "text-[#fff]"}
             `}
         >
-          <p className={"uppercase !font-semibold"}>{name}</p>
+          <p className={"uppercase !font-semibold text-2xl"}>{name}</p>
           <ArrowDownNav color={open ? "#ddd" : "#fff"} />
         </div>
       </Collapsible.Trigger>
       <Collapsible.Content className={"py-4"}>
         {sub?.map((r, index) => (
           <Collapsible.Root key={index} className="text-white flex flex-col ">
-            <Collapsible.Trigger className="text-left flex justify-between pr-20 ">
+            <Collapsible.Trigger className="text-left flex justify-between pr-20 text-base">
               {r?.name}
               <ArrowDownNav />
             </Collapsible.Trigger>
@@ -84,35 +84,25 @@ export const MobileMenu = (props: any) => {
 
   return (
     <div
-      className={`flex flex-col px-4 gap-4  ${props?.className} ${montserat.className}`}
+      className={`flex flex-col px-8 gap-4 ${props?.className}`}
     >
-      <div
-        onClick={(e: any) => {
-          router.push("/login");
-          // props?.toggleMenu();
-        }}
-        className="max-w-[309px] max-h-[59px] w-full aspect-[309/59]
-      bg-[#305A61] border-2 border-[#D9D9D9] text-white rounded-2xl mt-6 mb-10
-      font-semibold text-[24px] flex items-center justify-center
-      "
-      >
-        Start here
-      </div>
+      <ButtonStartHere className="inline-flex my-14" />
+      <div className="space-y-10">
       {links.map((r, index) =>
+        
         r?.sub ? (
           <MenuOption key={index} name={r.name} sub={r?.sub} sub2={r?.sub2} />
         ) : (
-          <div
-            onClick={(e: any) => {
-              router.push(r?.url);
-              // props?.toggleMenu();
-            }}
+          <Link
+            href={r?.url}
             key={index}
+            className="block mb-10"
           >
-            <p className={"uppercase !font-semibold text-[#fff]"}>{r?.name}</p>
-          </div>
+            <p className={"uppercase !font-semibold text-[#fff] text-2xl"}>{r?.name}</p>
+          </Link>
         )
       )}
+      </div>
     </div>
   );
 };
