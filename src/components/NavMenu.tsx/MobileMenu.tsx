@@ -66,7 +66,7 @@ const MenuOption = ({
           <Collapsible.Root key={index} className="text-white flex flex-col ">
             <Collapsible.Trigger className="text-left flex justify-between pr-20 text-base">
               {r?.name}
-              <ArrowDownNav />
+              {/* <ArrowDownNav /> */}
             </Collapsible.Trigger>
             <Collapsible.Content>
               {sub2?.map((r2, index) => (
@@ -89,8 +89,8 @@ export const MobileMenu = (props: any) => {
     <div
       className={`flex flex-col px-8 gap-4 ${props?.className}`}
     >
-      <div className="flex justify-center">
-        <ButtonStartHere className="my-14 mx-auto" />
+      <div className="flex justify-center my-14">
+        <ButtonStartHere className="inline-flex" />
       </div>
       <div className="space-y-10">
         {links.map((r, index) =>

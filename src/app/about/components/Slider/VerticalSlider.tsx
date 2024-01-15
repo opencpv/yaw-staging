@@ -10,6 +10,7 @@ import { Pagination, Autoplay } from "swiper/modules";
 import Image from "next/image";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Link from "next/link";
+import VerticalSliderScrollFixOverlay from "@/components/__shared/sliders/VerticalSliderScrollFixOverlay";
 
 const demoPost = [
   {
@@ -107,11 +108,7 @@ const VerticalSlider = () => {
       </Link>
 
       {/* For smooth vertical scrolling */}
-      <Link
-        href="/blog/Lifestyle/The Home"
-        className="absolute bottom-0 left-0 z-10 block opacity-0 h-full px-5 bg-red-400 w-[78%] xs:w-10/12"
-      ></Link>
-      {/*!!! Temporary fix of scrolling issue on mobile !!!*/}
+      <VerticalSliderScrollFixOverlay href="/blog/Lifestyle/The Home" className="-translate-x-28" />
     </div>
   );
 };
