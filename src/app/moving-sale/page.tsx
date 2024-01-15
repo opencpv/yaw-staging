@@ -96,7 +96,7 @@ const MovingSalesPage = () => {
           {[1, 2, 3, 4, 5, 6, 12, 7, 8, 4, 20, 7].map((_, idx) => (
             <ItemCard
               key={idx + 1}
-              href={`/moving-sales/${1}`}
+              href={`/moving-sale/${1}`}
               title="Lorem ipsum dolor sit amet"
               description="Lorem ipsum dolor sit amet consectetur. Viverra mattis lacus mi dolor sed et leo id mus ultrices."
               image="/assets/images/about/young-couple.webp"

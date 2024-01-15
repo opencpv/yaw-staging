@@ -34,7 +34,7 @@ const ItemRelatedItems = (props: Props) => {
         items={[1, 2, 3, 4, 5, 6, 7, 8].map((item, idx) => (
           <ItemCard
             key={idx + 1}
-            href={`/moving-sales/${1}`}
+            href={`/moving-sale/${1}`}
             title="Lorem ipsum dolor sit amet"
             description="Lorem ipsum dolor sit amet consectetur. Viverra mattis lacus mi dolor sed et leo id mus ultrices."
             image="/assets/images/about/black-businessman.webp"
