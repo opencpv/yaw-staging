@@ -11,7 +11,7 @@ const VerticalSliderScrollFixOverlay = ({ className, href }: Props) => {
     if (href)
         return (
             <>
-                <Link href={href ?? ""} className={cn("absolute left-0 opacity-0 top-0 z-10 h-full w-full pointer-events-none -translate-x-16 bg-red-400", className)}></Link>
+                <Link href={href ?? ""} className={cn("absolute left-0 opacity-0 top-0 z-10 h-full w-full -translate-x-16 bg-red-400", className)}></Link>
                 {/* !!! Temporary fix of scrolling issue on mobile !!!*/}
             </>
         )
