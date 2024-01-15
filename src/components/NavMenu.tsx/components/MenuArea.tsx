@@ -24,7 +24,7 @@ const MenuArea = (props: any) => {
           2xl:max-h-[122px] h-full 2xl:aspect-[150/122]
           "
             >
-              <Logo size="lg" />
+              <Logo size="lg" onClick={() => setToggle(false)} />
             </div>
             <button className="relative duration-300 lg:right-10 hover:rotate-[360deg]">
               <AiFillCloseCircle

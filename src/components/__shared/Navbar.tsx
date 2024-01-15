@@ -8,10 +8,9 @@ import { useEffect, useState } from "react";
 import Logo from "@/components/__shared/Logo";
 import LikeHeart from "./ui/LikeHeart";
 import Share from "./ui/share/Share";
-import Link from 'next/link'
+import Link from "next/link";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
 import ButtonHireUs from "./ui/button/ButtonHireUs";
-
 
 const Navbar = (props: any) => {
   const pathname = usePathname();
@@ -19,17 +18,24 @@ const Navbar = (props: any) => {
   const [isScrolling, setIsScrolling] = useState<boolean>(false);
   const [locationOrigin, setLocationOrigin] = useState<string>("");
   // const [toggle, setToggle] = useState(false)
-  const { toggle, setToggle } = useMenuStore()
-
-
+  const { toggle, setToggle } = useMenuStore();
 
   useEffect(() => {
-    if (toggle){
-      document.body.classList.add("hidden-scrollbar")
-    }
-    else {
+    if (toggle) {
       setTimeout(() => {
-        document.body.classList.remove("hidden-scrollbar")
+        document.body.classList.add(
+          "max-h-screen",
+          "overflow-y-hidden",
+          "hidden-scrollbar"
+        );
+      }, 300);
+    } else {
+      setTimeout(() => {
+        document.body.classList.remove(
+          "max-h-screen",
+          "overflow-y-hidden",
+          "hidden-scrollbar"
+        );
       }, 1000);
     }
 
@@ -48,8 +54,6 @@ const Navbar = (props: any) => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-
-
   }, [pathname, toggle]);
 
   const shouldChangeColor =
@@ -61,18 +65,21 @@ const Navbar = (props: any) => {
   return (
     <>
       <nav
-        className={`w-full px-8 py-3 z-40 no-print ${props.isMenuOpen && "absolute"} ${isNotTargetPage
-          ? "sticky bg-primary-500"
-          : shouldChangeColor
-            ? "fixed bg-primary-500 transition-all"
-            : "fixed bg-transparent transition-all"
-          } top-0 bg-primary-500`}
+        className={`w-full px-8 py-3 z-40 no-print ${
+          props.isMenuOpen && "absolute"
+        } ${
+          isNotTargetPage
+            ? "sticky bg-primary-500"
+            : shouldChangeColor
+              ? "fixed bg-primary-500 transition-all"
+              : "fixed bg-transparent transition-all"
+        } top-0 bg-primary-500`}
       >
         <div className="flex items-center justify-between">
           <Menu
             isOpen={toggle}
             layout
-          // toggleMenu={() => { setToggle(false) }}
+            // toggleMenu={() => { setToggle(false) }}
           />
           <Logo />
           <div className="flex items-center lg:gap-[73px] md:gap-[31px] w-full justify-end">
@@ -89,7 +96,11 @@ const Navbar = (props: any) => {
               </div>
             )}
 
-            <button onClick={() => { setToggle(true) }}>
+            <button
+              onClick={() => {
+                setToggle(true);
+              }}
+            >
               <Image src={icons.Hamburger} alt="menu" />
             </button>
           </div>

@@ -10,8 +10,22 @@ const PropertyLayout = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     if (hideWindowScrollbar) {
-      document.body.classList.add("hidden-scrollbar");
-    } else document.body.classList.remove("hidden-scrollbar");
+      setTimeout(() => {
+        document.body.classList.add(
+          "max-h-screen",
+          "overflow-y-hidden",
+          "hidden-scrollbar"
+        );
+      }, 300);
+    } else {
+      setTimeout(() => {
+        document.body.classList.remove(
+          "max-h-screen",
+          "overflow-y-hidden",
+          "hidden-scrollbar"
+        );
+      }, 1000);
+    }
   }, [hideWindowScrollbar]);
 
   return <>{children}</>;
