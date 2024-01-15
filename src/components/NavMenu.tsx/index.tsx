@@ -91,7 +91,7 @@ export default function Menu(props: any) {
       }}
       {...props}
     >
-      <MenuArea onClick={() => props.toggleMenu()} />
+      <MenuArea />
       {windowLimit ? (<FaChevronDown
         className="relative bottom-5 mx-auto text-3xl text-accent-100 cursor-pointer shrink-0 transition-all duration-700"
         onClick={handleScrollIntoView}

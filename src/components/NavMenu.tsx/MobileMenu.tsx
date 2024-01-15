@@ -89,7 +89,7 @@ export const MobileMenu = (props: any) => {
       <div
         onClick={(e: any) => {
           router.push("/login");
-          props?.toggleMenu();
+          // props?.toggleMenu();
         }}
         className="max-w-[309px] max-h-[59px] w-full aspect-[309/59]
       bg-[#305A61] border-2 border-[#D9D9D9] text-white rounded-2xl mt-6 mb-10
@@ -105,7 +105,7 @@ export const MobileMenu = (props: any) => {
           <div
             onClick={(e: any) => {
               router.push(r?.url);
-              props?.toggleMenu();
+              // props?.toggleMenu();
             }}
             key={index}
           >

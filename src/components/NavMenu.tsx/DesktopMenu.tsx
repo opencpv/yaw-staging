@@ -12,6 +12,7 @@ export const DesktopMenu = (props: any) => {
   const [active, setActive] = useState<number | null>(null);
   const [subId, setSubId] = useState<number | null>(null);
   const router = useRouter();
+
   return (
     <div className={`flex-row px-8 gap-12  ${props?.className} `}>
       <div
@@ -30,7 +31,7 @@ export const DesktopMenu = (props: any) => {
               } else {
                 setActive(null);
                 router.push(r?.url);
-                props?.toggleMenu();
+                // props?.toggleMenu();
               }
             }}
           />

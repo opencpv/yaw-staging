@@ -2,6 +2,7 @@ import Feedback from "@/components/feedback/Feedback";
 import { LowerCase } from "@/lib/utils/stringManipulation";
 import { useContactStore } from "@/store/contact/useContactStore";
 import { useFaqHowToSwitchStore } from "@/store/faq/useFaqStore";
+import { useMenuStore } from "@/store/navmenu/useMenuStore";
 import Link from "next/link";
 import React, { LegacyRef, forwardRef } from "react";
 
@@ -14,6 +15,7 @@ const MenuBottomLinks = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
   const setFaqActivePage = useFaqHowToSwitchStore(
     (state) => state.setActivePage
   );
+  const { setToggle } = useMenuStore()
 
   return (
     <div
@@ -28,15 +30,15 @@ const MenuBottomLinks = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
               href={r?.url}
               className="text-2xl transition-all bottomLink"
               onClick={() => setFaqActivePage("how to")}
-              >
+            >
               {r?.name}
             </Link>
           ) : LowerCase(r?.name) === "report fraud" ? (
             <Link
-            key={index}
-            href={r?.url}
-            className="text-2xl transition-all bottomLink"
-            onClick={() => setContactTabActiveKey("report")}
+              key={index}
+              href={r?.url}
+              className="text-2xl transition-all bottomLink"
+              onClick={() => { setContactTabActiveKey("report"); setToggle(false) }}
             >
               {r?.name}
             </Link>
