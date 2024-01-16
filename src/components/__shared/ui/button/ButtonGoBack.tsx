@@ -16,23 +16,21 @@ const ButtonGoBack = ({ onClick, className }: Props) => {
 
   const router = useRouter();
 
-  const handleGoBack = () => {
-    router.back();
-  };
-
   return (
     <Button
-        variant="ghost"
+      variant="ghost"
       onClick={() => {
-        if (!onClick) {
-          handleGoBack()
+        if (onClick === undefined) {
+          router.back();
         } else {
-          onClick()
+          router.back();
+          setTimeout(() => {
+            onClick();
+          }, 1000);
         }
       }}
       className={cn(
-        `flex items-center justify-center gap-4 font-normal ${poppins400}
-    text-white w-fit`,
+        `flex items-center justify-center gap-4 font-normal ${poppins400}`,
         className
       )}
     >
