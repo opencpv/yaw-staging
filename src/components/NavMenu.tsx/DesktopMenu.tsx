@@ -5,11 +5,16 @@ import { motion } from "framer-motion";
 import Separator from "../Separator";
 import { FadeInOut } from "@/lib/animations";
 import MenuLink from "./components/MenuLink";
+import { useMenuStore } from "@/store/navmenu/useMenuStore";
+
 
 export const DesktopMenu = (props: any) => {
   const [active, setActive] = useState<number | null>(null);
   const [subId, setSubId] = useState<number | null>(null);
   const router = useRouter();
+  const setToggle = useMenuStore(
+    (state) => state.setToggle
+  );
 
   return (
     <div className={`flex-row px-8 gap-12  ${props?.className} `}>
@@ -48,14 +53,14 @@ export const DesktopMenu = (props: any) => {
             initial={"closed"}
             exit={"closed"}
           >
-            {/* sub links */}
+            {/* sub links --> view all listings, etc... */}
             {links[active]?.sub?.map((l, ldx) => (
               <MenuLink
                 key={ldx}
                 active={ldx === subId}
                 linkObject={l}
                 isSubLink
-                onClick={() => console.log("Sub menu clicked")}
+                onClick={() => {setToggle(false);}} 
               />
             ))}
           </motion.div>
