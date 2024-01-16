@@ -10,7 +10,7 @@ import FeedbackBody from "./FeedbackBody";
 type Props = {
   // handleClick: () => void;
   className?: string;
-  children: React.ReactNode
+  children: React.ReactNode;
 };
 
 const Feedback = ({ children }: Props) => {
@@ -20,15 +20,15 @@ const Feedback = ({ children }: Props) => {
   const handleSubmitFeedback = () => {
     onClose();
     toastOnOpen(
-      "👍 Thank you! Your feedback is invaluable and will contribute to improving our services."
+      "👍 Thank you! Your feedback is invaluable and will contribute to improving our services.",
     );
   };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === "Enter"){
-      onOpen()
+    if (e.key === "Enter") {
+      onOpen();
     }
-  }
+  };
 
   return (
     <>
@@ -46,7 +46,13 @@ const Feedback = ({ children }: Props) => {
         onOpenChange={onOpenChange}
         size="lg"
       />
-      <div className="cursor-pointer" onClick={onOpen} tabIndex={0} role="button" onKeyDown={handleKeyDown}>
+      <div
+        className="cursor-pointer"
+        onClick={onOpen}
+        tabIndex={0}
+        role="button"
+        onKeyDown={handleKeyDown}
+      >
         {children}
       </div>
     </>
