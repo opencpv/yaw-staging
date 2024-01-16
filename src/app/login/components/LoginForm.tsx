@@ -4,12 +4,16 @@ import { LoginButton } from "./LoginButton";
 import { useRouter } from "next/navigation";
 import Logo from "@/components/__shared/Logo";
 import ButtonGoBack from "@/components/__shared/ui/button/ButtonGoBack";
+import { useMenuStore } from "@/store/navmenu/useMenuStore";
+
 
 export const LoginForm = () => {
+  const setToggle = useMenuStore((state) => state.setToggle)
+  
   return (
     <>
-      <div className="relative flex w-full justify-center">
-        <ButtonGoBack className="justify-self-start absolute top-0 left-10" />
+      <div className="relative flex justify-center w-full">
+        <ButtonGoBack className="absolute top-0 justify-self-start left-10" onClick={() => setToggle(true)} />
         <Logo size="md" className="mt-14 sm:mt-0" />
       </div>
       <div className="flex flex-col items-center justify-center w-full gap-6">
