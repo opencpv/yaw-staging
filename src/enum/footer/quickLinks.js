@@ -4,20 +4,28 @@ const quickLinks = [
         href: "/about"
     },
     {
-        label: "B2B",
-        href: "/"
-    },
-    {
-        label: "Join Us",
-        href: ""
-    },
-    {
         label: "How To",
         href: "/faq"
     },
     {
+        label: "Contact",
+        href: "/contact"
+    },
+    {
+        label: "Invoices",
+        href: "/"
+    },
+    {
+        label: "Join Us",
+        href: "/join-us"
+    },
+    {
         label: "Report Fraud",
         href: "/contact"
+    },
+    {
+        label: "Feedback",
+        href: ""
     },
 ]
 

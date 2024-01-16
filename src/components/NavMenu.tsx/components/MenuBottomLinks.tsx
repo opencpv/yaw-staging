@@ -15,7 +15,7 @@ const MenuBottomLinks = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
   const setFaqActivePage = useFaqHowToSwitchStore(
     (state) => state.setActivePage
   );
-  const { setToggle } = useMenuStore()
+  const { setToggle } = useMenuStore();
 
   return (
     <div
@@ -29,7 +29,10 @@ const MenuBottomLinks = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
               key={index}
               href={r?.url}
               className="text-2xl transition-all bottomLink"
-              onClick={() => {setFaqActivePage("how to"); setToggle(false)}}
+              onClick={() => {
+                setFaqActivePage("how to");
+                setToggle(false);
+              }}
             >
               {r?.name}
             </Link>
@@ -38,10 +41,17 @@ const MenuBottomLinks = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
               key={index}
               href={r?.url}
               className="text-2xl transition-all bottomLink"
-              onClick={() => { setContactTabActiveKey("report"); setToggle(false) }}
+              onClick={() => {
+                setContactTabActiveKey("report");
+                setToggle(false);
+              }}
             >
               {r?.name}
             </Link>
+          ) : LowerCase(r?.label) === "feedback" ? (
+            <Feedback>
+              <h2 className="font-[400]">Feedback</h2>
+            </Feedback>
           ) : (
             <Link
               key={index}
