@@ -69,6 +69,7 @@ const MenuOption = ({
         </div>
       </Collapsible.Trigger>
       <Collapsible.Content className={"py-4"}>
+        {/* sub links ---> View all listings, how to, etc.. */}
         {sub?.map((r, index) => (
           <Collapsible.Root key={index} className="text-white flex flex-col ">
             <Collapsible.Trigger className="text-left flex justify-between pr-20 text-base">
@@ -102,7 +103,7 @@ const MenuOption = ({
             </Collapsible.Trigger>
             <Collapsible.Content>
               {" "}
-              {/* Possibly not required anymore. May remove it */}
+              {/* sub2 is possibly not required anymore. Likely to remove it */}
               {sub2?.map((r2, index) => (
                 <Link
                   href={r2?.url}
@@ -131,9 +132,9 @@ export const MobileMenu = (props: any) => {
       <div className="space-y-10">
         {links.map((r, index) =>
           r?.sub ? (
-            <MenuOption key={index} name={r.name} sub={r?.sub} sub2={r?.sub2} />
+            <MenuOption key={index} name={r.name} sub={r?.sub} sub2={r?.sub2} /> // sub links ---> View all listings, how to, etc...
           ) : (
-            r?.name.toLowerCase() !== "faq" && (
+            r?.name.toLowerCase() !== "faq" && ( // main links ---> Home for rent, Login, Moving sale, etc...
               <Link
                 href={r?.url}
                 key={index}
