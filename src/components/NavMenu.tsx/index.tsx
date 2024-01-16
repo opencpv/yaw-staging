@@ -11,11 +11,10 @@ import MenuScrollDownButton from "./components/MenuScrollDownButton";
 import { useIsElementInViewport } from "./hooks/useIsElementInViewport";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
 
-
 export default function Menu(props: any) {
   const [hide, setHide] = useState(false);
   const [windowLimit, setWindowLimit] = useState(false);
-  const toggle = useMenuStore((state) => state.toggle)
+  const toggle = useMenuStore((state) => state.toggle);
 
   const bottomLinksRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLElement>(null);
@@ -23,9 +22,9 @@ export default function Menu(props: any) {
 
   useEffect(() => {
     // focus the menu for accessibility
-    if (toggle && menuRef.current){ 
+    if (toggle && menuRef.current) {
       setTimeout(() => {
-        menuRef?.current?.focus()
+        menuRef?.current?.focus();
       }, 1000);
     }
 
@@ -77,7 +76,7 @@ export default function Menu(props: any) {
     <Root
       ref={menuRef}
       tabindex="0"
-      className="fixed w-full top-0 gap-20 hidden-scrollbar min-h-screen overflow-y-scroll pb-20 lg:pb-0"
+      className="hidden-scrollbar fixed top-0 min-h-screen w-full gap-20 overflow-y-scroll pb-20 lg:pb-0"
       variants={ExpandCircle}
       exit={{
         ...ExpandCircle.closed,
