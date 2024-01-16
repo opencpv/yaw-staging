@@ -1,16 +1,18 @@
 import React from "react";
-import { Select as NextUISelect, SelectItem } from "@nextui-org/react";
+import { Select as NextUISelect, SelectItem, cn } from "@nextui-org/react";
 import { FaCaretDown } from "react-icons/fa";
+import { LowerCase } from "@/lib/utils/stringManipulation";
 
 type Props = {
   options: string[];
   value: string;
+  handleSelectionChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   radius?: "full" | "lg" | "md" | "none";
   selectorIcon?: React.ReactNode;
-  handleSelectionChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  className?: string;
 };
 
-const Select = ({ options, handleSelectionChange, value, radius, selectorIcon }: Props) => {
+const Select = ({ options, handleSelectionChange, value, radius, selectorIcon, className }: Props) => {
   return (
     <NextUISelect
       size="sm"
@@ -20,7 +22,7 @@ const Select = ({ options, handleSelectionChange, value, radius, selectorIcon }:
       labelPlacement="outside"
       selectedKeys={[value]}
       classNames={{
-        base: "w-48 mx-auto text-xs",
+        base: cn('w-48 mx-auto text-xs', className),
         value: "text-xs",
         selectorIcon: "mr-5 h-3 w-3",
         trigger: "px-10 z-30",
@@ -31,9 +33,9 @@ const Select = ({ options, handleSelectionChange, value, radius, selectorIcon }:
     >
       {options.map((option) => (
         <SelectItem
-          key={option.toLowerCase()}
+          key={LowerCase(option)}
           className="text-neutral-800"
-          value={option.toLowerCase()}
+          value={LowerCase(option)}
         >
           {option}
         </SelectItem>

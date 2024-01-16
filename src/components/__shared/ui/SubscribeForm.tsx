@@ -14,8 +14,8 @@ const SubscribeForm = (props: Props) => {
             md:rounded-r-[0px]
             min-h-[70px] md:min-h-[95px]
             w-full lg:w-3/5 bg-[#D9D9D9]
-            text-[#B0B0B0] text-2xl"
-        placeholder={"Enter your email or phone number"}
+            text-[#B0B0B0] text-xl xs:text-2xl placeholder:text-xl xs:placeholder:text-2xl"
+        placeholder={"Email or phone number"}
       />
       <button
         className="uppercase bg-[#DDB771] min-h-[70px] md:min-h-[95px]

@@ -1,8 +1,9 @@
+import React from "react";
 import { create } from "zustand";
 
 type BlogCategoryStore = {
-  filterOption: string;
-  changeCategoryOption: (key: string) => void;
+  filterOption: React.Key;
+  changeCategoryOption: (key: React.Key) => void;
 };
 
 type BlogPostSliderStore = {
@@ -12,7 +13,7 @@ type BlogPostSliderStore = {
 
 const useBlogCategoryStore = create<BlogCategoryStore>((set) => ({
   filterOption: "all",
-  changeCategoryOption: (option: string) => set({ filterOption: option }),
+  changeCategoryOption: (option) => set({ filterOption: option }),
 }));
 
 const useBlogPostSlider = create<BlogPostSliderStore>((set) => ({

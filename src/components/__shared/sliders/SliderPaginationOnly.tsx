@@ -9,7 +9,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import "@/styles/custom-swiper.css";
-import { useAdsSliderStore } from "@/store/ads/useAdsSliderStore";
 
 
 const SliderPaginationOnly = ({
@@ -17,8 +16,6 @@ const SliderPaginationOnly = ({
   className,
   disabledOnInteraction
 }: SliderPaginationOnlyProps) => {
-  const shouldAutoplay = useAdsSliderStore((state) => state.autoplay);
-  const setAutoplay = useAdsSliderStore((state) => state.setAutoplay)
 
   return (
     <div className={`relative h-80 w-72 ${className}`}>
@@ -35,8 +32,6 @@ const SliderPaginationOnly = ({
         }}
         modules={[Pagination, Autoplay]}
         className={`h-80 w-72 rounded-lg slider-pagination-only ${className}`}
-        // onSlideChange={() => setAutoplay(false)}
-        // onTransitionEnd={() => setAutoplay(true)}
       >
         {images.map((image, idx) => (
           <SwiperSlide key={idx + 1}>
@@ -52,7 +47,7 @@ const SliderPaginationOnly = ({
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="relative h-10 rounded-b-lg bottom-10 z-10 bg-neutral-600 bg-opacity-30"></div>
+      <div className="relative h-10 rounded-b-lg bottom-10 z-10 bg-neutral-600 bg-opacity-30 pointer-events-none"></div>
     </div>
   );
 };

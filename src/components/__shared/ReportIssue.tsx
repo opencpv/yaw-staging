@@ -12,7 +12,7 @@ const ReportIssue = ({ className }: Props) => {
 
   return (
     <Link
-      href="/contact#c_ta#rea"
+      href="/contact"
       className={`text-red-500 font-[600] inline-block ${className}`}
       onClick={() => setContactTabActiveKey("report")}
     >

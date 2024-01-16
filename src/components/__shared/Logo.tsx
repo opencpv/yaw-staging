@@ -7,9 +7,10 @@ import React from "react";
 type Props = {
   className?: string;
   size?: "sm" | "md" | "lg";
+  onClick?: () => void;
 };
 
-const Logo = ({ className, size }: Props) => {
+const Logo = ({ className, size, onClick }: Props) => {
   const { icons } = useAssets();
   return (
     <Link href="/">
@@ -19,6 +20,7 @@ const Logo = ({ className, size }: Props) => {
         width={size === "md" ? 112 : size === "lg" ? 128 : 96}
         quality={100}
         className={`${className}`}
+        onClick={onClick}
       />
     </Link>
   );

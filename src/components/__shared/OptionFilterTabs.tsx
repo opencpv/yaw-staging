@@ -1,16 +1,17 @@
 "use client";
-import capitalizeName from "@/lib/utils/stringManipulation";
-import { Selection, Tab, Tabs } from "@nextui-org/react";
-import React from "react";
+import capitalizeName, { LowerCase } from "@/lib/utils/stringManipulation";
+import { Tab, Tabs } from "@nextui-org/react";
+import React, { LegacyRef, forwardRef } from "react";
+import {ReactRef} from "@nextui-org/react-utils"
 
 type Props = {
   /** You can use any case. The key is converted to lowercase Eg: ["First", "SECOND"] --> "first", "second" */
   options: string[];
   radius?: "large" | "small";
   padding?: "small" | "wide";
-  onSelectionChange: (key: string) => void;
+  onSelectionChange: (key: React.Key) => void;
   variant?: "default" | "gradient";
-  selectedKey?: string;
+  selectedKey?: React.Key;
 };
 
 const OptionFilterTabs = ({
@@ -20,24 +21,26 @@ const OptionFilterTabs = ({
   onSelectionChange,
   variant,
   padding,
-}: Props) => {
+}: Props, ref: any) => {
   return (
     <>
       <Tabs
+        ref={ref}
         variant="light"
         aria-label="Tabs variants"
         // radius="full"
         classNames={{
           base: "bg-transparent transition-all",
           tabList: [
-            variant === "gradient" ? "gap-x-16" : null,
+            variant === "gradient" ? "gap-x-8" : null,
             "justify-center",
-            "flex-wrap",
-             "xl:flex-nowrap"
+            variant === "gradient"
+              ? "flex-col sm:flex-row sm:flex-wrap xl:flex-nowrap"
+              : "flex flex-wrap",
           ],
           tab: [
             variant === "gradient" ? null : "bg-slate-100",
-            variant === "gradient" ? "px-2 data-[selected=true]:px-12 h-10" : "px-4",
+            variant === "gradient" ? "px-12 h-10" : "px-4",
             "min-w-fit",
             "max-w-fit",
             variant === "gradient"
@@ -45,7 +48,7 @@ const OptionFilterTabs = ({
               : "data-[selected=true]:bg-[#45808B]",
             radius === "small" ? "rounded-lg" : "rounded-large",
             padding === "wide" && "px-20",
-            "py-5"
+            "py-5",
           ],
           tabContent: [
             variant === "gradient" ? "text-neutral-600" : "text-primary-500",
@@ -56,15 +59,15 @@ const OptionFilterTabs = ({
           // panel: "bg-primary-400",
         }}
         selectedKey={selectedKey}
-        onSelectionChange={(key) => onSelectionChange(key as string)}
+        onSelectionChange={onSelectionChange}
         disableCursorAnimation
       >
         {options.map((option) => (
-          <Tab key={option} title={capitalizeName(option, " ")} />
+          <Tab key={LowerCase(option)} title={capitalizeName(option, " ")} />
         ))}
       </Tabs>
     </>
   );
 };
 
-export default OptionFilterTabs;
+export default forwardRef(OptionFilterTabs);

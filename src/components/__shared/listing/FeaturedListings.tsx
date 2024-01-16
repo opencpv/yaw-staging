@@ -32,7 +32,7 @@ const FeaturedListings = ({ className }: Props) => {
   );
 
   return (
-    <section className={`w-full h-fit no-print overflow-x-hidden ${className}`}>
+    <section className={`w-full h-fit no-print overflow-x-hidden section ${className}`}>
       <FetchingStates
         data={listings}
         error={error}

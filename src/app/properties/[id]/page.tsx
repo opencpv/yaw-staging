@@ -29,9 +29,12 @@ import style from "@/app/components/landing/Shape.module.css";
 import { revalidationRule } from "@/lib/utils/fetchRules";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
 import { useUserDetails } from "@/lib/custom-hooks/message/useUserDetails";
+import { useModalFullscreenStore } from "@/store/modal/useModalStore";
 
 const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
   const { id: propertyId } = params;
+
+  const hideWindowScrollbar = useModalFullscreenStore((state) => state.hideWindowScrollbar)
 
   const {
     data: listing,
@@ -65,9 +68,9 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
         isLoadingComponent={
           <div className="">
             <SkeletonLong
-              className={`${style.shapeLeft2} rounded-none h-[40rem] w-full mb-20`}
+              className={`${style.shapeLeft2} rounded-none h-[50rem] w-full mb-20`}
             />
-            <div className="section gap-x-20 gap-y-10 lg:grid lg:grid-cols-2">
+            <div className="wrapper gap-x-20 gap-y-10 lg:grid lg:grid-cols-2">
               {/* grid col */}
               <div className="space-y-10">
                 <Skeleton className="w-full h-4 md:w-9/12" />
@@ -100,7 +103,7 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
             image="/assets/images/home/landing.jpg"
             position="left"
           ></ShapedLanding>
-          <main className="section">
+          <main className="wrapper">
             <section className="py-10 mb-10">
               <div className="text-[#305A61] font-[600] text-2xl">
                 <BreadCrumbPreLink
@@ -121,7 +124,6 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
                     propertyName: `${listing?.property_name} at ${listing?.city}`,
                   }}
                 />
-
                 {/* Grid col */}
                 <div className="">
                   <section className="">
@@ -232,7 +234,7 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
         </>
       )}
       {/* Recommended Listings */}
-      <section className="mb-40 section">
+      <section className="wrapper">
         <div className="flex flex-wrap items-center justify-between gap-5 mb-5">
           <h2 className="text-neutral-800 text-xl font-[600] md:ml-10">
             Recommended Listings

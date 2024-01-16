@@ -12,8 +12,8 @@ type Props = {};
 const page = (props: Props) => {
 
   return (
-    <main className="pb-20 mt-10 section">
-      <div className="relative w-full mb-16 h-fit">
+    <div className="wrapper">
+      <section className="relative mt-10 w-full h-fit">
         <SliderWide
           pagination
           autoplay
@@ -24,12 +24,12 @@ const page = (props: Props) => {
             href: "/blog/c/p",
           }))}
         />
-      </div>
-      <section className="grid-cols-4 mb-5 gap-x-5 lg:grid">
-        <div className="col-span-3 mb-10 lg:mb-0">
+      </section>
+      <section className="grid-cols-4 gap-x-5 md:pt-28 lg:grid">
+        <div className="col-span-3">
           {/* Recent posts */}
           <OtherPosts
-            className="mb-10 md:hidden"
+            className="section md:hidden"
             title="Recent posts"
             posts={[1, 2, 3, 4, 5].map((post, idx) => ({
               title: "Market Voice: Interview with the wild bunch",
@@ -39,7 +39,7 @@ const page = (props: Props) => {
             }))}
           />
           <PostSlider />
-          <AOSWrapper animation="fade-up">
+          <AOSWrapper animation="fade-up" className="section">
             <section className="grid gap-x-3.5 gap-y-7 xs:grid-cols-2 md:grid-cols-3">
               {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((category, idx) => (
                 <CategoryCard
@@ -56,33 +56,33 @@ const page = (props: Props) => {
         {/* Other posts -- right side of Grid */}
         <div className="col-span-1 space-y-5">
           {/* Recent posts */}
-          <OtherPosts
-            className=""
-            title="Recent posts"
-            posts={[1, 2, 3].map((post, idx) => ({
-              title: "Market Voice: Interview with the wild bunch",
-              author: "Jane Doe",
-              image: "",
-              href: "/blog/c/p",
-            }))}
-          />
-          {/* Popular posts */}
-          <OtherPosts
-            className=""
-            title="Popular posts"
-            posts={[1, 2, 3].map((post, idx) => ({
-              title: "Market Voice: Interview with the wild bunch",
-              author: "Jane Doe",
-              image: "",
-              href: "/blog/c/p",
-            }))}
-          />
+          <div className="space-y-5 pt-28 lg:pt-0">
+            <OtherPosts
+              title="Recent posts"
+              posts={[1, 2, 3].map((post, idx) => ({
+                title: "Market Voice: Interview with the wild bunch",
+                author: "Jane Doe",
+                image: "",
+                href: "/blog/c/p",
+              }))}
+            />
+            {/* Popular posts */}
+            <OtherPosts
+              title="Popular posts"
+              posts={[1, 2, 3].map((post, idx) => ({
+                title: "Market Voice: Interview with the wild bunch",
+                author: "Jane Doe",
+                image: "",
+                href: "/blog/c/p",
+              }))}
+            />
           <SubscribeToBlogButton />
+          </div>
           {/* Authors */}
           <Authors />
         </div>
       </section>
-    </main>
+    </div>
   );
 };
 

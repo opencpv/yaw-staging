@@ -28,10 +28,10 @@ const HomePopularCities = () => {
     <section
       className={`${
         cities && cities?.length < 1 && "hidden"
-      } px-5 mx-auto space-y-5 max-w-screen-2xl xs:px-5`}
+      } space-y-5 pt-32`}
     >
       <div className="w-full space-y-5 min-[810px]:w-7/12">
-        <div className="flex items-start justify-between gap-2 min-[500px]:justify-start min-[500px]:gap-20">
+        <div className="flex items-start gap-5">
           <h2 className="mb-3.5 capitalize text-neutral-900">
             Find Apartments in Popular Cities
           </h2>
@@ -60,7 +60,6 @@ const HomePopularCities = () => {
               location="Kumasi"
               description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, doloribus!"
               propertyNumber={232}
-              href="/"
             />
           </AOSWrapper>
         ))}
@@ -85,7 +84,6 @@ const HomePopularCities = () => {
               location="Kumasi"
               description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, doloribus!"
               propertyNumber={232}
-              href="/"
             />
           ))}
         />

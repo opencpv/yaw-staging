@@ -8,7 +8,7 @@ const AboutItem = ({ data, index }: { data: any; index: number }) => {
   const { images } = useAssets();
 
   const Heading1 = () => (
-    <div className="relative mt-8 w-fit">
+    <div className="relative mt-8 w-fit first:mt-0">
       <h2 className="border-l-8 text-[#2A4E55] border-[#DDB771] px-4 font-bold text-2xl md:text-4xl">
         {data.title}
       </h2>

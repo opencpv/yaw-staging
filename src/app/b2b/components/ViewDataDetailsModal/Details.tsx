@@ -103,7 +103,7 @@ function Details({ variant }: Props) {
         </p>
         <div className="h-full border-r-[0.5px] whitespace-nowrap"></div>
 
-        <p className="gray-600 font-semibold">admin@rentrightgh.com</p>
+        <p className="gray-600 font-semibold">contact@rentright.com</p>
       </div>
       {variant != "invoice" && (
         <div className="bg-[#ECF2F3] sticky bottom-0 2xl:static rounded-lg border-[1px] border-shade-50 px-4 py-2 h-[40px] w-full flex items-center justify-center gap-2 mt-14">

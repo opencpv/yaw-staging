@@ -1,44 +1,42 @@
 import { styled } from "@stitches/react";
-import { ErrorMessage, Field, Form, Formik } from "formik";
+import { ChangeEvent } from "react";
 import { AiOutlineLink } from "react-icons/ai";
 
-export const UploadFile = () => {
+type Props = {
+  file: string;
+  handleFileUpload: (e: ChangeEvent<HTMLInputElement>) => void;
+};
+
+export const UploadFile = ({ file, handleFileUpload }: Props) => {
   return (
     <Root className="max-w-[673px]">
-      <Formik
-        initialValues={{}}
-        onSubmit={(values) => {
-          console.log(values);
-        }}>
-        <Form className="flex items-center w-full">
-          <div className="form-div relative w-full">
-            <label>Upload File</label>
-            <AiOutlineLink
-              className="link-icon absolute"
-              size="16"
-              color="#737373"
-            />
-
-            <div className="flex items-center">
-              <Field
-                type="email"
-                name="email"
-                placeholder="Choose File"
-                className="form-input min-w-[100px] w-full"
-                style={{ paddingInline: "2.5rem" }}
-              />
-              <button
-                type="submit"
-                className="rounded-[4px] bg-[#DDB771]
-               flex items-center justify-center upload-button
-              max-w-[128px] min-w-[128px] w-[128px] h-[52px] text-white">
-                Upload
-              </button>
-            </div>
-            <ErrorMessage name="email" />
+      <div className="flex items-center w-full">
+        <label
+          className="flex flex-col gap-y-3 w-full max-w-xl min-[390px]:items-center min-[390px]:flex-row min-[390px]:h-16"
+          htmlFor="file"
+        >
+          <div
+            className="flex items-center gap-2 border text-neutral-400 rounded-l-md h-16 p-3 py-4 min-w-[100px] w-full min-[390px]:border-r-0 min-[390px]:h-full"
+            title={file ?? ""}
+          >
+            <AiOutlineLink className="shrink-0" size="18" color="#737373" />
+            <p className="truncate hidden min-[390px]:block">{file ? file : "Choose File (optional)"}</p>
+            <p className="truncate min-[390px]:hidden">{file ? file : "Upload File (optional)"}</p>
           </div>
-        </Form>
-      </Formik>
+          <div
+            // type=""
+            className="hidden rounded-[4px] bg-[#DDB771] items-center justify-center upload-button min-w-[128px] h-16 text-white cursor-pointer min-[390px]:h-full min-[390px]:-translate-x-2 w-[128px] min-[390px]:flex"
+          >
+            Upload
+            <input
+              type="file"
+              id="file"
+              onChange={handleFileUpload}
+              className="absolute right-[700%] top-0 opacity-0"
+            />
+          </div>
+        </label>
+      </div>
     </Root>
   );
 };
@@ -48,8 +46,7 @@ const Root = styled("div", {
     display: "flex",
     flexDirection: "column",
     gap: "0.875rem",
-    color:"#6A6968",
-
+    color: "#6A6968",
   },
   " .form-input": {
     maxHeight: "52px",

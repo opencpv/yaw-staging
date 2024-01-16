@@ -17,16 +17,20 @@ const SliderMultiItems = ({
   slidesPerView,
   breakpoints,
   hasNavAndPagination,
-  autoplay
+  autoplay,
 }: SliderMultiItemsProps) => {
   return (
     <>
       <Swiper
-        autoplay={autoplay === false || autoplay === undefined ? false : {
-          delay: 1,
-          disableOnInteraction: true,
-          pauseOnMouseEnter: true
-        }}
+        autoplay={
+          autoplay === false || autoplay === undefined
+            ? false
+            : {
+                delay: 1,
+                disableOnInteraction: true,
+                pauseOnMouseEnter: true,
+              }
+        }
         slidesPerView={slidesPerView ? slidesPerView : 1.5}
         spaceBetween={15}
         centeredSlides
@@ -36,7 +40,11 @@ const SliderMultiItems = ({
             spaceBetween: 20,
           },
         }}
-        freeMode={autoplay === false ? false : true}
+        freeMode={{
+          enabled: autoplay === false ? false : true,
+          momentumRatio: 0.4,
+          momentumVelocityRatio: 0.4,
+        }}
         speed={autoplay ? 30000 : undefined}
         pagination={{
           clickable: true,

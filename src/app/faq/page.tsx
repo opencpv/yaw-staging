@@ -16,19 +16,19 @@ import Navbar from "@/components/__shared/Navbar";
 const FAQ = () => {
   const activePage = useFaqHowToSwitchStore((state) => state.activePage);
 
-  const { icons } = useAssets();
+  // const { icons } = useAssets();
   return (
     <>
       <Head>
         <title>FAQ - RentRightGh</title>
       </Head>
       <Navbar />
-      <main className="section relative">
+      <main className="relative wrapper">
         <FaqHeader />
         {/* <BreadCrumb link="FAQ" /> */}
         <FaqHowToSwitch />
-        {LowerCase(activePage) === "faq" && <FaqPage />}
-        {LowerCase(activePage) === "how to" && <HowToPage />}
+        {LowerCase(activePage as string) === "faq" && <FaqPage />}
+        {LowerCase(activePage as string) === "how to" && <HowToPage />}
       </main>
       <Footer />
     </>

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { RefObject, useEffect } from "react";
 
 export const useHashChangeScroll = (amount = 200) => {
   useEffect(() => {
@@ -17,4 +17,19 @@ export const useHashChangeScroll = (amount = 200) => {
       window.removeEventListener("hashchange", scrollTop);
     };
   }, [amount]);
+};
+
+export const useScrollIntoView = (
+  refElement: RefObject<HTMLElement>,
+  block: "start" | "center" | "end" | "nearest" = "start"
+) => {
+  useEffect(() => {
+    if (refElement.current) {
+      refElement.current.scrollIntoView({
+        block: block,
+        inline: "nearest",
+        behavior: "smooth",
+      });
+    }
+  }, [refElement, block]);
 };
