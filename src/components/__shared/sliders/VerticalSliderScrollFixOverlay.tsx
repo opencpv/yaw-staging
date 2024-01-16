@@ -10,7 +10,7 @@ type Props = {
 
 const VerticalSliderScrollFixOverlay = ({ className, href }: Props) => {
   const [pointerEvents, setPointerEvents] = useState(false);
-  const overlayRef = useRef(null);
+  const overlayRef = useRef<HTMLAnchorElement | null>(null);
 
   useEffect(() => {
     const handleMouseEnter = () => {

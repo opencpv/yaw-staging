@@ -25,7 +25,7 @@ export default function Menu(props: any) {
     // focus the menu for accessibility to be activated
     if (toggle && menuRef.current){ 
       setTimeout(() => {
-        menuRef.current.focus()
+        menuRef?.current?.focus()
       }, 1000);
     }
 
