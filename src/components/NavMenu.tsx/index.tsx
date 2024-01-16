@@ -7,6 +7,7 @@ import { bottomLinks } from "./content";
 import { FaChevronDown } from "react-icons/fa";
 import MenuBottomLinks from "./components/MenuBottomLinks";
 import MenuArea from "./components/MenuArea";
+import MenuScrollDownButton from "./components/MenuScrollDownButton";
 import { useIsElementInViewport } from "./hooks/useIsElementInViewport";
 
 export default function Menu(props: any) {
@@ -19,16 +20,15 @@ export default function Menu(props: any) {
 
   useEffect(() => {
     const handleInnerHeight = () => {
-      if (window.innerHeight > 700){
-        setWindowLimit(true)
+      if (window.innerHeight > 700) {
+        setWindowLimit(true);
+      } else {
+        setWindowLimit(false);
       }
-      else {
-        setWindowLimit(false)
-      }
-    }
+    };
 
-    handleInnerHeight()
-    window.addEventListener("resize", handleInnerHeight)
+    handleInnerHeight();
+    window.addEventListener("resize", handleInnerHeight);
 
     const handleScroll = () => {
       if (menuRef.current && bottomLinksRef.current) {
@@ -56,7 +56,9 @@ export default function Menu(props: any) {
       bottomLinksRef.current.scrollIntoView({
         behavior: "smooth",
       });
-      setHide(true);
+      setTimeout(() => {
+        setHide(true);
+      }, 1000);
     }
   };
 
@@ -92,19 +94,21 @@ export default function Menu(props: any) {
       {...props}
     >
       <MenuArea />
-      {windowLimit ? (<FaChevronDown
-        className="hidden relative bottom-5 mx-auto text-3xl text-accent-100 cursor-pointer shrink-0 transition-all duration-700 lg:block"
-        onClick={handleScrollIntoView}
-        style={{
-          visibility: hide || isInViewport ? "hidden" : "visible",
-        }}
-      />) : (<FaChevronDown
-        className="hidden absolute left-[50%] bottom-5 text-3xl text-accent-100 cursor-pointer shrink-0 transition-all duration-700 lg:block"
-        onClick={handleScrollIntoView}
-        style={{
-          visibility: hide || isInViewport ? "hidden" : "visible",
-        }}
-      />)}
+      {windowLimit ? (
+        <MenuScrollDownButton
+          onClick={handleScrollIntoView}
+          hide={hide}
+          isInViewport={isInViewport}
+          className="relative mx-auto"
+        />
+      ) : (
+        <MenuScrollDownButton
+          onClick={handleScrollIntoView}
+          hide={hide}
+          isInViewport={isInViewport}
+          className="absolute left-[50%]"
+        />
+      )}
       {/* mobile */}
       {/* <FaChevronDown
         className="absolute left-[50%] bottom-5 text-3xl text-blue-600 cursor-pointer shrink-0 transition-all duration-700 lg:hidden"
@@ -113,7 +117,7 @@ export default function Menu(props: any) {
           visibility: hide || isInViewport ? "hidden" : "visible",
         }}
       /> */}
-     
+
       {/* bottom links */}
       <MenuBottomLinks links={bottomLinks} ref={bottomLinksRef} />
     </Root>

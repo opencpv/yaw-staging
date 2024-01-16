@@ -6,10 +6,10 @@ export const links = [
   },
   {
     id: "#",
-    url: "/properties",
+    url: "#",
     name: "HOMES FOR RENT",
     sub: [
-      { url: "#", name: "View All Listings", id: "/properties" },
+      { url: "/properties", name: "View All Listings", id: "#" },
 
       { url: "#", name: "Single Unit  Houses", id: "#" },
       { url: "#", name: "Duplex Houses", id: "#" },
@@ -44,6 +44,10 @@ export const links = [
     name: "MORE",
     sub: [
       {
+        url: "/faq",
+        name: "How to",
+      },
+      {
         url: "/about",
         name: "Our Services",
       },
@@ -60,10 +64,6 @@ export const links = [
         name: "Join Us",
       },
       {
-        url: "/faq",
-        name: "How to",
-      },
-      {
         url: "/contact",
         name: "Report Fraud",
       },
@@ -73,6 +73,10 @@ export const links = [
 ];
 
 export const bottomLinks = [
+  {
+    url: "/faq",
+    name: "How to",
+  },
   {
     url: "/about",
     name: "Our Services",
@@ -88,10 +92,6 @@ export const bottomLinks = [
   {
     url: "/join-us",
     name: "Join Us",
-  },
-  {
-    url: "/faq",
-    name: "How to",
   },
   {
     url: "/contact",

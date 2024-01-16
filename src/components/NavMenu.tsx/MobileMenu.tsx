@@ -10,6 +10,9 @@ import { BsArrowDownCircleFill } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 import ButtonHireUs from "../__shared/ui/button/ButtonHireUs";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
+import { useContactStore } from "@/store/contact/useContactStore";
+import { useFaqHowToSwitchStore } from "@/store/faq/useFaqStore";
+import { LowerCase } from "@/lib/utils/stringManipulation";
 
 const MenuOption = ({
   name,
@@ -46,6 +49,11 @@ const MenuOption = ({
 
   const [open, setOpen] = useState(false);
   const { setToggle } = useMenuStore();
+  const setContactTabActiveKey = useContactStore((state) => state.setActiveKey);
+  const setFaqActivePage = useFaqHowToSwitchStore(
+    (state) => state.setActivePage
+  );
+
   return (
     <CollapsibleRoot open={open} onOpenChange={setOpen}>
       <Collapsible.Trigger asChild>
@@ -64,10 +72,37 @@ const MenuOption = ({
         {sub?.map((r, index) => (
           <Collapsible.Root key={index} className="text-white flex flex-col ">
             <Collapsible.Trigger className="text-left flex justify-between pr-20 text-base">
-              {r?.name}
+              {LowerCase(r?.name) === "how to" ? (
+                <Link
+                  href={r?.url}
+                  onClick={() => {
+                    setFaqActivePage("how to");
+                    setToggle(false);
+                  }}
+                >
+                  {r?.name}
+                </Link>
+              ) : LowerCase(r?.name) === "report fraud" ? (
+                <Link
+                  href={r?.url}
+                  onClick={() => {
+                    setContactTabActiveKey("report");
+                    setToggle(false);
+                  }}
+                >
+                  {r?.name}
+                </Link>
+              ) : (
+                <Link href={r?.url} onClick={() => setToggle(false)}>
+                  {r?.name}
+                </Link>
+              )}
+
               {/* <ArrowDownNav /> */}
             </Collapsible.Trigger>
             <Collapsible.Content>
+              {" "}
+              {/* Possibly not required anymore. May remove it */}
               {sub2?.map((r2, index) => (
                 <Link
                   href={r2?.url}
@@ -97,17 +132,19 @@ export const MobileMenu = (props: any) => {
         {links.map((r, index) =>
           r?.sub ? (
             <MenuOption key={index} name={r.name} sub={r?.sub} sub2={r?.sub2} />
-          ) : r?.name.toLowerCase() !== "faq" && (
-            <Link
-              href={r?.url}
-              key={index}
-              className="block mb-10"
-              onClick={() => setToggle(false)}
-            >
-              <p className={"uppercase !font-semibold text-[#fff] text-2xl"}>
-                {r?.name}
-              </p>
-            </Link>
+          ) : (
+            r?.name.toLowerCase() !== "faq" && (
+              <Link
+                href={r?.url}
+                key={index}
+                className="block mb-10"
+                onClick={() => setToggle(false)}
+              >
+                <p className={"uppercase !font-semibold text-[#fff] text-2xl"}>
+                  {r?.name}
+                </p>
+              </Link>
+            )
           )
         )}
       </div>

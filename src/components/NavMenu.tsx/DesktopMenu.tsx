@@ -6,8 +6,6 @@ import Separator from "../Separator";
 import { FadeInOut } from "@/lib/animations";
 import MenuLink from "./components/MenuLink";
 
-
-
 export const DesktopMenu = (props: any) => {
   const [active, setActive] = useState<number | null>(null);
   const [subId, setSubId] = useState<number | null>(null);
@@ -19,23 +17,26 @@ export const DesktopMenu = (props: any) => {
         className={"flex flex-col w-max gap-10 border-r border-r-white pr-10"}
       >
         {/* main links */}
-        {links.map((r, idx) => r.name.toLowerCase() !== "more" && (
-          <MenuLink
-            key={idx}
-            active={active === idx}
-            linkObject={r}
-            onClick={() => {
-              if (r?.sub) {
-                setActive(idx as number);
-                setSubId(null);
-              } else {
-                setActive(null);
-                router.push(r?.url);
-                // props?.toggleMenu();
-              }
-            }}
-          />
-        ))}
+        {links.map(
+          (r, idx) =>
+            r.name.toLowerCase() !== "more" && (
+              <MenuLink
+                key={idx}
+                active={active === idx}
+                linkObject={r}
+                onClick={() => {
+                  if (r?.sub) {
+                    setActive(idx as number);
+                    setSubId(null);
+                  } else {
+                    setActive(null);
+                    router.push(r?.url);
+                    // props?.toggleMenu();
+                  }
+                }}
+              />
+            )
+        )}
       </div>
       {active !== null && (
         <>

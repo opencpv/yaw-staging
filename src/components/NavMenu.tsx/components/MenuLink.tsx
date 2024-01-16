@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
+import { useMenuStore } from "@/store/navmenu/useMenuStore";
 
 type Props = {
   active: boolean;
@@ -10,6 +11,8 @@ type Props = {
 };
 
 const MenuLink = (props: Props) => {
+  const { setToggle } = useMenuStore();
+
   return (
     <motion.button
       onClick={props.onClick}
@@ -22,10 +25,12 @@ const MenuLink = (props: Props) => {
           props.active ? "text-[#FCAB10]" : "text-[#fff]"
         }`}
       >
-        {props.isSubLink && props.linkObject.id || props.linkObject?.sub ? (
+        {(props.isSubLink && props.linkObject.id) || props.linkObject?.sub ? (
           <div className="flex item-center">
             {props.isSubLink ? (
-              <h4 className="mr-10 font-normal">{props.linkObject?.name}</h4>
+              <Link href={props.linkObject?.url}>
+                <h4 className="mr-10 font-normal">{props.linkObject?.name}</h4>
+              </Link>
             ) : (
               <h2 className="mr-10">{props.linkObject?.name}</h2>
             )}
@@ -47,8 +52,11 @@ const MenuLink = (props: Props) => {
           <Link
             href={props.linkObject?.url}
             className={`flex ${
-              props.isSubLink ? "font-normal text-base" : "font-semibold text-2xl"
+              props.isSubLink
+                ? "font-normal text-base"
+                : "font-semibold text-2xl"
             }`}
+            onClick={() => setToggle(false)}
           >
             {props.linkObject?.name}
           </Link>
