@@ -6,7 +6,7 @@ import legal from "@/enum/about/legal";
 export const LoginFooter = () => {
   return (
     <div className="flex flex-col items-center justify-center gap-4 text-base font-semibold">
-      <div className="flex flex-wrap items-center justify-center text-center gap-4">
+      <div className="flex flex-wrap items-center justify-center gap-4 text-center">
         <p className="text-[#B0B0B0]">
           By signing in, you agree to the following:
         </p>
@@ -14,7 +14,10 @@ export const LoginFooter = () => {
           <Link href="/terms-of-service" className="text-white underline">
             {legal.websiteName} terms and conditions
           </Link>
-          <Link href="/privacy" className="text-white underline min-[482px]:pl-4">
+          <Link
+            href="/privacy"
+            className="text-white underline min-[482px]:pl-4"
+          >
             {legal.websiteName} privacy policy
           </Link>
         </div>
