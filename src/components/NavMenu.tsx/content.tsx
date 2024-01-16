@@ -49,10 +49,6 @@ export const links = [
       },
       {
         url: "/faq",
-        name: "FAQ",
-      },
-      {
-        url: "/faq",
         name: "How to",
       },
       {
