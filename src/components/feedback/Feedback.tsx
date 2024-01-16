@@ -1,6 +1,6 @@
 "use client";
 import { useDisclosure } from "@nextui-org/react";
-import React from "react";
+import React, { KeyboardEvent } from "react";
 import Modal from "../__shared/modals/Modal";
 import { FaTimesCircle } from "react-icons/fa";
 import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
@@ -46,7 +46,7 @@ const Feedback = ({ className, children }: Props) => {
         onOpenChange={onOpenChange}
         size="lg"
       />
-      <div className="cursor-pointer" onClick={onOpen} tabindex="0" role="button" onKeyDown={handleKeyDown}>
+      <div className="cursor-pointer" onClick={onOpen} tabIndex={0} role="button" onKeyDown={handleKeyDown}>
         {children}
       </div>
     </>
