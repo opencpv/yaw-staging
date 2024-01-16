@@ -21,11 +21,9 @@ const Login = () => {
             style={{ objectFit: "cover", objectPosition: "center" }}
           />
         </div>
-        <div className="relative flex flex-col justify-between w-full h-full py-5 bg-plane-pattern lg:px-8 lg:py-8">
+        <div className="relative flex flex-col items-center justify-between w-full h-full py-5 bg-plane-pattern px-5 lg:py-8">
           <LoginForm />
-          <div className="mt-auto">
-            <LoginFooter />
-          </div>
+          <LoginFooter />
         </div>
         {/* <div className="w-full col-span-2 ">
           <Footer />
