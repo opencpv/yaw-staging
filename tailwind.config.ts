@@ -60,7 +60,7 @@ const config: Config = {
         error: {
           50: "#FEF3F2",
         },
-        white: "#fff",
+        // white: "#fff",
       },
       gridTemplateColumns: {
         "autofit-listing-card": "repeat(auto-fit, minmax(380px, 1fr))",
@@ -81,6 +81,29 @@ const config: Config = {
       "3xl": "1728px",
     },
   },
-  plugins: [nextui()],
+  plugins: [
+    nextui({
+      themes: {
+        light: {
+          colors: {
+            default: {
+              DEFAULT: "#F1B346",
+              foreground: "#FFFFFF",
+            },
+            focus: "#F1B346",
+          },
+        },
+        dark: {
+          colors: {
+            default: {
+              DEFAULT: "#F1B346",
+              foreground: "#FFFFFF",
+            },
+            focus: "#F1B346",
+          },
+        },
+      },
+    }),
+  ],
 };
 export default config;

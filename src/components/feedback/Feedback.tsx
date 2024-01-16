@@ -24,6 +24,12 @@ const Feedback = ({ className, children }: Props) => {
     );
   };
 
+  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter"){
+      onOpen()
+    }
+  }
+
   return (
     <>
       <Modal
@@ -40,7 +46,7 @@ const Feedback = ({ className, children }: Props) => {
         onOpenChange={onOpenChange}
         size="lg"
       />
-      <div className="cursor-pointer" onClick={onOpen}>
+      <div className="cursor-pointer" onClick={onOpen} tabindex="0" role="button" onKeyDown={handleKeyDown}>
         {children}
       </div>
     </>
