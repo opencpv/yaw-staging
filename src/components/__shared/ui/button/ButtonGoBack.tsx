@@ -34,7 +34,7 @@ const ButtonGoBack = ({ onClick, className }: Props) => {
         className
       )}
     >
-      <Image src={icons.ArrowIcon} alt="back icon" />
+      <Image src={icons.ArrowIcon} alt="back icon" className="hidden min-[150px]:inline-block" />
       <p className="text-lg ">Go back</p>
     </Button>
   );

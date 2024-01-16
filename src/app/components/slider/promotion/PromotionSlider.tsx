@@ -53,8 +53,8 @@ const PromotionSlider = () => {
                   Promotion
                 </h1>
                 <p className="text-white">Lorem ipsum</p>
-                <Link href="/login" className="inline-block">
-                  <Button className="flex items-center min-w-fit gap-3 text-white capitalize border-none rounded-md bg-accent-200 hover:bg-neutral-300 hover:text-neutral-600">
+                <Link href="" className="inline-block">
+                  <Button className="flex items-center gap-3 text-white capitalize border-none rounded-md min-w-fit bg-accent-200 hover:bg-neutral-300 hover:text-neutral-600">
                     View item <IoIosArrowRoundForward />
                   </Button>
                 </Link>
@@ -70,7 +70,7 @@ const PromotionSlider = () => {
           </SwiperSlide>
         ))}
         <div className="absolute z-10 bottom-0 left-0 p-5 w-full bg-primary-500 bg-opacity-25 min-h-[10rem] xs:p-10">
-          <div className="custom-pagination-ver absolute mr-3 -mt-10 md:mr-20"></div>
+          <div className="absolute mr-3 -mt-10 custom-pagination-ver md:mr-20"></div>
         </div>
       </Swiper>
     </>

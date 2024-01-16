@@ -34,7 +34,7 @@ export const LoginButton = ({ icon, text, onClick }: LoginButtonProps) => {
 
   return (
     <button
-      className="px-4 py-5 w-full max-w-md rounded-lg flex flex-col items-center min-h-fit gap-5 bg-[#fff] hover:opacity-90 transition-all duration-200 min-[310px]:flex-row min-[310px]:gap-x-16 lg:px-8"
+      className="px-4 py-5 w-full max-w-md rounded-lg flex flex-col items-center min-h-fit gap-5 bg-[#fff] hover:opacity-90 transition-all duration-200 min-[310px]:flex-row min-[350px]:gap-x-16 lg:px-8"
       onClick={async () => {
         setLoader(true);
         const { data, error } = await oauthSignIn(
@@ -47,7 +47,7 @@ export const LoginButton = ({ icon, text, onClick }: LoginButtonProps) => {
       }}
     >
       {loader ? (
-        <div className="py-2 lg:py-[20px] relative flex justify-center w-full">
+        <div className="py-2 relative flex justify-center w-full lg:py-5">
           <Loader />
         </div>
       ) : (
@@ -63,7 +63,7 @@ export const LoginButton = ({ icon, text, onClick }: LoginButtonProps) => {
             />
           )}
           <p
-            className={`text-[#073B3A] text-base font-semibold flex-1 text-center min-[310px]:text-start`}
+            className={`text-[#073B3A] text-lg font-semibold flex-1 text-center min-[310px]:text-start`}
           >
             {text}
           </p>
