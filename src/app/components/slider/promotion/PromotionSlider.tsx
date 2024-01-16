@@ -6,11 +6,13 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "./styles.css";
 
-// import required modules
-import { Pagination, Autoplay } from "swiper/modules";
 import Image from "next/image";
+import Link from "next/link";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import Button from "@/components/__shared/ui/button/Button";
+
+// import required modules
+import { Pagination, Autoplay } from "swiper/modules";
 
 let images = [
   "/assets/images/home/promotion-1.jpg",
@@ -51,9 +53,11 @@ const PromotionSlider = () => {
                   Promotion
                 </h1>
                 <p className="text-white">Lorem ipsum</p>
-                <Button className="flex items-center min-w-fit gap-3 text-white capitalize border-none rounded-md bg-accent-200 hover:bg-neutral-300 hover:text-neutral-600">
-                  View item <IoIosArrowRoundForward />
-                </Button>
+                <Link href="" className="inline-block">
+                  <Button className="flex items-center min-w-fit gap-3 text-white capitalize border-none rounded-md bg-accent-200 hover:bg-neutral-300 hover:text-neutral-600">
+                    View item <IoIosArrowRoundForward />
+                  </Button>
+                </Link>
               </div>
               {/* Promotion description */}
                 <p className="relative z-30 text-white text-sm font-[600] leading-relaxed w-10/12 line-clamp-5 lg:ml-10">
