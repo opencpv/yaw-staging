@@ -1,11 +1,11 @@
 "use client";
 import React, { useEffect } from "react";
 import AOS from "aos";
-import 'aos/dist/aos.css';
-
+import "aos/dist/aos.css";
+import { AnimationStyle } from "./types";
 
 type Props = {
-  animation: string;
+  animation: AnimationStyle
   duration?: string;
   delay?: string;
   offset?: string;
@@ -23,7 +23,7 @@ const AOSWrapper = ({
 }: Props) => {
   useEffect(() => {
     AOS.init({
-      once: true
+      once: true,
     });
   }, []);
 

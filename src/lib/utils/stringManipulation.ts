@@ -39,7 +39,11 @@ export const formatDate = (dateTime: string) => {
 
 
 export const LowerCase = (text: string) => {
-  return text.toLowerCase()
+  return text?.toLowerCase()
+}
+
+export const UpperCase = (text: string) => {
+  return text?.toUpperCase()
 }
 
 export default capitalizeName

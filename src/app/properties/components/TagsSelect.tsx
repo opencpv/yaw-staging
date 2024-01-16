@@ -27,14 +27,14 @@ const TagsSelect = () => {
     setIsAdvancedActive((prevState) => !prevState);
   };
 
-  const changeFilterOption = (option: string) => {
+  const changeFilterOption = (option: React.Key) => {
     setOption(option as FilterOption);
   };
 
   return (
     <div className="flex justify-center">
       <div className="">
-        <section className="flex flex-wrap items-center justify-center gap-8">
+        <section className="flex flex-col flex-wrap items-center justify-center gap-8 sm:flex-row">
           <div className="">
             <OptionFilterTabs
               variant="gradient"

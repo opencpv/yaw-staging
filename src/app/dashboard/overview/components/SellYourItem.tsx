@@ -24,7 +24,7 @@ const SellYourItem = (props: Props) => {
           <p className="capitalize text-neutral-600 mb-1 text-sm">
             Your Exclusive Marketplace, Completely Fee-Free
           </p>
-          <Link href="/moving-sales" className="inline-block w-full">
+          <Link href="/moving-sale" className="inline-block w-full">
             <Button
               color="primary"
               className="p-2 w-full px-4 text-sm capitalize"

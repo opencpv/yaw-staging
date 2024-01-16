@@ -14,7 +14,7 @@ type Props = {};
 
 const page = (props: Props) => {
   return (
-    <main className="mt-10 section text-neutral-500 overflow-x-hidden">
+    <div className="wrapper mt-10 text-neutral-500 overflow-x-hidden">
       <h3 className="text-xl font-[500] mb-8">
         <BreadCrumbPreLink label="Blog" href="/blog" /> - Posted by{" "}
         <span className="text-primary-500">Jane Doe</span>
@@ -139,7 +139,7 @@ const page = (props: Props) => {
           }))}
         />
       </section>
-    </main>
+    </div>
   );
 };
 

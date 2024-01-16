@@ -1,42 +1,38 @@
 "use client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import {
-  FaChevronRight,
-  FaFacebookF,
-  FaInstagramSquare,
-} from "react-icons/fa";
+import { FaChevronRight, FaFacebookF } from "react-icons/fa";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { RiInstagramFill, RiTwitterXFill } from "react-icons/ri";
 
-type Props = {};
+type Props = {
+  threshHoldMin?: number;
+  threshHoldMax?: number;
+};
 
-const FixedSocials = (props: Props) => {
+const FixedSocials = ({ threshHoldMax, threshHoldMin }: Props) => {
   const [shouldShowSocials, setShouldShowSocials] = useState<boolean>(false);
   const [shouldShowArrow, setShouldShowArrow] = useState<boolean>(false);
 
-  const toggleShowingSocials = () => {
+  const toggleShowSocials = () => {
     setShouldShowSocials((prevState) => !prevState);
   };
 
   useEffect(() => {
     const handleScroll = () => {
-      // const threshHold = 10;
-      const scrollPosition = window.scrollY + window.innerHeight;
-      const scrollHeight = document.body.scrollHeight;
+      const scrollPosition = window.scrollY;
+      // const scrollHeight = document.body.scrollHeight;
+      // console.log(scrollPosition);
 
       if (
-        scrollPosition < scrollHeight / 6 ||
-        scrollPosition > scrollHeight - 1900
+        scrollPosition < (threshHoldMin ?? 100) ||
+        scrollPosition > (threshHoldMax ?? 1500)
       ) {
         setShouldShowSocials(false);
         setShouldShowArrow(false);
-      } else if (scrollPosition > 100) {
-        setShouldShowSocials(false);
+      } else if (scrollPosition > (threshHoldMin ?? 100)) {
         setShouldShowArrow(true);
-      } else {
-        setShouldShowSocials(true);
-        setShouldShowArrow(false);
+        setShouldShowSocials(false);
       }
     };
 
@@ -44,7 +40,7 @@ const FixedSocials = (props: Props) => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [threshHoldMax, threshHoldMin]);
   return (
     <div className={`fixed left-0 top-[50%] z-20`}>
       <section
@@ -81,7 +77,7 @@ const FixedSocials = (props: Props) => {
             ? "translate-x-0 opacity-70"
             : "-translate-x-[100%]"
         } -translate-y-[660%]`}
-        onClick={toggleShowingSocials}
+        onClick={toggleShowSocials}
       >
         <FaChevronRight className="text-white" />
       </section>

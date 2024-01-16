@@ -24,12 +24,13 @@ const PromotionSlider = () => {
       <Swiper
         direction={"vertical"}
         allowTouchMove={false}
+        
         pagination={{
           clickable: true,
           el: ".custom-pagination-ver",
         }}
         modules={[Pagination, Autoplay]}
-        className={`mySwiper relative rounded-3xl w-full h-[38rem] xs:h-[29rem]`}
+        className={`mySwiper relative rounded-3xl w-full h-[29rem]`}
       >
         {/* Promotee info from database */}
         {images.map((image, idx) => (
@@ -55,7 +56,7 @@ const PromotionSlider = () => {
                 </Button>
               </div>
               {/* Promotion description */}
-                <p className="relative z-30 text-white text-sm font-[600] leading-relaxed w-10/12 line-clamp-[10] xs:line-clamp-5 lg:ml-10">
+                <p className="relative z-30 text-white text-sm font-[600] leading-relaxed w-10/12 line-clamp-5 lg:ml-10">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Exercitationem nulla possimus, eum amet minima dicta ducimus
                   facilis? Libero, deserunt quam molestias tempore, assumenda
@@ -64,7 +65,7 @@ const PromotionSlider = () => {
             </div>
           </SwiperSlide>
         ))}
-        <div className="absolute z-10 bottom-0 left-0 p-5 w-full min-h-[20rem] bg-primary-500 bg-opacity-25 xs:min-h-[10rem] xs:p-10">
+        <div className="absolute z-10 bottom-0 left-0 p-5 w-full bg-primary-500 bg-opacity-25 min-h-[10rem] xs:p-10">
           <div className="custom-pagination-ver absolute mr-3 -mt-10 md:mr-20"></div>
         </div>
       </Swiper>

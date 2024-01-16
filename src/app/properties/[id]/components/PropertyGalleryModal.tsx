@@ -1,10 +1,12 @@
+"use client";
+
 import Modal from "@/components/__shared/modals/Modal";
 import Carousel from "@/components/__shared/sliders/Carousel";
 import Share from "@/components/__shared/ui/share/Share";
+import { useModalFullscreenStore } from "@/store/modal/useModalStore";
 import { usePropertyCarouselStore } from "@/store/properties/usePropertiesStore";
 import React from "react";
 import { FaTimes } from "react-icons/fa";
-import { IoIosShareAlt } from "react-icons/io";
 
 let carouselDemo = [
   {
@@ -34,7 +36,6 @@ const PropertyGalleryModal = ({
 }: ModalProps) => {
   return (
     <Modal
-      backdrop="blur"
       isDismissible={false}
       header={<ModalHeader onClose={onClose} />}
       body={<ModalBody />}
@@ -49,11 +50,18 @@ const PropertyGalleryModal = ({
 };
 
 const ModalHeader = ({ onClose }: { onClose?: () => void }) => {
+  const setHideWindowScrollbar = useModalFullscreenStore(
+    (state) => state.setHideWindowScrollbar
+  );
+
   return (
     <div className="flex justify-between gap-5 text-5xl text-neutral-100">
       <FaTimes
         className="bg-neutral-900 rounded-full cursor-pointer p-1.5 shrink-0"
-        onClick={onClose}
+        onClick={() => {
+          onClose && onClose();
+          setHideWindowScrollbar(false);
+        }}
       />
       <Share url="" />
     </div>
@@ -62,13 +70,15 @@ const ModalHeader = ({ onClose }: { onClose?: () => void }) => {
 
 const ModalBody = () => {
   return (
-    <div className="h-fit">
-      <Carousel
-        images={carouselDemo.map((image) => ({
-          src: image.src,
-          label: image.label,
-        }))}
-      />
+    <div className="flex items-center justify-center h-full">
+      <div className="w-full h-fit">
+        <Carousel
+          images={carouselDemo.map((image) => ({
+            src: image.src,
+            label: image.label,
+          }))}
+        />
+      </div>
     </div>
   );
 };

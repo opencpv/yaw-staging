@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "@/styles/custom-swiper.css";
@@ -7,12 +7,44 @@ import "@/styles/custom-swiper.css";
 import { Pagination, Navigation, Grid } from "swiper/modules";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
+import "swiper/css/bundle";
 import "swiper/css";
 import "swiper/css/grid";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 const SliderGrid = ({ items }: SliderGridProps) => {
+  // useEffect(() => {
+  //   let swiperInstance = false;
+
+  //   const initializeSwiper = () => {
+  //     // swiperInstance = new Swiper('.swiper-grid', {
+  //     //  {}
+  //     // });
+  //   };
+
+  //   initializeSwiper();
+
+  //   const handleResize = () => {
+  //     // Detect the breakpoint and re-initialize Swiper
+  //     if (window.innerWidth === 640) {
+  //       // initializeSwiper();
+  //       // alert("reached 640px !")
+
+  //     }
+  //   };
+
+  //   window.addEventListener('resize', handleResize);
+
+  //   return () => {
+  //     window.removeEventListener('resize', handleResize);
+  //     // Destroy Swiper instance on component unmount
+  //     // if (swiperInstance) {
+  //     //   swiperInstance.destroy();
+  //     // }
+  //   };
+  // }, []);
+
   return (
     <div className="w-full h-full mb-10">
       <Swiper
@@ -23,7 +55,7 @@ const SliderGrid = ({ items }: SliderGridProps) => {
           rows: 1,
         }}
         spaceBetween={20}
-        grabCursor
+        // grabCursor
         pagination={{
           clickable: true,
           dynamicBullets: true,
@@ -66,6 +98,10 @@ const SliderGrid = ({ items }: SliderGridProps) => {
             },
           },
         }}
+        observer
+        observeParents
+        observeSlideChildren
+        resizeObserver
         className="w-full h-full slider-grid"
       >
         {/* Mapping through Featured listings from database */}

@@ -14,7 +14,7 @@ const FetchErrorMessage = ({ className, specificData }: Props) => {
       <p
         className={`flex justify-center items-center text-red-500 text-center h-52 ${className}`}
       >
-        Error: Something went wrong while fetching {specificData}.
+        Error: Something went wrong while getting {specificData}.
       </p>
     );
   else
