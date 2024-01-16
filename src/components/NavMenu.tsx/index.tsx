@@ -9,17 +9,28 @@ import MenuBottomLinks from "./components/MenuBottomLinks";
 import MenuArea from "./components/MenuArea";
 import MenuScrollDownButton from "./components/MenuScrollDownButton";
 import { useIsElementInViewport } from "./hooks/useIsElementInViewport";
+import { useMenuStore } from "@/store/navmenu/useMenuStore";
+
 
 export default function Menu(props: any) {
   const [hide, setHide] = useState(false);
   const [windowLimit, setWindowLimit] = useState(false);
+  const toggle = useMenuStore((state) => state.toggle)
 
   const bottomLinksRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLElement>(null);
   const isInViewport = useIsElementInViewport(bottomLinksRef, menuRef);
 
   useEffect(() => {
+    // focus the menu for accessibility to be activated
+    if (toggle && menuRef.current){ 
+      setTimeout(() => {
+        menuRef.current.focus()
+      }, 1000);
+    }
+
     const handleInnerHeight = () => {
+      // determines which scroll down button to show depending on mobile/desktop
       if (window.innerHeight > 700) {
         setWindowLimit(true);
       } else {
@@ -49,7 +60,7 @@ export default function Menu(props: any) {
     if (menuRef.current) {
       menuRef.current.addEventListener("scroll", handleScroll);
     }
-  }, []);
+  }, [toggle]);
 
   const handleScrollIntoView = () => {
     if (bottomLinksRef.current) {
@@ -65,6 +76,7 @@ export default function Menu(props: any) {
   return (
     <Root
       ref={menuRef}
+      tabindex="0"
       className="relative w-full top-0 gap-20 hidden-scrollbar min-h-screen overflow-y-scroll pb-20 lg:pb-0"
       variants={ExpandCircle}
       exit={{
