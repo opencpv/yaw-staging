@@ -44,12 +44,12 @@ export const links = [
     name: "MORE",
     sub: [
       {
-        url: "/faq",
-        name: "How to",
-      },
-      {
         url: "/about",
         name: "Our Services",
+      },
+      {
+        url: "/faq",
+        name: "How to",
       },
       {
         url: "/contact",
@@ -74,12 +74,12 @@ export const links = [
 
 export const bottomLinks = [
   {
-    url: "/faq",
-    name: "How to",
-  },
-  {
     url: "/about",
     name: "Our Services",
+  },
+  {
+    url: "/faq",
+    name: "How to",
   },
   {
     url: "/contact",
