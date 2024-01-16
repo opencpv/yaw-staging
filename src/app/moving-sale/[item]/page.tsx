@@ -11,7 +11,7 @@ type Props = {};
 const page = (props: Props) => {
   return (
     <main className="wrapper mt-10 text-neutral-400">
-      <div className="flex items-center gap-2 mb-5 text-sm">
+      <div className="flex items-center gap-2 mb-5">
         <BreadCrumbPreLink href="/moving-sale" label="Shop" />
         <FaChevronRight className="text-neutral-400" />
         <p className="font-[600] text-neutral-800">Item name</p>

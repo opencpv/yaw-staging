@@ -84,7 +84,7 @@ const Navbar = (props: any) => {
           <Logo />
           <div className="flex items-center lg:gap-[73px] md:gap-[31px] w-full justify-end">
             {!pathname?.includes("/properties/") ? (
-              <ButtonHireUs />
+              <ButtonHireUs className="w-fit px-16 text-xl" />
             ) : (
               <div className="flex items-center gap-4">
                 <LikeHeart liked={false} className="text-5xl text-white" />
