@@ -6,6 +6,8 @@ import Logo from "@/components/__shared/Logo";
 import ButtonMenu from "@/components/__shared/ui/button/ButtonMenu";
 
 export const LoginForm = () => {
+  const setToggle = useMenuStore((state) => state.setToggle);
+
   return (
     <>
       <div className="relative flex w-full justify-center">
