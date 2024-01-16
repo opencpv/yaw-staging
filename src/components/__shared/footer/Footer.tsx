@@ -44,15 +44,16 @@ const Footer = () => {
             >
               <h2 className="font-[400]">{r.label}</h2>
             </Link>
+          ) : LowerCase(r?.label) === "feedback" ? (
+            <Feedback>
+              <h2 className="font-[400]">Feedback</h2>
+            </Feedback>
           ) : (
             <Link key={r?.label} href={r?.href}>
               <h2 className="font-[400]">{r.label}</h2>
             </Link>
           )
         )}
-        <Feedback>
-          <h2 className="font-[400]">Feedback</h2>
-        </Feedback>
       </div>
 
       <div className="w-fit px-8">
@@ -154,7 +155,7 @@ const Footer = () => {
                 fill="#0B6E4F"
               />
             </svg>
-            <p className="text-[#ffff]">(+233) 25 898 2889</p>
+            <p className="text-[#ffff]">(+233) 54 686 3012</p>
           </div>
         </div>
       </div>
