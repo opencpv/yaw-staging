@@ -32,7 +32,7 @@ const Button = ({
       isDisabled={disabled}
       isIconOnly={isIconOnly}
       className={cn(
-        `whitespace-normal font-[600] rounded-md max-w-sm bg-transparent min-h-fit p-3 px-10 space-x-2 hover:scale-[1.02] ${
+        `min-h-fit max-w-sm space-x-2 whitespace-normal rounded-md bg-transparent p-3 px-10 font-[600] hover:scale-[1.02] ${
           borderColor && `border border-[${borderColor}]`
         }`,
         className,
@@ -44,17 +44,17 @@ const Button = ({
           "bg-gradient-to-r  from-[#21A19F] to-[#1EA9A6A1]":
             color === "gradient" && variant !== "outline",
           "bg-transparent": variant === "outline" && color === undefined,
-          "border border-primary-500 text-primary-500 bg-transparent":
+          "border border-primary-500 bg-transparent text-primary-500":
             variant === "outline" && color === "primary",
-          "border border-accent-50 text-accent-50 bg-transparent":
+          "border border-accent-50 bg-transparent text-accent-50":
             variant === "outline" && color === "accent",
           "border border-white bg-transparent text-white":
             variant === "outline" && color === "white",
           "border border-neutral-500 bg-transparent text-neutral-500":
             variant === "outline" && color === "black",
-          "border border-[#21A19F] text-[#21A19F] bg-transparent":
+          "border border-[#21A19F] bg-transparent text-[#21A19F]":
             variant === "outline" && color === "gradient",
-          "bg-transparent justify-normal w-fit max-w-none p-0":
+          "w-fit max-w-none justify-normal bg-transparent p-0":
             variant === "ghost",
           "cursor-not-allowed bg-gray-300 text-neutral-600": disabled,
           "bg-none": disabled && (variant === "outline" || variant === "ghost"),

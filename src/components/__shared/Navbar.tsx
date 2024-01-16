@@ -25,7 +25,7 @@ const Navbar = (props: any) => {
         document.body.classList.add(
           "max-h-screen",
           "overflow-y-hidden",
-          "hidden-scrollbar"
+          "hidden-scrollbar",
         );
       }, 300);
     } else {
@@ -33,7 +33,7 @@ const Navbar = (props: any) => {
         document.body.classList.remove(
           "max-h-screen",
           "overflow-y-hidden",
-          "hidden-scrollbar"
+          "hidden-scrollbar",
         );
       }, 1000);
     }
@@ -64,7 +64,7 @@ const Navbar = (props: any) => {
   return (
     <>
       <nav
-        className={`w-full px-8 py-3 z-40 no-print ${
+        className={`no-print z-40 w-full px-8 py-3 ${
           props.isMenuOpen && "absolute"
         } ${
           isNotTargetPage
@@ -81,9 +81,9 @@ const Navbar = (props: any) => {
             // toggleMenu={() => { setToggle(false) }}
           /> */}
           <Logo />
-          <div className="flex items-center lg:gap-[73px] md:gap-[31px] w-full justify-end">
+          <div className="flex w-full items-center justify-end md:gap-[31px] lg:gap-[73px]">
             {!pathname?.includes("/properties/") ? (
-              <ButtonHireUs className="w-fit px-[4.5rem] text-xl" />
+              <ButtonHireUs className="w-fit px-16 text-xl" />
             ) : (
               <div className="flex items-center gap-4">
                 <LikeHeart liked={false} className="text-5xl text-white" />
