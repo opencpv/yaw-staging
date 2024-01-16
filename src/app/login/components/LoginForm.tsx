@@ -13,7 +13,7 @@ export const LoginForm = () => {
   return (
     <>
       <div className="relative flex justify-center w-full">
-        <ButtonGoBack className="absolute top-0 justify-self-start left-10" onClick={() => setToggle(true)} />
+        <ButtonGoBack className="absolute top-0 justify-self-start left-1.5" onClick={() => setToggle(true)} />
         <Logo size="md" className="mt-14 sm:mt-0" />
       </div>
       <div className="flex flex-col items-center justify-center w-full gap-6">
