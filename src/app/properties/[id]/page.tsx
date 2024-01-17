@@ -34,7 +34,9 @@ import { useModalFullscreenStore } from "@/store/modal/useModalStore";
 const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
   const { id: propertyId } = params;
 
-  const hideWindowScrollbar = useModalFullscreenStore((state) => state.hideWindowScrollbar)
+  const hideWindowScrollbar = useModalFullscreenStore(
+    (state) => state.hideWindowScrollbar,
+  );
 
   const {
     data: listing,
@@ -47,11 +49,11 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
       .select(
         `id, property_name, property_id (owner_uid), 
         description, monthly_amount, city, 
-        bedrooms, bathrooms, features_and_amenities`
+        bedrooms, bathrooms, features_and_amenities`,
       )
       .eq("property_id", propertyId)
       .single(),
-    revalidationRule()
+    revalidationRule(),
   );
 
   const { userAvi: propertyOwnerAvi, userName: propertyOwnerName } =

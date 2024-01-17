@@ -6,9 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d14cbef1-a812-41e5-86d7-231c9c1cd920" name="Changes" comment="facebook login fixed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/__shared/listing/FavoriteModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/__shared/listing/FavoriteModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/properties/[id]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/properties/[id]/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/__shared/ui/button/Button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/__shared/ui/button/Button.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enum/about/legal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/enum/about/legal.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,11 +48,16 @@
     "nodejs_package_manager_path": "npm",
     "npm.dev.executor": "Run",
     "prettierjs.PrettierConfiguration.Package": "/home/enoch/Prog/Projects/Work/Rentright/rentright-frontend/node_modules/prettier",
-    "settings.editor.selected.configurable": "settings.nodejs",
+    "settings.editor.selected.configurable": "preferences.general",
     "ts.external.directory.path": "/home/enoch/Prog/Projects/Work/Rentright/rentright-frontend/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="ls" />
+    </option>
+  </component>
   <component name="RunManager">
     <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="/media/enoch/Linux Files/Prog/Projects/Work/Rentright/rentright-frontend/package.json" />
@@ -93,7 +97,8 @@
       <updated>1704469074717</updated>
       <workItem from="1704469075881" duration="6095000" />
       <workItem from="1705453913546" duration="2318000" />
-      <workItem from="1705457631883" duration="790000" />
+      <workItem from="1705457631883" duration="1610000" />
+      <workItem from="1705493971919" duration="11385000" />
     </task>
     <task id="LOCAL-00001" summary="fixed app navbar">
       <option name="closed" value="true" />
