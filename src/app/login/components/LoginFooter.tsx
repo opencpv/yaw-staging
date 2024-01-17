@@ -1,42 +1,32 @@
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import Image from "next/image";
 import Link from "next/link";
 import { getCurrentYear } from "@/lib/utils/numberManipulation";
 import legal from "@/enum/about/legal";
 
 export const LoginFooter = () => {
-  const { icons } = useAssets();
   return (
-    <div className="flex items-center justify-center w-full">
-      <div
-        className={`font-semibold gap-x-5 gap-y-4 flex-wrap justify-center text-sm flex flex-col max-lg:flex-row min-[1460px]:flex-row items-center`}
-      >
-        <div className="text-[#B0B0B0] flex flex-col justify-center flex-wrap items-center gap-2 order-2 md:flex-row min-[1460px]:order-1">
-          <div className="text-center mx-auto flex flex-wrap justify-center items-center gap-x-2 gap-y-4 divide-x-1 divide-[#B0B0B0]">
-            <span>
-              Copyright © {getCurrentYear()} {legal.companyName}{" "}
-            </span>
-            <span className="inline-block pl-2"> {legal.copyrightNotice}</span>
-          </div>
-        </div>
-        <div className="flex flex-wrap items-center gap-4 order-1 min-[1460px]:order-2">
-          <Link
-            href={`mailto: ${legal.email}`}
-            className="flex items-center gap-2 mx-auto"
-          >
-            <Image src={icons.MailIcon} alt="email icon" />
-            <p className="text-[#fff]">{legal.email}</p>
+    <div className="flex flex-col items-center justify-center gap-4 text-base font-semibold">
+      <div className="flex flex-wrap items-center justify-center text-center gap-4">
+        <p className="text-[#B0B0B0]">
+          By signing in, you agree to the following:
+        </p>
+        <div className="flex flex-wrap items-center justify-center gap-4 min-[482px]:divide-x">
+          <Link href="/terms-of-service" className="text-white underline">
+            {legal.websiteName} terms and conditions
           </Link>
-          <Link
-            href={`tel:${legal.telephoneFormatted}`}
-            target="_blank"
-            className="flex items-center gap-2 mx-auto"
-          >
-            <Image src={icons.PhoneIcon} alt="email icon" />
-            <p className="text-[#fff]">{legal.telephone}</p>
+          <Link href="/privacy" className="text-white underline min-[482px]:pl-4">
+            {legal.websiteName} privacy policy
           </Link>
         </div>
       </div>
+      {/* <div className="flex flex-col flex-wrap items-center justify-center gap-2 text-[#B0B0B0] md:flex-row">
+        <div className="mx-auto flex flex-wrap items-center justify-center gap-x-2 gap-y-4 divide-x-1 divide-[#B0B0B0] text-center">
+          <span>
+            Copyright © {getCurrentYear()} {legal.companyName}{" "}
+          </span>
+          <span className="inline-block pl-2"> {legal.copyrightNotice}</span>
+        </div>
+      </div> */}
     </div>
   );
 };
