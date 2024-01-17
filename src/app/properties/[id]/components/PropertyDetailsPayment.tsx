@@ -105,7 +105,7 @@ const PropertyDetailsPayment = (props: Props) => {
           </motion.p>
           <Button
             variant="outline"
-            className="text-xs rounded-md border text-[#65969F] px-4 py-2 mt-3"
+            className="text-xs rounded-md text-[#65969F] px-4 py-2 mt-3"
             borderColor="#65969F"
             onClick={() => setShowMore((current) => !current)}
           >
