@@ -26,7 +26,7 @@ const ButtonMenu = ({ className }: Props) => {
       }}
       className={cn(
         `flex items-center justify-center gap-4 font-normal ${poppins400}`,
-        className
+        className,
       )}
     >
       <Image
