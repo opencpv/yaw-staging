@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 import Logo from "@/components/__shared/Logo";
 import LikeHeart from "./ui/LikeHeart";
 import Share from "./ui/share/Share";
-import Link from "next/link";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
 import ButtonHireUs from "./ui/button/ButtonHireUs";
 
@@ -76,11 +75,11 @@ const Navbar = (props: any) => {
         } top-0 bg-primary-500`}
       >
         <div className="flex items-center justify-between">
-          <Menu
+          {/* <Menu
             isOpen={toggle}
             layout
             // toggleMenu={() => { setToggle(false) }}
-          />
+          /> */}
           <Logo />
           <div className="flex items-center lg:gap-[73px] md:gap-[31px] w-full justify-end">
             {!pathname?.includes("/properties/") ? (
@@ -95,7 +94,7 @@ const Navbar = (props: any) => {
                 />
               </div>
             )}
-
+            {/* Hamburger button */}
             <button
               onClick={() => {
                 setToggle(true);
