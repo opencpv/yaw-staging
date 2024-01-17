@@ -24,9 +24,7 @@ const ButtonGoBack = ({ onClick, className }: Props) => {
           router.back();
         } else {
           router.back();
-          setTimeout(() => {
-            onClick();
-          }, 1000);
+          onClick();
         }
       }}
       className={cn(
@@ -34,8 +32,12 @@ const ButtonGoBack = ({ onClick, className }: Props) => {
         className
       )}
     >
-      <Image src={icons.ArrowIcon} alt="back icon" className="hidden min-[150px]:inline-block" />
-      <p className="text-lg ">Go back</p>
+      <Image
+        src={icons.ArrowIcon}
+        alt="back icon"
+        className="hidden min-[150px]:inline-block"
+      />
+      <p className="text-lg">Go back</p>
     </Button>
   );
 };
