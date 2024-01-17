@@ -14,14 +14,14 @@ type ModalProps = {
 
 type ModalHeaderProps = {
   onClose?: () => void;
-}
+};
 
 const FavoriteModal = ({ isOpen, onOpenChange, onClose }: ModalProps) => {
   return (
     <Modal
       isDismissible={false}
-      header={<ModalHeader onClose={onClose}/>}
-      body={<ModalBody/>}
+      header={<ModalHeader onClose={onClose} />}
+      body={<ModalBody />}
       footer={<ModalFooter />}
       isOpen={isOpen}
       onOpenChange={onOpenChange}
@@ -31,11 +31,16 @@ const FavoriteModal = ({ isOpen, onOpenChange, onClose }: ModalProps) => {
   );
 };
 
-const ModalHeader = ({onClose}: ModalHeaderProps) => {
+const ModalHeader = ({ onClose }: ModalHeaderProps) => {
   return (
     <span className="flex items-center justify-between gap-5 flex-wrap">
       <MdOutlineChat className="text-primary-200 text-xl shrink-0 md:text-4xl" />
-      <Button color="white" variant="outline" className="w-fit text-sm rounded-3xl h-6 hover:bg-[#E7F8F2]" onClick={onClose}>
+      <Button
+        color="black"
+        variant="outline"
+        className="w-fit text-sm rounded-3xl h-6 hover:bg-[#E7F8F2]"
+        onClick={onClose}
+      >
         Save
       </Button>
     </span>
@@ -52,15 +57,15 @@ const ModalBody = () => {
 
 const ModalFooter = () => {
   const [isSelected, setIsSelected] = useState<boolean>(false);
-  const {contactUponFavorite, setContactUponFavorite} = useListingStore()
+  const { contactUponFavorite, setContactUponFavorite } = useListingStore();
 
   const handleYes = () => {
-    setContactUponFavorite(true)
-  }
+    setContactUponFavorite(true);
+  };
 
   const handleNo = () => {
-    setContactUponFavorite(false)
-  }
+    setContactUponFavorite(false);
+  };
 
   return (
     <div className="flex flex-col justify-between gap-5 w-full xs:flex-row xs:items-center">
@@ -73,10 +78,20 @@ const ModalFooter = () => {
         />
       </div>
       <div className="flex items-center gap-2 order-1 xs:order-2">
-        <Button variant={contactUponFavorite === false ? "default" : "outline"} color="gradient" className="py-6" onClick={handleNo} >
+        <Button
+          variant={contactUponFavorite === false ? "default" : "outline"}
+          color="gradient"
+          className="py-6"
+          onClick={handleNo}
+        >
           No
         </Button>
-        <Button variant={contactUponFavorite ? "default" : "outline"} color="gradient" className="py-6" onClick={handleYes} >
+        <Button
+          variant={contactUponFavorite ? "default" : "outline"}
+          color="gradient"
+          className="py-6"
+          onClick={handleYes}
+        >
           Yes
         </Button>
       </div>
