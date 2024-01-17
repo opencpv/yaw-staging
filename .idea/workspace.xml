@@ -192,11 +192,16 @@
     "nodejs_package_manager_path": "npm",
     "npm.dev.executor": "Run",
     "prettierjs.PrettierConfiguration.Package": "/home/enoch/Prog/Projects/Work/Rentright/rentright-frontend/node_modules/prettier",
-    "settings.editor.selected.configurable": "settings.nodejs",
+    "settings.editor.selected.configurable": "preferences.general",
     "ts.external.directory.path": "/home/enoch/Prog/Projects/Work/Rentright/rentright-frontend/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="ls" />
+    </option>
+  </component>
   <component name="RunManager">
     <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="/media/enoch/Linux Files/Prog/Projects/Work/Rentright/rentright-frontend/package.json" />
@@ -241,7 +246,8 @@
       <workItem from="1705322060163" duration="10000" />
       <workItem from="1705369400233" duration="164000" />
       <workItem from="1705453913546" duration="2318000" />
-      <workItem from="1705457631883" duration="790000" />
+      <workItem from="1705457631883" duration="1610000" />
+      <workItem from="1705493971919" duration="11385000" />
     </task>
     <task id="LOCAL-00001" summary="fixed app navbar">
       <option name="closed" value="true" />
