@@ -22,8 +22,8 @@ const PropertyRating = (props: Props) => {
             </div>
             <Button
               variant="outline"
-              borderColor="white"
-              className="p-4 text-white py-7 w-60"
+              color="white"
+              className="p-4 py-7 w-60"
             >
               Write a review
             </Button>
