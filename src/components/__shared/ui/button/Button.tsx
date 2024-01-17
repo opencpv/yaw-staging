@@ -46,7 +46,7 @@ const Button = ({
           "border border-[#21A19F] text-[#21A19F] bg-transparent": variant === "outline" && color === "gradient",
           "bg-transparent justify-normal w-fit max-w-none p-0": variant === "ghost",
           "cursor-not-allowed bg-gray-300 text-neutral-600": disabled,
-          "bg-transparent": disabled && (variant === "outline" || variant === "ghost"),
+          "bg-none": disabled && (variant === "outline" || variant === "ghost"),
         }
       )}
       onPress={onClick}
