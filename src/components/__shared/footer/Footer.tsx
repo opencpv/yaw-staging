@@ -15,6 +15,7 @@ import style from "./Style.module.css";
 import Feedback from "@/components/feedback/Feedback";
 import { LowerCase } from "@/lib/utils/stringManipulation";
 import { useFaqHowToSwitchStore } from "@/store/faq/useFaqStore";
+import legal from "@/enum/about/legal";
 
 const Footer = () => {
   const setContactTabActiveKey = useContactStore((state) => state.setActiveKey);
@@ -111,9 +112,11 @@ const Footer = () => {
           }
         >
           <div className="flex flex-wrap gap-x-2 gap-y-4 text-[#B0B0B0]">
-            <span>Copyright &copy; {getCurrentYear()} ESODO LLC</span>
             <span>
-              | All rights reserved{" "}
+              Copyright &copy; {getCurrentYear()} {legal.companyName}
+            </span>
+            <span>
+              | {legal.copyrightNotice}{" "}
               <Link href="/legal" className="inline-block text-[#B0B0B0]">
                 | Legal
               </Link>
@@ -138,9 +141,9 @@ const Footer = () => {
                 fill="#0B6E4F"
               />
             </svg>
-            <p className="text-[#ffff]" title="contact@rentright.com">
-              contact@rentright.com
-            </p>
+            <Link href={`mailto:${legal.email}`} className="text-[#ffff]">
+              {legal.email}
+            </Link>
           </div>
           <div className={"flex flex-row items-center gap-1"}>
             <svg
@@ -155,7 +158,12 @@ const Footer = () => {
                 fill="#0B6E4F"
               />
             </svg>
-            <p className="text-[#ffff]">(+233) 54 686 3012</p>
+            <Link
+              href={`tel:${legal.telephoneFormatted}`}
+              className="text-[#ffff]"
+            >
+              {legal.telephone}
+            </Link>
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@ import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import Link from "next/link";
 import { getCurrentYear } from "@/lib/utils/numberManipulation";
+import legal from "@/enum/about/legal";
 
 export const LoginFooter = () => {
   const { icons } = useAssets();
@@ -13,26 +14,26 @@ export const LoginFooter = () => {
         <div className="text-[#B0B0B0] flex flex-col justify-center flex-wrap items-center gap-2 order-2 md:flex-row min-[1460px]:order-1">
           <div className="text-center mx-auto flex flex-wrap justify-center items-center gap-x-2 gap-y-4 divide-x-1 divide-[#B0B0B0]">
             <span>
-              Copyright © {getCurrentYear()} ESODO LLC{" "}
+              Copyright © {getCurrentYear()} {legal.companyName}{" "}
             </span>
-            <span className="inline-block pl-2"> All rights reserved</span>
+            <span className="inline-block pl-2"> {legal.copyrightNotice}</span>
           </div>
         </div>
         <div className="flex flex-wrap items-center gap-4 order-1 min-[1460px]:order-2">
           <Link
-            href={`mailto: contact@rentright.com`}
+            href={`mailto: ${legal.email}`}
             className="flex items-center gap-2 mx-auto"
           >
             <Image src={icons.MailIcon} alt="email icon" />
-            <p className="text-[#fff]">contact@rentright.com</p>
+            <p className="text-[#fff]">{legal.email}</p>
           </Link>
           <Link
-            href={`tel:+233 25 898 2889`}
+            href={`tel:${legal.telephoneFormatted}`}
             target="_blank"
             className="flex items-center gap-2 mx-auto"
           >
             <Image src={icons.PhoneIcon} alt="email icon" />
-            <p className="text-[#fff]">(+233) 54 686 3012</p>
+            <p className="text-[#fff]">{legal.telephone}</p>
           </Link>
         </div>
       </div>
