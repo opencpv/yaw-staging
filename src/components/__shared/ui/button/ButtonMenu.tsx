@@ -5,14 +5,15 @@ import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import Button from "./Button";
+import { useMenuStore } from "@/store/navmenu/useMenuStore";
 
 type Props = {
-  onClick?: () => void;
   className?: string;
 };
 
-const ButtonGoBack = ({ onClick, className }: Props) => {
+const ButtonMenu = ({ className }: Props) => {
   const { icons } = useAssets();
+  const setToggle = useMenuStore((state) => state.setToggle);
 
   const router = useRouter();
 
@@ -20,12 +21,8 @@ const ButtonGoBack = ({ onClick, className }: Props) => {
     <Button
       variant="ghost"
       onClick={() => {
-        if (onClick === undefined) {
-          router.back();
-        } else {
-          router.back();
-          onClick();
-        }
+        setToggle(true);
+        router.back()
       }}
       className={cn(
         `flex items-center justify-center gap-4 font-normal ${poppins400}`,
@@ -37,9 +34,9 @@ const ButtonGoBack = ({ onClick, className }: Props) => {
         alt="back icon"
         className="hidden min-[150px]:inline-block"
       />
-      <p className="text-lg">Go back</p>
+      <p className="text-lg">Menu</p>
     </Button>
   );
 };
 
-export default ButtonGoBack;
+export default ButtonMenu;
