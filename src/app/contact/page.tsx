@@ -23,7 +23,7 @@ const Page = () => {
     <>
       <Navbar />
       <main className="wrapper">
-        <Root className="flex flex-col items-center justify-center mt-12">
+        <Root className="flex flex-col items-center justify-center">
           <ContactBanner ref={contactRef} />
           <div
             className={`max-w-full relative z-[20] h-full w-full min-h-[500px] form-root sm:p-3 lg:p-8 pt-5 lg:pt-2 rounded-2xl lg:-top-36 lg:max-w-[90%]`}

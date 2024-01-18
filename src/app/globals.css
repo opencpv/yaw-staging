@@ -44,6 +44,10 @@ small {
   @apply block text-sm;
 }
 
+section {
+  @apply pt-28
+}
+
 .gradient-to-bottom {
   @apply bg-gradient-to-b from-primary-500 to-primary-400/80;
 }
@@ -123,7 +127,7 @@ small {
   margin-left: auto;
   padding-left: 1.25rem;
   padding-right: 1.25rem;
-  @apply pb-8 sm:pb-14;
+  @apply pb-8 pt-12 sm:pb-14;
 }
 
 .wrapper-2 {
