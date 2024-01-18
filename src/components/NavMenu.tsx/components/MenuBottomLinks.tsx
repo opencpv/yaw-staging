@@ -49,7 +49,7 @@ const MenuBottomLinks = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
               {r?.name}
             </Link>
           ) : LowerCase(r?.label) === "feedback" ? (
-            <Feedback>
+            <Feedback key={index}>
               <h2 className="font-[400]">Feedback</h2>
             </Feedback>
           ) : (

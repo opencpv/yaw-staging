@@ -1,7 +1,9 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
+import { E164Number, CountryCode } from "libphonenumber-js/core";
 
-const useToastDisclosure = () => {
+
+export const useToastDisclosure = () => {
   const onOpen = (message: string) => {
     const toastId = toast(message, {
       position: "top-center",
@@ -27,14 +29,28 @@ const useToastDisclosure = () => {
 };
 
 
-const useSelectDisclosure = <T extends string>(defaultOption: T) => {
+export const useSelectDisclosure = <T extends string>(defaultOption: T) => {
   const [value, setValue] = useState<T>(defaultOption);
   const handleSelectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setValue(e.target.value as T);
   };
 
-  return { value, setValue, handleSelectionChange}
+  return { value, setValue, handleSelectionChange }
 }
 
 
-export { useToastDisclosure, useSelectDisclosure };
+
+export const usePhoneInputDisclosure = () => {
+  const [phone, setPhone] = React.useState<E164Number>();
+  const [_, setCountry] = React.useState<CountryCode>("GH");
+
+  const handlePhone = (value: any) => {
+    setPhone(value as E164Number);
+  };
+
+  const handleCountryChange = (country: CountryCode | undefined) => {
+    setCountry(country as CountryCode);
+  };
+
+  return { phone, handleCountryChange, setPhone, handlePhone }
+}

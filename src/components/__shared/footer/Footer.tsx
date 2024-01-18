@@ -46,7 +46,7 @@ const Footer = () => {
               <h2 className="font-[400]">{r.label}</h2>
             </Link>
           ) : LowerCase(r?.label) === "feedback" ? (
-            <Feedback>
+            <Feedback key={r?.label}>
               <h2 className="font-[400]">Feedback</h2>
             </Feedback>
           ) : (
