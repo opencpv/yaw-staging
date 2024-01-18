@@ -1,5 +1,5 @@
 import { Form, Formik } from "formik";
-import React from "react";
+import React, { useRef } from "react";
 import { E164Number } from "libphonenumber-js/core";
 import supabase from "@/lib/utils/supabaseClient";
 import { sendContactUsEmail } from "../../api";
@@ -28,6 +28,8 @@ const FormGeneral = (props: Props) => {
     phoneInputPlaceholder,
   } = useContactForm();
 
+  const fullNameInputRef = useRef<HTMLInputElement>(null);
+
   return (
     <Formik
       initialValues={{
@@ -43,6 +45,16 @@ const FormGeneral = (props: Props) => {
       validateOnBlur={false}
       validate={(values) => {
         const errors: any = {};
+        if (!values.fullname) {
+          errors.fullname === "Required";
+          if (fullNameInputRef.current) {
+            fullNameInputRef.current.scrollIntoView({
+              block: "center",
+              behavior: "smooth",
+            });
+          }
+        }
+        if (!values.message) errors.message === "Required";
         if (!values.email && phone === undefined) {
           alert("Email or WhatsApp Number is required");
           errors.email = "Required";
@@ -55,7 +67,6 @@ const FormGeneral = (props: Props) => {
         values.phone = phone as E164Number;
         values.fileUrl = file;
 
-        // console.log(values);
         sendContactUsEmail(formRef.current);
         setLoading(true);
         supabase
@@ -97,7 +108,10 @@ const FormGeneral = (props: Props) => {
                     required
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className="p-3 py-7"
+                    className={`p-3 py-7 ${
+                      errors.fullname && "border-neutral-900"
+                    }`}
+                    ref={fullNameInputRef}
                   />
                 </div>
 
@@ -129,7 +143,7 @@ const FormGeneral = (props: Props) => {
                               onChange={(checked) => setIsWhatsapp(checked)}
                             />
                           </div> */}
-                <ContactMessageField />
+                <ContactMessageField error={errors.message} />
                 <ContactUploadField />
               </div>
             </div>

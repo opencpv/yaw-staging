@@ -23,7 +23,7 @@ const FAQ = () => {
         <title>FAQ - RentRightGh</title>
       </Head>
       <Navbar />
-      <main className="relative wrapper">
+      <main className="wrapper relative">
         <FaqHeader />
         <FaqHowToSwitch />
         {LowerCase(activePage as string) === "faq" && <FaqPage />}

@@ -29,12 +29,12 @@ const FAQBrowser = () => {
   }, []);
 
   return (
-    <div className="px-[15px] md:px-[39px] flex flex-col lg:flex-row  items-start">
-      <div className="flex flex-wrap lg:pr-[109px] lg:border-r-[1px] md:mt-[56px] lg:mr-[109px] flex-row  lg:flex-col gap-[50px]  md:mb-[56px] ">
+    <div className="flex flex-col items-start px-[15px] md:px-[39px] lg:flex-row">
+      <div className="lg:border-r- mt-14 flex flex-row flex-wrap gap-[50px] md:mb-14 lg:mr-[109px] lg:flex-col lg:pr-[109px] ">
         {categories.map((category, index) => (
           <div
             key={index}
-            className={`lg:px-0 block flex-shrink px-[10px] py-[5px] transition-all duration-200 lg:bg-none ${
+            className={`block flex-shrink px-[10px] py-[5px] transition-all duration-200 lg:bg-none lg:px-0 ${
               active == index ? "md:bg-[#EFEFEF]" : ""
             }`}
           >
@@ -46,8 +46,8 @@ const FAQBrowser = () => {
               }}
               className={`${
                 montserat.className
-              } font-semibold transition-all  duration-200  px-[5px] ${
-                active == index ? "border-[#DDB771] border-l-4" : ""
+              } px-[5px] font-semibold  transition-all  duration-200 ${
+                active == index ? "border-l-4 border-[#DDB771]" : ""
               } text-[#45808B]`}
             >
               {category}
