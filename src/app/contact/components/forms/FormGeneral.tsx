@@ -19,20 +19,13 @@ import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure"
 type Props = {};
 
 const FormGeneral = (props: Props) => {
-  const {
-    activeTab,
-    file,
-    formRef,
-    loading,
-    setLoading,
-    tableName,
-    validate,
-  } = useContactForm();
+  const { activeTab, file, formRef, loading, setLoading, tableName, validate } =
+    useContactForm();
 
   const fullNameInputRef = useRef<HTMLInputElement>(null);
 
-  const { phone, setPhone, handleCountryChange, handlePhone  } =
-  usePhoneInputDisclosure();
+  const { phone, setPhone, handleCountryChange, handlePhone } =
+    usePhoneInputDisclosure();
 
   return (
     <Formik
