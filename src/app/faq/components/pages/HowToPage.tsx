@@ -13,7 +13,7 @@ const HowToPage = (props: Props) => {
   // useHashChangeScroll()
 
   return (
-    <section>
+    <div>
       <div className="mb-8">
       <OptionFilterTabs
         options={["all", "renters", "service pros", "listing", "searching", "payment"]}
@@ -23,7 +23,7 @@ const HowToPage = (props: Props) => {
       />
       </div>
       <HowToVideosSection />
-    </section>
+    </div>
   );
 };
 

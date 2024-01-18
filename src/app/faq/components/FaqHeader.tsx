@@ -14,11 +14,11 @@ const FaqHeader = (
   const { images } = useAssets();
   return (
       <div
-        className={`flex flex-col gap-5 justify-center green-gradient h-fit banner rounded-3xl px-10 pt-10 items-center lg:items-start text-white md:pt-24 sm:px-24 lg:flex-row lg:justify-between`}
+        className={`flex flex-wrap justify-between green-gradient h-fit banner px-10 pt-10 gap-x-5 gap-y-20 text-white -mx-5 xs:rounded-3xl xs:mx-0 md:pt-24 sm:px-24`}
         ref={ref}
       >
-        <div className="">
-          <h1 className="">FAQ</h1>
+        <div className="space-y-4">
+          <h1 className="sm:text-5xl">FAQ</h1>
           <h2>Everything You Need to Know</h2>
         </div>
           <Image
@@ -26,8 +26,7 @@ const FaqHeader = (
             alt="Four people around a giant FAQ graphic"
             width={400}
             // height={400}
-            className="aspect-square"
-            // style={{ objectFit: "contain" }}
+            className=" md:mb-10 lg:mb-5"
           />
       </div>
   );
