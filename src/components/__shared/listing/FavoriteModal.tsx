@@ -38,7 +38,7 @@ const ModalHeader = ({ onClose }: ModalHeaderProps) => {
       <Button
         color="black"
         variant="outline"
-        className="w-fit text-sm rounded-3xl h-6 hover:bg-[#E7F8F2]"
+        className="w-fit px-4 text-sm rounded-3xl h-6 hover:bg-[#E7F8F2]"
         onClick={onClose}
       >
         Save

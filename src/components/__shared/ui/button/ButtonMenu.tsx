@@ -22,7 +22,7 @@ const ButtonMenu = ({ className }: Props) => {
       variant="ghost"
       onClick={() => {
         setToggle(true);
-        router.back()
+        // router.back()
       }}
       className={cn(
         `flex items-center justify-center gap-4 font-normal ${poppins400}`,
