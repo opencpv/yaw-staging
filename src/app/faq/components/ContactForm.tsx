@@ -1,6 +1,6 @@
 "use client";
 import { Formik, Form } from "formik";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import supabase from "@/lib/utils/supabaseClient";
 import Loader from "@/components/__shared/loader/Loader";
 import ContactSchema from "@/app/contact/components/forms/lib/contactSchema";
@@ -11,10 +11,12 @@ import ContactMessageField from "@/app/contact/components/forms/ContactMessageFi
 import { E164Number } from "libphonenumber-js/core";
 import ContactSubmitButton from "@/app/contact/components/forms/ContactSubmitButton";
 
-
 const ContactForm = () => {
   const [loading, setLoading] = useState(false);
-  const { phone, setPhone, handlePhone, handleCountryChange } = usePhoneInputDisclosure()
+  const { phone, setPhone, handlePhone, handleCountryChange } =
+    usePhoneInputDisclosure();
+
+  const fullNameInputRef = useRef<HTMLInputElement>(null);
 
   return (
     <Formik
@@ -29,8 +31,16 @@ const ContactForm = () => {
       validationSchema={ContactSchema}
       validate={(values) => {
         const errors: any = {};
-        if (!values.fullname) errors.fullname === "Required"
-        if (!values.message) errors.message === "Required"
+        if (!values.fullname) {
+          errors.fullname === "Required";
+          if (fullNameInputRef.current) {
+            fullNameInputRef.current.scrollIntoView({
+              block: "center",
+              behavior: "smooth",
+            });
+          }
+        }
+        if (!values.message) errors.message === "Required";
         if (!values.email && phone === undefined) {
           alert("Email or WhatsApp Number is required");
           errors.email = "Required";
@@ -58,8 +68,8 @@ const ContactForm = () => {
               console.log(error);
             } else {
               setLoading(false);
-              resetForm()
-              setPhone(undefined)
+              resetForm();
+              setPhone(undefined);
             }
           });
       }}
@@ -75,7 +85,10 @@ const ContactForm = () => {
                 required
                 onChange={handleChange}
                 onBlur={handleBlur}
-                className={`p-3 py-7 ${errors.fullname && "border-neutral-900"}`}
+                className={`p-3 py-7 ${
+                  errors.fullname && "border-neutral-900"
+                }`}
+                ref={fullNameInputRef}
               />
             </div>
             <div className="w-full">
@@ -100,12 +113,12 @@ const ContactForm = () => {
                 onCountryChange={handleCountryChange}
               />
             </div>
-            <ContactMessageField placeholder="How can we help you?" className="w-full min-w-full" error={errors.message} />
-            {loading ? (
-              <Loader />
-            ) : (
-              <ContactSubmitButton label="Contact" />
-            )}
+            <ContactMessageField
+              placeholder="How can we help you?"
+              className="w-full min-w-full"
+              error={errors.message}
+            />
+            {loading ? <Loader /> : <ContactSubmitButton label="Contact" />}
           </div>
         </Form>
       )}
