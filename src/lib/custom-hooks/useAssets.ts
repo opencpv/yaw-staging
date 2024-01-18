@@ -9,7 +9,7 @@ import MailIcon from "../../../public/assets/icons/mail-icon.svg";
 import ArrowIcon from "../../../public/assets/icons/arrow-icon.svg";
 import Logo from "../../../public/assets/icons/logo.svg";
 import Hamburger from "../../../public/assets/icons/nav-icon.svg";
-import FaqImage from "../../../public/assets/images/faq/faq-image.svg";
+import FaqImage from "../../../public/assets/images/faq/faq-image.png";
 import FaqArrowIcon from "../../../public/assets/icons/arrow-circle-right.svg";
 import ContactImage from "../../../public/assets/images/rafiki.png";
 import StockImage from "/public/assets/images/Stock.jpg";

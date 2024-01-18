@@ -25,7 +25,6 @@ const FAQ = () => {
       <Navbar />
       <main className="relative wrapper">
         <FaqHeader />
-        {/* <BreadCrumb link="FAQ" /> */}
         <FaqHowToSwitch />
         {LowerCase(activePage as string) === "faq" && <FaqPage />}
         {LowerCase(activePage as string) === "how to" && <HowToPage />}

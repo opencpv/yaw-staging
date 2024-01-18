@@ -51,6 +51,7 @@ const FAQBrowser = () => {
               } text-[#45808B]`}
             >
               {category}
+              what happened
             </button>
           </div>
         ))}
