@@ -7,9 +7,7 @@ type Props = {};
 const FaqPage = (props: Props) => {
   return (
     <>
-      <h2
-        className={`text-neutral-800 xs:text-4xl`}
-      >
+      <h2 className={`text-neutral-800 xs:text-4xl`}>
         Frequently Asked Questions
       </h2>
       <FAQBrowser />
