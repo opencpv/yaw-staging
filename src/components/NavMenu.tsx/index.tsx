@@ -22,7 +22,7 @@ export default function Menu(props: any) {
   const isInViewport = useIsElementInViewport(bottomLinksRef, menuRef);
 
   useEffect(() => {
-    // focus the menu for accessibility to be activated
+    // focus the menu for accessibility
     if (toggle && menuRef.current){ 
       setTimeout(() => {
         menuRef?.current?.focus()
@@ -77,7 +77,7 @@ export default function Menu(props: any) {
     <Root
       ref={menuRef}
       tabindex="0"
-      className="relative w-full top-0 gap-20 hidden-scrollbar min-h-screen overflow-y-scroll pb-20 lg:pb-0"
+      className="fixed w-full top-0 gap-20 hidden-scrollbar min-h-screen overflow-y-scroll pb-20 lg:pb-0"
       variants={ExpandCircle}
       exit={{
         ...ExpandCircle.closed,
@@ -141,7 +141,7 @@ const Root = styled(motion.aside, {
   backgroundRepeat: "no-repeat",
   // gap:"px",
   height: "100svh",
-  position: "absolute",
+  position: "fixed",
   overflowY: "auto",
   // minHeight: "100svh",
   top: 0,
