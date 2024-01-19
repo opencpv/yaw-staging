@@ -10,6 +10,8 @@ import InputPhoneNumber from "@/components/__shared/form/InputPhoneNumber";
 import ContactMessageField from "@/app/contact/components/forms/ContactMessageField";
 import { E164Number } from "libphonenumber-js/core";
 import ContactSubmitButton from "@/app/contact/components/forms/ContactSubmitButton";
+import ContactFullNameField from "@/app/contact/components/forms/ContactFullNameField";
+import ContactEmailField from "@/app/contact/components/forms/ContacEmailField";
 
 const ContactForm = () => {
   const [loading, setLoading] = useState(false);
@@ -33,15 +35,15 @@ const ContactForm = () => {
         const errors: any = {};
         if (!values.fullname) {
           errors.fullname === "Required";
-          if (fullNameInputRef.current) {
-            fullNameInputRef.current.scrollIntoView({
-              block: "center",
-              behavior: "smooth",
-            });
-          }
+         
         }
         if (!values.message) errors.message === "Required";
-        if (!values.email && phone === undefined) {
+        if (
+          values.fullname &&
+          values.message &&
+          !values.email &&
+          phone === undefined
+        ) {
           alert("Email or WhatsApp Number is required");
           errors.email = "Required";
           errors.phone = "Required";
@@ -78,27 +80,17 @@ const ContactForm = () => {
         <Form className="w-full ">
           <div className="flex flex-col gap-10">
             <div className="w-full">
-              <TextInput
-                name="fullname"
+              <ContactFullNameField
                 value={values.fullname}
-                label="Full Name"
-                required
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className={`p-3 py-7 ${
-                  errors.fullname && "border-neutral-900"
-                }`}
-                ref={fullNameInputRef}
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+                error={errors.fullname}
               />
             </div>
             <div className="w-full">
-              <TextInput
-                name="email"
+              <ContactEmailField
                 value={values.email}
-                type="email"
-                label="Email"
-                onChange={handleChange}
-                className="p-3 py-7"
+                handleChange={handleChange}
               />
             </div>
             <div className="w-full">
