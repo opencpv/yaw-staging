@@ -3,6 +3,13 @@ import { useContactStore } from "@/store/contact/useContactStore";
 import { CountryCode } from "libphonenumber-js/core";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 
+type FormValue = {
+  fullname: string;
+  email: string;
+  phone: string;
+  message: string;
+};
+
 export const useContactForm = () => {
   const formRef = React.useRef<HTMLFormElement>(null);
 
@@ -11,7 +18,7 @@ export const useContactForm = () => {
   const [_, setCountry] = React.useState<CountryCode>("GH");
   const [file, setFile] = React.useState<string>("");
 
-  const {phone, handlePhone, handleCountryChange} = usePhoneInputDisclosure()
+  const { phone, handlePhone, handleCountryChange } = usePhoneInputDisclosure();
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -19,11 +26,32 @@ export const useContactForm = () => {
     }
   };
 
+  const validate = () => {
+    return (values: FormValue) => {
+      const errors: any = {};
+      if (!values.fullname) {
+        errors.fullname === "Required";
+      }
+      if (!values.message) errors.message === "Required";
+      if (
+        values.fullname &&
+        values.message &&
+        !values.email &&
+        phone === undefined
+      ) {
+        alert("Email or WhatsApp Number is required");
+        errors.email = "Required";
+        errors.phone = "Required";
+      }
+      return errors;
+    };
+  };
+
   const tableName = "contact_us";
   const phoneInputPlaceholder = "WhatsApp Number";
 
   const errorClassName =
-    "border relative before:absolute before:inset-0 before:w-full before:h-full before:border before:border-neutral-500 before:rounded-lg before:animate-pulse";
+    "border-0 relative before:absolute before:inset-0 before:w-full before:h-full before:border before:border-neutral-500 before:rounded-lg before:animate-pulse";
 
   return {
     handleFileUpload,
@@ -38,5 +66,6 @@ export const useContactForm = () => {
     tableName,
     phoneInputPlaceholder,
     errorClassName,
+    validate,
   };
 };
