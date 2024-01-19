@@ -13,6 +13,9 @@ import { useMenuStore } from "@/store/navmenu/useMenuStore";
 import { useContactStore } from "@/store/contact/useContactStore";
 import { useFaqHowToSwitchStore } from "@/store/faq/useFaqStore";
 import { LowerCase } from "@/lib/utils/stringManipulation";
+import ReportLink from "@/components/__shared/ReportLink";
+import HowToLink from "@/components/__shared/HowToLink";
+import FaqLink from "@/components/__shared/FaqLink";
 
 const MenuOption = ({
   name,
@@ -51,7 +54,7 @@ const MenuOption = ({
   const { setToggle } = useMenuStore();
   const setContactTabActiveKey = useContactStore((state) => state.setActiveKey);
   const setFaqActivePage = useFaqHowToSwitchStore(
-    (state) => state.setActivePage
+    (state) => state.setActivePage,
   );
 
   return (
@@ -59,40 +62,41 @@ const MenuOption = ({
       <Collapsible.Trigger asChild>
         <div
           className={`
-              "flex flex-row w-full justify-between items-center cursor-pointer
+              "flex w-full cursor-pointer flex-row items-center justify-between
               font-[600]
               ${open ? "text-[#FCAB10]" : "text-[#fff]"}
             `}
         >
-          <p className={"uppercase !font-semibold text-2xl"}>{name}</p>
+          <p className={"text-2xl !font-semibold uppercase"}>{name}</p>
           <ArrowDownNav color={open ? "#ddd" : "#fff"} />
         </div>
       </Collapsible.Trigger>
       <Collapsible.Content className={"py-4"}>
         {/* sub links ---> View all listings, how to, etc.. */}
         {sub?.map((r, index) => (
-          <Collapsible.Root key={index} className="text-white flex flex-col ">
-            <Collapsible.Trigger className="text-left flex justify-between pr-20 text-base">
+          <Collapsible.Root key={index} className="flex flex-col text-white ">
+            <Collapsible.Trigger className="flex justify-between pr-20 text-left text-base">
               {LowerCase(r?.name) === "how to" ? (
-                <Link
-                  href={r?.url}
+                <HowToLink
+                  className="text-base font-normal"
                   onClick={() => {
-                    setFaqActivePage("how to");
                     setToggle(false);
                   }}
-                >
-                  {r?.name}
-                </Link>
+                />
               ) : LowerCase(r?.name) === "report fraud" ? (
-                <Link
-                  href={r?.url}
+                <ReportLink
+                  className="text-base font-normal"
                   onClick={() => {
-                    setContactTabActiveKey("report");
                     setToggle(false);
                   }}
-                >
-                  {r?.name}
-                </Link>
+                />
+              ) : LowerCase(r?.name) === "faq" ? (
+                <FaqLink
+                  className="text-base font-normal"
+                  onClick={() => {
+                    setToggle(false);
+                  }}
+                />
               ) : (
                 <Link href={r?.url} onClick={() => setToggle(false)}>
                   {r?.name}
@@ -125,8 +129,8 @@ export const MobileMenu = (props: any) => {
   const { setToggle } = useMenuStore();
 
   return (
-    <div className={`flex flex-col px-8 gap-4 ${props?.className}`}>
-      <div className="flex justify-center my-14">
+    <div className={`flex flex-col gap-4 px-8 ${props?.className}`}>
+      <div className="my-14 flex justify-center">
         <ButtonHireUs className="inline-flex text-2xl" />
       </div>
       <div className="space-y-10">
@@ -138,15 +142,15 @@ export const MobileMenu = (props: any) => {
               <Link
                 href={r?.url}
                 key={index}
-                className="block mb-10"
+                className="mb-10 block"
                 onClick={() => setToggle(false)}
               >
-                <p className={"uppercase !font-semibold text-[#fff] text-2xl"}>
+                <p className={"text-2xl !font-semibold uppercase text-[#fff]"}>
                   {r?.name}
                 </p>
               </Link>
             )
-          )
+          ),
         )}
       </div>
     </div>
