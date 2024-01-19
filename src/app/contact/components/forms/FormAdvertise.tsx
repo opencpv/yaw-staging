@@ -25,6 +25,9 @@ const FormAdvertise = (props: Props) => {
   const { phone, setPhone, handleCountryChange, handlePhone } =
     usePhoneInputDisclosure();
 
+  const { phone, setPhone, handleCountryChange, handlePhone } =
+    usePhoneInputDisclosure();
+
   return (
     <Formik
       initialValues={{
