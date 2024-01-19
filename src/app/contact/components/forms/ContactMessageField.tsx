@@ -11,20 +11,18 @@ type Props = {
 };
 
 const ContactMessageField = (props: Props) => {
-  const { errorClassName } = useContactForm();
-
   return (
     <div className="form-div">
       <Field
         as="textarea" // Use 'textarea' as the component
         id="message"
         name="message"
-        placeholder={props.placeholder + " *" ?? "Message *"}
+        placeholder={props.placeholder ? props.placeholder + " *" : "Message *"}
         className={cn(
           `${
             style.requiredPlaceholder
           } rounded-md border p-4 shadow-sm outline-none transition-all hover:border-black/50 focus:border-black ${
-            props.error && errorClassName
+            props.error && "border-neutral-500"
           }`,
           props.className,
         )}

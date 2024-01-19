@@ -13,11 +13,14 @@ import ContactSubmitButton from "@/app/contact/components/forms/ContactSubmitBut
 import ContactFullNameField from "@/app/contact/components/forms/ContactFullNameField";
 import ContactEmailField from "@/app/contact/components/forms/ContacEmailField";
 import ContactPhoneField from "@/app/contact/components/forms/ContactPhoneField";
+import { useContactForm } from "@/app/contact/components/forms/hooks/useContactForm";
 
 const ContactForm = () => {
   const [loading, setLoading] = useState(false);
-  const { phone, setPhone, handlePhone, handleCountryChange } =
+  const { phone, setPhone } =
     usePhoneInputDisclosure();
+
+  const {validate} = useContactForm()
 
   const fullNameInputRef = useRef<HTMLInputElement>(null);
 

@@ -22,9 +22,9 @@ const ContactEmailField = ({ value, handleChange, error }: Props) => {
   return (
     <TextInput
       name="email"
+      type="email"
       value={value}
       label="Email"
-      required
       onChange={handleChange}
       className={`p-3 py-7 ${error && `${errorClassName}`}`}
     />
