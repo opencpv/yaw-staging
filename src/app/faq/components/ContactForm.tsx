@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import supabase from "@/lib/utils/supabaseClient";
 import Loader from "@/components/__shared/loader/Loader";
 import ContactSchema from "@/app/contact/components/forms/lib/contactSchema";
-import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import { usePhoneInputDisclosure, useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import TextInput from "@/components/__shared/form/TextInput";
 import InputPhoneNumber from "@/components/__shared/form/InputPhoneNumber";
 import ContactMessageField from "@/app/contact/components/forms/ContactMessageField";
@@ -19,6 +19,7 @@ const ContactForm = () => {
   const [loading, setLoading] = useState(false);
   const { phone, setPhone } =
     usePhoneInputDisclosure();
+  const {onOpen} = useToastDisclosure()
 
   const {validate} = useContactForm()
 
@@ -58,6 +59,7 @@ const ContactForm = () => {
               setLoading(false);
               resetForm();
               setPhone(undefined);
+              onOpen("👍 Successfully sent")
             }
           });
       }}
