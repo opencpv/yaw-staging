@@ -26,25 +26,23 @@ export const useContactForm = () => {
     }
   };
 
-  const validate = () => {
-    return (values: FormValue) => {
-      const errors: any = {};
-      if (!values.fullname) {
-        errors.fullname === "Required";
-      }
-      if (!values.message) errors.message === "Required";
-      if (
-        values.fullname &&
-        values.message &&
-        !values.email &&
-        phone === undefined
-      ) {
-        alert("Email or WhatsApp Number is required");
-        errors.email = "Required";
-        errors.phone = "Required";
-      }
-      return errors;
-    };
+  const validate = (values: any) => {
+    const errors: any = {};
+    if (!values.fullname) {
+      errors.fullname === "Required";
+    }
+    if (!values.message) errors.message === "Required";
+    if (
+      values.fullname &&
+      values.message &&
+      !values.email &&
+      phone === undefined
+    ) {
+      alert("Email or WhatsApp Number is required");
+      errors.email = "Required";
+      errors.phone = "Required";
+    }
+    return errors;
   };
 
   const tableName = "contact_us";
