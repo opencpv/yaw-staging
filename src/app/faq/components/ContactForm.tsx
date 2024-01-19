@@ -35,24 +35,7 @@ const ContactForm = () => {
       validateOnBlur={false}
       validateOnChange={false}
       validationSchema={ContactSchema}
-      validate={(values) => {
-        const errors: any = {};
-        if (!values.fullname) {
-          errors.fullname === "Required";
-        }
-        if (!values.message) errors.message === "Required";
-        if (
-          values.fullname &&
-          values.message &&
-          !values.email &&
-          phone === undefined
-        ) {
-          alert("Email or WhatsApp Number is required");
-          errors.email = "Required";
-          errors.phone = "Required";
-        }
-        return errors;
-      }}
+      validate={validate}
       onSubmit={(values, { resetForm }) => {
         values.phone = phone as E164Number;
         setLoading(true);
