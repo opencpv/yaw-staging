@@ -20,6 +20,14 @@ body {
   color: rgb(var(--foreground-rgb));
 }
 
+.faq-items .faq-title {
+  border-bottom-width: 1px;
+}
+
+.faq-items div div .faq-title:last-child {
+  border-bottom-width: 0;
+}
+
 h1 {
   @apply text-3xl font-bold sm:text-6xl
 }
