@@ -8,9 +8,12 @@ import React, {
   useState,
 } from "react";
 import { useContactForm } from "./hooks/useContactForm";
+import InputPhoneNumber from "@/components/__shared/form/InputPhoneNumber";
+import { E164Number, CountryCode } from "libphonenumber-js/core";
+import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 
 type Props = {
-  value: string | null;
+  phone?: E164Number;
   handleChange?: {
     (e: ChangeEvent<any>): void;
     <T = string | ChangeEvent<any>>(
@@ -19,55 +22,26 @@ type Props = {
       ? void
       : (e: string | ChangeEvent<any>) => void;
   };
-  handleBlur?: {
+  handleBlur: {
     (e: FocusEvent<any, Element>): void;
     <T = any>(fieldOrEvent: T): T extends string ? (e: any) => void : void;
   };
-  error?: string;
 };
 
-const ContactFullNameField = ({
-  value,
-  handleChange,
-  handleBlur,
-  error,
-}: Props) => {
-  const fullNameInputRef = useRef<HTMLInputElement>(null);
-  const { errorClassName } = useContactForm();
-  const [fullNameError, setFullNameError] = useState<string | undefined>(
-    undefined,
-  );
-
-  console.log(fullNameError);
-  console.log(error);
-
-  useEffect(() => {
-    setFullNameError(error);
-    if (fullNameError === "" || fullNameError === undefined) {
-      HTMLElement.prototype.scrollIntoView = function () {};
-    }
-    if (fullNameError !== "") {
-      if (fullNameInputRef.current) {
-        fullNameInputRef.current.scrollIntoView({
-          block: "center",
-          behavior: "smooth",
-        });
-      }
-    }
-  }, [fullNameError, error]);
-
+const ContactPhoneField = ({ phone, handleChange, handleBlur }: Props) => {
+  const { handleCountryChange, handlePhone } = usePhoneInputDisclosure();
   return (
-    <TextInput
-      name="fullname"
-      value={value}
-      label="Full Name"
-      required
-      onChange={handleChange}
+    <InputPhoneNumber
+      id="phone"
+      name="phone"
+      value={phone}
+      placeholder="WhatsApp"
       onBlur={handleBlur}
-      className={`p-3 py-7 ${fullNameError && `${errorClassName}`}`}
-      ref={fullNameInputRef}
+      onChange={handlePhone}
+      onInput={handleChange}
+      onCountryChange={handleCountryChange}
     />
   );
 };
 
-export default ContactFullNameField;
+export default ContactPhoneField;
