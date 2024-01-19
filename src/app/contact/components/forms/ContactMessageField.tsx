@@ -11,8 +11,6 @@ type Props = {
 };
 
 const ContactMessageField = (props: Props) => {
-  const { errorClassName } = useContactForm();
-
   return (
     <div className="form-div">
       <Field
