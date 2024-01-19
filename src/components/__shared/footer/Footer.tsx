@@ -10,41 +10,24 @@ import quickLinks from "@/enum/footer/quickLinks";
 import { getCurrentYear } from "@/lib/utils/numberManipulation";
 import Logo from "@/components/__shared/Logo";
 import SubscribeForm from "../ui/SubscribeForm";
-import { useContactStore } from "@/store/contact/useContactStore";
 import style from "./Style.module.css";
 import Feedback from "@/components/feedback/Feedback";
 import { LowerCase } from "@/lib/utils/stringManipulation";
-import { useFaqHowToSwitchStore } from "@/store/faq/useFaqStore";
 import legal from "@/enum/about/legal";
+import ReportLink from "@/components/__shared/ReportLink";
+import HowToLink from "@/components/__shared/HowToLink";
 
 const Footer = () => {
-  const setContactTabActiveKey = useContactStore((state) => state.setActiveKey);
-  const setFaqActivePage = useFaqHowToSwitchStore(
-    (state) => state.setActivePage
-  );
-
   return (
     <footer
-      className={`bg-[#131B1A] flex flex-col gap gap-[min(10vh,10rem)] no-print ${montserat.className}`}
+      className={`gap no-print flex flex-col gap-[min(10vh,10rem)] bg-[#131B1A] ${montserat.className}`}
     >
-      <div className="flex flex-col justify-center gap-10 text-[#8A8A8A] bg-[#333] py-8 px-5 md:flex-row">
+      <div className="flex flex-col justify-center gap-10 bg-[#333] px-5 py-8 text-[#8A8A8A] md:flex-row">
         {quickLinks.map((r) =>
           LowerCase(r.label) === "report fraud" ? (
-            <Link
-              key={r?.label}
-              href={r?.href}
-              onClick={() => setContactTabActiveKey("report")}
-            >
-              <h2 className="font-[400]">{r.label}</h2>
-            </Link>
+            <ReportLink key={r?.label} className="font-[400]" />
           ) : LowerCase(r.label) === "how to" ? (
-            <Link
-              key={r?.label}
-              href={r?.href}
-              onClick={() => setFaqActivePage("how to")}
-            >
-              <h2 className="font-[400]">{r.label}</h2>
-            </Link>
+            <HowToLink key={r?.label} className="font-[400]" />
           ) : LowerCase(r?.label) === "feedback" ? (
             <Feedback key={r?.label}>
               <h2 className="font-[400]">Feedback</h2>
@@ -53,17 +36,17 @@ const Footer = () => {
             <Link key={r?.label} href={r?.href}>
               <h2 className="font-[400]">{r.label}</h2>
             </Link>
-          )
+          ),
         )}
       </div>
 
       <div className="w-fit px-8">
         <Logo size="lg" />
       </div>
-      <div className="flex flex-col gap-10 lg:w-8/12 mx-auto px-6 text-[#fff] items-center">
+      <div className="mx-auto flex flex-col items-center gap-10 px-6 text-[#fff] lg:w-8/12">
         <p
           className={
-            "max-w-[1077px] text-[32px] xl:text-[48px] font-[500] 2xl:tracking-[-1.92px]"
+            "max-w-[1077px] text-[32px] font-[500] xl:text-[48px] 2xl:tracking-[-1.92px]"
           }
         >
           Sign up to get the{" "}
@@ -81,31 +64,31 @@ const Footer = () => {
         <SubscribeForm />
       </div>
 
-      <div className="flex flex-col items-center gap-10 pb-14 mt-10 text-[32px] text-[#fff] ">
+      <div className="mt-10 flex flex-col items-center gap-10 pb-14 text-[32px] text-[#fff] ">
         <h2 className="font-bold">Connect with us:</h2>
 
-        <div className="flex items-center w-4/5 gap-4 md:w-2/5 md:gap-8">
-          <button className="hover:rotate-[360deg] w-full duration-1000">
+        <div className="flex w-4/5 items-center gap-4 md:w-2/5 md:gap-8">
+          <button className="w-full duration-1000 hover:rotate-[360deg]">
             <CaInstagram width={"100%"} height={"100%"} />
           </button>
-          <button className="hover:rotate-[360deg] w-full duration-1000">
+          <button className="w-full duration-1000 hover:rotate-[360deg]">
             <CaTwitter width={"100%"} height={"100%"} />
           </button>
 
-          <button className="hover:rotate-[360deg] w-full duration-1000">
+          <button className="w-full duration-1000 hover:rotate-[360deg]">
             <CaFacebook width={"100%"} height={"100%"} />
           </button>
 
-          <button className="hover:rotate-[360deg] w-full duration-1000">
+          <button className="w-full duration-1000 hover:rotate-[360deg]">
             <CaWhatsappBusiness width={"100%"} height={"100%"} />
           </button>
 
-          <button className="hover:rotate-[360deg] w-full duration-1000">
+          <button className="w-full duration-1000 hover:rotate-[360deg]">
             <CaStarRainbow width={"100%"} height={"100%"} />
           </button>
         </div>
       </div>
-      <div className="flex flex-col w-full gap-10 px-8 bg-transparent mb-10 text-xl min-[1110px]:flex-row min-[1110px]:mx-auto min-[1110px]:justify-between min-[1110px]:items-center">
+      <div className="mb-10 flex w-full flex-col gap-10 bg-transparent px-8 text-xl min-[1110px]:mx-auto min-[1110px]:flex-row min-[1110px]:items-center min-[1110px]:justify-between">
         <div
           className={
             "order-2 flex flex-row flex-wrap gap-x-1 gap-y-4 min-[1110px]:order-1"
