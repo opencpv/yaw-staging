@@ -1,6 +1,6 @@
 import React from "react";
 import { useContactStore } from "@/store/contact/useContactStore";
-import { CountryCode } from "libphonenumber-js/core";
+import { CountryCode, E164Number } from "libphonenumber-js/core";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 
 type FormValue = {
@@ -26,7 +26,9 @@ export const useContactForm = () => {
     }
   };
 
-  const validate = (values: any) => {
+  const validate = (values: any, phoneValue: E164Number | undefined) => {
+    console.log("Inside func:", phoneValue)
+    console.log(values)
     const errors: any = {};
     if (!values.fullname) {
       errors.fullname === "Required";
@@ -35,8 +37,7 @@ export const useContactForm = () => {
     if (
       values.fullname &&
       values.message &&
-      !values.email &&
-      phone === undefined
+      phoneValue === undefined
     ) {
       alert("Email or WhatsApp Number is required");
       errors.email = "Required";
