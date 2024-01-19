@@ -14,20 +14,16 @@ import ContactSubmitButton from "./ContactSubmitButton";
 import ContactFullNameField from "./ContactFullNameField";
 import ContactEmailField from "./ContacEmailField";
 import ContactPhoneField from "./ContactPhoneField";
+import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 
 type Props = {};
 
 const FormWriters = (props: Props) => {
-  const {
-    activeTab,
-    file,
-    formRef,
-    phone,
-    loading,
-    setLoading,
-    tableName,
-    validate,
-  } = useContactForm();
+  const { activeTab, file, formRef, loading, setLoading, tableName, validate } =
+    useContactForm();
+
+  const { phone, setPhone, handleCountryChange, handlePhone } =
+    usePhoneInputDisclosure();
 
   return (
     <Formik
@@ -43,7 +39,7 @@ const FormWriters = (props: Props) => {
       validationSchema={ContactSchema}
       validateOnChange={false}
       validateOnBlur={false}
-      validate={validate}
+      validate={(values) => validate(values, phone)}
       onSubmit={(values, { resetForm }) => {
         values.contactType = activeTab;
         values.phone = phone as E164Number;
@@ -103,6 +99,8 @@ const FormWriters = (props: Props) => {
                     phone={phone}
                     handleBlur={handleBlur}
                     handleChange={handleChange}
+                    handlePhone={handlePhone}
+                    handleCountryChange={handleCountryChange}
                   />
                 </div>
                 {/* <div className="">

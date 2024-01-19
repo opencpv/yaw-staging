@@ -4,9 +4,10 @@ import { useRef, useState } from "react";
 import supabase from "@/lib/utils/supabaseClient";
 import Loader from "@/components/__shared/loader/Loader";
 import ContactSchema from "@/app/contact/components/forms/lib/contactSchema";
-import { usePhoneInputDisclosure, useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
-import TextInput from "@/components/__shared/form/TextInput";
-import InputPhoneNumber from "@/components/__shared/form/InputPhoneNumber";
+import {
+  usePhoneInputDisclosure,
+  useToastDisclosure,
+} from "@/lib/custom-hooks/useCustomDisclosure";
 import ContactMessageField from "@/app/contact/components/forms/ContactMessageField";
 import { E164Number } from "libphonenumber-js/core";
 import ContactSubmitButton from "@/app/contact/components/forms/ContactSubmitButton";
@@ -17,13 +18,13 @@ import { useContactForm } from "@/app/contact/components/forms/hooks/useContactF
 
 const ContactForm = () => {
   const [loading, setLoading] = useState(false);
-  const { phone, setPhone } =
+  const { phone, setPhone, handleCountryChange, handlePhone } =
     usePhoneInputDisclosure();
-  const {onOpen} = useToastDisclosure()
+  const { onOpen } = useToastDisclosure();
 
-  const {validate} = useContactForm()
+  const { validate } = useContactForm();
 
-  const fullNameInputRef = useRef<HTMLInputElement>(null);
+  console.log("contactFOrm:", phone);
 
   return (
     <Formik
@@ -36,7 +37,7 @@ const ContactForm = () => {
       validateOnBlur={false}
       validateOnChange={false}
       validationSchema={ContactSchema}
-      validate={validate}
+      validate={(values) => validate(values, phone)}
       onSubmit={(values, { resetForm }) => {
         values.phone = phone as E164Number;
         setLoading(true);
@@ -59,7 +60,7 @@ const ContactForm = () => {
               setLoading(false);
               resetForm();
               setPhone(undefined);
-              onOpen("👍 Successfully sent")
+              onOpen("👍 Successfully sent");
             }
           });
       }}
@@ -86,6 +87,8 @@ const ContactForm = () => {
                 phone={phone}
                 handleBlur={handleBlur}
                 handleChange={handleChange}
+                handlePhone={handlePhone}
+                handleCountryChange={handleCountryChange}
               />
             </div>
             <ContactMessageField
