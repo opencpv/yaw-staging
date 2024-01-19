@@ -13,7 +13,7 @@ type Props = {
   children: React.ReactNode
 };
 
-const Feedback = ({ className, children }: Props) => {
+const Feedback = ({ children }: Props) => {
   const { onOpen, isOpen, onOpenChange, onClose } = useDisclosure();
   const { onOpen: toastOnOpen } = useToastDisclosure();
 
