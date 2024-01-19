@@ -12,6 +12,7 @@ import { E164Number } from "libphonenumber-js/core";
 import ContactSubmitButton from "@/app/contact/components/forms/ContactSubmitButton";
 import ContactFullNameField from "@/app/contact/components/forms/ContactFullNameField";
 import ContactEmailField from "@/app/contact/components/forms/ContacEmailField";
+import ContactPhoneField from "@/app/contact/components/forms/ContactPhoneField";
 
 const ContactForm = () => {
   const [loading, setLoading] = useState(false);
@@ -35,7 +36,6 @@ const ContactForm = () => {
         const errors: any = {};
         if (!values.fullname) {
           errors.fullname === "Required";
-         
         }
         if (!values.message) errors.message === "Required";
         if (
@@ -94,15 +94,10 @@ const ContactForm = () => {
               />
             </div>
             <div className="w-full">
-              <InputPhoneNumber
-                id="phone"
-                name="phone"
-                value={phone}
-                placeholder="WhatsApp"
-                onBlur={handleBlur}
-                onChange={handlePhone}
-                onInput={handleChange}
-                onCountryChange={handleCountryChange}
+              <ContactPhoneField
+                phone={phone}
+                handleBlur={handleBlur}
+                handleChange={handleChange}
               />
             </div>
             <ContactMessageField
@@ -110,6 +105,7 @@ const ContactForm = () => {
               className="w-full min-w-full"
               error={errors.message}
             />
+
             {loading ? <Loader /> : <ContactSubmitButton label="Contact" />}
           </div>
         </Form>
