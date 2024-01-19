@@ -22,7 +22,6 @@ type Props = {
     ): T extends ChangeEvent<any>
       ? void
       : (e: string | ChangeEvent<any>) => void;
-    
   };
   handleBlur: {
     (e: FocusEvent<any, Element>): void;
@@ -30,10 +29,16 @@ type Props = {
   };
 
   handlePhone: (value: any) => void;
-  handleCountryChange: (country: CountryCode | undefined) => void
+  handleCountryChange: (country: CountryCode | undefined) => void;
 };
 
-const ContactPhoneField = ({ phone, handleChange, handlePhone, handleCountryChange, handleBlur }: Props) => {
+const ContactPhoneField = ({
+  phone,
+  handleChange,
+  handlePhone,
+  handleCountryChange,
+  handleBlur,
+}: Props) => {
   return (
     <InputPhoneNumber
       id="phone"
