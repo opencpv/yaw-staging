@@ -10,7 +10,7 @@ import SurveyHeader from "./SurveyHeader";
 type Props = {
   // handleClick: () => void;
   className?: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 };
 
 const Survey = ({ children }: Props) => {
