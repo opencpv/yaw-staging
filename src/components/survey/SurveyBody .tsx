@@ -1,13 +1,14 @@
 import React from "react";
-import Thumbs from "./Thumbs";
-import FeedbackSlider from "./FeedbackSlider";
+import Thumbs from "../feedback/Thumbs";
+import FeedbackSlider from "../feedback/FeedbackSlider";
 import Image from "next/image";
 import Button from "../__shared/ui/button/Button";
-import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 
-
-const SurveyBody = ({handleSubmitFeedback}: {handleSubmitFeedback: () => void;}) => {
-
+const SurveyBody = ({
+  handleSubmitSurvey,
+}: {
+  handleSubmitSurvey: () => void;
+}) => {
   return (
     <>
       <Image
@@ -19,18 +20,20 @@ const SurveyBody = ({handleSubmitFeedback}: {handleSubmitFeedback: () => void;})
       />
       <form className="flex flex-col items-center gap-10">
         <div className="flex flex-col items-center gap-8">
-          <h2 className="font-[500] text-2xl text-neutral-700">Was the website easy to use?</h2>
+          <h2 className="text-2xl font-[500] text-neutral-700">
+            Is the website easy to use?
+          </h2>
           <FeedbackSlider />
         </div>
         <div className="flex flex-col items-center gap-8">
-          <h2 className="font-[500] text-2xl text-neutral-700">
-            Was the website useful to you?
+          <h2 className="text-2xl font-[500] text-neutral-700">
+            Is the website useful to you?
           </h2>
           <FeedbackSlider />
         </div>
 
         <div className="flex flex-col items-center gap-8">
-          <h2 className="font-[500] text-2xl text-neutral-700">
+          <h2 className="text-2xl font-[500] text-neutral-700">
             Will you recommend us to Friends?
           </h2>
           <Thumbs />
@@ -45,8 +48,8 @@ const SurveyBody = ({handleSubmitFeedback}: {handleSubmitFeedback: () => void;})
         <Button
           // type="submit"
           color="gradient"
-          className="w-6/12 py-2.5 rounded-md text-lg capitalize text-white hover:opacity-80"
-          onClick={handleSubmitFeedback}
+          className="w-6/12 rounded-md py-2.5 text-lg capitalize text-white hover:opacity-80"
+          onClick={handleSubmitSurvey}
         >
           Submit
         </Button>

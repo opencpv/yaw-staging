@@ -1,6 +1,7 @@
 import React from "react";
 import FAQBrowser from "../FAQBrowser";
 import ContactSection from "../ContactSection";
+import SurveyButton from "@/components/survey/SurveyButton";
 
 type Props = {};
 
@@ -12,6 +13,7 @@ const FaqPage = (props: Props) => {
       </h2>
       <FAQBrowser />
       <ContactSection />
+      <SurveyButton />
     </>
   );
 };
