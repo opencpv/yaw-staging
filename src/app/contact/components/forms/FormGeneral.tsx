@@ -11,6 +11,9 @@ import { useContactForm } from "./hooks/useContactForm";
 import ContactMessageField from "./ContactMessageField";
 import ContactUploadField from "./ContactUploadField";
 import ContactSubmitButton from "./ContactSubmitButton";
+import ContactFullNameField from "./ContactFullNameField";
+import ContactEmailField from "./ContacEmailField";
+import ContactPhoneField from "./ContactPhoneField";
 
 type Props = {};
 
@@ -19,13 +22,11 @@ const FormGeneral = (props: Props) => {
     activeTab,
     file,
     formRef,
-    handleCountryChange,
-    handlePhone,
     phone,
     loading,
     setLoading,
     tableName,
-    phoneInputPlaceholder,
+    validate,
   } = useContactForm();
 
   const fullNameInputRef = useRef<HTMLInputElement>(null);
@@ -43,25 +44,7 @@ const FormGeneral = (props: Props) => {
       validationSchema={ContactSchema}
       validateOnChange={false}
       validateOnBlur={false}
-      validate={(values) => {
-        const errors: any = {};
-        if (!values.fullname) {
-          errors.fullname === "Required";
-          if (fullNameInputRef.current) {
-            fullNameInputRef.current.scrollIntoView({
-              block: "center",
-              behavior: "smooth",
-            });
-          }
-        }
-        if (!values.message) errors.message === "Required";
-        if (!values.email && phone === undefined) {
-          alert("Email or WhatsApp Number is required");
-          errors.email = "Required";
-          errors.phone = "Required";
-        }
-        return errors;
-      }}
+      validate={validate}
       onSubmit={(values, { resetForm }) => {
         values.contactType = activeTab;
         values.phone = phone as E164Number;
@@ -101,40 +84,25 @@ const FormGeneral = (props: Props) => {
             <div className={``}>
               <div className="flex flex-col gap-10">
                 <div className="form-div">
-                  <TextInput
-                    name="fullname"
+                  <ContactFullNameField
                     value={values.fullname}
-                    label="Full Name"
-                    required
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    className={`p-3 py-7 ${
-                      errors.fullname && "border-neutral-900"
-                    }`}
-                    ref={fullNameInputRef}
+                    handleBlur={handleBlur}
+                    handleChange={handleChange}
+                    error={errors.fullname}
                   />
                 </div>
 
                 <div className="form-div">
-                  <TextInput
-                    name="email"
+                  <ContactEmailField
                     value={values.email}
-                    type="email"
-                    label="Email"
-                    onChange={handleChange}
-                    className="p-3 py-7"
+                    handleChange={handleChange}
                   />
                 </div>
                 <div className="form-div">
-                  <InputPhoneNumber
-                    id="phone"
-                    name="phone"
-                    value={phone}
-                    placeholder={phoneInputPlaceholder}
-                    onBlur={handleBlur}
-                    onChange={handlePhone}
-                    onInput={handleChange}
-                    onCountryChange={handleCountryChange}
+                  <ContactPhoneField
+                    phone={phone}
+                    handleBlur={handleBlur}
+                    handleChange={handleChange}
                   />
                 </div>
                 {/* <div className="">
