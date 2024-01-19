@@ -24,8 +24,6 @@ const ContactForm = () => {
 
   const { validate } = useContactForm();
 
-  console.log("contactFOrm:", phone);
-
   return (
     <Formik
       initialValues={{
