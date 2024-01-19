@@ -40,9 +40,9 @@ const OptionFilterTabs = ({
           ],
           tab: [
             variant === "gradient" ? null : "bg-slate-100",
-            variant === "gradient" ? "px-12 h-10" : "px-4",
-            "min-w-fit",
-            "max-w-fit",
+            variant === "gradient" ? "px-12 h-10 flex-initial" : "px-4 flex-1",
+            // "min-w-fit",
+            // "flex-1",
             variant === "gradient"
               ? "data-[selected=true]:bg-gradient-to-r data-[selected=true]:from-[#21A19F] data-[selected=true]:to-[#1EA9A6A1]"
               : "data-[selected=true]:bg-[#45808B]",
