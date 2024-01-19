@@ -38,15 +38,9 @@ const ContactFullNameField = ({
     undefined,
   );
 
-  console.log(fullNameError);
-  console.log(error);
-
   useEffect(() => {
     setFullNameError(error);
-    if (fullNameError === "" || fullNameError === undefined) {
-      HTMLElement.prototype.scrollIntoView = function () {};
-    }
-    if (fullNameError !== "") {
+    if (error) {
       if (fullNameInputRef.current) {
         fullNameInputRef.current.scrollIntoView({
           block: "center",
@@ -54,7 +48,7 @@ const ContactFullNameField = ({
         });
       }
     }
-  }, [fullNameError, error]);
+  }, [error]);
 
   return (
     <TextInput
