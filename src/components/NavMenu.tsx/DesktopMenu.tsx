@@ -41,7 +41,6 @@ export const DesktopMenu = (props: any) => {
                       } else {
                         setActive(null);
                         router.push(r?.url);
-                        // props?.toggleMenu();
                       }
                     }}
                   />
