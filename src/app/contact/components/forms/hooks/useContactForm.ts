@@ -27,8 +27,7 @@ export const useContactForm = () => {
   };
 
   const validate = (values: any, phoneValue: E164Number | undefined) => {
-    console.log("Inside func:", phoneValue)
-    console.log(values)
+    console.log("Inside func:", phoneValue);
     const errors: any = {};
     if (!values.fullname) {
       errors.fullname === "Required";
@@ -37,7 +36,8 @@ export const useContactForm = () => {
     if (
       values.fullname &&
       values.message &&
-      phoneValue === undefined
+      phoneValue === undefined &&
+      !values.email
     ) {
       alert("Email or WhatsApp Number is required");
       errors.email = "Required";
