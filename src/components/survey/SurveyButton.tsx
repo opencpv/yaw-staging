@@ -10,7 +10,7 @@ const SurveyButton = (props: Props) => {
     <section className="section relative overflow-x-hidden">
       <AOSWrapper
         animation="fade-left"
-        className="absolute -right-5 bottom-0 w-fit"
+        className="absolute bottom-0 right-5 w-fit"
       >
         <Survey>
           <div className="relative inline-flex w-fit items-center">
@@ -19,7 +19,7 @@ const SurveyButton = (props: Props) => {
             >
               <HiOutlineChatBubbleOvalLeftEllipsis className="text-3xl text-white" />
             </div>
-            <div className="relative left-[-12%] flex h-14 w-52 items-center justify-center rounded-r-[3rem] bg-gradient-to-b from-primary-500 to-primary-400 text-white">
+            <div className="relative left-[-12%] flex h-14 w-52 items-center justify-center rounded-l-[3rem] bg-gradient-to-b from-primary-500 to-primary-400 text-white">
               Survey
             </div>
           </div>

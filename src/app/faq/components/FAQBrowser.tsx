@@ -67,7 +67,7 @@ const FAQBrowser = () => {
               </button>
             ))}
           </div>
-          <div className="faq-items min-w-full flex-[5] sm:min-w-[512px] md:pl-10">
+          <div className="faq-items max-w-6xl flex-[6] md:pl-10">
             {selectedCategory &&
               data[selectedCategory].map((categoryObj: any, index: number) => (
                 <FAQItem
