@@ -95,7 +95,7 @@ const ContactForm = () => {
               error={errors.message}
             />
 
-            {loading ? <Loader /> : <ContactSubmitButton label="Contact" />}
+            {loading ? <Loader /> : <ContactSubmitButton label="Submit" />}
           </div>
         </Form>
       )}
