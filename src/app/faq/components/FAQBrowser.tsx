@@ -7,7 +7,7 @@ import groupByCategory from "../lib/groupFAQ";
 import FAQItem from "./FAQItem";
 import Loader from "@/components/__shared/loader/Loader";
 import { useFaqStore } from "@/store/faq/useFaqStore";
-import style from "../Faq.module.css"
+import style from "../Faq.module.css";
 
 const FAQBrowser = () => {
   // const [active, setActive] = useState<number>(0);
@@ -67,7 +67,7 @@ const FAQBrowser = () => {
               </button>
             ))}
           </div>
-          <div className="faq-items min-w-full flex-[4] sm:min-w-[512px] md:pl-10">
+          <div className="faq-items min-w-full flex-[5] sm:min-w-[512px] md:pl-10">
             {selectedCategory &&
               data[selectedCategory].map((categoryObj: any, index: number) => (
                 <FAQItem
