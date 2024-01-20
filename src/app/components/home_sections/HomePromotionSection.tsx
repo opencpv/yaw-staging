@@ -6,7 +6,7 @@ type Props = {};
 
 const HomePromotionSection = (props: Props) => {
   return (
-    <section className="flex items-center justify-center">
+    <section className="flex items-center justify-center pt-16">
       <div className="relative h-fit w-full max-w-[1100px]">
         <PromotionSlider />
         <VerticalSliderScrollFixOverlay

@@ -10,14 +10,13 @@ import PostSlider from "./components/post/PostSlider";
 type Props = {};
 
 const page = (props: Props) => {
-
   return (
     <div className="wrapper">
-      <section className="relative mt-10 w-full h-fit">
+      <section className="relative h-fit w-full">
         <SliderWide
           pagination
           autoplay
-          className="h-60 shape-3 sm:h-[30rem] rounded-none"
+          className="shape-3 h-60 rounded-none sm:h-[30rem]"
           images={[1, 2, 3].map((image) => ({
             src: "/assets/images/about/about-slider-img.webp",
             name: "",
@@ -76,7 +75,7 @@ const page = (props: Props) => {
                 href: "/blog/c/p",
               }))}
             />
-          <SubscribeToBlogButton />
+            <SubscribeToBlogButton />
           </div>
           {/* Authors */}
           <Authors />
