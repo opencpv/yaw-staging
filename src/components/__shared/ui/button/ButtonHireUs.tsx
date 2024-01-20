@@ -2,18 +2,22 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import React from "react";
 import Button from "./Button";
+import { useMenuStore } from "@/store/navmenu/useMenuStore";
 
 type Props = {
   className?: string;
 };
 
-const ButtonStartHere = ({ className }: Props) => {
+const ButtonHireUs = ({ className }: Props) => {
+  const setToggle = useMenuStore((state) => state.setToggle);
+
   return (
     <Link href="/login">
       <button
+        onClick={() => setToggle(false)}
         className={cn(
-          `hidden w-64 px-8 text-white items-center py-4 border h-14 border-white rounded-lg bg-primary-400 text-lg font-[600] capitalize md:flex justify-center hover:bg-neutral-300 hover:text-neutral-600 lg:inline-flex`,
-          className
+          `hidden h-14 w-64 items-center justify-center rounded-lg border border-white bg-primary-400 px-8 py-4 text-lg font-[600] capitalize text-white hover:bg-neutral-300 hover:text-neutral-600 md:flex lg:inline-flex`,
+          className,
         )}
       >
         Hire Us
@@ -22,4 +26,4 @@ const ButtonStartHere = ({ className }: Props) => {
   );
 };
 
-export default ButtonStartHere;
+export default ButtonHireUs;
