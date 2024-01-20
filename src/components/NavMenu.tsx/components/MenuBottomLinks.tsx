@@ -36,9 +36,9 @@ const MenuBottomLinks = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
                 setToggle(false);
               }}
             />
-          ) : LowerCase(r?.label) === "feedback" ? (
+          ) : LowerCase(r?.name) === "feedback" ? (
             <Feedback key={index}>
-              <h2 className="font-[400]">Feedback</h2>
+              <h2 className="bottomLink transition-all">Feedback</h2>
             </Feedback>
           ) : (
             <Link
@@ -52,9 +52,6 @@ const MenuBottomLinks = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
           )}
         </>
       ))}
-      <Feedback>
-        <div className="bottomLink text-2xl transition-all">Feedback</div>
-      </Feedback>
     </div>
   );
 };
