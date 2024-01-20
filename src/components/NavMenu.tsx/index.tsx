@@ -139,7 +139,7 @@ const Root = styled(motion.aside, {
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
   // gap:"px",
-  height: "100svh",
+  height: "100vh",
   position: "fixed",
   overflowY: "auto",
   // minHeight: "100svh",

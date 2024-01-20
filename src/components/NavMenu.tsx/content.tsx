@@ -101,4 +101,8 @@ export const bottomLinks = [
     url: "/contact",
     name: "Report Fraud",
   },
+  {
+    url: "",
+    name: "Feedback",
+  },
 ];
