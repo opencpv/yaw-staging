@@ -26,7 +26,7 @@ const Page = () => {
         <Root className="flex flex-col items-center justify-center">
           <ContactBanner />
           <div
-            className={`form-root relative z-[20] h-full min-h-[500px] w-full max-w-full rounded-2xl pt-5 sm:p-3 lg:-top-36 lg:max-w-[90%] lg:p-8 lg:pt-2`}
+            className={`form-root relative z-[20] h-full min-h-[500px] w-full max-w-full rounded-2xl pt-5 sm:p-3 lg:-top-16 lg:max-w-[90%] lg:p-8 lg:pt-2`}
           >
             <div className="">
               <ContactTabs />
@@ -69,7 +69,7 @@ const Root = styled("div", {
   ".banner": {
     background:
       "var(--faq-banner, linear-gradient(103deg, #21A19F 38.96%, rgba(30, 169, 166, 0.63) 90.07%))",
-    width: "100%",
+    // width: "100%",
     "@media screen and (min-width:640px)": {
       borderRadius: "32px",
     },
