@@ -15,22 +15,22 @@ import ContactFormSideImage from "./components/ContactFormSideImage";
 import { useRef } from "react";
 
 const Page = () => {
-  const contactRef = useRef(null)
+  const contactRef = useRef(null);
 
-  useScrollIntoView(contactRef);
+  // useScrollIntoView(contactRef);
 
   return (
     <>
       <Navbar />
       <main className="wrapper">
         <Root className="flex flex-col items-center justify-center">
-          <ContactBanner ref={contactRef} />
+          <ContactBanner />
           <div
-            className={`max-w-full relative z-[20] h-full w-full min-h-[500px] form-root sm:p-3 lg:p-8 pt-5 lg:pt-2 rounded-2xl lg:-top-36 lg:max-w-[90%]`}
+            className={`form-root relative z-[20] h-full min-h-[500px] w-full max-w-full rounded-2xl pt-5 sm:p-3 lg:-top-36 lg:max-w-[90%] lg:p-8 lg:pt-2`}
           >
             <div className="">
               <ContactTabs />
-              <div className="flex flex-col h-full grid-cols-2 gap-10 md:grid">
+              <div className="flex h-full grid-cols-2 flex-col gap-10 md:grid">
                 <ContactForm />
                 <ContactFormSideImage />
               </div>
