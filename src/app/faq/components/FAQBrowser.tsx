@@ -49,7 +49,7 @@ const FAQBrowser = () => {
         </div>
       ) : (
         <div className="flex flex-wrap items-start gap-10 pt-10 md:divide-x">
-          <div className="flex flex-1 flex-wrap gap-12">
+          <div className="flex flex-1 flex-wrap gap-12 sm:max-w-[180px]">
             {categories.map((category, index) => (
               <button
                 key={index}
@@ -67,7 +67,7 @@ const FAQBrowser = () => {
               </button>
             ))}
           </div>
-          <div className="faq-items max-w-6xl flex-[6] md:pl-10">
+          <div className="faq-items min-w-full max-w-4xl flex-[6] sm:min-w-0 md:pl-10">
             {selectedCategory &&
               data[selectedCategory].map((categoryObj: any, index: number) => (
                 <FAQItem
