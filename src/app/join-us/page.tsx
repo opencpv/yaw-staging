@@ -3,10 +3,11 @@ import JoinUsButtons from "./components/JoinUsButtons";
 import styles from "./index.module.css";
 import Link from "next/link";
 import Footer from "@/components/__shared/footer/Footer";
+import Navbar from "@/components/__shared/Navbar";
 
 function Page() {
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex flex-col items-center justify-center">
       <div className="flex flex-col items-center justify-center max-w-[1728px] w-full">
         <div
           className={`flex items-center justify-center w-full max-w-[1728px] h-[405px] lg:h-[656px]  flex-col gap-6  shrink-0

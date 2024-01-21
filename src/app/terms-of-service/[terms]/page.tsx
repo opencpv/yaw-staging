@@ -2,7 +2,7 @@ import Head from "next/head";
 import fetchTermsData from "../lib/fetchTermsData";
 import TermsNav from "../components/TermsNav";
 import { openSans } from "@/styles/font";
-import TermsMainView from "./components/TermsMainVie";
+import TermsMainView from "./components/TermsMainView";
 import Footer from "@/components/__shared/footer/Footer";
 
 const Terms = async (props: any) => {
@@ -17,10 +17,11 @@ const Terms = async (props: any) => {
       <Head>
         <title></title>
       </Head>
-      <main className={` max-w-[1728px] mx-auto w-full ${openSans.className}`}>
+      <main className="flex flex-col items-center justify-center">
         {data && <TermsNav data={data[0]} primary={false} />}
-        {data && <TermsMainView data={currentTerms[0]} />}
-
+        <div className={` mx-auto w-full max-w-[1728px] ${openSans.className}`}>
+          {data && <TermsMainView data={currentTerms[0]} />}
+        </div>
         <Footer />
       </main>
     </>

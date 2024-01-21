@@ -22,25 +22,33 @@ const TermsNav = ({
   const path = usePathname();
 
   useEffect(() => {
-    console.log(data);
     setCategories(data.termCategories);
-    console.log(path);
   }, [data, path]);
 
   return (
     <nav
-      className={`w-full flex justify-between items-center w-max-[1728px] mx-auto md:px-[30px] px-4 py-4 ${
+      className={` flex w-full items-center justify-between px-4 py-4 md:px-[30px] ${
         primary ? "" : "bg-[#333333]"
       }`}
     >
-      {/* <Image src={icons.Logo} alt="logo" /> */}
-      <Logo size="sm" />
-      <div className=" md:gap-[50px] hidden md:flex">
+     
+      <Link href="/" className="w-full h-full">
+       <div className="relative w-full max-w-[72px] aspect-[72/58]">
+          <Image
+            src={icons.Logo}
+            alt="RentRightGH logo"
+            fill
+            quality={100}
+            
+          />
+       </div>
+      </Link>{" "}
+      <div className=" hidden md:flex md:gap-[50px]">
         <Link
           href={`/terms-of-service`}
           className={`${openSans.className} ${
             path == "/terms-of-service" ? " " : "opacity-50"
-          } text-[#fff] lg:text-4 font-semibold `}
+          } lg:text-4 font-semibold text-[#fff] `}
         >
           Home
         </Link>
@@ -53,7 +61,7 @@ const TermsNav = ({
                 path == `/terms-of-service/${category.slug}`
                   ? " "
                   : "opacity-50"
-              } text-[#fff] lg:text-4 font-semibold hover:opacity-100 transition-all duration-100 `}
+              } lg:text-4 font-semibold text-[#fff] transition-all duration-100 hover:opacity-100  whitespace-nowrap`}
             >
               {category.title}
             </Link>
