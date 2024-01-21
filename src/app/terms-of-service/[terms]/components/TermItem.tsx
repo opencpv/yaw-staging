@@ -2,14 +2,14 @@ import RichTextRenderer from "@/app/components/RichTextRenderer";
 
 const TermItem = ({ data, index }: { data: any; index: number }) => {
   const Bullet = () => (
-    <p className="lg:w-[120px]  lg:h-[120px] w-[50px] h-[50px] lg:text-[31px] text-base font-bold flex flex-none items-center justify-center rounded-full bg-[#DDB771] text-[#fff]">
+    <div className="lg:text-31 shrink-0 flex h-[50px] w-[50px] items-center justify-center rounded-full bg-[#DDB771] text-base font-bold text-[#fff] lg:h-[120px] lg:w-[120px]">
       {index + 1 < 0 ? "" : <span>0</span>}
       {index + 1}
-    </p>
+    </div>
   );
 
   const Title = () => (
-    <h2 className="text-[#073B3A] w-fit lg:mb-5 lg:text-[39px] text-xl font-bold flex items-center justify-center  ">
+    <h2 className="lg:text-31 flex w-fit items-center justify-center text-xl font-bold text-[#073B3A] lg:mb-5  ">
       {data.termsArray.title}
     </h2>
   );
@@ -20,20 +20,16 @@ const TermItem = ({ data, index }: { data: any; index: number }) => {
 
   return (
     <>
-      <li className="hidden lg:flex lg:gap-5 gap-4 mb-8">
+      <div className="mb-8 hidden gap-4 lg:flex lg:gap-5">
         <Bullet />
-        <div>
+        <div className="w-full">
           <Title />
-          <Description />
+          <div className="text-[1.25rem] font-semibold text-shade-200">
+            <Description />
+          </div>{" "}
         </div>
-      </li>
-      <li className="lg:hidden gap-4 mb-8">
-        <div className="flex gap-4 mb-6">
-          <Bullet />
-          <Title />
-        </div>
-        <Description />
-      </li>
+      </div>
+
     </>
   );
 };

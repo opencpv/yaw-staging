@@ -30,13 +30,13 @@ export const PgRoutes = [
     name: "favourite",
     url: "",
     icon: <AiFillHeart width={24} height={24} />,
-    link: "/",
+    link: "/dashboard/favourite",
   },
   {
     name: "saved search",
     url: "",
     icon: <CaDashSave />,
-    link: "/",
+    link: "/dashboard/saved-search",
   },
   {
     name: "my applications",
@@ -49,7 +49,7 @@ export const PgRoutes = [
     name: "recommendations",
     url: "",
     icon: <CaSubscriptions width={24} height={24} />,
-    link: "/",
+    link: "/dashboard/recommendations",
   },
   {
     name: "sell-products",
@@ -61,7 +61,7 @@ export const PgRoutes = [
     name: "subscriptions",
     url: "",
     icon: <CaSubscriptions width={24} height={24} />,
-    link: "/",
+    link: "/dashboard/subscriptions",
   },
   {
     name: "notifications",

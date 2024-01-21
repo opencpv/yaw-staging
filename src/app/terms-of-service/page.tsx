@@ -15,17 +15,19 @@ const page = async () => {
       <Head>
         <title>Terms of Service</title>
       </Head>
-      <main
-        className={` max-w-[1728px] mx-auto bg-terms-bg bg-cover lg:h-[100vh] w-full ${openSans.className}`}
-      >
-        <div className="w-max-[1728px] mx-auto md:px-[30px] px-4 py-4">
-          {data && <TermsNav data={data[0]} />}
-        </div>
-        {data && (
-          <div className="w-max-[1728px] mx-auto md:px-[30px] px-4 py-4">
-            <MainView data={data[0]} />
+      <main className="flex w-full flex-col items-center justify-center">
+        <div
+          className={` min-h-[100vh] w-full max-w-[1728px] bg-terms-bg bg-cover ${openSans.className}`}
+        >
+          <div className="w-full px-4 py-4 ">
+            {data && <TermsNav data={data[0]} />}
           </div>
-        )}
+          {data && (
+            <div className="w-full px-4 py-4 ">
+              <MainView data={data[0]} />
+            </div>
+          )}
+        </div>
       </main>
     </>
   );

@@ -69,6 +69,8 @@ const config: Config = {
       fontSize: {
         "20": "1.25rem",
         "25": "1.5625rem",
+        "31": "1.9375rem",
+        "39": "2.4375rem",
       },
     },
     screens: {
