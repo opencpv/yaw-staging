@@ -7,7 +7,6 @@ import { useContactForm } from "./hooks/useContactForm";
 type Props = {
   className?: string;
   placeholder?: string;
-  login;
   error?: string;
 };
 
