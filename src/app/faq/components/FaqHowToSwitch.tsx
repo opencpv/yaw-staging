@@ -14,7 +14,7 @@ const FaqHowToSwitch = (props: Props) => {
   // useScrollIntoView(tabRef, "center")
 
   return (
-    <div className="mt-8 w-fit rounded-xl border p-3">
+    <div className="my-8 w-fit rounded-xl border p-3">
       <OptionFilterTabs
         options={["FAQ", "how to"]}
         selectedKey={activePage}
