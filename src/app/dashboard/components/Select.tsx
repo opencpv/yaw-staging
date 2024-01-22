@@ -46,7 +46,7 @@ const Select = ({
           "h-4.5 w-4.5 mr-0": variant === "ghost",
         }),
         trigger: cn("px-10 z-30", {
-          "pl-1 text-base bg-transparent shadow-none": variant === "ghost",
+          "pl-2 text-base bg-transparent shadow-none": variant === "ghost",
         }),
         label: "hidden",
       }}
