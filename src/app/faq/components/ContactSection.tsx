@@ -1,6 +1,5 @@
 import ContactForm from "./ContactForm";
 import Image from "next/image";
-import Head from "next/head";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 // import type { Viewport } from "next";
 import type { Metadata } from "next";
