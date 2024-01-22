@@ -91,7 +91,7 @@ const config: Config = {
               foreground: "#FFFFFF",
             },
             primary: {
-              DEFAULT: "#073B3A",
+              DEFAULT: "#21A19F",
               foreground: "#FFFFFF",
             },
             focus: "#F1B346",
@@ -104,7 +104,7 @@ const config: Config = {
               foreground: "#FFFFFF",
             },
             primary: {
-              DEFAULT: "#073B3A",
+              DEFAULT: "#21A19F",
               foreground: "#FFFFFF",
             },
             focus: "#F1B346",

@@ -43,38 +43,31 @@ const Select = ({
         selectorIcon: cn(`mr-5 h-3 w-3`, {
           "text-accent-50": color === "default",
           "text-primary-100": color === "primary",
-          "h-4.5 w-4.5": variant === "ghost",
+          "h-4.5 w-4.5 mr-0": variant === "ghost",
         }),
         trigger: cn("px-10 z-30", {
-          "px-0 text-base bg-transparent shadow-none hover:bg-transparent":
-            variant === "ghost",
+          "px-0 text-base bg-transparent shadow-none": variant === "ghost",
         }),
-        listboxWrapper: cn("hover:bg-neutral-100 hover:text-neutral-800", {
-          "hover:bg-accent-50 hover:text-white": color === "default",
-          "hover:bg-primary-100 hover:text-white": color === "primary",
-          "text-base": variant === "ghost",
-        }),
+        // listbox: cn("hover:bg-neutral-100 hover:text-neutral-800", {
+        //   "bg-accent-50 text-white": color === "default",
+        //   "bg-primary-100 text-white": color === "primary",
+        //   "text-base": variant === "ghost",
+        // }),
         label: "hidden",
       }}
-      selectorIcon={
-        selectorIcon ? (
-          selectorIcon
-        ) : (
-          <FaCaretDown
-            className={`${
-              color === "default"
-                ? "text-accent-50"
-                : color === "primary" && "text-primary text-red-500"
-            }`}
-          />
-        )
-      }
+      selectorIcon={selectorIcon ? selectorIcon : <FaCaretDown />}
       onChange={handleSelectionChange}
     >
       {options.map((option) => (
         <SelectItem
           key={LowerCase(option)}
-          className="text-neutral-800"
+          className={cn("text-neutral-800", {
+            "text-base": variant === "ghost",
+            "data-[hover=true]:bg-primary-100 data-[focus-visible=true]:outline-primary-100 data-[selectable=true]:focus:bg-primary-100":
+              color === "primary",
+            "data-[hover=true]:bg-accent-50 data-[focus-visible=true]:outline-accent-50 data-[selectable=true]:focus:bg-accent-50":
+              color === "default",
+          })}
           value={LowerCase(option)}
         >
           {option}
