@@ -143,8 +143,8 @@ section {
   @apply px-5 sm:px-5;
 }
 
-.wrapper-no-pb {
-  @apply pb-0 sm:pb-0;
+.wrapper-section {
+  @apply mx-auto max-w-screen-2xl px-5 pb-0 pt-28 sm:px-10 sm:pb-0;
 }
 
 @media (min-width: 640px) {

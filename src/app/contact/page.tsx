@@ -1,5 +1,3 @@
-"use client";
-
 import { styled } from "@stitches/react";
 import Navbar from "@/components/__shared/Navbar";
 import Footer from "@/components/__shared/footer/Footer";
@@ -13,12 +11,13 @@ import FeedbackButton from "../../components/feedback/FeedbackButton";
 import ContactForm from "./components/ContactForm";
 import ContactFormSideImage from "./components/ContactFormSideImage";
 import { useRef } from "react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact",
+};
 
 const Page = () => {
-  const contactRef = useRef(null);
-
-  // useScrollIntoView(contactRef);
-
   return (
     <>
       <Navbar />

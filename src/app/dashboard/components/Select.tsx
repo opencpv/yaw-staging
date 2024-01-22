@@ -34,8 +34,8 @@ const Select = ({
       selectedKeys={[value]}
       classNames={{
         // mainWrapper: [variant === "ghost" && "hover:bg-transparent"],
-        base: cn("mx-auto text-xs", className, {
-          "text-base w-40": variant === "ghost",
+        base: cn("w-44 mx-auto text-xs", className, {
+          "text-base": variant === "ghost",
         }),
         value: cn("text-xs", {
           "text-base": variant === "ghost",

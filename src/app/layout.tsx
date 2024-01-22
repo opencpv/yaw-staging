@@ -13,9 +13,13 @@ import { Metadata } from "next";
 const uniquePages = ["login", "terms-of-service"];
 
 export const metadata: Metadata = {
-  title: "Rentright GH",
+  title: {
+    template: "%s | RentrightGH",
+    default: "RentrightGH",
+  },
+  applicationName: "RentrightGH website",
   description: "Genuine listings without the stress",
-  keywords: "Genuine listings, rental, property management, agent",
+  keywords: ["Genuine listings", "rental", "property management", "agent"],
   viewport: { width: "device-width", initialScale: 1, maximumScale: 1 }, // deprecated in NextJs14
 };
 
