@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { useContactForm } from "./forms/hooks/useContactForm";
 import FormGeneral from "./forms/FormGeneral";
