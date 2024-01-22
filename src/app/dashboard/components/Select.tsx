@@ -46,13 +46,8 @@ const Select = ({
           "h-4.5 w-4.5 mr-0": variant === "ghost",
         }),
         trigger: cn("px-10 z-30", {
-          "px-0 text-base bg-transparent shadow-none": variant === "ghost",
+          "pl-1 text-base bg-transparent shadow-none": variant === "ghost",
         }),
-        // listbox: cn("hover:bg-neutral-100 hover:text-neutral-800", {
-        //   "bg-accent-50 text-white": color === "default",
-        //   "bg-primary-100 text-white": color === "primary",
-        //   "text-base": variant === "ghost",
-        // }),
         label: "hidden",
       }}
       selectorIcon={selectorIcon ? selectorIcon : <FaCaretDown />}
