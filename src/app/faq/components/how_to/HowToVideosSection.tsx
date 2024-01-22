@@ -1,5 +1,6 @@
 import React from "react";
 import HowToVideo from "./HowToVideo";
+import Button from "@/components/__shared/ui/button/Button";
 
 type Props = {};
 
@@ -8,7 +9,7 @@ const HowToVideosSection = (props: Props) => {
     <div className="space-y-8">
       <h2>Lorem ipsum dolor sit amet</h2>
       <div
-        className="space-y-10 gap-x-5 gap-y-10 xs:grid xs:space-y-0"
+        className="gap-x-5 gap-y-20 space-y-10 xs:grid xs:space-y-0"
         style={{ gridTemplateColumns: "repeat(auto-fit, minmax(350px,1fr))" }}
       >
         {[1, 2, 3, 4, 5, 6].map((_, idx) => (
@@ -19,6 +20,9 @@ const HowToVideosSection = (props: Props) => {
             body="Lorem ipsum dolor sit amet, consectetur adipisicing.Lorem ipsum dolor sit amet, consectetur adipisicing."
           />
         ))}
+      </div>
+      <div className="section mx-auto">
+        <Button color="accent">Load more</Button>
       </div>
     </div>
   );
