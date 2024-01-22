@@ -20,7 +20,7 @@ const HowToVideosSection = (props: Props) => {
           />
         ))}
       </div>
-      <div className="flex justify-center pt-10">
+      <div className="flex justify-center pt-14">
         <Button color="accent">Load more</Button>
       </div>
     </div>
