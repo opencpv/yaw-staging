@@ -64,7 +64,7 @@ const ContactForm = () => {
       }}
     >
       {({ handleBlur, handleChange, values, errors }) => (
-        <Form className="w-full ">
+        <Form className="w-full">
           <div className="flex flex-col gap-10">
             <div className="w-full">
               <ContactFullNameField
