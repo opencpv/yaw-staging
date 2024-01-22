@@ -20,13 +20,13 @@ const HowToVideo = (props: Props) => {
 
   return (
     <div className="space-y-4">
-      <div className="relative cursor-pointer rounded-2xl aspect-video">
+      <div className="relative aspect-video cursor-pointer rounded-2xl">
         <div className="rounded-2xl">
           <iframe
             src={videoSrc}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
-            className="absolute inset-0 w-full h-full rounded-3xl"
+            className="absolute inset-0 h-full w-full rounded-3xl"
             ref={videoRef}
           ></iframe>
         </div>
