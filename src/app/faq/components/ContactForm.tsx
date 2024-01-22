@@ -64,7 +64,7 @@ const ContactForm = () => {
       }}
     >
       {({ handleBlur, handleChange, values, errors }) => (
-        <Form className="w-full ">
+        <Form className="w-full">
           <div className="flex flex-col gap-10">
             <div className="w-full">
               <ContactFullNameField
@@ -95,7 +95,7 @@ const ContactForm = () => {
               error={errors.message}
             />
 
-            {loading ? <Loader /> : <ContactSubmitButton label="Contact" />}
+            {loading ? <Loader /> : <ContactSubmitButton label="Submit" />}
           </div>
         </Form>
       )}

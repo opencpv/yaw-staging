@@ -1,9 +1,6 @@
-"use client";
 import "./globals.css";
 import "../styles/animations.css";
 import "@radix-ui/themes/styles.css";
-import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
 import Providers from "@/context/Providers";
 import LoadingIndicator from "@/components/LoadingIndicator";
 import Script from "next/script";
@@ -11,27 +8,38 @@ import { openSans } from "@/lib/utils/fonts";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MenuWrapper from "@/components/__shared/MenuWrapper";
+import { Metadata } from "next";
 
 const uniquePages = ["login", "terms-of-service"];
+
+export const metadata: Metadata = {
+  title: {
+    template: "%s | RentrightGH",
+    default: "RentrightGH",
+  },
+  applicationName: "RentrightGH website",
+  description: "Genuine listings without the stress",
+  keywords: ["Genuine listings", "rental", "property management", "agent"],
+  viewport: { width: "device-width", initialScale: 1, maximumScale: 1 }, // deprecated in NextJs14
+};
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [noNavbar, setNoNavbar] = useState(false);
-  const pathname = usePathname();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // const [noNavbar, setNoNavbar] = useState(false);
+  // const pathname = usePathname();
 
-  useEffect(() => {
-    uniquePages.forEach((element) => {
-      if (pathname && pathname.split("/").includes(element)) {
-        setNoNavbar(true);
-      } else {
-        setNoNavbar(false);
-      }
-    });
-  }, [pathname]);
+  // useEffect(() => {
+  //   uniquePages.forEach((element) => {
+  //     if (pathname && pathname.split("/").includes(element)) {
+  //       setNoNavbar(true);
+  //     } else {
+  //       setNoNavbar(false);
+  //     }
+  //   });
+  // }, [pathname]);
 
   return (
     <html

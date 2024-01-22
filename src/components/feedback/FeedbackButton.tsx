@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { HiOutlineChatBubbleOvalLeftEllipsis } from "react-icons/hi2";
 import Feedback from "./Feedback";
@@ -9,7 +10,7 @@ const FeedbackButton = (props: Props) => {
   return (
     <AOSWrapper animation="fade-right" className="w-fit">
       <Feedback>
-        <div className="inline-flex items-center ml-5 w-fit">
+        <div className="ml-5 inline-flex w-fit items-center">
           <div
             className={`relative z-20 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-t from-primary-500 to-primary-400 shadow-lg`}
           >

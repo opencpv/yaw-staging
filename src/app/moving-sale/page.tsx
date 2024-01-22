@@ -30,9 +30,9 @@ const MovingSalesPage = () => {
         onOpenChange={onOpenChange}
         onClose={onClose}
       />
-      <main className="wrapper mt-10 overflow-x-hidden text-neutral-600">
+      <main className="wrapper overflow-x-hidden text-neutral-600">
         {/* Banner */}
-        <section className="relative w-full mb-20 text-white h-60 sm:h-96">
+        <section className="relative mb-20 h-60 w-full text-white sm:h-96">
           <SliderWide
             pagination
             autoplay
@@ -43,16 +43,16 @@ const MovingSalesPage = () => {
               href: "/blog/c/p",
             }))}
           />
-          <div className="absolute inset-0 z-10 flex items-center w-full h-full rounded-xl pointer-events-none">
-            <div className="absolute w-full h-full rounded-xl bg-gradient-to-r from-primary-500 to-transparent bg-opacity-20"></div>
-            <h1 className="relative z-20 font-[700] text-4xl pl-5 xs:pl-20 sm:text-5xl">
+          <div className="pointer-events-none absolute inset-0 z-10 flex h-full w-full items-center rounded-xl">
+            <div className="absolute h-full w-full rounded-xl bg-opacity-20 bg-gradient-to-r from-primary-500 to-transparent"></div>
+            <h1 className="relative z-20 pl-5 text-4xl font-[700] xs:pl-20 sm:text-5xl">
               Shop
             </h1>
           </div>
         </section>
         {/* Categories */}
-        <section className="flex justify-center mx-auto mb-10">
-          <div className="flex flex-wrap justify-center gap-5 mx-auto">
+        <section className="mx-auto mb-10 flex justify-center">
+          <div className="mx-auto flex flex-wrap justify-center gap-5">
             {[1, 2, 3, 4, 5, 6].map((_, idx) => (
               <Category
                 key={idx + 1}
@@ -64,13 +64,13 @@ const MovingSalesPage = () => {
             ))}
           </div>
         </section>
-        <div className="flex items-center justify-center mb-20">
+        <div className="mb-20 flex items-center justify-center">
           <CallOut
             text="You may select more than one response"
             className="w-full md:w-9/12"
           />
         </div>
-        <div className="flex flex-wrap items-center justify-between gap-3 mb-5 text-sm">
+        <div className="mb-5 flex flex-wrap items-center justify-between gap-3 text-sm">
           <p className="">Showing 12 results</p>
           <div className="flex flex-wrap items-center gap-3">
             <Select
