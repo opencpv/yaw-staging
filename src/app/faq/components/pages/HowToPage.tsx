@@ -32,7 +32,7 @@ const HowToPage = (props: Props) => {
           options={[
             "All",
             "Renters",
-            "Service Prop",
+            "Service Pros",
             "Listing",
             "Searching",
             "Payment",
