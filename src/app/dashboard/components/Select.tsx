@@ -8,11 +8,22 @@ type Props = {
   value: string;
   handleSelectionChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   radius?: "full" | "lg" | "md" | "none";
+  variant?: "default" | "ghost";
+  color?: "default" | "primary";
   selectorIcon?: React.ReactNode;
   className?: string;
 };
 
-const Select = ({ options, handleSelectionChange, value, radius, selectorIcon, className }: Props) => {
+const Select = ({
+  options,
+  handleSelectionChange,
+  value,
+  radius,
+  selectorIcon,
+  className,
+  variant,
+  color,
+}: Props) => {
   return (
     <NextUISelect
       size="sm"
@@ -22,13 +33,42 @@ const Select = ({ options, handleSelectionChange, value, radius, selectorIcon, c
       labelPlacement="outside"
       selectedKeys={[value]}
       classNames={{
-        base: cn('w-48 mx-auto text-xs', className),
-        value: "text-xs",
-        selectorIcon: "mr-5 h-3 w-3",
-        trigger: "px-10 z-30",
+        // mainWrapper: [variant === "ghost" && "hover:bg-transparent"],
+        base: cn("w-48 mx-auto text-xs", className, {
+          "text-base": variant === "ghost",
+        }),
+        value: cn("text-xs", {
+          "text-base": variant === "ghost",
+        }),
+        selectorIcon: cn(`mr-5 h-3 w-3`, {
+          "text-accent-50": color === "default",
+          "text-primary-100": color === "primary",
+          "h-4.5 w-4.5": variant === "ghost",
+        }),
+        trigger: cn("px-10 z-30", {
+          "px-0 text-base bg-transparent shadow-none hover:bg-transparent":
+            variant === "ghost",
+        }),
+        listboxWrapper: cn("hover:bg-neutral-100 hover:text-neutral-800", {
+          "hover:bg-accent-50 hover:text-white": color === "default",
+          "hover:bg-primary-100 hover:text-white": color === "primary",
+          "text-base": variant === "ghost",
+        }),
         label: "hidden",
       }}
-      selectorIcon={selectorIcon ? selectorIcon : <FaCaretDown />}
+      selectorIcon={
+        selectorIcon ? (
+          selectorIcon
+        ) : (
+          <FaCaretDown
+            className={`${
+              color === "default"
+                ? "text-accent-50"
+                : color === "primary" && "text-primary text-red-500"
+            }`}
+          />
+        )
+      }
       onChange={handleSelectionChange}
     >
       {options.map((option) => (

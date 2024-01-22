@@ -25,7 +25,7 @@ const config: Config = {
         darkGreenBg: "#073B3A ",
         primary: {
           50: "#B0E3C9",
-          100: "#93B5BC",
+          100: "#21A19F",
           200: "#45808B",
           300: "#E6F6EE",
           400: "#396261",
@@ -90,6 +90,10 @@ const config: Config = {
               DEFAULT: "#F1B346",
               foreground: "#FFFFFF",
             },
+            primary: {
+              DEFAULT: "#073B3A",
+              foreground: "#FFFFFF",
+            },
             focus: "#F1B346",
           },
         },
@@ -97,6 +101,10 @@ const config: Config = {
           colors: {
             default: {
               DEFAULT: "#F1B346",
+              foreground: "#FFFFFF",
+            },
+            primary: {
+              DEFAULT: "#073B3A",
               foreground: "#FFFFFF",
             },
             focus: "#F1B346",
