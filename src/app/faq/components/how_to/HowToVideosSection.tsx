@@ -21,7 +21,7 @@ const HowToVideosSection = (props: Props) => {
           />
         ))}
       </div>
-      <div className="section mx-auto">
+      <div className="flex justify-center pt-10">
         <Button color="accent">Load more</Button>
       </div>
     </div>
