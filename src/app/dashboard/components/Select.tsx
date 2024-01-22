@@ -50,7 +50,19 @@ const Select = ({
         }),
         label: "hidden",
       }}
-      selectorIcon={selectorIcon ? selectorIcon : <FaCaretDown />}
+      selectorIcon={
+        selectorIcon ? (
+          selectorIcon
+        ) : (
+          <FaCaretDown
+            className={`${
+              color === "default"
+                ? "text-accent-50"
+                : color === "primary" && "text-primary text-red-500"
+            }`}
+          />
+        )
+      }
       onChange={handleSelectionChange}
     >
       {options.map((option) => (
