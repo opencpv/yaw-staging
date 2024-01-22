@@ -70,9 +70,7 @@ const Root = styled("div", {
     background:
       "var(--faq-banner, linear-gradient(103deg, #21A19F 38.96%, rgba(30, 169, 166, 0.63) 90.07%))",
     // width: "100%",
-    "@media screen and (min-width:640px)": {
-      borderRadius: "32px",
-    },
+    "@media screen and (min-width:640px)": {},
   },
 
   ".form-root": {
