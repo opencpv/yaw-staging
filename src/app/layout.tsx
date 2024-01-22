@@ -43,7 +43,6 @@ export default function RootLayout({
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1"
-          key="page-scale"
         />
       </Head>
       <Script src="https://widget.cloudinary.com/v2.0/global/all.js" />
