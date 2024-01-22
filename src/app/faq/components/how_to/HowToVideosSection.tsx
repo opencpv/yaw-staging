@@ -6,8 +6,7 @@ type Props = {};
 
 const HowToVideosSection = (props: Props) => {
   return (
-    <div className="space-y-8">
-      <h2>Lorem ipsum dolor sit amet</h2>
+    <div>
       <div
         className="gap-x-5 gap-y-20 space-y-10 xs:grid xs:space-y-0"
         style={{ gridTemplateColumns: "repeat(auto-fit, minmax(350px,1fr))" }}

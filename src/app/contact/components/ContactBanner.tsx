@@ -6,7 +6,7 @@ type Props = {};
 const ContactBanner = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
   return (
     <div
-      className={`banner -mx-5 flex flex-col items-center justify-center gap-5 px-10 pt-10 text-white xs:mx-0 xs:w-full sm:px-24 md:pt-24 lg:flex-row lg:items-start lg:justify-between`}
+      className={`banner -mx-5 flex flex-col items-center justify-center gap-5 px-10 pt-10 text-white xs:mx-0 xs:w-full xs:rounded-3xl sm:px-24 md:pt-24 lg:flex-row lg:items-start lg:justify-between`}
       ref={ref}
     >
       <div className="">
