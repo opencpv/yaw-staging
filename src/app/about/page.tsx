@@ -39,10 +39,9 @@ const About = async () => {
             </h2>
           </div>
         </div>
-        <AOSWrapper animation="fade-up" className="section">
-          <div className="flex items-center justify-center">
-            <div className="relative h-60 w-full md:h-[30rem]">
-              {/* <Image
+        <div className="mt-14 flex items-center justify-center">
+          <div className="relative h-60 w-full md:h-[30rem]">
+            {/* <Image
                 src={urlFor(data[0].featuredImage).width(1728).url() as string}
                 fill
                 style={{ objectFit: "cover" }}
@@ -50,24 +49,23 @@ const About = async () => {
                 alt="banner image"
                 className="py-8 border-b-[1px] border-[#D9D9D9] mb-[32.5px] md:mb-[64px]"
               /> */}
-              <Image
-                src="/assets/images/about/about1.webp"
-                alt=""
-                fill
-                style={{ objectFit: "cover" }}
-              />
-            </div>
+            <Image
+              src="/assets/images/about/about1.webp"
+              alt=""
+              fill
+              style={{ objectFit: "cover" }}
+            />
           </div>
-          <AOSWrapper
-            animation="fade-up"
-            className="wrapper flex min-h-max items-center justify-center pb-0 sm:pb-0"
-          >
-            <div className="min-h-max">
-              {aboutDescription.map((data: any, index: number) => (
-                <AboutItem key={index} index={index + 1} data={data} />
-              ))}
-            </div>
-          </AOSWrapper>
+        </div>
+        <AOSWrapper
+          animation="fade-up"
+          className="wrapper flex min-h-max items-center justify-center py-0 sm:py-0"
+        >
+          <div className="min-h-max">
+            {aboutDescription.map((data: any, index: number) => (
+              <AboutItem key={index} index={index + 1} data={data} />
+            ))}
+          </div>
         </AOSWrapper>
         <section className="section">
           {/* <AboutBanner data={bannerData} /> */}
@@ -95,7 +93,7 @@ const About = async () => {
         </section>
         <AOSWrapper
           animation="fade-up"
-          className="section wrapper-section h-fit"
+          className="mx-auto h-fit max-w-screen-2xl px-5 sm:px-10 lg:pt-28"
         >
           <VerticalSlider />
         </AOSWrapper>

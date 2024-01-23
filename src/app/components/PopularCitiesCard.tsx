@@ -17,13 +17,15 @@ const PopularCitiesCard = ({
   location,
   description,
   propertyNumber,
-  className
+  className,
 }: Props) => {
   const propertyNumTruncated = useTruncateNumber(propertyNumber);
 
   return (
     <Link href={`/properties/?location=${location}`}>
-      <div className={`relative flex min-h-[10rem] w-full items-center justify-center rounded-lg p-5 text-white transition-all sm:p-20 hover:scale-105 ${className}`}>
+      <div
+        className={`relative flex min-h-[10rem] w-full items-center justify-center rounded-lg p-5 text-white transition-all hover:scale-105 sm:p-20 ${className}`}
+      >
         <Image
           src="/assets/images/Stock.jpg"
           alt={location}
@@ -35,8 +37,8 @@ const PopularCitiesCard = ({
 
         <div className="relative z-10 space-y-3">
           <div className="space-y-3">
-            <h2 className="font-[700] text-base">{location}</h2>
-            <p className="inline-block font-[700] text-sm">{description}</p>
+            <h2 className="text-base font-[700]">{location}</h2>
+            <p className="inline-block text-sm font-[700]">{description}</p>
           </div>
           <Link
             href={`/properties/?location${location}`}

@@ -33,8 +33,10 @@ const VerticalSliderScrollFixOverlay = ({ className, href }: Props) => {
           href={href ?? ""}
           ref={overlayRef}
           className={cn(
-            `${pointerEvents && "pointer-events-none"} absolute left-0 opacity-0 top-0 z-10 h-full w-full -translate-x-16 bg-transparent`,
-            className
+            `${
+              pointerEvents && "pointer-events-none"
+            } absolute left-0 top-0 z-10 h-full w-full -translate-x-16 bg-red-400 opacity-100`,
+            className,
           )}
         ></Link>
         {/* !!! Temporary fix of scrolling issue on mobile !!!*/}
@@ -44,10 +46,10 @@ const VerticalSliderScrollFixOverlay = ({ className, href }: Props) => {
     return (
       <>
         <div
-        //   ref={overlayRef}
+          //   ref={overlayRef}
           className={cn(
-            "absolute left-0 opacity-0 top-0 z-10 h-full w-full -translate-x-16 bg-transparent",
-            className
+            "absolute left-0 top-0 z-10 h-full w-full -translate-x-16 bg-transparent opacity-0",
+            className,
           )}
         ></div>
         {/* !!! Temporary fix of scrolling issue on mobile !!!*/}

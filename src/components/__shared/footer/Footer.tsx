@@ -111,20 +111,25 @@ const Footer = () => {
             "order-1 flex flex-row flex-wrap gap-4 min-[1110px]:order-2"
           }
         >
-          <div className={"flex flex-row items-center gap-1"}>
+          <div className={"flex flex-row items-center gap-1 truncate"}>
             <svg
               width="24"
               height="24"
               viewBox="0 0 44 44"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              className="shrink-0"
             >
               <path
                 d="M7.33269 36.6654C6.32435 36.6654 5.46085 36.306 4.74219 35.5874C4.02352 34.8687 3.6648 34.0058 3.66602 32.9987V10.9987C3.66602 9.99037 4.02535 9.12687 4.74402 8.4082C5.46269 7.68953 6.32557 7.33081 7.33269 7.33203H36.666C37.6744 7.33203 38.5378 7.69137 39.2565 8.41003C39.9752 9.1287 40.3339 9.99159 40.3327 10.9987V32.9987C40.3327 34.007 39.9734 34.8705 39.2547 35.5892C38.536 36.3079 37.6731 36.6666 36.666 36.6654H7.33269ZM21.9994 23.832L36.666 14.6654V10.9987L21.9994 20.1654L7.33269 10.9987V14.6654L21.9994 23.832Z"
                 fill="#0B6E4F"
               />
             </svg>
-            <Link href={`mailto:${legal.email}`} className="text-[#ffff]">
+            <Link
+              href={`mailto:${legal.email}`}
+              title={legal.email}
+              className="text-[#ffff]"
+            >
               {legal.email}
             </Link>
           </div>
