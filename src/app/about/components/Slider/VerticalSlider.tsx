@@ -58,10 +58,7 @@ const VerticalSlider = () => {
         {/* Promotee info from database */}
         {demoPost.map((item, idx) => (
           <SwiperSlide key={idx + 1} className="relative">
-            <Link
-              href="/blog/lifestyle/The Home You Have Been Longing For"
-              className="relative"
-            >
+            <div className="relative">
               <div className="ml-5 w-10/12 space-y-5 pb-20 pl-10 pr-24 pt-28 xs:pt-40 min-[480px]:ml-10 lg:ml-auto lg:max-w-xl lg:py-20 min-[1160px]:max-w-2xl">
                 <h2 className="text-2xl font-[700]">
                   Lorem ipsum dolor, sit amet consectetur. Onarne
@@ -88,14 +85,11 @@ const VerticalSlider = () => {
                   exercitationem et. Incidunt, at ullam.
                 </p>
               </div>
-            </Link>
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>
-      <Link
-        href="/blog/Lifestyle/The Home You Have Been Longing For"
-        className="col-span-5 mx-auto block w-9/12 lg:col-span-1 lg:w-[26rem]"
-      >
+      <div className="col-span-5 mx-auto block w-9/12 lg:col-span-1 lg:w-[26rem]">
         <div className="relative top-20 z-10 h-60 transition-all lg:left-10 lg:top-0 lg:h-80 min-[1120px]:left-28 xl:left-52">
           <Image
             src={demoPost[activeIndex].image}
@@ -105,7 +99,7 @@ const VerticalSlider = () => {
             className="rounded-[3rem]"
           />
         </div>
-      </Link>
+      </div>
 
       {/* For smooth vertical scrolling */}
       <VerticalSliderScrollFixOverlay

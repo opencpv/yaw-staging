@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     default: "RentrightGH",
   },
   applicationName: "RentrightGH website",
-  description: "Genuine listings without the stress",
+  description: "Genuine listings without stress",
   keywords: ["Genuine listings", "rental", "property management", "agent"],
 };
 

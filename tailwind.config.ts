@@ -94,27 +94,27 @@ const config: Config = {
         light: {
           colors: {
             default: {
-              DEFAULT: "#F1B346",
+              DEFAULT: "#DDB771",
               foreground: "#FFFFFF",
             },
-            primary: {
+            danger: {
               DEFAULT: "#21A19F",
               foreground: "#FFFFFF",
             },
-            focus: "#F1B346",
+            focus: "#DDB771",
           },
         },
         dark: {
           colors: {
             default: {
-              DEFAULT: "#F1B346",
+              DEFAULT: "#DDB771",
               foreground: "#FFFFFF",
             },
-            primary: {
+            danger: {
               DEFAULT: "#21A19F",
               foreground: "#FFFFFF",
             },
-            focus: "#F1B346",
+            focus: "#DDB771",
           },
         },
       },
