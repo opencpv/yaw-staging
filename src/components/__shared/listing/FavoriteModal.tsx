@@ -71,6 +71,7 @@ const ModalFooter = () => {
     <div className="flex w-full flex-col justify-between gap-5 xs:flex-row xs:items-center">
       <div className="order-2 flex xs:order-1">
         <Checkbox
+          color="primary"
           label="Don't show this again"
           value="favorite-show-again"
           isSelected={isSelected}
