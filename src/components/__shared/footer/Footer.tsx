@@ -20,7 +20,7 @@ import HowToLink from "@/components/__shared/HowToLink";
 const Footer = () => {
   return (
     <footer
-      className={`gap no-print flex flex-col gap-[min(10vh,10rem)] bg-[#131B1A] ${montserat.className}`}
+      className={`w-full gap no-print flex flex-col gap-[min(10vh,10rem)] bg-[#131B1A] ${montserat.className}`}
     >
       <div className="flex flex-col justify-center gap-10 bg-[#333] px-5 py-8 text-[#8A8A8A] md:flex-row">
         {quickLinks.map((r) =>

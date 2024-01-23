@@ -17,13 +17,13 @@ const page = async () => {
       </Head>
       <main className="flex w-full flex-col items-center justify-center">
         <div
-          className={` min-h-[100vh] w-full max-w-[1728px] bg-terms-bg bg-cover ${openSans.className}`}
+          className={`flex flex-col h-full min-h-[100vh] w-full max-w-[1728px] bg-terms-bg bg-cover ${openSans.className}`}
         >
           <div className="w-full px-4 py-4 ">
             {data && <TermsNav data={data[0]} />}
           </div>
           {data && (
-            <div className="w-full px-4 py-4 ">
+            <div className="w-full h-full min-h-[80vh] flex items-center justify-center px-4 pl-5 pb-4 ">
               <MainView data={data[0]} />
             </div>
           )}
