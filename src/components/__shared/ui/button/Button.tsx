@@ -13,6 +13,7 @@ type Props = {
   isIconOnly?: boolean;
   disabled?: boolean;
   arrowIcon?: boolean;
+  radius?: "sm" | "full";
   onClick?: (e?: any) => void;
 };
 
@@ -25,6 +26,7 @@ const Button = ({
   isIconOnly,
   disabled,
   arrowIcon,
+  radius,
   onClick,
 }: Props) => {
   return (
@@ -56,6 +58,7 @@ const Button = ({
             variant === "outline" && color === "gradient",
           "w-fit max-w-none justify-normal bg-transparent p-0":
             variant === "ghost",
+          "rounded-full": radius === "full",
           "cursor-not-allowed bg-gray-300 text-neutral-600": disabled,
           "bg-none": disabled && (variant === "outline" || variant === "ghost"),
         },
