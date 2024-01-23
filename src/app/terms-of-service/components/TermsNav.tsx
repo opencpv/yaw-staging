@@ -33,7 +33,7 @@ const TermsNav = ({
     >
      
       <Link href="/" className="w-full h-full">
-       <div className="relative w-full max-w-[72px] aspect-[72/58]">
+       <div className="relative w-full max-w-[56px] lg:max-w-[72px] aspect-[56/46] md:aspect-[72/58]">
           <Image
             src={icons.Logo}
             alt="RentRightGH logo"
