@@ -8,19 +8,24 @@ import { openSans } from "@/lib/utils/fonts";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MenuWrapper from "@/components/__shared/MenuWrapper";
-import { Metadata } from "next";
+import { Metadata, Viewport } from "next";
 
 const uniquePages = ["login", "terms-of-service"];
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | RentrightGH",
-    default: "RentrightGH",
+    template: "%s | RentRightGH",
+    default: "RentRightGH",
   },
-  applicationName: "RentrightGH website",
-  description: "Genuine listings without the stress",
-  keywords: ["Genuine listings", "rental", "property management", "agent"],
-  viewport: { width: "device-width", initialScale: 1, maximumScale: 1 }, // deprecated in NextJs14
+  applicationName: "RentRightGH website",
+  description: "Genuine listings without stress", // tentative
+  keywords: ["Genuine listings", "rental", "property management", "agent"], // tentative
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 export default function RootLayout({

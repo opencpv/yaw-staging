@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 import defaultTheme from "tailwindcss/defaultTheme";
+const { violet, blackA, mauve, green } = require("@radix-ui/colors");
 const { nextui } = require("@nextui-org/react");
 
 const config: Config = {
@@ -21,6 +22,10 @@ const config: Config = {
         "my-search-bg": "url('/assets/images/my-search-bg.png')",
       },
       colors: {
+        ...mauve,
+        ...violet,
+        ...green,
+        ...blackA,
         modalOverlay: "#02020275",
         darkGreenBg: "#073B3A ",
         primary: {
@@ -69,6 +74,8 @@ const config: Config = {
       fontSize: {
         "20": "1.25rem",
         "25": "1.5625rem",
+        "31": "1.9375rem",
+        "39": "2.4375rem",
       },
     },
     screens: {
@@ -87,27 +94,27 @@ const config: Config = {
         light: {
           colors: {
             default: {
-              DEFAULT: "#F1B346",
+              DEFAULT: "#DDB771",
               foreground: "#FFFFFF",
             },
-            primary: {
+            danger: {
               DEFAULT: "#21A19F",
               foreground: "#FFFFFF",
             },
-            focus: "#F1B346",
+            focus: "#DDB771",
           },
         },
         dark: {
           colors: {
             default: {
-              DEFAULT: "#F1B346",
+              DEFAULT: "#DDB771",
               foreground: "#FFFFFF",
             },
-            primary: {
+            danger: {
               DEFAULT: "#21A19F",
               foreground: "#FFFFFF",
             },
-            focus: "#F1B346",
+            focus: "#DDB771",
           },
         },
       },

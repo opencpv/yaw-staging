@@ -42,25 +42,25 @@ const cities = [
   "Goaso",
 ];
 
-const CitySearchForm = ({className}: {className?: string;}) => {
+const CitySearchForm = ({ className }: { className?: string }) => {
   return (
     <div
-      className={`flex h-32 w-full items-center justify-center bg-primary-500 bg-opacity-80 sm:h-52 md:w-full max-w-5xl 2k:h-64 ${styles.rectangle} ${className}`}
+      className={`flex h-40 w-full max-w-5xl items-center justify-center bg-primary-500 bg-opacity-80 sm:h-52 md:w-full 2k:h-64 ${styles.rectangle} ${className}`}
     >
-      <form className="flex h-[4.6rem] w-[80%] translate-x-[-6%] sm:translate-x-[-15%] sm:w-[70%]">
+      <form className="flex h-[4.6rem] w-[80%] translate-x-[-6%] sm:w-[70%] sm:translate-x-[-15%]">
         {/* <AutoComplete
           data={cities}
           className="h-full w-full flex-[4] rounded-l-xl rounded-r-none bg-secondary-300 px-4 py-2 text-sm font-[600] text-neutral-900 placeholder:text-neutral-400 focus:outline-none xs:flex-[5] xs:text-2xl"
           placeholder="Madina, Accra"
         /> */}
         <input
-          className="h-full w-full flex-[4] rounded-l-xl rounded-r-none bg-secondary-300 px-6 py-3 font-[600] text-neutral-900 placeholder:text-neutral-400 focus:outline-none xs:flex-[5] xs:text-2xl"
+          className="h-full w-full rounded-l-xl rounded-r-none bg-secondary-300 px-6 py-3 text-lg font-[600] text-neutral-900 placeholder:text-neutral-400 focus:outline-none xs:text-2xl"
           placeholder="Madina, Accra"
         />
 
         <button
           type="submit"
-          className="grid flex-1 w-16 h-full border-r rounded-l-none place-items-center rounded-r-xl border-y border-secondary-300 bg-accent-50"
+          className="grid h-full w-24 place-items-center rounded-l-none rounded-r-xl border-y border-r border-secondary-300 bg-accent-50"
         >
           <FaSearch />
         </button>

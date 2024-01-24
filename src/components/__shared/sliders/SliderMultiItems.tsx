@@ -18,6 +18,7 @@ const SliderMultiItems = ({
   breakpoints,
   hasNavAndPagination,
   autoplay,
+  swiperSlideClassName,
 }: SliderMultiItemsProps) => {
   return (
     <>
@@ -57,25 +58,25 @@ const SliderMultiItems = ({
           prevEl: ".slider-multi-items-prev",
         }}
         modules={[Pagination, Navigation, Autoplay, FreeMode]}
-        className="w-full h-fit mySwiper slider-multi-items"
+        className="mySwiper slider-multi-items h-fit w-full"
       >
         {items?.map((item, idx) => (
-          <SwiperSlide key={idx + 1} className="">
+          <SwiperSlide key={idx + 1} className={swiperSlideClassName}>
             {item}
           </SwiperSlide>
         ))}
       </Swiper>
       {/* Pagination bullets and button */}
       {hasNavAndPagination === false ? null : (
-        <div className="relative z-20 bottom-[-2rem] w-11/12 mx-auto flex items-center justify-center">
-          <div className="inline-flex items-center justify-between w-full gap-5">
+        <div className="relative bottom-[-2rem] z-20 mx-auto flex w-11/12 items-center justify-center">
+          <div className="inline-flex w-full items-center justify-between gap-5">
             {/* Prev Button */}
-            <div className="grid w-12 h-12 rounded-full slider-multi-items-prev bg-accent-50 shrink-0 place-items-center md:w-16 md:h-16">
+            <div className="slider-multi-items-prev grid h-12 w-12 shrink-0 place-items-center rounded-full bg-accent-50 md:h-16 md:w-16">
               <FaChevronLeft className="text-white" />
             </div>
-            <div className="absolute left-10 slider-multi-items-pagination w-full hidden min-[250px]:block"></div>
+            <div className="slider-multi-items-pagination absolute left-10 hidden w-full min-[250px]:block"></div>
             {/* Next button */}
-            <div className="grid w-12 h-12 rounded-full slider-multi-items-next bg-accent-50 shrink-0 place-items-center md:w-16 md:h-16">
+            <div className="slider-multi-items-next grid h-12 w-12 shrink-0 place-items-center rounded-full bg-accent-50 md:h-16 md:w-16">
               <FaChevronRight className="text-white" />
             </div>
           </div>

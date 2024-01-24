@@ -1,4 +1,3 @@
-import Head from "next/head";
 import fetchAboutData from "./lib/fetchAboutData";
 import Image from "next/image";
 import AboutItem from "./components/AboutItem";
@@ -13,7 +12,7 @@ import FeaturedListings from "@/components/__shared/listing/FeaturedListings";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About us",
 };
 
 const About = async () => {
@@ -95,7 +94,7 @@ const About = async () => {
         </section>
         <AOSWrapper
           animation="fade-up"
-          className="section wrapper-section h-fit"
+          className="mx-auto h-fit max-w-screen-2xl px-5 sm:px-10 lg:pt-28"
         >
           <VerticalSlider />
         </AOSWrapper>
