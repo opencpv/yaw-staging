@@ -26,7 +26,7 @@ const RenterOverviewPage = (props: Props) => {
             className="md:mb-20"
             type="Renter"
           />
-          {true && (
+          {true && (  // TODO: implement appropriately
             <section className="mt-10 flex w-fit flex-wrap gap-5 md:mt-40">
               <RenterActivityCard />
               <RenterActivityCard />

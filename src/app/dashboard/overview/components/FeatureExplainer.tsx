@@ -39,29 +39,34 @@ const FeatureExplainer = ({
         <Callout className="flex gap-2">
           <BsPatchExclamation className="shrink-0 text-lg text-accent-50" />
           <div className="text-base">
-            <p className="leading-normal">
-              Upgrade now to unlock this exclusive feature and supercharge your
-              renting experience
-            </p>
             {title === "Be The First To Know" && (
-              <Link href={`${href}`} className="inline-block">
-                <Button
-                  variant="ghost"
-                  className="text-base font-[700] capitalize text-[#45808B] underline"
-                >
-                  Learn more
-                </Button>
-              </Link>
+              <p className="leading-normal">
+                Upgrade now to unlock this exclusive feature and supercharge
+                your renting experience
+              </p>
             )}
             {title === "Be My Agent" && (
-              <Link href={`${href}`} className="inline-block">
-                <Button
-                  variant="ghost"
-                  className="text-base font-[700] capitalize text-[#45808B] underline"
-                >
-                  Learn more
-                </Button>
-              </Link>
+              <p className="leading-normal">
+                You have no record for this service
+              </p>
+            )}
+            {title === "Be The First To Know" && (
+              <Button
+                href={href}
+                variant="ghost"
+                className="text-base font-[700] capitalize text-[#45808B] underline"
+              >
+                Learn more
+              </Button>
+            )}
+            {title === "Be My Agent" && (
+              <Button
+                href={href}
+                variant="ghost"
+                className="text-base font-[700] capitalize text-[#45808B] underline"
+              >
+                Get started
+              </Button>
             )}
           </div>
         </Callout>
