@@ -14,12 +14,12 @@ const uniquePages = ["login", "terms-of-service"];
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | RentrightGH",
-    default: "RentrightGH",
+    template: "%s | RentRightGH",
+    default: "RentRightGH",
   },
-  applicationName: "RentrightGH website",
-  description: "Genuine listings without stress",
-  keywords: ["Genuine listings", "rental", "property management", "agent"],
+  applicationName: "RentRightGH website",
+  description: "Genuine listings without stress", // tentative
+  keywords: ["Genuine listings", "rental", "property management", "agent"], // tentative
 };
 
 export const viewport: Viewport = {
