@@ -15,7 +15,7 @@ type Props = {};
 const PropManagerOverviewPage = (props: Props) => {
   const { images } = useAssets();
   return (
-    <main className="wrapper my-10 text-neutral-800">
+    <main className="my-10 text-neutral-800">
       <section className="mx-auto mb-20 grid-cols-4 justify-between gap-x-10 lg:mb-32 lg:grid">
         {/* Grid col */}
         <div className="col-span-3">

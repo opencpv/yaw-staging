@@ -19,7 +19,7 @@ const UserOverview = ({
 }: UserOverviewProps) => {
   return (
     <div className={className}>
-      <h2 className="mb-6 text-3xl">Overview</h2>
+      <h2 className="mb-6">Overview</h2>
       <h3 className="mb-6 text-neutral-700 md:hidden">Welcome, John</h3>
       <Callout className="mb-6 flex w-full items-center gap-5 sm:w-10/12">
         <HiOutlineExclamationCircle className="rotate-180 text-5xl text-accent-50" />
