@@ -13,12 +13,11 @@ import supabase from "@/lib/utils/supabaseClient";
 import { NotificationType } from "./components/types";
 import { useAppStore } from "@/store/dashboard/AppStore";
 
-
 const Page = () => {
   const [currentNotification, setCurrentNotification] =
     useState<NotificationType>();
   // const [notifications, setNotifications] = useState<NotificationType | any>();
-  const {user} = useAppStore()
+  const { user } = useAppStore();
 
   useEffect(() => {
     const supabase = createClientComponentClient();
@@ -31,18 +30,14 @@ const Page = () => {
   //   setCurrentNotification(demoNotifications[0]);
   // }, []);
 
-
-
   return (
-    <div className={`flex lg:grid grid-cols-3 gap-5 `}>
+    <div className={`flex grid-cols-3 gap-5 lg:grid `}>
       <div className=" lg:col-span-1  ">
         <div className="mb-2 px-3">
-          <p className="text-[24px] 2xl:text-[31px] font font-semibold">
-            Notifications
-          </p>
+          <h2>Notifications</h2>
 
-          <div className="w-full flex justify-end">
-            <button className="flex justify-end items-center gap-2 hover:bg-[#073b3a12] p-2">
+          <div className="flex w-full justify-end">
+            <button className="flex items-center justify-end gap-2 p-2 hover:bg-[#073b3a12]">
               <div className="flex gap-0">
                 <CaMarkAsRead />
               </div>
@@ -50,14 +45,15 @@ const Page = () => {
             </button>
           </div>
         </div>
-        <CustomScroll className="hidden lg:flex flex-col gap-6 max-h-[70vh] overflow-y-scroll ">
-          {user?.notifications?.map((r : any, index : number) => (
+        <CustomScroll className="hidden max-h-[70vh] flex-col gap-6 overflow-y-scroll lg:flex ">
+          {user?.notifications?.map((r: any, index: number) => (
             <div
               className="w-full"
               key={index}
               onClick={(e) => {
                 setCurrentNotification(r);
-              }}>
+              }}
+            >
               <NotificationItem
                 type={r?.type}
                 sender={r?.sender_name}
@@ -65,26 +61,24 @@ const Page = () => {
                 time={r?.sent}
                 content={r?.content}
               />
-          
             </div>
           ))}
         </CustomScroll>
-        <div className="flex flex-col lg:hidden lex-col gap-8  w-full overflow-y-scroll ">
-          {user?.notifications?.map((r : any, index: number) => (
+        <div className="lex-col flex w-full flex-col gap-8  overflow-y-scroll lg:hidden ">
+          {user?.notifications?.map((r: any, index: number) => (
             <div
               key={index}
               onClick={(e) => {
                 setCurrentNotification(r);
-              }}>
+              }}
+            >
               <NotificationsSmItem currentNotification={r} />
             </div>
           ))}
         </div>
       </div>
-      <div className="hidden lg:flex col-span-2 h-full min-h-[50vh] mt-14">
-        <NotificationDetailsFull
-          currentNotification={currentNotification}
-        />
+      <div className="col-span-2 mt-14 hidden h-full min-h-[50vh] lg:flex">
+        <NotificationDetailsFull currentNotification={currentNotification} />
       </div>
     </div>
   );

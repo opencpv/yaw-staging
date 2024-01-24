@@ -13,7 +13,7 @@ const RenterOverviewPage = (props: Props) => {
   const { images } = useAssets();
 
   return (
-    <main className="wrapper text-neutral-800">
+    <main className="text-neutral-800">
       <section className="mx-auto mb-20 grid-cols-4 justify-between gap-x-10 lg:mb-32 lg:grid">
         {/* Grid col */}
         <div className="col-span-3">
