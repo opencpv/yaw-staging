@@ -1,4 +1,3 @@
-import Head from "next/head";
 import fetchAboutData from "./lib/fetchAboutData";
 import Image from "next/image";
 import AboutItem from "./components/AboutItem";
@@ -13,7 +12,7 @@ import FeaturedListings from "@/components/__shared/listing/FeaturedListings";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About us",
 };
 
 const About = async () => {
