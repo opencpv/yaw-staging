@@ -17,6 +17,7 @@ interface ListingCardInterface extends ListingInterface {
 interface RenterPaidFeatureInterface {
   title: "Be My Agent" | "Be The First To Know";
   href: string;
+  locked: boolean;
   className?: string;
 }
 
@@ -102,7 +103,7 @@ export interface CartProp {
   isQuantityChangable: boolean;
 }
 
-export  interface SentimentSpan {
+export interface SentimentSpan {
   skill: string;
   type: string;
   span: [number, number];
@@ -115,9 +116,9 @@ export  interface SentimentSpan {
   }[];
   value: string;
   data: Record<string, unknown>;
-};
+}
 
-export interface SentimentResponse  {
+export interface SentimentResponse {
   text: string;
   requestId: string;
   stats: {
@@ -126,4 +127,4 @@ export interface SentimentResponse  {
     transcriptionSecondsCount: number;
   };
   sentiments: SentimentSpan[];
-};
+}
