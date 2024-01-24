@@ -19,7 +19,13 @@ import { ListingCardInterface } from "../../../../interfaces";
 const ListingCard = (props: ListingCardInterface) => {
   return (
     <>
-      <div className={`relative cursor-default ${props.className}`}>
+      <div
+        className={`relative cursor-default ${props.className} ${
+          props.cardType === "2"
+            ? null
+            : "rounded-b-lg shadow-[1px_3px_13px_rgba(0,_0,_0,_0.10)]"
+        }`}
+      >
         <Swiper
           pagination={{
             clickable: true,
@@ -31,15 +37,15 @@ const ListingCard = (props: ListingCardInterface) => {
             prevEl: ".custom-l-prev",
           }}
           modules={[Pagination, Navigation]}
-          className={`relative w-full listing-card-slider ${
-            props.cardType === "2" ? "rounded-2xl h-80" : "rounded-t-lg h-52"
+          className={`listing-card-slider relative w-full ${
+            props.cardType === "2" ? "h-80 rounded-2xl" : "h-52 rounded-t-lg"
           } `}
         >
           {/* Mapping through Featured listings from database */}
           {props.images?.map((image, index) => (
             <SwiperSlide key={index}>
               <Link href={`${props.href}`}>
-                <div className="relative w-full h-full">
+                <div className="relative h-full w-full">
                   <Image
                     src={image}
                     alt={props.propertyName as string}
@@ -60,7 +66,7 @@ const ListingCard = (props: ListingCardInterface) => {
           >
             <MdChevronLeft className="text-lg text-neutral-700" />
           </div>
-          <div className="w-full space-x-3 text-center custom-l-pagination bottom-40"></div>
+          <div className="custom-l-pagination bottom-40 w-full space-x-3 text-center"></div>
           <div
             className={`custom-l-next absolute right-[5%] z-10 flex h-10 w-10 shrink-0 cursor-default items-center justify-center rounded-full bg-white ${
               props.cardType === "2" ? "bottom-32" : "bottom-20"
@@ -80,9 +86,7 @@ const ListingCard = (props: ListingCardInterface) => {
           city={props.city}
           rating={props.rating}
           ratingCount={props.ratingCount}
-          className={`bg-white text-neutral-800 ${
-            props.cardType === "2" ? null : "shadow-lg"
-          }`}
+          className={`bg-white text-neutral-800`}
         />
         {/* Deals */}
         <ListingDeals membership={props.membership} deal={props.deal} />

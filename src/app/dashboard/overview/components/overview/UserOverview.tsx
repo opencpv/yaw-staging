@@ -19,12 +19,10 @@ const UserOverview = ({
 }: UserOverviewProps) => {
   return (
     <div className={className}>
-      <h2 className="mb-6">Overview</h2>
-      <h3 className="mb-6 text-neutral-700 md:hidden">
-        Welcome, John
-      </h3>
-      <Callout className="flex items-center w-full gap-5 mb-6 sm:w-10/12">
-        <HiOutlineExclamationCircle className="text-5xl rotate-180 text-accent-50" />
+      <h2 className="mb-6 text-3xl">Overview</h2>
+      <h3 className="mb-6 text-neutral-700 md:hidden">Welcome, John</h3>
+      <Callout className="mb-6 flex w-full items-center gap-5 sm:w-10/12">
+        <HiOutlineExclamationCircle className="rotate-180 text-5xl text-accent-50" />
         <div className="space-y-1">
           {type === "Renter" ? (
             <p className="text-base">
@@ -54,11 +52,11 @@ const UserOverview = ({
           className="mb-10"
         />
       )}
-      <div className="hidden w-full p-10 pt-20 pb-0 bg-primary-400 rounded-xl max-w-[850px] max-h-60 md:block">
-        <div className="w-11/12 mx-auto">
-          <h3 className="text-white mb-4 font-[600] text-xl">Welcome, John</h3>
-          <div className="flex items-center p-8 py-16 bg-white shadow-2xl gap-x-6 gap-y-3 rounded-xl max-h-60">
-            <div className="relative w-32 h-32 shadow-lg rounded-xl">
+      <div className="hidden max-h-60 w-full max-w-[850px] rounded-xl bg-primary-400 p-10 pb-0 pt-20 md:block">
+        <div className="mx-auto w-11/12">
+          <h3 className="mb-4 text-xl font-[600] text-white">Welcome, John</h3>
+          <div className="flex max-h-60 items-center gap-x-6 gap-y-3 rounded-xl bg-white p-8 py-16 shadow-2xl">
+            <div className="relative h-32 w-32 rounded-xl shadow-lg">
               <Image
                 src={picture}
                 alt={name}
@@ -69,7 +67,7 @@ const UserOverview = ({
             </div>
             <div className="space-y-2">
               <h4 className="">{name}</h4>
-              <div className="flex flex-wrap items-center mb-4 text-base gap-x-5 gap-y-3">
+              <div className="mb-4 flex flex-wrap items-center gap-x-5 gap-y-3 text-base">
                 <div className="flex items-center gap-2 text-neutral-700">
                   <FaRegEnvelope className="text-primary-400" />
                   {email}
@@ -79,7 +77,7 @@ const UserOverview = ({
                   {telephone}
                 </div>
               </div>
-              <Button className="flex items-center gap-1.5 font-[400] text-sm text-white p-1 px-4 rounded-md bg-[#597C7B]">
+              <Button className="flex items-center gap-1.5 rounded-md bg-[#597C7B] p-1 px-4 text-sm font-[400] text-white">
                 Complete your profile <HiOutlinePencil />{" "}
               </Button>
             </div>
@@ -92,7 +90,7 @@ const UserOverview = ({
         picture={picture}
         email={email}
         telephone={telephone}
-        className="flex flex-col items-center w-full p-8 bg-white shadow-2xl gap-x-6 gap-y-3 rounded-xl sm:py-16 sm:max-h-60 sm:flex-row sm:justify-start md:hidden"
+        className="flex w-full flex-col items-center gap-x-6 gap-y-3 rounded-xl bg-white p-8 shadow-2xl sm:max-h-60 sm:flex-row sm:justify-start sm:py-16 md:hidden"
         type={type}
       />
     </div>

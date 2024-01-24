@@ -9,9 +9,8 @@ type Props = {
 const RenterExplore = (props: Props) => {
   const { icons } = useAssets();
   return (
-    <section className={`mb-20 ${props.className}`}>
-      <h2 className="text-2xl font-[700] mb-6">Upgrade</h2>
-      <div className="flex flex-wrap w-full gap-5 mb-5">
+    <section className={`${props.className}`}>
+      <div className="mb-5 flex w-full flex-wrap gap-5">
         {/* <FeatureUpgradeCard title="Be The First To Know" />
           <FeatureUpgradeCard title="Be My Agent" /> */}
         <ExploreFeatureCard
