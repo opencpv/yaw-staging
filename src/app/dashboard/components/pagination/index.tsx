@@ -10,7 +10,7 @@ import { useEffect, useRef, useState } from "react";
 import { IoMdSettings } from "react-icons/io";
 import { usePathname, useRouter } from "next/navigation";
 import path from "path";
-import { PgRoutes } from "./links";
+import { PgRoutesRenter } from "./links";
 
 type PaginationTabProps = {
   active: string;
@@ -47,9 +47,8 @@ const Pagination = () => {
 
   useEffect(() => {
     if (pathname) {
-      console.log(pathname);
       const currentURL = pathname;
-      PgRoutes.forEach((r) => {
+      PgRoutesRenter.forEach((r) => {
         if (currentURL.includes(r?.name)) {
           setActive(r?.name);
         }
@@ -108,7 +107,7 @@ const Pagination = () => {
           scrollBehavior: "smooth",
         }}
       >
-        {PgRoutes.map((r, index) => (
+        {PgRoutesRenter.map((r, index) => (
           <PaginationTab
             key={index}
             name={r?.name}

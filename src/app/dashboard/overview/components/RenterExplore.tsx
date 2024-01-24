@@ -16,19 +16,19 @@ const RenterExplore = (props: Props) => {
         <ExploreFeatureCard
           title="My Bookmarks"
           description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis mollitia eius recusandae sed, quis, vitae sequi praesentium natus id dolores atque omnis facilis tempore exercitationem perferendis sit alias consequuntur nemo."
-          href=""
+          href="/dashboard/my-search"
         />
         <ExploreFeatureCard
           tag="Free"
           title="Be The First To Know"
           description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis mollitia eius recusandae sed, quis, vitae sequi praesentium natus id dolores atque omnis facilis tempore exercitationem perferendis sit alias consequuntur nemo."
-          href=""
+          href="/dashboard/my-search"
         />
         <ExploreFeatureCard
           tag="Upgrade"
           title="My My Agent"
           description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis mollitia eius recusandae sed, quis, vitae sequi praesentium natus id dolores atque omnis facilis tempore exercitationem perferendis sit alias consequuntur nemo."
-          href=""
+          href="/dashboard/my-agent"
         />
       </div>
     </section>
