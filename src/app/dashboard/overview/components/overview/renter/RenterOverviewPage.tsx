@@ -6,6 +6,7 @@ import RecommendedListings from "@/components/__shared/listing/RecommendedListin
 import GradientBanner from "../GradientBanner";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import SellYourItem from "../../SellYourItem";
+import RenterActivityCard from "./RenterActivityCard";
 
 type Props = {};
 
@@ -14,7 +15,7 @@ const RenterOverviewPage = (props: Props) => {
 
   return (
     <main className="text-neutral-800">
-      <section className="mx-auto mb-20 grid-cols-4 justify-between gap-x-10 lg:mb-32 lg:grid">
+      <section className="mx-auto mb-20 grid-cols-4 justify-between gap-x-10 lg:grid">
         {/* Grid col */}
         <div className="col-span-3">
           <UserOverview
@@ -22,9 +23,16 @@ const RenterOverviewPage = (props: Props) => {
             picture="/assets/images/profile-image.jpg"
             email="johndoe@gmail.com"
             telephone="(+233) 1235 554 55"
-            className="mb-20"
+            className="md:mb-20"
             type="Renter"
           />
+          {true && (
+            <section className="mt-10 flex w-fit flex-wrap gap-5 md:mt-40">
+              <RenterActivityCard />
+              <RenterActivityCard />
+            </section>
+          )}
+
           <section className="section space-y-10">
             <GradientBanner
               image={images.BusinessPersonWithHouseKeys}

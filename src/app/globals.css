@@ -131,12 +131,7 @@ small {
 
 .wrapper,
 .wrapper-2 {
-  max-width: 1536px;
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-  @apply pb-8 pt-12 sm:pb-14;
+  @apply mx-auto max-w-screen-3xl px-5 pb-8 pt-12 sm:pb-14 lg:px-10;
 }
 
 .wrapper-2 {
@@ -144,7 +139,7 @@ small {
 }
 
 .wrapper-section {
-  @apply mx-auto max-w-screen-2xl px-5 pb-0 pt-28 sm:px-10 sm:pb-0;
+  @apply mx-auto max-w-screen-3xl px-5 pb-0 pt-28 sm:px-10 sm:pb-0;
 }
 
 @media (min-width: 640px) {
@@ -155,10 +150,6 @@ small {
   .skeleton-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .wrapper {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
   }
 }
 

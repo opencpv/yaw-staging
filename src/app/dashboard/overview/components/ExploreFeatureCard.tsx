@@ -25,11 +25,13 @@ const ExploreFeatureCard = (props: Props) => {
       <div className="space-y-5 text-center text-white">
         <h2 className="">{props.title}</h2>
         <p className="line-clamp-3 text-sm">{props.description}</p>
-        <Link href={`${props.href}`} className="inline-block w-full">
-          <Button className="w-full bg-white/60 text-white" arrowIcon>
-            Explore
-          </Button>
-        </Link>
+        <Button
+          href={props.href}
+          className="w-full bg-white/60 text-white"
+          arrowIcon
+        >
+          Open
+        </Button>
       </div>
     </div>
   );
