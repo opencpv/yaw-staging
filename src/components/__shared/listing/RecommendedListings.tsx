@@ -26,14 +26,14 @@ const RecommendedListings = ({ className }: Props) => {
     supabase
       .from("standard_template")
       .select(
-        "id, property_name, property_id, description, monthly_amount, city"
+        "id, property_name, property_id, description, monthly_amount, city",
       )
       .order("created_at", fetchOrderRule()),
-    revalidationRule()
+    revalidationRule(),
   );
 
   return (
-    <section className={`w-full h-fit no-print ${className}`}>
+    <section className={`no-print h-fit w-full ${className}`}>
       <FetchingStates
         data={listings}
         error={error}
@@ -46,7 +46,7 @@ const RecommendedListings = ({ className }: Props) => {
         }
         errorComponent={<FetchErrorMessage />}
         noDataMessageComponent={
-          <p className="mt-4 italic text-center">
+          <p className="mt-4 text-center italic">
             There are no properties yet.
           </p>
         }
@@ -73,6 +73,7 @@ const RecommendedListings = ({ className }: Props) => {
               slidesPerView: 4,
             },
           }}
+          swiperSlideClassName="max-w-sm min-w-[24rem] h-full"
           items={listings?.map((listing) => (
             <ListingCard
               key={listing.id}
