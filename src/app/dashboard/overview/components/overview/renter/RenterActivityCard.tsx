@@ -13,7 +13,13 @@ const RenterActivityCard = (props: Props) => {
       <div className="space-y-2 xs:min-w-fit">
         <h4 className="font-normal">Approved Applications</h4>
         <h2 className="font-bold">6</h2>
-        <Button href="" color="accent" radius="full" padding="sm">
+        <Button
+          href=""
+          color="accent"
+          radius="full"
+          padding="sm"
+          className="h-unit-6"
+        >
           See Details
         </Button>
       </div>
