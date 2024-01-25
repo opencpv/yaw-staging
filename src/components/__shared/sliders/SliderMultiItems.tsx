@@ -23,16 +23,16 @@ const SliderMultiItems = ({
   return (
     <>
       <Swiper
-        // cssMode={true}
-        autoplay={
-          autoplay === false || autoplay === undefined
-            ? false
-            : {
-                delay: 10,
-                disableOnInteraction: true,
-                pauseOnMouseEnter: true,
-              }
-        }
+        cssMode={!hasNavAndPagination && true}
+        // autoplay={
+        //   autoplay === false || autoplay === undefined
+        //     ? false
+        //     : {
+        //         delay: 10,
+        //         disableOnInteraction: true,
+        //         pauseOnMouseEnter: true,
+        //       }
+        // }
         slidesPerView={slidesPerView ? slidesPerView : 1.5}
         spaceBetween={15}
         centeredSlides
@@ -42,11 +42,11 @@ const SliderMultiItems = ({
             spaceBetween: 20,
           },
         }}
-        freeMode={{
-          enabled: autoplay === false ? false : true,
-          // momentumRatio: 0.4,
-          // momentumVelocityRatio: 0.4,
-        }}
+        // freeMode={{
+        //   enabled: autoplay === false || autoplay === undefined ? false : true,
+        //   // momentumRatio: 0.4,
+        //   // momentumVelocityRatio: 0.4,
+        // }}
         speed={autoplay ? 30000 : undefined}
         pagination={{
           clickable: true,
