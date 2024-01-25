@@ -7,15 +7,19 @@ import CaDashSave from "../icons/CaDashSave";
 import CaDashMySearch from "../icons/CaDashMySearch";
 import CaSell from "@/app/components/icons/CaSell";
 import { TbHomeSearch } from "react-icons/tb";
-import { MdRealEstateAgent } from "react-icons/md";
-import { PiCreditCardFill } from "react-icons/pi";
+import { MdOutlineRealEstateAgent, MdRealEstateAgent } from "react-icons/md";
+import { PiCirclesFourThin, PiCreditCardFill } from "react-icons/pi";
 import { FaStar } from "react-icons/fa6";
+import { HiOutlineChatBubbleLeftEllipsis } from "react-icons/hi2";
+import { LiaCreditCardSolid } from "react-icons/lia";
+import { FaRegStar } from "react-icons/fa";
+import { IoSettingsOutline } from "react-icons/io5";
 
 export const PgRoutesRenter = [
   {
     name: "overview",
     url: "",
-    icon: <CaOverview />,
+    icon: <PiCirclesFourThin />,
     link: "/dashboard/overview",
   },
   {
@@ -27,25 +31,25 @@ export const PgRoutesRenter = [
   {
     name: "my agent",
     url: "",
-    icon: <MdRealEstateAgent />,
+    icon: <MdOutlineRealEstateAgent />,
     link: "/dashboard/my-agent",
   },
   {
     name: "messages",
     url: "",
-    icon: <CaDAshMessages />,
+    icon: <HiOutlineChatBubbleLeftEllipsis />,
     link: "/dashboard/messages",
   },
   {
     name: "applications",
     url: "",
-    icon: <PiCreditCardFill width={24} height={24} />,
+    icon: <LiaCreditCardSolid width={24} height={24} />,
     link: "/dashboard/applications",
   },
   {
     name: "my reviews",
     url: "",
-    icon: <FaStar />,
+    icon: <FaRegStar />,
     link: "/dashboard/sell-products",
   },
   {
@@ -88,11 +92,10 @@ export const PgRoutesRenter = [
   {
     name: "settings",
     url: "",
-    icon: <IoMdSettings size="24" />,
+    icon: <IoSettingsOutline size="24" />,
     link: "/dashboard/settings",
   },
 ];
-
 
 export const PgRoutesPropManager = [
   {
