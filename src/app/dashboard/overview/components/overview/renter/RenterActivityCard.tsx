@@ -28,7 +28,6 @@ const RenterActivityCard = ({ type, count, href }: Props) => {
           color="accent"
           radius="full"
           padding="sm"
-          className="h-unit-6"
         >
           See Details
         </Button>
