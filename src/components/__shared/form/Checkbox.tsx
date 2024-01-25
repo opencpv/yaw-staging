@@ -29,7 +29,7 @@ const Checkbox = ({
         label: `${labelSize ?? "text-sm"} ${labelColor ?? "text-neutral-800"}`,
       }}
       value={value}
-      color={color === "primary" ? "danger" : "default"}
+      color={color ?? "default"}
       // isSelected={isSelected}
       // className={cn({
       //   "before:border-primary-100  after:bg-red-800 group-data-[focus-visible=true]:ring-primary-100 group-data-[focus-visible=true]:ring-offset-primary-100 group-data-[hover=true]:before:bg-primary-100":

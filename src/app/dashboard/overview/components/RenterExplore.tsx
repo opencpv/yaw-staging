@@ -14,6 +14,7 @@ const RenterExplore = (props: Props) => {
         {/* <FeatureUpgradeCard title="Be The First To Know" />
           <FeatureUpgradeCard title="Be My Agent" /> */}
         <ExploreFeatureCard
+          tag="Free"
           title="My Bookmarks"
           description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis mollitia eius recusandae sed, quis, vitae sequi praesentium natus id dolores atque omnis facilis tempore exercitationem perferendis sit alias consequuntur nemo."
           href="/dashboard/my-search"
@@ -25,7 +26,6 @@ const RenterExplore = (props: Props) => {
           href="/dashboard/my-search"
         />
         <ExploreFeatureCard
-          tag="Upgrade"
           title="Be My Agent"
           description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis mollitia eius recusandae sed, quis, vitae sequi praesentium natus id dolores atque omnis facilis tempore exercitationem perferendis sit alias consequuntur nemo."
           href="/dashboard/my-agent"

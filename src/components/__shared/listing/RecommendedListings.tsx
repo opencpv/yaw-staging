@@ -73,7 +73,7 @@ const RecommendedListings = ({ className }: Props) => {
               slidesPerView: 4,
             },
           }}
-          swiperSlideClassName="max-w-sm min-w-[24rem] h-full"
+          swiperSlideClassName="max-w-[23rem] min-w-[23rem] h-full"
           items={listings?.map((listing) => (
             <ListingCard
               key={listing.id}
