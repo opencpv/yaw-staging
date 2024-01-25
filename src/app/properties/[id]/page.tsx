@@ -30,6 +30,7 @@ import { revalidationRule } from "@/lib/utils/fetchRules";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
 import { useUserDetails } from "@/lib/custom-hooks/message/useUserDetails";
 import { useModalFullscreenStore } from "@/store/modal/useModalStore";
+import ViewPropertyBtn from "../components/ViewPropertyBtn";
 
 const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
   const { id: propertyId } = params;
@@ -69,24 +70,27 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
         isValidating={isValidating}
         isLoadingComponent={
           <div className="">
-            <SkeletonLong
-              className={`${style.shapeLeft2} rounded-none h-[50rem] w-full mb-20`}
-            />
+            <div className="relative mb-20 h-[50rem]">
+              <SkeletonLong
+                className={`${style.shapeLeft2} h-full w-full rounded-none`}
+              />
+              <ViewPropertyBtn disabled />
+            </div>
             <div className="wrapper gap-x-20 gap-y-10 lg:grid lg:grid-cols-2">
               {/* grid col */}
               <div className="space-y-10">
-                <Skeleton className="w-full h-4 md:w-9/12" />
+                <Skeleton className="h-4 w-full md:w-9/12" />
                 <div className="hidden grid-cols-2 gap-3 lg:grid">
                   <SkeletonLong count={10} className="mb-0" />
                 </div>
-                <div className="w-full mb-20 h-60 lg:hidden">
+                <div className="mb-20 h-60 w-full lg:hidden">
                   <SkeletonRectangle count={1} />
                 </div>
               </div>
               {/* grid col */}
               <div className="space-y-20">
                 <div className="space-y-10">
-                  <Skeleton className="w-full h-4 mb-10 md:w-9/12" />
+                  <Skeleton className="mb-10 h-4 w-full md:w-9/12" />
                   <SkeletonTextual />
                 </div>
                 <div className="">
@@ -106,8 +110,8 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
             position="left"
           ></ShapedLanding>
           <main className="wrapper">
-            <section className="py-10 mb-10">
-              <div className="text-[#305A61] font-[600] text-2xl">
+            <section className="mb-10 py-10">
+              <div className="text-2xl font-[600] text-[#305A61]">
                 <BreadCrumbPreLink
                   label="Properties"
                   href="/properties"
@@ -119,7 +123,7 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
                 </span>
               </div>
               {/* Property images */}
-              <section className="grid grid-cols-1 gap-16 mt-8 md:mt-16 lg:grid-cols-2">
+              <section className="mt-8 grid grid-cols-1 gap-16 md:mt-16 lg:grid-cols-2">
                 <PropertyDetailsImages
                   images={{
                     images: [""],
@@ -131,7 +135,7 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
                   <section className="">
                     <div className="space-y-5">
                       <div className="flex flex-wrap gap-x-16 gap-y-2">
-                        <h2 className="text-[#305A61] font-[600] text-2xl">
+                        <h2 className="text-2xl font-[600] text-[#305A61]">
                           {listing?.property_name} at {listing?.city}
                         </h2>
 
@@ -159,7 +163,7 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
                         bathroomTotal={listing?.bathrooms as number}
                         squareMeter={{ from: 468, to: 967 }}
                       />
-                      <p className="relative bottom-5 inline-block rounded-lg font-[500] bg-[#E7F8F2] text-gray-900 p-3 text-xs">
+                      <p className="relative bottom-5 inline-block rounded-lg bg-[#E7F8F2] p-3 text-xs font-[500] text-gray-900">
                         One Year Advance
                       </p>
                     </div>
@@ -237,8 +241,8 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
       )}
       {/* Recommended Listings */}
       <section className="wrapper">
-        <div className="flex flex-wrap items-center justify-between gap-5 mb-5">
-          <h2 className="text-neutral-800 text-xl font-[600] md:ml-10">
+        <div className="mb-5 flex flex-wrap items-center justify-between gap-5">
+          <h2 className="text-xl font-[600] text-neutral-800 md:ml-10">
             Recommended Listings
           </h2>
           {listing && (
