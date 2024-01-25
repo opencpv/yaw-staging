@@ -56,7 +56,7 @@ const FeaturedListings = ({ className }: Props) => {
         <SliderMultiItems
           autoplay
           hasNavAndPagination={false}
-          slidesPerView={1}
+          slidesPerView={1.5}
           breakpoints={{
             500: {
               slidesPerView: 1.5,
