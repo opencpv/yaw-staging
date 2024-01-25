@@ -26,7 +26,7 @@ const RenterExplore = (props: Props) => {
         />
         <ExploreFeatureCard
           tag="Upgrade"
-          title="My My Agent"
+          title="Be My Agent"
           description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis mollitia eius recusandae sed, quis, vitae sequi praesentium natus id dolores atque omnis facilis tempore exercitationem perferendis sit alias consequuntur nemo."
           href="/dashboard/my-agent"
         />
