@@ -23,6 +23,7 @@ const SliderMultiItems = ({
   return (
     <>
       <Swiper
+        // cssMode={true}
         autoplay={
           autoplay === false || autoplay === undefined
             ? false
