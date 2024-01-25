@@ -52,7 +52,9 @@ export default function RootLayout({
       className="text-[14px] lg:text-[14.5px] 2xl:text-[15px] 3xl:text-[16px]"
     >
       <Script src="https://widget.cloudinary.com/v2.0/global/all.js" />
-      <body className={`bg-white text-neutral-800  ${openSans.className}`}>
+      <body
+        className={`bg-white text-neutral-800 light  ${openSans.className}`}
+      >
         <Providers>
           <MenuWrapper>
             <LoadingIndicator />
