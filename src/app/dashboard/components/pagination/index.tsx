@@ -11,6 +11,8 @@ import { IoMdSettings } from "react-icons/io";
 import { usePathname, useRouter } from "next/navigation";
 import path from "path";
 import { PgRoutesRenter } from "./links";
+import { HiBars3BottomRight } from "react-icons/hi2";
+import Button from "@/components/__shared/ui/button/Button";
 
 type PaginationTabProps = {
   active: string;
@@ -24,12 +26,12 @@ const PaginationTab = ({ active, icon, name, link }: PaginationTabProps) => {
     <Link href={link}>
       <PgItem
         type={active == name ? "active" : undefined}
-        className={`flex  flex-row lg:flex-col min-w-[130px] min-h-[40px] max-h-[52px] lg:max-w-none lg:min-h-[101px] py-[0.875rem] px-[1rem] text-[#B0B0B0] items-center justify-center text-2xl font-semibold gap-[0.775rem] rounded-[.75rem] ${name}`}
+        className={`flex max-h-[52px] min-h-[40px] min-w-[160px] flex-row items-center justify-center gap-[0.775rem] rounded-[.75rem] px-[1rem] py-[0.875rem] text-2xl font-semibold text-[#B0B0B0] transition-all lg:min-h-[85px] lg:max-w-none lg:flex-col ${name}`}
       >
-        <div className="w-full h-full flex items-center justify-center">
+        <div className="flex h-full w-full items-center justify-center">
           {icon}
         </div>{" "}
-        <p className="capitalize whitespace-nowrap text-[18px] 2xl:text-[25px]">
+        <p className="whitespace-nowrap text-[18px] capitalize 2xl:text-[25px]">
           {name}
         </p>
       </PgItem>
@@ -89,19 +91,19 @@ const Pagination = () => {
   };
 
   return (
-    <Root className="flex items-start md:items-center gap-7 px-5 py-1">
-      {atEnd && (
+    <Root className="flex items-start gap-7 px-5 py-1 md:items-center">
+      {/* {atEnd && (
         <button
           onClick={handleScrollToLeft}
-          className="w-full md:max-w-[83px]
-                  max-w-[52px] aspect-square bg-[#396261] rounded-full flex
-                  items-center justify-center hover:scale-[1.02]"
+          className="flex aspect-square
+                  w-full max-w-[52px] items-center justify-center rounded-full
+                  bg-[#396261] hover:scale-[1.02] md:max-w-[83px]"
         >
           <MdKeyboardArrowLeft color="white" size={24} />
         </button>
-      )}
+      )} */}
       <div
-        className="flex gap-8  items-center overflow-x-scroll pg-row justify-start w-full"
+        className="pg-row hidden w-full items-center justify-start gap-8 overflow-x-scroll md:flex"
         ref={scrollableRef}
         style={{
           scrollBehavior: "smooth",
@@ -118,16 +120,27 @@ const Pagination = () => {
         ))}
       </div>
 
-      {!atEnd && (
+      {/* {!atEnd && (
         <button
           onClick={handleScrollToRight}
-          className="w-full md:max-w-[83px]
-                  max-w-[52px] aspect-square bg-[#396261] rounded-full flex
-                  items-center justify-center hover:scale-[1.02]"
+          className="flex aspect-square
+                  w-full max-w-[52px] items-center justify-center rounded-full
+                  bg-[#396261] hover:scale-[1.02] md:max-w-[83px]"
         >
           <MdKeyboardArrowRight color="white" size={24} />
         </button>
-      )}
+      )} */}
+      <Button className="relative bottom-2.5 hidden h-full w-28 items-center justify-center rounded-xl bg-[#45808B] px-4 py-3 text-white md:flex">
+        <div className="flex flex-col items-center gap-3">
+          <HiBars3BottomRight size={25} />
+          <p className="text-lg font-medium 2xl:text-2xl">More</p>
+        </div>
+      </Button>
+      <button className="relative bottom-1 ml-auto mt-2 h-max w-fit items-center justify-center rounded-xl border border-primary-800 px-3 py-2 text-primary-800 md:hidden">
+        <div className="flex flex-col items-center gap-3">
+          <HiBars3BottomRight size={25} />
+        </div>
+      </button>
     </Root>
   );
 };
