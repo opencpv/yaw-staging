@@ -88,10 +88,8 @@ const config: Config = {
       "3xl": "1728px",
     },
   },
-  darkMode: "class",
   plugins: [
     nextui({
-      addCommonColors: true,
       themes: {
         light: {
           colors: {
@@ -99,66 +97,26 @@ const config: Config = {
               DEFAULT: "#DDB771",
               foreground: "#FFFFFF",
             },
-            primary: {
+            danger: {
               DEFAULT: "#21A19F",
               foreground: "#FFFFFF",
             },
             focus: "#DDB771",
           },
         },
-        // dark: {
-        //   colors: {
-        //     default: {
-        //       50: "#DDB771",
-        //       100: "#F1B346",
-        //       200: "#AD842A",
-        //       400: "#F5C771",
-        //       DEFAULT: "#DDB771",
-        //       foreground: "#FFFFFF",
-        //     },
-        //     primary: {
-        //       DEFAULT: "#21A19F",
-        //       foreground: "#FFFFFF",
-        //     },
-        //     focus: "#DDB771",
-        //   },
-        // },
-        // "rr-theme": {
-        //   extend: "light",
-        //   colors: {
-        //     background: "#FFFFFF",
-        //     foreground: "#262626",
-        //     default: {
-        //       50: "#DDB771",
-        //       100: "#F1B346",
-        //       200: "#AD842A",
-        //       400: "#F5C771",
-        //       DEFAULT: "#DDB771",
-        //       foreground: "#FFFFFF",
-        //     },
-        //     primary: {
-        //       50: "#B0E3C9",
-        //       100: "#21A19F",
-        //       200: "#45808B",
-        //       300: "#E6F6EE",
-        //       400: "#396261",
-        //       500: "#073B3A",
-        //       600: "#063635",
-        //       700: "#131B1A",
-        //       800: "#0B6E4F",
-        //       900: "#273A2F",
-        //       DEFAULT: "#21A19F",
-        //       foreground: "#FFFFFF",
-        //     },
-        //     secondary: {
-        //       50: "#F1F1F1",
-        //       200: "#FAFBFB",
-        //       300: "#DFE7E7",
-        //       DEFAULT: "#444444",
-        //       foreground: "#FFFFFF",
-        //     },
-        //   },
-        // },
+        dark: {
+          colors: {
+            default: {
+              DEFAULT: "#DDB771",
+              foreground: "#FFFFFF",
+            },
+            danger: {
+              DEFAULT: "#21A19F",
+              foreground: "#FFFFFF",
+            },
+            focus: "#DDB771",
+          },
+        },
       },
     }),
   ],
