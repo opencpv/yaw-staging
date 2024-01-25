@@ -10,9 +10,10 @@ import { useModalFullscreenStore } from "@/store/modal/useModalStore";
 type Props = {
   href: string;
   className?: string;
+  disabled?: boolean;
 };
 
-const ViewPropertyBtn = ({ href, className }: Props) => {
+const ViewPropertyBtn = ({ href, className, disabled }: Props) => {
   const { isOpen, onClose, onOpen, onOpenChange } = useDisclosure();
   const setHideWindowScrollbar = useModalFullscreenStore(
     (state) => state.setHideWindowScrollbar,
@@ -51,14 +52,18 @@ const ViewPropertyBtn = ({ href, className }: Props) => {
         </Link>
       ) : (
         <div
-          className={`absolute bottom-32 right-10 scale-75 cursor-pointer shadow-md transition-all hover:-translate-y-2 md:bottom-20 md:right-32 md:scale-100 ${className}`}
+          className={`absolute bottom-32 right-10 scale-75 cursor-pointer shadow-md transition-all hover:-translate-y-2 md:bottom-20 md:right-32 md:scale-100 ${
+            disabled && "pointer-events-none cursor-not-allowed"
+          } ${className}`}
           onClick={() => {
             onOpen();
             setHideWindowScrollbar(true);
           }}
         >
           <div
-            className={`flex h-48 w-48 items-center justify-center rounded-full border border-[#305A61]`}
+            className={`flex h-48 w-48 items-center justify-center rounded-full border ${
+              disabled ? "border-neutral-700" : "border-[#305A61]"
+            }`}
           >
             <motion.div
               initial={{ opacity: 1 }}
@@ -69,7 +74,9 @@ const ViewPropertyBtn = ({ href, className }: Props) => {
                 ease: "linear",
                 repeatType: "reverse",
               }}
-              className={`flex h-32 w-32 items-center justify-center rounded-full bg-[#305A61] text-white`}
+              className={`flex h-32 w-32 items-center justify-center rounded-full ${
+                disabled ? "bg-neutral-700" : "bg-[#305A61]"
+              } text-white`}
             >
               View
             </motion.div>

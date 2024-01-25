@@ -17,7 +17,7 @@ const Logo = ({ className, size, onClick }: Props) => {
       <Image
         src={icons.Logo}
         alt="RentRightGH logo"
-        width={size === "md" ? 112 : size === "lg" ? 128 : size === "sm" ? 96 : 60}
+        width={size === "md" ? 112 : size === "lg" ? 128 : size === "xs" ? 60 : 96}
         quality={100}
         className={`${className}`}
         onClick={onClick}

@@ -27,7 +27,7 @@ const SliderMultiItems = ({
           autoplay === false || autoplay === undefined
             ? false
             : {
-                delay: 1,
+                delay: 10,
                 disableOnInteraction: true,
                 pauseOnMouseEnter: true,
               }
@@ -43,8 +43,8 @@ const SliderMultiItems = ({
         }}
         freeMode={{
           enabled: autoplay === false ? false : true,
-          momentumRatio: 0.4,
-          momentumVelocityRatio: 0.4,
+          // momentumRatio: 0.4,
+          // momentumVelocityRatio: 0.4,
         }}
         speed={autoplay ? 30000 : undefined}
         pagination={{
