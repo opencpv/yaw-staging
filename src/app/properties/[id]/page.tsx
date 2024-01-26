@@ -241,7 +241,7 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
       )}
       {/* Recommended Listings */}
       <section className="wrapper">
-        <RecommendedListings showAllButton className="text-xl" />
+        <RecommendedListings showAllButton />
       </section>
       <Footer />
     </>
