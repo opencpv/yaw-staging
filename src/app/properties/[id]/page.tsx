@@ -109,8 +109,8 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
             image="/assets/images/home/landing.jpg"
             position="left"
           ></ShapedLanding>
-          <main className="wrapper">
-            <section className="mb-10 py-10">
+          <main className="wrapper pt-28 sm:pt-28">
+            <section>
               <div className="text-2xl font-[600] text-[#305A61]">
                 <BreadCrumbPreLink
                   label="Properties"
@@ -118,7 +118,7 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
                   className="text-neutral-300"
                 />{" "}
                 /{" "}
-                <span className="">
+                <span>
                   {listing?.property_name} at {listing?.city}
                 </span>
               </div>
@@ -131,8 +131,8 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
                   }}
                 />
                 {/* Grid col */}
-                <div className="">
-                  <section className="">
+                <div>
+                  <section>
                     <div className="space-y-5">
                       <div className="flex flex-wrap gap-x-16 gap-y-2">
                         <h2 className="text-2xl font-[600] text-[#305A61]">
@@ -207,7 +207,7 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
               </section>
             </section>
             {/* Features and Amenities */}
-            <div className={listing?.features_and_amenities ? "" : "hidden"}>
+            <div className={listing?.features_and_amenities ? null : "hidden"}>
               <PropertyDetailsFeatures
                 features={[
                   "Wifi",
@@ -228,21 +228,20 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
                 ]}
               />
             </div>
-            {/* Rating */}
             <>
               {" "}
+              {/* Rating */}
               <PropertyRating />
-              <section className="relative -top-14">
-                <ReportIssue />
-              </section>
+              <ReportIssue className="mt-5" />
+              {/* Recommended Listings */}
+              <RecommendedListings
+                showAllButton
+                className={`section ${isLoading && "hidden"}`}
+              />
             </>
           </main>
         </>
       )}
-      {/* Recommended Listings */}
-      <section className="wrapper">
-        <RecommendedListings showAllButton />
-      </section>
       <Footer />
     </>
   );
