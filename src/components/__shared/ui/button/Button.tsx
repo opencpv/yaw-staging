@@ -67,7 +67,7 @@ const Button = ({
             "w-fit max-w-none justify-normal bg-transparent p-0":
               variant === "ghost",
             "rounded-full": radius === "full",
-            "h-unit-5 px-2.5 py-1.5": padding === "sm",
+            "h-unit-6 px-2.5 py-1.5": padding === "sm",
             "cursor-not-allowed bg-gray-300 text-neutral-600": disabled,
             "bg-none":
               disabled && (variant === "outline" || variant === "ghost"),
