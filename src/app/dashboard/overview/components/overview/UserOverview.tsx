@@ -19,11 +19,16 @@ const UserOverview = ({
   type,
 }: UserOverviewProps) => {
   const [hidden, setHidden] = useState(false);
+  const [hiddenCompletely, setHiddenCompletely] = useState(false);
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
-      if (window.scrollY > 100) {
-        setHidden(false);
+      if (window.scrollY >= 245) {
+        setHidden(true);
+
+        setTimeout(() => {
+          setHiddenCompletely(true);
+        }, 4000);
       }
     });
   }, []);
@@ -32,28 +37,34 @@ const UserOverview = ({
     <div className={className}>
       <h2 className="mb-6">Overview</h2>
       <h3 className="mb-6 text-neutral-700 md:hidden">Welcome, John</h3>
-      <Callout className={`mb-6 flex w-full items-center gap-5 sm:w-10/12`}>
-        <HiOutlineExclamationCircle className="rotate-180 text-5xl text-accent-50" />
-        <div className="space-y-1">
-          {type === "Renter" ? (
-            <p className="text-base">
-              Get started by effortlessly{" "}
-              <span className="font-[600]">renting</span> and publishing{" "}
-              <span className="font-[600]">products</span> with ease.
-            </p>
-          ) : type === "Property Manager" ? (
-            <p className="text-base">
-              Get started by effortlessly{" "}
-              <span className="font-[600]">listing</span> and{" "}
-              <span className="font-[600]">managing</span> your properties and{" "}
-              <span className="font-[600]">products</span> with ease.
-            </p>
-          ) : null}
+      <Callout
+        className={`w-full transition-all duration-1000 ease-linear sm:w-10/12 ${
+          hidden ? "mb-0 h-0 p-0" : "mb-6 h-fit"
+        } ${hiddenCompletely && "hidden"}`}
+      >
+        <div className={`flex items-center gap-5 ${hidden && "invisible"}`}>
+          <HiOutlineExclamationCircle className="rotate-180 text-5xl text-accent-50" />
+          <div className="space-y-1">
+            {type === "Renter" ? (
+              <p className="text-base">
+                Get started by effortlessly{" "}
+                <span className="font-[600]">renting</span> and publishing{" "}
+                <span className="font-[600]">products</span> with ease.
+              </p>
+            ) : type === "Property Manager" ? (
+              <p className="text-base">
+                Get started by effortlessly{" "}
+                <span className="font-[600]">listing</span> and{" "}
+                <span className="font-[600]">managing</span> your properties and{" "}
+                <span className="font-[600]">products</span> with ease.
+              </p>
+            ) : null}
 
-          <p className="text-base">
-            Navigate through the menu on the top to discover more features and
-            tools.
-          </p>
+            <p className="text-base">
+              Navigate through the menu on the top to discover more features and
+              tools.
+            </p>
+          </div>
         </div>
       </Callout>
       {type === "Property Manager" && (
