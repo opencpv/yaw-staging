@@ -1,7 +1,8 @@
+"use client";
 import Callout from "@/app/dashboard/components/Callout";
 import Button from "@/components/__shared/ui/button/Button";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BsTelephone } from "react-icons/bs";
 import { FaRegEnvelope } from "react-icons/fa";
 import { HiOutlineExclamationCircle, HiOutlinePencil } from "react-icons/hi";
@@ -17,11 +18,25 @@ const UserOverview = ({
   className,
   type,
 }: UserOverviewProps) => {
+  const [hidden, setHidden] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 100) {
+        setHidden(true);
+      }
+    });
+  }, []);
+
   return (
     <div className={className}>
       <h2 className="mb-6">Overview</h2>
       <h3 className="mb-6 text-neutral-700 md:hidden">Welcome, John</h3>
-      <Callout className="mb-6 flex w-full items-center gap-5 sm:w-10/12">
+      <Callout
+        className={`mb-6 flex w-full items-center gap-5 sm:w-10/12 ${
+          hidden && "hidden"
+        }`}
+      >
         <HiOutlineExclamationCircle className="rotate-180 text-5xl text-accent-50" />
         <div className="space-y-1">
           {type === "Renter" ? (
