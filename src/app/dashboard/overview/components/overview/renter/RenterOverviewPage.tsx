@@ -75,7 +75,6 @@ const RenterOverviewPage = (props: Props) => {
         />
       </section>
       <section className="mx-auto">
-        <h2 className="mb-6">Recommended Listings</h2>
         <RecommendedListings />
       </section>
     </main>

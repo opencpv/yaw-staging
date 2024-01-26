@@ -241,17 +241,7 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
       )}
       {/* Recommended Listings */}
       <section className="wrapper">
-        <div className="mb-5 flex flex-wrap items-center justify-between gap-5">
-          <h2 className="text-xl font-[600] text-neutral-800 md:ml-10">
-            Recommended Listings
-          </h2>
-          {listing && (
-            <Button variant="ghost" className="text-sm text-neutral-800">
-              Show all
-            </Button>
-          )}
-        </div>
-        <RecommendedListings />
+        <RecommendedListings showAllButton className="text-xl" />
       </section>
       <Footer />
     </>
