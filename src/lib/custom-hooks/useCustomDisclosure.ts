@@ -53,3 +53,13 @@ export const usePhoneInputDisclosure = () => {
 
   return { phone, handleCountryChange, setPhone, handlePhone };
 };
+
+export const useSliderAutoPlayDisclosure = () => {
+  const [autoPlay, setAutoPlay] = React.useState(true);
+
+  const handleAutoPlay = () => {
+    setAutoPlay(!autoPlay);
+  };
+
+  return { autoPlay, handleAutoPlay };
+};

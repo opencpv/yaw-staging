@@ -5,7 +5,7 @@ import { cn } from "@nextui-org/react";
 import { FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
 
-type Props = {
+interface Props extends React.HTMLAttributes<HTMLButtonElement> {
   className?: string;
   children?: React.ReactNode;
   variant?: "default" | "outline" | "ghost";
@@ -18,9 +18,9 @@ type Props = {
   radius?: "sm" | "full";
   href?: string;
   onClick?: (e?: any) => void;
-};
+}
 
-const Button = ({
+const Button: React.FC<Props> = ({
   className,
   children,
   borderColor,
@@ -33,6 +33,7 @@ const Button = ({
   href,
   padding,
   onClick,
+  ...props
 }: Props) => {
   if (href)
     return (

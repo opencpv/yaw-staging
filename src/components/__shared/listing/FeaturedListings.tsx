@@ -10,12 +10,14 @@ import FetchingStates from "../ui/data_fetching/FetchingStates";
 import { fetchOrderRule, revalidationRule } from "@/lib/utils/fetchRules";
 import images from "@/enum/temp/images";
 import FetchErrorMessage from "../ui/data_fetching/FetchErrorMessage";
+import Button from "../ui/button/Button";
 
 type Props = {
   className?: string;
+  showAllButton?: boolean;
 };
 
-const FeaturedListings = ({ className }: Props) => {
+const FeaturedListings = ({ className, showAllButton }: Props) => {
   const {
     data: listings,
     isLoading,
@@ -35,6 +37,18 @@ const FeaturedListings = ({ className }: Props) => {
     <section
       className={`no-print section h-fit w-full overflow-x-hidden ${className}`}
     >
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-5">
+        <h2>Recommended Listings</h2>
+        <Button
+          href="/properties"
+          variant="ghost"
+          className={`text-sm text-neutral-800 ${
+            showAllButton ? "block" : "hidden"
+          }`}
+        >
+          Show all
+        </Button>
+      </div>
       <FetchingStates
         data={listings}
         error={error}

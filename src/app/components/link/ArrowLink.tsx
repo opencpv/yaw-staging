@@ -1,22 +1,27 @@
-import Link from "next/link";
+import Button from "@/components/__shared/ui/button/Button";
+import { cn } from "@/lib/utils";
 import React from "react";
 
 type Props = {
-  href: string;
   text: string;
+  href?: string;
   color?: string;
-  tailwindColor?: string;
   className?: string;
+  onClick?: () => void;
 };
 
-const ArrowLink = ({ color, href, text, tailwindColor, className }: Props) => {
+const ArrowLink = ({ color, href, text, className, onClick }: Props) => {
   return (
-    <Link
-      href={`${href}`}
-      className={`inline-flex items-center gap-2.5 transition-all mt-5 ${
-        tailwindColor && `text-${tailwindColor}`
-      } hover:scale-105 ${className}`}
-      style={{ color: color ? color : "#222" }}
+    <Button
+      href={href}
+      variant="ghost"
+      className={cn(
+        `mt-5 inline-flex items-center gap-2.5 ${
+          color ? `text-[${color}]` : "text-neutral-800"
+        }`,
+        className,
+      )}
+      onClick={onClick}
     >
       {text}
       <svg
@@ -31,7 +36,7 @@ const ArrowLink = ({ color, href, text, tailwindColor, className }: Props) => {
           fill={color ? color : "#222"}
         />
       </svg>
-    </Link>
+    </Button>
   );
 };
 
