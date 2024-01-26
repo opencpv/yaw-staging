@@ -4,12 +4,10 @@ import { IoMdNotificationsOutline, IoMdSettings } from "react-icons/io";
 import CaOverview from "../icons/CaOverview";
 import CaDAshMessages from "../icons/CaDashMessages";
 import CaDashSave from "../icons/CaDashSave";
-import CaDashMySearch from "../icons/CaDashMySearch";
 import CaSell from "@/app/components/icons/CaSell";
 import { TbHomeSearch } from "react-icons/tb";
-import { MdOutlineRealEstateAgent, MdRealEstateAgent } from "react-icons/md";
-import { PiCirclesFourThin, PiCreditCardFill } from "react-icons/pi";
-import { FaStar } from "react-icons/fa6";
+import { MdOutlineRealEstateAgent } from "react-icons/md";
+import { PiCirclesFour } from "react-icons/pi";
 import { HiOutlineChatBubbleLeftEllipsis } from "react-icons/hi2";
 import { LiaCreditCardSolid } from "react-icons/lia";
 import { FaRegStar } from "react-icons/fa";
@@ -19,14 +17,14 @@ export const PgRoutesRenter = [
   {
     name: "overview",
     url: "",
-    icon: <PiCirclesFourThin />,
+    icon: <PiCirclesFour />,
     link: "/dashboard/overview",
   },
   {
     name: "my search",
     url: "",
     icon: <TbHomeSearch />,
-    link: "/dashboard/saved-search",
+    link: "/dashboard/my-search",
   },
   {
     name: "my agent",

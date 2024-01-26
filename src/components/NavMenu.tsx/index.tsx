@@ -48,7 +48,7 @@ export default function Menu(props: any) {
             bottomLinksRef.current?.getBoundingClientRect();
 
           if (menuRect && bottomLinksRect) {
-            if (menuRect?.bottom >= bottomLinksRect?.top) {
+            if (menuRect?.bottom + 50 >= bottomLinksRect?.top) {
               setHide(true);
             }
           }

@@ -27,7 +27,11 @@ const FeatureExplainer = ({
           <CiLock className="text-lg font-[600] text-accent-100" />
         ) : (
           <Button
-            href="/dashboard/overview"
+            href={
+              title === "Be My Agent"
+                ? "/dashboard/my-agent"
+                : "/dashboard/my-search/be-the-first-to-know"
+            }
             className="h-fit min-w-fit rounded-full bg-neutral-100 p-1.5 px-2.5 text-neutral-800"
           >
             See all
@@ -72,18 +76,40 @@ const FeatureExplainer = ({
         </Callout>
       ) : (
         // user paid features
-        <section className="space-y-6">
-          <PaidFeature
-            title="Lorem ipsum dolor sit amet."
-            description="Lorem ipsum dolor sit amet."
-            matches={6}
-          />
-          <PaidFeature
-            title="My Dream Home"
-            description="Lorem ipsum dolor sit amet."
-            matches={6}
-          />
-        </section>
+        <>
+          {title === "Be My Agent" && (
+            <section className="space-y-6">
+              <PaidFeature
+                image="/assets/images/leaseform/listing1.jpg"
+                title="Lorem ipsum dolor sit amet."
+                description="Lorem ipsum dolor sit amet."
+                matches={6}
+              />
+              <PaidFeature
+                image="/assets/images/leaseform/listing1.jpg"
+                title="My Dream Home"
+                description="Lorem ipsum dolor sit amet."
+                matches={6}
+              />
+            </section>
+          )}
+          {title === "Be The First To Know" && (
+            <section className="space-y-6">
+              <PaidFeature
+                image="/assets/images/leaseform/listing1.jpg"
+                title="Lorem ipsum dolor sit amet."
+                description="Lorem ipsum dolor sit amet."
+                matches={6}
+              />
+              <PaidFeature
+                image="/assets/images/leaseform/listing1.jpg"
+                title="My Dream Home"
+                description="Lorem ipsum dolor sit amet."
+                matches={6}
+              />
+            </section>
+          )}
+        </>
       )}
     </div>
   );
