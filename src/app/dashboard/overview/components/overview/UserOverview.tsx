@@ -23,7 +23,7 @@ const UserOverview = ({
   useEffect(() => {
     window.addEventListener("scroll", () => {
       if (window.scrollY > 100) {
-        setHidden(true);
+        setHidden(false);
       }
     });
   }, []);
@@ -32,11 +32,7 @@ const UserOverview = ({
     <div className={className}>
       <h2 className="mb-6">Overview</h2>
       <h3 className="mb-6 text-neutral-700 md:hidden">Welcome, John</h3>
-      <Callout
-        className={`mb-6 flex w-full items-center gap-5 sm:w-10/12 ${
-          hidden && "hidden"
-        }`}
-      >
+      <Callout className={`mb-6 flex w-full items-center gap-5 sm:w-10/12`}>
         <HiOutlineExclamationCircle className="rotate-180 text-5xl text-accent-50" />
         <div className="space-y-1">
           {type === "Renter" ? (
