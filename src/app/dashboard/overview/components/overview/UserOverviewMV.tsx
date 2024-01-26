@@ -14,7 +14,7 @@ const RenterOverviewMV = ({
 }: UserOverviewProps) => {
   return (
     <div className={className}>
-      <div className="relative w-32 h-32 rounded-xl shadow-lg">
+      <div className="relative h-32 w-32 rounded-xl shadow-lg">
         <Image
           src={picture}
           alt={name}
@@ -25,7 +25,7 @@ const RenterOverviewMV = ({
       </div>
       <div className="flex flex-col items-center gap-y-2 sm:items-start">
         <h4>{name}</h4>
-        <div className="flex flex-wrap justify-center items-center mb-4 text-base gap-x-5 gap-y-3">
+        <div className="mb-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-3 text-base">
           <div className="flex items-center gap-2 text-neutral-700">
             <FaRegEnvelope className="text-primary-400" />
             {email}
@@ -35,7 +35,10 @@ const RenterOverviewMV = ({
             {telephone}
           </div>
         </div>
-        <Button className="flex items-center gap-1.5 font-[400] text-xs text-white p-1 px-4 rounded-md bg-[#597C7B]">
+        <Button
+          href="/dashboard/settings"
+          className="flex items-center gap-1.5 rounded-md bg-[#597C7B] p-1 px-4 text-xs font-[400] text-white"
+        >
           Complete your profile <HiOutlinePencil />{" "}
         </Button>
       </div>

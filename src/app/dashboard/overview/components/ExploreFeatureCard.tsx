@@ -30,7 +30,7 @@ const ExploreFeatureCard = (props: Props) => {
           className="w-full bg-white/60 text-white"
           arrowIcon
         >
-          Open
+          View
         </Button>
       </div>
     </div>

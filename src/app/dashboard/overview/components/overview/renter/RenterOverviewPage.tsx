@@ -33,9 +33,21 @@ const RenterOverviewPage = (props: Props) => {
                 gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
               }}
             >
-              <RenterActivityCard type="applications" count={6} href="" />
-              <RenterActivityCard type="products" count={6} href="" />
-              <RenterActivityCard type="reviews" count={6} href="" />
+              <RenterActivityCard
+                type="applications"
+                count={6}
+                href="/dashboard/applications"
+              />
+              <RenterActivityCard
+                type="products"
+                count={6}
+                href="/dashboard/sell-products"
+              />
+              <RenterActivityCard
+                type="reviews"
+                count={6}
+                href="/dashboard/my-reviews"
+              />
             </section>
           )}
 
@@ -46,7 +58,7 @@ const RenterOverviewPage = (props: Props) => {
               heading="Hire Us !"
               description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, officiis."
               buttonLabel="Explore"
-              href=""
+              href="/dashboard/my-agent"
             />
             <RenterPaidFeatures
               type="Renter"

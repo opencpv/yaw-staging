@@ -77,7 +77,10 @@ const UserOverview = ({
                   {telephone}
                 </div>
               </div>
-              <Button className="flex items-center gap-1.5 rounded-md bg-[#597C7B] p-1 px-4 text-sm font-[400] text-white">
+              <Button
+                href="/dashboard/settings"
+                className="flex w-fit items-center gap-1.5 rounded-md bg-[#597C7B] p-1 px-4 text-sm font-[400] text-white"
+              >
                 Complete your profile <HiOutlinePencil />{" "}
               </Button>
             </div>
