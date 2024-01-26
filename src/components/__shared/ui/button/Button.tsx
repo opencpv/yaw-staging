@@ -65,7 +65,7 @@ const Button: React.FC<Props> = ({
               variant === "outline" && color === "black",
             "border border-[#21A19F] bg-transparent text-[#21A19F]":
               variant === "outline" && color === "gradient",
-            "w-fit max-w-none justify-normal bg-transparent p-0":
+            "h-unit-0 w-fit max-w-none justify-normal bg-transparent p-0":
               variant === "ghost",
             "rounded-full": radius === "full",
             "h-unit-6 px-2.5 py-1.5": padding === "sm",
@@ -107,7 +107,7 @@ const Button: React.FC<Props> = ({
               variant === "outline" && color === "black",
             "border border-[#21A19F] bg-transparent text-[#21A19F]":
               variant === "outline" && color === "gradient",
-            "w-fit max-w-none justify-normal bg-transparent p-0":
+            "h-unit-0 w-fit max-w-none justify-normal bg-transparent p-0":
               variant === "ghost",
             "rounded-full": radius === "full",
             "h-unit-6 px-2.5 py-1.5": padding === "sm",
