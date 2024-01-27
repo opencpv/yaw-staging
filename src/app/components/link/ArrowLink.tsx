@@ -1,4 +1,3 @@
-import Button from "@/components/__shared/ui/button/Button";
 import { cn } from "@/lib/utils";
 import React from "react";
 import Link from "next/link";
@@ -14,7 +13,7 @@ type Props = {
 const ArrowLink = ({ color, href, text, className, onClick }: Props) => {
   return (
     <Link
-      href={href}
+      href={href as string}
       className={cn(
         "mt-5 inline-flex items-center gap-2.5 transition-all hover:scale-[1.02]",
         className,
