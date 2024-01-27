@@ -27,7 +27,7 @@ export const PgRoutesRenter = [
     link: "/dashboard/my-search",
   },
   {
-    name: "my agent",
+    name: "agent",
     url: "",
     icon: <MdOutlineRealEstateAgent />,
     link: "/dashboard/my-agent",
@@ -45,35 +45,28 @@ export const PgRoutesRenter = [
     link: "/dashboard/applications",
   },
   {
-    name: "my reviews",
+    name: "reviews",
     url: "",
     icon: <FaRegStar />,
-    link: "/dashboard/sell-products",
+    link: "/dashboard/my-reviews",
   },
   {
-    name: "sell products",
+    name: "sell",
     url: "",
     icon: <CaSell />,
     link: "/dashboard/sell-products",
   },
   {
-    name: "properties",
-    url: "",
-    icon: <AiFillHeart width={24} height={24} />,
-    link: "/dashboard/properties",
-  },
-  {
-    name: "favourite",
+    name: "favourites",
     url: "",
     icon: <AiFillHeart width={24} height={24} />,
     link: "/dashboard/favourite",
   },
-
   {
     name: "recommendations",
     url: "",
     icon: <CaSubscriptions width={24} height={24} />,
-    link: "/dashboard/recommendations",
+    link: "/dashboard/favourite",
   },
   {
     name: "subscriptions",
