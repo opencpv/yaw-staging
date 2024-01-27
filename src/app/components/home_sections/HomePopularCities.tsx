@@ -53,13 +53,12 @@ const HomePopularCities = () => {
           errorComponent={<FetchErrorMessage specificData="cities" />}
         />
         {cities?.map((city) => (
-          <AOSWrapper key={city.id} animation="zoom-in" duration="1000">
-            <PopularCitiesCard
-              location="Kumasi"
-              description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, doloribus!"
-              propertyNumber={232}
-            />
-          </AOSWrapper>
+          <PopularCitiesCard
+            key={city.id}
+            location="Kumasi"
+            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, doloribus!"
+            propertyNumber={232}
+          />
         ))}
       </div>
       <div className="relative h-fit pb-20 lg:hidden">

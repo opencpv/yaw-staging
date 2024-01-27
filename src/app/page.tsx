@@ -10,6 +10,7 @@ import HomePromotionSection from "./components/home_sections/HomePromotionSectio
 import HomeRentalDealsSection from "./components/home_sections/HomeRentalDealsSection";
 import HomeManagePropertiesSection from "./components/home_sections/HomeManagePropertiesSection";
 import FeedbackButton from "@/components/feedback/FeedbackButton";
+import AOSWrapper from "@/components/__shared/AOSWrapper";
 
 export default function Home() {
   useEffect(() => {
@@ -50,7 +51,9 @@ export default function Home() {
           {/* Manage Your Properties With Us */}
           <HomeManagePropertiesSection />
           {/* Find Apartments in Popular Cities */}
-          <HomePopularCities />
+          <AOSWrapper animation="fade-up">
+            <HomePopularCities />
+          </AOSWrapper>
           <FeedbackButton />
         </div>
       </main>
