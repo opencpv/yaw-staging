@@ -101,7 +101,6 @@ const SliderMultiItems = ({
               spaceBetween: 20,
             },
           }}
-          speed={autoplay ? 30000 : undefined}
           pagination={{
             clickable: true,
             el: ".slider-multi-items-pagination",
@@ -112,7 +111,7 @@ const SliderMultiItems = ({
             nextEl: ".slider-multi-items-next",
             prevEl: ".slider-multi-items-prev",
           }}
-          modules={[Pagination, Navigation, Autoplay, FreeMode]}
+          modules={[Pagination, Navigation]}
           className="mySwiper slider-multi-items h-fit w-full"
         >
           {items?.map((item, idx) => (

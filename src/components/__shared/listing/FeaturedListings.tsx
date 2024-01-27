@@ -44,7 +44,7 @@ const FeaturedListings = ({ className, showAllButton }: Props) => {
           variant="ghost"
           className={`text-sm text-neutral-800 ${
             showAllButton ? "block" : "hidden"
-          }`}
+          } ${isLoading && "hidden"}`}
         >
           Show all
         </Button>

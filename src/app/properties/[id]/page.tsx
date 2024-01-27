@@ -109,7 +109,7 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
             image="/assets/images/home/landing.jpg"
             position="left"
           ></ShapedLanding>
-          <main className="wrapper pt-28 sm:pt-28">
+          <main className="wrapper pb-0 pt-28 sm:pb-0 sm:pt-28">
             <section>
               <div className="text-2xl font-[600] text-[#305A61]">
                 <BreadCrumbPreLink
@@ -234,14 +234,14 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
               <PropertyRating />
               <ReportIssue className="mt-5" />
               {/* Recommended Listings */}
-              <RecommendedListings
-                showAllButton
-                className={`section ${isLoading && "hidden"}`}
-              />
             </>
           </main>
         </>
       )}
+      <RecommendedListings
+        showAllButton
+        className="wrapper-section pb-8 sm:pb-14"
+      />
       <Footer />
     </>
   );
