@@ -44,7 +44,12 @@ const ListingCard = (props: ListingCardInterface) => {
           {/* Mapping through Featured listings from database */}
           {props.images?.map((image, index) => (
             <SwiperSlide key={index}>
-              <Link href={`${props.href}`}>
+              <Link
+                href={`${props.href}?property_name=${props.propertyName}&city=${props.city}&price=${props.price}&payment_structure=${props.paymentStructure}&amount_per_month=${props.monthlyAmount}&rating=${props.ratingCount}&property_description=${props.propertyDescription}`.replaceAll(
+                  " ",
+                  "_",
+                )}
+              >
                 <div className="relative h-full w-full">
                   <Image
                     src={image}
