@@ -32,7 +32,9 @@ const FeatureExplainer = ({
                 ? "/dashboard/my-agent"
                 : "/dashboard/my-search/be-the-first-to-know"
             }
-            className="h-fit min-w-fit rounded-full bg-neutral-100 p-1.5 px-2.5 text-neutral-800"
+            radius="full"
+            padding="sm"
+            className="w-fit bg-neutral-100 text-neutral-800"
           >
             See all
           </Button>
