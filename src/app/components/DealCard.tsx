@@ -30,7 +30,7 @@ const DealCard = ({ title, body, href, icon, className }: Props) => {
             </h4>
           </AOSWrapper>
         </div>
-        <AOSWrapper animation="fade-up" duration="1000" delay="500">
+        <AOSWrapper animation="fade-up" duration="1000" delay="200">
           <p className="text-sm font-[600] text-primary-600">{body}</p>
         </AOSWrapper>
         <ArrowLink href={`${href}`} text="Explore" color="#202457" />

@@ -30,7 +30,7 @@ const SellYourItem = (props: Props) => {
             Your Exclusive Marketplace, Completely Fee-Free
           </p>
           <Button
-            href="/sell-products"
+            href="sell-products"
             color="primary"
             className="w-full p-2 px-4 text-sm capitalize"
           >

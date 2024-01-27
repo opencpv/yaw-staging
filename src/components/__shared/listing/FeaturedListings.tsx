@@ -38,7 +38,7 @@ const FeaturedListings = ({ className, showAllButton }: Props) => {
       className={`no-print section h-fit w-full overflow-x-hidden ${className}`}
     >
       <div className="mb-6 flex flex-wrap items-center justify-between gap-5">
-        <h2>Recommended Listings</h2>
+        <h2>Featured Listings</h2>
         <Button
           href="/properties"
           variant="ghost"

@@ -129,7 +129,7 @@ const page = (props: Props) => {
       <section className="no-print mb-10 grid-cols-2 gap-5 xs:grid md:hidden">
         <OtherPostsGroup />
       </section>
-      <section className="no-print mb-20 h-fit w-full md:hidden">
+      <section className="no-print h-fit w-full md:hidden">
         <SliderWide
           pagination
           navigation
