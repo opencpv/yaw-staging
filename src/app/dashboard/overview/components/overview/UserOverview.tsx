@@ -104,7 +104,7 @@ const UserOverview = ({
                   </div>
                 </div>
                 <Button
-                  href="/dashboard/settings"
+                  href="settings"
                   className="flex w-fit items-center gap-1.5 rounded-md bg-[#597C7B] p-1 px-4 text-sm font-[400] text-white"
                 >
                   Complete your profile <HiOutlinePencil />{" "}

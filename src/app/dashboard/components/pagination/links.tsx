@@ -6,12 +6,13 @@ import CaDAshMessages from "../icons/CaDashMessages";
 import CaDashSave from "../icons/CaDashSave";
 import CaSell from "@/app/components/icons/CaSell";
 import { TbHomeSearch } from "react-icons/tb";
-import { MdOutlineRealEstateAgent } from "react-icons/md";
+import { MdOutlineRealEstateAgent, MdOutlineRecommend } from "react-icons/md";
 import { PiCirclesFour } from "react-icons/pi";
 import { HiOutlineChatBubbleLeftEllipsis } from "react-icons/hi2";
 import { LiaCreditCardSolid } from "react-icons/lia";
-import { FaRegStar } from "react-icons/fa";
+import { FaRegStar, FaRegHeart } from "react-icons/fa";
 import { IoSettingsOutline } from "react-icons/io5";
+import { BsEnvelope } from "react-icons/bs";
 
 export const PgRoutesRenter = [
   {
@@ -59,19 +60,19 @@ export const PgRoutesRenter = [
   {
     name: "favourites",
     url: "",
-    icon: <AiFillHeart width={24} height={24} />,
+    icon: <FaRegHeart width={24} height={24} />,
     link: "/dashboard/favourite",
   },
   {
     name: "recommendations",
     url: "",
-    icon: <CaSubscriptions width={24} height={24} />,
+    icon: <MdOutlineRecommend width={24} height={24} />,
     link: "/dashboard/favourite",
   },
   {
     name: "subscriptions",
     url: "",
-    icon: <CaSubscriptions width={24} height={24} />,
+    icon: <BsEnvelope width={24} height={24} />,
     link: "/dashboard/subscriptions",
   },
   {
@@ -108,9 +109,9 @@ export const PgRoutesPropManager = [
     link: "/dashboard/properties",
   },
   {
-    name: "favourite",
+    name: "favourites",
     url: "",
-    icon: <AiFillHeart width={24} height={24} />,
+    icon: <FaRegHeart width={24} height={24} />,
     link: "/dashboard/favourite",
   },
   {
@@ -129,11 +130,11 @@ export const PgRoutesPropManager = [
   {
     name: "recommendations",
     url: "",
-    icon: <CaSubscriptions width={24} height={24} />,
+    icon: <MdOutlineRecommend width={24} height={24} />,
     link: "/dashboard/recommendations",
   },
   {
-    name: "sell-products",
+    name: "sell",
     url: "",
     icon: <CaSell />,
     link: "/dashboard/sell-products",
@@ -141,7 +142,7 @@ export const PgRoutesPropManager = [
   {
     name: "subscriptions",
     url: "",
-    icon: <CaSubscriptions width={24} height={24} />,
+    icon: <BsEnvelope width={24} height={24} />,
     link: "/dashboard/subscriptions",
   },
   {

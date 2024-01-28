@@ -22,12 +22,6 @@ const HowToPage = (props: Props) => {
   return (
     <div className="pt-16">
       <div className="mb-8">
-        {/* <OptionFilterTabs
-        options={["all", "renters", "service pros", "listing", "searching", "payment"]}
-        selectedKey={activeTab}
-        onSelectionChange={setActiveTab}
-        radius="small"
-      /> */}
         <Select
           options={[
             "All",
