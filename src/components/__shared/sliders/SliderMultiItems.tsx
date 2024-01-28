@@ -29,7 +29,7 @@ const SliderMultiItems = ({
             autoplay === false || autoplay === undefined
               ? false
               : {
-                  delay: 10,
+                  delay: 100,
                   disableOnInteraction: true,
                   pauseOnMouseEnter: true,
                 }

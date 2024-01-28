@@ -13,6 +13,7 @@ import path from "path";
 import { PgRoutesRenter } from "./links";
 import { HiBars3BottomRight } from "react-icons/hi2";
 import Button from "@/components/__shared/ui/button/Button";
+import { LowerCase } from "@/lib/utils/stringManipulation";
 
 type PaginationTabProps = {
   active: string;
@@ -25,13 +26,13 @@ const PaginationTab = ({ active, icon, name, link }: PaginationTabProps) => {
   return (
     <Link href={link}>
       <PgItem
-        type={active == name ? "active" : undefined}
+        type={LowerCase(active) === LowerCase(name) ? "active" : undefined}
         className={`flex max-h-[52px] min-h-[40px] min-w-[160px] flex-row items-center justify-center gap-[0.775rem] rounded-[.75rem] px-[1rem] py-[0.875rem] text-2xl font-semibold text-[#B0B0B0] transition-all lg:min-h-[85px] lg:max-w-none lg:flex-col ${name}`}
       >
         <div className="flex h-full w-full items-center justify-center">
           {icon}
         </div>{" "}
-        <p className="whitespace-nowrap text-[18px] capitalize 2xl:text-[25px]">
+        <p className="whitespace-nowrap text-lg capitalize 2xl:text-2xl">
           {name}
         </p>
       </PgItem>
@@ -51,7 +52,7 @@ const Pagination = () => {
     if (pathname) {
       const currentURL = pathname;
       PgRoutesRenter.forEach((r) => {
-        if (currentURL.includes(r?.name)) {
+        if (currentURL.includes(r?.link)) {
           setActive(r?.name);
         }
       });

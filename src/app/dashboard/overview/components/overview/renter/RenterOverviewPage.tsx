@@ -36,18 +36,14 @@ const RenterOverviewPage = (props: Props) => {
               <RenterActivityCard
                 type="applications"
                 count={6}
-                href="/dashboard/applications"
+                href="applications"
               />
               <RenterActivityCard
                 type="products"
                 count={6}
-                href="/dashboard/sell-products"
+                href="sell-products"
               />
-              <RenterActivityCard
-                type="reviews"
-                count={6}
-                href="/dashboard/my-reviews"
-              />
+              <RenterActivityCard type="reviews" count={6} href="my-reviews" />
             </section>
           )}
 
@@ -58,7 +54,7 @@ const RenterOverviewPage = (props: Props) => {
               heading="Hire Us !"
               description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, officiis."
               buttonLabel="Explore"
-              href="/dashboard/my-agent"
+              href="agent-explore"
             />
             <RenterPaidFeatures
               type="Renter"
