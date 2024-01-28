@@ -9,7 +9,7 @@ type Props = {
   title: string;
   description: string;
   href: string;
-  tag?: "Free" | "Upgrade";
+  tag?: "Free" | "Premium";
 };
 
 const ExploreFeatureCard = (props: Props) => {
@@ -18,8 +18,8 @@ const ExploreFeatureCard = (props: Props) => {
     <div className="relative h-fit min-w-full flex-1 overflow-hidden rounded-xl bg-primary-400 px-8 pb-20 pt-40 shadow-large xs:min-w-[20rem]">
       {props.tag === "Free" ? (
         <div className={`text-[#545454] ${style.ribbonFree}`}>Free</div>
-      ) : props.tag === "Upgrade" ? (
-        <div className={`text-white ${style.ribbonUpgrade}`}>Upgrade</div>
+      ) : props.tag === "Premium" ? (
+        <div className={`text-white ${style.ribbonUpgrade}`}>Premium</div>
       ) : null}
 
       <div className="space-y-5 text-center text-white">

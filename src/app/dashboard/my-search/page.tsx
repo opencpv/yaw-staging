@@ -18,9 +18,8 @@ const MySearch = () => {
 
   return (
     <main className={`w-full bg-white px-8 ${openSans.className}`}>
-      <h2 className="mb-4">My Bookmarks</h2>
       {/* xl and above */}
-      <div className="my-8 hidden w-fit rounded-xl border p-3 md:block">
+      <div className="mb-8 hidden w-fit rounded-xl border p-3 md:block">
         <OptionFilterTabs
           options={[
             "Favourites",

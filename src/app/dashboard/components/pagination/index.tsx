@@ -59,13 +59,13 @@ const Pagination = () => {
     }
   }, [pathname]);
 
-  useEffect(() => {
-    const element = scrollableRef.current;
-    const targetElement = element.querySelector(`.${active || "overview"}`);
-    if (targetElement) {
-      targetElement.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [active]);
+  // useEffect(() => {
+  //   const element = scrollableRef.current;
+  //   const targetElement = element.querySelector(`.${active || "overview"}`);
+  //   if (targetElement) {
+  //     targetElement.scrollIntoView({ behavior: "smooth" });
+  //   }
+  // }, [active]);
 
   const handleScrollToRight = () => {
     const element: any = scrollableRef.current;
