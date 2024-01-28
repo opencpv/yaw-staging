@@ -28,7 +28,7 @@ export const PgRoutesRenter = [
     link: "/dashboard/my-search",
   },
   {
-    name: "agent",
+    name: "my agent",
     url: "",
     icon: <MdOutlineRealEstateAgent />,
     link: "/dashboard/my-agent",
@@ -46,7 +46,7 @@ export const PgRoutesRenter = [
     link: "/dashboard/applications",
   },
   {
-    name: "reviews",
+    name: "my reviews",
     url: "",
     icon: <FaRegStar />,
     link: "/dashboard/my-reviews",
@@ -121,7 +121,7 @@ export const PgRoutesPropManager = [
     link: "/dashboard/saved-search",
   },
   {
-    name: "my applications",
+    name: "applications",
     url: "",
     icon: <CaSubscriptions width={24} height={24} />,
     link: "/dashboard/applications",

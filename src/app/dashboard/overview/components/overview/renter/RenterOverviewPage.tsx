@@ -15,7 +15,7 @@ const RenterOverviewPage = (props: Props) => {
 
   return (
     <main className="text-neutral-800">
-      <section className="mx-auto mb-20 grid-cols-4 justify-between gap-x-10 lg:grid">
+      <section className="mx-auto mb-20 grid-cols-4 justify-between gap-x-10 xl:grid">
         {/* Grid col */}
         <div className="col-span-3">
           <UserOverview
@@ -38,11 +38,11 @@ const RenterOverviewPage = (props: Props) => {
                 count={6}
                 href="applications"
               />
-              <RenterActivityCard
+              {/* <RenterActivityCard
                 type="products"
                 count={6}
                 href="sell-products"
-              />
+              /> */}
               <RenterActivityCard type="reviews" count={6} href="my-reviews" />
             </section>
           )}
@@ -58,7 +58,7 @@ const RenterOverviewPage = (props: Props) => {
             />
             <RenterPaidFeatures
               type="Renter"
-              className="col-span-1 lg:hidden"
+              className="col-span-1 xl:hidden"
             />
             <RenterExplore />
             <SellYourItem />
@@ -67,7 +67,7 @@ const RenterOverviewPage = (props: Props) => {
         {/* Grid col */}
         <RenterPaidFeatures
           type="Renter"
-          className="col-span-1 mt-14 hidden lg:block"
+          className="col-span-1 mt-14 hidden xl:block"
         />
       </section>
       <section className="mx-auto">

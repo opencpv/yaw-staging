@@ -5,8 +5,6 @@ import { BsPatchExclamation } from "react-icons/bs";
 import { CiLock } from "react-icons/ci";
 import Button from "@/components/__shared/ui/button/Button";
 import { useRouter } from "next/navigation";
-import { Router } from "lucide-react";
-import Link from "next/link";
 import { RenterPaidFeatureInterface } from "../../../../../interfaces";
 import PaidFeature from "./PaidFeature";
 
@@ -21,7 +19,7 @@ const FeatureExplainer = ({
     <div
       className={`max-w-md ${locked ? "space-y-4" : "space-y-6"} ${className}`}
     >
-      <div className="flex flex-wrap items-center justify-between gap-5 rounded-xl bg-primary-400 p-2 px-4 capitalize text-white">
+      <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl bg-primary-400 p-2 px-4 capitalize text-white">
         <h3 className="min-w-fit font-normal">{title}</h3>
         {locked ? (
           <CiLock className="text-lg font-[600] text-accent-100" />
