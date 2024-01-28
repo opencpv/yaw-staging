@@ -12,7 +12,7 @@ type Props = {
 
 const RenterActivityCard = ({ type, count, href }: Props) => {
   return (
-    <div className="flex max-w-sm flex-1 flex-col gap-5 rounded-xl border-l-4 border-l-accent-50 bg-white px-8 py-5 shadow-2xl min-[340px]:flex-row min-[340px]:items-center md:max-w-none">
+    <div className="flex min-w-fit max-w-sm flex-1 flex-col gap-5 rounded-xl border-l-4 border-l-accent-50 bg-white px-8 py-5 shadow-2xl min-[340px]:flex-row min-[340px]:items-center md:max-w-none">
       <div className="flex h-20 w-20 items-center justify-center rounded-full bg-neutral-100 text-accent-50">
         {type === "applications" && <FaRegCopy size={24} />}
         {type === "products" && <HiOutlineShoppingBag size={24} />}

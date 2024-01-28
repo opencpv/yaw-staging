@@ -27,22 +27,12 @@ const RenterOverviewPage = (props: Props) => {
             type="Renter"
           />
           {true && ( // TODO: implement appropriately
-            <section
-              className="mt-10 space-y-5 xs:grid xs:gap-5 xs:space-y-0 md:mt-40"
-              style={{
-                gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-              }}
-            >
+            <section className="mt-10 max-w-3xl flex-wrap space-y-5 xs:flex xs:gap-5 xs:space-y-0 md:mt-40">
               <RenterActivityCard
                 type="applications"
                 count={6}
                 href="applications"
               />
-              {/* <RenterActivityCard
-                type="products"
-                count={6}
-                href="sell-products"
-              /> */}
               <RenterActivityCard type="reviews" count={6} href="my-reviews" />
             </section>
           )}
