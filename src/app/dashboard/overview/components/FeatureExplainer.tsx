@@ -17,7 +17,9 @@ const FeatureExplainer = ({
   const router = useRouter();
   return (
     <div
-      className={`max-w-md ${locked ? "space-y-4" : "space-y-6"} ${className}`}
+      className={`w-full xs:max-xl:max-w-md xl:max-w-full ${
+        locked ? "space-y-4" : "space-y-6"
+      } ${className}`}
     >
       <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl bg-primary-400 p-2 px-4 capitalize text-white">
         <h3 className="min-w-fit font-normal">{title}</h3>

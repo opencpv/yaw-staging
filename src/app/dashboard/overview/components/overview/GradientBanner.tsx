@@ -18,7 +18,7 @@ type Props = {
 const GradientBanner = (props: Props) => {
   return (
     <div
-      className={`gradient-to-bottom flex flex-wrap items-center gap-8 rounded-xl p-10 text-white ${props.className}`}
+      className={`gradient-to-bottom flex flex-wrap items-center gap-8 rounded-xl p-10 text-white lg:max-w-4xl ${props.className}`}
     >
       <Image
         src={props.image}

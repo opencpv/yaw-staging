@@ -23,7 +23,7 @@ const Navbar = () => {
   return (
     <Root
       className={`flex flex-nowrap items-center
-      bg-[#073B3A] p-[1rem] 2xl:p-[1.875rem] `}
+      gap-5 bg-[#073B3A] p-[1rem] 2xl:p-[1.875rem] `}
     >
       <div className="flex w-full items-center justify-start gap-6 md:gap-10 lg:gap-20">
         <Logo size="xs" />
