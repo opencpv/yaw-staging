@@ -14,7 +14,7 @@ const PaidFeaturesSection = (props: Props) => {
     >
       <FeatureExplainer href="" title="Be My Agent" locked={false} />
       {props.type !== "Property manager" && (
-        <FeatureExplainer href="" title="Be The First To Know" locked={false} />
+        <FeatureExplainer href="" title="Get Notified" locked={false} />
       )}
     </div>
   );

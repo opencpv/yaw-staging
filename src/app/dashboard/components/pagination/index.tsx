@@ -1,15 +1,10 @@
 "use client";
 
-import CaSubscriptions from "@/app/components/icons/CaSubscriptions";
 import { styled } from "@stitches/react";
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
-import { FcSettings } from "react-icons/fc";
 import Link from "next/link";
 import useViewport from "@/lib/custom-hooks/useViewport";
 import { useEffect, useRef, useState } from "react";
-import { IoMdSettings } from "react-icons/io";
 import { usePathname, useRouter } from "next/navigation";
-import path from "path";
 import { PgRoutesRenter } from "./links";
 import { HiBars3BottomRight } from "react-icons/hi2";
 import Button from "@/components/__shared/ui/button/Button";
@@ -43,10 +38,12 @@ const PaginationTab = ({ active, icon, name, link }: PaginationTabProps) => {
 const Pagination = () => {
   const vw = useViewport();
   const [active, setActive] = useState("");
+  const [isDragging, setIsDragging] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
   const [atEnd, setAtEnd] = useState(false);
   const scrollableRef = useRef<any>();
+  // const scrollableRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (pathname) {
@@ -57,15 +54,41 @@ const Pagination = () => {
         }
       });
     }
-  }, [pathname]);
 
-  // useEffect(() => {
-  //   const element = scrollableRef.current;
-  //   const targetElement = element.querySelector(`.${active || "overview"}`);
-  //   if (targetElement) {
-  //     targetElement.scrollIntoView({ behavior: "smooth" });
-  //   }
-  // }, [active]);
+    //
+    let startX: number;
+    let scrollLeft: number;
+    console.log(isDragging);
+
+    if (scrollableRef.current) {
+      scrollableRef?.current.addEventListener("mousedown", (e: MouseEvent) => {
+        setIsDragging(true);
+        startX = e.pageX - scrollableRef.current!.offsetLeft;
+        scrollLeft = scrollableRef.current!.scrollLeft;
+      });
+
+      scrollableRef?.current.addEventListener("mouseleave", () => {
+        setIsDragging(false);
+      });
+
+      scrollableRef?.current.addEventListener("mouseup", () => {
+        setIsDragging(false);
+      });
+
+      scrollableRef?.current.addEventListener("mousemove", (e: MouseEvent) => {
+        if (!isDragging) return;
+        const x = e.pageX - scrollableRef.current!.offsetLeft;
+        const walk = (x - startX) * 3; // Adjust the multiplier for sensitivity
+        scrollableRef.current!.scrollLeft = scrollLeft - walk;
+        console.log(walk);
+      });
+
+      // Optional: Prevent text selection during dragging
+      // scrollableRef?.current.addEventListener("selectstart", (e: any) => {
+      //   if (isDragging) e.preventDefault();
+      // });
+    }
+  }, [pathname, isDragging]);
 
   const handleScrollToRight = () => {
     const element: any = scrollableRef.current;
@@ -92,7 +115,10 @@ const Pagination = () => {
   };
 
   return (
-    <Root className="flex items-start gap-7 px-5 py-1 md:items-center">
+    <Root
+      className="flex items-start gap-7 px-5 py-1 md:items-center"
+      ref={scrollableRef}
+    >
       {/* {atEnd && (
         <button
           onClick={handleScrollToLeft}

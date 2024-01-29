@@ -14,7 +14,7 @@ const RenterExplore = (props: Props) => {
         {/* <FeatureUpgradeCard title="Be The First To Know" />
           <FeatureUpgradeCard title="Be My Agent" /> */}
         <ExploreFeatureCard
-          title="My Bookmarks"
+          title="My Favourites"
           description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis mollitia eius recusandae sed, quis, vitae sequi praesentium natus id dolores atque omnis facilis tempore exercitationem perferendis sit alias consequuntur nemo."
           href="saved-search"
         />

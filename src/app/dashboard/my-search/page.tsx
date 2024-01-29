@@ -13,7 +13,7 @@ const MySearch = () => {
   const data = [1];
   const { images } = useAssets();
   const { value, handleSelectionChange } = useSelectDisclosure<
-    "favourites" | "saved search" | "be the first to know" | "listing" | "all"
+    "favourites" | "be the first to know" | "listing" | "all"
   >("favourites");
 
   return (
@@ -23,7 +23,6 @@ const MySearch = () => {
         <OptionFilterTabs
           options={[
             "Favourites",
-            "Saved search",
             "Be the first to know",
             "Recommendations",
             "All",
@@ -39,7 +38,6 @@ const MySearch = () => {
         <Select
           options={[
             "Favourties",
-            "Saved search",
             "Be the first to know",
             "Recommendations",
             "All",

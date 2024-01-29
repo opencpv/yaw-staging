@@ -6,7 +6,7 @@ import style from "./Feature.module.css";
 import Link from "next/link";
 
 type Props = {
-  title: string;
+  title: "Be The First To Know" | "Be My Agent" | "My Favourites";
   description: string;
   href: string;
   tag?: "Free" | "Premium";
