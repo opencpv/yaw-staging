@@ -15,7 +15,7 @@ interface ListingCardInterface extends ListingInterface {
 }
 
 interface RenterPaidFeatureInterface {
-  title: "Be My Agent" | "Be The First To Know";
+  title: "Be My Agent" | "Get Notified";
   href: string;
   locked: boolean;
   className?: string;

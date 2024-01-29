@@ -4,7 +4,7 @@ const MySearch = () => {
   const data = [1];
   const { images } = useAssets();
   const { value, handleSelectionChange } = useSelectDisclosure<
-    "favourites" | "saved search" | "be the first to know" | "listing" | "all"
+    "favourites" | "be the first to know" | "listing" | "all"
   >("favourites");
 
   return (

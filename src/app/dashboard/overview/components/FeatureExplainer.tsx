@@ -17,7 +17,7 @@ const FeatureExplainer = ({
   const router = useRouter();
   return (
     <div
-      className={`w-full xs:max-xl:max-w-md xl:max-w-full ${
+      className={`w-full xs:max-lg:max-w-md lg:max-w-full ${
         locked ? "space-y-4" : "space-y-6"
       } ${className}`}
     >
@@ -45,7 +45,7 @@ const FeatureExplainer = ({
         <Callout className="flex gap-2">
           <BsPatchExclamation className="shrink-0 text-lg text-accent-50" />
           <div className="text-base">
-            {title === "Be The First To Know" && (
+            {title === "Get Notified" && (
               <p className="leading-normal">
                 Upgrade now to unlock this exclusive feature and supercharge
                 your renting experience
@@ -56,7 +56,7 @@ const FeatureExplainer = ({
                 You have no record for this service
               </p>
             )}
-            {title === "Be The First To Know" && (
+            {title === "Get Notified" && (
               <Button
                 href={href}
                 variant="ghost"
@@ -82,29 +82,29 @@ const FeatureExplainer = ({
           {title === "Be My Agent" && (
             <section className="space-y-6">
               <PaidFeature
-                image="/assets/images/leaseform/listing1.jpg"
+                image="/assets/images/Stock.jpg"
                 title="Lorem ipsum dol"
                 description="Lorem ipsum dolor sit amet."
                 matches={6}
               />
               <PaidFeature
-                image="/assets/images/leaseform/listing1.jpg"
+                image="/assets/images/Stock.jpg"
                 title="My Dream Home"
                 description="Lorem ipsum dolor sit amet."
                 matches={6}
               />
             </section>
           )}
-          {title === "Be The First To Know" && (
+          {title === "Get Notified" && (
             <section className="space-y-6">
               <PaidFeature
-                image="/assets/images/leaseform/listing1.jpg"
+                image="/assets/images/Stock.jpg"
                 title="Lorem ipsum do lo"
                 description="Lorem ipsum dolor sit amet."
                 matches={6}
               />
               <PaidFeature
-                image="/assets/images/leaseform/listing1.jpg"
+                image="/assets/images/Stock.jpg"
                 title="My Dream Home"
                 description="Lorem ipsum dolor sit amet."
                 matches={6}
