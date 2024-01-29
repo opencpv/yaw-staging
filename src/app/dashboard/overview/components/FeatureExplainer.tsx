@@ -83,7 +83,7 @@ const FeatureExplainer = ({
             <section className="space-y-6">
               <PaidFeature
                 image="/assets/images/leaseform/listing1.jpg"
-                title="Lorem ipsum dolor sit amet."
+                title="Lorem ipsum dol"
                 description="Lorem ipsum dolor sit amet."
                 matches={6}
               />
@@ -99,7 +99,7 @@ const FeatureExplainer = ({
             <section className="space-y-6">
               <PaidFeature
                 image="/assets/images/leaseform/listing1.jpg"
-                title="Lorem ipsum dolor sit amet."
+                title="Lorem ipsum do lo"
                 description="Lorem ipsum dolor sit amet."
                 matches={6}
               />

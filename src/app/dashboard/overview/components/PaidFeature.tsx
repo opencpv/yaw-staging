@@ -10,7 +10,7 @@ type Props = {
 
 const PaidFeature = (props: Props) => {
   return (
-    <div className="flex flex-col gap-2 border-b-2 py-2 min-[320px]:flex-row">
+    <div className="flex flex-col gap-2 border-b-2 py-2 last:border-b-0 min-[320px]:flex-row">
       {/* <div className="flex max-h-28 w-fit items-center justify-center rounded-xl bg-[#F9DFAE] p-6">
         <h2 className="font-bold">MDH</h2>
       </div> */}
