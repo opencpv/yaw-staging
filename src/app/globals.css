@@ -52,10 +52,6 @@ small {
   @apply block text-sm;
 }
 
-section {
-  @apply pt-28;
-}
-
 .gradient-to-bottom {
   @apply bg-gradient-to-b from-primary-500 to-primary-400/80;
 }
