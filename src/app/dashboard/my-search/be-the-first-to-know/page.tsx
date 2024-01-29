@@ -12,6 +12,17 @@ import ListingCard2 from "../components/ListingCard2";
 const BeTheFirstToKnow = () => {
   const data = [1];
   const { images } = useAssets();
+  const AddCriteriaButton = () => {
+    return (
+      <button className="flex gap-[36px] items-center py-6 px-8 rounded-[12px] shadow-xl">
+        <div className="flex items-center justify-center h-[64px] w-[64px] bg-[#F1F1F1] rounded-full ">
+          <CaDashAdd />
+        </div>
+        <p className="text-5">Add New Search Criteria </p>
+      </button>
+    );
+  };
+
   return (
     <main className={`w-full bg-white px-8 ${openSans.className}`}>
       <h1 className="mb-4 text-3xl font-semibold ">Be the first to Know</h1>
@@ -39,59 +50,48 @@ const BeTheFirstToKnow = () => {
         </section>
       ) : (
         <section>
-          <button className="flex gap-[36px] items-center py-6 px-8 rounded-[12px] shadow-1">
-            <div className="flex items-center justify-center h-[64px] w-[64px] bg-[#F1F1F1] rounded-full ">
-            <CaDashAdd/>
-            </div>
-            <p className="text-5">Add New Search Criteria </p>
-          </button>
+          <AddCriteriaButton />
           {/* saved criteria filter */}
           <div className="flex items-center lg:mt-20 lg:mb-[70px] gap-[11px]">
-            <CaDashFilter/>
-            <p className={`text-[24px] ${montserat.className}`}>Saved Criteria&apos;s</p>
+            <CaDashFilter />
+            <p className={`text-[24px] ${montserat.className}`}>
+              Saved Criteria&apos;s
+            </p>
           </div>
           {/* results found */}
-         <div className="grid lg:grid-cols-3 sm:grid-cols-1 mb-2">
-         <div className="px-6 py-3 rounded-[12px] border-[1px] flex justify-between">
-            <p className="text-[#00763A] font-semibold mt-1">{data.length} {data.length>1?"results":"result"} found</p>
-            <div className="relative">
-              <CaDashEyeOff/>
-              <div className="absolute top-[2px] right-[-14px] rounded-full h-7 w-7 bg-[#B71851] text-[10px] text-white flex items-center justify-center">
-                20+
+          <div className="grid lg:grid-cols-3 sm:grid-cols-1 mb-2">
+            <div className="px-6 py-3 rounded-[12px] border-[1px] flex justify-between">
+              <p className="text-[#00763A] font-semibold mt-1">
+                {data.length} {data.length > 1 ? "results" : "result"} found
+              </p>
+              <div className="relative">
+                <CaDashEyeOff />
+                <div className="absolute top-[2px] right-[-14px] rounded-full h-7 w-7 bg-[#B71851] text-[10px] text-white flex items-center justify-center">
+                  20+
+                </div>
               </div>
             </div>
           </div>
-         </div>
-         {/* properties grid */}
-         <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-5">
-       
+          {/* properties grid */}
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-5">
             {listings.map((listing) => (
-            <ListingCard2
-              key={listing.id}
-              href={listing.href}
-              images={listing.images}
-              liked={listing.liked}
-              membership={
-                listing.membership as Membership
-              }
-              monthlyAmount={listing.monthlyAmount}
-              paymentStructure={
-                listing.paymentStructure as
-                  PaymentStructure
-              }
-              propertyDescription={listing.propertyDescription}
-              price={listing.price}
-              propertyName={listing.propertyName}
-              rating={listing.rating}
-              ratingCount={listing.ratingCount}
-              deal={
-                listing.deal as
-                  Deal
-              }
-            />
-          ))}
-</div>
-
+              <ListingCard2
+                key={listing.id}
+                href={listing.href}
+                images={listing.images}
+                liked={listing.liked}
+                membership={listing.membership as Membership}
+                monthlyAmount={listing.monthlyAmount}
+                paymentStructure={listing.paymentStructure as PaymentStructure}
+                propertyDescription={listing.propertyDescription}
+                price={listing.price}
+                propertyName={listing.propertyName}
+                rating={listing.rating}
+                ratingCount={listing.ratingCount}
+                deal={listing.deal as Deal}
+              />
+            ))}
+          </div>
         </section>
       )}
     </main>

@@ -45,7 +45,7 @@ import SearchIcon from "/public/svgs/SearchHomeIcon.svg";
 import Clipboard from "/public/assets/images/dashboard/clipboard.png";
 import UserNoImage from "/public/assets/images/placeholder/user-no-image.jpeg"
 import Brochure from "/public/assets/images/contact/brochure.png"
-
+import SavedSearches from "/public/assets/images/dashboard/saved-searches.png"
 export const useAssets = () => {
   return {
     icons: {
@@ -97,6 +97,7 @@ export const useAssets = () => {
       VerifyListing,
       UserNoImage,
       Brochure,
+      SavedSearches
     },
   };
 };
