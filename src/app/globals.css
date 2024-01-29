@@ -129,6 +129,10 @@ section {
   min-width: 22rem;
 }
 
+.Toastify__toast-container {
+  @apply flex items-center justify-center;
+}
+
 .wrapper,
 .wrapper-2 {
   @apply mx-auto max-w-screen-3xl px-5 pb-8 pt-12 sm:pb-14 lg:px-10;

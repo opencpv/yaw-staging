@@ -50,7 +50,7 @@ const Feedback = ({ children }: Props) => {
         className="cursor-pointer"
         onClick={onOpen}
         tabIndex={0}
-        role="button"
+        // role="button"
         onKeyDown={handleKeyDown}
       >
         {children}
