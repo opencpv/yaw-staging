@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 "use client";
 import supabase from "@/lib/utils/supabaseClient";
 import { useAppStore } from "@/store/dashboard/AppStore";
@@ -12,7 +14,7 @@ const Test = () => {
       <Head>
         <title>Dashboard - RentRightGh</title>
       </Head>
-      <main className="w-full h-[100vh] bg-slate-800">
+      <main className="h-[100vh] w-full bg-slate-800">
         <input
           type="file"
           onChange={(e) => {
@@ -22,7 +24,7 @@ const Test = () => {
           className="text-white"
         />
         <button
-          className="bg-white p-2 rounded-full mt-4 "
+          className="mt-4 rounded-full bg-white p-2 "
           onClick={async () => {
             console.log(file);
             const formData = new FormData();
@@ -37,7 +39,7 @@ const Test = () => {
                     "Content-Type": "multipart/form-data",
                     // Add any additional headers if needed
                   },
-                }
+                },
               );
 
               // Handle the response as needed
