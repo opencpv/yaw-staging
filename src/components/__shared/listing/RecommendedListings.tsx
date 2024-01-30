@@ -14,6 +14,13 @@ import FetchErrorMessage from "../ui/data_fetching/FetchErrorMessage";
 import Button from "../ui/button/Button";
 import style from "./Listing.module.css";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectCoverflow, FreeMode, Mousewheel } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/effect-coverflow";
+
 type Props = {
   className?: string;
   showAllButton?: boolean;
@@ -38,7 +45,7 @@ const RecommendedListings = ({ className, showAllButton }: Props) => {
   return (
     <>
       <section className={`no-print h-fit w-full ${className}`}>
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-5">
+        <div className="mb-8 flex flex-wrap items-center justify-between gap-5">
           <h2>Recommended Listings</h2>
           <Button
             href="/properties"
@@ -67,9 +74,54 @@ const RecommendedListings = ({ className, showAllButton }: Props) => {
             </p>
           }
         />
-        {
+        {/* lg and above */}
+        <div className="hidden lg:block">
+          <Swiper
+            effect="coverflow"
+            mousewheel
+            grabCursor
+            centeredSlides
+            slidesPerView={4}
+            coverflowEffect={{
+              rotate: 50,
+              stretch: 0,
+              depth: 100,
+              modifier: 1,
+              slideShadows: false,
+            }}
+            modules={[FreeMode, EffectCoverflow, Mousewheel]}
+            className="mySwiper h-fit w-full"
+          >
+            {listings?.map((listing, idx) => (
+              <SwiperSlide
+                key={idx + 1}
+                className="min-w-[23rem] max-w-[23rem]"
+              >
+                <ListingCard
+                  key={listing.id}
+                  cardType="2"
+                  href={`/properties/${listing.property_id}`}
+                  propertyName={listing.property_name as string}
+                  city={listing.city as string}
+                  images={images} // TODO: check database
+                  liked={false} // TODO: check implementation
+                  membership={"Certified" as Membership} // TODO: check database
+                  monthlyAmount={listing.monthly_amount as number}
+                  paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
+                  propertyDescription={listing.description as string}
+                  price={4000} // TODO: check database
+                  rating={4.5} // TODO: check database
+                  ratingCount={105} // TODO: check database
+                  deal={"Best Value" as Deal} // TODO: check database
+                  showOnlyImage
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+        {/* lg and below */}
+        <div className="lg:hidden">
           <SliderMultiItems
-            autoplay
             hasNavAndPagination={false}
             slidesPerView={1.5}
             breakpoints={{
@@ -78,15 +130,6 @@ const RecommendedListings = ({ className, showAllButton }: Props) => {
               },
               768: {
                 slidesPerView: 2.5,
-              },
-              1200: {
-                slidesPerView: 3,
-              },
-              1300: {
-                slidesPerView: 3.5,
-              },
-              1536: {
-                slidesPerView: 4,
               },
             }}
             swiperSlideClassName="max-w-[23rem] min-w-[23rem] h-full"
@@ -109,33 +152,8 @@ const RecommendedListings = ({ className, showAllButton }: Props) => {
               />
             ))}
           />
-        }
-      </section>
-
-      {/* <section className="relative mt-20 h-fit">
-        <h2 className="mb-6">Recommended Listing</h2>
-        <div className={style.marquee}>
-          {listings?.map((listing) => (
-            <ListingCard
-              key={listing.id}
-              href={`/properties/${listing.property_id}`}
-              propertyName={listing.property_name as string}
-              city={listing.city as string}
-              images={images} // TODO: check database
-              liked={false} // TODO: check implementation
-              membership={"Certified" as Membership} // TODO: check database
-              monthlyAmount={listing.monthly_amount as number}
-              paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
-              propertyDescription={listing.description as string}
-              price={4000} // TODO: check database
-              rating={4.5} // TODO: check database
-              ratingCount={105} // TODO: check database
-              deal={"Best Value" as Deal} // TODO: check database
-              className="w-[23rem] min-w-[23rem]"
-            />
-          ))}
         </div>
-      </section> */}
+      </section>
     </>
   );
 };

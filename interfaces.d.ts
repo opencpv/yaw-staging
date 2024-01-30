@@ -12,6 +12,7 @@ interface ListingCardInterface extends ListingInterface {
   className?: string;
   cardType?: "1" | "2";
   city?: string;
+  showOnlyImage?: boolean;
 }
 
 interface RenterPaidFeatureInterface {

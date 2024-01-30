@@ -240,7 +240,7 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
       )}
       <RecommendedListings
         showAllButton
-        className="wrapper-section pb-8 sm:pb-14"
+        className="mx-auto mt-20 max-w-screen-3xl px-5 pb-8 sm:px-10 sm:pb-14"
       />
       <Footer />
     </>
