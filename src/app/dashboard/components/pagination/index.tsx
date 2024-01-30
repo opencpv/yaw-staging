@@ -117,7 +117,7 @@ const Pagination = () => {
         scrollbar={false}
         mousewheel={true}
         modules={[FreeMode, Scrollbar, Mousewheel]}
-        className="mySwiper hidden h-fit w-full md:flex"
+        className="mySwiper invisible hidden h-fit w-full md:visible"
       >
         {PgRoutesRenter.map((r, index) => (
           <SwiperSlide key={index} className="min-w-fit max-w-fit">
