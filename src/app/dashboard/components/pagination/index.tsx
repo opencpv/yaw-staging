@@ -9,6 +9,11 @@ import { PgRoutesRenter } from "./links";
 import { HiBars3BottomRight } from "react-icons/hi2";
 import Button from "@/components/__shared/ui/button/Button";
 import { LowerCase } from "@/lib/utils/stringManipulation";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode, Mousewheel, Scrollbar } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/free-mode";
 
 type PaginationTabProps = {
   active: string;
@@ -19,15 +24,21 @@ type PaginationTabProps = {
 
 const PaginationTab = ({ active, icon, name, link }: PaginationTabProps) => {
   return (
-    <Link href={link}>
+    <Link href={link} draggable={false}>
       <PgItem
         type={LowerCase(active) === LowerCase(name) ? "active" : undefined}
-        className={`flex max-h-[52px] min-h-[40px] min-w-[160px] flex-row items-center justify-center gap-[0.775rem] rounded-[.75rem] px-[1rem] py-[0.875rem] text-2xl font-semibold text-[#B0B0B0] transition-all lg:min-h-[85px] lg:max-w-none lg:flex-col ${name}`}
+        className={`flex max-h-[52px] min-h-[40px] min-w-[160px] cursor-pointer flex-row items-center justify-center gap-[0.775rem] rounded-[.75rem] px-[1rem] py-[0.875rem] text-2xl font-semibold text-[#B0B0B0] transition-all lg:min-h-[85px] lg:max-w-none lg:flex-col ${name}`}
+        draggable={false}
       >
         <div className="flex h-full w-full items-center justify-center">
           {icon}
         </div>{" "}
-        <p className="whitespace-nowrap text-lg capitalize 2xl:text-2xl">
+        <p
+          className="unselectable cursor-pointer whitespace-nowrap text-lg capitalize 2xl:text-2xl"
+          unselectable="on"
+          onSelectCapture={() => false}
+          onMouseDown={() => false}
+        >
           {name}
         </p>
       </PgItem>
@@ -38,7 +49,6 @@ const PaginationTab = ({ active, icon, name, link }: PaginationTabProps) => {
 const Pagination = () => {
   const vw = useViewport();
   const [active, setActive] = useState("");
-  const [isDragging, setIsDragging] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
   const [atEnd, setAtEnd] = useState(false);
@@ -54,41 +64,7 @@ const Pagination = () => {
         }
       });
     }
-
-    //
-    let startX: number;
-    let scrollLeft: number;
-    console.log(isDragging);
-
-    if (scrollableRef.current) {
-      scrollableRef?.current.addEventListener("mousedown", (e: MouseEvent) => {
-        setIsDragging(true);
-        startX = e.pageX - scrollableRef.current!.offsetLeft;
-        scrollLeft = scrollableRef.current!.scrollLeft;
-      });
-
-      scrollableRef?.current.addEventListener("mouseleave", () => {
-        setIsDragging(false);
-      });
-
-      scrollableRef?.current.addEventListener("mouseup", () => {
-        setIsDragging(false);
-      });
-
-      scrollableRef?.current.addEventListener("mousemove", (e: MouseEvent) => {
-        if (!isDragging) return;
-        const x = e.pageX - scrollableRef.current!.offsetLeft;
-        const walk = (x - startX) * 3; // Adjust the multiplier for sensitivity
-        scrollableRef.current!.scrollLeft = scrollLeft - walk;
-        console.log(walk);
-      });
-
-      // Optional: Prevent text selection during dragging
-      // scrollableRef?.current.addEventListener("selectstart", (e: any) => {
-      //   if (isDragging) e.preventDefault();
-      // });
-    }
-  }, [pathname, isDragging]);
+  }, [pathname]);
 
   const handleScrollToRight = () => {
     const element: any = scrollableRef.current;
@@ -116,7 +92,7 @@ const Pagination = () => {
 
   return (
     <Root
-      className="flex items-start gap-7 px-5 py-1 md:items-center"
+      className="flex items-start gap-7 px-5 py-1 pb-4 md:items-center"
       ref={scrollableRef}
     >
       {/* {atEnd && (
@@ -129,23 +105,27 @@ const Pagination = () => {
           <MdKeyboardArrowLeft color="white" size={24} />
         </button>
       )} */}
-      <div
-        className="pg-row hidden w-full items-center justify-start gap-8 overflow-x-scroll md:flex"
-        ref={scrollableRef}
-        style={{
-          scrollBehavior: "smooth",
-        }}
+      <Swiper
+        direction={"horizontal"}
+        slidesPerView={"auto"}
+        spaceBetween={32}
+        freeMode={true}
+        scrollbar={false}
+        mousewheel={true}
+        modules={[FreeMode, Scrollbar, Mousewheel]}
+        className="mySwiper hidden h-fit w-full md:flex"
       >
         {PgRoutesRenter.map((r, index) => (
-          <PaginationTab
-            key={index}
-            name={r?.name}
-            active={active}
-            icon={r?.icon}
-            link={r?.link}
-          />
+          <SwiperSlide key={index} className="min-w-fit max-w-fit">
+            <PaginationTab
+              name={r?.name}
+              active={active}
+              icon={r?.icon}
+              link={r?.link}
+            />
+          </SwiperSlide>
         ))}
-      </div>
+      </Swiper>
 
       {/* {!atEnd && (
         <button
@@ -157,7 +137,7 @@ const Pagination = () => {
           <MdKeyboardArrowRight color="white" size={24} />
         </button>
       )} */}
-      <Button className="relative bottom-2.5 hidden h-full w-28 items-center justify-center rounded-xl bg-[#45808B] px-4 py-3 text-white md:flex">
+      <Button className="relative bottom-1.5 hidden h-full w-28 items-center justify-center rounded-xl bg-[#45808B] px-4 py-3 text-white md:flex">
         <div className="flex flex-col items-center gap-3">
           <HiBars3BottomRight size={25} />
           <p className="text-lg font-medium 2xl:text-2xl">More</p>

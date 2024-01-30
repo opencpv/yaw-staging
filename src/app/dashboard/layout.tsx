@@ -108,7 +108,7 @@ const Wrapper = ({ children }: LayoutProps) => {
     <div>
       <div>
         <Navbar />
-        <div className="sticky top-0 z-50 mt-2 bg-white md:static md:bg-none">
+        <div className="sticky top-0 z-50 bg-white pt-2 md:static md:bg-none">
           <Pagination />
         </div>
 

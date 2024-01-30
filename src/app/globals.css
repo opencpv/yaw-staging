@@ -129,6 +129,14 @@ small {
   @apply flex items-center justify-center;
 }
 
+.unselectable {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -o-user-select: none;
+}
+
 .wrapper,
 .wrapper-2 {
   @apply mx-auto max-w-screen-3xl px-5 pb-8 pt-12 sm:pb-14 lg:px-10;
