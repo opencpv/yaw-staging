@@ -50,7 +50,7 @@ const RenterOverviewPage = (props: Props) => {
               type="Renter"
               className="col-span-1 lg:hidden"
             />
-            <RenterExplore />
+            <RenterExplore className="mt-3 lg:mt-0" />
             <SellYourItem />
           </section>
         </div>
