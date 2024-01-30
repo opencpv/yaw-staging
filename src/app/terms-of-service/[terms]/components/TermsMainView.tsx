@@ -6,13 +6,13 @@ const TermsMainView = ({ data }: { data: any }) => {
 
   return (
     <section className=" w-full  lg:mt-6 lg:px-[30px]">
-      <div className="flex h-[75vh] max-h-[592px] w-full items-center bg-terms-bg bg-cover bg-center px-4 md:px-[30px] lg:rounded-2xl lg:pl-[100px]">
+      <div className="flex h-[70vh] max-h-[592px] w-full items-center bg-terms-bg bg-cover bg-center px-4 md:px-[30px] lg:rounded-2xl lg:pl-[100px]">
         {data && (
           <div>
-            <h1 className="mt-4  whitespace-nowrap text-[39px] font-bold text-[#fff] lg:text-[3.8125rem] ">
+            <h1 className="mt-4  text-4xl font-bold text-[#fff] lg:text-[3.8125rem] ">
               {data.title}
             </h1>
-            <div className="w-full max-w-[70%] mt-1 lg:mt-0 border-b-[8px] border-[#DDB771]"></div>
+            <div className="w-full max-w-[70%] mt-1 lg:mt-4 border-b-[8px] border-[#DDB771]"></div>
           </div>
         )}
       </div>
