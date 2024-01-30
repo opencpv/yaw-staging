@@ -1,27 +1,33 @@
 "use client";
 import { useDisclosure } from "@nextui-org/react";
-import React from "react";
-import { HiOutlineChatBubbleOvalLeftEllipsis } from "react-icons/hi2";
+import React, { KeyboardEvent } from "react";
 import Modal from "../__shared/modals/Modal";
 import { FaTimesCircle } from "react-icons/fa";
-import SurveyBody from "./SurveyBody";
-import SurveyHeader from "./SurveyHeader";
 import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import SurveyBody from "./SurveyBody ";
+import SurveyHeader from "./SurveyHeader";
 
 type Props = {
   // handleClick: () => void;
   className?: string;
+  children?: React.ReactNode;
 };
 
-const Survey = ({ className }: Props) => {
+const Survey = ({ children }: Props) => {
   const { onOpen, isOpen, onOpenChange, onClose } = useDisclosure();
   const { onOpen: toastOnOpen } = useToastDisclosure();
 
-  const handleSubmitFeedback = () => {
+  const handleSubmitSurvey = () => {
     onClose();
     toastOnOpen(
-      "👍 Thank you! Your feedback is invaluable and will contribute to improving our services."
+      "👍 Thank you! Your feedback is invaluable and will contribute to improving our services.",
     );
+  };
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter") {
+      onOpen();
+    }
   };
 
   return (
@@ -35,23 +41,19 @@ const Survey = ({ className }: Props) => {
         }
         isDismissible={false}
         header={<SurveyHeader handleClose={onClose} />}
-        body={<SurveyBody handleSubmitFeedback={handleSubmitFeedback} />}
+        body={<SurveyBody handleSubmitSurvey={handleSubmitSurvey} />}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         size="lg"
       />
       <div
-        className="ml-5 inline-flex cursor-pointer items-center"
+        className="cursor-pointer"
         onClick={onOpen}
+        tabIndex={0}
+        role="button"
+        onKeyDown={handleKeyDown}
       >
-        <div
-          className={`relative z-20 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-t from-primary-500 to-primary-400 shadow-lg ${className}`}
-        >
-          <HiOutlineChatBubbleOvalLeftEllipsis className="text-3xl text-white" />
-        </div>
-        <div className="relative left-[-12%] flex h-14 w-52 items-center justify-center rounded-r-[3rem] bg-gradient-to-b from-primary-500 to-primary-400 text-white">
-          Survey
-        </div>
+        {children}
       </div>
     </>
   );

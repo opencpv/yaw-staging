@@ -3,21 +3,20 @@ import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
-import {
-  useDisclosure,
-} from "@nextui-org/react";
+import { useDisclosure } from "@nextui-org/react";
 import PropertyGalleryModal from "../[id]/components/PropertyGalleryModal";
 import { useModalFullscreenStore } from "@/store/modal/useModalStore";
 
 type Props = {
   href: string;
   className?: string;
+  disabled?: boolean;
 };
 
-const ViewPropertyBtn = ({ href, className }: Props) => {
+const ViewPropertyBtn = ({ href, className, disabled }: Props) => {
   const { isOpen, onClose, onOpen, onOpenChange } = useDisclosure();
   const setHideWindowScrollbar = useModalFullscreenStore(
-    (state) => state.setHideWindowScrollbar
+    (state) => state.setHideWindowScrollbar,
   );
 
   const pathname = usePathname();
@@ -31,10 +30,10 @@ const ViewPropertyBtn = ({ href, className }: Props) => {
       {pathname === "/" ? (
         <Link
           href={`${href}`}
-          className={`absolute shadow-md scale-75 bottom-28 right-5 min-[560px]:max-[680px]:right-80 xs:max-[690px]:bottom-28 min-[560px]:right-40 xs:bottom-60 md:scale-100 hover:-translate-y-2 transition-all ${className}`}
+          className={`absolute bottom-20 right-5 z-10 scale-75 shadow-md transition-all hover:-translate-y-2 min-[350px]:bottom-28 xs:bottom-60 xs:max-[660px]:bottom-28 min-[560px]:right-40 min-[560px]:max-[680px]:right-80 md:scale-100 ${className}`}
         >
           <div
-            className={`border w-32 h-32 border-white rounded-full flex items-center justify-center`}
+            className={`flex h-32 w-32 items-center justify-center rounded-full border border-white`}
           >
             <motion.div
               initial={{ opacity: 1 }}
@@ -45,7 +44,7 @@ const ViewPropertyBtn = ({ href, className }: Props) => {
                 ease: "linear",
                 repeatType: "reverse",
               }}
-              className={`bg-[#305A61] w-24 h-24 rounded-full text-white flex items-center justify-center`}
+              className={`flex h-24 w-24 items-center justify-center rounded-full bg-[#305A61] text-white`}
             >
               View
             </motion.div>
@@ -53,14 +52,18 @@ const ViewPropertyBtn = ({ href, className }: Props) => {
         </Link>
       ) : (
         <div
-          className={`absolute shadow-md scale-75 bottom-32 right-10 md:right-32 md:bottom-20 md:scale-100 hover:-translate-y-2 transition-all cursor-pointer ${className}`}
+          className={`absolute bottom-32 right-10 scale-75 cursor-pointer shadow-md transition-all hover:-translate-y-2 md:bottom-20 md:right-32 md:scale-100 ${
+            disabled && "pointer-events-none cursor-not-allowed"
+          } ${className}`}
           onClick={() => {
             onOpen();
             setHideWindowScrollbar(true);
           }}
         >
           <div
-            className={`border w-48 h-48 border-[#305A61] rounded-full flex items-center justify-center`}
+            className={`flex h-48 w-48 items-center justify-center rounded-full border ${
+              disabled ? "border-neutral-700" : "border-[#305A61]"
+            }`}
           >
             <motion.div
               initial={{ opacity: 1 }}
@@ -71,7 +74,9 @@ const ViewPropertyBtn = ({ href, className }: Props) => {
                 ease: "linear",
                 repeatType: "reverse",
               }}
-              className={`bg-[#305A61] w-32 h-32 rounded-full text-white flex items-center justify-center`}
+              className={`flex h-32 w-32 items-center justify-center rounded-full ${
+                disabled ? "bg-neutral-700" : "bg-[#305A61]"
+              } text-white`}
             >
               View
             </motion.div>

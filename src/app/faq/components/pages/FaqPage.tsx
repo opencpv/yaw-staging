@@ -1,19 +1,19 @@
 import React from "react";
 import FAQBrowser from "../FAQBrowser";
 import ContactSection from "../ContactSection";
+import SurveyButton from "@/components/survey/SurveyButton";
 
 type Props = {};
 
 const FaqPage = (props: Props) => {
   return (
     <>
-      <h1
-        className={`px-[39px] font-semibold mb-[100px] text-[#000] text-[39px]`}
-      >
+      <h2 className={`text-neutral-800 xs:text-4xl`}>
         Frequently Asked Questions
-      </h1>
+      </h2>
       <FAQBrowser />
       <ContactSection />
+      <SurveyButton />
     </>
   );
 };

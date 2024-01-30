@@ -1,29 +1,30 @@
 "use client";
 import React from "react";
+import Button from "./button/Button";
 
 type Props = {};
 
 const SubscribeForm = (props: Props) => {
   return (
     <form
-      className="flex flex-col gap-5 md:gap-0 md:flex-row w-full max-w-[1061px] h-[95px] rounded-[32px] 
+      className="flex h-[95px] w-full max-w-[1061px] flex-col gap-5 rounded-[32px] md:flex-row md:gap-0 
         "
     >
       <input
-        className="h-full rounded-[4rem] px-10
-            md:rounded-r-[0px]
-            min-h-[70px] md:min-h-[95px]
-            w-full lg:w-3/5 bg-[#D9D9D9]
-            text-[#B0B0B0] text-xl xs:text-2xl placeholder:text-xl xs:placeholder:text-2xl"
+        className="h-full min-h-[70px] w-full
+            rounded-[4rem]
+            bg-[#D9D9D9] px-10
+            text-xl text-neutral-800 placeholder:text-xl
+            xs:text-2xl xs:placeholder:text-2xl md:min-h-[95px] md:rounded-r-[0px] lg:w-3/5"
         placeholder={"Email or phone number"}
       />
-      <button
-        className="uppercase bg-[#DDB771] min-h-[70px] md:min-h-[95px]
-          flex items-center text-white justify-center rounded-[4rem]
-          w-full font-semibold text-2xl md:rounded-l-[0px] lg:w-2/5"
+      <Button
+        color="accent"
+        radius="full"
+        className="min-h-[70px] w-full max-w-full rounded-[4rem] text-2xl font-semibold uppercase md:min-h-[95px] md:rounded-l-[0px] lg:w-2/5"
       >
         subscribe now!
-      </button>
+      </Button>
     </form>
   );
 };

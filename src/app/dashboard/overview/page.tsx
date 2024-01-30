@@ -10,9 +10,9 @@ const page = () => {
   return (
     <>
       {tempCheck === "Renter" ? (
-        <PropManagerOverviewPage />
-      ) : (
         <RenterOverviewPage />
+        ) : (
+        <PropManagerOverviewPage />
       )}
     </>
   );

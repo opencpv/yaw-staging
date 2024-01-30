@@ -6,7 +6,7 @@ import React from "react";
 
 type Props = {
   className?: string;
-  size?: "sm" | "md" | "lg";
+  size?: "xs" | "sm" | "md" | "lg";
   onClick?: () => void;
 };
 
@@ -17,7 +17,7 @@ const Logo = ({ className, size, onClick }: Props) => {
       <Image
         src={icons.Logo}
         alt="RentRightGH logo"
-        width={size === "md" ? 112 : size === "lg" ? 128 : 96}
+        width={size === "md" ? 112 : size === "lg" ? 128 : size === "xs" ? 60 : 96}
         quality={100}
         className={`${className}`}
         onClick={onClick}

@@ -46,7 +46,7 @@ const SliderGrid = ({ items }: SliderGridProps) => {
   // }, []);
 
   return (
-    <div className="w-full h-full mb-10">
+    <div className="mb-10 h-full w-full">
       <Swiper
         slidesPerView={1}
         // centeredSlides
@@ -102,7 +102,7 @@ const SliderGrid = ({ items }: SliderGridProps) => {
         observeParents
         observeSlideChildren
         resizeObserver
-        className="w-full h-full slider-grid"
+        className="slider-grid h-full w-full"
       >
         {/* Mapping through Featured listings from database */}
         {items?.map((item, idx) => (
@@ -112,15 +112,15 @@ const SliderGrid = ({ items }: SliderGridProps) => {
         ))}
       </Swiper>
       {/* Pagination bullets and button */}
-      <div className="relative z-20 flex items-center justify-center w-11/12 mx-auto -mt-4 top-10 2xl:w-9/12">
+      <div className="relative top-10 z-20 mx-auto -mt-4 flex w-11/12 items-center justify-center 2xl:w-9/12">
         {/* Prev Button */}
-        <div className="inline-flex items-center justify-between w-full gap-5">
-          <div className="grid w-12 h-12 rounded-full cursor-pointer listing-grid-prev bg-accent-50 shrink-0 place-items-center md:w-16 md:h-16">
+        <div className="inline-flex w-full items-center justify-between gap-5">
+          <div className="listing-grid-prev grid h-12 w-12 shrink-0 cursor-pointer place-items-center rounded-full bg-accent-50 md:h-16 md:w-16">
             <FaChevronLeft className="text-white" />
           </div>
-          <div className="absolute left-20 slider-grid-pagination w-full hidden min-[250px]:block"></div>
+          <div className="slider-grid-pagination absolute left-20 hidden w-full min-[250px]:block"></div>
           {/* Next button */}
-          <div className="grid w-12 h-12 rounded-full cursor-pointer listing-grid-next bg-accent-50 shrink-0 place-items-center md:w-16 md:h-16">
+          <div className="listing-grid-next grid h-12 w-12 shrink-0 cursor-pointer place-items-center rounded-full bg-accent-50 md:h-16 md:w-16">
             <FaChevronRight className="text-white" />
           </div>
         </div>

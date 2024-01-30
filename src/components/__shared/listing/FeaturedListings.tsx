@@ -10,12 +10,14 @@ import FetchingStates from "../ui/data_fetching/FetchingStates";
 import { fetchOrderRule, revalidationRule } from "@/lib/utils/fetchRules";
 import images from "@/enum/temp/images";
 import FetchErrorMessage from "../ui/data_fetching/FetchErrorMessage";
+import Button from "../ui/button/Button";
 
 type Props = {
   className?: string;
+  showAllButton?: boolean;
 };
 
-const FeaturedListings = ({ className }: Props) => {
+const FeaturedListings = ({ className, showAllButton }: Props) => {
   const {
     data: listings,
     isLoading,
@@ -25,14 +27,28 @@ const FeaturedListings = ({ className }: Props) => {
     supabase
       .from("standard_template")
       .select(
-        "id, property_name, property_id, description, monthly_amount, city"
+        "id, property_name, property_id, description, monthly_amount, city",
       )
       .order("created_at", fetchOrderRule()),
-    revalidationRule()
+    revalidationRule(),
   );
 
   return (
-    <section className={`w-full h-fit no-print overflow-x-hidden section ${className}`}>
+    <section
+      className={`no-print section h-fit w-full overflow-x-hidden ${className}`}
+    >
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-5">
+        <h2>Featured Listings</h2>
+        <Button
+          href="/properties"
+          variant="ghost"
+          className={`text-sm text-neutral-800 ${
+            showAllButton ? "block" : "hidden"
+          } ${isLoading && "hidden"}`}
+        >
+          Show all
+        </Button>
+      </div>
       <FetchingStates
         data={listings}
         error={error}
@@ -45,7 +61,7 @@ const FeaturedListings = ({ className }: Props) => {
         }
         errorComponent={<FetchErrorMessage specificData="featured listings" />}
         noDataMessageComponent={
-          <p className="italic mt-4 text-center">
+          <p className="mt-4 text-center italic">
             There are no properties yet.
           </p>
         }
@@ -54,7 +70,7 @@ const FeaturedListings = ({ className }: Props) => {
         <SliderMultiItems
           autoplay
           hasNavAndPagination={false}
-          slidesPerView={1}
+          slidesPerView={1.5}
           breakpoints={{
             500: {
               slidesPerView: 1.5,
@@ -72,6 +88,7 @@ const FeaturedListings = ({ className }: Props) => {
               slidesPerView: 4,
             },
           }}
+          swiperSlideClassName="max-w-[23rem] min-w-[23rem] h-full"
           items={listings?.map((listing) => (
             <ListingCard
               key={listing.id}

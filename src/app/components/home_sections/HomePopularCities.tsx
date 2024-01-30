@@ -22,13 +22,11 @@ const HomePopularCities = () => {
       .from("standard_template")
       .select("id")
       .order("created_at", fetchOrderRule()),
-    revalidationRule()
+    revalidationRule(),
   );
   return (
     <section
-      className={`${
-        cities && cities?.length < 1 && "hidden"
-      } space-y-5 pt-32`}
+      className={`${cities && cities?.length < 1 && "hidden"} space-y-5 pt-32`}
     >
       <div className="w-full space-y-5 min-[810px]:w-7/12">
         <div className="flex items-start gap-5">
@@ -43,7 +41,7 @@ const HomePopularCities = () => {
           />
         </div>
       </div>
-      <div className="items-center hidden grid-cols-2 gap-5 pb-20 lg:grid lg:grid-cols-3">
+      <div className="hidden grid-cols-2 items-center gap-5 pb-20 lg:grid lg:grid-cols-3">
         <FetchingStates
           data={cities}
           error={error}
@@ -55,16 +53,15 @@ const HomePopularCities = () => {
           errorComponent={<FetchErrorMessage specificData="cities" />}
         />
         {cities?.map((city) => (
-          <AOSWrapper key={city.id} animation="zoom-in" duration="1000">
-            <PopularCitiesCard
-              location="Kumasi"
-              description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, doloribus!"
-              propertyNumber={232}
-            />
-          </AOSWrapper>
+          <PopularCitiesCard
+            key={city.id}
+            location="Kumasi"
+            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, doloribus!"
+            propertyNumber={232}
+          />
         ))}
       </div>
-      <div className="relative pb-20 h-fit lg:hidden">
+      <div className="relative h-fit pb-20 lg:hidden">
         <FetchingStates
           data={cities}
           error={error}
@@ -86,6 +83,7 @@ const HomePopularCities = () => {
               propertyNumber={232}
             />
           ))}
+          swiperSlideClassName="max-w-md"
         />
       </div>
     </section>

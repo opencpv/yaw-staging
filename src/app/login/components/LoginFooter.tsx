@@ -1,47 +1,35 @@
-import { montserat } from "@/styles/font";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import Image from "next/image";
 import Link from "next/link";
 import { getCurrentYear } from "@/lib/utils/numberManipulation";
+import legal from "@/enum/about/legal";
 
 export const LoginFooter = () => {
-  const { icons } = useAssets();
   return (
-    <div className="flex items-center justify-center w-full">
-      <div
-        className={`${montserat.className} font-semibold gap-x-2 gap-y-4 text-sm flex flex-col max-lg:flex-row min-[1460px]:flex-row items-center`}
-      >
-        <div className="text-[#B0B0B0] flex flex-wrap items-center gap-2 order-2 min-[1460px]:order-1">
-          <p className={`text-center mx-auto`}>
-            Copyright © {getCurrentYear()} ESODO LLC | All rights reserved
-          </p>
-        </div>
-        <div className="flex flex-wrap items-center gap-4 order-1 min-[1460px]:order-2">
-          <Link href={`mailto: contact@contact.com`} className="flex items-center gap-2 mx-auto">
-            <Image src={icons.MailIcon} alt="email icon" />
-            <p className="text-[#fff]">admin@rentright.com</p>
+    <div className="flex flex-col items-center justify-center gap-4 text-base font-semibold">
+      <div className="flex flex-wrap items-center justify-center gap-4 text-center">
+        <p className="text-[#B0B0B0]">
+          By signing in, you agree to the following:
+        </p>
+        <div className="flex flex-wrap items-center justify-center gap-4 min-[482px]:divide-x">
+          <Link href="/terms-of-service" className="text-white underline">
+            {legal.websiteName} terms and conditions
           </Link>
-          <Link href={`tel:+233 25 898 2889`} target="_blank" className="flex items-center gap-2 mx-auto">
-            <Image src={icons.PhoneIcon} alt="email icon" />
-            <p className="text-[#fff]">(+233) 25 898 2889</p>
+          <Link
+            href="/privacy"
+            className="text-white underline min-[482px]:pl-4"
+          >
+            {legal.websiteName} privacy policy
           </Link>
         </div>
       </div>
-      {/* <footer
-        className={`${montserat.className} px-[14px] font-semibold uppercase lg:hidden flex flex-wrap justify-center gap-[5px] text-[15px]`}
-      >
-        <div className="flex items-center gap-[5px]">
-          <Image src={icons.MailIcon} alt="email icon" />
-          <p className="text-[#fff]">contact@contact.com</p>
+      {/* <div className="flex flex-col flex-wrap items-center justify-center gap-2 text-[#B0B0B0] md:flex-row">
+        <div className="mx-auto flex flex-wrap items-center justify-center gap-x-2 gap-y-4 divide-x-1 divide-[#B0B0B0] text-center">
+          <span>
+            Copyright © {getCurrentYear()} {legal.companyName}{" "}
+          </span>
+          <span className="inline-block pl-2"> {legal.copyrightNotice}</span>
         </div>
-        <div className="flex items-center gap-[5px]">
-          <Image src={icons.PhoneIcon} alt="email icon" />
-          <p className="text-[#fff]">(+233) 25 898 2889</p>
-        </div>
-        <p className={` text-[#B0B0B0] text-center col-span-2 font-normal`}>
-          Copyright © 2023 SBG DIGITAL LLC 2023 | All rights reserved
-        </p>
-      </footer> */}
+      </div> */}
     </div>
   );
 };

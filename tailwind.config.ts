@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 import defaultTheme from "tailwindcss/defaultTheme";
+const { violet, blackA, mauve, green } = require("@radix-ui/colors");
 const { nextui } = require("@nextui-org/react");
 
 const config: Config = {
@@ -21,11 +22,15 @@ const config: Config = {
         "my-search-bg": "url('/assets/images/my-search-bg.png')",
       },
       colors: {
+        ...mauve,
+        ...violet,
+        ...green,
+        ...blackA,
         modalOverlay: "#02020275",
         darkGreenBg: "#073B3A ",
         primary: {
           50: "#B0E3C9",
-          100: "#93B5BC",
+          100: "#21A19F",
           200: "#45808B",
           300: "#E6F6EE",
           400: "#396261",
@@ -60,7 +65,7 @@ const config: Config = {
         error: {
           50: "#FEF3F2",
         },
-        white: "#fff",
+        // white: "#fff",
       },
       gridTemplateColumns: {
         "autofit-listing-card": "repeat(auto-fit, minmax(380px, 1fr))",
@@ -69,6 +74,8 @@ const config: Config = {
       fontSize: {
         "20": "1.25rem",
         "25": "1.5625rem",
+        "31": "1.9375rem",
+        "39": "2.4375rem",
       },
     },
     screens: {
@@ -81,6 +88,37 @@ const config: Config = {
       "3xl": "1728px",
     },
   },
-  plugins: [nextui()],
+  plugins: [
+    nextui({
+      themes: {
+        light: {
+          colors: {
+            default: {
+              DEFAULT: "#DDB771",
+              foreground: "#FFFFFF",
+            },
+            danger: {
+              DEFAULT: "#21A19F",
+              foreground: "#FFFFFF",
+            },
+            focus: "#DDB771",
+          },
+        },
+        dark: {
+          colors: {
+            default: {
+              DEFAULT: "#DDB771",
+              foreground: "#FFFFFF",
+            },
+            danger: {
+              DEFAULT: "#21A19F",
+              foreground: "#FFFFFF",
+            },
+            focus: "#DDB771",
+          },
+        },
+      },
+    }),
+  ],
 };
 export default config;

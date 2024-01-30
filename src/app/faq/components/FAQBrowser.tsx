@@ -5,12 +5,24 @@ import fetchFaqData from "../lib/fetchFaqData";
 import onlyUnique from "@/lib/utils/onlyUnique,";
 import groupByCategory from "../lib/groupFAQ";
 import FAQItem from "./FAQItem";
+import Loader from "@/components/__shared/loader/Loader";
+import { useFaqStore } from "@/store/faq/useFaqStore";
+import style from "../Faq.module.css";
 
 const FAQBrowser = () => {
-  const [active, setActive] = useState<number>(0);
+  // const [active, setActive] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(true);
   const [categories, setCategories] = useState<string[]>([]);
   const [data, setData] = useState<any>({});
   const [selectedCategory, setselectedCategory] = useState<string | null>(null);
+
+  const active = useFaqStore((state) => state.activeBrowser);
+  const setActive = useFaqStore((state) => state.setActiveBrowser);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const handleToggle = (index: number | null) => {
+    setOpenIndex((prevIndex) => (prevIndex === index ? null : index));
+  };
 
   useEffect(() => {
     fetchFaqData()
@@ -18,7 +30,8 @@ const FAQBrowser = () => {
         const cats = data.map((item: any) => item.category.title);
         const grouped = groupByCategory(data);
         setData(grouped);
-        console.log(grouped);
+        setLoading(false);
+        // console.log(grouped);
         const unique = cats.filter(onlyUnique);
         setselectedCategory(unique[0]);
         setCategories(unique);
@@ -29,43 +42,46 @@ const FAQBrowser = () => {
   }, []);
 
   return (
-    <div className="px-[15px] md:px-[39px] flex flex-col lg:flex-row  items-start">
-      <div className="flex flex-wrap lg:pr-[109px] lg:border-r-[1px] md:mt-[56px] lg:mr-[109px] flex-row  lg:flex-col gap-[50px]  md:mb-[56px] ">
-        {categories.map((category, index) => (
-          <div
-            key={index}
-            className={`lg:px-0 block flex-shrink px-[10px] py-[5px] transition-all duration-200 lg:bg-none ${
-              active == index ? "md:bg-[#EFEFEF]" : ""
-            }`}
-          >
-            <button
-              onClick={() => {
-                console.log(index);
-                setActive(index);
-                setselectedCategory(category);
-              }}
-              className={`${
-                montserat.className
-              } font-semibold transition-all  duration-200  px-[5px] ${
-                active == index ? "border-[#DDB771] border-l-4" : ""
-              } text-[#45808B]`}
-            >
-              {category}
-            </button>
+    <>
+      {loading ? (
+        <div className="flex h-40 items-center justify-center">
+          <Loader />
+        </div>
+      ) : (
+        <div className="flex flex-wrap items-start gap-10 pt-10 md:divide-x">
+          <div className="flex flex-1 flex-wrap gap-12 sm:max-w-[180px]">
+            {categories.map((category, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  setActive(index);
+                  setselectedCategory(category);
+                }}
+                className={`min-w-max px-1.5 py-1.5 text-start font-semibold transition-all duration-200 ${
+                  active == index
+                    ? "border-l-4 border-[#DDB771] md:bg-[#EFEFEF]"
+                    : ""
+                } text-[#45808B]`}
+              >
+                {category}
+              </button>
+            ))}
           </div>
-        ))}
-      </div>
-      <div>
-        {selectedCategory &&
-          data[selectedCategory].map((categoryObj: any, index: number) => (
-            <FAQItem
-              key={index}
-              title={categoryObj.title}
-              text={categoryObj.description}
-            />
-          ))}
-      </div>
-    </div>
+          <div className="faq-items min-w-full max-w-4xl flex-[6] sm:min-w-0 md:pl-10">
+            {selectedCategory &&
+              data[selectedCategory].map((categoryObj: any, index: number) => (
+                <FAQItem
+                  key={index}
+                  title={categoryObj.title}
+                  text={categoryObj.description}
+                  isActive={index === openIndex}
+                  onClick={() => handleToggle(index)}
+                />
+              ))}
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
