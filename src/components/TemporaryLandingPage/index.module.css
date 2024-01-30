@@ -1,0 +1,10 @@
+.genuineText {
+    background: linear-gradient(96deg, #FFF 10.44%, #89867F 72.47%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.pinkImage {
+    background: linear-gradient(356deg, rgba(11, 110, 79, 0.12) 50.72%, rgba(0, 0, 0, 0.00) 155.44%), url('/assets/images/temporary-landing/house.png'), lightgray 50% / cover no-repeat;
+}
