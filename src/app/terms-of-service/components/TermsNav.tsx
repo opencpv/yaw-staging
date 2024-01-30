@@ -27,12 +27,12 @@ const TermsNav = ({
 
   return (
     <nav
-      className={` flex w-full items-center justify-between px-4 py-4 md:px-[30px] ${
+      className={` flex w-full items-center justify-between px-4 md:px-[30px] h-[80px] 2xl:h-[90px] ${
         primary ? "" : "bg-[#333333]"
       }`}
     >
      
-      <Link href="/" className="w-full h-full">
+      <Link href="/" className="w-full h-full flex items-center">
        <div className="relative w-full max-w-[56px] lg:max-w-[72px] aspect-[56/46] md:aspect-[72/58]">
           <Image
             src={icons.Logo}
