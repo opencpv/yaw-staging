@@ -27,7 +27,7 @@ const RenterOverviewPage = (props: Props) => {
             type="Renter"
           />
           {true && ( // TODO: implement appropriately
-            <section className="mt-10 max-w-3xl flex-wrap space-y-5 xs:flex xs:gap-5 xs:space-y-0 md:mt-40">
+            <section className="mt-10 max-w-3xl flex-wrap space-y-5 xs:flex xs:gap-5 xs:space-y-0 md:mt-36">
               <RenterActivityCard
                 type="applications"
                 count={6}
@@ -50,7 +50,7 @@ const RenterOverviewPage = (props: Props) => {
               type="Renter"
               className="col-span-1 lg:hidden"
             />
-            <RenterExplore />
+            <RenterExplore className="mt-3 lg:mt-0" />
             <SellYourItem />
           </section>
         </div>

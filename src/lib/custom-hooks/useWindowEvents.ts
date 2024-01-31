@@ -34,7 +34,30 @@ export const useScrollIntoView = (
   }, [refElement, block]);
 };
 
+export const useHideDocumentScrollBar = (state: boolean) => {
+  useEffect(() => {
+    if (state) {
+      setTimeout(() => {
+        document.body.classList.add(
+          "max-h-screen",
+          "overflow-y-hidden",
+          "hidden-scrollbar",
+        );
+      }, 300);
+    } else {
+      setTimeout(() => {
+        document.body.classList.remove(
+          "max-h-screen",
+          "overflow-y-hidden",
+          "hidden-scrollbar",
+        );
+      }, 1000);
+    }
+  }, [state]);
+};
+
 export const useScrollBoundingClient = (
+  // !! discontinued temporarily
   childRef: React.RefObject<HTMLElement>,
   parentRef?: React.RefObject<HTMLElement>,
 ) => {
