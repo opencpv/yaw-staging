@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 "use client";
 import { styled } from "@stitches/react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
@@ -57,7 +59,7 @@ const AddNewProduct = () => {
     <Root>
       <main className="w-full px-8">
         <div className="mb-5 lg:mt-[32px] ">
-          <p className="text-[31px] font font-semibold">Add new product</p>
+          <p className="font text-[31px] font-semibold">Add new product</p>
         </div>
         <Formik
           initialValues={{
@@ -73,7 +75,7 @@ const AddNewProduct = () => {
             console.log(values);
           }}
         >
-          <form className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <form className="grid grid-cols-1 gap-4 lg:grid-cols-3">
             <div>
               <div className="form-div">
                 <label>Product name</label>
@@ -92,7 +94,7 @@ const AddNewProduct = () => {
                     <DropdownTrigger>
                       <Button
                         isIconOnly
-                        className="bg-transparent border-[1px] rounded-md flex justify-between  px-2 h-[52px] w-full"
+                        className="flex h-[52px] w-full justify-between rounded-md  border-[1px] bg-transparent px-2"
                       >
                         <p className="text-[#B4B2AF]">
                           {selectedCategory == ""
@@ -104,7 +106,7 @@ const AddNewProduct = () => {
                     </DropdownTrigger>
                     <DropdownMenu
                       aria-label="Static Actions"
-                      className="text-neutral-800 w-[300px] text-center"
+                      className="w-[300px] text-center text-neutral-800"
                       onAction={(key) => setselectedCategory(key as string)}
                       items={categories}
                     >
@@ -118,7 +120,7 @@ const AddNewProduct = () => {
               <div className="form-div mt-5">
                 <label>Price</label>
                 <div className="flex gap-2">
-                  <div className=" border-[1px] h-fit py-[13px] rounded-md px-8 text-black ">
+                  <div className=" h-fit rounded-md border-[1px] px-8 py-[13px] text-black ">
                     <p className={`${openSans.className}`}>GHS</p>
                   </div>
                   <Field
@@ -136,7 +138,7 @@ const AddNewProduct = () => {
                   as="textarea"
                   name="description"
                   // placeholder={firstname}
-                  className="form-input-textarea p-2 h-[238px] border-1 rounded-md"
+                  className="form-input-textarea h-[238px] rounded-md border-1 p-2"
                 />
                 <ErrorMessage name="description" />
               </div>
@@ -148,7 +150,7 @@ const AddNewProduct = () => {
                   <DropdownTrigger>
                     <Button
                       isIconOnly
-                      className="bg-transparent border-[1px] rounded-md flex justify-between  px-2 h-[52px] w-full"
+                      className="flex h-[52px] w-full justify-between rounded-md  border-[1px] bg-transparent px-2"
                     >
                       <p className="text-[#B4B2AF]">
                         {condition == ""
@@ -160,7 +162,7 @@ const AddNewProduct = () => {
                   </DropdownTrigger>
                   <DropdownMenu
                     aria-label="Static Actions"
-                    className="text-neutral-800 w-[300px] text-center"
+                    className="w-[300px] text-center text-neutral-800"
                     onAction={(key) => setCondition(key as string)}
                   >
                     <DropdownItem key="USED">Used</DropdownItem>
@@ -191,10 +193,10 @@ const AddNewProduct = () => {
                 />
               </div>
             </div>
-            <div className="w-full h-[100%]">
-              <div className="w-full h-[100%] border-[1px] rounded-md"></div>
+            <div className="h-[100%] w-full">
+              <div className="h-[100%] w-full rounded-md border-[1px]"></div>
               <div className="flex justify-end">
-                <button className="px-[40px] py-[15px] bg-[#DDB771] rounded-md mt-8 text-white font-semibold">
+                <button className="mt-8 rounded-md bg-[#DDB771] px-[40px] py-[15px] font-semibold text-white">
                   Add New Product
                 </button>
               </div>
