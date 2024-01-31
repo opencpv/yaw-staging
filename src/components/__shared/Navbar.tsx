@@ -10,7 +10,7 @@ import LikeHeart from "./ui/LikeHeart";
 import Share from "./ui/share/Share";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
 import ButtonHireUs from "./ui/button/ButtonHireUs";
-import { useHideDocumentScrollBar } from "@/lib/custom-hooks/useWindowEvents.js";
+import { useHideDocumentScrollBar } from "@/lib/custom-hooks/useWindowEvents";
 
 const Navbar = (props: any) => {
   const pathname = usePathname();
