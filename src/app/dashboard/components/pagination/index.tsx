@@ -118,17 +118,21 @@ const Pagination = () => {
         mousewheel={true}
         modules={[FreeMode, Scrollbar, Mousewheel]}
         className="mySwiper invisible hidden h-fit w-full md:visible"
+        wrapperClass="justify-between"
       >
-        {PgRoutesRenter.map((r, index) => (
-          <SwiperSlide key={index} className="min-w-fit max-w-fit">
-            <PaginationTab
-              name={r?.name}
-              active={active}
-              icon={r?.icon}
-              link={r?.link}
-            />
-          </SwiperSlide>
-        ))}
+        {PgRoutesRenter.map(
+          (r, index) =>
+            index < 7 && (
+              <SwiperSlide key={index} className="min-w-fit max-w-fit">
+                <PaginationTab
+                  name={r?.name}
+                  active={active}
+                  icon={r?.icon}
+                  link={r?.link}
+                />
+              </SwiperSlide>
+            ),
+        )}
       </Swiper>
 
       {/* {!atEnd && (
@@ -142,15 +146,17 @@ const Pagination = () => {
         </button>
       )} */}
       <Button
-        className="relative bottom-1.5 hidden h-full w-28 items-center justify-center rounded-xl bg-[#45808B] px-4 py-3 text-white md:flex"
+        className="hidden h-full w-16 items-center justify-center rounded-xl bg-[#45808B] px-4 py-3 text-white md:flex lg:h-24 lg:min-w-unit-16 lg:px-2"
         onClick={() => setIsOpen(true)}
       >
-        <div className="flex flex-col items-center gap-3">
+        <div className="flex items-center justify-center">
           <HiBars3BottomRight size={25} />
-          <p className="text-lg font-medium 2xl:text-2xl">More</p>
         </div>
       </Button>
-      <button className="relative bottom-1 ml-auto mt-2 h-max w-fit items-center justify-center rounded-xl border border-primary-800 px-3 py-2 text-primary-800 md:hidden" onClick={() => setIsOpen(true)}>
+      <button
+        className="relative bottom-1 ml-auto mt-2 h-max w-fit items-center justify-center rounded-xl border border-primary-800 px-3 py-2 text-primary-800 md:hidden"
+        onClick={() => setIsOpen(true)}
+      >
         <div className="flex flex-col items-center gap-3">
           <HiBars3BottomRight size={25} />
         </div>

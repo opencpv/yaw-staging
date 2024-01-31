@@ -75,13 +75,21 @@ const RecommendedListings = ({ className, showAllButton }: Props) => {
           }
         />
         {/* lg and above */}
-        <div className="hidden lg:block">
+        <div>
           <Swiper
             effect="coverflow"
             mousewheel
             grabCursor
             centeredSlides
             slidesPerView={4}
+            // breakpoints={{
+            //   768: {
+            //     slidesPerView: 2,
+            //   },
+            //   1024: {
+            //     slidesPerView: 4,
+            //   },
+            // }}
             coverflowEffect={{
               rotate: 50,
               stretch: 0,
@@ -118,40 +126,6 @@ const RecommendedListings = ({ className, showAllButton }: Props) => {
               </SwiperSlide>
             ))}
           </Swiper>
-        </div>
-        {/* lg and below */}
-        <div className="lg:hidden">
-          <SliderMultiItems
-            hasNavAndPagination={false}
-            slidesPerView={1.5}
-            breakpoints={{
-              500: {
-                slidesPerView: 1.5,
-              },
-              768: {
-                slidesPerView: 2.5,
-              },
-            }}
-            swiperSlideClassName="max-w-[23rem] min-w-[23rem] h-full"
-            items={listings?.map((listing) => (
-              <ListingCard
-                key={listing.id}
-                href={`/properties/${listing.property_id}`}
-                propertyName={listing.property_name as string}
-                city={listing.city as string}
-                images={images} // TODO: check database
-                liked={false} // TODO: check implementation
-                membership={"Certified" as Membership} // TODO: check database
-                monthlyAmount={listing.monthly_amount as number}
-                paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
-                propertyDescription={listing.description as string}
-                price={4000} // TODO: check database
-                rating={4.5} // TODO: check database
-                ratingCount={105} // TODO: check database
-                deal={"Best Value" as Deal} // TODO: check database
-              />
-            ))}
-          />
         </div>
       </section>
     </>
