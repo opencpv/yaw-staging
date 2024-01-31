@@ -81,21 +81,29 @@ const RecommendedListings = ({ className, showAllButton }: Props) => {
             mousewheel
             grabCursor
             centeredSlides
-            slidesPerView={4}
-            // breakpoints={{
-            //   768: {
-            //     slidesPerView: 2,
-            //   },
-            //   1024: {
-            //     slidesPerView: 4,
-            //   },
-            // }}
+            slidesPerView={0.5}
+            spaceBetween={10}
             coverflowEffect={{
-              rotate: 50,
+              rotate: 20,
               stretch: 0,
               depth: 100,
               modifier: 1,
               slideShadows: false,
+            }}
+            breakpoints={{
+              360: {
+                slidesPerView: 1,
+              },
+              768: {
+                spaceBetween: 0,
+                slidesPerView: 2,
+                coverflowEffect: {
+                  rotate: 50,
+                },
+              },
+              1300: {
+                slidesPerView: 4,
+              },
             }}
             modules={[FreeMode, EffectCoverflow, Mousewheel]}
             className="mySwiper h-fit w-full"
@@ -103,7 +111,7 @@ const RecommendedListings = ({ className, showAllButton }: Props) => {
             {listings?.map((listing, idx) => (
               <SwiperSlide
                 key={idx + 1}
-                className="min-w-[23rem] max-w-[23rem]"
+                className={`aspect-square min-w-[16rem] max-w-[16rem] xs:aspect-auto xs:min-w-[23rem] xs:max-w-[23rem]`}
               >
                 <ListingCard
                   key={listing.id}
