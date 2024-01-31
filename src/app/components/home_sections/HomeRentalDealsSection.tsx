@@ -14,14 +14,12 @@ const HomeRentalDealsSection = (props: Props) => {
           <h2 className="w-fit font-[500] capitalize text-neutral-900">
             Our Apartment Rental Deals
           </h2>
-          <AOSWrapper animation="fade-right">
-            <Image
-              src="/assets/icons/deals.svg"
-              alt="handshake"
-              width={25}
-              height={25}
-            />
-          </AOSWrapper>
+          <Image
+            src="/assets/icons/deals.svg"
+            alt="handshake"
+            width={25}
+            height={25}
+          />
         </div>
         <p className="max-w-2xl font-[500] text-neutral-500">
           RentRightGH employs the latest data on rental rates and apartment
@@ -31,16 +29,12 @@ const HomeRentalDealsSection = (props: Props) => {
         </p>
       </div>
       <div className="grid items-center gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {rentalDeals.map((deal) => {
+        {rentalDeals.map((deal, idx) => {
           const { id, title, body, icon, href } = deal;
           return (
-            <DealCard
-              key={id}
-              href={href}
-              title={title}
-              body={body}
-              icon={icon}
-            />
+            <AOSWrapper key={id} animation="fade-up">
+              <DealCard href={href} title={title} body={body} icon={icon} />
+            </AOSWrapper>
           );
         })}
       </div>
