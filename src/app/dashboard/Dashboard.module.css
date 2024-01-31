@@ -1,6 +1,6 @@
 .paginationMenu {
-  @apply fixed inset-0 z-50 h-screen max-h-screen overflow-y-auto bg-menu-lg bg-cover bg-no-repeat p-10 text-white;
-  transition: all 1.4s ease;
+  @apply fixed inset-0 z-50 h-screen max-h-screen space-y-14 overflow-y-auto bg-menu-lg bg-cover bg-no-repeat p-10 shadow-2xl;
+  transition: clip-path 1.4s ease;
 }
 
 .paginationMenuHidden {
