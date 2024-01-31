@@ -1,0 +1,12 @@
+.paginationMenu {
+  @apply bg-menu-lg fixed inset-0 z-50 h-screen max-h-screen overflow-y-auto bg-cover bg-no-repeat p-10 text-white;
+  transition: all 1.4s ease;
+}
+
+.paginationMenuHidden {
+  clip-path: circle(0 at 100% 0);
+}
+
+.paginationMenuVisible {
+  clip-path: circle(150% at 100% 0);
+}
