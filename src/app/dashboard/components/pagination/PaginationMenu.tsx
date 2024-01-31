@@ -33,7 +33,7 @@ const PaginationMenu = () => {
         />
       </div>
       <div className="flex items-center justify-center">
-        <div className="grid grid-cols-3 gap-x-5 gap-y-20">
+        <div className="grid w-full gap-x-5 gap-y-10 sm:w-[initial] sm:grid-cols-2 sm:gap-y-20 min-[980px]:grid-cols-3">
           {PgRoutesRenter.map((route) => (
             <PaginationMenuItem
               key={route.name}
