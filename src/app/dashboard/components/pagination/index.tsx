@@ -150,7 +150,7 @@ const Pagination = () => {
           <p className="text-lg font-medium 2xl:text-2xl">More</p>
         </div>
       </Button>
-      <button className="relative bottom-1 ml-auto mt-2 h-max w-fit items-center justify-center rounded-xl border border-primary-800 px-3 py-2 text-primary-800 md:hidden">
+      <button className="relative bottom-1 ml-auto mt-2 h-max w-fit items-center justify-center rounded-xl border border-primary-800 px-3 py-2 text-primary-800 md:hidden" onClick={() => setIsOpen(true)}>
         <div className="flex flex-col items-center gap-3">
           <HiBars3BottomRight size={25} />
         </div>
