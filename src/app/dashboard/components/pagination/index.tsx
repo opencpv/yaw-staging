@@ -14,6 +14,8 @@ import { FreeMode, Mousewheel, Scrollbar } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/free-mode";
+import PaginationMenu from "./PaginationMenu";
+import { useDashboardMenuStore } from "@/store/navmenu/useDashboardMenuStore";
 
 type PaginationTabProps = {
   active: string;
@@ -54,6 +56,8 @@ const Pagination = () => {
   const [atEnd, setAtEnd] = useState(false);
   const scrollableRef = useRef<any>();
   // const scrollableRef = useRef<HTMLDivElement>(null);
+
+  const { setIsOpen } = useDashboardMenuStore();
 
   useEffect(() => {
     if (pathname) {
@@ -137,7 +141,10 @@ const Pagination = () => {
           <MdKeyboardArrowRight color="white" size={24} />
         </button>
       )} */}
-      <Button className="relative bottom-1.5 hidden h-full w-28 items-center justify-center rounded-xl bg-[#45808B] px-4 py-3 text-white md:flex">
+      <Button
+        className="relative bottom-1.5 hidden h-full w-28 items-center justify-center rounded-xl bg-[#45808B] px-4 py-3 text-white md:flex"
+        onClick={() => setIsOpen(true)}
+      >
         <div className="flex flex-col items-center gap-3">
           <HiBars3BottomRight size={25} />
           <p className="text-lg font-medium 2xl:text-2xl">More</p>
@@ -148,6 +155,8 @@ const Pagination = () => {
           <HiBars3BottomRight size={25} />
         </div>
       </button>
+
+      <PaginationMenu />
     </Root>
   );
 };
