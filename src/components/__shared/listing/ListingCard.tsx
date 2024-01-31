@@ -27,15 +27,24 @@ const ListingCard = (props: ListingCardInterface) => {
         }`}
       >
         <Swiper
-          pagination={{
-            clickable: true,
-            dynamicBullets: true,
-            dynamicMainBullets: 3,
-          }}
-          navigation={{
-            nextEl: ".custom-l-next",
-            prevEl: ".custom-l-prev",
-          }}
+          allowTouchMove
+          pagination={
+            props.showOnlyImage
+              ? false
+              : {
+                  clickable: true,
+                  dynamicBullets: true,
+                  dynamicMainBullets: 3,
+                }
+          }
+          navigation={
+            props.showOnlyImage
+              ? false
+              : {
+                  nextEl: ".custom-l-next",
+                  prevEl: ".custom-l-prev",
+                }
+          }
           modules={[Pagination, Navigation]}
           className={`listing-card-slider relative w-full ${
             props.cardType === "2" ? "h-80 rounded-2xl" : "h-52 rounded-t-lg"
