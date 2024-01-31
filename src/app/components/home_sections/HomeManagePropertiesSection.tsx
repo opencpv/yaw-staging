@@ -1,7 +1,6 @@
 import React from "react";
 import ManagePropertiesInfo from "../ManagePropertiesInfo";
 import Image from "next/image";
-import AOSWrapper from "@/components/__shared/AOSWrapper";
 
 type Props = {};
 
@@ -13,14 +12,12 @@ const HomeManagePropertiesSection = (props: Props) => {
           <h2 className="w-fit font-[500] capitalize text-neutral-900">
             Manage Your Properties With Us
           </h2>
-          <AOSWrapper animation="fade-right">
-            <Image
-              src="/assets/icons/manage.svg"
-              alt="shield"
-              width={25}
-              height={25}
-            />
-          </AOSWrapper>
+          <Image
+            src="/assets/icons/manage.svg"
+            alt="shield"
+            width={25}
+            height={25}
+          />
         </div>
         <p className="max-w-2xl font-[500] text-neutral-500">
           Effortlessly manage your rental properties with the most advanced

@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import ArrowLink from "./link/ArrowLink";
-import AOSWrapper from "@/components/__shared/AOSWrapper";
 
 type Props = {
   title: string;
@@ -21,18 +20,12 @@ const DealCard = ({ title, body, href, icon, className }: Props) => {
       </div>
       <div className="w-full space-y-4 sm:w-10/12">
         <div className="flex gap-3">
-          <AOSWrapper animation="fade-right" duration="1000">
-            <div className="h-7 border-4 border-[#D7D12D]"></div>
-          </AOSWrapper>
-          <AOSWrapper animation="fade-left" duration="1000">
-            <h4 className="text-base leading-[-0.75rem] text-neutral-900">
-              {title}
-            </h4>
-          </AOSWrapper>
+          <div className="h-7 border-4 border-[#D7D12D]"></div>
+          <h4 className="text-base leading-[-0.75rem] text-neutral-900">
+            {title}
+          </h4>
         </div>
-        <AOSWrapper animation="fade-up" duration="1000" delay="200">
-          <p className="text-sm font-[600] text-primary-600">{body}</p>
-        </AOSWrapper>
+        <p className="text-sm font-[600] text-primary-600">{body}</p>
         <ArrowLink href={`${href}`} text="Explore" color="#202457" />
       </div>
     </div>
