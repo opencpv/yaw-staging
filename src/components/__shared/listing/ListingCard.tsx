@@ -15,6 +15,9 @@ import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import ListingInfo from "./ListingInfo";
 import ListingDeals from "./ListingDeals";
 import { ListingCardInterface } from "../../../../interfaces";
+import { FaEye, FaRegEye, FaTrash } from "react-icons/fa";
+import { IoEyeOutline } from "react-icons/io5";
+import Button from "../ui/button/Button";
 
 const ListingCard = (props: ListingCardInterface) => {
   return (
@@ -46,21 +49,39 @@ const ListingCard = (props: ListingCardInterface) => {
                 }
           }
           modules={[Pagination, Navigation]}
-          className={`listing-card-slider relative w-full ${
-            props.cardType === "2" ? "h-80 rounded-2xl" : "h-52 rounded-t-lg"
+          className={`listing-card-slider relative group w-full ${
+            props.cardType === "2" ? "h-96 rounded-2xl" : "h-52 rounded-t-lg"
           } `}
         >
-          {/* Mapping through Featured listings from database */}
+        <ListingDeals membership={props.membership} deal={props.deal} />
+          <div
+            className={
+              props.mySearch
+                ? "absolute inset-0 z-30 h-full transition-all -translate-x-full group-hover:translate-x-0 delay-500 flex items-center justify-center w-full rounded-[inherit] bg-black bg-opacity-30"
+                : "hidden"
+            }
+          >
+            <div className="flex flex-col gap-3 items-center">
+              <Button href={props.href} className="min-h-unit-12 px-6 gap-3 rounded-xl bg-neutral-100 text-lg font-semibold text-neutral-400">
+                View Property
+                <IoEyeOutline className="text-neutral-800" />
+              </Button>
+              <Button
+                variant="ghost"
+                className="gap-3 text-lg font-semibold text-neutral-300 underline"
+              >
+                Remove
+                <FaTrash />
+              </Button>
+            </div>
+          </div>
           {props.images?.map((image, index) =>
             props.showOnlyImage ? (
               <>
                 {index === 0 && (
                   <SwiperSlide key={index}>
                     <Link
-                      href={`${props.href}?property_name=${props.propertyName}&city=${props.city}&price=${props.price}&payment_structure=${props.paymentStructure}&amount_per_month=${props.monthlyAmount}&rating=${props.ratingCount}&property_description=${props.propertyDescription}`.replaceAll(
-                        " ",
-                        "_",
-                      )}
+                      href={`${props.href}`}
                     >
                       <div className="relative h-full w-full">
                         <Image
@@ -101,7 +122,7 @@ const ListingCard = (props: ListingCardInterface) => {
           {/* Pagination bullets and button */}
           <div
             className={`custom-l-prev absolute left-[5%] z-10 flex h-10 w-10 shrink-0 cursor-default items-center justify-center rounded-full bg-white ${
-              props.cardType === "2" ? "bottom-32" : "bottom-20"
+              props.cardType === "2" ? "bottom-40" : "bottom-20"
             } ${props.showOnlyImage && "hidden"}`}
           >
             <MdChevronLeft className="text-lg text-neutral-700" />
@@ -113,7 +134,7 @@ const ListingCard = (props: ListingCardInterface) => {
           ></div>
           <div
             className={`custom-l-next absolute right-[5%] z-10 flex h-10 w-10 shrink-0 cursor-default items-center justify-center rounded-full bg-white ${
-              props.cardType === "2" ? "bottom-32" : "bottom-20"
+              props.cardType === "2" ? "bottom-40" : "bottom-20"
             } ${props.showOnlyImage && "hidden"}`}
           >
             <MdChevronRight className="text-lg text-neutral-700" />
@@ -135,7 +156,6 @@ const ListingCard = (props: ListingCardInterface) => {
           }`}
         />
         {/* Deals */}
-        <ListingDeals membership={props.membership} deal={props.deal} />
       </div>
     </>
   );

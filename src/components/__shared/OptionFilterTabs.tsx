@@ -9,13 +9,14 @@ type Props = {
   options: string[];
   radius?: "large" | "small";
   padding?: "small" | "wide";
+  tabColor?: "transparent" | "colored";
   onSelectionChange: (key: React.Key) => void;
   variant?: "default" | "gradient";
   selectedKey?: React.Key;
 };
 
 const OptionFilterTabs = (
-  { radius, options, selectedKey, onSelectionChange, variant, padding }: Props,
+  { radius, options, selectedKey, onSelectionChange, variant, padding, tabColor }: Props,
   ref: any,
 ) => {
   return (
@@ -37,12 +38,12 @@ const OptionFilterTabs = (
           tab: [
             variant === "gradient" ? null : "bg-slate-100",
             variant === "gradient" ? "px-12 h-10 flex-initial" : "px-4 flex-1",
-            // "min-w-fit",
+            tabColor === "transparent" && "bg-transparent",
             "w-auto max-w-[200px]",
             variant === "gradient"
               ? "data-[selected=true]:bg-gradient-to-r data-[selected=true]:from-[#21A19F] data-[selected=true]:to-[#1EA9A6A1]"
               : "data-[selected=true]:bg-[#45808B]",
-            radius === "small" ? "rounded-lg" : "rounded-large",
+            radius === "small" ? "rounded-lg" : "rounded-full",
             padding === "wide" && "px-20",
             "py-5",
           ],
