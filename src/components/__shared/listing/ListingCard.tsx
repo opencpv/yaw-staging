@@ -83,7 +83,7 @@ const ListingCard = (props: ListingCardInterface) => {
             </div>
           </div>
           {props.images?.map((image, index) =>
-            props.showOnlyImage ? (
+            props.showOnlyImage ? ( // when only images shows without pagination or controls
               <>
                 {index === 0 && (
                   <SwiperSlide key={index}>
@@ -104,12 +104,8 @@ const ListingCard = (props: ListingCardInterface) => {
               </>
             ) : (
               <SwiperSlide key={index}>
-                <Link
-                  href={`${props.href}?property_name=${props.propertyName}&city=${props.city}&price=${props.price}&payment_structure=${props.paymentStructure}&amount_per_month=${props.monthlyAmount}&rating=${props.ratingCount}&property_description=${props.propertyDescription}`.replaceAll(
-                    " ",
-                    "_",
-                  )}
-                >
+                {props.mySearch ? ( // when listing card is displaying in /dashboard/my-search,
+                  // images won't be links
                   <div className="relative h-full w-full">
                     <Image
                       src={image}
@@ -119,7 +115,24 @@ const ListingCard = (props: ListingCardInterface) => {
                       style={{ objectFit: "cover" }}
                     />
                   </div>
-                </Link>
+                ) : (
+                  <Link
+                    href={`${props.href}?property_name=${props.propertyName}&city=${props.city}&price=${props.price}&payment_structure=${props.paymentStructure}&amount_per_month=${props.monthlyAmount}&rating=${props.ratingCount}&property_description=${props.propertyDescription}`.replaceAll(
+                      " ",
+                      "_",
+                    )}
+                  >
+                    <div className="relative h-full w-full">
+                      <Image
+                        src={image}
+                        alt={props.propertyName as string}
+                        fill
+                        className="brightness-[0.8]"
+                        style={{ objectFit: "cover" }}
+                      />
+                    </div>
+                  </Link>
+                )}
               </SwiperSlide>
             ),
           )}
