@@ -51,6 +51,7 @@ const MySearch = () => {
           onSelectionChange={(page) => setActivePage(page)}
           radius="large"
           padding="wide"
+          cursorAnimation
         />
       </div>
       {/* xl and below */}
