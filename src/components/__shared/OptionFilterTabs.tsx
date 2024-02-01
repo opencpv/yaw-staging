@@ -16,7 +16,15 @@ type Props = {
 };
 
 const OptionFilterTabs = (
-  { radius, options, selectedKey, onSelectionChange, variant, padding, tabColor }: Props,
+  {
+    radius,
+    options,
+    selectedKey,
+    onSelectionChange,
+    variant,
+    padding,
+    tabColor,
+  }: Props,
   ref: any,
 ) => {
   return (
@@ -36,7 +44,11 @@ const OptionFilterTabs = (
               : "flex flex-wrap",
           ],
           tab: [
-            variant === "gradient" ? null : "bg-slate-100",
+            variant === "gradient"
+              ? null
+              : tabColor === "colored"
+                ? "bg-slate-100"
+                : "bg-transparent",
             variant === "gradient" ? "px-12 h-10 flex-initial" : "px-4 flex-1",
             tabColor === "transparent" && "bg-transparent",
             "w-auto max-w-[200px]",
