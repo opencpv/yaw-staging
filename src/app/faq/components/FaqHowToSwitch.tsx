@@ -21,6 +21,7 @@ const FaqHowToSwitch = (props: Props) => {
         onSelectionChange={setActivePage}
         radius="large"
         padding="wide"
+        cursorAnimation
         // ref={tabRef}
       />
     </div>

@@ -13,6 +13,7 @@ type Props = {
   onSelectionChange: (key: React.Key) => void;
   variant?: "default" | "gradient";
   selectedKey?: React.Key;
+  cursorAnimation?: boolean;
 };
 
 const OptionFilterTabs = (
@@ -24,6 +25,7 @@ const OptionFilterTabs = (
     variant,
     padding,
     tabColor,
+    cursorAnimation,
   }: Props,
   ref: any,
 ) => {
@@ -50,14 +52,14 @@ const OptionFilterTabs = (
                 ? "bg-slate-100"
                 : "bg-transparent",
             variant === "gradient" ? "px-12 h-10 flex-initial" : "px-4 flex-1",
-            tabColor === "transparent" && "bg-transparent",
             "w-auto max-w-[200px]",
             variant === "gradient"
               ? "data-[selected=true]:bg-gradient-to-r data-[selected=true]:from-[#21A19F] data-[selected=true]:to-[#1EA9A6A1]"
-              : "data-[selected=true]:bg-[#45808B]",
+              : "data-[selected=true]:bg-primary-200",
             radius === "small" ? "rounded-lg" : "rounded-full",
             padding === "wide" && "px-20",
             "py-5",
+            cursorAnimation && "data-[selected=true]:bg-transparent",
           ],
           tabContent: [
             variant === "gradient" ? "text-neutral-600" : "text-primary-500",
@@ -65,11 +67,17 @@ const OptionFilterTabs = (
             "text-sm",
             "group-data-[selected=true]:text-white",
           ],
-          // panel: "bg-primary-400",
+          cursor: [
+            variant === "gradient"
+              ? "bg-gradient-to-r from-[#21A19F] to-[#1EA9A6A1]"
+              : "bg-primary-200 dark:bg-primary-200 shadow-none",
+            !cursorAnimation && "bg-transparent dark:bg-transparent",
+            "rounded-full",
+          ],
         }}
         selectedKey={selectedKey}
         onSelectionChange={onSelectionChange}
-        disableCursorAnimation
+        disableCursorAnimation={!cursorAnimation}
       >
         {options.map((option) => (
           <Tab key={LowerCase(option)} title={capitalizeName(option, " ")} />
