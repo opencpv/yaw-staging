@@ -101,6 +101,9 @@ const RecommendedListings = ({ className, showAllButton }: Props) => {
               },
               1300: {
                 slidesPerView: 4,
+                coverflowEffect: {
+                  rotate: 50,
+                },
               },
             }}
             modules={[FreeMode, EffectCoverflow, Mousewheel]}

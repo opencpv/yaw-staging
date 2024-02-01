@@ -49,20 +49,27 @@ const ListingCard = (props: ListingCardInterface) => {
                 }
           }
           modules={[Pagination, Navigation]}
-          className={`listing-card-slider relative group w-full ${
-            props.cardType === "2" ? "h-96 rounded-2xl" : "h-52 rounded-t-lg"
+          className={`listing-card-slider group relative w-full ${
+            props.cardType === "2" && !props.showOnlyImage
+              ? "h-96 rounded-2xl"
+              : props.cardType === "2"
+                ? "h-80 rounded-2xl"
+                : "h-52 rounded-t-lg"
           } `}
         >
-        <ListingDeals membership={props.membership} deal={props.deal} />
+          <ListingDeals membership={props.membership} deal={props.deal} />
           <div
             className={
               props.mySearch
-                ? "absolute inset-0 z-30 h-full transition-all -translate-x-full group-hover:translate-x-0 delay-500 flex items-center justify-center w-full rounded-[inherit] bg-black bg-opacity-30"
+                ? "absolute inset-0 z-30 flex h-full w-full -translate-x-full items-center justify-center rounded-[inherit] bg-black bg-opacity-30 transition-all delay-500 group-hover:translate-x-0"
                 : "hidden"
             }
           >
-            <div className="flex flex-col gap-3 items-center">
-              <Button href={props.href} className="min-h-unit-12 px-6 gap-3 rounded-xl bg-neutral-100 text-lg font-semibold text-neutral-400">
+            <div className="flex flex-col items-center gap-3">
+              <Button
+                href={props.href}
+                className="min-h-unit-12 gap-3 rounded-xl bg-neutral-100 px-6 text-lg font-semibold text-neutral-400"
+              >
                 View Property
                 <IoEyeOutline className="text-neutral-800" />
               </Button>
@@ -80,9 +87,7 @@ const ListingCard = (props: ListingCardInterface) => {
               <>
                 {index === 0 && (
                   <SwiperSlide key={index}>
-                    <Link
-                      href={`${props.href}`}
-                    >
+                    <Link href={`${props.href}`}>
                       <div className="relative h-full w-full">
                         <Image
                           src={image}
