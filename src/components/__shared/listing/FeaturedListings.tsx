@@ -44,7 +44,7 @@ const FeaturedListings = ({ className, showAllButton }: Props) => {
     <>
       <section className={`no-print h-fit w-full ${className}`}>
         <div className="mb-8 flex flex-wrap items-center justify-between gap-5">
-          <h2>Featured Listings</h2>
+          <h2>Feautured Listings</h2>
           <Button
             href="/properties"
             variant="ghost"
@@ -101,6 +101,9 @@ const FeaturedListings = ({ className, showAllButton }: Props) => {
               },
               1300: {
                 slidesPerView: 4,
+                coverflowEffect: {
+                  rotate: 50,
+                },
               },
             }}
             modules={[FreeMode, EffectCoverflow, Mousewheel]}
