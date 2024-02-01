@@ -1,25 +1,45 @@
 "use client";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import { openSans } from "@/styles/font";
-
-import listings from "@/enum/demodb/listings";
-import CaDashEyeOff from "../components/icons/CaDashEyeOff";
-import ListingCard2 from "./components/ListingCard2";
 import OptionFilterTabs from "@/components/__shared/OptionFilterTabs";
 import { useSelectDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import Select from "../components/Select";
+import Button from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
+import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
+import ListingCard from "@/components/__shared/listing/ListingCard";
+import { revalidationRule, fetchOrderRule } from "@/lib/utils/fetchRules";
+import { useFetchTableWithInfiniteScroll } from "@/lib/custom-hooks/useFetch";
+import images from "@/enum/temp/images";
+import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
+import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
+import { useMySearchFilterStore } from "@/store/dashboard/mySearchStore";
+import { Switch } from "@nextui-org/react";
 
 const MySearch = () => {
-  const data = [1];
-  const { images } = useAssets();
   const { value, handleSelectionChange } = useSelectDisclosure<
     "favourites" | "be the first to know" | "listing" | "all"
   >("favourites");
 
+  const { activePage, setActivePage } = useMySearchFilterStore();
+
+  const {
+    data: listings,
+    error,
+    isValidating,
+    isLoading,
+    loadMore,
+  } = useFetchTableWithInfiniteScroll({
+    tableName: "standard_template",
+    pageSize: 9,
+    order: { column: "created_at", ...fetchOrderRule() },
+    select: "id, property_name, property_id, description, monthly_amount, city",
+    ...revalidationRule(),
+  });
+
   return (
-    <main className={`w-full bg-white px-8 ${openSans.className}`}>
+    <main className="w-full bg-white px-8">
+      <h2>My Search</h2>
       {/* xl and above */}
-      <div className="mb-8 hidden w-fit rounded-xl border p-3 md:block">
+      <div className="my-8 hidden w-fit rounded-xl border p-3 md:block">
         <OptionFilterTabs
           options={[
             "Favourites",
@@ -27,32 +47,101 @@ const MySearch = () => {
             "Recommendations",
             "All",
           ]}
-          selectedKey={"favourites"}
-          onSelectionChange={() => console.log("changed")}
+          selectedKey={activePage}
+          onSelectionChange={(page) => setActivePage(page)}
           radius="large"
-          padding="small"
+          padding="wide"
         />
       </div>
       {/* xl and below */}
       <div className="my-8 md:hidden">
         <Select
           options={[
-            "Favourties",
+            "Favourites",
             "Be the first to know",
             "Recommendations",
             "All",
           ]}
-          value={value}
+          value={activePage as string}
           className="mx-0"
           variant="ghost"
           color="primary"
-          handleSelectionChange={handleSelectionChange}
+          handleSelectionChange={(e) => setActivePage(e.target.value)}
         />
       </div>
 
-      <section>
-        {/* results found */}
-        <div className="mb-2 grid sm:grid-cols-1 lg:grid-cols-3">
+      <h4 className="capitalize">{activePage as React.ReactNode}</h4>
+
+      <div className="mt-4">
+        <Switch
+          classNames={{
+            thumb: "bg-neutral-200 border group-data-[selected=true]:bg-accent-50",
+            wrapper: "bg-transparent border",
+            label: "text-neutral-500"
+          }}
+          size="sm"
+          // color="warning"
+          // isSelected={isAdvancedActive}
+          // onValueChange={handleIsActive}
+        >
+          Allow property owners to contact you
+        </Switch>
+      </div>
+
+      <section
+        className="mx-auto my-10 justify-center gap-x-3 gap-y-10 space-y-5 transition-all sm:grid sm:space-y-0"
+        style={{ gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))" }}
+      >
+        <FetchingStates
+          data={listings}
+          error={error}
+          isLoading={isLoading}
+          isValidating={isValidating}
+          isLoadingComponent={<SkeletonListing count={3} />}
+          errorComponent={<FetchErrorMessage specificData="properties" />}
+          noDataMessageComponent={
+            <p className="mt-4 text-center italic">
+              There are no properties yet.
+            </p>
+          }
+        />
+        {listings?.map((listing) => (
+          <ListingCard
+            key={listing.id as string}
+            cardType="2"
+            href={`/properties/${listing.property_id}?property_name=${listing.property_name}&city=${listing.city}&price=${listing.price}&payment_structure=${listing.payment_structure}&amount_per_month=${listing.monthly_amount}&rating=${listing.rating_count}&property_description=${listing.description}`.replaceAll(
+              " ",
+              "_",
+            )}
+            propertyName={listing.property_name as string}
+            city={listing.city as string}
+            images={images} // TODO: check database
+            liked={false} // TODO: check implementation
+            membership={"Certified" as Membership} // TODO: check database
+            monthlyAmount={listing.monthly_amount as number}
+            paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
+            propertyDescription={listing.description as string}
+            price={4000} // TODO: check database
+            rating={4.5} // TODO: check database
+            ratingCount={105} // TODO: check database
+            deal={"Best Value" as Deal} // TODO: check database
+            mySearch
+          />
+        ))}
+      </section>
+      <div className="flex justify-center">
+        <Button
+          data={listings}
+          isLoading={isLoading}
+          isValidating={isValidating}
+          loadMore={loadMore}
+          noDataMessage="There are no more properties to show."
+        />
+      </div>
+
+      {/* Bookmarks code, may be needed */}
+      {/* results found */}
+      {/* <div className="mb-2 grid sm:grid-cols-1 lg:grid-cols-3">
           <div className="flex justify-between rounded-[12px] border-[1px] px-6 py-3">
             <p className="mt-1 font-semibold text-[#00763A]">
               {data.length} {data.length > 1 ? "results" : "result"} found
@@ -64,9 +153,8 @@ const MySearch = () => {
               </div>
             </div>
           </div>
-        </div>
-        {/* properties grid */}
-        <div className="grid gap-5 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        </div> */}
+      {/* <div className="grid gap-5 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {listings.map((listing) => (
             <ListingCard2
               key={listing.id}
@@ -84,8 +172,7 @@ const MySearch = () => {
               deal={listing.deal as Deal}
             />
           ))}
-        </div>
-      </section>
+        </div> */}
     </main>
   );
 };
