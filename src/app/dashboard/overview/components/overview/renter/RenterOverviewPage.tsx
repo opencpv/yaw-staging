@@ -7,6 +7,7 @@ import GradientBanner from "../GradientBanner";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import SellYourItem from "../../SellYourItem";
 import RenterActivityCard from "./RenterActivityCard";
+import ScrollTop from "@/components/__shared/ScrollTop";
 
 type Props = {};
 
@@ -63,6 +64,7 @@ const RenterOverviewPage = (props: Props) => {
       <section className="mx-auto">
         <RecommendedListings />
       </section>
+      <ScrollTop />
     </main>
   );
 };

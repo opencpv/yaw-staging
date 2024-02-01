@@ -46,7 +46,10 @@ const PropertiesListing = (props: Props) => {
           <ListingCard
             key={listing.id as string}
             cardType="2"
-            href={`/properties/${listing.property_id}`}
+            href={`/properties/${listing.property_id}?property_name=${listing.propertyName}&city=${listing.city}&price=${listing.price}&payment_structure=${listing.paymentStructure}&amount_per_month=${listing.monthlyAmount}&rating=${listing.ratingCount}&property_description=${listing.propertyDescription}`.replaceAll(
+              " ",
+              "_",
+            )}
             propertyName={listing.property_name as string}
             city={listing.city as string}
             images={images} // TODO: check database

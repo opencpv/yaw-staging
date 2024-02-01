@@ -2,7 +2,6 @@
 
 "use client";
 import React from "react";
-import SliderMultiItems from "../sliders/SliderMultiItems";
 import ListingCard from "./ListingCard";
 import supabase from "@/lib/utils/supabaseClient";
 import { useQuery } from "@supabase-cache-helpers/postgrest-swr";
@@ -12,7 +11,6 @@ import { fetchOrderRule, revalidationRule } from "@/lib/utils/fetchRules";
 import images from "@/enum/temp/images";
 import FetchErrorMessage from "../ui/data_fetching/FetchErrorMessage";
 import Button from "../ui/button/Button";
-import style from "./Listing.module.css";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, FreeMode, Mousewheel } from "swiper/modules";
@@ -95,7 +93,7 @@ const RecommendedListings = ({ className, showAllButton }: Props) => {
                 slidesPerView: 1,
               },
               768: {
-                spaceBetween: 0,
+                // spaceBetween: 0,
                 slidesPerView: 2,
                 coverflowEffect: {
                   rotate: 50,
@@ -116,7 +114,10 @@ const RecommendedListings = ({ className, showAllButton }: Props) => {
                 <ListingCard
                   key={listing.id}
                   cardType="2"
-                  href={`/properties/${listing.property_id}`}
+                  href={`/properties/${listing.property_id}?property_name=${listing.propertyName}&city=${listing.city}&price=${listing.price}&payment_structure=${listing.paymentStructure}&amount_per_month=${listing.monthlyAmount}&rating=${listing.ratingCount}&property_description=${listing.propertyDescription}`.replaceAll(
+                    " ",
+                    "_",
+                  )}
                   propertyName={listing.property_name as string}
                   city={listing.city as string}
                   images={images} // TODO: check database
