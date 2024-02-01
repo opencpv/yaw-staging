@@ -15,9 +15,9 @@ import { useMySearchFilterStore } from "@/store/dashboard/mySearchStore";
 import { Switch } from "@nextui-org/react";
 
 const MySearch = () => {
-  const { value, handleSelectionChange } = useSelectDisclosure<
-    "favourites" | "be the first to know" | "listing" | "all"
-  >("favourites");
+  // const { value, handleSelectionChange } = useSelectDisclosure<
+  //   "favourites" | "be the first to know" | "listing" | "all"
+  // >("favourites");
 
   const { activePage, setActivePage } = useMySearchFilterStore();
 
@@ -36,7 +36,7 @@ const MySearch = () => {
   });
 
   return (
-    <main className="w-full bg-white px-8">
+    <main className="w-full bg-white">
       <h2>My Search</h2>
       {/* xl and above */}
       <div className="my-8 hidden w-fit rounded-xl border p-3 md:block">
@@ -75,9 +75,10 @@ const MySearch = () => {
       <div className="mt-4">
         <Switch
           classNames={{
-            thumb: "bg-neutral-200 border group-data-[selected=true]:bg-accent-50",
+            thumb:
+              "bg-neutral-200 border group-data-[selected=true]:bg-accent-50",
             wrapper: "bg-transparent border",
-            label: "text-neutral-500"
+            label: "text-neutral-500",
           }}
           size="sm"
           // color="warning"
