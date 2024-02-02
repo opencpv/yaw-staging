@@ -76,7 +76,7 @@ export default function Menu(props: any) {
     <Root
       ref={menuRef}
       tabindex="0"
-      className="hidden-scrollbar fixed top-0 z-50 min-h-screen w-full gap-20 overflow-y-scroll pb-20 lg:pb-0"
+      className="hidden-scrollbar fixed top-0 z-50 min-h-screen w-full gap-20 overflow-y-scroll bg-menu-lg pb-20 lg:pb-0"
       variants={ExpandCircle}
       exit={{
         ...ExpandCircle.closed,
@@ -135,7 +135,6 @@ export default function Menu(props: any) {
   );
 }
 const Root = styled(motion.aside, {
-  background: "/assets/images/menu-bg.png",
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
   // gap:"px",
