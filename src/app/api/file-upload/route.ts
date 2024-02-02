@@ -1,41 +1,45 @@
 import { NextResponse } from "next/server";
-import getSummary from "@/app/api/summary/getSummary";
 import withErrorHandler from "@/app/api/withErrorHandler";
-import AWS from 'aws-sdk';
-import fs from 'fs';
-import { error } from "console";
-
+import { S3 } from "@aws-sdk/client-s3";
 
 interface PostProps {
-    text: string
+    text: string;
 }
-export const POST = withErrorHandler(async (request: Request) => {
+
+const s3Client = new S3({
+    endpoint: process.env.DO_SPACES_ENDPOINT,
+    region: "nyc3",
+    credentials: {
+        accessKeyId: process.env.DO_SPACES_KEY as string,
+        secretAccessKey: process.env.DO_SPACES_SECRET as string,
+    },
+});
+
+export const POST = withErrorHandler(async (request: any) => {
     const formData = await request.formData();
-    const file = formData.get('file') as File
-    console.log(file)
-    const spacesEndpoint = new AWS.Endpoint(process.env.DO_SPACES_ENDPOINT as string)
-    const s3 = new AWS.S3({
-        endpoint: spacesEndpoint,
-        accessKeyId: process.env.DO_SPACES_KEY,
-        secretAccessKey: process.env.DO_SPACES_SECRET
-    })
+    const file = formData.get('file') as File;
 
-    const text = "hello man"
+    if (!file) {
+        return NextResponse.json({ message: "file not available", error: null });
+    }
 
-    const buffer = Buffer.from(await file.arrayBuffer());
-    console.log(buffer)
-    s3.putObject({
-        Bucket:process.env.DO_SPACES_NAME as string,
-        Key:file.name,
-        Body:buffer,
-        ACL:"public-read"
-    },(err,data)=>{
-        if(err) return console.log(err)
-        console.log("uploaded")
-    })
+    const maxFileSizeMB = 50;
+    const maxFileSizeBytes = maxFileSizeMB * 1024 * 1024;
+
+    if (file.size > maxFileSizeBytes) {
+        return NextResponse.json({ message: "File size exceeds 50MB", error: true });
+    }
+
+    const fileBuffer = await file.arrayBuffer();
+
+    const uploadRes = await s3Client.putObject({
+        Bucket: process.env.DO_SPACES_NAME as string,
+        Key: file.name,
+        Body: Buffer.from(fileBuffer),
+    });
+
     return NextResponse.json({
-        summary: text,
-        message: "text less than 100 words"
+        message: "uploaded successfully",
     });
 
 });
