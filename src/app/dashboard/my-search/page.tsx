@@ -1,7 +1,5 @@
 "use client";
-import { useAssets } from "@/lib/custom-hooks/useAssets";
 import OptionFilterTabs from "@/components/__shared/OptionFilterTabs";
-import { useSelectDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import Select from "../components/Select";
 import Button from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
@@ -64,14 +62,15 @@ const MySearch = () => {
             "All",
           ]}
           value={activePage as string}
-          className="mx-0"
+          className="mx-0 font-bold w-52"
+          valueClassName="font-bold"
           variant="ghost"
           color="primary"
           handleSelectionChange={(e) => setActivePage(e.target.value)}
         />
       </div>
 
-      <h4 className="capitalize">{activePage as React.ReactNode}</h4>
+      <h4 className="capitalize hidden md:block">{activePage as React.ReactNode}</h4>
 
       <div className="mt-4">
         <Switch
