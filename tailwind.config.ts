@@ -21,7 +21,7 @@ const config: Config = {
         "about-bg": "url('/assets/images/about-bg.png')",
         "my-search-bg": "url('/assets/images/my-search-bg.png')",
         "menu-sm": "url('/assets/svgs/bgMenuSmall.svg')",
-        "menu-lg": "url('/svgs/bgMenuLarge.svg')",
+        "menu-lg": "url('/assets/images/menu-bg.png')",
       },
       colors: {
         ...mauve,
