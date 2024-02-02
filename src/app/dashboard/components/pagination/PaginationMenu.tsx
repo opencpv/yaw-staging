@@ -85,11 +85,11 @@ const PaginationMenu = () => {
           color="white"
           size={40}
           onClick={() => setIsOpen(false)}
-          className="cursor-pointer transition-all duration-300 hover:rotate-90"
+          className="cursor-pointer transition-transform duration-300 hover:rotate-90"
         />
       </div>
       <div className="flex items-center justify-center">
-        <div className="grid w-full gap-x-5 gap-y-10 sm:w-[initial] sm:grid-cols-2 sm:gap-y-20 min-[980px]:grid-cols-3">
+        <div className="grid w-full gap-x-5 gap-y-10 sm:w-[initial] sm:grid-cols-2 sm:gap-y-20 lg:grid-cols-3">
           {PgRoutesRenter.map((route) => (
             <PaginationMenuItem
               key={route.name}
