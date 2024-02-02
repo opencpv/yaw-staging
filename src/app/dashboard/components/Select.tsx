@@ -12,6 +12,7 @@ type Props = {
   color?: "default" | "primary";
   selectorIcon?: React.ReactNode;
   className?: string;
+  valueClassName?: string;
 };
 
 const Select = ({
@@ -21,6 +22,7 @@ const Select = ({
   radius,
   selectorIcon,
   className,
+  valueClassName,
   variant,
   color,
 }: Props) => {
@@ -37,7 +39,7 @@ const Select = ({
         base: cn("w-44 mx-auto text-xs", className, {
           "text-base": variant === "ghost",
         }),
-        value: cn("text-xs", {
+        value: cn("text-xs", valueClassName, {
           "text-base": variant === "ghost",
         }),
         selectorIcon: cn(`mr-5 h-3 w-3`, {

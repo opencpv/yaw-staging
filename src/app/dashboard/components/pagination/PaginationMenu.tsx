@@ -1,19 +1,36 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import style from "../../Dashboard.module.css";
 import Logo from "@/components/__shared/Logo";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { useDashboardMenuStore } from "@/store/navmenu/useDashboardMenuStore";
 import { useHideDocumentScrollBar } from "@/lib/custom-hooks/useWindowEvents";
 import PaginationMenuItem from "./PaginationMenuItem";
-import { FaEye } from "react-icons/fa";
 import { PgRoutesRenter } from "./links";
+import MenuScrollDownButton from "@/components/NavMenu.tsx/components/MenuScrollDownButton";
 
 const PaginationMenu = () => {
   const { isOpen, setIsOpen } = useDashboardMenuStore();
+  const [hide, setHide] = useState(false);
+
+  const paginationMenuRef = useRef<HTMLElement>(null)
 
   useHideDocumentScrollBar(isOpen);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (paginationMenuRef.current) {
+      if (paginationMenuRef.current.scrollHeight < 690 ){
+        setHide(false)
+      }
+      else {
+        setHide(true)
+      }
+    } }
+    if (paginationMenuRef.current)
+    paginationMenuRef.current.addEventListener("resize", handleResize)
+  }, [hide])
 
   return (
     <section
@@ -22,6 +39,7 @@ const PaginationMenu = () => {
           ? `${style.paginationMenuVisible}`
           : `${style.paginationMenuHidden}`
       }`}
+      ref={paginationMenuRef}
     >
       <div className="flex items-center justify-between gap-5">
         <Logo size="xs" />
@@ -44,6 +62,12 @@ const PaginationMenu = () => {
           ))}
         </div>
       </div>
+        <MenuScrollDownButton
+          onClick={() => console.log("hi")}
+          hide={hide}
+          isInViewport={false}
+          className="absolute right-40 bottom-5 block"
+        />
     </section>
   );
 };
