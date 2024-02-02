@@ -1,5 +1,5 @@
 .paginationMenu {
-  @apply fixed inset-0 z-[9999] h-[100lvh] max-h-[100lvh] space-y-14 overflow-y-auto bg-neutral-600 bg-cover bg-no-repeat p-10 shadow-2xl;
+  @apply fixed inset-0 z-[9999] h-screen max-h-screen space-y-14 overflow-y-auto bg-menu-lg bg-cover bg-no-repeat p-10 shadow-2xl;
   transition: clip-path 1.4s;
 }
 
