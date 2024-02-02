@@ -135,7 +135,7 @@ export default function Menu(props: any) {
   );
 }
 const Root = styled(motion.aside, {
-  background: "url(/svgs/bgMenuSmall.svg)",
+  background: "#525252",
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
   // gap:"px",
@@ -153,7 +153,7 @@ const Root = styled(motion.aside, {
   flexDirection: "column",
   justifyContent: "space-between",
   "@media screen and (min-width: 1024px) ": {
-    background: "url(/svgs/bgMenuLarge.svg)",
+    background: "#525252",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     // bottom:"unset"

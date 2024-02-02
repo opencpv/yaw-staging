@@ -1,28 +1,12 @@
 .paginationMenu {
-  @apply fixed inset-0 z-[9999] h-[100svh] max-h-[100svh] space-y-14 overflow-y-auto bg-menu-lg bg-cover bg-no-repeat p-10 shadow-2xl;
-  transition: transform 0.5s;
+  @apply fixed inset-0 z-[9999] h-[100lvh] max-h-[100lvh] space-y-14 overflow-y-auto bg-neutral-600 bg-cover bg-no-repeat p-10 shadow-2xl;
+  transition: clip-path 1.4s;
 }
 
 .paginationMenuHidden {
-  transform: translateX(100%);
-  @apply -z-50;
+  clip-path: circle(0 at 100% 0);
 }
 
 .paginationMenuVisible {
-  transform: translateX(0);
-}
-
-@media (min-width: 640px) {
-  .paginationMenu {
-    @apply fixed inset-0 z-[9999] h-[100svh] max-h-[100svh] space-y-14 overflow-y-auto bg-menu-lg bg-cover bg-no-repeat p-10 shadow-2xl;
-    transition: clip-path 1.4s;
-  }
-
-  .paginationMenuHidden {
-    clip-path: circle(0 at 100% 0);
-  }
-
-  .paginationMenuVisible {
-    clip-path: circle(150% at 100% 0);
-  }
+  clip-path: circle(150% at 100% 0);
 }
