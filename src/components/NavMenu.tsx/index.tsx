@@ -135,7 +135,7 @@ export default function Menu(props: any) {
   );
 }
 const Root = styled(motion.aside, {
-  background: "#525252",
+  background: "/assets/images/menu-bg.png",
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
   // gap:"px",
@@ -152,12 +152,6 @@ const Root = styled(motion.aside, {
   display: "flex",
   flexDirection: "column",
   justifyContent: "space-between",
-  "@media screen and (min-width: 1024px) ": {
-    background: "#525252",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    // bottom:"unset"
-  },
 
   ".bottomLink": {
     color: "White",
