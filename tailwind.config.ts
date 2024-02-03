@@ -81,13 +81,14 @@ const config: Config = {
       },
     },
     screens: {
+      xxs: "280px",
       xs: "425px",
       ...defaultTheme.screens,
       hd: "1670px",
+      "3xl": "1728px",
       fhd: "1920px",
       "2k": "2040px",
       "4k": "3840px",
-      "3xl": "1728px",
     },
   },
   plugins: [
