@@ -1,36 +1,21 @@
 "use client";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import Image from "next/image";
-import listings from "@/enum/demodb/listings";
 import demoimages from "@/enum/temp/images";
-import LargeButton from "../properties/components/LargeButton";
-import { MdOutlineLibraryAdd } from "react-icons/md";
-import { RxTarget } from "react-icons/rx";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
 import ListingCard from "@/components/__shared/listing/ListingCard";
 import { useFetchTableWithInfiniteScroll } from "@/lib/custom-hooks/useFetch";
 import { revalidationRule, fetchOrderRule } from "@/lib/utils/fetchRules";
-import TargetedSearchCard, {
-  TargetedSearchState,
-} from "@/app/dashboard/be-the-first-to-know/components/TargetedSearchCard";
-
-let demo = [
-  {
-    state: "match",
-  },
-  {
-    state: "no matches",
-  },
-  {
-    state: "match",
-  },
-];
+import { useEffect } from "react";
 
 const BeTheFirstToKnow = () => {
-  const data = [1];
-  const { images } = useAssets();
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
 
   const {
     data: listings,
@@ -87,13 +72,26 @@ const BeTheFirstToKnow = () => {
           </p>
         }
       />
-      {demo?.map((listing, idx) => (
-        <TargetedSearchCard
-          property={{ image: images.niceHome, name: "" }}
-          href="/dashboard/be-the-first-to-know/search-title-one"
-          state={listing.state as TargetedSearchState}
-          key={idx}
-          count={90}
+      {listings?.map((listing) => (
+        <ListingCard
+          key={listing.id as string}
+          cardType="2"
+          href={`/properties/${listing.property_id}?property_name=${listing.property_name}&city=${listing.city}&price=${listing.price}&payment_structure=${listing.payment_structure}&amount_per_month=${listing.monthly_amount}&rating=${listing.rating_count}&property_description=${listing.description}`.replaceAll(
+            " ",
+            "_",
+          )}
+          propertyName={listing.property_name as string}
+          city={listing.city as string}
+          images={demoimages} // TODO: check database
+          liked={false} // TODO: check implementation
+          membership={"Certified" as Membership} // TODO: check database
+          monthlyAmount={listing.monthly_amount as number}
+          paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
+          propertyDescription={listing.description as string}
+          price={4000} // TODO: check database
+          rating={4.5} // TODO: check database
+          ratingCount={105} // TODO: check database
+          deal={"Best Value" as Deal} // TODO: check database
         />
       ))}
     </>

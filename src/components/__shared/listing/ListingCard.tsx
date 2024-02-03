@@ -15,7 +15,7 @@ import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import ListingInfo from "./ListingInfo";
 import ListingDeals from "./ListingDeals";
 import { ListingCardInterface } from "../../../../interfaces";
-import { FaEye, FaRegEye, FaTrash } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
 import { IoEyeOutline } from "react-icons/io5";
 import Button from "../ui/button/Button";
 
