@@ -3,8 +3,9 @@ import React from "react";
 import Link from "next/link";
 
 type Props = {
-  text: string;
+  text?: string;
   arrowPosition?: "left" | "right";
+  hideText?: boolean;
   href?: string;
   color?: string;
   className?: string;
@@ -29,7 +30,9 @@ const ArrowLink = ({
       style={{ color: color ?? "#222" }}
       onClick={onClick}
     >
-      <div className={`${arrowPosition === "left" && "order-2"}`}>{text}</div>
+      {text && (
+        <div className={`${arrowPosition === "left" && "order-2"}`}>{text}</div>
+      )}
       <svg
         width="40"
         height="7"
