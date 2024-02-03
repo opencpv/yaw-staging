@@ -58,9 +58,21 @@ const ListingCard = (props: ListingCardInterface) => {
           } `}
         >
           <ListingDeals membership={props.membership} deal={props.deal} />
+          {/* For be the first to know detail listings only */}
+          <div
+            className={`${
+              props.showNotViewed && !props.isViewed
+                ? "absolute left-[35%] top-[45%] z-10 grid min-h-unit-12 place-items-center gap-3 rounded-xl bg-neutral-100 px-6 text-lg font-semibold text-neutral-400"
+                : "hidden"
+            }`}
+          >
+            Not Viewed
+          </div>
+
+          {/* For favourites only */}
           <div
             className={
-              props.mySearch
+              props.isMyFavoritePage
                 ? "absolute inset-0 z-30 flex h-full w-full -translate-x-full items-center justify-center rounded-[inherit] bg-black bg-opacity-30 transition-all delay-500 group-hover:translate-x-0"
                 : "hidden"
             }
@@ -104,7 +116,7 @@ const ListingCard = (props: ListingCardInterface) => {
               </>
             ) : (
               <SwiperSlide key={index}>
-                {props.mySearch ? ( // when listing card is displaying in /dashboard/my-search,
+                {props.isMyFavoritePage ? ( // when listing card is displaying in /dashboard/my-search,
                   // images won't be links
                   <div className="relative h-full w-full">
                     <Image

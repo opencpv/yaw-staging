@@ -9,6 +9,30 @@ import { useFetchTableWithInfiniteScroll } from "@/lib/custom-hooks/useFetch";
 import { revalidationRule, fetchOrderRule } from "@/lib/utils/fetchRules";
 import { useEffect } from "react";
 
+let demo = [
+  {
+    isViewed: false,
+  },
+  {
+    isViewed: false,
+  },
+  {
+    isViewed: true,
+  },
+  {
+    isViewed: true,
+  },
+  {
+    isViewed: false,
+  },
+  {
+    isViewed: false,
+  },
+  {
+    isViewed: true,
+  },
+];
+
 const BeTheFirstToKnow = () => {
   useEffect(() => {
     window.scrollTo({
@@ -72,7 +96,7 @@ const BeTheFirstToKnow = () => {
           </p>
         }
       />
-      {listings?.map((listing) => (
+      {listings?.map((listing, idx) => (
         <ListingCard
           key={listing.id as string}
           cardType="2"
@@ -92,6 +116,8 @@ const BeTheFirstToKnow = () => {
           rating={4.5} // TODO: check database
           ratingCount={105} // TODO: check database
           deal={"Best Value" as Deal} // TODO: check database
+          showNotViewed
+          isViewed={idx === 5 || idx === 3 || idx === 7 ? false : true}
         />
       ))}
     </>
