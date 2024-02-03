@@ -31,7 +31,7 @@ const BeTheFirstToKnowLayout = ({
       <LargeButton
         icon={<MdOutlineLibraryAdd />}
         label="Create"
-        className="mt-10 min-w-fit xxs:min-w-[15rem]"
+        className="xxs:min-w-[15rem] mt-10 min-w-fit"
       />
       {/* <section className="flex h-[100vh] w-full flex-col items-center justify-center">
           <Image
