@@ -8,6 +8,8 @@ import { useAssets } from "@/lib/custom-hooks/useAssets";
 import MatchCount from "./MatchCount";
 import EditButton from "@/components/__shared/ui/button/EditButton";
 import ButtonDelete from "@/components/__shared/ui/button/ButtonDelete";
+import { IoEyeOutline } from "react-icons/io5";
+import Button from "@/components/__shared/ui/button/Button";
 
 export type TargetedSearchState = "match" | "no matches";
 
@@ -24,25 +26,34 @@ type Props = {
 const TargetedSearchCard = ({ href, property, state, count }: Props) => {
   const { icons } = useAssets();
   return (
-    <div className="group">
+    <div>
       <MatchCount
         href={href}
         count={count}
         className={`${state === "no matches" && "invisible"}`}
       />
       {state === "match" ? (
-        <Link href={href}>
-          <div className="relative h-[26rem] w-full rounded-2xl bg-neutral-100">
-            <Image
-              src={property.image}
-              alt={property.name}
-              fill
-              style={{ objectFit: "cover" }}
-              className="rounded-[inherit] transition-all group-hover:brightness-90"
-            />
-            <MatchLabel state={state} />
+        <div className="group relative h-[26rem] w-full rounded-2xl bg-neutral-100">
+          <div className="absolute inset-0 z-10 flex h-full w-full items-center justify-center rounded-[inherit] bg-black bg-opacity-30 opacity-0 transition-all delay-300 group-hover:opacity-100">
+            <div className="flex flex-col items-center gap-3">
+              <Button
+                href={href}
+                className="min-h-unit-12 gap-3 rounded-xl bg-neutral-100 px-6 text-lg font-semibold text-neutral-400"
+              >
+                View Property
+                <IoEyeOutline className="text-neutral-800" />
+              </Button>
+            </div>
           </div>
-        </Link>
+          <Image
+            src={property.image}
+            alt={property.name}
+            fill
+            style={{ objectFit: "cover" }}
+            className="rounded-[inherit]"
+          />
+          <MatchLabel state={state} />
+        </div>
       ) : (
         <div className="relative -mt-12 grid h-[26rem] w-full place-items-center rounded-2xl border md:mt-0">
           <Image

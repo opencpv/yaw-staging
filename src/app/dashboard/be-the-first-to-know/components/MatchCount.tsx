@@ -19,7 +19,7 @@ const MatchCount = ({ count, href, className }: Props) => {
     >
       <div className="flex w-full flex-wrap items-center justify-between gap-5">
         <Link href={href} className="underline-offset-2 hover:underline">
-          <h4 className="text-[#00763A]">
+          <h4 className="text-primary-200">
             {count} {`${count > 1 ? "matches" : "matches"}`} found
           </h4>
         </Link>

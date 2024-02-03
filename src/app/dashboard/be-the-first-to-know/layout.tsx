@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { FaChevronLeft } from "react-icons/fa";
 import Link from "next/link";
 import AOSWrapper from "@/components/__shared/AOSWrapper";
+import ScrollTop from "@/components/__shared/ScrollTop";
 
 const BeTheFirstToKnowLayout = ({
   children,
@@ -30,7 +31,7 @@ const BeTheFirstToKnowLayout = ({
       <LargeButton
         icon={<MdOutlineLibraryAdd />}
         label="Add"
-        className="xxs:min-w-[15rem] mt-10 min-w-fit"
+        className="mt-10 min-w-fit xxs:min-w-[15rem]"
       />
       {/* <section className="flex h-[100vh] w-full flex-col items-center justify-center">
           <Image
@@ -87,6 +88,7 @@ const BeTheFirstToKnowLayout = ({
           </div>
         </AOSWrapper>
       </section>
+      <ScrollTop />
     </main>
   );
 };
