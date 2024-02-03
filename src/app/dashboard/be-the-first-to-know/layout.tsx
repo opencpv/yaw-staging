@@ -3,6 +3,9 @@ import LargeButton from "../properties/components/LargeButton";
 import { MdOutlineLibraryAdd } from "react-icons/md";
 import ArrowLink from "@/app/components/link/ArrowLink";
 import { usePathname } from "next/navigation";
+import { FaChevronLeft } from "react-icons/fa";
+import Link from "next/link";
+import AOSWrapper from "@/components/__shared/AOSWrapper";
 
 const BeTheFirstToKnowLayout = ({
   children,
@@ -13,7 +16,22 @@ const BeTheFirstToKnowLayout = ({
 
   return (
     <main>
+      <Link
+        href="/dashboard/be-the-first-to-know"
+        className="relative mb-5 h-10 w-10 place-items-center rounded-full bg-slate-100 p-2 transition-all hover:scale-105 fhd:right-28"
+        style={{
+          display:
+            pathname === "/dashboard/be-the-first-to-know" ? "none" : "grid",
+        }}
+      >
+        <FaChevronLeft />
+      </Link>
       <h2>Be the first to Know</h2>
+      <LargeButton
+        icon={<MdOutlineLibraryAdd />}
+        label="Add"
+        className="xxs:min-w-[15rem] mt-10 min-w-fit"
+      />
       {/* <section className="flex h-[100vh] w-full flex-col items-center justify-center">
           <Image
             src={images.SearchIcon}
@@ -34,32 +52,11 @@ const BeTheFirstToKnowLayout = ({
             Add New Search Criteria{" "}
           </button>
         </section> */}
-      <section>
+      <section className="mt-20">
         {/* <div className="flex items-center gap-5">
-            <RxTarget size={50} />
-            <h3 className="my-10 font-normal">All Targeted Search</h3>
-          </div> */}
-        {/* <div className="flex items-center justify-center">
-            <LargeButton
-              icon={<MdOutlineLibraryAdd />}
-              label="Add Targeted Search"
-              className="mt-10"
-            />
-          </div> */}
-        <ArrowLink
-          href="/dashboard/be-the-first-to-know"
-          arrowPosition="left"
-          className={`mt-10 ${
-            pathname === "/dashboard/be-the-first-to-know" && "hidden"
-          }`}
-        />
-        <div className="flex items-center justify-end">
-          <LargeButton
-            icon={<MdOutlineLibraryAdd />}
-            label="Add Targeted Search"
-            className="mt-10"
-          />
-        </div>
+          <RxTarget size={50} />
+          <h3 className="my-10 font-normal">All Targeted Search</h3>
+        </div> */}
         {/* results found */}
         {/* <div className="mb-2 grid sm:grid-cols-1 lg:grid-cols-3">
             <div className="flex justify-between rounded-[12px] border-[1px] px-6 py-3">
@@ -75,9 +72,20 @@ const BeTheFirstToKnowLayout = ({
             </div>
           </div> */}
         {/* properties grid */}
-        <div className="section grid gap-x-5 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
-          {children}
-        </div>
+        <h3
+          className="mb-6"
+          style={{
+            display:
+              pathname === "/dashboard/be-the-first-to-know" ? "none" : "grid",
+          }}
+        >
+          Search Title One
+        </h3>
+        <AOSWrapper animation="fade-up">
+          <div className="grid grid-cols-1 gap-x-5 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
+            {children}
+          </div>
+        </AOSWrapper>
       </section>
     </main>
   );
