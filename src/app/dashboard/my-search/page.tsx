@@ -128,7 +128,6 @@ const MySearch = () => {
             rating={4.5} // TODO: check database
             ratingCount={105} // TODO: check database
             deal={"Best Value" as Deal} // TODO: check database
-            mySearch
           />
         ))}
       </section>

@@ -64,7 +64,7 @@ export const PgRoutesRenter = [
     name: "favourites",
     url: "",
     icon: <FaRegHeart />,
-    link: "/dashboard/favourite",
+    link: "/dashboard/saved-search",
   },
   {
     name: "recommendations",
@@ -115,7 +115,7 @@ export const PgRoutesPropManager = [
     name: "favourites",
     url: "",
     icon: <FaRegHeart />,
-    link: "/dashboard/favourite",
+    link: "/dashboard/saved-search",
   },
   {
     name: "saved search",
