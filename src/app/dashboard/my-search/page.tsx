@@ -35,7 +35,7 @@ const MySearch = () => {
 
   return (
     <main className="w-full bg-white">
-      <h2>My Search</h2>
+      <h2>My Bookmarks</h2>
       {/* xl and above */}
       <div className="my-8 hidden w-fit rounded-xl border p-3 md:block">
         <OptionFilterTabs
@@ -62,7 +62,7 @@ const MySearch = () => {
             "All",
           ]}
           value={activePage as string}
-          className="mx-0 font-bold w-52"
+          className="mx-0 w-52 font-bold"
           valueClassName="font-bold"
           variant="ghost"
           color="primary"
@@ -70,7 +70,9 @@ const MySearch = () => {
         />
       </div>
 
-      <h4 className="capitalize hidden md:block">{activePage as React.ReactNode}</h4>
+      <h4 className="hidden capitalize md:block">
+        {activePage as React.ReactNode}
+      </h4>
 
       <div className="mt-4">
         <Switch
