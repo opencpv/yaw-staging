@@ -26,6 +26,7 @@ const TargetedSearchCard = ({ href, property, state, count }: Props) => {
   return (
     <div className="group">
       <MatchCount
+        href={href}
         count={count}
         className={`${state === "no matches" && "invisible"}`}
       />
@@ -43,7 +44,7 @@ const TargetedSearchCard = ({ href, property, state, count }: Props) => {
           </div>
         </Link>
       ) : (
-        <div className="relative grid h-[26rem] w-full place-items-center rounded-2xl border">
+        <div className="relative -mt-12 grid h-[26rem] w-full place-items-center rounded-2xl border md:mt-0">
           <Image
             src={icons.HouseSearch}
             alt="magnifying glass and house"
