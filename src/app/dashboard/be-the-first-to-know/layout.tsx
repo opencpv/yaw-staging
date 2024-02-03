@@ -48,7 +48,6 @@ const BeTheFirstToKnowLayout = ({
           </div> */}
         <ArrowLink
           href="/dashboard/be-the-first-to-know"
-          text="Back"
           arrowPosition="left"
           className={`mt-10 ${
             pathname === "/dashboard/be-the-first-to-know" && "hidden"
