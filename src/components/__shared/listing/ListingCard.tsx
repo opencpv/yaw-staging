@@ -70,7 +70,7 @@ const ListingCard = (props: ListingCardInterface) => {
             <div className="flex flex-col items-center gap-3">
               <Button
                 href={props.href}
-                className="group/nv pointer-events-auto min-h-unit-12 gap-3 rounded-xl bg-neutral-100 px-6 text-lg font-bold text-neutral-400 transition-all hover:scale-110 hover:bg-neutral-400 hover:text-white"
+                className="group/nv pointer-events-auto min-h-unit-12 gap-3 rounded-xl bg-neutral-100 px-6 text-lg font-bold text-neutral-400 shadow-lg transition-all hover:scale-110 hover:bg-neutral-400 hover:text-white"
               >
                 Not Viewed
                 <FaRegEyeSlash className="text-neutral-800 group-hover/nv:text-white" />
