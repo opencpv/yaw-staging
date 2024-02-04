@@ -18,7 +18,7 @@ import { ListingCardInterface } from "../../../../interfaces";
 import { FaTrash } from "react-icons/fa";
 import { IoEyeOutline } from "react-icons/io5";
 import Button from "../ui/button/Button";
-import { FaRegEyeSlash } from "react-icons/fa6";
+import { FaHeart, FaRegEyeSlash } from "react-icons/fa6";
 
 const ListingCard = (props: ListingCardInterface) => {
   return (
@@ -52,7 +52,7 @@ const ListingCard = (props: ListingCardInterface) => {
           modules={[Pagination, Navigation]}
           className={`listing-card-slider group relative w-full ${
             props.cardType === "2" && !props.showOnlyImage
-              ? "h-96 rounded-2xl"
+              ? "h-[26rem] rounded-2xl"
               : props.cardType === "2"
                 ? "h-80 rounded-2xl"
                 : "h-52 rounded-t-lg"
@@ -94,17 +94,19 @@ const ListingCard = (props: ListingCardInterface) => {
                 View Property
                 <IoEyeOutline className="text-neutral-800" />
               </Button>
-              <Button
-                variant="ghost"
-                className="gap-3 text-lg font-semibold text-neutral-300 underline"
-              >
-                Remove
-                <FaTrash />
-              </Button>
+              {props.liked && (
+                <Button
+                  variant="ghost"
+                  className="gap-3 text-lg font-semibold text-neutral-300 underline"
+                >
+                  Unfavourite
+                  <FaHeart />
+                </Button>
+              )}
             </div>
           </div>
           {props.images?.map((image, index) =>
-            props.showOnlyImage ? ( // when only images shows without pagination or controls
+            props.showOnlyImage || props.isMyFavoritePage ? ( // when only images shows without pagination or controls
               <>
                 {index === 0 && (
                   <SwiperSlide key={index}>
