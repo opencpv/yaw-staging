@@ -7,6 +7,7 @@ import { FaChevronLeft } from "react-icons/fa";
 import Link from "next/link";
 import AOSWrapper from "@/components/__shared/AOSWrapper";
 import ScrollTop from "@/components/__shared/ScrollTop";
+import Button from "@/components/__shared/ui/button/Button";
 
 const BeTheFirstToKnowLayout = ({
   children,
@@ -28,11 +29,15 @@ const BeTheFirstToKnowLayout = ({
         <FaChevronLeft />
       </Link>
       <h2>Be the first to Know</h2>
-      <LargeButton
+      {/* <LargeButton
         icon={<MdOutlineLibraryAdd />}
         label="Create"
         className="mt-10 min-w-fit xxs:min-w-[15rem]"
-      />
+      /> */}
+      <Button className="mt-10 bg-primary-600">
+        <MdOutlineLibraryAdd />
+        Create Search Criteria
+      </Button>
       {/* <section className="flex h-[100vh] w-full flex-col items-center justify-center">
           <Image
             src={images.SearchIcon}

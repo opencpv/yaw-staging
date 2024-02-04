@@ -77,8 +77,7 @@ const MySearch = () => {
       <div className="mt-4">
         <Switch
           classNames={{
-            thumb:
-              "bg-neutral-200 border group-data-[selected=true]:bg-accent-50",
+            thumb: "bg-neutral-200 group-data-[selected=true]:bg-accent-50",
             wrapper: "bg-transparent border",
             label: "text-neutral-500",
           }}
