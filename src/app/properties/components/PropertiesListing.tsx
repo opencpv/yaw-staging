@@ -28,10 +28,7 @@ const PropertiesListing = (props: Props) => {
   return (
     <>
       {/* Listing */}
-      <section
-        className="mx-auto mb-10 justify-center gap-x-3 gap-y-10 space-y-10 transition-all sm:grid sm:space-y-0"
-        style={{ gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))" }}
-      >
+      <section className="mx-auto mb-10 grid grid-cols-1 justify-center gap-x-5 gap-y-16 transition-all md:grid-cols-2 lg:grid-cols-3">
         <FetchingStates
           data={listings}
           error={error}

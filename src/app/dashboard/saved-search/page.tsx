@@ -47,7 +47,7 @@ export default function Page() {
             </p>
           }
         />
-        {listings?.map((listing) => (
+        {listings?.map((listing, idx) => (
           <ListingCard
             key={listing.id as string}
             cardType="2"
@@ -58,7 +58,9 @@ export default function Page() {
             propertyName={listing.property_name as string}
             city={listing.city as string}
             images={demoimages} // TODO: check database
-            liked={false} // TODO: check implementation
+            liked={
+              idx === 0 || idx === 1 || idx == 3 || idx === 9 ? true : false
+            } // TODO: check implementation
             membership={"Certified" as Membership} // TODO: check database
             monthlyAmount={listing.monthly_amount as number}
             paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
