@@ -11,7 +11,11 @@ import "@/styles/custom-swiper.css";
 import { Pagination, Navigation } from "swiper/modules";
 import Link from "next/link";
 import Image from "next/image";
-import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import {
+  MdChevronLeft,
+  MdChevronRight,
+  MdOutlineRemoveRedEye,
+} from "react-icons/md";
 import ListingInfo from "./ListingInfo";
 import ListingDeals from "./ListingDeals";
 import { ListingCardInterface } from "../../../../interfaces";
@@ -70,7 +74,7 @@ const ListingCard = (props: ListingCardInterface) => {
             <div className="flex flex-col items-center gap-3">
               <Button
                 href={props.href}
-                className="group/nv pointer-events-auto min-h-unit-12 gap-3 rounded-xl bg-neutral-100 px-6 text-lg font-bold text-neutral-400 shadow-lg transition-all hover:scale-110 hover:bg-neutral-400 hover:text-white"
+                className="group/nv pointer-events-auto min-h-unit-12 gap-3 rounded-xl bg-neutral-100 px-6 text-lg text-neutral-400 shadow-lg transition-all hover:scale-110 hover:bg-primary-200 hover:text-white"
               >
                 Not Viewed
                 <FaRegEyeSlash className="text-neutral-800 group-hover/nv:text-white" />
@@ -89,10 +93,10 @@ const ListingCard = (props: ListingCardInterface) => {
             <div className="flex flex-col items-center gap-3">
               <Button
                 href={props.href}
-                className="min-h-unit-12 gap-3 rounded-xl bg-neutral-100 px-6 text-lg font-semibold text-neutral-400"
+                className="group/btn min-h-unit-12 gap-3 rounded-xl bg-neutral-100 px-6 text-lg font-semibold text-neutral-400 hover:bg-primary-200 hover:text-white"
               >
                 View Property
-                <IoEyeOutline className="text-neutral-800" />
+                <MdOutlineRemoveRedEye className="text-neutral-800 group-hover/btn:text-white" />
               </Button>
               {props.liked && (
                 <Button
@@ -106,7 +110,7 @@ const ListingCard = (props: ListingCardInterface) => {
             </div>
           </div>
           {props.images?.map((image, index) =>
-            props.showOnlyImage ? ( // when only images show without pagination or controls
+            props.showOnlyImage || props.isMyFavoritePage ? ( // when only images show without pagination or controls
               <>
                 {index === 0 && (
                   <SwiperSlide key={index}>
@@ -163,7 +167,7 @@ const ListingCard = (props: ListingCardInterface) => {
           {/* Pagination bullets and button */}
           <div
             className={`custom-l-prev absolute left-[5%] z-10 flex h-10 w-10 shrink-0 cursor-default items-center justify-center rounded-full bg-white ${
-              props.cardType === "2" ? "bottom-40" : "bottom-20"
+              props.cardType === "2" ? "bottom-48" : "bottom-20"
             } ${props.showOnlyImage && "hidden"}`}
           >
             <MdChevronLeft className="text-lg text-neutral-700" />
@@ -175,7 +179,7 @@ const ListingCard = (props: ListingCardInterface) => {
           ></div>
           <div
             className={`custom-l-next absolute right-[5%] z-10 flex h-10 w-10 shrink-0 cursor-default items-center justify-center rounded-full bg-white ${
-              props.cardType === "2" ? "bottom-40" : "bottom-20"
+              props.cardType === "2" ? "bottom-48" : "bottom-20"
             } ${props.showOnlyImage && "hidden"}`}
           >
             <MdChevronRight className="text-lg text-neutral-700" />

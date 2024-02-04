@@ -8,6 +8,7 @@ import EditButton from "@/components/__shared/ui/button/EditButton";
 import ButtonDelete from "@/components/__shared/ui/button/ButtonDelete";
 import { IoEyeOutline } from "react-icons/io5";
 import Button from "@/components/__shared/ui/button/Button";
+import { MdOutlineRemoveRedEye } from "react-icons/md";
 
 export type TargetedSearchState = "match" | "no matches";
 
@@ -47,12 +48,12 @@ const TargetedSearchCard = ({ href, property, state, count }: Props) => {
             <div className="flex flex-col items-center gap-3">
               <Button
                 href={href}
-                className={`min-h-unit-12 gap-3 rounded-xl bg-neutral-100 px-6 text-lg font-semibold text-neutral-400 sm:pointer-events-auto ${
+                className={`group/btn min-h-unit-12 gap-3 rounded-xl bg-neutral-100 px-6 text-lg font-semibold text-neutral-400 hover:bg-primary-200 hover:text-white sm:pointer-events-auto ${
                   !isClickable && "pointer-events-none"
                 }`}
               >
                 View Matches
-                <IoEyeOutline className="text-neutral-800" />
+                <MdOutlineRemoveRedEye className="text-neutral-800 group-hover/btn:text-white" />
               </Button>
             </div>
           </div>
