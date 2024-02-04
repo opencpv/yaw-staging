@@ -31,7 +31,8 @@ export default function Page() {
   });
 
   return (
-    <>
+    <div>
+      <h2>My Favourites</h2>
       <section className="mx-auto my-10 grid grid-cols-1 justify-center gap-x-3 gap-y-10 transition-all sm:grid-cols-2 lg:grid-cols-3">
         <FetchingStates
           data={listings}
@@ -70,7 +71,7 @@ export default function Page() {
           />
         ))}
       </section>
-    </>
+    </div>
     // <div className="flex w-full flex-col items-center justify-center ">
     //   {!savedSearches && (
     //     <div className="mt-24 flex w-full flex-col items-center justify-center pt-5">
