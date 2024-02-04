@@ -1,8 +1,6 @@
 "use client";
 import React from "react";
-import Link from "next/link";
 import Image, { StaticImageData } from "next/image";
-import { FaRegEyeSlash } from "react-icons/fa6";
 import MatchLabel from "./MatchLabel";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import MatchCount from "./MatchCount";

@@ -72,7 +72,7 @@ const PaginationMenu = () => {
 
   return (
     <section
-      className={`${style.paginationMenu} ${
+      className={`menu-bg ${style.paginationMenu} ${
         isOpen
           ? `${style.paginationMenuVisible}`
           : `${style.paginationMenuHidden}`
