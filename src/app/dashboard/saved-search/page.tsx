@@ -59,7 +59,7 @@ export default function Page() {
             city={listing.city as string}
             images={demoimages} // TODO: check database
             liked={
-              idx === 0 || idx === 1 || idx == 3 || idx === 9 ? true : false
+              idx === 0 || idx === 1 || idx == 3 || idx === 8 ? true : false
             } // TODO: check implementation
             membership={"Certified" as Membership} // TODO: check database
             monthlyAmount={listing.monthly_amount as number}
