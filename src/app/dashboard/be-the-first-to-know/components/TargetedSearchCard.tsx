@@ -40,7 +40,7 @@ const TargetedSearchCard = ({ href, property, state, count }: Props) => {
                 href={href}
                 className="min-h-unit-12 gap-3 rounded-xl bg-neutral-100 px-6 text-lg font-semibold text-neutral-400"
               >
-                View Property
+                View Matches
                 <IoEyeOutline className="text-neutral-800" />
               </Button>
             </div>

@@ -12,6 +12,9 @@ const nextConfig = {
       "plus.unsplash.com",
     ],
   },
+  experimental: {
+    scrollRestoration: true,
+  },
 };
 
 module.exports = nextConfig;

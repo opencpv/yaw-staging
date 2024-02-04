@@ -19,7 +19,7 @@ const BeTheFirstToKnowLayout = ({
     <main>
       <Link
         href="/dashboard/be-the-first-to-know"
-        className="relative mb-5 h-10 w-10 place-items-center rounded-full bg-slate-100 p-2 transition-all hover:scale-105 fhd:right-28"
+        className="relative mb-5 h-10 w-10 place-items-center rounded-full p-2 transition-all hover:scale-105 hover:bg-slate-100 fhd:right-28"
         style={{
           display:
             pathname === "/dashboard/be-the-first-to-know" ? "none" : "grid",
@@ -30,7 +30,7 @@ const BeTheFirstToKnowLayout = ({
       <h2>Be the first to Know</h2>
       <LargeButton
         icon={<MdOutlineLibraryAdd />}
-        label="Add"
+        label="Create a targeted search"
         className="mt-10 min-w-fit xxs:min-w-[15rem]"
       />
       {/* <section className="flex h-[100vh] w-full flex-col items-center justify-center">

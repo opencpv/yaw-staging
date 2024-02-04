@@ -18,6 +18,7 @@ import { ListingCardInterface } from "../../../../interfaces";
 import { FaTrash } from "react-icons/fa";
 import { IoEyeOutline } from "react-icons/io5";
 import Button from "../ui/button/Button";
+import { FaRegEyeSlash } from "react-icons/fa6";
 
 const ListingCard = (props: ListingCardInterface) => {
   return (
@@ -60,13 +61,21 @@ const ListingCard = (props: ListingCardInterface) => {
           <ListingDeals membership={props.membership} deal={props.deal} />
           {/* For be the first to know detail listings only */}
           <div
-            className={`${
+            className={
               props.showNotViewed && !props.isViewed
-                ? "absolute left-[35%] top-[45%] z-10 grid min-h-unit-12 place-items-center gap-3 rounded-xl bg-neutral-100 px-6 text-lg font-semibold text-neutral-400"
+                ? "pointer-events-none absolute inset-0 z-30 flex h-full w-full items-center justify-center rounded-[inherit] bg-transparent"
                 : "hidden"
-            }`}
+            }
           >
-            Not Viewed
+            <div className="flex flex-col items-center gap-3">
+              <Button
+                href={props.href}
+                className="group/nv pointer-events-auto min-h-unit-12 gap-3 rounded-xl bg-neutral-100 px-6 text-lg font-bold text-neutral-400 transition-all hover:scale-110 hover:bg-neutral-400 hover:text-white"
+              >
+                Not Viewed
+                <FaRegEyeSlash className="text-neutral-800 group-hover/nv:text-white" />
+              </Button>
+            </div>
           </div>
 
           {/* For favourites only */}
