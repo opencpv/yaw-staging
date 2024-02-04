@@ -14,7 +14,7 @@ const ButtonMenu = ({ className }: Props) => {
     <div
       onClick={() => setToggle(true)}
       className={cn(
-        "group mb-5 grid h-10 w-10 place-items-center rounded-full p-2 transition-all hover:scale-105 hover:bg-slate-50/30",
+        "group mb-5 grid h-10 w-10 place-items-center rounded-full p-2 transition-all hover:scale-105 hover:bg-slate-50/70",
         className,
       )}
     >
