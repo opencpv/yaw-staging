@@ -106,7 +106,7 @@ const ListingCard = (props: ListingCardInterface) => {
             </div>
           </div>
           {props.images?.map((image, index) =>
-            props.showOnlyImage || props.isMyFavoritePage ? ( // when only images shows without pagination or controls
+            props.showOnlyImage ? ( // when only images show without pagination or controls
               <>
                 {index === 0 && (
                   <SwiperSlide key={index}>

@@ -25,6 +25,14 @@ type Props = {
 
 const TargetedSearchCard = ({ href, property, state, count }: Props) => {
   const { icons } = useAssets();
+  const [isClickable, setIsClickable] = React.useState(false);
+
+  const handleClick = () => {
+    setTimeout(() => {
+      setIsClickable(true);
+    }, 500);
+  };
+
   return (
     <div>
       <MatchCount
@@ -34,11 +42,16 @@ const TargetedSearchCard = ({ href, property, state, count }: Props) => {
       />
       {state === "match" ? (
         <div className="group relative h-[26rem] w-full rounded-2xl bg-neutral-100">
-          <div className="absolute inset-0 z-10 flex h-full w-full items-center justify-center rounded-[inherit] bg-black bg-opacity-30 opacity-0 transition-all delay-300 group-hover:opacity-100">
+          <div
+            className="absolute inset-0 z-10 flex h-full w-full items-center justify-center rounded-[inherit] bg-black bg-opacity-30 opacity-0 transition-all delay-300 group-hover:opacity-100"
+            onClick={handleClick}
+          >
             <div className="flex flex-col items-center gap-3">
               <Button
                 href={href}
-                className="min-h-unit-12 gap-3 rounded-xl bg-neutral-100 px-6 text-lg font-semibold text-neutral-400"
+                className={`min-h-unit-12 gap-3 rounded-xl bg-neutral-100 px-6 text-lg font-semibold text-neutral-400 sm:pointer-events-auto ${
+                  !isClickable && "pointer-events-none"
+                }`}
               >
                 View Matches
                 <IoEyeOutline className="text-neutral-800" />
