@@ -23,6 +23,7 @@ import { FaTrash } from "react-icons/fa";
 import { IoEyeOutline } from "react-icons/io5";
 import Button from "../ui/button/Button";
 import { FaHeart, FaRegEyeSlash } from "react-icons/fa6";
+import ListingCardButton from "./ListingCardButton";
 
 const ListingCard = (props: ListingCardInterface) => {
   return (
@@ -72,13 +73,12 @@ const ListingCard = (props: ListingCardInterface) => {
             }
           >
             <div className="flex flex-col items-center gap-3">
-              <Button
+              <ListingCardButton
                 href={props.href}
-                className="group/nv pointer-events-auto min-h-unit-12 gap-3 rounded-xl bg-neutral-100 px-6 text-lg text-neutral-400 shadow-lg transition-all hover:scale-110 hover:bg-primary-200 hover:text-white"
-              >
-                Not Viewed
-                <FaRegEyeSlash className="text-neutral-800 group-hover/nv:text-white" />
-              </Button>
+                label="Not Viewed"
+                icon="eye close"
+                className="pointer-events-auto transition-all hover:scale-110"
+              />
             </div>
           </div>
 
@@ -91,13 +91,11 @@ const ListingCard = (props: ListingCardInterface) => {
             }
           >
             <div className="flex flex-col items-center gap-3">
-              <Button
+              <ListingCardButton
                 href={props.href}
-                className="group/btn min-h-unit-12 gap-3 rounded-xl bg-neutral-100 px-6 text-lg font-semibold text-neutral-400 hover:bg-primary-200 hover:text-white"
-              >
-                View Property
-                <MdOutlineRemoveRedEye className="text-neutral-800 group-hover/btn:text-white" />
-              </Button>
+                label="View Property"
+                icon="eye open"
+              />
               {props.liked && (
                 <Button
                   variant="ghost"
