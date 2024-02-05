@@ -8,23 +8,36 @@ import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
 import images from "@/enum/temp/images";
 import { revalidationRule, fetchOrderRule } from "@/lib/utils/fetchRules";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
+import { useQuery } from "@tanstack/react-query";
+import { getListings } from "@/actions/listing";
 
 type Props = {};
 
 const PropertiesListing = (props: Props) => {
+  // const {
+  //   data: listings,
+  //   error,
+  //   isValidating,
+  //   isLoading,
+  //   loadMore,
+  // } = useFetchTableWithInfiniteScroll({
+  //   tableName: "standard_template",
+  //   pageSize: 9,
+  //   order: { column: "created_at", ...fetchOrderRule() },
+  //   select: "id, property_name, property_id, description, monthly_amount, city",
+  //   ...revalidationRule(),
+  // });
+
   const {
     data: listings,
     error,
-    isValidating,
-    isLoading,
-    loadMore,
-  } = useFetchTableWithInfiniteScroll({
-    tableName: "standard_template",
-    pageSize: 9,
-    order: { column: "created_at", ...fetchOrderRule() },
-    select: "id, property_name, property_id, description, monthly_amount, city",
-    ...revalidationRule(),
+    isPending: isLoading,
+    isFetching: isValidating,
+  } = useQuery({
+    queryKey: ["listings"],
+    queryFn: async () => await getListings(),
   });
+
   return (
     <>
       {/* Listing */}
@@ -44,9 +57,9 @@ const PropertiesListing = (props: Props) => {
         />
         {listings?.map((listing) => (
           <ListingCard
-            key={listing.id as string}
+            key={listing.id}
             cardType="2"
-            href={`/properties/${listing.property_id}?property_name=${listing.propertyName}&city=${listing.city}&price=${listing.price}&payment_structure=${listing.paymentStructure}&amount_per_month=${listing.monthlyAmount}&rating=${listing.ratingCount}&property_description=${listing.propertyDescription}`.replaceAll(
+            href={`/properties/${listing.property_id}?property_name=${listing.property_name}&city=${listing.city}&price=${listing.monthly_amount}&payment_structure=${listing.advance_payment_options}&amount_per_month=${listing.monthly_amount}&rating=${8}&property_description=${listing.description}`.replaceAll(
               " ",
               "_",
             )}
@@ -55,7 +68,7 @@ const PropertiesListing = (props: Props) => {
             images={images} // TODO: check database
             liked={false} // TODO: check implementation
             membership={"Certified" as Membership} // TODO: check database
-            monthlyAmount={listing.monthly_amount as number}
+            monthlyAmount={2000}
             paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
             propertyDescription={listing.description as string}
             price={4000} // TODO: check database
@@ -65,7 +78,7 @@ const PropertiesListing = (props: Props) => {
           />
         ))}
       </section>
-      <div className="flex justify-center">
+      {/* <div className="flex justify-center">
         <Button
           data={listings}
           isLoading={isLoading}
@@ -73,7 +86,7 @@ const PropertiesListing = (props: Props) => {
           loadMore={loadMore}
           noDataMessage="There are no more properties to show."
         />
-      </div>
+      </div> */}
     </>
   );
 };
