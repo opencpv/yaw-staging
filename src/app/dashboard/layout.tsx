@@ -75,6 +75,8 @@ const Wrapper = ({ children }: LayoutProps) => {
     wrapperExclusionList.map((path) => {
       if (pathname?.includes(path)) {
         setExcludeWrapper(true);
+      } else {
+        setExcludeWrapper(false);
       }
     });
   }, [supabase, pathname, user, setUser]);
@@ -115,6 +117,7 @@ const Wrapper = ({ children }: LayoutProps) => {
       )
       .subscribe();
   }, []);
+
   return (
     <div>
       <div>
