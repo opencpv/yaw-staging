@@ -12,12 +12,14 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import CompleteYourLogin from "./components/CompleteYourLogin";
 import HowToSwitch from "./components/HowToSwitch";
 import { ClientOnly } from "@/components/ui/ClientOnly";
+import { usePathname } from "next/navigation";
 
 type LayoutProps = {
   children: React.ReactNode;
 };
 
 const Wrapper = ({ children }: LayoutProps) => {
+  const pathname = usePathname();
   const [notifications, setNotifications] = useState<NotificationType | any>();
   const [notificationsLoading, setNotificationsLoading] = useState<
     boolean | null
@@ -35,6 +37,7 @@ const Wrapper = ({ children }: LayoutProps) => {
   const { user, setUser } = useAppStore();
 
   const [loading, setLoading] = useState<boolean>(false);
+  const [excludeWrapper, setExcludeWrapper] = useState(false);
 
   useEffect(() => {
     const supabase = createClientComponentClient();
@@ -46,7 +49,7 @@ const Wrapper = ({ children }: LayoutProps) => {
   useEffect(() => {
     dashboardType && firstTIme && setFirstTimeModalOpen(true);
     dashboardType && setFirstTime(false);
-  }, [firstTIme, dashboardType]);
+  }, [firstTIme, dashboardType, setFirstTime]);
 
   useEffect(() => {
     const getUserData = async () => {
@@ -66,7 +69,15 @@ const Wrapper = ({ children }: LayoutProps) => {
     getUserData().then(() => {
       setLoading(false);
     });
-  }, [supabase]);
+
+    const wrapperExclusionList = ["/dashboard/my-agent"];
+
+    wrapperExclusionList.map((path) => {
+      if (pathname?.includes(path)) {
+        setExcludeWrapper(true);
+      }
+    });
+  }, [supabase, pathname, user, setUser]);
 
   const getNotifications = async () => {
     try {
@@ -112,7 +123,9 @@ const Wrapper = ({ children }: LayoutProps) => {
           <Pagination />
         </div>
 
-        <div className="wrapper text-black">{children}</div>
+        <div className={`${excludeWrapper ? "" : "wrapper"} text-black`}>
+          {children}
+        </div>
         <ClientOnly>
           <HowToSwitch
             dashboard

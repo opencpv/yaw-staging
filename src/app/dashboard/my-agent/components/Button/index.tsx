@@ -3,16 +3,23 @@
 import { Button } from "@nextui-org/react";
 import { GoArrowRight } from "react-icons/go";
 import CaLearnMore from "../icons/CaLearnMore";
+import { cn } from "@/lib/utils";
 
 type Props = {
   variant: any;
   content: string;
   onClick?: any;
+  className?: string;
 };
 
-export default function AgentButtons({ variant, content, onClick }: Props) {
+export default function AgentButtons({
+  variant,
+  content,
+  onClick,
+  className,
+}: Props) {
   return (
-    <div className="w-full font-semibold">
+    <div className={cn("w-full font-semibold", className)}>
       {variant == "agent" && (
         <Button
           className="flex w-full max-w-[184px] items-center justify-center rounded-full bg-success-100 p-6 text-[1.25rem] text-primary-600"
