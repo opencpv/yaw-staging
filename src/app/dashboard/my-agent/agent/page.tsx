@@ -9,23 +9,21 @@ export default function Page() {
   const [beAgent, setBeAgent] = useState(false);
   const [matches, setMatches] = useState(true);
   return (
-    <div className="flex flex-col items-center justify-center gap-8">
+    <div className="mx-auto mt-16 flex max-w-screen-3xl flex-col items-center justify-center gap-8 px-5 sm:px-10">
       {!beAgent && (
-        <div className="flex w-full flex-col lg:px-[1.88rem]">
+        <div className="flex w-full flex-col">
           <div className="flex flex-col gap-5 ">
             <div className="flex w-fit flex-col items-start ">
               <div className="flex w-full max-w-[542px] flex-col gap-8">
-                <p className="text-[1.5625rem] font-semibold">My Agent</p>
+                <h3 className="">My Agent</h3>
                 <div className="flex flex-col gap-[1.5rem] rounded-2xl border-[1px] border-[#E6E6E6] bg-[#F7F7F7] px-8 py-6">
                   <div className="flex flex-col gap-[2px]">
-                    <p className="text-[1.25rem] font-semibold">
-                      You have no agent
-                    </p>
-                    <p className="text-[1.25rem] text-shade-200">
+                    <h3>You have no agent</h3>
+                    <p className="text-xl text-shade-200">
                       Click the button below to get started
                     </p>
                   </div>
-                  <div className="flex w-full gap-6 ">
+                  <div className="flex w-full items-center gap-6 ">
                     <AgentButtons
                       content="Get Started"
                       variant={"green-dark"}

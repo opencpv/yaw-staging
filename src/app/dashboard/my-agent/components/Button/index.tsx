@@ -80,7 +80,7 @@ export default function AgentButtons({
       {variant == "explore" && (
         <Button
           className={cn(
-            "flex h-[52px] w-full items-center  justify-center rounded-lg border-[1px] border-[#073B3A] bg-transparent font-semibold text-[#073B3A] lg:max-w-[218px] lg:px-10",
+            "lg:min-w-[8rem flex max-w-fit items-center justify-center rounded-lg border border-[#073B3A] bg-transparent p-6 px-10 font-semibold text-[#073B3A]",
             className,
           )}
           onPress={onClick}
