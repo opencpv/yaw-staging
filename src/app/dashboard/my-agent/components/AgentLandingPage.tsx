@@ -1,68 +1,68 @@
 import Image from "next/image";
 import AgentButtons from "./Button";
-import styles from "../index.module.css";
 import CaRelume from "./icons/CaRelume";
 import CaAgentTick from "./icons/CaAgentTick";
 import BeMyAgentModal from "@/app/components/be-my-agent-form";
 import { ClientOnly } from "@/components/ui/ClientOnly";
+import { useAssets } from "@/lib/custom-hooks/useAssets";
 
 export default function AgentLandingPage() {
+  const { images } = useAssets();
+
   return (
-    <div className="flex flex-col justify-center items-center max-w-[1668px] gap-8 ">
+    <div className="flex max-w-[1668px] flex-col items-center justify-center gap-8">
       <div className="flex flex-col gap-10 lg:gap-24 ">
-        <div className="relative w-full max-w-[1668px] lg:aspect-[527/380] lg:bg-[url('/svgs/be-my-agent.svg')]  bg-no-repeat bg-cover bg-right flex flex-col gap-8 justify-center  px-4 py-4 max-h-[667px]">
-          <AgentButtons variant={"agent"} content="Agent Services" />
-          <div className="flex flex-col max-w-[685px]">
-            <p className="text-[1.9375rem] lg:text-[2.4375rem] font-bold">
-              Let RentRightGh take it from here
-            </p>
-            <p className="text-shade-200">
-              Lorem ipsum dolor sit amet consectetur. Mollis id enim turpis
-              egestas ut urna posuere. Nec elementum placerat in mauris. Dui
-              convallis dolor ante quisque porta eget leo hendrerit purus. Diam
-              lorem faucibus tortor arcu at.
-            </p>
-          </div>
-          <div className="flex gap-5 w-full">
-            <div className="w-full-">
-              <ClientOnly>
-                <BeMyAgentModal />
-              </ClientOnly>
-            </div>{" "}
-            <div className="w-full">
-              {" "}
-              <AgentButtons content="Learn More" variant={"learn-more"} />
+        <div className="relative flex h-fit w-full items-center justify-center rounded-3xl bg-[#E6F6EE] bg-[url('/assets/images/dashboard/my-agent-shapes.png')] bg-contain bg-right bg-no-repeat p-10">
+          <div className="flex w-full items-center justify-between gap-10">
+            <div className="space-y-8">
+              <AgentButtons variant={"agent"} content="Agent Services" />
+              <div className="max-w-xl space-y-7">
+                <h2 className="text-4xl text-[#333333]">
+                  Let RentRightGh take it from here
+                </h2>
+                <p className="text-shade-200">
+                  Lorem ipsum dolor sit amet consectetur. Mollis id enim turpis
+                  egestas ut urna posuere. Nec elementum placerat in mauris. Dui
+                  convallis dolor ante quisque porta eget leo hendrerit purus.
+                  Diam lorem faucibus tortor arcu at.
+                </p>
+                <div className="flex w-full gap-5">
+                  <div className="w-full-">
+                    <ClientOnly>
+                      <BeMyAgentModal />
+                    </ClientOnly>
+                  </div>{" "}
+                  <div className="w-full">
+                    {" "}
+                    <AgentButtons content="Learn More" variant={"learn-more"} />
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <div className="lg:hidden w-full h-[470px]">
-          <div className="relative w-full h-full max-h-[470px] ">
             <Image
-              src={"/assets/images/agent-man-mobile.png"}
-              fill
-              alt="No saved search"
-              objectFit="cover"
+              src={images.BusinessPersonWithHouseKeys}
+              alt="person holding mini house"
+              width={350}
             />
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-x-12 gap-y-12 min-h-[40vh] px-4">
-          <div className="col-span-2 lg:col-span-1 items-center hidden lg:flex">
-            <div className="relative w-full aspect-[825/759] ">
-              <Image
-                src={"/assets/images/agent-process1.png"}
-                fill
-                alt="No saved search"
-              />
-            </div>
+        <div className="grid grid-cols-2 gap-x-12 gap-y-12 px-4">
+          <div className="col-span-2 hidden h-full items-center justify-center border lg:col-span-1 lg:flex">
+            <Image
+              src={"/assets/images/agent-process1.png"}
+              width={550}
+              height={550}
+              alt="No saved search"
+            />
           </div>
-          <div className="col-span-2 lg:col-span-1 flex items-center flex-col justify-center gap-[3rem]">
+          <div className="col-span-2 flex flex-col items-center justify-center gap-[3rem] lg:col-span-1">
             <div className="flex flex-col">
               <AgentButtons variant={"how-it-works"} content="How it works" />
-              <p className="text-[1.5625rem] lg:text-[2.4375rem] font-bold mt-5">
+              <h2 className="mt-6 text-4xl leading-tight">
                 Lorem ipsum dolor sit amet consectetur. Egestas tempor eget quam
                 justo neque.
-              </p>
+              </h2>
               <p className="mt-4">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Suspendisse varius enim in eros elementum tristique. Duis
@@ -70,7 +70,7 @@ export default function AgentLandingPage() {
                 commodo diam libero vitae erat.
               </p>
             </div>
-            <div className="flex flex-col gap-12 items-start w-full">
+            <div className="flex w-full flex-col items-start gap-12">
               <Subheading />
               <Subheading />
               <Subheading />
@@ -79,20 +79,20 @@ export default function AgentLandingPage() {
         </div>
 
         <div
-          className="relative w-full aspect-[1728/597] bg-[url('/assets/images/agent-footer-mobile.svg')]  
-         lg:bg-[url('/assets/images/agent-footer.svg')]  
-        bg-no-repeat bg-cover  items-start justify-center gap-5 mt-10 lg:mt-[150px] grid grid-cols-3 xl:px-14 2xl:px-24 gap-x-5 py-10 lg:py-0"
+          className="relative mt-10  
+         grid aspect-[1728/597] w-full grid-cols-3
+        items-start justify-center gap-5 gap-x-5 bg-[url('/assets/images/agent-footer-mobile.svg')] bg-cover bg-no-repeat py-10 lg:mt-[150px] lg:bg-[url('/assets/images/agent-footer.svg')] lg:py-0 xl:px-14 2xl:px-24"
         >
-          <div className="col-span-2 lg:col-span-1 relative w-full aspect-[543/579] lg:max-w-[543px] rounded-2xl overflow-hidden  left-[20px] lg:left-0 lg:bottom-[100px] max-w-[70%] ">
+          <div className="relative left-[20px] col-span-2 aspect-[543/579] w-full max-w-[70%] overflow-hidden rounded-2xl  lg:bottom-[100px] lg:left-0 lg:col-span-1 lg:max-w-[543px] ">
             <Image
               src={"/assets/images/agent-footer2.png"}
               fill
               alt="No saved search"
             />
           </div>
-          <div className="col-span-3 lg:col-span-2 w-full flex flex-col lg:items-end justify-center h-full px-4">
+          <div className="col-span-3 flex h-full w-full flex-col justify-center px-4 lg:col-span-2 lg:items-end">
             <div className="flex flex-col gap-1 text-[#eee] ">
-              <p className="text-[1.5625rem] lg:text-[2.4375rem] font-bold">
+              <p className="text-[1.5625rem] font-bold lg:text-[2.4375rem]">
                 Get started by letting us be your No 1 Agent
               </p>
               <p>Get your dream home now !!</p>
@@ -114,19 +114,19 @@ export default function AgentLandingPage() {
 const Subheading = () => {
   return (
     <div className="flex flex-col gap-4 pr-5">
-      <div className="flex gap-4 items-center">
+      <div className="flex items-center gap-4">
         <CaRelume />
         <p className="text-[1.25rem] font-semibold">Subheading one</p>
       </div>
       <div className="flex flex-col gap-4">
-        <div className="flex gap-2 items-center">
+        <div className="flex items-center gap-2">
           <CaAgentTick />
           <p className="">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             varius enim in eros.
           </p>
         </div>
-        <div className="flex gap-2 items-center">
+        <div className="flex items-center gap-2">
           <CaAgentTick />
           <p className="">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
