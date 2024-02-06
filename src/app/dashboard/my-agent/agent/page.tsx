@@ -4,6 +4,7 @@ import { useState } from "react";
 import NoMatchesYet from "../components/NoMatches";
 import MatchesYet from "../components/Matches";
 import Agent from "../components/Agent";
+import AOSWrapper from "@/components/__shared/AOSWrapper";
 
 export default function Page() {
   const [beAgent, setBeAgent] = useState(false);
@@ -12,7 +13,7 @@ export default function Page() {
     <div className="mx-auto mt-16 flex max-w-screen-3xl flex-col items-center justify-center gap-8 px-5 sm:px-10">
       {!beAgent && (
         <div className="flex w-full flex-col">
-          <div className="flex flex-col gap-5 ">
+          <AOSWrapper animation="fade-up" className="flex flex-col gap-5 ">
             <div className="flex w-fit flex-col items-start ">
               <div className="flex w-full max-w-[542px] flex-col gap-8">
                 <h3 className="">My Agent</h3>
@@ -23,25 +24,24 @@ export default function Page() {
                       Click the button below to get started
                     </p>
                   </div>
-                  <div className="flex w-full items-center gap-6 ">
+                  <div className="flex w-full flex-col gap-6 xs:flex-row xs:items-center">
                     <AgentButtons
                       content="Get Started"
                       variant={"green-dark"}
                       onClick={() => setBeAgent(false)} // Implementation has changed !!
                     />
-                    <div className="w-full">
-                      <AgentButtons
-                        content="Explore"
-                        variant={"explore"}
-                        onClick={() => setBeAgent(false)} // Implementation has changed !!
-                      />
-                    </div>
+                    <AgentButtons
+                      content="Explore"
+                      variant={"explore"}
+                      className="min-w-[10.5rem] xs:min-w-[8rem]"
+                      onClick={() => setBeAgent(false)} // Implementation has changed !!
+                    />
                   </div>
                 </div>
               </div>
             </div>
             <Agent />
-          </div>
+          </AOSWrapper>
           {!matches && <NoMatchesYet />}
           {matches && <MatchesYet />}
         </div>

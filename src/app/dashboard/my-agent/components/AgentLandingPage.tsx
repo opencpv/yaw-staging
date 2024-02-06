@@ -20,7 +20,7 @@ export default function AgentLandingPage() {
               <div className="space-y-8">
                 <AgentButtons variant={"agent"} content="Agent Services" />
                 <div className="max-w-xl space-y-7">
-                  <h2 className="text-4xl text-[#333333]">
+                  <h2 className="text-3xl leading-tight text-[#333333] sm:text-4xl">
                     Let RentRightGh take it from here
                   </h2>
                   <p className="text-shade-200">
@@ -60,7 +60,7 @@ export default function AgentLandingPage() {
           <div className="col-span-2 mt-20 flex max-w-2xl flex-col items-center justify-center gap-[3rem] lg:col-span-1 lg:mt-0">
             <div className="flex flex-col">
               <AgentButtons variant={"how-it-works"} content="How it works" />
-              <h2 className="mt-6 text-4xl leading-tight">
+              <h2 className="mt-6 text-3xl leading-tight sm:text-4xl">
                 Lorem ipsum dolor sit amet consectetur. Egestas tempor eget quam
                 justo neque.
               </h2>
@@ -82,7 +82,7 @@ export default function AgentLandingPage() {
 
       {/* Footer */}
       <div
-        className={`relative mt-40 flex w-full items-start justify-center gap-5 py-10 lg:mt-52 lg:py-0 xl:px-14 2xl:px-24 ${style.myAgentExploreFooter}`}
+        className={`relative mt-28 flex w-full items-start justify-center gap-5 py-10 lg:mt-52 lg:py-0 xl:px-14 2xl:px-24 ${style.myAgentExploreFooter}`}
       >
         <div className="gap relative z-10 flex w-full flex-col justify-center gap-x-24 gap-y-8 px-5 sm:px-10 lg:flex-row lg:items-center lg:pb-24">
           <AOSWrapper animation="fade-up">
@@ -95,7 +95,7 @@ export default function AgentLandingPage() {
             />
           </AOSWrapper>
           <div className="flex flex-col gap-6 py-10 text-[#eee] lg:mt-20">
-            <h2 className="text-4xl leading-tight">
+            <h2 className="text-3xl leading-tight sm:text-4xl">
               Get started by letting us be your No 1 Agent
             </h2>
             <p>Get your dream home now !!</p>

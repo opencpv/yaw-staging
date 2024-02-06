@@ -4,7 +4,7 @@ import CaAgentTickGreenBg from "./icons/CaAgentTickGreenBg";
 
 export default function Agent() {
   return (
-    <div className="flex h-full max-h-[260px] w-full max-w-[543px]  flex-col items-start justify-center gap-4 rounded-2xl border-[1px] border-[#E6E6E6] px-8 py-6">
+    <div className="flex h-full w-full max-w-[543px] flex-col items-start justify-center gap-4 rounded-2xl border border-[#E6E6E6] px-8 py-6">
       <div className="flex w-full justify-between">
         <div className="relative aspect-square w-full max-w-[112px]">
           <Image
@@ -15,16 +15,16 @@ export default function Agent() {
         </div>
         <EditModal />
       </div>
-      <div>
-        <p className="text-xl font-semibold">My Agent one</p>
+      <div className="space-y-1">
+        <h3 className="font-semibold">My Agent one</h3>
         <p className="text-shade-200 lg:text-xl">
-          Date Created : 15 Aug. 2023 13:55pm{" "}
+          Date Created : 15 Aug. 2023 13:55pm
         </p>
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 pt-4 xs:pt-2">
           <div className="flex items-center gap-2 rounded-xl bg-[#F1F1F1] px-2 py-1 ">
             <CaAgentTickGreenBg />
             <p>Completed</p>
-          </div>{" "}
+          </div>
           <p className="text-shade-200 lg:text-xl">5 Aug. 2023 13:55pm</p>
         </div>
       </div>

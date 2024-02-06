@@ -18,57 +18,57 @@ const PaginationMenu = () => {
 
   useHideDocumentScrollBar(isOpen);
 
-  const handleScrollDown = () => {
-    if (paginationMenuRef.current) {
-      paginationMenuRef.current.scrollTo({
-        top:
-          paginationMenuRef.current.scrollHeight -
-          paginationMenuRef.current.offsetHeight,
-        behavior: "smooth",
-      });
-      setHide(true);
-    }
-  };
+  // const handleScrollDown = () => {
+  //   if (paginationMenuRef.current) {
+  //     paginationMenuRef.current.scrollTo({
+  //       top:
+  //         paginationMenuRef.current.scrollHeight -
+  //         paginationMenuRef.current.offsetHeight,
+  //       behavior: "smooth",
+  //     });
+  //     setHide(true);
+  //   }
+  // };
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (paginationMenuRef.current)
-        if (
-          paginationMenuRef.current.scrollHeight -
-            paginationMenuRef.current.offsetHeight <=
-          80
-        ) {
-          setHide(true);
-        }
-    };
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     if (paginationMenuRef.current)
+  //       if (
+  //         paginationMenuRef.current.scrollHeight -
+  //           paginationMenuRef.current.offsetHeight <=
+  //         80
+  //       ) {
+  //         setHide(true);
+  //       }
+  //   };
 
-    const handleOnMount = () => {
-      if (paginationMenuRef.current)
-        if (
-          paginationMenuRef.current.scrollTop >=
-          paginationMenuRef.current.scrollHeight -
-            paginationMenuRef.current.offsetHeight -
-            80
-        ) {
-          setHide(true);
-        }
-    };
+  //   const handleOnMount = () => {
+  //     if (paginationMenuRef.current)
+  //       if (
+  //         paginationMenuRef.current.scrollTop >=
+  //         paginationMenuRef.current.scrollHeight -
+  //           paginationMenuRef.current.offsetHeight -
+  //           80
+  //       ) {
+  //         setHide(true);
+  //       }
+  //   };
 
-    const handleScroll = () => {
-      if (paginationMenuRef.current)
-        if (paginationMenuRef.current.scrollTop > 0) {
-          setHide(true);
-        }
-    };
+  //   const handleScroll = () => {
+  //     if (paginationMenuRef.current)
+  //       if (paginationMenuRef.current.scrollTop > 0) {
+  //         setHide(true);
+  //       }
+  //   };
 
-    handleOnMount();
-    window.addEventListener("resize", handleResize);
-    paginationMenuRef?.current?.addEventListener("scroll", handleScroll);
+  //   handleOnMount();
+  //   window.addEventListener("resize", handleResize);
+  //   paginationMenuRef?.current?.addEventListener("scroll", handleScroll);
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, []);
 
   return (
     <section
@@ -100,12 +100,12 @@ const PaginationMenu = () => {
           ))}
         </div>
       </div>
-      <MenuScrollDownButton
+      {/* <MenuScrollDownButton
         onClick={handleScrollDown}
         hide={hide}
         isInViewport={false}
         className="min-[700]:right-14 min-[700]:bottom-5 absolute bottom-3 right-3 block xl:right-40"
-      />
+      /> */}
     </section>
   );
 };

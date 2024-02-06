@@ -16,7 +16,7 @@ export default function MatchesYet() {
         Your Matches
       </p>
 
-      <div className="">
+      <div className="max-w-3xl">
         <InfoText content="Lorem ipsum dolor sit amet consectetur. Consequat elementum consequat interdum integer imperdiet nisl. Ipsum eu eu tortor enim est mauris in sem. Eget dignissim risus diam consectetur magna. Non." />
       </div>
       <div className=" flex flex-col gap-2 border-[#E6E6E6] lg:border-[1px]">

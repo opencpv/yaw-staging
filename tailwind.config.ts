@@ -82,6 +82,7 @@ const config: Config = {
     },
     screens: {
       xxs: "280px",
+      xsm: "360px", // :-D
       xs: "425px",
       ...defaultTheme.screens,
       hd: "1670px",
