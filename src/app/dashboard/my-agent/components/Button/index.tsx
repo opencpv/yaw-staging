@@ -23,7 +23,7 @@ export default function AgentButtons({ variant, content, onClick }: Props) {
       )}
       {variant == "price" && (
         <Button
-          className="flex w-full min-w-[16rem] items-center justify-center  rounded-2xl bg-[#E6F6EE] p-5 text-[1.25rem] font-bold text-shade-300"
+          className="flex w-full max-w-fit items-center justify-center rounded-2xl  bg-[#E6F6EE] p-5 text-[1.25rem] font-bold text-shade-300 lg:min-w-[16rem]"
           onPress={onClick}
         >
           {content}
@@ -31,7 +31,7 @@ export default function AgentButtons({ variant, content, onClick }: Props) {
       )}
       {variant == "green-dark" && (
         <Button
-          className="flex w-full min-w-[8rem] items-center  justify-center rounded-lg bg-[#073B3A] p-6 px-8 font-semibold text-white"
+          className="flex w-full max-w-fit items-center justify-center  rounded-lg bg-[#073B3A] p-6 px-8 font-semibold text-white lg:min-w-[8rem]"
           onPress={onClick}
         >
           {content}
@@ -48,7 +48,7 @@ export default function AgentButtons({ variant, content, onClick }: Props) {
       )}
       {variant == "learn-more" && (
         <Button
-          className="flex min-w-[12rem] items-center justify-center rounded-lg border border-[#073B3A] bg-transparent p-6 font-semibold text-[#073B3A]"
+          className="flex max-w-fit items-center justify-center rounded-lg border border-[#073B3A] bg-transparent p-6 font-semibold text-[#073B3A] lg:min-w-[12rem]"
           onPress={onClick}
         >
           {content}

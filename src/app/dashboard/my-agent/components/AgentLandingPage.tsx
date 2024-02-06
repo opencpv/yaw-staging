@@ -10,10 +10,10 @@ export default function AgentLandingPage() {
   const { images } = useAssets();
 
   return (
-    <div className="flex max-w-[1668px] flex-col items-center justify-center gap-8">
+    <div className="flex flex-col items-center justify-center gap-8">
       <div className="flex flex-col gap-10 lg:gap-24 ">
-        <div className="relative flex h-fit w-full items-center justify-center rounded-3xl bg-[#E6F6EE] bg-[url('/assets/images/dashboard/my-agent-shapes.png')] bg-contain bg-right bg-no-repeat p-10">
-          <div className="flex w-full items-center justify-between gap-10">
+        <div className="relative flex h-fit w-full items-center justify-center rounded-3xl bg-transparent bg-[length:600px_400px] bg-right bg-no-repeat pt-5 lg:bg-[#E6F6EE] lg:bg-[url('/assets/images/dashboard/my-agent-shapes.png')] lg:p-10">
+          <div className="flex w-full flex-col items-center justify-between gap-10 lg:flex-row">
             <div className="space-y-8">
               <AgentButtons variant={"agent"} content="Agent Services" />
               <div className="max-w-xl space-y-7">
@@ -43,11 +43,12 @@ export default function AgentLandingPage() {
               src={images.BusinessPersonWithHouseKeys}
               alt="person holding mini house"
               width={350}
+              className="bg-[url('/assets/images/dashboard/my-agent-shapes.png')] bg-cover bg-right bg-no-repeat lg:bg-none"
             />
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-x-12 gap-y-12 px-4">
+        <div className="grid grid-cols-2 gap-x-12 gap-y-20 px-4">
           <div className="col-span-2 hidden h-full items-center justify-center border lg:col-span-1 lg:flex">
             <Image
               src={"/assets/images/agent-process1.png"}
@@ -56,7 +57,7 @@ export default function AgentLandingPage() {
               alt="No saved search"
             />
           </div>
-          <div className="col-span-2 flex flex-col items-center justify-center gap-[3rem] lg:col-span-1">
+          <div className="col-span-2 mt-20 flex flex-col items-center justify-center gap-[3rem] lg:col-span-1 lg:mt-0">
             <div className="flex flex-col">
               <AgentButtons variant={"how-it-works"} content="How it works" />
               <h2 className="mt-6 text-4xl leading-tight">
@@ -79,9 +80,9 @@ export default function AgentLandingPage() {
         </div>
 
         <div
-          className="relative mt-10  
-         grid aspect-[1728/597] w-full grid-cols-3
-        items-start justify-center gap-5 gap-x-5 bg-[url('/assets/images/agent-footer-mobile.svg')] bg-cover bg-no-repeat py-10 lg:mt-[150px] lg:bg-[url('/assets/images/agent-footer.svg')] lg:py-0 xl:px-14 2xl:px-24"
+          className="relative mt-40
+         grid w-full grid-cols-3
+        items-start justify-center gap-5 gap-x-5 bg-[url('/assets/images/agent-footer-mobile.svg')] bg-cover bg-no-repeat py-10 lg:bg-[url('/assets/images/agent-footer.svg')] lg:py-0 xl:px-14 2xl:px-24"
         >
           <div className="relative left-[20px] col-span-2 aspect-[543/579] w-full max-w-[70%] overflow-hidden rounded-2xl  lg:bottom-[100px] lg:left-0 lg:col-span-1 lg:max-w-[543px] ">
             <Image
