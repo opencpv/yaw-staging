@@ -24,30 +24,31 @@ const Navbar = () => {
   return (
     <Root
       className={`flex flex-nowrap items-center
-      gap-5 bg-[#073B3A] p-[1rem] 2xl:p-[1.875rem] `}
+      gap-16 bg-[#073B3A] p-[1rem] 2xl:p-[1.875rem] `}
     >
       <div className="flex w-full items-center justify-start gap-6 md:gap-10 lg:gap-20">
         <Logo size="xs" />
-
         <Search />
       </div>
-      <div className="relative flex w-fit items-center gap-2 lg:gap-10">
+      <div className="relative flex w-fit items-center gap-7">
         <Switch />
+        <NotificationsPopover />
         <div>
           <p className="whitespace-nowrap text-[14px] text-[#fff] md:text-[16px]">
             {user?.full_name}
           </p>
         </div>
-
-        <NotificationsPopover />
-
         <div className="relative flex min-h-[50px] w-full min-w-[40px] items-center justify-center overflow-hidden rounded-full md:min-w-[50px]">
-          {user?.avatar_url == undefined ? <Loader /> : <Image
-            src={user?.avatar_url}
-            alt="User picture"
-            width={50}
-            height={50}
-          />}
+          {user?.avatar_url == undefined ? (
+            <Loader />
+          ) : (
+            <Image
+              src={user?.avatar_url}
+              alt="User picture"
+              width={50}
+              height={50}
+            />
+          )}
         </div>
       </div>
     </Root>
