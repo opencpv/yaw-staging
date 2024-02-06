@@ -1,22 +1,42 @@
 "use client";
 
 import { styled } from "@stitches/react";
+import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
+import { HiSaveAs } from "react-icons/hi";
 
 const Search = () => {
-  return (
-    <Root className="flex h-[42px] max-h-[52px] w-full max-w-lg items-center xl:min-w-[420px] 2xl:aspect-[620/52] 2xl:h-[52px]">
-      <div className="relative hidden h-full w-full items-center md:flex">
-        <AiOutlineSearch size="16" color="#737373" className="icon" />
+  const [showDivider, setShowDivider] = React.useState(false);
 
+  return (
+    <Root className="relative flex h-[42px] max-h-[52px] w-full max-w-lg items-center sm:bg-[#F9F9F9] xl:min-w-[420px] 2xl:aspect-[620/52] 2xl:h-[52px]">
+      <div className="relative hidden h-full w-full grid-cols-12 items-center sm:grid">
         <input
           type="search"
-          className=" h-full w-full
-                rounded-[4px] bg-[#F9F9F9] px-9"
+          className="col-span-10 rounded-[4px] border-0 bg-transparent px-4 py-1 outline-0"
           placeholder="Search"
+          onInput={(e) =>
+            e.currentTarget.value !== ""
+              ? setShowDivider(true)
+              : setShowDivider(false)
+          }
+        />
+        <button className="col-span-1 mx-auto" title="Search">
+          <AiOutlineSearch size="16" color="#737373" />
+        </button>
+        <HiSaveAs
+          className="cursor-pointer text-[#21A19F]"
+          title="saved search"
+          size={20}
         />
       </div>
-      <div className="flex h-full items-center md:hidden">
+      <div
+        className="absolute right-[18%] top-2 hidden h-[60%] w-[1px] bg-shade-50 sm:block"
+        style={{ display: showDivider ? "block" : "none" }}
+      ></div>
+
+      {/* search for mobile */}
+      <div className="flex h-full items-center sm:hidden">
         <button>
           <AiOutlineSearch size="20" color="white" />
         </button>
@@ -25,7 +45,7 @@ const Search = () => {
   );
 };
 
-const Root = styled("div", {
+const Root = styled("form", {
   borderRadius: "4px",
 
   "& .icon": {
