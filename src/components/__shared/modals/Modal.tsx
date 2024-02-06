@@ -35,6 +35,7 @@ const Modal = ({
     <>
       <NextUIModal
         classNames={{
+          backdrop: cn("z-[9999]"),
           wrapper: cn("z-[99999]"),
           base: cn(
             `relative ${backgroundColor ? backgroundColor : null} ${
