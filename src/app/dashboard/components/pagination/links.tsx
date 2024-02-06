@@ -34,7 +34,7 @@ export const PgRoutesRenter = [
     name: "my agent",
     url: "",
     icon: <MdOutlineRealEstateAgent />,
-    link: "/dashboard/my-agent",
+    link: "/dashboard/my-agent/agent",
   },
   {
     name: "messages",

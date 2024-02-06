@@ -10,6 +10,7 @@ import { ClientOnly } from "@/components/ui/ClientOnly";
 
 type Props = {
   button?: "Hire Us Now" | "Get Started";
+  buttonClassName?: string;
 };
 
 const BeMyAgentModal = (props: Props) => {
@@ -32,9 +33,17 @@ const BeMyAgentModal = (props: Props) => {
     <Dialog.Root onOpenChange={setOpen} open={open}>
       <Dialog.Trigger asChild className="w-full">
         {props.button === "Get Started" ? (
-          <AgentButtons content="Get Started" variant={"green-fade-light"} />
+          <AgentButtons
+            content="Get Started"
+            variant={"green-fade-light"}
+            className={props.buttonClassName}
+          />
         ) : (
-          <AgentButtons content="Hire Us Now !!" variant={"green-dark"} />
+          <AgentButtons
+            content="Hire Us Now !!"
+            variant={"green-dark"}
+            className={props.buttonClassName}
+          />
         )}
       </Dialog.Trigger>
       <Dialog.Portal>
