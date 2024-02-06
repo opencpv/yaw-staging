@@ -5,19 +5,20 @@ import CaAgentTick from "./icons/CaAgentTick";
 import BeMyAgentModal from "@/app/components/be-my-agent-form";
 import { ClientOnly } from "@/components/ui/ClientOnly";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
+import style from "../index.module.css";
 
 export default function AgentLandingPage() {
   const { images } = useAssets();
 
   return (
     <div>
-      <div className="mx-auto flex max-w-screen-3xl flex-col gap-10 px-5 sm:px-10 lg:gap-24">
+      <div className="mx-auto max-w-screen-3xl px-5 sm:px-10">
         <div className="relative flex h-fit w-full items-center justify-center rounded-3xl bg-transparent bg-[length:600px_400px] bg-right bg-no-repeat pt-5 lg:bg-[#E6F6EE] lg:bg-[url('/assets/images/dashboard/my-agent-shapes.png')] lg:p-10">
           <div className="flex w-full flex-col items-center justify-between gap-10 lg:flex-row">
             <div className="space-y-8">
               <AgentButtons variant={"agent"} content="Agent Services" />
               <div className="max-w-xl space-y-7">
-                <h2 className="text-4xl font-extrabold text-[#333333]">
+                <h2 className="text-4xl text-[#333333]">
                   Let RentRightGh take it from here
                 </h2>
                 <p className="text-shade-200">
@@ -26,7 +27,7 @@ export default function AgentLandingPage() {
                   convallis dolor ante quisque porta eget leo hendrerit purus.
                   Diam lorem faucibus tortor arcu at.
                 </p>
-                <div className="flex w-full gap-5">
+                <div className="flex w-full items-center gap-5">
                   <div className="w-full-">
                     <ClientOnly>
                       <BeMyAgentModal />
@@ -49,7 +50,7 @@ export default function AgentLandingPage() {
         </div>
 
         {/* How it works */}
-        <div className="grid grid-cols-2 gap-x-12 gap-y-20 px-4">
+        <div className="mt-40 grid grid-cols-2 gap-x-12 gap-y-20 px-4">
           <div className="col-span-2 hidden h-full items-center justify-center border lg:col-span-1 lg:flex">
             <Image
               src={"/assets/images/agent-process1.png"}
@@ -61,7 +62,7 @@ export default function AgentLandingPage() {
           <div className="col-span-2 mt-20 flex max-w-2xl flex-col items-center justify-center gap-[3rem] lg:col-span-1 lg:mt-0">
             <div className="flex flex-col">
               <AgentButtons variant={"how-it-works"} content="How it works" />
-              <h2 className="mt-6 text-4xl font-extrabold leading-tight">
+              <h2 className="mt-6 text-4xl leading-tight">
                 Lorem ipsum dolor sit amet consectetur. Egestas tempor eget quam
                 justo neque.
               </h2>
@@ -83,29 +84,25 @@ export default function AgentLandingPage() {
 
       {/* Footer */}
       <div
-        className="relative mt-40 grid
-         w-full grid-cols-3 items-start
-        justify-center gap-5 gap-x-5 bg-[url('/assets/images/agent-footer-mobile.svg')] bg-cover bg-no-repeat py-10 lg:mt-80 lg:bg-[url('/assets/images/agent-footer.svg')] lg:py-0 xl:px-14 2xl:px-24"
+        className={`relative mt-40 flex w-full items-start justify-center gap-5 py-10 lg:mt-52 lg:py-0 xl:px-14 2xl:px-24 ${style.myAgentExploreFooter}`}
       >
-        <div className="relative left-[20px] col-span-2 aspect-[543/579] w-full max-w-[70%] overflow-hidden rounded-2xl  lg:bottom-[100px] lg:left-0 lg:col-span-1 lg:max-w-[543px] ">
+        <div className="gap relative z-10 flex w-full flex-col justify-center gap-x-24 gap-y-8 px-5 sm:px-10 lg:flex-row lg:items-center lg:pb-24">
           <Image
             src={"/assets/images/agent-footer2.png"}
-            fill
-            alt="No saved search"
+            alt="house with a lot of plant"
+            width={300}
+            height={300}
+            className="relative sm:w-[400px]"
           />
-        </div>
-        <div className="col-span-3 flex h-full w-full flex-col justify-center px-4 lg:col-span-2 lg:items-end">
-          <div className="flex flex-col gap-1 text-[#eee] ">
-            <p className="text-[1.5625rem] font-bold lg:text-[2.4375rem]">
+          <div className="flex flex-col gap-6 py-10 text-[#eee] lg:mt-20">
+            <h2 className="text-4xl leading-tight">
               Get started by letting us be your No 1 Agent
-            </p>
+            </h2>
             <p>Get your dream home now !!</p>
-            <div className="mt-5">
-              {" "}
-              <AgentButtons
-                content="Get Started"
-                variant={"green-fade-light"}
-              />
+            <div>
+              <ClientOnly>
+                <BeMyAgentModal button="Get Started" />
+              </ClientOnly>
             </div>
           </div>
         </div>
