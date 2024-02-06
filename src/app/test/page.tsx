@@ -7,44 +7,54 @@ import { useContext, useEffect, useState } from "react";
 
 const Test = () => {
   const [file, setFile] = useState<File | null>();
+
   return (
     <>
       <Head>
         <title>Dashboard - RentRightGh</title>
       </Head>
-      <main className="w-full h-[100vh] bg-slate-800">
+      <main className="h-[100vh] w-full bg-slate-800">
         <input
           type="file"
           onChange={(e) => {
-            setFile(e.target?.files[0]);
-            console.log(e.target?.files[0]);
+            // Check if e.target and e.target.files are not null
+            if (e.target && e.target.files) {
+              setFile(e.target.files[0] as File);
+            }
           }}
           className="text-white"
         />
         <button
-          className="bg-white p-2 rounded-full mt-4 "
+          className="mt-4 rounded-full bg-white p-2 "
           onClick={async () => {
             console.log(file);
-            const formData = new FormData();
-            formData.append("file", file as File);
-            try {
-              // Make a POST request using Axios
-              const response = await axios.post(
-                "http://localhost:3000/api/file-upload",
-                formData,
-                {
-                  headers: {
-                    "Content-Type": "multipart/form-data",
-                    // Add any additional headers if needed
-                  },
-                }
-              );
 
-              // Handle the response as needed
-              console.log("Response:", response.data);
-            } catch (error) {
-              // Handle errors
-              console.error("Error:", error);
+            // Check if file is not null before proceeding
+            if (file) {
+              const formData = new FormData();
+              formData.append("file", file);
+
+              try {
+                // Make a POST request using Axios
+                const response = await axios.post(
+                  "http://localhost:3000/api/file-upload",
+                  formData,
+                  {
+                    headers: {
+                      "Content-Type": "multipart/form-data",
+                      // Add any additional headers if needed
+                    },
+                  },
+                );
+
+                // Handle the response as needed
+                console.log("Response:", response.data);
+              } catch (error) {
+                // Handle errors
+                console.error("Error:", error);
+              }
+            } else {
+              console.error("No file selected");
             }
           }}
         >
@@ -54,5 +64,4 @@ const Test = () => {
     </>
   );
 };
-
 export default Test;
