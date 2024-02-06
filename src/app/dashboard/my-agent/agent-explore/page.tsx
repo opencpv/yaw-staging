@@ -5,7 +5,7 @@ type Props = {};
 
 const page = (props: Props) => {
   return (
-    <div>
+    <div className="mt-8">
       <AgentLandingPage />
     </div>
   );
