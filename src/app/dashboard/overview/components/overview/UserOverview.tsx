@@ -5,11 +5,12 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { BsTelephone } from "react-icons/bs";
 import { FaRegEnvelope } from "react-icons/fa";
-import { HiOutlineExclamationCircle, HiOutlinePencil } from "react-icons/hi";
+import { HiOutlinePencil } from "react-icons/hi";
 import UserOverviewMV from "./UserOverviewMV";
 import LargeButton from "@/app/dashboard/properties/components/LargeButton";
 import { TbBuildingCommunity } from "react-icons/tb";
 import AOSWrapper from "@/components/__shared/AOSWrapper";
+import { BiInfoCircle } from "react-icons/bi";
 
 const UserOverview = ({
   name,
@@ -44,7 +45,7 @@ const UserOverview = ({
         } ${hiddenCompletely && "hidden"}`}
       >
         <div className={`flex items-center gap-5 ${hidden && "invisible"}`}>
-          <HiOutlineExclamationCircle className="rotate-180 text-5xl text-accent-50" />
+          <BiInfoCircle size={40} className="text-accent-50 xsm:shrink-0" />
           <div className="space-y-1">
             {type === "Renter" ? (
               <p className="text-base">
