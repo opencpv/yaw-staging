@@ -14,41 +14,45 @@ import { MdOutlineModeEdit } from "react-icons/md";
 
 import CaAgentMessage from "./icons/CaAgentMessage";
 import CaDelete from "../../saved-search/components/CaDelete";
+import EditButton from "@/components/__shared/ui/button/EditButton";
 
 export default function EditModal() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
     <>
-      <Button onPress={onOpen} className="bg-[#F1F1F1] p-4 aspect-square">
+      {/* <Button onPress={onOpen} className="bg-[#F1F1F1] p-4 aspect-square">
         <MdOutlineModeEdit size={24}/>
-      </Button>
+      </Button> */}
+      <EditButton onOpen={onOpen} className="w-fit" />
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
             <>
               <ModalBody className=" py-3">
                 <div className="flex flex-col gap-8">
-                  <div className="rounded-[1.75rem] border-[8px] border-error-50 bg-[#E9ECEF] max-w-[48px] aspect-square flex items-center justify-center">
+                  <div className="flex aspect-square max-w-[48px] items-center justify-center rounded-[1.75rem] border-[8px] border-error-50 bg-[#E9ECEF]">
                     <MdInfoOutline size={24} />
                   </div>
                   <div>
                     <p className="text-[1.125rem] font-semibold">Delete</p>
-                    <p className="text-[#475467] text-[0.875rem]">
+                    <p className="text-[0.875rem] text-[#475467]">
                       Are you sure you want to delete this saved search?
                     </p>
                   </div>
                 </div>
-                <div className="flex gap-4 mt-6 ">
+                <div className="mt-6 flex gap-4 ">
                   <Button
                     onPress={onClose}
-                    className="px-5 py-2 bg-[#E9515E] rounded-lg flex items-center justify-center h-[38px] min-w-[149px] text-white font-semibold">
+                    className="flex h-[38px] min-w-[149px] items-center justify-center rounded-lg bg-[#E9515E] px-5 py-2 font-semibold text-white"
+                  >
                     Yes
                   </Button>
                   <Button
                     color="primary"
                     onPress={onClose}
-                    className="px-5 py-2 bg-[#F1F1F1] rounded-lg flex items-center justify-center h-[38px] min-w-[149px] text-shade-200 font-semibold">
+                    className="flex h-[38px] min-w-[149px] items-center justify-center rounded-lg bg-[#F1F1F1] px-5 py-2 font-semibold text-shade-200"
+                  >
                     No
                   </Button>
                 </div>

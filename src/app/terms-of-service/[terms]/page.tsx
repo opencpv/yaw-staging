@@ -1,7 +1,5 @@
-import Head from "next/head";
 import fetchTermsData from "../lib/fetchTermsData";
 import TermsNav from "../components/TermsNav";
-import { openSans } from "@/styles/font";
 import TermsMainView from "./components/TermsMainView";
 import Footer from "@/components/__shared/footer/Footer";
 
@@ -14,12 +12,10 @@ const Terms = async (props: any) => {
   const currentTerms = terms.filter((obj: any) => obj.slug == currentPath);
   return (
     <>
-      <Head>
-        <title></title>
-      </Head>
       <main className="flex flex-col items-center justify-center">
         {data && <TermsNav data={data[0]} primary={false} />}
-        <div className={` w-full max-w-[1728px] ${openSans.className}`}>
+        
+        <div className={` w-full max-w-[1728px]`}>
           {data && <TermsMainView data={currentTerms[0]} />}
         </div>
         <Footer />

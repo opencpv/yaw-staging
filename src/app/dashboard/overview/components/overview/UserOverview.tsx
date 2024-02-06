@@ -7,7 +7,7 @@ import { BsTelephone } from "react-icons/bs";
 import { FaRegEnvelope } from "react-icons/fa";
 import { HiOutlineExclamationCircle, HiOutlinePencil } from "react-icons/hi";
 import UserOverviewMV from "./UserOverviewMV";
-import ActionMain from "@/app/dashboard/properties/components/ActionMain";
+import LargeButton from "@/app/dashboard/properties/components/LargeButton";
 import { TbBuildingCommunity } from "react-icons/tb";
 import AOSWrapper from "@/components/__shared/AOSWrapper";
 
@@ -70,7 +70,7 @@ const UserOverview = ({
       </Callout>
       <AOSWrapper animation="fade-up">
         {type === "Property Manager" && (
-          <ActionMain
+          <LargeButton
             label="Add your property"
             icon={<TbBuildingCommunity className="text-accent-200" />}
             className="mb-10"

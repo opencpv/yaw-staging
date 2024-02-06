@@ -13,6 +13,9 @@ interface ListingCardInterface extends ListingInterface {
   cardType?: "1" | "2";
   city?: string;
   showOnlyImage?: boolean;
+  isMyFavoritePage?: boolean;
+  showNotViewed?: boolean;
+  isViewed?: boolean;
 }
 
 interface RenterPaidFeatureInterface {

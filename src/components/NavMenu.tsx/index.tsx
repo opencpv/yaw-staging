@@ -76,7 +76,7 @@ export default function Menu(props: any) {
     <Root
       ref={menuRef}
       tabindex="0"
-      className="hidden-scrollbar fixed top-0 z-50 min-h-screen w-full gap-20 overflow-y-scroll pb-20 lg:pb-0"
+      className="hidden-scrollbar menu-bg fixed top-0 z-50 min-h-[100svh] w-full gap-20 overflow-y-scroll pb-20 lg:pb-0"
       variants={ExpandCircle}
       exit={{
         ...ExpandCircle.closed,
@@ -135,11 +135,8 @@ export default function Menu(props: any) {
   );
 }
 const Root = styled(motion.aside, {
-  background: "url(/svgs/bgMenuSmall.svg)",
-  backgroundSize: "cover",
-  backgroundRepeat: "no-repeat",
   // gap:"px",
-  height: "100vh",
+  height: "100svh",
   position: "fixed",
   overflowY: "auto",
   // minHeight: "100svh",
@@ -152,12 +149,6 @@ const Root = styled(motion.aside, {
   display: "flex",
   flexDirection: "column",
   justifyContent: "space-between",
-  "@media screen and (min-width: 1024px) ": {
-    background: "url(/svgs/bgMenuLarge.svg)",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    // bottom:"unset"
-  },
 
   ".bottomLink": {
     color: "White",

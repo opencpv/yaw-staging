@@ -8,10 +8,13 @@ import CaSell from "@/app/components/icons/CaSell";
 import { TbHomeSearch } from "react-icons/tb";
 import { MdOutlineRealEstateAgent, MdOutlineRecommend } from "react-icons/md";
 import { PiCirclesFour } from "react-icons/pi";
-import { HiOutlineChatBubbleLeftEllipsis } from "react-icons/hi2";
+import {
+  HiOutlineChatBubbleLeftEllipsis,
+  HiOutlineShoppingBag,
+} from "react-icons/hi2";
 import { LiaCreditCardSolid } from "react-icons/lia";
 import { FaRegStar, FaRegHeart } from "react-icons/fa";
-import { IoSettingsOutline } from "react-icons/io5";
+import { IoFolderOutline, IoSettingsOutline } from "react-icons/io5";
 import { BsEnvelope } from "react-icons/bs";
 
 export const PgRoutesRenter = [
@@ -22,7 +25,7 @@ export const PgRoutesRenter = [
     link: "/dashboard/overview",
   },
   {
-    name: "my search",
+    name: "my bookmarks",
     url: "",
     icon: <TbHomeSearch />,
     link: "/dashboard/my-search",
@@ -31,7 +34,7 @@ export const PgRoutesRenter = [
     name: "my agent",
     url: "",
     icon: <MdOutlineRealEstateAgent />,
-    link: "/dashboard/my-agent",
+    link: "/dashboard/my-agent/agent",
   },
   {
     name: "messages",
@@ -42,7 +45,7 @@ export const PgRoutesRenter = [
   {
     name: "applications",
     url: "",
-    icon: <LiaCreditCardSolid width={24} height={24} />,
+    icon: <IoFolderOutline />,
     link: "/dashboard/applications",
   },
   {
@@ -52,33 +55,33 @@ export const PgRoutesRenter = [
     link: "/dashboard/my-reviews",
   },
   {
-    name: "sell",
+    name: "moving sale",
     url: "",
-    icon: <CaSell />,
+    icon: <HiOutlineShoppingBag />,
     link: "/dashboard/sell-products",
   },
   {
     name: "favourites",
     url: "",
-    icon: <FaRegHeart width={24} height={24} />,
-    link: "/dashboard/favourite",
+    icon: <FaRegHeart />,
+    link: "/dashboard/saved-search",
   },
   {
     name: "recommendations",
     url: "",
-    icon: <MdOutlineRecommend width={24} height={24} />,
+    icon: <MdOutlineRecommend />,
     link: "/dashboard/favourite",
   },
   {
     name: "subscriptions",
     url: "",
-    icon: <BsEnvelope width={24} height={24} />,
+    icon: <BsEnvelope />,
     link: "/dashboard/subscriptions",
   },
   {
     name: "notifications",
     url: "",
-    icon: <IoMdNotificationsOutline width={24} height={24} />,
+    icon: <IoMdNotificationsOutline />,
     link: "/dashboard/notifications",
   },
   {
@@ -105,14 +108,14 @@ export const PgRoutesPropManager = [
   {
     name: "properties",
     url: "",
-    icon: <AiFillHeart width={24} height={24} />,
+    icon: <AiFillHeart />,
     link: "/dashboard/properties",
   },
   {
     name: "favourites",
     url: "",
-    icon: <FaRegHeart width={24} height={24} />,
-    link: "/dashboard/favourite",
+    icon: <FaRegHeart />,
+    link: "/dashboard/saved-search",
   },
   {
     name: "saved search",
@@ -130,25 +133,25 @@ export const PgRoutesPropManager = [
   {
     name: "recommendations",
     url: "",
-    icon: <MdOutlineRecommend width={24} height={24} />,
+    icon: <MdOutlineRecommend />,
     link: "/dashboard/recommendations",
   },
   {
-    name: "sell",
+    name: "moving sale",
     url: "",
-    icon: <CaSell />,
+    icon: <HiOutlineShoppingBag />,
     link: "/dashboard/sell-products",
   },
   {
     name: "subscriptions",
     url: "",
-    icon: <BsEnvelope width={24} height={24} />,
+    icon: <BsEnvelope />,
     link: "/dashboard/subscriptions",
   },
   {
     name: "notifications",
     url: "",
-    icon: <IoMdNotificationsOutline width={24} height={24} />,
+    icon: <IoMdNotificationsOutline />,
     link: "/dashboard/notifications",
   },
   {

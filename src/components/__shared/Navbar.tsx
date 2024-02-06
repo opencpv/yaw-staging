@@ -10,6 +10,7 @@ import LikeHeart from "./ui/LikeHeart";
 import Share from "./ui/share/Share";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
 import ButtonHireUs from "./ui/button/ButtonHireUs";
+import { useHideDocumentScrollBar } from "@/lib/custom-hooks/useWindowEvents";
 
 const Navbar = (props: any) => {
   const pathname = usePathname();
@@ -19,25 +20,9 @@ const Navbar = (props: any) => {
   // const [toggle, setToggle] = useState(false)
   const { toggle, setToggle } = useMenuStore();
 
-  useEffect(() => {
-    if (toggle) {
-      setTimeout(() => {
-        document.body.classList.add(
-          "max-h-screen",
-          "overflow-y-hidden",
-          "hidden-scrollbar",
-        );
-      }, 300);
-    } else {
-      setTimeout(() => {
-        document.body.classList.remove(
-          "max-h-screen",
-          "overflow-y-hidden",
-          "hidden-scrollbar",
-        );
-      }, 1000);
-    }
+  useHideDocumentScrollBar(toggle);
 
+  useEffect(() => {
     const handleScroll = () => {
       if (
         (pathname?.includes("/properties/") || pathname === "/") &&
@@ -53,7 +38,7 @@ const Navbar = (props: any) => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [pathname, toggle]);
+  }, [pathname]);
 
   const shouldChangeColor =
     (isScrolling && pathname?.includes("/properties/")) ||
