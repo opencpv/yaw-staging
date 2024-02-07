@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import AgentButtons from "./Button";
 import CaRelume from "./icons/CaRelume";
@@ -7,13 +8,15 @@ import { ClientOnly } from "@/components/ui/ClientOnly";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import style from "../index.module.css";
 import AOSWrapper from "@/components/__shared/AOSWrapper";
+import React from "react";
+import LearnMoreYoutubePlayer from "./LearnMoreYoutubePlayer";
 
 export default function AgentLandingPage() {
   const { images } = useAssets();
 
   return (
     <div>
-      <div className="mx-auto max-w-screen-3xl px-5 sm:px-10">
+      <div className="relative mx-auto max-w-screen-3xl px-5 sm:px-10">
         <AOSWrapper animation="fade-up">
           <div className="relative flex h-fit w-full items-center justify-center rounded-3xl bg-transparent bg-[length:600px_400px] bg-right bg-no-repeat pt-5 lg:bg-[#E6F6EE] lg:bg-[url('/assets/images/dashboard/my-agent-shapes.png')] lg:p-10">
             <div className="flex w-full flex-col items-center justify-between gap-10 lg:flex-row">
@@ -33,7 +36,7 @@ export default function AgentLandingPage() {
                     <ClientOnly>
                       <BeMyAgentModal />
                     </ClientOnly>
-                    <AgentButtons content="Learn More" variant={"learn-more"} />
+                    <LearnMoreYoutubePlayer />
                   </div>
                 </div>
               </div>
@@ -46,7 +49,6 @@ export default function AgentLandingPage() {
             </div>
           </div>
         </AOSWrapper>
-
         {/* How it works */}
         <div className="mt-20 grid grid-cols-2 gap-x-12 gap-y-20 px-4 lg:mt-40">
           <div className="col-span-2 hidden h-full items-center justify-center border lg:col-span-1 lg:flex">

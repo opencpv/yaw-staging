@@ -1,6 +1,7 @@
 "use client";
 
 import { styled } from "@stitches/react";
+import Link from "next/link";
 import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { HiSaveAs } from "react-icons/hi";
@@ -21,9 +22,13 @@ const Search = () => {
               : setShowDivider(false)
           }
         />
-        <button className="col-span-1 mx-auto" title="Search">
+        <Link
+          href="/properties"
+          className="col-span-1 mx-auto"
+          title="Madina, Accra"
+        >
           <AiOutlineSearch size="16" color="#737373" />
-        </button>
+        </Link>
         <HiSaveAs
           className="cursor-pointer text-[#21A19F]"
           title="saved search"
@@ -45,7 +50,7 @@ const Search = () => {
   );
 };
 
-const Root = styled("form", {
+const Root = styled("div", {
   borderRadius: "4px",
 
   "& .icon": {
