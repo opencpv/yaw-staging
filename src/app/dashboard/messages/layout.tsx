@@ -17,7 +17,7 @@ type Props = {
 };
 
 const MessagesLayout = ({ children }: Props) => {
-  useProtectedRoute();
+  // useProtectedRoute();
 
   const pathname = usePathname();
   const [messageContent, setMessageContent] = useState<string>("");
@@ -33,7 +33,9 @@ const MessagesLayout = ({ children }: Props) => {
     const getDistinctMessages = async () => {
       let { data: messages, error } = await supabase
         .from("distinct_messages")
-        .select("recipient_id, sender_id, recipient_full_name, recipient_profile_img, content")
+        .select(
+          "recipient_id, sender_id, recipient_full_name, recipient_profile_img, content",
+        )
         .eq("sender_id", currentUserId as string)
         .order("created_at", fetchOrderRule(true));
 
@@ -46,7 +48,7 @@ const MessagesLayout = ({ children }: Props) => {
     realTime(
       "distinct_message_realtime",
       "distinct_messages",
-      getDistinctMessages
+      getDistinctMessages,
     );
   }, [currentUserId]);
 
@@ -73,7 +75,7 @@ const MessagesLayout = ({ children }: Props) => {
 
   return (
     <div className="h-screen px-6">
-      <h2 className="sticky top-0 z-40 bg-white pb-5 text-2xl font-[500] mb-5 text-neutral-900">
+      <h2 className="sticky top-0 z-40 mb-5 bg-white pb-5 text-2xl font-[500] text-neutral-900">
         Messages
       </h2>
       {messages && messages?.length < 0 && (
@@ -87,7 +89,7 @@ const MessagesLayout = ({ children }: Props) => {
         <main
           className={`${
             pathname == "/dashboard/messages" && "hidden"
-          } lg:block relative w-full col-span-4 h-full max-h-screen`}
+          } relative col-span-4 h-full max-h-screen w-full lg:block`}
         >
           {children} {/* messages */}
           {pathname?.includes("/dashboard/messages/") && (
