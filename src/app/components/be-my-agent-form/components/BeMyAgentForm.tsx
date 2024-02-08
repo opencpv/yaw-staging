@@ -111,20 +111,20 @@ export default function BeMyAgentForm({ setOpen }: Props) {
   };
   return (
     <Root
-      className={`${openSans.className} max-h-[90vh]  flex flex-col justify-between`}
+      className={`flex  max-h-[90vh] flex-col justify-between`}
       ref={leaseRef}
     >
-      <div className="flex flex-col w-full h-full">
+      <div className="flex h-full w-full flex-col">
         <div className="flex flex-col gap-4">
-          <p className="text-left w-full font-semibold">Be My Agent</p>
+          <p className="w-full text-left font-semibold">Be My Agent</p>
 
-          <div className="w-full mt-0 ">
+          <div className="mt-0 w-full ">
             <Progress value={progressValue} />
           </div>
         </div>
-        <div className="flex flex-col lg:flex-row gap-10 lg:gap-20 my-10 h-full">
-          <div className="lg:flex-[40%_0_0] lg:pr-10 w-full">
-            <div className="relative w-full h-full min-h-[222px]   rounded-2xl overflow-hidden ">
+        <div className="my-10 flex h-full flex-col gap-10 lg:flex-row lg:gap-20">
+          <div className="w-full lg:flex-[40%_0_0] lg:pr-10">
+            <div className="relative h-full min-h-[222px] w-full   overflow-hidden rounded-2xl ">
               <Image
                 src={image}
                 alt="Be MY Agent Image"
@@ -133,8 +133,8 @@ export default function BeMyAgentForm({ setOpen }: Props) {
               />
             </div>{" "}
           </div>
-          <div className="flex flex-col w-full h-full lg:min-h-[80vh] justify-center gap-1 ">
-            <div className="flex flex-col w-full h-full items-center justify-start ">
+          <div className="flex h-full w-full flex-col justify-center gap-1 lg:min-h-[80vh] ">
+            <div className="flex h-full w-full flex-col items-center justify-start ">
               <Formik
                 initialValues={{
                   ...agentFormData,
@@ -153,13 +153,13 @@ export default function BeMyAgentForm({ setOpen }: Props) {
         className={`${
           hideLeft && hideRight
             ? "hidden"
-            : "grid grid-cols-2 lg:flex lg:justify-end lg:items-center w-full gap-1 lg:px-7 py-7 border-t-[1px] border-t-[#C1C1C1] z-[3000] relative"
+            : "relative z-[3000] grid w-full grid-cols-2 gap-1 border-t-[1px] border-t-[#C1C1C1] py-7 lg:flex lg:items-center lg:justify-end lg:px-7"
         }`}
       >
         <NavigationButton
           className={` ${
             hideLeft && "hidden"
-          } col-span-1  border-[1px] border-[#AD842A] font-semibold text-[#AD842A] rounded-lg`}
+          } col-span-1  rounded-lg border-[1px] border-[#AD842A] font-semibold text-[#AD842A]`}
           onClick={handleBack}
         >
           {firstSlide ? "Go back" : "Back"}
@@ -167,7 +167,7 @@ export default function BeMyAgentForm({ setOpen }: Props) {
         <NavigationButton
           className={` ${
             hideRight && "hidden"
-          } col-span-1 bg-[#DDB771]  text-white font-semibold rounded-lg`}
+          } col-span-1 rounded-lg  bg-[#DDB771] font-semibold text-white`}
           onClick={handleForward}
         >
           {firstSlide && "Next"}

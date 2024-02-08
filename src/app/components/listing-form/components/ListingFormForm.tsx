@@ -88,7 +88,7 @@ export default function ListingFormForm({ setOpen }: Props) {
 
   const [listingFormData, setListingFormData] = useLocalStorage(
     "listing-form",
-    {}
+    {},
   );
 
   const handleOnChange = (name: any, value: any) => {
@@ -145,11 +145,11 @@ export default function ListingFormForm({ setOpen }: Props) {
 
   return (
     <Root
-      className={`${openSans.className} flex flex-col max-h-[90vh] min-h-[80vh] h-full justify-between gap-10 text-black`}
+      className={`flex h-full max-h-[90vh] min-h-[80vh] flex-col justify-between gap-10 text-black`}
       ref={leaseRef}
     >
-      <div className="flex flex-col w-full h-full items-center justify-start gap-8 lg:gap-16">
-        <div className="w-full mt-16 px-4 lg:px-10">
+      <div className="flex h-full w-full flex-col items-center justify-start gap-8 lg:gap-16">
+        <div className="mt-16 w-full px-4 lg:px-10">
           <Progress value={progressValue} />
         </div>
         <Formik
@@ -168,13 +168,13 @@ export default function ListingFormForm({ setOpen }: Props) {
         className={`${
           hideLeft && hideRight
             ? "hidden"
-            : "grid grid-cols-2 lg:flex lg:justify-end lg:items-center w-full gap-1 px-7 py-7 border-t-[1px] border-t-[#C1C1C1] z-[3000] relative"
+            : "relative z-[3000] grid w-full grid-cols-2 gap-1 border-t-[1px] border-t-[#C1C1C1] px-7 py-7 lg:flex lg:items-center lg:justify-end"
         }`}
       >
         <NavigationButton
           className={` ${
             hideLeft && "hidden"
-          } col-span-1  border-[1px] border-[#AD842A] font-semibold text-[#AD842A] rounded-lg`}
+          } col-span-1  rounded-lg border-[1px] border-[#AD842A] font-semibold text-[#AD842A]`}
           onClick={handleBack}
         >
           {firstSlide ? "Exit" : "Back"}
@@ -182,7 +182,7 @@ export default function ListingFormForm({ setOpen }: Props) {
         <NavigationButton
           className={` ${
             hideRight && "hidden"
-          } col-span-1 bg-[#DDB771]  text-white font-semibold rounded-lg`}
+          } col-span-1 rounded-lg  bg-[#DDB771] font-semibold text-white`}
           onClick={handleForward}
         >
           {firstSlide && "Get Started"}

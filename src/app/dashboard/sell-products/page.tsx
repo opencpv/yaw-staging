@@ -26,7 +26,7 @@ const Sell = () => {
       setsupabase(supabase);
       supabase.auth
         .getUser(
-          JSON.parse(localStorage.getItem("session") as string).access_token
+          JSON.parse(localStorage.getItem("session") as string).access_token,
         )
         .then((data) => setid(data.data.user?.id as string))
         .catch((err) => {
@@ -60,8 +60,8 @@ const Sell = () => {
             alt="no products image"
             className="mb-8"
           />
-          <p className="font-semibold mb-5">No items Added</p>
-          <button className=" bg-[#073B3A] rounded-md text-white px-10 py-[15px]">
+          <p className="mb-5 font-semibold">No items Added</p>
+          <button className=" rounded-md bg-[#073B3A] px-10 py-[15px] text-white">
             Add New Product
           </button>
         </div>
@@ -70,32 +70,32 @@ const Sell = () => {
   };
   return (
     <>
-      <main className={`    px-[32px] ${openSans.className}`}>
+      <main className={`    px-[32px]`}>
         <div className="mb-5 lg:mt-[32px]">
-          <p className="text-[31px] font font-semibold">Products</p>
+          <p className="font text-[31px] font-semibold">Products</p>
         </div>
         {/* product count */}
         {products.length > 0 ? (
-          <p className="mb-6  md:">
+          <p className="md:  mb-6">
             Showing {products.length} product{products.length > 1 ? "s" : null}
           </p>
         ) : null}
         {/* table :visible on desjtop only */}
-        <div className="hidden lg:grid  lg:grid-cols-5  gap-y-[6px]">
+        <div className="hidden gap-y-[6px]  lg:grid  lg:grid-cols-5">
           {/* header */}
-          <p className="bg-[#396261] text-center py-4 text-white hidden lg:block ">
+          <p className="hidden bg-[#396261] py-4 text-center text-white lg:block ">
             Product
           </p>
-          <p className="bg-[#396261] text-center py-4 text-white hidden lg:block ">
+          <p className="hidden bg-[#396261] py-4 text-center text-white lg:block ">
             Category
           </p>
-          <p className="bg-[#396261] text-center py-4 text-white hidden lg:block ">
+          <p className="hidden bg-[#396261] py-4 text-center text-white lg:block ">
             Date Created
           </p>
-          <p className="bg-[#396261] text-center py-4 text-white hidden lg:block ">
+          <p className="hidden bg-[#396261] py-4 text-center text-white lg:block ">
             Status
           </p>
-          <p className="bg-[#396261] text-center py-4 text-white hidden lg:block ">
+          <p className="hidden bg-[#396261] py-4 text-center text-white lg:block ">
             Actions
           </p>
           {products.map((product, index) => (
@@ -110,10 +110,10 @@ const Sell = () => {
         ))}
         {/* if product count is zero display this */}
         {products.length == 0 ? <AddProduct /> : null}
-        <div className="flex justify-center lg:justify-end mt-8">
+        <div className="mt-8 flex justify-center lg:justify-end">
           <Link
             href="/dashboard/sell-products/add-new-product"
-            className=" bg-[#073B3A] rounded-md text-white px-10 py-[15px]"
+            className=" rounded-md bg-[#073B3A] px-10 py-[15px] text-white"
           >
             Add New Product
           </Link>
