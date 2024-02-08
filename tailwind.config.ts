@@ -79,18 +79,22 @@ const config: Config = {
         "31": "1.9375rem",
         "39": "2.4375rem",
       },
-    },
-    screens: {
-      xxs: "280px",
-      xsm: "360px", // :-D
-      xs: "425px",
-      ssm: "540px", // : -(
-      ...defaultTheme.screens,
-      hd: "1670px",
-      "3xl": "1728px",
-      fhd: "1920px",
-      "2k": "2040px",
-      "4k": "3840px",
+      fontFamily: {
+        sans: ["var(--font-open-sans)"],
+        montserrat: ["var(--font-montserrat)"],
+      },
+      screens: {
+        xxs: "280px",
+        xsm: "360px", // :-D
+        xs: "425px",
+        ssm: "540px", // : -(
+        ...defaultTheme.screens,
+        hd: "1670px",
+        "3xl": "1728px",
+        fhd: "1920px",
+        "2k": "2040px",
+        "4k": "3840px",
+      },
     },
   },
   plugins: [

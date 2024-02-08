@@ -67,7 +67,7 @@ const ModalBody = () => {
         </Button>
       </div>
       <div className="mt-8 border-t pt-4">
-        <h3 className="font-medium">Your recent searches</h3>
+        <h3 className="font-medium">Your saved searches</h3>
         <div className="mt-4 space-y-9 px-1.5 ssm:space-y-5">
           {recentSearchDemo ? (
             <>
