@@ -62,7 +62,7 @@ const MySearch = () => {
             "All",
           ]}
           value={activePage as string}
-          className="mx-0 w-52 font-bold"
+          className="mx-0 w-60 font-bold"
           valueClassName="font-bold"
           variant="ghost"
           color="primary"
