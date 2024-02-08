@@ -1,10 +1,17 @@
 import React from "react";
 import { HiSaveAs } from "react-icons/hi";
 import Modal from "./Modal";
-import { useDisclosure } from "@nextui-org/react";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  useDisclosure,
+} from "@nextui-org/react";
 import Button from "../ui/button/Button";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { IoIosCloseCircle } from "react-icons/io";
+import { FiTrash2 } from "react-icons/fi";
+import DestructiveModal from "./DestructiveModal";
 
 type Props = {};
 
@@ -60,7 +67,7 @@ const ModalBody = () => {
       </div>
       <div className="mt-8 border-t pt-4">
         <h3 className="font-medium">Your recent searches</h3>
-        <div className="ssm:space-y-5 mt-4 space-y-9 px-1.5">
+        <div className="mt-4 space-y-9 px-1.5 ssm:space-y-5">
           {recentSearchDemo ? (
             <>
               {[1, 2, 4].map((idx) => (
@@ -94,14 +101,16 @@ const ModalFooter = () => {
 };
 
 const RecentSearch = ({ title, date }: { title: string; date: string }) => {
+  const { isOpen, onOpenChange, onOpen, onClose } = useDisclosure();
+
   return (
-    <div className="ssm:items-center grid grid-cols-9 gap-6">
-      <div className="ssm:col-span-4 col-span-8">
+    <div className="grid grid-cols-9 gap-6 ssm:items-center">
+      <div className="col-span-8 ssm:col-span-4">
         <p className="truncate font-medium text-shade-300" title={title}>
           {title}
         </p>
         {/* shows on mobile */}
-        <div className="ssm:hidden ssm:justify-start mt-2 flex items-center justify-between gap-5">
+        <div className="mt-2 flex items-center justify-between gap-5 ssm:hidden ssm:justify-start">
           <p className="col-span-2 text-shade-200">{date}</p>
           <Button
             variant="outline"
@@ -112,15 +121,35 @@ const RecentSearch = ({ title, date }: { title: string; date: string }) => {
           </Button>
         </div>
       </div>
-      <p className="ssm:inline-grid col-span-2 hidden text-shade-200">{date}</p>
+      <p className="col-span-2 hidden text-shade-200 ssm:inline-grid">{date}</p>
       <Button
         variant="outline"
         color="primary"
-        className="ssm:flex col-span-2 hidden px-1 font-normal"
+        className="col-span-2 hidden px-1 font-normal ssm:flex"
       >
         Run Search
       </Button>
-      <BiDotsVerticalRounded className="col-span-1 ml-auto" />
+      <Popover>
+        <PopoverTrigger>
+          <button className="col-span-1 ml-auto">
+            <BiDotsVerticalRounded />
+          </button>
+        </PopoverTrigger>
+        <PopoverContent className="rounded-md">
+          <button className="flex items-center gap-2" onClick={onOpen}>
+            Delete
+            <FiTrash2 />
+          </button>
+        </PopoverContent>
+      </Popover>
+
+      <DestructiveModal
+        label="Are you sure you want to delete this saved search?"
+        onClose={onClose}
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        backdropClassName="z-[99999]"
+      />
     </div>
   );
 };

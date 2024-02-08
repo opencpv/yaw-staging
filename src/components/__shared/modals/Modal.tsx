@@ -25,6 +25,7 @@ const Modal = ({
   hideCloseButton,
   backgroundColor,
   backdrop,
+  backdropClassName,
   className,
 }: any) => {
   const setHideWindowScrollbar = useModalFullscreenStore(
@@ -35,7 +36,7 @@ const Modal = ({
     <>
       <NextUIModal
         classNames={{
-          backdrop: cn("z-[9999]"),
+          backdrop: cn("z-[9999]", backdropClassName),
           wrapper: cn("z-[99999]"),
           base: cn(
             `relative ${backgroundColor ? backgroundColor : null} ${

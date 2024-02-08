@@ -26,7 +26,7 @@ const BlockUserPopOver = () => {
           </Button>
         </PopoverTrigger>
         <PopoverContent
-          className="bg-primary-400 text-white cursor-pointer font-[300]"
+          className="cursor-pointer bg-primary-400 font-[300] text-white"
           onClick={onOpen}
         >
           <div className="flex items-center gap-2">
@@ -37,7 +37,7 @@ const BlockUserPopOver = () => {
       </Popover>
 
       <DestructiveModal
-        label="Are you sure you want to block this user??"
+        label="Are you sure you want to block this user?"
         onClose={onClose}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
