@@ -23,11 +23,12 @@ export default function ScheduleLiveTourModal({ active }: Props) {
     <div className="w-full">
       <Button
         onPress={onOpen}
-        className={`bg-[#ECF2F3] font-semibold gap-2  text-shade-200 h-[38px] lg:h-[60px] lg:max-w-[284px] w-full ${
+        className={`h-[38px] w-full gap-2  bg-[#ECF2F3] font-semibold text-shade-200 lg:h-[60px] lg:max-w-[284px] ${
           active && "bg-[#45808B] text-white"
-        }`}>
+        }`}
+      >
         {" "}
-        Schedule a live tour
+        Schedule a physical tour
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
@@ -35,26 +36,28 @@ export default function ScheduleLiveTourModal({ active }: Props) {
             <>
               <ModalBody className=" py-3">
                 <div className="flex flex-col gap-8">
-                  <div className="rounded-[1.75rem] border-[8px] border-error-50 bg-[#E9ECEF] max-w-[48px] aspect-square flex items-center justify-center">
+                  <div className="flex aspect-square max-w-[48px] items-center justify-center rounded-[1.75rem] border-[8px] border-error-50 bg-[#E9ECEF]">
                     <MdInfoOutline size={24} />
                   </div>
                   <div>
                     <p className="text-[1.125rem] font-semibold">Delete</p>
-                    <p className="text-[#475467] text-[0.875rem]">
+                    <p className="text-[0.875rem] text-[#475467]">
                       Are you sure you want to delete this saved search?
                     </p>
                   </div>
                 </div>
-                <div className="flex gap-4 mt-6 ">
+                <div className="mt-6 flex gap-4 ">
                   <Button
                     onPress={onClose}
-                    className="px-5 py-2 bg-[#E9515E] rounded-lg flex items-center justify-center h-[38px] min-w-[149px] text-white font-semibold">
+                    className="flex h-[38px] min-w-[149px] items-center justify-center rounded-lg bg-[#E9515E] px-5 py-2 font-semibold text-white"
+                  >
                     Yes
                   </Button>
                   <Button
                     color="primary"
                     onPress={onClose}
-                    className="px-5 py-2 bg-[#F1F1F1] rounded-lg flex items-center justify-center h-[38px] min-w-[149px] text-shade-200 font-semibold">
+                    className="flex h-[38px] min-w-[149px] items-center justify-center rounded-lg bg-[#F1F1F1] px-5 py-2 font-semibold text-shade-200"
+                  >
                     No
                   </Button>
                 </div>
