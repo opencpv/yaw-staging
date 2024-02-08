@@ -10,3 +10,15 @@
 .paginationMenuVisible {
   clip-path: circle(150% at 100% 0);
 }
+
+.visibleMobileSearch {
+  transform: initial;
+  @apply p-4 pt-2;
+}
+
+.hiddenMobileSearch {
+  transform: scaleY(0);
+  padding: 0;
+  margin: 0;
+  height: 0;
+}
