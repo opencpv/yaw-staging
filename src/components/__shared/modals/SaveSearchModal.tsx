@@ -12,6 +12,7 @@ import { BiDotsVerticalRounded } from "react-icons/bi";
 import { IoIosCloseCircle } from "react-icons/io";
 import { FiTrash2 } from "react-icons/fi";
 import DestructiveModal from "./DestructiveModal";
+import { cn } from "@/lib/utils";
 
 type Props = {};
 
@@ -129,7 +130,7 @@ const RecentSearch = ({ title, date }: { title: string; date: string }) => {
       >
         Run Search
       </Button>
-      <Popover>
+      <Popover style={{ zIndex: "99999" }}>
         <PopoverTrigger>
           <button className="col-span-1 ml-auto">
             <BiDotsVerticalRounded />
