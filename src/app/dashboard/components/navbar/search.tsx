@@ -1,5 +1,6 @@
 "use client";
 
+import SaveSearchModal from "@/components/__shared/modals/SaveSearchModal";
 import { styled } from "@stitches/react";
 import Link from "next/link";
 import React from "react";
@@ -29,11 +30,7 @@ const Search = () => {
         >
           <AiOutlineSearch size="16" color="#737373" />
         </Link>
-        <HiSaveAs
-          className="cursor-pointer text-[#21A19F]"
-          title="saved search"
-          size={20}
-        />
+        <SaveSearchModal />
       </div>
       <div
         className="absolute right-[18%] top-2 hidden h-[60%] w-[1px] bg-shade-50 md:block"
