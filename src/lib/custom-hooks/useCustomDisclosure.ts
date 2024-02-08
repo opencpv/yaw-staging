@@ -34,7 +34,7 @@ export const useToastDisclosure = () => {
 type Props = {
   variant: "success" | "error";
 };
-const useToastDisclosureVariant1 = () => {
+export const useToastDisclosureVariant1 = () => {
   const variants : any = {
     success: { width: "30rem", maxWidth: "30rem", background: "#396261" },
     error: { width: "30rem", maxWidth: "30rem", background: "#5b0d0d" },
@@ -72,7 +72,6 @@ export const useSelectDisclosure = <T extends string>(defaultOption: T) => {
   return { value, setValue, handleSelectionChange };
 };
 
-export { useToastDisclosure, useSelectDisclosure, useToastDisclosureVariant1 };
 
 export const usePhoneInputDisclosure = () => {
   const [phone, setPhone] = React.useState<E164Number>();
