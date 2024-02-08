@@ -10,6 +10,7 @@ import HomePromotionSection from "./components/home_sections/HomePromotionSectio
 import HomeRentalDealsSection from "./components/home_sections/HomeRentalDealsSection";
 import HomeManagePropertiesSection from "./components/home_sections/HomeManagePropertiesSection";
 import FeedbackButton from "@/components/feedback/FeedbackButton";
+import AOSWrapper from "@/components/__shared/AOSWrapper";
 
 export default function Home() {
   useEffect(() => {
@@ -46,18 +47,20 @@ export default function Home() {
             {/* Featured Listings and Ads */}
             <FeaturedListingAndAds />
 
-            {/* Apartment Rentals */}
-            <HomeRentalDealsSection />
-            {/* Manage Your Properties With Us */}
-            <HomeManagePropertiesSection />
-            {/* Find Apartments in Popular Cities */}
+
+          {/* Apartment Rentals */}
+          <HomeRentalDealsSection />
+          {/* Manage Your Properties With Us */}
+          <HomeManagePropertiesSection />
+          {/* Find Apartments in Popular Cities */}
+          <AOSWrapper animation="fade-up">
             <HomePopularCities />
-            <FeedbackButton />
-          </div>
-        </main>
-        <ScrollTopAndSocial threshHoldMin={820} threshHoldMax={5206} />
-        <Footer />
-      </>
+          </AOSWrapper>
+          <FeedbackButton />
+        </div>
+      </main>
+      <ScrollTopAndSocial threshHoldMin={820} threshHoldMax={5206} />
+      <Footer />
     </>
   );
 }

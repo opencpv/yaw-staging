@@ -11,22 +11,19 @@ import { useContactForm } from "./hooks/useContactForm";
 import ContactMessageField from "./ContactMessageField";
 import ContactUploadField from "./ContactUploadField";
 import ContactSubmitButton from "./ContactSubmitButton";
+import ContactFullNameField from "./ContactFullNameField";
+import ContactEmailField from "./ContacEmailField";
+import ContactPhoneField from "./ContactPhoneField";
+import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 
 type Props = {};
 
 const FormReport = (props: Props) => {
-  const {
-    activeTab,
-    file,
-    formRef,
-    handleCountryChange,
-    handlePhone,
-    phone,
-    loading,
-    setLoading,
-    tableName,
-    phoneInputPlaceholder,
-  } = useContactForm();
+  const { activeTab, file, formRef, loading, setLoading, tableName, validate } =
+    useContactForm();
+
+  const { phone, setPhone, handleCountryChange, handlePhone } =
+    usePhoneInputDisclosure();
 
   return (
     <Formik
@@ -42,21 +39,12 @@ const FormReport = (props: Props) => {
       validationSchema={ContactSchema}
       validateOnChange={false}
       validateOnBlur={false}
-      validate={(values) => {
-        const errors: any = {};
-        if (!values.email && phone === undefined) {
-          alert("Email or WhatsApp Number is required");
-          errors.email = "Required";
-          errors.phone = "Required";
-        }
-        return errors;
-      }}
+      validate={(values) => validate(values, phone)}
       onSubmit={(values, { resetForm }) => {
         values.contactType = activeTab;
         values.phone = phone as E164Number;
         values.fileUrl = file;
 
-        // console.log(values);
         sendContactUsEmail(formRef.current);
         setLoading(true);
         supabase
@@ -86,43 +74,33 @@ const FormReport = (props: Props) => {
       }}
       className=""
     >
-      {({ handleBlur, handleChange, values }) => (
+      {({ handleBlur, handleChange, values, errors }) => (
         <Form ref={formRef} className="flex-1 pt-8">
           <div className="gap-5 ">
             <div className={``}>
               <div className="flex flex-col gap-10">
                 <div className="form-div">
-                  <TextInput
-                    name="fullname"
+                  <ContactFullNameField
                     value={values.fullname}
-                    required
-                    label="Full Name"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    className="p-3 py-7"
+                    handleBlur={handleBlur}
+                    handleChange={handleChange}
+                    error={errors.fullname}
                   />
                 </div>
 
                 <div className="form-div">
-                  <TextInput
-                    name="email"
+                  <ContactEmailField
                     value={values.email}
-                    type="email"
-                    label="Email"
-                    onChange={handleChange}
-                    className="p-3 py-7"
+                    handleChange={handleChange}
                   />
                 </div>
                 <div className="form-div">
-                  <InputPhoneNumber
-                    id="phone"
-                    name="phone"
-                    value={phone}
-                    placeholder={phoneInputPlaceholder}
-                    onBlur={handleBlur}
-                    onChange={handlePhone}
-                    onInput={handleChange}
-                    onCountryChange={handleCountryChange}
+                  <ContactPhoneField
+                    phone={phone}
+                    handleBlur={handleBlur}
+                    handleChange={handleChange}
+                    handlePhone={handlePhone}
+                    handleCountryChange={handleCountryChange}
                   />
                 </div>
                 {/* <div className="">
@@ -131,7 +109,7 @@ const FormReport = (props: Props) => {
                               onChange={(checked) => setIsWhatsapp(checked)}
                             />
                           </div> */}
-                <ContactMessageField />
+                <ContactMessageField error={errors.message} />
                 <ContactUploadField />
 
                 <div className="form-div">
@@ -146,11 +124,7 @@ const FormReport = (props: Props) => {
               </div>
             </div>
           </div>
-          {loading ? (
-            <Loader />
-          ) : (
-            <ContactSubmitButton />
-          )}
+          {loading ? <Loader /> : <ContactSubmitButton />}
         </Form>
       )}
     </Formik>

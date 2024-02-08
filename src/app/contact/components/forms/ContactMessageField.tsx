@@ -1,8 +1,14 @@
 import { Field } from "formik";
 import React from "react";
-import style from "./ContactForm.module.css"
+import style from "./ContactForm.module.css";
+import { cn } from "@/lib/utils";
+import { useContactForm } from "./hooks/useContactForm";
 
-type Props = {};
+type Props = {
+  className?: string;
+  placeholder?: string;
+  error?: string;
+};
 
 const ContactMessageField = (props: Props) => {
   return (
@@ -11,8 +17,15 @@ const ContactMessageField = (props: Props) => {
         as="textarea" // Use 'textarea' as the component
         id="message"
         name="message"
-        placeholder="Message *"
-        className={`${style.requiredPlaceholder} p-4 max-w-[673px] border shadow-sm rounded-md outline-none transition-all focus:border-black hover:border-black/50 `}
+        placeholder={props.placeholder ? props.placeholder + " *" : "Message *"}
+        className={cn(
+          `${
+            style.requiredPlaceholder
+          } w-full rounded-md border p-4 shadow-sm outline-none transition-all hover:border-black/50 focus:border-black ${
+            props.error && "border-neutral-500"
+          }`,
+          props.className,
+        )}
         rows="8"
         cols="50"
       />

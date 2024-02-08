@@ -1,30 +1,33 @@
-import { openSans } from "@/styles/font";
+import React from "react";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
+import { styled } from "@stitches/react";
 
-const FaqHeader = () => {
+type Props = {};
+
+const FaqHeader = (
+  props: Props,
+  ref: React.RefObject<HTMLDivElement> | React.ForwardedRef<HTMLDivElement>,
+) => {
   const { images } = useAssets();
   return (
-    <section className="md:mx-[30px] mt-10 green-gradient justify-between md:rounded-[36px] flex flex-wrap pl-[29px] lg:pl-[141px] md:pl-[83px] mb-[89px] bg-white">
-      <div>
-        <h1
-          className={`font-bold  md:text-[31px] lg:text-[49px] text-white mt-[91px] md:mt-20 lg:mt-[160px]`}
-        >
-          FAQ
-        </h1>
-        <p
-          className={`font-semibold text-[25px] text-white mt-5 lg:mt-[10.5px] mb-[43px] md:mb-[56px] `}
-        >
-          Everything You Need to Know
-        </p>
+    <div
+      className={`green-gradient banner -mx-5 flex h-fit flex-wrap justify-between gap-x-5 gap-y-20 px-10 pt-10 text-white xs:mx-0 xs:rounded-3xl sm:px-24 md:pt-24`}
+      ref={ref}
+    >
+      <div className="space-y-4">
+        <h1 className="sm:text-5xl">FAQ</h1>
+        <h2>Everything You Need to Know</h2>
       </div>
       <Image
         src={images.FaqImage}
-        alt="faq image"
-        className="lg:py-[42.45px] md:mb-[53px]"
+        alt="Four people around a giant FAQ graphic"
+        width={400}
+        // height={400}
+        className=" md:mb-10 lg:mb-5"
       />
-    </section>
+    </div>
   );
 };
 
-export default FaqHeader;
+export default React.forwardRef(FaqHeader);

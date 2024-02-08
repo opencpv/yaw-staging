@@ -14,16 +14,16 @@ type Props = {};
 
 const page = (props: Props) => {
   return (
-    <div className="wrapper mt-10 text-neutral-500 overflow-x-hidden">
-      <h3 className="text-xl font-[500] mb-8">
+    <div className="wrapper overflow-x-hidden text-neutral-500">
+      <h3 className="mb-8 text-xl font-[500]">
         <BreadCrumbPreLink label="Blog" href="/blog" /> - Posted by{" "}
         <span className="text-primary-500">Jane Doe</span>
       </h3>
-      <h1 className="text-2xl font-[700] text-primary-200 mb-5 md:text-4xl">
+      <h1 className="mb-5 text-2xl font-[700] text-primary-200 md:text-4xl">
         Mastering the Art of Home Decor: Simple Tips for a Cozy Living Space
       </h1>
       <AOSWrapper animation="fade-up">
-        <div className="relative w-full h-60 shape-3 mb-16 lg:h-[30rem]">
+        <div className="shape-3 relative mb-16 h-60 w-full lg:h-[30rem]">
           <Image
             src="/assets/images/about/about-slider-img.webp"
             alt=""
@@ -34,11 +34,11 @@ const page = (props: Props) => {
         </div>
       </AOSWrapper>
 
-      <h3 className="text-xl font-[500] mb-8 no-print">
+      <h3 className="no-print mb-8 text-xl font-[500]">
         <BreadCrumbPreLink label="Category" href="/blog/Category" /> /
-        <span className="">{" "}Blog title</span>
+        <span className=""> Blog title</span>
       </h3>
-      <section className="grid-cols-4 gap-5 mb-20 print-content sm:grid">
+      <section className="print-content mb-20 grid-cols-4 gap-5 sm:grid">
         <div className="col-span-3">
           {/* Blog content --- CMS */}
           <div className="mb-20">
@@ -77,13 +77,13 @@ const page = (props: Props) => {
             </p>
           </div>
           {/* Rate blog */}
-          <h3 className="text-xl font-[500] text-neutral-800 mb-3 no-print">
+          <h3 className="no-print mb-3 text-xl font-[500] text-neutral-800">
             Rate this blog
           </h3>
-          <div className="flex flex-wrap items-center justify-between gap-5 mb-16 no-print">
+          <div className="no-print mb-16 flex flex-wrap items-center justify-between gap-5">
             <Rate allowHalf allowClear defaultValue={0} />
             <div className="flex items-center gap-3 text-2xl text-primary-200">
-              <p className="text-neutral-800 text-base font-[500] cursor-pointer">
+              <p className="cursor-pointer text-base font-[500] text-neutral-800">
                 Share
               </p>
               <Share
@@ -95,7 +95,7 @@ const page = (props: Props) => {
             </div>
           </div>
           <AOSWrapper animation="fade-up" duration="1000">
-            <section className="h-fit w-full gap-8 flex-col hidden no-print md:flex min-[1000px]:flex-row">
+            <section className="no-print hidden h-fit w-full flex-col gap-8 md:flex min-[1000px]:flex-row">
               <SliderPaginationOnly
                 images={[1, 2, 3, 4, 5].map((image) => ({
                   src: "/assets/images/niceHome.png",
@@ -112,7 +112,7 @@ const page = (props: Props) => {
           </AOSWrapper>
           <SubscribeToBlogButton
             animation="fade-right"
-            className="px-8 mb-14 no-print md:hidden"
+            className="no-print mb-14 px-8 md:hidden"
           />
         </div>
         {/* Other posts -- right side of Grid */}
@@ -126,10 +126,10 @@ const page = (props: Props) => {
           />
         </div>
       </section>
-      <section className="grid-cols-2 gap-5 mb-10 no-print xs:grid md:hidden">
+      <section className="no-print mb-10 grid-cols-2 gap-5 xs:grid md:hidden">
         <OtherPostsGroup />
       </section>
-      <section className="w-full mb-20 h-fit no-print md:hidden">
+      <section className="no-print h-fit w-full md:hidden">
         <SliderWide
           pagination
           navigation

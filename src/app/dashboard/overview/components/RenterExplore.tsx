@@ -9,27 +9,26 @@ type Props = {
 const RenterExplore = (props: Props) => {
   const { icons } = useAssets();
   return (
-    <section className={`mb-20 ${props.className}`}>
-      <h2 className="text-2xl font-[700] mb-6">Upgrade</h2>
-      <div className="flex flex-wrap w-full gap-5 mb-5">
+    <section className={`${props.className}`}>
+      <div className="mb-5 flex w-full flex-wrap gap-5">
         {/* <FeatureUpgradeCard title="Be The First To Know" />
           <FeatureUpgradeCard title="Be My Agent" /> */}
         <ExploreFeatureCard
-          title="My Bookmarks"
+          title="My Favourites"
           description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis mollitia eius recusandae sed, quis, vitae sequi praesentium natus id dolores atque omnis facilis tempore exercitationem perferendis sit alias consequuntur nemo."
-          href=""
+          href="saved-search"
         />
         <ExploreFeatureCard
           tag="Free"
           title="Be The First To Know"
           description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis mollitia eius recusandae sed, quis, vitae sequi praesentium natus id dolores atque omnis facilis tempore exercitationem perferendis sit alias consequuntur nemo."
-          href=""
+          href="be-the-first-to-know"
         />
         <ExploreFeatureCard
-          tag="Upgrade"
-          title="My My Agent"
+          tag="Premium"
+          title="Be My Agent"
           description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis mollitia eius recusandae sed, quis, vitae sequi praesentium natus id dolores atque omnis facilis tempore exercitationem perferendis sit alias consequuntur nemo."
-          href=""
+          href="my-agent"
         />
       </div>
     </section>

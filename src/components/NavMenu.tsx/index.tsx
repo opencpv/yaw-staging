@@ -9,17 +9,27 @@ import MenuBottomLinks from "./components/MenuBottomLinks";
 import MenuArea from "./components/MenuArea";
 import MenuScrollDownButton from "./components/MenuScrollDownButton";
 import { useIsElementInViewport } from "./hooks/useIsElementInViewport";
+import { useMenuStore } from "@/store/navmenu/useMenuStore";
 
 export default function Menu(props: any) {
   const [hide, setHide] = useState(false);
   const [windowLimit, setWindowLimit] = useState(false);
+  const toggle = useMenuStore((state) => state.toggle);
 
   const bottomLinksRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLElement>(null);
   const isInViewport = useIsElementInViewport(bottomLinksRef, menuRef);
 
   useEffect(() => {
+    // focus the menu for accessibility
+    if (toggle && menuRef.current) {
+      setTimeout(() => {
+        menuRef?.current?.focus();
+      }, 1000);
+    }
+
     const handleInnerHeight = () => {
+      // determines which scroll down button to show depending on mobile/desktop
       if (window.innerHeight > 700) {
         setWindowLimit(true);
       } else {
@@ -38,7 +48,7 @@ export default function Menu(props: any) {
             bottomLinksRef.current?.getBoundingClientRect();
 
           if (menuRect && bottomLinksRect) {
-            if (menuRect?.bottom >= bottomLinksRect?.top) {
+            if (menuRect?.bottom + 50 >= bottomLinksRect?.top) {
               setHide(true);
             }
           }
@@ -49,7 +59,7 @@ export default function Menu(props: any) {
     if (menuRef.current) {
       menuRef.current.addEventListener("scroll", handleScroll);
     }
-  }, []);
+  }, [toggle]);
 
   const handleScrollIntoView = () => {
     if (bottomLinksRef.current) {
@@ -65,7 +75,8 @@ export default function Menu(props: any) {
   return (
     <Root
       ref={menuRef}
-      className="relative w-full top-0 gap-20 hidden-scrollbar min-h-screen overflow-y-scroll pb-20 lg:pb-0"
+      tabindex="0"
+      className="hidden-scrollbar fixed top-0 z-50 min-h-screen w-full gap-20 overflow-y-scroll pb-20 lg:pb-0"
       variants={ExpandCircle}
       exit={{
         ...ExpandCircle.closed,
@@ -128,8 +139,8 @@ const Root = styled(motion.aside, {
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
   // gap:"px",
-  height: "100svh",
-  position: "absolute",
+  height: "100vh",
+  position: "fixed",
   overflowY: "auto",
   // minHeight: "100svh",
   top: 0,

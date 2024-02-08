@@ -1,3 +1,4 @@
+"use client";
 import { useContactStore } from "@/store/contact/useContactStore";
 import { styled } from "@stitches/react";
 import React, { useEffect, useRef, useState } from "react";
@@ -42,7 +43,7 @@ const ContactTabs = (props: Props) => {
   return (
     <div className="flex items-center">
       <div
-        className="flex gap-12 overflow-x-scroll lg:overflow-x-auto relative"
+        className="relative flex gap-12 overflow-x-scroll lg:overflow-x-auto"
         ref={scrollContainerRef}
       >
         <Tab
@@ -72,8 +73,8 @@ const ContactTabs = (props: Props) => {
         </Tab>
       </div>
       <div
-        className={`absolute pl-5 md:hidden right-0 transition-all sc-button ${
-          isEndOfContainer && "touch-none pointer-events-none"
+        className={`sc-button absolute right-0 pl-5 transition-all md:hidden ${
+          isEndOfContainer && "pointer-events-none touch-none"
         }`}
         onClick={scrollToRight}
         style={{

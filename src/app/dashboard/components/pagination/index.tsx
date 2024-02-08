@@ -1,16 +1,19 @@
 "use client";
 
-import CaSubscriptions from "@/app/components/icons/CaSubscriptions";
 import { styled } from "@stitches/react";
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
-import { FcSettings } from "react-icons/fc";
 import Link from "next/link";
 import useViewport from "@/lib/custom-hooks/useViewport";
 import { useEffect, useRef, useState } from "react";
-import { IoMdSettings } from "react-icons/io";
 import { usePathname, useRouter } from "next/navigation";
-import path from "path";
-import { PgRoutes } from "./links";
+import { PgRoutesRenter } from "./links";
+import { HiBars3BottomRight } from "react-icons/hi2";
+import Button from "@/components/__shared/ui/button/Button";
+import { LowerCase } from "@/lib/utils/stringManipulation";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode, Mousewheel, Scrollbar } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/free-mode";
 
 type PaginationTabProps = {
   active: string;
@@ -21,15 +24,21 @@ type PaginationTabProps = {
 
 const PaginationTab = ({ active, icon, name, link }: PaginationTabProps) => {
   return (
-    <Link href={link}>
+    <Link href={link} draggable={false}>
       <PgItem
-        type={active == name ? "active" : undefined}
-        className={`flex  flex-row lg:flex-col min-w-[130px] min-h-[40px] max-h-[52px] lg:max-w-none lg:min-h-[101px] py-[0.875rem] px-[1rem] text-[#B0B0B0] items-center justify-center text-2xl font-semibold gap-[0.775rem] rounded-[.75rem] ${name}`}
+        type={LowerCase(active) === LowerCase(name) ? "active" : undefined}
+        className={`flex max-h-[52px] min-h-[40px] min-w-[160px] cursor-pointer flex-row items-center justify-center gap-[0.775rem] rounded-[.75rem] px-[1rem] py-[0.875rem] text-2xl font-semibold text-[#B0B0B0] transition-all lg:min-h-[85px] lg:max-w-none lg:flex-col ${name}`}
+        draggable={false}
       >
-        <div className="w-full h-full flex items-center justify-center">
+        <div className="flex h-full w-full items-center justify-center">
           {icon}
         </div>{" "}
-        <p className="capitalize whitespace-nowrap text-[18px] 2xl:text-[25px]">
+        <p
+          className="unselectable cursor-pointer whitespace-nowrap text-lg capitalize 2xl:text-2xl"
+          unselectable="on"
+          onSelectCapture={() => false}
+          onMouseDown={() => false}
+        >
           {name}
         </p>
       </PgItem>
@@ -44,26 +53,18 @@ const Pagination = () => {
   const pathname = usePathname();
   const [atEnd, setAtEnd] = useState(false);
   const scrollableRef = useRef<any>();
+  // const scrollableRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (pathname) {
-      console.log(pathname);
       const currentURL = pathname;
-      PgRoutes.forEach((r) => {
-        if (currentURL.includes(r?.name)) {
+      PgRoutesRenter.forEach((r) => {
+        if (currentURL.includes(r?.link)) {
           setActive(r?.name);
         }
       });
     }
   }, [pathname]);
-
-  useEffect(() => {
-    const element = scrollableRef.current;
-    const targetElement = element.querySelector(`.${active || "overview"}`);
-    if (targetElement) {
-      targetElement.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [active]);
 
   const handleScrollToRight = () => {
     const element: any = scrollableRef.current;
@@ -90,45 +91,63 @@ const Pagination = () => {
   };
 
   return (
-    <Root className="flex items-start md:items-center gap-7 px-5 py-1">
-      {atEnd && (
+    <Root
+      className="flex items-start gap-7 px-5 py-1 pb-4 md:items-center"
+      ref={scrollableRef}
+    >
+      {/* {atEnd && (
         <button
           onClick={handleScrollToLeft}
-          className="w-full md:max-w-[83px]
-                  max-w-[52px] aspect-square bg-[#396261] rounded-full flex
-                  items-center justify-center hover:scale-[1.02]"
+          className="flex aspect-square
+                  w-full max-w-[52px] items-center justify-center rounded-full
+                  bg-[#396261] hover:scale-[1.02] md:max-w-[83px]"
         >
           <MdKeyboardArrowLeft color="white" size={24} />
         </button>
-      )}
-      <div
-        className="flex gap-8  items-center overflow-x-scroll pg-row justify-start w-full"
-        ref={scrollableRef}
-        style={{
-          scrollBehavior: "smooth",
-        }}
+      )} */}
+      <Swiper
+        direction={"horizontal"}
+        slidesPerView={"auto"}
+        spaceBetween={32}
+        freeMode={true}
+        scrollbar={false}
+        mousewheel={true}
+        modules={[FreeMode, Scrollbar, Mousewheel]}
+        className="mySwiper hidden h-fit w-full md:flex"
       >
-        {PgRoutes.map((r, index) => (
-          <PaginationTab
-            key={index}
-            name={r?.name}
-            active={active}
-            icon={r?.icon}
-            link={r?.link}
-          />
+        {PgRoutesRenter.map((r, index) => (
+          <SwiperSlide key={index} className="min-w-fit max-w-fit">
+            <PaginationTab
+              name={r?.name}
+              active={active}
+              icon={r?.icon}
+              link={r?.link}
+            />
+          </SwiperSlide>
         ))}
-      </div>
+      </Swiper>
 
-      {!atEnd && (
+      {/* {!atEnd && (
         <button
           onClick={handleScrollToRight}
-          className="w-full md:max-w-[83px]
-                  max-w-[52px] aspect-square bg-[#396261] rounded-full flex
-                  items-center justify-center hover:scale-[1.02]"
+          className="flex aspect-square
+                  w-full max-w-[52px] items-center justify-center rounded-full
+                  bg-[#396261] hover:scale-[1.02] md:max-w-[83px]"
         >
           <MdKeyboardArrowRight color="white" size={24} />
         </button>
-      )}
+      )} */}
+      <Button className="relative bottom-1.5 hidden h-full w-28 items-center justify-center rounded-xl bg-[#45808B] px-4 py-3 text-white md:flex">
+        <div className="flex flex-col items-center gap-3">
+          <HiBars3BottomRight size={25} />
+          <p className="text-lg font-medium 2xl:text-2xl">More</p>
+        </div>
+      </Button>
+      <button className="relative bottom-1 ml-auto mt-2 h-max w-fit items-center justify-center rounded-xl border border-primary-800 px-3 py-2 text-primary-800 md:hidden">
+        <div className="flex flex-col items-center gap-3">
+          <HiBars3BottomRight size={25} />
+        </div>
+      </button>
     </Root>
   );
 };

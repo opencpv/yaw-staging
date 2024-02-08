@@ -9,7 +9,7 @@ import MailIcon from "../../../public/assets/icons/mail-icon.svg";
 import ArrowIcon from "../../../public/assets/icons/arrow-icon.svg";
 import Logo from "../../../public/assets/icons/logo.svg";
 import Hamburger from "../../../public/assets/icons/nav-icon.svg";
-import FaqImage from "../../../public/assets/images/faq/faq-image.svg";
+import FaqImage from "../../../public/assets/images/faq/faq-image.png";
 import FaqArrowIcon from "../../../public/assets/icons/arrow-circle-right.svg";
 import ContactImage from "../../../public/assets/images/rafiki.png";
 import StockImage from "/public/assets/images/Stock.jpg";
@@ -45,7 +45,7 @@ import SearchIcon from "/public/svgs/SearchHomeIcon.svg";
 import Clipboard from "/public/assets/images/dashboard/clipboard.png";
 import UserNoImage from "/public/assets/images/placeholder/user-no-image.jpeg"
 import Brochure from "/public/assets/images/contact/brochure.png"
-
+import SavedSearches from "/public/assets/images/dashboard/saved-searches.png"
 export const useAssets = () => {
   return {
     icons: {
@@ -97,6 +97,7 @@ export const useAssets = () => {
       VerifyListing,
       UserNoImage,
       Brochure,
+      SavedSearches
     },
   };
 };

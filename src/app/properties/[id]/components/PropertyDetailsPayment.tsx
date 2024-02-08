@@ -42,8 +42,8 @@ const PropertyDetailsPayment = (props: Props) => {
           </div>
         </AdditionalInfo>
       </AOSWrapper>
-      <AOSWrapper animation="fade-up" className="my-12">
-        <h2 className="text-neutral-800 font-[600] text-2xl mt-6">
+      <AOSWrapper animation="fade-up" className="mt-12">
+        <h2 className="mt-6 text-2xl font-[600] text-neutral-800">
           Additional Information
         </h2>
         <AdditionalInfoTitle title="Agency Fees" />
@@ -53,20 +53,20 @@ const PropertyDetailsPayment = (props: Props) => {
           className="mt-2"
         />
         <AdditionalInfo className="">
-          <div className="flex flex-wrap items-center justify-between py-2 border-b gap-x-5 gap-y-2 last:border-b-0">
-            <p className="flex-1 w-full">Agent</p>
-            <p className="flex-1 w-full">GHS {formatPrice(props.agentFee)}</p>
-            <Button className="flex-1 justify-self-end bg-[#99B3B2] text-white flex items-center gap-2 min-w-[8rem] p-2 rounded-lg justify-center">
+          <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2 border-b py-2 last:border-b-0">
+            <p className="w-full flex-1">Agent</p>
+            <p className="w-full flex-1">GHS {formatPrice(props.agentFee)}</p>
+            <Button className="flex min-w-[8rem] flex-1 items-center justify-center gap-2 justify-self-end rounded-lg bg-[#99B3B2] p-2 text-white">
               Add to cart
               <FaPlusCircle className="shrink-0" />
             </Button>
           </div>
         </AdditionalInfo>
         <AdditionalInfo>
-          <div className="flex flex-wrap items-center justify-between py-2 border-b gap-x-5 gap-y-2 last:border-b-0">
-            <p className="flex-1 w-full">Viewing</p>
-            <p className="flex-1 w-full">GHS {formatPrice(props.viewingFee)}</p>
-            <Button className="flex-1 justify-self-end bg-[#99B3B2] text-white flex items-center gap-2 min-w-[8rem] p-2 rounded-lg justify-center">
+          <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2 border-b py-2 last:border-b-0">
+            <p className="w-full flex-1">Viewing</p>
+            <p className="w-full flex-1">GHS {formatPrice(props.viewingFee)}</p>
+            <Button className="flex min-w-[8rem] flex-1 items-center justify-center gap-2 justify-self-end rounded-lg bg-[#99B3B2] p-2 text-white">
               Add to cart
               <FaPlusCircle className="shrink-0" />
             </Button>
@@ -83,7 +83,7 @@ const PropertyDetailsPayment = (props: Props) => {
         </AdditionalInfo>
         <AdditionalInfoTitle title="Utilities included" />
         <AdditionalInfo>
-          <ul className="grid justify-between w-full grid-cols-1 gap-x-10 gap-y-3 properties-li xs:grid-cols-2">
+          <ul className="properties-li grid w-full grid-cols-1 justify-between gap-x-10 gap-y-3 xs:grid-cols-2">
             {props.utilities.map((utility: string) => (
               <li key={utility} className="">
                 {capitalizeName(utility)}
@@ -94,7 +94,7 @@ const PropertyDetailsPayment = (props: Props) => {
         <AdditionalInfoTitle title="Things to know" />
         <AdditionalInfo>
           <motion.p
-            className="max-w-2xl leading-normal overflow-hidden"
+            className="max-w-2xl overflow-hidden leading-normal"
             initial="collapsed"
             variants={contentAccordionVariants()}
             animate={showMore ? "expanded" : "collapsed"}
@@ -105,7 +105,7 @@ const PropertyDetailsPayment = (props: Props) => {
           </motion.p>
           <Button
             variant="outline"
-            className="text-xs rounded-md border text-[#65969F] px-4 py-2 mt-3"
+            className="mt-3 rounded-md px-4 py-2 text-xs text-[#65969F]"
             borderColor="#65969F"
             onClick={() => setShowMore((current) => !current)}
           >

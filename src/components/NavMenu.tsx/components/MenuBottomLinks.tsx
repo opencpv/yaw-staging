@@ -1,52 +1,50 @@
 import Feedback from "@/components/feedback/Feedback";
 import { LowerCase } from "@/lib/utils/stringManipulation";
-import { useContactStore } from "@/store/contact/useContactStore";
-import { useFaqHowToSwitchStore } from "@/store/faq/useFaqStore";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
 import Link from "next/link";
 import React, { LegacyRef, forwardRef } from "react";
+import ReportLink from "@/components/__shared/ReportLink";
+import HowToLink from "@/components/__shared/HowToLink";
 
 type Props = {
   links: any[];
 };
 
 const MenuBottomLinks = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
-  const setContactTabActiveKey = useContactStore((state) => state.setActiveKey);
-  const setFaqActivePage = useFaqHowToSwitchStore(
-    (state) => state.setActivePage
-  );
-  const { setToggle } = useMenuStore()
+  const { setToggle } = useMenuStore();
 
   return (
     <div
-      className="hidden lg:flex h-fit py-10 mt-10 bg-[#305A61] justify-center items-center gap-10"
+      className="mt-10 hidden h-fit items-center justify-center gap-10 bg-[#305A61] py-10 lg:flex"
       ref={ref}
     >
       {props.links.map((r, index) => (
         <>
           {LowerCase(r?.name) === "how to" ? (
-            <Link
+            <HowToLink
               key={index}
-              href={r?.url}
-              className="text-2xl transition-all bottomLink"
-              onClick={() => {setFaqActivePage("how to"); setToggle(false)}}
-            >
-              {r?.name}
-            </Link>
+              className="bottomLink text-2xl transition-all"
+              onClick={() => {
+                setToggle(false);
+              }}
+            />
           ) : LowerCase(r?.name) === "report fraud" ? (
-            <Link
+            <ReportLink
               key={index}
-              href={r?.url}
-              className="text-2xl transition-all bottomLink"
-              onClick={() => { setContactTabActiveKey("report"); setToggle(false) }}
-            >
-              {r?.name}
-            </Link>
+              className="bottomLink text-2xl transition-all"
+              onClick={() => {
+                setToggle(false);
+              }}
+            />
+          ) : LowerCase(r?.name) === "feedback" ? (
+            <Feedback key={index}>
+              <h2 className="bottomLink transition-all">Feedback</h2>
+            </Feedback>
           ) : (
             <Link
               key={index}
               href={r?.url}
-              className="text-2xl transition-all bottomLink"
+              className="bottomLink text-2xl transition-all"
               onClick={() => setToggle(false)}
             >
               {r?.name}
@@ -54,9 +52,6 @@ const MenuBottomLinks = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
           )}
         </>
       ))}
-      <Feedback>
-        <div className="text-2xl transition-all bottomLink">Feedback</div>
-      </Feedback>
     </div>
   );
 };

@@ -1,19 +1,28 @@
 "use client";
-import { styled } from "@stitches/react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
-import { useEffect, useState } from "react";
-import PhoneNumberInput from "@/components/__shared/PhoneInput";
+import { Formik, Form } from "formik";
+import { useRef, useState } from "react";
 import supabase from "@/lib/utils/supabaseClient";
 import Loader from "@/components/__shared/loader/Loader";
-import { openSans } from "@/styles/font";
+import ContactSchema from "@/app/contact/components/forms/lib/contactSchema";
+import {
+  usePhoneInputDisclosure,
+  useToastDisclosure,
+} from "@/lib/custom-hooks/useCustomDisclosure";
+import ContactMessageField from "@/app/contact/components/forms/ContactMessageField";
+import { E164Number } from "libphonenumber-js/core";
+import ContactSubmitButton from "@/app/contact/components/forms/ContactSubmitButton";
+import ContactFullNameField from "@/app/contact/components/forms/ContactFullNameField";
+import ContactEmailField from "@/app/contact/components/forms/ContacEmailField";
+import ContactPhoneField from "@/app/contact/components/forms/ContactPhoneField";
+import { useContactForm } from "@/app/contact/components/forms/hooks/useContactForm";
 
 const ContactForm = () => {
-  const [phone, setPhone] = useState("+233");
   const [loading, setLoading] = useState(false);
-  const handlePhone = (phoneNumber: string) => {
-    setPhone(phoneNumber);
-  };
+  const { phone, setPhone, handleCountryChange, handlePhone } =
+    usePhoneInputDisclosure();
+  const { onOpen } = useToastDisclosure();
+
+  const { validate } = useContactForm();
 
   return (
     <Formik
@@ -21,37 +30,23 @@ const ContactForm = () => {
         fullname: "",
         email: "",
         phone: "",
-        help: "",
+        message: "",
       }}
-      validate={(values) => {
-        const errors: any = {};
-        if (!values.fullname) {
-          errors.fullname = "This field is required";
-        }
-        if (!values.email) {
-          errors.email = "This field is required";
-        } else if (
-          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-        ) {
-          errors.email = "Invalid email address";
-        }
-        if (!values.help) {
-          errors.help = "This field is required";
-        }
-        return errors;
-      }}
-      onSubmit={(values) => {
-        const val = values;
-        val.phone = phone;
+      validateOnBlur={false}
+      validateOnChange={false}
+      validationSchema={ContactSchema}
+      validate={(values) => validate(values, phone)}
+      onSubmit={(values, { resetForm }) => {
+        values.phone = phone as E164Number;
         setLoading(true);
         supabase
           .from("faq")
           .insert([
             {
-              fullname: val.fullname,
-              email: val.email,
-              phone: val.phone,
-              message: val.help,
+              fullname: values.fullname,
+              email: values.email,
+              phone: values.phone,
+              message: values.message,
             },
           ])
           .select()
@@ -60,143 +55,52 @@ const ContactForm = () => {
               setLoading(false);
               console.log(error);
             } else {
-              console.log(data);
               setLoading(false);
+              resetForm();
+              setPhone(undefined);
+              onOpen("👍 Successfully sent");
             }
           });
       }}
     >
-      <Form className="w-full ">
-        <div className="flex flex-col gap-5">
-          <div className="w-full">
-            <label className="text-[#6A6968] block mb-[15px]">Fullname</label>
-            <Field
-              type="text"
-              name="fullname"
-              placeholder="John"
-              className="border-[1px] rounded-[4px] border-[#EBEBEB] p-[15px] w-full"
+      {({ handleBlur, handleChange, values, errors }) => (
+        <Form className="w-full">
+          <div className="flex flex-col gap-10">
+            <div className="w-full">
+              <ContactFullNameField
+                value={values.fullname}
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+                error={errors.fullname}
+              />
+            </div>
+            <div className="w-full">
+              <ContactEmailField
+                value={values.email}
+                handleChange={handleChange}
+              />
+            </div>
+            <div className="w-full">
+              <ContactPhoneField
+                phone={phone}
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+                handlePhone={handlePhone}
+                handleCountryChange={handleCountryChange}
+              />
+            </div>
+            <ContactMessageField
+              placeholder="How can we help you?"
+              className="w-full min-w-full"
+              error={errors.message}
             />
-            <ErrorMessage
-              className={`text-[#073B3A] text-[13px] ${openSans.className}`}
-              name="fullname"
-              component="p"
-            />
+
+            {loading ? <Loader /> : <ContactSubmitButton label="Submit" />}
           </div>
-          <div className="w-full ">
-            <label className="text-[#6A6968] block mb-[15px]">
-              Email Address
-            </label>
-            <Field
-              type="email"
-              name="email"
-              placeholder="johndoe@gmail.com"
-              className="border-[1px] rounded-[4px] border-[#EBEBEB] p-[15px] w-full"
-            />
-            <ErrorMessage
-              name="email"
-              component="p"
-              className={`text-[#073B3A] text-[13px] ${openSans.className}`}
-            />
-          </div>
-          <div className="w-full ">
-            <label className="text-[#6A6968] block mb-[15px]">Phone</label>
-            <PhoneNumberInput phoneChange={handlePhone} />
-          </div>
-          <div className="w-full">
-            <label className="text-[#6A6968] block mb-[15px]">
-              How can we help you?
-            </label>
-            <Field
-              as="textarea" // Use 'textarea' as the component
-              id="help"
-              name="help"
-              className="form-input-textarea px-4 w-full
-                  border-[#E6E6E6] rounded-[4px] text-[#737373]
-                  border py-2"
-              rows="15" // Optional: Set the number of rows for the text area
-              cols="50" // Optional: Set the number of columns for the text area
-            />
-            <ErrorMessage
-              name="help"
-              component="p"
-              className={`text-[#073B3A] text-[13px] ${openSans.className}`}
-            ></ErrorMessage>
-          </div>
-          {loading ? (
-            <Loader />
-          ) : (
-            <button
-              type="submit"
-              className="max-w-[160px] max-h-[52px] w-full aspect-[160/52]
-                mt-5 bg-[#DDB771] text-[#ffff] rounded-[8px]"
-            >
-              Ask It Now
-            </button>
-          )}
-        </div>
-      </Form>
+        </Form>
+      )}
     </Formik>
   );
 };
-
-const Root = styled("div", {
-  " .form-div": {
-    display: "flex",
-    flexDirection: "column",
-    gap: "0.875rem",
-    columnSpan: 2,
-  },
-  " .form-input": {
-    maxHeight: "52px",
-    padding: "0.9375rem",
-    maxWidth: "422px",
-    aspectRatio: "422/52",
-    border: "1px solid #E6E6E6",
-    borderRadius: "4px",
-    color: "#737373",
-    backgroundColor: "white",
-  },
-
-  ".form-input option": {
-    backgroundColor: "white",
-  },
-  ".form-input option:hover": {
-    backgroundColor: "green",
-  },
-  "form-input-textarea": {
-    padding: "0.9375rem",
-    maxWidth: "541px",
-    width: "100%",
-    aspectRatio: "541/368",
-    border: "1px solid #E6E6E6",
-    borderRadius: "4px",
-    color: "#737373",
-  },
-  "& .link-icon": {
-    top: "75%",
-    transform: "translateY(-75%)",
-    left: "1rem",
-  },
-});
-
-const Navigation = styled("button", {
-  fontSize: "16px",
-  fontWeight: "400",
-  color: "#8A8A8A",
-  padding: "0.5rem",
-  "&:hover": {
-    backgroundColor: "#8a8a8a05",
-    color: "black",
-  },
-
-  variants: {
-    type: {
-      active: {
-        color: "#307A4A",
-        borderBottom: "2px solid #307A4A",
-      },
-    },
-  },
-});
 
 export default ContactForm;

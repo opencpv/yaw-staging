@@ -15,8 +15,8 @@ type Props = {};
 const PropManagerOverviewPage = (props: Props) => {
   const { images } = useAssets();
   return (
-    <main className="my-10 text-neutral-800 wrapper">
-      <section className="justify-between grid-cols-4 mx-auto mb-20 gap-x-10 lg:grid lg:mb-32">
+    <main className="my-10 text-neutral-800">
+      <section className="mx-auto mb-20 grid-cols-4 justify-between gap-x-10 lg:mb-32 lg:grid">
         {/* Grid col */}
         <div className="col-span-3">
           <UserOverview
@@ -29,12 +29,12 @@ const PropManagerOverviewPage = (props: Props) => {
           />
           <GradientBanner
             image={images.BusinessPersonWithHouseKeys}
-            alt="Business man with house keys"
+            alt="Business person with house keys"
             heading="Hire Us !"
             description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, officiis."
             buttonLabel="Explore"
             href=""
-            className="mt-20 md:mt-56"
+            className="mb-20 mt-20 md:mt-56"
           />
           <PMAnalyticsSection />
           <PaidFeaturesSection

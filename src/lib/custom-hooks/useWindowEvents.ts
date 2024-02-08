@@ -1,4 +1,4 @@
-import { RefObject, useEffect } from "react";
+import React, { RefObject, useEffect, useState } from "react";
 
 export const useHashChangeScroll = (amount = 200) => {
   useEffect(() => {
@@ -21,7 +21,7 @@ export const useHashChangeScroll = (amount = 200) => {
 
 export const useScrollIntoView = (
   refElement: RefObject<HTMLElement>,
-  block: "start" | "center" | "end" | "nearest" = "start"
+  block: "start" | "center" | "end" | "nearest" = "start",
 ) => {
   useEffect(() => {
     if (refElement.current) {
@@ -32,4 +32,34 @@ export const useScrollIntoView = (
       });
     }
   }, [refElement, block]);
+};
+
+export const useScrollBoundingClient = (
+  childRef: React.RefObject<HTMLElement>,
+  parentRef?: React.RefObject<HTMLElement>,
+) => {
+  const [hide, setHide] = useState(false);
+
+  const handleScroll = () => {
+    if (parentRef?.current && childRef.current) {
+      parentRef.current.addEventListener("scroll", () => {
+        const menuRect = parentRef.current?.getBoundingClientRect();
+        const bottomLinksRect = childRef.current?.getBoundingClientRect();
+
+        if (menuRect && bottomLinksRect) {
+          if (menuRect?.bottom + 50 >= bottomLinksRect?.top) {
+            setHide(true);
+          }
+        }
+      });
+    } else if (childRef?.current) {
+      // use window as parent
+    }
+  };
+
+  if (parentRef?.current) {
+    parentRef.current.addEventListener("scroll", handleScroll);
+  }
+
+  return { hide };
 };

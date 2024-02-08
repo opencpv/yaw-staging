@@ -5,18 +5,18 @@ import { AiOutlineSearch } from "react-icons/ai";
 
 const Search = () => {
   return (
-    <Root className="flex items-center  xl:min-w-[420px] lg:max-w-[620px] w-full max-w-[279px] h-[42px] 2xl:h-[52px] max-h-[52px] 2xl:aspefct-[620/52]">
-      <div className="hidden md:flex w-full relative items-center h-full">
+    <Root className="flex h-[42px] max-h-[52px] w-full max-w-lg items-center xl:min-w-[420px] 2xl:aspect-[620/52] 2xl:h-[52px]">
+      <div className="relative hidden h-full w-full items-center md:flex">
         <AiOutlineSearch size="16" color="#737373" className="icon" />
 
         <input
           type="search"
-          className=" px-9 h-full
-                w-full rounded-[4px]"
+          className=" h-full w-full
+                rounded-[4px] bg-[#F9F9F9] px-9"
           placeholder="Search"
         />
       </div>
-      <div className="flex items-center md:hidden h-full">
+      <div className="flex h-full items-center md:hidden">
         <button>
           <AiOutlineSearch size="20" color="white" />
         </button>

@@ -20,12 +20,20 @@ body {
   color: rgb(var(--foreground-rgb));
 }
 
+.faq-items .faq-title {
+  border-bottom-width: 1px;
+}
+
+.faq-items div div .faq-title:last-child {
+  border-bottom-width: 0;
+}
+
 h1 {
-  @apply text-3xl font-bold sm:text-6xl
+  @apply text-3xl font-bold sm:text-6xl;
 }
 
 h2 {
-  @apply text-[1.563rem] leading-[2.2rem] font-[600];
+  @apply text-[1.563rem] font-[600] leading-[2.2rem];
 }
 
 h3 {
@@ -75,19 +83,19 @@ small {
 }
 
 .overlay {
-  @apply relative before:absolute before:inset-0 before:bg-primary-500/60 before:w-full before:h-full;
+  @apply relative before:absolute before:inset-0 before:h-full before:w-full before:bg-primary-500/60;
 }
 
 .overlay-rounded {
-  @apply relative before:absolute before:inset-0 before:z-10 before:bg-gradient-to-b before:from-primary-500/60 before:to-primary-500/50 before:w-full before:h-full before:rounded-2xl;
+  @apply relative before:absolute before:inset-0 before:z-10 before:h-full before:w-full before:rounded-2xl before:bg-gradient-to-b before:from-primary-500/60 before:to-primary-500/50;
 }
 
 .PhoneInputInput {
-  @apply border rounded-md px-3 py-4 shadow-sm focus:outline-none focus:border-black hover:border-black/50 
+  @apply rounded-md border px-3 py-4 shadow-sm hover:border-black/50 focus:border-black focus:outline-none;
 }
 
 .section {
-  @apply pt-28
+  @apply pt-28;
 }
 
 .shape-3 {
@@ -117,21 +125,29 @@ small {
   min-width: 22rem;
 }
 
-.wrapper, .wrapper-2 {
-  max-width: 1536px;
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-  @apply pb-8 sm:pb-14;
+.Toastify__toast-container {
+  @apply flex items-center justify-center;
+}
+
+.unselectable {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -o-user-select: none;
+}
+
+.wrapper,
+.wrapper-2 {
+  @apply mx-auto max-w-screen-3xl px-5 pb-8 pt-12 sm:pb-14 lg:px-10;
 }
 
 .wrapper-2 {
-  @apply px-5 sm:px-5
+  @apply px-5 sm:px-5;
 }
 
-.wrapper-no-pb {
-  @apply pb-0 sm:pb-0
+.wrapper-section {
+  @apply mx-auto max-w-screen-3xl px-5 pb-0 pt-28 sm:px-10 sm:pb-0;
 }
 
 @media (min-width: 640px) {
@@ -142,10 +158,6 @@ small {
   .skeleton-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .wrapper {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
   }
 }
 

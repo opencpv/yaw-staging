@@ -30,11 +30,14 @@ import { revalidationRule } from "@/lib/utils/fetchRules";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
 import { useUserDetails } from "@/lib/custom-hooks/message/useUserDetails";
 import { useModalFullscreenStore } from "@/store/modal/useModalStore";
+import ViewPropertyBtn from "../components/ViewPropertyBtn";
 
 const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
   const { id: propertyId } = params;
 
-  const hideWindowScrollbar = useModalFullscreenStore((state) => state.hideWindowScrollbar)
+  const hideWindowScrollbar = useModalFullscreenStore(
+    (state) => state.hideWindowScrollbar,
+  );
 
   const {
     data: listing,
@@ -47,11 +50,11 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
       .select(
         `id, property_name, property_id (owner_uid), 
         description, monthly_amount, city, 
-        bedrooms, bathrooms, features_and_amenities`
+        bedrooms, bathrooms, features_and_amenities`,
       )
       .eq("property_id", propertyId)
       .single(),
-    revalidationRule()
+    revalidationRule(),
   );
 
   const { userAvi: propertyOwnerAvi, userName: propertyOwnerName } =
@@ -67,24 +70,27 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
         isValidating={isValidating}
         isLoadingComponent={
           <div className="">
-            <SkeletonLong
-              className={`${style.shapeLeft2} rounded-none h-[50rem] w-full mb-20`}
-            />
+            <div className="relative mb-20 h-[50rem]">
+              <SkeletonLong
+                className={`${style.shapeLeft2} h-full w-full rounded-none`}
+              />
+              <ViewPropertyBtn disabled />
+            </div>
             <div className="wrapper gap-x-20 gap-y-10 lg:grid lg:grid-cols-2">
               {/* grid col */}
               <div className="space-y-10">
-                <Skeleton className="w-full h-4 md:w-9/12" />
+                <Skeleton className="h-4 w-full md:w-9/12" />
                 <div className="hidden grid-cols-2 gap-3 lg:grid">
                   <SkeletonLong count={10} className="mb-0" />
                 </div>
-                <div className="w-full mb-20 h-60 lg:hidden">
+                <div className="mb-20 h-60 w-full lg:hidden">
                   <SkeletonRectangle count={1} />
                 </div>
               </div>
               {/* grid col */}
               <div className="space-y-20">
                 <div className="space-y-10">
-                  <Skeleton className="w-full h-4 mb-10 md:w-9/12" />
+                  <Skeleton className="mb-10 h-4 w-full md:w-9/12" />
                   <SkeletonTextual />
                 </div>
                 <div className="">
@@ -103,21 +109,21 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
             image="/assets/images/home/landing.jpg"
             position="left"
           ></ShapedLanding>
-          <main className="wrapper">
-            <section className="py-10 mb-10">
-              <div className="text-[#305A61] font-[600] text-2xl">
+          <main className="wrapper pb-0 pt-28 sm:pb-0 sm:pt-28">
+            <section>
+              <div className="text-2xl font-[600] text-[#305A61]">
                 <BreadCrumbPreLink
                   label="Properties"
                   href="/properties"
                   className="text-neutral-300"
                 />{" "}
                 /{" "}
-                <span className="">
+                <span>
                   {listing?.property_name} at {listing?.city}
                 </span>
               </div>
               {/* Property images */}
-              <section className="grid grid-cols-1 gap-16 mt-8 md:mt-16 lg:grid-cols-2">
+              <section className="mt-8 grid grid-cols-1 gap-16 md:mt-16 lg:grid-cols-2">
                 <PropertyDetailsImages
                   images={{
                     images: [""],
@@ -125,11 +131,11 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
                   }}
                 />
                 {/* Grid col */}
-                <div className="">
-                  <section className="">
+                <div>
+                  <section>
                     <div className="space-y-5">
                       <div className="flex flex-wrap gap-x-16 gap-y-2">
-                        <h2 className="text-[#305A61] font-[600] text-2xl">
+                        <h2 className="text-2xl font-[600] text-[#305A61]">
                           {listing?.property_name} at {listing?.city}
                         </h2>
 
@@ -157,7 +163,7 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
                         bathroomTotal={listing?.bathrooms as number}
                         squareMeter={{ from: 468, to: 967 }}
                       />
-                      <p className="relative bottom-5 inline-block rounded-lg font-[500] bg-[#E7F8F2] text-gray-900 p-3 text-xs">
+                      <p className="relative bottom-5 inline-block rounded-lg bg-[#E7F8F2] p-3 text-xs font-[500] text-gray-900">
                         One Year Advance
                       </p>
                     </div>
@@ -201,7 +207,7 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
               </section>
             </section>
             {/* Features and Amenities */}
-            <div className={listing?.features_and_amenities ? "" : "hidden"}>
+            <div className={listing?.features_and_amenities ? null : "hidden"}>
               <PropertyDetailsFeatures
                 features={[
                   "Wifi",
@@ -222,31 +228,20 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
                 ]}
               />
             </div>
-            {/* Rating */}
             <>
               {" "}
+              {/* Rating */}
               <PropertyRating />
-              <section className="relative -top-14">
-                <ReportIssue />
-              </section>
+              <ReportIssue className="mt-5" />
+              {/* Recommended Listings */}
             </>
           </main>
         </>
       )}
-      {/* Recommended Listings */}
-      <section className="wrapper">
-        <div className="flex flex-wrap items-center justify-between gap-5 mb-5">
-          <h2 className="text-neutral-800 text-xl font-[600] md:ml-10">
-            Recommended Listings
-          </h2>
-          {listing && (
-            <Button variant="ghost" className="text-sm text-neutral-800">
-              Show all
-            </Button>
-          )}
-        </div>
-        <RecommendedListings />
-      </section>
+      <RecommendedListings
+        showAllButton
+        className="mx-auto mt-20 max-w-screen-3xl px-5 pb-8 sm:px-10 sm:pb-14"
+      />
       <Footer />
     </>
   );

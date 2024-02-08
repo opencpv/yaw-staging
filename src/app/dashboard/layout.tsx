@@ -25,7 +25,7 @@ const Wrapper = ({ children }: LayoutProps) => {
   const [dashboardType, setDashboardType] = useLocalStorage("dashboard-type");
   const [firstTIme, setFirstTime] = useLocalStorage(
     "dashboard-first-time",
-    true
+    true,
   );
   const [typeModalOpen, setTypeModalOpen] = useState(false);
   const [firstTimeModalOpen, setFirstTimeModalOpen] = useState(false);
@@ -100,7 +100,7 @@ const Wrapper = ({ children }: LayoutProps) => {
         { event: "*", schema: "public", table: "notifications" },
         (payload) => {
           getNotifications();
-        }
+        },
       )
       .subscribe();
   }, []);
@@ -108,13 +108,11 @@ const Wrapper = ({ children }: LayoutProps) => {
     <div>
       <div>
         <Navbar />
-        <div className={`mt-2 ${openSans.className}`}>
+        <div className="sticky top-0 z-50 bg-white pt-2 md:static md:bg-none">
           <Pagination />
         </div>
 
-        <div className={`mt-6 px-4 text-black ${openSans.className}`}>
-          {children}
-        </div>
+        <div className="wrapper text-black">{children}</div>
         <ClientOnly>
           <HowToSwitch
             dashboard
@@ -134,10 +132,9 @@ const Wrapper = ({ children }: LayoutProps) => {
   );
 };
 
-const Layout = ({ children }: LayoutProps) =>
+const Layout = ({ children }: LayoutProps) => (
   <ClientOnly>
     <Wrapper>{children}</Wrapper>
   </ClientOnly>
-;
-
+);
 export default Layout;

@@ -34,12 +34,12 @@ export const LoginButton = ({ icon, text, onClick }: LoginButtonProps) => {
 
   return (
     <button
-      className="lg:px-8 px-4 w-full max-w-md rounded-lg flex items-center h-20 gap-5 xs:gap-16 bg-[#fff] --font-open-sans hover:opacity-90 transition-all duration-200"
+      className="flex min-h-fit w-full max-w-md flex-col items-center gap-5 rounded-lg bg-[#fff] px-4 py-5 transition-all duration-200 hover:opacity-90 min-[310px]:flex-row min-[350px]:gap-x-16 lg:px-8"
       onClick={async () => {
         setLoader(true);
         const { data, error } = await oauthSignIn(
           icon,
-          process.env.NEXT_PUBLIC_LOGIN_REDIRECT_URL
+          process.env.NEXT_PUBLIC_LOGIN_REDIRECT_URL,
         );
         if (error) {
           setLoader(false);
@@ -47,7 +47,7 @@ export const LoginButton = ({ icon, text, onClick }: LoginButtonProps) => {
       }}
     >
       {loader ? (
-        <div className="py-2 lg:py-[20px] relative flex justify-center w-full">
+        <div className="relative flex w-full justify-center py-2 lg:py-5">
           <Loader />
         </div>
       ) : (
@@ -63,7 +63,7 @@ export const LoginButton = ({ icon, text, onClick }: LoginButtonProps) => {
             />
           )}
           <p
-            className={`${openSans.className} text-[#073B3A] text-base font-semibold py-5 lg:py-[30px]`}
+            className={`flex-1 text-center text-lg font-semibold text-[#073B3A] min-[310px]:text-start`}
           >
             {text}
           </p>

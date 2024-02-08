@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import React from "react";
 
 type Props = {
@@ -7,8 +8,13 @@ type Props = {
 
 const Callout = ({ children, className }: Props) => {
   return (
-    <div className={`px-5 py-3 bg-[#FEF8ED] text-[#45808B] rounded-xl text-sm ${className}`}>
-        {children}
+    <div
+      className={cn(
+        `rounded-xl bg-[#FEF8ED] px-5 py-3 text-sm text-[#45808B]`,
+        className,
+      )}
+    >
+      {children}
     </div>
   );
 };

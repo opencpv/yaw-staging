@@ -2,7 +2,7 @@
 import capitalizeName, { LowerCase } from "@/lib/utils/stringManipulation";
 import { Tab, Tabs } from "@nextui-org/react";
 import React, { LegacyRef, forwardRef } from "react";
-import {ReactRef} from "@nextui-org/react-utils"
+import { ReactRef } from "@nextui-org/react-utils";
 
 type Props = {
   /** You can use any case. The key is converted to lowercase Eg: ["First", "SECOND"] --> "first", "second" */
@@ -14,14 +14,10 @@ type Props = {
   selectedKey?: React.Key;
 };
 
-const OptionFilterTabs = ({
-  radius,
-  options,
-  selectedKey,
-  onSelectionChange,
-  variant,
-  padding,
-}: Props, ref: any) => {
+const OptionFilterTabs = (
+  { radius, options, selectedKey, onSelectionChange, variant, padding }: Props,
+  ref: any,
+) => {
   return (
     <>
       <Tabs
@@ -40,9 +36,9 @@ const OptionFilterTabs = ({
           ],
           tab: [
             variant === "gradient" ? null : "bg-slate-100",
-            variant === "gradient" ? "px-12 h-10" : "px-4",
-            "min-w-fit",
-            "max-w-fit",
+            variant === "gradient" ? "px-12 h-10 flex-initial" : "px-4 flex-1",
+            // "min-w-fit",
+            "w-auto max-w-[200px]",
             variant === "gradient"
               ? "data-[selected=true]:bg-gradient-to-r data-[selected=true]:from-[#21A19F] data-[selected=true]:to-[#1EA9A6A1]"
               : "data-[selected=true]:bg-[#45808B]",
