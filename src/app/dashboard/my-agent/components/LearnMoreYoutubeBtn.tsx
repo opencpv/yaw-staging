@@ -1,22 +1,39 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import AgentButtons from "./Button";
 
-const LearnMoreYoutubePlayer = () => {
+const LearnMoreYoutubeBtn = () => {
   const [isShowing, setIsShowing] = React.useState(false);
+
+  const buttonRef = React.useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClick = (event: MouseEvent) => {
+      if (!buttonRef.current?.contains(event.target as Node)) {
+        setIsShowing(false);
+      }
+    };
+
+    document.body.addEventListener("click", handleClick);
+
+    return () => {
+      document.body.removeEventListener("click", handleClick);
+    };
+  }, [buttonRef, setIsShowing]);
 
   return (
     <>
-      <AgentButtons
-        content="Learn More"
-        variant={"learn-more"}
-        onClick={() => setIsShowing(!isShowing)}
-      />
+      <div className="" ref={buttonRef}>
+        <AgentButtons
+          content="Learn More"
+          variant={"learn-more"}
+          onClick={() => setIsShowing(!isShowing)}
+        />
+      </div>
       <div className="relative h-full w-full">
         <div
           className="absolute inset-0 z-20 h-full w-full grid-cols-1"
           style={{ display: isShowing ? "grid" : "none" }}
-          onClick={() => setIsShowing(false)}
         >
           <div className="relative aspect-video w-full cursor-pointer rounded-2xl">
             <iframe
@@ -32,4 +49,4 @@ const LearnMoreYoutubePlayer = () => {
   );
 };
 
-export default LearnMoreYoutubePlayer;
+export default LearnMoreYoutubeBtn;

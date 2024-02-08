@@ -9,7 +9,7 @@ import { useAssets } from "@/lib/custom-hooks/useAssets";
 import style from "../index.module.css";
 import AOSWrapper from "@/components/__shared/AOSWrapper";
 import React from "react";
-import LearnMoreYoutubePlayer from "./LearnMoreYoutubePlayer";
+import LearnMoreYoutubeBtn from "./LearnMoreYoutubeBtn";
 
 export default function AgentLandingPage() {
   const { images } = useAssets();
@@ -36,7 +36,7 @@ export default function AgentLandingPage() {
                     <ClientOnly>
                       <BeMyAgentModal />
                     </ClientOnly>
-                    <LearnMoreYoutubePlayer />
+                    <LearnMoreYoutubeBtn />
                   </div>
                 </div>
               </div>

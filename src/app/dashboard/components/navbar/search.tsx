@@ -39,7 +39,7 @@ const Search = ({ className }: { className?: string }) => {
         <SaveSearchModal />
       </div>
       <div
-        className="absolute right-[20.5%] top-2 hidden h-[60%] w-[1px] bg-shade-50 xs:right-[19%] md:right-[18%] md:block"
+        className="absolute right-[20.5%] top-3 hidden h-[60%] w-[1px] bg-shade-50 xs:right-[19%] md:right-[18%] md:top-2 md:block"
         style={{ display: showDivider ? "block" : "none" }}
       ></div>
     </div>
