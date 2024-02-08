@@ -51,9 +51,9 @@ const ProfilePhone = ({ phoneChange, defaultValue, codeChange }: Props) => {
             onClick={() => {
               setToggle(!toggle);
             }}
-            className="flex h-[56px] gap-1 justify-between items-center px-[15px] border-[1px] border-[#EBEBEB] rounded-[4px]"
+            className="flex h-[56px] items-center justify-between gap-1 rounded-[4px] border-[1px] border-[#EBEBEB] px-[15px]"
           >
-            <div className="relative w-5 h-[18px] rounded-[4px]">
+            <div className="relative h-[18px] w-5 rounded-[4px]">
               <Image
                 src={selectedCountry.flags.png}
                 alt={selectedCountry.flags.alt}
@@ -64,18 +64,18 @@ const ProfilePhone = ({ phoneChange, defaultValue, codeChange }: Props) => {
                 className="rounded-[4px] "
               />
             </div>
-            <p className={`text-[13px] text-[#000] ${openSans.className}`}>
+            <p className={`text-[13px] text-[#000]`}>
               {selectedCountry.idd.root}
               {selectedCountry.idd.suffixes}
             </p>
             <Image src={icons.ArrowDown} alt={"down arrow"} />
           </button>
           {toggle && (
-            <ul className="absolute bg-[#fff] top-[-220px] left-0 h-[200px] overflow-y-scroll overflow-x-hidden border-[1px]  border-[#EBEBEB] rounded-[4px] w-[150px]">
+            <ul className="absolute left-0 top-[-220px] h-[200px] w-[150px] overflow-x-hidden overflow-y-scroll rounded-[4px]  border-[1px] border-[#EBEBEB] bg-[#fff]">
               {data.map((country, index) => (
                 <li
                   key={index}
-                  className="bg-[#fff] z-50 w- border-b-[1px] border-[#EBEBEB] "
+                  className="w- z-50 border-b-[1px] border-[#EBEBEB] bg-[#fff] "
                 >
                   <button
                     type="button"
@@ -84,9 +84,9 @@ const ProfilePhone = ({ phoneChange, defaultValue, codeChange }: Props) => {
                       codeChange(`${country.idd.root}${country.idd.suffixes}`);
                       setToggle(false);
                     }}
-                    className="flex w-full py-2  justify-start gap-2 items-center px-[15px] rounded-[4px] "
+                    className="flex w-full items-center  justify-start gap-2 rounded-[4px] px-[15px] py-2 "
                   >
-                    <div className="relative w-5 h-[18px] rounded-[4px]">
+                    <div className="relative h-[18px] w-5 rounded-[4px]">
                       <Image
                         src={country.flags.png}
                         alt={country.flags.alt}
@@ -97,9 +97,7 @@ const ProfilePhone = ({ phoneChange, defaultValue, codeChange }: Props) => {
                         className="rounded-[4px] "
                       />
                     </div>
-                    <p
-                      className={`text-[13px] text-[#000] ${openSans.className}`}
-                    >
+                    <p className={`text-[13px] text-[#000]`}>
                       {country.idd.root}
                       {country.idd.suffixes}
                     </p>
@@ -112,7 +110,7 @@ const ProfilePhone = ({ phoneChange, defaultValue, codeChange }: Props) => {
             type="tel"
             placeholder={defaultValue}
             value={phone}
-            className="flex flex-auto border-[1px] rounded-[4px] border-[#EBEBEB] p-[15px]"
+            className="flex flex-auto rounded-[4px] border-[1px] border-[#EBEBEB] p-[15px]"
             onChange={(e: any) => {
               const prefix = `${selectedCountry.idd.root}${selectedCountry.idd.suffixes}`;
               phoneChange(`${e.target.value}`);

@@ -6,11 +6,11 @@ const BreadCrumb = ({ link }: { link: string }) => {
   const { icons } = useAssets();
   return (
     <div
-      className={`flex items-center px-[39px] md:px-[47px] lg:px-[51px] mb-[63px] md:mb-[81px] lg:mb-[100px] text-[20px] text-[#9E9E9E] ${openSans.className}`}
+      className={`mb-[63px] flex items-center px-[39px] text-[20px] text-[#9E9E9E] md:mb-[81px] md:px-[47px] lg:mb-[100px] lg:px-[51px]`}
     >
       Home
       <Image src={icons.Seperator} alt="seperator icon" />
-      <span className="text-[#000] text-[25px]">{link}</span>
+      <span className="text-[25px] text-[#000]">{link}</span>
     </div>
   );
 };

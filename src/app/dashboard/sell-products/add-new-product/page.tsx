@@ -121,7 +121,7 @@ const AddNewProduct = () => {
                 <label>Price</label>
                 <div className="flex gap-2">
                   <div className=" h-fit rounded-md border-[1px] px-8 py-[13px] text-black ">
-                    <p className={`${openSans.className}`}>GHS</p>
+                    <p>GHS</p>
                   </div>
                   <Field
                     type="number"

@@ -77,9 +77,7 @@ const CountryInput = ({
   return (
     <div>
       <Root>
-        <div
-          className={`font-[400] ${openSans.className} text-[#6A6968] capitalize`}
-        >
+        <div className={`font-[400] capitalize text-[#6A6968]`}>
           <label>{label}</label>
         </div>
         <Popover open={open} onOpenChange={setOpen}>
@@ -89,21 +87,21 @@ const CountryInput = ({
               role="combobox"
               aria-expanded={open}
               className={`w-full justify-between  ${
-                value ? "text-[#6A6968] capitalize" : "text-[#B4B2AF] "
-              } whitespace-nowrap h-[52px]`}
+                value ? "capitalize text-[#6A6968]" : "text-[#B4B2AF] "
+              } h-[52px] whitespace-nowrap`}
             >
               {value ? value : placeholder}
               <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="w-fit p-0 z-[200] max-h-[400px] overflow-y-scroll bg-white ">
+          <PopoverContent className="z-[200] max-h-[400px] w-fit overflow-y-scroll bg-white p-0 ">
             <Command onValueChange={onChange}>
               <CommandInput placeholder="Search data..." />
               <CommandEmpty>No data found.</CommandEmpty>
               <CommandGroup>
                 {countryData?.map((data) => (
                   <CommandItem
-                    className="flex gap-3 cursor-pointer hover:bg-slate-100"
+                    className="flex cursor-pointer gap-3 hover:bg-slate-100"
                     key={data.value}
                     onSelect={(currentValue) => {
                       onChange(currentValue);
@@ -117,7 +115,7 @@ const CountryInput = ({
                         value === data.value ? "opacity-100" : "opacity-0"
                       )}
                     /> */}
-                    <div className="relative w-[20px] aspect-square">
+                    <div className="relative aspect-square w-[20px]">
                       <Image src={data.flags} alt="flag" fill />
                     </div>
                     {data.label}

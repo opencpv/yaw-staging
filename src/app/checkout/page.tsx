@@ -26,20 +26,20 @@ const Checkout = () => {
     item_index: number;
   }) => {
     return (
-      <div className="w-full border-[1px] rounded-md py-5 px-3 mb-6">
-        <div className="flex justify-between items-center">
-          <div className="flex gap-4 items-center">
-            <div className="flex items-center justify-center h-20 w-20 bg-[#027F7C] rounded-md">
+      <div className="mb-6 w-full rounded-md border-[1px] px-3 py-5">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <div className="flex h-20 w-20 items-center justify-center rounded-md bg-[#027F7C]">
               <CaCartItem />
             </div>
             <div>
-              <p className="font-semibold mb-2">{item.name}</p>
-              <p className="text-[#8A8A8A] mb-2">GHS {item.cost}</p>
+              <p className="mb-2 font-semibold">{item.name}</p>
+              <p className="mb-2 text-[#8A8A8A]">GHS {item.cost}</p>
             </div>
           </div>
           <div className="flex items-center gap-4">
             <p className="">Qty</p>
-            <p className=" bg-[#F1F1F1]  rounded-full py-2 px-8">
+            <p className=" rounded-full  bg-[#F1F1F1] px-8 py-2">
               {item.quantity}
             </p>
           </div>
@@ -51,22 +51,22 @@ const Checkout = () => {
   return (
     <>
       <main
-        className={`${openSans.className} lg:px-16 px-4 py-4 grid grid-cols-1 lg:grid-cols-2 gap-x-[141px]`}
+        className={`grid grid-cols-1 gap-x-[141px] px-4 py-4 lg:grid-cols-2 lg:px-16`}
       >
         <div className="py-12">
-          <div className="block lg:hidden lg:bg-[#D9D9D9]  lg:px-[60px] py-[49px] ">
+          <div className="block py-[49px] lg:hidden  lg:bg-[#D9D9D9] lg:px-[60px] ">
             <button
               onClick={() => {
                 router.push("/cart");
               }}
-              className={`flex items-center py-8 lg:p-0 justify-center gap-4 outline-none mb-8 lg:mb-[63px]
-          text-[#DDB771] hover:scale-[1.04]`}
+              className={`mb-8 flex items-center justify-center gap-4 py-8 text-[#DDB771] outline-none hover:scale-[1.04]
+          lg:mb-[63px] lg:p-0`}
             >
               <CaBackArrow />
               <p className="text-lg ">Cart</p>
             </button>
-            <div className="flex justify-between pb-1 border-b-2  items-center">
-              <h2 className="font-semibold text-[20px] ">Order Summary</h2>
+            <div className="flex items-center justify-between border-b-2  pb-1">
+              <h2 className="text-[20px] font-semibold ">Order Summary</h2>
               <button
                 onClick={() => {
                   settoggle(!toggle);
@@ -82,15 +82,15 @@ const Checkout = () => {
                     <CartItem item={item} key={index} item_index={index} />
                   ))}
                 </div>
-                <div className="flex justify-between items-center font-semibold mb-4 bg-[#F5F5F5] px-4 py-3">
+                <div className="mb-4 flex items-center justify-between bg-[#F5F5F5] px-4 py-3 font-semibold">
                   <p className="">Subtotal</p>
                   <p className="text-[20px]">GHS {getTotalPrice(items)}</p>
                 </div>
-                <div className="flex justify-between items-center font-semibold mb-4 bg-[#F5F5F5] px-4 py-3">
+                <div className="mb-4 flex items-center justify-between bg-[#F5F5F5] px-4 py-3 font-semibold">
                   <p className="">Tax</p>
                   <p className="text-[20px]">GHS 00.00</p>
                 </div>
-                <div className="flex justify-between items-center font-semibold mb-4 bg-[#F5F5F5] px-4 py-3">
+                <div className="mb-4 flex items-center justify-between bg-[#F5F5F5] px-4 py-3 font-semibold">
                   <p className="">Total</p>
                   <p className="text-[20px] lg:text-[25px]">
                     GHS {getTotalPrice(items)}
@@ -99,23 +99,23 @@ const Checkout = () => {
               </div>
             )}
           </div>
-          <h1 className="font-semibold text-[20px] pb-1 border-b-2 mb-9">
+          <h1 className="mb-9 border-b-2 pb-1 text-[20px] font-semibold">
             Billing Information
           </h1>
           <BillingForm />
         </div>
-        <div className="hidden lg:block lg:bg-[#D9D9D9] px-4 lg:px-[60px] py-[49px] ">
+        <div className="hidden px-4 py-[49px] lg:block lg:bg-[#D9D9D9] lg:px-[60px] ">
           <button
             onClick={() => {
               router.push("/cart");
             }}
-            className={`flex items-center px-8 py-8 lg:p-0 justify-center gap-4 outline-none mb-8 lg:mb-[63px]
-          text-[#DDB771] hover:scale-[1.04]`}
+            className={`mb-8 flex items-center justify-center gap-4 px-8 py-8 text-[#DDB771] outline-none hover:scale-[1.04]
+          lg:mb-[63px] lg:p-0`}
           >
             <CaBackArrow />
             <p className="text-lg ">Cart</p>
           </button>
-          <h2 className="font-semibold text-[20px] pb-1 border-b-2 mb-9">
+          <h2 className="mb-9 border-b-2 pb-1 text-[20px] font-semibold">
             Order Summary
           </h2>
           <div className=" mb-16">
@@ -123,15 +123,15 @@ const Checkout = () => {
               <CartItem item={item} key={index} item_index={index} />
             ))}
           </div>
-          <div className="flex justify-between items-center font-semibold mb-4 bg-[#F5F5F5] px-4 py-3">
+          <div className="mb-4 flex items-center justify-between bg-[#F5F5F5] px-4 py-3 font-semibold">
             <p className="">Subtotal</p>
             <p className="text-[20px]">GHS {getTotalPrice(items)}</p>
           </div>
-          <div className="flex justify-between items-center font-semibold mb-4 bg-[#F5F5F5] px-4 py-3">
+          <div className="mb-4 flex items-center justify-between bg-[#F5F5F5] px-4 py-3 font-semibold">
             <p className="">Tax</p>
             <p className="text-[20px]">GHS 00.00</p>
           </div>
-          <div className="flex justify-between items-center font-semibold mb-4 bg-[#F5F5F5] px-4 py-3">
+          <div className="mb-4 flex items-center justify-between bg-[#F5F5F5] px-4 py-3 font-semibold">
             <p className="">Total</p>
             <p className="text-[20px] lg:text-[25px]">
               GHS {getTotalPrice(items)}

@@ -30,10 +30,8 @@ const FullNameAndRelationship = ({ index, city, neighbourhood }: any) => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row gap-3 w-full">
-      <TFormDiv
-        className={`font-[400] ${openSans.className} text-[#6A6968] capitalize w-full`}
-      >
+    <div className="flex w-full flex-col gap-3 lg:flex-row">
+      <TFormDiv className={`w-full font-[400] capitalize text-[#6A6968]`}>
         <label htmlFor="">City</label>
         <input
           type="text"
@@ -44,9 +42,7 @@ const FullNameAndRelationship = ({ index, city, neighbourhood }: any) => {
         />
       </TFormDiv>
 
-      <TFormDiv
-        className={`font-[400] ${openSans.className} text-[#6A6968] capitalize w-full`}
-      >
+      <TFormDiv className={`w-full font-[400] capitalize text-[#6A6968]`}>
         <label htmlFor="">Neighbourhood</label>
 
         <input
@@ -66,7 +62,7 @@ const Applicants = ({}) => {
     useLocalStorage<BeMyAgentFormType>("agent-form");
 
   const [locationLength, setlocationLength] = useState<any>(
-    agentFormData?.locationArray?.length || 1
+    agentFormData?.locationArray?.length || 1,
   );
   const handleRemove = (index: any) => {
     const updatedagentFormData: any = { ...agentFormData };
@@ -74,7 +70,7 @@ const Applicants = ({}) => {
     if (updatedagentFormData.otherPersons) {
       updatedagentFormData.otherPersons =
         updatedagentFormData.otherPersons.filter(
-          (_: any, currentIndex: any) => currentIndex !== index
+          (_: any, currentIndex: any) => currentIndex !== index,
         );
     }
 
@@ -83,7 +79,7 @@ const Applicants = ({}) => {
 
   return (
     <div>
-      <div className="col-span-3 lg:col-span-1 flex flex-col  gap-2">
+      <div className="col-span-3 flex flex-col gap-2  lg:col-span-1">
         <p className="text-[1.9375rem] font-semibold">Location</p>
 
         <div className={`${locationLength >= 1 ? "mt-5" : ""}`}>
@@ -102,7 +98,7 @@ const Applicants = ({}) => {
               {locationLength > 1 && (
                 <button
                   type="button"
-                  className="text-[#E9515E]  h-[38px] justify-center items-center flex text-[13px] font-[400] gap-1 hover:bg-[#e9515e3a] px-2 "
+                  className="flex  h-[38px] items-center justify-center gap-1 px-2 text-[13px] font-[400] text-[#E9515E] hover:bg-[#e9515e3a] "
                   onClick={() => {
                     handleRemove(index);
                     setlocationLength((init: any) => init - 1);
@@ -117,7 +113,7 @@ const Applicants = ({}) => {
         </div>
         <button
           type="button"
-          className="font-normal text-[#AD842A] h-38 justify-start items-center text-13 flex gap-1 whitespace-nowrap  hover:bg-[#ad832a20] p-2 w-fit"
+          className="h-38 text-13 flex w-fit items-center justify-start gap-1 whitespace-nowrap p-2  font-normal text-[#AD842A] hover:bg-[#ad832a20]"
           onClick={() => {
             setlocationLength((init: any) => init + 1);
           }}
@@ -125,7 +121,7 @@ const Applicants = ({}) => {
           Add Additional Location
           <div className="w-[20px]">
             {" "}
-            <AiOutlinePlus size={20} className="w-[20px] aspect-square" />
+            <AiOutlinePlus size={20} className="aspect-square w-[20px]" />
           </div>
         </button>
       </div>
