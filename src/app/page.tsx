@@ -37,16 +37,14 @@ export default function Home() {
 
   return (
     <>
-      <>
-        <Navbar />
-        <main className="overflow-x-hidden bg-[#F1F1F1]">
-          <HomeLandingPage />
-          {/* Promotion */}
-          <div className="wrapper-2">
-            <HomePromotionSection />
-            {/* Featured Listings and Ads */}
-            <FeaturedListingAndAds />
-
+      <Navbar />
+      <main className="overflow-x-hidden bg-[#F1F1F1]">
+        <HomeLandingPage />
+        {/* Promotion */}
+        <div className="wrapper-2">
+          <HomePromotionSection />
+          {/* Featured Listings and Ads */}
+          <FeaturedListingAndAds />
 
           {/* Apartment Rentals */}
           <HomeRentalDealsSection />
