@@ -97,7 +97,7 @@ const RecentSearch = ({ title, date }: { title: string; date: string }) => {
   return (
     <div className="ssm:items-center grid grid-cols-9 gap-6">
       <div className="ssm:col-span-4 col-span-8">
-        <p className="truncate text-shade-300" title={title}>
+        <p className="truncate font-medium text-shade-300" title={title}>
           {title}
         </p>
         {/* shows on mobile */}
