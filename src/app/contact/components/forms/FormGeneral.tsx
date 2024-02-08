@@ -69,7 +69,7 @@ const FormGeneral = (props: Props) => {
               message: values.message,
               file_url: values.fileUrl,
             },
-          ])
+          ])  
           .select()
           .then(({ data, error }) => {
             if (error) {

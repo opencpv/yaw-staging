@@ -9,8 +9,8 @@ import LoadingIndicator from "@/components/LoadingIndicator";
 import Script from "next/script";
 import { openSans } from "@/lib/utils/fonts";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-
+import "react-toastify/dist/ReactToastify.css";
+import TemporayLandingPage from "@/components/TemporaryLandingPage";
 
 const uniquePages = ["login", "terms-of-service"];
 
@@ -34,17 +34,19 @@ export default function RootLayout({
   }, [pathname]);
 
   return (
-
     <html
       lang="en"
-      className="text-[14px] lg:text-[14.5px] 2xl:text-[15px] 3xl:text-[16px]"
-    >
+      className="text-[14px] lg:text-[14.5px] 2xl:text-[15px] 3xl:text-[16px]">
       <Script src="https://widget.cloudinary.com/v2.0/global/all.js" />
       <body className={`text-neutral-800 bg-white  ${openSans.className}`}>
         <Providers>
           <LoadingIndicator />
           <ToastContainer />
-          {children}
+          {process.env.NEXT_PUBLIC_TEMPORARY_LANDING_PAGE == "true" ? (
+            children
+          ) : (
+            <TemporayLandingPage />
+          )}
         </Providers>
       </body>
     </html>

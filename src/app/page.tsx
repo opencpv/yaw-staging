@@ -10,7 +10,6 @@ import HomePromotionSection from "./components/home_sections/HomePromotionSectio
 import HomeRentalDealsSection from "./components/home_sections/HomeRentalDealsSection";
 import HomeManagePropertiesSection from "./components/home_sections/HomeManagePropertiesSection";
 import FeedbackButton from "@/components/feedback/FeedbackButton";
-import TemporayLandingPage from "@/components/TemporaryLandingPage";
 
 export default function Home() {
   useEffect(() => {
@@ -37,32 +36,28 @@ export default function Home() {
 
   return (
     <>
-      {process.env.NEXT_PUBLIC_TEMPORARY_LANDING_PAGE == "true" ? (
-        <>
-          <Navbar />
-          <main className="overflow-x-hidden bg-[#F1F1F1]">
-            <HomeLandingPage />
-            {/* Promotion */}
-            <div className="wrapper-2">
-              <HomePromotionSection />
-              {/* Featured Listings and Ads */}
-              <FeaturedListingAndAds />
+      <>
+        <Navbar />
+        <main className="overflow-x-hidden bg-[#F1F1F1]">
+          <HomeLandingPage />
+          {/* Promotion */}
+          <div className="wrapper-2">
+            <HomePromotionSection />
+            {/* Featured Listings and Ads */}
+            <FeaturedListingAndAds />
 
-              {/* Apartment Rentals */}
-              <HomeRentalDealsSection />
-              {/* Manage Your Properties With Us */}
-              <HomeManagePropertiesSection />
-              {/* Find Apartments in Popular Cities */}
-              <HomePopularCities />
-              <FeedbackButton />
-            </div>
-          </main>
-          <ScrollTopAndSocial threshHoldMin={820} threshHoldMax={5206} />
-          <Footer />
-        </>
-      ) : (
-        <TemporayLandingPage />
-      )}
+            {/* Apartment Rentals */}
+            <HomeRentalDealsSection />
+            {/* Manage Your Properties With Us */}
+            <HomeManagePropertiesSection />
+            {/* Find Apartments in Popular Cities */}
+            <HomePopularCities />
+            <FeedbackButton />
+          </div>
+        </main>
+        <ScrollTopAndSocial threshHoldMin={820} threshHoldMax={5206} />
+        <Footer />
+      </>
     </>
   );
 }
