@@ -16,14 +16,14 @@ type Props = {
   active?: boolean;
 };
 
-export default function ScheduleLiveTourModal({ active }: Props) {
+export default function SchedulePhysicalTourModal({ active }: Props) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
     <div className="w-full">
       <Button
         onPress={onOpen}
-        className={`h-[38px] w-full gap-2  bg-[#ECF2F3] font-semibold text-shade-200 lg:h-[60px] lg:max-w-[284px] ${
+        className={`h-10 w-full gap-2  bg-[#ECF2F3] font-semibold text-shade-200 lg:h-14 lg:max-w-[284px] ${
           active && "bg-[#45808B] text-white"
         }`}
       >

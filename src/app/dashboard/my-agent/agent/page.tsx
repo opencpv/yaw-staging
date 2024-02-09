@@ -17,7 +17,7 @@ export default function Page() {
             <div className="flex w-fit flex-col items-start ">
               <div className="flex w-full max-w-[542px] flex-col gap-8">
                 <h3 className="">My Agent</h3>
-                <div className="flex flex-col gap-[1.5rem] rounded-2xl border-[1px] border-[#E6E6E6] bg-[#F7F7F7] px-8 py-6">
+                <div className="flex max-w-md flex-col gap-[1.5rem] rounded-2xl border-[1px] border-[#E6E6E6] bg-[#F7F7F7] px-8 py-6 xs:w-[448px]">
                   <div className="flex flex-col gap-[2px]">
                     <h3>You have no agent</h3>
                     <p className="text-xl text-shade-200">

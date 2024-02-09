@@ -1,7 +1,7 @@
 import Image from "next/image";
 import CaAgentNoMatches from "./icons/CaAgentNoMatches";
 import ScheduleVirtualTourModal from "./ScheduleVirtualTourModal";
-import ScheduleLiveTourModal from "./ScheduleLiveTourModal";
+import SchedulePhysicalTourModal from "./SchedulePhysicalTourModal";
 import ApplicationForm from "@/app/components/application-form";
 import styles from "../index.module.css";
 import ViewModal from "./ViewModal";
@@ -19,14 +19,14 @@ export default function MatchesYet() {
       <div>
         <InfoText content="Lorem ipsum dolor sit amet consectetur. Consequat elementum consequat interdum integer imperdiet nisl. Ipsum eu eu tortor enim est mauris in sem. Eget dignissim risus diam consectetur magna. Non." />
       </div>
-      <div className=" flex flex-col gap-2 border-[#E6E6E6] lg:border-[1px]">
+      <div className=" flex flex-col gap-2">
         <div className="hidden grid-cols-4 bg-primary-400 px-[0.63rem] py-[1rem] text-center font-semibold text-white lg:grid">
           <div className=" text-center ">Property</div>
           <div className="text-center">Completed</div>
           <div className="col-span-2 text-center">Actions</div>
         </div>
 
-        <div className="hidden flex-col lg:flex ">
+        <div className="hidden flex-col divide-y lg:flex">
           {Array.from({ length: 5 }).map((r, index) => (
             <PropertyRow key={index} />
           ))}
@@ -46,7 +46,7 @@ const PropertyRowSm = () => {
   const [active, setActive] = useState<"rent" | "virtual" | "live">("rent");
   return (
     <div
-      className={`bg-]#396261] flex cursor-pointer grid-cols-4 flex-col  rounded-lg border-[1px] border-[#396261] px-[10px] py-4 hover:bg-primary-300 lg:grid
+      className={`flex cursor-pointer grid-cols-4 flex-col rounded-lg  border border-primary-500 px-[10px] py-4 hover:bg-primary-300/20 lg:grid
     ${styles.property_matches_card}
     `}
     >
@@ -73,18 +73,18 @@ const PropertyRowSm = () => {
           </div>
         </div>
         <div
-          className="flex items-center justify-between  border-b-[1px] border-t-[1px] border-b-[#E6E6E6] 
+          className="flex items-center justify-between  border-b border-t border-b-[#E6E6E6] 
         border-t-[#E6E6E6] py-2
         "
         >
           <p>Completed</p>
           <div className="flex flex-col items-center justify-center text-center">
             <p className="font-semibold">15 Aug. 2023 13:55pm</p>
-            <p className="text-shade-100 text-[0.625rem]">20 days ago</p>
+            <p className="text-[0.625rem] text-shade-200">20 days ago</p>
           </div>
         </div>
         <p className="font-bold">Actions</p>
-        <div className="flex flex-col items-center justify-center gap-2 border-b-[1px] border-b-[#E6E6E6] py-2">
+        <div className="flex flex-col items-center justify-center gap-2 border-b border-b-[#E6E6E6] py-2">
           <div
             className="flex w-full items-center justify-center"
             onClick={() => setActive("rent")}
@@ -101,7 +101,7 @@ const PropertyRowSm = () => {
           </div>{" "}
           <div onClick={() => setActive("live")} className="w-full">
             {" "}
-            <ScheduleLiveTourModal active={active == "live"} />
+            <SchedulePhysicalTourModal active={active == "live"} />
           </div>{" "}
         </div>
         <div className="flex gap-5">
@@ -115,10 +115,10 @@ const PropertyRowSm = () => {
 
 const PropertyRow = () => {
   const [active, setActive] = useState<"rent" | "virtual" | "live">("rent");
+
   return (
     <div
-      className={`grid cursor-pointer grid-cols-4 px-4 hover:bg-primary-300
-    ${styles.property_matches_card}
+      className={`grid cursor-pointer grid-cols-4 px-4 py-2 first:pt-0 hover:bg-primary-300/20
     `}
     >
       <div className="flex gap-[0.62rem] p-2.5">
@@ -141,7 +141,7 @@ const PropertyRow = () => {
       </div>
       <div className="flex flex-col items-center justify-center text-center">
         <p className="font-semibold">15 Aug. 2023 13:55pm</p>
-        <p className="text-shade-100 text-[0.625rem]">20 days ago</p>
+        <p className="text-[0.625rem] text-shade-200">20 days ago</p>
       </div>
       <div className="col-span-2  flex w-full flex-col items-center justify-center">
         <div className="grid w-full grid-cols-3 items-center justify-center lg:gap-x-5">
@@ -158,7 +158,7 @@ const PropertyRow = () => {
           </div>{" "}
           <div onClick={() => setActive("live")}>
             {" "}
-            <ScheduleLiveTourModal active={active == "live"} />
+            <SchedulePhysicalTourModal active={active == "live"} />
           </div>{" "}
         </div>
 

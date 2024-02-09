@@ -18,6 +18,11 @@
 
 body {
   color: rgb(var(--foreground-rgb));
+  font-family:
+    var(--font-open-sans) var(--font-open-sans-remote) Verdana,
+    Geneva,
+    Tahoma,
+    sans-serif;
 }
 
 .faq-items .faq-title {
