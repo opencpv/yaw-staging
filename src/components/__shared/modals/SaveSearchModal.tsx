@@ -14,7 +14,9 @@ import { FiTrash2 } from "react-icons/fi";
 import DestructiveModal from "./DestructiveModal";
 import { cn } from "@/lib/utils";
 
-type Props = {};
+type Props = {
+  className?: string;
+};
 
 let recentSearchDemo = true;
 
@@ -24,7 +26,7 @@ const SaveSearchModal = (props: Props) => {
   return (
     <>
       <HiSaveAs
-        className="cursor-pointer text-[#21A19F]"
+        className={cn("cursor-pointer text-[#21A19F]", props.className)}
         title="saved search"
         size={20}
         onClick={onOpen}

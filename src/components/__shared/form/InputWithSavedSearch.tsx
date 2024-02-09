@@ -39,7 +39,7 @@ const InputWithSavedSearch = ({
         />
         <div
           className={cn(
-            "col-span-1 mx-auto hidden h-full w-[1px] bg-shade-50 md:block",
+            "col-span-1 mx-auto h-full w-[1px] bg-shade-50",
             separatorClassName,
           )}
           style={{ visibility: showDivider ? "visible" : "hidden" }}
@@ -55,9 +55,7 @@ const InputWithSavedSearch = ({
             className="mx-auto"
           />
         </Link>
-        <div className="col-span-1 mx-auto w-full">
-          <SaveSearchModal />
-        </div>
+        <SaveSearchModal className="col-span-1 mx-auto w-full" />
       </div>
     </div>
   );
