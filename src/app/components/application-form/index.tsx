@@ -41,7 +41,7 @@ const ApplicationForm = ({ type, variant = "rectangle", green }: Type) => {
             <button
               className={`w-full  lg:max-w-[284px] 
             ${green ? "bg-[#45808B] text-white" : "bg-[#ECF2F3] text-shade-200"}
-            flex h-[38px] items-center  justify-center rounded-2xl font-semibold lg:h-[60px] `}
+            flex h-10 items-center  justify-center rounded-2xl font-semibold lg:h-14 `}
             >
               Rent it
             </button>

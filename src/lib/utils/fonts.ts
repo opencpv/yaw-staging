@@ -3,65 +3,12 @@ import Open_Sans_Local from "next/font/local";
 import Montserrat_Local from "next/font/local";
 
 export const inter = Inter({ subsets: ["latin"] });
-export const openSans = Open_Sans({ subsets: ["latin"] });
+export const openSans = Open_Sans({
+  subsets: ["latin"],
+  variable: "--font-open-sans-remote",
+});
 
 export const openSansLocal = Open_Sans_Local({
-  // src: [
-  //     {
-  //         path: "../../../public/fonts/open_sans/OpenSans-Light.ttf",
-  //         weight: "300",
-  //     },
-  //     {
-  //         path: "../../../public/fonts/open_sans/OpenSans-Lightitalic.ttf",
-  //         weight: "300",
-  //         style: "italic",
-  //     },
-  //     {
-  //         path: "../../../public/fonts/open_sans/OpenSans-Regular.ttf",
-  //         weight: "400",
-  //     },
-  //     {
-  //         path: "../../../public/fonts/open_sans/OpenSans-Italic.ttf",
-  //         weight: "400",
-  //         style: "italic",
-  //     },
-  //     {
-  //         path: "../../../public/fonts/open_sans/OpenSans-Medium.ttf",
-  //         weight: "500",
-  //     },
-  //     {
-  //         path: "../../../public/fonts/open_sans/OpenSans-MediumItalic.ttf",
-  //         weight: "500",
-  //         style: "italic",
-  //     },
-  //     {
-  //         path: "../../../public/fonts/open_sans/OpenSans-SemiBold.ttf",
-  //         weight: "600",
-  //     },
-  //     {
-  //         path: "../../../public/fonts/open_sans/OpenSans-SemiBoldItalic.ttf",
-  //         weight: "600",
-  //         style: "italic",
-  //     },
-  //     {
-  //         path: "../../../public/fonts/open_sans/OpenSans-Bold.ttf",
-  //         weight: "700",
-  //     },
-  //     {
-  //         path: "../../../public/fonts/open_sans/OpenSans-BoldItalic.ttf",
-  //         weight: "700",
-  //         style: "italic",
-  //     },
-  //     {
-  //         path: "../../../public/fonts/open_sans/OpenSans-ExtraBold.ttf",
-  //         weight: "800",
-  //     },
-  //     {
-  //         path: "../../../public/fonts/open_sans/OpenSans-ExtraBoldItalic.ttf",
-  //         weight: "800",
-  //         style: "italic",
-  //     },
-  // ],
   src: [
     {
       path: "../../../public/fonts/open_sans/OpenSans-VariableFont_wdth,wght.ttf",
