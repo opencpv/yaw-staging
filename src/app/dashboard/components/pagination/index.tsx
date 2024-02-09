@@ -29,7 +29,7 @@ const PaginationTab = ({ active, icon, name, link }: PaginationTabProps) => {
     <Link href={link} draggable={false}>
       <PgItem
         type={LowerCase(active) === LowerCase(name) ? "active" : undefined}
-        className={`flex max-h-[52px] min-w-[160px] cursor-pointer items-center justify-center gap-3 rounded-xl px-4 py-3 text-2xl font-semibold text-[#B0B0B0] transition-all lg:max-w-none ${name}`}
+        className={`flex h-fit min-w-[160px] cursor-pointer items-center justify-center gap-3 rounded-xl px-4 py-3 lg:py-4 text-2xl font-semibold text-[#B0B0B0] transition-all lg:max-w-none ${name}`}
         draggable={false}
       >
         <div className="flex flex-row gap-3 lg:flex-col">

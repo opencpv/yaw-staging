@@ -1,14 +1,15 @@
+import InputWithSavedSearch from "@/components/__shared/form/InputWithSavedSearch";
 import React from "react";
 
 type Props = {};
 
 const SearchCity = (props: Props) => {
   return (
-    <div className="relative w-screen px-4 py-10 -ml-5 bg-white shadow-xl xs:mx-auto xs:w-full xs:px-12 bottom-20 rounded-xl lg:w-10/12">
-      <input
-        type="search"
-        className="border block shadow-xl text-neutral-800 border-[#21A19F] rounded-xl w-full py-6 p-4 sm:pl-12 mx-auto uppercase lg:w-10/12"
-        placeholder="Madina, Accra"
+    <div className="relative w-full p-10 sm:bottom-20 sm:max-w-4xl sm:rounded-xl sm:bg-white md:px-20 sm:shadow-2xl">
+      <InputWithSavedSearch
+        className="block w-full rounded-full border border-primary-100/80 p-5 pl-12 text-neutral-800 shadow-large sm:rounded-[inherit] sm:shadow-xl"
+        inputClassName="placeholder:uppercase"
+        searchIconColor="#21A19F"
       />
     </div>
   );
