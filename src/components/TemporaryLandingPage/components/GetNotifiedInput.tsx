@@ -27,7 +27,7 @@ function GetNotifiedInput() {
     <Root className={`flex flex-col sm:flex-row gap-6 sm:gap-10 w-full ${styles.root}`}>
       <div className="flex flex-col gap-4 w-full">
         <p
-          className="text-[#F2B94E] font-semibold text-20 w-full text-center lg:text-left
+          className="text-[#F2B94E] font-semibold text-20 w-full text-center xs:text-left
         lg:text-[1.5625rem] leading-[2.1875rem] xs:whitespace-nowrap">
           Get notified when we go live!
         </p>
