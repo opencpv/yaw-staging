@@ -61,18 +61,6 @@ export const PgRoutesRenter = [
     link: "/dashboard/sell-products",
   },
   {
-    name: "favourites",
-    url: "",
-    icon: <FaRegHeart />,
-    link: "/dashboard/saved-search",
-  },
-  {
-    name: "recommendations",
-    url: "",
-    icon: <MdOutlineRecommend />,
-    link: "/dashboard/favourite",
-  },
-  {
     name: "subscriptions",
     url: "",
     icon: <BsEnvelope />,
@@ -83,6 +71,18 @@ export const PgRoutesRenter = [
     url: "",
     icon: <IoMdNotificationsOutline />,
     link: "/dashboard/notifications",
+  },
+  {
+    name: "favourites",
+    url: "",
+    icon: <FaRegHeart />,
+    link: "/dashboard/saved-search",
+  },
+  {
+    name: "recommendations",
+    url: "",
+    icon: <MdOutlineRecommend />,
+    link: "/dashboard/favourite",
   },
   {
     name: "settings",

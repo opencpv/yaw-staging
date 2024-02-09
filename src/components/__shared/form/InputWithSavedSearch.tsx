@@ -39,7 +39,7 @@ const InputWithSavedSearch = ({
         />
         <div
           className={cn(
-            "col-span-1 mx-auto hidden h-[60%] w-[1px] bg-shade-50 md:block",
+            "col-span-1 mx-auto hidden h-full w-[1px] bg-shade-50 md:block",
             separatorClassName,
           )}
           style={{ visibility: showDivider ? "visible" : "hidden" }}
