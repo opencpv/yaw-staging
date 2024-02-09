@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import DesktopProductCard from "./components/DesktopProductCard";
 import MobileProductCard from "./components/MobileProductCard";
 import Link from "next/link";
+import Button from "@/components/__shared/ui/button/Button";
 
 const Sell = () => {
   const [products, setproducts] = useState<any[]>([]);
@@ -47,19 +48,22 @@ const Sell = () => {
     };
 
     getProducts();
-  }, [id]);
+  }, [id, supabase]);
 
   const AddProduct = () => {
     return (
       <div className="flex justify-center lg:mt-20">
         <div className="flex flex-col items-center gap-6">
-          <Image src={images.Clipboard} alt="clipboard" width={250} />
+          <Image
+            src={images.Clipboard}
+            alt="clipboard"
+            width={250}
+            className="w-[150px] sm:w-[250px]"
+          />
           <p className="text-2xl font-semibold text-neutral-600">
             No item Added
           </p>
-          <button className=" rounded-xl bg-[#073B3A] px-10 py-[15px] text-white">
-            Add New Product
-          </button>
+          <Button color="primary">Add New Product</Button>
         </div>
       </div>
     );
@@ -68,7 +72,7 @@ const Sell = () => {
   return (
     <>
       <main>
-        <div className="mb-10">
+        <div className="mb-20 sm:mb-10">
           <h2>Products</h2>
         </div>
         {/* product count */}

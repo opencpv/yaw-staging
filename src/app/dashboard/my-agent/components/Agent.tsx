@@ -17,15 +17,13 @@ export default function Agent() {
       </div>
       <div className="space-y-1">
         <h3 className="font-semibold">My Agent one</h3>
-        <p className="text-shade-200 lg:text-xl">
-          Date Created : 15 Aug. 2023 13:55pm
-        </p>
+        <p className="text-shade-200">Date Created : 15 Aug. 2023 13:55pm</p>
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2 pt-4 xs:pt-2">
-          <div className="flex items-center gap-2 rounded-xl bg-[#F1F1F1] px-2 py-1 ">
+          <div className="flex items-center gap-2 rounded-full bg-[#F1F1F1] px-2 py-1.5">
             <CaAgentTickGreenBg />
             <p>Completed</p>
           </div>
-          <p className="text-shade-200 lg:text-xl">5 Aug. 2023 13:55pm</p>
+          <p className="text-shade-200">5 Aug. 2023 13:55pm</p>
         </div>
       </div>
     </div>

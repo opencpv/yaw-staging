@@ -53,7 +53,7 @@ export default function RootLayout({
     >
       <Script src="https://widget.cloudinary.com/v2.0/global/all.js" />
       <body
-        className={`bg-white text-neutral-800 light ${openSansLocal.className} ${openSans.className}`}
+        className={`bg-white text-neutral-800 light ${openSans.className} ${openSansLocal.className}`}
       >
         <Providers>
           <MenuWrapper>
