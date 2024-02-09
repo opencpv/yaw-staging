@@ -16,8 +16,8 @@ function GetNotifiedInputTabs() {
         aria-label="Tabs variants"
         // radius="full"
         classNames={{
-          base: " w-full flex flex-wrap sm:w-fit rounded-2xl p-[0.5rem] md:overflow-hidden bg-[#FFFFFFA3] max-h-[60px]  xs:max-w-[345px] overflow-x-scroll ",
-          tabList: "flex overflow-x-scroll justify-between gap-4 p-0",
+          base: " w-full flex justify-between xs:w-fit rounded-2xl p-[0.5rem] md:overflow-hidden bg-[#FFFFFFA3] max-h-[60px]  xs:max-w-[345px] overflow-x-scroll ",
+          tabList: "w-full flex overflow-x-scroll justify-between gap-4 p-0",
           tab: "  w-[10.5rem] text-black  rounded-2xl h-[44px]",
           tabContent:
             "text-shade-300 text-[1rem] capitalize group-data-[selected=true]:text-white group-data-[selected=true]:font-semibold leading-[22.4px]",

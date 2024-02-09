@@ -12,7 +12,7 @@ function TemporayLandingPage() {
   const { icons } = useAssets();
   return (
     <div
-      className={`flex flex-col gap-8 bg-[url('/assets/images/temporary-landing/house.png')] w-full h-full min-h-[100vh] px-5 lg:px-20 py-10 bg-cover bg-no-repeat items-center justify-center relative ${styles.tempImage}`}>
+      className={`flex flex-col gap-8 bg-[url('/assets/images/temporary-landing/house.png')] w-full h-full min-h-[100vh] px-5 lg:px-20 py-10 bg-cover bg-no-repeat items-center justify-between xs:justify-center relative ${styles.tempImage}`}>
       <div className=" absolute  right-5 top-10 lg:left-5 w-full max-w-[72px] lg:max-w-[100px] 2xl:max-w-[150px] aspect-[72/52] lg:aspect-[150/110]">
         <div className="relative w-full aspect-[72/52] lg:aspect-[150/110]">
           <Image  src={icons.Logo} alt="RentRightGH logo" fill />
@@ -26,11 +26,11 @@ function TemporayLandingPage() {
           <WhatWeDo />
         </div>
 
-        <div className="mt-14  flex flex-col ">
+        <div className="mt-7 lg:mt-14  flex flex-col ">
           <GetNotifiedInput />
         </div>
       </div>
-      <div className="sm:absolute bottom-0 w-full pt-10 2xl:pb-10">
+      <div className="sm:absolute bottom-0 w-full pt-10 xl:pb-2 2xl:pb-10">
         <TlpFooter />
       </div>
     </div>
