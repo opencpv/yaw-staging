@@ -21,7 +21,7 @@ function GetNotifiedInputTabs() {
           tab: "  w-[10.5rem] text-black  rounded-2xl h-[44px]",
           tabContent:
             "text-shade-300 text-[1rem] capitalize group-data-[selected=true]:text-white group-data-[selected=true]:font-semibold leading-[22.4px]",
-          cursor: "bg-[#396261] text-shade-50 rounded-2xl ",
+          cursor: "!bg-[#396261] text-shade-50 rounded-2xl ",
         }}
         selectedKey={optionSelect}
         onSelectionChange={(selectedOption) =>
