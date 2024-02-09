@@ -29,20 +29,22 @@ const PaginationTab = ({ active, icon, name, link }: PaginationTabProps) => {
     <Link href={link} draggable={false}>
       <PgItem
         type={LowerCase(active) === LowerCase(name) ? "active" : undefined}
-        className={`flex max-h-[52px] min-h-[40px] min-w-[160px] cursor-pointer flex-row items-center justify-center gap-[0.775rem] rounded-[.75rem] px-[1rem] py-[0.875rem] text-2xl font-semibold text-[#B0B0B0] transition-all lg:min-h-[85px] lg:max-w-none lg:flex-col ${name}`}
+        className={`flex max-h-[52px] min-w-[160px] cursor-pointer items-center justify-center gap-3 rounded-xl px-4 py-3 text-2xl font-semibold text-[#B0B0B0] transition-all lg:max-w-none ${name}`}
         draggable={false}
       >
-        <div className="flex h-full w-full items-center justify-center">
-          {icon}
-        </div>{" "}
-        <p
-          className="unselectable cursor-pointer whitespace-nowrap text-lg capitalize 2xl:text-2xl"
-          unselectable="on"
-          onSelectCapture={() => false}
-          onMouseDown={() => false}
-        >
-          {name}
-        </p>
+        <div className="flex flex-row gap-3 lg:flex-col">
+          <div className="flex h-full w-full items-center justify-center">
+            {icon}
+          </div>
+          <p
+            className="unselectable cursor-pointer whitespace-nowrap text-lg capitalize"
+            unselectable="on"
+            onSelectCapture={() => false}
+            onMouseDown={() => false}
+          >
+            {name}
+          </p>
+        </div>
       </PgItem>
     </Link>
   );

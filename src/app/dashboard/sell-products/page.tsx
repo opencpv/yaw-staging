@@ -1,7 +1,5 @@
 "use client";
 
-import { openSans } from "@/styles/font";
-import { Button } from "@/components/ui/button";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import supabase from "@/lib/utils/supabaseClient";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
@@ -53,26 +51,25 @@ const Sell = () => {
 
   const AddProduct = () => {
     return (
-      <div className="flex justify-center lg:mt-[111px]">
-        <div className="flex flex-col items-center">
-          <Image
-            src={images.Clipboard}
-            alt="no products image"
-            className="mb-8"
-          />
-          <p className="mb-5 font-semibold">No items Added</p>
-          <button className=" rounded-md bg-[#073B3A] px-10 py-[15px] text-white">
+      <div className="flex justify-center lg:mt-20">
+        <div className="flex flex-col items-center gap-6">
+          <Image src={images.Clipboard} alt="clipboard" width={250} />
+          <p className="text-2xl font-semibold text-neutral-600">
+            No item Added
+          </p>
+          <button className=" rounded-xl bg-[#073B3A] px-10 py-[15px] text-white">
             Add New Product
           </button>
         </div>
       </div>
     );
   };
+
   return (
     <>
-      <main className={`    px-[32px]`}>
-        <div className="mb-5 lg:mt-[32px]">
-          <p className="font text-[31px] font-semibold">Products</p>
+      <main>
+        <div className="mb-10">
+          <h2>Products</h2>
         </div>
         {/* product count */}
         {products.length > 0 ? (
@@ -81,7 +78,7 @@ const Sell = () => {
           </p>
         ) : null}
         {/* table :visible on desjtop only */}
-        <div className="hidden gap-y-[6px]  lg:grid  lg:grid-cols-5">
+        <div className="hidden gap-y-[6px] lg:grid lg:grid-cols-5">
           {/* header */}
           <p className="hidden bg-[#396261] py-4 text-center text-white lg:block ">
             Product
@@ -110,14 +107,14 @@ const Sell = () => {
         ))}
         {/* if product count is zero display this */}
         {products.length == 0 ? <AddProduct /> : null}
-        <div className="mt-8 flex justify-center lg:justify-end">
+        {/* <div className="mt-8 flex justify-center lg:justify-end">
           <Link
             href="/dashboard/sell-products/add-new-product"
             className=" rounded-md bg-[#073B3A] px-10 py-[15px] text-white"
           >
             Add New Product
           </Link>
-        </div>
+        </div> */}
       </main>
     </>
   );
