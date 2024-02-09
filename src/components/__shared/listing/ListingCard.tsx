@@ -82,10 +82,10 @@ const ListingCard = (props: ListingCardInterface) => {
             </div>
           </div>
 
-          {/* For favourites only */}
+          {/* For favourites and recommendations only */}
           <div
             className={
-              props.isMyFavoritePage
+              props.isMyFavoritePage || props.isRecommendationsPage
                 ? "absolute inset-0 z-30 flex h-full w-full -translate-x-full items-center justify-center rounded-[inherit] bg-black bg-opacity-30 transition-all delay-500 group-hover:translate-x-0"
                 : "hidden"
             }
@@ -96,7 +96,7 @@ const ListingCard = (props: ListingCardInterface) => {
                 label="View Property"
                 icon="eye open"
               />
-              {props.liked && (
+              {props.liked && !props.isRecommendationsPage && (
                 <Button
                   variant="ghost"
                   className="gap-3 text-lg font-semibold text-neutral-300 underline"
@@ -108,7 +108,9 @@ const ListingCard = (props: ListingCardInterface) => {
             </div>
           </div>
           {props.images?.map((image, index) =>
-            props.showOnlyImage || props.isMyFavoritePage ? ( // when only images show without pagination or controls
+            props.showOnlyImage ||
+            props.isMyFavoritePage ||
+            props.isRecommendationsPage ? ( // when only images show without pagination or controls
               <>
                 {index === 0 && (
                   <SwiperSlide key={index}>
