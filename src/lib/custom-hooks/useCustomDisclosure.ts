@@ -50,7 +50,7 @@ export const useToastDisclosureVariant1 = () => {
       progress: 1,
       theme: "dark",
       progressStyle: { background: "#396261" },
-      bodyStyle: { paddingRight: "2.5rem" },
+      bodyStyle: { paddingRight: "2.5rem", },
       style: variants[variant],
     });
 
