@@ -14,6 +14,7 @@ interface ListingCardInterface extends ListingInterface {
   city?: string;
   showOnlyImage?: boolean;
   isMyFavoritePage?: boolean;
+  isRecommendationsPage?: boolean;
   showNotViewed?: boolean;
   isViewed?: boolean;
 }

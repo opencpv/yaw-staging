@@ -82,7 +82,7 @@ export const PgRoutesRenter = [
     name: "recommendations",
     url: "",
     icon: <MdOutlineRecommend />,
-    link: "/dashboard/favourite",
+    link: "/dashboard/recommendations",
   },
   {
     name: "settings",
