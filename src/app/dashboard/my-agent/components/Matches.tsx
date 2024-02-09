@@ -104,10 +104,6 @@ const PropertyRowSm = () => {
             <SchedulePhysicalTourModal active={active == "live"} />
           </div>{" "}
         </div>
-        <div className="flex gap-5">
-          <ViewModal />
-          <DeleteModal />
-        </div>
       </div>
     </div>
   );

@@ -10,6 +10,7 @@ const Search = ({ className }: { className?: string }) => {
         className,
       )}
       inputClassName="rounded-[4px] border-0 px-4 py-1"
+      separatorClassName="h-[60%]"
     />
   );
 };
