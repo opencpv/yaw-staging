@@ -24,11 +24,11 @@ function GetNotifiedInput() {
   } = useContactForm();
 
   return (
-    <Root className={`flex flex-col sm:flex-row gap-10 w-full ${styles.root}`}>
-      <div className="flex flex-col gap-4 w-full  ">
+    <Root className={`flex flex-col sm:flex-row gap-6 sm:gap-10 w-full ${styles.root}`}>
+      <div className="flex flex-col gap-4 w-full">
         <p
-          className="text-[#F2B94E] font-semibold 
-        text-[1.5625rem] leading-[2.1875rem] whitespace-nowrap">
+          className="text-[#F2B94E] font-semibold text-20 w-full text-center lg:text-left
+        lg:text-[1.5625rem] leading-[2.1875rem] xs:whitespace-nowrap">
           Get notified when we go live!
         </p>
 
@@ -42,7 +42,7 @@ function GetNotifiedInput() {
           handleSubmit(values, setFieldError, phone)
         }}>
         {({ handleBlur, handleChange, values, errors }) => (
-          <Form className="flex flex-col items-center gap-4 w-full max-w-[345px]">
+          <Form className="flex flex-col items-center gap-4 w-full sm:max-w-[345px]">
             {optionSelect == "email" && (
               <input
                 required
