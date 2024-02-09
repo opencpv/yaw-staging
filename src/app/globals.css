@@ -126,7 +126,7 @@ small {
 }
 
 .Toastify__toast-container {
-  @apply flex items-center justify-center;
+  @apply flex items-center justify-center flex-col;
 }
 
 .unselectable {
