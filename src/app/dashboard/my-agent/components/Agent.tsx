@@ -41,7 +41,9 @@ export default function Agent({
             className="min-w-fit xsm:min-w-[8rem]"
           />
         ) : (
-          <EditModal />
+          <ClientOnly>
+            <BeMyAgentModal button="Edit" />
+          </ClientOnly>
         )}
       </div>
       <div className="space-y-1">
@@ -51,16 +53,24 @@ export default function Agent({
           <span>
             {state === "default" ? (
               <div className="group flex w-fit flex-col gap-1">
-                <Button variant="ghost" href="" className="mt-1 flex-1">
-                  Not started
-                </Button>
+                <ClientOnly>
+                  <BeMyAgentModal
+                    button="Ghost"
+                    content="Not Started"
+                    buttonClassName="mt-1 flex-1"
+                  />
+                </ClientOnly>
                 <div className="h-0 w-0 flex-1 border-b border-neutral-800 transition-all group-hover:h-[1px] group-hover:w-full"></div>
               </div>
             ) : state === "started" ? (
               <div className="group flex w-fit flex-col gap-1">
-                <Button variant="ghost" href="" className="mt-1 flex-1">
-                  Continue
-                </Button>
+                <ClientOnly>
+                  <BeMyAgentModal
+                    button="Ghost"
+                    content="Continue"
+                    buttonClassName="mt-1 flex-1"
+                  />
+                </ClientOnly>
                 <div className="h-0 w-0 flex-1 border-b border-neutral-800 transition-all group-hover:h-[1px] group-hover:w-full"></div>
               </div>
             ) : (

@@ -7,10 +7,14 @@ import BeMyAgentForm from "./components/BeMyAgentForm";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { BeMyAgentFormType } from "./components/types";
 import { ClientOnly } from "@/components/ui/ClientOnly";
+import Button from "@/components/__shared/ui/button/Button";
+import { MdOutlineEdit } from "react-icons/md";
+import { cn } from "@/lib/utils";
 
 type Props = {
-  button?: "Hire Us Now" | "Get Started";
+  button?: "Hire Us Now" | "Get Started" | "Ghost" | "Edit";
   buttonClassName?: string;
+  content?: React.ReactNode;
 };
 
 const BeMyAgentModal = (props: Props) => {
@@ -38,13 +42,28 @@ const BeMyAgentModal = (props: Props) => {
             variant={"green-dark"}
             className={props.buttonClassName}
           />
-        ) : (
+        ) : props.button === "Ghost" ? (
+          <Button variant="ghost" className={props.buttonClassName}>
+            {props.content}
+          </Button>
+        ) : props.button === "Edit" ? (
+          <Button
+            isIconOnly
+            title="Edit"
+            className={cn(
+              "flex w-fit items-center justify-center rounded-md bg-[#F1F1F1] p-4 text-neutral-800",
+              props.buttonClassName,
+            )}
+          >
+            <MdOutlineEdit size={16} />
+          </Button>
+        ) : props.button === "Hire Us Now" ? (
           <AgentButtons
             content="Hire Us Now !!"
             variant={"green-dark"}
             className={props.buttonClassName}
           />
-        )}
+        ) : null}
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="data-[state=open]:animate-overlayShow fixed inset-0 z-50 bg-blackA6" />
