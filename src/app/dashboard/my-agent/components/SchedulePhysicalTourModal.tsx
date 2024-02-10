@@ -23,8 +23,8 @@ export default function SchedulePhysicalTourModal({ active }: Props) {
     <div className="w-full">
       <Button
         onPress={onOpen}
-        className={`h-10 w-full gap-2  bg-[#ECF2F3] font-semibold text-shade-200 lg:h-14 lg:max-w-[284px] ${
-          active && "bg-[#45808B] text-white"
+        className={`h-10 w-full gap-2 bg-[#ECF2F3] font-semibold text-shade-200 hover:bg-primary-200 hover:text-white lg:h-14 lg:max-w-[284px] ${
+          active && "bg-primary-200 text-white"
         }`}
       >
         {" "}

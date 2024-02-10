@@ -148,7 +148,7 @@ const Pagination = () => {
         </button>
       )} */}
       <Button
-        className="hidden h-full w-16 items-center justify-center rounded-xl bg-[#45808B] px-4 py-3 text-white md:flex lg:h-24 lg:min-w-unit-16 lg:px-2"
+        className="hidden h-full w-16 items-center justify-center rounded-xl bg-primary-200 px-4 py-3 text-white md:flex lg:h-24 lg:min-w-unit-16 lg:px-2"
         onClick={() => setIsOpen(true)}
       >
         <div className="flex items-center justify-center">
