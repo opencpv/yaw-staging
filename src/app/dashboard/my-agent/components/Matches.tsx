@@ -137,8 +137,7 @@ const PropertyRow = () => {
         </div>
         <div className="flex flex-col justify-between gap-[0.62rem]">
           <h4 className="truncate font-semibold">
-            Single Room Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Autem, amet.
+            Single Room
           </h4>
           <p className="-mt-3 truncate text-[0.8125rem] text-[#B0B0B0]">
             Assin Fosu
