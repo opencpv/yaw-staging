@@ -22,11 +22,11 @@ const MyAgentLayout = ({ children }: { children: React.ReactNode }) => {
           <InfoText content="Pay absolutely nothing if you rent one of the searches we find for you." />
           <div className="flex w-full flex-col gap-6 lg:w-fit lg:flex-row lg:items-center">
             <div className="flex flex-wrap items-center justify-between gap-6 xs:justify-start">
-              <p className="whitespace-nowrap text-xl">Service Fee</p>
+              <p className="whitespace-nowrap text-lg">Service Fee</p>
               <AgentButtons
                 variant="price"
                 content="GHS 250.00"
-                className="justify-end xs:justify-center"
+                className="justify-end text-lg xs:justify-center"
               />
             </div>
             <div
