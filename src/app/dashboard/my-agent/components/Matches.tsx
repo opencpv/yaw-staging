@@ -47,7 +47,7 @@ const PropertyRowSm = () => {
   const [active, setActive] = useState<"rent" | "virtual" | "live">("rent");
   return (
     <div
-      className={`flex cursor-pointer grid-cols-4 flex-col rounded-lg  border border-primary-100 px-[10px] py-4 hover:bg-primary-300/20 lg:grid
+      className={`flex cursor-pointer grid-cols-4 flex-col rounded-lg  border px-[10px] py-4 hover:bg-primary-300/20 lg:grid
     ${styles.property_matches_card}
     `}
     >

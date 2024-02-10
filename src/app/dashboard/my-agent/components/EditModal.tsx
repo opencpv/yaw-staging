@@ -31,7 +31,7 @@ export default function EditModal() {
             <>
               <ModalBody className=" py-3">
                 <div className="flex flex-col gap-8">
-                  <div className="flex aspect-square max-w-[48px] items-center justify-center rounded-[1.75rem] border-[8px] border-error-50 bg-[#E9ECEF]">
+                  <div className="flex aspect-square max-w-[48px] items-center justify-center rounded-[1.75rem] border-[8px] border-error-50 bg-[#E9ECEF]" title="Edit">
                     <MdInfoOutline size={24} />
                   </div>
                   <div>
