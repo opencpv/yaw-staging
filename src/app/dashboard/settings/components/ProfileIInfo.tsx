@@ -7,8 +7,8 @@ import { IoLogoWhatsapp } from "react-icons/io";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Loader from "@/components/__shared/loader/Loader";
-import ProfilePhone from "./ProfilePhone";
-import { useManageAccountStore } from "@/store/dashboard/propertiesStore";
+import { useAppStore } from "@/store/dashboard/AppStore";
+import PhoneNumberInputv2 from "@/components/__shared/PhoneInputv2";
 
 interface Props {
   icon: any;
@@ -20,27 +20,19 @@ interface Props {
   defaultValue?: string;
 }
 
-const IconField = ({
-  icon,
-  label,
-  type,
-  name,
-  className,
-  placeholder,
-  defaultValue,
-}: Props) => {
+const IconField = ({ icon, label, type, name, className, placeholder, defaultValue }: Props) => {
   return (
     <div className="form-div relative">
       <div className="flex gap-2 items-center">
         {icon}
-        <label className="text-[#737373]">{label}:</label>
+        <label className="text-gray-500">{label}:</label>
       </div>
-      <AiOutlineLink className="link-icon absolute" size="16" color="#737373" />
+      <AiOutlineLink className="link-icon absolute" size={16} color="#737373" />
 
       <Field
         type={type}
         name={name}
-        className={`${className}`}
+        className={className}
         style={{ paddingInline: "2.5rem" }}
         placeholder={placeholder}
       />
@@ -53,25 +45,25 @@ const IconField = ({
 const ProfileInfo = ({
   profileData,
   supabase,
-  loading,
 }: {
   profileData: any;
   supabase: any;
-  loading: boolean;
 }) => {
   const [countries, setCountries] = useState([]);
   const [currentData, setCurrentData] = useState<any>({});
   const [phone, setphone] = useState<string>("");
   const [code, setCode] = useState<string>("");
   const [submitLoading, setSubmitLoading] = useState(false);
+  const user = useAppStore((state) => state.user);
+  const [loading, setloading] = useState(true);
 
-  const handlePhone = (str: string) => {
-    setphone(str);
-  };
 
-  const handleCode = (str: string) => {
-    setCode(str);
-  };
+  useEffect(() => {
+    if (user) {
+      setloading(false)
+      console.log("user", user)
+    }
+  }, [user]);
 
   useEffect(() => {
     axios
@@ -93,35 +85,35 @@ const ProfileInfo = ({
       {loading ? (
         <Loader />
       ) : (
-        <>
+        <>{user && <>
           <div className="py-10 pt-6">
-            <p>{currentData?.fullname}</p>
+            <p>{user?.fullname}</p>
             <p>Your Profile Picture</p>
             <div className="max-w-[227px] max-h-[164px] w-full relative aspect-[227/164] rounded-[18px] mt-5 border-">
-              <Image
-                src={currentData.avatar_url}
+              {user?.avatar_url !== undefined ? <Image
+                src={user?.avatar_url}
                 placeholder="blur"
                 objectFit="cover"
                 loading="eager"
                 blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAHPAzcDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAECAwb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APJAAAAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAACAAAAIqAAAIqAAAAAIqAAAAAAAIqAAAAAAAoAAAAAAACooAAAAAAAAAAKAAAAAAADQAAAAAAACoAoAAAAAAAAAAAAAAAAAAAAAAAAAAACKgAAAACKgAAAACKgAACKgAAAACKgAAAAAACAAAAAAACiKAAAAAAAACgAAAAAAAAAKgCgAAAAA0AAAAAAAAAAqAKIoAAAAAAAAAAAAAAAAAAAAAICoAAAAAAIAAAAAACAAAAgAAAAAIAAAAAAACAAAAAAAAKgCgAAAAAAAKigAAAAAAAAAAAAAAogDYAAAAAAAAAAAAAAAKIAogCiAKIoAICiAKIAogCoAAAAAAAAgAAAAAAAgAAAIqAAAAAAgAAAAAACKgAAAAAAAAAAKIoAAAAAAAAKIAoAAAAAAAAAAAAANgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAIAAAAAIAAAAAAgAAAAAAAIAAAAAAAAAAAAAACiAKAAAAAAAAqAKIAoAAAAAAAAANiAKIAogCiAKIAogCiAKAAAAAAAACAogCiAKIAogAAAAAAAAAIAqAAAACAqAAAAAACAAAAAAAAgAAAAAAAAAAAAAAAAAACoAoigAAAAAAAAAAAAKgCiAKIA2AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAogCoAAAAAAICoAAAAAAAAgAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAKgCiAKAAAAAAAAAAAAADYAAAAAAAAAAAAAAAAAAAAAAgCiAKIAAAAAAAAACAKIAAAAAAAAACAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACiAKIAogCiAOgAAAAAAAAgCiAKIAqAAAAAAAAAAAAAAIAogAAAAAAAAAAAIAqAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2AAAAAAAAAAAAAAAAAACAogCiAAAAAAAAAAAAICiAAAAAAAAAAAAgCoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANgAAAAAAAAAAgKIAogAAAAAAAAAAAAACAogAAAAAAAAAAAIAqAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADYgCiAKIAAAAAAAAAAAAAAAAAAACAKgAAAAAAAAAAgKIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAKIAogCiAKIAogCiANgAAAAAAAAAAAAAAAAAAAAgKgAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAICiAKIAqAAAAAAAAAAAAAAAAAAAAADYAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAioAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAogCoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANgAAAAAAAAAAAAACAAAAAAAAAAAAAAAAACKgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADYgCiAKIAogCiAKgAAAAAAAAAAAAAAAAAAAAAAAgqAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoCCgIKAgoCgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgqAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgqAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAACgAAAAAAAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgqAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAACooAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAigIAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAACgAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAKIoAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAIqAAAAAAAAAAAAAAAAAAAAAAAAAAAKgCgAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAICoAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACiAKAAAAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACiAKIAogCgAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAioAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//2Q=="
                 alt="User picture"
                 fill
-              />
+              /> : <Loader />}
             </div>
           </div>
-          <Formik
+          {user?.id == undefined ? <Loader /> : <Formik
             key={JSON.stringify(profileData)}
             initialValues={{
-              firstName: currentData.firstname,
-              lastName: currentData.lastname,
-              email: currentData.email,
-              country: currentData.country,
-              twitter: currentData.twitter_url,
-              facebook: currentData.facebook_url,
-              linkedIn: currentData.linkedin_url,
-              whatsapp: currentData.whatsapp,
-              bio: currentData.bio,
-              number: currentData.phone,
+              firstName: user?.firstname,
+              lastName: user?.lastname,
+              email: user?.email, user,
+              country: user?.country,
+              twitter: user?.twitter,
+              facebook: user?.facebook,
+              linkedIn: user?.linkedin,
+              whatsapp: user.whatsapp,
+              bio: user?.bio,
+              number: user?.phone,
             }}
             onSubmit={async (values) => {
               const dto = values;
@@ -140,11 +132,10 @@ const ProfileInfo = ({
                     linkedin: values.linkedIn,
                     whatsapp: values.whatsapp,
                     phone,
-                    code,
                     bio: values.bio,
                   })
                   .select()
-                  .eq("id", profileData.id);
+                  .eq("id", user.id);
 
                 console.log("Response data:", data);
                 if (error) throw error;
@@ -216,15 +207,16 @@ const ProfileInfo = ({
                     </div>
 
                     <div className="form-div">
-                      <label>Phone:</label>
-                      <div className="flex gap-4 max-w-[422px] ">
-                        <ProfilePhone
-                          phoneChange={handlePhone}
-                          codeChange={handleCode}
-                          defaultValue={profileData?.country}
-                          phone={profileData?.country}
-                        />
-                      </div>
+                      <PhoneNumberInputv2
+                        label="Phone"
+                        onChange={(selection) => {
+                          setphone(selection);
+                        }}
+                        onChange2={(selection) => {
+                        }}
+                        placeholder="Select your country"
+                        initialValue={user.phone}
+                      />
                     </div>
                   </div>
                 </div>
@@ -274,8 +266,8 @@ const ProfileInfo = ({
                       name="bio"
                       placeholder="Enter your bio"
                       className="form-input-textarea px-4 max-w-[422px]
-                  border-[#E6E6E6] rounded-[4px] text-[#737373]
-                  border py-2"
+                border-[#E6E6E6] rounded-[4px] text-[#737373]
+                border py-2"
                       rows="15" // Optional: Set the number of rows for the text area
                       cols="50" // Optional: Set the number of columns for the text area
                     />
@@ -291,7 +283,7 @@ const ProfileInfo = ({
                       <button
                         type="submit"
                         className="max-w-[160px] max-h-[52px] w-full aspect-[160/52]
-                mt-5 bg-[#DDB771] text-[#ffff] rounded-[8px]">
+              mt-5 bg-[#DDB771] text-[#ffff] rounded-[8px]">
                         Update Profile
                       </button>
                     )}
@@ -299,8 +291,8 @@ const ProfileInfo = ({
                 </div>
               </div>
             </Form>
-          </Formik>
-        </>
+          </Formik>}
+        </>}</>
       )}
     </Root>
   );
@@ -316,7 +308,7 @@ const Root = styled("div", {
   " .form-input": {
     maxHeight: "52px",
     padding: "0.9375rem",
-    maxWidth: "422px",
+
     aspectRatio: "422/52",
     border: "1px solid #E6E6E6",
     borderRadius: "4px",

@@ -11,11 +11,12 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import Link from "next/link";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import Logo from "@/components/__shared/Logo";
+import Loader from "@/components/__shared/loader/Loader";
 
 const Navbar = () => {
   const { icons } = useAssets();
 
-  const { user } = useAppStore();
+  const user = useAppStore((state) => state.user);
 
   const [dashboardType, setDashboardType] =
     useLocalStorage<any>("dashboard-type");
@@ -34,19 +35,19 @@ const Navbar = () => {
         <Switch />
         <div>
           <p className="whitespace-nowrap text-[14px] text-[#fff] md:text-[16px]">
-            {user?.profileData?.full_name}
+            {user?.full_name}
           </p>
         </div>
 
         <NotificationsPopover />
 
         <div className="relative flex min-h-[50px] w-full min-w-[40px] items-center justify-center overflow-hidden rounded-full md:min-w-[50px]">
-          <Image
-            src={user?.profileData?.avatar_url}
+          {user?.avatar_url == undefined ? <Loader /> : <Image
+            src={user?.avatar_url}
             alt="User picture"
             width={50}
             height={50}
-          />
+          />}
         </div>
       </div>
     </Root>

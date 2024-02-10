@@ -14,7 +14,7 @@ const ProfileMainView = () => {
   const supabase = createClientComponentClient();
   const [loading, setLoading] = useState<boolean>(false);
 
-  const { user } = useAppStore();
+  const user  = useAppStore(state=>state.user);
   const optionSelect = useManageAccountStore(
     (state: any) => state.filterOption
   );
@@ -22,12 +22,6 @@ const ProfileMainView = () => {
     (state: any) => state.changeOption
   );
 
-  useEffect(() => {
-    const result = supabase.auth.getUser();
-    console.log(result);
-    !user?.profileData && setLoading(true);
-    user?.profileData && setLoading(false);
-  }, [user?.profileData]);
 
   return (
     <main className="pb-[60px]">
@@ -57,7 +51,6 @@ const ProfileMainView = () => {
             <ProfileInfo
               profileData={user?.profileData}
               supabase={supabase}
-              loading={loading}
             />
           </div>
         </Tab>
