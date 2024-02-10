@@ -52,7 +52,7 @@ const OptionFilterTabs = (
                 ? "bg-slate-100"
                 : "bg-transparent",
             variant === "gradient" ? "px-12 h-10 flex-initial" : "px-4 flex-1",
-            "w-auto max-w-[200px]",
+            "w-auto w-full sm:max-w-[200px] sm:w-fit",
             variant === "gradient"
               ? "data-[selected=true]:bg-gradient-to-r data-[selected=true]:from-[#21A19F] data-[selected=true]:to-[#1EA9A6A1]"
               : "data-[selected=true]:bg-primary-200",

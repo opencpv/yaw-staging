@@ -33,9 +33,9 @@ const TagsSelect = () => {
   };
 
   return (
-    <div className="flex justify-center">
+    <div className="w-full justify-center px-5 sm:flex sm:px-0">
       <div className="">
-        <section className="flex flex-col flex-wrap items-center justify-center gap-8 sm:flex-row">
+        <section className="flex w-full flex-col flex-wrap items-center justify-center gap-8 sm:w-[initial] sm:flex-row">
           <div className="">
             <OptionFilterTabs
               variant="gradient"
