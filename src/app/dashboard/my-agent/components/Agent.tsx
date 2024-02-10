@@ -4,6 +4,8 @@ import CaAgentTickGreenBg from "./icons/CaAgentTickGreenBg";
 import AgentButtons from "./Button";
 import Link from "next/link";
 import Button from "@/components/__shared/ui/button/Button";
+import BeMyAgentModal from "@/app/components/be-my-agent-form";
+import { ClientOnly } from "@/components/ui/ClientOnly";
 
 type Props = {
   state: "started" | "default" | "completed";
@@ -19,7 +21,7 @@ export default function Agent({
   dateCompleted,
 }: Props) {
   return (
-    <div className="flex h-full w-full max-w-[543px] flex-col items-start justify-center gap-4 rounded-2xl border border-[#E6E6E6] px-8 py-6">
+    <div className="flex h-full w-full max-w-[543px] flex-col items-start justify-center gap-4 rounded-2xl border border-[#E6E6E6] px-8 py-6 lg:max-w-full">
       <div className="flex w-full flex-wrap justify-between gap-5">
         <Image
           src={"/assets/svgs/agent-icon-handshake.svg"}
@@ -29,7 +31,9 @@ export default function Agent({
           className="h-[70px] w-[70px] sm:h-[100px] sm:w-[100px]"
         />
         {state === "default" ? (
-          <AgentButtons content="Get Started" variant={"green-dark"} />
+          <ClientOnly>
+            <BeMyAgentModal button="Get Started" />{" "}
+          </ClientOnly>
         ) : state === "completed" ? (
           <AgentButtons
             content="View"

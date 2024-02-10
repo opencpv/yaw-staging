@@ -35,7 +35,7 @@ const BeMyAgentModal = (props: Props) => {
         {props.button === "Get Started" ? (
           <AgentButtons
             content="Get Started"
-            variant={"green-fade-light"}
+            variant={"green-dark"}
             className={props.buttonClassName}
           />
         ) : (

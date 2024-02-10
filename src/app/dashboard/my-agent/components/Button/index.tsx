@@ -54,7 +54,7 @@ export default function AgentButtons({
           href={href}
           as={href ? Link : undefined}
           className={cn(
-            "flex w-full max-w-fit items-center justify-center rounded-lg bg-[#073B3A]  p-6 px-8 font-semibold text-white transition-all hover:scale-[1.02] lg:min-w-[8rem]",
+            "flex w-full max-w-fit items-center justify-center rounded-lg bg-[#073B3A] p-6 px-8 font-semibold text-white transition-all hover:scale-[1.02] lg:min-w-[8rem]",
             className,
           )}
           onPress={onClick}

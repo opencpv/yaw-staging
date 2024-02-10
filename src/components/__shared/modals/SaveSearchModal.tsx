@@ -108,27 +108,18 @@ const RecentSearch = ({ title, date }: { title: string; date: string }) => {
 
   return (
     <div className="grid grid-cols-9 gap-6 ssm:items-center">
-      <div className="col-span-8 ssm:col-span-4">
+      <div className="col-span-5 xs:col-span-6 ssm:col-span-4">
         <p className="truncate font-medium text-shade-300" title={title}>
           {title}
         </p>
-        {/* shows on mobile */}
-        <div className="mt-2 flex items-center justify-between gap-5 ssm:hidden ssm:justify-start">
-          <p className="col-span-2 text-shade-200">{date}</p>
-          <Button
-            variant="outline"
-            color="primary"
-            className="col-span-2 px-1 font-normal"
-          >
-            Run Search
-          </Button>
-        </div>
+        {/* shows only on mobile */}
+        <p className="mt-2 text-shade-200 ssm:hidden">{date}</p>
       </div>
       <p className="col-span-2 hidden text-shade-200 ssm:inline-grid">{date}</p>
       <Button
         variant="outline"
         color="primary"
-        className="col-span-2 hidden px-1 font-normal ssm:flex"
+        className="col-span-3 px-1 font-normal xs:col-span-2"
       >
         Run Search
       </Button>
