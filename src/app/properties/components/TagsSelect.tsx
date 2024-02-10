@@ -11,6 +11,7 @@ import React, { useState } from "react";
 import { FaCaretDown } from "react-icons/fa";
 import AdvancedForm from "./AdvancedForm";
 import OptionFilterTabs from "@/components/__shared/OptionFilterTabs";
+import Toggle from "@/components/ui/Toggle";
 
 type FilterOption =
   | "all"
@@ -74,12 +75,7 @@ const TagsSelect = () => {
           </div>
           <div className="flex items-center justify-center gap-2">
             <div className="">
-              <Switch
-                classNames={{
-                  base: "group-data-[selected=true]:bg-accent-50",
-                }}
-                size="sm"
-                color="warning"
+              <Toggle
                 isSelected={isAdvancedActive}
                 onValueChange={handleIsActive}
               />
