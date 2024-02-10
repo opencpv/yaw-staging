@@ -78,8 +78,8 @@ const TagsSelect = () => {
               <Toggle
                 isSelected={isAdvancedActive}
                 onValueChange={handleIsActive}
+                label="Advanced search"
               />
-              Advanced search
             </div>
           </div>
         </section>
