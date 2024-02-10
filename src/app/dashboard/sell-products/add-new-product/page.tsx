@@ -1,5 +1,6 @@
+// @ts-nocheck
+
 "use client";
-import { openSans } from "@/styles/font";
 import { styled } from "@stitches/react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -15,10 +16,9 @@ import {
 import { FaCaretDown } from "react-icons/fa";
 
 import { Switch } from "@nextui-org/react";
+import { openSans } from "@/styles/font";
 import CustomRadioInput from "@/app/components/CustomRadioInput";
-import CustomInputComponent from "@/app/components/CustomInputComponent";
 import PhoneNumberInputv2 from "@/components/__shared/PhoneInputv2";
-import FileUploader from "../components/FileUploader";
 
 interface CategoryProp {
   label: string;
@@ -30,8 +30,9 @@ const AddNewProduct = () => {
   const [image, setImage] = useState<File | null>();
   const [condition, setCondition] = useState<string>("");
   const [negotiable, setNegotiable] = useState<boolean>(false);
-  const [code, setcode] = useState<string>("");
-  const [phone, setphone] = useState<number>(0);
+  const [code, setCode] = useState();
+  const [phone, setPhone] = useState();
+
   useEffect(() => {
     const supabase = createClientComponentClient();
     if (!supabase) {
@@ -58,7 +59,7 @@ const AddNewProduct = () => {
     <Root>
       <main className="w-full px-8">
         <div className="mb-5 lg:mt-[32px] ">
-          <p className="text-[31px] font font-semibold">Add new product</p>
+          <p className="font text-[31px] font-semibold">Add new product</p>
         </div>
         <Formik
           initialValues={{
@@ -74,149 +75,133 @@ const AddNewProduct = () => {
             console.log(values);
           }}
         >
-          {({
-            values,
-            errors,
-            touched,
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            isSubmitting,
-            /* and other goodies */
-          }) => (
-            <form className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-              <div>
-                <div className="form-div">
-                  <CustomInputComponent
-                    type="text"
-                    name="product_name"
-                    handleBlur={handleBlur}
-                    handleChange={handleChange}
-                    values={values}
-                    errors={errors}
-                    touched={touched}
-                    label="Product Name"
-                    placeholder="Enter product name"
-                  />
-                </div>
-                <div className="form-div mt-5">
-                  <div className="form-div">
-                    <label>Category</label>
-                    <Dropdown>
-                      <DropdownTrigger>
-                        <Button
-                          isIconOnly
-                          className="bg-transparent border-[1px] rounded-md flex justify-between  px-2 h-[52px] w-full"
-                        >
-                          <p className="text-[#B4B2AF]">
-                            {selectedCategory == ""
-                              ? "Select product category"
-                              : selectedCategory}
-                          </p>
-                          <FaCaretDown className="text-[#737373]" />
-                        </Button>
-                      </DropdownTrigger>
-                      <DropdownMenu
-                        aria-label="Static Actions"
-                        className="text-neutral-800 w-[300px] text-center"
-                        onAction={(key) => setselectedCategory(key as string)}
-                        items={categories}
-                      >
-                        {categories.map((item, index) => (
-                          <DropdownItem key={item.key}>
-                            {item.label}
-                          </DropdownItem>
-                        ))}
-                      </DropdownMenu>
-                    </Dropdown>
-                  </div>
-                </div>
-                <div className="form-div mt-5">
-                  <label>Price</label>
-                  <div className="flex gap-2">
-                    <div className=" border-[1px] h-fit py-[13px] rounded-md px-8 text-black ">
-                      <p className={`${openSans.className}`}>GHS</p>
-                    </div>
-                    <Field
-                      type="number"
-                      name="price"
-                      // placeholder={firstname}
-                      className="form-input flex-1  outline-none"
-                    />
-                  </div>
-                  <ErrorMessage name="price" />
-                </div>
-                <div className="form-div mt-5">
-                  <label>Description</label>
-                  <Field
-                    as="textarea"
-                    name="description"
-                    // placeholder={firstname}
-                    className="form-input-textarea p-2 h-[238px] border-1 rounded-md outline-none"
-                  />
-                  <ErrorMessage name="description" />
-                </div>
+          <form className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+            <div>
+              <div className="form-div">
+                <label>Product name</label>
+                <Field
+                  type="text"
+                  name="product_name"
+                  // placeholder={firstname}
+                  className="form-input w-full"
+                />
+                <ErrorMessage name="product_name" />
               </div>
-              <div>
+              <div className="form-div mt-5">
                 <div className="form-div">
-                  <label>Condition</label>
+                  <label>Category</label>
                   <Dropdown>
                     <DropdownTrigger>
                       <Button
                         isIconOnly
-                        className="bg-transparent border-[1px] rounded-md flex justify-between  px-2 h-[52px] w-full"
+                        className="flex h-[52px] w-full justify-between rounded-md  border-[1px] bg-transparent px-2"
                       >
                         <p className="text-[#B4B2AF]">
-                          {condition == ""
-                            ? "Select product condition"
-                            : condition}
+                          {selectedCategory == ""
+                            ? "Select product category"
+                            : selectedCategory}
                         </p>
                         <FaCaretDown className="text-[#737373]" />
                       </Button>
                     </DropdownTrigger>
                     <DropdownMenu
                       aria-label="Static Actions"
-                      className="text-neutral-800 w-[300px] text-center"
-                      onAction={(key) => setCondition(key as string)}
+                      className="w-[300px] text-center text-neutral-800"
+                      onAction={(key) => setselectedCategory(key as string)}
+                      items={categories}
                     >
-                      <DropdownItem key="USED">Used</DropdownItem>
-                      <DropdownItem key="NEW">New</DropdownItem>
+                      {(item) => (
+                        <DropdownItem key={item.key}>{item.label}</DropdownItem>
+                      )}
                     </DropdownMenu>
                   </Dropdown>
                 </div>
-                <div className="form-div mt-10">
-                  <CustomRadioInput
-                    label="Negotiable"
-                    defaultValue="no"
-                    onChange={(e) =>
-                      e == "yes" ? setNegotiable(true) : setNegotiable(false)
-                    }
-                    infoBubble={false}
+              </div>
+              <div className="form-div mt-5">
+                <label>Price</label>
+                <div className="flex gap-2">
+                  <div className=" h-fit rounded-md border-[1px] px-8 py-[13px] text-black ">
+                    <p className={`${openSans.className}`}>GHS</p>
+                  </div>
+                  <Field
+                    type="number"
+                    name="price"
+                    // placeholder={firstname}
+                    className="form-input w-full"
                   />
                 </div>
-                <div className="flex mt-10">
-                  <PhoneNumberInputv2
-                    label="Phone"
-                    onChange={(selection) => {
-                      setcode(selection);
-                    }}
-                    onChange2={(selection) => {
-                      setphone(selection);
-                    }}
-                    placeholder="Select your country"
-                  />
-                </div>
+                <ErrorMessage name="price" />
               </div>
-              <div className="w-full h-[100%]">
-                <FileUploader onFileSelect={(file) => {}} />
-                <div className="flex justify-end">
-                  <button className="px-[40px] py-[15px] bg-[#DDB771] rounded-md mt-8 text-white font-semibold">
-                    Add New Product
-                  </button>
-                </div>
+              <div className="form-div mt-5">
+                <label>Description</label>
+                <Field
+                  as="textarea"
+                  name="description"
+                  // placeholder={firstname}
+                  className="form-input-textarea h-[238px] rounded-md border-1 p-2"
+                />
+                <ErrorMessage name="description" />
               </div>
-            </form>
-          )}
+            </div>
+            <div>
+              <div className="form-div">
+                <label>Condition</label>
+                <Dropdown>
+                  <DropdownTrigger>
+                    <Button
+                      isIconOnly
+                      className="flex h-[52px] w-full justify-between rounded-md  border-[1px] bg-transparent px-2"
+                    >
+                      <p className="text-[#B4B2AF]">
+                        {condition == ""
+                          ? "Select product condition"
+                          : condition}
+                      </p>
+                      <FaCaretDown className="text-[#737373]" />
+                    </Button>
+                  </DropdownTrigger>
+                  <DropdownMenu
+                    aria-label="Static Actions"
+                    className="w-[300px] text-center text-neutral-800"
+                    onAction={(key) => setCondition(key as string)}
+                  >
+                    <DropdownItem key="USED">Used</DropdownItem>
+                    <DropdownItem key="NEW">New</DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
+              </div>
+              <div className="form-div mt-5">
+                <CustomRadioInput
+                  label="Negotiable"
+                  defaultValue="no"
+                  onChange={(e) =>
+                    e == "yes" ? setNegotiable(true) : setNegotiable(false)
+                  }
+                  infoBubble={false}
+                />
+              </div>
+              <div className="form-div mt-[47px]">
+                <PhoneNumberInputv2
+                  label="Phone"
+                  onChange={(selection) => {
+                    setCode(selection);
+                  }}
+                  onChange2={(selection) => {
+                    setPhone(selection);
+                  }}
+                  placeholder="Select your country"
+                />
+              </div>
+            </div>
+            <div className="h-[100%] w-full">
+              <div className="h-[100%] w-full rounded-md border-[1px]"></div>
+              <div className="flex justify-end">
+                <button className="mt-8 rounded-md bg-[#DDB771] px-[40px] py-[15px] font-semibold text-white">
+                  Add New Product
+                </button>
+              </div>
+            </div>
+          </form>
         </Formik>
       </main>
     </Root>
@@ -235,8 +220,6 @@ const Root = styled("div", {
   " .form-input": {
     maxHeight: "52px",
     padding: "0.9375rem",
-    maxWidth: "422px",
-    aspectRatio: "422/52",
     border: "1px solid #E6E6E6",
     borderRadius: "4px",
     color: "#737373",

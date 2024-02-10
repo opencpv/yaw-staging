@@ -12,11 +12,16 @@ interface ListingCardInterface extends ListingInterface {
   className?: string;
   cardType?: "1" | "2";
   city?: string;
+  showOnlyImage?: boolean;
+  isMyFavoritePage?: boolean;
+  showNotViewed?: boolean;
+  isViewed?: boolean;
 }
 
 interface RenterPaidFeatureInterface {
-  title: "Be My Agent" | "Be The First To Know";
+  title: "Be My Agent" | "Get Notified";
   href: string;
+  locked: boolean;
   className?: string;
 }
 
@@ -102,7 +107,7 @@ export interface CartProp {
   isQuantityChangable: boolean;
 }
 
-export  interface SentimentSpan {
+export interface SentimentSpan {
   skill: string;
   type: string;
   span: [number, number];
@@ -115,9 +120,9 @@ export  interface SentimentSpan {
   }[];
   value: string;
   data: Record<string, unknown>;
-};
+}
 
-export interface SentimentResponse  {
+export interface SentimentResponse {
   text: string;
   requestId: string;
   stats: {
@@ -126,4 +131,4 @@ export interface SentimentResponse  {
     transcriptionSecondsCount: number;
   };
   sentiments: SentimentSpan[];
-};
+}

@@ -8,7 +8,7 @@ type Props = {};
 const CategoryTabs = (props: Props) => {
   const categoryOption = useBlogCategoryStore((state) => state.filterOption);
   const changeCategoryOption = useBlogCategoryStore(
-    (state) => state.changeCategoryOption
+    (state) => state.changeCategoryOption,
   );
 
   return (
@@ -17,6 +17,7 @@ const CategoryTabs = (props: Props) => {
       selectedKey={categoryOption}
       onSelectionChange={changeCategoryOption}
       radius="small"
+      tabColor="colored"
     />
   );
 };

@@ -6,33 +6,32 @@ import style from "./Feature.module.css";
 import Link from "next/link";
 
 type Props = {
-  title: string;
+  title: "Be The First To Know" | "Be My Agent" | "My Favourites";
   description: string;
   href: string;
-  tag?: "Free" | "Upgrade";
+  tag?: "Free" | "Premium";
 };
 
 const ExploreFeatureCard = (props: Props) => {
   const router = useRouter();
   return (
-    <div className="relative overflow-hidden bg-primary-400 min-w-full flex-1 h-fit px-8 pt-40 pb-20 rounded-xl shadow-large xs:min-w-[20rem]">
+    <div className="relative h-fit min-w-full flex-1 overflow-hidden rounded-xl bg-primary-400 px-8 pb-20 pt-40 shadow-large xs:min-w-[20rem]">
       {props.tag === "Free" ? (
         <div className={`text-[#545454] ${style.ribbonFree}`}>Free</div>
-      ) : props.tag === "Upgrade" ? (
-        <div className={`text-white ${style.ribbonUpgrade}`}>Upgrade</div>
+      ) : props.tag === "Premium" ? (
+        <div className={`text-white ${style.ribbonUpgrade}`}>Premium</div>
       ) : null}
 
-      <div className="text-center space-y-5 text-white">
+      <div className="space-y-5 text-center text-white">
         <h2 className="">{props.title}</h2>
-        <p className="text-sm line-clamp-3">{props.description}</p>
-        <Link href={`${props.href}`} className="inline-block w-full">
-          <Button
-            className="w-full bg-white/60 text-white"
-            arrowIcon
-          >
-            Explore
-          </Button>
-        </Link>
+        <p className="line-clamp-3 text-sm">{props.description}</p>
+        <Button
+          href={props.href}
+          className="w-full bg-white/60 text-white"
+          arrowIcon
+        >
+          View
+        </Button>
       </div>
     </div>
   );

@@ -10,10 +10,11 @@ import CaMarkAsRead from "../icons/CaMarkAsRead";
 import { CustomScroll } from "./CustomScroll";
 
 import { useAppStore } from "@/store/dashboard/AppStore";
+import { useNotificationStore } from "@/store/dashboard/notificationStore";
 
 const NotificationsPopover = () => {
   const [currentNotification, setCurrentNotification] = useState("");
-  const { user } = useAppStore()
+  const notifications = useNotificationStore((state) => state.notifications);
 
   return (
     <Popover.Root>
@@ -47,7 +48,7 @@ const NotificationsPopover = () => {
             </button>
           </div>
           <CustomScroll className="flex flex-col gap-8 max-h-[60vh] overflow-y-scroll">
-            {user?.notifications?.map((r: any, index: number) => (
+            {notifications?.map((r: any, index: number) => (
               <div key={index} onClick={(e) => setCurrentNotification(r?.name)}>
                 <NotificationItem
                   type={r?.type}

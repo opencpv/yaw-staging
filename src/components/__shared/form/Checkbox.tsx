@@ -1,4 +1,5 @@
 "use client";
+import { cn } from "@/lib/utils";
 import { Checkbox as NextUICheckbox } from "@nextui-org/react";
 import React, { useState } from "react";
 
@@ -17,20 +18,21 @@ const Checkbox = ({
   value,
   label,
   labelColor,
+  color,
   labelSize,
 }: CheckboxProps) => {
   return (
     <NextUICheckbox
       classNames={{
-        icon: "text-primary-200",
-        // icon: "text-white bg-primary-200 text-xs rounded-md h-fit w-fit",
-        label: `${labelSize ? labelSize : "text-sm"} ${
-          labelColor ? labelColor : "text-neutral-800"
-        }`,
+        label: `${labelSize ?? "text-sm"} ${labelColor ?? "text-neutral-800"}`,
+        wrapper: [
+          "before:border-neutral-200",
+          color === "primary"
+            ? "after:bg-primary-100 group-data-[focus-visible=true]:ring-primary-100"
+            : "after:bg-accent-50 group-data-[focus-visible=true]:ring-accent-50",
+        ],
       }}
       value={value}
-      color="default"
-      isSelected={isSelected}
       onValueChange={onValueChange}
     >
       {label}

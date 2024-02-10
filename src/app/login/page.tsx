@@ -12,24 +12,19 @@ const Login = () => {
       <Head>
         <title>Login - RentRightGh</title>
       </Head>
-      <main className="grid w-full min-h-screen grid-cols-1 bg-darkGreenBg lg:grid-cols-2">
-        <div className="hidden w-full min-h-screen lg:block lg:relative">
+      <main className="hidden-scrollbar grid h-[100svh] max-h-[100svh] w-full grid-cols-1 overflow-y-auto bg-darkGreenBg lg:grid-cols-2">
+        <div className="hidden min-h-screen w-full lg:relative lg:block">
           <Image
             src={images.StockImage}
-            alt="bg"
+            alt="room"
             fill
             style={{ objectFit: "cover", objectPosition: "center" }}
           />
         </div>
-        <div className="relative flex flex-col justify-between w-full h-full py-5 bg-plane-pattern lg:px-8 lg:py-8">
+        <div className="relative flex h-full w-full flex-col items-center justify-between gap-10 bg-plane-pattern px-5 py-5 lg:py-8">
           <LoginForm />
-          <div className="mt-auto">
-            <LoginFooter />
-          </div>
+          <LoginFooter />
         </div>
-        {/* <div className="w-full col-span-2 ">
-          <Footer />
-        </div> */}
       </main>
     </>
   );

@@ -9,7 +9,7 @@ import MailIcon from "../../../public/assets/icons/mail-icon.svg";
 import ArrowIcon from "../../../public/assets/icons/arrow-icon.svg";
 import Logo from "../../../public/assets/icons/logo.svg";
 import Hamburger from "../../../public/assets/icons/nav-icon.svg";
-import FaqImage from "../../../public/assets/images/faq/faq-image.svg";
+import FaqImage from "../../../public/assets/images/faq/faq-image.png";
 import FaqArrowIcon from "../../../public/assets/icons/arrow-circle-right.svg";
 import ContactImage from "../../../public/assets/images/rafiki.png";
 import StockImage from "/public/assets/images/Stock.jpg";
@@ -25,7 +25,7 @@ import PropertyDetailsBanner from "../../../public/assets/images/properties/prop
 import EditorsChoice from "/public/assets/icons/editors-choice.svg";
 import BestValue from "/public/assets/icons/best-value.svg";
 import PriceDrop from "/public/assets/icons/price-drop.svg";
-import Certified from "/public/assets/icons/certified.svg";
+import Certified from "/public/assets/images/certified.png";
 import Unverified from "/public/assets/icons/unverified.svg";
 import Verified from "/public/assets/icons/verified.svg";
 import ChatIcon from "/public/assets/icons/messages/chat-icon.svg";
@@ -43,9 +43,9 @@ import GetFeaturedImage from "/public/assets/images/dashboard/overview/p-manager
 import VerifyListing from "/public/assets/images/dashboard/overview/p-manager/verify-listings-image.jpeg";
 import SearchIcon from "/public/svgs/SearchHomeIcon.svg";
 import Clipboard from "/public/assets/images/dashboard/clipboard.png";
-import UserNoImage from "/public/assets/images/placeholder/user-no-image.jpeg"
-import Brochure from "/public/assets/images/contact/brochure.png"
-
+import UserNoImage from "/public/assets/images/placeholder/user-no-image.jpeg";
+import Brochure from "/public/assets/images/contact/brochure.png";
+import SavedSearches from "/public/assets/images/dashboard/saved-searches.png";
 export const useAssets = () => {
   return {
     icons: {
@@ -97,6 +97,7 @@ export const useAssets = () => {
       VerifyListing,
       UserNoImage,
       Brochure,
+      SavedSearches,
     },
   };
 };

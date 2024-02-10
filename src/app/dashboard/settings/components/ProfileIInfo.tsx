@@ -9,8 +9,8 @@ import axios from "axios";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import Loader from "@/components/__shared/loader/Loader";
-import ProfilePhone from "@/app/dashboard/settings/components/ProfilePhone";
-import { BLUR_DATA_URL } from "@/enum/BLUR_DATA_URL";
+import { useAppStore } from "@/store/dashboard/AppStore";
+import PhoneNumberInputv2 from "@/components/__shared/PhoneInputv2";
 
 interface Props {
   icon: any;
@@ -22,27 +22,19 @@ interface Props {
   defaultValue?: string;
 }
 
-const IconField = ({
-  icon,
-  label,
-  type,
-  name,
-  className,
-  placeholder,
-  defaultValue,
-}: Props) => {
+const IconField = ({ icon, label, type, name, className, placeholder, defaultValue }: Props) => {
   return (
     <div className="form-div relative">
       <div className="flex gap-2 items-center">
         {icon}
-        <label className="text-[#737373]">{label}:</label>
+        <label className="text-gray-500">{label}:</label>
       </div>
-      <AiOutlineLink className="link-icon absolute" size="16" color="#737373" />
+      <AiOutlineLink className="link-icon absolute" size={16} color="#737373" />
 
       <Field
         type={type}
         name={name}
-        className={`${className}`}
+        className={className}
         style={{ paddingInline: "2.5rem" }}
         placeholder={placeholder}
       />
@@ -52,55 +44,75 @@ const IconField = ({
   );
 };
 
-const ProfileInfo = () => {
+const ProfileInfo = ({
+  profileData,
+  supabase,
+}: {
+  profileData: any;
+  supabase: any;
+}) => {
   const [countries, setCountries] = useState([]);
   const [phone, setPhone] = useState<string>("");
   const [code, setCode] = useState<string>("");
   const [submitLoading, setSubmitLoading] = useState(false);
-  const supabase: any = createClientComponentClient();
   const user = useAppStore((state) => state.user);
-  const handlePhone = (str: string) => {
-    setPhone(str);
-  };
+  const [loading, setloading] = useState(true);
 
-  const handleCode = (str: string) => {
-    setCode(str);
-  };
+
+  useEffect(() => {
+    if (user) {
+      setloading(false)
+      console.log("user", user)
+    }
+  }, [user]);
+
+  useEffect(() => {
+    axios
+      .get("https://restcountries.com/v3.1/all")
+      .then((response) => {
+        setCountries(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+
+    setCurrentData(profileData);
+  }, [profileData]);
 
   return (
     <Root>
       {!user ? (
         <Loader />
       ) : (
-        <>
+        <>{user && <>
           <div className="py-10 pt-6">
             <p>{user?.fullname}</p>
             <p>Your Profile Picture</p>
             <div className="max-w-[227px] max-h-[164px] w-full relative aspect-[227/164] rounded-[18px] mt-5 border-">
-              <Image
-                src={user.avatar_url}
+              {user?.avatar_url !== undefined ? <Image
+                src={user?.avatar_url}
                 placeholder="blur"
                 objectFit="cover"
                 loading="eager"
                 blurDataURL={BLUR_DATA_URL}
                 alt="User picture"
                 fill
-              />
+              /> : <Loader />}
             </div>
           </div>
-          <Formik
-            key={JSON.stringify(user)}
+          {user?.id == undefined ? <Loader /> : <Formik
+            key={JSON.stringify(profileData)}
             initialValues={{
-              firstName: user.firstname,
-              lastName: user.lastname,
-              email: user.email,
-              country: user.country,
-              twitter: user.twitter_url,
-              facebook: user.facebook_url,
-              linkedIn: user.linkedin_url,
+              firstName: user?.firstname,
+              lastName: user?.lastname,
+              email: user?.email, user,
+              country: user?.country,
+              twitter: user?.twitter,
+              facebook: user?.facebook,
+              linkedIn: user?.linkedin,
               whatsapp: user.whatsapp,
-              bio: user.bio,
-              number: user.phone,
+              bio: user?.bio,
+              number: user?.phone,
             }}
             onSubmit={async (values) => {
               const dto = values;
@@ -119,7 +131,6 @@ const ProfileInfo = () => {
                     linkedin: values.linkedIn,
                     whatsapp: values.whatsapp,
                     phone,
-                    code,
                     bio: values.bio,
                   })
                   .select()
@@ -198,15 +209,16 @@ const ProfileInfo = () => {
                     </div>
 
                     <div className="form-div">
-                      <label>Phone:</label>
-                      <div className="flex gap-4 max-w-[422px] ">
-                        <ProfilePhone
-                          phoneChange={handlePhone}
-                          codeChange={handleCode}
-                          defaultValue={user?.country}
-                          phone={user?.country}
-                        />
-                      </div>
+                      <PhoneNumberInputv2
+                        label="Phone"
+                        onChange={(selection) => {
+                          setphone(selection);
+                        }}
+                        onChange2={(selection) => {
+                        }}
+                        placeholder="Select your country"
+                        initialValue={user.phone}
+                      />
                     </div>
                   </div>
                 </div>
@@ -256,8 +268,8 @@ const ProfileInfo = () => {
                       name="bio"
                       placeholder="Enter your bio"
                       className="form-input-textarea px-4 max-w-[422px]
-                  border-[#E6E6E6] rounded-[4px] text-[#737373]
-                  border py-2"
+                border-[#E6E6E6] rounded-[4px] text-[#737373]
+                border py-2"
                       rows="15" // Optional: Set the number of rows for the text area
                       cols="50" // Optional: Set the number of columns for the text area
                     />
@@ -273,8 +285,7 @@ const ProfileInfo = () => {
                       <button
                         type="submit"
                         className="max-w-[160px] max-h-[52px] w-full aspect-[160/52]
-                mt-5 bg-[#DDB771] text-[#ffff] rounded-[8px]"
-                      >
+              mt-5 bg-[#DDB771] text-[#ffff] rounded-[8px]">
                         Update Profile
                       </button>
                     )}
@@ -282,8 +293,8 @@ const ProfileInfo = () => {
                 </div>
               </div>
             </Form>
-          </Formik>
-        </>
+          </Formik>}
+        </>}</>
       )}
     </Root>
   );
@@ -299,7 +310,7 @@ const Root = styled("div", {
   " .form-input": {
     maxHeight: "52px",
     padding: "0.9375rem",
-    maxWidth: "422px",
+
     aspectRatio: "422/52",
     border: "1px solid #E6E6E6",
     borderRadius: "4px",

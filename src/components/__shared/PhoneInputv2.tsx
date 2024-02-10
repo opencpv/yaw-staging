@@ -38,7 +38,6 @@ type Props = {
   label: string;
   onChange: (value: any) => void;
   onChange2?: (value: any) => void;
-
   initialValue?: any;
   name?: string;
   font?: "Montserrat" | "OpenSans";
@@ -131,9 +130,8 @@ const PhoneNumberInputv2 = ({
                 variant="outline"
                 role="combobox"
                 aria-expanded={open}
-                className={`w-fit flex gap-2 justify-between  ${
-                  value ? "text-[#6A6968] capitalize" : "text-[#B4B2AF] "
-                } whitespace-nowrap h-[53px]`}
+                className={`w-fit flex gap-2 justify-between  ${value ? "text-[#6A6968] capitalize" : "text-[#B4B2AF] "
+                  } whitespace-nowrap h-[53px]`}
               >
                 <div className="relative w-5 h-[18px] rounded-[4px]">
                   <Image

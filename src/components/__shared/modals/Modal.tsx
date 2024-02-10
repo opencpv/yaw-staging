@@ -28,20 +28,20 @@ const Modal = ({
   className,
 }: any) => {
   const setHideWindowScrollbar = useModalFullscreenStore(
-    (state) => state.setHideWindowScrollbar
+    (state) => state.setHideWindowScrollbar,
   );
 
   return (
     <>
       <NextUIModal
         classNames={{
+          backdrop: cn("z-[9999]"),
+          wrapper: cn("z-[99999]"),
           base: cn(
-            `relative z-50 ${backgroundColor ? backgroundColor : null} ${
-              
-            size === "full" && "rounded-none"
-            
-          }`,
-            className
+            `relative ${backgroundColor ? backgroundColor : null} ${
+              size === "full" && "rounded-none"
+            }`,
+            className,
           ),
         }}
         scrollBehavior={size === "full" ? "normal" : "inside"}
@@ -58,7 +58,9 @@ const Modal = ({
         onOpenChange={onOpenChange}
         closeButton={
           closeButton ? (
-            <div onClick={() => setHideWindowScrollbar(false)}>{closeButton}</div>
+            <div onClick={() => setHideWindowScrollbar(false)}>
+              {closeButton}
+            </div>
           ) : (
             <div onClick={() => setHideWindowScrollbar(false)}>
               <LiaTimesSolid />

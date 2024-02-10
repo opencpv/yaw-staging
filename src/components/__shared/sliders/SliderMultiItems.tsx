@@ -18,69 +18,126 @@ const SliderMultiItems = ({
   breakpoints,
   hasNavAndPagination,
   autoplay,
+  swiperSlideClassName,
 }: SliderMultiItemsProps) => {
   return (
     <>
-      <Swiper
-        autoplay={
-          autoplay === false || autoplay === undefined
-            ? false
-            : {
-                delay: 1,
-                disableOnInteraction: true,
-                pauseOnMouseEnter: true,
-              }
-        }
-        slidesPerView={slidesPerView ? slidesPerView : 1.5}
-        spaceBetween={15}
-        centeredSlides
-        breakpoints={{
-          ...breakpoints,
-          330: {
-            spaceBetween: 20,
-          },
-        }}
-        freeMode={{
-          enabled: autoplay === false ? false : true,
-          momentumRatio: 0.4,
-          momentumVelocityRatio: 0.4,
-        }}
-        speed={autoplay ? 30000 : undefined}
-        pagination={{
-          clickable: true,
-          el: ".slider-multi-items-pagination",
-          dynamicBullets: true,
-          dynamicMainBullets: 3,
-        }}
-        navigation={{
-          nextEl: ".slider-multi-items-next",
-          prevEl: ".slider-multi-items-prev",
-        }}
-        modules={[Pagination, Navigation, Autoplay, FreeMode]}
-        className="w-full h-fit mySwiper slider-multi-items"
-      >
-        {items?.map((item, idx) => (
-          <SwiperSlide key={idx + 1} className="">
-            {item}
-          </SwiperSlide>
-        ))}
-      </Swiper>
-      {/* Pagination bullets and button */}
-      {hasNavAndPagination === false ? null : (
-        <div className="relative z-20 bottom-[-2rem] w-11/12 mx-auto flex items-center justify-center">
-          <div className="inline-flex items-center justify-between w-full gap-5">
-            {/* Prev Button */}
-            <div className="grid w-12 h-12 rounded-full slider-multi-items-prev bg-accent-50 shrink-0 place-items-center md:w-16 md:h-16">
-              <FaChevronLeft className="text-white" />
-            </div>
-            <div className="absolute left-10 slider-multi-items-pagination w-full hidden min-[250px]:block"></div>
-            {/* Next button */}
-            <div className="grid w-12 h-12 rounded-full slider-multi-items-next bg-accent-50 shrink-0 place-items-center md:w-16 md:h-16">
-              <FaChevronRight className="text-white" />
+      {/* lg breakpoint and above */}
+      <div className="hidden lg:block">
+        <Swiper
+          autoplay={
+            autoplay === false || autoplay === undefined
+              ? false
+              : {
+                  delay: 100,
+                  disableOnInteraction: true,
+                  pauseOnMouseEnter: true,
+                }
+          }
+          slidesPerView={slidesPerView ? slidesPerView : 1.5}
+          spaceBetween={15}
+          centeredSlides
+          breakpoints={{
+            ...breakpoints,
+            330: {
+              spaceBetween: 20,
+            },
+          }}
+          freeMode={{
+            enabled:
+              autoplay === false || autoplay === undefined ? false : true,
+            // momentumRatio: 0.4,
+            // momentumVelocityRatio: 0.4,
+          }}
+          speed={autoplay ? 30000 : undefined}
+          pagination={{
+            clickable: true,
+            el: ".slider-multi-items-pagination",
+            dynamicBullets: true,
+            dynamicMainBullets: 3,
+          }}
+          navigation={{
+            nextEl: ".slider-multi-items-next",
+            prevEl: ".slider-multi-items-prev",
+          }}
+          modules={[Pagination, Navigation, Autoplay, FreeMode]}
+          className="mySwiper slider-multi-items h-fit w-full"
+        >
+          {items?.map((item, idx) => (
+            <SwiperSlide key={idx + 1} className={swiperSlideClassName}>
+              {item}
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        {/* Pagination bullets and button */}
+        {hasNavAndPagination === false ? null : (
+          <div className="relative bottom-[-2rem] z-20 mx-auto flex w-11/12 items-center justify-center">
+            <div className="inline-flex w-full items-center justify-between gap-5">
+              {/* Prev Button */}
+              <div className="slider-multi-items-prev grid h-12 w-12 shrink-0 place-items-center rounded-full bg-accent-50 md:h-16 md:w-16">
+                <FaChevronLeft className="text-white" />
+              </div>
+              <div className="slider-multi-items-pagination absolute left-10 hidden w-full min-[250px]:block"></div>
+              {/* Next button */}
+              <div className="slider-multi-items-next grid h-12 w-12 shrink-0 place-items-center rounded-full bg-accent-50 md:h-16 md:w-16">
+                <FaChevronRight className="text-white" />
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
+
+      {/* lg breakpoint and below */}
+      <div className="block lg:hidden">
+        <Swiper
+          cssMode
+          slidesPerView={slidesPerView ? slidesPerView : 1.5}
+          spaceBetween={15}
+          centeredSlides
+          breakpoints={{
+            ...breakpoints,
+            330: {
+              spaceBetween: 20,
+            },
+          }}
+          pagination={{
+            clickable: true,
+            el: ".slider-multi-items-pagination",
+            dynamicBullets: true,
+            dynamicMainBullets: 3,
+          }}
+          navigation={{
+            nextEl: ".slider-multi-items-next",
+            prevEl: ".slider-multi-items-prev",
+          }}
+          modules={[Pagination, Navigation]}
+          className="mySwiper slider-multi-items h-fit w-full"
+        >
+          {items?.map((item, idx) => (
+            <SwiperSlide key={idx + 1} className={swiperSlideClassName}>
+              {item}
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        {/* Pagination bullets and button */}
+        {hasNavAndPagination === false ? null : (
+          <div className="relative bottom-[-2rem] z-20 mx-auto flex w-11/12 items-center justify-center">
+            <div className="inline-flex w-full items-center justify-between gap-5">
+              {/* Prev Button */}
+              <div className="slider-multi-items-prev grid h-12 w-12 shrink-0 place-items-center rounded-full bg-accent-50 md:h-16 md:w-16">
+                <FaChevronLeft className="text-white" />
+              </div>
+              <div className="slider-multi-items-pagination absolute left-10 hidden w-full min-[250px]:block"></div>
+              {/* Next button */}
+              <div className="slider-multi-items-next grid h-12 w-12 shrink-0 place-items-center rounded-full bg-accent-50 md:h-16 md:w-16">
+                <FaChevronRight className="text-white" />
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
     </>
   );
 };

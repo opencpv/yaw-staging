@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.504.0",
     "@emailjs/browser": "^3.11.0",
     "@nextui-org/react": "^2.1.13",
     "@portabletext/react": "^3.0.7",
@@ -39,12 +40,14 @@
     "antd": "^5.10.1",
     "aos": "^2.3.4",
     "autoprefixer": "10.4.15",
+    "aws-sdk": "^2.1545.0",
     "axios": "^1.5.0",
     "chart.js": "^4.4.1",
     "class-variance-authority": "^0.7.0",
     "cloudinary": "^1.41.0",
     "clsx": "^2.0.0",
     "cmdk": "^0.2.0",
+    "dotenv": "^16.4.1",
     "eslint": "8.49.0",
     "eslint-config-next": "^14.0.4",
     "formik": "^2.4.4",
@@ -82,6 +85,7 @@
     "@types/node-schedule": "^2.1.2",
     "nodemon": "^3.0.1",
     "prettier": "3.1.1",
+    "prettier-plugin-tailwindcss": "^0.5.11",
     "supabase": "^1.110.1"
   }
 }

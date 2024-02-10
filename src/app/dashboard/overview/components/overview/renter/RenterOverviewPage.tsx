@@ -3,13 +3,20 @@ import UserOverview from "../UserOverview";
 import RenterPaidFeatures from "../../PaidFeaturesSection";
 import RenterExplore from "../../RenterExplore";
 import RecommendedListings from "@/components/__shared/listing/RecommendedListings";
+import GradientBanner from "../GradientBanner";
+import { useAssets } from "@/lib/custom-hooks/useAssets";
+import SellYourItem from "../../SellYourItem";
+import RenterActivityCard from "./RenterActivityCard";
+import ScrollTop from "@/components/__shared/ScrollTop";
 
 type Props = {};
 
 const RenterOverviewPage = (props: Props) => {
+  const { images } = useAssets();
+
   return (
-    <main className="my-10 text-neutral-800 wrapper">
-      <section className="justify-between grid-cols-4 mx-auto mb-20 gap-x-10 lg:grid lg:mb-32">
+    <main className="text-neutral-800">
+      <section className="mx-auto mb-20 grid-cols-4 justify-between gap-x-10 lg:grid">
         {/* Grid col */}
         <div className="col-span-3">
           <UserOverview
@@ -17,27 +24,47 @@ const RenterOverviewPage = (props: Props) => {
             picture="/assets/images/profile-image.jpg"
             email="johndoe@gmail.com"
             telephone="(+233) 1235 554 55"
-            className="mb-20"
+            className="md:mb-20"
             type="Renter"
           />
-          <RenterPaidFeatures
-            type="Renter"
-            className="col-span-1 mt-20 md:mt-48 lg:hidden"
-          />
-          <div className="mb-20 lg:mt-44">
-            <RenterExplore />
-          </div>
+          {true && ( // TODO: implement appropriately
+            <section className="mt-10 max-w-3xl flex-wrap space-y-5 xs:flex xs:gap-5 xs:space-y-0 md:mt-36">
+              <RenterActivityCard
+                type="applications"
+                count={6}
+                href="applications"
+              />
+              <RenterActivityCard type="reviews" count={6} href="my-reviews" />
+            </section>
+          )}
+
+          <section className="section space-y-10">
+            <GradientBanner
+              image={images.BusinessPersonWithHouseKeys}
+              alt="Business man with house keys"
+              heading="Hire Us !"
+              description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, officiis."
+              buttonLabel="Explore"
+              href="/dashboard/my-agent/agent-explore"
+            />
+            <RenterPaidFeatures
+              type="Renter"
+              className="col-span-1 lg:hidden"
+            />
+            <RenterExplore className="mt-3 lg:mt-0" />
+            <SellYourItem />
+          </section>
         </div>
         {/* Grid col */}
         <RenterPaidFeatures
           type="Renter"
-          className="hidden col-span-1 mt-20 md:mt-48 lg:block"
+          className="col-span-1 mt-14 hidden lg:block"
         />
       </section>
       <section className="mx-auto">
-        <h2 className="text-2xl font-[700] mb-6">Recommended Listings</h2>
         <RecommendedListings />
       </section>
+      <ScrollTop />
     </main>
   );
 };

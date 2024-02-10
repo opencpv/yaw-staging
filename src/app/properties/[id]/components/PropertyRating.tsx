@@ -10,35 +10,31 @@ type Props = {};
 
 const PropertyRating = (props: Props) => {
   return (
-    <AOSWrapper animation="fade-up" duration="800">
-      <section className="py-10 my-10">
-        <div className=" border-neutral-200 md:px-14 rounded-xl md:border-3 md:pt-10 md:pb-32">
-          <div className="flex flex-wrap justify-between gap-5 bg-[#65969F] text-white rounded-xl p-10">
+    <AOSWrapper animation="fade-up" duration="800" className="section">
+      <section>
+        <div className="rounded-xl border-neutral-200 md:border-3 md:px-14 md:pb-32 md:pt-10">
+          <div className="flex flex-wrap justify-between gap-5 rounded-xl bg-[#65969F] p-10 text-white">
             <div className="flex flex-wrap items-center gap-3">
               <p className="text-xl font-[600]">
                 How would you rate this property?
               </p>
-              <BsBookmarkStarFill className="text-lg shrink-0" />
+              <BsBookmarkStarFill className="shrink-0 text-lg" />
             </div>
-            <Button
-              variant="outline"
-              borderColor="white"
-              className="p-4 text-white py-7 w-60"
-            >
+            <Button variant="outline" color="white" className="w-60 p-4 py-7">
               Write a review
             </Button>
           </div>
           {/* Rating count */}
-          <div className="grid items-start grid-cols-3 mt-20 gap-x-20 gap-y-10">
-            <div className="col-span-3 flex text-lg items-center text-neutral-800 gap-10 font-[600] xl:col-span-1">
-              <div className="flex items-center gap-1.5 flex-wrap">
+          <div className="mt-20 grid grid-cols-3 items-start gap-x-20 gap-y-10">
+            <div className="col-span-3 flex items-center gap-10 text-lg font-[600] text-neutral-800 xl:col-span-1">
+              <div className="flex flex-wrap items-center gap-1.5">
                 <HiOutlineHomeModern />
                 <HiStar className="text-yellow-500" />
                 <p className="">3.2</p>
               </div>
               <p className="">10 reviews</p>
             </div>
-            <div className="grid justify-between grid-cols-1 w-full col-span-3 gap-x-8 gap-y-4 min-[900px]:grid-cols-2 xl:col-span-2">
+            <div className="col-span-3 grid w-full grid-cols-1 justify-between gap-x-8 gap-y-4 min-[900px]:grid-cols-2 xl:col-span-2">
               {[1, 2, 3, 4, 5, 6].map((count, idx) => (
                 <ReviewCount key={idx + 1} />
               ))}

@@ -11,12 +11,17 @@ import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
 import Blocking from "./Blocking";
 
 const ProfileMainView = () => {
+  const supabase = createClientComponentClient();
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const user = useAppStore(state => state.user);
   const optionSelect = useManageAccountStore(
     (state: any) => state.filterOption,
   );
   const handleOptionChange = useManageAccountStore(
     (state: any) => state.changeOption,
   );
+
 
   return (
     <main className="pb-[60px]">
@@ -43,7 +48,10 @@ const ProfileMainView = () => {
         <Tab key="profile" title="Profile">
           <div>
             <p className="text-[1.5625rem] font-semibold">Profile</p>
-            <ProfileInfo />
+            <ProfileInfo
+              profileData={user?.profileData}
+              supabase={supabase}
+            />
           </div>
         </Tab>
         <Tab key="blocking" title="Blocking">

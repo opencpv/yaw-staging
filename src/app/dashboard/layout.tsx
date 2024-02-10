@@ -11,13 +11,15 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import CompleteYourLogin from "./components/CompleteYourLogin";
 import HowToSwitch from "./components/HowToSwitch";
 import { ClientOnly } from "@/components/ui/ClientOnly";
+import { usePathname } from "next/navigation";
+import { useNotificationStore } from "@/store/dashboard/notificationStore";
 
 type LayoutProps = {
   children: React.ReactNode;
 };
 
 const Wrapper = ({ children }: LayoutProps) => {
-  const [notifications, setNotifications] = useState<NotificationType | any>();
+  const pathname = usePathname();
   const [notificationsLoading, setNotificationsLoading] = useState<
     boolean | null
   >();
@@ -30,10 +32,11 @@ const Wrapper = ({ children }: LayoutProps) => {
   const [firstTimeModalOpen, setFirstTimeModalOpen] = useState(false);
 
   const supabase = createClientComponentClient();
-  // const {user, setUser} = useContext(AppContext) as AppContextType
+  const user = useAppStore((state) => state.user);
   const setUser = useAppStore((state) => state.setUser);
-
+  const setNotifications = useNotificationStore((state) => state.setNotifications);
   const [loading, setLoading] = useState<boolean>(false);
+  const [excludeWrapper, setExcludeWrapper] = useState(false);
 
   useEffect(() => {
     const supabase = createClientComponentClient();
@@ -45,24 +48,35 @@ const Wrapper = ({ children }: LayoutProps) => {
   useEffect(() => {
     dashboardType && firstTIme && setFirstTimeModalOpen(true);
     dashboardType && setFirstTime(false);
-  }, [firstTIme, dashboardType]);
+  }, [firstTIme, dashboardType, setFirstTime]);
 
   useEffect(() => {
     const getUserData = async () => {
       setLoading(true);
       const session = JSON.parse(localStorage.getItem("session") as string);
       let { data } = await supabase.auth.getUser(session.access_token);
-      let res: any = await supabase.from("profiles").select("*");
-      const { user } = data;
-      const profileData = { ...res.data[0], email: user?.email };
-      const newData = { ...profileData };
-      setUser({ ...newData });
+      let { data: profiles, error } = await supabase
+        .from('profiles')
+        .select('*').eq("id", data?.user?.id)
+      const profileData = { ...(profiles && profiles[0]), email: data?.user?.email }
+      console.log(profileData)
+      setUser(profileData);
     };
 
     getUserData().then(() => {
       setLoading(false);
     });
-  }, [supabase, setUser]);
+
+    const wrapperExclusionList = ["/dashboard/my-agent"];
+
+    wrapperExclusionList.map((path) => {
+      if (pathname?.includes(path)) {
+        setExcludeWrapper(true);
+      } else {
+        setExcludeWrapper(false);
+      }
+    });
+  }, [supabase]);
 
   const getNotifications = async () => {
     try {
@@ -73,9 +87,8 @@ const Wrapper = ({ children }: LayoutProps) => {
       } = await supabase.from("notifications").select("*");
 
       if (data) {
-        setUser({
-          notifications: [...data],
-        });
+
+        setNotifications(data)
       }
 
       if (dataStatus === 200) {
@@ -98,17 +111,17 @@ const Wrapper = ({ children }: LayoutProps) => {
         },
       )
       .subscribe();
-  }, [supabase]);
+  }, [user]);
 
   return (
     <div>
       <div>
         <Navbar />
-        <div className={`mt-2 ${openSans.className}`}>
+        <div className="sticky top-0 z-50 bg-white pt-2 md:static md:bg-none">
           <Pagination />
         </div>
 
-        <div className={`mt-6 px-4 text-black ${openSans.className}`}>
+        <div className={`${excludeWrapper ? "" : "wrapper"} text-black`}>
           {children}
         </div>
         <ClientOnly>

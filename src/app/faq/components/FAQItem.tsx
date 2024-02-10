@@ -1,49 +1,49 @@
 "use client";
-import { openSans } from "@/styles/font";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import style from "../Faq.module.css";
 
 interface Props {
   title: string;
   text: string;
+  isActive: boolean;
+  onClick: () => void;
 }
 
-const FAQItem = ({ title, text }: Props) => {
+const FAQItem = ({ title, text, isActive, onClick }: Props) => {
   const [toggle, setToggle] = useState<boolean>(false);
   const { icons } = useAssets();
-  useEffect(() => {}, []);
 
   return (
-    <div className="p-0  m-0 h-fit border-b-[1px] mt-[25px] border-[#E9ECEF] cursor-pointer w-full">
+    <div className="h-fit cursor-pointer border-[#E9ECEF]">
       <div
-        className="transition-all duration-200 w-full"
+        className="w-full transition-all duration-200"
         onClick={() => {
           setToggle(!toggle);
+          onClick();
         }}
       >
-        <div
-          className={`${openSans.className} lg:pb-[35px pb-[25px] text-base lg:text-[25px]  flex item-center justify-between lg:gap-[70px] text-[#2A4E55] font-semibold`}
-        >
-          <p className=""> {title}</p>
+        <div className="item-center flex justify-between gap-10 pt-6 font-semibold text-[#2A4E55]">
+          <h2 className="faq-title w-full pb-6 text-base lg:text-2xl">
+            {title}
+          </h2>
           <Image
             src={icons.FaqArrowIcon}
-            alt="icon"
+            alt="toggle"
             width={34}
             height={34}
             layout="fixed"
             className={`${
-              toggle ? "rotate-90" : ""
-            } transition-all duration-200`}
+              isActive ? "rotate-90" : ""
+            } mb-6 transition-all duration-200`}
           />
         </div>
       </div>
       <p
         className={`${
-          toggle ? "opacity-100  pb-[25px]" : "hidden opacity-0 max-h-0"
-        } ${
-          openSans.className
-        } text-base lg:w-[718px] md:w-[597px] lg:pb-[35px] pb-[25px]  overflow-hidden transition-opacity transition-max-height duration-500`}
+          isActive ? "pb-6" : "hidden"
+        } transition-max-height w-11/12 overflow-hidden py-8 text-base transition-all duration-500`}
       >
         {text}
       </p>

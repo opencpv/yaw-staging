@@ -11,34 +11,34 @@ import { useState } from "react";
 
 export default function MatchesYet() {
   return (
-    <div className="flex flex-col gap-8 mt-10 w-full ">
-      <p className="text-[1.25rem] lg:text-[1.5625rem] font-semibold">
+    <section className="section flex w-full flex-col gap-8 ">
+      <p className="text-[1.25rem] font-semibold lg:text-[1.5625rem]">
         Your Matches
       </p>
 
-      <div className="">
+      <div className="max-w-3xl">
         <InfoText content="Lorem ipsum dolor sit amet consectetur. Consequat elementum consequat interdum integer imperdiet nisl. Ipsum eu eu tortor enim est mauris in sem. Eget dignissim risus diam consectetur magna. Non." />
       </div>
-      <div className=" lg:border-[1px] border-[#E6E6E6] flex flex-col gap-2">
-        <div className="hidden lg:grid grid-cols-4 text-white bg-primary-400 py-[1rem] px-[0.63rem] text-center font-semibold">
+      <div className=" flex flex-col gap-2 border-[#E6E6E6] lg:border-[1px]">
+        <div className="hidden grid-cols-4 bg-primary-400 px-[0.63rem] py-[1rem] text-center font-semibold text-white lg:grid">
           <div className=" text-center ">Property</div>
           <div className="text-center">Completed</div>
           <div className="col-span-2 text-center">Actions</div>
         </div>
 
-        <div className="hidden lg:flex flex-col ">
+        <div className="hidden flex-col lg:flex ">
           {Array.from({ length: 5 }).map((r, index) => (
             <PropertyRow key={index} />
           ))}
         </div>
 
-        <div className="flex flex-col lg:hidden gap-5">
+        <div className="flex flex-col gap-5 lg:hidden">
           {Array.from({ length: 5 }).map((r, index) => (
             <PropertyRowSm key={index} />
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
@@ -46,13 +46,14 @@ const PropertyRowSm = () => {
   const [active, setActive] = useState<"rent" | "virtual" | "live">("rent");
   return (
     <div
-      className={`lg:grid grid-cols-4 hover:bg-primary-300 cursor-pointer px-[10px]  flex flex-col border-[1px] border-[#396261] bg-]#396261] py-4 rounded-lg
+      className={`bg-]#396261] flex cursor-pointer grid-cols-4 flex-col  rounded-lg border-[1px] border-[#396261] px-[10px] py-4 hover:bg-primary-300 lg:grid
     ${styles.property_matches_card}
-    `}>
+    `}
+    >
       <div className="flex flex-col gap-4">
         <p className="font-bold">Property</p>
-        <div className="flex justify-between items-between  ">
-          <div className="relative w-full aspect-[65/50] rounded-lg max-w-[65px] overflow-hidden ">
+        <div className="items-between flex justify-between  ">
+          <div className="relative aspect-[65/50] w-full max-w-[65px] overflow-hidden rounded-lg ">
             <Image
               src={"/assets/images/niceHome.png"}
               fill
@@ -63,29 +64,31 @@ const PropertyRowSm = () => {
           <div className="flex flex-col justify-between gap-2">
             <div className="flex flex-col gap-1 lg:gap-[0.62rem]">
               <p className="font-semibold">Property Title</p>
-              <p className="text-[#B0B0B0] text-[0.8125rem]">Property Title</p>
+              <p className="text-[0.8125rem] text-[#B0B0B0]">Property Title</p>
             </div>
 
-            <p className="text-[0.8125rem] text-shade-200 font-bold">
+            <p className="text-[0.8125rem] font-bold text-shade-200">
               GHS 3000
             </p>
           </div>
         </div>
         <div
-          className="flex justify-between items-center  border-b-[1px] border-b-[#E6E6E6] py-2 
-        border-t-[1px] border-t-[#E6E6E6]
-        ">
+          className="flex items-center justify-between  border-b-[1px] border-t-[1px] border-b-[#E6E6E6] 
+        border-t-[#E6E6E6] py-2
+        "
+        >
           <p>Completed</p>
-          <div className="flex flex-col text-center items-center justify-center">
+          <div className="flex flex-col items-center justify-center text-center">
             <p className="font-semibold">15 Aug. 2023 13:55pm</p>
             <p className="text-shade-100 text-[0.625rem]">20 days ago</p>
           </div>
         </div>
         <p className="font-bold">Actions</p>
-        <div className="flex flex-col gap-2 justify-center items-center border-b-[1px] border-b-[#E6E6E6] py-2">
+        <div className="flex flex-col items-center justify-center gap-2 border-b-[1px] border-b-[#E6E6E6] py-2">
           <div
-            className="w-full flex items-center justify-center"
-            onClick={() => setActive("rent")}>
+            className="flex w-full items-center justify-center"
+            onClick={() => setActive("rent")}
+          >
             {" "}
             <ApplicationForm
               type="simple"
@@ -114,11 +117,12 @@ const PropertyRow = () => {
   const [active, setActive] = useState<"rent" | "virtual" | "live">("rent");
   return (
     <div
-      className={`grid grid-cols-4 hover:bg-primary-300 cursor-pointer px-4
+      className={`grid cursor-pointer grid-cols-4 px-4 hover:bg-primary-300
     ${styles.property_matches_card}
-    `}>
+    `}
+    >
       <div className="flex gap-[0.62rem] p-2.5">
-        <div className="relative w-full aspect-[142/92] rounded-lg max-w-[142px] overflow-hidden ">
+        <div className="relative aspect-[142/92] w-full max-w-[142px] overflow-hidden rounded-lg ">
           <Image
             src={"/assets/images/niceHome.png"}
             fill
@@ -129,18 +133,18 @@ const PropertyRow = () => {
         <div className="flex flex-col justify-between">
           <div className="flex flex-col gap-[0.62rem]">
             <p className="font-semibold">Property Title</p>
-            <p className="text-[#B0B0B0] text-[0.8125rem]">Property Title</p>
+            <p className="text-[0.8125rem] text-[#B0B0B0]">Property Title</p>
           </div>
 
-          <p className="text-[0.8125rem] text-shade-200 font-bold">GHS 3000</p>
+          <p className="text-[0.8125rem] font-bold text-shade-200">GHS 3000</p>
         </div>
       </div>
-      <div className="flex flex-col text-center items-center justify-center">
+      <div className="flex flex-col items-center justify-center text-center">
         <p className="font-semibold">15 Aug. 2023 13:55pm</p>
         <p className="text-shade-100 text-[0.625rem]">20 days ago</p>
       </div>
-      <div className="col-span-2  w-full flex flex-col items-center justify-center">
-        <div className="grid grid-cols-3 lg:gap-x-5 items-center justify-center w-full">
+      <div className="col-span-2  flex w-full flex-col items-center justify-center">
+        <div className="grid w-full grid-cols-3 items-center justify-center lg:gap-x-5">
           <div onClick={() => setActive("rent")}>
             {" "}
             <ApplicationForm

@@ -1,6 +1,6 @@
 "use client";
 import { useDisclosure } from "@nextui-org/react";
-import React from "react";
+import React, { KeyboardEvent } from "react";
 import Modal from "../__shared/modals/Modal";
 import { FaTimesCircle } from "react-icons/fa";
 import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
@@ -10,18 +10,24 @@ import FeedbackBody from "./FeedbackBody";
 type Props = {
   // handleClick: () => void;
   className?: string;
-  children: React.ReactNode
+  children: React.ReactNode;
 };
 
-const Feedback = ({ className, children }: Props) => {
+const Feedback = ({ children }: Props) => {
   const { onOpen, isOpen, onOpenChange, onClose } = useDisclosure();
   const { onOpen: toastOnOpen } = useToastDisclosure();
 
   const handleSubmitFeedback = () => {
     onClose();
     toastOnOpen(
-      "👍 Thank you! Your feedback is invaluable and will contribute to improving our services."
+      "👍 Thank you! Your feedback is invaluable and will contribute to improving our services.",
     );
+  };
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter") {
+      onOpen();
+    }
   };
 
   return (
@@ -40,7 +46,13 @@ const Feedback = ({ className, children }: Props) => {
         onOpenChange={onOpenChange}
         size="lg"
       />
-      <div className="cursor-pointer" onClick={onOpen}>
+      <div
+        className="cursor-pointer"
+        onClick={onOpen}
+        tabIndex={0}
+        // role="button"
+        onKeyDown={handleKeyDown}
+      >
         {children}
       </div>
     </>

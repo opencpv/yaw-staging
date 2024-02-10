@@ -2,7 +2,7 @@
 
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
-import ActionMain from "./components/ActionMain";
+import LargeButton from "./components/LargeButton";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { HiOutlineUserGroup } from "react-icons/hi2";
 import ManagePropertiesTable from "./components/ManagePropertiesTable";
@@ -29,7 +29,7 @@ const page = () => {
           {/* <ClientOnly>
             <ListingFormModal />
           </ClientOnly> */}
-          <ActionMain label="Leads" icon={<HiOutlineUserGroup />} />
+          <LargeButton label="Leads" icon={<HiOutlineUserGroup />} />
         </div>
       </section>
       <section className="items-center justify-between grid-cols-3 mb-6 gap-x-3 md:grid">

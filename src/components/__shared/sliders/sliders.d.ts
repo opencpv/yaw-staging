@@ -1,6 +1,6 @@
 type CarouselProps = {
-  images: {src: string; label?: string}[]
-}
+  images: { src: string; label?: string }[];
+};
 
 type SliderPaginationOnlyProps = {
   images: SliderPaginationOnlyImage[];
@@ -28,6 +28,8 @@ type SliderMultiItemsProps = {
   breakpoints?: { [key: number]: { [key: any]: any } };
   hasNavAndPagination?: boolean;
   autoplay?: boolean;
+  /** class for a swiper slide item */
+  swiperSlideClassName?: string;
 };
 
 type SliderGridProps = {

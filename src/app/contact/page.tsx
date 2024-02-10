@@ -1,5 +1,3 @@
-"use client";
-
 import { styled } from "@stitches/react";
 import Navbar from "@/components/__shared/Navbar";
 import Footer from "@/components/__shared/footer/Footer";
@@ -13,24 +11,25 @@ import FeedbackButton from "../../components/feedback/FeedbackButton";
 import ContactForm from "./components/ContactForm";
 import ContactFormSideImage from "./components/ContactFormSideImage";
 import { useRef } from "react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact",
+};
 
 const Page = () => {
-  const contactRef = useRef(null)
-
-  useScrollIntoView(contactRef);
-
   return (
     <>
       <Navbar />
       <main className="wrapper">
-        <Root className="flex flex-col items-center justify-center mt-12">
-          <ContactBanner ref={contactRef} />
+        <Root className="flex flex-col items-center justify-center">
+          <ContactBanner />
           <div
-            className={`max-w-full relative z-[20] h-full w-full min-h-[500px] form-root sm:p-3 lg:p-8 pt-5 lg:pt-2 rounded-2xl lg:-top-36 lg:max-w-[90%]`}
+            className={`form-root relative z-[20] h-full min-h-[500px] w-full max-w-full rounded-2xl bg-white pt-5 sm:p-3 lg:-top-16 lg:max-w-[90%] lg:p-8 lg:pt-2 lg:shadow-[0px_24px_48px_-12px_rgba(0,_0,_0,_0.18)]`}
           >
             <div className="">
               <ContactTabs />
-              <div className="flex flex-col h-full grid-cols-2 gap-10 md:grid">
+              <div className="flex h-full grid-cols-2 flex-col gap-10 md:grid">
                 <ContactForm />
                 <ContactFormSideImage />
               </div>
@@ -69,10 +68,8 @@ const Root = styled("div", {
   ".banner": {
     background:
       "var(--faq-banner, linear-gradient(103deg, #21A19F 38.96%, rgba(30, 169, 166, 0.63) 90.07%))",
-    width: "100%",
-    "@media screen and (min-width:640px)": {
-      borderRadius: "32px",
-    },
+    // width: "100%",
+    "@media screen and (min-width:640px)": {},
   },
 
   ".form-root": {

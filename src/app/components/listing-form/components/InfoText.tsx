@@ -2,8 +2,8 @@ import { BiInfoCircle } from "react-icons/bi";
 
 export default function InfoText({ content }: { content: string }) {
   return (
-    <div className="flex items-center justify-start gap-5 bg-[#FEF8ED] rounded-2xl text-[#65969F] font-[400] w-full p-4">
-      <BiInfoCircle color="#DDB771" size="44" />
+    <div className="xsm:flex-row flex w-full flex-col items-center justify-start gap-5 rounded-2xl bg-[#FEF8ED] p-4 font-[400] text-[#65969F]">
+      <BiInfoCircle color="#DDB771" size={40} className="xsm:shrink-0" />
       <p>{content}</p>
     </div>
   );
