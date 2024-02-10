@@ -67,9 +67,7 @@ const PropertyRowSm = () => {
             </div>
             <div className="flex flex-col justify-between gap-2">
               <div className="flex flex-col gap-1 truncate lg:gap-[0.62rem]">
-                <h4>
-                  Single Room
-                </h4>
+                <h4>Single Room</h4>
                 <p className="text-[0.8125rem] text-[#B0B0B0]">Assin Fosu</p>
               </div>
 
@@ -136,13 +134,23 @@ const PropertyRow = () => {
           />
         </div>
         <div className="flex flex-col justify-between gap-[0.62rem]">
-          <h4 className="truncate font-semibold">
-            Single Room
-          </h4>
-          <p className="-mt-3 truncate text-[0.8125rem] text-[#B0B0B0]">
+          <h4 className="truncate font-semibold">Single Room</h4>
+          <p className="-mt-2 truncate text-[0.8125rem] text-[#B0B0B0]">
             Assin Fosu
           </p>
-          <p className="text-[0.8125rem] font-bold text-shade-200">GHS 3000</p>
+          <div className="flex flex-wrap items-center gap-2 text-xs">
+            <div className="w-fit">
+              <p className="text-sm font-[700] text-neutral-900">
+                GHS&nbsp;
+                <span className="font-[500]">{formatPrice(3000)} / Month</span>
+              </p>
+            </div>
+            <div className="flex w-full flex-1 items-center justify-between gap-x-2 gap-y-3">
+              <small className="w-max rounded-xl bg-[#E7F8F2] px-3 py-1 text-xs">
+                One Year Advance
+              </small>
+            </div>
+          </div>
         </div>
       </div>
       {/* Completed */}

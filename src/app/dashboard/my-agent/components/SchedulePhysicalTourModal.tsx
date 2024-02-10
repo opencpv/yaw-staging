@@ -28,7 +28,7 @@ export default function SchedulePhysicalTourModal({ active }: Props) {
         }`}
       >
         {" "}
-        Schedule a physical tour
+        Schedule in-person tour
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>

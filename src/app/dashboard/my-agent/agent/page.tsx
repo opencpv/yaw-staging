@@ -20,7 +20,7 @@ export default function Page() {
               <NoAgentCard />
             </div>
             <div
-              className="gap-5 sm:grid"
+              className="gap-5 space-y-5 sm:grid sm:space-y-0"
               style={{
                 gridTemplateColumns: "repeat(auto-fit, minmax(450px, 1fr))",
               }}

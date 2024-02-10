@@ -6,7 +6,6 @@ import Image from "next/image";
 import Switch from "./switch";
 import Search from "./search";
 import NotificationsPopover from "../../notifications/components/NotificationsPopover";
-import { montserat } from "@/styles/font";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import style from "../../Dashboard.module.css";
 import { useLocalStorage } from "@uidotdev/usehooks";
@@ -50,17 +49,20 @@ const Navbar = () => {
           <NotificationsPopover />
           <div>
             <p className="hidden whitespace-nowrap text-sm text-[#fff] xs:block">
-              {/* {user?.profileData?.full_name} */}
-              John Doe {/* temporary */}
+              {user?.full_name}
             </p>
           </div>
           <div className="relative flex min-h-[50px] w-full min-w-[40px] items-center justify-center overflow-hidden rounded-full md:min-w-[50px]">
-            <Image
-              src={user?.profileData?.avatar_url}
-              alt="User picture"
-              width={50}
-              height={50}
-            />
+            {user?.avatar_url == undefined ? (
+              <Loader />
+            ) : (
+              <Image
+                src={user?.avatar_url}
+                alt={user?.full_name}
+                width={50}
+                height={50}
+              />
+            )}
           </div>
         </div>
       </Root>

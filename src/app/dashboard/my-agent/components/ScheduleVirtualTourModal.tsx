@@ -28,7 +28,7 @@ export default function ScheduleVirtualTourModal({ active }: Props) {
           active && "&& bg-primary-200 text-white"
         }`}
       >
-        Schedule a virtual tour
+        Schedule virtual tour
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
