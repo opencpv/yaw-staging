@@ -27,8 +27,10 @@ export default function ScheduleVirtualTourModal({ active }: Props) {
         className={`h-10 w-full gap-2 bg-[#ECF2F3] font-semibold text-shade-200 hover:bg-primary-200 hover:text-white lg:h-14 lg:max-w-[284px] ${
           active && "&& bg-primary-200 text-white"
         }`}
+        title="Schedule virtual tour"
       >
-        Schedule virtual tour
+        <span className="lg:max-xl:hidden">Schedule virtual tour</span>
+        <span className="hidden lg:max-xl:inline">Virtual tour</span>
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>

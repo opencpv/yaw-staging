@@ -27,8 +27,8 @@ export default function SchedulePhysicalTourModal({ active }: Props) {
           active && "bg-primary-200 text-white"
         }`}
       >
-        {" "}
-        Schedule in-person tour
+        <span className="lg:max-xl:hidden">Schedule in-person tour</span>
+        <span className="hidden lg:max-xl:inline">In-person tour</span>
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>

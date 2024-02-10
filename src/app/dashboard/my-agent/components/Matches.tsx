@@ -12,7 +12,7 @@ import { formatPrice } from "@/lib/utils/numberManipulation";
 
 export default function MatchesYet() {
   return (
-    <section className="section flex w-full flex-col gap-8 ">
+    <section className="flex w-full flex-col gap-8 pt-28">
       <p className="text-[1.25rem] font-semibold lg:text-[1.5625rem]">
         Your Matches
       </p>
@@ -44,10 +44,13 @@ export default function MatchesYet() {
 }
 
 const PropertyRowSm = () => {
-  const [active, setActive] = useState<"rent" | "virtual" | "live">("rent");
+  const [active, setActive] = useState<
+    "rent" | "virtual" | "in-person" | undefined
+  >(undefined);
+
   return (
     <div
-      className={`flex cursor-pointer grid-cols-4 flex-col rounded-lg  border px-[10px] py-4 hover:bg-primary-300/20 lg:grid
+      className={`flex cursor-pointer grid-cols-4 flex-col rounded-lg border px-[10px] py-4 hover:bg-primary-300/20 lg:grid
     ${styles.property_matches_card}
     `}
     >
@@ -96,16 +99,17 @@ const PropertyRowSm = () => {
               {" "}
               <ApplicationForm
                 type="simple"
-                green={active == "rent"}
+                green={active === "rent"}
                 variant="agent-form"
+                active={active === "rent"}
               />
             </div>
             <div onClick={() => setActive("virtual")} className="w-full">
               <ScheduleVirtualTourModal active={active == "virtual"} />
             </div>{" "}
-            <div onClick={() => setActive("live")} className="w-full">
+            <div onClick={() => setActive("in-person")} className="w-full">
               {" "}
-              <SchedulePhysicalTourModal active={active == "live"} />
+              <SchedulePhysicalTourModal active={active == "in-person"} />
             </div>{" "}
           </div>
         </div>
@@ -115,7 +119,9 @@ const PropertyRowSm = () => {
 };
 
 const PropertyRow = () => {
-  const [active, setActive] = useState<"rent" | "virtual" | "live">("rent");
+  const [active, setActive] = useState<
+    "rent" | "virtual" | "in-person" | undefined
+  >(undefined);
 
   return (
     <div
@@ -165,16 +171,17 @@ const PropertyRow = () => {
             {" "}
             <ApplicationForm
               type="simple"
-              green={active == "rent"}
+              green={active === "rent"}
               variant="agent-form"
+              active={active === "rent"}
             />
           </div>
           <div onClick={() => setActive("virtual")}>
-            <ScheduleVirtualTourModal active={active == "virtual"} />
+            <ScheduleVirtualTourModal active={active === "virtual"} />
           </div>{" "}
-          <div onClick={() => setActive("live")}>
+          <div onClick={() => setActive("in-person")}>
             {" "}
-            <SchedulePhysicalTourModal active={active == "live"} />
+            <SchedulePhysicalTourModal active={active === "in-person"} />
           </div>{" "}
         </div>
 

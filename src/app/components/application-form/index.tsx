@@ -12,9 +12,15 @@ type Type = {
   type: "simple" | "complex";
   variant?: string;
   green?: boolean;
+  active?: boolean;
 };
 
-const ApplicationForm = ({ type, variant = "rectangle", green }: Type) => {
+const ApplicationForm = ({
+  type,
+  variant = "rectangle",
+  green,
+  active,
+}: Type) => {
   const [animation, setAnimation] = useState(false);
   const [open, setOpen] = useState(false);
   return (
@@ -42,10 +48,10 @@ const ApplicationForm = ({ type, variant = "rectangle", green }: Type) => {
               className={`w-full  lg:max-w-[284px] 
             ${
               green
-                ? "bg-primary-200 text-white hover:bg-primary-200"
+                ? "bg-[#ECF2F3] text-shade-200 hover:bg-primary-200"
                 : "bg-[#ECF2F3] text-shade-200"
-            }
-            flex h-10 items-center  justify-center rounded-2xl font-semibold lg:h-14 `}
+            } ${active && "bg-primary-200 text-white"}
+            flex h-10 items-center justify-center rounded-2xl text-sm font-semibold lg:h-14 `}
             >
               Rent it
             </button>
