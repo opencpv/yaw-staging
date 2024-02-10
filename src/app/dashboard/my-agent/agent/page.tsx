@@ -19,7 +19,7 @@ export default function Page() {
               <h3 className="">My Agent</h3>
               <NoAgentCard />
             </div>
-            <div className="flex flex-wrap gap-5">
+            <div className="grid gap-5" style={{gridTemplateColumns: "repeat(auto-fit, minmax(450px, 1fr))"}}>
               <Agent name="My Agent One" state="completed" dateCreated="5 Aug. 2023 13:55pm" dateCompleted="15 Aug. 2023 13:55pm" />
               <Agent name="My Agent Two" state="started" dateCreated="5 Aug. 2023 13:55pm" />
               <Agent name="My Agent Three" state="not started" />
