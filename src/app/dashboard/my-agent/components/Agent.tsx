@@ -6,7 +6,7 @@ import Link from "next/link";
 import Button from "@/components/__shared/ui/button/Button";
 
 type Props = {
-  state: "started" | "not started" | "completed";
+  state: "started" | "default" | "completed";
   name: string;
   dateCreated?: string;
   dateCompleted?: string;
@@ -28,7 +28,7 @@ export default function Agent({
           alt="A house inside a hand"
           className="h-[70px] w-[70px] sm:h-[100px] sm:w-[100px]"
         />
-        {state === "not started" ? (
+        {state === "default" ? (
           <AgentButtons content="Get Started" variant={"green-dark"} />
         ) : state === "completed" ? (
           <AgentButtons
@@ -45,7 +45,7 @@ export default function Agent({
         <p className="flex items-center gap-1 text-shade-200">
           Date Created :
           <span>
-            {state === "not started" ? (
+            {state === "default" ? (
               <div className="group flex w-fit flex-col gap-1">
                 <Button variant="ghost" href="" className="mt-1 flex-1">
                   Not started
@@ -64,15 +64,16 @@ export default function Agent({
             )}
           </span>
         </p>
-        {state !== "not started" && (
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 pt-4 xs:pt-2">
-            <div className="flex items-center gap-2 rounded-full bg-[#F1F1F1] px-2 py-1.5">
-              <CaAgentTickGreenBg />
-              <p>Completed</p>
-            </div>
-            <p className="text-shade-200">{dateCompleted}</p>
+        <div
+          className="flex flex-wrap items-center gap-x-4 gap-y-2 pt-4 xs:pt-2"
+          style={{ visibility: state !== "completed" ? "hidden" : "visible" }}
+        >
+          <div className="flex items-center gap-2 rounded-full bg-[#F1F1F1] px-2 py-1.5">
+            <CaAgentTickGreenBg />
+            <p>Completed</p>
           </div>
-        )}
+          <p className="text-shade-200">{dateCompleted}</p>
+        </div>
       </div>
     </div>
   );
