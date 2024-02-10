@@ -27,10 +27,10 @@ const ApplicationForm = ({ type, variant = "rectangle", green }: Type) => {
             </button>
           )}
           {variant == "circle" && (
-            <button className="flex aspect-square w-full max-w-[150px] items-center  justify-center rounded-full border-2 border-[#45808B] text-white transition-all hover:scale-105 2xl:max-w-[355px]">
+            <button className="flex aspect-square w-full max-w-[150px] items-center  justify-center rounded-full border-2 border-primary-200 text-white transition-all hover:scale-105 2xl:max-w-[355px]">
               <div
                 className="text-md m-5 flex 
-              aspect-square w-full items-center justify-center whitespace-nowrap rounded-full bg-[#45808B]
+              aspect-square w-full items-center justify-center whitespace-nowrap rounded-full bg-primary-200
             p-5 text-sm"
               >
                 Apply Now
@@ -40,7 +40,11 @@ const ApplicationForm = ({ type, variant = "rectangle", green }: Type) => {
           {variant == "agent-form" && (
             <button
               className={`w-full  lg:max-w-[284px] 
-            ${green ? "bg-[#45808B] text-white" : "bg-[#ECF2F3] text-shade-200"}
+            ${
+              green
+                ? "bg-primary-200 text-white hover:bg-primary-200"
+                : "bg-[#ECF2F3] text-shade-200"
+            }
             flex h-10 items-center  justify-center rounded-2xl font-semibold lg:h-14 `}
             >
               Rent it

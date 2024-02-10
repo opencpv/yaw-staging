@@ -25,7 +25,7 @@ export default function MyReviews() {
           tab: "bg-white px-4 py-3 min-w-[75px] w-full max-w-[117.75px]  rounded-2xl",
           tabContent:
             "text-shade-200 text-[0.625rem] group-data-[selected=true]:text-white group-data-[selected=true]:font-semibold ",
-          cursor: "bg-[#45808B] sm:bg-[#45808B] text-white rounded-2xl",
+          cursor: "bg-primary-200 sm:bg-primary-200 text-white rounded-2xl",
           panel: "pt-8",
         }}
         selectedKey={optionSelect}
