@@ -38,7 +38,6 @@ type Props = {
   label: string;
   onChange: (value: any) => void;
   onChange2?: (value: any) => void;
-
   initialValue?: any;
   name?: string;
   font?: "Montserrat" | "OpenSans";

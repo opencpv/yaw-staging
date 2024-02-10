@@ -1,18 +1,18 @@
 "use client";
-import { openSans } from "../../styles/font";
+import { openSans } from "@/styles/font";
 import Navbar from "./components/navbar";
 import Pagination from "./components/pagination";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { redirect } from "next/navigation";
-import { createContext, useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { NotificationType } from "./notifications/components/types";
-
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import CompleteYourLogin from "./components/CompleteYourLogin";
 import HowToSwitch from "./components/HowToSwitch";
 import { ClientOnly } from "@/components/ui/ClientOnly";
 import { usePathname } from "next/navigation";
+import { useNotificationStore } from "@/store/dashboard/notificationStore";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -20,7 +20,6 @@ type LayoutProps = {
 
 const Wrapper = ({ children }: LayoutProps) => {
   const pathname = usePathname();
-  const [notifications, setNotifications] = useState<NotificationType | any>();
   const [notificationsLoading, setNotificationsLoading] = useState<
     boolean | null
   >();
@@ -33,9 +32,9 @@ const Wrapper = ({ children }: LayoutProps) => {
   const [firstTimeModalOpen, setFirstTimeModalOpen] = useState(false);
 
   const supabase = createClientComponentClient();
-  // const {user, setUser} = useContext(AppContext) as AppContextType
-  const { user, setUser } = useAppStore();
-
+  const user = useAppStore((state) => state.user);
+  const setUser = useAppStore((state) => state.setUser);
+  const setNotifications = useNotificationStore((state) => state.setNotifications);
   const [loading, setLoading] = useState<boolean>(false);
   const [excludeWrapper, setExcludeWrapper] = useState(false);
 
@@ -56,14 +55,12 @@ const Wrapper = ({ children }: LayoutProps) => {
       setLoading(true);
       const session = JSON.parse(localStorage.getItem("session") as string);
       let { data } = await supabase.auth.getUser(session.access_token);
-      let res: any = await supabase.from("profiles").select("*");
-      const { user } = data;
-      const profileData = { ...res.data[0], email: user?.email };
-      const newData = { ...profileData };
-      setUser((prevUser: any) => ({
-        ...prevUser,
-        profileData: { ...newData },
-      }));
+      let { data: profiles, error } = await supabase
+        .from('profiles')
+        .select('*').eq("id", data?.user?.id)
+      const profileData = { ...(profiles && profiles[0]), email: data?.user?.email }
+      console.log(profileData)
+      setUser(profileData);
     };
 
     getUserData().then(() => {
@@ -79,7 +76,7 @@ const Wrapper = ({ children }: LayoutProps) => {
         setExcludeWrapper(false);
       }
     });
-  }, [supabase, pathname, user, setUser]);
+  }, [supabase]);
 
   const getNotifications = async () => {
     try {
@@ -90,9 +87,8 @@ const Wrapper = ({ children }: LayoutProps) => {
       } = await supabase.from("notifications").select("*");
 
       if (data) {
-        setUser({
-          notifications: [...data],
-        });
+
+        setNotifications(data)
       }
 
       if (dataStatus === 200) {
@@ -105,7 +101,6 @@ const Wrapper = ({ children }: LayoutProps) => {
   };
 
   useEffect(() => {
-    getNotifications();
     const notifications = supabase
       .channel("custom-all-channel")
       .on(
@@ -116,7 +111,7 @@ const Wrapper = ({ children }: LayoutProps) => {
         },
       )
       .subscribe();
-  }, []);
+  }, [user]);
 
   return (
     <div>

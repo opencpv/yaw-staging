@@ -23,9 +23,10 @@ const Dashboard = () => {
   return (
     <>
       <Head>
-        <title>Dashboard - RentRightGh</title>
+        <title>Settings - RentRightGh</title>
+        <base href="/dashboard"></base>
       </Head>
-      <main></main>
+      <main className={"w-full h-[100vh] bg-black"}></main>
     </>
   );
 };

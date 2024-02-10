@@ -10,23 +10,12 @@ import { redirect } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 
 const Settings = () => {
-  const [supabase, setsupabase] = useState<any>();
-
-  useEffect(() => {
-    const supabase = createClientComponentClient();
-    if (!supabase) {
-      redirect("/");
-    } else {
-      setsupabase(supabase);
-    }
-  }, []);
-
   return (
     <>
       <Head>
         <title>Dashboard - Settings</title>
       </Head>
-      {supabase && <ProfileMainView />}
+      <ProfileMainView />
     </>
   );
 };

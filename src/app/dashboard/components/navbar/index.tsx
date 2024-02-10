@@ -14,11 +14,12 @@ import Logo from "@/components/__shared/Logo";
 import { AiOutlineSearch } from "react-icons/ai";
 import { IoIosCloseCircle } from "react-icons/io";
 import { useRef, useState } from "react";
+import Loader from "@/components/__shared/loader/Loader";
 
 const Navbar = () => {
   const { icons } = useAssets();
 
-  const { user } = useAppStore();
+  const user = useAppStore((state) => state.user);
 
   const [dashboardType, setDashboardType] =
     useLocalStorage<any>("dashboard-type");
