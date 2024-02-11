@@ -28,7 +28,7 @@ const Navbar = () => {
   return (
     <>
       <Root
-        className={`flex flex-nowrap items-center
+        className={`relative z-[70] flex flex-nowrap items-center
         gap-16 bg-primary-500 p-[1rem] 2xl:p-[1.875rem]`}
       >
         <div className="flex w-full items-center justify-start gap-6 md:gap-10 lg:gap-20">
@@ -68,7 +68,7 @@ const Navbar = () => {
       </Root>
       {/* search bar for mobile */}
       <div
-        className={`absolute left-0 top-[10%] z-[9999] flex w-full items-center justify-between gap-5 bg-primary-500 text-white transition-all md:hidden ${
+        className={`absolute left-0 top-0 z-[60] flex w-full items-center justify-between gap-5 bg-primary-500 p-4 pt-2 text-white transition-all duration-1000 md:hidden ${
           expandMobileSearch
             ? style.visibleMobileSearch
             : style.hiddenMobileSearch

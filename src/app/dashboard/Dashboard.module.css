@@ -12,14 +12,16 @@
 }
 
 .visibleMobileSearch {
-  transform: initial;
-  @apply p-4 pt-2;
+  /* transform: initial; */
+  @apply visible translate-y-full;
 }
 
 .hiddenMobileSearch {
   transform: scaleY(0);
-  padding: 0;
-  margin: 0;
-  height: 0;
+  @apply -translate-y-full;
+  /* padding: 0; */
+  /* margin: 0; */
+  /* height: 0; */
+  visibility: hidden;
   opacity: 0;
 }
