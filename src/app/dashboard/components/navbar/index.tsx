@@ -14,6 +14,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { IoIosCloseCircle } from "react-icons/io";
 import { useRef, useState } from "react";
 import Loader from "@/components/__shared/loader/Loader";
+import { useDashboardMenuStore } from "@/store/navmenu/useDashboardMenuStore";
 
 const Navbar = () => {
   const { icons } = useAssets();
@@ -24,12 +25,15 @@ const Navbar = () => {
     useLocalStorage<any>("dashboard-type");
 
   const [expandMobileSearch, setExpandMobileSearch] = useState(false);
+  const { isOpen } = useDashboardMenuStore();
 
   return (
     <>
       <Root
-        className={`relative z-[70] flex flex-nowrap items-center
-        gap-16 bg-primary-500 p-[1rem] 2xl:p-[1.875rem]`}
+        className={`relative ${
+          isOpen ? "z-[50]" : "z-[70]"
+        } flex flex-nowrap items-center gap-16
+        bg-primary-500 p-[1rem] md:z-[initial] 2xl:p-[1.875rem]`}
       >
         <div className="flex w-full items-center justify-start gap-6 md:gap-10 lg:gap-20">
           <Logo size="xs" />
