@@ -182,7 +182,11 @@ export const TableBody = (props: TableBodyProps) => {
 
 export const TableBodySm = (props: TableBodyProps) => {
   return (
-    <div aria-label="table body" tabIndex={0} className={cn(props.className)}>
+    <div
+      aria-label="table body"
+      tabIndex={0}
+      className={cn("text-neutral-700", props.className)}
+    >
       {props.children}
     </div>
   );

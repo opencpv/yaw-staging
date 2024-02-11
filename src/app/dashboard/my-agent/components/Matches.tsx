@@ -20,6 +20,8 @@ import {
   TableRowSm,
   TableSm,
 } from "../../components/shared/table/Table";
+import TbPropertyImageSm from "../../components/shared/TbPropertyImageSm";
+import TbPropertyImage from "../../components/shared/TbPropertyImage";
 
 export default function MatchesYet() {
   return (
@@ -64,25 +66,31 @@ const PropertyRowSm = () => {
       {/* Property */}
       <TableBodySm className="space-y-4">
         <h4>Property</h4>
-        <div className="flex justify-between gap-5 truncate">
-          <div className="relative aspect-video w-full max-w-[65px] shrink-0 rounded-lg">
-            <Image
-              src={"/assets/images/niceHome.png"}
-              fill
-              alt="No saved search"
-              objectFit="cover"
-              className="rounded-[inherit]"
-            />
-          </div>
+        <div className="flex flex-wrap justify-between gap-5 truncate">
+          <TbPropertyImageSm
+            title="Single Room at Assin Fosu"
+            image="/assets/images/niceHome.png"
+          />
           <div className="flex flex-col justify-between gap-2">
             <div className="flex flex-col gap-1 truncate lg:gap-[0.62rem]">
               <h4>Single Room</h4>
               <p className="text-[0.8125rem] text-[#B0B0B0]">Assin Fosu</p>
             </div>
-
-            <p className="text-[0.8125rem] font-bold text-shade-200">
-              GHS {formatPrice(3000)}
-            </p>
+            <div className="flex flex-wrap items-center gap-2 text-xs">
+              <div className="w-fit">
+                <p className="text-sm font-[700]">
+                  GHS&nbsp;
+                  <span className="font-[500]">
+                    {formatPrice(3000)} / Month
+                  </span>
+                </p>
+              </div>
+              <div className="flex w-full flex-1 items-center justify-between gap-x-2 gap-y-3">
+                <small className="w-max rounded-xl bg-[#E7F8F2] px-3 py-1 text-xs text-neutral-800">
+                  One Year Advance
+                </small>
+              </div>
+            </div>
           </div>
         </div>
       </TableBodySm>
@@ -132,15 +140,10 @@ const PropertyRow = () => {
     <TableBodyRow className="grid-cols-6">
       {/* Property */}
       <TableBody className="col-span-2 flex gap-[0.62rem] truncate p-2.5">
-        <div className="relative aspect-video w-full max-w-[150px] shrink-0 rounded-lg">
-          <Image
-            src={"/assets/images/niceHome.png"}
-            fill
-            alt="Single Room at Assin Fosu"
-            objectFit="cover"
-            className="rounded-[inherit]"
-          />
-        </div>
+        <TbPropertyImage
+          title="Single Room at Assin Fosu"
+          image="/assets/images/niceHome.png"
+        />
         <div className="flex flex-col justify-between gap-[0.62rem]">
           <h4 className="truncate font-semibold">Single Room</h4>
           <p className="-mt-2 truncate text-[0.8125rem] text-[#B0B0B0]">
