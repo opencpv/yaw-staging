@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
 type Props = {
   button?: "Hire Us Now" | "Get Started" | "Ghost" | "Edit";
   buttonClassName?: string;
-  content?: React.ReactNode;
+  content?: React.ReactNode | string;
 };
 
 const BeMyAgentModal = (props: Props) => {
@@ -38,8 +38,8 @@ const BeMyAgentModal = (props: Props) => {
       <Dialog.Trigger asChild className="w-full">
         {props.button === "Get Started" ? (
           <AgentButtons
-            content="Get Started"
-            variant={"green-dark"}
+            content={(props.content as string) ?? "Get Started"}
+            variant={"green-fade-light"}
             className={props.buttonClassName}
           />
         ) : props.button === "Ghost" ? (
@@ -59,7 +59,7 @@ const BeMyAgentModal = (props: Props) => {
           </Button>
         ) : props.button === "Hire Us Now" ? (
           <AgentButtons
-            content="Hire Us Now !!"
+            content={(props.content as string) ?? "Hire Us Now !!"}
             variant={"green-dark"}
             className={props.buttonClassName}
           />

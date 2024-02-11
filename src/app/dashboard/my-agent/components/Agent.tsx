@@ -32,7 +32,7 @@ export default function Agent({
         />
         {state === "default" ? (
           <ClientOnly>
-            <BeMyAgentModal button="Get Started" />{" "}
+            <BeMyAgentModal button="Hire Us Now" content="Get Started" />{" "}
           </ClientOnly>
         ) : state === "completed" ? (
           <AgentButtons

@@ -34,7 +34,7 @@ export default function AgentLandingPage() {
                   </p>
                   <div className="flex w-full flex-wrap items-center gap-5">
                     <ClientOnly>
-                      <BeMyAgentModal />
+                      <BeMyAgentModal button="Hire Us Now" />
                     </ClientOnly>
                     <LearnMoreYoutubeBtn />
                   </div>

@@ -37,9 +37,12 @@ const OptionFilterTabs = (
         aria-label="Tabs variants"
         // radius="full"
         classNames={{
-          base: "bg-transparent transition-all",
+          base: [
+            variant === "gradient" && "w-full",
+            "bg-transparent transition-all",
+          ],
           tabList: [
-            variant === "gradient" ? "gap-x-8" : null,
+            variant === "gradient" ? "gap-x-8 w-full" : null,
             "justify-center",
             variant === "gradient"
               ? "flex-col sm:flex-row sm:flex-wrap xl:flex-nowrap"
