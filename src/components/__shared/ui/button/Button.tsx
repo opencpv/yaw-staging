@@ -46,7 +46,6 @@ const Button: React.FC<Props> = ({
           `min-h-fit max-w-sm space-x-2 whitespace-normal rounded-md bg-transparent px-10 py-3 font-[600] hover:scale-[1.02] ${
             borderColor && `border border-[${borderColor}]`
           }`,
-          className,
           {
             "bg-primary-500": color === "primary" && variant !== "outline",
             "bg-accent-50": color === "accent" && variant !== "outline",
@@ -65,7 +64,7 @@ const Button: React.FC<Props> = ({
               variant === "outline" && color === "black",
             "border border-[#21A19F] bg-transparent text-[#21A19F]":
               variant === "outline" && color === "gradient",
-            "h-unit-4 w-fit rounded-none min-w-unit-5 max-w-none justify-normal bg-transparent p-0 text-neutral-800":
+            "h-unit-4 w-fit min-w-unit-5 max-w-none justify-normal rounded-none bg-transparent p-0 text-neutral-800":
               variant === "ghost",
             "rounded-full": radius === "full",
             "h-unit-6 min-w-unit-5 px-2.5 py-1.5": padding === "sm",
@@ -73,6 +72,7 @@ const Button: React.FC<Props> = ({
             "bg-none":
               disabled && (variant === "outline" || variant === "ghost"),
           },
+          className,
         )}
         onPress={onClick}
       >
@@ -88,7 +88,6 @@ const Button: React.FC<Props> = ({
           `min-h-fit max-w-sm space-x-2 whitespace-normal rounded-md bg-transparent p-3 px-10 font-[600] hover:scale-[1.02] ${
             borderColor && `border border-[${borderColor}]`
           }`,
-          className,
           {
             "bg-primary-500": color === "primary" && variant !== "outline",
             "bg-accent-50": color === "accent" && variant !== "outline",
@@ -107,7 +106,7 @@ const Button: React.FC<Props> = ({
               variant === "outline" && color === "black",
             "border border-[#21A19F] bg-transparent text-[#21A19F]":
               variant === "outline" && color === "gradient",
-            "h-unit-4 w-fit rounded-none min-w-unit-5 max-w-none justify-normal bg-transparent p-0 text-neutral-800":
+            "h-unit-4 w-fit min-w-unit-5 max-w-none justify-normal rounded-none bg-transparent p-0 text-neutral-800":
               variant === "ghost",
             "rounded-full": radius === "full",
             "h-unit-6 min-w-unit-5 px-2.5 py-1.5": padding === "sm",
@@ -115,6 +114,7 @@ const Button: React.FC<Props> = ({
             "bg-none":
               disabled && (variant === "outline" || variant === "ghost"),
           },
+          className,
         )}
         onPress={onClick}
       >

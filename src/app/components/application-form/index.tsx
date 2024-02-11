@@ -48,8 +48,8 @@ const ApplicationForm = ({
               className={`w-full  lg:max-w-[284px] 
             ${
               green
-                ? "bg-[#ECF2F3] text-shade-200 hover:bg-primary-200"
-                : "bg-[#ECF2F3] text-shade-200"
+                ? "bg-[#ECF2F3] text-shade-200"
+                : "bg-[#ECF2F3] text-shade-200 hover:bg-primary-200 hover:text-white"
             } ${active && "bg-primary-200 text-white"}
             flex h-10 items-center justify-center rounded-2xl text-sm font-semibold lg:h-14 `}
             >

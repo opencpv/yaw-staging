@@ -25,12 +25,13 @@ const MyAgentLayout = ({ children }: { children: React.ReactNode }) => {
               <h4 className="whitespace-nowrap text-lg font-normal">
                 Service Fee
               </h4>
-              <AgentButtons
-                href="/dashboard/my-agent/agent"
-                variant="price"
-                content="GHS 250.00"
-                className="justify-end text-lg xs:justify-center"
-              />
+              <ClientOnly>
+                <BeMyAgentModal
+                  button="Price"
+                  content={250}
+                  buttonClassName="justify-end text-lg xs:justify-center"
+                />
+              </ClientOnly>
             </div>
             <div
               style={{

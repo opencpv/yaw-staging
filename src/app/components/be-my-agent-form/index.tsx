@@ -10,11 +10,12 @@ import { ClientOnly } from "@/components/ui/ClientOnly";
 import Button from "@/components/__shared/ui/button/Button";
 import { MdOutlineEdit } from "react-icons/md";
 import { cn } from "@/lib/utils";
+import { formatPrice } from "@/lib/utils/numberManipulation";
 
 type Props = {
-  button?: "Hire Us Now" | "Get Started" | "Ghost" | "Edit";
+  button?: "Hire Us Now" | "Get Started" | "Ghost" | "Edit" | "Price";
   buttonClassName?: string;
-  content?: React.ReactNode | string;
+  content?: React.ReactNode | string | number;
 };
 
 const BeMyAgentModal = (props: Props) => {
@@ -61,6 +62,12 @@ const BeMyAgentModal = (props: Props) => {
           <AgentButtons
             content={(props.content as string) ?? "Hire Us Now !!"}
             variant={"green-dark"}
+            className={props.buttonClassName}
+          />
+        ) : props.button === "Price" ? (
+          <AgentButtons
+            variant="price"
+            content={`GHS ${formatPrice(props.content as number)}`}
             className={props.buttonClassName}
           />
         ) : null}

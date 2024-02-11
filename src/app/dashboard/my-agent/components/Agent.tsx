@@ -52,26 +52,26 @@ export default function Agent({
           Date Created :
           <span>
             {state === "default" ? (
-              <div className="group flex w-fit flex-col gap-1">
+              <div className="group flex w-fit flex-col gap-0.5">
                 <ClientOnly>
                   <BeMyAgentModal
                     button="Ghost"
                     content="Not Started"
-                    buttonClassName="mt-1 flex-1"
+                    buttonClassName="mt-1 flex-1 text-base text-shade-200 font-normal"
                   />
                 </ClientOnly>
-                <div className="h-0 w-0 flex-1 border-b border-neutral-800 transition-all group-hover:h-[1px] group-hover:w-full"></div>
+                <div className="h-0 w-0 flex-1 border-b border-shade-200 transition-all group-hover:h-[1px] group-hover:w-full"></div>
               </div>
             ) : state === "started" ? (
-              <div className="group flex w-fit flex-col gap-1">
+              <div className="group flex w-fit flex-col gap-0.5">
                 <ClientOnly>
                   <BeMyAgentModal
                     button="Ghost"
                     content="Continue"
-                    buttonClassName="mt-1 flex-1"
+                    buttonClassName="mt-1 flex-1 text-base text-shade-200 font-normal"
                   />
                 </ClientOnly>
-                <div className="h-0 w-0 flex-1 border-b border-neutral-800 transition-all group-hover:h-[1px] group-hover:w-full"></div>
+                <div className="h-0 w-0 flex-1 border-b border-shade-200 transition-all group-hover:h-[1px] group-hover:w-full"></div>
               </div>
             ) : (
               dateCreated
