@@ -83,7 +83,7 @@ export const TableRowSm = (props: TableHeaderRowProps) => {
       role="row"
       aria-label="table row"
       className={cn(
-        `flex cursor-default flex-col gap-4 divide-y rounded-lg px-[10px] py-4 hover:bg-primary-300/20
+        `flex cursor-default flex-col gap-4 divide-y rounded-lg border px-[10px] py-4 hover:bg-primary-300/20
       ${styles.property_matches_card}
       `,
         props.className,
