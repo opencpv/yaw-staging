@@ -27,7 +27,7 @@ const InputWithSavedSearch = ({
         <input
           type="search"
           className={cn(
-            "col-span-9 w-full bg-transparent text-neutral-800 outline-none",
+            "col-span-9 w-full bg-transparent text-neutral-800 outline-none focus:outline-none",
             inputClassName,
           )}
           placeholder="Madina, Accra"
@@ -45,7 +45,7 @@ const InputWithSavedSearch = ({
           style={{ visibility: showDivider ? "visible" : "hidden" }}
         ></div>
         <Link
-          href="/properties"
+          href="/properties?sk=true"
           className="col-span-1 mx-auto mr-2 xs:mr-auto"
           title="search"
         >
