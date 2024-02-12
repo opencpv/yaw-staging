@@ -2,10 +2,12 @@
 import supabase from "@/lib/utils/supabaseClient";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import Head from "next/head";
+import { useRouter } from "next/navigation";
 import { useContext, useEffect } from "react";
 
 const Dashboard = () => {
   const { user, setUser } = useAppStore();
+  const router = useRouter();
   const getProperties = async () => {
     let { data: property, error } = await supabase.from("property").select("*");
 
@@ -18,6 +20,8 @@ const Dashboard = () => {
 
   useEffect(() => {
     getProperties();
+
+    router.replace("/dashboard/overview");
   }, []);
 
   return (
@@ -26,7 +30,7 @@ const Dashboard = () => {
         <title>Settings - RentRightGh</title>
         <base href="/dashboard"></base>
       </Head>
-      <main className={"w-full h-[100vh] bg-black"}></main>
+      <main className={"h-[100vh] w-full bg-black"}></main>
     </>
   );
 };
