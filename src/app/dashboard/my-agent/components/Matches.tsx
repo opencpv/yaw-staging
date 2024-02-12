@@ -7,7 +7,7 @@ import styles from "../index.module.css";
 import ViewModal from "./ViewModal";
 import DeleteModal from "./DeleteModal";
 import InfoText from "@/app/components/listing-form/components/InfoText";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import {
   Table,
@@ -26,8 +26,15 @@ import PaymentStructure from "../../components/shared/PaymentStructure";
 import { formatDate } from "@/lib/utils/stringManipulation";
 
 export default function MatchesYet() {
+  const matchesRef = React.useRef<HTMLElement>(null);
+  useEffect(() => {
+    if (matchesRef.current && location.href.includes("sk=true")) {
+      matchesRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
+
   return (
-    <section className="flex w-full flex-col gap-8 pt-28">
+    <section className="flex w-full flex-col gap-8 pt-28" ref={matchesRef}>
       <p className="text-[1.25rem] font-semibold lg:text-[1.5625rem]">
         Your Matches
       </p>
