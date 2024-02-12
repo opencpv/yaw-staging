@@ -51,11 +51,11 @@ const Navbar = () => {
         <div className="relative flex w-fit items-center gap-7">
           <Switch />
           <NotificationsPopover />
-          <div>
+          {/* <div>
             <p className="hidden whitespace-nowrap text-sm text-[#fff] xs:block">
               {user?.full_name}
             </p>
-          </div>
+          </div> */}
           <div className="relative flex min-h-[50px] w-full min-w-[40px] items-center justify-center overflow-hidden rounded-full md:min-w-[50px]">
             {user?.avatar_url == undefined ? (
               <Loader />
