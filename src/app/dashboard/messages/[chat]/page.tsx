@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from "react";
 import MessageBubble from "../components/MessageBubble";
 import { usePathname } from "next/navigation";
 import { Spinner } from "@nextui-org/react";
-import MessageBubble2 from "../components/MessageBubble2";
 import { useCurrentUserId } from "@/lib/custom-hooks/useCurrentUserId";
 import NoMessageState from "../components/NoMessageState";
 // import { useQuery } from "@tanstack/react-query";
@@ -42,7 +41,7 @@ const Messages = ({ params }: { params: { chat: string } }) => {
     };
     getMessages();
 
-    if (messageContainerRef.current){
+    if (messageContainerRef.current) {
       setTimeout(() => {
         scrollToBottom(messageContainerRef.current?.scrollHeight);
       }, 200);
@@ -62,23 +61,24 @@ const Messages = ({ params }: { params: { chat: string } }) => {
     <>
       {/* {currentUserId === null && router.push("/login")} */}
       {pathname !== "/dashboard/messages" && (
-        <UsernameDisplayBar userName={userName as string} />
+        // <UsernameDisplayBar userName={userName as string} />
+        <UsernameDisplayBar userName={"Jane Mumuni"} />
       )}
 
-      {isLoading ? (
-        <div className="flex items-center justify-center h-[70vh]:">
+      {/* {isLoading ? (
+        <div className="h-[70vh]: flex items-center justify-center">
           <Spinner color="success" />
         </div>
       ) : (
         error && <p>Error: {error}</p>
-      )}
+      )} */}
 
-      {messages ? (
+      {true ? (
         <div
-          className="flex flex-col w-full h-[80%] mt-5 overflow-y-scroll hidden-scrollbar py-5"
+          className="hidden-scrollbar mt-5 flex h-[80%] w-full flex-col overflow-y-scroll py-5"
           ref={messageContainerRef}
         >
-          {messages?.map((message: Message) => {
+          {/* {messages?.map((message: Message) => {
             if (message.sender_id === currentUserId) {
               return (
                 <MessageBubble
@@ -95,10 +95,25 @@ const Messages = ({ params }: { params: { chat: string } }) => {
                 time={message.sent_at}
               />
             );
-          })}
+          })} */}
+          <MessageBubble
+            type="sender"
+            content={"Absolutely!"}
+            time={"2 Jan 2024, 18:09"}
+          />
+          <MessageBubble
+            type="recipient"
+            content={"Hi, nice apartment"}
+            time={"8 Jan 2024, 2:15"}
+          />
+          <MessageBubble
+            type="recipient"
+            content={"Buy soon"}
+            time={"15 Jan 2024, 16:15"}
+          />
         </div>
       ) : (
-        <div className="flex items-center justify-center h-[70vh]">
+        <div className="flex h-[70vh] items-center justify-center">
           <NoMessageState />
         </div>
       )}

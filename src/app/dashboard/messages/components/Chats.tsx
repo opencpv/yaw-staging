@@ -16,9 +16,9 @@ const Chats = (props: Props) => {
     <aside
       className={`${
         pathname !== "/dashboard/messages" && "hidden"
-      } col-span-2 max-h-screen max-w-lg p-4 px-0 overflow-y-scroll lg:block lg:px-4 lg:border-r hidden-scrollbar`}
+      } hidden-scrollbar col-span-2 max-h-screen max-w-lg overflow-y-scroll p-4 px-0 lg:block lg:border-r lg:px-4`}
     >
-      {props.isLoading ? (
+      {/* {props.isLoading ? (
         <Spinner />
       ) : props.error ? (
         <p>Error: {props.error}</p>
@@ -26,7 +26,7 @@ const Chats = (props: Props) => {
         props.messages?.map((message) => {
           let capitalizedName = capitalizeName(
             message?.recipient_full_name as string,
-            " "
+            " ",
           );
           return (
             <Chat
@@ -40,7 +40,23 @@ const Chats = (props: Props) => {
             />
           );
         })
-      )}
+      )} */}
+      <Chat
+        href={`/dashboard/messages/John Doe`}
+        image=""
+        name="John Doe"
+        last_message="This is my last message"
+        messages_count={3}
+        id={"2"}
+      />
+      <Chat
+        href={`/dashboard/messages/Jane Mumuni`}
+        image=""
+        name="Jane Mumuni"
+        last_message="Hi, nice apartment"
+        messages_count={0}
+        id={"3"}
+      />
     </aside>
   );
 };

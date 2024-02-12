@@ -87,6 +87,10 @@ small {
   /* Firefox */
 }
 
+.light-green-hover {
+  @apply hover:bg-primary-300/20;
+}
+
 .menu-bg {
   @apply bg-primary-900 before:pointer-events-none before:fixed before:-left-64 before:top-28 before:h-[50rem] before:w-[50rem] before:rounded-full before:bg-primary-200 before:opacity-[0.12] after:pointer-events-none after:fixed after:-right-64 after:-top-60 after:hidden after:h-[45rem] after:w-[50rem] after:rounded-full after:bg-primary-200 after:opacity-[0.12] after:lg:block;
 }

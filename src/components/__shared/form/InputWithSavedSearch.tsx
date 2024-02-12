@@ -55,7 +55,7 @@ const InputWithSavedSearch = ({
             className="mx-auto"
           />
         </Link>
-        <SaveSearchModal className="col-span-1 mx-auto w-full hover:bg-primary-300/20" />
+        <SaveSearchModal className="light-green-hover col-span-1 mx-auto w-full" />
       </div>
     </div>
   );

@@ -82,6 +82,7 @@ interface ListingInterface {
 interface MessageInterface {
   content: string;
   time: string;
+  type: "sender" | "recipient";
 }
 
 type ManagePropertiesInterface = {

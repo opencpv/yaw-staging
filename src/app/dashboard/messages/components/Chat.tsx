@@ -28,20 +28,16 @@ const Chat = ({
     }
   }, [id, pathname]);
 
-  const handleClick = () => {
-    router.push(`/dashboard/messages/${id}`);
-    setViewed(true);
-  };
-
   return (
-    <div
-      className={`grid items-start grid-cols-8 gap-6 pt-8 pb-2 first:pt-2 border-b min-h-[3.5rem] cursor-default ${
+    <Link
+      href={`/dashboard/messages/${id}`}
+      className={`grid min-h-[3.5rem] cursor-default grid-cols-8 items-start gap-6 border-b pb-2 pt-8 ${
         isSelected && "bg-slate-50/60"
-      } hover:bg-neutral-50/50 transition-all`}
-      onClick={handleClick}
+      } light-green-hover transition-all`}
+      onClick={() => setViewed(true)}
     >
-      <div className="flex items-center col-span-7 gap-5">
-        <div className="relative w-16 h-16 rounded-full">
+      <div className="col-span-7 flex items-center gap-5">
+        <div className="relative h-16 w-16 shrink-0 rounded-full">
           <Image
             src={images.UserNoImage}
             alt={name}
@@ -50,19 +46,20 @@ const Chat = ({
             style={{ objectFit: "contain" }}
           />
         </div>
-        <div className="flex flex-col justify-between h-full col-span-9">
-          <h4 className="text-primary-500 font-[700]">{name}</h4>
-          <p className="leading-[3] truncate text-neutral-800">
+        <div className="col-span-9 flex h-full flex-col justify-between">
+          <h4 className="font-[700] text-primary-500">{name}</h4>
+          <p className="truncate leading-[3] text-neutral-800">
             {last_message}
           </p>
         </div>
       </div>
-      {viewed === false ? (
-        <div className="flex items-center justify-center col-span-1 p-3 text-sm text-white rounded-full w-7 h-7 justify-self-end bg-neutral-600">
+      {/* messages counter */}
+      {!viewed && messages_count > 0 && (
+        <div className="col-span-1 flex h-7 w-7 items-center justify-center justify-self-end rounded-full bg-neutral-600 p-3 text-sm text-white">
           {messages_count}
         </div>
-      ) : null}
-    </div>
+      )}
+    </Link>
   );
 };
 

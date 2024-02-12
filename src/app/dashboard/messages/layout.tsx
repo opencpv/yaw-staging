@@ -74,7 +74,7 @@ const MessagesLayout = ({ children }: Props) => {
   // });
 
   return (
-    <div className="h-screen px-6">
+    <div className="h-[100svh]">
       <h2 className="sticky top-0 z-40 mb-5 bg-white pb-5 text-2xl font-[500] text-neutral-900">
         Messages
       </h2>
@@ -82,14 +82,14 @@ const MessagesLayout = ({ children }: Props) => {
         <NoMessageState className="mt-20 lg:hidden" />
       )}
 
-      <section className="h-full max-h-screen grid-cols-6 gap-5 lg:grid">
+      <section className="h-full max-h-[100svh] grid-cols-6 gap-5 lg:grid">
         {/* grid col */}
         <Chats isLoading={isLoading} error={error} messages={messages} />
         {/* grid col */}
         <main
           className={`${
             pathname == "/dashboard/messages" && "hidden"
-          } relative col-span-4 h-full max-h-screen w-full lg:block`}
+          } relative col-span-4 h-full max-h-[100svh] w-full lg:block`}
         >
           {children} {/* messages */}
           {pathname?.includes("/dashboard/messages/") && (

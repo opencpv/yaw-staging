@@ -3,7 +3,7 @@ import style from "../Messages.module.css";
 import { motion } from "framer-motion";
 import { MessageInterface } from "../../../../../interfaces";
 
-const MessageBubble = ({ content, time }: MessageInterface) => {
+const MessageBubble = ({ content, time, type }: MessageInterface) => {
   const date = new Date(time);
 
   const formattedTime = new Intl.DateTimeFormat("en-US", {
@@ -17,17 +17,31 @@ const MessageBubble = ({ content, time }: MessageInterface) => {
     hidden: { opacity: 0, y: 10 },
     visible: { opacity: 1, y: 0 },
   };
-  return (
-    <motion.div
-      initial="hidden"
-      animate="visible"
-      variants={messageBubbleVariants}
-      className={`${style.messageBubble} flex flex-col self-end max-w-xl gap-1 p-3 pb-1 ml-10 xs:ml-20 bg-primary-300 text-neutral-800 rounded-2xl first:mt-auto`}
-    >
-      <p>{content}</p>
-      <small className="text-sm text-end">{formattedTime}</small>
-    </motion.div>
-  );
+
+  if (type === "sender")
+    return (
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={messageBubbleVariants}
+        className={`${style.messageBubble} ml-10 flex max-w-xl flex-col gap-1 self-end rounded-2xl bg-primary-300 p-3 pb-1 text-neutral-800 first:mt-auto xs:ml-20`}
+      >
+        <p>{content}</p>
+        <small className="text-end text-sm">{formattedTime}</small>
+      </motion.div>
+    );
+  else
+    return (
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={messageBubbleVariants}
+        className={`${style.messageBubble} mr-10 flex w-fit max-w-xl flex-col gap-1 rounded-2xl bg-neutral-100 p-3 pb-1 text-neutral-800 first:mt-auto xs:mr-20`}
+      >
+        <p>{content}</p>
+        <small className="text-end text-sm">{formattedTime}</small>
+      </motion.div>
+    );
 };
 
 export default MessageBubble;
