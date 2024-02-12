@@ -125,7 +125,7 @@ const RecentSearch = ({ title, date }: { title: string; date: string }) => {
       </Button>
       <Popover style={{ zIndex: "99999" }}>
         <PopoverTrigger className="h-fit w-fit">
-          <button className="col-span-1 ml-auto h-fit w-fit">
+          <button className="col-span-1 ml-auto h-fit w-fit p-2">
             <BiDotsVerticalRounded />
           </button>
         </PopoverTrigger>

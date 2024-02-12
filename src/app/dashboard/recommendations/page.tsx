@@ -9,6 +9,7 @@ import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchError
 import ListingCard from "@/components/__shared/listing/ListingCard";
 import demoimages from "@/enum/temp/images";
 import { Switch } from "@nextui-org/react";
+import Toggle from "@/components/ui/Toggle";
 
 export default function Page() {
   const {
@@ -28,7 +29,9 @@ export default function Page() {
   return (
     <div>
       <h2>Recommendations</h2>
-      <div className="mt-4"></div>
+      <div className="mt-4">
+        <Toggle label="Allow property owners to contact you" />
+      </div>
       <section className="mx-auto my-10 grid grid-cols-1 justify-center gap-x-3 gap-y-10 transition-all sm:grid-cols-2 lg:grid-cols-3">
         <FetchingStates
           data={listings}

@@ -12,6 +12,7 @@ import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchError
 import ListingCard from "@/components/__shared/listing/ListingCard";
 import demoimages from "@/enum/temp/images";
 import { Switch } from "@nextui-org/react";
+import Toggle from "@/components/ui/Toggle";
 
 export default function Page() {
   const [savedSearches, setSavedSearches] = useState(true);
@@ -35,19 +36,7 @@ export default function Page() {
     <div>
       <h2>My Favourites</h2>
       <div className="mt-4">
-        <Switch
-          classNames={{
-            thumb: "bg-neutral-200 group-data-[selected=true]:bg-accent-50",
-            wrapper: "bg-transparent border",
-            label: "text-neutral-500",
-          }}
-          size="sm"
-          // color="warning"
-          // isSelected={isAdvancedActive}
-          // onValueChange={handleIsActive}
-        >
-          Allow property owners to contact you
-        </Switch>
+        <Toggle />
       </div>
       <section className="mx-auto my-10 grid grid-cols-1 justify-center gap-x-3 gap-y-10 transition-all sm:grid-cols-2 lg:grid-cols-3">
         <FetchingStates

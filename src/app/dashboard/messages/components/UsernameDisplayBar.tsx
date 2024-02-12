@@ -12,12 +12,12 @@ const UsernameDisplayBar = ({ userName }: Props) => {
   const { icons } = useAssets();
   return (
     <div className="sticky top-0 z-40 flex items-center justify-between gap-x-4 rounded-xl bg-primary-400 p-4 text-white">
-      <Button variant="ghost" href="/dashboard/messages">
-        <Image
-          src={icons.ArrowIcon}
-          alt="back"
-          className="inline-flex text-3xl lg:hidden"
-        />
+      <Button
+        variant="ghost"
+        href="/dashboard/messages"
+        className="flex lg:hidden"
+      >
+        <Image src={icons.ArrowIcon} alt="back" className="text-3xl" />
       </Button>
       <h2 className="text-xl">{userName}</h2>
       <BlockUserPopOver />
