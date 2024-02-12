@@ -63,7 +63,7 @@ const ApplicationRow2 = ({
           </div>
         </TableBodySm>
         {/* Property */}
-        <TableBodySm href="/properties/1">
+        <TableBodySm href="/properties/1" className="pt-3">
           <h4 className="mb-3">Property</h4>
           <div className="flex flex-wrap items-center gap-3">
             <TbPropertyImageSm image={propertyImage} title={propertyTitle} />
@@ -81,7 +81,7 @@ const ApplicationRow2 = ({
         </TableBodySm>
         {/* Date */}
         <TableBodySm className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 py-3.5">
-          <h2 className="text-lg font-[700] text-neutral-700">Date</h2>
+          <h4>Date</h4>
           <div className="flex flex-col items-center justify-center gap-y-1">
             <h4 className="text-sm font-[600]">
               {formatDate(date)} {formatTime(date)}
