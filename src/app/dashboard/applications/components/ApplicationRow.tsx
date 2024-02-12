@@ -12,6 +12,10 @@ import DestructiveModal from "@/components/__shared/modals/DestructiveModal";
 import { useDisclosure } from "@nextui-org/react";
 import ButtonDelete from "@/components/__shared/ui/button/ButtonDelete";
 import { ApplicationsInterface } from "../../../../../interfaces";
+import { TableBody, TableBodyRow } from "../../components/shared/table/Table";
+import TbPropertyImage from "../../components/shared/TbPropertyImage";
+import PaymentStructure from "../../components/shared/PaymentStructure";
+import ViewButton from "@/components/__shared/ui/button/ViewButton";
 
 const ApplicationRow = ({
   propertyImage,
@@ -35,73 +39,68 @@ const ApplicationRow = ({
         onOpenChange={onOpenChange}
         label="Are you sure you want to delete this application?"
       />
-      <tr className="border-b h-fit">
+      <TableBodyRow className="grid-cols-8">
         {/* Applicant */}
-        <td className="p-2 py-5">
-          <div className="flex items-center gap-2">
-            <div className="relative w-16 h-16 rounded-full">
+        <TableBody className="col-span-2">
+          <div
+            className="flex items-center gap-2 truncate"
+            title={applicantName}
+          >
+            <div className="relative h-16 w-16 shrink-0 rounded-full">
               <Image
                 src={applicantImage}
                 alt={applicantName}
                 fill
                 style={{ objectFit: "cover" }}
-                className="rounded-full"
+                className="shrink-0 rounded-full"
               />
             </div>
-            <p className="text-[600] text-sm">
+            <p className="text-sm text-[600]">
               {capitalizeName(applicantName, " ")}
             </p>
           </div>
-        </td>
+        </TableBody>
         {/* Property */}
-        <td className="p-2 py-5 ">
-          <div className="flex gap-2">
-            <div className="relative w-16 h-16">
-              <Image
-                src={propertyImage}
-                alt={propertyTitle}
-                fill
-                style={{ objectFit: "cover" }}
-                className="rounded-lg"
-              />
-            </div>
-            <div className="flex flex-col justify-between">
-              <h4 className="capitalize font-[600] text-sm">{propertyTitle}</h4>
-              <p className="mt-2 text-sm text-neutral-400">{propertyTitle}</p>
-              <p className="text-sm text-neutral-500 font-[700] mt-auto">
-                GHS {formatPrice(propertyPrice)}
-              </p>
-            </div>
+        <TableBody
+          href="/properties/1"
+          className="col-span-3 flex gap-[0.62rem] truncate p-2.5"
+        >
+          <TbPropertyImage title={propertyTitle} image={propertyImage} />
+          <div className="flex flex-col justify-between gap-[0.62rem]">
+            <h4 className="truncate font-semibold" title="Single Room">
+              Single Room
+            </h4>
+            <p
+              className="-mt-2 truncate text-[0.8125rem] text-[#B0B0B0]"
+              title="Assin Fosu"
+            >
+              Assin Fosu
+            </p>
+            <PaymentStructure monthlyPrice={3000} advancePayment="one year" />
           </div>
-        </td>
+        </TableBody>
         {/* Posted On */}
-        <td className="p-2 py-5 text-center align-middle">
-          <h4 className="font-[600] text-sm">
+        <TableBody className="col-span-1 text-center">
+          <h4 className="text-sm font-[600]">
             {formatDate(date)} {formatTime(date)}
           </h4>
-          <small className="inline-block text-neutral-400 text-[0.6rem]">
+          <small className="inline-block text-[0.6rem] text-neutral-400">
             {daysDifference < 1
               ? `Less Than A Day Ago`
               : `${daysDifference} Days Ago`}
           </small>
-        </td>
+        </TableBody>
         {/* Status */}
-        <td className="pt-3 text-center align-middle">
+        <TableBody className="col-span-1">
           <ApplicationStatus />
-        </td>
+        </TableBody>
         {/* Actions */}
-        <td className="flex items-center justify-center h-full -translate-y-4">
-          <div className="flex gap-1.5 mt-10">
-            <Button
-              isIconOnly
-              className="flex items-center justify-center text-neutral-800 w-6 py-3 rounded-md bg-[#F1F1F1]"
-            >
-              <AiOutlineEye className="text-xl" />
-            </Button>
-            <ButtonDelete onOpen={onOpen} />
+        <TableBody className="col-span-1 flex items-center justify-center">
+          <div className="flex gap-1.5">
+            <ButtonDelete onOpen={onOpen} className="w-fit" />
           </div>
-        </td>
-      </tr>
+        </TableBody>
+      </TableBodyRow>
     </>
   );
 };

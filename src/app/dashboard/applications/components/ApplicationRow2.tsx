@@ -13,6 +13,10 @@ import { useDisclosure } from "@nextui-org/react";
 import DestructiveModal from "@/components/__shared/modals/DestructiveModal";
 import ButtonDelete from "@/components/__shared/ui/button/ButtonDelete";
 import { ApplicationsInterface } from "../../../../../interfaces";
+import { TableBodySm, TableRowSm } from "../../components/shared/table/Table";
+import TbPropertyImageSm from "../../components/shared/TbPropertyImageSm";
+import PaymentStructure from "../../components/shared/PaymentStructure";
+import ViewButton from "@/components/__shared/ui/button/ViewButton";
 
 const ApplicationRow2 = ({
   propertyImage,
@@ -35,21 +39,21 @@ const ApplicationRow2 = ({
         onOpenChange={onOpenChange}
         label="Are you sure you want to delete this application?"
       />
-      <div className="p-3 border border-neutral-600 rounded-xl xs:p-8">
+      <TableRowSm>
         {/* Applicant */}
-        <div className="flex flex-wrap items-center justify-between gap-y-3 gap-x-5">
+        <TableBodySm className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3">
           <div className="space-y-2">
-            <h2 className="text-neutral-700 font-[600] mb-3">Applicant</h2>
-            <div className="relative w-16 h-16 rounded-full">
+            <h4 className="mb-3">Applicant</h4>
+            <div className="relative h-16 w-16 shrink-0 rounded-full">
               <Image
                 src={applicantImage}
                 alt={applicantName}
                 fill
                 style={{ objectFit: "cover" }}
-                className="rounded-full"
+                className="shrink-0 rounded-full"
               />
             </div>
-            <p className="text-[600] text-sm">
+            <p className="text-sm text-[600]">
               {capitalizeName(applicantName, " ")}
             </p>
           </div>
@@ -57,63 +61,43 @@ const ApplicationRow2 = ({
           <div className="">
             <ApplicationStatus />
           </div>
-        </div>
-        <hr className="mt-2" />
+        </TableBodySm>
         {/* Property */}
-        <div className="flex flex-wrap items-center justify-between gap-y-3 gap-x-5 py-3.5">
-          <div className="">
-            <h2 className="text-neutral-700 font-[600] mb-3">Property</h2>
-            <div className="flex flex-wrap items-center gap-3">
-              <div className="relative w-20 h-16 mb-2.5 sm:w-32 sm:h-24">
-                <Image
-                  src={propertyImage}
-                  alt={propertyTitle}
-                  fill
-                  style={{ objectFit: "cover" }}
-                  className="rounded-lg"
-                />
-              </div>
-              <div className="">
-                <h4 className="capitalize font-[600] text-sm mb-1.5">
-                  {propertyTitle}
-                </h4>
-                <p className="mb-3 text-sm text-neutral-400">{propertyTitle}</p>
-                <p className="text-sm text-neutral-500 font-[700]">
-                  GHS {formatPrice(propertyPrice)}
-                </p>
-              </div>
+        <TableBodySm href="/properties/1">
+          <h4 className="mb-3">Property</h4>
+          <div className="flex flex-wrap items-center gap-3">
+            <TbPropertyImageSm image={propertyImage} title={propertyTitle} />
+            <div className="">
+              <h4 className="mb-1.5 text-sm font-[600] capitalize">
+                {propertyTitle}
+              </h4>
+              <p className="mb-3 text-sm text-neutral-400">Assin Fosu</p>
+              <PaymentStructure
+                monthlyPrice={3000}
+                advancePayment="two years"
+              />
             </div>
           </div>
-        </div>
-        <hr className="mt-2" />
+        </TableBodySm>
         {/* Date */}
-        <div className="flex flex-wrap justify-between items-center gap-x-5 gap-y-3 py-3.5">
-          <h2 className="text-lg text-neutral-700 font-[700]">Date</h2>
+        <TableBodySm className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 py-3.5">
+          <h2 className="text-lg font-[700] text-neutral-700">Date</h2>
           <div className="flex flex-col items-center justify-center gap-y-1">
-            <h4 className="font-[600] text-sm">
+            <h4 className="text-sm font-[600]">
               {formatDate(date)} {formatTime(date)}
             </h4>
-            <small className="inline-block text-neutral-400 text-[0.6rem]">
+            <small className="inline-block text-[0.6rem] text-neutral-400">
               {daysDifference < 1
                 ? `Less Than A Day Ago`
                 : `${daysDifference} Days Ago`}
             </small>
           </div>
-        </div>
-        <hr className="mt-2" />
+        </TableBodySm>
         {/* Actions */}
-        <div className="pt-3">
-          <div className="flex gap-1.5">
-            <Button
-              isIconOnly
-              className="flex items-center justify-center w-full py-4 rounded-md bg-[#F1F1F1]"
-            >
-              <AiOutlineEye className="text-xl" />
-            </Button>
-            <ButtonDelete onOpen={onOpen} />
-          </div>
-        </div>
-      </div>
+        <TableBodySm className="flex justify-center gap-1.5 pt-3">
+          <ButtonDelete onOpen={onOpen} />
+        </TableBodySm>
+      </TableRowSm>
     </>
   );
 };

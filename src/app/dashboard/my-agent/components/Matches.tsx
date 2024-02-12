@@ -22,6 +22,7 @@ import {
 } from "../../components/shared/table/Table";
 import TbPropertyImageSm from "../../components/shared/TbPropertyImageSm";
 import TbPropertyImage from "../../components/shared/TbPropertyImage";
+import PaymentStructure from "../../components/shared/PaymentStructure";
 
 export default function MatchesYet() {
   return (
@@ -149,19 +150,7 @@ const PropertyRow = () => {
           <p className="-mt-2 truncate text-[0.8125rem] text-[#B0B0B0]">
             Assin Fosu
           </p>
-          <div className="flex flex-wrap items-center gap-2 text-xs">
-            <div className="w-fit">
-              <p className="text-sm font-[700]">
-                GHS&nbsp;
-                <span className="font-[500]">{formatPrice(3000)} / Month</span>
-              </p>
-            </div>
-            <div className="flex w-full flex-1 items-center justify-between gap-x-2 gap-y-3">
-              <small className="w-max rounded-xl bg-[#E7F8F2] px-3 py-1 text-xs text-neutral-800">
-                One Year Advance
-              </small>
-            </div>
-          </div>
+          <PaymentStructure monthlyPrice={3000} advancePayment="one year" />
         </div>
       </TableBody>
       {/* Completed */}

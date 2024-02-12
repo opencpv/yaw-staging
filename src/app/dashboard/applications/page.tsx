@@ -10,9 +10,9 @@ const ApplicationsPage = () => {
 
   const { images } = useAssets();
   return (
-    <main className="mx-auto max-w-screen-2xl text-neutral-800">
+    <main className="text-neutral-800">
       <section className="mb-6">
-        <h2 className="text-2xl font-[700] mb-2">Applications</h2>
+        <h2>Applications</h2>
         <small className="inline-block text-sm capitalize">
           {fetchCount &&
             `Showing ${

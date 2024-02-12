@@ -7,6 +7,12 @@ import TableSkeleton from "../../components/shared/skeleton/TableSkeleton";
 import Spinner from "../../components/shared/Spinner";
 import { useApplicationsStore } from "@/store/dashboard/applicationsStore";
 import Pagination from "@/components/__shared/Pagination";
+import {
+  Table,
+  TableBodyRowGroup,
+  TableHeader,
+  TableHeaderRow,
+} from "../../components/shared/table/Table";
 
 type Props = {};
 
@@ -30,35 +36,22 @@ const ManageApplicationsTable = (props: Props) => {
     // revalidateOnFocus: false,
   });
 
-
   setCount(totalCount);
 
   return (
-    <section className="hidden lg:table">
+    <section className="hidden xl:block">
       {error && <p>Error: {error.message}</p>}
-      <table className="w-full mb-8 table-fixed">
-        <thead className="text-white bg-primary-400">
-          <tr className="">
-            <th className="p-3 text-center font-[500] capitalize text-sm">
-              Applicant
-            </th>
-            <th className="p-3 text-center font-[500] capitalize text-sm">
-              Property
-            </th>
-            <th className="p-3 text-center font-[500] capitalize text-sm">
-              Posted on
-            </th>
-            <th className="p-3 text-center font-[500] capitalize text-sm">
-              Status
-            </th>
-            <th className="p-3 text-center font-[500] capitalize text-sm">
-              Actions
-            </th>
-          </tr>
-        </thead>
-        <tbody>
+      <Table className="mb-8 hidden xl:flex">
+        <TableHeaderRow className="grid-cols-8" gap="2rem">
+          <TableHeader className="col-span-2">Applicant</TableHeader>
+          <TableHeader className="col-span-3">Property</TableHeader>
+          <TableHeader className="col-span-1">Posted on</TableHeader>
+          <TableHeader className="col-span-1">Status</TableHeader>
+          <TableHeader className="col-span-1">Actions on</TableHeader>
+        </TableHeaderRow>
+        <TableBodyRowGroup>
           {isValidating === false && !error && currentPage?.length === 0 && (
-            <tr className="italic mt-4">
+            <tr className="mt-4 italic">
               <td>There are no applications yet.</td>
             </tr>
           )}
@@ -77,8 +70,8 @@ const ManageApplicationsTable = (props: Props) => {
               />
             ))
           )}
-        </tbody>
-      </table>
+        </TableBodyRowGroup>
+      </Table>
       {isValidating ? <Spinner color="default" /> : null}
       <div className="mb-20">
         <Pagination

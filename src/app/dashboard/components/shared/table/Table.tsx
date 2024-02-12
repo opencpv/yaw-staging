@@ -1,8 +1,12 @@
 import { cn } from "@/lib/utils";
 import React from "react";
 import styles from "../../../my-agent/index.module.css";
+import Link from "next/link";
 
 type generalProps = {
+  /**
+   *  Make sure the gap on the table header row corresponds to the gap on the table body row
+   */
   gap?: string;
 };
 
@@ -165,29 +169,57 @@ type TableBodyProps = {
    */
   children: React.ReactNode;
   className?: string;
+  href?: string;
 };
 
 export const TableBody = (props: TableBodyProps) => {
   return (
-    <div
-      role="row"
-      aria-label="table body"
-      tabIndex={0}
-      className={cn(props.className)}
-    >
-      {props.children}
-    </div>
+    <>
+      {props.href ? (
+        <Link
+          href={props.href}
+          role="row"
+          aria-label="table body"
+          tabIndex={0}
+          className={cn("block", props.className)}
+        >
+          {props.children}
+        </Link>
+      ) : (
+        <div
+          role="row"
+          aria-label="table body"
+          tabIndex={0}
+          className={cn(props.className)}
+        >
+          {props.children}
+        </div>
+      )}
+    </>
   );
 };
 
 export const TableBodySm = (props: TableBodyProps) => {
   return (
-    <div
-      aria-label="table body"
-      tabIndex={0}
-      className={cn("text-neutral-700", props.className)}
-    >
-      {props.children}
-    </div>
+    <>
+      {props.href ? (
+        <Link
+          href={props.href}
+          aria-label="table body"
+          tabIndex={0}
+          className={cn("block text-neutral-700", props.className)}
+        >
+          {props.children}
+        </Link>
+      ) : (
+        <div
+          aria-label="table body"
+          tabIndex={0}
+          className={cn("text-neutral-700", props.className)}
+        >
+          {props.children}
+        </div>
+      )}
+    </>
   );
 };

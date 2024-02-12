@@ -11,6 +11,7 @@ const ApplicationStatus = () => {
   return (
     <>
       <Select
+        color="primary"
         options={["Accept", "Decline"]}
         value={value}
         handleSelectionChange={handleSelectionChange}

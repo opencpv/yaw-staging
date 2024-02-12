@@ -34,7 +34,9 @@ const Wrapper = ({ children }: LayoutProps) => {
   const supabase = createClientComponentClient();
   const user = useAppStore((state) => state.user);
   const setUser = useAppStore((state) => state.setUser);
-  const setNotifications = useNotificationStore((state) => state.setNotifications);
+  const setNotifications = useNotificationStore(
+    (state) => state.setNotifications,
+  );
   const [loading, setLoading] = useState<boolean>(false);
   const [excludeWrapper, setExcludeWrapper] = useState(false);
 
@@ -56,10 +58,14 @@ const Wrapper = ({ children }: LayoutProps) => {
       const session = JSON.parse(localStorage.getItem("session") as string);
       let { data } = await supabase.auth.getUser(session.access_token);
       let { data: profiles, error } = await supabase
-        .from('profiles')
-        .select('*').eq("id", data?.user?.id)
-      const profileData = { ...(profiles && profiles[0]), email: data?.user?.email }
-      console.log(profileData)
+        .from("profiles")
+        .select("*")
+        .eq("id", data?.user?.id);
+      const profileData = {
+        ...(profiles && profiles[0]),
+        email: data?.user?.email,
+      };
+      console.log(profileData);
       setUser(profileData);
     };
 
@@ -76,7 +82,7 @@ const Wrapper = ({ children }: LayoutProps) => {
         setExcludeWrapper(false);
       }
     });
-  }, [supabase]);
+  }, [supabase, pathname, setUser]);
 
   const getNotifications = async () => {
     try {
@@ -87,8 +93,7 @@ const Wrapper = ({ children }: LayoutProps) => {
       } = await supabase.from("notifications").select("*");
 
       if (data) {
-
-        setNotifications(data)
+        setNotifications(data);
       }
 
       if (dataStatus === 200) {
@@ -121,9 +126,11 @@ const Wrapper = ({ children }: LayoutProps) => {
           <Pagination />
         </div>
 
-        <div className={`${excludeWrapper ? "" : "wrapper"} text-black`}>
-          {children}
-        </div>
+        {excludeWrapper ? (
+          <div className={`text-neutral-800`}>{children}</div>
+        ) : (
+          <div className={`wrapper text-neutral-800`}>{children}</div>
+        )}
         <ClientOnly>
           <HowToSwitch
             dashboard

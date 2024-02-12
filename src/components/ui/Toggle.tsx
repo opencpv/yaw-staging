@@ -12,7 +12,7 @@ const Toggle = ({ label, isSelected, onValueChange }: Props) => {
     <Switch
       classNames={{
         thumb: "bg-white group-data-[selected=true]:bg-accent-50",
-        wrapper: "bg-neutral-200 group-data-[selected=true]:bg-neutral-50",
+        wrapper: "bg-neutral-200 group-data-[selected=true]:bg-primary-300/80",
         label: "text-neutral-500",
       }}
       size="sm"

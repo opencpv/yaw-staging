@@ -71,7 +71,7 @@ export default function Agent({
                     buttonClassName="mt-1 flex-1 text-base text-accent-100 font-normal"
                   />
                 </ClientOnly>
-                <div className="h-0 w-0 flex-1 border-b border-shade-200 transition-all group-hover:h-[1px] group-hover:w-full"></div>
+                <div className="h-0 w-0 flex-1 border-b border-accent-100 transition-all group-hover:h-[1px] group-hover:w-full"></div>
               </div>
             ) : (
               dateCreated

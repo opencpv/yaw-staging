@@ -8,7 +8,7 @@ type Props = {
 
 const TbPropertyImageSm = (props: Props) => {
   return (
-    <div className="relative aspect-video min-h-[5rem] w-full max-w-[65px] shrink-0 rounded-lg xs:min-h-0">
+    <div className="relative aspect-video min-h-[5rem] w-full max-w-[65px] shrink-0 rounded-lg">
       <Image
         src={props.image}
         fill

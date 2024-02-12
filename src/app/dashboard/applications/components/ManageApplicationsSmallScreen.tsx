@@ -7,6 +7,7 @@ import TableMobileSkeleton from "../../components/shared/skeleton/TableMobileSke
 import Button from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
+import { TableSm } from "../../components/shared/table/Table";
 
 type Props = {};
 
@@ -25,7 +26,7 @@ const ManageApplicationsSmallScreen = (props: Props) => {
   });
 
   return (
-    <div className="lg:hidden">
+    <div className="xl:hidden">
       <FetchingStates
         data={applicants}
         error={error}
@@ -37,11 +38,11 @@ const ManageApplicationsSmallScreen = (props: Props) => {
           <p className="mt-4 italic">There are no applications yet.</p>
         }
       />
-      <section className="mt-3 mb-10 space-y-5">
+      <TableSm className="mb-10 mt-3 flex lg:flex xl:hidden">
         {applicants?.map((applicant) => (
           <ApplicationRow2
             key={applicant.id as string}
-            propertyTitle="Property Title"
+            propertyTitle="Single Room"
             propertyImage="/assets/images/Stock.jpg"
             applicantImage="/assets/images/profile-image.jpg"
             applicantName={`${applicant.firstname} ${applicant.lastname}`}
@@ -49,11 +50,11 @@ const ManageApplicationsSmallScreen = (props: Props) => {
             date={applicant.created_at as string}
           />
         ))}
-      </section>
+      </TableSm>
       <div className="text-center">
         {isLoading && loadMore ? "Fetching..." : null}
       </div>
-      <div className="flex justify-center mb-20">
+      <div className="mb-20 flex justify-center">
         <Button
           data={applicants}
           isLoading={isLoading}
