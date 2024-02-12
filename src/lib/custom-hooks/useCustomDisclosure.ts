@@ -55,10 +55,9 @@ export const useToastDisclosureVariant1 = () => {
       theme: "dark",
       progressStyle: { background: "#22652c" },
       bodyStyle: { paddingRight: "2.5rem" },
-     
+
       style: variants[variant],
     });
-
   };
 
   return { onOpen };
