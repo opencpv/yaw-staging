@@ -22,9 +22,9 @@ const ExploreFeatureCard = (props: Props) => {
         <div className={`text-white ${style.ribbonUpgrade}`}>Premium</div>
       ) : null}
 
-      <div className="space-y-5 text-center text-white">
+      <div className="flex flex-col items-center gap-5 text-center text-white">
         <h2 className="">{props.title}</h2>
-        <p className="line-clamp-3 text-sm">{props.description}</p>
+        <p className="line-clamp-3 max-w-2xl text-sm">{props.description}</p>
         <Button
           href={props.href}
           className="w-full bg-white/60 text-white"
