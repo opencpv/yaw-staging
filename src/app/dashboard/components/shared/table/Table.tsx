@@ -153,7 +153,7 @@ export const TableBodyRow = (props: TableBodyRowProps) => {
       role="row"
       aria-label="table body row"
       className={cn(
-        "light-green-hover grid items-center py-2 text-neutral-700 first:pt-0 xl:px-4",
+        "light-green-hover grid items-center px-1.5 py-2 text-neutral-700 first:pt-0 xl:px-4",
         props.className,
       )}
       style={{ gap: props.gap ?? "4rem" }}

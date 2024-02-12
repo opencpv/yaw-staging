@@ -83,9 +83,7 @@ const ApplicationRow2 = ({
         <TableBodySm className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 py-3.5">
           <h4>Date</h4>
           <div className="flex flex-col items-center justify-center gap-y-1">
-            <h4 className="text-sm font-[600]">
-              {formatDate(date)} {formatTime(date)}
-            </h4>
+            <h4 className="text-sm font-[600]">{formatDate(date)}</h4>
             <small className="inline-block text-[0.6rem] text-neutral-400">
               {daysDifference < 1
                 ? `Less Than A Day Ago`
@@ -94,9 +92,9 @@ const ApplicationRow2 = ({
           </div>
         </TableBodySm>
         {/* Actions */}
-        <TableBodySm className="flex justify-center gap-1.5 pt-3">
+        {/* <TableBodySm className="flex justify-center gap-1.5 pt-3">
           <ButtonDelete onOpen={onOpen} />
-        </TableBodySm>
+        </TableBodySm> */}
       </TableRowSm>
     </>
   );

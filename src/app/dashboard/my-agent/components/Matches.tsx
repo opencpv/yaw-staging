@@ -74,8 +74,10 @@ const PropertyRowSm = () => {
           />
           <div className="flex flex-col justify-between gap-2">
             <div className="flex flex-col gap-1 truncate lg:gap-[0.62rem]">
-              <h4>Single Room</h4>
-              <p className="text-[0.8125rem] text-[#B0B0B0]">Assin Fosu</p>
+              <h4 className="truncate">Single Room</h4>
+              <p className="truncate text-[0.8125rem] text-[#B0B0B0]">
+                Assin Fosu
+              </p>
             </div>
             <div className="flex flex-wrap items-center gap-2 text-xs">
               <div className="w-fit">

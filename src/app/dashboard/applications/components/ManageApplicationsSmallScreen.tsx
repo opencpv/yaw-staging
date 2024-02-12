@@ -26,7 +26,7 @@ const ManageApplicationsSmallScreen = (props: Props) => {
   });
 
   return (
-    <div className="xl:hidden">
+    <div className="lg:hidden">
       <FetchingStates
         data={applicants}
         error={error}
@@ -38,7 +38,7 @@ const ManageApplicationsSmallScreen = (props: Props) => {
           <p className="mt-4 italic">There are no applications yet.</p>
         }
       />
-      <TableSm className="mb-10 mt-3 flex lg:flex xl:hidden">
+      <TableSm className="mb-10 mt-3 flex lg:hidden">
         {applicants?.map((applicant) => (
           <ApplicationRow2
             key={applicant.id as string}

@@ -39,9 +39,9 @@ const ApplicationRow = ({
         onOpenChange={onOpenChange}
         label="Are you sure you want to delete this application?"
       />
-      <TableBodyRow className="grid-cols-8">
+      <TableBodyRow className="grid-cols-5">
         {/* Applicant */}
-        <TableBody className="col-span-2">
+        <TableBody className="col-span-1">
           <div
             className="flex items-center gap-2 truncate"
             title={applicantName}
@@ -55,7 +55,7 @@ const ApplicationRow = ({
                 className="shrink-0 rounded-full"
               />
             </div>
-            <p className="text-sm text-[600]">
+            <p className="truncate text-sm text-[600]">
               {capitalizeName(applicantName, " ")}
             </p>
           </div>
@@ -63,10 +63,10 @@ const ApplicationRow = ({
         {/* Property */}
         <TableBody
           href="/properties/1"
-          className="col-span-3 flex gap-[0.62rem] truncate p-2.5"
+          className="col-span-2 flex gap-[0.62rem] truncate p-2.5"
         >
           <TbPropertyImage title={propertyTitle} image={propertyImage} />
-          <div className="flex flex-col justify-between gap-[0.62rem]">
+          <div className="flex flex-col justify-between gap-[0.62rem] truncate">
             <h4 className="truncate font-semibold" title="Single Room">
               Single Room
             </h4>
@@ -81,9 +81,7 @@ const ApplicationRow = ({
         </TableBody>
         {/* Posted On */}
         <TableBody className="col-span-1 text-center">
-          <h4 className="text-sm font-[600]">
-            {formatDate(date)} {formatTime(date)}
-          </h4>
+          <h4 className="text-sm font-[600]">{formatDate(date)}</h4>
           <small className="inline-block text-[0.6rem] text-neutral-400">
             {daysDifference < 1
               ? `Less Than A Day Ago`
@@ -95,11 +93,11 @@ const ApplicationRow = ({
           <ApplicationStatus />
         </TableBody>
         {/* Actions */}
-        <TableBody className="col-span-1 flex items-center justify-center">
+        {/* <TableBody className="col-span-1 flex items-center justify-center">
           <div className="flex gap-1.5">
             <ButtonDelete onOpen={onOpen} className="w-fit" />
           </div>
-        </TableBody>
+        </TableBody> */}
       </TableBodyRow>
     </>
   );

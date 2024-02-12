@@ -39,15 +39,15 @@ const ManageApplicationsTable = (props: Props) => {
   setCount(totalCount);
 
   return (
-    <section className="hidden xl:block">
+    <section className="hidden lg:block">
       {error && <p>Error: {error.message}</p>}
-      <Table className="mb-8 hidden xl:flex">
-        <TableHeaderRow className="grid-cols-8" gap="2rem">
-          <TableHeader className="col-span-2">Applicant</TableHeader>
-          <TableHeader className="col-span-3">Property</TableHeader>
+      <Table className="mb-8 hidden lg:flex">
+        <TableHeaderRow className="grid-cols-5" gap="2rem">
+          <TableHeader className="col-span-1">Applicant</TableHeader>
+          <TableHeader className="col-span-2">Property</TableHeader>
           <TableHeader className="col-span-1">Posted on</TableHeader>
           <TableHeader className="col-span-1">Status</TableHeader>
-          <TableHeader className="col-span-1">Actions on</TableHeader>
+          {/* <TableHeader className="col-span-1">Actions on</TableHeader> */}
         </TableHeaderRow>
         <TableBodyRowGroup>
           {isValidating === false && !error && currentPage?.length === 0 && (

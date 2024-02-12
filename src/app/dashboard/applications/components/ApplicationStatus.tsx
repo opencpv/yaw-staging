@@ -15,6 +15,7 @@ const ApplicationStatus = () => {
         options={["Accept", "Decline"]}
         value={value}
         handleSelectionChange={handleSelectionChange}
+        className="lg:max-xl:w-40"
       />
     </>
   );
