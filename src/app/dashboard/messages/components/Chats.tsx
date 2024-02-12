@@ -16,7 +16,7 @@ const Chats = (props: Props) => {
     <aside
       className={`${
         pathname !== "/dashboard/messages" && "hidden"
-      } hidden-scrollbar col-span-2 max-h-screen max-w-lg overflow-y-scroll lg:block lg:border-r`}
+      } hidden-scrollbar col-span-2 max-h-screen max-w-lg overflow-y-scroll lg:block lg:border-r lg:max-xl:col-span-3`}
     >
       {/* {props.isLoading ? (
         <Spinner />

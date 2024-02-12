@@ -87,7 +87,7 @@ const MessagesLayout = ({ children }: Props) => {
         <main
           className={`${
             pathname == "/dashboard/messages" && "hidden"
-          } relative col-span-4 h-full max-h-[100svh] w-full lg:block`}
+          } relative col-span-4 h-full max-h-[100svh] w-full lg:block lg:max-xl:col-span-3`}
         >
           {children} {/* messages */}
           {pathname?.includes("/dashboard/messages/") && (
