@@ -4,20 +4,20 @@ import React, { ChangeEvent, FormEvent } from "react";
 type Props = {
   messageContent: string;
   onSubmit: (e: FormEvent<HTMLFormElement>) => void;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 };
 
 const MessageSendArea = ({ onSubmit, messageContent, onChange }: Props) => {
   return (
-    <div className="sticky bottom-0 w-full py-5 bg-white">
+    <div className="sticky bottom-0 w-full bg-white py-5">
       <form action="" onSubmit={onSubmit} className="flex items-center gap-4">
-        <input
-          type="text"
-          className="w-full p-3 border rounded-md text-neutral-800 placeholder:text-sm"
+        <textarea
+          rows={1}
+          className="w-full resize-none rounded-md border p-3 text-neutral-800 placeholder:text-sm"
           placeholder="Type your message"
           value={messageContent}
           onChange={onChange}
-        />
+        ></textarea>
         <button type="submit">
           <Image
             src="/assets/icons/messages/send-btn.svg"

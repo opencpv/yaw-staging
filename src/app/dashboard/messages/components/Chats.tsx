@@ -16,7 +16,7 @@ const Chats = (props: Props) => {
     <aside
       className={`${
         pathname !== "/dashboard/messages" && "hidden"
-      } hidden-scrollbar col-span-2 max-h-screen max-w-lg overflow-y-scroll p-4 px-0 lg:block lg:border-r lg:px-4`}
+      } hidden-scrollbar col-span-2 max-h-screen max-w-lg overflow-y-scroll lg:block lg:border-r`}
     >
       {/* {props.isLoading ? (
         <Spinner />
@@ -56,6 +56,22 @@ const Chats = (props: Props) => {
         last_message="Hi, nice apartment"
         messages_count={0}
         id={"3"}
+      />
+      <Chat
+        href={`/dashboard/messages/Jane Mumuni`}
+        image=""
+        name="John Doe"
+        last_message="Hi, nice apartment. How are you? I am fine"
+        messages_count={1}
+        id={"34"}
+      />
+      <Chat
+        href={`/dashboard/messages/Jane Mumuni`}
+        image=""
+        name="Jane Mumuni"
+        last_message="Hello, I am fine"
+        messages_count={4}
+        id={"4"}
       />
     </aside>
   );

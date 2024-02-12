@@ -29,8 +29,8 @@ const FeatureExplainer = ({
           <Button
             href={
               title === "Be My Agent"
-                ? "/dashboard/my-agent"
-                : "/dashboard/my-search/be-the-first-to-know"
+                ? "/dashboard/my-agent/agent?sk=true"
+                : "/dashboard/be-the-first-to-know"
             }
             radius="full"
             padding="sm"

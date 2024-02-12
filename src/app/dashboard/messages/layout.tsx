@@ -75,9 +75,7 @@ const MessagesLayout = ({ children }: Props) => {
 
   return (
     <div className="h-[100svh]">
-      <h2 className="sticky top-0 z-40 mb-5 bg-white pb-5 text-2xl font-[500] text-neutral-900">
-        Messages
-      </h2>
+      <h2 className="sticky top-0 z-40 mb-5 bg-white pb-5">Messages</h2>
       {messages && messages?.length < 0 && (
         <NoMessageState className="mt-20 lg:hidden" />
       )}
