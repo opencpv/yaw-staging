@@ -89,6 +89,7 @@ const config: Config = {
         xs: "425px",
         ssm: "540px", // : -(
         ...defaultTheme.screens,
+        llg: "1150px",
         hd: "1670px",
         "3xl": "1728px",
         fhd: "1920px",

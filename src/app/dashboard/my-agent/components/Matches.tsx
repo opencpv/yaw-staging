@@ -23,6 +23,7 @@ import {
 import TbPropertyImageSm from "../../components/shared/TbPropertyImageSm";
 import TbPropertyImage from "../../components/shared/TbPropertyImage";
 import PaymentStructure from "../../components/shared/PaymentStructure";
+import { formatDate } from "@/lib/utils/stringManipulation";
 
 export default function MatchesYet() {
   return (
@@ -36,7 +37,10 @@ export default function MatchesYet() {
       </div>
       {/* table */}
       <Table>
-        <TableHeaderRow className="grid-cols-6">
+        <TableHeaderRow
+          className="lg:max-llg:gap-8 grid-cols-6 gap-16"
+          gap="2rem"
+        >
           <TableHeader className="col-span-2">Property</TableHeader>
           <TableHeader className="col-span-1">Completed</TableHeader>
           <TableHeader className="col-span-3">Actions</TableHeader>
@@ -79,21 +83,7 @@ const PropertyRowSm = () => {
                 Assin Fosu
               </p>
             </div>
-            <div className="flex flex-wrap items-center gap-2 text-xs">
-              <div className="w-fit">
-                <p className="text-sm font-[700]">
-                  GHS&nbsp;
-                  <span className="font-[500]">
-                    {formatPrice(3000)} / Month
-                  </span>
-                </p>
-              </div>
-              <div className="flex w-full flex-1 items-center justify-between gap-x-2 gap-y-3">
-                <small className="w-max rounded-xl bg-[#E7F8F2] px-3 py-1 text-xs text-neutral-800">
-                  One Year Advance
-                </small>
-              </div>
-            </div>
+            <PaymentStructure monthlyPrice={3000} advancePayment="one year" />
           </div>
         </div>
       </TableBodySm>
@@ -101,7 +91,7 @@ const PropertyRowSm = () => {
       <TableBodySm className="flex items-center justify-between gap-5 pt-3">
         <h4 className="font-normal">Completed</h4>
         <div className="flex flex-col items-center justify-center text-center">
-          <p className="font-semibold">15 Aug. 2023 13:55pm</p>
+          <p className="font-semibold">{formatDate("15 Aug. 2023")}</p>
           <p className="text-[0.625rem] text-shade-200">20 days ago</p>
         </div>
       </TableBodySm>
@@ -140,14 +130,14 @@ const PropertyRow = () => {
   >(undefined);
 
   return (
-    <TableBodyRow className="grid-cols-6">
+    <TableBodyRow className="lg:max-llg:gap-8 grid-cols-6 gap-16" gap="2rem">
       {/* Property */}
       <TableBody className="col-span-2 flex gap-[0.62rem] truncate p-2.5">
         <TbPropertyImage
           title="Single Room at Assin Fosu"
           image="/assets/images/niceHome.png"
         />
-        <div className="flex flex-col justify-between gap-[0.62rem]">
+        <div className="flex flex-col justify-between gap-[0.62rem] truncate">
           <h4 className="truncate font-semibold">Single Room</h4>
           <p className="-mt-2 truncate text-[0.8125rem] text-[#B0B0B0]">
             Assin Fosu
@@ -157,7 +147,7 @@ const PropertyRow = () => {
       </TableBody>
       {/* Completed */}
       <TableBody className="col-span-1 text-center">
-        <p className="font-semibold">15 Aug. 2023 13:55pm</p>
+        <p className="font-semibold">{formatDate("15 Aug 2022")}</p>
         <p className="text-[0.625rem] text-shade-200">20 days ago</p>
       </TableBody>
       {/* Actions */}
