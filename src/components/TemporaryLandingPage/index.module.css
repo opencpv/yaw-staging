@@ -1,0 +1,7 @@
+.tempImage {
+    fill: linear-gradient(107deg, rgba(0, 0, 0, 0.73) 62.18%, rgba(0, 0, 0, 0.44) 111.16%), lightgray 50% / cover no-repeat;
+}
+
+.root .PhoneInput{
+   width: 100px;
+}   
