@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import ManageApplicationsTable from "./components/RtManageApplicationsTable";
-import ManageApplicationsSmallScreen from "./components/RtManageApplicationsSm";
+import ManageApplicationsTable from "./components/LsManageApplicationsTable";
+import ManageApplicationsSmallScreen from "./components/LsManageApplicationsSm";
 import { useApplicationsStore } from "@/store/dashboard/applicationsStore";
 
 const ApplicationsPage = () => {
@@ -12,7 +12,7 @@ const ApplicationsPage = () => {
   return (
     <main className="text-neutral-800">
       <section className="mb-6">
-        <h2>My Applications</h2>
+        <h2>Applications</h2>
         <small className="inline-block text-sm capitalize">
           {fetchCount &&
             `Showing ${

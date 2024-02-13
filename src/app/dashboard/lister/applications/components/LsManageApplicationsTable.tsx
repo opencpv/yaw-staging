@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import ApplicationRow from "./ApplicationRow";
+import LsApplicationRow from "./LsApplicationRow";
 import { useFetchTableWithPagination } from "@/lib/custom-hooks/useFetch";
 import TableSkeleton from "../../../components/shared/skeleton/TableSkeleton";
 import Spinner from "../../../components/shared/Spinner";
@@ -18,7 +18,7 @@ import { IoArchiveOutline } from "react-icons/io5";
 
 type Props = {};
 
-const ManageApplicationsTable = (props: Props) => {
+const LsManageApplicationsTable = (props: Props) => {
   let pageSize = 5;
   const setCount = useApplicationsStore((state) => state.setFetchCount);
 
@@ -61,7 +61,7 @@ const ManageApplicationsTable = (props: Props) => {
             <TableSkeleton rows={5} columns={5} />
           ) : (
             currentPage?.map((applicant) => (
-              <ApplicationRow
+              <LsApplicationRow
                 key={applicant.id as string}
                 propertyTitle="Property Title"
                 propertyImage="/assets/images/Stock.jpg"
@@ -97,4 +97,4 @@ const ManageApplicationsTable = (props: Props) => {
   );
 };
 
-export default ManageApplicationsTable;
+export default LsManageApplicationsTable;

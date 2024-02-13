@@ -22,7 +22,7 @@ import PaymentStructure from "../../../components/shared/PaymentStructure";
 import ViewButton from "@/components/__shared/ui/button/ViewButton";
 import Rating from "../../../components/shared/Rating";
 
-const ApplicationRow2 = ({
+const LsApplicationRowSm = ({
   propertyImage,
   applicantImage,
   applicantName,
@@ -107,4 +107,4 @@ const ApplicationRow2 = ({
   );
 };
 
-export default ApplicationRow2;
+export default LsApplicationRowSm;

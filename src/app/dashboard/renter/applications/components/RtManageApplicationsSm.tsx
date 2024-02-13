@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import ApplicationRow2 from "./ApplicationRow2";
+import RtApplicationRowSm from "./RtApplicationRowSm";
 import { useFetchTableWithInfiniteScroll } from "@/lib/custom-hooks/useFetch";
 import TableMobileSkeleton from "../../../components/shared/skeleton/TableMobileSkeleton";
 import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
@@ -13,7 +13,7 @@ import Button from "@/components/__shared/ui/button/Button";
 
 type Props = {};
 
-const ManageApplicationsSmallScreen = (props: Props) => {
+const RtManageApplicationsSm = (props: Props) => {
   const {
     data: applicants,
     error,
@@ -42,7 +42,7 @@ const ManageApplicationsSmallScreen = (props: Props) => {
       />
       <TableSm className="mb-10 mt-3 flex lg:hidden">
         {applicants?.map((applicant) => (
-          <ApplicationRow2
+          <RtApplicationRowSm
             key={applicant.id as string}
             propertyTitle="Single Room"
             propertyImage="/assets/images/Stock.jpg"
@@ -74,4 +74,4 @@ const ManageApplicationsSmallScreen = (props: Props) => {
   );
 };
 
-export default ManageApplicationsSmallScreen;
+export default RtManageApplicationsSm;
