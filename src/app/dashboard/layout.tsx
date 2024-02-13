@@ -5,7 +5,7 @@ import Pagination from "./components/pagination";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
-import { NotificationType } from "./notifications/components/types";
+import { NotificationType } from "./components/shared/notifications/types";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import CompleteYourLogin from "./components/CompleteYourLogin";

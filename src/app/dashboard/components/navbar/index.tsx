@@ -5,7 +5,7 @@ import { styled } from "@stitches/react";
 import Image from "next/image";
 import Switch from "./switch";
 import Search from "./search";
-import NotificationsPopover from "../../notifications/components/NotificationsPopover";
+import NotificationsPopover from "../shared/notifications/NotificationsPopover";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import style from "../../Dashboard.module.css";
 import { useLocalStorage } from "@uidotdev/usehooks";

@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Cross2Icon } from "@radix-ui/react-icons";
-import AgentButtons from "@/app/dashboard/my-agent/components/Button";
+import AgentButtons from "@/app/dashboard/renter/my-agent/components/Button";
 import BeMyAgentForm from "./components/BeMyAgentForm";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { BeMyAgentFormType } from "./components/types";
