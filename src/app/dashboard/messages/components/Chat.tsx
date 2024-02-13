@@ -52,7 +52,7 @@ const Chat = ({
         </div>
         <div className="col-span-4 flex flex-col gap-5 truncate">
           <h4 className="font-[700] text-primary-500">{name}</h4>
-          <p className="truncate leading-3 text-neutral-800">{last_message}</p>
+          <p className="truncate text-neutral-800">{last_message}</p>
         </div>
       </div>
       {/* messages counter */}
