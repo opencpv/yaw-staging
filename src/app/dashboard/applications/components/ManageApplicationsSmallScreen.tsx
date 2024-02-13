@@ -4,10 +4,12 @@ import React from "react";
 import ApplicationRow2 from "./ApplicationRow2";
 import { useFetchTableWithInfiniteScroll } from "@/lib/custom-hooks/useFetch";
 import TableMobileSkeleton from "../../components/shared/skeleton/TableMobileSkeleton";
-import Button from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
+import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
 import { TableSm } from "../../components/shared/table/Table";
+import { IoArchiveOutline } from "react-icons/io5";
+import Button from "@/components/__shared/ui/button/Button";
 
 type Props = {};
 
@@ -54,8 +56,13 @@ const ManageApplicationsSmallScreen = (props: Props) => {
       <div className="text-center">
         {isLoading && loadMore ? "Fetching..." : null}
       </div>
-      <div className="mb-20 flex justify-center">
-        <Button
+      <div className="my-14 ml-auto grid place-items-end">
+        <Button variant="ghost" className="" title="View all applications">
+          Archive <IoArchiveOutline />
+        </Button>
+      </div>
+      <div className="grid place-items-center">
+        <ButtonInfiniteLoading
           data={applicants}
           isLoading={isLoading}
           isValidating={isValidating}

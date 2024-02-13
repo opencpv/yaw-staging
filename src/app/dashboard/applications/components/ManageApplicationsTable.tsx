@@ -74,8 +74,8 @@ const ManageApplicationsTable = (props: Props) => {
           )}
         </TableBodyRowGroup>
       </Table>
-      <div className="my-14 ml-auto">
-        <Button className="" title="View all applications">
+      <div className="my-14 ml-auto grid place-items-end">
+        <Button variant="ghost" className="" title="View all applications">
           Archive <IoArchiveOutline />
         </Button>
       </div>
