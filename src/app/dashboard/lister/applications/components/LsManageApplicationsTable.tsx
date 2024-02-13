@@ -19,7 +19,7 @@ import { IoArchiveOutline } from "react-icons/io5";
 type Props = {};
 
 const LsManageApplicationsTable = (props: Props) => {
-  let pageSize = 5;
+  let pageSize = 4;
   const setCount = useApplicationsStore((state) => state.setFetchCount);
 
   const {
@@ -74,13 +74,17 @@ const LsManageApplicationsTable = (props: Props) => {
           )}
         </TableBodyRowGroup>
       </Table>
-      <div className="my-14 ml-auto grid place-items-end">
-        <Button variant="ghost" className="" title="View all applications">
+      {isValidating ? <Spinner color="default" /> : null}
+      <div className="grid place-items-end">
+        <Button
+          variant="ghost"
+          className="ml-auto mt-5"
+          title="View all applications"
+        >
           Archive <IoArchiveOutline />
         </Button>
       </div>
-      {isValidating ? <Spinner color="default" /> : null}
-      <div>
+      <div className="mt-5 grid place-items-center">
         <Pagination
           total={totalCount ? totalCount / pageSize : 1}
           handlePrev={() => {

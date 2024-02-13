@@ -16,6 +16,9 @@ import {
 import TbPropertyImageSm from "../../../components/shared/TbPropertyImageSm";
 import PaymentStructure from "../../../components/shared/PaymentStructure";
 import Rating from "../../../components/shared/Rating";
+import ButtonDelete from "@/components/__shared/ui/button/ButtonDelete";
+import EditButton from "@/components/__shared/ui/button/EditButton";
+import ButtonMessage from "@/components/__shared/ui/button/ButtonMessage";
 
 const RtApplicationRowSm = ({
   propertyImage,
@@ -39,24 +42,20 @@ const RtApplicationRowSm = ({
         label="Are you sure you want to delete this application?"
       />
       <TableRowSm>
-        {/* Applicant */}
+        {/* Property */}
         <TableBodySm className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3">
           <div className="space-y-2">
-            <h4 className="mb-3">Applicant</h4>
-            <div className="relative h-16 w-16 shrink-0 rounded-full">
-              <Image
-                src={listerImage}
-                alt={listerName}
-                fill
-                style={{ objectFit: "cover" }}
-                className="shrink-0 rounded-full"
+            <h4 className="mb-3">Property</h4>
+            <TbPropertyImageSm image={propertyImage} title={propertyTitle} />
+            <div className="">
+              <h4 className="mb-1.5 text-sm font-[600] capitalize">
+                {propertyTitle}
+              </h4>
+              <p className="mb-3 text-sm text-neutral-400">Assin Fosu</p>
+              <PaymentStructure
+                monthlyPrice={3000}
+                advancePayment="two years"
               />
-            </div>
-            <div className="flex flex-col justify-between gap-5 truncate">
-              <p className="truncate text-sm text-[600]">
-                {capitalizeName(listerName, " ")}
-              </p>
-              <Rating rate={3.5} count={5} />
             </div>
           </div>
           {/* Status */}
@@ -65,7 +64,7 @@ const RtApplicationRowSm = ({
           </div>
         </TableBodySm>
         {/* Property */}
-        <TableBodySm href="/properties/1" className="pt-3">
+        {/* <TableBodySm href="/properties/1" className="pt-3">
           <h4 className="mb-3">Property</h4>
           <div className="flex flex-wrap items-center gap-3">
             <TbPropertyImageSm image={propertyImage} title={propertyTitle} />
@@ -80,10 +79,10 @@ const RtApplicationRowSm = ({
               />
             </div>
           </div>
-        </TableBodySm>
+        </TableBodySm> */}
         {/* Date */}
         <TableBodySm className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 py-3.5">
-          <h4>Date</h4>
+          <h4>Received</h4>
           <div className="flex flex-col items-center justify-center gap-y-1">
             <h4 className="text-sm font-[600]">{formatDate(date)}</h4>
             <small className="inline-block text-[0.6rem] text-neutral-400">
@@ -94,9 +93,11 @@ const RtApplicationRowSm = ({
           </div>
         </TableBodySm>
         {/* Actions */}
-        {/* <TableBodySm className="flex justify-center gap-1.5 pt-3">
+        <TableBodySm className="flex justify-center gap-1.5 pt-3">
+          <EditButton onOpen={() => ""} />
           <ButtonDelete onOpen={onOpen} />
-        </TableBodySm> */}
+          <ButtonMessage type={2} />
+        </TableBodySm>
       </TableRowSm>
     </>
   );

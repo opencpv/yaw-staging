@@ -14,6 +14,7 @@ const RtApplicationStatus = () => {
         color="primary"
         options={["Accepted", "Declined", "Pending"]}
         value={value}
+        disabled
         handleSelectionChange={handleSelectionChange}
         className="lg:max-xl:w-40"
       />

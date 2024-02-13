@@ -28,6 +28,7 @@ import { FaChartBar } from "react-icons/fa";
 import { PiChatCenteredDots } from "react-icons/pi";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { FiTrash2 } from "react-icons/fi";
+import { MdOutlineEdit } from "react-icons/md";
 
 const RtApplicationRow = ({
   propertyImage,
@@ -73,13 +74,13 @@ const RtApplicationRow = ({
         </TableBody>
         {/* Property Owner */}
         {/* <TableBody className="col-span-1">
-          <div className="flex items-center gap-2 truncate" title={listerName}>
+          <div className="flex items-center w-full gap-2 truncate" title={listerName}>
             <TbUserImage image={listerImage} name={listerName} />
             <div className="flex flex-col justify-between gap-5 truncate">
               <p className="truncate text-sm text-[600]">
                 {capitalizeName(listerName, " ")}
               </p>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center w-full gap-2">
                 <ButtonMessage
                   id=""
                   className="rounded-full bg-secondary-400 text-white"
@@ -110,17 +111,38 @@ const RtApplicationRow = ({
         </TableBody>
         {/* Actions */}
         <TableBody className="col-span-1 mx-auto">
-          <Popover style={{ zIndex: "99999" }}>
+          <Popover style={{ zIndex: "99999" }} placement="left">
             <PopoverTrigger className="h-fit w-fit">
               <button className="col-span-1 ml-auto h-fit w-fit p-2">
                 <BiDotsVerticalRounded />
               </button>
             </PopoverTrigger>
             <PopoverContent className="rounded-md">
-              <button className="flex items-center gap-2" onClick={() => ""}>
-                Delete
-                <FiTrash2 />
-              </button>
+              <div className="flex flex-col gap-2 divide-y rounded-md p-2 px-0">
+                <button
+                  className="flex w-full items-center gap-2 transition-all hover:scale-[1.02]"
+                  onClick={() => ""}
+                >
+                  <span className="mr-auto">Edit</span>
+                  <MdOutlineEdit />
+                </button>
+                <button
+                  className="flex w-full items-center gap-2 pt-1  transition-all hover:scale-[1.02]"
+                  onClick={onOpen}
+                >
+                  <span className="mr-auto">Delete</span>
+
+                  <FiTrash2 />
+                </button>
+                <button
+                  className="flex w-full items-center gap-2 transition-all hover:scale-[1.02]"
+                  onClick={() => ""}
+                >
+                  <span className="mr-auto">Message</span>
+
+                  <PiChatCenteredDots />
+                </button>
+              </div>
             </PopoverContent>
           </Popover>
         </TableBody>

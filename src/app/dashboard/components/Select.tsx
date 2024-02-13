@@ -13,6 +13,7 @@ type Props = {
   selectorIcon?: React.ReactNode;
   className?: string;
   valueClassName?: string;
+  disabled?: boolean;
 };
 
 const Select = ({
@@ -25,6 +26,7 @@ const Select = ({
   valueClassName,
   variant,
   color,
+  disabled,
 }: Props) => {
   return (
     <NextUISelect
@@ -32,12 +34,14 @@ const Select = ({
       radius={radius ? radius : "full"}
       label="select"
       //   selectionMode="single"
+      isDisabled={disabled}
       labelPlacement="outside"
       selectedKeys={[value]}
       classNames={{
         // mainWrapper: [variant === "ghost" && "hover:bg-transparent"],
         base: cn("w-44 mx-auto text-xs", className, {
           "text-base": variant === "ghost",
+          "opacity-100": disabled,
         }),
         value: cn("text-xs", valueClassName, {
           "text-base": variant === "ghost",
