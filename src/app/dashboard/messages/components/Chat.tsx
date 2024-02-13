@@ -48,7 +48,13 @@ const Chat = ({
               style={{ objectFit: "contain" }}
             />
           </div>
-          <Rating rate={3.5} count={5} />
+          <Rating
+            rate={3.5}
+            count={5}
+            className="max-xsm:px-3"
+            countClassName="hidden xs:inline-block"
+            reviewsLabelClassName="hidden xsm:inline-block"
+          />
         </div>
         <div className="col-span-4 flex flex-col gap-5 truncate">
           <h4 className="font-[700] text-primary-500">{name}</h4>

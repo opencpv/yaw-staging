@@ -60,7 +60,7 @@ const ApplicationRow = ({
               <p className="truncate text-sm text-[600]">
                 {capitalizeName(applicantName, " ")}
               </p>
-              <Rating rate={3.5} count={5} />
+              <Rating rate={3.5} count={5} countClassName="lg:max-llg:hidden" />
             </div>
           </div>
         </TableBody>
