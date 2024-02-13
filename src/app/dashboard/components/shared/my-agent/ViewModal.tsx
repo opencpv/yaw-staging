@@ -12,7 +12,7 @@ import { MdOutlineRemoveRedEye } from "react-icons/md";
 
 import { MdInfoOutline } from "react-icons/md";
 import CaAgentMessage from "./icons/CaAgentMessage";
-import CaDelete from "../../../renter/saved-search/components/CaDelete";
+import CaDelete from "../../../renter/favourites/components/CaDelete";
 
 export default function ViewModal() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();

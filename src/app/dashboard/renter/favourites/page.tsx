@@ -36,7 +36,7 @@ export default function Page() {
     <div>
       <h2>My Favourites</h2>
       <div className="mt-4">
-        <Toggle />
+        <Toggle label="Allow property owners to contact you" />
       </div>
       <section className="mx-auto my-10 grid grid-cols-1 justify-center gap-x-3 gap-y-10 transition-all sm:grid-cols-2 lg:grid-cols-3">
         <FetchingStates

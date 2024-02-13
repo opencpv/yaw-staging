@@ -10,7 +10,7 @@ import {
 } from "@nextui-org/react";
 
 import { MdInfoOutline } from "react-icons/md";
-import CaDelete from "../../../renter/saved-search/components/CaDelete";
+import CaDelete from "../../../renter/favourites/components/CaDelete";
 
 export default function DeleteModal() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
