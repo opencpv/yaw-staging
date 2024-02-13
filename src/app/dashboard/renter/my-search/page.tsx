@@ -181,7 +181,7 @@ export default MySearch;
 //             Lorem ipsum dolor sit amet consectetur. Quisque neque et metus
 //             lectus proin et vestibulum. Vitae faucibus nulla egestas.
 //           </p>
-//           <Link href="/link" className="w-full rounded-lg   bg-[#99B3B2] py-4">
+//           <Link href="/link" className="w-full rounded-lg   bg-secondary-400 py-4">
 //             <div className="flex flex-row items-center justify-center gap-2">
 //               <p>Explore</p>
 //               <IoArrowForward />
@@ -199,7 +199,7 @@ export default MySearch;
 //           </p>
 //           <Link
 //             href="my-search/be-the-first-to-know"
-//             className="w-full rounded-lg   bg-[#99B3B2] py-4"
+//             className="w-full rounded-lg   bg-secondary-400 py-4"
 //           >
 //             <div className="flex flex-row items-center justify-center gap-2">
 //               <p>Explore</p>
@@ -216,7 +216,7 @@ export default MySearch;
 //             Lorem ipsum dolor sit amet consectetur. Quisque neque et metus
 //             lectus proin et vestibulum. Vitae faucibus nulla egestas.
 //           </p>
-//           <Link href="/link" className="w-full rounded-lg   bg-[#99B3B2] py-4">
+//           <Link href="/link" className="w-full rounded-lg   bg-secondary-400 py-4">
 //             <div className="flex flex-row items-center justify-center gap-2">
 //               <p>Explore</p>
 //               <IoArrowForward />
