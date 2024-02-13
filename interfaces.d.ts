@@ -44,10 +44,18 @@ interface AdCardInterface {
 interface ApplicationsInterface {
   propertyTitle: string;
   propertyImage: string;
-  applicantImage: string;
-  applicantName: string;
   date: string;
   propertyPrice: number;
+}
+
+interface ListerApplicationsInterface extends ApplicationsInterface {
+  applicantImage: string;
+  applicantName: string;
+}
+
+interface RenterApplicationsInterface extends ApplicationsInterface {
+  listerImage: string;
+  listerName: string;
 }
 
 interface ChatInterface {

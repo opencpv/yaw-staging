@@ -6,6 +6,7 @@ import { useUserDetails } from "@/lib/custom-hooks/message/useUserDetails";
 import { useUserSession } from "@/lib/custom-hooks/database/useUserSession";
 import LoaderDots from "../../loader/LoaderDots";
 import { useRouter } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 type Props = {
   id: string;
@@ -15,31 +16,30 @@ type Props = {
 };
 
 const ButtonMessage = ({ color, className, id, children }: Props) => {
-  const router = useRouter()
-  
+  const router = useRouter();
+
   const setRecipientId = useMessageStore((state) => state.setRecipientId);
   const [loadingMessage, setLoadingMessage] = useState<boolean>(false);
 
   const { userName } = useUserDetails(id);
-  const userSession = useUserSession()
+  const userSession = useUserSession();
 
   const handleInternalMessaging = () => {
-    setLoadingMessage(true)
-      setRecipientId(id);
-      if (userSession?.session){
-        // if (userName) router.push(`/dashboard/messages/${id}`);
-        if (userName) location.href = `/dashboard/messages/${id}`
-      }
-      else {
-        router.push("/login")
-      }
+    setLoadingMessage(true);
+    setRecipientId(id);
+    if (userSession?.session) {
+      // if (userName) router.push(`/dashboard/messages/${id}`);
+      if (userName) location.href = `/dashboard/messages/${id}`;
+    } else {
+      router.push("/login");
+    }
   };
 
   return (
     <Button
       variant="outline"
       color={color}
-      className={`p-4 w-full ${className}`}
+      className={cn("w-full p-4", className)}
       onClick={handleInternalMessaging}
     >
       {loadingMessage ? <LoaderDots /> : children ?? "Send Message"}

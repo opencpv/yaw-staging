@@ -45,11 +45,11 @@ const RtManageApplicationsTable = (props: Props) => {
       {error && <p>Error: {error.message}</p>}
       <Table className="mb-8 hidden lg:flex">
         <TableHeaderRow className="grid-cols-5" gap="2rem">
-          <TableHeader className="col-span-1">Applicant</TableHeader>
           <TableHeader className="col-span-2">Property</TableHeader>
-          <TableHeader className="col-span-1">Posted on</TableHeader>
+          {/* <TableHeader className="col-span-1">Property Owner</TableHeader> */}
+          <TableHeader className="col-span-1">Received</TableHeader>
           <TableHeader className="col-span-1">Status</TableHeader>
-          {/* <TableHeader className="col-span-1">Actions on</TableHeader> */}
+          <TableHeader className="col-span-1">Actions</TableHeader>
         </TableHeaderRow>
         <TableBodyRowGroup>
           {isValidating === false && !error && currentPage?.length === 0 && (
@@ -65,8 +65,8 @@ const RtManageApplicationsTable = (props: Props) => {
                 key={applicant.id as string}
                 propertyTitle="Property Title"
                 propertyImage="/assets/images/Stock.jpg"
-                applicantImage="/assets/images/profile-image.jpg"
-                applicantName={`${applicant.firstname} ${applicant.lastname}`}
+                listerImage="/assets/images/profile-image.jpg"
+                listerName={`${applicant.firstname} ${applicant.lastname}`}
                 propertyPrice={30000}
                 date={applicant.created_at as string}
               />

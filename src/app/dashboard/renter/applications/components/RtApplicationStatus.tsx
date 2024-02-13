@@ -5,14 +5,14 @@ import { useSelectDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 
 const RtApplicationStatus = () => {
   const { value, handleSelectionChange } = useSelectDisclosure<
-    "accept" | "decline"
-  >("accept");
+    "accepted" | "declined" | "pending"
+  >("accepted");
 
   return (
     <>
       <Select
         color="primary"
-        options={["Accept", "Decline"]}
+        options={["Accepted", "Declined", "Pending"]}
         value={value}
         handleSelectionChange={handleSelectionChange}
         className="lg:max-xl:w-40"

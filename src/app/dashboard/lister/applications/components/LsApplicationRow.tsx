@@ -11,7 +11,10 @@ import capitalizeName from "@/lib/utils/stringManipulation";
 import DestructiveModal from "@/components/__shared/modals/DestructiveModal";
 import { useDisclosure } from "@nextui-org/react";
 import ButtonDelete from "@/components/__shared/ui/button/ButtonDelete";
-import { ApplicationsInterface } from "../../../../../../interfaces";
+import {
+  ApplicationsInterface,
+  ListerApplicationsInterface,
+} from "../../../../../../interfaces";
 import {
   TableBody,
   TableBodyRow,
@@ -20,6 +23,7 @@ import TbPropertyImage from "../../../components/shared/TbPropertyImage";
 import PaymentStructure from "../../../components/shared/PaymentStructure";
 import ViewButton from "@/components/__shared/ui/button/ViewButton";
 import Rating from "../../../components/shared/Rating";
+import TbUserImage from "@/app/dashboard/components/shared/TbUserImage";
 
 const LsApplicationRow = ({
   propertyImage,
@@ -28,7 +32,7 @@ const LsApplicationRow = ({
   date,
   propertyPrice,
   applicantName,
-}: ApplicationsInterface) => {
+}: ListerApplicationsInterface) => {
   const { images } = useAssets();
 
   const daysDifference = useDaysDifference(date);
@@ -50,15 +54,7 @@ const LsApplicationRow = ({
             className="flex items-center gap-2 truncate"
             title={applicantName}
           >
-            <div className="relative h-16 w-16 shrink-0 rounded-full">
-              <Image
-                src={applicantImage}
-                alt={applicantName}
-                fill
-                style={{ objectFit: "cover" }}
-                className="shrink-0 rounded-full"
-              />
-            </div>
+            <TbUserImage image={applicantImage} name={applicantName} />
             <div className="flex flex-col justify-between gap-5 truncate">
               <p className="truncate text-sm text-[600]">
                 {capitalizeName(applicantName, " ")}

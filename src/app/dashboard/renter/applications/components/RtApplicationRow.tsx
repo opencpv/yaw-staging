@@ -7,8 +7,13 @@ import RtApplicationStatus from "./RtApplicationStatus";
 import { useDaysDifference } from "@/lib/custom-hooks/useDaysDifference";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import DestructiveModal from "@/components/__shared/modals/DestructiveModal";
-import { useDisclosure } from "@nextui-org/react";
-import { ApplicationsInterface } from "../../../../../../interfaces";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  useDisclosure,
+} from "@nextui-org/react";
+import { RenterApplicationsInterface } from "../../../../../../interfaces";
 import {
   TableBody,
   TableBodyRow,
@@ -16,15 +21,22 @@ import {
 import TbPropertyImage from "../../../components/shared/TbPropertyImage";
 import PaymentStructure from "../../../components/shared/PaymentStructure";
 import Rating from "../../../components/shared/Rating";
+import ButtonDelete from "@/components/__shared/ui/button/ButtonDelete";
+import TbUserImage from "@/app/dashboard/components/shared/TbUserImage";
+import ButtonMessage from "@/components/__shared/ui/button/ButtonMessage";
+import { FaChartBar } from "react-icons/fa";
+import { PiChatCenteredDots } from "react-icons/pi";
+import { BiDotsVerticalRounded } from "react-icons/bi";
+import { FiTrash2 } from "react-icons/fi";
 
 const RtApplicationRow = ({
   propertyImage,
-  applicantImage,
+  listerImage,
   propertyTitle,
   date,
   propertyPrice,
-  applicantName,
-}: ApplicationsInterface) => {
+  listerName,
+}: RenterApplicationsInterface) => {
   const { images } = useAssets();
 
   const daysDifference = useDaysDifference(date);
@@ -40,29 +52,6 @@ const RtApplicationRow = ({
         label="Are you sure you want to delete this application?"
       />
       <TableBodyRow className="grid-cols-5">
-        {/* Applicant */}
-        <TableBody className="col-span-1">
-          <div
-            className="flex items-center gap-2 truncate"
-            title={applicantName}
-          >
-            <div className="relative h-16 w-16 shrink-0 rounded-full">
-              <Image
-                src={applicantImage}
-                alt={applicantName}
-                fill
-                style={{ objectFit: "cover" }}
-                className="shrink-0 rounded-full"
-              />
-            </div>
-            <div className="flex flex-col justify-between gap-5 truncate">
-              <p className="truncate text-sm text-[600]">
-                {capitalizeName(applicantName, " ")}
-              </p>
-              <Rating rate={3.5} count={5} countClassName="lg:max-llg:hidden" />
-            </div>
-          </div>
-        </TableBody>
         {/* Property */}
         <TableBody
           href="/properties/1"
@@ -82,6 +71,30 @@ const RtApplicationRow = ({
             <PaymentStructure monthlyPrice={3000} advancePayment="one year" />
           </div>
         </TableBody>
+        {/* Property Owner */}
+        {/* <TableBody className="col-span-1">
+          <div className="flex items-center gap-2 truncate" title={listerName}>
+            <TbUserImage image={listerImage} name={listerName} />
+            <div className="flex flex-col justify-between gap-5 truncate">
+              <p className="truncate text-sm text-[600]">
+                {capitalizeName(listerName, " ")}
+              </p>
+              <div className="flex items-center gap-2">
+                <ButtonMessage
+                  id=""
+                  className="rounded-full bg-secondary-400 text-white"
+                >
+                  Message <PiChatCenteredDots />
+                </ButtonMessage>
+                <Rating
+                  rate={3.5}
+                  count={5}
+                  countClassName="lg:max-llg:hidden"
+                />
+              </div>
+            </div>
+          </div>
+        </TableBody> */}
         {/* Posted On */}
         <TableBody className="col-span-1 text-center">
           <h4 className="text-sm font-[600]">{formatDate(date)}</h4>
@@ -96,11 +109,21 @@ const RtApplicationRow = ({
           <RtApplicationStatus />
         </TableBody>
         {/* Actions */}
-        {/* <TableBody className="col-span-1 flex items-center justify-center">
-          <div className="flex gap-1.5">
-            <ButtonDelete onOpen={onOpen} className="w-fit" />
-          </div>
-        </TableBody> */}
+        <TableBody className="col-span-1 mx-auto">
+          <Popover style={{ zIndex: "99999" }}>
+            <PopoverTrigger className="h-fit w-fit">
+              <button className="col-span-1 ml-auto h-fit w-fit p-2">
+                <BiDotsVerticalRounded />
+              </button>
+            </PopoverTrigger>
+            <PopoverContent className="rounded-md">
+              <button className="flex items-center gap-2" onClick={() => ""}>
+                Delete
+                <FiTrash2 />
+              </button>
+            </PopoverContent>
+          </Popover>
+        </TableBody>
       </TableBodyRow>
     </>
   );

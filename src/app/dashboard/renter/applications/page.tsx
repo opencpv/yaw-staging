@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import ManageApplicationsTable from "./components/RtManageApplicationsTable";
-import ManageApplicationsSmallScreen from "./components/RtManageApplicationsSm";
+import RtManageApplicationsTable from "./components/RtManageApplicationsTable";
+import RtManageApplicationsSmallScreen from "./components/RtManageApplicationsSm";
 import { useApplicationsStore } from "@/store/dashboard/applicationsStore";
 
 const ApplicationsPage = () => {
@@ -21,9 +21,9 @@ const ApplicationsPage = () => {
         </small>
       </section>
       {/* Table */}
-      <ManageApplicationsTable />
+      <RtManageApplicationsTable />
       {/* Small screen view */}
-      <ManageApplicationsSmallScreen />
+      <RtManageApplicationsSmallScreen />
     </main>
   );
 };

@@ -47,7 +47,7 @@ const LsManageApplicationsTable = (props: Props) => {
         <TableHeaderRow className="grid-cols-5" gap="2rem">
           <TableHeader className="col-span-1">Applicant</TableHeader>
           <TableHeader className="col-span-2">Property</TableHeader>
-          <TableHeader className="col-span-1">Posted on</TableHeader>
+          <TableHeader className="col-span-1">Sent</TableHeader>
           <TableHeader className="col-span-1">Status</TableHeader>
           {/* <TableHeader className="col-span-1">Actions on</TableHeader> */}
         </TableHeaderRow>

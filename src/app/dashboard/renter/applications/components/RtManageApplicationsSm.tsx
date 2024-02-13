@@ -46,8 +46,8 @@ const RtManageApplicationsSm = (props: Props) => {
             key={applicant.id as string}
             propertyTitle="Single Room"
             propertyImage="/assets/images/Stock.jpg"
-            applicantImage="/assets/images/profile-image.jpg"
-            applicantName={`${applicant.firstname} ${applicant.lastname}`}
+            listerImage="/assets/images/profile-image.jpg"
+            listerName={`${applicant.firstname} ${applicant.lastname}`}
             propertyPrice={30000}
             date={applicant.created_at as string}
           />

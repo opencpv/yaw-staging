@@ -2,7 +2,7 @@
 import { styled } from "@stitches/react";
 import Image from "next/image";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
-import MessageIcon from "../icons/CaMessageIcon";
+import MessageIcon from "./icons/CaMessageIcon";
 import { IoPersonOutline } from "react-icons/io5";
 import MarkAndDeletePopup from "./MarkAndDeletePopup";
 import { motion } from "framer-motion";
@@ -36,9 +36,9 @@ const NotificationItem: React.FC<Props> = ({
   sender,
 }) => {
   return (
-    <Root className="flex items-start justify-between w-full p-4">
+    <Root className="flex w-full items-start justify-between p-4">
       <motion.div
-        className="flex gap-4 w-full justify-between"
+        className="flex w-full justify-between gap-4"
         initial={{ y: 100 }}
         animate={{ y: 0 }}
         transition={{
@@ -46,27 +46,29 @@ const NotificationItem: React.FC<Props> = ({
           type: "spring",
           stiffness: 50,
           damping: 10,
-        }}>
+        }}
+      >
         <div className="flex gap-4">
           <div className="pt-1">{notificationItems[type]}</div>
 
           <div className="flex flex-col gap-1">
-            <div className="flex text-[10px] uppercase gap-2 items-center text-[#0000008F]">
+            <div className="flex items-center gap-2 text-[10px] uppercase text-[#0000008F]">
               <div className="font-semibold">
                 {type == "message" && type}
                 {type == "admin" && type}
                 {type == "alert" && sender}
               </div>
-              <div className="w-[3px] h-[3px] bg-[#0000008F] rounded-full">
+              <div className="h-[3px] w-[3px] rounded-full bg-[#0000008F]">
                 .
               </div>
               <div className="font-bold">{time}</div>
             </div>
-            <div className="flex flex-col items-start text-[16px] gap-1 text-left">
-              <div className="text-black font-[400] text-[16px]">{subject}</div>
+            <div className="flex flex-col items-start gap-1 text-left text-[16px]">
+              <div className="text-[16px] font-[400] text-black">{subject}</div>
               <div
-                className="text-[#0000008F] max-h-[36px] overflow-hidden
-              text-[13px] leading-[18.2px]">
+                className="max-h-[36px] overflow-hidden text-[13px]
+              leading-[18.2px] text-[#0000008F]"
+              >
                 {content}
               </div>
             </div>

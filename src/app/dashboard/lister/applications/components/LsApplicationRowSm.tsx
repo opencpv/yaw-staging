@@ -12,7 +12,10 @@ import capitalizeName from "@/lib/utils/stringManipulation";
 import { useDisclosure } from "@nextui-org/react";
 import DestructiveModal from "@/components/__shared/modals/DestructiveModal";
 import ButtonDelete from "@/components/__shared/ui/button/ButtonDelete";
-import { ApplicationsInterface } from "../../../../../../interfaces";
+import {
+  ApplicationsInterface,
+  ListerApplicationsInterface,
+} from "../../../../../../interfaces";
 import {
   TableBodySm,
   TableRowSm,
@@ -29,7 +32,7 @@ const LsApplicationRowSm = ({
   propertyTitle,
   date,
   propertyPrice,
-}: ApplicationsInterface) => {
+}: ListerApplicationsInterface) => {
   const { images } = useAssets();
   const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
 

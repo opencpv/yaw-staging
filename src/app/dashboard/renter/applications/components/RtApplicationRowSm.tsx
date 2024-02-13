@@ -8,7 +8,7 @@ import { useDaysDifference } from "@/lib/custom-hooks/useDaysDifference";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import { useDisclosure } from "@nextui-org/react";
 import DestructiveModal from "@/components/__shared/modals/DestructiveModal";
-import { ApplicationsInterface } from "../../../../../../interfaces";
+import { RenterApplicationsInterface } from "../../../../../../interfaces";
 import {
   TableBodySm,
   TableRowSm,
@@ -19,12 +19,12 @@ import Rating from "../../../components/shared/Rating";
 
 const RtApplicationRowSm = ({
   propertyImage,
-  applicantImage,
-  applicantName,
+  listerImage,
+  listerName,
   propertyTitle,
   date,
   propertyPrice,
-}: ApplicationsInterface) => {
+}: RenterApplicationsInterface) => {
   const { images } = useAssets();
   const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
 
@@ -45,8 +45,8 @@ const RtApplicationRowSm = ({
             <h4 className="mb-3">Applicant</h4>
             <div className="relative h-16 w-16 shrink-0 rounded-full">
               <Image
-                src={applicantImage}
-                alt={applicantName}
+                src={listerImage}
+                alt={listerName}
                 fill
                 style={{ objectFit: "cover" }}
                 className="shrink-0 rounded-full"
@@ -54,7 +54,7 @@ const RtApplicationRowSm = ({
             </div>
             <div className="flex flex-col justify-between gap-5 truncate">
               <p className="truncate text-sm text-[600]">
-                {capitalizeName(applicantName, " ")}
+                {capitalizeName(listerName, " ")}
               </p>
               <Rating rate={3.5} count={5} />
             </div>

@@ -5,8 +5,8 @@ import { violet, mauve, blackA } from "@radix-ui/colors";
 import { MixerHorizontalIcon, Cross2Icon } from "@radix-ui/react-icons";
 import { IoMdNotifications } from "react-icons/io";
 import NotificationItem from "./NotificationItem";
-import { demoNotifications } from "../content/demoNotifications";
-import CaMarkAsRead from "../icons/CaMarkAsRead";
+import { demoNotifications } from "./content/demoNotifications";
+import CaMarkAsRead from "./icons/CaMarkAsRead";
 import { CustomScroll } from "./CustomScroll";
 
 import { useAppStore } from "@/store/dashboard/AppStore";
@@ -19,11 +19,11 @@ const NotificationsPopover = () => {
   return (
     <Popover.Root>
       <Popover.Trigger asChild>
-        <button className="relative min-w-[52px] min-h-[52px] w-full aspect-square flex justify-center items-center">
+        <button className="relative flex aspect-square min-h-[52px] w-full min-w-[52px] items-center justify-center">
           <div
-            className="absolute bg-[#B71851] text-[#fff]
-          rounded-full w-[26px] h-[26px] flex items-center justify-center
-          text-[14px] right-[0px] top-0"
+            className="absolute right-[0px] top-0
+          flex h-[26px] w-[26px] items-center justify-center rounded-full
+          bg-[#B71851] text-[14px] text-[#fff]"
           >
             3
           </div>
@@ -34,20 +34,20 @@ const NotificationsPopover = () => {
       </Popover.Trigger>
       <Popover.Portal>
         <PopoverContent sideOffset={5}>
-          <div className="flex justify-between items-center ">
-            <p className="font-bold text-[25px] ">Notifications</p>
-            <p className="text-[10px] text-[#DDB771] font-bold">See All</p>
+          <div className="flex items-center justify-between ">
+            <p className="text-[25px] font-bold ">Notifications</p>
+            <p className="text-[10px] font-bold text-[#DDB771]">See All</p>
           </div>
 
-          <div className="w-full flex justify-end">
-            <button className="flex justify-end items-center gap-2 hover:bg-[#073b3a12] p-2">
+          <div className="flex w-full justify-end">
+            <button className="flex items-center justify-end gap-2 p-2 hover:bg-[#073b3a12]">
               <div className="flex gap-0">
                 <CaMarkAsRead />
               </div>
               <p className="text-[10px] font-bold">Mark all as read</p>
             </button>
           </div>
-          <CustomScroll className="flex flex-col gap-8 max-h-[60vh] overflow-y-scroll">
+          <CustomScroll className="flex max-h-[60vh] flex-col gap-8 overflow-y-scroll">
             {notifications?.map((r: any, index: number) => (
               <div key={index} onClick={(e) => setCurrentNotification(r?.name)}>
                 <NotificationItem
