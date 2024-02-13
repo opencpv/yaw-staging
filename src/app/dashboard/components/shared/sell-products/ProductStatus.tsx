@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Select from "../../../components/Select";
+import Select from "../../Select";
 import { FaRegCheckCircle, FaRegTimesCircle } from "react-icons/fa";
-import Button from "../../../components/Button";
+import Button from "../../Button";
 import supabase from "@/lib/utils/supabaseClient";
 
 interface Props {

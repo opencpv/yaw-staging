@@ -1,5 +1,5 @@
 import * as Dialog from "@radix-ui/react-dialog";
-import CaDashDelete from "../../../components/icons/CaDashDelete";
+import CaDashDelete from "../../icons/CaDashDelete";
 import "./main.css";
 import supabase from "@/lib/utils/supabaseClient";
 import { useRouter } from "next/navigation";

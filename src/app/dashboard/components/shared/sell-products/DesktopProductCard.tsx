@@ -1,8 +1,8 @@
 import calculateDaysSinceCreation from "@/lib/utils/calculateDaysSinceCreation";
 import { formatDate } from "@/lib/utils/stringManipulation";
 import Image from "next/image";
-import CaDashEdit from "../../../components/icons/CaDashEdit";
-import CaDashDelete from "../../../components/icons/CaDashDelete";
+import CaDashEdit from "../../icons/CaDashEdit";
+import CaDashDelete from "../../icons/CaDashDelete";
 import ProductStatus from "./ProductStatus";
 import DeleteProductButton from "./DeleteProductButton";
 

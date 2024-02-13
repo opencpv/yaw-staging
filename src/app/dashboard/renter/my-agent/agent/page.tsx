@@ -1,11 +1,11 @@
 "use client";
-import AgentButtons from "../components/Button";
+import AgentButtons from "../../../components/shared/my-agent/Button";
 import { useState } from "react";
-import NoMatchesYet from "../components/NoMatches";
-import MatchesYet from "../components/Matches";
-import Agent from "../components/Agent";
+import NoMatchesYet from "../../../components/shared/my-agent/NoMatches";
+import MatchesYet from "../../../components/shared/my-agent/Matches";
+import Agent from "../../../components/shared/my-agent/Agent";
 import AOSWrapper from "@/components/__shared/AOSWrapper";
-import NoAgentCard from "../components/NoAgentCard";
+import NoAgentCard from "../../../components/shared/my-agent/NoAgentCard";
 
 export default function Page() {
   const [beAgent, setBeAgent] = useState(false);

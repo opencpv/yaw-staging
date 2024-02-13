@@ -8,18 +8,22 @@ import {
   Button,
   useDisclosure,
 } from "@nextui-org/react";
+import { MdOutlineRemoveRedEye } from "react-icons/md";
 
 import { MdInfoOutline } from "react-icons/md";
 import CaAgentMessage from "./icons/CaAgentMessage";
-import CaDelete from "../../saved-search/components/CaDelete";
+import CaDelete from "../../../renter/saved-search/components/CaDelete";
 
-export default function DeleteModal() {
+export default function ViewModal() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
     <>
-      <Button onPress={onOpen} className="w-full bg-secondary-50 py-4">
-        <CaDelete />
+      <Button
+        onPress={onOpen}
+        className="w-full bg-secondary-50 py-4 text-neutral-800"
+      >
+        <MdOutlineRemoveRedEye size={24} />
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>

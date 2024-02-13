@@ -13,7 +13,7 @@ import { MdInfoOutline } from "react-icons/md";
 import { MdOutlineModeEdit } from "react-icons/md";
 
 import CaAgentMessage from "./icons/CaAgentMessage";
-import CaDelete from "../../saved-search/components/CaDelete";
+import CaDelete from "../../../renter/saved-search/components/CaDelete";
 import EditButton from "@/components/__shared/ui/button/EditButton";
 
 export default function EditModal() {

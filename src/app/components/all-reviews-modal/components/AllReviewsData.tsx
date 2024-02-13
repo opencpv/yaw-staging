@@ -1,10 +1,10 @@
-import PropertiesReview from "@/app/dashboard/lister/my-reviews/components/PropertiesReview";
-import PropertyOwnersReview from "@/app/dashboard/lister/my-reviews/components/PropertyOwnersReview";
-import ServiceProsReviews from "@/app/dashboard/lister/my-reviews/components/ServiceProsReviews";
+import PropertiesReview from "@/app/dashboard/components/shared/my-reviews/PropertiesReview";
+import PropertyOwnersReview from "@/app/dashboard/components/shared/my-reviews/PropertyOwnersReview";
+import ServiceProsReviews from "@/app/dashboard/components/shared/my-reviews/ServiceProsReviews";
 import AllReviewCard from "./AllReviewsCard";
 import SlideEnter from "../../listing-form/components/SlideEnter";
 import { mockReviewData2 } from "../../ratings-form/components/content2";
-import { mockReviewData } from "@/app/dashboard/lister/my-reviews/components/content";
+import { mockReviewData } from "@/app/dashboard/components/shared/my-reviews/content";
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
 import { useState } from "react";

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import AgentButtons from "./components/Button";
+import AgentButtons from "../../components/shared/my-agent/Button";
 import { ClientOnly } from "@/components/ui/ClientOnly";
 import BeMyAgentModal from "@/app/components/be-my-agent-form";
 import styles from "./index.module.css";

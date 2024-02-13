@@ -6,7 +6,7 @@ import CaAgentTick from "./icons/CaAgentTick";
 import BeMyAgentModal from "@/app/components/be-my-agent-form";
 import { ClientOnly } from "@/components/ui/ClientOnly";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import style from "../index.module.css";
+import style from "./index.module.css";
 import AOSWrapper from "@/components/__shared/AOSWrapper";
 import React from "react";
 import LearnMoreYoutubeBtn from "./LearnMoreYoutubeBtn";

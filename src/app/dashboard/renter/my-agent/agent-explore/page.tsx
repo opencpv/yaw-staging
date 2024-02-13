@@ -1,5 +1,5 @@
 import React from "react";
-import AgentLandingPage from "../components/AgentLandingPage";
+import AgentLandingPage from "../../../components/shared/my-agent/AgentLandingPage";
 
 type Props = {};
 

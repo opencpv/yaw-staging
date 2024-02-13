@@ -2,8 +2,8 @@ import Image from "next/image";
 import ProductStatus from "./ProductStatus";
 import { formatDate } from "@/lib/utils/stringManipulation";
 import calculateDaysSinceCreation from "@/lib/utils/calculateDaysSinceCreation";
-import CaDashEdit from "../../../components/icons/CaDashEdit";
-import CaDashDelete from "../../../components/icons/CaDashDelete";
+import CaDashEdit from "../../icons/CaDashEdit";
+import CaDashDelete from "../../icons/CaDashDelete";
 import DeleteProductButton from "./DeleteProductButton";
 
 const MobileProductCard = ({ data }: { data: any }) => {

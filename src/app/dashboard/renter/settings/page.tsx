@@ -4,7 +4,7 @@ import {
   createClientComponentClient,
   createServerComponentClient,
 } from "@supabase/auth-helpers-nextjs";
-import ProfileMainView from "./components/ProfileMainView";
+import ProfileMainView from "../../components/shared/settings/ProfileMainView";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { useContext, useEffect, useState } from "react";

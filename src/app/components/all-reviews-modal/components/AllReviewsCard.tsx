@@ -1,5 +1,5 @@
-import ReviewStarsFixed from "@/app/dashboard/lister/my-reviews/components/ReviewStarsFixed";
-import CaREviewsReply2 from "@/app/dashboard/lister/my-reviews/components/icons/CaReviewsReply2";
+import ReviewStarsFixed from "@/app/dashboard/components/shared/my-reviews/ReviewStarsFixed";
+import CaREviewsReply2 from "@/app/dashboard/components/shared/my-reviews/icons/CaReviewsReply2";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import CaThumbsUpYellow from "./icons/CaThumbsUpYellow";

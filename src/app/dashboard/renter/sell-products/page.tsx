@@ -6,8 +6,8 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
-import DesktopProductCard from "./components/DesktopProductCard";
-import MobileProductCard from "./components/MobileProductCard";
+import DesktopProductCard from "../../components/shared/sell-products/DesktopProductCard";
+import MobileProductCard from "../../components/shared/sell-products/MobileProductCard";
 import Link from "next/link";
 import Button from "@/components/__shared/ui/button/Button";
 

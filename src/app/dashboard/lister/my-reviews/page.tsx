@@ -1,20 +1,22 @@
 "use client";
 import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
-import ReviewersSay from "./components/ReviewersSay";
-import PropertyOwnersReview from "./components/PropertyOwnersReview";
-import PropertiesReview from "./components/PropertiesReview";
-import ServiceProsReviews from "./components/ServiceProsReviews";
+import ReviewersSay from "../../components/shared/my-reviews/ReviewersSay";
+import PropertyOwnersReview from "../../components/shared/my-reviews/PropertyOwnersReview";
+import PropertiesReview from "../../components/shared/my-reviews/PropertiesReview";
+import ServiceProsReviews from "../../components/shared/my-reviews/ServiceProsReviews";
 import { useManageReviewsStore } from "@/store/dashboard/propertiesStore";
 
 export default function MyReviews() {
-  const optionSelect = useManageReviewsStore((state: any) => state.filterOption);
+  const optionSelect = useManageReviewsStore(
+    (state: any) => state.filterOption,
+  );
   const handleOptionChange = useManageReviewsStore(
-    (state : any) => state.changeOption
+    (state: any) => state.changeOption,
   );
 
   return (
     <div className="flex w-full flex-col gap-4">
-        <p className="text-[1.9375rem] font-semibold">My Reviews</p>
+      <p className="text-[1.9375rem] font-semibold">My Reviews</p>
       <Tabs
         variant="light"
         aria-label="Tabs variants"
@@ -31,7 +33,8 @@ export default function MyReviews() {
         selectedKey={optionSelect}
         onSelectionChange={(selectedOption) =>
           handleOptionChange(selectedOption)
-        }>
+        }
+      >
         <Tab key="reviewers" title="Reviewers Say">
           <ReviewersSay />
         </Tab>
