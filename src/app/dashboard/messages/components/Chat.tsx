@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { ChatInterface } from "../../../../../interfaces";
-import Rating from "./Rating";
+import Rating from "../../components/shared/Rating";
 
 const Chat = ({
   href,
@@ -48,7 +48,7 @@ const Chat = ({
               style={{ objectFit: "contain" }}
             />
           </div>
-          <Rating />
+          <Rating rate={3.5} count={5} />
         </div>
         <div className="col-span-4 flex flex-col gap-5 truncate">
           <h4 className="font-[700] text-primary-500">{name}</h4>

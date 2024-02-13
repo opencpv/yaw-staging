@@ -17,6 +17,7 @@ import { TableBodySm, TableRowSm } from "../../components/shared/table/Table";
 import TbPropertyImageSm from "../../components/shared/TbPropertyImageSm";
 import PaymentStructure from "../../components/shared/PaymentStructure";
 import ViewButton from "@/components/__shared/ui/button/ViewButton";
+import Rating from "../../components/shared/Rating";
 
 const ApplicationRow2 = ({
   propertyImage,
@@ -53,9 +54,12 @@ const ApplicationRow2 = ({
                 className="shrink-0 rounded-full"
               />
             </div>
-            <p className="text-sm text-[600]">
-              {capitalizeName(applicantName, " ")}
-            </p>
+            <div className="flex flex-col justify-between gap-5 truncate">
+              <p className="truncate text-sm text-[600]">
+                {capitalizeName(applicantName, " ")}
+              </p>
+              <Rating rate={3.5} count={5} />
+            </div>
           </div>
           {/* Status */}
           <div className="">

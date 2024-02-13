@@ -13,6 +13,8 @@ import {
   TableHeader,
   TableHeaderRow,
 } from "../../components/shared/table/Table";
+import Button from "@/components/__shared/ui/button/Button";
+import { IoArchiveOutline } from "react-icons/io5";
 
 type Props = {};
 
@@ -72,8 +74,13 @@ const ManageApplicationsTable = (props: Props) => {
           )}
         </TableBodyRowGroup>
       </Table>
+      <div className="my-14 ml-auto">
+        <Button className="" title="View all applications">
+          Archive <IoArchiveOutline />
+        </Button>
+      </div>
       {isValidating ? <Spinner color="default" /> : null}
-      <div className="mb-20">
+      <div>
         <Pagination
           total={totalCount ? totalCount / pageSize : 1}
           handlePrev={() => {
