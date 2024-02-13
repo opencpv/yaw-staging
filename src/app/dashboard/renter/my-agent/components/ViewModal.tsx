@@ -21,7 +21,7 @@ export default function ViewModal() {
     <>
       <Button
         onPress={onOpen}
-        className="w-full bg-[#F1F1F1] py-4 text-neutral-800"
+        className="w-full bg-secondary-50 py-4 text-neutral-800"
       >
         <MdOutlineRemoveRedEye size={24} />
       </Button>
@@ -51,7 +51,7 @@ export default function ViewModal() {
                   <Button
                     color="primary"
                     onPress={onClose}
-                    className="flex h-[38px] min-w-[149px] items-center justify-center rounded-lg bg-[#F1F1F1] px-5 py-2 font-semibold text-shade-200"
+                    className="flex h-[38px] min-w-[149px] items-center justify-center rounded-lg bg-secondary-50 px-5 py-2 font-semibold text-shade-200"
                   >
                     No
                   </Button>

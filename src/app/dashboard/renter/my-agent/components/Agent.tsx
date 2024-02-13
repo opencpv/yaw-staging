@@ -82,7 +82,7 @@ export default function Agent({
           className="flex flex-wrap items-center gap-x-4 gap-y-2 pt-4 xs:pt-2"
           style={{ visibility: state !== "completed" ? "hidden" : "visible" }}
         >
-          <div className="flex items-center gap-2 rounded-full bg-[#F1F1F1] px-2 py-1.5">
+          <div className="flex items-center gap-2 rounded-full bg-secondary-50 px-2 py-1.5">
             <CaAgentTickGreenBg />
             <p>Completed</p>
           </div>

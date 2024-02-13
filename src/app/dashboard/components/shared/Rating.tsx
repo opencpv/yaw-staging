@@ -21,7 +21,7 @@ const Rating = (props: Props) => {
   return (
     <div
       className={cn(
-        "flex items-center gap-1 rounded-full bg-[#F1F1F1] p-1.5 text-[0.65rem] leading-3 text-primary-500",
+        "flex items-center gap-1 rounded-full bg-secondary-50 p-1.5 text-[0.65rem] leading-3 text-primary-500",
         props.className,
       )}
     >

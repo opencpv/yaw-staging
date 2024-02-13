@@ -31,7 +31,7 @@ const ListingFormModal = () => {
             boxShadow: "0px 24px 48px -12px rgba(0, 0, 0, 0.18)",
           }}
         >
-          <div className="flex aspect-square w-full max-w-[64px] items-center justify-center rounded-full bg-[#F1F1F1] ">
+          <div className="flex aspect-square w-full max-w-[64px] items-center justify-center rounded-full bg-secondary-50 ">
             <CaComment />
           </div>
           Create a New Listing

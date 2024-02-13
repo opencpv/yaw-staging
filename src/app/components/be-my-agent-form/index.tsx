@@ -52,7 +52,7 @@ const BeMyAgentModal = (props: Props) => {
             isIconOnly
             title="Edit"
             className={cn(
-              "flex w-fit items-center justify-center rounded-md bg-[#F1F1F1] p-4 text-neutral-800",
+              "flex w-fit items-center justify-center rounded-md bg-secondary-50 p-4 text-neutral-800",
               props.buttonClassName,
             )}
           >

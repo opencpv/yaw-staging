@@ -52,7 +52,7 @@ const DesktopProductCard = ({ data }: { data: any }) => {
       </div>
       <div className="flex h-full w-full items-center justify-center">
         <div className="flex gap-2">
-          <button className="cursor-pointer rounded-[8px] bg-[#F1F1F1] p-4">
+          <button className="cursor-pointer rounded-[8px] bg-secondary-50 p-4">
             <CaDashEdit />
           </button>
           <DeleteProductButton id={data.id} table="sell_items" />

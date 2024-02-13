@@ -72,13 +72,13 @@ const PropertyRow2 = ({
           <div className="flex gap-1.5">
             <Button
               isIconOnly
-              className="flex w-full items-center justify-center rounded-md bg-[#F1F1F1] py-4"
+              className="flex w-full items-center justify-center rounded-md bg-secondary-50 py-4"
             >
               <BiPencil className="text-xl" />
             </Button>
             <Button
               isIconOnly
-              className="flex w-full items-center justify-center rounded-md bg-[#F1F1F1] py-4"
+              className="flex w-full items-center justify-center rounded-md bg-secondary-50 py-4"
             >
               <FiTrash2 className="text-xl text-red-500" />
             </Button>

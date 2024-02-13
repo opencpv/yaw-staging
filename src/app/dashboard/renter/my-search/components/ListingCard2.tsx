@@ -86,10 +86,10 @@ const ListingCard2 = (props: ListingCardInterface) => {
             <p>Apartment</p>
           </div>
           <div className="flex gap-2">
-            <button className="rounded-[8px] bg-[#F1F1F1] p-4">
+            <button className="rounded-[8px] bg-secondary-50 p-4">
               <CaDashEdit />
             </button>
-            <button className="rounded-[8px] bg-[#F1F1F1] p-4">
+            <button className="rounded-[8px] bg-secondary-50 p-4">
               <CaDashDelete />
             </button>
           </div>

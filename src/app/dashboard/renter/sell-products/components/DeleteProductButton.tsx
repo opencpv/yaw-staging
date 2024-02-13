@@ -21,7 +21,7 @@ const DeleteProductButton = ({ id, table }: Props) => {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        <button className="flex cursor-pointer items-center justify-between rounded-[8px] bg-[#F1F1F1] p-4">
+        <button className="flex cursor-pointer items-center justify-between rounded-[8px] bg-secondary-50 p-4">
           <CaDashDelete />
         </button>
       </Dialog.Trigger>

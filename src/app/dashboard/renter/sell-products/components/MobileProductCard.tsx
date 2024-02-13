@@ -58,7 +58,7 @@ const MobileProductCard = ({ data }: { data: any }) => {
         </div>
       </div>
       <div className="col-span-2 grid grid-cols-2 gap-2  py-4 align-middle ">
-        <button className="flex w-full cursor-pointer justify-center rounded-[8px] bg-[#F1F1F1] p-4">
+        <button className="flex w-full cursor-pointer justify-center rounded-[8px] bg-secondary-50 p-4">
           <CaDashEdit />
         </button>
         <DeleteProductButton id={data.id} table="sell_items" />

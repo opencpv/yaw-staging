@@ -39,7 +39,7 @@ const Checkout = () => {
           </div>
           <div className="flex items-center gap-4">
             <p className="">Qty</p>
-            <p className=" rounded-full  bg-[#F1F1F1] px-8 py-2">
+            <p className=" rounded-full  bg-secondary-50 px-8 py-2">
               {item.quantity}
             </p>
           </div>

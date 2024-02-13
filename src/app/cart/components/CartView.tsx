@@ -73,7 +73,7 @@ const CartView = () => {
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
         <button
-          className="flex items-center gap-2 rounded-full  bg-[#F1F1F1] px-4 py-2"
+          className="flex items-center gap-2 rounded-full  bg-secondary-50 px-4 py-2"
           aria-label="modify item quantity"
         >
           <p className="text-[10px]">{item.quantity}</p>
@@ -82,7 +82,7 @@ const CartView = () => {
       </DropdownMenu.Trigger>
       <DropdownMenu.Portal>
         <DropdownMenu.Content
-          className="rounded-xl bg-[#F1F1F1] px-8 py-2 text-[10px]"
+          className="rounded-xl bg-secondary-50 px-8 py-2 text-[10px]"
           sideOffset={5}
         >
           {Array.from(Array(12).keys())

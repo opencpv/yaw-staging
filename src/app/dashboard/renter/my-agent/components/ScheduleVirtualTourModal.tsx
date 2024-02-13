@@ -58,7 +58,7 @@ export default function ScheduleVirtualTourModal({ active }: Props) {
                   <Button
                     color="primary"
                     onPress={onClose}
-                    className="flex h-[38px] min-w-[149px] items-center justify-center rounded-lg bg-[#F1F1F1] px-5 py-2 font-semibold text-shade-200"
+                    className="flex h-[38px] min-w-[149px] items-center justify-center rounded-lg bg-secondary-50 px-5 py-2 font-semibold text-shade-200"
                   >
                     No
                   </Button>
