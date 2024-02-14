@@ -61,7 +61,7 @@ export function SelectSearchInput({
             <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="z-[1001] w-fit bg-white p-0 ">
+        <PopoverContent className="z-[1001] w-fit bg-[#fefefe] p-0 ">
           <Command>
             <CommandInput placeholder="Search data..." />
             <CommandEmpty>No data found.</CommandEmpty>

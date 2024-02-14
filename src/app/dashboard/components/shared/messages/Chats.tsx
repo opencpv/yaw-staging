@@ -17,8 +17,8 @@ const Chats = (props: Props) => {
       className={`${
         pathname !==
           ("/dashboard/renter/messages" || "/dashboard/lister/messages") &&
-        "hidden"
-      } hidden-scrollbar col-span-2 max-h-screen max-w-lg overflow-y-scroll lg:block lg:border-r lg:max-xl:col-span-3`}
+        "hidden" // show only on messages page on mobile
+      } hidden-scrollbar col-span-2 max-h-screen max-w-lg overflow-y-scroll lg:block lg:border-r lg:max-xl:col-span-3`} // show on desktop on any message page
     >
       {/* {props.isLoading ? (
         <Spinner />

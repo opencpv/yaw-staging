@@ -7,7 +7,7 @@ const NoAgentCard = (props: Props) => {
   return (
     <div className="max-w-md space-y-5 rounded-2xl border bg-[#F7F7F7] px-8 py-6 xs:w-[448px]">
       <AgentButtons
-        href="my-agent/agent-explore"
+        href="agent-explore"
         content="Explore"
         variant={"explore"}
         className="min-w-[8rem]"

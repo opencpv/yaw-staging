@@ -148,7 +148,7 @@ const PhoneNumberInputv2 = ({
                 </p>
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="z-[200] max-h-[400px] w-fit max-w-[150px] overflow-y-scroll bg-white p-0">
+            <PopoverContent className="z-[200] max-h-[400px] w-fit max-w-[150px] overflow-y-scroll bg-[#fefefe] p-0">
               <Command onValueChange={onChange}>
                 <CommandInput placeholder="Search code..." />
                 <CommandEmpty>No data found.</CommandEmpty>

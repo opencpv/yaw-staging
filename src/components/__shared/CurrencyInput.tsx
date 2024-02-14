@@ -134,7 +134,7 @@ const CurrencyInput = ({
                 <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="z-[200] max-h-[400px] w-fit overflow-y-scroll bg-white p-0 ">
+            <PopoverContent className="z-[200] max-h-[400px] w-fit overflow-y-scroll bg-[#fefefe] p-0 ">
               <Command onValueChange={onChange}>
                 <CommandInput placeholder="Search data..." />
                 <CommandEmpty>No data found.</CommandEmpty>

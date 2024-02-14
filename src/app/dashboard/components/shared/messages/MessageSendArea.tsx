@@ -13,7 +13,7 @@ const MessageSendArea = ({ onSubmit, messageContent, onChange }: Props) => {
       <form action="" onSubmit={onSubmit} className="flex items-center gap-4">
         <textarea
           rows={1}
-          className="w-full resize-none rounded-md border p-3 text-neutral-800 placeholder:text-sm"
+          className="hidden-scrollbar w-full resize-none rounded-md border p-3 text-neutral-800 placeholder:text-sm"
           placeholder="Type your message"
           value={messageContent}
           onChange={onChange}
@@ -22,6 +22,7 @@ const MessageSendArea = ({ onSubmit, messageContent, onChange }: Props) => {
           <Image
             src="/assets/icons/messages/send-btn.svg"
             alt="send"
+            title="send"
             width={30}
             height={30}
           />

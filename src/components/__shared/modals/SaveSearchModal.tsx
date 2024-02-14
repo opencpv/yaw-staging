@@ -129,7 +129,7 @@ const RecentSearch = ({ title, date }: { title: string; date: string }) => {
             <BiDotsVerticalRounded />
           </button>
         </PopoverTrigger>
-        <PopoverContent className="rounded-md">
+        <PopoverContent className="rounded-md bg-[#fefefe]">
           <button className="flex items-center gap-2" onClick={onOpen}>
             Delete
             <FiTrash2 />

@@ -118,7 +118,7 @@ const RtApplicationRow = ({
                 <BiDotsVerticalRounded />
               </button>
             </PopoverTrigger>
-            <PopoverContent className="rounded-md">
+            <PopoverContent className="rounded-md bg-[#fefefe]">
               <div className="flex flex-col gap-2 divide-y rounded-md p-2 px-0">
                 <button
                   className="flex w-full items-center gap-2 transition-all hover:scale-[1.02]"

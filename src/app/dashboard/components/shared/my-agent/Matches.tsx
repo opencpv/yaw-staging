@@ -76,7 +76,7 @@ const PropertyRowSm = () => {
   return (
     <TableRowSm>
       {/* Property */}
-      <TableBodySm className="space-y-4">
+      <TableBodySm href="/properties/2" className="space-y-4">
         <h4>Property</h4>
         <div className="flex flex-wrap justify-between gap-5 truncate">
           <TbPropertyImageSm
@@ -139,7 +139,10 @@ const PropertyRow = () => {
   return (
     <TableBodyRow className="grid-cols-6 gap-16 lg:max-llg:gap-8" gap="2rem">
       {/* Property */}
-      <TableBody className="col-span-2 flex gap-[0.62rem] truncate p-2.5">
+      <TableBody
+        href="/properties/2"
+        className="col-span-2 flex gap-[0.62rem] truncate p-2.5"
+      >
         <TbPropertyImage
           title="Single Room at Assin Fosu"
           image="/assets/images/niceHome.png"

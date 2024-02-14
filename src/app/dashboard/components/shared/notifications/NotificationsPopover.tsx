@@ -33,7 +33,7 @@ const NotificationsPopover = () => {
         </button>
       </Popover.Trigger>
       <Popover.Portal>
-        <PopoverContent sideOffset={5}>
+        <PopoverContent sideOffset={5} className="z-[99999] bg-[#fefefe]">
           <div className="flex items-center justify-between ">
             <p className="text-[25px] font-bold ">Notifications</p>
             <p className="text-[10px] font-bold text-[#DDB771]">See All</p>

@@ -60,11 +60,11 @@ const Messages = ({ params }: { params: { chat: string } }) => {
   return (
     <>
       {/* {currentUserId === null && router.push("/login")} */}
-      {(pathname !== "/dashboard/lister/messages" ||
-        pathname !== "/dashboard/renter/messages") && (
-        // <UsernameDisplayBar userName={userName as string} />
-        <UsernameDisplayBar userName={"Jane Mumuni"} />
-      )}
+      {pathname !== "/dashboard/lister/messages" &&
+        pathname !== "/dashboard/renter/messages" && (
+          // <UsernameDisplayBar userName={userName as string} />
+          <UsernameDisplayBar userName={"Jane Mumuni"} />
+        )}
 
       {/* {isLoading ? (
         <div className="h-[70vh]: flex items-center justify-center">

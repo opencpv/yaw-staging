@@ -87,11 +87,11 @@ const MessagesLayout = ({ children }: Props) => {
         <main
           className={`${
             (pathname === "/dashboard/lister/messages" ||
-              pathname === "dashboard/renter/messages") &&
-            "hidden"
-          } relative col-span-4 h-full max-h-[100svh] w-full lg:block lg:max-xl:col-span-3`}
+              pathname === "/dashboard/renter/messages") &&
+            "hidden" // hide chat area on mobile
+          } relative col-span-4 h-full max-h-[100svh] w-full lg:block lg:max-xl:col-span-3`} // show chat area on desktop
         >
-          {children} {/* messages */}
+          {children} {/* chat area */}
           {(pathname?.includes("/dashboard/lister/messages/") ||
             pathname?.includes("/dashboard/renter/messages/")) && (
             <MessageSendArea

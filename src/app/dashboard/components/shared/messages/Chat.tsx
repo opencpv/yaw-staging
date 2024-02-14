@@ -31,7 +31,7 @@ const Chat = ({
 
   return (
     <Link
-      href={`/dashboard/messages/${id}`}
+      href={`messages/${id}`}
       className={`grid min-h-[3.5rem] cursor-default grid-cols-8 gap-6 border-b px-2 pb-2.5 pt-8 ${
         isSelected && "bg-slate-50/60"
       } light-green-hover transition-all`}

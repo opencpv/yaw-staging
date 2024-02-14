@@ -74,11 +74,11 @@ const Wrapper = ({ children }: LayoutProps) => {
     });
 
     const wrapperExclusionList = [
-      "/dashboard/renter/my-agent",
       "/dashboard/lister/my-agent",
+      "/dashboard/renter/my-agent",
     ];
 
-    wrapperExclusionList.map((path) => {
+    wrapperExclusionList.forEach((path) => {
       if (pathname?.includes(path)) {
         setExcludeWrapper(true);
       } else {
