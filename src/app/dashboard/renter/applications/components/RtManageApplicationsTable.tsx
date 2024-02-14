@@ -15,6 +15,7 @@ import {
 } from "../../../components/shared/table/Table";
 import Button from "@/components/__shared/ui/button/Button";
 import { IoArchiveOutline } from "react-icons/io5";
+import Loader from "@/components/__shared/loader/Loader";
 
 type Props = {};
 
@@ -75,9 +76,13 @@ const RtManageApplicationsTable = (props: Props) => {
               />
             ))
           )}
+          {isValidating ? (
+            <div className="flex h-[20rem] w-full items-center justify-center">
+              <Loader />
+            </div>
+          ) : null}
         </TableBodyRowGroup>
       </Table>
-      {isValidating ? <Spinner color="default" /> : null}
       <div className="grid place-items-end">
         <Button
           variant="ghost"

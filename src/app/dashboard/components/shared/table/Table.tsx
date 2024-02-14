@@ -36,7 +36,7 @@ export const Table = (props: TableProps) => {
       role="table"
       aria-label="table"
       className={cn(
-        "hidden cursor-default flex-col gap-2 lg:flex",
+        "hidden min-h-[35rem] cursor-default flex-col gap-2 lg:flex",
         props.className,
       )}
     >
