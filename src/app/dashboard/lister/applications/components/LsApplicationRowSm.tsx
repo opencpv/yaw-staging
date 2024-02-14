@@ -5,7 +5,7 @@ import { FiTrash2 } from "react-icons/fi";
 import Button from "@/components/__shared/ui/button/Button";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import { formatDate, formatTime } from "@/lib/utils/stringManipulation";
-import ApplicationStatus from "./ApplicationStatus";
+import ApplicationStatus from "./LsApplicationStatus";
 import { AiOutlineEye } from "react-icons/ai";
 import { useDaysDifference } from "@/lib/custom-hooks/useDaysDifference";
 import capitalizeName from "@/lib/utils/stringManipulation";

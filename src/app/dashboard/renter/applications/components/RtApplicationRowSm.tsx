@@ -27,6 +27,7 @@ const RtApplicationRowSm = ({
   propertyTitle,
   date,
   propertyPrice,
+  status,
 }: RenterApplicationsInterface) => {
   const { images } = useAssets();
   const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
@@ -60,7 +61,7 @@ const RtApplicationRowSm = ({
           </div>
           {/* Status */}
           <div className="">
-            <RtApplicationStatus />
+            <RtApplicationStatus status={status} />
           </div>
         </TableBodySm>
         {/* Property */}

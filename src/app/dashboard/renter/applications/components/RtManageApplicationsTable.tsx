@@ -60,7 +60,7 @@ const RtManageApplicationsTable = (props: Props) => {
           {isLoading ? (
             <TableSkeleton rows={5} columns={5} />
           ) : (
-            currentPage?.map((applicant) => (
+            currentPage?.map((applicant, idx) => (
               <RtApplicationRow
                 key={applicant.id as string}
                 propertyTitle="Property Title"
@@ -69,6 +69,9 @@ const RtManageApplicationsTable = (props: Props) => {
                 listerName={`${applicant.firstname} ${applicant.lastname}`}
                 propertyPrice={30000}
                 date={applicant.created_at as string}
+                status={
+                  idx === 1 ? "accepted" : idx === 3 ? "declined" : "pending"
+                }
               />
             ))
           )}

@@ -37,6 +37,7 @@ const RtApplicationRow = ({
   date,
   propertyPrice,
   listerName,
+  status,
 }: RenterApplicationsInterface) => {
   const { images } = useAssets();
 
@@ -107,7 +108,7 @@ const RtApplicationRow = ({
         </TableBody>
         {/* Status */}
         <TableBody className="col-span-1">
-          <RtApplicationStatus />
+          <RtApplicationStatus status={status} />
         </TableBody>
         {/* Actions */}
         <TableBody className="col-span-1 mx-auto">

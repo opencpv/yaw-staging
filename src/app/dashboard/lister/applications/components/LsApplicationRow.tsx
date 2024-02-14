@@ -5,7 +5,7 @@ import Button from "@/components/__shared/ui/button/Button";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import { formatDate, formatTime } from "@/lib/utils/stringManipulation";
 import { AiOutlineEye } from "react-icons/ai";
-import ApplicationStatus from "./ApplicationStatus";
+import ApplicationStatus from "./LsApplicationStatus";
 import { useDaysDifference } from "@/lib/custom-hooks/useDaysDifference";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import DestructiveModal from "@/components/__shared/modals/DestructiveModal";

@@ -41,7 +41,7 @@ const RtManageApplicationsSm = (props: Props) => {
         }
       />
       <TableSm className="mb-10 mt-3 flex lg:hidden">
-        {applicants?.map((applicant) => (
+        {applicants?.map((applicant, idx) => (
           <RtApplicationRowSm
             key={applicant.id as string}
             propertyTitle="Single Room"
@@ -50,6 +50,13 @@ const RtManageApplicationsSm = (props: Props) => {
             listerName={`${applicant.firstname} ${applicant.lastname}`}
             propertyPrice={30000}
             date={applicant.created_at as string}
+            status={
+              idx === 1 || idx === 9
+                ? "accepted"
+                : idx === 3 || idx === 12
+                  ? "declined"
+                  : "pending"
+            }
           />
         ))}
       </TableSm>
