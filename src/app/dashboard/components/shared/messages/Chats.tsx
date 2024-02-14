@@ -15,7 +15,9 @@ const Chats = (props: Props) => {
   return (
     <aside
       className={`${
-        pathname !== "/dashboard/messages" && "hidden"
+        pathname !==
+          ("/dashboard/renter/messages" || "/dashboard/lister/messages") &&
+        "hidden"
       } hidden-scrollbar col-span-2 max-h-screen max-w-lg overflow-y-scroll lg:block lg:border-r lg:max-xl:col-span-3`}
     >
       {/* {props.isLoading ? (

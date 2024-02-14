@@ -60,7 +60,8 @@ const Messages = ({ params }: { params: { chat: string } }) => {
   return (
     <>
       {/* {currentUserId === null && router.push("/login")} */}
-      {pathname !== "/dashboard/messages" && (
+      {(pathname !== "/dashboard/lister/messages" ||
+        pathname !== "/dashboard/renter/messages") && (
         // <UsernameDisplayBar userName={userName as string} />
         <UsernameDisplayBar userName={"Jane Mumuni"} />
       )}

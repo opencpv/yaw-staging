@@ -86,11 +86,14 @@ const MessagesLayout = ({ children }: Props) => {
         {/* grid col */}
         <main
           className={`${
-            pathname == "/dashboard/messages" && "hidden"
+            (pathname === "/dashboard/lister/messages" ||
+              pathname === "dashboard/renter/messages") &&
+            "hidden"
           } relative col-span-4 h-full max-h-[100svh] w-full lg:block lg:max-xl:col-span-3`}
         >
           {children} {/* messages */}
-          {pathname?.includes("/dashboard/messages/") && (
+          {(pathname?.includes("/dashboard/lister/messages/") ||
+            pathname?.includes("/dashboard/renter/messages/")) && (
             <MessageSendArea
               messageContent={messageContent}
               onChange={(e) => setMessageContent(e.target.value)}

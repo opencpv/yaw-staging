@@ -90,7 +90,7 @@ const BeTheFirstToKnow = () => {
       {demo?.map((listing, idx) => (
         <TargetedSearchCard
           property={{ image: images.niceHome, name: "" }}
-          href="/dashboard/be-the-first-to-know/search-title-one"
+          href="be-the-first-to-know/search-title-one"
           state={listing.state as TargetedSearchState}
           key={idx}
           count={90}

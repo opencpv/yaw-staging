@@ -19,11 +19,18 @@ const BeTheFirstToKnowLayout = ({
   return (
     <main>
       <Link
-        href="/dashboard/be-the-first-to-know"
+        href={
+          pathname?.includes("/lister")
+            ? "/dashboard/lister/be-the-first-to-know"
+            : "/dashboard/renter/be-the-first-to-know"
+        }
         className="relative mb-5 h-10 w-10 place-items-center rounded-full p-2 transition-all hover:scale-105 hover:bg-slate-100 fhd:right-28"
         style={{
           display:
-            pathname === "/dashboard/be-the-first-to-know" ? "none" : "grid",
+            pathname === "/dashboard/lister/be-the-first-to-know" ||
+            "dashboard/renter/be-the-first-to-know"
+              ? "none"
+              : "grid",
         }}
       >
         <FaChevronLeft />
@@ -82,7 +89,10 @@ const BeTheFirstToKnowLayout = ({
           className="mb-6"
           style={{
             display:
-              pathname === "/dashboard/be-the-first-to-know" ? "none" : "grid",
+              pathname === "/dashboard/lister/be-the-first-to-know" ||
+              "/dashboard/renter/be-the-first-to-know"
+                ? "none"
+                : "grid",
           }}
         >
           Search Title One

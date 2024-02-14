@@ -21,7 +21,7 @@ const Dashboard = () => {
   useEffect(() => {
     getProperties();
 
-    router.replace("/dashboard/overview");
+    router.replace("/dashboard/renter/overview"); // TODO: get previous role and redirect to it
   }, []);
 
   return (

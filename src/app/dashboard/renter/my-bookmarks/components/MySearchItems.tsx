@@ -11,7 +11,7 @@ const MySearchItems = () => {
           proin et vestibulum. Vitae faucibus nulla egestas.
         </p>
         <Link
-          href="/dashboard/my-search/bookmarks"
+          href="my-search/bookmarks"
           className="w-full rounded-lg   bg-secondary-400 py-4"
         >
           <div className="flex flex-row items-center justify-center gap-2">
