@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import React from "react";
-import styles from "../../../renter/my-agent/index.module.css";
+import styles from "../my-agent/index.module.css";
 import Link from "next/link";
 
 type generalProps = {

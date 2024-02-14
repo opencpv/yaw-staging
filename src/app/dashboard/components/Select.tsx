@@ -14,6 +14,8 @@ type Props = {
   className?: string;
   valueClassName?: string;
   disabled?: boolean;
+  triggerClassName?: string;
+  selectorIconClassName?: string;
 };
 
 const Select = ({
@@ -27,6 +29,8 @@ const Select = ({
   variant,
   color,
   disabled,
+  triggerClassName,
+  selectorIconClassName,
 }: Props) => {
   return (
     <NextUISelect
@@ -46,14 +50,22 @@ const Select = ({
         value: cn("text-xs", valueClassName, {
           "text-base": variant === "ghost",
         }),
-        selectorIcon: cn(`mr-5 h-3 w-3`, {
-          "text-accent-50": color === "default",
-          "text-primary-100": color === "primary",
-          "h-4.5 w-4.5 mr-0": variant === "ghost",
-        }),
-        trigger: cn("px-10 z-30", {
-          "pl-2 text-base bg-transparent shadow-none": variant === "ghost",
-        }),
+        selectorIcon: cn(
+          `mr-5 h-3 w-3`,
+          {
+            "text-accent-50": color === "default",
+            "text-primary-100": color === "primary",
+            "h-4.5 w-4.5 mr-0": variant === "ghost",
+          },
+          selectorIconClassName,
+        ),
+        trigger: cn(
+          "px-10 z-30",
+          {
+            "pl-2 text-base bg-transparent shadow-none": variant === "ghost",
+          },
+          triggerClassName,
+        ),
         label: "hidden",
       }}
       selectorIcon={selectorIcon ? selectorIcon : <FaCaretDown />}

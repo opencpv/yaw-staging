@@ -4,7 +4,7 @@ import React from "react";
 import AgentButtons from "../../components/shared/my-agent/Button";
 import { ClientOnly } from "@/components/ui/ClientOnly";
 import BeMyAgentModal from "@/app/components/be-my-agent-form";
-import styles from "./index.module.css";
+import styles from "@/app/dashboard/components/shared/my-agent/index.module.css";
 import { usePathname } from "next/navigation";
 import InfoText from "@/app/components/listing-form/components/InfoText";
 

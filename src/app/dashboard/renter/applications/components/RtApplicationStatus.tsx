@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Select from "../../../components/Select";
 import { useSelectDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import { cn } from "@nextui-org/react";
 
 const RtApplicationStatus = () => {
   const { value, handleSelectionChange } = useSelectDisclosure<
@@ -16,7 +17,12 @@ const RtApplicationStatus = () => {
         value={value}
         disabled
         handleSelectionChange={handleSelectionChange}
-        className="lg:max-xl:w-40"
+        className="bg-blue-400 lg:max-xl:w-40"
+        selectorIconClassName="text-neutral-800"
+        triggerClassName={cn({
+          "bg-red-100": value === "declined",
+          "bg-green-100": value === "accepted",
+        })}
       />
     </>
   );
