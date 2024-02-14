@@ -13,6 +13,7 @@ import HowToSwitch from "./components/HowToSwitch";
 import { ClientOnly } from "@/components/ui/ClientOnly";
 import { usePathname } from "next/navigation";
 import { useNotificationStore } from "@/store/dashboard/notificationStore";
+import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -40,12 +41,17 @@ const Wrapper = ({ children }: LayoutProps) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [excludeWrapper, setExcludeWrapper] = useState(false);
 
+  const { setCurrentRole } = useDashboardStore();
+
   useEffect(() => {
     const supabase = createClientComponentClient();
     if (!supabase) {
       redirect("/");
     }
-  }, []);
+
+    if (pathname?.includes("/lister")) setCurrentRole("lister");
+    if (pathname?.includes("/renter")) setCurrentRole("renter");
+  }, [pathname, setCurrentRole]);
 
   useEffect(() => {
     dashboardType && firstTIme && setFirstTimeModalOpen(true);

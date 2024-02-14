@@ -1,20 +1,13 @@
-import CaSubscriptions from "@/app/components/icons/CaSubscriptions";
-import { AiFillHeart } from "react-icons/ai";
-import { IoMdNotificationsOutline, IoMdSettings } from "react-icons/io";
-import CaOverview from "../icons/CaOverview";
-import CaDAshMessages from "../icons/CaDashMessages";
-import CaDashSave from "../icons/CaDashSave";
-import CaSell from "@/app/components/icons/CaSell";
-import { TbHomeSearch } from "react-icons/tb";
+import { IoMdNotificationsOutline } from "react-icons/io";
+import { IoSettingsOutline, IoFolderOutline } from "react-icons/io5";
+import { TbHomeDot, TbHomeSearch } from "react-icons/tb";
 import { MdOutlineRealEstateAgent, MdOutlineRecommend } from "react-icons/md";
 import { PiCirclesFour } from "react-icons/pi";
 import {
   HiOutlineChatBubbleLeftEllipsis,
   HiOutlineShoppingBag,
 } from "react-icons/hi2";
-import { LiaCreditCardSolid } from "react-icons/lia";
 import { FaRegStar, FaRegHeart } from "react-icons/fa";
-import { IoFolderOutline, IoSettingsOutline } from "react-icons/io5";
 import { BsEnvelope } from "react-icons/bs";
 
 export const PgRoutesRenter = [
@@ -87,7 +80,7 @@ export const PgRoutesRenter = [
   {
     name: "settings",
     url: "",
-    icon: <IoSettingsOutline size="24" />,
+    icon: <IoSettingsOutline />,
     link: "/dashboard/renter/settings",
   },
 ];
@@ -96,32 +89,26 @@ export const PgRoutesLister = [
   {
     name: "overview",
     url: "",
-    icon: <CaOverview />,
+    icon: <PiCirclesFour />,
     link: "/dashboard/lister/overview",
-  },
-  {
-    name: "messages",
-    url: "",
-    icon: <CaDAshMessages />,
-    link: "/dashboard/lister/messages",
-  },
-  {
-    name: "moving sale",
-    url: "",
-    icon: <HiOutlineShoppingBag />,
-    link: "/dashboard/lister/sell-products",
   },
   {
     name: "properties",
     url: "",
-    icon: <AiFillHeart />,
+    icon: <TbHomeDot />,
     link: "/dashboard/lister/properties",
   },
   {
     name: "applications",
     url: "",
-    icon: <CaSubscriptions width={24} height={24} />,
+    icon: <IoFolderOutline />,
     link: "/dashboard/lister/applications",
+  },
+  {
+    name: "messages",
+    url: "",
+    icon: <HiOutlineChatBubbleLeftEllipsis />,
+    link: "/dashboard/lister/messages",
   },
   {
     name: "moving sale",
@@ -144,7 +131,7 @@ export const PgRoutesLister = [
   {
     name: "settings",
     url: "",
-    icon: <IoMdSettings size="24" />,
+    icon: <IoSettingsOutline />,
     link: "/dashboard/lister/settings",
   },
 ];

@@ -76,9 +76,9 @@ const Select = ({
           key={LowerCase(option)}
           className={cn("text-neutral-800", {
             "text-base": variant === "ghost",
-            "data-[hover=true]:bg-primary-100 data-[focus-visible=true]:outline-primary-100 data-[selectable=true]:focus:bg-primary-100":
+            "focus:outline-none data-[hover=true]:bg-primary-100 data-[focus-visible=true]:outline-primary-100 data-[selectable=true]:focus:bg-primary-100":
               color === "primary",
-            "data-[hover=true]:bg-accent-50 data-[focus-visible=true]:outline-accent-50 data-[selectable=true]:focus:bg-accent-50":
+            "focus:outline-none data-[hover=true]:bg-accent-50 data-[focus-visible=true]:outline-accent-50 data-[selectable=true]:focus:bg-accent-50":
               color === "default" || !color,
           })}
           value={LowerCase(option)}

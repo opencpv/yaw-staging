@@ -5,7 +5,7 @@ import Link from "next/link";
 import useViewport from "@/lib/custom-hooks/useViewport";
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { PgRoutesRenter } from "./links";
+import { PgRoutesLister, PgRoutesRenter } from "./links";
 import { HiBars3BottomRight } from "react-icons/hi2";
 import Button from "@/components/__shared/ui/button/Button";
 import { LowerCase } from "@/lib/utils/stringManipulation";
@@ -16,6 +16,7 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import PaginationMenu from "./PaginationMenu";
 import { useDashboardMenuStore } from "@/store/navmenu/useDashboardMenuStore";
+import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 
 type PaginationTabProps = {
   active: string;
@@ -29,7 +30,7 @@ const PaginationTab = ({ active, icon, name, link }: PaginationTabProps) => {
     <Link href={link} draggable={false}>
       <PgItem
         type={LowerCase(active) === LowerCase(name) ? "active" : undefined}
-        className={`flex h-fit min-w-[160px] cursor-pointer items-center justify-center gap-3 rounded-xl px-4 py-3 lg:py-4 text-2xl font-semibold text-[#B0B0B0] transition-all lg:max-w-none ${name}`}
+        className={`flex h-fit min-w-[160px] cursor-pointer items-center justify-center gap-3 rounded-xl px-4 py-3 text-2xl font-semibold text-[#B0B0B0] transition-all lg:max-w-none lg:py-4 ${name}`}
         draggable={false}
       >
         <div className="flex flex-row gap-3 lg:flex-col">
@@ -60,17 +61,29 @@ const Pagination = () => {
   // const scrollableRef = useRef<HTMLDivElement>(null);
 
   const { setIsOpen } = useDashboardMenuStore();
+  const { currentRole } = useDashboardStore();
 
   useEffect(() => {
+    // sets the active tab
     if (pathname) {
       const currentURL = pathname;
-      PgRoutesRenter.forEach((r) => {
-        if (currentURL.includes(r?.link)) {
-          setActive(r?.name);
-        }
-      });
+      if (currentRole === "lister") {
+        console.log("yes includes");
+        PgRoutesLister.forEach((r) => {
+          if (currentURL.includes(r?.link)) {
+            setActive(r?.name);
+          }
+        });
+      } else if (currentRole === "renter") {
+        console.log("yes includes");
+        PgRoutesRenter.forEach((r) => {
+          if (currentURL.includes(r?.link)) {
+            setActive(r?.name);
+          }
+        });
+      }
     }
-  }, [pathname]);
+  }, [pathname, currentRole]);
 
   const handleScrollToRight = () => {
     const element: any = scrollableRef.current;
@@ -122,19 +135,35 @@ const Pagination = () => {
         className="mySwiper invisible hidden h-fit w-full md:visible"
         wrapperClass="justify-between"
       >
-        {PgRoutesRenter.map(
-          (r, index) =>
-            index < 7 && (
-              <SwiperSlide key={index} className="min-w-fit max-w-fit">
-                <PaginationTab
-                  name={r?.name}
-                  active={active}
-                  icon={r?.icon}
-                  link={r?.link}
-                />
-              </SwiperSlide>
-            ),
-        )}
+        {currentRole === "renter" &&
+          PgRoutesRenter.map(
+            (r, index) =>
+              index < 7 && (
+                <SwiperSlide key={index} className="min-w-fit max-w-fit">
+                  <PaginationTab
+                    name={r?.name}
+                    active={active}
+                    icon={r?.icon}
+                    link={r?.link}
+                  />
+                </SwiperSlide>
+              ),
+          )}
+
+        {currentRole === "lister" &&
+          PgRoutesLister.map(
+            (r, index) =>
+              index < 7 && (
+                <SwiperSlide key={index} className="min-w-fit max-w-fit">
+                  <PaginationTab
+                    name={r?.name}
+                    active={active}
+                    icon={r?.icon}
+                    link={r?.link}
+                  />
+                </SwiperSlide>
+              ),
+          )}
       </Swiper>
 
       {/* {!atEnd && (
