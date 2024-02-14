@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Bar, Chart } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale } from "chart.js/auto";
@@ -72,20 +73,19 @@ let tempData = [
 
 const PageVisitAnalytics = (props: Props) => {
   return (
-    <div className="flex flex-col gap-5 justify-between bg-[#F6F6F6] rounded-xl h-full p-5">
+    <div className="flex h-full flex-col justify-between gap-5 rounded-xl bg-[#F6F6F6] p-5">
       <div className="flex justify-between gap-5">
         <h3>Page Visit Summary</h3>
         <Button
           variant="ghost"
           isIconOnly
-          className="text-neutral-500 max-w-fit"
+          className="max-w-fit text-neutral-500"
         >
-          <HiEllipsisVertical className="text-lg shrink-0" />
+          <HiEllipsisVertical className="shrink-0 text-lg" />
         </Button>
       </div>
       <div className="w-full">
         <Bar
-
           data={{
             labels: tempData.map((label) => label.month),
             datasets: [

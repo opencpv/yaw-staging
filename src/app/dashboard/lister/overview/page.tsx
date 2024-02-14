@@ -1,9 +1,10 @@
 import React from "react";
+import ListerOverviewPage from "./components/ListerOverviewPage";
 
 type Props = {};
 
 const page = (props: Props) => {
-  return <div>page</div>;
+  return <ListerOverviewPage />;
 };
 
 export default page;

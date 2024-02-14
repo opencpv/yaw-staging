@@ -1,7 +1,6 @@
 import React from "react";
 import UserOverview from "../../../components/shared/overview/UserOverview";
 import PaidFeaturesSection from "../../../components/shared/overview/PaidFeaturesSection";
-import RenterExplore from "../../../components/shared/overview/RenterExplore";
 import PMAnalyticsSection from "./PMAnalyticsSection";
 import GradientBanner from "../../../components/shared/overview/GradientBanner";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
@@ -12,7 +11,7 @@ import PMActiveListingsSection from "./PMActiveListingsSection";
 
 type Props = {};
 
-const PropManagerOverviewPage = (props: Props) => {
+const ListerOverviewPage = (props: Props) => {
   const { images } = useAssets();
   return (
     <main className="my-10 text-neutral-800">
@@ -54,8 +53,10 @@ const PropManagerOverviewPage = (props: Props) => {
             // imageHeight={240}
             href=""
           />
-          <h2 className="mb-5">Moving sales</h2>
-          <SellYourItem />
+          <div className="section">
+            <h2 className="mb-5">Moving sales</h2>
+            <SellYourItem />
+          </div>
         </div>
         {/* Grid col */}
         <div className="col-span-1">
@@ -71,4 +72,4 @@ const PropManagerOverviewPage = (props: Props) => {
   );
 };
 
-export default PropManagerOverviewPage;
+export default ListerOverviewPage;

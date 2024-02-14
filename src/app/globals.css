@@ -194,12 +194,12 @@ input[type="search"]::-webkit-search-cancel-button {
   }
 }
 
-@media (min-width: 640px) {
+/* @media (min-width: 640px) { // wrapper has paddings. section is solely for separating top and bottom sections 
   .section {
     padding-left: 2.5rem;
     padding-right: 2.5rem;
   }
-}
+} */
 
 /* Printing interface style */
 @media print {

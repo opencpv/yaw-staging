@@ -21,10 +21,14 @@ type Lead = {
 const LeadsSummary = ({ leads }: Props) => {
   return (
     <div>
-      <div className="flex items-center justify-between gap-5 p-2 px-4 max-w-md text-white capitalize bg-primary-400 rounded-xl mb-3">
+      <div className="mb-3 flex max-w-md items-center justify-between gap-5 rounded-xl bg-primary-400 p-2 px-4 capitalize text-white">
         Leads
         <Link href="">
-          <Button className="bg-neutral-100 text-neutral-800 p-1.5 px-2.5 min-w-fit h-fit rounded-xl">
+          <Button
+            padding="sm"
+            radius="full"
+            className="w-fit bg-neutral-100 text-neutral-800"
+          >
             See all
           </Button>
         </Link>
@@ -47,7 +51,7 @@ const LeadsSummary = ({ leads }: Props) => {
 const LeadInfo = ({ name, email, phone, id }: Lead) => {
   return (
     <div className="flex flex-wrap gap-2">
-      <div className="relative w-14 h-14 rounded-full">
+      <div className="relative h-14 w-14 rounded-full">
         <Image
           src="/assets/images/sampleProfilePic.png"
           alt=""
@@ -59,12 +63,15 @@ const LeadInfo = ({ name, email, phone, id }: Lead) => {
       <div className="space-y-3">
         <h4>{name}</h4>
         <p>{email}</p>
-        <div className="flex gap-2 items-center">
-          <ButtonMessage id=""  className="flex-1 bg-primary-100 text-white rounded-xl px-4 py-1 max-w-xs h-fit gap-2">
+        <div className="flex items-center gap-2">
+          <ButtonMessage
+            id=""
+            className="h-fit max-w-xs flex-1 gap-2 rounded-xl bg-primary-100 px-4 py-1 text-white"
+          >
             Message <PiChatCenteredDotsFill className="shrink-0" />
           </ButtonMessage>
           <Button
-            className="flex-1 bg-primary-100 text-white rounded-xl px-4 py-1 max-w-xs h-fit gap-2"
+            className="h-fit max-w-xs flex-1 gap-2 rounded-xl bg-primary-100 px-4 py-1 text-white"
             onClick={() => initiatePhoneCall(phone)}
           >
             Call <IoCallOutline className="shrink-0" />

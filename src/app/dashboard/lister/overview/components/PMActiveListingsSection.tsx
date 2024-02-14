@@ -1,3 +1,4 @@
+"use client";
 import OptionFilterTabs from "@/components/__shared/OptionFilterTabs";
 import React, { useState } from "react";
 import ActiveListingCard from "./ActiveListingCard";
@@ -23,7 +24,7 @@ const PMActiveListingsSection = (props: Props) => {
           }
         />
       </div>
-      <div className="mt-4 grid-auto-min-200 gap-5">
+      <div className="grid-auto-min-200 mt-4 gap-5">
         {[1, 2, 3].map((_, idx) => (
           <ActiveListingCard
             key={idx + 1}
@@ -38,7 +39,11 @@ const PMActiveListingsSection = (props: Props) => {
       </div>
       <div className="flex justify-end">
         <Link href="">
-          <Button className="bg-neutral-200 text-neutral-800 min-w-fit h-fit px-2.5 py-1.5 rounded-xl my-10">
+          <Button
+            padding="sm"
+            radius="full"
+            className="my-10 w-fit bg-neutral-200 text-neutral-800"
+          >
             See all
           </Button>
         </Link>
@@ -48,7 +53,7 @@ const PMActiveListingsSection = (props: Props) => {
           name: "Leslie Alexander",
           phone: "0232442111",
           id: `${idx + 1}`,
-          email: "leslie@gmail.com"
+          email: "leslie@gmail.com",
         }))}
       />
     </section>

@@ -68,14 +68,12 @@ const Pagination = () => {
     if (pathname) {
       const currentURL = pathname;
       if (currentRole === "lister") {
-        console.log("yes includes");
         PgRoutesLister.forEach((r) => {
           if (currentURL.includes(r?.link)) {
             setActive(r?.name);
           }
         });
       } else if (currentRole === "renter") {
-        console.log("yes includes");
         PgRoutesRenter.forEach((r) => {
           if (currentURL.includes(r?.link)) {
             setActive(r?.name);
