@@ -12,9 +12,17 @@ const PaidFeaturesSection = (props: Props) => {
     <div
       className={`flex flex-wrap justify-between gap-x-40 gap-y-8 xl:space-y-8 ${props.className}`}
     >
-      <FeatureExplainer href="" title="Be My Agent" locked={false} />
+      <FeatureExplainer
+        href="my-agent/agent-explore"
+        title="Be My Agent"
+        locked={false}
+      />
       {props.type !== "Property manager" && (
-        <FeatureExplainer href="" title="Get Notified" locked={false} />
+        <FeatureExplainer
+          href="be-the-first-to-know"
+          title="Get Notified"
+          locked={false}
+        />
       )}
     </div>
   );
