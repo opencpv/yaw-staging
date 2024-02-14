@@ -36,7 +36,9 @@ const MyAgentLayout = ({ children }: { children: React.ReactNode }) => {
             <div
               style={{
                 display:
-                  pathname === "/dashboard/my-agent/agent" ? "none" : "block",
+                  pathname === "/dashboard/renter/my-agent/agent"
+                    ? "none"
+                    : "block",
               }}
             >
               <ClientOnly>

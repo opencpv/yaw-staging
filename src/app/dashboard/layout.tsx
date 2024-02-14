@@ -73,7 +73,10 @@ const Wrapper = ({ children }: LayoutProps) => {
       setLoading(false);
     });
 
-    const wrapperExclusionList = ["/dashboard/my-agent"];
+    const wrapperExclusionList = [
+      "/dashboard/renter/my-agent",
+      "/dashboard/lister/my-agent",
+    ];
 
     wrapperExclusionList.map((path) => {
       if (pathname?.includes(path)) {
