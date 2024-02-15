@@ -10,8 +10,8 @@ const PMOverviewUpgradeSection = (props: Props) => {
   const { images } = useAssets();
   return (
     <section className={`mb-20 ${props.className}`}>
-      <h2 className="text-2xl font-[700] mb-6">Upgrade</h2>
-      <div className="grid-auto-min-200 w-full gap-5 mb-5">
+      <h2 className="mb-6">Upgrade</h2>
+      <div className="grid-auto-min-200 mb-5 w-full gap-5">
         <FeatureUpgradeCard
           title="3D Images"
           image={images._3DImage}
