@@ -32,11 +32,11 @@ const Navbar = () => {
       <Root
         className={`relative ${
           isOpen ? "z-[50]" : "z-[70]"
-        } flex flex-nowrap items-center gap-16
-        bg-primary-500 p-[1rem] md:z-[initial] 2xl:p-[1.875rem]`}
+        } flex flex-nowrap items-center gap-4 bg-primary-500
+        p-2 xs:gap-16 xs:p-4 md:z-[initial] 2xl:p-[1.875rem]`}
       >
-        <div className="flex w-full items-center justify-start gap-6 md:gap-10 lg:gap-20">
-          <Logo size="xs" />
+        <div className="flex w-full items-center justify-start xs:gap-6 md:gap-10 lg:gap-20">
+          <Logo size="xs" className="hidden xs:inline-block" />
           {/* search icon for mobile */}
           <AiOutlineSearch
             size={22}
@@ -65,6 +65,7 @@ const Navbar = () => {
                 alt={user?.full_name}
                 width={50}
                 height={50}
+                className="h-[25px] w-[25px] shrink-0 xs:h-[50px] xs:w-[50px]"
               />
             )}
           </div>

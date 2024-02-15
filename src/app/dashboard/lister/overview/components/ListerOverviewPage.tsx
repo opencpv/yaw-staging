@@ -15,14 +15,14 @@ type Props = {};
 
 const ListerOverviewPage = (props: Props) => {
   const { images } = useAssets();
-  const {setIsSwitchingRole} = useDashboardStore()
+  const { setIsSwitchingRole } = useDashboardStore();
 
   useEffect(() => {
-    setIsSwitchingRole(false)
-  }, [setIsSwitchingRole])
-  
+    setIsSwitchingRole(false);
+  }, [setIsSwitchingRole]);
+
   return (
-    <main className="my-10 text-neutral-800">
+    <main className="text-neutral-800">
       <section className="mx-auto mb-20 grid-cols-4 justify-between gap-x-10 lg:mb-32 lg:grid">
         {/* Grid col */}
         <div className="col-span-3">
@@ -32,7 +32,7 @@ const ListerOverviewPage = (props: Props) => {
             email="johndoe@gmail.com"
             telephone="(+233) 1235 554 55"
             className="mb-20"
-            type="Property Manager"
+            type="lister"
           />
           <GradientBanner
             image={images.BusinessPersonWithHouseKeys}
@@ -44,13 +44,10 @@ const ListerOverviewPage = (props: Props) => {
             className="mb-20 mt-20 md:mt-56"
           />
           <PMAnalyticsSection />
-          <PaidFeaturesSection
-            type="lister"
-            className="col-span-1 lg:hidden"
-          />
-          <div className="mt-10">
+          <PaidFeaturesSection type="lister" className="col-span-1 lg:hidden" />
+          <section className="section">
             <PMOverviewUpgradeSection />
-          </div>
+          </section>
           <GradientBanner
             image={images.LaptopDisplayingHome}
             alt="RentRight Homepage banner"

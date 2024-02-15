@@ -47,13 +47,13 @@ const UserOverview = ({
         <div className={`flex items-center gap-5 ${hidden && "invisible"}`}>
           <BiInfoCircle size={40} className="text-accent-50 xsm:shrink-0" />
           <div className="space-y-1">
-            {type === "Renter" ? (
+            {type === "renter" ? (
               <p className="text-base">
                 Get started by effortlessly{" "}
                 <span className="font-[600]">renting</span> and publishing{" "}
                 <span className="font-[600]">products</span> with ease.
               </p>
-            ) : type === "Property Manager" ? (
+            ) : type === "lister" ? (
               <p className="text-base">
                 Get started by effortlessly{" "}
                 <span className="font-[600]">listing</span> and{" "}
@@ -70,7 +70,7 @@ const UserOverview = ({
         </div>
       </Callout>
       <AOSWrapper animation="fade-up">
-        {type === "Property Manager" && (
+        {type === "lister" && (
           <LargeButton
             label="Add your property"
             icon={<TbBuildingCommunity className="text-accent-200" />}
