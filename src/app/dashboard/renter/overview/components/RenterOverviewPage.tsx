@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect } from "react";
 import UserOverview from "../../../components/shared/overview/UserOverview";
 import RenterPaidFeatures from "../../../components/shared/overview/PaidFeaturesSection";
@@ -16,11 +16,11 @@ type Props = {};
 const RenterOverviewPage = (props: Props) => {
   const { images } = useAssets();
 
-  const {setIsSwitchingRole} = useDashboardStore()
+  const { setIsSwitchingRole } = useDashboardStore();
 
   useEffect(() => {
-    setIsSwitchingRole(false)
-  }, [setIsSwitchingRole])
+    setIsSwitchingRole(false);
+  }, [setIsSwitchingRole]);
 
   return (
     <main className="text-neutral-800">
@@ -33,7 +33,7 @@ const RenterOverviewPage = (props: Props) => {
             email="johndoe@gmail.com"
             telephone="(+233) 1235 554 55"
             className="md:mb-20"
-            type="Renter"
+            type="renter"
           />
           {true && ( // TODO: implement appropriately
             <section className="mt-10 max-w-3xl flex-wrap space-y-5 xs:flex xs:gap-5 xs:space-y-0 md:mt-36">
