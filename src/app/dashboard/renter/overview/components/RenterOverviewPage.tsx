@@ -1,4 +1,5 @@
-import React from "react";
+"use client"
+import React, { useEffect } from "react";
 import UserOverview from "../../../components/shared/overview/UserOverview";
 import RenterPaidFeatures from "../../../components/shared/overview/PaidFeaturesSection";
 import RenterExplore from "../../../components/shared/overview/RenterExplore";
@@ -8,11 +9,18 @@ import { useAssets } from "@/lib/custom-hooks/useAssets";
 import SellYourItem from "../../../components/shared/overview/SellYourItem";
 import RenterActivityCard from "./RenterActivityCard";
 import ScrollTop from "@/components/__shared/ScrollTop";
+import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 
 type Props = {};
 
 const RenterOverviewPage = (props: Props) => {
   const { images } = useAssets();
+
+  const {setIsSwitchingRole} = useDashboardStore()
+
+  useEffect(() => {
+    setIsSwitchingRole(false)
+  }, [setIsSwitchingRole])
 
   return (
     <main className="text-neutral-800">
@@ -48,7 +56,7 @@ const RenterOverviewPage = (props: Props) => {
               href="my-agent/agent-explore"
             />
             <RenterPaidFeatures
-              type="Renter"
+              type="renter"
               className="col-span-1 lg:hidden"
             />
             <RenterExplore className="mt-3 lg:mt-0" />
@@ -57,7 +65,7 @@ const RenterOverviewPage = (props: Props) => {
         </div>
         {/* Grid col */}
         <RenterPaidFeatures
-          type="Renter"
+          type="renter"
           className="col-span-1 mt-14 hidden lg:block"
         />
       </section>

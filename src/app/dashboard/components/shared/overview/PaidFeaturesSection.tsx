@@ -17,7 +17,7 @@ const PaidFeaturesSection = (props: Props) => {
         title="Be My Agent"
         locked={false}
       />
-      {props.type !== "Property manager" && (
+      {props.type !== "lister" && (
         <FeatureExplainer
           href="be-the-first-to-know"
           title="Get Notified"

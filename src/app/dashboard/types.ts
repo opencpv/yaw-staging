@@ -3,4 +3,4 @@ export interface AppContextType  {
     setUser : React.Dispatch<React.SetStateAction<{}>>
 }
 
-export type UserRole = "Property manager" | "Renter"
+export type UserRole = "lister" | "renter"
