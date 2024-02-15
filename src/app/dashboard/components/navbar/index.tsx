@@ -65,7 +65,7 @@ const Navbar = () => {
                 alt={user?.full_name}
                 width={50}
                 height={50}
-                className="h-[25px] w-[25px] shrink-0 xs:h-[50px] xs:w-[50px]"
+                className="h-[25px] w-[25px] shrink-0 rounded-full xs:h-[50px] xs:w-[50px]"
               />
             )}
           </div>
