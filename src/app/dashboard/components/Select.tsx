@@ -62,7 +62,8 @@ const Select = ({
         trigger: cn(
           "px-10 z-30",
           {
-            "pl-2 text-base bg-transparent shadow-none": variant === "ghost",
+            "pl-2 text-base bg-transparent data-[hover=true]:bg-transparent shadow-none":
+              variant === "ghost",
           },
           triggerClassName,
         ),
