@@ -14,6 +14,8 @@ import { ClientOnly } from "@/components/ui/ClientOnly";
 import { usePathname } from "next/navigation";
 import { useNotificationStore } from "@/store/dashboard/notificationStore";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
+import { LowerCase } from "@/lib/utils/stringManipulation";
+import Loader from "@/components/__shared/loader/Loader";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -24,6 +26,7 @@ const Wrapper = ({ children }: LayoutProps) => {
   const [notificationsLoading, setNotificationsLoading] = useState<
     boolean | null
   >();
+  const { isSwitchingRole } = useDashboardStore();
   const [dashboardType, setDashboardType] = useLocalStorage("dashboard-type");
   const [firstTIme, setFirstTime] = useLocalStorage(
     "dashboard-first-time",
@@ -41,7 +44,7 @@ const Wrapper = ({ children }: LayoutProps) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [excludeWrapper, setExcludeWrapper] = useState(false);
 
-  const { setCurrentRole } = useDashboardStore();
+  const { currentRole, setCurrentRole } = useDashboardStore();
 
   useEffect(() => {
     const supabase = createClientComponentClient();
@@ -56,7 +59,9 @@ const Wrapper = ({ children }: LayoutProps) => {
   useEffect(() => {
     dashboardType && firstTIme && setFirstTimeModalOpen(true);
     dashboardType && setFirstTime(false);
-  }, [firstTIme, dashboardType, setFirstTime]);
+
+    localStorage.setItem("user-dashboard-role", LowerCase(currentRole));
+  }, [firstTIme, dashboardType, setFirstTime, currentRole]);
 
   useEffect(() => {
     const getUserData = async () => {
@@ -93,28 +98,27 @@ const Wrapper = ({ children }: LayoutProps) => {
     });
   }, [supabase, pathname, setUser]);
 
-  const getNotifications = async () => {
-    try {
-      const {
-        data: data,
-        error,
-        status: dataStatus,
-      } = await supabase.from("notifications").select("*");
-
-      if (data) {
-        setNotifications(data);
-      }
-
-      if (dataStatus === 200) {
-        setNotificationsLoading(true);
-      }
-    } catch (error) {
-      console.log(error);
-      return error;
-    }
-  };
-
   useEffect(() => {
+    const getNotifications = async () => {
+      try {
+        const {
+          data: data,
+          error,
+          status: dataStatus,
+        } = await supabase.from("notifications").select("*");
+
+        if (data) {
+          setNotifications(data);
+        }
+
+        if (dataStatus === 200) {
+          setNotificationsLoading(true);
+        }
+      } catch (error) {
+        console.log(error);
+        return error;
+      }
+    };
     const notifications = supabase
       .channel("custom-all-channel")
       .on(
@@ -125,7 +129,7 @@ const Wrapper = ({ children }: LayoutProps) => {
         },
       )
       .subscribe();
-  }, [user]);
+  }, [user, supabase, setNotifications]);
 
   return (
     <div>
@@ -134,6 +138,17 @@ const Wrapper = ({ children }: LayoutProps) => {
         <div className="sticky top-0 z-50 bg-white pt-2 md:static md:bg-none">
           <Pagination />
         </div>
+        {isSwitchingRole && (
+          <section className="absolute z-50 inset-0 bg-white/50 backdrop-blur-sm overflow-x-hidden flex h-screen max-h-screen w-screen items-center justify-center">
+            <div className="flex flex-col items-center justify-center gap-5">
+              <Loader />
+              <h4>
+                Getting {currentRole}&apos;s dashboard ready{" "}
+                <span className="animate-pulse">...</span>{" "}
+              </h4>
+            </div>
+          </section>
+        )}
 
         {excludeWrapper ? (
           <div className={`text-neutral-800`}>{children}</div>

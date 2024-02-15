@@ -1,15 +1,37 @@
 "use client";
-import capitalizeName from "@/lib/utils/stringManipulation";
+import capitalizeName, { LowerCase } from "@/lib/utils/stringManipulation";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { IoIosArrowDown } from "react-icons/io";
+import Select from "../Select";
+import { UserRole } from "../../types";
+import { useRouter } from "next/navigation";
 
 const Switch = () => {
-  const { currentRole, setCurrentRole } = useDashboardStore();
+  const router = useRouter();
+  const { currentRole, setCurrentRole, setIsSwitchingRole } =
+    useDashboardStore();
+
+  const handleRoleSwitch = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setIsSwitchingRole(true);
+    setCurrentRole(e.target.value as UserRole);
+
+    if (currentRole === "lister") router.push("/dashboard/renter/overview");
+    else if (currentRole === "renter")
+      router.push("/dashboard/lister/overview");
+  };
+
   return (
-    <button className="flex items-center gap-2 text-[#fff] md:gap-5">
-      <div>{capitalizeName(currentRole)}</div>{" "}
-      {/* TODO: implement switch appropriately*/}
-      <IoIosArrowDown />
+    <button className="group gap-2 text-white md:gap-5">
+      <Select
+        options={["Renter", "Lister"]}
+        value={currentRole}
+        className="mx-0 w-32 group-hover:text-neutral-800"
+        variant="ghost"
+        color="primary"
+        selectorIcon={<IoIosArrowDown />}
+        selectorIconClassName="group-hover:text-neutral-800 text-white"
+        handleSelectionChange={handleRoleSwitch}
+      />
     </button>
   );
 };
