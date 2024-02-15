@@ -21,15 +21,15 @@ const Switch = () => {
   };
 
   return (
-    <button className="group gap-2 text-white md:gap-5">
+    <button className="gap-2 text-white md:gap-5">
       <Select
         options={["Renter", "Lister"]}
         value={currentRole}
-        className="mx-0 w-32 group-hover:text-neutral-800"
+        className="mx-0 w-32"
         variant="ghost"
         color="primary"
         selectorIcon={<IoIosArrowDown />}
-        selectorIconClassName="group-hover:text-neutral-800 text-white"
+        selectorIconClassName="text-white"
         handleSelectionChange={handleRoleSwitch}
       />
     </button>
