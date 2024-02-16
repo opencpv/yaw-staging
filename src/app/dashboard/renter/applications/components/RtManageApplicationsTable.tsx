@@ -48,7 +48,7 @@ const RtManageApplicationsTable = (props: Props) => {
         <TableHeaderRow className="grid-cols-5" gap="2rem">
           <TableHeader className="col-span-2">Property</TableHeader>
           {/* <TableHeader className="col-span-1">Property Owner</TableHeader> */}
-          <TableHeader className="col-span-1">Received</TableHeader>
+          <TableHeader className="col-span-1">Applied on</TableHeader>
           <TableHeader className="col-span-1">Status</TableHeader>
           <TableHeader className="col-span-1">Actions</TableHeader>
         </TableHeaderRow>
@@ -71,7 +71,11 @@ const RtManageApplicationsTable = (props: Props) => {
                 propertyPrice={30000}
                 date={applicant.created_at as string}
                 status={
-                  idx === 1 ? "accepted" : idx === 3 ? "declined" : "pending"
+                  idx === 1
+                    ? "completed"
+                    : idx === 3
+                      ? "declined"
+                      : "under review"
                 }
               />
             ))

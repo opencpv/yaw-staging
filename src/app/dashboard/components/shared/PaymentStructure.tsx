@@ -12,7 +12,7 @@ const PaymentStructure = (props: Props) => {
   return (
     <div
       className={cn(
-        "flex flex-wrap items-center gap-2 text-xs",
+        "flex w-fit flex-wrap items-center gap-2 text-xs",
         props.className,
       )}
     >
