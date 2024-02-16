@@ -17,22 +17,24 @@ export default function JobDescriptionButton({}: Props) {
     <Dialog.Root>
       <Dialog.Trigger asChild>
         <Button
-          className={`h-[52px] px-[2.5rem] py-[0.94rem]  rounded-lg font-semibold ${"bg-[#DDB771] text-white max-w-[198px]"} gap-2.5 `}>
+          className={`h-[52px] rounded-lg px-[2.5rem]  py-[0.94rem] font-semibold ${"max-w-[198px] bg-[#DDB771] text-white"} gap-2.5 `}
+        >
           Job Description
         </Button>
       </Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className="bg-modalOverlay data-[state=open]:animate-overlayShow fixed inset-0 " />
+        <Dialog.Overlay className="data-[state=open]:animate-overlayShow fixed inset-0 bg-modalOverlay " />
         <Dialog.Content
-          className={`data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] h-[85vh] w-[90vw] translate-x-[-50%] z-[1000] max-w-[784px] max-h-[786px] hidden-scrollbar ${
+          className={`data-[state=open]:animate-contentShow hidden-scrollbar fixed left-[50%] top-[50%] z-[1000] h-[85vh] max-h-[786px] w-[90vw] max-w-[784px] translate-x-[-50%] ${
             animation ? " overflow-y-hidden" : "overflow-y-scroll"
-          } translate-y-[-50%] rounded-xl bg-white shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none `}>
+          } translate-y-[-50%] rounded-xl bg-white shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none `}
+        >
           <div className={`relative z-[1001] p-4`}>
-            <div className="flex flex-col gap-3 px-8 py-2 rounded-2xl border-[1px] border-shade-50 bg-[#FAFAFA] mt-10 relative">
-              <p className="text-[1.5rem] font-semibold text-shade-300 border-b-[1px] border-shade-50 py-3">
+            <div className="relative mt-10 flex flex-col gap-3 rounded-2xl border-[1px] border-shade-50 bg-[#FAFAFA] px-8 py-2">
+              <p className="border-b-[1px] border-shade-50 py-3 text-[1.5rem] font-semibold text-shade-300">
                 JOB DESCRIPTION
               </p>
-              <p className="text-shade-300  overflow-y-scroll hidden-scrollbar">
+              <p className="hidden-scrollbar  overflow-y-scroll text-shade-300">
                 Lorem ipsum dolor sit amet consectetur. Bibendum felis nunc
                 tincidunt odio tristique massa tempus ornare rhoncus. Enim et
                 pellentesque sed id porttitor nibh ante ullamcorper. Sodales non
@@ -78,13 +80,16 @@ export default function JobDescriptionButton({}: Props) {
                 aliquam sit non eget aliquet suspendisse elit. Dis arcu a
                 dapibus sed egestas. In a gravida commodo tortor vel aene
               </p>
-              <div className="grid grid-cols-2 h-[40px] gap-1 pb-5 sticky bottom-2">
-                <Button className="text-[1rem] bg-[#ECF2F3] font-semibold text-shade-300 ">
+              <div className="sticky bottom-2 grid h-[40px] grid-cols-2 gap-1 pb-5">
+                <Button className="bg-secondary-500 text-[1rem] font-semibold text-shade-300 ">
                   Download
                   <HiOutlineDownload size="24" colour="#3F3F46" />
                 </Button>
-                <Link href="/join-us/open-positions/application" className="w-full">
-                  <Button className="text-[1rem] bg-[#DDB771] font-semibold text-white w-full">
+                <Link
+                  href="/join-us/open-positions/application"
+                  className="w-full"
+                >
+                  <Button className="w-full bg-[#DDB771] text-[1rem] font-semibold text-white">
                     Apply
                   </Button>
                 </Link>
@@ -94,8 +99,9 @@ export default function JobDescriptionButton({}: Props) {
 
           <Dialog.Close asChild>
             <button
-              className="text-violet11 hover:bg-violet4 focus:shadow-violet7 absolute top-[15px] right-[20px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full focus:shadow-[0_0_0_2px] focus:outline-none z-[4000]"
-              aria-label="Close">
+              className="absolute right-[20px] top-[15px] z-[4000] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full text-violet11 hover:bg-violet4 focus:shadow-[0_0_0_2px] focus:shadow-violet7 focus:outline-none"
+              aria-label="Close"
+            >
               <ModalCloseIcon />
             </button>
           </Dialog.Close>

@@ -44,46 +44,29 @@ const RtApplicationRowSm = ({
       />
       <TableRowSm>
         {/* Property */}
-        <TableBodySm className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3">
-          <div className="space-y-2">
-            <h4 className="mb-3">Property</h4>
-            <TbPropertyImageSm image={propertyImage} title={propertyTitle} />
-            <div className="">
-              <h4 className="mb-1.5 text-sm font-[600] capitalize">
-                {propertyTitle}
-              </h4>
-              <p className="mb-3 text-sm text-neutral-400">Assin Fosu</p>
+        <TableBodySm href="/properties/2">
+          <div className="flex flex-wrap justify-between gap-5 truncate">
+            <TbPropertyImageSm title={propertyTitle} image={propertyImage} />
+            <div className="flex flex-col justify-between gap-2">
+              <div className="flex flex-col gap-1 truncate lg:gap-[0.62rem]">
+                <h4 className="truncate">Single Room</h4>
+                <p className="truncate text-[0.8125rem] text-[#B0B0B0]">
+                  Assin Fosu
+                </p>
+              </div>
               <PaymentStructure
                 monthlyPrice={3000}
                 advancePayment="two years"
               />
             </div>
-          </div>
-          {/* Status */}
-          <div className="">
-            <RtApplicationStatus status={status} />
           </div>
         </TableBodySm>
-        {/* Property */}
-        {/* <TableBodySm href="/properties/1" className="pt-3">
-          <h4 className="mb-3">Property</h4>
-          <div className="flex flex-wrap items-center gap-3">
-            <TbPropertyImageSm image={propertyImage} title={propertyTitle} />
-            <div className="">
-              <h4 className="mb-1.5 text-sm font-[600] capitalize">
-                {propertyTitle}
-              </h4>
-              <p className="mb-3 text-sm text-neutral-400">Assin Fosu</p>
-              <PaymentStructure
-                monthlyPrice={3000}
-                advancePayment="two years"
-              />
-            </div>
-          </div>
-        </TableBodySm> */}
         {/* Date */}
         <TableBodySm className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 py-3.5">
-          <h4>Received</h4>
+          {/* Status */}
+          <div>
+            <RtApplicationStatus status={status} />
+          </div>
           <div className="flex flex-col items-center justify-center gap-y-1">
             <h4 className="text-sm font-[600]">{formatDate(date)}</h4>
             <small className="inline-block text-[0.6rem] text-neutral-400">
