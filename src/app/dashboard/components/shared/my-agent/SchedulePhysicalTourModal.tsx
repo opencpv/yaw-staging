@@ -16,16 +16,14 @@ type Props = {
   active?: boolean;
 };
 
-export default function SchedulePhysicalTourModal({ active }: Props) {
+export default function SchedulePhysicalTourModal() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
     <div className="w-full">
       <Button
         onPress={onOpen}
-        className={`h-10 w-full gap-2 bg-[#ECF2F3] font-semibold text-shade-200 hover:bg-primary-200 hover:text-white lg:h-14 lg:max-w-[284px] ${
-          active && "bg-primary-200 text-white"
-        }`}
+        className={`h-10 w-full gap-2 bg-secondary-500 font-semibold text-shade-200 hover:bg-primary-200 hover:text-white lg:h-14 lg:max-w-[284px]`}
       >
         <span className="lg:max-xl:hidden">Schedule in-person tour</span>
         <span className="hidden lg:max-xl:inline">In-person tour</span>

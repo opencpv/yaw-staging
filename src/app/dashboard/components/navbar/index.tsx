@@ -58,7 +58,7 @@ const Navbar = () => {
               {user?.full_name}
             </p>
           </div> */}
-          <div className="relative flex min-h-[50px] w-full min-w-[40px] items-center justify-center overflow-hidden rounded-full md:min-w-[50px]">
+          <div className="relative flex w-full items-center justify-center overflow-hidden rounded-full">
             {user?.avatar_url == undefined ? (
               <Loader />
             ) : (

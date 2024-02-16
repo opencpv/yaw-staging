@@ -14,12 +14,12 @@ const ButtonDelete = ({ onOpen, className }: Props) => {
       isIconOnly
       title="Delete"
       className={cn(
-        "flex w-full items-center justify-center rounded-md bg-secondary-50 px-4 text-neutral-800",
+        "group flex w-full items-center justify-center rounded-md bg-secondary-500 px-4 text-neutral-800 hover:bg-primary-200",
         className,
       )}
       onClick={onOpen}
     >
-      <FiTrash2 size={16} className="text-red-500" />
+      <FiTrash2 size={16} className="text-red-500 group-hover:text-white" />
     </Button>
   );
 };
