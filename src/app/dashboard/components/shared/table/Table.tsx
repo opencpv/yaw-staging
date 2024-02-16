@@ -50,7 +50,7 @@ export const TableSm = (props: TableProps) => {
     <section
       role="table"
       aria-label="table"
-      className={cn("flex flex-col gap-5 lg:hidden", props.className)}
+      className={cn("flex flex-col gap-10 lg:hidden", props.className)}
     >
       {props.children}
     </section>
