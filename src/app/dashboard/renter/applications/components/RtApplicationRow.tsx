@@ -118,17 +118,17 @@ const RtApplicationRow = ({
                 <BiDotsVerticalRounded />
               </button>
             </PopoverTrigger>
-            <PopoverContent className="rounded-md bg-[#fefefe]">
-              <div className="flex flex-col gap-2 divide-y rounded-md p-2 px-0">
+            <PopoverContent className="rounded-md bg-[#fefefe] px-0 py-0">
+              <div className="flex flex-col divide-y rounded-md">
                 <button
-                  className="flex w-full items-center gap-2 transition-all hover:scale-[1.02]"
+                  className="deep-green-hover flex w-full  items-center gap-2 px-4 py-2"
                   onClick={() => ""}
                 >
                   <span className="mr-auto">Edit</span>
                   <MdOutlineEdit />
                 </button>
                 <button
-                  className="flex w-full items-center gap-2 pt-1  transition-all hover:scale-[1.02]"
+                  className="deep-green-hover flex w-full items-center gap-2 px-4 py-2"
                   onClick={onOpen}
                 >
                   <span className="mr-auto">Delete</span>
@@ -136,7 +136,7 @@ const RtApplicationRow = ({
                   <FiTrash2 />
                 </button>
                 <button
-                  className="flex w-full items-center gap-2 transition-all hover:scale-[1.02]"
+                  className="deep-green-hover flex w-full items-center  gap-2 px-4 py-2"
                   onClick={() => ""}
                 >
                   <span className="mr-auto">Message</span>

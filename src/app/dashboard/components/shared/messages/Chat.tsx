@@ -6,6 +6,11 @@ import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { ChatInterface } from "../../../../../../interfaces";
 import Rating from "../Rating";
+import { FaBan } from "react-icons/fa";
+import { useDashboardStore } from "@/store/dashboard/dashboardStore";
+import { Popover, PopoverContent, PopoverTrigger } from "@nextui-org/react";
+import { MdLockOpen } from "react-icons/md";
+import Tooltip from "@/components/ui/Tooltip";
 
 const Chat = ({
   href,
@@ -14,12 +19,15 @@ const Chat = ({
   last_message,
   messages_count,
   id,
+  isBlocked,
 }: ChatInterface) => {
   const pathname = usePathname();
   const router = useRouter();
   const [viewed, setViewed] = useState<boolean>(false);
   const [isSelected, setIsSelected] = useState<boolean>(false);
   const { images } = useAssets();
+
+  const { currentRole } = useDashboardStore();
 
   useEffect(() => {
     if (pathname?.split("/")[3] === id) {
@@ -31,7 +39,7 @@ const Chat = ({
 
   return (
     <Link
-      href={`messages/${id}`}
+      href={`/dashboard/${currentRole}/messages/${id}`}
       className={`grid min-h-[3.5rem] cursor-default grid-cols-8 gap-6 border-b px-2 pb-2.5 pt-8 ${
         isSelected && "bg-slate-50/60"
       } light-green-hover transition-all`}
@@ -62,9 +70,37 @@ const Chat = ({
         </div>
       </div>
       {/* messages counter */}
-      {!viewed && messages_count > 0 && (
+      {!viewed && messages_count > 0 && !isBlocked && (
         <div className="col-span-1 flex h-7 w-7 items-center justify-center justify-self-end rounded-full bg-neutral-600 p-3 text-sm text-white">
           {messages_count}
+        </div>
+      )}
+      {/* blocked */}
+      {isBlocked && (
+        <div className="ml-auto" onClick={(e) => e.stopPropagation()}>
+          {/* <Popover style={{ zIndex: "30" }} placement="top">
+            <PopoverTrigger className="h-fit w-fit">
+              <button className="h-fit w-fit">
+                <FaBan
+                  size={24}
+                  className="col-span-1 ml-auto text-neutral-500"
+                />
+              </button>
+            </PopoverTrigger>
+            <PopoverContent className="flex items-center gap-2 bg-primary-400 text-white">
+              Unblock this user
+              <MdLockOpen />
+            </PopoverContent>
+          </Popover> */}
+          <Tooltip
+            content="Click here to unblock this user"
+            className="bg-primary-500 p-3 text-white"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button className="col-span-1 h-fit w-fit">
+              <FaBan size={24} className=" text-neutral-500" />
+            </button>
+          </Tooltip>
         </div>
       )}
     </Link>

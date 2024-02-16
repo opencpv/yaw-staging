@@ -58,6 +58,7 @@ const Chats = (props: Props) => {
         last_message="Hi, nice apartment"
         messages_count={0}
         id={"3"}
+        isBlocked
       />
       <Chat
         href={`/dashboard/messages/Jane Mumuni`}
