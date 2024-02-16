@@ -4,19 +4,29 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
+  cn,
 } from "@nextui-org/react";
 
 type Props = {
   content: string;
   children: React.ReactNode;
+  className?: string;
+  onClick?: (e?: any) => void;
 };
 
-const Tooltip = ({ children, content }: Props) => {
+const Tooltip = ({ children, content, className, onClick }: Props) => {
   return (
     <>
-      <div className="hidden md:block">
+      <div className="hidden md:block" onClick={onClick}>
         <NextUITooltip
-          classNames={{ base: "z-[30] bg-[#fefefe] p-5 rounded-full" }}
+          classNames={{
+            base: [
+              cn(
+                "z-[30] bg-[#fefefe] cursor-pointer p-5 rounded-full",
+                className,
+              ),
+            ],
+          }}
           content={content}
           closeDelay={200}
         >
@@ -24,12 +34,17 @@ const Tooltip = ({ children, content }: Props) => {
         </NextUITooltip>
       </div>
 
-      <div className="md:hidden">
+      <div className="md:hidden" onClick={onClick}>
         <Popover style={{ zIndex: "30" }} placement="top">
           <PopoverTrigger className="h-fit w-fit">
             <button className="h-fit w-fit">{children}</button>
           </PopoverTrigger>
-          <PopoverContent className="rounded-full bg-[#fefefe] p-5">
+          <PopoverContent
+            className={cn(
+              "cursor-pointer rounded-full bg-[#fefefe] p-5",
+              className,
+            )}
+          >
             {content}
           </PopoverContent>
         </Popover>
