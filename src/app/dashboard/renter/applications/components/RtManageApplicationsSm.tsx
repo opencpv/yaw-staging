@@ -40,7 +40,7 @@ const RtManageApplicationsSm = (props: Props) => {
           <p className="mt-4 italic">There are no applications yet.</p>
         }
       />
-      <TableSm className="mb-10 mt-3 flex lg:hidden">
+      <TableSm className="mb-10 mt-3 flex w-fit grid-cols-2 flex-wrap sm:grid lg:hidden">
         {applicants?.map((applicant, idx) => (
           <RtApplicationRowSm
             key={applicant.id as string}
@@ -52,10 +52,10 @@ const RtManageApplicationsSm = (props: Props) => {
             date={applicant.created_at as string}
             status={
               idx === 1 || idx === 9
-                ? "accepted"
+                ? "completed"
                 : idx === 3 || idx === 12
                   ? "declined"
-                  : "pending"
+                  : "under review"
             }
           />
         ))}

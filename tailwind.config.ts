@@ -54,6 +54,7 @@ const config: Config = {
           100: "#F1B346",
           200: "#AD842A",
           400: "#F5C771",
+          500: "#FEF8ED",
         },
         warning: {
           400: "#FFB733",
