@@ -59,7 +59,7 @@ const RtManageApplicationsTable = (props: Props) => {
             </tr>
           )}
           {isLoading ? (
-            <TableSkeleton rows={5} columns={5} />
+            <TableSkeleton rows={4} columns={4} />
           ) : (
             currentPage?.map((applicant, idx) => (
               <RtApplicationRow

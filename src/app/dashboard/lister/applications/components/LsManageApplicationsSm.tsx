@@ -3,7 +3,7 @@
 import React from "react";
 import LsApplicationRowSm from "./LsApplicationRowSm";
 import { useFetchTableWithInfiniteScroll } from "@/lib/custom-hooks/useFetch";
-import TableMobileSkeleton from "../../../components/shared/skeleton/TableMobileSkeleton";
+import TableSkeletonSm from "../../../components/shared/skeleton/TableSkeletonSm";
 import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
@@ -34,7 +34,7 @@ const LsManageApplicationsSm = (props: Props) => {
         error={error}
         isLoading={isLoading}
         isValidating={isValidating}
-        isLoadingComponent={<TableMobileSkeleton rows={4} />}
+        isLoadingComponent={<TableSkeletonSm rows={4} />}
         errorComponent={<FetchErrorMessage specificData="applications" />}
         noDataMessageComponent={
           <p className="mt-4 italic">There are no applications yet.</p>
