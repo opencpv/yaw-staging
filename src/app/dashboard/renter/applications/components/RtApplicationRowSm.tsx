@@ -67,14 +67,14 @@ const RtApplicationRowSm = ({
           <div>
             <RtApplicationStatus status={status} />
           </div>
-          {/* <div className="flex flex-col items-center justify-center gap-y-1">
+          <div className="flex flex-col items-center justify-center gap-y-1">
             <h4 className="text-sm font-[600]">{formatDate(date)}</h4>
             <small className="inline-block text-[0.6rem] text-neutral-400">
               {daysDifference < 1
                 ? `Less Than A Day Ago`
                 : `${daysDifference} Days Ago`}
             </small>
-          </div> */}
+          </div>
         </TableBodySm>
         {/* Actions */}
         <TableBodySm className="flex justify-center gap-1.5 pt-3">

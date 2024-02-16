@@ -3,7 +3,7 @@
 import React from "react";
 import RtApplicationRowSm from "./RtApplicationRowSm";
 import { useFetchTableWithInfiniteScroll } from "@/lib/custom-hooks/useFetch";
-import TableMobileSkeleton from "../../../components/shared/skeleton/TableMobileSkeleton";
+import TableSkeletonSm from "../../../components/shared/skeleton/TableSkeletonSm";
 import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
@@ -34,13 +34,13 @@ const RtManageApplicationsSm = (props: Props) => {
         error={error}
         isLoading={isLoading}
         isValidating={isValidating}
-        isLoadingComponent={<TableMobileSkeleton rows={4} />}
+        isLoadingComponent={<TableSkeletonSm rows={4} />}
         errorComponent={<FetchErrorMessage specificData="applications" />}
         noDataMessageComponent={
           <p className="mt-4 italic">There are no applications yet.</p>
         }
       />
-      <TableSm className="mb-10 mt-3 flex w-fit grid-cols-2 flex-wrap sm:grid lg:hidden">
+      <TableSm className="mx-auto mb-10 mt-3 flex w-fit lg:hidden">
         {applicants?.map((applicant, idx) => (
           <RtApplicationRowSm
             key={applicant.id as string}

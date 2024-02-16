@@ -59,7 +59,7 @@ export default function MatchesYet() {
         </TableBodyRowGroup>
       </Table>
 
-      <TableSm>
+      <TableSm className="mx-auto w-fit">
         {Array.from({ length: 5 }).map((r, index) => (
           <PropertyRowSm key={index} />
         ))}
@@ -73,12 +73,12 @@ const PropertyRowSm = () => {
     <TableRowSm>
       {/* Property */}
       <TableBodySm href="/properties/2">
-        <div className="flex flex-wrap justify-between gap-5 truncate">
+        <div className="flex flex-wrap gap-5 truncate xsm:flex-nowrap">
           <TbPropertyImageSm
             title="Single Room at Assin Fosu"
             image="/assets/images/niceHome.png"
           />
-          <div className="flex flex-col justify-between gap-2">
+          <div className="flex flex-col flex-wrap justify-between gap-2">
             <div className="flex flex-col gap-1 truncate lg:gap-[0.62rem]">
               <h4 className="truncate">Single Room</h4>
               <p className="truncate text-[0.8125rem] text-[#B0B0B0]">
