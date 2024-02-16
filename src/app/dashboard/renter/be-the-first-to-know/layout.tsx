@@ -8,6 +8,7 @@ import Link from "next/link";
 import AOSWrapper from "@/components/__shared/AOSWrapper";
 import ScrollTop from "@/components/__shared/ScrollTop";
 import Button from "@/components/__shared/ui/button/Button";
+import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 
 const BeTheFirstToKnowLayout = ({
   children,
@@ -15,15 +16,12 @@ const BeTheFirstToKnowLayout = ({
   children: React.ReactNode;
 }) => {
   const pathname = usePathname();
+  const { currentRole } = useDashboardStore();
 
   return (
     <main>
       <Link
-        href={
-          pathname?.includes("/lister")
-            ? "/dashboard/lister/be-the-first-to-know"
-            : "/dashboard/renter/be-the-first-to-know"
-        }
+        href={`/dashboard/${currentRole}/be-the-first-to-know`}
         className="relative mb-5 h-10 w-10 place-items-center rounded-full p-2 transition-all hover:scale-105 hover:bg-slate-100 fhd:right-28"
         style={{
           display:
