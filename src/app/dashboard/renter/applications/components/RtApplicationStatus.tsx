@@ -24,7 +24,7 @@ const RtApplicationStatus = ({ status }: Props) => {
       <Tooltip
         content={
           status === "completed"
-            ? "The lister has finished reviewing your report and should be in touch with you shortly. Check your messages or contact them directly if a response is delayed."
+            ? "The lister has reviewed your application and should be in touch with you shortly. Check your messages or contact them directly if a response is delayed."
             : status === "declined"
               ? "The lister has declined your application. Continue your search or contact them directly with more questions."
               : status === "under review"
