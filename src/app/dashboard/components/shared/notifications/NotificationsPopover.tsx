@@ -21,7 +21,7 @@ const NotificationsPopover = () => {
       <Popover.Trigger asChild>
         <button className="relative flex aspect-square min-h-[52px] w-full min-w-[52px] items-center justify-center">
           <div
-            className="absolute right-[0px] top-0
+            className="absolute right-[0%] top-[0%]
           flex h-[26px] w-[26px] items-center justify-center rounded-full
           bg-[#B71851] text-[14px] text-[#fff]"
           >
@@ -34,8 +34,8 @@ const NotificationsPopover = () => {
       </Popover.Trigger>
       <Popover.Portal>
         <PopoverContent sideOffset={5} className="z-[99999] bg-[#fefefe]">
-          <div className="flex items-center justify-between ">
-            <p className="text-[25px] font-bold ">Notifications</p>
+          <div className="mt-2 flex flex-wrap items-center justify-between gap-5">
+            <h3>Notifications</h3>
             <p className="text-[10px] font-bold text-[#DDB771]">See All</p>
           </div>
 

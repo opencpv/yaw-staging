@@ -16,6 +16,7 @@ import { useRef, useState } from "react";
 import Loader from "@/components/__shared/loader/Loader";
 import { useDashboardMenuStore } from "@/store/navmenu/useDashboardMenuStore";
 import Avatar from "@/components/__shared/ui/Avatar";
+import { getFirstWord } from "@/lib/utils/stringManipulation";
 
 const Navbar = () => {
   const { icons } = useAssets();
@@ -52,21 +53,24 @@ const Navbar = () => {
         <div className="relative flex w-fit items-center gap-7">
           <Switch />
           <NotificationsPopover />
-          {/* <div>
-            <p className="hidden whitespace-nowrap text-sm text-[#fff] xs:block">
-              {user?.full_name}
+          <div>
+            <p className="hidden whitespace-nowrap text-sm text-[#fff] ssm:block">
+              {getFirstWord(user?.full_name)}
             </p>
-          </div> */}
-          {user?.avatar_url == undefined ? (
+          </div>
+          {/* {user?.avatar_url == undefined ? (
             <Loader />
           ) : (
+            <Avatar image={user?.avatar_url} name={user?.full_name} />
+          )} */}
+          {user?.avatar_url && (
             <Avatar image={user?.avatar_url} name={user?.full_name} />
           )}
         </div>
       </Root>
       {/* search bar for mobile */}
       <div
-        className={`absolute left-0 top-0 z-[60] flex w-full items-center justify-between gap-5 bg-primary-500 p-4 pt-2 text-white transition-all duration-1000 md:hidden ${
+        className={`absolute left-[0%] top-[0%] z-[60] flex w-full items-center justify-between gap-5 bg-primary-500 p-4 pt-2 text-white transition-all duration-1000 md:hidden ${
           expandMobileSearch
             ? style.visibleMobileSearch
             : style.hiddenMobileSearch

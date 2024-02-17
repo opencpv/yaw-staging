@@ -1,5 +1,5 @@
 .avatarMenu {
-  @apply absolute right-0 top-12 z-50 w-52 max-w-[13rem] rounded-lg bg-white px-1 text-neutral-600 shadow-lg transition-all;
+  @apply absolute right-0 top-12 z-50 w-52 max-w-[13rem] rounded-lg bg-white text-neutral-600 shadow-lg transition-all;
 }
 
 .avatarMenuHidden {

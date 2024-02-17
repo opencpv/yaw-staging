@@ -107,7 +107,7 @@ const RtApplicationRow = ({
           </small>
         </TableBody>
         {/* Status */}
-        <TableBody className="col-span-1">
+        <TableBody className="col-span-1 mx-auto">
           <RtApplicationStatus status={status} />
         </TableBody>
         {/* Actions */}
@@ -120,21 +120,25 @@ const RtApplicationRow = ({
             </PopoverTrigger>
             <PopoverContent className="rounded-md bg-[#fefefe] px-0 py-0">
               <div className="flex flex-col divide-y rounded-md">
-                <button
-                  className="deep-green-hover flex w-full  items-center gap-2 px-4 py-2"
-                  onClick={() => ""}
-                >
-                  <span className="mr-auto">Edit</span>
-                  <MdOutlineEdit />
-                </button>
-                <button
-                  className="deep-green-hover flex w-full items-center gap-2 px-4 py-2"
-                  onClick={onOpen}
-                >
-                  <span className="mr-auto">Delete</span>
+                {status === "not submitted" && (
+                  <>
+                    <button
+                      className="deep-green-hover flex w-full  items-center gap-2 px-4 py-2"
+                      onClick={() => ""}
+                    >
+                      <span className="mr-auto">Edit</span>
+                      <MdOutlineEdit />
+                    </button>
+                    <button
+                      className="deep-green-hover flex w-full items-center gap-2 px-4 py-2"
+                      onClick={onOpen}
+                    >
+                      <span className="mr-auto">Delete</span>
 
-                  <FiTrash2 />
-                </button>
+                      <FiTrash2 />
+                    </button>
+                  </>
+                )}
                 <button
                   className="deep-green-hover flex w-full items-center  gap-2 px-4 py-2"
                   onClick={() => ""}

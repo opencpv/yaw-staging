@@ -78,8 +78,12 @@ const RtApplicationRowSm = ({
         </TableBodySm>
         {/* Actions */}
         <TableBodySm className="flex justify-center gap-1.5 pt-3">
-          <EditButton onOpen={() => ""} />
-          <ButtonDelete onOpen={onOpen} />
+          {status === "not submitted" && (
+            <>
+              <EditButton onOpen={() => ""} />
+              <ButtonDelete onOpen={onOpen} />
+            </>
+          )}
           <ButtonMessage type={2} />
         </TableBodySm>
       </TableRowSm>

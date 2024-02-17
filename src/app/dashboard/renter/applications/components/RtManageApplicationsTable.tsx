@@ -75,7 +75,9 @@ const RtManageApplicationsTable = (props: Props) => {
                     ? "completed"
                     : idx === 3
                       ? "declined"
-                      : "under review"
+                      : idx === 0
+                        ? "not submitted"
+                        : "under review"
                 }
               />
             ))

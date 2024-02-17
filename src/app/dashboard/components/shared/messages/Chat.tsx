@@ -40,7 +40,7 @@ const Chat = ({
   return (
     <Link
       href={`/dashboard/${currentRole}/messages/${id}`}
-      className={`grid min-h-[3.5rem] cursor-default grid-cols-8 gap-6 border-b px-2 pb-2.5 pt-8 ${
+      className={`grid min-h-[3.5rem] cursor-default grid-cols-8 gap-6 border-b px-2 pb-2.5 pt-8 first:pt-0 ${
         isSelected && "bg-slate-50/60"
       } light-green-hover transition-all`}
       onClick={() => setViewed(true)}
@@ -93,7 +93,7 @@ const Chat = ({
             </PopoverContent>
           </Popover> */}
           <Tooltip
-            content="Click here to unblock this user"
+            content="This user has been blocked"
             className="bg-primary-500 p-3 text-white"
             onClick={(e) => e.stopPropagation()}
           >
