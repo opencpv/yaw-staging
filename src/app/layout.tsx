@@ -34,7 +34,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const showTemporaryLandingPage = process.env.NEXT_PUBLIC_TEMPORARY_LANDING_PAGE === "true"; // Check if the environment variable is set to true
+  const showTemporaryLandingPage = process.env.NEXT_PUBLIC_TEMPORARY_LANDING_PAGE === "tr2ue"; // Check if the environment variable is set to true
 
   return (
     <html
