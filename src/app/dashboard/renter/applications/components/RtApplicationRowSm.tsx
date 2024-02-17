@@ -45,7 +45,7 @@ const RtApplicationRowSm = ({
       <TableRowSm>
         {/* Property */}
         <TableBodySm href="/properties/2">
-          <div className="flex flex-wrap justify-between gap-5 truncate">
+          <div className="flex flex-wrap gap-5 truncate xsm:flex-nowrap">
             <TbPropertyImageSm title={propertyTitle} image={propertyImage} />
             <div className="flex flex-col justify-between gap-2">
               <div className="flex flex-col gap-1 truncate lg:gap-[0.62rem]">
@@ -62,7 +62,7 @@ const RtApplicationRowSm = ({
           </div>
         </TableBodySm>
         {/* Date */}
-        <TableBodySm className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 py-3.5">
+        <TableBodySm className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 pt-3.5">
           {/* Status */}
           <div>
             <RtApplicationStatus status={status} />
