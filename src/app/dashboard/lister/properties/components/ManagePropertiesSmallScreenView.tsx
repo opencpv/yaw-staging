@@ -3,7 +3,7 @@
 import React from "react";
 import PropertyRow2 from "./PropertyRow2";
 import { useFetchTableWithInfiniteScroll } from "@/lib/custom-hooks/useFetch";
-import TableMobileSkeleton from "../../../components/shared/skeleton/TableMobileSkeleton";
+import TableSkeletonSm from "../../../components/shared/skeleton/TableSkeletonSm";
 import { useManagePropertiesStore } from "@/store/dashboard/propertiesStore";
 import Button from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
@@ -37,7 +37,7 @@ const ManagePropertiesSmallScreenView = () => {
         error={error}
         isLoading={isLoading}
         isValidating={isValidating}
-        isLoadingComponent={<TableMobileSkeleton rows={4} />}
+        isLoadingComponent={<TableSkeletonSm rows={4} />}
         errorComponent={<FetchErrorMessage specificData="properties" />}
         noDataMessageComponent={
           <p className="mt-4 italic">

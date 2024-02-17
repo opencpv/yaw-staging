@@ -68,6 +68,7 @@ interface ChatInterface {
   last_message: string;
   messages_count: number;
   id: string | null;
+  isBlocked?: boolean;
 }
 
 type FeatureInterface =

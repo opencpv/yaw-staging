@@ -1,0 +1,11 @@
+.avatarMenu {
+  @apply absolute right-0 top-12 z-50 w-52 max-w-[13rem] rounded-lg bg-white px-1 text-neutral-600 shadow-lg transition-all;
+}
+
+.avatarMenuHidden {
+  clip-path: circle(0 at 100% 0);
+}
+
+.avatarMenuVisible {
+  clip-path: circle(150% at 100% 0);
+}
