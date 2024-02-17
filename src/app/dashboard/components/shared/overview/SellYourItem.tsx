@@ -25,7 +25,9 @@ const SellYourItem = (props: Props) => {
           />
         </AOSWrapper>
         <div className="space-y-3">
-          <h4 className="font-[600] capitalize">Sell Your Item</h4>
+          <h4 className="font-[600] capitalize">
+            Moving? Sell slightly used items
+          </h4>
           <p className="mb-1 text-sm capitalize text-neutral-600">
             Your Exclusive Marketplace, Completely Fee-Free
           </p>

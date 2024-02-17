@@ -74,7 +74,6 @@ const Wrapper = ({ children }: LayoutProps) => {
         ...(profiles && profiles[0]),
         email: data?.user?.email,
       };
-      console.log(profileData);
       setUser(profileData);
     };
 
@@ -104,7 +103,7 @@ const Wrapper = ({ children }: LayoutProps) => {
           <Pagination />
         </div>
         {isSwitchingRole && (
-          <section className="absolute z-50 inset-0 bg-white/50 backdrop-blur-sm overflow-x-hidden flex h-screen max-h-screen w-screen items-center justify-center">
+          <section className="absolute inset-0 z-50 flex h-screen max-h-screen w-screen items-center justify-center overflow-x-hidden bg-white/50 backdrop-blur-sm">
             <div className="flex flex-col items-center justify-center gap-5">
               <Loader />
               <h4>

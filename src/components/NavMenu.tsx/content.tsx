@@ -2,7 +2,7 @@ export const links = [
   {
     id: "#",
     url: "/login",
-    name: "LOGIN",
+    name: "SIGN IN",
   },
   {
     id: "#",

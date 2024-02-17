@@ -42,7 +42,7 @@ export default function Page() {
                   dateCreated="5 Aug. 2023 13:55pm"
                 />
               ))}
-              <Agent name="My Agent Three" state="default" />
+              <Agent name="My Agent Search" state="default" />
             </div>
           </AOSWrapper>
           {!matches && <NoMatchesYet />}
