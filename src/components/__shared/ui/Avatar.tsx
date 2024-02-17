@@ -45,7 +45,7 @@ const Avatar = ({ image, name, className }: Props) => {
         width={50}
         height={50}
         className={cn(
-          "h-[25px] w-[25px] max-w-[50px] shrink-0 cursor-pointer rounded-full xs:h-[50px] xs:w-[50px]",
+          "h-[35px] w-[35px] max-w-[50px] shrink-0 cursor-pointer rounded-full xs:h-[50px] xs:w-[50px]",
           className,
         )}
         onClick={() => setIsOpen(!isOpen)}
