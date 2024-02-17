@@ -5,6 +5,7 @@ import BlockUserPopOver from "./BlockUserPopOver";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Button from "@/components/__shared/ui/button/Button";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
+import { FaChevronLeft } from "react-icons/fa";
 
 type Props = {
   userName: string;
@@ -21,7 +22,8 @@ const UsernameDisplayBar = ({ userName }: Props) => {
         href={`/dashboard/${currentRole}/messages`}
         className="flex lg:hidden"
       >
-        <Image src={icons.ArrowIcon} alt="back" className="text-3xl" />
+        <FaChevronLeft alt="back" className="text-white" />
+        {/* <Image src={icons.ArrowIcon} alt="back" className="text-3xl" /> */}
       </Button>
       <h2 className="text-xl">{userName}</h2>
       <BlockUserPopOver />

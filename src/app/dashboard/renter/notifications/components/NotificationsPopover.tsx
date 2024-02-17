@@ -39,7 +39,7 @@ const NotificationsPopover = () => {
       <Popover.Portal>
         <PopoverContent
           sideOffset={5}
-          className="z-[99999] w-[90vw] md:w-fit lg:min-w-[400px] bg-[#fefefe] "
+          className="z-[99999] w-[90vw] bg-[#fefefe] md:w-fit lg:min-w-[400px] "
         >
           <div className="flex items-center justify-between ">
             <p className="text-20 font-semibold 2xl:text-25 ">Notifications</p>
@@ -57,7 +57,7 @@ const NotificationsPopover = () => {
           {unreadIsLoading && <NtfSkeleton />}
 
           {unreadNotifications && (
-            <div className="flex w-full justify-end mb-2">
+            <div className="mb-2 flex w-full justify-end">
               <Button className="bg-unset focus:!unset active:unset flex items-center justify-end gap-2 p-2 text-black hover:bg-[#073b3a12]">
                 <div className="flex gap-0">
                   <CaMarkAsRead />
@@ -66,7 +66,7 @@ const NotificationsPopover = () => {
               </Button>
             </div>
           )}
-          <div className="scrollbar-hide flex max-h-[60vh] flex-col gap-5 overflow-y-scroll 2xl:gap-8">
+          <div className="flex max-h-[60vh] flex-col gap-5 overflow-y-scroll scrollbar-hide 2xl:gap-8">
             {unreadNotifications?.map((r: any, index: number) => (
               <div
                 key={index}

@@ -9,6 +9,7 @@ import Button from "./button/Button";
 import { usePathname } from "next/navigation";
 import { MdOutlineDashboard } from "react-icons/md";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
+import { PiCirclesFour } from "react-icons/pi";
 
 type Props = {
   image: string;
@@ -56,7 +57,7 @@ const Avatar = ({ image, name, className }: Props) => {
           isOpen ? `${style.avatarMenuVisible}` : `${style.avatarMenuHidden}`
         }`}
       >
-        <ul className="divide-y">
+        <ul>
           <li className="deep-green-hover px-4 py-2">
             {pathname?.includes("dashboard") ? (
               <Link href="/" className="flex items-center gap-2">
@@ -68,12 +69,12 @@ const Avatar = ({ image, name, className }: Props) => {
                 href={`/dashboard/${currentRole}/overview`}
                 className="flex items-center gap-2"
               >
-                <MdOutlineDashboard />
-                Dashboard
+                <PiCirclesFour />
+                Overview
               </Link>
             )}
           </li>
-          <li className="grid place-items-center px-5 py-2">
+          <li className="mt-5 grid place-items-center px-5 py-2">
             <Button color="accent" radius="full" padding="sm">
               Sign out
             </Button>

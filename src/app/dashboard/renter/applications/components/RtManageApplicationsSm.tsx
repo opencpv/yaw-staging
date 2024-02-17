@@ -55,7 +55,9 @@ const RtManageApplicationsSm = (props: Props) => {
                 ? "completed"
                 : idx === 3 || idx === 12
                   ? "declined"
-                  : "under review"
+                  : idx === 0
+                    ? "not submitted"
+                    : "under review"
             }
           />
         ))}

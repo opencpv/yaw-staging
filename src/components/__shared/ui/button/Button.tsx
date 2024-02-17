@@ -17,6 +17,7 @@ interface Props extends React.HTMLAttributes<HTMLButtonElement> {
   arrowIcon?: boolean;
   radius?: "sm" | "full";
   href?: string;
+  replace?: boolean;
   title?: string;
   onClick?: (e?: any) => void;
 }
@@ -35,12 +36,14 @@ const Button: React.FC<Props> = ({
   padding,
   onClick,
   title,
+  replace,
   ...props
 }: Props) => {
   if (href)
     return (
       <NextUIButton
         as={Link}
+        replace={replace}
         href={href}
         isDisabled={disabled}
         title={title}

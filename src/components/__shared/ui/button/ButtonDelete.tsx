@@ -14,7 +14,7 @@ const ButtonDelete = ({ onOpen, className }: Props) => {
       isIconOnly
       title="Delete"
       className={cn(
-        "group flex w-full items-center justify-center rounded-md bg-secondary-500 px-4 text-neutral-800 hover:bg-primary-200",
+        "group flex w-full max-w-[200px] items-center justify-center rounded-md bg-secondary-500 px-4 text-neutral-800 hover:bg-primary-200",
         className,
       )}
       onClick={onOpen}
