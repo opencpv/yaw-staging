@@ -9,13 +9,15 @@ import { useContext, useEffect } from "react";
 
 const Dashboard = () => {
   const { user, setUser } = useAppStore();
-  const {currentRole} = useDashboardStore()
+  const { currentRole } = useDashboardStore();
   const router = useRouter();
-  
+
   useEffect(() => {
     const getProperties = async () => {
-      let { data: property, error } = await supabase.from("property").select("*");
-  
+      let { data: property, error } = await supabase
+        .from("property")
+        .select("*");
+
       if (property) {
         setUser({
           properties: { property },
@@ -25,7 +27,6 @@ const Dashboard = () => {
     getProperties();
 
     const userRole = localStorage.getItem("user-dashboard-role");
-    console.log(userRole)
 
     if (userRole) {
       if (userRole === "renter") {
@@ -33,11 +34,9 @@ const Dashboard = () => {
       } else if (userRole === "lister") {
         router.replace("/dashboard/lister/overview");
       }
-    }
-    else {
+    } else {
       router.replace("/dashboard/renter/overview");
     }
-
   }, [router, currentRole, setUser]);
 
   return (
