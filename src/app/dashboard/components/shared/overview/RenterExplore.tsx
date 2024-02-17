@@ -16,7 +16,7 @@ const RenterExplore = (props: Props) => {
         <ExploreFeatureCard
           title="My Favourites"
           description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis mollitia eius recusandae sed, quis, vitae sequi praesentium natus id dolores atque omnis facilis tempore exercitationem perferendis sit alias consequuntur nemo."
-          href="saved-search"
+          href="favourites"
         />
         <ExploreFeatureCard
           tag="Free"
