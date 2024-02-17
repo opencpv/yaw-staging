@@ -12,7 +12,7 @@ const page = () => {
   return (
     <>
       <Navbar />
-      <div className="relative w-full h-72">
+      <div className="relative h-72 w-full">
         <Image
           src="/assets/images/Stock.jpg"
           alt=""
@@ -21,13 +21,13 @@ const page = () => {
         />
       </div>
       {/* Search */}
-      <section className="mb-20 px-5">
+      <section className="mb-20 flex w-full flex-col items-center">
         <SearchCity />
-        <div className="w-full mx-auto text-neutral-500">
+        <div className="mx-auto w-full text-neutral-500">
           <TagsSelect />
         </div>
       </section>
-      <main className="overflow-x-hidden wrapper">
+      <main className="wrapper overflow-x-hidden">
         <PropertiesListing />
       </main>
       <FixedSocials />

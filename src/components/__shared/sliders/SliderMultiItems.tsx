@@ -91,7 +91,7 @@ const SliderMultiItems = ({
       {/* lg breakpoint and below */}
       <div className="block lg:hidden">
         <Swiper
-          cssMode={true}
+          cssMode
           slidesPerView={slidesPerView ? slidesPerView : 1.5}
           spaceBetween={15}
           centeredSlides

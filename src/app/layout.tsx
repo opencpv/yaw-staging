@@ -4,7 +4,7 @@ import "@radix-ui/themes/styles.css";
 import Providers from "@/context/Providers";
 import LoadingIndicator from "@/components/LoadingIndicator";
 import Script from "next/script";
-import { openSans } from "@/lib/utils/fonts";
+import { openSans, openSansLocal } from "@/lib/utils/fonts";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MenuWrapper from "@/components/__shared/MenuWrapper";
@@ -42,6 +42,7 @@ export default function RootLayout({
       className="text-[14px] lg:text-[14.5px] 2xl:text-[15px] 3xl:text-[16px]"
     >
       <Script src="https://widget.cloudinary.com/v2.0/global/all.js" />
+
       <body className={`bg-white text-neutral-800 light ${openSans.className}`}>
         <Providers>
           <MenuWrapper>

@@ -7,10 +7,11 @@ import {
   DropdownTrigger,
 } from "@nextui-org/react";
 import { Switch } from "@nextui-org/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaCaretDown } from "react-icons/fa";
 import AdvancedForm from "./AdvancedForm";
 import OptionFilterTabs from "@/components/__shared/OptionFilterTabs";
+import Toggle from "@/components/ui/Toggle";
 
 type FilterOption =
   | "all"
@@ -20,6 +21,8 @@ type FilterOption =
   | "best value";
 
 const TagsSelect = () => {
+  const tabsRef = React.useRef<HTMLDivElement>(null);
+
   const [isAdvancedActive, setIsAdvancedActive] = useState<boolean>(false);
   const [option, setOption] = useState<FilterOption>("all");
 
@@ -31,11 +34,17 @@ const TagsSelect = () => {
     setOption(option as FilterOption);
   };
 
+  useEffect(() => {
+    if (tabsRef.current && location.href.includes("sk=true")) {
+      tabsRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }, []);
+
   return (
-    <div className="flex justify-center">
-      <div className="">
-        <section className="flex flex-col flex-wrap items-center justify-center gap-8 sm:flex-row">
-          <div className="">
+    <div className="w-full justify-center px-5 sm:flex sm:px-0" ref={tabsRef}>
+      <div className="w-full">
+        <section className="flex w-full flex-col flex-wrap items-center justify-center gap-8 sm:w-[initial] sm:flex-row">
+          <div className="w-full">
             <OptionFilterTabs
               variant="gradient"
               options={[
@@ -74,16 +83,11 @@ const TagsSelect = () => {
           </div>
           <div className="flex items-center justify-center gap-2">
             <div className="">
-              <Switch
-                classNames={{
-                  base: "group-data-[selected=true]:bg-accent-50",
-                }}
-                size="sm"
-                color="warning"
+              <Toggle
                 isSelected={isAdvancedActive}
                 onValueChange={handleIsActive}
+                label="Advanced search"
               />
-              Advanced search
             </div>
           </div>
         </section>

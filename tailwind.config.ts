@@ -20,6 +20,8 @@ const config: Config = {
         "terms-bg": "url('/assets/images/terms-bg.png')",
         "about-bg": "url('/assets/images/about-bg.png')",
         "my-search-bg": "url('/assets/images/my-search-bg.png')",
+        "menu-sm": "url('/assets/svgs/bgMenuSmall.svg')",
+        "menu-lg": "url('/assets/images/menu-bg.png')",
       },
       colors: {
         ...mauve,
@@ -44,6 +46,7 @@ const config: Config = {
           50: "#F1F1F1",
           200: "#FAFBFB",
           300: "#DFE7E7",
+          400: "#99B3B2",
         },
         accent: {
           50: "#DDB771",
@@ -77,15 +80,23 @@ const config: Config = {
         "31": "1.9375rem",
         "39": "2.4375rem",
       },
-    },
-    screens: {
-      xs: "425px",
-      ...defaultTheme.screens,
-      hd: "1670px",
-      fhd: "1920px",
-      "2k": "2040px",
-      "4k": "3840px",
-      "3xl": "1728px",
+      fontFamily: {
+        sans: ["var(--font-open-sans)"],
+        montserrat: ["var(--font-montserrat)"],
+      },
+      screens: {
+        xxs: "280px",
+        xsm: "360px", // :-D
+        xs: "425px",
+        ssm: "540px", // : -(
+        ...defaultTheme.screens,
+        llg: "1150px",
+        hd: "1670px",
+        "3xl": "1728px",
+        fhd: "1920px",
+        "2k": "2040px",
+        "4k": "3840px",
+      },
     },
   },
   plugins: [

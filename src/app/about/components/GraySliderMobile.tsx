@@ -28,16 +28,16 @@ const GraySliderMobile = ({ data }: { data: any }) => {
   return (
     <>
       <Root className="block lg:hidden">
-        <div className="  bg-[#333] lg:pb-12 md:pb-[107px] pb-[30px] mt-0 md:mt-[-200px] absolute -z-10    ">
+        <div className="  absolute -z-10 mt-0 bg-[#333] pb-[30px] md:mt-[-200px] md:pb-[107px] lg:pb-12    ">
           <p
-            className={`lg:px-[338px] md:px-[30px] lg:pt-[224px] lg:pb-[97px] md:pt-[232px] md:pb-[60px] pb-8 pt-[30px] mx-auto text-center text-[#fff] ${openSans.className} font-semibold`}
+            className={`mx-auto pb-8 pt-[30px] text-center font-semibold text-[#fff] md:px-[30px] md:pb-[60px] md:pt-[232px] lg:px-[338px] lg:pb-[97px] lg:pt-[224px]`}
           >
             Lorem ipsum dolor sit amet consectetur. Sit consequat a elit
             scelerisque felis fames. In fames feugiat est risus in. Elit
             vulputate viverra duis nunc nulla nulla. Facilisi suspendisse libero
             praesent sed diam nulla sed non in. Id commodo{" "}
           </p>
-          <div className=" lg:pl-[26px] md:px-[77px] px-4 h-fit relative w-full">
+          <div className=" relative h-fit w-full px-4 md:px-[77px] lg:pl-[26px]">
             <Swiper
               ref={sliderRef}
               effect={"coverflow"}
@@ -67,13 +67,13 @@ const GraySliderMobile = ({ data }: { data: any }) => {
             <div className="flex justify-between lg:px-[311px] ">
               <button
                 onClick={handlePrev}
-                className="w-10 h-10 md:h-[70px] md:w-[70px] bg-[#fff] rounded-full  flex items-center justify-center"
+                className="flex h-10 w-10 items-center justify-center rounded-full  bg-[#fff] md:h-[70px] md:w-[70px]"
               >
                 <MdChevronLeft className="h-4 w-4 md:h-5 md:w-5" />
               </button>
               <button
                 onClick={handleNext}
-                className="w-10 h-10 md:h-[70px] md:w-[70px] bg-[#fff] rounded-full flex items-center justify-center "
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-[#fff] md:h-[70px] md:w-[70px] "
               >
                 <MdChevronRight className="h-4 w-4 md:h-5 md:w-5" />
               </button>

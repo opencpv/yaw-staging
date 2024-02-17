@@ -38,7 +38,6 @@ type Props = {
   label: string;
   onChange: (value: any) => void;
   onChange2?: (value: any) => void;
-
   initialValue?: any;
   name?: string;
   font?: "Montserrat" | "OpenSans";
@@ -119,9 +118,7 @@ const PhoneNumberInputv2 = ({
   return (
     <div className="w-full">
       <Root className=" gap-3">
-        <div
-          className={`font-[400] ${openSans.className} text-[#6A6968] capitalize flex gap-2`}
-        >
+        <div className={`flex gap-2 font-[400] capitalize text-[#6A6968]`}>
           <label>{label}</label>
         </div>
         <div className="flex gap-3">
@@ -131,11 +128,11 @@ const PhoneNumberInputv2 = ({
                 variant="outline"
                 role="combobox"
                 aria-expanded={open}
-                className={`w-fit flex gap-2 justify-between  ${
-                  value ? "text-[#6A6968] capitalize" : "text-[#B4B2AF] "
-                } whitespace-nowrap h-[53px]`}
+                className={`flex w-fit justify-between gap-2  ${
+                  value ? "capitalize text-[#6A6968]" : "text-[#B4B2AF] "
+                } h-[53px] whitespace-nowrap`}
               >
-                <div className="relative w-5 h-[18px] rounded-[4px]">
+                <div className="relative h-[18px] w-5 rounded-[4px]">
                   <Image
                     src={selectedCountry.flags?.png}
                     alt={selectedCountry.flags?.alt}
@@ -151,14 +148,14 @@ const PhoneNumberInputv2 = ({
                 </p>
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-fit p-0 z-[200] max-h-[400px] overflow-y-scroll bg-white max-w-[150px]">
+            <PopoverContent className="z-[200] max-h-[400px] w-fit max-w-[150px] overflow-y-scroll bg-[#fefefe] p-0">
               <Command onValueChange={onChange}>
                 <CommandInput placeholder="Search code..." />
                 <CommandEmpty>No data found.</CommandEmpty>
                 <CommandGroup>
                   {countryData?.map((data: any) => (
                     <CommandItem
-                      className="flex gap-3 cursor-pointer hover:bg-slate-100 "
+                      className="flex cursor-pointer gap-3 hover:bg-slate-100 "
                       key={data.value}
                       onSelect={(currentValue) => {
                         setValue(currentValue);
@@ -166,7 +163,7 @@ const PhoneNumberInputv2 = ({
                         setOpen(false);
                       }}
                     >
-                      <div className="relative w-[20px] aspect-square">
+                      <div className="relative aspect-square w-[20px]">
                         <Image src={data.flags?.png} alt="flag" fill />
                       </div>
                       {data?.idd?.root}
@@ -182,7 +179,7 @@ const PhoneNumberInputv2 = ({
             name={name}
             value={value2}
             onChange={(e) => setValue2(e.target.value)}
-            className="flex flex-auto border-[1px] rounded-[4px] border-[#EBEBEB] p-[15px] w-full outline-none"
+            className="flex w-full flex-auto rounded-[4px] border-[1px] border-[#EBEBEB] p-[15px] outline-none"
           />
         </div>
       </Root>

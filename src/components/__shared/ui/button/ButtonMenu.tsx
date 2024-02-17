@@ -1,41 +1,25 @@
-import Image from "next/image";
 import React from "react";
-import { poppins400 } from "@/styles/font";
-import { useAssets } from "@/lib/custom-hooks/useAssets";
-import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
-import Button from "./Button";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
+import { FaChevronLeft } from "react-icons/fa6";
 
 type Props = {
   className?: string;
 };
 
 const ButtonMenu = ({ className }: Props) => {
-  const { icons } = useAssets();
   const setToggle = useMenuStore((state) => state.setToggle);
 
-  const router = useRouter();
-
   return (
-    <Button
-      variant="ghost"
-      onClick={() => {
-        setToggle(true);
-        // router.back()
-      }}
+    <div
+      onClick={() => setToggle(true)}
       className={cn(
-        `flex items-center justify-center gap-4 font-normal ${poppins400}`,
+        "group mb-5 grid h-10 w-10 place-items-center rounded-full p-2 transition-all hover:scale-105 hover:bg-slate-50/70",
         className,
       )}
     >
-      <Image
-        src={icons.ArrowIcon}
-        alt="back icon"
-        className="hidden min-[150px]:inline-block"
-      />
-      <p className="text-lg">Menu</p>
-    </Button>
+      <FaChevronLeft className="text-white group-hover:text-neutral-600" />
+    </div>
   );
 };
 

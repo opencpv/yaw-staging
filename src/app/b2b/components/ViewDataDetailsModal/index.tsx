@@ -15,23 +15,28 @@ export default function ViewDataDetailsModal({ variant, maxWidth }: Props) {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        <div className={`flex justify-center ${maxWidth && "w-full bg-[#F1F1F1] rounded-lg"}`}>
-          <div className="bg-[#F1F1F1] rounded-lg p-4">
+        <div
+          className={`flex justify-center ${
+            maxWidth && "w-full rounded-lg bg-secondary-50"
+          }`}
+        >
+          <div className="rounded-lg bg-secondary-50 p-4">
             <MdOutlineRemoveRedEye size="24" color="#3F3F46" />
           </div>
         </div>
       </Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className="bg-modalOverlay data-[state=open]:animate-overlayShow fixed inset-0 " />
+        <Dialog.Overlay className="data-[state=open]:animate-overlayShow fixed inset-0 bg-modalOverlay " />
         <Dialog.Content
-          className={`data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] h-[75vh] lg:h-[90vh] w-[90vw] lg:w-[50vw] translate-x-[-50%] z-[1000] max-w-[664px] max-h-[857px] lg-hidden-scrollbar overflow-y-scroll translate-y-[-50%] rounded-xl bg-white shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none px-4 lg:px-12  pt-[50px] lg:pt-14 pb-4  `}>
-
+          className={`data-[state=open]:animate-contentShow lg-hidden-scrollbar fixed left-[50%] top-[50%] z-[1000] h-[75vh] max-h-[857px] w-[90vw] max-w-[664px] translate-x-[-50%] translate-y-[-50%] overflow-y-scroll rounded-xl bg-white px-4 pb-4 pt-[50px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none lg:h-[90vh]  lg:w-[50vw] lg:px-12 lg:pt-14  `}
+        >
           <Details variant={variant} />
 
           <Dialog.Close asChild>
             <button
-              className="text-violet11 hover:bg-violet4 focus:shadow-violet7 absolute top-[15px] lg:top-[15px] right-[20px] lg:right-[50px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full focus:shadow-[0_0_0_2px] focus:outline-none z-[4000]"
-              aria-label="Close">
+              className="absolute right-[20px] top-[15px] z-[4000] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full text-violet11 hover:bg-violet4 focus:shadow-[0_0_0_2px] focus:shadow-violet7 focus:outline-none lg:right-[50px] lg:top-[15px]"
+              aria-label="Close"
+            >
               <ModalCloseIcon />
             </button>
           </Dialog.Close>

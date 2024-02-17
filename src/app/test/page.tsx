@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 "use client";
 import supabase from "@/lib/utils/supabaseClient";
 import { useAppStore } from "@/store/dashboard/AppStore";

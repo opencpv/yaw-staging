@@ -1,3 +1,5 @@
+import { Status } from "@/app/dashboard/renter/applications/components/RtApplicationStatus";
+
 interface ListingCardInterface extends ListingInterface {
   propertyDescription?: string;
   rating?: number;
@@ -13,6 +15,10 @@ interface ListingCardInterface extends ListingInterface {
   cardType?: "1" | "2";
   city?: string;
   showOnlyImage?: boolean;
+  isMyFavoritePage?: boolean;
+  isRecommendationsPage?: boolean;
+  showNotViewed?: boolean;
+  isViewed?: boolean;
 }
 
 interface RenterPaidFeatureInterface {
@@ -40,10 +46,19 @@ interface AdCardInterface {
 interface ApplicationsInterface {
   propertyTitle: string;
   propertyImage: string;
-  applicantImage: string;
-  applicantName: string;
   date: string;
   propertyPrice: number;
+}
+
+interface ListerApplicationsInterface extends ApplicationsInterface {
+  applicantImage: string;
+  applicantName: string;
+}
+
+interface RenterApplicationsInterface extends ApplicationsInterface {
+  listerImage: string;
+  listerName: string;
+  status: Status;
 }
 
 interface ChatInterface {
@@ -78,6 +93,7 @@ interface ListingInterface {
 interface MessageInterface {
   content: string;
   time: string;
+  type: "sender" | "recipient";
 }
 
 type ManagePropertiesInterface = {

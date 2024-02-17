@@ -27,7 +27,8 @@ function JoinUsButtons({
   reverseIcon,
 }: Props) {
   const buttonClasses: any = {
-    "filled-green": "px-5 py-2.5 h-[38px] lg:h-[52px]  lg:px-[2.5rem] lg:py-[0.94rem] bg-[#99B3B2] text-white max-w-[197px] w-full",
+    "filled-green":
+      "px-5 py-2.5 h-[38px] lg:h-[52px]  lg:px-[2.5rem] lg:py-[0.94rem] bg-secondary-400 text-white max-w-[197px] w-full",
     "outline-green":
       "border-[1px] border-[#99B3B2] text-[#99B3B2] bg-transparent max-w-[197px] w-full px-5 py-2.5 h-[38px] lg:h-[52px]  lg:px-[2.5rem] lg:py-[0.94rem]",
     "filled-yellow": "bg-[#DDB771] text-white max-w-[198px]",
@@ -42,9 +43,10 @@ function JoinUsButtons({
   };
   return (
     <Button
-      className={`h-[52px] px-[2.5rem] py-[0.94rem]  rounded-lg font-semibold ${
+      className={`h-[52px] rounded-lg px-[2.5rem]  py-[0.94rem] font-semibold ${
         buttonClasses[variant]
-      } gap-2.5 ${reverseIcon && "flex-row-reverse"}`}>
+      } gap-2.5 ${reverseIcon && "flex-row-reverse"}`}
+    >
       {content}
       {icon && iconType && iconTypeOptions[iconType]}
     </Button>

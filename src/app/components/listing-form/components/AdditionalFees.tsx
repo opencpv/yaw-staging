@@ -32,10 +32,8 @@ const FeeTitleAndAmount = ({ index, feeTitle, amount }: any) => {
   };
 
   return (
-    <div className="flex flex-col xl:flex-row gap-3 w-full">
-      <TFormDiv
-        className={`font-[400] ${openSans.className} text-[#6A6968] capitalize w-full`}
-      >
+    <div className="flex w-full flex-col gap-3 xl:flex-row">
+      <TFormDiv className={`w-full font-[400] capitalize text-[#6A6968]`}>
         <label htmlFor="">Fee Title</label>
         <input
           type="text"
@@ -62,11 +60,11 @@ const AdditionalFees = ({}) => {
     useLocalStorage<ListingForm>("listing-form");
 
   const [AdditionalFees, setAdditionalFees] = useState(
-    lisitingFormData?.additionalFees
+    lisitingFormData?.additionalFees,
   );
 
   const [AdditionalFeesLength, setAdditionalFeesLength] = useState<any>(
-    lisitingFormData?.additionalFeesArray?.length || 0
+    lisitingFormData?.additionalFeesArray?.length || 0,
   );
   const handleRemove = (index: any) => {
     const updatedlisitingFormData: any = { ...lisitingFormData };
@@ -74,7 +72,7 @@ const AdditionalFees = ({}) => {
     if (updatedlisitingFormData.otherPersons) {
       updatedlisitingFormData.otherPersons =
         updatedlisitingFormData.otherPersons.filter(
-          (_: any, currentIndex: any) => currentIndex !== index
+          (_: any, currentIndex: any) => currentIndex !== index,
         );
     }
 
@@ -83,7 +81,7 @@ const AdditionalFees = ({}) => {
 
   return (
     <div>
-      <div className="col-span-3 lg:col-span-1 flex flex-col  gap-2">
+      <div className="col-span-3 flex flex-col gap-2  lg:col-span-1">
         <CustomRadioInput
           defaultValue={`${lisitingFormData?.additionalFees ? "yes" : "no"}`}
           label={"Do you require other fees?"}
@@ -114,7 +112,7 @@ const AdditionalFees = ({}) => {
                 </ClientOnly>
                 <button
                   type="button"
-                  className="text-[#E9515E] h-[38px] justify-center items-center flex text-[13px] font-[400] gap-1 hover:bg-[#e9515e3a] px-2 "
+                  className="flex h-[38px] items-center justify-center gap-1 px-2 text-[13px] font-[400] text-[#E9515E] hover:bg-[#e9515e3a] "
                   onClick={() => {
                     handleRemove(index);
                     setAdditionalFeesLength((init: any) => init - 1);
@@ -130,7 +128,7 @@ const AdditionalFees = ({}) => {
         {lisitingFormData?.additionalFees && (
           <button
             type="button"
-            className="font-normal text-[#AD842A] h-38 justify-start items-center text-13 flex gap-1 whitespace-nowrap  hover:bg-[#ad832a20] p-2 w-fit"
+            className="h-38 text-13 flex w-fit items-center justify-start gap-1 whitespace-nowrap p-2  font-normal text-[#AD842A] hover:bg-[#ad832a20]"
             onClick={() => {
               setAdditionalFeesLength((init: any) => init + 1);
             }}
@@ -138,7 +136,7 @@ const AdditionalFees = ({}) => {
             Add Another Fee
             <div className="w-[20px]">
               {" "}
-              <AiOutlinePlus size={20} className="w-[20px] aspect-square" />
+              <AiOutlinePlus size={20} className="aspect-square w-[20px]" />
             </div>
           </button>
         )}

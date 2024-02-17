@@ -1,0 +1,6 @@
+.messageBubble {
+  margin-top: 1.25rem;
+}
+.messageBubble + .messageBubble {
+  margin-top: 0.225rem;
+}

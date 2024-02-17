@@ -5,7 +5,7 @@ import Link from "next/link";
 import useViewport from "@/lib/custom-hooks/useViewport";
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { PgRoutesRenter } from "./links";
+import { PgRoutesLister, PgRoutesRenter } from "./links";
 import { HiBars3BottomRight } from "react-icons/hi2";
 import Button from "@/components/__shared/ui/button/Button";
 import { LowerCase } from "@/lib/utils/stringManipulation";
@@ -14,6 +14,9 @@ import { FreeMode, Mousewheel, Scrollbar } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/free-mode";
+import PaginationMenu from "./PaginationMenu";
+import { useDashboardMenuStore } from "@/store/navmenu/useDashboardMenuStore";
+import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 
 type PaginationTabProps = {
   active: string;
@@ -27,20 +30,22 @@ const PaginationTab = ({ active, icon, name, link }: PaginationTabProps) => {
     <Link href={link} draggable={false}>
       <PgItem
         type={LowerCase(active) === LowerCase(name) ? "active" : undefined}
-        className={`flex max-h-[52px] min-h-[40px] min-w-[160px] cursor-pointer flex-row items-center justify-center gap-[0.775rem] rounded-[.75rem] px-[1rem] py-[0.875rem] text-2xl font-semibold text-[#B0B0B0] transition-all lg:min-h-[85px] lg:max-w-none lg:flex-col ${name}`}
+        className={`flex h-fit min-w-[160px] cursor-pointer items-center justify-center gap-3 rounded-xl px-4 py-3 text-2xl font-semibold text-[#B0B0B0] transition-all lg:max-w-none lg:py-4 ${name}`}
         draggable={false}
       >
-        <div className="flex h-full w-full items-center justify-center">
-          {icon}
-        </div>{" "}
-        <p
-          className="unselectable cursor-pointer whitespace-nowrap text-lg capitalize 2xl:text-2xl"
-          unselectable="on"
-          onSelectCapture={() => false}
-          onMouseDown={() => false}
-        >
-          {name}
-        </p>
+        <div className="flex flex-row gap-3 lg:flex-col">
+          <div className="flex h-full w-full items-center justify-center">
+            {icon}
+          </div>
+          <p
+            className="unselectable cursor-pointer whitespace-nowrap text-lg capitalize"
+            unselectable="on"
+            onSelectCapture={() => false}
+            onMouseDown={() => false}
+          >
+            {name}
+          </p>
+        </div>
       </PgItem>
     </Link>
   );
@@ -55,16 +60,28 @@ const Pagination = () => {
   const scrollableRef = useRef<any>();
   // const scrollableRef = useRef<HTMLDivElement>(null);
 
+  const { setIsOpen } = useDashboardMenuStore();
+  const { currentRole } = useDashboardStore();
+
   useEffect(() => {
+    // sets the active tab
     if (pathname) {
       const currentURL = pathname;
-      PgRoutesRenter.forEach((r) => {
-        if (currentURL.includes(r?.link)) {
-          setActive(r?.name);
-        }
-      });
+      if (currentRole === "lister") {
+        PgRoutesLister.forEach((r) => {
+          if (currentURL.includes(r?.link)) {
+            setActive(r?.name);
+          }
+        });
+      } else if (currentRole === "renter") {
+        PgRoutesRenter.forEach((r) => {
+          if (currentURL.includes(r?.link)) {
+            setActive(r?.name);
+          }
+        });
+      }
     }
-  }, [pathname]);
+  }, [pathname, currentRole]);
 
   const handleScrollToRight = () => {
     const element: any = scrollableRef.current;
@@ -113,18 +130,38 @@ const Pagination = () => {
         scrollbar={false}
         mousewheel={true}
         modules={[FreeMode, Scrollbar, Mousewheel]}
-        className="mySwiper hidden h-fit w-full md:flex"
+        className="mySwiper invisible hidden h-fit w-full md:visible"
+        wrapperClass="justify-between"
       >
-        {PgRoutesRenter.map((r, index) => (
-          <SwiperSlide key={index} className="min-w-fit max-w-fit">
-            <PaginationTab
-              name={r?.name}
-              active={active}
-              icon={r?.icon}
-              link={r?.link}
-            />
-          </SwiperSlide>
-        ))}
+        {currentRole === "renter" &&
+          PgRoutesRenter.map(
+            (r, index) =>
+              index < 7 && (
+                <SwiperSlide key={index} className="min-w-fit max-w-fit">
+                  <PaginationTab
+                    name={r?.name}
+                    active={active}
+                    icon={r?.icon}
+                    link={r?.link}
+                  />
+                </SwiperSlide>
+              ),
+          )}
+
+        {currentRole === "lister" &&
+          PgRoutesLister.map(
+            (r, index) =>
+              index < 7 && (
+                <SwiperSlide key={index} className="min-w-fit max-w-fit">
+                  <PaginationTab
+                    name={r?.name}
+                    active={active}
+                    icon={r?.icon}
+                    link={r?.link}
+                  />
+                </SwiperSlide>
+              ),
+          )}
       </Swiper>
 
       {/* {!atEnd && (
@@ -137,17 +174,24 @@ const Pagination = () => {
           <MdKeyboardArrowRight color="white" size={24} />
         </button>
       )} */}
-      <Button className="relative bottom-1.5 hidden h-full w-28 items-center justify-center rounded-xl bg-[#45808B] px-4 py-3 text-white md:flex">
-        <div className="flex flex-col items-center gap-3">
+      <Button
+        className="hidden h-full w-16 items-center justify-center rounded-xl bg-primary-200 px-4 py-3 text-white md:flex lg:h-24 lg:min-w-unit-16 lg:px-2"
+        onClick={() => setIsOpen(true)}
+      >
+        <div className="flex items-center justify-center">
           <HiBars3BottomRight size={25} />
-          <p className="text-lg font-medium 2xl:text-2xl">More</p>
         </div>
       </Button>
-      <button className="relative bottom-1 ml-auto mt-2 h-max w-fit items-center justify-center rounded-xl border border-primary-800 px-3 py-2 text-primary-800 md:hidden">
+      <button
+        className="relative bottom-1 ml-auto mt-2 h-max w-fit items-center justify-center rounded-xl border border-primary-800 px-3 py-2 text-primary-800 md:hidden"
+        onClick={() => setIsOpen(true)}
+      >
         <div className="flex flex-col items-center gap-3">
           <HiBars3BottomRight size={25} />
         </div>
       </button>
+
+      <PaginationMenu />
     </Root>
   );
 };

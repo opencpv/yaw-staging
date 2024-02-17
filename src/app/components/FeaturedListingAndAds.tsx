@@ -30,10 +30,10 @@ const FeaturedListingAndAds = (props: Props) => {
     supabase
       .from("standard_template")
       .select(
-        "id, property_name, property_id, description, monthly_amount, city"
+        "id, property_name, property_id, description, monthly_amount, city",
       )
       .order("created_at", fetchOrderRule()),
-    revalidationRule()
+    revalidationRule(),
   );
 
   return (
@@ -43,16 +43,18 @@ const FeaturedListingAndAds = (props: Props) => {
       <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-8 lg:items-start">
         {/* Shows when number of listings is less than 10 */}
         {listings && listings.length <= 9 ? (
-          <div className="col-span-6 grid gap-5 grid-cols-1 sm:grid-cols-2 min-[950px]:max-lg:grid-cols-3 lg:grid-cols-2 min-[1180px]:grid-cols-3">
+          <div className="col-span-6 grid grid-cols-1 gap-5 sm:grid-cols-2 min-[950px]:max-lg:grid-cols-3 lg:grid-cols-2 min-[1180px]:grid-cols-3">
             <FetchingStates
               data={listings}
               error={error}
               isLoading={isLoading}
               isValidating={isValidating}
               isLoadingComponent={<SkeletonListing count={3} />}
-              errorComponent={<FetchErrorMessage specificData="featured listing" />}
+              errorComponent={
+                <FetchErrorMessage specificData="featured listing" />
+              }
               noDataMessageComponent={
-                <p className="mt-4 italic text-center">
+                <p className="mt-4 text-center italic">
                   There are no properties yet.
                 </p>
               }
@@ -61,7 +63,10 @@ const FeaturedListingAndAds = (props: Props) => {
               return (
                 <ListingCard
                   key={listing.id}
-                  href={`/properties/${listing.property_id}`}
+                  href={`/properties/${listing.property_id}?property_name=${listing.propertyName}&city=${listing.city}&price=${listing.price}&payment_structure=${listing.paymentStructure}&amount_per_month=${listing.monthlyAmount}&rating=${listing.ratingCount}&property_description=${listing.propertyDescription}`.replaceAll(
+                    " ",
+                    "_",
+                  )}
                   propertyName={listing.property_name as string}
                   city={listing.city as string}
                   images={images} // TODO: check database
@@ -81,7 +86,7 @@ const FeaturedListingAndAds = (props: Props) => {
         ) : (
           <div className="relative col-span-6 pb-5">
             {/* Shows when number of listings is more than 9 */}
-            <div className="relative w-full h-fit">
+            <div className="relative h-fit w-full">
               <FetchingStates
                 data={listings}
                 error={error}
@@ -93,7 +98,7 @@ const FeaturedListingAndAds = (props: Props) => {
                   </div>
                 }
                 noDataMessageComponent={
-                  <p className="mt-4 italic text-center">
+                  <p className="mt-4 text-center italic">
                     There are no properties yet.
                   </p>
                 }
@@ -102,7 +107,10 @@ const FeaturedListingAndAds = (props: Props) => {
                 items={listings?.map((listing) => (
                   <ListingCard
                     key={listing.id}
-                    href={`/properties/${listing.property_id}`}
+                    href={`/properties/${listing.property_id}?property_name=${listing.propertyName}&city=${listing.city}&price=${listing.price}&payment_structure=${listing.paymentStructure}&amount_per_month=${listing.monthlyAmount}&rating=${listing.ratingCount}&property_description=${listing.propertyDescription}`.replaceAll(
+                      " ",
+                      "_",
+                    )}
                     propertyName={listing.property_name as string}
                     city={listing.city as string}
                     propertyDescription={listing.description as string}
@@ -124,13 +132,9 @@ const FeaturedListingAndAds = (props: Props) => {
         {/* Ads */}
         <AdsSliderColumn />
       </div>
-      <ArrowLink
-        href="/properties"
-        text="Show all"
-        color="#202457"
-      />
+      <ArrowLink href="/properties" text="Show all" color="#202457" />
       {/* Ads  mobile*/}
-      <section className="section w-full h-fit lg:hidden">
+      <section className="section h-fit w-full lg:hidden">
         <SliderWide
           autoplay
           pagination

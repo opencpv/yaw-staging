@@ -34,22 +34,25 @@ export function CustomDatePicker({
   }, []);
 
   return (
-    <div className="flex flex-col text-[#6A6968] text-[1rem] font-[400] gap-[0.9375rem] w-full">
+    <div className="flex w-full flex-col gap-[0.9375rem] text-[1rem] font-[400] text-[#6A6968]">
       <label htmlFor="">{label}</label>
       <Popover>
         <PopoverTrigger asChild>
           <Button
             variant={"outline"}
             className={cn(
-              "w-full justify-start text-left font-normal h-[52px]",
-              !date && "text-muted-foreground"
+              "h-[52px] w-full justify-start text-left font-normal",
+              !date && "text-muted-foreground",
             )}
           >
             <CalendarIcon className="mr-2 h-4 w-4" />
             {date ? format(date, "PPP") : <span>DD/MM/YYYY</span>}
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-full z-[1001] bg-white p-0" align="start">
+        <PopoverContent
+          className="z-[1001] w-full bg-[#fefefe] p-0"
+          align="start"
+        >
           <Calendar
             mode="single"
             selected={date}

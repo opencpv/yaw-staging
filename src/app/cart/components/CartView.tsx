@@ -24,17 +24,17 @@ const CartView = () => {
     item_index: number;
   }) => {
     return (
-      <div className="w-full border-[1px] rounded-md py-5 px-3 mb-6">
-        <div className="flex justify-between items-center">
-          <div className="flex gap-4 items-center">
-            <div className="flex items-center justify-center h-20 w-20 bg-[#027F7C] rounded-md">
+      <div className="mb-6 w-full rounded-md border-[1px] px-3 py-5">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <div className="flex h-20 w-20 items-center justify-center rounded-md bg-[#027F7C]">
               <CaCartItem />
             </div>
             <div>
-              <p className="font-semibold mb-2">{item.name}</p>
-              <p className="text-[#8A8A8A] mb-2">GHS {item.cost}</p>
+              <p className="mb-2 font-semibold">{item.name}</p>
+              <p className="mb-2 text-[#8A8A8A]">GHS {item.cost}</p>
               {item.isQuantityChangable ? (
-                <div className="flex gap-4 items-center">
+                <div className="flex items-center gap-4">
                   <p className="">Qty</p>
                   <DropDown item={item} item_index={item_index} />
                 </div>
@@ -43,7 +43,7 @@ const CartView = () => {
           </div>
           <div className="flex items-center ">
             {item.date ? (
-              <p className="hidden lg:block px-6  text-center mx-4 font-semibold  bg-[#FBE9C8] py-2 rounded-xl">
+              <p className="mx-4 hidden rounded-xl  bg-[#FBE9C8] px-6 py-2  text-center font-semibold lg:block">
                 {item.date}
               </p>
             ) : null}
@@ -55,7 +55,7 @@ const CartView = () => {
           </div>
         </div>
         {item.date ? (
-          <p className="lg:hidden text-center mx-8 mt-6 font-semibold bg-[#FBE9C8] py-2 rounded-xl">
+          <p className="mx-8 mt-6 rounded-xl bg-[#FBE9C8] py-2 text-center font-semibold lg:hidden">
             {item.date}
           </p>
         ) : null}
@@ -73,7 +73,7 @@ const CartView = () => {
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
         <button
-          className="flex items-center gap-2 bg-[#F1F1F1]  rounded-full py-2 px-4"
+          className="flex items-center gap-2 rounded-full  bg-secondary-50 px-4 py-2"
           aria-label="modify item quantity"
         >
           <p className="text-[10px]">{item.quantity}</p>
@@ -82,7 +82,7 @@ const CartView = () => {
       </DropdownMenu.Trigger>
       <DropdownMenu.Portal>
         <DropdownMenu.Content
-          className="bg-[#F1F1F1] py-2 px-8 rounded-xl text-[10px]"
+          className="rounded-xl bg-secondary-50 px-8 py-2 text-[10px]"
           sideOffset={5}
         >
           {Array.from(Array(12).keys())
@@ -104,14 +104,12 @@ const CartView = () => {
   );
 
   return (
-    <section
-      className={`max-w-[1024px] mx-auto px-4 lg:px-0 py-6 ${openSans.className}`}
-    >
-      <h1 className={`text-[20px] mb-8`}>My Cart</h1>
+    <section className={`mx-auto max-w-[1024px] px-4 py-6 lg:px-0`}>
+      <h1 className={`mb-8 text-[20px]`}>My Cart</h1>
       <div className="flex justify-end">
         {/* clear cart button */}
         <button
-          className="text-right text-[#E32636] mb-8"
+          className="mb-8 text-right text-[#E32636]"
           onClick={() => {
             clearCart();
           }}
@@ -130,27 +128,27 @@ const CartView = () => {
 
         <div className="w-full">
           <p className="mb-4">Discount</p>
-          <div className="flex gap-2 mb-16">
+          <div className="mb-16 flex gap-2">
             <input
               type="text"
-              className="border-[1px] flex-auto text-[#AD842A] uppercase px-4 rounded-sm  outline-none"
+              className="flex-auto rounded-sm border-[1px] px-4 uppercase text-[#AD842A]  outline-none"
             />
-            <button className="px-10 py-4 w-fit text-[#AD842A] border-2 border-[#AD842A] rounded-md">
+            <button className="w-fit rounded-md border-2 border-[#AD842A] px-10 py-4 text-[#AD842A]">
               Apply
             </button>
           </div>
-          <div className="flex justify-between items-center px-8 py-3 bg-[#F5F5F5] mb-4">
+          <div className="mb-4 flex items-center justify-between bg-[#F5F5F5] px-8 py-3">
             <p className="font-semibold">Subtotal</p>
-            <p className="font-semibold text-[20px]">
+            <p className="text-[20px] font-semibold">
               GHS {getTotalPrice(items)}
             </p>
           </div>
-          <div className="flex justify-between items-center text-[13px] px-8 py-3 text-[#545454] mb-4">
+          <div className="mb-4 flex items-center justify-between px-8 py-3 text-[13px] text-[#545454]">
             <p className="">Items</p>
             <p className="">{items.length}</p>
           </div>
 
-          <button className="text-white font-semibold py-4 bg-[#DDB771] rounded-md w-full">
+          <button className="w-full rounded-md bg-[#DDB771] py-4 font-semibold text-white">
             Checkout
           </button>
         </div>
