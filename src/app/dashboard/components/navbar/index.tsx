@@ -15,6 +15,7 @@ import { IoIosCloseCircle } from "react-icons/io";
 import { useRef, useState } from "react";
 import Loader from "@/components/__shared/loader/Loader";
 import { useDashboardMenuStore } from "@/store/navmenu/useDashboardMenuStore";
+import Avatar from "@/components/__shared/ui/Avatar";
 
 const Navbar = () => {
   const { icons } = useAssets();
@@ -59,13 +60,7 @@ const Navbar = () => {
           {user?.avatar_url == undefined ? (
             <Loader />
           ) : (
-            <Image
-              src={user?.avatar_url}
-              alt={user?.full_name}
-              width={50}
-              height={50}
-              className="h-[25px] w-[25px] max-w-[50px] shrink-0 rounded-full xs:h-[50px] xs:w-[50px]"
-            />
+            <Avatar image={user?.avatar_url} name={user?.full_name} />
           )}
         </div>
       </Root>

@@ -11,6 +11,8 @@ import Share from "./ui/share/Share";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
 import ButtonHireUs from "./ui/button/ButtonHireUs";
 import { useHideDocumentScrollBar } from "@/lib/custom-hooks/useWindowEvents";
+import Avatar from "./ui/Avatar";
+import { useAppStore } from "@/store/dashboard/AppStore";
 
 const Navbar = (props: any) => {
   const pathname = usePathname();
@@ -19,6 +21,7 @@ const Navbar = (props: any) => {
   const [locationOrigin, setLocationOrigin] = useState<string>("");
   // const [toggle, setToggle] = useState(false)
   const { toggle, setToggle } = useMenuStore();
+  const { user } = useAppStore();
 
   useHideDocumentScrollBar(toggle);
 
@@ -49,7 +52,7 @@ const Navbar = (props: any) => {
   return (
     <>
       <nav
-        className={`no-print z-40 w-full px-8 py-3 ${
+        className={`no-print z-40 w-full px-3 py-3 sm:px-8 ${
           props.isMenuOpen && "absolute"
         } ${
           isNotTargetPage
@@ -60,11 +63,6 @@ const Navbar = (props: any) => {
         } top-0 bg-primary-500`}
       >
         <div className="flex items-center justify-between">
-          {/* <Menu
-            isOpen={toggle}
-            layout
-            // toggleMenu={() => { setToggle(false) }}
-          /> */}
           <Logo />
           <div className="flex w-full items-center justify-end md:gap-[31px] lg:gap-[73px]">
             {!pathname?.includes("/properties/") ? (
@@ -79,14 +77,19 @@ const Navbar = (props: any) => {
                 />
               </div>
             )}
-            {/* Hamburger button */}
-            <button
-              onClick={() => {
-                setToggle(true);
-              }}
-            >
-              <Image src={icons.Hamburger} alt="menu" />
-            </button>
+            <div className="flex items-center gap-5">
+              {user?.avatar_url !== undefined && (
+                <Avatar image={user?.avatar_url} name={user?.full_name} />
+              )}
+              {/* Hamburger button */}
+              <button
+                onClick={() => {
+                  setToggle(true);
+                }}
+              >
+                <Image src={icons.Hamburger} alt="menu" />
+              </button>
+            </div>
           </div>
         </div>
       </nav>
