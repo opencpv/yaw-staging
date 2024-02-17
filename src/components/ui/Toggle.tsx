@@ -4,7 +4,7 @@ import React from "react";
 type Props = {
   label?: string;
   isSelected?: boolean;
-  onValueChange?: () => void;
+  onValueChange?: (isSelected:  boolean) => void;
 };
 
 const Toggle = ({ label, isSelected, onValueChange }: Props) => {

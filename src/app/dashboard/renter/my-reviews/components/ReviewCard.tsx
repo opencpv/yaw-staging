@@ -7,6 +7,7 @@ import ReviewStarsFixed from "./ReviewStarsFixed";
 import CustomTextAreaInput from "@/app/components/CustomTextAreaInput";
 import CaThumbsUpYellow from "./icons/CaThumbsUpYellow";
 import CaThumbsDown from "./icons/CaThumbsDown";
+import useReviews from "./useReviews";
 
 type Props = {
   data: any;
@@ -16,9 +17,9 @@ type Props = {
 };
 
 export default function ReviewCard({ data, variant, property, index }: Props) {
-  const [reply, setReply] = useState(false);
   const [edit, setEdit] = useState(false);
   const [editInput, setInput] = useState();
+  const { replyReview, reply, setReply, updateReview } = useReviews();
 
   useEffect(() => {
     const textareaEle = document.getElementById(`textarea-${index}`);
@@ -47,15 +48,16 @@ export default function ReviewCard({ data, variant, property, index }: Props) {
   }, [edit, data?.review]);
 
   return (
-    <div className="w-full flex flex-col items-start gap-4   pb-4 max-w-[1103px] ">
-      <div className="flex flex-col items-start gap-4 border-l-4 border-l-[#00974A] pl-4 border-b-[1px] border-b-[#E9ECEF] pb-4 w-full">
-        <div className="flex gap-4 justify-start items-center w-full">
+    <div className="flex w-full max-w-[1103px] flex-col items-start  pl-4  gap-4 border-b-1 border-l-[#00974A] border-l-4 ">
+      <div className="flex w-full flex-col items-start gap-4   pl-4">
+        <div className="flex w-full items-center justify-start gap-4">
           <div
-            className={`relative w-full h-full  ${
+            className={`relative h-full w-full  ${
               property
-                ? "aspect-square lg:aspect-[235/145] max-w-[100px] lg:max-w-[235px] rounded-2xl"
-                : "max-w-[100px] aspect-square rounded-full"
-            } overflow-hidden `}>
+                ? "aspect-square max-w-[100px] rounded-2xl lg:aspect-[235/145] lg:max-w-[235px]"
+                : "aspect-square max-w-[100px] rounded-full"
+            } overflow-hidden `}
+          >
             <Image
               fill
               alt="Person image"
@@ -63,38 +65,35 @@ export default function ReviewCard({ data, variant, property, index }: Props) {
               objectFit="cover"
             />
           </div>
-          <div className="flex flex-col gap-2 w-full">
-            <p className="text-[1.25rem] lg:text-[1.5625rem] font-semibold">
-              {data?.name}
-            </p>
+          <div className="flex w-full flex-col gap-1 2xl:gap-2">
+            <h3 className="">{data?.name}</h3>
             <p>{data?.date}</p>
             {<ReviewStarsFixed rating={data?.ratings} />}{" "}
           </div>
         </div>
 
-        {data?.recommended == "yes" ? <CaThumbsUpYellow/> : <CaThumbsDown/>}
-
-
         {edit && (
-          <div className="flex gap-5 w-full h-full">
+          <div className="flex h-full w-full gap-5">
             <textarea
               id={`textarea-${index}`}
-              className="w-full border-[1px] overflow-y-hidden border-[#E6E6E6] px-[0.94rem] text-[#333]"
-              defaultValue={editInput}></textarea>
+              className="w-full overflow-y-hidden border-[1px] border-[#E6E6E6] p-[0.94rem] text-[#333]"
+              defaultValue={editInput}
+            ></textarea>
           </div>
         )}
         {!edit && (
           <div>
-            <p className="text-[#333] leading-[23.04px]">{data?.review}</p>{" "}
+            <p className="leading-[23.04px] text-[#333]">{data?.review}</p>{" "}
           </div>
         )}
 
         {variant != "reviewers-say" && (
-          <div className="flex gap-2">
+          <div className="flex gap-2 pb-4">
             <ReviewButton
               variant={edit ? "update" : "edit"}
               onClick={() => {
                 !edit ? setEdit(true) : setEdit(false);
+                edit && updateReview()
               }}
             />
             <DeleteModal />
@@ -108,31 +107,32 @@ export default function ReviewCard({ data, variant, property, index }: Props) {
         )}
 
         {variant == "reviewers-say" && reply && (
-          <div className="flex gap-5 w-full ">
-            <input
-              className="rounded-md border-[1px] border-[#E6E6E6] h-[52px] px-[0.94rem] w-full max-w-[440px]"
+          <div className="flex w-full items-end gap-5">
+            <textarea
+              className="h-auto min-h-[152px] w-full max-w-[640px] rounded-md border-[1px] border-[#E6E6E6] p-[0.94rem]"
               placeholder="Type your response here"
             />
             <div>
-              <ReviewButton variant="reply" onClick={() => setReply(false)} />
+              <ReviewButton variant="reply" onClick={() => replyReview()} />
             </div>{" "}
           </div>
         )}
       </div>
 
       {variant == "reviewers-say" && (
-        <div className="flex flex-col gap-[1.3125rem] items-start justify-center border-b-[1px] border-b-[#E9ECEF] pb-4 pl-2 ">
+        <div className="flex flex-col items-start justify-center gap-[1.3125rem] border-b-[1px] border-b-[#E9ECEF] pb-4 pl-2 ">
           {data?.replies && (
             <div className="flex items-center gap-1">
-              <p className="text-[#073B3A] font-semibold">Replies</p>
+              <p className="font-semibold text-[#073B3A]">Response </p>
               <CaREviewsReply2 />
             </div>
           )}
-          {data?.replies?.map((r : any, index : number) => (
+          {data?.replies?.map((r: any, index: number) => (
             <div
-              className="flex gap-2 items-center justify-start    w-full"
-              key={index}>
-              <div className="relative w-full h-full aspect-square max-w-[50px] overflow-hidden rounded-full">
+              className="flex w-full items-center justify-start    gap-2"
+              key={index}
+            >
+              <div className="relative aspect-square h-full w-full max-w-[50px] overflow-hidden rounded-full">
                 <Image
                   fill
                   alt="Person image"
