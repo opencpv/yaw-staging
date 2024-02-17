@@ -15,6 +15,7 @@ export const useToastDisclosure = () => {
       theme: "light",
       progressStyle: { background: "#F1B346" },
       bodyStyle: { paddingRight: "2.5rem" },
+
       style: {
         marginRight: "auto",
         marginLeft: "auto",
@@ -47,6 +48,7 @@ export const useToastDisclosureVariant1 = () => {
       pauseOnHover: true,
       draggable: false,
       progress: undefined,
+
       theme: "dark",
       progressStyle: { background: "#396261" },
       bodyStyle: { paddingRight: "2.5rem", },
@@ -70,6 +72,7 @@ export const useSelectDisclosure = <T extends string>(defaultOption: T) => {
 
   return { value, setValue, handleSelectionChange };
 };
+
 
 export const usePhoneInputDisclosure = () => {
   const [phone, setPhone] = React.useState<E164Number>();
