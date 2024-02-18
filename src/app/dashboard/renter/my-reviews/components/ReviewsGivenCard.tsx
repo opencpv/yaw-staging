@@ -16,7 +16,12 @@ type Props = {
   index: number;
 };
 
-export default function ReviewCard({ data, variant, property, index }: Props) {
+export default function ReviewsGivenCard({
+  data,
+  variant,
+  property,
+  index,
+}: Props) {
   const [edit, setEdit] = useState(false);
   const [editInput, setInput] = useState();
   const { replyReview, reply, setReply, updateReview } = useReviews();
@@ -29,6 +34,11 @@ export default function ReviewCard({ data, variant, property, index }: Props) {
         textareaEle.style.height = "auto";
         textareaEle.style.height = `${textareaEle.scrollHeight}px`;
         // setInput(textareaEle.value);
+        textareaEle.focus();
+        if (textareaEle instanceof HTMLTextAreaElement) {
+          textareaEle.selectionStart = textareaEle.value.length;
+          textareaEle.selectionEnd = textareaEle.value.length;
+        }
       }
     };
 
@@ -48,8 +58,8 @@ export default function ReviewCard({ data, variant, property, index }: Props) {
   }, [edit, data?.review]);
 
   return (
-    <div className="flex w-full max-w-[1103px] flex-col items-start  pl-4  gap-4 border-b-1 border-l-[#00974A] border-l-4 ">
-      <div className="flex w-full flex-col items-start gap-4   pl-4">
+    <div className="flex w-full  flex-col items-start  gap-4  border-b-1  py-3 ">
+      <div className="flex w-full flex-col items-start gap-4  border-l-4 border-l-[#00974A]  pl-4">
         <div className="flex w-full items-center justify-start gap-4">
           <div
             className={`relative h-full w-full  ${
@@ -87,46 +97,27 @@ export default function ReviewCard({ data, variant, property, index }: Props) {
           </div>
         )}
 
-        {variant != "reviewers-say" && (
+        {!data.replies && (
           <div className="flex gap-2 pb-4">
             <ReviewButton
               variant={edit ? "update" : "edit"}
               onClick={() => {
                 !edit ? setEdit(true) : setEdit(false);
-                edit && updateReview()
+                edit && updateReview();
               }}
             />
             <DeleteModal />
           </div>
         )}
-
-        {variant == "reviewers-say" && !reply && (
-          <div>
-            <ReviewButton variant="respond" onClick={() => setReply(true)} />
-          </div>
-        )}
-
-        {variant == "reviewers-say" && reply && (
-          <div className="flex w-full items-end gap-5">
-            <textarea
-              className="h-auto min-h-[152px] w-full max-w-[640px] rounded-md border-[1px] border-[#E6E6E6] p-[0.94rem]"
-              placeholder="Type your response here"
-            />
-            <div>
-              <ReviewButton variant="reply" onClick={() => replyReview()} />
-            </div>{" "}
-          </div>
-        )}
       </div>
 
-      {variant == "reviewers-say" && (
-        <div className="flex flex-col items-start justify-center gap-[1.3125rem] border-b-[1px] border-b-[#E9ECEF] pb-4 pl-2 ">
-          {data?.replies && (
-            <div className="flex items-center gap-1">
-              <p className="font-semibold text-[#073B3A]">Response </p>
-              <CaREviewsReply2 />
-            </div>
-          )}
+      {data.replies && (
+        <div className="flex flex-col items-start justify-center gap-[1.3125rem] pb-4 pl-1 pt-2">
+          <div className="flex items-center gap-1">
+            <p className="font-semibold text-[#073B3A]">Response </p>
+            <CaREviewsReply2 />
+          </div>
+
           {data?.replies?.map((r: any, index: number) => (
             <div
               className="flex w-full items-center justify-start    gap-2"

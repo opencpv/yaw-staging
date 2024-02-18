@@ -61,6 +61,7 @@ const OptionFilterTabs = (
               : "data-[selected=true]:bg-primary-200",
             radius === "small" ? "rounded-lg" : "rounded-full",
             padding === "wide" && "px-20",
+            "py-5",
             cursorAnimation && "data-[selected=true]:bg-transparent",
           ],
           tabContent: [

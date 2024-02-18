@@ -21,37 +21,45 @@ export default function MyReviews() {
   return (
     <div className="flex w-full flex-col gap-4">
       <h2 className="">My Reviews</h2>
-      <div className="flex items-center justify-start gap-5">
-        <OptionFilterTabs
-          options={["Reviews Received", "Reviews Given"]}
-          selectedKey={activePage}
-          onSelectionChange={(selectedOption) => setActivePage(selectedOption)}
-          radius="large"
-          padding="wide"
-          cursorAnimation
-        />
-        {activePage == "reviews given" && filter !== "none" && (
+      <div className="flex flex-col gap-2">
+        <div className="flex flex-col items-start justify-start gap-5 lg:flex-row">
+
           <OptionFilterTabs
-            options={["properties", "property owners", "service-pros"]}
-            selectedKey={filter}
-            onSelectionChange={(selectedOption) => setFilter(selectedOption)}
+            options={["Reviews Received", "Reviews Given"]}
+            selectedKey={activePage}
+            onSelectionChange={(selectedOption) =>
+              setActivePage(selectedOption)
+            }
             radius="large"
             padding="wide"
             cursorAnimation
           />
-        )}
-      </div>
+        </div>
 
-      {activePage == "reviews given" && (
-        <Toggle
-          label="Filter"
-          isSelected={filter !== "none"}
-          onValueChange={(state: any) => {
-            state && setFilter("properties");
-            !state && setFilter("none");
-          }}
-        />
-      )}
+        <div className="flex flex-col items-start gap-5 md:flex-row lg:items-center">
+          {activePage == "reviews given" && (
+            <Toggle
+              label="View By"
+              isSelected={filter !== "none"}
+              onValueChange={(state: any) => {
+                state && setFilter("any");
+                !state && setFilter("none");
+              }}
+            />
+          )}
+
+          {activePage == "reviews given" && filter !== "none" && (
+            <OptionFilterTabs
+              options={["properties", "property owners", "service-pros"]}
+              selectedKey={filter}
+              onSelectionChange={(selectedOption) => setFilter(selectedOption)}
+              radius="large"
+              padding="wide"
+              cursorAnimation
+            />
+          )}
+        </div>
+      </div>
       {activePage == "reviews received" && <ReviewersSay />}
       {filter == "none" && <AllReviewsReceived />}
       {filter == "properties" && <PropertiesReview />}
