@@ -1,6 +1,6 @@
 import { useState } from "react";
 import NoReviews from "./NoReviews";
-import ReviewCard from "./ReviewCard";
+import ReviewCard from "./ReviewsGivenCard";
 import { mockReviewData } from "./content";
 import SlideEnter from "@/app/components/listing-form/components/SlideEnter";
 import DelayEnter from "@/components/DelayEnter";

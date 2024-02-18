@@ -6,6 +6,7 @@ function useReviews() {
   const { onOpen: toastOpen } = useToastDisclosureVariant1();
 
   const [filter, setFilter] = useState<any>('none')
+
   const replyReview = () => {
     setReply(false);
     toastOpen('Your reply has been sent succesfully', 'success')
@@ -15,7 +16,11 @@ function useReviews() {
     setReply(false);
     toastOpen('Your review has been updated succesfully', 'success')
   };
-  return { replyReview, setReply, reply, filter, setFilter, updateReview };
+
+  const deleteReview = () => {
+    toastOpen('Your review has been deleted', 'success')
+  };
+  return { replyReview, setReply, reply, filter, setFilter, updateReview, deleteReview };
 }
 
 export default useReviews;
