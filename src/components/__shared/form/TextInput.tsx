@@ -36,7 +36,7 @@ const TextInput = (
     <Input
       classNames={{
         label: cn(
-          `text-base text-neutral-500 mb-1.5 font-[400] ${
+          `text-base text-neutral-500 focus:outline-none mb-1.5 font-[400] ${
             props.required && `${style.required}`
           } ${labelClassName}`,
         ),
