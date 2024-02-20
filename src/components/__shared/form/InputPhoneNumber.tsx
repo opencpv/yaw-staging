@@ -11,7 +11,7 @@ type Props = {
   onCountryChange: (country: CountryCode | undefined) => void;
   onChange: (value: E164Number | undefined) => void;
   placeholder?: string;
-  onBlur: (e: any) => void;
+  onBlur?: (e: any) => void;
 };
 
 const InputPhoneNumber: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({

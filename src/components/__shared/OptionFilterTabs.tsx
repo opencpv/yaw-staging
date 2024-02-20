@@ -8,7 +8,7 @@ type Props = {
   /** You can use any case. The key is converted to lowercase Eg: ["First", "SECOND"] --> "first", "second" */
   options: string[];
   radius?: "large" | "small";
-  padding?: "small" | "wide";
+  padding?: "small" | "medium" | "wide";
   tabColor?: "transparent" | "colored";
   onSelectionChange: (key: React.Key) => void;
   variant?: "default" | "gradient" | "green1";
@@ -61,6 +61,7 @@ const OptionFilterTabs = (
               : "data-[selected=true]:bg-primary-200",
             radius === "small" ? "rounded-lg" : "rounded-full",
             padding === "wide" && "px-20",
+            padding === "medium" && "px-5 xs:px-14",
             "py-5",
             cursorAnimation && "data-[selected=true]:bg-transparent",
           ],

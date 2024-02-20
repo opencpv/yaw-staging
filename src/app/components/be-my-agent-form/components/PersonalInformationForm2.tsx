@@ -14,26 +14,40 @@ type Props = {};
 
 const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
   ({}, ref) => {
-    const [agentFormData, setagentFormData] =
+    const [agentFormData, setAgentFormData] =
       useLocalStorage<BeMyAgentFormType>("agent-form");
+
+    const handleOnChange = (name: any, value: any) => {
+      setAgentFormData({
+        ...agentFormData,
+        [name]: value,
+      });
+    };
 
     return (
       <Root>
         <div>
-          <p className={`${styles.title}  font-semibold`}>
-            Personal Information
-          </p>
+          <h2 className={styles.title}>Personal Information</h2>
         </div>
         <div className="grid grid-cols-2 gap-x-5 gap-y-5 pt-7">
-          <div className="col-span-3 lg:col-span-1 form-col w-full">
-            <TextFieldInput
+          <div className="form-col col-span-3 w-full lg:col-span-1">
+            {/* <TextFieldInput
               type="text"
               name="title"
               label="Title"
               placeholder="Enter your Title"
               onChange={(e) =>
-                setagentFormData({ ...agentFormData, title: e.target.value })
+                setAgentFormData({ ...agentFormData, title: e.target.value })
               }
+            /> */}
+            <CustomSelect
+              label="Title"
+              value={agentFormData?.title || "mrs"}
+              options={[
+                { name: "mr", value: "Mr" },
+                { name: "mrs", value: "Mrs" },
+              ]}
+              onChange={(value) => handleOnChange("title", value)}
             />
             <TextFieldInput
               type="text"
@@ -41,7 +55,7 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
               label="First Name"
               placeholder="Enter your first name"
               onChange={(e) =>
-                setagentFormData({
+                setAgentFormData({
                   ...agentFormData,
                   firstName: e.target.value,
                 })
@@ -53,28 +67,24 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
               label="Last Name"
               placeholder="Enter your last name"
               onChange={(e) =>
-                setagentFormData({ ...agentFormData, lastName: e.target.value })
+                setAgentFormData({ ...agentFormData, lastName: e.target.value })
               }
             />
             <CustomSelect
-              placeholder={agentFormData?.gender}
               label="Gender"
+              value={agentFormData?.gender || "female"}
               options={[
                 { name: "Male", value: "male" },
                 { name: "Female", value: "female" },
               ]}
-              onChange={(value) =>
-                setagentFormData({ ...agentFormData, gender: value })
-              }
+              onChange={(value) => handleOnChange("gender", value)}
             />
           </div>
-          <div className="col-span-3 lg:col-span-1  form-col">
+          <div className="form-col col-span-3 lg:col-span-1">
             <CustomDatePicker
               placeholderDate={agentFormData?.moveInDate}
               label="Desired Move In Date"
-              onChange={(value) =>
-                setagentFormData({ ...agentFormData, moveInDate: value })
-              }
+              onChange={(value) => handleOnChange("moveInDate", value)}
             />
             <SelectSearchInput
               data={LeaseData}
@@ -83,28 +93,23 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
               }
               label="Lease term"
               onChange={(value) => {
-                console.log(value);
-                setagentFormData({ ...agentFormData, leaseTerm: value });
+                handleOnChange("leaseTerm", value);
               }}
             />
             <CustomSelect
               label="Marital Status"
-              placeholder={
-                agentFormData?.maritalStatus || "Select marital status"
-              }
+              value={agentFormData?.maritalStatus || "single"}
               options={[
-                { name: "Single", value: "single" },
-                { name: "married", value: "married" },
+                { name: "single", value: "Single" },
+                { name: "married", value: "Married" },
               ]}
-              onChange={(value) =>
-                setagentFormData({ ...agentFormData, maritalStatus: value })
-              }
+              onChange={(value) => handleOnChange("maritalStatus", value)}
             />
           </div>
         </div>
       </Root>
     );
-  }
+  },
 );
 
 PersonalInformationForm2.displayName == "PersonalInformationForm2";
