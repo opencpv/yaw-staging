@@ -7,8 +7,10 @@ import CustomRadioInput from "@/app/components/CustomRadioInput";
 import { BeMyAgentFormType } from "./types";
 import { openSans } from "@/styles/font";
 import { ClientOnly } from "@/components/ui/ClientOnly";
+import CustomSelect from "../../CustomSelect";
+import styles from "./index.module.css";
 
-const FullNameAndRelationship = ({ index, city, neighbourhood }: any) => {
+const Location = ({ index, city, neighbourhood }: any) => {
   const [agentFormData, setagentFormData] = useLocalStorage<any>("agent-form");
   const locationArray = agentFormData?.locationArray || [];
 
@@ -30,8 +32,8 @@ const FullNameAndRelationship = ({ index, city, neighbourhood }: any) => {
   };
 
   return (
-    <div className="flex w-full flex-col gap-3 lg:flex-row">
-      <TFormDiv className={`w-full font-[400] capitalize text-[#6A6968]`}>
+    <div className="flex w-full max-w-lg flex-col gap-10">
+      {/* <TFormDiv className={`w-full font-[400] capitalize text-[#6A6968]`}>
         <label htmlFor="">City</label>
         <input
           type="text"
@@ -40,9 +42,27 @@ const FullNameAndRelationship = ({ index, city, neighbourhood }: any) => {
           placeholder="Enter city"
           onChange={(e) => handleInputChange(`city`, e.target.value)}
         />
-      </TFormDiv>
+      </TFormDiv> */}
+      <CustomSelect
+        label="City"
+        placeholder="Accra"
+        options={[
+          { name: "accra", value: "Accra" },
+          { name: "tema", value: "Tema" },
+        ]}
+        onChange={(val) => handleInputChange("city", val)}
+      />
+      <CustomSelect
+        label="Neighbourhood"
+        placeholder="Dansoman"
+        options={[
+          { name: "dansoman", value: "dansoman" },
+          { name: "osu", value: "Osu" },
+        ]}
+        onChange={(val) => handleInputChange("neighbourhood", val)}
+      />
 
-      <TFormDiv className={`w-full font-[400] capitalize text-[#6A6968]`}>
+      {/* <TFormDiv className={`w-full font-[400] capitalize text-[#6A6968]`}>
         <label htmlFor="">Neighbourhood</label>
 
         <input
@@ -52,7 +72,7 @@ const FullNameAndRelationship = ({ index, city, neighbourhood }: any) => {
           value={neighbourhood}
           onChange={(e) => handleInputChange(`neighbourhood`, e.target.value)}
         />
-      </TFormDiv>
+      </TFormDiv> */}
     </div>
   );
 };
@@ -80,13 +100,13 @@ const Applicants = ({}) => {
   return (
     <div>
       <div className="col-span-3 flex flex-col gap-2  lg:col-span-1">
-        <p className="text-[1.9375rem] font-semibold">Location</p>
+        <h2 className={styles.title}>Location</h2>
 
-        <div className={`${locationLength >= 1 ? "mt-5" : ""}`}>
+        <div className={`${locationLength >= 1 ? "mt-5" : null}`}>
           {Array.from({ length: locationLength }).map((_, index) => (
             <div key={index} className="mb-2">
               <ClientOnly>
-                <FullNameAndRelationship
+                <Location
                   key={index}
                   index={index}
                   city={agentFormData?.locationArray?.[index]?.city}

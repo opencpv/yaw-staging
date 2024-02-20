@@ -7,6 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { cn } from "@/lib/utils";
 
 type OptionTypes = {
   name: string;
@@ -18,6 +19,8 @@ type Props = {
   options: OptionTypes[];
   onChange: (value: any) => void;
   fadeText?: boolean;
+  className?: string;
+  value?: string;
 };
 
 const CustomSelect = ({
@@ -26,12 +29,18 @@ const CustomSelect = ({
   onChange,
   placeholder,
   fadeText,
+  value,
+  className,
 }: Props) => {
   return (
-    <Root className="w-full text-[#6A6968] ">
+    <Root className={cn("w-full text-[#6A6968]", className)}>
       <label>{label}</label>
-      <Select onValueChange={onChange}>
-        <SelectTrigger className={`w-full form-input capitalize ${fadeText && "text-[#B4B2AF]"}`}>
+      <Select onValueChange={onChange} value={value}>
+        <SelectTrigger
+          className={`form-input w-full capitalize focus:border-none focus:outline-accent-50 focus:ring-0 ${
+            fadeText && "text-[#B4B2AF]"
+          }`}
+        >
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
         <SelectContent className="z-[1001]">

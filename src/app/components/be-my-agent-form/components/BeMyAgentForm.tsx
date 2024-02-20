@@ -17,19 +17,21 @@ import Image from "next/image";
 import Location from "./Location";
 import { openSans } from "@/styles/font";
 import { ClientOnly } from "@/components/ui/ClientOnly";
+import Button from "@/components/__shared/ui/button/Button";
+import { BeMyAgentFormType } from "./types";
 
 const image = "/assets/images/agent-modal-image.jpeg";
 
 const views = [
+  <Location key={"property-information"} />,
   <ClientOnly key={"bes-describes"}>
     <BestDescribes infoText key={"bes-describes"} />
   </ClientOnly>,
   <ClientOnly key={"property-information"}>
     <PropertyInformation key={"property-information"} />
   </ClientOnly>,
-  <Location key={"property-information"} />,
-  <ClientOnly key={"utitilities"}>
-    <Utilities key={"utitilities"} />
+  <ClientOnly key={"utilities"}>
+    <Utilities key={"utilities"} />
   </ClientOnly>,
   <ClientOnly key={"features"}>
     <FeaturesAndAmenities key={"features"} />
@@ -37,14 +39,14 @@ const views = [
   <ClientOnly key={"personal-information"}>
     <PersonalInformationForm2 key={"personal-information"} />
   </ClientOnly>,
-  <ClientOnly key={"contact-informaiton"}>
-    <ContactInformationForm key={"contact-informaiton"} />
+  <ClientOnly key={"contact-information"}>
+    <ContactInformationForm key={"contact-information"} />
   </ClientOnly>,
   <ClientOnly key={"employment-information"}>
     <EmploymentInformationForm key={"employment-information"} />
   </ClientOnly>,
-  <ClientOnly key={"screenign"}>
-    <ScreeningAndOtherDetailsForm key={"screenign"} />
+  <ClientOnly key={"screening"}>
+    <ScreeningAndOtherDetailsForm key={"screening"} />
   </ClientOnly>,
 ];
 
@@ -53,16 +55,22 @@ type Props = {
 };
 
 export default function BeMyAgentForm({ setOpen }: Props) {
+  const [agentFormActiveSlide, setAgentFormActiveSlide] = useLocalStorage(
+    "agentFormActiveSlide",
+    { activeSlide: 0 },
+  );
+  const [agentFormData] = useLocalStorage<BeMyAgentFormType>("agent-form");
+
   const leaseRef = useRef<any>();
   const [progressValue, setProgressValue] = useState<number>(1);
-  const [activeSlide, setActiveSlide] = useState(0);
+  const [activeSlide, setActiveSlide] = useState(
+    agentFormActiveSlide.activeSlide ?? 0,
+  );
   const [firstSlide, setFirstSlide] = useState(true);
   const [lastSlide, setLastSlide] = useState(false);
   const [hideLeft, setHideLeft] = useState(false);
   const [hideRight, setHideRight] = useState(false);
   const [otp, setOtp] = useState(false);
-
-  const [agentFormData, setagentFormData] = useLocalStorage("agent-form", {});
 
   const scrollToTop = () => {
     if (leaseRef.current) {
@@ -110,20 +118,37 @@ export default function BeMyAgentForm({ setOpen }: Props) {
   };
   return (
     <Root
-      className={`flex  max-h-[90vh] flex-col justify-between`}
+      className={`flex max-h-[90vh] flex-col justify-between`}
       ref={leaseRef}
     >
       <div className="flex h-full w-full flex-col">
         <div className="flex flex-col gap-4">
-          <p className="w-full text-left font-semibold">Be My Agent</p>
+          <div className="flex items-center justify-between gap-5">
+            <h4 className="font-semibold">Be My Agent</h4>
+            <Button
+              color="white"
+              radius="full"
+              className="border px-5"
+              onClick={() => {
+                setOpen(false);
+                setAgentFormActiveSlide((prevData) => ({
+                  ...prevData,
+                  activeSlide,
+                  showContinueMessage: true,
+                }));
+              }}
+            >
+              Save & Exit
+            </Button>
+          </div>
 
           <div className="mt-0 w-full ">
             <Progress value={progressValue} />
           </div>
         </div>
-        <div className="my-10 flex h-full flex-col gap-10 lg:flex-row lg:gap-20">
+        <div className="mx-auto my-10 flex h-full w-full max-w-screen-sm flex-col gap-10 lg:max-w-screen-3xl lg:flex-row lg:gap-20">
           <div className="w-full lg:flex-[40%_0_0] lg:pr-10">
-            <div className="relative h-full min-h-[222px] w-full   overflow-hidden rounded-2xl ">
+            <div className="relative h-full min-h-[222px] w-full overflow-hidden rounded-2xl ">
               <Image
                 src={image}
                 alt="Be MY Agent Image"
@@ -152,25 +177,26 @@ export default function BeMyAgentForm({ setOpen }: Props) {
         className={`${
           hideLeft && hideRight
             ? "hidden"
-            : "relative z-[3000] grid w-full grid-cols-2 gap-1 border-t-[1px] border-t-[#C1C1C1] py-7 lg:flex lg:items-center lg:justify-end lg:px-7"
+            : "relative z-10 grid w-full grid-cols-2 gap-2 border-t py-7 lg:flex lg:items-center lg:justify-end lg:px-7"
         }`}
       >
         <NavigationButton
           className={` ${
             hideLeft && "hidden"
-          } col-span-1  rounded-lg border-[1px] border-[#AD842A] font-semibold text-[#AD842A]`}
+          } col-span-1  rounded-lg border border-accent-50 font-semibold text-accent-50`}
           onClick={handleBack}
         >
-          {firstSlide ? "Go back" : "Back"}
+          {firstSlide ? "Exit" : "Back"}
         </NavigationButton>
         <NavigationButton
           className={` ${
             hideRight && "hidden"
-          } col-span-1 rounded-lg  bg-[#DDB771] font-semibold text-white`}
+          } col-span-1 rounded-lg  bg-accent-50 font-semibold text-white`}
           onClick={handleForward}
         >
-          {firstSlide && "Next"}
-          {!firstSlide && !lastSlide && "Continue"}
+          {/* {firstSlide && "Next"}
+          {!firstSlide && !lastSlide && "Continue"} */}
+          Continue
           {lastSlide && "Submit"}
         </NavigationButton>
       </div>

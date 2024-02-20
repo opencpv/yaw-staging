@@ -8,34 +8,31 @@ import CustomCheckBoxes from "../../CustomCheckBoxes";
 import { ClientOnly } from "@/components/ui/ClientOnly";
 
 export default function PropertyRequirements() {
-  const [agentFormData, setagentFormData] = useLocalStorage<any>(
-    "agent-form",
-    {}
-  );
+  const [agentFormData, setAgentFormData] = useLocalStorage<any>("agent-form");
   const handleOnChange = (name: any, value: any) => {
-    setagentFormData({
+    setAgentFormData({
       ...agentFormData,
       [name]: value,
     });
   };
   return (
     <>
-      <Root className=" flex flex-col w-full  h-full items-center justify-center ">
-        <div className="flex flex-col items-center justify-center w-full gap-8">
-          <div className="grid grid-cols-2 w-full">
-            <p className={`${styles.title} col-span-2`}>
+      <Root className=" flex h-full w-full  flex-col items-center justify-center ">
+        <div className="flex w-full flex-col items-center justify-center gap-8">
+          <div className="grid w-full grid-cols-2">
+            <h2 className={`col-span-2 ${styles.title}`}>
               Property Requirements
-            </p>
+            </h2>
           </div>
-          <div className="grid grid-cols-2 gap-x-7 w-full">
+          <div className="grid w-full grid-cols-2 gap-x-7">
             <div className="col-span-1 flex flex-col gap-6">
               <div className="flex flex-col gap-4">
-                <p className="text-[1.25rem[ font-semibold">Price Range</p>
+                <h3>Price Range</h3>
                 <TextFieldInput
-                  type="number"
                   label="Minimum"
                   name="priceRangeMinimum"
                   placeholder=""
+                  pattern="[0-9]"
                   onChange={(e) =>
                     handleOnChange("priceRangeMinimum", e.target.value)
                   }
@@ -43,31 +40,29 @@ export default function PropertyRequirements() {
               </div>
 
               <div className="flex flex-col gap-4">
-                <p className="text-[1.25rem[ font-semibold">Bed</p>
+                <h3>Bed</h3>
                 <TextFieldInput
-                  type="number"
                   label="Minimum"
                   name="bedMinimum"
                   placeholder=""
+                  pattern="[0-9]"
                   onChange={(e) => handleOnChange("bedMinimum", e.target.value)}
                 />
               </div>
               <div className="flex flex-col gap-4">
-                <p className="text-[1.25rem[ font-semibold">Bathroom</p>
+                <h3>Bathroom</h3>
                 <TextFieldInput
-                  type="number"
                   label="Minimum"
                   name="bathroomMinimum"
                   placeholder=""
+                  pattern="[0-9]"
                   onChange={(e) =>
                     handleOnChange("bathroomMimum", e.target.value)
                   }
                 />
               </div>
               <div className="flex flex-col gap-4">
-                <p className="text-[1.25rem[ font-semibold">
-                  Rent Advance Options
-                </p>
+                <h3>Rent Advance Options</h3>
                 <ClientOnly>
                   <CustomCheckBoxes
                     onChange={(value: any) =>
@@ -87,14 +82,12 @@ export default function PropertyRequirements() {
             </div>
             <div className="col-span-1 flex flex-col gap-6">
               <div className="flex flex-col gap-4">
-                <p className="text-[1.25rem[ font-semibold invisible">
-                  invisible
-                </p>{" "}
+                <h3 className="invisible">invisible</h3>{" "}
                 <TextFieldInput
-                  type="number"
                   label="Maximum"
                   name="priceRangeMaximum"
                   placeholder=""
+                  pattern="[0-9]"
                   onChange={(e) =>
                     handleOnChange("priceRangeMaximum", e.target.value)
                   }
@@ -102,27 +95,23 @@ export default function PropertyRequirements() {
               </div>
 
               <div className="flex flex-col gap-4">
-                <p className="text-[1.25rem[ font-semibold invisible">
-                  invisible
-                </p>
+                <h3 className="invisible">invisible</h3>
                 <TextFieldInput
-                  type="number"
                   label="Maximum"
                   name="bedMaximum"
                   placeholder=""
+                  pattern="[0-9]"
                   onChange={(e) => handleOnChange("bedMaximum", e.target.value)}
                 />
               </div>
 
               <div className="flex flex-col gap-4">
-                <p className="text-[1.25rem[ font-semibold invisible">
-                  invisible
-                </p>
+                <h3 className="invisible ">invisible</h3>
                 <TextFieldInput
-                  type="number"
                   label="Maximum"
                   name="bathroomMaximum"
                   placeholder=""
+                  pattern="[0-9]"
                   onChange={(e) =>
                     handleOnChange("bathroomMaximum", e.target.value)
                   }
