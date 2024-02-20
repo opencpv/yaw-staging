@@ -4,6 +4,7 @@ import CurrencyInput from "@/components/__shared/CurrencyInput";
 import PhoneNumberInputv2 from "@/components/__shared/PhoneInputv2";
 import { Formik } from "formik";
 import { ChangeEvent, useState } from "react";
+import PaymentButton from "./PaymentButton";
 
 interface ErrorProps {
   firstname?: string | null;
@@ -176,12 +177,7 @@ const BillingForm = () => {
             />
             <p className="text-[#737373]">Save this Information</p>
           </fieldset>
-          <button
-            type="submit"
-            className="text-white font-semibold py-4 bg-[#DDB771] rounded-md w-full"
-          >
-            Proceed to Payment
-          </button>
+          <PaymentButton />
         </form>
       )}
     </Formik>
