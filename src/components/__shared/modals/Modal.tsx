@@ -14,9 +14,9 @@ import { useModalFullscreenStore } from "@/store/modal/useModalStore";
 type Props = {
   onOpenChange: (open: boolean) => void;
   isOpen: boolean;
-  header: React.ReactNode;
   body: React.ReactNode;
-  footer: React.ReactNode;
+  header?: React.ReactNode;
+  footer?: React.ReactNode;
   onClose?: () => void;
   size?:
     | "full"
