@@ -11,6 +11,34 @@ import {
 } from "@nextui-org/react";
 import { useModalFullscreenStore } from "@/store/modal/useModalStore";
 
+type Props = {
+  onOpenChange: (open: boolean) => void;
+  isOpen: boolean;
+  header: React.ReactNode;
+  body: React.ReactNode;
+  footer: React.ReactNode;
+  onClose?: () => void;
+  size?:
+    | "full"
+    | "xs"
+    | "sm"
+    | "md"
+    | "lg"
+    | "xl"
+    | "2xl"
+    | "3xl"
+    | "4xl"
+    | "5xl";
+  isDismissible?: boolean;
+  closeButton?: React.ReactNode;
+  footerAlignment?: any;
+  hideCloseButton?: boolean;
+  backgroundColor?: any;
+  backdrop?: any;
+  backdropClassName?: string;
+  className?: string;
+};
+
 const Modal = ({
   onClose,
   onOpenChange,
@@ -27,7 +55,7 @@ const Modal = ({
   backdrop,
   backdropClassName,
   className,
-}: any) => {
+}: Props) => {
   const setHideWindowScrollbar = useModalFullscreenStore(
     (state) => state.setHideWindowScrollbar,
   );

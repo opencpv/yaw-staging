@@ -42,7 +42,7 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
             /> */}
             <CustomSelect
               label="Title"
-              value={agentFormData?.title || "mrs"}
+              value={agentFormData?.title || "Mrs"}
               options={[
                 { name: "mr", value: "Mr" },
                 { name: "mrs", value: "Mrs" },
@@ -72,10 +72,10 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
             />
             <CustomSelect
               label="Gender"
-              value={agentFormData?.gender || "female"}
+              value={agentFormData?.gender || "Female"}
               options={[
-                { name: "Male", value: "male" },
-                { name: "Female", value: "female" },
+                { name: "male", value: "Male" },
+                { name: "female", value: "Female" },
               ]}
               onChange={(value) => handleOnChange("gender", value)}
             />
@@ -98,7 +98,7 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
             />
             <CustomSelect
               label="Marital Status"
-              value={agentFormData?.maritalStatus || "single"}
+              value={agentFormData?.maritalStatus || "Single"}
               options={[
                 { name: "single", value: "Single" },
                 { name: "married", value: "Married" },

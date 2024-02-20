@@ -3,10 +3,16 @@ import capitalizeName, { LowerCase } from "@/lib/utils/stringManipulation";
 import { Tab, Tabs } from "@nextui-org/react";
 import React, { LegacyRef, forwardRef } from "react";
 import { ReactRef } from "@nextui-org/react-utils";
+import { MdOutlineWhatsapp } from "react-icons/md";
+
+type Option = {
+  label: string;
+  icon?: React.ReactNode;
+};
 
 type Props = {
   /** You can use any case. The key is converted to lowercase Eg: ["First", "SECOND"] --> "first", "second" */
-  options: string[];
+  options: (string | Option)[];
   radius?: "large" | "small";
   padding?: "small" | "medium" | "wide";
   tabColor?: "transparent" | "colored";
@@ -61,7 +67,7 @@ const OptionFilterTabs = (
               : "data-[selected=true]:bg-primary-200",
             radius === "small" ? "rounded-lg" : "rounded-full",
             padding === "wide" && "px-20",
-            padding === "medium" && "px-5 xs:px-14",
+            padding === "medium" && "px-5 xs:px-8",
             "py-5",
             cursorAnimation && "data-[selected=true]:bg-transparent",
           ],
@@ -84,7 +90,25 @@ const OptionFilterTabs = (
         disableCursorAnimation={!cursorAnimation}
       >
         {options.map((option) => (
-          <Tab key={LowerCase(option)} title={capitalizeName(option, " ")} />
+          <Tab
+            key={
+              typeof option !== "string"
+                ? LowerCase(option.label)
+                : LowerCase(option)
+            }
+            title={
+              <div className="flex items-center space-x-2">
+                {typeof option !== "string" ? (
+                  <>
+                    <span>{capitalizeName(option.label, " ")}</span>
+                    {option.icon && option.icon}
+                  </>
+                ) : (
+                  <span>{capitalizeName(option, " ")}</span>
+                )}
+              </div>
+            }
+          />
         ))}
       </Tabs>
     </>

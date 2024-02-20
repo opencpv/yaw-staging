@@ -33,11 +33,11 @@ const CustomSelect = ({
   className,
 }: Props) => {
   return (
-    <Root className={cn("w-full text-[#6A6968]", className)}>
+    <Root className={cn("w-full text-[#6A6968] focus:border-0", className)}>
       <label>{label}</label>
       <Select onValueChange={onChange} value={value}>
         <SelectTrigger
-          className={`form-input w-full capitalize focus:border-none focus:outline-accent-50 focus:ring-0 ${
+          className={`form-input w-full capitalize focus:border-0 focus:outline-accent-50 focus:ring-0 ${
             fadeText && "text-[#B4B2AF]"
           }`}
         >

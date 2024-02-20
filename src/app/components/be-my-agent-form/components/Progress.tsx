@@ -31,7 +31,7 @@ export default function Progress({ value }: Props) {
     if (value > 80 && value < 85) {
       showMessageFor3Seconds("Almost there");
     }
-    if (agentFormActiveSlide.showContinueMessage) {
+    if (agentFormActiveSlide?.showContinueMessage) {
       showMessageFor3Seconds("Continue from where you left off");
       setTimeout(() => {
         setAgentFormActiveSlide({

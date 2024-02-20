@@ -59,7 +59,13 @@ export default function BeMyAgentForm({ setOpen }: Props) {
     "agentFormActiveSlide",
     { activeSlide: 0 },
   );
-  const [agentFormData] = useLocalStorage<BeMyAgentFormType>("agent-form");
+  const [agentFormData] = useLocalStorage<BeMyAgentFormType>("agent-form", {
+    leaseTerm: "12",
+    country: "Ghana",
+    preferredMethodOfContact: "email",
+    // employersCountry: "Ghana",
+    // government: "Ghana",
+  });
 
   const leaseRef = useRef<any>();
   const [progressValue, setProgressValue] = useState<number>(1);
@@ -146,7 +152,7 @@ export default function BeMyAgentForm({ setOpen }: Props) {
             <Progress value={progressValue} />
           </div>
         </div>
-        <div className="mx-auto my-10 flex h-full w-full max-w-screen-sm flex-col gap-10 lg:max-w-screen-3xl lg:flex-row lg:gap-20">
+        <div className="mx-auto my-10 flex h-full w-full max-w-screen-sm flex-col gap-10 lg:max-w-screen-3xl lg:flex-row xl:gap-20">
           <div className="w-full lg:flex-[40%_0_0] lg:pr-10">
             <div className="relative h-full min-h-[222px] w-full overflow-hidden rounded-2xl ">
               <Image
