@@ -21,29 +21,17 @@ type Props = {
 const BeMyAgentModal = (props: Props) => {
   const [open, setOpen] = useState<any>();
   //please dont remove this code
-  const [agentFormData, setagentFormData] = useLocalStorage<BeMyAgentFormType>(
-    "agent-form",
-    {
-      // maritalStatus: "Single",
-      // leaseTerm: "12",
-      // gender: "Male",
-      // country: "Ghana",
-      // preferredMethodOfContact: "Phone",
-      // employersCountry: "Ghana",
-      // government: "Ghana",
-    },
-  );
-
-  console.log(agentFormData);
+  const [agentFormData, setAgentFormData] =
+    useLocalStorage<BeMyAgentFormType>("agent-form");
 
   // useEffect(() => {
   //   window.addEventListener("keydown", (e) => {
   //     if (e.key === "Escape") {
   //       if (!(Object.keys(agentFormData).length > 0))
-  //         setagentFormData(() => ({}));
+  //         setAgentFormData(() => ({}));
   //     }
   //   });
-  // }, [setagentFormData, agentFormData]);
+  // }, [setAgentFormData, agentFormData]);
 
   return (
     <Dialog.Root onOpenChange={setOpen} open={open}>
@@ -85,7 +73,7 @@ const BeMyAgentModal = (props: Props) => {
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="data-[state=open]:animate-overlayShow fixed inset-0 z-50 bg-blackA6" />
-        <Dialog.Content className="data-[state=open]:animate-contentShow min-w-screen fixed left-[50%] top-[50%] z-50 h-screen min-h-screen w-screen translate-x-[-50%] translate-y-[-50%] overflow-y-scroll rounded-[6px] bg-[#fefefe] px-5 py-6 shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none sm:px-10">
+        <Dialog.Content className="data-[state=open]:animate-contentShow fixed left-[50%] top-[50%] z-50 h-[100dvh] w-[100dvw] translate-x-[-50%] translate-y-[-50%] overflow-y-scroll rounded-[6px] bg-[#fefefe] px-5 py-6 shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none sm:px-10">
           <ClientOnly>
             <BeMyAgentForm setOpen={setOpen} />
           </ClientOnly>{" "}
@@ -101,7 +89,7 @@ const BeMyAgentModal = (props: Props) => {
               radius="full"
               className="border px-5"
               onClick={(prevData) =>
-                setagentFormData({ ...prevData, activeSlide })
+                setAgentFormData({ ...prevData, activeSlide })
               }
             >
               Save & Exit

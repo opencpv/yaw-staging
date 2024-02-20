@@ -19,6 +19,8 @@ import { BeMyAgentFormType } from "./types";
 import OptionFilterTabs from "@/components/__shared/OptionFilterTabs";
 import InputPhoneNumber from "@/components/__shared/form/InputPhoneNumber";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import { FaEnvelope } from "react-icons/fa";
+import { MdOutlineMailOutline, MdOutlineWhatsapp } from "react-icons/md";
 
 type Props = {};
 
@@ -34,7 +36,8 @@ const ContactInformationForm = React.forwardRef<HTMLInputElement, Props>(
       "email" | "whatsapp"
     >("email");
 
-    const { handlePhone, handleCountryChange } = usePhoneInputDisclosure();
+    const { handlePhone, handleCountryChange, phone } =
+      usePhoneInputDisclosure();
 
     return (
       <Root className="px-2 text-[#6A6968]">
@@ -91,9 +94,24 @@ const ContactInformationForm = React.forwardRef<HTMLInputElement, Props>(
               <label>Preferred Method of Contact</label>
               <div className="w-fit rounded-full bg-primary-600/5 p-2">
                 <OptionFilterTabs
-                  options={["Email", "WhatsApp"]}
+                  options={[
+                    {
+                      label: "Email",
+                      icon: <MdOutlineMailOutline />,
+                    },
+                    {
+                      label: "WhatsApp",
+                      icon: <MdOutlineWhatsapp />,
+                    },
+                  ]}
                   selectedKey={emailOrWhatsApp}
-                  onSelectionChange={(key) => setEmailOrWhatsApp(key as any)}
+                  onSelectionChange={(key) => {
+                    setEmailOrWhatsApp(key as any);
+                    setAgentFormData({
+                      ...agentFormData,
+                      preferredMethodOfContact: key as any,
+                    });
+                  }}
                   radius="large"
                   padding="medium"
                   cursorAnimation
@@ -125,7 +143,13 @@ const ContactInformationForm = React.forwardRef<HTMLInputElement, Props>(
                   id=""
                   name="phoneNumber"
                   value={agentFormData?.phoneNumber}
-                  onChange={handlePhone}
+                  onChange={(val) => {
+                    handlePhone(val);
+                    setAgentFormData({
+                      ...agentFormData,
+                      phoneNumber: val as string,
+                    });
+                  }}
                   onCountryChange={handleCountryChange}
                 />
               </div>
