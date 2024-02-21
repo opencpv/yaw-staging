@@ -1,6 +1,7 @@
 import { E164Number } from "libphonenumber-js/core";
 
 export type BeMyAgentFormType = Partial<{
+  searchName?: string;
   propertyType: [];
   priceRangeMinimum: string;
   priceRangeMaximum: string;

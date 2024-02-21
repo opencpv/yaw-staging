@@ -39,7 +39,7 @@ type Props = {
 };
 
 export default function BestDescribes({ infoText }: Props) {
-  const [agentFormData, setagentFormData] = useLocalStorage<BeMyAgentFormType>(
+  const [agentFormData, setAgentFormData] = useLocalStorage<BeMyAgentFormType>(
     "agent-form",
     {
       // maritalStatus: "Single",
@@ -58,11 +58,11 @@ export default function BestDescribes({ infoText }: Props) {
   };
 
   useEffect(() => {
-    setagentFormData((prevData: any) => ({
+    setAgentFormData((prevData: any) => ({
       ...prevData,
       propertyType: selected,
     }));
-  }, [selected, setagentFormData]);
+  }, [selected, setAgentFormData]);
 
   useEffect(() => {
     if (agentFormData?.propertyType) {

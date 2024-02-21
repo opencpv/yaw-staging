@@ -69,7 +69,7 @@ const CustomCheckBoxes = ({ data, onChange, color }: Props) => {
             </Checkbox.Indicator>
           </Checkbox.Root>
           <label
-            className=" text-[16px] font-[400] leading-none text-[#737373]"
+            className="text-[0.875rem] font-[400] leading-5 text-[#737373]"
             htmlFor={r?.name}
           >
             {r?.name}

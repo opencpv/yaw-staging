@@ -17,7 +17,7 @@ const TextFieldInput: React.FC<
     <div
       className={`flex w-full flex-col gap-[0.9375rem] font-[400] capitalize text-[#6A6968]`}
     >
-      <label>{label}</label>
+      {label && <label>{label}</label>}
       <Field name={name}>
         {({ field, form: { touched, errors }, meta }: any) => (
           <div>
