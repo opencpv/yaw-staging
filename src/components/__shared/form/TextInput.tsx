@@ -40,7 +40,7 @@ const TextInput = (
             props.required && `${style.required}`
           } ${labelClassName}`,
         ),
-        inputWrapper: cn(`border rounded-md ${className}`),
+        inputWrapper: cn(`form-field-border rounded-md ${className}`),
         input: cn(`text-base py-8 focus:border-accent-50 ${className}`),
         // innerWrapper: cn(`${className} text-base`)
       }}

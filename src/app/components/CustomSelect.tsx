@@ -37,7 +37,7 @@ const CustomSelect = ({
       <label>{label}</label>
       <Select onValueChange={onChange} value={value}>
         <SelectTrigger
-          className={`form-input w-full capitalize ${
+          className={`form-input w-full capitalize hover:border-black/50 ${
             fadeText && "text-[#B4B2AF]"
           }`}
         >

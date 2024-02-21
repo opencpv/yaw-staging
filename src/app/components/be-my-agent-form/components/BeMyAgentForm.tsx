@@ -93,6 +93,12 @@ export default function BeMyAgentForm({ setOpen }: Props) {
       setFirstSlide(false);
     }
 
+    if (activeSlide === views.length - 1) {
+      setLastSlide(true);
+    } else {
+      setLastSlide(false);
+    }
+
     if (activeSlide > 9) {
       setHideLeft(true);
       setHideRight(true);
@@ -165,7 +171,7 @@ export default function BeMyAgentForm({ setOpen }: Props) {
             </div>{" "}
           </div>
           {/* Form */}
-          <div className="flex h-full w-full flex-col items-center justify-start">
+          <div className="flex h-full w-full flex-col items-center justify-start px-5 sm:px-0">
             <Formik
               initialValues={{
                 ...agentFormData,
@@ -203,8 +209,7 @@ export default function BeMyAgentForm({ setOpen }: Props) {
         >
           {/* {firstSlide && "Next"}
           {!firstSlide && !lastSlide && "Continue"} */}
-          Continue
-          {lastSlide && "Submit"}
+          {lastSlide ? "Summary" : "Continue"}
         </NavigationButton>
       </section>
     </Root>
