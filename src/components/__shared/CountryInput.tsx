@@ -86,7 +86,7 @@ const CountryInput = ({
               variant="outline"
               role="combobox"
               aria-expanded={open}
-              className={`w-full justify-between  ${
+              className={`w-full justify-between border-[#a3a3a3]  ${
                 value ? "capitalize text-[#6A6968]" : "text-[#B4B2AF] "
               } h-[52px] whitespace-nowrap`}
             >

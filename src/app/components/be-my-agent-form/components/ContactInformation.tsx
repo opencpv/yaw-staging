@@ -21,6 +21,7 @@ import InputPhoneNumber from "@/components/__shared/form/InputPhoneNumber";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { FaEnvelope } from "react-icons/fa";
 import { MdOutlineMailOutline, MdOutlineWhatsapp } from "react-icons/md";
+import { E164Number } from "libphonenumber-js/core";
 
 type Props = {};
 
@@ -149,7 +150,7 @@ const ContactInformationForm = React.forwardRef<HTMLInputElement, Props>(
                     handlePhone(val);
                     setAgentFormData({
                       ...agentFormData,
-                      phoneNumber: val as string,
+                      phoneNumber: val as E164Number,
                     });
                   }}
                   onCountryChange={handleCountryChange}

@@ -53,7 +53,7 @@ export function SelectSearchInput({
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            className="h-[52px] w-full justify-between whitespace-nowrap text-[#6A6968]"
+            className="h-[52px] w-full justify-between whitespace-nowrap border-[#a3a3a3] text-[#6A6968]"
           >
             {value
               ? data.find((data) => data.value === value)?.label

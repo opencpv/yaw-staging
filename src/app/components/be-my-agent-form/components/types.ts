@@ -1,13 +1,13 @@
-import { E164Number, CountryCode } from "libphonenumber-js/core";
+import { E164Number } from "libphonenumber-js/core";
 
 export type BeMyAgentFormType = Partial<{
   propertyType: [];
-  priceRangeMinimum: number;
-  priceRangeMaximum: number;
-  bedMinimum: number;
-  bedMaximum: number;
-  bathroomMinimum: number;
-  bathRoomMaximum: number;
+  priceRangeMinimum: string;
+  priceRangeMaximum: string;
+  bedMinimum: string;
+  bedMaximum: string;
+  bathroomMinimum: string;
+  bathRoomMaximum: string;
   rentAdvanceOptions: [];
   locationArray: {
     city: string;

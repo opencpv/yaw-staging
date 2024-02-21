@@ -68,12 +68,7 @@ export default function FeaturesAndAmenities() {
   return (
     <>
       <Root>
-        <div className="mb-10 flex w-full flex-col gap-2">
-          <h2 className={`${styles.titleNoMargin}`}>Features & Amenities</h2>
-          <h4 className="font-[400]">
-            You can add more amenities after you publish your listing
-          </h4>
-        </div>
+        <h2 className={`${styles.title}`}>Required Features & Amenities</h2>
         <div className="grid w-full grid-cols-4 gap-2 lg:grid-cols-3">
           {data.map((r: any, index: number) => (
             <div

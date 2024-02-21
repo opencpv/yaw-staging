@@ -107,7 +107,17 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
                 ]}
                 onChange={(value) => handleOnChange("maritalStatus", value)}
               />
-              <CustomDatePicker
+              <CustomSelect
+                label="Age"
+                value={agentFormData?.dateOfBirth || "18-44"}
+                options={[
+                  { name: "12-17", value: "12-17" },
+                  { name: "18-44", value: "18-44" },
+                  { name: "45-74", value: "45-74" },
+                ]}
+                onChange={(value) => handleOnChange("dateOfBirth", value)}
+              />
+              {/* <CustomDatePicker
                 placeholderDate={agentFormData?.dateOfBirth}
                 label="Date of Birth"
                 onChange={(value) =>
@@ -116,7 +126,7 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
                     dateOfBirth: value,
                   })
                 }
-              />
+              /> */}
             </div>
           </div>
         </div>

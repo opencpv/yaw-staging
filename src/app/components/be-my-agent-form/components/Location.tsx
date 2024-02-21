@@ -99,7 +99,7 @@ const Applicants = ({}) => {
 
   return (
     <div>
-      <h2 className={styles.title}>Location</h2>
+      <h2 className={styles.title}>Desired Locations</h2>
       <div className={"col-span-3 flex flex-col gap-2 lg:col-span-1"}>
         {/* Locations */}
         <div>

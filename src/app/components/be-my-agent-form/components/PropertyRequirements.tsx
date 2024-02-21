@@ -6,6 +6,7 @@ import { CustomDatePicker } from "../../CustomDatePicker";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import CustomCheckBoxes from "../../CustomCheckBoxes";
 import { ClientOnly } from "@/components/ui/ClientOnly";
+import CustomSelect from "../../CustomSelect";
 
 export default function PropertyRequirements() {
   const [agentFormData, setAgentFormData] = useLocalStorage<any>("agent-form");
@@ -23,7 +24,7 @@ export default function PropertyRequirements() {
         <div className="flex flex-col gap-4">
           <h3>Price Range</h3>
           <div className="grid grid-cols-2 gap-5">
-            <TextFieldInput
+            {/* <TextFieldInput
               label="Minimum"
               name="priceRangeMinimum"
               placeholder=""
@@ -31,8 +32,28 @@ export default function PropertyRequirements() {
               onChange={(e) =>
                 handleOnChange("priceRangeMinimum", e.target.value)
               }
+            /> */}
+            <CustomSelect
+              label="Minimum"
+              value={agentFormData?.priceRangeMinimum || "100"}
+              options={[
+                { name: "100", value: "100" },
+                { name: "1000", value: "1000" },
+                { name: "2000", value: "2000" },
+              ]}
+              onChange={(value) => handleOnChange("priceRangeMinimum", value)}
             />
-            <TextFieldInput
+            <CustomSelect
+              label="Maximum"
+              value={agentFormData?.priceRangeMaximum || "1000"}
+              options={[
+                { name: "1000", value: "1000" },
+                { name: "10000", value: "10000" },
+                { name: "20000", value: "20000" },
+              ]}
+              onChange={(value) => handleOnChange("priceRangeMinimum", value)}
+            />
+            {/* <TextFieldInput
               label="Maximum"
               name="priceRangeMaximum"
               placeholder=""
@@ -40,14 +61,14 @@ export default function PropertyRequirements() {
               onChange={(e) =>
                 handleOnChange("priceRangeMaximum", e.target.value)
               }
-            />
+            /> */}
           </div>
         </div>
         {/* Bed */}
         <div className="flex flex-col gap-4">
           <h3>Bed</h3>
           <div className="grid grid-cols-2 gap-5">
-            <TextFieldInput
+            {/* <TextFieldInput
               label="Minimum"
               name="bedMinimum"
               placeholder=""
@@ -60,6 +81,24 @@ export default function PropertyRequirements() {
               placeholder=""
               pattern="[0-9]"
               onChange={(e) => handleOnChange("bedMaximum", e.target.value)}
+            /> */}
+            <CustomSelect
+              label="Minimum"
+              value={agentFormData?.bedMinimum || "1"}
+              options={[
+                { name: "1", value: "1" },
+                { name: "10", value: "10" },
+              ]}
+              onChange={(value) => handleOnChange("bedMinimum", value)}
+            />
+            <CustomSelect
+              label="Maximum"
+              value={agentFormData?.bedMaximum || "5"}
+              options={[
+                { name: "5", value: "5" },
+                { name: "50", value: "50" },
+              ]}
+              onChange={(value) => handleOnChange("bedMinimum", value)}
             />
           </div>
         </div>
@@ -67,7 +106,7 @@ export default function PropertyRequirements() {
         <div className="flex flex-col gap-4">
           <h3>Bathroom</h3>
           <div className="grid grid-cols-2 gap-5">
-            <TextFieldInput
+            {/* <TextFieldInput
               label="Minimum"
               name="bathroomMinimum"
               placeholder=""
@@ -84,6 +123,24 @@ export default function PropertyRequirements() {
               onChange={(e) =>
                 handleOnChange("bathroomMaximum", e.target.value)
               }
+            /> */}
+            <CustomSelect
+              label="Minimum"
+              value={agentFormData?.bathroomMinimum || "1"}
+              options={[
+                { name: "1", value: "1" },
+                { name: "10", value: "10" },
+              ]}
+              onChange={(value) => handleOnChange("bathroomMinimum", value)}
+            />
+            <CustomSelect
+              label="Maximum"
+              value={agentFormData?.bathroomMaximum || "5"}
+              options={[
+                { name: "5", value: "5" },
+                { name: "50", value: "50" },
+              ]}
+              onChange={(value) => handleOnChange("bathroomMinimum", value)}
             />
           </div>
         </div>

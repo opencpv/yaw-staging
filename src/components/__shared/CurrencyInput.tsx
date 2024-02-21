@@ -128,7 +128,7 @@ const CurrencyInput = ({
                 variant="outline"
                 role="combobox"
                 aria-expanded={open}
-                className="h-[52px] w-full max-w-[100px] justify-between whitespace-nowrap uppercase text-[#6A6968]"
+                className="form-field-border h-[52px] w-full max-w-[100px] justify-between whitespace-nowrap uppercase text-[#6A6968]"
               >
                 {value ? value : placeholder}
                 <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -157,7 +157,7 @@ const CurrencyInput = ({
           </Popover>
           <input
             name="salaryCurrency"
-            type="number"
+            pattern="[0-9]"
             className="form-input w-full"
             value={value2}
             onChange={(e) => setValue2(e.target.value)}
@@ -179,7 +179,7 @@ const Root = styled("div", {
     height: "52px",
     padding: "15px",
     fontSize: " 0.8125rem",
-    border: "1px solid #E6E6E6",
+    border: "1px solid #a3a3a3",
     borderRadius: "4px",
   },
 });

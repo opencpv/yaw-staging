@@ -37,7 +37,7 @@ const CustomSelect = ({
       <label>{label}</label>
       <Select onValueChange={onChange} value={value}>
         <SelectTrigger
-          className={`form-input w-full capitalize focus:border-0 focus:outline-accent-50 focus:ring-0 ${
+          className={`form-input w-full capitalize ${
             fadeText && "text-[#B4B2AF]"
           }`}
         >
@@ -64,11 +64,13 @@ const Root = styled("div", {
     backgroundColor: "white",
     height: "52px",
     padding: "15px",
+    border: "1px solid #a3a3a3",
     fontSize: " 0.8125rem",
-    border: "1px solid #E6E6E6",
-    borderRadius: "4px",
     option: {
       minHeight: "50px",
+    },
+    "&:focus": {
+      border: "2px solid #DDB771",
     },
   },
 });

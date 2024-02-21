@@ -63,6 +63,7 @@ export default function BeMyAgentForm({ setOpen }: Props) {
     leaseTerm: "12",
     country: "Ghana",
     preferredMethodOfContact: "email",
+    dateOfBirth: "18-44",
     // employersCountry: "Ghana",
     // government: "Ghana",
   });
