@@ -72,21 +72,21 @@ export default function BestDescribes({ infoText }: Props) {
 
   return (
     <>
-      <Root className="flex w-full flex-col items-center justify-center ">
-        <div className="flex w-full flex-col items-center justify-center gap-1">
-          <div className="flex w-full flex-col gap-8">
-            <h2 className={styles.title}>
-              Which of these best describes the place you&apos;re looking for?{" "}
-            </h2>
-            {infoText && (
-              <InfoText content="You may select more than one response" />
-            )}
-            <h3 className="font-normal">Property Type </h3>
-          </div>
+      <Root>
+        <div className="mb-10 flex w-full flex-col gap-8">
+          <h2 className={`${styles.titleNoMargin}`}>
+            Which of these best describes the place you&apos;re looking for?{" "}
+          </h2>
+          {infoText && (
+            <InfoText content="You may select more than one response" />
+          )}
+        </div>
+        <div className="space-y-4">
+          <h3 className="font-normal">Property Type </h3>
           <div
             className="grid w-full grid-cols-4 gap-x-5
-            gap-y-5 lg:grid-cols-3
-            "
+              gap-y-5 lg:grid-cols-3
+              "
           >
             {properties.map((r: any, index: number) => (
               <div

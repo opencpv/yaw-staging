@@ -1,13 +1,20 @@
 .be_my_agent_row {
-    box-shadow: 0px 4px 6px -2px rgba(0, 0, 0, 0.03), 0px 12px 16px -4px rgba(0, 0, 0, 0.08);
+  box-shadow:
+    0px 4px 6px -2px rgba(0, 0, 0, 0.03),
+    0px 12px 16px -4px rgba(0, 0, 0, 0.08);
 }
 
-.title{
-    font-size: 1.5625rem;
-    font-weight: 600;
+.title,
+.titleNoMargin {
+  font-size: 1.5625rem;
+  margin-bottom: 2rem;
 
-    @media screen and (max-width: 1024px) {
-        font-size:1.25rem;
-        line-height: 28px
-    }
+  @media screen and (max-width: 1024px) {
+    font-size: 1.25rem;
+    line-height: 28px;
+  }
+}
+
+.titleNoMargin {
+  margin-bottom: 0;
 }

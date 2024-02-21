@@ -40,10 +40,10 @@ const ContactInformationForm = React.forwardRef<HTMLInputElement, Props>(
       usePhoneInputDisclosure();
 
     return (
-      <Root className="px-2 text-[#6A6968]">
+      <Root className="px-2">
         <div className="h-full p-2">
           <h2 className={`${styles.title}`}>Contact Information</h2>
-          <div className="grid grid-cols-1 gap-x-5 gap-y-5 pt-7 lg:grid-cols-2">
+          <div className="grid grid-cols-1 gap-x-5 gap-y-8 lg:grid-cols-2">
             <TextFieldInput
               name="currentAddress1"
               type="text"
@@ -53,18 +53,6 @@ const ContactInformationForm = React.forwardRef<HTMLInputElement, Props>(
                 setAgentFormData({
                   ...agentFormData,
                   currentAddress1: e.target.value,
-                })
-              }
-            />
-            <TextFieldInput
-              name="city"
-              type="city"
-              label="City"
-              placeholder="Enter your city"
-              onChange={(e) =>
-                setAgentFormData({
-                  ...agentFormData,
-                  city: e.target.value,
                 })
               }
             />
@@ -80,6 +68,18 @@ const ContactInformationForm = React.forwardRef<HTMLInputElement, Props>(
                 })
               }
             />
+            <TextFieldInput
+              name="city"
+              type="city"
+              label="City"
+              placeholder="Enter your city"
+              onChange={(e) =>
+                setAgentFormData({
+                  ...agentFormData,
+                  city: e.target.value,
+                })
+              }
+            />
             <CountryInput
               label="Country"
               initialValue={agentFormData?.country}
@@ -91,7 +91,9 @@ const ContactInformationForm = React.forwardRef<HTMLInputElement, Props>(
               }
             />
             <div className="space-y-3">
-              <label>Preferred Method of Contact</label>
+              <label className="text-[#6A6968]">
+                Preferred Method of Contact
+              </label>
               <div className="w-fit rounded-full bg-primary-600/5 p-2">
                 <OptionFilterTabs
                   options={[
@@ -192,7 +194,7 @@ const ContactInformationForm = React.forwardRef<HTMLInputElement, Props>(
                 }
               /> */}
             <CustomTextAreaInput
-              label="Reason for Moving"
+              label="Purpose for Moving"
               placeholder={
                 agentFormData?.reasonsForMoving ||
                 "Please provide your reason (s)"
