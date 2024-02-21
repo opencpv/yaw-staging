@@ -123,67 +123,67 @@ export default function BeMyAgentForm({ setOpen }: Props) {
     }
   };
   return (
-    <Root
-      className={`flex max-h-[90vh] flex-col justify-between`}
-      ref={leaseRef}
-    >
-      <div className="flex h-full w-full flex-col">
-        <div className="flex flex-col gap-4">
-          <div className="flex items-center justify-between gap-5">
-            <h4 className="font-semibold">Be My Agent</h4>
-            <Button
-              color="white"
-              radius="full"
-              className="border px-5"
-              onClick={() => {
-                setOpen(false);
-                setAgentFormActiveSlide((prevData) => ({
-                  ...prevData,
-                  activeSlide,
-                  showContinueMessage: true,
-                }));
-              }}
-            >
-              Save & Exit
-            </Button>
-          </div>
-
-          <div className="mt-0 w-full ">
-            <Progress value={progressValue} />
-          </div>
+    <Root className="max-h-screen" ref={leaseRef}>
+      {/* Header */}
+      <section className="sticky top-0 z-50 flex flex-col gap-4 bg-[#fefefe] p-5 px-5 sm:px-10">
+        <div className="flex items-center justify-between gap-5">
+          <h4 className="font-semibold">Be My Agent</h4>
+          <Button
+            color="white"
+            greenHover
+            radius="full"
+            className="border px-5"
+            onClick={() => {
+              setOpen(false);
+              setAgentFormActiveSlide((prevData) => ({
+                ...prevData,
+                activeSlide,
+                showContinueMessage: true,
+              }));
+            }}
+          >
+            Save & Exit
+          </Button>
         </div>
+
+        <div className="mt-0 w-full">
+          <Progress value={progressValue} />
+        </div>
+      </section>
+      <section className="flex min-h-screen w-full flex-col px-5 sm:px-10">
         <div className="mx-auto my-10 flex h-full w-full max-w-screen-sm flex-col gap-10 lg:max-w-screen-3xl lg:flex-row xl:gap-20">
+          {/* Side image */}
           <div className="w-full lg:flex-[40%_0_0] lg:pr-10">
-            <div className="relative h-full min-h-[222px] w-full overflow-hidden rounded-2xl ">
+            <div className="relative h-60 w-full overflow-hidden rounded-2xl lg:h-[36rem] ">
               <Image
                 src={image}
-                alt="Be MY Agent Image"
+                alt="a nice yellow house"
                 fill
-                objectFit="cover"
+                style={{ objectFit: "cover" }}
               />
             </div>{" "}
           </div>
-          <div className="flex h-full w-full flex-col justify-center gap-1 lg:min-h-[80vh] ">
-            <div className="flex h-full w-full flex-col items-center justify-start ">
-              <Formik
-                initialValues={{
-                  ...agentFormData,
-                }}
-                onSubmit={() => alert("sibm")}
-              >
-                <Form className="w-full">
-                  <div>{views[activeSlide]}</div>
-                </Form>
-              </Formik>
-            </div>
+          {/* Form */}
+          <div className="flex h-full w-full flex-col items-center justify-start px-5 sm:px-10">
+            <Formik
+              initialValues={{
+                ...agentFormData,
+              }}
+              onSubmit={() => alert("sibm")}
+            >
+              <Form className="w-full">
+                <div>{views[activeSlide]}</div>
+              </Form>
+            </Formik>
           </div>
         </div>
-      </div>
-      <div
+      </section>
+      {/* Navigation buttons */}
+      <section
         className={`${
           hideLeft && hideRight
             ? "hidden"
-            : "relative z-10 grid w-full grid-cols-2 gap-2 border-t py-7 lg:flex lg:items-center lg:justify-end lg:px-7"
+            : "sticky bottom-0 z-50 grid grid-cols-2 gap-2 border-t bg-[#fefefe] px-5 pb-5 pt-7 sm:px-10 lg:flex lg:items-center lg:justify-end"
         }`}
       >
         <NavigationButton
@@ -205,7 +205,7 @@ export default function BeMyAgentForm({ setOpen }: Props) {
           Continue
           {lastSlide && "Submit"}
         </NavigationButton>
-      </div>
+      </section>
     </Root>
   );
 }
