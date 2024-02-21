@@ -26,7 +26,7 @@ body {
 }
 
 .form-field-border {
-  @apply border border-neutral-400;
+  @apply border border-neutral-400 hover:border-black/50;
 }
 
 .faq-items .faq-title {
@@ -112,7 +112,7 @@ small {
 }
 
 .PhoneInputInput {
-  @apply rounded-md border px-3 py-4 shadow-sm hover:border-black/50 focus:border-black focus:outline-none;
+  @apply form-field-border rounded-md px-3 py-4;
 }
 
 .section {

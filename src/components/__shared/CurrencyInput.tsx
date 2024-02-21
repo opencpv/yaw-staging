@@ -158,7 +158,7 @@ const CurrencyInput = ({
           <input
             name="salaryCurrency"
             pattern="[0-9]"
-            className="form-input w-full"
+            className="form-input w-full hover:border-black/50"
             value={value2}
             onChange={(e) => setValue2(e.target.value)}
           />

@@ -41,8 +41,8 @@ const ContactInformationForm = React.forwardRef<HTMLInputElement, Props>(
       usePhoneInputDisclosure();
 
     return (
-      <Root className="px-2">
-        <div className="h-full p-2">
+      <Root>
+        <div className="h-full">
           <h2 className={`${styles.title}`}>Contact Information</h2>
           <div className="grid grid-cols-1 gap-x-5 gap-y-8 lg:grid-cols-2">
             <TextFieldInput
