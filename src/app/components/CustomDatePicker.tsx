@@ -41,7 +41,7 @@ export function CustomDatePicker({
           <Button
             variant={"outline"}
             className={cn(
-              "h-[52px] w-full justify-start text-left font-normal",
+              "h-[52px] w-full justify-start border-[#a3a3a3] text-left font-normal",
               !date && "text-muted-foreground",
             )}
           >

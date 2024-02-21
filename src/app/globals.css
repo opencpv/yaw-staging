@@ -25,6 +25,10 @@ body {
     sans-serif;
 }
 
+.form-field-border {
+  @apply border border-neutral-400;
+}
+
 .faq-items .faq-title {
   border-bottom-width: 1px;
 }

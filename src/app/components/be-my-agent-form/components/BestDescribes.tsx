@@ -74,15 +74,13 @@ export default function BestDescribes({ infoText }: Props) {
     <>
       <Root>
         <div className="mb-10 flex w-full flex-col gap-8">
-          <h2 className={`${styles.titleNoMargin}`}>
-            Which of these best describes the place you&apos;re looking for?{" "}
-          </h2>
+          <h2 className={`${styles.titleNoMargin}`}>Preferred Type</h2>
           {infoText && (
             <InfoText content="You may select more than one response" />
           )}
         </div>
         <div className="space-y-4">
-          <h3 className="font-normal">Property Type </h3>
+          <h3 className="font-normal">Type of Place</h3>
           <div
             className="grid w-full grid-cols-4 gap-x-5
               gap-y-5 lg:grid-cols-3

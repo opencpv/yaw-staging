@@ -27,7 +27,7 @@ const TextFieldInput: React.FC<
                 field.onChange(e);
                 onChange(e);
               }}
-              className="form-input h-[52px] w-full rounded-[4px] border border-primary-100 px-4
+              className="form-input form-field-border h-[52px] w-full rounded-[4px] px-4
               text-[0.8125rem]"
               {...props}
             />
