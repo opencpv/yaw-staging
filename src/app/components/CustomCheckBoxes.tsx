@@ -51,7 +51,7 @@ const CustomCheckBoxes = ({ data, onChange, color }: Props) => {
             checked={selected?.includes(r?.name)}
             onCheckedChange={() => handleChange(r)}
             className={cn(
-              "flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-[4px] border-[1px] border-[#DCDCDC] bg-white shadow-blackA4 hover:bg-violet3",
+              "flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-[4px] border border-primary-100 bg-white shadow-blackA4 hover:bg-violet3",
               {
                 "data-[state=checked]:bg-accent-50": color === "accent",
                 "data-[state=checked]:bg-primary-100": color === "primary",
