@@ -165,7 +165,7 @@ export default function BeMyAgentForm({ setOpen }: Props) {
             </div>{" "}
           </div>
           {/* Form */}
-          <div className="flex h-full w-full flex-col items-center justify-start px-5 sm:px-10">
+          <div className="flex h-full w-full flex-col items-center justify-start">
             <Formik
               initialValues={{
                 ...agentFormData,
