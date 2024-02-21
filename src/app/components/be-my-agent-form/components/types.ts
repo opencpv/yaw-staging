@@ -37,9 +37,9 @@ export type BeMyAgentFormType = Partial<{
   employmentEndDate: string;
   employersCountry: string;
   employer: string;
-  employerAddress1: string;
-  employerAddress2: string;
-  employerPhoneNumber: string;
+  // employerAddress1: string;
+  // employerAddress2: string;
+  // employerPhoneNumber: string;
   jobTitle: string;
   monthlyIncome: string;
   monthlyIncomeCurrency: string;

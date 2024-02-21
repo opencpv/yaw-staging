@@ -32,7 +32,7 @@ const Location = ({ index, city, neighbourhood }: any) => {
   };
 
   return (
-    <div className="flex w-full max-w-lg flex-col gap-10">
+    <div className="flex w-full max-w-lg flex-col gap-8">
       {/* <TFormDiv className={`w-full font-[400] capitalize text-[#6A6968]`}>
         <label htmlFor="">City</label>
         <input
@@ -99,10 +99,10 @@ const Applicants = ({}) => {
 
   return (
     <div>
-      <div className="col-span-3 flex flex-col gap-2  lg:col-span-1">
-        <h2 className={styles.title}>Location</h2>
-
-        <div className={`${locationLength >= 1 ? "mt-5" : null}`}>
+      <h2 className={styles.title}>Location</h2>
+      <div className={"col-span-3 flex flex-col gap-2 lg:col-span-1"}>
+        {/* Locations */}
+        <div>
           {Array.from({ length: locationLength }).map((_, index) => (
             <div key={index} className="mb-2">
               <ClientOnly>
@@ -118,7 +118,7 @@ const Applicants = ({}) => {
               {locationLength > 1 && (
                 <button
                   type="button"
-                  className="flex  h-[38px] items-center justify-center gap-1 px-2 text-[13px] font-[400] text-[#E9515E] hover:bg-[#e9515e3a] "
+                  className="flex h-[38px] items-center justify-center gap-1 px-2 text-[13px] font-[400] text-[#E9515E] hover:bg-[#e9515e3a] "
                   onClick={() => {
                     handleRemove(index);
                     setlocationLength((init: any) => init - 1);

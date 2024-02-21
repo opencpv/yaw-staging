@@ -8,7 +8,7 @@ import { MdHotTub, MdOutlineGasMeter, MdOutlinePool } from "react-icons/md";
 import { GiGate, GiPoolTableCorner, GiRoad } from "react-icons/gi";
 import { BsPerson } from "react-icons/bs";
 import { TbDoorExit, TbToolsKitchen2 } from "react-icons/tb";
-import { PiPawPrintLight } from "react-icons/pi";
+import { PiMonitorLight, PiPawPrintLight } from "react-icons/pi";
 import { BiSolidCctv } from "react-icons/bi";
 import ParkingSpace from "../../listing-form/components/icons/ParkingSpace";
 import Tiles from "../../listing-form/components/icons/Tiles";
@@ -20,6 +20,7 @@ import { BeMyAgentFormType } from "./types";
 
 const data = [
   { name: "wifi", icon: <IoIosWifi size="44" /> },
+  { name: "satellite tv", icon: <PiMonitorLight size="44" /> },
   { name: "self meter", icon: <MdOutlineGasMeter size="44" /> },
   { name: "walled & gated", icon: <GiGate size="44" /> },
   { name: "parking", icon: <ParkingSpace /> },
@@ -66,30 +67,28 @@ export default function FeaturesAndAmenities() {
 
   return (
     <>
-      <Root className="flex w-full flex-col items-center justify-center ">
-        <div className="flex  w-full flex-col items-center justify-center gap-6">
-          <div className="flex w-full flex-col gap-2">
-            <h2 className={`${styles.title}`}>Features & Amenities</h2>
-            <p className="text-[1rem] font-[400]">
-              You can add more amenities after you publish your listing
-            </p>
-          </div>
-          <div className="grid w-full grid-cols-4 gap-2 lg:grid-cols-3">
-            {data.map((r: any, index: number) => (
-              <div
-                key={index}
-                className="col-span-2 lg:col-span-1"
-                onClick={() => handleAmenityClick(r)}
-              >
-                <Amenity
-                  n={index}
-                  name={r?.name}
-                  icon={r?.icon}
-                  selected={selected?.includes(r?.name)}
-                />
-              </div>
-            ))}
-          </div>
+      <Root>
+        <div className="mb-10 flex w-full flex-col gap-2">
+          <h2 className={`${styles.titleNoMargin}`}>Features & Amenities</h2>
+          <h4 className="font-[400]">
+            You can add more amenities after you publish your listing
+          </h4>
+        </div>
+        <div className="grid w-full grid-cols-4 gap-2 lg:grid-cols-3">
+          {data.map((r: any, index: number) => (
+            <div
+              key={index}
+              className="col-span-2 lg:col-span-1"
+              onClick={() => handleAmenityClick(r)}
+            >
+              <Amenity
+                n={index}
+                name={r?.name}
+                icon={r?.icon}
+                selected={selected?.includes(r?.name)}
+              />
+            </div>
+          ))}
         </div>
       </Root>
     </>

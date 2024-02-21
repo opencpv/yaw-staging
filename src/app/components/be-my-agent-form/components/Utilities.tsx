@@ -18,8 +18,6 @@ const data = [
   { name: "water", icon: <TbDroplets size="44" /> },
   { name: "gas", icon: <MdOutlineLocalGasStation size="44" /> },
   { name: "electricity", icon: <Electricity /> },
-  { name: "satelite tv", icon: <PiMonitorLight size="44" /> },
-  { name: "internet", icon: <Internet /> },
 ];
 
 export default function Utilities() {
@@ -50,30 +48,28 @@ export default function Utilities() {
   }, []);
   return (
     <>
-      <Root className="flex w-full flex-col items-center justify-center ">
-        <div className="flex w-full flex-col items-center justify-center gap-6">
-          <div className="flex w-full flex-col gap-2">
-            <h2 className={`${styles.title}`}>Utilities</h2>
-            <p className="text-[1rem] font-[400]">
-              You can add more utilities after you publish your listing
-            </p>
-          </div>
-          <div className="grid w-full grid-cols-4 gap-2 lg:grid-cols-3  lg:gap-y-0">
-            {data.map((r: any, index: number) => (
-              <div
-                key={index}
-                className="col-span-2  lg:col-span-1"
-                onClick={() => handleAmenityClick(r)}
-              >
-                <Amenity
-                  n={index}
-                  name={r?.name}
-                  icon={r?.icon}
-                  selected={selected?.includes(r?.name)}
-                />
-              </div>
-            ))}
-          </div>
+      <Root>
+        <div className="mb-10 flex w-full flex-col gap-2">
+          <h2 className={`${styles.titleNoMargin}`}>Utilities</h2>
+          <h4 className="font-[400]">
+            You can add more utilities after you publish your listing
+          </h4>
+        </div>
+        <div className="grid w-full grid-cols-4 gap-2 lg:grid-cols-3 lg:gap-y-0">
+          {data.map((r: any, index: number) => (
+            <div
+              key={index}
+              className="col-span-2  lg:col-span-1"
+              onClick={() => handleAmenityClick(r)}
+            >
+              <Amenity
+                n={index}
+                name={r?.name}
+                icon={r?.icon}
+                selected={selected?.includes(r?.name)}
+              />
+            </div>
+          ))}
         </div>
       </Root>
     </>

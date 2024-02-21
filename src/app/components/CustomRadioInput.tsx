@@ -32,34 +32,40 @@ const CustomRadioInput = ({
         defaultValue={defaultValue}
         aria-label="View density"
       >
-        <div className="text-[1rem] whitespace-nowrap flex gap-2">
+        <div className="flex gap-2 whitespace-nowrap text-[1rem]">
           {label}
           {infoBubble && <InfoBubble content={"info content"} />}
         </div>{" "}
         <div className="flex gap-5 ">
           <div className="flex items-center">
             <RadioGroup.Item
-              className="bg-white w-[25px] h-[25px] rounded-full border-[1px] border-[#DDA948] shadow-blackA4 hover:bg-violet3 focus:shadow-[0_0_0_2px] focus:shadow-[#DDA948] outline-none cursor-default"
+              className="h-[25px] w-[25px] cursor-default rounded-full border-[1px] border-[#DDA948] bg-white shadow-blackA4 outline-none hover:bg-violet3 focus:outline-0"
               value="yes"
               checked={value == "yes"}
-              id="r1"
+              id={label + "+yes"}
             >
-              <RadioGroup.Indicator className="flex items-center justify-center w-full h-full relative after:content-[''] after:block after:w-[25px] after:h-[25px] after:rounded-full after:bg-[white] after:border-[5px] after:border-[#DDA948]" />
+              <RadioGroup.Indicator className="relative flex h-full w-full items-center justify-center after:block after:h-[25px] after:w-[25px] after:rounded-full after:border-[5px] after:border-[#DDA948] after:bg-[white] after:content-['']" />
             </RadioGroup.Item>
-            <label className=" text-[15px] leading-none pl-[15px]" htmlFor="r1">
+            <label
+              className=" pl-[15px] text-[15px] leading-none"
+              htmlFor={label + "+yes"}
+            >
               Yes
             </label>
           </div>
           <div className="flex items-center">
             <RadioGroup.Item
-              className="bg-white w-[25px] h-[25px] rounded-full border-[1px] border-[#DDA948] shadow-blackA4 hover:bg-violet3 focus:shadow-[0_0_0_2px] focus:shadow-[#DDA948] outline-none cursor-default"
+              className="h-[25px] w-[25px] cursor-default rounded-full border-[1px] border-[#DDA948] bg-white shadow-blackA4 outline-none hover:bg-violet3 focus:outline-0"
               value="no"
               checked={value == "no"}
-              id="r2"
+              id={label + "+no"}
             >
-              <RadioGroup.Indicator className="flex items-center justify-center w-full h-full relative after:content-[''] after:block after:w-[25px] after:h-[25px] after:rounded-full after:bg-[white] after:border-[5px] after:border-[#DDA948]" />
+              <RadioGroup.Indicator className="relative flex h-full w-full items-center justify-center after:block after:h-[25px] after:w-[25px] after:rounded-full after:border-[5px] after:border-[#DDA948] after:bg-[white] after:content-['']" />
             </RadioGroup.Item>
-            <label className=" text-[15px] leading-none pl-[15px]" htmlFor="r2">
+            <label
+              className=" pl-[15px] text-[15px] leading-none"
+              htmlFor={label + "+no"}
+            >
               No
             </label>
           </div>
