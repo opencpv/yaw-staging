@@ -30,9 +30,9 @@ const views = [
   <ClientOnly key={"property-information"}>
     <PropertyInformation key={"property-information"} />
   </ClientOnly>,
-  <ClientOnly key={"utilities"}>
-    <Utilities key={"utilities"} />
-  </ClientOnly>,
+  // <ClientOnly key={"utilities"}>
+  //   <Utilities key={"utilities"} />
+  // </ClientOnly>,
   <ClientOnly key={"features"}>
     <FeaturesAndAmenities key={"features"} />
   </ClientOnly>,
@@ -45,9 +45,9 @@ const views = [
   <ClientOnly key={"employment-information"}>
     <EmploymentInformationForm key={"employment-information"} />
   </ClientOnly>,
-  <ClientOnly key={"screening"}>
-    <ScreeningAndOtherDetailsForm key={"screening"} />
-  </ClientOnly>,
+  // <ClientOnly key={"screening"}>
+  //   <ScreeningAndOtherDetailsForm key={"screening"} />
+  // </ClientOnly>,
 ];
 
 type Props = {
