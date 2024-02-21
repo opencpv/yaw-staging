@@ -46,6 +46,8 @@ import Clipboard from "/public/assets/images/dashboard/clipboard.png";
 import UserNoImage from "/public/assets/images/placeholder/user-no-image.jpeg";
 import Brochure from "/public/assets/images/contact/brochure.png";
 import SavedSearches from "/public/assets/images/dashboard/saved-searches.png";
+import FeelingRefreshed from "/public/assets/images/dashboard/feeling-refreshed.jpg";
+
 export const useAssets = () => {
   return {
     icons: {
@@ -98,6 +100,7 @@ export const useAssets = () => {
       UserNoImage,
       Brochure,
       SavedSearches,
+      FeelingRefreshed,
     },
   };
 };

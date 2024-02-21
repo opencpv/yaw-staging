@@ -107,9 +107,12 @@ const ContactInformationForm = React.forwardRef<HTMLInputElement, Props>(
                       icon: <MdOutlineWhatsapp />,
                     },
                   ]}
-                  selectedKey={emailOrWhatsApp}
+                  selectedKey={agentFormData?.preferredMethodOfContact}
                   onSelectionChange={(key) => {
-                    setEmailOrWhatsApp(key as any);
+                    setAgentFormData({
+                      ...agentFormData,
+                      preferredMethodOfContact: key as any,
+                    });
                     setAgentFormData({
                       ...agentFormData,
                       preferredMethodOfContact: key as any,
@@ -122,7 +125,11 @@ const ContactInformationForm = React.forwardRef<HTMLInputElement, Props>(
               </div>
               {/* email */}
               <div
-                className={emailOrWhatsApp === "whatsapp" ? "hidden" : "block"}
+                className={
+                  agentFormData?.preferredMethodOfContact === "whatsapp"
+                    ? "hidden"
+                    : "block"
+                }
               >
                 <TextFieldInput
                   name="email"
@@ -139,7 +146,9 @@ const ContactInformationForm = React.forwardRef<HTMLInputElement, Props>(
               {/* whatsapp */}
               <div
                 className={
-                  emailOrWhatsApp === "whatsapp" ? "block pt-2" : "hidden"
+                  agentFormData?.preferredMethodOfContact === "whatsapp"
+                    ? "block pt-2"
+                    : "hidden"
                 }
               >
                 <InputPhoneNumber

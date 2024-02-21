@@ -132,7 +132,7 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
         </div>
         <div>
           <h2 className={styles.title}>Screening & Other Details</h2>
-          <div className="grid grid-cols-2 gap-x-5 gap-y-8">
+          <div className="grid grid-cols-1 gap-x-5 gap-y-8 lg:grid-cols-2">
             <div className="form-col">
               <CustomRadioInput
                 infoBubble={true}

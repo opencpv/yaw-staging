@@ -51,7 +51,7 @@ export default function PropertyRequirements() {
                 { name: "10000", value: "10000" },
                 { name: "20000", value: "20000" },
               ]}
-              onChange={(value) => handleOnChange("priceRangeMinimum", value)}
+              onChange={(value) => handleOnChange("priceRangeMaximum", value)}
             />
             {/* <TextFieldInput
               label="Maximum"
@@ -98,7 +98,7 @@ export default function PropertyRequirements() {
                 { name: "5", value: "5" },
                 { name: "50", value: "50" },
               ]}
-              onChange={(value) => handleOnChange("bedMinimum", value)}
+              onChange={(value) => handleOnChange("bedMaximum", value)}
             />
           </div>
         </div>
@@ -140,7 +140,7 @@ export default function PropertyRequirements() {
                 { name: "5", value: "5" },
                 { name: "50", value: "50" },
               ]}
-              onChange={(value) => handleOnChange("bathroomMinimum", value)}
+              onChange={(value) => handleOnChange("bathroomMaximum", value)}
             />
           </div>
         </div>
