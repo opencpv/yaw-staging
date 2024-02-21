@@ -57,7 +57,7 @@ export default function FeaturesAndAmenities() {
       ...prevData,
       featuresAndAmenities: selected,
     }));
-  }, [selected?.length, selected, setAgentFormData]);
+  }, [selected, setAgentFormData]);
 
   useEffect(() => {
     if (agentFormData?.featuresAndAmenities) {

@@ -25,10 +25,10 @@ export default function Progress({ value }: Props) {
     if (value > 5 && value < 10) {
       showMessageFor3Seconds("Let's do this");
     }
+    // if (value > 50 && value < 55) {
+    //   showMessageFor3Seconds("Halfway there!!!");
+    // }
     if (value > 50 && value < 55) {
-      showMessageFor3Seconds("Halfway there!!!");
-    }
-    if (value > 80 && value < 85) {
       showMessageFor3Seconds("Almost there");
     }
     if (agentFormActiveSlide?.showContinueMessage) {
@@ -51,7 +51,7 @@ export default function Progress({ value }: Props) {
   return (
     <div className="h-[16px]  w-full rounded-2xl bg-[#FEF8ED]">
       <div
-        className=" duration-3000 relative h-[16px] justify-end rounded-2xl bg-warning-400 transition-width"
+        className=" duration-3000 relative h-[16px] justify-end rounded-2xl bg-accent-400 transition-width"
         style={{ width: `${value}%` }}
       >
         <div

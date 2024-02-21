@@ -33,10 +33,6 @@ const ContactInformationForm = React.forwardRef<HTMLInputElement, Props>(
     const [phoneNumberSelectedCountry, setPhoneNumberSelectedCountry] =
       useLocalStorage<any>("phoneNumberSelectedCountry");
 
-    const [emailOrWhatsApp, setEmailOrWhatsApp] = useState<
-      "email" | "whatsapp"
-    >("email");
-
     const { handlePhone, handleCountryChange, phone } =
       usePhoneInputDisclosure();
 
