@@ -81,11 +81,7 @@ export default function BestDescribes({ infoText }: Props) {
         </div>
         <div className="space-y-4">
           <h3 className="font-normal">Type of Place</h3>
-          <div
-            className="grid w-full grid-cols-4 gap-x-5
-              gap-y-5 lg:grid-cols-3
-              "
-          >
+          <div className="grid w-full grid-cols-4 gap-5 lg:grid-cols-3">
             {properties.map((r: any, index: number) => (
               <div
                 key={index}

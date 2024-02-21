@@ -27,7 +27,7 @@ export type BeMyAgentFormType = Partial<{
   city: string;
   phoneNumber: string | E164Number;
   availableOnWhatsapp: boolean;
-  preferredMethodOfContact: "email" | "whatsApp";
+  preferredMethodOfContact: "email" | "whatsapp";
   currentAddress1: string | boolean;
   currentAddress2: string;
   reasonsForMoving: string;

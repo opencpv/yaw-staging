@@ -69,7 +69,7 @@ export default function FeaturesAndAmenities() {
     <>
       <Root>
         <h2 className={`${styles.title}`}>Required Features & Amenities</h2>
-        <div className="grid w-full grid-cols-4 gap-2 lg:grid-cols-3">
+        <div className="grid w-full grid-cols-4 gap-5 lg:grid-cols-3">
           {data.map((r: any, index: number) => (
             <div
               key={index}

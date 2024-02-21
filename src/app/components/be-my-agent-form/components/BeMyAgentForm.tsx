@@ -19,8 +19,7 @@ import { openSans } from "@/styles/font";
 import { ClientOnly } from "@/components/ui/ClientOnly";
 import Button from "@/components/__shared/ui/button/Button";
 import { BeMyAgentFormType } from "./types";
-
-const image = "/assets/images/agent-modal-image.jpeg";
+import { useAssets } from "@/lib/custom-hooks/useAssets";
 
 const views = [
   <Location key={"property-information"} />,
@@ -55,6 +54,7 @@ type Props = {
 };
 
 export default function BeMyAgentForm({ setOpen }: Props) {
+  const { images } = useAssets();
   const [agentFormActiveSlide, setAgentFormActiveSlide] = useLocalStorage(
     "agentFormActiveSlide",
     { activeSlide: 0 },
@@ -163,8 +163,8 @@ export default function BeMyAgentForm({ setOpen }: Props) {
           <div className="w-full lg:flex-[40%_0_0] lg:pr-10">
             <div className="relative h-60 w-full overflow-hidden rounded-2xl lg:h-[36rem] ">
               <Image
-                src={image}
-                alt="a nice yellow house"
+                src={images.FeelingRefreshed}
+                alt="person relaxing on couch"
                 fill
                 style={{ objectFit: "cover" }}
               />
