@@ -17,7 +17,7 @@ export default function PropertyRequirements() {
   };
   return (
     <>
-      <h2 className={`${styles.title}`}>Lease Holder Requirements</h2>
+      <h2 className={`${styles.title}`}>Property Requirements</h2>
       <div className="flex w-full flex-col gap-8">
         {/* Price range */}
         <div className="flex flex-col gap-4">

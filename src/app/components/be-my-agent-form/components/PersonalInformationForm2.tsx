@@ -27,7 +27,7 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
     return (
       <Root className="space-y-10">
         <div>
-          <h2 className={styles.title}>Personal Information</h2>
+          <h2 className={styles.title}>Lease Holder Information</h2>
           <div className="grid grid-cols-1 gap-x-5 gap-y-8 lg:grid-cols-2">
             <div className="form-col col-span-1 w-full">
               {/* <TextFieldInput
