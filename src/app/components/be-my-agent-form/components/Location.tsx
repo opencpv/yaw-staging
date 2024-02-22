@@ -24,12 +24,12 @@ const Location = ({ index, city, neighbourhood }: any) => {
 
     updatedLocation[index][field] = value;
 
-    const updatedagentFormData = {
+    const updatedAgentFormData = {
       ...agentFormData,
       locationArray: updatedLocation,
     };
 
-    setAgentFormData(updatedagentFormData);
+    setAgentFormData(updatedAgentFormData);
   };
 
   return (
@@ -46,7 +46,7 @@ const Location = ({ index, city, neighbourhood }: any) => {
       </TFormDiv> */}
       <CustomSelect
         label="City"
-        placeholder="Accra"
+        value={city}
         options={[
           { name: "accra", value: "Accra" },
           { name: "tema", value: "Tema" },
@@ -55,9 +55,9 @@ const Location = ({ index, city, neighbourhood }: any) => {
       />
       <CustomSelect
         label="Neighbourhood"
-        placeholder="Dansoman"
+        value={neighbourhood}
         options={[
-          { name: "dansoman", value: "dansoman" },
+          { name: "dansoman", value: "Dansoman" },
           { name: "osu", value: "Osu" },
         ]}
         onChange={(val) => handleInputChange("neighbourhood", val)}
@@ -86,16 +86,16 @@ const Applicants = ({}) => {
     agentFormData?.locationArray?.length || 1,
   );
   const handleRemove = (index: any) => {
-    const updatedagentFormData: any = { ...agentFormData };
+    const updatedAgentFormData: any = { ...agentFormData };
 
-    if (updatedagentFormData.otherPersons) {
-      updatedagentFormData.otherPersons =
-        updatedagentFormData.otherPersons.filter(
+    if (updatedAgentFormData.otherPersons) {
+      updatedAgentFormData.otherPersons =
+        updatedAgentFormData.otherPersons.filter(
           (_: any, currentIndex: any) => currentIndex !== index,
         );
     }
 
-    setAgentFormData(updatedagentFormData);
+    setAgentFormData(updatedAgentFormData);
   };
 
   return (

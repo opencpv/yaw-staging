@@ -16,7 +16,7 @@ type Props = {
 };
 const CustomCheckBoxes = ({ data, onChange, color }: Props) => {
   const [selected, setSelected] = useState<any>([]);
-  const [listingFormData, setlistingFormData] = useLocalStorage(
+  const [listingFormData, setListingFormData] = useLocalStorage(
     "listing-form",
     {
       advancePaymentDuration: [],
@@ -27,7 +27,7 @@ const CustomCheckBoxes = ({ data, onChange, color }: Props) => {
     if (selected) {
       onChange && onChange(selected);
     }
-  }, [selected?.length]);
+  }, [onChange, selected]);
 
   const handleChange = (r: any) => {
     if (selected.includes(r?.name)) {
@@ -69,7 +69,7 @@ const CustomCheckBoxes = ({ data, onChange, color }: Props) => {
             </Checkbox.Indicator>
           </Checkbox.Root>
           <label
-            className="text-[0.875rem] font-[400] leading-5 text-[#737373]"
+            className="text-[0.975rem] font-[400] leading-5 text-[#737373]"
             htmlFor={r?.name}
           >
             {r?.name}

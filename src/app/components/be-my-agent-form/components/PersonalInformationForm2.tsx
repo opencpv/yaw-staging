@@ -10,12 +10,15 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import { LeaseData } from "../../application-form/components/content";
 import styles from "./index.module.css";
 import { BeMyAgentFormType } from "./types";
+import CustomTextAreaInput from "../../CustomTextAreaInput";
 type Props = {};
 
 const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
   ({}, ref) => {
     const [agentFormData, setAgentFormData] =
       useLocalStorage<BeMyAgentFormType>("agent-form");
+
+    console.log(agentFormData);
 
     const handleOnChange = (name: any, value: any) => {
       setAgentFormData({
@@ -30,15 +33,6 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
           <h2 className={styles.title}>Lease Holder Information</h2>
           <div className="grid grid-cols-1 gap-x-5 gap-y-8 lg:grid-cols-2">
             <div className="form-col col-span-1 w-full">
-              {/* <TextFieldInput
-                type="text"
-                name="title"
-                label="Title"
-                placeholder="Enter your Title"
-                onChange={(e) =>
-                  setAgentFormData({ ...agentFormData, title: e.target.value })
-                }
-              /> */}
               <CustomSelect
                 label="Title"
                 value={agentFormData?.title || "Mrs"}
@@ -90,9 +84,8 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
               />
               <SelectSearchInput
                 data={LeaseData}
-                placeholder={
-                  `${agentFormData?.leaseTerm} months` || "Enter lease term"
-                }
+                placeholder="Enter lease term"
+                // inputValue={agentFormData?.leaseTerm || LeaseData?.[0]?.value}
                 label="Lease term"
                 onChange={(value) => {
                   handleOnChange("leaseTerm", value);
@@ -146,12 +139,13 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
                   })
                 }
               />
-              {agentFormData?.evictedBefore == "yes" && (
-                <TextFieldInput
-                  name="reasonForEviction"
-                  type="text"
+              {agentFormData?.evictedBefore === "yes" && (
+                <CustomTextAreaInput
                   label="State Your Reasons"
-                  placeholder="State your reasons here"
+                  placeholder={"State your reasons here"}
+                  classes="h-[52px]"
+                  name="reasonForEviction"
+                  value={agentFormData?.reasonForEviction}
                   onChange={(e) =>
                     setAgentFormData({
                       ...agentFormData,
@@ -172,12 +166,13 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
                   })
                 }
               />
-              {agentFormData?.convictedBefore == "yes" && (
-                <TextFieldInput
-                  name="reasonForConviction"
-                  type="text"
+              {agentFormData?.convictedBefore === "yes" && (
+                <CustomTextAreaInput
                   label="State Your Reasons"
-                  placeholder="State your reasons here"
+                  placeholder={"State your reasons here"}
+                  classes="h-[52px]"
+                  name="reasonForConviction"
+                  value={agentFormData?.reasonForConviction}
                   onChange={(e) =>
                     setAgentFormData({
                       ...agentFormData,

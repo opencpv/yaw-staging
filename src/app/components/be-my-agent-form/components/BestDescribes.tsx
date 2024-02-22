@@ -39,19 +39,13 @@ type Props = {
 };
 
 export default function BestDescribes({ infoText }: Props) {
-  const [agentFormData, setAgentFormData] = useLocalStorage<BeMyAgentFormType>(
-    "agent-form",
-    {
-      // maritalStatus: "Single",
-      // leaseTerm: "12 months",
-      // gender: "Male",
-    },
-  );
-  const [selected, setSelected] = useState<any>(agentFormData?.propertyType);
+  const [agentFormData, setAgentFormData] =
+    useLocalStorage<BeMyAgentFormType>("agent-form");
+  const [selected, setSelected] = useState<any>([]);
 
   const handleAmenityClick = (r: any) => {
-    if (selected.includes(r?.name)) {
-      setSelected(selected.filter((item: any) => item !== r?.name));
+    if (selected?.includes(r?.name)) {
+      setSelected(selected?.filter((item: any) => item !== r?.name));
     } else {
       setSelected([...selected, r?.name]);
     }
