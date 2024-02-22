@@ -21,7 +21,7 @@ export type BeMyAgentFormType = Partial<{
   lastName: string;
   gender: string;
   moveInDate: string;
-  leaseTerm: string;
+  leaseTerm: number;
   maritalStatus: string;
   email: string;
   country: string;

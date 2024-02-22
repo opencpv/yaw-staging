@@ -45,8 +45,8 @@ export default function FeaturesAndAmenities() {
   const [selected, setSelected] = useState<any>([]);
 
   const handleAmenityClick = (r: any) => {
-    if (selected.includes(r?.name)) {
-      setSelected(selected.filter((item: any) => item !== r?.name));
+    if (selected?.includes(r?.name)) {
+      setSelected(selected?.filter((item: any) => item !== r?.name));
     } else {
       setSelected([...selected, r?.name]);
     }
@@ -68,7 +68,7 @@ export default function FeaturesAndAmenities() {
   return (
     <>
       <Root>
-        <h2 className={`${styles.title}`}>Required Features & Amenities</h2>
+        <h2 className={`${styles.title}`}>Required Features</h2>
         <div className="grid w-full grid-cols-4 gap-5 lg:grid-cols-3">
           {data.map((r: any, index: number) => (
             <div

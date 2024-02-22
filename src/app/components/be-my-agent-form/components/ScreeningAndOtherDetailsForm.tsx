@@ -23,11 +23,7 @@ const ScreeningAndOtherDetailsForm = React.forwardRef<HTMLInputElement, Props>(
     };
 
     const [agentFormData, setagentFormData] =
-      useLocalStorage<BeMyAgentFormType>("agent-form", {
-        maritalStatus: "Single",
-        leaseTerm: "12 months",
-        gender: "Male",
-      });
+      useLocalStorage<BeMyAgentFormType>("agent-form");
     return (
       <Root>
         <h2 className={`${styles.title}  font-semibold`}>

@@ -20,12 +20,8 @@ type Props = {};
 
 const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
   ({}, ref) => {
-    const [agentFormData, setagentFormData] =
-      useLocalStorage<BeMyAgentFormType>("agent-form", {
-        maritalStatus: "Single",
-        leaseTerm: "12 months",
-        gender: "Male",
-      });
+    const [agentFormData, setAgentFormData] =
+      useLocalStorage<BeMyAgentFormType>("agent-form");
     const [selectedCurrency, setSelectedCurrency] =
       useLocalStorage<any>("selectedCurrency");
 
@@ -45,15 +41,16 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
             placeholder={
               agentFormData?.mostRecentEmployment || "Most Recent Employment"
             }
+            value={agentFormData?.mostRecentEmployment}
             label="Employment Status"
             onChange={(value) =>
-              setagentFormData({
+              setAgentFormData({
                 ...agentFormData,
                 mostRecentEmployment: value,
               })
             }
           />
-          {agentFormData?.mostRecentEmployment == "employed" && (
+          {/* {agentFormData?.mostRecentEmployment == "employed" && (
             <div className="text-shade200] mt-[64px] flex items-center justify-start gap-3">
               <input
                 type="checkbox"
@@ -61,7 +58,7 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
                 checked={agentFormData?.currentlyEmployed == "yes"}
                 onChange={(e) => {
                   setIsChecked(!isChecked);
-                  setagentFormData({
+                  setAgentFormData({
                     ...agentFormData,
                     currentlyEmployed: isChecked ? "yes" : "no",
                   });
@@ -78,7 +75,7 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
                 placeholderDate={agentFormData?.employmentStartDate}
                 label="Start Date"
                 onChange={(value) =>
-                  setagentFormData({
+                  setAgentFormData({
                     ...agentFormData,
                     employmentStartDate: value,
                   })
@@ -89,21 +86,21 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
                 placeholderDate={agentFormData?.employmentEndDate}
                 disabled={agentFormData?.currentlyEmployed && true}
                 onChange={(value) =>
-                  setagentFormData({
+                  setAgentFormData({
                     ...agentFormData,
                     employmentEndDate: value,
                   })
                 }
               />
             </div>
-          )}
+          )} */}
           <TextFieldInput
             name="employer"
             type="text"
-            label="Employer / source of Incone"
+            label="Employer or source of Income"
             placeholder={agentFormData?.employer || "Enter employer name"}
             onChange={(e) =>
-              setagentFormData({
+              setAgentFormData({
                 ...agentFormData,
                 employer: e.target.value,
               })
@@ -113,7 +110,7 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
             initialValue={agentFormData?.employersCountry}
             label="Employer's Country"
             onChange={(value) =>
-              setagentFormData({
+              setAgentFormData({
                 ...agentFormData,
                 employersCountry: value,
               })
@@ -125,7 +122,7 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
             label="Job Title"
             placeholder={agentFormData?.jobTitle || "Enter your job title"}
             onChange={(e) =>
-              setagentFormData({
+              setAgentFormData({
                 ...agentFormData,
                 jobTitle: e.target.value,
               })
@@ -138,13 +135,13 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
             placeholder="Select"
             label="Monthly Income"
             onChange={(value) =>
-              setagentFormData({
+              setAgentFormData({
                 ...agentFormData,
                 monthlyIncome: value,
               })
             }
             onChange2={(value) =>
-              setagentFormData({
+              setAgentFormData({
                 ...agentFormData,
                 monthlyIncomeCurrency: value,
               })

@@ -8,6 +8,7 @@ type Props = {
   onChange: (e: any) => void;
   placeholder: string;
   name?: string;
+  value?: string;
   initialValues?: string;
 };
 
@@ -18,15 +19,17 @@ const CustomTextAreaInput = ({
   placeholder,
   name,
   initialValues,
+  value,
 }: Props) => {
   return (
     <Root className="text-[#6A6968]">
       <label htmlFor="">{label}</label>
       <textarea
-        className={`form-input hover:border-black/50 ${classes}`}
+        className={`form-input hidden-scrollbar pb-5 hover:border-black/50 ${classes}`}
         placeholder={placeholder}
         onChange={onChange}
         name={name}
+        value={value}
         defaultValue={initialValues}
       />
     </Root>

@@ -60,7 +60,7 @@ export default function BeMyAgentForm({ setOpen }: Props) {
     { activeSlide: 0 },
   );
   const [agentFormData] = useLocalStorage<BeMyAgentFormType>("agent-form", {
-    leaseTerm: "12",
+    leaseTerm: 12,
     country: "Ghana",
     preferredMethodOfContact: "email",
     dateOfBirth: "18-44",
