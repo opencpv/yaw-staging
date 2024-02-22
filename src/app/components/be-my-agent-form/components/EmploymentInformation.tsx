@@ -97,7 +97,7 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
           <TextFieldInput
             name="employer"
             type="text"
-            label="Employer or source of Income"
+            label="Employer or Income source"
             placeholder={agentFormData?.employer || "Enter employer name"}
             onChange={(e) =>
               setAgentFormData({

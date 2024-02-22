@@ -88,9 +88,9 @@ const Applicants = ({}) => {
   const handleRemove = (index: any) => {
     const updatedAgentFormData: any = { ...agentFormData };
 
-    if (updatedAgentFormData.otherPersons) {
-      updatedAgentFormData.otherPersons =
-        updatedAgentFormData.otherPersons.filter(
+    if (updatedAgentFormData.locationArray) {
+      updatedAgentFormData.locationArray =
+        updatedAgentFormData.locationArray.filter(
           (_: any, currentIndex: any) => currentIndex !== index,
         );
     }
@@ -105,7 +105,7 @@ const Applicants = ({}) => {
         <TextFieldInput
           type="text"
           name="searchName"
-          placeholder=""
+          placeholder="E.g: My Accra Search"
           onChange={(e) =>
             setAgentFormData({
               ...agentFormData,
@@ -120,7 +120,7 @@ const Applicants = ({}) => {
           {/* Locations */}
           <div>
             {Array.from({ length: locationLength }).map((_, index) => (
-              <div key={index} className="mb-2">
+              <div key={index} className={index !== 0 ? "mb-2" : "mb-10"}>
                 <ClientOnly>
                   <Location
                     key={index}
@@ -131,7 +131,7 @@ const Applicants = ({}) => {
                     }
                   />
                 </ClientOnly>
-                {locationLength > 1 && (
+                {locationLength > 1 && index !== 0 && (
                   <button
                     type="button"
                     className="flex h-[38px] items-center justify-center gap-1 px-2 text-[13px] font-[400] text-[#E9515E] hover:bg-[#e9515e3a] "
