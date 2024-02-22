@@ -40,16 +40,30 @@ export default function PropertyRequirements() {
                 { name: "100", value: "100" },
                 { name: "1000", value: "1000" },
                 { name: "2000", value: "2000" },
+                { name: "4000", value: "4000" },
+                { name: "5000", value: "5000" },
+                { name: "6000", value: "6000" },
+                { name: "7000", value: "7000" },
+                { name: "8000", value: "8000" },
+                { name: "9000", value: "9000" },
+                { name: "10000", value: "10000" },
               ]}
               onChange={(value) => handleOnChange("priceRangeMinimum", value)}
             />
             <CustomSelect
               label="Maximum"
-              value={agentFormData?.priceRangeMaximum || "1000"}
+              value={agentFormData?.priceRangeMaximum || "100"}
               options={[
+                { name: "1000", value: "100" },
                 { name: "1000", value: "1000" },
-                { name: "10000", value: "10000" },
-                { name: "20000", value: "20000" },
+                { name: "2000", value: "2000" },
+                { name: "4000", value: "4000" },
+                { name: "5000", value: "5000" },
+                { name: "6000", value: "6000" },
+                { name: "7000", value: "7000" },
+                { name: "8000", value: "8000" },
+                { name: "9000", value: "9000" },
+                { name: "10000+", value: "10000+" },
               ]}
               onChange={(value) => handleOnChange("priceRangeMaximum", value)}
             />
@@ -87,16 +101,32 @@ export default function PropertyRequirements() {
               value={agentFormData?.bedMinimum || "1"}
               options={[
                 { name: "1", value: "1" },
+                { name: "2", value: "2" },
+                { name: "3", value: "3" },
+                { name: "4", value: "4" },
+                { name: "5", value: "5" },
+                { name: "6", value: "6" },
+                { name: "7", value: "7" },
+                { name: "8", value: "8" },
+                { name: "9", value: "9" },
                 { name: "10", value: "10" },
               ]}
               onChange={(value) => handleOnChange("bedMinimum", value)}
             />
             <CustomSelect
               label="Maximum"
-              value={agentFormData?.bedMaximum || "5"}
+              value={agentFormData?.bedMaximum || "1"}
               options={[
+                { name: "1", value: "1" },
+                { name: "2", value: "2" },
+                { name: "3", value: "3" },
+                { name: "4", value: "4" },
                 { name: "5", value: "5" },
-                { name: "50", value: "50" },
+                { name: "6", value: "6" },
+                { name: "7", value: "7" },
+                { name: "8", value: "8" },
+                { name: "9", value: "9" },
+                { name: "10+", value: "10+" },
               ]}
               onChange={(value) => handleOnChange("bedMaximum", value)}
             />
@@ -129,6 +159,14 @@ export default function PropertyRequirements() {
               value={agentFormData?.bathroomMinimum || "1"}
               options={[
                 { name: "1", value: "1" },
+                { name: "2", value: "2" },
+                { name: "3", value: "3" },
+                { name: "4", value: "4" },
+                { name: "5", value: "5" },
+                { name: "6", value: "6" },
+                { name: "7", value: "7" },
+                { name: "8", value: "8" },
+                { name: "9", value: "9" },
                 { name: "10", value: "10" },
               ]}
               onChange={(value) => handleOnChange("bathroomMinimum", value)}
@@ -137,8 +175,16 @@ export default function PropertyRequirements() {
               label="Maximum"
               value={agentFormData?.bathroomMaximum || "5"}
               options={[
+                { name: "1", value: "1" },
+                { name: "2", value: "2" },
+                { name: "3", value: "3" },
+                { name: "4", value: "4" },
                 { name: "5", value: "5" },
-                { name: "50", value: "50" },
+                { name: "6", value: "6" },
+                { name: "7", value: "7" },
+                { name: "8", value: "8" },
+                { name: "9", value: "9" },
+                { name: "10+", value: "10+" },
               ]}
               onChange={(value) => handleOnChange("bathroomMaximum", value)}
             />

@@ -201,7 +201,9 @@ const ContactInformationForm = React.forwardRef<HTMLInputElement, Props>(
               /> */}
             <CustomTextAreaInput
               label="Purpose for Moving"
-              placeholder={"Please provide your reason (s)"}
+              placeholder={
+                "Why are you moving and what are you looking for in your new place?"
+              }
               classes="h-[167px]"
               name="reasonForMoving"
               value={agentFormData?.reasonsForMoving}

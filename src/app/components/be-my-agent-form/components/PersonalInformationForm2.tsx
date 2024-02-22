@@ -39,6 +39,7 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
                 options={[
                   { name: "mr", value: "Mr" },
                   { name: "mrs", value: "Mrs" },
+                  { name: "miss", value: "Miss" },
                 ]}
                 onChange={(value) => handleOnChange("title", value)}
               />
@@ -66,7 +67,7 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
                   })
                 }
               />
-              <CustomSelect
+              {/* <CustomSelect
                 label="Gender"
                 value={agentFormData?.gender || "Female"}
                 options={[
@@ -74,7 +75,7 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
                   { name: "female", value: "Female" },
                 ]}
                 onChange={(value) => handleOnChange("gender", value)}
-              />
+              /> */}
             </div>
             <div className="form-col col-span-1">
               <CustomDatePicker

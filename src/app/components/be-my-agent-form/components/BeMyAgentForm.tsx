@@ -199,7 +199,7 @@ export default function BeMyAgentForm({ setOpen }: Props) {
           } col-span-1  rounded-lg border border-accent-50 font-semibold text-accent-50`}
           onClick={handleBack}
         >
-          {firstSlide ? "Exit" : "Back"}
+          {firstSlide ? "Cancel" : "Back"}
         </NavigationButton>
         <NavigationButton
           className={` ${
