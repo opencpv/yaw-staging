@@ -48,7 +48,7 @@ export function CustomDatePicker({
           <Button
             variant={"outline"}
             className={cn(
-              "h-[52px] w-full justify-start border-[#a3a3a3] text-left font-normal hover:border-black/50",
+              "h-[52px] w-full justify-start border-[#a3a3a3] text-left font-normal hover:border-black/50 focus:border-2 focus:border-accent-50 focus:outline-none focus-visible:ring-0",
               !date && "text-muted-foreground",
             )}
           >

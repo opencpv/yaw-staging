@@ -136,7 +136,7 @@ const CurrencyInput = ({
                 variant="outline"
                 role="combobox"
                 aria-expanded={open}
-                className="form-field-border h-[52px] w-full max-w-[100px] justify-between whitespace-nowrap uppercase text-[#6A6968] focus:border-2 focus:border-accent-50 focus:outline-none"
+                className="form-field-border h-[52px] w-full max-w-[100px] justify-between whitespace-nowrap uppercase text-[#6A6968] focus:border-2 focus:border-accent-50 focus:outline-none focus-visible:ring-0"
               >
                 {value ? value : placeholder}
                 <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />

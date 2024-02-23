@@ -167,6 +167,7 @@ export default function BeMyAgentForm({ setOpen }: Props) {
                 alt="person relaxing on couch"
                 fill
                 style={{ objectFit: "cover" }}
+                className="object-left-top lg:object-left"
               />
             </div>{" "}
           </div>
@@ -196,7 +197,7 @@ export default function BeMyAgentForm({ setOpen }: Props) {
         <NavigationButton
           className={` ${
             hideLeft && "hidden"
-          } col-span-1  rounded-lg border border-accent-50 font-semibold text-accent-50`}
+          } col-span-1  rounded-lg bg-primary-200/80 font-semibold text-white hover:bg-primary-200`}
           onClick={handleBack}
         >
           {firstSlide ? "Cancel" : "Back"}
