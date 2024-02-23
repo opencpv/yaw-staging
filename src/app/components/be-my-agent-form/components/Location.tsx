@@ -46,7 +46,7 @@ const Location = ({ index, city, neighbourhood }: any) => {
       </TFormDiv> */}
       <CustomSelect
         label="City"
-        value={city}
+        value={city || "Accra"}
         options={[
           { name: "accra", value: "Accra" },
           { name: "tema", value: "Tema" },
@@ -55,7 +55,7 @@ const Location = ({ index, city, neighbourhood }: any) => {
       />
       <CustomSelect
         label="Neighbourhood"
-        value={neighbourhood}
+        value={neighbourhood || "Dansoman"}
         options={[
           { name: "dansoman", value: "Dansoman" },
           { name: "osu", value: "Osu" },
@@ -105,7 +105,7 @@ const Applicants = ({}) => {
         <TextFieldInput
           type="text"
           name="searchName"
-          placeholder="E.g: My Accra Search"
+          placeholder="E.g: My Accra Dream Home"
           onChange={(e) =>
             setAgentFormData({
               ...agentFormData,

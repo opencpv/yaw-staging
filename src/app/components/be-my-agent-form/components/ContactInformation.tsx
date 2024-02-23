@@ -79,7 +79,7 @@ const ContactInformationForm = React.forwardRef<HTMLInputElement, Props>(
             />
             <CountryInput
               label="Country"
-              initialValue={agentFormData?.country}
+              initialValue={agentFormData?.country || "Republic of Ghana"}
               onChange={(value) =>
                 setAgentFormData({
                   ...agentFormData,

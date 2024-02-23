@@ -78,7 +78,7 @@ const CountryInput = ({
     <div>
       <Root>
         <div className={`font-[400] capitalize text-[#6A6968]`}>
-          <label>{label}</label>
+          <label className="normal-case">{label}</label>
         </div>
         <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>

@@ -38,10 +38,7 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
         <div className="grid grid-cols-1 gap-x-5 gap-y-8 lg:grid-cols-2">
           <CustomSelect
             options={MostRecentEmployment}
-            placeholder={
-              agentFormData?.mostRecentEmployment || "Most Recent Employment"
-            }
-            value={agentFormData?.mostRecentEmployment}
+            value={agentFormData?.mostRecentEmployment || "Employed"}
             label="Employment Status"
             onChange={(value) =>
               setAgentFormData({
@@ -97,8 +94,10 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
           <TextFieldInput
             name="employer"
             type="text"
-            label="Employer or Income source"
-            placeholder={agentFormData?.employer || "Enter employer name"}
+            label="Employer or Income Source"
+            placeholder={
+              agentFormData?.employer || "Enter employer or sponsor name"
+            }
             onChange={(e) =>
               setAgentFormData({
                 ...agentFormData,
@@ -107,9 +106,11 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
             }
           />
           <CountryInput
-            initialValue={agentFormData?.employersCountry}
+            initialValue={
+              agentFormData?.employersCountry || "Republic of Ghana"
+            }
             label="Employer's Country"
-            placeholder="Select employer's country"
+            placeholder="Select employer's or sponsor's country"
             onChange={(value) =>
               setAgentFormData({
                 ...agentFormData,
