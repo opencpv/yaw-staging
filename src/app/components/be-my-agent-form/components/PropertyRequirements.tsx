@@ -27,15 +27,6 @@ export default function PropertyRequirements() {
         <div className="flex flex-col gap-4">
           <h3>Price Range</h3>
           <div className="grid grid-cols-2 gap-5">
-            {/* <TextFieldInput
-              label="Minimum"
-              name="priceRangeMinimum"
-              placeholder=""
-              pattern="[0-9]"
-              onChange={(e) =>
-                handleOnChange("priceRangeMinimum", e.target.value)
-              }
-            /> */}
             <CustomSelect
               label="Minimum"
               value={agentFormData?.priceRangeMinimum || "100"}
@@ -59,7 +50,7 @@ export default function PropertyRequirements() {
               value={agentFormData?.priceRangeMaximum || "100"}
               prefix="GHS"
               options={[
-                { name: "1000", value: "100" },
+                { name: "100", value: "100" },
                 { name: "1000", value: "1000" },
                 { name: "2000", value: "2000" },
                 { name: "4000", value: "4000" },
@@ -72,15 +63,6 @@ export default function PropertyRequirements() {
               ]}
               onChange={(value) => handleOnChange("priceRangeMaximum", value)}
             />
-            {/* <TextFieldInput
-              label="Maximum"
-              name="priceRangeMaximum"
-              placeholder=""
-              pattern="[0-9]"
-              onChange={(e) =>
-                handleOnChange("priceRangeMaximum", e.target.value)
-              }
-            /> */}
           </div>
         </div>
         {/* Bed */}

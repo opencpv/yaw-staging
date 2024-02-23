@@ -20,6 +20,7 @@ import { ClientOnly } from "@/components/ui/ClientOnly";
 import Button from "@/components/__shared/ui/button/Button";
 import { BeMyAgentFormType } from "./types";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
+import { cn } from "@/lib/utils";
 
 const views = [
   <Location key={"property-information"} />,
@@ -195,9 +196,11 @@ export default function BeMyAgentForm({ setOpen }: Props) {
         }`}
       >
         <NavigationButton
-          className={` ${
-            hideLeft && "hidden"
-          } col-span-1  rounded-lg bg-primary-200/80 font-semibold text-white hover:bg-primary-200`}
+          className={cn("col-span-1 rounded-lg font-semibold", {
+            hidden: hideLeft,
+            "border border-accent-50 text-accent-50": !firstSlide,
+            "bg-primary-200/80 text-white hover:bg-primary-200": firstSlide,
+          })}
           onClick={handleBack}
         >
           {firstSlide ? "Cancel" : "Back"}
@@ -205,7 +208,7 @@ export default function BeMyAgentForm({ setOpen }: Props) {
         <NavigationButton
           className={` ${
             hideRight && "hidden"
-          } col-span-1 rounded-lg  bg-accent-50 font-semibold text-white`}
+          } col-span-1 rounded-lg bg-accent-50 font-semibold text-white`}
           onClick={handleForward}
         >
           {/* {firstSlide && "Next"}

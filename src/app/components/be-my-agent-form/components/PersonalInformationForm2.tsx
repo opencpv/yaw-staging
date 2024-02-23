@@ -29,6 +29,7 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
 
     return (
       <Root className="space-y-10">
+        {/* Lease Holder Information */}
         <div>
           <h2 className={styles.title}>Lease Holder Information</h2>
           <div className="grid grid-cols-1 gap-x-5 gap-y-8 lg:grid-cols-2">
@@ -105,6 +106,7 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
             />
           </div>
         </div>
+        {/* Screening & Other Details */}
         <div>
           <h2 className={styles.title}>Screening & Other Details</h2>
           <div className="grid grid-cols-1 gap-x-5 gap-y-8 lg:grid-cols-2">
