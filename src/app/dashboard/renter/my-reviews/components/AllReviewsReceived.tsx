@@ -16,7 +16,7 @@ export default function AllReviewsReceived() {
           <div className="flex flex-col gap-6">
             <p className="text-base 2xl:text-[1.25rem] font-semibold">All Reviews ( 4 )</p>
 
-            <div className="flex flex-col gap-14">
+            <div className="flex flex-col gap-8">
               {mockReviewData.map((r, index) => (
                 <DelayEnter key={index} index={index}>
                   <ReviewCard key={index} data={r} index={index} />

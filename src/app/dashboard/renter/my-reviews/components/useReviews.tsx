@@ -5,7 +5,7 @@ function useReviews() {
   const [reply, setReply] = useState(false);
   const { onOpen: toastOpen } = useToastDisclosureVariant1();
 
-  const [filter, setFilter] = useState<any>('none')
+  const [filter, setFilter] = useState<any>('all')
 
   const replyReview = () => {
     setReply(false);

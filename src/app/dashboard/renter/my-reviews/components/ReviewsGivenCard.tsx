@@ -58,7 +58,7 @@ export default function ReviewsGivenCard({
   }, [edit, data?.review]);
 
   return (
-    <div className="flex w-full  flex-col items-start  gap-4  border-b-1  py-3 ">
+    <div className="flex w-full  flex-col items-start  gap-4  border-b-1  py-3 max-w-[1103px] ">
       <div className="flex w-full flex-col items-start gap-4  border-l-4 border-l-[#00974A]  pl-4">
         <div className="flex w-full items-center justify-start gap-4">
           <div

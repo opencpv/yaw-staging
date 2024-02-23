@@ -50,7 +50,7 @@ function TlpFooter() {
           <p className="text-[#ffff]">(+233) 25 898 2889</p>
         </div>
 
-        <div className="flex items-center gap-1 text-white">
+        {/* <div className="flex items-center gap-1 text-white">
           <p>Follow Us:</p>
           <Link href={"/"} className="duration-1000 hover:rotate-[360deg]">
             <Image
@@ -71,7 +71,7 @@ function TlpFooter() {
           <Link href="/">
             <CaYoutube />
           </Link>{" "}
-        </div>
+        </div> */}
       </div>
     </div>
   );

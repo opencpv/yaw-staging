@@ -8,12 +8,14 @@ import InputPhoneNumber from "@/components/__shared/form/InputPhoneNumber";
 import { useContactForm } from "@/app/contact/components/forms/hooks/useContactForm";
 import { styled } from "@stitches/react";
 import styles from "../index.module.css";
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 
 import useTLPage from "./useTLPage";
+import { useState } from "react";
 
 function GetNotifiedInput() {
-
   const { handleSubmit } = useTLPage();
+  const [showInputs, setShowInputs] = useState<any>();
   const optionSelect = useGetNotifiedStore((state: any) => state.filterOption);
   const {
     handleCountryChange,
@@ -24,58 +26,70 @@ function GetNotifiedInput() {
   } = useContactForm();
 
   return (
-    <Root className={`flex flex-col sm:flex-row gap-6 sm:gap-10 w-full ${styles.root}`}>
-      <div className="flex flex-col gap-4 w-full">
-        <p
-          className="text-[#F2B94E] font-semibold text-20 w-full text-center xs:text-left
-        lg:text-[1.5625rem] leading-[2.1875rem] xs:whitespace-nowrap">
-          Get notified when we go live!
-        </p>
-
-        <GetNotifiedInputTabs />
+    <Root
+      className={`flex w-full flex-col gap-6 sm:flex-row sm:gap-10 ${styles.root}`}
+    >
+      <div className="flex w-full flex-col gap-4">
+        <div className="flex items-center gap-3">
+          <p
+            className="text-center text-20 font-semibold leading-[2.1875rem] text-[#F2B94E]
+          xs:whitespace-nowrap xs:text-left 2xl:text-[1.5625rem]"
+          >
+            Get notified when we go live!
+          </p>
+          <button className="animate animate-pulse appearance-none" onClick={() => setShowInputs((init : boolean) => !init)}>
+            {" "}
+            <MdOutlineKeyboardArrowRight size="30" color="#F2B94E" />
+          </button>
+        </div>
+        {showInputs && <GetNotifiedInputTabs />}{" "}
       </div>
-      <Formik
-        initialValues={{
-          email: "",
-        }}
-        onSubmit={(values, { setFieldError }) => {
-          handleSubmit(values, setFieldError, phone)
-        }}>
-        {({ handleBlur, handleChange, values, errors }) => (
-          <Form className="flex flex-col items-center gap-4 w-full sm:max-w-[345px]">
-            {optionSelect == "email" && (
-              <input
-                required
-                type="email"
-                name="email"
-                onChange={handleChange}
-                value={values?.email}
-                placeholder="Your email "
-                className="w-full rounded-[4px] h-[3.25rem] bg-[#F9F9F9] border-[1px] p-[15px]"
-              />
-            )}
+      {showInputs && (
+        <Formik
+          initialValues={{
+            email: "",
+          }}
+          onSubmit={(values, { setFieldError }) => {
+            handleSubmit(values, setFieldError, phone);
+          }}
+        >
+          {({ handleBlur, handleChange, values, errors }) => (
+            <Form className="flex w-full flex-col items-center gap-4 xs:max-w-[345px]">
+              {optionSelect == "email" && (
+                <input
+                  required
+                  type="email"
+                  name="email"
+                  onChange={handleChange}
+                  value={values?.email}
+                  placeholder="Your email "
+                  className="h-[3.25rem] w-full rounded-[4px] border-[1px] bg-[#F9F9F9] p-[15px]"
+                />
+              )}
 
-            {optionSelect == "mobile" && (
-              <InputPhoneNumber
-                id="phone"
-                name="phone"
-                value={phone}
-                placeholder={phoneInputPlaceholder}
-                onBlur={handleBlur}
-                onChange={handlePhone}
-                onInput={handleChange}
-                onCountryChange={handleCountryChange}
-              />
-            )}
+              {optionSelect == "mobile" && (
+                <InputPhoneNumber
+                  id="phone"
+                  name="phone"
+                  value={phone}
+                  placeholder={phoneInputPlaceholder}
+                  onBlur={handleBlur}
+                  onChange={handlePhone}
+                  onInput={handleChange}
+                  onCountryChange={handleCountryChange}
+                />
+              )}
 
-            <Button
-              type="submit"
-              className="hope w-full text-white font-semibold px-10 py-[15px] rounded-lg bg-[#095B5A] h-[3.25rem]">
-              Subscribe
-            </Button>
-          </Form>
-        )}
-      </Formik>
+              <Button
+                type="submit"
+                className="hope h-[3.25rem] w-full rounded-lg bg-[#095B5A] px-10 py-[15px] font-semibold text-white"
+              >
+                Subscribe
+              </Button>
+            </Form>
+          )}
+        </Formik>
+      )}
     </Root>
   );
 }
