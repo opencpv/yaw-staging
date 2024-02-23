@@ -25,6 +25,7 @@ import { openSans } from "@/styles/font";
 import Image from "next/image";
 import { boolean } from "yup";
 import { InfoBubble } from "@/app/components/application-form/components/InfoBubble";
+import CustomSelect, { OptionTypes } from "@/app/components/CustomSelect";
 
 type DataItem = {
   label: string;
@@ -36,6 +37,7 @@ type Props = {
   initialCurrency?: any;
 
   initialValue?: any;
+  value2?: string;
 
   placeholder?: string;
   label: string;
@@ -44,6 +46,9 @@ type Props = {
   placeholderMonthlyIncomeCurrency?: string;
   placeholderMonthlyIncome?: string;
   infoBubble?: boolean;
+  isSelectElement?: boolean;
+  /** options to use when isSelectElement is true */
+  options?: OptionTypes[];
 };
 
 const CurrencyInput = ({
@@ -53,9 +58,12 @@ const CurrencyInput = ({
   label,
   onChange,
   onChange2,
+  value2,
   placeholderMonthlyIncome,
   placeholderMonthlyIncomeCurrency,
   infoBubble,
+  isSelectElement,
+  options,
 }: Props) => {
   const [currencyData, setCurrencyData] = useState<DataItem[]>();
   const [selectedCurrency, setSelectedCurrency] = useState<any>({});
@@ -63,14 +71,14 @@ const CurrencyInput = ({
   const [value, setValue] = React.useState<string>(
     placeholderMonthlyIncomeCurrency || "",
   );
-  const [value2, setValue2] = useState<string>("");
+  // const [value2, setValue2] = useState<string>("");
 
   const [totalValue, setTotalValue] = useState<string>();
 
   useEffect(() => {
     if (initialValue) {
       setValue(initialValue.slice(0, 4));
-      setValue2(initialValue.slice(4));
+      // setValue2(initialValue.slice(4));
     } else {
       setValue("GHS");
     }
@@ -83,8 +91,8 @@ const CurrencyInput = ({
   }, []);
 
   useEffect(() => {
-    setTotalValue(value + value2);
-  }, [value, value2]);
+    setTotalValue(value);
+  }, [value]);
 
   useEffect(() => {
     onChange2 && onChange2(selectedCurrency);
@@ -128,7 +136,7 @@ const CurrencyInput = ({
                 variant="outline"
                 role="combobox"
                 aria-expanded={open}
-                className="form-field-border h-[52px] w-full max-w-[100px] justify-between whitespace-nowrap uppercase text-[#6A6968]"
+                className="form-field-border h-[52px] w-full max-w-[100px] justify-between whitespace-nowrap uppercase text-[#6A6968] focus:border-2 focus:border-accent-50 focus:outline-none"
               >
                 {value ? value : placeholder}
                 <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -155,13 +163,21 @@ const CurrencyInput = ({
               </Command>
             </PopoverContent>
           </Popover>
-          <input
-            name="salaryCurrency"
-            pattern="[0-9]"
-            className="form-input w-full hover:border-black/50"
-            value={value2}
-            onChange={(e) => setValue2(e.target.value)}
-          />
+          {isSelectElement ? (
+            <CustomSelect
+              value={value2}
+              options={options as OptionTypes[]}
+              onChange={(value) => onChange2 && onChange2(value)}
+            />
+          ) : (
+            <input
+              name="salaryCurrency"
+              pattern="[0-9]"
+              className="form-input w-full hover:border-black/50"
+              value={value2}
+              onChange={(e) => onChange2 && onChange2(e.target.value)}
+            />
+          )}
         </div>
       </Root>
     </div>

@@ -9,18 +9,20 @@ import {
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 
-type OptionTypes = {
+export type OptionTypes = {
   name: string;
   value: string;
 };
 type Props = {
   placeholder?: string;
-  label: string;
   options: OptionTypes[];
   onChange: (value: any) => void;
+  label?: string;
   fadeText?: boolean;
   className?: string;
   value?: string;
+  /** A string that shows before the value. Eg: GHS 1000 */
+  prefix?: string;
 };
 
 const CustomSelect = ({
@@ -31,17 +33,21 @@ const CustomSelect = ({
   fadeText,
   value,
   className,
+  prefix,
 }: Props) => {
   return (
     <Root className={cn("w-full text-[#6A6968] focus:border-0", className)}>
-      <label>{label}</label>
+      {label && <label>{label}</label>}
       <Select onValueChange={onChange} value={value}>
         <SelectTrigger
           className={`form-input w-full capitalize hover:border-black/50 ${
             fadeText && "text-[#B4B2AF]"
           }`}
         >
-          <SelectValue placeholder={placeholder} />
+          <div className="flex items-center gap-5">
+            {prefix && <span>{prefix}</span>}
+            <SelectValue placeholder={placeholder} />
+          </div>
         </SelectTrigger>
         <SelectContent className="z-[1001]">
           {options.map((r, index) => (

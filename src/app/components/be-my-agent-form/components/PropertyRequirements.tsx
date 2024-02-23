@@ -7,9 +7,12 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import CustomCheckBoxes from "../../CustomCheckBoxes";
 import { ClientOnly } from "@/components/ui/ClientOnly";
 import CustomSelect from "../../CustomSelect";
+import { BeMyAgentFormType } from "./types";
+import InfoText from "../../listing-form/components/InfoText";
 
 export default function PropertyRequirements() {
-  const [agentFormData, setAgentFormData] = useLocalStorage<any>("agent-form");
+  const [agentFormData, setAgentFormData] =
+    useLocalStorage<BeMyAgentFormType>("agent-form");
   const handleOnChange = (name: any, value: any) => {
     setAgentFormData({
       ...agentFormData,
@@ -36,6 +39,7 @@ export default function PropertyRequirements() {
             <CustomSelect
               label="Minimum"
               value={agentFormData?.priceRangeMinimum || "100"}
+              prefix="GHS"
               options={[
                 { name: "100", value: "100" },
                 { name: "1000", value: "1000" },
@@ -53,6 +57,7 @@ export default function PropertyRequirements() {
             <CustomSelect
               label="Maximum"
               value={agentFormData?.priceRangeMaximum || "100"}
+              prefix="GHS"
               options={[
                 { name: "1000", value: "100" },
                 { name: "1000", value: "1000" },
@@ -82,20 +87,6 @@ export default function PropertyRequirements() {
         <div className="flex flex-col gap-4">
           <h3>Bed</h3>
           <div className="grid grid-cols-2 gap-5">
-            {/* <TextFieldInput
-              label="Minimum"
-              name="bedMinimum"
-              placeholder=""
-              pattern="[0-9]"
-              onChange={(e) => handleOnChange("bedMinimum", e.target.value)}
-            />
-            <TextFieldInput
-              label="Maximum"
-              name="bedMaximum"
-              placeholder=""
-              pattern="[0-9]"
-              onChange={(e) => handleOnChange("bedMaximum", e.target.value)}
-            /> */}
             <CustomSelect
               label="Minimum"
               value={agentFormData?.bedMinimum || "1"}
@@ -136,24 +127,6 @@ export default function PropertyRequirements() {
         <div className="flex flex-col gap-4">
           <h3>Bathroom</h3>
           <div className="grid grid-cols-2 gap-5">
-            {/* <TextFieldInput
-              label="Minimum"
-              name="bathroomMinimum"
-              placeholder=""
-              pattern="[0-9]"
-              onChange={(e) =>
-                handleOnChange("bathroomMinimum", e.target.value)
-              }
-            />
-            <TextFieldInput
-              label="Maximum"
-              name="bathroomMaximum"
-              placeholder=""
-              pattern="[0-9]"
-              onChange={(e) =>
-                handleOnChange("bathroomMaximum", e.target.value)
-              }
-            /> */}
             <CustomSelect
               label="Minimum"
               value={agentFormData?.bathroomMinimum || "1"}
@@ -173,7 +146,7 @@ export default function PropertyRequirements() {
             />
             <CustomSelect
               label="Maximum"
-              value={agentFormData?.bathroomMaximum || "5"}
+              value={agentFormData?.bathroomMaximum || "1"}
               options={[
                 { name: "1", value: "1" },
                 { name: "2", value: "2" },
@@ -190,8 +163,67 @@ export default function PropertyRequirements() {
             />
           </div>
         </div>
-        {/* Rent advance options */}
+        {/* Lease Terms */}
+        <InfoText
+          content="Lorem ipsum dolor sit amet consectetur adipisicing elit."
+          className="mt-5"
+        />
         <div className="flex flex-col gap-4">
+          <h3>Lease Terms</h3>
+          <div className="grid grid-cols-2 gap-5">
+            <CustomSelect
+              label="Minimum"
+              value={agentFormData?.leaseTermMinimum || "1"}
+              options={[
+                { name: "1", value: "1" },
+                { name: "2", value: "2" },
+                { name: "3", value: "3" },
+                { name: "4", value: "4" },
+                { name: "5", value: "5" },
+              ]}
+              onChange={(value) => handleOnChange("leaseTermMinimum", value)}
+            />
+            <CustomSelect
+              label="Maximum"
+              value={agentFormData?.leaseTermMaximum || "1"}
+              options={[
+                { name: "1", value: "1" },
+                { name: "2", value: "2" },
+                { name: "3", value: "3" },
+                { name: "4", value: "4" },
+                { name: "5+", value: "5+" },
+              ]}
+              onChange={(value) => handleOnChange("leaseTermMaximum", value)}
+            />
+          </div>
+        </div>
+        {/* Preferred Payment Plan */}
+        <div className="flex flex-col gap-4">
+          <h3>Move In</h3>
+          <div className="grid grid-cols-1 gap-5 gap-y-8 lg:grid-cols-2">
+            <CustomDatePicker
+              placeholderDate={agentFormData?.moveInDate}
+              label="Desired Move In Date"
+              onChange={(value) => handleOnChange("moveInDate", value)}
+            />
+            <CustomSelect
+              label="Preferred Payment Option"
+              value={agentFormData?.paymentOption || "Rent Advance"}
+              options={[
+                { name: "rent advance", value: "Rent Advance" },
+                {
+                  name: "monthly payments + interests",
+                  value: "Monthly Payments + Interests",
+                },
+                { name: "any", value: "Any" },
+              ]}
+              onChange={(value) => handleOnChange("paymentOption", value)}
+            />
+          </div>
+        </div>
+
+        {/* Rent advance options */}
+        {/* <div className="flex flex-col gap-4">
           <h3>Rent Advance Options</h3>
           <ClientOnly>
             <CustomCheckBoxes
@@ -209,7 +241,7 @@ export default function PropertyRequirements() {
               ]}
             />
           </ClientOnly>
-        </div>
+        </div> */}
       </div>
     </>
   );
