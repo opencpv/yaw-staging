@@ -21,6 +21,7 @@ import Button from "@/components/__shared/ui/button/Button";
 import { BeMyAgentFormType } from "./types";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { cn } from "@/lib/utils";
+import ProcessSummary from "./ProcessSummary";
 
 const views = [
   <Location key={"property-information"} />,
@@ -44,6 +45,9 @@ const views = [
   </ClientOnly>,
   <ClientOnly key={"employment-information"}>
     <EmploymentInformationForm key={"employment-information"} />
+  </ClientOnly>,
+  <ClientOnly key={"process-summary"}>
+    <ProcessSummary key={"process-summary"} />
   </ClientOnly>,
   // <ClientOnly key={"screening"}>
   //   <ScreeningAndOtherDetailsForm key={"screening"} />
@@ -100,16 +104,16 @@ export default function BeMyAgentForm({ setOpen }: Props) {
       setLastSlide(false);
     }
 
-    if (activeSlide > 9) {
-      setHideLeft(true);
-      setHideRight(true);
-    } else {
-      setHideLeft(false);
-      setHideRight(false);
-    }
+    // if (activeSlide > 9) {
+    //   setHideLeft(true);
+    //   setHideRight(true);
+    // } else {
+    //   setHideLeft(false);
+    //   setHideRight(false);
+    // }
 
-    const value = (activeSlide / views.length) * 100;
-    setProgressValue(value + 5);
+    const value = ((activeSlide + 1) / views.length) * 100;
+    setProgressValue(value);
   }, [activeSlide]);
 
   const handleBack = () => {
@@ -155,13 +159,22 @@ export default function BeMyAgentForm({ setOpen }: Props) {
         </div>
 
         <div className="mt-0 w-full">
-          <Progress value={progressValue} />
+          <Progress
+            value={progressValue}
+            firstIndex={firstSlide}
+            lastIndex={lastSlide}
+          />
         </div>
       </section>
+      {/* Main area */}
       <section className="flex min-h-screen w-full flex-col px-5 sm:px-10">
         <div className="mx-auto my-10 flex h-full w-full max-w-screen-sm flex-col gap-10 lg:max-w-screen-3xl lg:flex-row xl:gap-20">
           {/* Side image */}
-          <div className="w-full lg:flex-[40%_0_0] lg:pr-10">
+          <div
+            className={`${
+              lastSlide && "hidden"
+            } w-full lg:flex-[40%_0_0] lg:pr-10`}
+          >
             <div className="relative h-60 w-full overflow-hidden rounded-2xl lg:h-[36rem] ">
               <Image
                 src={images.FeelingRefreshed}

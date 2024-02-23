@@ -147,7 +147,7 @@ export default function PropertyRequirements() {
         </div>
         {/* Lease Terms */}
         <InfoText
-          content="Lorem ipsum dolor sit amet consectetur adipisicing elit."
+          content="1-2 year lease with rent paid in advance are most common"
           className="mt-5"
         />
         <div className="flex flex-col gap-4">
@@ -183,11 +183,6 @@ export default function PropertyRequirements() {
         <div className="flex flex-col gap-4">
           <h3>Move In</h3>
           <div className="grid grid-cols-1 gap-5 gap-y-8 lg:grid-cols-2">
-            <CustomDatePicker
-              placeholderDate={agentFormData?.moveInDate}
-              label="Desired Move In Date"
-              onChange={(value) => handleOnChange("moveInDate", value)}
-            />
             <CustomSelect
               label="Preferred Payment Option"
               value={agentFormData?.paymentOption || "Rent Advance"}
@@ -200,6 +195,11 @@ export default function PropertyRequirements() {
                 { name: "any", value: "Any" },
               ]}
               onChange={(value) => handleOnChange("paymentOption", value)}
+            />
+            <CustomDatePicker
+              placeholderDate={agentFormData?.moveInDate}
+              label="Desired Move In Date"
+              onChange={(value) => handleOnChange("moveInDate", value)}
             />
           </div>
         </div>
