@@ -8,7 +8,7 @@ export type BeMyAgentFormType = Partial<{
   bedMinimum: string;
   bedMaximum: string;
   bathroomMinimum: string;
-  bathRoomMaximum: string;
+  bathroomMaximum: string;
   rentAdvanceOptions: [];
   locationArray: {
     city: string;
@@ -20,8 +20,12 @@ export type BeMyAgentFormType = Partial<{
   firstName: string;
   lastName: string;
   gender: string;
+  tenants: string;
   moveInDate: string;
   leaseTerm: number;
+  leaseTermMinimum: string;
+  leaseTermMaximum: string;
+  paymentOption: string;
   maritalStatus: string;
   email: string;
   country: string;

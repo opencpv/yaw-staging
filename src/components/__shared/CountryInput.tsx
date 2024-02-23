@@ -86,12 +86,12 @@ const CountryInput = ({
               variant="outline"
               role="combobox"
               aria-expanded={open}
-              className={`w-full justify-between border-[#a3a3a3] hover:border-black/50  ${
+              className={`w-full justify-between border-[#a3a3a3] placeholder:text-neutral-500 hover:border-black/50  ${
                 value ? "capitalize text-[#6A6968]" : "text-[#B4B2AF] "
               } h-[52px] whitespace-nowrap`}
             >
               {value ? value : placeholder}
-              <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+              <ChevronDown className="ml-2 h-4 w-4 shrink-0 text-neutral-500 opacity-50" />
             </Button>
           </PopoverTrigger>
           <PopoverContent className="z-[200] max-h-[400px] w-fit overflow-y-scroll bg-[#fefefe] p-0 ">

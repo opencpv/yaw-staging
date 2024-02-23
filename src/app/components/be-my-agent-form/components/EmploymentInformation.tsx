@@ -109,6 +109,7 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
           <CountryInput
             initialValue={agentFormData?.employersCountry}
             label="Employer's Country"
+            placeholder="Select employer's country"
             onChange={(value) =>
               setAgentFormData({
                 ...agentFormData,
@@ -130,20 +131,28 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
           />
           <CurrencyInput
             initialCurrency={selectedCurrency}
-            initialValue={agentFormData?.monthlyIncome}
+            initialValue={agentFormData?.monthlyIncomeCurrency}
             infoBubble
             placeholder="Select"
             label="Monthly Income"
+            isSelectElement
+            value2={agentFormData?.monthlyIncome || "1000-2000"}
+            options={[
+              { name: "1000-2000", value: "1000-2000" },
+              { name: "3000-5000", value: "3000-5000" },
+              { name: "6000-10000", value: "6000-10000" },
+              { name: "10000+", value: "10000+" },
+            ]}
             onChange={(value) =>
               setAgentFormData({
                 ...agentFormData,
-                monthlyIncome: value,
+                monthlyIncomeCurrency: value,
               })
             }
             onChange2={(value) =>
               setAgentFormData({
                 ...agentFormData,
-                monthlyIncomeCurrency: value,
+                monthlyIncome: value,
               })
             }
           />

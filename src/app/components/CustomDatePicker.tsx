@@ -18,12 +18,14 @@ type Props = {
   onChange: (value: any) => void;
   disabled?: any;
   placeholderDate?: string;
+  className?: string;
 };
 export function CustomDatePicker({
   label,
   onChange,
   disabled,
   placeholderDate,
+  className,
 }: Props) {
   const [date, setDate] = React.useState<Date>();
 
@@ -34,7 +36,12 @@ export function CustomDatePicker({
   }, []);
 
   return (
-    <div className="flex w-full flex-col gap-[0.9375rem] text-[1rem] font-[400] text-[#6A6968]">
+    <div
+      className={cn(
+        "flex w-full flex-col gap-[0.9375rem] text-[1rem] font-[400] text-[#6A6968]",
+        className,
+      )}
+    >
       <label htmlFor="">{label}</label>
       <Popover>
         <PopoverTrigger asChild>

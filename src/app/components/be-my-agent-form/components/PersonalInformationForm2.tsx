@@ -32,96 +32,77 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
         <div>
           <h2 className={styles.title}>Lease Holder Information</h2>
           <div className="grid grid-cols-1 gap-x-5 gap-y-8 lg:grid-cols-2">
-            <div className="form-col col-span-1 w-full">
-              <CustomSelect
-                label="Title"
-                value={agentFormData?.title || "Mrs"}
-                options={[
-                  { name: "mr", value: "Mr" },
-                  { name: "mrs", value: "Mrs" },
-                  { name: "miss", value: "Miss" },
-                ]}
-                onChange={(value) => handleOnChange("title", value)}
-              />
-              <TextFieldInput
-                type="text"
-                name="firstName"
-                label="First Name"
-                placeholder="Enter your first name"
-                onChange={(e) =>
-                  setAgentFormData({
-                    ...agentFormData,
-                    firstName: e.target.value,
-                  })
-                }
-              />
-              <TextFieldInput
-                type="text"
-                name="lastName"
-                label="Last Name"
-                placeholder="Enter your last name"
-                onChange={(e) =>
-                  setAgentFormData({
-                    ...agentFormData,
-                    lastName: e.target.value,
-                  })
-                }
-              />
-              {/* <CustomSelect
-                label="Gender"
-                value={agentFormData?.gender || "Female"}
-                options={[
-                  { name: "male", value: "Male" },
-                  { name: "female", value: "Female" },
-                ]}
-                onChange={(value) => handleOnChange("gender", value)}
-              /> */}
-            </div>
-            <div className="form-col col-span-1">
-              <CustomDatePicker
-                placeholderDate={agentFormData?.moveInDate}
-                label="Desired Move In Date"
-                onChange={(value) => handleOnChange("moveInDate", value)}
-              />
-              <SelectSearchInput
+            <CustomSelect
+              label="Title"
+              value={agentFormData?.title || "Mrs"}
+              options={[
+                { name: "mr", value: "Mr" },
+                { name: "mrs", value: "Mrs" },
+                { name: "miss", value: "Miss" },
+              ]}
+              onChange={(value) => handleOnChange("title", value)}
+            />
+            <CustomSelect
+              label="Age"
+              value={agentFormData?.dateOfBirth || "18-44"}
+              options={[
+                { name: "12-17", value: "12-17" },
+                { name: "18-44", value: "18-44" },
+                { name: "45-74", value: "45-74" },
+              ]}
+              onChange={(value) => handleOnChange("dateOfBirth", value)}
+            />
+            <TextFieldInput
+              type="text"
+              name="firstName"
+              label="First Name"
+              placeholder="Enter your first name"
+              onChange={(e) =>
+                setAgentFormData({
+                  ...agentFormData,
+                  firstName: e.target.value,
+                })
+              }
+            />
+            <TextFieldInput
+              type="text"
+              name="lastName"
+              label="Last Name"
+              placeholder="Enter your last name"
+              onChange={(e) =>
+                setAgentFormData({
+                  ...agentFormData,
+                  lastName: e.target.value,
+                })
+              }
+            />
+            {/* <SelectSearchInput
                 data={LeaseData}
                 placeholder="Enter lease term"
-                // inputValue={agentFormData?.leaseTerm || LeaseData?.[0]?.value}
                 label="Lease term"
                 onChange={(value) => {
                   handleOnChange("leaseTerm", value);
                 }}
-              />
-              <CustomSelect
-                label="Marital Status"
-                value={agentFormData?.maritalStatus || "Single"}
-                options={[
-                  { name: "single", value: "Single" },
-                  { name: "married", value: "Married" },
-                ]}
-                onChange={(value) => handleOnChange("maritalStatus", value)}
-              />
-              <CustomSelect
-                label="Age"
-                value={agentFormData?.dateOfBirth || "18-44"}
-                options={[
-                  { name: "12-17", value: "12-17" },
-                  { name: "18-44", value: "18-44" },
-                  { name: "45-74", value: "45-74" },
-                ]}
-                onChange={(value) => handleOnChange("dateOfBirth", value)}
-              />
-              {/* <CustomDatePicker
-                placeholderDate={agentFormData?.dateOfBirth}
-                label="Date of Birth"
-                onChange={(value) =>
-                  setAgentFormData({
-                    ...agentFormData,
-                    dateOfBirth: value,
-                  })
-                }
               /> */}
-            </div>
+            <CustomSelect
+              label="Marital Status"
+              value={agentFormData?.maritalStatus || "Single"}
+              options={[
+                { name: "single", value: "Single" },
+                { name: "married", value: "Married" },
+              ]}
+              onChange={(value) => handleOnChange("maritalStatus", value)}
+            />
+            <CustomSelect
+              label="Number of Tenants"
+              value={agentFormData?.tenants || "1-5"}
+              options={[
+                { name: "1-5", value: "1-5" },
+                { name: "6-10", value: "6-10" },
+                { name: "10+", value: "10+" },
+              ]}
+              onChange={(value) => handleOnChange("tenants", value)}
+            />
           </div>
         </div>
         <div>
