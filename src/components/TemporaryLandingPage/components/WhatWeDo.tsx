@@ -14,7 +14,7 @@ function WhatWeDo() {
       <div className="flex items-center gap-2">
         <p className="text-white">What we do</p>
 
-        <div className="animate animate-bounce relative w-[31px] h-[24px]">
+        <div className=" relative w-[31px] h-[24px]">
           <Image
             src={"/svgs/tlp/arrowdown.svg"}
             fill

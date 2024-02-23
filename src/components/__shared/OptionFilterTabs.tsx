@@ -11,7 +11,7 @@ type Props = {
   padding?: "small" | "wide";
   tabColor?: "transparent" | "colored";
   onSelectionChange: (key: React.Key) => void;
-  variant?: "default" | "gradient";
+  variant?: "default" | "gradient" | "green1";
   selectedKey?: React.Key;
   cursorAnimation?: boolean;
 };
@@ -22,7 +22,7 @@ const OptionFilterTabs = (
     options,
     selectedKey,
     onSelectionChange,
-    variant,
+    variant="default",
     padding,
     tabColor,
     cursorAnimation,
@@ -71,9 +71,11 @@ const OptionFilterTabs = (
             "group-data-[selected=true]:text-white",
           ],
           cursor: [
-            variant === "gradient"
-              ? "bg-gradient-to-r from-[#21A19F] to-[#1EA9A6A1]"
-              : "bg-primary-200 dark:bg-primary-200 shadow-none",
+            variant == "green1" && "bg-primary-100",
+            variant === "gradient" &&
+              "bg-gradient-to-r from-[#21A19F] to-[#1EA9A6A1]",
+            variant == "default" &&
+              "bg-primary-200 dark:bg-primary-200 shadow-none",
             !cursorAnimation && "bg-transparent dark:bg-transparent",
             "rounded-full",
           ],

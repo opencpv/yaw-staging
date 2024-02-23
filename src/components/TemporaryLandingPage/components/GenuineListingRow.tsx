@@ -8,8 +8,8 @@ function GenuineListingRow() {
         <div>
           <p
             className={`${styles.genuineText} text-[1.5rem]  
-            md:text-[2rem] lg:text-[3.8125rem] text-white
-            leading-[2.8rem]  lg:leading-[5.3375rem] font-bold `}>
+            sm:text-[3rem] md:text-[3.8125rem] text-white
+            leading-[2.8rem] sm:leading-[4.1rem]  md:leading-[5.3375rem] font-bold `}>
             Genuine Listings
             <br /> Without the Stress
           </p>

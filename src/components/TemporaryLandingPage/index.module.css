@@ -1,7 +1,35 @@
 .tempImage {
-    fill: linear-gradient(107deg, rgba(0, 0, 0, 0.73) 62.18%, rgba(0, 0, 0, 0.44) 111.16%), lightgray 50% / cover no-repeat;
+    background: linear-gradient(107deg, rgba(0, 0, 0, 0.65) 62.18%, rgba(0, 0, 0, 0.40) 111.16%), url('/assets/images/temporary-landing/house3.png') lightgray 50% / cover no-repeat;
+
 }
 
-.root .PhoneInput{
-   width: 100px;
-}   
+.root .PhoneInput {
+    width: 100px;
+}
+
+@keyframes changeBackgroundColor {
+    0% {
+        background-color: #17441E;
+        /* Start color */
+    }
+
+    30% {
+        background: linear-gradient(91deg, #17441E 29.11%, #FFDE99 115.2%);        /* Middle color */
+    }
+
+    60% {
+        background: linear-gradient(91deg, #1F5C29 29.11%, #6B614D 115.2%);        /* End color */
+    }
+    100% {
+        background-color: #17441E;
+        /* Start color */
+    }
+}
+
+.coming_soon {
+    animation: changeBackgroundColor 7.5s infinite;
+    animation-delay: 1s; /* Delay the start of the animation by 1 second */
+    animation-timing-function: ease; /* Use a linear timing function */
+
+    animation-duration: 7.5s;
+}
