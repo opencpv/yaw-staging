@@ -1,6 +1,7 @@
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { useEffect, useMemo, useState } from "react";
 import { FaRegThumbsUp } from "react-icons/fa6";
+import { GiBiceps } from "react-icons/gi";
 import { IoMdHappy } from "react-icons/io";
 import { PiConfetti } from "react-icons/pi";
 
@@ -27,8 +28,6 @@ export default function Progress({ value, lastIndex, firstIndex }: Props) {
     showContinueMessage: boolean;
   }>("agentFormActiveSlide");
 
-  console.log(message);
-
   const showMessageFor3Seconds = (
     message: string,
     icon: React.ReactElement,
@@ -46,19 +45,23 @@ export default function Progress({ value, lastIndex, firstIndex }: Props) {
     if (firstIndex) {
       showMessageFor3Seconds("Get started", <IoMdHappy />);
     } else if (lastIndex) {
-      showMessageFor3Seconds("You did it", <PiConfetti />);
+      showMessageFor3Seconds("You're dope", <PiConfetti />);
+    } else if (percentageValue >= 30 && percentageValue <= 40) {
+      showMessageFor3Seconds("got this", <GiBiceps />);
     } else if (percentageValue >= 70 && percentageValue <= 80) {
       showMessageFor3Seconds("Almost there", <FaRegThumbsUp />);
-    } else if (agentFormActiveSlide?.showContinueMessage) {
-      showMessageFor3Seconds("Continue from where you left off", <IoMdHappy />);
-      setTimeout(() => {
-        setAgentFormActiveSlide({
-          ...agentFormActiveSlide,
-          showContinueMessage: false,
-        });
-      }, 3000);
-      ("");
-    } else {
+    }
+    // else if (agentFormActiveSlide?.showContinueMessage) {
+    //   showMessageFor3Seconds("Continue from where you left off", <IoMdHappy />);
+    //   setTimeout(() => {
+    //     setAgentFormActiveSlide({
+    //       ...agentFormActiveSlide,
+    //       showContinueMessage: false,
+    //     });
+    //   }, 3000);
+    //   ("");
+    // }
+    else {
       setMessage("");
       setMessageIcon(null);
     }
@@ -79,7 +82,7 @@ export default function Progress({ value, lastIndex, firstIndex }: Props) {
         <div
           className={`${
             message && messageIcon ? "flex" : "hidden"
-          } progress-emoji absolute -right-10 top-8 z-10 w-fit items-center justify-center gap-3 whitespace-nowrap rounded-2xl bg-primary-200/90 px-3 py-4 text-[13px] text-white lg:text-base`}
+          } progress-emoji absolute right-0 top-8 z-10 w-fit items-center justify-center gap-3 whitespace-nowrap rounded-2xl bg-primary-300 px-3 py-4 text-[13px] text-shade-300 lg:text-base`}
         >
           {message}
           {messageIcon}

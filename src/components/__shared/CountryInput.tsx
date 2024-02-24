@@ -94,14 +94,17 @@ const CountryInput = ({
               <ChevronDown className="ml-2 h-4 w-4 shrink-0 text-neutral-500 opacity-50" />
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="z-[200] max-h-[400px] w-fit overflow-y-scroll bg-[#fefefe] p-0 ">
+          <PopoverContent className="z-[200] max-h-[400px] w-fit overflow-y-scroll bg-[#fefefe] p-0 focus:outline-none">
             <Command onValueChange={onChange}>
-              <CommandInput placeholder="Search data..." />
+              <CommandInput
+                className="focus:outline-none"
+                placeholder="Search data..."
+              />
               <CommandEmpty>No data found.</CommandEmpty>
               <CommandGroup>
                 {countryData?.map((data) => (
                   <CommandItem
-                    className="flex cursor-pointer gap-3 hover:bg-slate-100"
+                    className="flex cursor-pointer gap-3 hover:bg-accent-50"
                     key={data.value}
                     onSelect={(currentValue) => {
                       onChange(currentValue);
