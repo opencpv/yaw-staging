@@ -60,3 +60,7 @@ export type BeMyAgentFormType = Partial<{
   petDetails: string;
   vehicles: string;
 }>;
+
+export type ProcessSummary = {
+  currentSummaryPage: string;
+};

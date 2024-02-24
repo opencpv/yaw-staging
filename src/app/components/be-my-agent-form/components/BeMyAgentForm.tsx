@@ -64,14 +64,29 @@ export default function BeMyAgentForm({ setOpen }: Props) {
     "agentFormActiveSlide",
     { activeSlide: 0 },
   );
-  const [agentFormData] = useLocalStorage<BeMyAgentFormType>("agent-form", {
-    leaseTerm: 12,
-    country: "Ghana",
-    preferredMethodOfContact: "email",
-    dateOfBirth: "18-44",
-    // employersCountry: "Ghana",
-    // government: "Ghana",
-  });
+  const [agentFormData, setAgentFormData] = useLocalStorage<BeMyAgentFormType>(
+    "agent-form",
+    {
+      priceRangeMinimum: "100",
+      priceRangeMaximum: "100",
+      bedMinimum: "1",
+      bedMaximum: "1",
+      bathroomMinimum: "1",
+      bathroomMaximum: "1",
+      leaseTermMinimum: "1",
+      leaseTermMaximum: "1",
+      paymentOption: "Rent Advance",
+      title: "Mrs",
+      dateOfBirth: "18-44",
+      maritalStatus: "Single",
+      tenants: "1-5",
+      country: "Republic of Ghana",
+      preferredMethodOfContact: "email",
+      mostRecentEmployment: "Employed",
+      employersCountry: "Republic of Ghana",
+      monthlyIncome: "1000-2000",
+    },
+  );
 
   const leaseRef = useRef<any>();
   const [progressValue, setProgressValue] = useState<number>(1);
@@ -168,7 +183,14 @@ export default function BeMyAgentForm({ setOpen }: Props) {
       </section>
       {/* Main area */}
       <section className="flex min-h-screen w-full flex-col px-5 sm:px-10">
-        <div className="mx-auto my-10 flex h-full w-full max-w-screen-sm flex-col gap-10 lg:max-w-screen-3xl lg:flex-row xl:gap-20">
+        <div
+          className={cn(
+            "mx-auto my-10 flex h-full w-full max-w-screen-sm flex-col gap-10 lg:max-w-screen-3xl lg:flex-row xl:gap-20",
+            {
+              "max-w-full lg:max-w-screen-lg": lastSlide,
+            },
+          )}
+        >
           {/* Side image */}
           <div
             className={`${
@@ -186,7 +208,14 @@ export default function BeMyAgentForm({ setOpen }: Props) {
             </div>{" "}
           </div>
           {/* Form */}
-          <div className="flex h-full w-full flex-col items-center justify-start px-5 sm:px-0">
+          <div
+            className={cn(
+              "flex h-full w-full flex-col items-center justify-start px-5 sm:px-0",
+              {
+                "px-0": lastSlide,
+              },
+            )}
+          >
             <Formik
               initialValues={{
                 ...agentFormData,
@@ -226,7 +255,11 @@ export default function BeMyAgentForm({ setOpen }: Props) {
         >
           {/* {firstSlide && "Next"}
           {!firstSlide && !lastSlide && "Continue"} */}
-          {lastSlide ? "Summary" : "Continue"}
+          {lastSlide
+            ? "Cart"
+            : activeSlide === views.length - 2
+              ? "Summary"
+              : "Continue"}
         </NavigationButton>
       </section>
     </Root>
