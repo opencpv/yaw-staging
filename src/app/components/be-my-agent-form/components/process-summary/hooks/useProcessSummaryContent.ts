@@ -22,30 +22,31 @@ const useProcessSummaryContent = () => {
     {
       title: "Property Requirements",
       content: {
-        Price_Range: `GHS ${agentFormData?.priceRangeMinimum || ""} - GHS ${
-          agentFormData?.priceRangeMaximum || ""
-        }`,
+        Price_Range:
+          agentFormData?.priceRangeMinimum === agentFormData?.priceRangeMaximum
+            ? `GHS ${agentFormData?.priceRangeMaximum}`
+            : `GHS ${agentFormData?.priceRangeMinimum || ""} - GHS ${
+                agentFormData?.priceRangeMaximum || ""
+              }`,
         Beds:
-          agentFormData?.bedMinimum === "1" && agentFormData?.bedMaximum === "1"
-            ? "1"
+          agentFormData?.bedMinimum === agentFormData?.bedMaximum
+            ? agentFormData?.bedMaximum
             : `${agentFormData?.bedMinimum || ""} - ${
                 agentFormData?.bedMaximum || ""
               }`,
         Bathroom:
-          agentFormData?.bathroomMinimum === "1" &&
-          agentFormData?.bathroomMaximum === "1"
-            ? "1"
+          agentFormData?.bathroomMinimum === agentFormData?.bathroomMaximum
+            ? agentFormData?.bathroomMaximum
             : `${agentFormData?.bathroomMinimum || ""} - ${
                 agentFormData?.bathroomMaximum || ""
               }`,
         Lease_Terms:
-          agentFormData?.leaseTermMinimum === "1" &&
-          agentFormData?.leaseTermMaximum === "1"
-            ? "1"
+          agentFormData?.leaseTermMinimum === agentFormData?.leaseTermMaximum
+            ? agentFormData?.leaseTermMaximum
             : `${agentFormData?.leaseTermMinimum || ""} - ${
                 agentFormData?.leaseTermMaximum || ""
               }`,
-        Moving_In: agentFormData?.paymentOption || "-",
+        Preferred_Payment_Option: agentFormData?.paymentOption || "-",
         Desired_Move_in_Date: agentFormData?.moveInDate || "-",
       },
     },
@@ -64,9 +65,7 @@ const useProcessSummaryContent = () => {
       title: "Screening & Other Details",
       content: {
         Have_you_ever_been_evicted: agentFormData?.evictedBefore || "-",
-        Eviction_Reason: agentFormData?.reasonForEviction || "-",
         Have_you_ever_been_convicted: agentFormData?.convictedBefore || "-",
-        Conviction_Reason: agentFormData?.reasonForConviction || "-",
         Do_you_have_any_pets: agentFormData?.pets || "-",
         Do_you_have_any_vehicles: agentFormData?.vehicles || "-",
       },
@@ -82,7 +81,6 @@ const useProcessSummaryContent = () => {
           agentFormData?.preferredMethodOfContact || "-",
         Email: agentFormData?.email || "-",
         Phone: agentFormData?.phoneNumber || "-",
-        Purpose_for_Moving: agentFormData?.reasonsForMoving || "-",
       },
     },
   ];

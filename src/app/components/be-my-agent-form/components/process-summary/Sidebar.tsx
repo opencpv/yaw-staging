@@ -31,7 +31,7 @@ const Sidebar = (props: Props) => {
               className={cn(
                 "min-w-max flex-1 cursor-pointer rounded-md bg-white p-4 font-semibold lg:min-w-full",
                 {
-                  "border-l-3 border-l-accent-50 bg-neutral-200":
+                  "border-l-3 border-l-accent-50 bg-[#E6EBEB]":
                     processPage?.title === processSummary?.currentSummaryPage,
                 },
               )}

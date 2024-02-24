@@ -10,6 +10,9 @@ type Props = {};
 const SummaryArea = (props: Props) => {
   const processSummaryContent = useProcessSummaryContent();
   const [processSummary] = useLocalStorage<ProcessSummary>("process-summary");
+  const [agentFormActiveSlide, setAgentFormActiveSlide] = useLocalStorage(
+    "agentFormActiveSlide",
+  );
 
   const processPageRef = React.useRef<HTMLLIElement>(null);
 
@@ -67,7 +70,8 @@ const SummaryArea = (props: Props) => {
                 </h2>
                 <button
                   type="button"
-                  className="ml-auto flex max-h-8 items-center gap-1 rounded-md bg-neutral-200 p-1.5 px-4"
+                  className="ml-auto flex max-h-8 items-center gap-1 rounded-md bg-[#E6EBEB] p-1.5 px-4 text-primary-400 hover:bg-[#ad832a20] hover:text-[#AD842A]"
+                  onClick={() => setAgentFormActiveSlide({ activeSlide: idx })}
                 >
                   <BiPencil />
                   Edit

@@ -18,7 +18,7 @@ import Location from "./Location";
 import { openSans } from "@/styles/font";
 import { ClientOnly } from "@/components/ui/ClientOnly";
 import Button from "@/components/__shared/ui/button/Button";
-import { BeMyAgentFormType } from "./types";
+import { AgentFormActiveSlide, BeMyAgentFormType } from "./types";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { cn } from "@/lib/utils";
 import ProcessSummary from "./ProcessSummary";
@@ -60,10 +60,10 @@ type Props = {
 
 export default function BeMyAgentForm({ setOpen }: Props) {
   const { images } = useAssets();
-  const [agentFormActiveSlide, setAgentFormActiveSlide] = useLocalStorage(
-    "agentFormActiveSlide",
-    { activeSlide: 0 },
-  );
+  const [agentFormActiveSlide, setAgentFormActiveSlide] =
+    useLocalStorage<AgentFormActiveSlide>("agentFormActiveSlide", {
+      activeSlide: 0,
+    });
   const [agentFormData, setAgentFormData] = useLocalStorage<BeMyAgentFormType>(
     "agent-form",
     {
@@ -90,9 +90,9 @@ export default function BeMyAgentForm({ setOpen }: Props) {
 
   const leaseRef = useRef<any>();
   const [progressValue, setProgressValue] = useState<number>(1);
-  const [activeSlide, setActiveSlide] = useState(
-    agentFormActiveSlide.activeSlide ?? 0,
-  );
+  // const [activeSlide, setActiveSlide] = useState(
+  //   agentFormActiveSlide.activeSlide ?? 0,
+  // );
   const [firstSlide, setFirstSlide] = useState(true);
   const [lastSlide, setLastSlide] = useState(false);
   const [hideLeft, setHideLeft] = useState(false);
@@ -106,14 +106,14 @@ export default function BeMyAgentForm({ setOpen }: Props) {
   };
 
   useEffect(() => {
-    if (activeSlide < 1) {
+    if (agentFormActiveSlide?.activeSlide < 1) {
       setFirstSlide(true);
     }
-    if (activeSlide > 0) {
+    if (agentFormActiveSlide?.activeSlide > 0) {
       setFirstSlide(false);
     }
 
-    if (activeSlide === views.length - 1) {
+    if (agentFormActiveSlide?.activeSlide === views.length - 1) {
       setLastSlide(true);
     } else {
       setLastSlide(false);
@@ -127,14 +127,17 @@ export default function BeMyAgentForm({ setOpen }: Props) {
     //   setHideRight(false);
     // }
 
-    const value = ((activeSlide + 1) / views.length) * 100;
+    const value =
+      ((agentFormActiveSlide?.activeSlide + 1) / views.length) * 100;
     setProgressValue(value);
-  }, [activeSlide]);
+  }, [agentFormActiveSlide?.activeSlide]);
 
   const handleBack = () => {
     firstSlide && setOpen(false);
-    if (activeSlide > 0) {
-      setActiveSlide((init) => init - 1);
+    if (agentFormActiveSlide?.activeSlide > 0) {
+      setAgentFormActiveSlide({
+        activeSlide: agentFormActiveSlide?.activeSlide - 1,
+      });
       setProgressValue((init) => init - 6);
 
       scrollToTop();
@@ -143,8 +146,10 @@ export default function BeMyAgentForm({ setOpen }: Props) {
 
   const handleForward = () => {
     // activeSlide > 13 && submitListing(user?.profileData?.id, agentFormData, true);
-    if (activeSlide < views.length - 1) {
-      setActiveSlide((init) => init + 1);
+    if (agentFormActiveSlide?.activeSlide < views.length - 1) {
+      setAgentFormActiveSlide({
+        activeSlide: agentFormActiveSlide?.activeSlide + 1,
+      });
       setProgressValue((init) => init + 6);
       scrollToTop();
     }
@@ -164,7 +169,7 @@ export default function BeMyAgentForm({ setOpen }: Props) {
               setOpen(false);
               setAgentFormActiveSlide((prevData) => ({
                 ...prevData,
-                activeSlide,
+                activeSlide: agentFormActiveSlide?.activeSlide,
                 showContinueMessage: true,
               }));
             }}
@@ -197,13 +202,13 @@ export default function BeMyAgentForm({ setOpen }: Props) {
               lastSlide && "hidden"
             } w-full lg:flex-[40%_0_0] lg:pr-10`}
           >
-            <div className="relative h-60 w-full overflow-hidden rounded-2xl lg:h-[36rem] ">
+            <div className="relative h-60 w-full rounded-2xl lg:h-[36rem]">
               <Image
                 src={images.FeelingRefreshed}
                 alt="person relaxing on couch"
                 fill
                 style={{ objectFit: "cover" }}
-                className="object-left-top lg:object-left"
+                className="rounded-[inherit] object-left-top lg:object-left"
               />
             </div>{" "}
           </div>
@@ -223,7 +228,7 @@ export default function BeMyAgentForm({ setOpen }: Props) {
               onSubmit={() => alert("sibm")}
             >
               <Form className="w-full">
-                <div>{views[activeSlide]}</div>
+                <div>{views[agentFormActiveSlide?.activeSlide]}</div>
               </Form>
             </Formik>
           </div>
@@ -257,7 +262,7 @@ export default function BeMyAgentForm({ setOpen }: Props) {
           {!firstSlide && !lastSlide && "Continue"} */}
           {lastSlide
             ? "Cart"
-            : activeSlide === views.length - 2
+            : agentFormActiveSlide?.activeSlide === views.length - 2
               ? "Summary"
               : "Continue"}
         </NavigationButton>
