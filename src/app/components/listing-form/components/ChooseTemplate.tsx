@@ -24,7 +24,7 @@ const PayButton = ({ title, variant }: PayButtonProps) => {
     <button
       className={`max-w-[261px] w-full flex items-center justify-center aspect-[261/48] text-white rounded-2xl
         text-[1.25rem] font-bold
-        ${variant == "blue" ? "bg-[#45808B]" : "bg-[#DCA847]"}`}>
+        ${variant == "blue" ? "bg-primary-200" : "bg-[#DCA847]"}`}>
       {title}
     </button>
   );

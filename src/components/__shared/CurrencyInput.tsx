@@ -35,7 +35,7 @@ type DataItem = {
 type Props = {
   initialCurrency?: any;
 
-  initialValue?:  any;
+  initialValue?: any;
 
   placeholder?: string;
   label: string;
@@ -61,7 +61,7 @@ const CurrencyInput = ({
   const [selectedCurrency, setSelectedCurrency] = useState<any>({});
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState<string>(
-    placeholderMonthlyIncomeCurrency || ""
+    placeholderMonthlyIncomeCurrency || "",
   );
   const [value2, setValue2] = useState<string>("");
 
@@ -98,16 +98,16 @@ const CurrencyInput = ({
 
         // Extract currencies and flatten them into a single array
         const currencies = resData
-          .map((element : any) => element?.currencies)
+          .map((element: any) => element?.currencies)
           .flat()
-          .map((currency : any, index:  number) => ({
+          .map((currency: any, index: number) => ({
             label: Object.keys(currency)[0], // Corrected line
             value: Object.keys(currency)[0], // Corrected line
             code: currency?.code,
           }));
 
         // Sort the currencies alphabetically by label (currency code)
-        currencies.sort((a: any, b : any) => a.label?.localeCompare(b.label));
+        currencies.sort((a: any, b: any) => a.label?.localeCompare(b.label));
 
         setCurrencyData(currencies);
       })
@@ -117,8 +117,7 @@ const CurrencyInput = ({
   return (
     <div>
       <Root className="flex ">
-        <div
-          className={`font-[400] ${openSans.className} text-[#6A6968] capitalize flex gap-2`}>
+        <div className={`flex gap-2 font-[400] capitalize text-[#6A6968]`}>
           <label>{label}</label>
           {infoBubble && <InfoBubble content="Data" />}
         </div>
@@ -129,24 +128,26 @@ const CurrencyInput = ({
                 variant="outline"
                 role="combobox"
                 aria-expanded={open}
-                className="w-full max-w-[100px] uppercase justify-between text-[#6A6968] whitespace-nowrap h-[52px]">
+                className="h-[52px] w-full max-w-[100px] justify-between whitespace-nowrap uppercase text-[#6A6968]"
+              >
                 {value ? value : placeholder}
                 <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-fit p-0 z-[200] max-h-[400px] overflow-y-scroll bg-white ">
+            <PopoverContent className="z-[200] max-h-[400px] w-fit overflow-y-scroll bg-[#fefefe] p-0 ">
               <Command onValueChange={onChange}>
                 <CommandInput placeholder="Search data..." />
                 <CommandEmpty>No data found.</CommandEmpty>
                 <CommandGroup>
                   {currencyData?.map((data) => (
                     <CommandItem
-                      className="flex gap-3 cursor-pointer hover:bg-slate-100"
+                      className="flex cursor-pointer gap-3 hover:bg-slate-100"
                       key={data.value}
                       onSelect={(currentValue) => {
                         setValue(currentValue === value ? "" : currentValue);
                         setOpen(false);
-                      }}>
+                      }}
+                    >
                       {data.label}
                     </CommandItem>
                   ))}

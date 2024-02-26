@@ -4,7 +4,7 @@ import "@radix-ui/themes/styles.css";
 import Providers from "@/context/Providers";
 import LoadingIndicator from "@/components/LoadingIndicator";
 import Script from "next/script";
-import { openSans } from "@/lib/utils/fonts";
+import { openSans, openSansLocal } from "@/lib/utils/fonts";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MenuWrapper from "@/components/__shared/MenuWrapper";
@@ -34,7 +34,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const showTemporaryLandingPage = process.env.NEXT_PUBLIC_TEMPORARY_LANDING_PAGE === "true"; // Check if the environment variable is set to true
+  const showTemporaryLandingPage =
+    process.env.NEXT_PUBLIC_TEMPORARY_LANDING_PAGE === "true"; // Check if the environment variable is set to true
 
   return (
     <html

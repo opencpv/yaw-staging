@@ -6,12 +6,15 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import { useDashboardMenuStore } from "@/store/navmenu/useDashboardMenuStore";
 import { useHideDocumentScrollBar } from "@/lib/custom-hooks/useWindowEvents";
 import PaginationMenuItem from "./PaginationMenuItem";
-import { PgRoutesRenter } from "./links";
+import { PgRoutesLister, PgRoutesRenter } from "./links";
 import MenuScrollDownButton from "@/components/NavMenu.tsx/components/MenuScrollDownButton";
 import { pagination } from "@nextui-org/react";
+import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 
 const PaginationMenu = () => {
   const { isOpen, setIsOpen } = useDashboardMenuStore();
+  const { currentRole } = useDashboardStore();
+
   const [hide, setHide] = useState(false);
 
   const paginationMenuRef = useRef<HTMLElement>(null);
@@ -90,14 +93,24 @@ const PaginationMenu = () => {
       </div>
       <div className="flex items-center justify-center">
         <div className="grid w-full gap-x-5 gap-y-10 sm:w-[initial] sm:grid-cols-2 sm:gap-y-20 lg:grid-cols-3">
-          {PgRoutesRenter.map((route) => (
-            <PaginationMenuItem
-              key={route.name}
-              href={route.link}
-              icon={route.icon}
-              label={route.name}
-            />
-          ))}
+          {currentRole === "renter" &&
+            PgRoutesRenter.map((route) => (
+              <PaginationMenuItem
+                key={route.name}
+                href={route.link}
+                icon={route.icon}
+                label={route.name}
+              />
+            ))}
+          {currentRole === "lister" &&
+            PgRoutesLister.map((route) => (
+              <PaginationMenuItem
+                key={route.name}
+                href={route.link}
+                icon={route.icon}
+                label={route.name}
+              />
+            ))}
         </div>
       </div>
       {/* <MenuScrollDownButton

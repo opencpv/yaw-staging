@@ -82,10 +82,10 @@ const ListingCard = (props: ListingCardInterface) => {
             </div>
           </div>
 
-          {/* For favourites only */}
+          {/* For favourites and recommendations only */}
           <div
             className={
-              props.isMyFavoritePage
+              props.isMyFavoritePage || props.isRecommendationsPage
                 ? "absolute inset-0 z-30 flex h-full w-full -translate-x-full items-center justify-center rounded-[inherit] bg-black bg-opacity-30 transition-all delay-500 group-hover:translate-x-0"
                 : "hidden"
             }
@@ -96,7 +96,7 @@ const ListingCard = (props: ListingCardInterface) => {
                 label="View Property"
                 icon="eye open"
               />
-              {props.liked && (
+              {props.liked && !props.isRecommendationsPage && (
                 <Button
                   variant="ghost"
                   className="gap-3 text-lg font-semibold text-neutral-300 underline"
@@ -108,7 +108,7 @@ const ListingCard = (props: ListingCardInterface) => {
             </div>
           </div>
           {props.images?.map((image, index) =>
-            props.showOnlyImage || props.isMyFavoritePage ? ( // when only images show without pagination or controls
+            props.showOnlyImage ? ( // when only images show without pagination or controls
               <>
                 {index === 0 && (
                   <SwiperSlide key={index}>
@@ -127,10 +127,33 @@ const ListingCard = (props: ListingCardInterface) => {
                   </SwiperSlide>
                 )}
               </>
+            ) : props.isMyFavoritePage || props.isRecommendationsPage ? ( // when page is my favourites or recommendations
+              <>
+                {index === 0 && (
+                  <SwiperSlide key={index}>
+                    <div className="relative h-full w-full">
+                      <Image
+                        src={image}
+                        alt={props.propertyName as string}
+                        fill
+                        title={`${props.propertyName} at ${props.city}`}
+                        className="brightness-[0.8]"
+                        style={{ objectFit: "cover" }}
+                      />
+                    </div>
+                  </SwiperSlide>
+                )}
+              </>
             ) : (
               <SwiperSlide key={index}>
-                {props.isMyFavoritePage ? ( // when listing card is displaying in /dashboard/my-search,
-                  // images won't be links
+                {" "}
+                {/* listing images with pagination and controls */}
+                <Link
+                  href={`${props.href}?property_name=${props.propertyName}&city=${props.city}&price=${props.price}&payment_structure=${props.paymentStructure}&amount_per_month=${props.monthlyAmount}&rating=${props.ratingCount}&property_description=${props.propertyDescription}`.replaceAll(
+                    " ",
+                    "_",
+                  )}
+                >
                   <div className="relative h-full w-full">
                     <Image
                       src={image}
@@ -140,24 +163,7 @@ const ListingCard = (props: ListingCardInterface) => {
                       style={{ objectFit: "cover" }}
                     />
                   </div>
-                ) : (
-                  <Link
-                    href={`${props.href}?property_name=${props.propertyName}&city=${props.city}&price=${props.price}&payment_structure=${props.paymentStructure}&amount_per_month=${props.monthlyAmount}&rating=${props.ratingCount}&property_description=${props.propertyDescription}`.replaceAll(
-                      " ",
-                      "_",
-                    )}
-                  >
-                    <div className="relative h-full w-full">
-                      <Image
-                        src={image}
-                        alt={props.propertyName as string}
-                        fill
-                        className="brightness-[0.8]"
-                        style={{ objectFit: "cover" }}
-                      />
-                    </div>
-                  </Link>
-                )}
+                </Link>
               </SwiperSlide>
             ),
           )}

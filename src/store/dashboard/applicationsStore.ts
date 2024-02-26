@@ -7,7 +7,7 @@ type ApplicationsStore = {
 
 const useApplicationsStore = create<ApplicationsStore>((set) => ({
   fetchCount: null,
-  setFetchCount: (count: number | null) => set({ fetchCount: count }),
+  setFetchCount: (count) => set({ fetchCount: count }),
 }));
 
 export { useApplicationsStore };

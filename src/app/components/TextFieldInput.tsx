@@ -20,7 +20,8 @@ const TextFieldInput = ({
 }: TextFieldInputProps) => {
   return (
     <div
-      className={`font-[400] text-[#6A6968] capitalize w-full flex flex-col gap-[0.9375rem]`}>
+      className={`flex w-full flex-col gap-[0.9375rem] font-[400] capitalize text-[#6A6968]`}
+    >
       <label className="text-[16px]">{label}</label>
       <Field name={name}>
         {({ field, form: { touched, errors }, meta }: any) => (
@@ -33,8 +34,8 @@ const TextFieldInput = ({
                 field.onChange(e);
                 onChange(e);
               }}
-              className="form-input w-full h-[52px] px-4 text-[0.8125rem] border-[1px] border-[#E6E6E6]
-              rounded-[4px]"
+              className="form-input h-[52px] w-full rounded-[4px] border-[1px] border-[#E6E6E6] px-4
+              text-[0.8125rem]"
             />
 
             {/* {errors[name] && (
@@ -47,13 +48,12 @@ const TextFieldInput = ({
       </Field>
 
       <ErrorMessage
-        className={`text-[#851e1e] font-[400] text-[13px] ${openSans.className}`}
+        className={`text-[13px] font-[400] text-[#851e1e]`}
         name={name}
         component="p"
       />
     </div>
   );
 };
-
 
 export default TextFieldInput;

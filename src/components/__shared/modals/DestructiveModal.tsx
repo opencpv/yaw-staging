@@ -8,6 +8,7 @@ type ModalProps = {
   onOpenChange: () => void;
   onClose: () => void;
   label?: string;
+  backdropClassName?: string;
   handleDestruction?: () => void;
 };
 
@@ -25,6 +26,7 @@ const DestructiveModal = ({
   onOpenChange,
   onClose,
   label,
+  backdropClassName,
 }: ModalProps) => {
   return (
     <Modal
@@ -34,15 +36,16 @@ const DestructiveModal = ({
       isOpen={isOpen}
       onOpenChange={onOpenChange}
       size="md"
+      backdropClassName={backdropClassName}
     />
   );
 };
 
 const ModalHeader = () => {
   return (
-    <div className="bg-[#FEF3F2] rounded-full w-16 h-16 flex items-center justify-center">
-      <div className="flex items-center justify-center rounded-full w-11 h-11 bg-neutral-200">
-        <HiOutlineExclamationCircle className="text-neutral-800 text-xl rotate-180" />
+    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#FEF3F2]">
+      <div className="flex h-11 w-11 items-center justify-center rounded-full bg-neutral-200">
+        <HiOutlineExclamationCircle className="rotate-180 text-xl text-neutral-800" />
       </div>
     </div>
   );
@@ -51,7 +54,7 @@ const ModalHeader = () => {
 const ModalBody = ({ label }: ModalBodyProps) => {
   return (
     <>
-      <h2 className="text-neutral-900 font-[700]">Notice</h2>
+      <h2 className="font-[700] text-neutral-900">Notice</h2>
       <p className="text-sm text-neutral-500">
         {label ? label : "Are you sure you want to delete this item?"}
       </p>
@@ -61,15 +64,15 @@ const ModalBody = ({ label }: ModalBodyProps) => {
 
 const ModalFooter = ({ onClose, handleDestruction }: ModalFooterProps) => {
   return (
-    <div className="w-full flex gap-2 justify-end">
+    <div className="flex w-full justify-end gap-2">
       <Button
-        className="bg-red-500 text-white font-[500] py-1 max-w-[8rem] w-32 rounded-lg"
+        className="w-32 max-w-[8rem] rounded-lg bg-red-500 py-1 font-[500] text-white"
         onClick={handleDestruction}
       >
         Yes
       </Button>
       <Button
-        className="bg-neutral-200 text-neutral-500 font-[500] py-1 max-w-[8rem] w-32 rounded-lg"
+        className="w-32 max-w-[8rem] rounded-lg bg-neutral-200 py-1 font-[500] text-neutral-500"
         onClick={onClose}
       >
         No

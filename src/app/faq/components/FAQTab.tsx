@@ -5,8 +5,10 @@ const FAQTab = (props: any) => {
   return (
     <button
       onClick={onClick()}
-      className={`${montserat.className} font-semibold w-fit  px-[5px] ${
-        activeIndex == index ? "border-[#DDB771] border-l-4" : ""
+      className={`${
+        montserat.className
+      } font-montserrat w-fit px-[5px]  font-semibold ${
+        activeIndex == index ? "border-l-4 border-[#DDB771]" : ""
       } text-[#45808B]`}
     >
       {props.text}

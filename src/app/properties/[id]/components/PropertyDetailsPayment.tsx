@@ -56,7 +56,7 @@ const PropertyDetailsPayment = (props: Props) => {
           <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2 border-b py-2 last:border-b-0">
             <p className="w-full flex-1">Agent</p>
             <p className="w-full flex-1">GHS {formatPrice(props.agentFee)}</p>
-            <Button className="flex min-w-[8rem] flex-1 items-center justify-center gap-2 justify-self-end rounded-lg bg-[#99B3B2] p-2 text-white">
+            <Button className="flex min-w-[8rem] flex-1 items-center justify-center gap-2 justify-self-end rounded-lg bg-secondary-400 p-2 text-white">
               Add to cart
               <FaPlusCircle className="shrink-0" />
             </Button>
@@ -66,7 +66,7 @@ const PropertyDetailsPayment = (props: Props) => {
           <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2 border-b py-2 last:border-b-0">
             <p className="w-full flex-1">Viewing</p>
             <p className="w-full flex-1">GHS {formatPrice(props.viewingFee)}</p>
-            <Button className="flex min-w-[8rem] flex-1 items-center justify-center gap-2 justify-self-end rounded-lg bg-[#99B3B2] p-2 text-white">
+            <Button className="flex min-w-[8rem] flex-1 items-center justify-center gap-2 justify-self-end rounded-lg bg-secondary-400 p-2 text-white">
               Add to cart
               <FaPlusCircle className="shrink-0" />
             </Button>

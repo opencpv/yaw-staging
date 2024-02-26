@@ -15,7 +15,7 @@ const EditButton = ({ onOpen, className }: Props) => {
       isIconOnly
       title="Edit"
       className={cn(
-        "flex w-full items-center justify-center rounded-md bg-[#F1F1F1] px-4 text-neutral-800",
+        "flex w-full items-center justify-center rounded-md bg-secondary-500 px-4 text-neutral-800 hover:bg-primary-200 hover:text-white",
         className,
       )}
       onClick={onOpen}

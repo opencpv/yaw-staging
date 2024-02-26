@@ -102,9 +102,9 @@ export default function PropertyFormSimple({
   }
 
   return (
-    <Root className={`flex flex-col gap-8 ${openSans.className}`}>
-      <div className="flex flex-col gap-6 text-[#073B3A] text-[1.5625rem]">
-        <p className="font-bold border-b-[1px] border-b-[#0000000F] pb-2">
+    <Root className={`flex flex-col gap-8`}>
+      <div className="flex flex-col gap-6 text-[1.5625rem] text-[#073B3A]">
+        <p className="border-b-[1px] border-b-[#0000000F] pb-2 font-bold">
           Application Form
         </p>
 
@@ -112,7 +112,7 @@ export default function PropertyFormSimple({
       </div>
 
       <div
-        className={`flex flex-row gap-5  overflow-x-scroll lg:overflow-x-hidden lg:flex-wrap pb-1 lg:pb:0`}
+        className={`lg:pb:0 flex flex-row  gap-5 overflow-x-scroll pb-1 lg:flex-wrap lg:overflow-x-hidden`}
       >
         <div className="feature">GHS 2,2000.00 / Month</div>
 
@@ -140,22 +140,22 @@ export default function PropertyFormSimple({
                 <PersonalInformationForm1 formType="simple" />
               </ClientOnly>
 
-              <div className="mt-10 lg:mt-5 flex justify-start lg:justify-end w-full gap-5">
-                <div className="flex gap-5 flex-col lg:flex-row font-semibold">
+              <div className="mt-10 flex w-full justify-start gap-5 lg:mt-5 lg:justify-end">
+                <div className="flex flex-col gap-5 font-semibold lg:flex-row">
                   <button
                     onClick={() => setOpen(false)}
-                    className="w-[224.5px]  h-max max-h-[52px] aspect-[224/52]
-                      border-[1px] 
-                      border-[#AD842A] flex justify-center items-center text-[#AD842A]
-                      rounded-lg hover:bg-slate-100"
+                    className="flex  aspect-[224/52] h-max max-h-[52px]
+                      w-[224.5px] 
+                      items-center justify-center rounded-lg border-[1px] border-[#AD842A]
+                      text-[#AD842A] hover:bg-slate-100"
                   >
                     Cancel
                   </button>
                   {!loading ? (
                     <button
                       type="submit"
-                      className="w-[224.5px] [52px] aspect-[224/52] bg-[#DDB771]
-                      flex justify-center items-center text-[#ffff] rounded-lg hover:scale-[1.05]
+                      className="[52px] flex aspect-[224/52] w-[224.5px]
+                      items-center justify-center rounded-lg bg-[#DDB771] text-[#ffff] hover:scale-[1.05]
     
                  "
                     >

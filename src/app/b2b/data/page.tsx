@@ -7,15 +7,14 @@ import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
 
 function Page() {
   const optionSelect = useManageInvoicesStore(
-    (state: any) => state.filterOption
+    (state: any) => state.filterOption,
   );
   const handleOptionChange = useManageInvoicesStore(
-    (state: any) => state.changeOption
+    (state: any) => state.changeOption,
   );
 
   return (
     <div className=" flex flex-col items-center justify-start bg-[#F8F8F8] pt-5">
-
       <div className="w-full max-w-[1728px] px-5 2xl:px-0">
         <Tabs
           variant="light"
@@ -24,16 +23,17 @@ function Page() {
           classNames={{
             base: " w-full md:w-fit rounded-2xl p-[0.75rem] md:overflow-hidden",
             tabList: " gap-4",
-            tab: "bg-[#ECF2F3] px-4 py-3 w-[120px]  rounded-2xl",
+            tab: "bg-secondary-500 px-4 py-3 w-[120px]  rounded-2xl",
             tabContent:
               "text-shade-200 text-[0.625rem] group-data-[selected=true]:text-white group-data-[selected=true]:font-semibold ",
-            cursor: "bg-[#45808B] sm:bg-[#45808B] text-white rounded-2xl",
+            cursor: "bg-primary-200 sm:bg-primary-200 text-white rounded-2xl",
             panel: "pt-8",
           }}
           selectedKey={optionSelect}
           onSelectionChange={(selectedOption) =>
             handleOptionChange(selectedOption)
-          }>
+          }
+        >
           <Tab key="invoices" title="Invoices">
             <Invoices />
           </Tab>{" "}

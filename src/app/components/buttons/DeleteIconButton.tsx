@@ -6,7 +6,7 @@ interface Props {
 const DeleteIconButton = ({ onclick }: Props) => {
   return (
     <button
-      className="p-4 rounded-md bg-[#F1F1F1] block h-fit"
+      className="block h-fit rounded-md bg-secondary-50 p-4"
       onClick={() => {
         onclick();
       }}

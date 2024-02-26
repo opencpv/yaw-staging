@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import Button from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
 import { useFetchTableWithInfiniteScroll } from "@/lib/custom-hooks/useFetch";
 import ListingCard from "@/components/__shared/listing/ListingCard";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";

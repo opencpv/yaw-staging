@@ -31,17 +31,17 @@ export default function PropertyFormComplex({ setOpen }: Props) {
     firstName: Yup.string().required("Email is required"),
   });
   return (
-    <Root className={`flex flex-col gap-8 ${openSans.className}`} ref={formRef}>
-      <div className="flex flex-col gap-6 text-[#073B3A] text-[1.5625rem] mt-10 lg:mt-0 pl-2 pr-0">
-        <p className="font-bold border-b-[1px] border-b-[#0000000F] pb-2">
+    <Root className={`flex flex-col gap-8`} ref={formRef}>
+      <div className="mt-10 flex flex-col gap-6 pl-2 pr-0 text-[1.5625rem] text-[#073B3A] lg:mt-0">
+        <p className="border-b-[1px] border-b-[#0000000F] pb-2 font-bold">
           Application Form
         </p>
         <p className="font-semibold">2 Bedroom House At Kasoa</p>
       </div>
 
-      <div className="flex justify-between items-center px-2">
+      <div className="flex items-center justify-between px-2">
         <div
-          className={`flex flex-row gap-5  overflow-x-scroll lg:overflow-x-hidden lg:flex-wrap  lg:pb:0`}
+          className={`lg:pb:0 flex flex-row  gap-5 overflow-x-scroll lg:flex-wrap  lg:overflow-x-hidden`}
         >
           <div className="feature">GHS 2/20000/month</div>
 
@@ -63,7 +63,7 @@ export default function PropertyFormComplex({ setOpen }: Props) {
             <Form className="w-full">
               <Swiper spaceBetween={40}>
                 <div
-                  className={`flex gap-12 items-center overflow-x-scroll  w-full px-2 pl-6 mb-8 ${openSans.className}`}
+                  className={`mb-8 flex w-full items-center  gap-12 overflow-x-scroll px-2 pl-6`}
                 >
                   <Progress
                     number={1}
