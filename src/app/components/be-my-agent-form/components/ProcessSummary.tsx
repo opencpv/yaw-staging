@@ -1,11 +1,9 @@
-/* eslint-disable react/no-unescaped-entities */
-
-import React, { useEffect } from "react";
+import React, { createRef, useEffect, useRef } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import { BeMyAgentFormType, ProcessSummary } from "./types";
-import styles from "./index.module.css";
+import { ProcessSummary } from "./types";
 import Sidebar from "./process-summary/Sidebar";
 import SummaryArea from "./process-summary/SummaryArea";
+import useProcessSummaryContent from "./process-summary/hooks/useProcessSummaryContent";
 
 type Props = {};
 
@@ -13,20 +11,35 @@ const ProcessSummary = React.forwardRef<HTMLInputElement, Props>(({}, ref) => {
   const [processSummary, setProcessSummary] =
     useLocalStorage<ProcessSummary>("process-summary");
 
-  // useEffect(() => {
-  //   setProcessSummary({
-  //     ...processSummary,
-  //     currentSummaryPage: "Location",
-  //   });
-  // });
+  const processSummaryContent = useProcessSummaryContent();
+
+  const processPagesRefs = useRef<React.MutableRefObject<HTMLLIElement>[]>([]); // array of refs to each process page
+
+  useEffect(() => {
+    // create refs for each process page
+    processPagesRefs.current = processSummaryContent.map(
+      (_, idx) => processPagesRefs.current[idx] || createRef(),
+    );
+  }, [processSummaryContent]);
+
+  const handleMenuClick = (id: number, page: string) => {
+    // scroll to the process page
+    if (processPagesRefs.current[id]) {
+      processPagesRefs.current[id].current.scrollIntoView({
+        behavior: "smooth",
+        block: window.innerWidth >= 1024 ? "start" : "center",
+      });
+    }
+    setProcessSummary({ ...processSummary, currentSummaryPage: page });
+  };
 
   return (
-    <section>
-      <h1 className="mb-10 text-3xl font-bold">Summary</h1>
-      {/* <h2 className={`${styles.title}`}>Review and Submit</h2> */}
-      <div className="grid grid-cols-1 gap-x-14 gap-y-20 lg:grid-cols-3">
-        <Sidebar />
-        <SummaryArea />
+    <section className="grid grid-cols-1 gap-x-20 lg:grid-cols-3">
+      <div className="sticky top-8 z-10 mb-20 h-16 bg-white shadow-lg lg:top-10 lg:col-span-1 lg:mb-0 lg:h-32 lg:shadow-none">
+        <Sidebar handleMenuClick={handleMenuClick} />
+      </div>
+      <div className="relative lg:top-10 lg:col-span-2 lg:mb-40">
+        <SummaryArea processPagesRefs={processPagesRefs} />
       </div>
     </section>
   );

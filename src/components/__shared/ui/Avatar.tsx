@@ -58,7 +58,7 @@ const Avatar = ({ image, name, className }: Props) => {
         }`}
       >
         <ul>
-          <li className="deep-green-hover px-4 py-2">
+          {/* <li className="deep-green-hover px-4 py-2">
             {pathname?.includes("dashboard") ? (
               <Link href="/" className="flex items-center gap-2">
                 <LiaHomeSolid />
@@ -78,6 +78,22 @@ const Avatar = ({ image, name, className }: Props) => {
             <Button color="accent" radius="full" padding="sm">
               Sign out
             </Button>
+          </li> */}
+          <li className="flex items-center gap-2">
+            <Image
+              src={image}
+              alt={name as string}
+              width={50}
+              height={50}
+              className={cn(
+                "h-[35px] w-[35px] max-w-[50px] shrink-0 cursor-pointer rounded-full xs:h-[50px] xs:w-[50px]",
+                className,
+              )}
+            />
+            <div className="">
+              <h3>Enoch Ansah</h3>
+              <small className="text-shade-300">enocansah@gmail.com</small>
+            </div>
           </li>
         </ul>
       </div>

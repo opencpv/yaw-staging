@@ -33,7 +33,7 @@ const Location = ({ index, city, neighbourhood }: any) => {
   };
 
   return (
-    <div className="flex w-full max-w-lg flex-col gap-8">
+    <div className="flex w-full flex-col gap-8 lg:max-w-lg">
       {/* <TFormDiv className={`w-full font-[400] capitalize text-[#6A6968]`}>
         <label htmlFor="">City</label>
         <input
@@ -100,7 +100,7 @@ const Applicants = ({}) => {
 
   return (
     <div className="space-y-10">
-      <div className="max-w-lg space-y-4">
+      <div className="space-y-4 lg:max-w-lg">
         <h2 className={`${styles.titleNoMargin}`}>Name your Search</h2>
         <TextFieldInput
           type="text"

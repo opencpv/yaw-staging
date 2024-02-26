@@ -4,50 +4,19 @@ import { BiPencil } from "react-icons/bi";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { ProcessSummary } from "../types";
 import styles from "../index.module.css";
+import { beMyAgentProcessStore } from "@/store/dashboard/beMyAgentProcessStore";
+import { LowerCase } from "@/lib/utils/stringManipulation";
 
-type Props = {};
+type Props = {
+  processPagesRefs: React.MutableRefObject<any[]>;
+};
 
-const SummaryArea = (props: Props) => {
+const SummaryArea = ({ processPagesRefs }: Props) => {
   const processSummaryContent = useProcessSummaryContent();
-  const [processSummary] = useLocalStorage<ProcessSummary>("process-summary");
-  const [agentFormActiveSlide, setAgentFormActiveSlide] = useLocalStorage(
-    "agentFormActiveSlide",
-  );
-
-  const processPageRef = React.useRef<HTMLLIElement>(null);
-
-  useEffect(() => {
-    const pageElement = document.getElementById(
-      processSummary?.currentSummaryPage
-        .replaceAll(" ", "-")
-        .replaceAll("&", "")
-        .replaceAll("(", "")
-        .replaceAll(")", ""),
-    );
-    if (pageElement) {
-      pageElement.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
-    // if (processPageRef.current) {
-    //   const sectionElement = processPageRef.current.querySelector(
-    //     // scrolls to the section with the id of the currentSummaryPage
-    //     `#${processSummary!
-    //       .currentSummaryPage!.replaceAll(" ", "-")
-    //       .replaceAll("&", "")
-    //       .replaceAll("(", "")
-    //       .replaceAll(")", "")}`,
-    //   );
-    //   if (sectionElement) {
-    //     console.log(sectionElement);
-    //     sectionElement.scrollIntoView({ behavior: "smooth" });
-    //   }
-    // }
-    // if (processPageRef.current) {
-    //   processPageRef.current.scrollIntoView({ behavior: "smooth" });
-    // }
-  }, [processSummary?.currentSummaryPage, processSummary]);
+  const { setActiveSlide } = beMyAgentProcessStore();
 
   return (
-    <section className="lg:col-span-2">
+    <section>
       <ul className="space-y-10">
         {processSummaryContent?.map(
           (
@@ -57,21 +26,22 @@ const SummaryArea = (props: Props) => {
             <li
               key={idx}
               className="space-y-4"
-              id={processPage?.title
-                .replaceAll(" ", "-")
-                .replaceAll("&", "")
-                .replaceAll("(", "")
-                .replaceAll(")", "")}
-              ref={processPageRef}
+              ref={processPagesRefs.current[idx]}
             >
               <div className="grid grid-cols-2 gap-10">
-                <h2 className={`${styles.titleNoMargin} capitalize`}>
+                <h2 className={`text-lg capitalize lg:text-2xl`}>
                   {processPage?.title}
                 </h2>
                 <button
                   type="button"
                   className="ml-auto flex max-h-8 items-center gap-1 rounded-md bg-[#E6EBEB] p-1.5 px-4 text-primary-400 hover:bg-[#ad832a20] hover:text-[#AD842A]"
-                  onClick={() => setAgentFormActiveSlide({ activeSlide: idx })}
+                  onClick={() => {
+                    const title = "Screening & Other Details";
+                    const titleIndex = processSummaryContent.findIndex(
+                      (processPage) => processPage.title === title,
+                    );
+                    setActiveSlide(idx >= titleIndex ? idx - 1 : idx);
+                  }}
                 >
                   <BiPencil />
                   Edit
@@ -82,12 +52,23 @@ const SummaryArea = (props: Props) => {
                   [key, value],
                   idx, // mapping through content: i.e: Title, First Name
                 ) => (
-                  <div key={idx} className="grid grid-cols-2 gap-10">
-                    <p className="text-neutral-400">
-                      {key.replaceAll("_", " ")}
-                    </p>
-                    <p className="ml-auto">{value}</p>
-                  </div>
+                  <>
+                    {LowerCase(key) === "property_type" ||
+                    LowerCase(key) === "required_features" ? (
+                      <div key={idx} className="grid-cols-2 gap-10 xs:grid">
+                        <div className="leading-loose text-neutral-400">
+                          {value || "_"}
+                        </div>
+                      </div>
+                    ) : (
+                      <div key={idx} className="grid grid-cols-2 gap-10">
+                        <p className="text-neutral-400">
+                          {key.replaceAll("_", " ")}
+                        </p>
+                        <p className="ml-auto">{value}</p>
+                      </div>
+                    )}
+                  </>
                 ),
               )}
             </li>
