@@ -25,8 +25,7 @@ const BeTheFirstToKnowLayout = ({
         className="relative mb-5 h-10 w-10 place-items-center rounded-full p-2 transition-all hover:scale-105 hover:bg-slate-100 fhd:right-28"
         style={{
           display:
-            pathname === "/dashboard/lister/be-the-first-to-know" ||
-            "dashboard/renter/be-the-first-to-know"
+            pathname === `/dashboard/${currentRole}/be-the-first-to-know`
               ? "none"
               : "grid",
         }}
