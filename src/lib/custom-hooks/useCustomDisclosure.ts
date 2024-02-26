@@ -35,7 +35,7 @@ type Props = {
   variant: "success" | "error";
 };
 export const useToastDisclosureVariant1 = () => {
-  const variants : any = {
+  const variants: any = {
     success: { width: "30rem", maxWidth: "30rem", background: "#396261" },
     error: { width: "30rem", maxWidth: "30rem", background: "#5b0d0d" },
   };
@@ -47,7 +47,7 @@ export const useToastDisclosureVariant1 = () => {
       closeOnClick: true,
       pauseOnHover: true,
       draggable: false,
-      progress: null,
+      progress: undefined,
       theme: "dark",
       progressStyle: { background: "#396261" },
       bodyStyle: { paddingRight: "2.5rem", },

@@ -32,7 +32,7 @@ function useTLPage() {
     }
   };
 
-  const sendData = async (type, values) => {
+  const sendData = async (type: any, values: any) => {
     // const requestBody: any = {};
     // if (type === "email") {
     //   requestBody.email = values?.email;
