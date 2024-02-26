@@ -82,13 +82,13 @@ const CurrencyInput = ({
     } else {
       setValue("GHS");
     }
-  }, []);
+  }, [initialValue]);
 
   useEffect(() => {
     if (initialCurrency) {
       setSelectedCurrency(initialCurrency);
     }
-  }, []);
+  }, [initialCurrency]);
 
   useEffect(() => {
     setTotalValue(value);
@@ -97,7 +97,7 @@ const CurrencyInput = ({
   useEffect(() => {
     onChange2 && onChange2(selectedCurrency);
     onChange(totalValue);
-  }, [totalValue]);
+  }, [totalValue, onChange, onChange2, selectedCurrency]);
   useEffect(() => {
     axios
       .get("https://restcountries.com/v3.1/all?fields=currencies")
@@ -147,10 +147,10 @@ const CurrencyInput = ({
                 <CommandInput placeholder="Search data..." />
                 <CommandEmpty>No data found.</CommandEmpty>
                 <CommandGroup>
-                  {currencyData?.map((data) => (
+                  {currencyData?.map((data, idx) => (
                     <CommandItem
                       className="flex cursor-pointer gap-3 hover:bg-slate-100"
-                      key={data.value}
+                      key={idx}
                       onSelect={(currentValue) => {
                         setValue(currentValue === value ? "" : currentValue);
                         setOpen(false);

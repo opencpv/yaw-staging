@@ -61,8 +61,8 @@ export type BeMyAgentFormType = Partial<{
   vehicles: string;
 }>;
 
-export type AgentFormActiveSlide = {
-  activeSlide: number;
+export type AgentFormSlide = {
+  activeSlide: number | undefined;
   showContinueMessage?: boolean;
 };
 

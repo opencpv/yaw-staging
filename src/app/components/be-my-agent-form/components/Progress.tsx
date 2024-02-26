@@ -1,32 +1,27 @@
-import { useLocalStorage } from "@uidotdev/usehooks";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { FaRegThumbsUp } from "react-icons/fa6";
 import { GiBiceps } from "react-icons/gi";
 import { IoMdHappy } from "react-icons/io";
 import { PiConfetti } from "react-icons/pi";
+import { beMyAgentProcessStore } from "@/store/dashboard/beMyAgentProcessStore";
+import { cn } from "@/lib/utils";
 
 type Props = {
   /** The current value of the progress bar */
   value: number;
-  /** The index of the last slide */
-  lastIndex?: boolean;
-  /** The index of the first slide */
-  firstIndex?: boolean;
 };
 
-export default function Progress({ value, lastIndex, firstIndex }: Props) {
-  const percentageValue = useMemo(() => {
-    return Math.round((value / 100) * 100);
-  }, [value]);
-
+export default function Progress({ value }: Props) {
   const [message, setMessage] = useState("");
+  const {
+    firstSlide,
+    lastSlide,
+    shouldShowMotivationMessage,
+    setShouldShowMotivationMessage,
+  } = beMyAgentProcessStore();
   const [messageIcon, setMessageIcon] = useState<React.ReactElement | null>(
     null,
   );
-  const [agentFormActiveSlide, setAgentFormActiveSlide] = useLocalStorage<{
-    activeSlide: number;
-    showContinueMessage: boolean;
-  }>("agentFormActiveSlide");
 
   const showMessageFor3Seconds = (
     message: string,
@@ -42,20 +37,23 @@ export default function Progress({ value, lastIndex, firstIndex }: Props) {
   };
 
   useEffect(() => {
-    if (firstIndex) {
+    if (firstSlide) {
       showMessageFor3Seconds("Get started", <IoMdHappy />);
-    } else if (lastIndex) {
+    } else if (lastSlide) {
       showMessageFor3Seconds("You're dope", <PiConfetti />);
-    } else if (percentageValue >= 30 && percentageValue <= 40) {
-      showMessageFor3Seconds("got this", <GiBiceps />);
-    } else if (percentageValue >= 70 && percentageValue <= 80) {
+      setTimeout(() => {
+        setShouldShowMotivationMessage(false);
+      }, 3000);
+    } else if (value >= 30 && value <= 40) {
+      showMessageFor3Seconds("Got this", <GiBiceps />);
+    } else if (value >= 70 && value <= 80) {
       showMessageFor3Seconds("Almost there", <FaRegThumbsUp />);
     }
-    // else if (agentFormActiveSlide?.showContinueMessage) {
+    // else if (agentFormSlide?.showContinueMessage) {
     //   showMessageFor3Seconds("Continue from where you left off", <IoMdHappy />);
     //   setTimeout(() => {
-    //     setAgentFormActiveSlide({
-    //       ...agentFormActiveSlide,
+    //     setAgentFormSlide({
+    //       ...agentFormSlide,
     //       showContinueMessage: false,
     //     });
     //   }, 3000);
@@ -65,13 +63,7 @@ export default function Progress({ value, lastIndex, firstIndex }: Props) {
       setMessage("");
       setMessageIcon(null);
     }
-  }, [
-    agentFormActiveSlide,
-    firstIndex,
-    lastIndex,
-    percentageValue,
-    setAgentFormActiveSlide,
-  ]);
+  }, [firstSlide, lastSlide, value, setShouldShowMotivationMessage]);
 
   return (
     <div className="h-[16px] w-full rounded-2xl bg-[#FEF8ED]">
@@ -80,9 +72,17 @@ export default function Progress({ value, lastIndex, firstIndex }: Props) {
         style={{ width: `${value}%` }}
       >
         <div
-          className={`${
-            message && messageIcon ? "flex" : "hidden"
-          } progress-emoji absolute right-0 top-8 z-10 w-fit items-center justify-center gap-3 whitespace-nowrap rounded-2xl bg-primary-300 px-3 py-4 text-[13px] text-shade-300 lg:text-base`}
+          className={cn(
+            `${
+              message && messageIcon && shouldShowMotivationMessage
+                ? "flex"
+                : "hidden"
+            } progress-emoji absolute right-0 top-8 z-50 w-fit items-center justify-center gap-3 whitespace-nowrap rounded-2xl bg-primary-300 px-3 py-4 text-[13px] text-shade-300 lg:text-base`,
+            {
+              "-right-20 lg:right-0": firstSlide,
+              "right-[10%] lg:right-0": lastSlide,
+            },
+          )}
         >
           {message}
           {messageIcon}

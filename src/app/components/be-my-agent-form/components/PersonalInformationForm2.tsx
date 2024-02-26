@@ -18,8 +18,6 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
     const [agentFormData, setAgentFormData] =
       useLocalStorage<BeMyAgentFormType>("agent-form");
 
-    console.log(agentFormData);
-
     const handleOnChange = (name: any, value: any) => {
       setAgentFormData({
         ...agentFormData,

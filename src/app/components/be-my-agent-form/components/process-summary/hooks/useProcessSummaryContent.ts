@@ -1,5 +1,6 @@
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { BeMyAgentFormType } from "../../types";
+import capitalizeName from "@/lib/utils/stringManipulation";
 
 const useProcessSummaryContent = () => {
   const [agentFormData, setAgentFormData] =
@@ -16,7 +17,9 @@ const useProcessSummaryContent = () => {
     {
       title: "Preferred Type",
       content: {
-        Property_Type: agentFormData?.propertyType,
+        Property_Type: agentFormData?.propertyType?.map(
+          (property) => capitalizeName(property) + ", ",
+        ),
       },
     },
     {
@@ -51,6 +54,14 @@ const useProcessSummaryContent = () => {
       },
     },
     {
+      title: "Required Features",
+      content: {
+        Required_Features: agentFormData?.featuresAndAmenities?.map(
+          (feature) => capitalizeName(feature) + ", ",
+        ),
+      },
+    },
+    {
       title: "Lease Holder Information",
       content: {
         Title: agentFormData?.title || "-",
@@ -81,6 +92,16 @@ const useProcessSummaryContent = () => {
           agentFormData?.preferredMethodOfContact || "-",
         Email: agentFormData?.email || "-",
         Phone: agentFormData?.phoneNumber || "-",
+      },
+    },
+    {
+      title: "Employment Information",
+      content: {
+        Employment_Status: agentFormData?.mostRecentEmployment || "-",
+        Employer_or_Income_Source: agentFormData?.employer || "-",
+        Employer_Country: agentFormData?.employersCountry || "-",
+        Job_Title: agentFormData?.jobTitle || "-",
+        Monthly_Income: agentFormData?.monthlyIncome || "-",
       },
     },
   ];

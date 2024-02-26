@@ -10,6 +10,8 @@ import {
   ModalFooter,
 } from "@nextui-org/react";
 import { useModalFullscreenStore } from "@/store/modal/useModalStore";
+import { useEffect } from "react";
+import { useLockBodyScroll } from "@uidotdev/usehooks";
 
 type Props = {
   onOpenChange: (open: boolean) => void;
@@ -37,6 +39,8 @@ type Props = {
   backdrop?: any;
   backdropClassName?: string;
   className?: string;
+  footerClassName?: string;
+  wrapperClassName?: string;
 };
 
 const Modal = ({
@@ -55,6 +59,8 @@ const Modal = ({
   backdrop,
   backdropClassName,
   className,
+  footerClassName,
+  wrapperClassName,
 }: Props) => {
   const setHideWindowScrollbar = useModalFullscreenStore(
     (state) => state.setHideWindowScrollbar,
@@ -65,18 +71,27 @@ const Modal = ({
       <NextUIModal
         classNames={{
           backdrop: cn("z-[9999]", backdropClassName),
-          wrapper: cn("z-[99999]"),
+          wrapper: cn("z-[99999]", wrapperClassName),
+          body: cn("hidden-scrollbar", {
+            "overflow-y-auto": size === "full",
+          }),
+          footer: footerClassName,
           base: cn(
             `relative focus:outline-none ${
               backgroundColor ? backgroundColor : "bg-[#fefefe]"
-            } ${size === "full" && "rounded-none"}`,
+            }`,
+            {
+              "rounded-none max-h-screen": size === "full",
+            },
             className,
           ),
         }}
+        // scrollBehavior={size === "full" ? "inside" : "inside"}
         scrollBehavior={size === "full" ? "normal" : "inside"}
         size={size ? size : "sm"}
         isDismissable={isDismissible === false ? isDismissible : true}
-        placement={size === "full" ? undefined : "center"}
+        isKeyboardDismissDisabled={!isDismissible ? true : false}
+        placement={"center"}
         isOpen={isOpen}
         hideCloseButton={hideCloseButton ? true : false}
         backdrop={backdrop ? backdrop : undefined}

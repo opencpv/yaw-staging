@@ -33,7 +33,7 @@ export function CustomDatePicker({
     if (placeholderDate) {
       setDate(new Date(placeholderDate));
     }
-  }, []);
+  }, [placeholderDate]);
 
   return (
     <div

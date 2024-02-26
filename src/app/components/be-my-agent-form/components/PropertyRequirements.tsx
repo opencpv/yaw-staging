@@ -197,8 +197,8 @@ export default function PropertyRequirements() {
               onChange={(value) => handleOnChange("paymentOption", value)}
             />
             <CustomDatePicker
-              placeholderDate={agentFormData?.moveInDate}
               label="Desired Move In Date"
+              placeholderDate={agentFormData?.moveInDate}
               onChange={(value) => handleOnChange("moveInDate", value)}
             />
           </div>
