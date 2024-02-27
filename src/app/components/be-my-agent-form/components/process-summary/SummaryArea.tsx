@@ -63,7 +63,7 @@ const SummaryArea = ({ processPagesRefs }: Props) => {
                         <p className="text-neutral-400">
                           {key.replaceAll("_", " ")}
                         </p>
-                        <p className="ml-auto">{value}</p>
+                        <p className="ml-auto text-right">{value}</p>
                       </div>
                     )}
                   </>
