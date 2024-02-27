@@ -4,7 +4,3 @@ export interface AppContextType {
 }
 
 export type UserRole = "lister" | "renter";
-
-export type UserDashboardRole = {
-  role: UserRole;
-};

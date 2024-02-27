@@ -16,7 +16,6 @@ import { useNotificationStore } from "@/store/dashboard/notificationStore";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { LowerCase } from "@/lib/utils/stringManipulation";
 import Loader from "@/components/__shared/loader/Loader";
-import { UserDashboardRole, UserRole } from "./types";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -33,11 +32,6 @@ const Wrapper = ({ children }: LayoutProps) => {
     "dashboard-first-time",
     true,
   );
-  const [userDashboardRole, setUserDashboardRole] =
-    useLocalStorage<UserDashboardRole>("user-dashboard-role", {
-      role: "renter",
-    });
-
   const [typeModalOpen, setTypeModalOpen] = useState(false);
   const [firstTimeModalOpen, setFirstTimeModalOpen] = useState(false);
 
@@ -66,18 +60,8 @@ const Wrapper = ({ children }: LayoutProps) => {
     dashboardType && firstTIme && setFirstTimeModalOpen(true);
     dashboardType && setFirstTime(false);
 
-    setUserDashboardRole({
-      ...userDashboardRole,
-      role: (String(currentRole) as UserRole) || "renter",
-    });
-  }, [
-    firstTIme,
-    dashboardType,
-    setFirstTime,
-    currentRole,
-    userDashboardRole,
-    setUserDashboardRole,
-  ]);
+    localStorage.setItem("user-dashboard-role", LowerCase(currentRole));
+  }, [firstTIme, dashboardType, setFirstTime, currentRole]);
 
   useEffect(() => {
     const getUserData = async () => {
