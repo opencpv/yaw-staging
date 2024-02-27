@@ -45,7 +45,7 @@ export default function Progress({ value }: Props) {
         setShouldShowMotivationMessage(false);
       }, 3000);
     } else if (value >= 30 && value <= 40) {
-      showMessageFor3Seconds("You've got this", <GiBiceps />);
+      showMessageFor3Seconds("You got this", <GiBiceps />);
     } else if (value >= 70 && value <= 80) {
       showMessageFor3Seconds("Almost there", <FaRegThumbsUp />);
     }

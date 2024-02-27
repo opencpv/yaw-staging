@@ -200,6 +200,7 @@ export default function PropertyRequirements() {
               label="Desired Move In Date"
               placeholderDate={agentFormData?.moveInDate}
               onChange={(value) => handleOnChange("moveInDate", value)}
+              type={2}
             />
           </div>
         </div>

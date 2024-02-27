@@ -13,12 +13,20 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
+import {
+  Popover as Popover2,
+  PopoverTrigger as PopoverTrigger2,
+  PopoverContent as PopoverContent2,
+} from "@nextui-org/react";
+
 type Props = {
   label: string;
   onChange: (value: any) => void;
   disabled?: any;
   placeholderDate?: string;
   className?: string;
+  /** work around for popover not working with nextui modal */
+  type?: 1 | 2;
 };
 export function CustomDatePicker({
   label,
@@ -26,6 +34,7 @@ export function CustomDatePicker({
   disabled,
   placeholderDate,
   className,
+  type,
 }: Props) {
   const [date, setDate] = React.useState<Date>();
 
@@ -43,35 +52,64 @@ export function CustomDatePicker({
       )}
     >
       <label htmlFor="">{label}</label>
-      <Popover>
-        <PopoverTrigger asChild>
-          <Button
-            variant={"outline"}
-            className={cn(
-              "h-[52px] w-full justify-start border-[#a3a3a3] text-left font-normal hover:border-black/50 focus:border-2 focus:border-accent-50 focus:outline-none focus-visible:ring-0",
-              !date && "text-muted-foreground",
-            )}
+      {type === 2 ? (
+        <Popover2>
+          <PopoverTrigger2>
+            <Button
+              variant={"outline"}
+              className={cn(
+                "h-[52px] w-full justify-start border-[#a3a3a3] text-left font-normal hover:border-black/50 focus:border-2 focus:border-accent-50 focus:outline-none focus-visible:ring-0",
+                !date && "text-muted-foreground",
+              )}
+            >
+              <CalendarIcon className="mr-2 h-4 w-4" />
+              {date ? format(date, "PPP") : <span>DD/MM/YYYY</span>}
+            </Button>
+          </PopoverTrigger2>
+          <PopoverContent2 className="relative right-[20%] z-[1001] w-full rounded-md bg-[#fefefe] p-0">
+            <Calendar
+              mode="single"
+              selected={date}
+              onSelect={(value) => {
+                setDate(value);
+                onChange(value);
+              }}
+              disabled={disabled}
+              initialFocus
+            />
+          </PopoverContent2>
+        </Popover2>
+      ) : (
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button
+              variant={"outline"}
+              className={cn(
+                "h-[52px] w-full justify-start border-[#a3a3a3] text-left font-normal hover:border-black/50 focus:border-2 focus:border-accent-50 focus:outline-none focus-visible:ring-0",
+                !date && "text-muted-foreground",
+              )}
+            >
+              <CalendarIcon className="mr-2 h-4 w-4" />
+              {date ? format(date, "PPP") : <span>DD/MM/YYYY</span>}
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent
+            className="z-[1001] w-full bg-[#fefefe] p-0"
+            align="start"
           >
-            <CalendarIcon className="mr-2 h-4 w-4" />
-            {date ? format(date, "PPP") : <span>DD/MM/YYYY</span>}
-          </Button>
-        </PopoverTrigger>
-        <PopoverContent
-          className="z-[1001] w-full bg-[#fefefe] p-0"
-          align="start"
-        >
-          <Calendar
-            mode="single"
-            selected={date}
-            onSelect={(value) => {
-              setDate(value);
-              onChange(value);
-            }}
-            disabled={disabled}
-            initialFocus
-          />
-        </PopoverContent>
-      </Popover>
+            <Calendar
+              mode="single"
+              selected={date}
+              onSelect={(value) => {
+                setDate(value);
+                onChange(value);
+              }}
+              disabled={disabled}
+              initialFocus
+            />
+          </PopoverContent>
+        </Popover>
+      )}
     </div>
   );
 }
