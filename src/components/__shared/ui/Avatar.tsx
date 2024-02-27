@@ -13,11 +13,12 @@ import { TbLogout } from "react-icons/tb";
 
 type Props = {
   image: string;
-  name?: string;
+  name: string | null;
+  email?: string;
   className?: string;
 };
 
-const Avatar = ({ image, name, className }: Props) => {
+const Avatar = ({ image, name, className, email }: Props) => {
   const pathname = usePathname();
   const { currentRole } = useDashboardStore();
 
@@ -58,7 +59,12 @@ const Avatar = ({ image, name, className }: Props) => {
         }`}
       >
         <ul>
-          <li className="flex gap-4 p-5">
+          <li
+            className={cn("flex gap-4 p-5", {
+              "items-start": name,
+              "items-center": !name || name === " ",
+            })}
+          >
             <Image
               src={image}
               alt={name as string}
@@ -70,8 +76,8 @@ const Avatar = ({ image, name, className }: Props) => {
               )}
             />
             <div className="">
-              <h3>Enoch Ansah</h3>
-              <small className="text-shade-300">enocansah@gmail.com</small>
+              {name && <h3 className="max-sm:text-lg">{name}</h3>}
+              <small className="text-shade-300">{email}</small>
             </div>
           </li>
           <hr className="mx-5" />
@@ -94,7 +100,10 @@ const Avatar = ({ image, name, className }: Props) => {
           </li>
           {/* Settings */}
           <li className="deep-green-hover pl-8 pr-4">
-            <Link href="" className="flex items-center gap-2 pb-4 pt-2.5">
+            <Link
+              href={`/dashboard/${currentRole}/settings`}
+              className="flex items-center gap-2 pb-4 pt-2.5"
+            >
               <LuSettings size={20} />
               <p>Settings</p>
             </Link>

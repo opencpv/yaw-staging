@@ -18,7 +18,7 @@ const ListingFormModal = () => {
     {},
   );
   const { user } = useAppStore();
-  const owner_id = user?.profileData?.id;
+  const owner_id = user?.id as string;
   const [template_id, setTemplateId] = useState(25);
 
   return (

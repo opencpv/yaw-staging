@@ -8,6 +8,7 @@ type BeMyAgentProcessStore = {
   /** The state of the modal */
   isOpen: boolean;
   shouldShowMotivationMessage: boolean;
+  selectedSummaryPage: string;
   setProgressValue: (val: number) => void;
   setActiveSlide: (val: number) => void;
   setFirstSlide: (val: boolean) => void;
@@ -15,6 +16,7 @@ type BeMyAgentProcessStore = {
   onOpen: () => void;
   onClose: () => void;
   setShouldShowMotivationMessage: (val: boolean) => void;
+  setSelectedSummaryPage: (page: string) => void;
 };
 
 export const beMyAgentProcessStore = create<BeMyAgentProcessStore>((set) => ({
@@ -24,6 +26,7 @@ export const beMyAgentProcessStore = create<BeMyAgentProcessStore>((set) => ({
   progressValue: 1,
   isOpen: false,
   shouldShowMotivationMessage: true,
+  selectedSummaryPage: "",
   setProgressValue: (val) => set((state) => ({ ...state, progressValue: val })),
   setActiveSlide: (val) => set((state) => ({ ...state, activeSlide: val })),
   setFirstSlide: (val) => set((state) => ({ ...state, firstSlide: val })),
@@ -34,5 +37,10 @@ export const beMyAgentProcessStore = create<BeMyAgentProcessStore>((set) => ({
     set((state) => ({
       ...state,
       shouldShowMotivationMessage: val,
+    })),
+  setSelectedSummaryPage: (page) =>
+    set((state) => ({
+      ...state,
+      selectedSummaryPage: page,
     })),
 }));

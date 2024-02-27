@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import useProcessSummaryContent from "./hooks/useProcessSummaryContent";
 import { BiPencil } from "react-icons/bi";
-import { useLocalStorage } from "@uidotdev/usehooks";
-import { ProcessSummary } from "../types";
 import styles from "../index.module.css";
 import { beMyAgentProcessStore } from "@/store/dashboard/beMyAgentProcessStore";
 import { LowerCase } from "@/lib/utils/stringManipulation";

@@ -5,7 +5,7 @@ const oauthSignIn = async (
   provider: Provider,
   redirectTo = process.env.NEXT_PUBLIC_LOGIN_REDIRECT_URL,
 ) => {
-  const supabase = createClientComponentClient();
+  const supabase = createClientComponentClient<Database>();
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider,
     options: {

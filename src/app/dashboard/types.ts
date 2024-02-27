@@ -1,6 +1,10 @@
-export interface AppContextType  {
-    user?: any
-    setUser : React.Dispatch<React.SetStateAction<{}>>
+export interface AppContextType {
+  user?: any;
+  setUser: React.Dispatch<React.SetStateAction<{}>>;
 }
 
-export type UserRole = "lister" | "renter"
+export type UserRole = "lister" | "renter";
+
+export type UserDashboardRole = {
+  role: UserRole;
+};

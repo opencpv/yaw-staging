@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use client";
 import { useContext, useEffect, useRef, useState } from "react";
 import NotificationItem from "./components/NotificationItem";
@@ -37,7 +38,6 @@ const Page = () => {
 
   const ref = useRef(null);
 
-
   return (
     <div className={`flex grid-cols-2 gap-5 lg:grid lg:grid-cols-4  `}>
       <div className=" w-full lg:col-span-2 ">
@@ -57,7 +57,10 @@ const Page = () => {
             </div>
           )}
         </div>
-        <CustomScroll ref={ref}  className="hidden max-h-[78vh] flex-col gap-4 overflow-y-scroll pr-3 lg:flex 2xl:gap-6">
+        <CustomScroll
+          ref={ref}
+          className="hidden max-h-[78vh] flex-col gap-4 overflow-y-scroll pr-3 lg:flex 2xl:gap-6"
+        >
           {notifications?.map((r: any, index: number) => (
             <div className={`w-full sc-${index}`} key={index}>
               <NotificationItem

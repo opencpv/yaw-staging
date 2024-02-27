@@ -79,7 +79,11 @@ const Navbar = (props: any) => {
             )}
             <div className="flex items-center gap-5">
               {user?.avatar_url !== undefined && (
-                <Avatar image={user?.avatar_url} name={user?.full_name} />
+                <Avatar
+                  image={user?.avatar_url as string}
+                  name={`${user?.firstname || ""} ${user?.lastname || ""}`}
+                  email={user?.email}
+                />
               )}
               {/* Hamburger button */}
               <button
