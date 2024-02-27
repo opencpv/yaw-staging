@@ -36,6 +36,7 @@ const BeMyAgentFormFooter = (props: Props) => {
           "col-span-1 h-[58px] rounded-lg font-semibold focus:outline-none xs:text-base sm:min-w-[16rem]",
           {
             "bg-primary-200/80 text-white hover:bg-primary-200": firstSlide,
+            invisible: lastSlide,
           },
         )}
         onClick={handleBack}

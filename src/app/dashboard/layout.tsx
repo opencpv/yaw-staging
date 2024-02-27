@@ -16,6 +16,7 @@ import { useNotificationStore } from "@/store/dashboard/notificationStore";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { LowerCase } from "@/lib/utils/stringManipulation";
 import Loader from "@/components/__shared/loader/Loader";
+import { UserDashboardRole, UserRole } from "./types";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -32,10 +33,15 @@ const Wrapper = ({ children }: LayoutProps) => {
     "dashboard-first-time",
     true,
   );
+  const [userDashboardRole, setUserDashboardRole] =
+    useLocalStorage<UserDashboardRole>("user-dashboard-role", {
+      role: "renter",
+    });
+
   const [typeModalOpen, setTypeModalOpen] = useState(false);
   const [firstTimeModalOpen, setFirstTimeModalOpen] = useState(false);
 
-  const supabase = createClientComponentClient();
+  const supabase = createClientComponentClient<Database>();
   const user = useAppStore((state) => state.user);
   const setUser = useAppStore((state) => state.setUser);
   const setNotifications = useNotificationStore(
@@ -47,7 +53,7 @@ const Wrapper = ({ children }: LayoutProps) => {
   const { currentRole, setCurrentRole } = useDashboardStore();
 
   useEffect(() => {
-    const supabase = createClientComponentClient();
+    const supabase = createClientComponentClient<Database>();
     if (!supabase) {
       redirect("/");
     }
@@ -60,8 +66,18 @@ const Wrapper = ({ children }: LayoutProps) => {
     dashboardType && firstTIme && setFirstTimeModalOpen(true);
     dashboardType && setFirstTime(false);
 
-    localStorage.setItem("user-dashboard-role", LowerCase(currentRole));
-  }, [firstTIme, dashboardType, setFirstTime, currentRole]);
+    setUserDashboardRole({
+      ...userDashboardRole,
+      role: (String(currentRole) as UserRole) || "renter",
+    });
+  }, [
+    firstTIme,
+    dashboardType,
+    setFirstTime,
+    currentRole,
+    userDashboardRole,
+    setUserDashboardRole,
+  ]);
 
   useEffect(() => {
     const getUserData = async () => {
@@ -71,7 +87,7 @@ const Wrapper = ({ children }: LayoutProps) => {
       let { data: profiles, error } = await supabase
         .from("profiles")
         .select("*")
-        .eq("id", data?.user?.id);
+        .eq("id", data?.user?.id as string);
       const profileData = {
         ...(profiles && profiles[0]),
         email: data?.user?.email,
@@ -82,7 +98,9 @@ const Wrapper = ({ children }: LayoutProps) => {
     getUserData().then(() => {
       setLoading(false);
     });
+  }, [supabase, setUser]);
 
+  useEffect(() => {
     const wrapperExclusionList = [
       "/dashboard/lister/my-agent",
       "/dashboard/renter/my-agent",
@@ -95,7 +113,7 @@ const Wrapper = ({ children }: LayoutProps) => {
         setExcludeWrapper(false);
       }
     });
-  }, [supabase, pathname, setUser]);
+  }, [pathname]);
 
   useEffect(() => {
     const getNotifications = async () => {

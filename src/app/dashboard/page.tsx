@@ -3,12 +3,17 @@ import { LowerCase } from "@/lib/utils/stringManipulation";
 import supabase from "@/lib/utils/supabaseClient";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
+import { useLocalStorage } from "@uidotdev/usehooks";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect } from "react";
+import { UserDashboardRole } from "./types";
 
 const Dashboard = () => {
   const { user, setUser } = useAppStore();
+  const [userDashboardRole] = useLocalStorage<UserDashboardRole>(
+    "user-dashboard-role",
+  );
   const { currentRole } = useDashboardStore();
   const router = useRouter();
 
@@ -26,7 +31,7 @@ const Dashboard = () => {
     };
     getProperties();
 
-    const userRole = localStorage.getItem("user-dashboard-role");
+    const userRole = userDashboardRole?.role || "renter";
 
     if (userRole) {
       if (userRole === "renter") {
@@ -37,7 +42,7 @@ const Dashboard = () => {
     } else {
       router.replace("/dashboard/renter/overview");
     }
-  }, [router, currentRole, setUser]);
+  }, [router, currentRole, setUser, userDashboardRole?.role]);
 
   return (
     <>

@@ -34,7 +34,7 @@ const AddNewProduct = () => {
   const [phone, setPhone] = useState();
 
   useEffect(() => {
-    const supabase = createClientComponentClient();
+    const supabase = createClientComponentClient<Database>();
     if (!supabase) {
       redirect("/");
     } else {

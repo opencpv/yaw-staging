@@ -114,8 +114,8 @@ const BeMyAgentModal = (props: Props) => {
         footer={<BeMyAgentFormFooter />}
         footerClassName="border-t"
         body={<BeMyAgentForm />}
-        backdropClassName="z-50"
-        wrapperClassName="z-50"
+        backdropClassName="z-[100]"
+        wrapperClassName="z-[100]"
       />
     </>
   );

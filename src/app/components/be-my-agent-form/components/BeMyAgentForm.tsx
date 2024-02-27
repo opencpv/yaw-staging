@@ -15,13 +15,14 @@ import Image from "next/image";
 import Location from "./Location";
 import { ClientOnly } from "@/components/ui/ClientOnly";
 import Button from "@/components/__shared/ui/button/Button";
-import { AgentFormSlide, BeMyAgentFormType } from "./types";
+import { BeMyAgentFormType } from "./types";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { cn } from "@/lib/utils";
 import ProcessSummary from "./ProcessSummary";
 import { beMyAgentProcessStore } from "@/store/dashboard/beMyAgentProcessStore";
 import BeMyAgentFormSideImg from "./BeMyAgentFormSideImg";
 import Sidebar from "./process-summary/Sidebar";
+import { useScrollToTop } from "@/lib/custom-hooks/useWindowEvents";
 
 export const views = [
   <Location key={"location"} />,
@@ -86,7 +87,7 @@ export default function BeMyAgentForm() {
     monthlyIncome: "1000-2000",
   });
 
-  const leaseRef = useRef<any>();
+  const formRef = useRef<HTMLDivElement>(null);
   // const [progressValue, setProgressValue] = useState<number>(1);
   // const [activeSlide, setActiveSlide] = useState(
   //   agentFormSlide.activeSlide ?? 0,
@@ -95,13 +96,15 @@ export default function BeMyAgentForm() {
   // const [lastSlide, setLastSlide] = useState(false);
   // const [hideLeft, setHideLeft] = useState(false);
   // const [hideRight, setHideRight] = useState(false);
-  const [otp, setOtp] = useState(false);
+  // const [otp, setOtp] = useState(false);
 
   // const scrollToTop = () => {
-  //   if (leaseRef.current) {
-  //     leaseRef.current.scrollIntoView();
+  //   if (mainRef.current) {
+  //     mainRef.current.scrollIntoView();
   //   }
   // };
+
+  useScrollToTop(formRef, [activeSlide]);
 
   useEffect(() => {
     if (activeSlide < 1) {
@@ -144,7 +147,7 @@ export default function BeMyAgentForm() {
   // };
   return (
     <ClientOnly>
-      <div ref={leaseRef}>
+      <div>
         {/* Main area */}
         <section
           className={cn(
@@ -163,7 +166,7 @@ export default function BeMyAgentForm() {
           >
             <BeMyAgentFormSideImg />
           </div>
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-3" ref={formRef}>
             {/* Form */}
             <Formik
               initialValues={{

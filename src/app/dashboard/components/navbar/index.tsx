@@ -19,8 +19,6 @@ import Avatar from "@/components/__shared/ui/Avatar";
 import { getFirstWord } from "@/lib/utils/stringManipulation";
 
 const Navbar = () => {
-  const { icons } = useAssets();
-
   const user = useAppStore((state) => state.user);
 
   const [dashboardType, setDashboardType] =
@@ -33,9 +31,9 @@ const Navbar = () => {
     <>
       <Root
         className={`relative ${
-          isOpen ? "z-[50]" : "z-[70]"
-        } flex flex-nowrap items-center gap-4 bg-primary-500
-        p-2 xs:gap-16 xs:p-4 md:z-[initial] 2xl:p-[1.875rem]`}
+          isOpen ? "z-[50]" : "max-md:z-[70]"
+        } flex flex-nowrap items-center gap-4
+        bg-primary-500 p-2 xs:gap-16 xs:p-4 2xl:p-[1.875rem]`}
       >
         <div className="flex w-full items-center justify-start xs:gap-6 md:gap-10 lg:gap-20">
           <Logo size="xs" className="hidden xs:inline-block" />
@@ -55,7 +53,7 @@ const Navbar = () => {
           <NotificationsPopover />
           <div>
             <p className="hidden whitespace-nowrap text-sm text-[#fff] ssm:block">
-              {getFirstWord(user?.full_name)}
+              {user?.firstname as string}
             </p>
           </div>
           {/* {user?.avatar_url == undefined ? (
@@ -64,7 +62,11 @@ const Navbar = () => {
             <Avatar image={user?.avatar_url} name={user?.full_name} />
           )} */}
           {user?.avatar_url && (
-            <Avatar image={user?.avatar_url} name={user?.full_name} />
+            <Avatar
+              image={user?.avatar_url}
+              name={`${user?.firstname || ""} ${user?.lastname || ""}`}
+              email={user?.email}
+            />
           )}
         </div>
       </Root>

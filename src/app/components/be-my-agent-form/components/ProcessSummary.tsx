@@ -1,9 +1,10 @@
 import React, { createRef, useEffect, useRef } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import { BeMyAgentFormType, ProcessSummary } from "./types";
+import { BeMyAgentFormType } from "./types";
 import Sidebar from "./process-summary/Sidebar";
 import SummaryArea from "./process-summary/SummaryArea";
 import useProcessSummaryContent from "./process-summary/hooks/useProcessSummaryContent";
+import { beMyAgentProcessStore } from "@/store/dashboard/beMyAgentProcessStore";
 
 type Props = {};
 
@@ -30,11 +31,11 @@ const ProcessSummary = React.forwardRef<HTMLInputElement, Props>(({}, ref) => {
       employersCountry: "Republic of Ghana",
       monthlyIncome: "1000-2000",
     },
-  )
-  const [processSummary, setProcessSummary] =
-    useLocalStorage<ProcessSummary>("process-summary");
+  );
 
   const processSummaryContent = useProcessSummaryContent();
+  const { selectedSummaryPage, setSelectedSummaryPage } =
+    beMyAgentProcessStore();
 
   const processPagesRefs = useRef<React.MutableRefObject<HTMLLIElement>[]>([]); // array of refs to each process page
 
@@ -45,15 +46,22 @@ const ProcessSummary = React.forwardRef<HTMLInputElement, Props>(({}, ref) => {
     );
   }, [processSummaryContent]);
 
+  useEffect(() => {
+    // Ensures a summary page is set when it first renders
+    if (!selectedSummaryPage) {
+      setSelectedSummaryPage(processSummaryContent?.[0]?.title);
+    }
+  }, [selectedSummaryPage, processSummaryContent, setSelectedSummaryPage]);
+
   const handleMenuClick = (id: number, page: string) => {
     // scroll to the process page
     if (processPagesRefs.current[id]) {
-      processPagesRefs.current[id].current.scrollIntoView({
+      processPagesRefs?.current?.[id]?.current?.scrollIntoView({
         behavior: "smooth",
         block: window.innerWidth >= 1024 ? "start" : "center",
       });
     }
-    setProcessSummary({ ...processSummary, currentSummaryPage: page });
+    setSelectedSummaryPage(page);
   };
 
   return (

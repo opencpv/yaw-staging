@@ -18,7 +18,7 @@ const Sell = () => {
   const { images } = useAssets();
 
   useEffect(() => {
-    const supabase = createClientComponentClient();
+    const supabase = createClientComponentClient<Database>();
     if (!supabase) {
       redirect("/");
     } else {

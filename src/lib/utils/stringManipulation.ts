@@ -47,6 +47,6 @@ export const UpperCase = (text: string) => {
 
 export default capitalizeName;
 
-export const getFirstWord = (str: string) => {
-  return str?.split(" ")[0];
+export const getFirstWord = (str: string, delimiter: string = " ") => {
+  return str?.split(delimiter)[0];
 };
