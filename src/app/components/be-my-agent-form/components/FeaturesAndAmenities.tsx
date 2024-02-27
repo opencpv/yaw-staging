@@ -1,42 +1,38 @@
 import { styled } from "@stitches/react";
-import { FaWifi } from "react-icons/fa";
-import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import { IoIosWifi } from "react-icons/io";
-import { MdHotTub, MdOutlineGasMeter, MdOutlinePool } from "react-icons/md";
-import { GiGate, GiPoolTableCorner, GiRoad } from "react-icons/gi";
-import { BsPerson } from "react-icons/bs";
-import { TbDoorExit, TbToolsKitchen2 } from "react-icons/tb";
-import { PiMonitorLight, PiPawPrintLight } from "react-icons/pi";
-import { BiSolidCctv } from "react-icons/bi";
-import ParkingSpace from "../../listing-form/components/icons/ParkingSpace";
+import { GiRoad } from "react-icons/gi";
+import { BsPerson, BsSpeedometer2 } from "react-icons/bs";
+import { TbAirConditioning} from "react-icons/tb";
+import { PiForkKnife, PiMonitorLight, PiPawPrintLight, PiSwimmingPool, PiWallLight } from "react-icons/pi";
+import { BiCctv } from "react-icons/bi";
 import Tiles from "../../listing-form/components/icons/Tiles";
-import AirConditioner from "../../listing-form/components/icons/AirConditioner";
-import SmokeAlarm from "../../listing-form/components/icons/SmokeAlarm";
 import Amenity from "../../listing-form/components/Amenity";
 import styles from "./index.module.css";
 import { BeMyAgentFormType } from "./types";
+import { CiWifiOn } from "react-icons/ci";
+import { IoCarOutline } from "react-icons/io5";
+import { LiaDoorOpenSolid, LiaHotTubSolid } from "react-icons/lia";
+import { RiAlarmWarningLine, RiBilliardsLine } from "react-icons/ri";
 
 const data = [
-  { name: "wifi", icon: <IoIosWifi size="44" /> },
+  { name: "wifi", icon: <CiWifiOn size="44" /> },
   { name: "satellite tv", icon: <PiMonitorLight size="44" /> },
-  { name: "self meter", icon: <MdOutlineGasMeter size="44" /> },
-  { name: "walled & gated", icon: <GiGate size="44" /> },
-  { name: "parking", icon: <ParkingSpace /> },
+  { name: "self meter", icon: <BsSpeedometer2 size="44" /> },
+  { name: "walled & gated", icon: <PiWallLight size="44" /> },
+  { name: "parking", icon: <IoCarOutline size="44" /> },
   { name: "landlord on site", icon: <BsPerson size="44" /> },
   { name: "tiled space", icon: <Tiles /> },
-  { name: "sliding windows", icon: <TbDoorExit size="44" /> },
+  { name: "sliding windows", icon: <LiaDoorOpenSolid size="44" /> },
   { name: "pets allowed", icon: <PiPawPrintLight size="44" /> },
   { name: "near road", icon: <GiRoad size="44" /> },
-
-  { name: "security camera", icon: <BiSolidCctv size="44" /> },
-  { name: "pool", icon: <MdOutlinePool size="44" /> },
-  { name: "pool table", icon: <GiPoolTableCorner size="44" /> },
-  { name: "hot tub", icon: <MdHotTub size="44" /> },
-  { name: "kitchen", icon: <TbToolsKitchen2 size="44" /> },
-  { name: "smoke alarm", icon: <SmokeAlarm /> },
-  { name: "air conditioning", icon: <AirConditioner /> },
+  { name: "security camera", icon: <BiCctv size="44" /> },
+  { name: "pool", icon: <PiSwimmingPool size="44" /> },
+  { name: "pool table", icon: <RiBilliardsLine size="44" /> },
+  { name: "hot tub", icon: <LiaHotTubSolid size="44" /> },
+  { name: "kitchen", icon: <PiForkKnife size="44" /> },
+  { name: "smoke alarm", icon: <RiAlarmWarningLine size="44" /> },
+  { name: "air conditioning", icon: <TbAirConditioning size="44" /> },
 ];
 
 export default function FeaturesAndAmenities() {

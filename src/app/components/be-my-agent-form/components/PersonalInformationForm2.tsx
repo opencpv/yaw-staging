@@ -33,21 +33,21 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
           <div className="grid grid-cols-1 gap-x-5 gap-y-8 lg:grid-cols-2">
             <CustomSelect
               label="Title"
-              value={agentFormData?.title || "Mrs"}
+              value={agentFormData?.title || "Mrs."}
               options={[
-                { name: "mr", value: "Mr" },
-                { name: "mrs", value: "Mrs" },
+                { name: "mr.", value: "Mr." },
+                { name: "mrs.", value: "Mrs." },
                 { name: "miss", value: "Miss" },
               ]}
               onChange={(value) => handleOnChange("title", value)}
             />
             <CustomSelect
               label="Age"
-              value={agentFormData?.dateOfBirth || "18-44"}
+              value={agentFormData?.dateOfBirth || "18 - 44"}
               options={[
-                { name: "12-17", value: "12-17" },
-                { name: "18-44", value: "18-44" },
-                { name: "45-74", value: "45-74" },
+                { name: "12 - 17", value: "12 - 17" },
+                { name: "18 - 44", value: "18 - 44" },
+                { name: "45 - 74", value: "45 - 74" },
               ]}
               onChange={(value) => handleOnChange("dateOfBirth", value)}
             />
@@ -94,10 +94,10 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
             />
             <CustomSelect
               label="Number of Tenants"
-              value={agentFormData?.tenants || "1-5"}
+              value={agentFormData?.tenants || "1 - 5"}
               options={[
-                { name: "1-5", value: "1-5" },
-                { name: "6-10", value: "6-10" },
+                { name: "1 - 5", value: "1 - 5" },
+                { name: "6 - 10", value: "6 - 10" },
                 { name: "10+", value: "10+" },
               ]}
               onChange={(value) => handleOnChange("tenants", value)}

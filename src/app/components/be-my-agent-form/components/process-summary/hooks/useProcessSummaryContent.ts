@@ -65,7 +65,7 @@ const useProcessSummaryContent = () => {
       title: "Lease Holder Information",
       content: {
         Title: agentFormData?.title || "-",
-        Age: agentFormData?.dateOfBirth,
+        Age: agentFormData?.dateOfBirth || "-",
         First_Name: agentFormData?.firstName || "-",
         Last_Name: agentFormData?.lastName || "-",
         Marital_Status: agentFormData?.maritalStatus || "-",

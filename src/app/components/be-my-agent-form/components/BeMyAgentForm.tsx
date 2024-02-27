@@ -76,9 +76,9 @@ export default function BeMyAgentForm() {
     leaseTermMaximum: "1",
     paymentOption: "Rent Advance",
     title: "Mrs",
-    dateOfBirth: "18-44",
+    dateOfBirth: "18 - 44",
     maritalStatus: "Single",
-    tenants: "1-5",
+    tenants: "1 - 5",
     country: "Republic of Ghana",
     preferredMethodOfContact: "email",
     mostRecentEmployment: "Employed",
@@ -143,40 +143,42 @@ export default function BeMyAgentForm() {
   //   }
   // };
   return (
-    <div ref={leaseRef}>
-      {/* Main area */}
-      <section
-        className={cn(
-          "mx-auto mb-10 mt-5 grid w-full max-w-screen-sm grid-cols-1 gap-10 lg:mt-10 lg:max-w-screen-3xl lg:grid-cols-5 lg:gap-28",
-          {
-            "block max-w-full px-0 lg:max-hd:max-w-screen-lg hd:max-w-screen-xl":
-              lastSlide,
-          },
-        )}
-      >
-        {/* Side image or side bar */}
-        <div
-          className={cn("top-10 w-full lg:sticky lg:col-span-2 lg:h-32", {
-            hidden: lastSlide,
-          })}
+    <ClientOnly>
+      <div ref={leaseRef}>
+        {/* Main area */}
+        <section
+          className={cn(
+            "mx-auto mb-10 mt-5 grid w-full max-w-screen-sm grid-cols-1 gap-10 lg:mt-10 lg:max-w-screen-3xl lg:grid-cols-5 lg:gap-28",
+            {
+              "block max-w-full px-0 lg:max-hd:max-w-screen-lg hd:max-w-screen-xl":
+                lastSlide,
+            },
+          )}
         >
-          <BeMyAgentFormSideImg />
-        </div>
-        <div className="lg:col-span-3">
-          {/* Form */}
-          <Formik
-            initialValues={{
-              ...agentFormData,
-            }}
-            onSubmit={() => alert("sibm")}
+          {/* Side image or side bar */}
+          <div
+            className={cn("top-10 w-full lg:sticky lg:col-span-2 lg:h-32", {
+              hidden: lastSlide,
+            })}
           >
-            <Form>
-              <div>{views[activeSlide]}</div>
-            </Form>
-          </Formik>
-        </div>
-      </section>
-    </div>
+            <BeMyAgentFormSideImg />
+          </div>
+          <div className="lg:col-span-3">
+            {/* Form */}
+            <Formik
+              initialValues={{
+                ...agentFormData,
+              }}
+              onSubmit={() => alert("sibm")}
+            >
+              <Form>
+                <div>{views[activeSlide]}</div>
+              </Form>
+            </Formik>
+          </div>
+        </section>
+      </div>
+    </ClientOnly>
   );
 }
 

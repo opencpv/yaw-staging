@@ -47,50 +47,6 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
               })
             }
           />
-          {/* {agentFormData?.mostRecentEmployment == "employed" && (
-            <div className="text-shade200] mt-[64px] flex items-center justify-start gap-3">
-              <input
-                type="checkbox"
-                name="currentlyEmployed"
-                checked={agentFormData?.currentlyEmployed == "yes"}
-                onChange={(e) => {
-                  setIsChecked(!isChecked);
-                  setAgentFormData({
-                    ...agentFormData,
-                    currentlyEmployed: isChecked ? "yes" : "no",
-                  });
-                }}
-                className="bg-white "
-              />
-              <p className="text-[#737373]">Current</p>
-            </div>
-          )}
-
-          {agentFormData?.mostRecentEmployment == "employed" && (
-            <div className="mt-2 flex gap-3">
-              <CustomDatePicker
-                placeholderDate={agentFormData?.employmentStartDate}
-                label="Start Date"
-                onChange={(value) =>
-                  setAgentFormData({
-                    ...agentFormData,
-                    employmentStartDate: value,
-                  })
-                }
-              />
-              <CustomDatePicker
-                label="End Date"
-                placeholderDate={agentFormData?.employmentEndDate}
-                disabled={agentFormData?.currentlyEmployed && true}
-                onChange={(value) =>
-                  setAgentFormData({
-                    ...agentFormData,
-                    employmentEndDate: value,
-                  })
-                }
-              />
-            </div>
-          )} */}
           <TextFieldInput
             name="employer"
             type="text"
@@ -137,11 +93,11 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
             placeholder="Select"
             label="Monthly Income"
             isSelectElement
-            value2={agentFormData?.monthlyIncome || "1000-2000"}
+            value2={agentFormData?.monthlyIncome || "1000 - 2000"}
             options={[
-              { name: "1000-2000", value: "1000-2000" },
-              { name: "3000-5000", value: "3000-5000" },
-              { name: "6000-10000", value: "6000-10000" },
+              { name: "1000 - 2000", value: "1000 - 2000" },
+              { name: "3000 - 5000", value: "3000 - 5000" },
+              { name: "6000 - 10000", value: "6000 - 10000" },
               { name: "10000+", value: "10000+" },
             ]}
             onChange={(value) =>

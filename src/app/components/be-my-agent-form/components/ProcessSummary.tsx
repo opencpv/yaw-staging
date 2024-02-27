@@ -1,6 +1,6 @@
 import React, { createRef, useEffect, useRef } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import { ProcessSummary } from "./types";
+import { BeMyAgentFormType, ProcessSummary } from "./types";
 import Sidebar from "./process-summary/Sidebar";
 import SummaryArea from "./process-summary/SummaryArea";
 import useProcessSummaryContent from "./process-summary/hooks/useProcessSummaryContent";
@@ -8,6 +8,29 @@ import useProcessSummaryContent from "./process-summary/hooks/useProcessSummaryC
 type Props = {};
 
 const ProcessSummary = React.forwardRef<HTMLInputElement, Props>(({}, ref) => {
+  const [agentFormData, setAgentFormData] = useLocalStorage<BeMyAgentFormType>(
+    "agent-form",
+    {
+      priceRangeMinimum: "100",
+      priceRangeMaximum: "100",
+      bedMinimum: "1",
+      bedMaximum: "1",
+      bathroomMinimum: "1",
+      bathroomMaximum: "1",
+      leaseTermMinimum: "1",
+      leaseTermMaximum: "1",
+      paymentOption: "Rent Advance",
+      title: "Mrs",
+      dateOfBirth: "18-44",
+      maritalStatus: "Single",
+      tenants: "1-5",
+      country: "Republic of Ghana",
+      preferredMethodOfContact: "email",
+      mostRecentEmployment: "Employed",
+      employersCountry: "Republic of Ghana",
+      monthlyIncome: "1000-2000",
+    },
+  )
   const [processSummary, setProcessSummary] =
     useLocalStorage<ProcessSummary>("process-summary");
 
