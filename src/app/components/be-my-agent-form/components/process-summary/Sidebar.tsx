@@ -16,7 +16,7 @@ const Sidebar = ({ handleMenuClick }: Props) => {
     <section className="relative bottom-10 bg-white lg:h-screen lg:bg-transparent">
       <h1 className="mb-5 text-xl font-bold lg:mb-10 lg:text-3xl">Summary</h1>
 
-      <ul className="-ml-5 flex w-screen items-center gap-3 max-lg:overflow-x-scroll lg:-ml-0 lg:h-[28rem] lg:w-full lg:flex-col lg:items-start lg:overflow-x-auto lg:overflow-y-auto fhd:h-[35rem]">
+      <ul className="hidden-scrollbar -ml-5 flex w-screen items-center gap-3 max-lg:overflow-x-scroll lg:-ml-0 lg:h-[28rem] lg:w-full lg:flex-col lg:items-start lg:overflow-x-auto lg:overflow-y-auto fhd:h-[35rem]">
         {processSummaryContent.map(
           (
             processPage, // mapping through processPage: i.e: Location, Contact Information
