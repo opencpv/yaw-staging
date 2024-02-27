@@ -1,37 +1,27 @@
-import { FaWifi } from "react-icons/fa";
 import { styled } from "@stitches/react";
-
-import {
-  MdApartment,
-  MdOutlineApartment,
-  MdOutlineHouse,
-  MdOutlineWarehouse,
-} from "react-icons/md";
-import { GiFamilyHouse } from "react-icons/gi";
-import { BsHouse, BsHouses } from "react-icons/bs";
-import { LuWarehouse } from "react-icons/lu";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { BsBuilding, BsHouses } from "react-icons/bs";
+import { useEffect, useState } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import TownHouse from "../../listing-form/components/icons/TownHouse";
-import DetachedHouse from "../../listing-form/components/icons/DetachedHouse";
-import PentHouse from "../../listing-form/components/icons/PentHouse";
 import Amenity from "../../listing-form/components/Amenity";
 import styles from "./index.module.css";
 
 import InfoText from "../../listing-form/components/InfoText";
 import { BeMyAgentFormType } from "./types";
-import { HiOutlineBuildingOffice } from "react-icons/hi2";
+import { HiOutlineBuildingOffice, HiOutlineHome } from "react-icons/hi2";
+import { IoHomeOutline } from "react-icons/io5";
+import { GoHome } from "react-icons/go";
+import { PiBuildings, PiHouseLine, PiWarehouse } from "react-icons/pi";
 
 const properties = [
-  { name: "apartment", icon: <MdOutlineApartment size="44" /> },
-  { name: "house", icon: <MdOutlineHouse size="44" /> },
-  { name: "town house", icon: <TownHouse /> },
-  { name: "detached house", icon: <DetachedHouse /> },
+  { name: "apartment", icon: <PiBuildings size="44" /> },
+  { name: "house", icon: <IoHomeOutline size="44" /> },
+  { name: "town house", icon: <GoHome size="44" /> },
+  { name: "detached house", icon: <HiOutlineHome size="44" /> },
   { name: "semi-detached house", icon: <BsHouses size="44" /> },
-  { name: "self contain", icon: <LuWarehouse size="44" /> },
-  { name: "compound house", icon: <MdOutlineWarehouse size="44" /> },
+  { name: "self contain", icon: <PiHouseLine size="44" /> },
+  { name: "compound house", icon: <PiWarehouse size="44" /> },
   { name: "mansion", icon: <HiOutlineBuildingOffice size="44" /> },
-  { name: "penthouse", icon: <PentHouse /> },
+  { name: "penthouse", icon: <BsBuilding size="44" /> },
 ];
 
 type Props = {

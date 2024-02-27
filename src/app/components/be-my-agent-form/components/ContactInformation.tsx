@@ -57,7 +57,7 @@ const ContactInformationForm = React.forwardRef<HTMLInputElement, Props>(
               name="currentAddress2"
               type="text"
               label="Current Address 2 ( optional )"
-              placeholder="Apartment No. or other relevant information"
+              placeholder="Eg: Apartment No."
               onChange={(e) =>
                 setAgentFormData({
                   ...agentFormData,
