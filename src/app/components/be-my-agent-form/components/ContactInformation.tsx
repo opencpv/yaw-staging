@@ -86,6 +86,7 @@ const ContactInformationForm = React.forwardRef<HTMLInputElement, Props>(
                   country: value,
                 })
               }
+              type={2}
             />
             <div className="space-y-3">
               <label className="text-[#6A6968]">
@@ -109,10 +110,10 @@ const ContactInformationForm = React.forwardRef<HTMLInputElement, Props>(
                       ...agentFormData,
                       preferredMethodOfContact: key as any,
                     });
-                    setAgentFormData({
-                      ...agentFormData,
-                      preferredMethodOfContact: key as any,
-                    });
+                    // setAgentFormData({
+                    //   ...agentFormData,
+                    //   preferredMethodOfContact: key as any,
+                    // });
                   }}
                   radius="large"
                   padding="medium"

@@ -17,6 +17,11 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import {
+  Popover as Popover2,
+  PopoverTrigger as PopoverTrigger2,
+  PopoverContent as PopoverContent2,
+} from "@nextui-org/react";
 import { ErrorMessage, Field } from "formik";
 import { styled } from "@stitches/react";
 import { SelectSearchInput } from "@/app/components/SelectSearchInput";
@@ -36,6 +41,8 @@ type Props = {
   label: string;
   onChange: (value: any) => void;
   initialValue?: string;
+  /** work around for popover not working with nextui modal */
+  type?: 1 | 2;
 };
 
 const CountryInput = ({
@@ -43,6 +50,7 @@ const CountryInput = ({
   placeholder = "Select your country",
   label,
   onChange,
+  type,
 }: Props) => {
   const [countryData, setCountryData] = useState<DataItem[]>();
   const [open, setOpen] = React.useState(false);
@@ -52,7 +60,7 @@ const CountryInput = ({
     if (initialValue) {
       setValue(initialValue);
     }
-  }, []);
+  }, [initialValue]);
 
   useEffect(() => {
     axios
@@ -80,54 +88,100 @@ const CountryInput = ({
         <div className={`font-[400] capitalize text-[#6A6968]`}>
           <label className="normal-case">{label}</label>
         </div>
-        <Popover open={open} onOpenChange={setOpen}>
-          <PopoverTrigger asChild>
-            <Button
-              variant="outline"
-              role="combobox"
-              aria-expanded={open}
-              className={`w-full justify-between border-[#a3a3a3] placeholder:text-neutral-500 hover:border-black/50 focus:border-2 focus:border-accent-50 focus:outline-none focus-visible:ring-0  ${
-                value ? "capitalize text-[#6A6968]" : "text-[#B4B2AF] "
-              } h-[52px] whitespace-nowrap`}
-            >
-              {value ? value : placeholder}
-              <ChevronDown className="ml-2 h-4 w-4 shrink-0 text-neutral-500 opacity-50" />
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="z-[200] max-h-[400px] w-fit overflow-y-scroll bg-[#fefefe] p-0 focus:outline-none">
-            <Command onValueChange={onChange}>
-              <CommandInput
-                className="focus:outline-none"
-                placeholder="Search data..."
-              />
-              <CommandEmpty>No data found.</CommandEmpty>
-              <CommandGroup>
-                {countryData?.map((data) => (
-                  <CommandItem
-                    className="flex cursor-pointer gap-3 hover:bg-accent-50"
-                    key={data.value}
-                    onSelect={(currentValue) => {
-                      onChange(currentValue);
-                      setValue(currentValue === value ? "" : currentValue);
-                      setOpen(false);
-                    }}
-                  >
-                    {/* <Check
+
+        {type === 2 ? (
+          <Popover2 isOpen={open} onOpenChange={setOpen}>
+            <PopoverTrigger2>
+              <Button
+                variant="outline"
+                role="combobox"
+                aria-expanded={open}
+                className={`w-full justify-between border-[#a3a3a3] placeholder:text-neutral-500 hover:border-black/50 focus:border-2 focus:border-accent-50 focus:outline-none focus-visible:ring-0  ${
+                  value ? "capitalize text-[#6A6968]" : "text-[#B4B2AF] "
+                } h-[52px] whitespace-nowrap`}
+              >
+                {value ? value : placeholder}
+                <ChevronDown className="ml-2 h-4 w-4 shrink-0 text-neutral-500 opacity-50" />
+              </Button>
+            </PopoverTrigger2>
+            <PopoverContent2 className="z-[200] max-h-[400px] w-fit overflow-y-scroll rounded-md bg-[#fefefe] p-0 focus:outline-none">
+              <Command onValueChange={onChange}>
+                <CommandInput
+                  className="focus:outline-none"
+                  placeholder="Search data..."
+                />
+                <CommandEmpty>No data found.</CommandEmpty>
+                <CommandGroup>
+                  {countryData?.map((data) => (
+                    <CommandItem
+                      className="flex cursor-pointer gap-3 hover:bg-accent-50"
+                      key={data.value}
+                      onSelect={(currentValue) => {
+                        onChange(currentValue);
+                        setValue(currentValue === value ? "" : currentValue);
+                        setOpen(false);
+                      }}
+                    >
+                      <div className="relative aspect-square w-[20px]">
+                        <Image src={data.flags} alt="flag" fill />
+                      </div>
+                      {data.label}
+                    </CommandItem>
+                  ))}
+                </CommandGroup>
+              </Command>
+            </PopoverContent2>
+          </Popover2>
+        ) : (
+          <Popover open={open} onOpenChange={setOpen}>
+            <PopoverTrigger asChild>
+              <Button
+                variant="outline"
+                role="combobox"
+                aria-expanded={open}
+                className={`w-full justify-between border-[#a3a3a3] placeholder:text-neutral-500 hover:border-black/50 focus:border-2 focus:border-accent-50 focus:outline-none focus-visible:ring-0  ${
+                  value ? "capitalize text-[#6A6968]" : "text-[#B4B2AF] "
+                } h-[52px] whitespace-nowrap`}
+              >
+                {value ? value : placeholder}
+                <ChevronDown className="ml-2 h-4 w-4 shrink-0 text-neutral-500 opacity-50" />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="z-[200] max-h-[400px] w-fit overflow-y-scroll bg-[#fefefe] p-0 focus:outline-none">
+              <Command onValueChange={onChange}>
+                <CommandInput
+                  className="focus:outline-none"
+                  placeholder="Search data..."
+                />
+                <CommandEmpty>No data found.</CommandEmpty>
+                <CommandGroup>
+                  {countryData?.map((data) => (
+                    <CommandItem
+                      className="flex cursor-pointer gap-3 hover:bg-accent-50"
+                      key={data.value}
+                      onSelect={(currentValue) => {
+                        onChange(currentValue);
+                        setValue(currentValue === value ? "" : currentValue);
+                        setOpen(false);
+                      }}
+                    >
+                      {/* <Check
                       className={cn(
                         "mr-2 h-4 w-4",
                         value === data.value ? "opacity-100" : "opacity-0"
                       )}
                     /> */}
-                    <div className="relative aspect-square w-[20px]">
-                      <Image src={data.flags} alt="flag" fill />
-                    </div>
-                    {data.label}
-                  </CommandItem>
-                ))}
-              </CommandGroup>
-            </Command>
-          </PopoverContent>
-        </Popover>
+                      <div className="relative aspect-square w-[20px]">
+                        <Image src={data.flags} alt="flag" fill />
+                      </div>
+                      {data.label}
+                    </CommandItem>
+                  ))}
+                </CommandGroup>
+              </Command>
+            </PopoverContent>
+          </Popover>
+        )}
       </Root>
     </div>
   );

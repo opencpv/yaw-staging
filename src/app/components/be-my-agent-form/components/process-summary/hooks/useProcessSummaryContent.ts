@@ -1,6 +1,6 @@
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { BeMyAgentFormType } from "../../types";
-import capitalizeName from "@/lib/utils/stringManipulation";
+import capitalizeName, { formatDate } from "@/lib/utils/stringManipulation";
 
 const useProcessSummaryContent = () => {
   const [agentFormData, setAgentFormData] =
@@ -50,7 +50,8 @@ const useProcessSummaryContent = () => {
                 agentFormData?.leaseTermMaximum || ""
               }`,
         Preferred_Payment_Option: agentFormData?.paymentOption || "-",
-        Desired_Move_in_Date: agentFormData?.moveInDate || "-",
+        Desired_Move_in_Date:
+          formatDate(agentFormData?.moveInDate as string) || "-",
       },
     },
     {
@@ -89,7 +90,8 @@ const useProcessSummaryContent = () => {
         City: agentFormData?.city || "-",
         Country: agentFormData?.country || "-",
         Preferred_Method_of_Contact:
-          agentFormData?.preferredMethodOfContact || "-",
+          capitalizeName(agentFormData?.preferredMethodOfContact as string) ||
+          "-",
         Email: agentFormData?.email || "-",
         Phone: agentFormData?.phoneNumber || "-",
       },
@@ -101,7 +103,9 @@ const useProcessSummaryContent = () => {
         Employer_or_Income_Source: agentFormData?.employer || "-",
         Employer_Country: agentFormData?.employersCountry || "-",
         Job_Title: agentFormData?.jobTitle || "-",
-        Monthly_Income: agentFormData?.monthlyIncome || "-",
+        Monthly_Income:
+          `${agentFormData?.monthlyIncomeCurrency?.toUpperCase()} ${agentFormData?.monthlyIncome}` ||
+          "-",
       },
     },
   ];

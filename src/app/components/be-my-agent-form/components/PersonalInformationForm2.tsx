@@ -75,14 +75,6 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
                 })
               }
             />
-            {/* <SelectSearchInput
-                data={LeaseData}
-                placeholder="Enter lease term"
-                label="Lease term"
-                onChange={(value) => {
-                  handleOnChange("leaseTerm", value);
-                }}
-              /> */}
             <CustomSelect
               label="Marital Status"
               value={agentFormData?.maritalStatus || "Single"}

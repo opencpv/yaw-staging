@@ -17,6 +17,7 @@ interface Props extends React.HTMLAttributes<HTMLButtonElement> {
   arrowIcon?: boolean;
   radius?: "sm" | "full";
   href?: string;
+  type?: "button" | "submit" | "reset";
   replace?: boolean;
   title?: string;
   greenHover?: boolean;
@@ -39,6 +40,7 @@ const Button: React.FC<Props> = ({
   title,
   replace,
   greenHover,
+  type,
   ...props
 }: Props) => {
   if (href)
@@ -50,6 +52,7 @@ const Button: React.FC<Props> = ({
         isDisabled={disabled}
         title={title}
         isIconOnly={isIconOnly}
+        type={type}
         className={cn(
           `min-h-fit max-w-sm space-x-2 whitespace-normal rounded-md bg-transparent px-10 py-3 font-[600] ${
             borderColor && `border border-[${borderColor}]`
@@ -96,6 +99,7 @@ const Button: React.FC<Props> = ({
         isDisabled={disabled}
         title={title}
         isIconOnly={isIconOnly}
+        type={type}
         className={cn(
           `min-h-fit max-w-sm space-x-2 whitespace-normal rounded-md bg-transparent p-3 px-10 font-[600] ${
             borderColor && `border border-[${borderColor}]`
