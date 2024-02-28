@@ -9,10 +9,12 @@ import { ClientOnly } from "@/components/ui/ClientOnly";
 import CustomSelect from "../../CustomSelect";
 import { BeMyAgentFormType } from "./types";
 import InfoText from "../../listing-form/components/InfoText";
+import { useEffect } from "react";
 
 export default function PropertyRequirements() {
   const [agentFormData, setAgentFormData] =
     useLocalStorage<BeMyAgentFormType>("agent-form");
+
   const handleOnChange = (name: any, value: any) => {
     setAgentFormData({
       ...agentFormData,

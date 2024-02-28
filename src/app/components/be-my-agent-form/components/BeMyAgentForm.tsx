@@ -66,26 +66,34 @@ export default function BeMyAgentForm() {
     setLastSlide,
   } = beMyAgentProcessStore();
 
-  const [agentFormData] = useLocalStorage<BeMyAgentFormType>("agent-form", {
-    priceRangeMinimum: "100",
-    priceRangeMaximum: "100",
-    bedMinimum: "1",
-    bedMaximum: "1",
-    bathroomMinimum: "1",
-    bathroomMaximum: "1",
-    leaseTermMinimum: "1",
-    leaseTermMaximum: "1",
-    paymentOption: "Rent Advance",
-    title: "Mrs",
-    dateOfBirth: "18 - 44",
-    maritalStatus: "Single",
-    tenants: "1 - 5",
-    country: "Republic of Ghana",
-    preferredMethodOfContact: "email",
-    mostRecentEmployment: "Employed",
-    employersCountry: "Republic of Ghana",
-    monthlyIncome: "1000-2000",
-  });
+  const [agentFormData, setAgentFormData] =
+    useLocalStorage<BeMyAgentFormType>("agent-form");
+
+  useEffect(() => {
+    if (!agentFormData) {
+      setAgentFormData((prevData: any) => ({
+        ...prevData,
+        priceRangeMinimum: "100",
+        priceRangeMaximum: "100",
+        bedMinimum: "1",
+        bedMaximum: "1",
+        bathroomMinimum: "1",
+        bathroomMaximum: "1",
+        leaseTermMinimum: "1",
+        leaseTermMaximum: "1",
+        paymentOption: "Rent Advance",
+        title: "Mrs.",
+        dateOfBirth: "18 - 44",
+        maritalStatus: "Single",
+        tenants: "1 - 5",
+        country: "Republic of Ghana",
+        preferredMethodOfContact: "email",
+        mostRecentEmployment: "Employed",
+        employersCountry: "Republic of Ghana",
+        monthlyIncome: "1000 - 2000",
+      }));
+    }
+  }, []); // !!! Purposely kept empty to run once
 
   const formRef = useRef<HTMLDivElement>(null);
   // const [progressValue, setProgressValue] = useState<number>(1);

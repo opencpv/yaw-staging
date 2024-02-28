@@ -16,6 +16,11 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import {
+  Popover as Popover2,
+  PopoverTrigger as PopoverTrigger2,
+  PopoverContent as PopoverContent2,
+} from "@nextui-org/react";
 import { ErrorMessage, Field } from "formik";
 import { styled } from "@stitches/react";
 import { SelectSearchInput } from "@/app/components/SelectSearchInput";
@@ -49,6 +54,8 @@ type Props = {
   isSelectElement?: boolean;
   /** options to use when isSelectElement is true */
   options?: OptionTypes[];
+  /** work around for popover not working with nextui modal */
+  type?: 1 | 2;
 };
 
 const CurrencyInput = ({
@@ -64,6 +71,7 @@ const CurrencyInput = ({
   infoBubble,
   isSelectElement,
   options,
+  type,
 }: Props) => {
   const [currencyData, setCurrencyData] = useState<DataItem[]>();
   const [selectedCurrency, setSelectedCurrency] = useState<any>({});
@@ -130,39 +138,76 @@ const CurrencyInput = ({
           {infoBubble && <InfoBubble content="Data" />}
         </div>
         <div className="flex items-center justify-start gap-4">
-          <Popover open={open} onOpenChange={setOpen}>
-            <PopoverTrigger asChild>
-              <Button
-                variant="outline"
-                role="combobox"
-                aria-expanded={open}
-                className="form-field-border h-[52px] w-full max-w-[100px] justify-between whitespace-nowrap uppercase text-[#6A6968] focus:border-2 focus:border-accent-50 focus:outline-none focus-visible:ring-0"
-              >
-                {value ? value : placeholder}
-                <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="z-[200] max-h-[400px] w-fit overflow-y-scroll bg-[#fefefe] p-0 ">
-              <Command onValueChange={onChange}>
-                <CommandInput placeholder="Search data..." />
-                <CommandEmpty>No data found.</CommandEmpty>
-                <CommandGroup>
-                  {currencyData?.map((data, idx) => (
-                    <CommandItem
-                      className="flex cursor-pointer gap-3 hover:bg-slate-100"
-                      key={idx}
-                      onSelect={(currentValue) => {
-                        setValue(currentValue === value ? "" : currentValue);
-                        setOpen(false);
-                      }}
-                    >
-                      {data.label}
-                    </CommandItem>
-                  ))}
-                </CommandGroup>
-              </Command>
-            </PopoverContent>
-          </Popover>
+          {type === 2 ? (
+            <Popover2 isOpen={open} onOpenChange={setOpen}>
+              <PopoverTrigger2>
+                <Button
+                  variant="outline"
+                  role="combobox"
+                  aria-expanded={open}
+                  className="form-field-border h-[52px] w-full max-w-[100px] justify-between whitespace-nowrap uppercase text-[#6A6968] focus:border-2 focus:border-accent-50 focus:outline-none focus-visible:ring-0"
+                >
+                  {value ? value : placeholder}
+                  <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                </Button>
+              </PopoverTrigger2>
+              <PopoverContent2 className="z-[200] max-h-[400px] w-fit overflow-y-scroll bg-[#fefefe] p-0 focus:outline-none">
+                <Command onValueChange={onChange}>
+                  <CommandInput placeholder="Search data..." />
+                  <CommandEmpty>No data found.</CommandEmpty>
+                  <CommandGroup>
+                    {currencyData?.map((data, idx) => (
+                      <CommandItem
+                        className="flex cursor-pointer gap-3 hover:bg-slate-100"
+                        key={idx}
+                        onSelect={(currentValue) => {
+                          setValue(currentValue === value ? "" : currentValue);
+                          setOpen(false);
+                        }}
+                      >
+                        {data.label}
+                      </CommandItem>
+                    ))}
+                  </CommandGroup>
+                </Command>
+              </PopoverContent2>
+            </Popover2>
+          ) : (
+            <Popover open={open} onOpenChange={setOpen}>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="outline"
+                  role="combobox"
+                  aria-expanded={open}
+                  className="form-field-border h-[52px] w-full max-w-[100px] justify-between whitespace-nowrap uppercase text-[#6A6968] focus:border-2 focus:border-accent-50 focus:outline-none focus-visible:ring-0"
+                >
+                  {value ? value : placeholder}
+                  <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="z-[200] max-h-[400px] w-fit overflow-y-scroll bg-[#fefefe] p-0 focus:outline-none">
+                <Command onValueChange={onChange}>
+                  <CommandInput placeholder="Search data..." />
+                  <CommandEmpty>No data found.</CommandEmpty>
+                  <CommandGroup>
+                    {currencyData?.map((data, idx) => (
+                      <CommandItem
+                        className="flex cursor-pointer gap-3 hover:bg-slate-100"
+                        key={idx}
+                        onSelect={(currentValue) => {
+                          setValue(currentValue === value ? "" : currentValue);
+                          setOpen(false);
+                        }}
+                      >
+                        {data.label}
+                      </CommandItem>
+                    ))}
+                  </CommandGroup>
+                </Command>
+              </PopoverContent>
+            </Popover>
+          )}
+
           {isSelectElement ? (
             <CustomSelect
               value={value2}

@@ -73,6 +73,7 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
                 employersCountry: value,
               })
             }
+            type={2}
           />
           <TextFieldInput
             name="jobTitle"
@@ -86,7 +87,7 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
               })
             }
           />
-          <CurrencyInput
+          {/* <CurrencyInput
             initialCurrency={selectedCurrency}
             initialValue={agentFormData?.monthlyIncomeCurrency}
             infoBubble
@@ -112,7 +113,8 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
                 monthlyIncome: value,
               })
             }
-          />
+            type={2}
+          /> */}
         </div>
       </Root>
     );
