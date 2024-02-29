@@ -11,8 +11,8 @@ export type BeMyAgentFormType = Partial<{
   bathroomMaximum: string;
   rentAdvanceOptions: [];
   locationArray: {
-    city: string;
-    neighbourhood: string;
+    locationCity: string;
+    locationNeighbourhood: string;
   }[];
   utilities: [];
   featuresAndAmenities: [];

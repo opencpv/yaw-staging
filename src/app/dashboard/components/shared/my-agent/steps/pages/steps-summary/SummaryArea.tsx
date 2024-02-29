@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import useProcessSummaryContent from "./hooks/useProcessSummaryContent";
+import useStepsSummaryContent from "././hooks/useStepsSummaryContent";
 import { BiPencil } from "react-icons/bi";
 import styles from "../index.module.css";
 import { beMyAgentProcessStore } from "@/store/dashboard/beMyAgentProcessStore";
@@ -10,7 +10,7 @@ type Props = {
 };
 
 const SummaryArea = ({ processPagesRefs }: Props) => {
-  const processSummaryContent = useProcessSummaryContent();
+  const processSummaryContent = useStepsSummaryContent();
   const { setActiveSlide } = beMyAgentProcessStore();
 
   return (

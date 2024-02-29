@@ -1,12 +1,12 @@
 import { useLocalStorage } from "@uidotdev/usehooks";
-import { BeMyAgentFormType } from "../../types";
+import { BeMyAgentFormType } from "../../../types";
 import capitalizeName, { formatDate } from "@/lib/utils/stringManipulation";
 
-const useProcessSummaryContent = () => {
-  const [agentFormData, setAgentFormData] =
+const useStepsSummaryContent = () => {
+  const [agentFormData] =
     useLocalStorage<BeMyAgentFormType>("agent-form");
 
-  const processPages = [
+  const stepsPages = [
     {
       title: "Location",
       content: {
@@ -115,7 +115,7 @@ const useProcessSummaryContent = () => {
     },
   ];
 
-  return processPages;
+  return stepsPages;
 };
 
-export default useProcessSummaryContent;
+export default useStepsSummaryContent;

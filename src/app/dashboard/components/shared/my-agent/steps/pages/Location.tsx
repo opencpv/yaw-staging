@@ -4,12 +4,12 @@ import React, { useEffect, useState } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { styled } from "@stitches/react";
 import CustomRadioInput from "@/app/components/CustomRadioInput";
-import { BeMyAgentFormType } from "./types";
+import { BeMyAgentFormType } from "../types";
 import { openSans } from "@/styles/font";
 import { ClientOnly } from "@/components/ui/ClientOnly";
-import CustomSelect from "../../CustomSelect";
-import styles from "./index.module.css";
-import TextFieldInput from "../../TextFieldInput";
+import CustomSelect from "../../../../../../components/CustomSelect";
+import styles from "../../index.module.css";
+import TextFieldInput from "../../../../../../components/TextFieldInput";
 
 const Location = ({ index, city, neighbourhood }: any) => {
   const [agentFormData, setAgentFormData] = useLocalStorage<any>("agent-form");
@@ -34,48 +34,26 @@ const Location = ({ index, city, neighbourhood }: any) => {
 
   return (
     <div className="flex w-full flex-col gap-8 lg:max-w-lg">
-      {/* <TFormDiv className={`w-full font-[400] capitalize text-[#6A6968]`}>
-        <label htmlFor="">City</label>
-        <input
-          type="text"
-          className="form-input"
-          value={city}
-          placeholder="Enter city"
-          onChange={(e) => handleInputChange(`city`, e.target.value)}
-        />
-      </TFormDiv> */}
       <CustomSelect
-        name="city"
+        name="locationCity"
         label="City"
         value={city}
         options={[
           { name: "accra", value: "Accra" },
           { name: "tema", value: "Tema" },
         ]}
-        onChange={(val) => handleInputChange("city", val)}
+        onChange={(val) => handleInputChange("locationCity", val)}
       />
       <CustomSelect
-        name="neighbourhood"
+        name="locationNeighbourhood"
         label="Neighbourhood"
         value={neighbourhood}
         options={[
           { name: "dansoman", value: "Dansoman" },
           { name: "osu", value: "Osu" },
         ]}
-        onChange={(val) => handleInputChange("neighbourhood", val)}
+        onChange={(val) => handleInputChange("locationNeighbourhood", val)}
       />
-
-      {/* <TFormDiv className={`w-full font-[400] capitalize text-[#6A6968]`}>
-        <label htmlFor="">Neighbourhood</label>
-
-        <input
-          type="text"
-          className="form-input"
-          placeholder="Enter neighbourhood"
-          value={neighbourhood}
-          onChange={(e) => handleInputChange(`neighbourhood`, e.target.value)}
-        />
-      </TFormDiv> */}
     </div>
   );
 };
@@ -127,9 +105,10 @@ const Applicants = ({}) => {
                   <Location
                     key={index}
                     index={index}
-                    city={agentFormData?.locationArray?.[index]?.city}
+                    city={agentFormData?.locationArray?.[index]?.locationCity}
                     neighbourhood={
-                      agentFormData?.locationArray?.[index]?.neighbourhood
+                      agentFormData?.locationArray?.[index]
+                        ?.locationNeighbourhood
                     }
                   />
                 </ClientOnly>

@@ -2,15 +2,16 @@ import { styled } from "@stitches/react";
 import { BsBuilding, BsHouses } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import Amenity from "../../listing-form/components/Amenity";
-import styles from "./index.module.css";
+import Amenity from "../../../../../../components/listing-form/components/Amenity";
+import styles from "../../index.module.css";
 
-import InfoText from "../../listing-form/components/InfoText";
-import { BeMyAgentFormType } from "./types";
+import InfoText from "../../../../../../components/listing-form/components/InfoText";
+import { BeMyAgentFormType } from "../types";
 import { HiOutlineBuildingOffice, HiOutlineHome } from "react-icons/hi2";
 import { IoHomeOutline } from "react-icons/io5";
 import { GoHome } from "react-icons/go";
 import { PiBuildings, PiHouseLine, PiWarehouse } from "react-icons/pi";
+import { useField } from "formik";
 
 const properties = [
   { name: "apartment", icon: <PiBuildings size="44" /> },
@@ -28,16 +29,20 @@ type Props = {
   infoText?: boolean;
 };
 
-export default function BestDescribes({ infoText }: Props) {
+export default function PreferredType({ infoText }: Props) {
   const [agentFormData, setAgentFormData] =
     useLocalStorage<BeMyAgentFormType>("agent-form");
   const [selected, setSelected] = useState<any>([]);
 
+  const [field, meta, helpers] = useField("propertyType");
+
   const handleAmenityClick = (r: any) => {
     if (selected?.includes(r?.name)) {
       setSelected(selected?.filter((item: any) => item !== r?.name));
+      helpers.setValue(selected?.filter((item: any) => item !== r?.name));
     } else {
       setSelected([...selected, r?.name]);
+      helpers.setValue([...selected, r?.name]);
     }
   };
 

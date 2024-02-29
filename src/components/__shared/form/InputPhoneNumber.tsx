@@ -3,6 +3,7 @@ import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import React, { useState } from "react";
 import { E164Number, CountryCode } from "libphonenumber-js/core";
+import { useField } from "formik";
 
 type Props = {
   id: string;
@@ -26,9 +27,12 @@ const InputPhoneNumber: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
   const [country] = useState<CountryCode>("GH");
   const [showCode, setShowCode] = useState<boolean>(false);
 
+  const [field, meta, helpers] = useField(name as string);
+
   // document.querySelector(".PhoneInput")?.addEventListener("focus", () => {
   //     console.log("FOCUS")
   // })
+  
 
   const handleFocus = (e: any) => {
     setShowCode(true);
@@ -41,7 +45,7 @@ const InputPhoneNumber: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
       id={id}
       name={name}
       value={value}
-      onChange={onChange}
+      onChange={(value) => {onChange(value); helpers.setValue(value);}}
       defaultCountry={country}
       international={showCode}
       countryCallingCodeEditable={false}
