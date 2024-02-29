@@ -3,7 +3,7 @@ const capitalizeName = (initialName: string, delimiter?: string) => {
   let nameSplitCapitalized = nameSplit?.map(
     (name) => name.slice(0, 1).toUpperCase() + name.slice(1),
   );
-  return nameSplitCapitalized.join(" ");
+  return nameSplitCapitalized?.join(" ");
 };
 
 export const formatTime = (dateTime: string) => {

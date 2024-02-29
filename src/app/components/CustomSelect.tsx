@@ -1,5 +1,5 @@
 import { styled } from "@stitches/react";
-import { Field } from "formik";
+import { Field, useField } from "formik";
 import {
   Select,
   SelectContent,
@@ -21,6 +21,7 @@ type Props = {
   fadeText?: boolean;
   className?: string;
   value?: string;
+  name?: string;
   /** A string that shows before the value. Eg: GHS 1000 */
   prefix?: string;
 };
@@ -34,11 +35,21 @@ const CustomSelect = ({
   value,
   className,
   prefix,
+  name,
 }: Props) => {
+  const [field, meta, helpers] = useField(name as string);
+
   return (
     <Root className={cn("w-full text-[#6A6968] focus:border-0", className)}>
       {label && <label>{label}</label>}
-      <Select onValueChange={onChange} value={value}>
+      <Select
+        onValueChange={(value) => {
+          helpers.setValue(value);
+          onChange && onChange(value);
+        }}
+        value={value || field.value}
+        name={field.name}
+      >
         <SelectTrigger
           className={`form-input w-full capitalize hover:border-black/50 ${
             fadeText && "text-[#B4B2AF]"

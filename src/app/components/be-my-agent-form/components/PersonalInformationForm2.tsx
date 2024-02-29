@@ -32,8 +32,9 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
           <h2 className={styles.title}>Lease Holder Information</h2>
           <div className="grid grid-cols-1 gap-x-5 gap-y-8 lg:grid-cols-2">
             <CustomSelect
+              name="title"
               label="Title"
-              value={agentFormData?.title || "Mrs."}
+              value={agentFormData?.title}
               options={[
                 { name: "mr.", value: "Mr." },
                 { name: "mrs.", value: "Mrs." },
@@ -42,8 +43,9 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
               onChange={(value) => handleOnChange("title", value)}
             />
             <CustomSelect
+              name="dateOfBirth"
               label="Age"
-              value={agentFormData?.dateOfBirth || "18 - 44"}
+              value={agentFormData?.dateOfBirth}
               options={[
                 { name: "12 - 17", value: "12 - 17" },
                 { name: "18 - 44", value: "18 - 44" },
@@ -76,8 +78,9 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
               }
             />
             <CustomSelect
+              name="maritalStatus"
               label="Marital Status"
-              value={agentFormData?.maritalStatus || "Single"}
+              value={agentFormData?.maritalStatus}
               options={[
                 { name: "single", value: "Single" },
                 { name: "married", value: "Married" },
@@ -85,8 +88,9 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
               onChange={(value) => handleOnChange("maritalStatus", value)}
             />
             <CustomSelect
+              name="tenants"
               label="Number of Tenants"
-              value={agentFormData?.tenants || "1 - 5"}
+              value={agentFormData?.tenants}
               options={[
                 { name: "1 - 5", value: "1 - 5" },
                 { name: "6 - 10", value: "6 - 10" },
@@ -102,6 +106,7 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
           <div className="grid grid-cols-1 gap-x-5 gap-y-8 lg:grid-cols-2">
             <div className="form-col">
               <CustomRadioInput
+                name="evictedBefore"
                 infoBubble={true}
                 infoBubbleContent="data"
                 defaultValue={agentFormData?.evictedBefore}
@@ -119,7 +124,6 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
                   placeholder={"State your reasons here"}
                   classes="h-[52px]"
                   name="reasonForEviction"
-                  value={agentFormData?.reasonForEviction}
                   onChange={(e) =>
                     setAgentFormData({
                       ...agentFormData,
@@ -129,6 +133,7 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
                 />
               )}
               <CustomRadioInput
+                name="convictedBefore"
                 infoBubble={true}
                 infoBubbleContent="data"
                 defaultValue={agentFormData?.convictedBefore}
@@ -146,7 +151,6 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
                   placeholder={"State your reasons here"}
                   classes="h-[52px]"
                   name="reasonForConviction"
-                  value={agentFormData?.reasonForConviction}
                   onChange={(e) =>
                     setAgentFormData({
                       ...agentFormData,
@@ -158,6 +162,7 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
             </div>
             <div className="form-col">
               <CustomRadioInput
+                name="pets"
                 defaultValue={agentFormData?.pets}
                 label={"Do you have any pets?"}
                 onChange={(value) =>
@@ -167,8 +172,8 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
                   })
                 }
               />
-
               <CustomRadioInput
+                name="vehicles"
                 defaultValue={agentFormData?.vehicles}
                 label={"Do you have any vehicles?"}
                 onChange={(value) =>

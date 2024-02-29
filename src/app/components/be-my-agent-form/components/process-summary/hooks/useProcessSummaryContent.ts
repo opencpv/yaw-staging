@@ -27,7 +27,7 @@ const useProcessSummaryContent = () => {
       content: {
         Price_Range:
           agentFormData?.priceRangeMinimum === agentFormData?.priceRangeMaximum
-            ? `GHS ${agentFormData?.priceRangeMaximum}`
+            ? `GHS ${agentFormData?.priceRangeMaximum || ""}`
             : `GHS ${agentFormData?.priceRangeMinimum || ""} - GHS ${
                 agentFormData?.priceRangeMaximum || ""
               }`,
@@ -50,8 +50,7 @@ const useProcessSummaryContent = () => {
                 agentFormData?.leaseTermMaximum || ""
               }`,
         Preferred_Payment_Option: agentFormData?.paymentOption || "-",
-        Desired_Move_in_Date:
-          formatDate(agentFormData?.moveInDate as string) || "-",
+        Desired_Move_in_Date: agentFormData?.moveInDate || "-",
       },
     },
     {
@@ -76,10 +75,14 @@ const useProcessSummaryContent = () => {
     {
       title: "Screening & Other Details",
       content: {
-        Have_you_ever_been_evicted: agentFormData?.evictedBefore || "-",
-        Have_you_ever_been_convicted: agentFormData?.convictedBefore || "-",
-        Do_you_have_any_pets: agentFormData?.pets || "-",
-        Do_you_have_any_vehicles: agentFormData?.vehicles || "-",
+        Have_you_ever_been_evicted:
+          capitalizeName(agentFormData?.evictedBefore as string) || "-",
+        Have_you_ever_been_convicted:
+          capitalizeName(agentFormData?.convictedBefore as string) || "-",
+        Do_you_have_any_pets:
+          capitalizeName(agentFormData?.pets as string) || "-",
+        Do_you_have_any_vehicles:
+          capitalizeName(agentFormData?.vehicles as string) || "-",
       },
     },
     {
@@ -101,11 +104,13 @@ const useProcessSummaryContent = () => {
       content: {
         Employment_Status: agentFormData?.mostRecentEmployment || "-",
         Employer_or_Income_Source: agentFormData?.employer || "-",
-        Employer_Country: agentFormData?.employersCountry || "-",
+        Employer_Country:
+          capitalizeName(agentFormData?.employersCountry as string) || "-",
         Job_Title: agentFormData?.jobTitle || "-",
         Monthly_Income:
-          `${agentFormData?.monthlyIncomeCurrency?.toUpperCase()} ${agentFormData?.monthlyIncome}` ||
-          "-",
+          `${agentFormData?.monthlyIncomeCurrency?.toUpperCase() || ""} ${
+            agentFormData?.monthlyIncome || ""
+          }` || "-",
       },
     },
   ];
