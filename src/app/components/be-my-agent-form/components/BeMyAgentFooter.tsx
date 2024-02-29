@@ -13,7 +13,7 @@ type Props = {
 };
 
 const BeMyAgentFooter = ({ onClose }: Props) => {
-  const { submitForm, values, errors,  } = useFormikContext();
+  const { submitForm, values, errors } = useFormikContext();
   const { activeSlide, setActiveSlide, lastSlide, firstSlide } =
     beMyAgentProcessStore();
 
