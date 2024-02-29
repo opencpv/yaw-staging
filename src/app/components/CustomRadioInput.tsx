@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import * as RadioGroup from "@radix-ui/react-radio-group";
 import { InfoBubble } from "@/app/components/application-form/components/InfoBubble";
+import { useField } from "formik";
 
 type Props = {
   label: string;
+  name?: string;
   onChange: (e: any) => void;
   defaultValue?: string;
   infoBubble?: boolean;
@@ -16,18 +18,25 @@ const CustomRadioInput = ({
   defaultValue,
   infoBubble,
   infoBubbleContent,
+  name,
 }: Props) => {
   const [value, setValue] = useState<any>();
   useEffect(() => {
     setValue(defaultValue);
-  }, []);
+  }, [defaultValue]);
+
+  const [field, meta, helpers] = useField(name as string);
+
   return (
     <form>
       <RadioGroup.Root
         onValueChange={(value) => {
+          helpers.setValue(value);
           setValue(value);
           onChange(value);
         }}
+        value={field.value}
+        name={field.name}
         className="flex flex-col  gap-[0.9375rem] text-[#6A6968]"
         defaultValue={defaultValue}
         aria-label="View density"

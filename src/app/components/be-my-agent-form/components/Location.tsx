@@ -45,8 +45,9 @@ const Location = ({ index, city, neighbourhood }: any) => {
         />
       </TFormDiv> */}
       <CustomSelect
+        name="city"
         label="City"
-        value={city || "Accra"}
+        value={city}
         options={[
           { name: "accra", value: "Accra" },
           { name: "tema", value: "Tema" },
@@ -54,8 +55,9 @@ const Location = ({ index, city, neighbourhood }: any) => {
         onChange={(val) => handleInputChange("city", val)}
       />
       <CustomSelect
+        name="neighbourhood"
         label="Neighbourhood"
-        value={neighbourhood || "Dansoman"}
+        value={neighbourhood}
         options={[
           { name: "dansoman", value: "Dansoman" },
           { name: "osu", value: "Osu" },

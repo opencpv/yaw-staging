@@ -3,10 +3,12 @@ import Progress from "./Progress";
 import Button from "@/components/__shared/ui/button/Button";
 import { beMyAgentProcessStore } from "@/store/dashboard/beMyAgentProcessStore";
 
-type Props = {};
+type Props = {
+  onClose: () => void;
+};
 
-const BeMyAgentFormHeader = (props: Props) => {
-  const { progressValue, onClose } = beMyAgentProcessStore();
+const BeMyAgentHeader = ({ onClose }: Props) => {
+  const { progressValue } = beMyAgentProcessStore();
 
   return (
     <section className="flex flex-col gap-4">
@@ -17,9 +19,7 @@ const BeMyAgentFormHeader = (props: Props) => {
           greenHover
           radius="full"
           className="border px-5"
-          onClick={() => {
-            onClose();
-          }}
+          onClick={onClose}
         >
           Save & Exit
         </Button>
@@ -32,4 +32,4 @@ const BeMyAgentFormHeader = (props: Props) => {
   );
 };
 
-export default BeMyAgentFormHeader;
+export default BeMyAgentHeader;

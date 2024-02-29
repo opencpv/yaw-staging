@@ -30,6 +30,7 @@ export default function PropertyRequirements() {
           <h3>Price Range</h3>
           <div className="grid grid-cols-2 gap-5">
             <CustomSelect
+              name="priceRangeMinimum"
               label="Minimum"
               value={agentFormData?.priceRangeMinimum || "100"}
               prefix="GHS"
@@ -48,6 +49,7 @@ export default function PropertyRequirements() {
               onChange={(value) => handleOnChange("priceRangeMinimum", value)}
             />
             <CustomSelect
+              name="priceRangeMaximum"
               label="Maximum"
               value={agentFormData?.priceRangeMaximum || "100"}
               prefix="GHS"
@@ -72,6 +74,7 @@ export default function PropertyRequirements() {
           <h3>Bed</h3>
           <div className="grid grid-cols-2 gap-5">
             <CustomSelect
+              name="bedMinimum"
               label="Minimum"
               value={agentFormData?.bedMinimum || "1"}
               options={[
@@ -89,6 +92,7 @@ export default function PropertyRequirements() {
               onChange={(value) => handleOnChange("bedMinimum", value)}
             />
             <CustomSelect
+              name="bedMaximum"
               label="Maximum"
               value={agentFormData?.bedMaximum || "1"}
               options={[
@@ -112,6 +116,7 @@ export default function PropertyRequirements() {
           <h3>Bathroom</h3>
           <div className="grid grid-cols-2 gap-5">
             <CustomSelect
+              name="bathroomMinimum"
               label="Minimum"
               value={agentFormData?.bathroomMinimum || "1"}
               options={[
@@ -129,6 +134,7 @@ export default function PropertyRequirements() {
               onChange={(value) => handleOnChange("bathroomMinimum", value)}
             />
             <CustomSelect
+              name="bathroomMaximum"
               label="Maximum"
               value={agentFormData?.bathroomMaximum || "1"}
               options={[
@@ -156,8 +162,9 @@ export default function PropertyRequirements() {
           <h3>Lease Terms</h3>
           <div className="grid grid-cols-2 gap-5">
             <CustomSelect
+              name="leaseTermMinimum"
               label="Minimum"
-              value={agentFormData?.leaseTermMinimum || "1"}
+              value={agentFormData?.leaseTermMinimum}
               options={[
                 { name: "1", value: "1" },
                 { name: "2", value: "2" },
@@ -168,8 +175,9 @@ export default function PropertyRequirements() {
               onChange={(value) => handleOnChange("leaseTermMinimum", value)}
             />
             <CustomSelect
+              name="leaseTermMaximum"
               label="Maximum"
-              value={agentFormData?.leaseTermMaximum || "1"}
+              value={agentFormData?.leaseTermMaximum}
               options={[
                 { name: "1", value: "1" },
                 { name: "2", value: "2" },
@@ -186,8 +194,9 @@ export default function PropertyRequirements() {
           <h3>Move In</h3>
           <div className="grid grid-cols-1 gap-5 gap-y-8 lg:grid-cols-2">
             <CustomSelect
+              name="paymentOption"
               label="Preferred Payment Option"
-              value={agentFormData?.paymentOption || "Rent Advance"}
+              value={agentFormData?.paymentOption}
               options={[
                 { name: "rent advance", value: "Rent Advance" },
                 {
@@ -199,10 +208,10 @@ export default function PropertyRequirements() {
               onChange={(value) => handleOnChange("paymentOption", value)}
             />
             <CustomDatePicker
+              name="moveInDate"
               label="Desired Move In Date"
               placeholderDate={agentFormData?.moveInDate}
               onChange={(value) => handleOnChange("moveInDate", value)}
-              type={2}
             />
           </div>
         </div>

@@ -3,7 +3,7 @@ import Image from "next/image";
 import AgentButtons from "./Button";
 import CaRelume from "./icons/CaRelume";
 import CaAgentTick from "./icons/CaAgentTick";
-import BeMyAgentModal from "@/app/components/be-my-agent-form";
+import BeMyAgentModal from "@/app/components/be-my-agent-form/components";
 import { ClientOnly } from "@/components/ui/ClientOnly";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import style from "./index.module.css";

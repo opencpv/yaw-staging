@@ -1,10 +1,7 @@
 "use client";
 
 import { styled } from "@stitches/react";
-import { useLocalStorage } from "@uidotdev/usehooks";
-import { Form, Formik } from "formik";
-import { useEffect, useRef, useState } from "react";
-import Progress from "./Progress";
+import { useEffect, useRef } from "react";
 import BestDescribes from "./BestDescribes";
 import PropertyInformation from "./PropertyRequirements";
 import FeaturesAndAmenities from "./FeaturesAndAmenities";
@@ -20,7 +17,7 @@ import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { cn } from "@/lib/utils";
 import ProcessSummary from "./ProcessSummary";
 import { beMyAgentProcessStore } from "@/store/dashboard/beMyAgentProcessStore";
-import BeMyAgentFormSideImg from "./BeMyAgentFormSideImg";
+import StepsModalSideImg from "../../../../components/__shared/modals/steps/StepsModalSideImg";
 import Sidebar from "./process-summary/Sidebar";
 import { useScrollToTop } from "@/lib/custom-hooks/useWindowEvents";
 
@@ -55,6 +52,27 @@ export const views = [
   // </ClientOnly>,
 ];
 
+export const beMyAgentDefaultValues = {
+  priceRangeMinimum: "100",
+  priceRangeMaximum: "100",
+  bedMinimum: "1",
+  bedMaximum: "1",
+  bathroomMinimum: "1",
+  bathroomMaximum: "1",
+  leaseTermMinimum: "1",
+  leaseTermMaximum: "1",
+  paymentOption: "Rent Advance",
+  title: "Mrs.",
+  dateOfBirth: "18 - 44",
+  maritalStatus: "Single",
+  tenants: "1 - 5",
+  country: "Republic of Ghana",
+  preferredMethodOfContact: "email",
+  mostRecentEmployment: "Employed",
+  employersCountry: "Republic of Ghana",
+  monthlyIncome: "1000 - 2000",
+};
+
 export default function BeMyAgentForm() {
   const { images } = useAssets();
 
@@ -66,53 +84,10 @@ export default function BeMyAgentForm() {
     setLastSlide,
   } = beMyAgentProcessStore();
 
-  const [agentFormData, setAgentFormData] =
-    useLocalStorage<BeMyAgentFormType>("agent-form");
-
-  useEffect(() => {
-    if (!agentFormData) {
-      setAgentFormData((prevData: any) => ({
-        ...prevData,
-        priceRangeMinimum: "100",
-        priceRangeMaximum: "100",
-        bedMinimum: "1",
-        bedMaximum: "1",
-        bathroomMinimum: "1",
-        bathroomMaximum: "1",
-        leaseTermMinimum: "1",
-        leaseTermMaximum: "1",
-        paymentOption: "Rent Advance",
-        title: "Mrs.",
-        dateOfBirth: "18 - 44",
-        maritalStatus: "Single",
-        tenants: "1 - 5",
-        country: "Republic of Ghana",
-        preferredMethodOfContact: "email",
-        mostRecentEmployment: "Employed",
-        employersCountry: "Republic of Ghana",
-        monthlyIncome: "1000 - 2000",
-      }));
-    }
-  }, []); // !!! Purposely kept empty to run once
-
   const formRef = useRef<HTMLDivElement>(null);
-  // const [progressValue, setProgressValue] = useState<number>(1);
-  // const [activeSlide, setActiveSlide] = useState(
-  //   agentFormSlide.activeSlide ?? 0,
-  // );
-  // const [firstSlide, setFirstSlide] = useState(true);
-  // const [lastSlide, setLastSlide] = useState(false);
-  // const [hideLeft, setHideLeft] = useState(false);
-  // const [hideRight, setHideRight] = useState(false);
   // const [otp, setOtp] = useState(false);
 
-  // const scrollToTop = () => {
-  //   if (mainRef.current) {
-  //     mainRef.current.scrollIntoView();
-  //   }
-  // };
-
-  useScrollToTop(formRef, [activeSlide]);
+  useScrollToTop(formRef, [activeSlide], "instant");
 
   useEffect(() => {
     if (activeSlide < 1) {
@@ -131,28 +106,6 @@ export default function BeMyAgentForm() {
     setProgressValue(value);
   }, [activeSlide, setFirstSlide, setLastSlide, lastSlide, setProgressValue]);
 
-  // const handleBack = () => {
-  //   firstSlide && setOpen(false);
-  //   if (agentFormSlide?.activeSlide > 0) {
-  //     setAgentFormSlide({
-  //       activeSlide: agentFormSlide?.activeSlide - 1,
-  //     });
-  //     setProgressValue((init) => init - 6);
-
-  //     scrollToTop();
-  //   }
-  // };
-
-  // const handleForward = () => {
-  //   // activeSlide > 13 && submitListing(user?.profileData?.id, agentFormData, true);
-  //   if (agentFormSlide?.activeSlide < views.length - 1) {
-  //     setAgentFormSlide({
-  //       activeSlide: agentFormSlide?.activeSlide + 1,
-  //     });
-  //     setProgressValue((init) => init + 6);
-  //     scrollToTop();
-  //   }
-  // };
   return (
     <ClientOnly>
       <div>
@@ -172,20 +125,10 @@ export default function BeMyAgentForm() {
               hidden: lastSlide,
             })}
           >
-            <BeMyAgentFormSideImg />
+            <StepsModalSideImg image={images.FeelingRefreshed} />
           </div>
           <div className="lg:col-span-3" ref={formRef}>
-            {/* Form */}
-            <Formik
-              initialValues={{
-                ...agentFormData,
-              }}
-              onSubmit={() => alert("sibm")}
-            >
-              <Form>
-                <div>{views[activeSlide]}</div>
-              </Form>
-            </Formik>
+            <div>{views[activeSlide]}</div>
           </div>
         </section>
       </div>

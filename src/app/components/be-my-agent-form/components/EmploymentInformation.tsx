@@ -37,6 +37,7 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
         <h2 className={`${styles.title}`}>Employment Information</h2>
         <div className="grid grid-cols-1 gap-x-5 gap-y-8 lg:grid-cols-2">
           <CustomSelect
+            name="mostRecentEmployment"
             options={MostRecentEmployment}
             value={agentFormData?.mostRecentEmployment || "Employed"}
             label="Employment Status"
@@ -62,9 +63,8 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
             }
           />
           <CountryInput
-            initialValue={
-              agentFormData?.employersCountry || "Republic of Ghana"
-            }
+            name="employersCountry"
+            value={agentFormData?.employersCountry}
             label="Employer's Country"
             placeholder="Select employer's or sponsor's country"
             onChange={(value) =>
@@ -73,7 +73,6 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
                 employersCountry: value,
               })
             }
-            type={2}
           />
           <TextFieldInput
             name="jobTitle"
@@ -87,7 +86,8 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
               })
             }
           />
-          {/* <CurrencyInput
+          <CurrencyInput
+            name="monthlyIncome"
             initialCurrency={selectedCurrency}
             initialValue={agentFormData?.monthlyIncomeCurrency}
             infoBubble
@@ -113,8 +113,7 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
                 monthlyIncome: value,
               })
             }
-            type={2}
-          /> */}
+          />
         </div>
       </Root>
     );

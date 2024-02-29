@@ -78,15 +78,15 @@ const ContactInformationForm = React.forwardRef<HTMLInputElement, Props>(
               }
             />
             <CountryInput
+              name="country"
               label="Country"
-              initialValue={agentFormData?.country || "Republic of Ghana"}
+              value={agentFormData?.country}
               onChange={(value) =>
                 setAgentFormData({
                   ...agentFormData,
                   country: value,
                 })
               }
-              type={2}
             />
             <div className="space-y-3">
               <label className="text-[#6A6968]">
@@ -207,7 +207,6 @@ const ContactInformationForm = React.forwardRef<HTMLInputElement, Props>(
               }
               classes="h-[167px]"
               name="reasonForMoving"
-              value={agentFormData?.reasonsForMoving}
               onChange={(e) =>
                 setAgentFormData({
                   ...agentFormData,

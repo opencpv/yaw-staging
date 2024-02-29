@@ -1,14 +1,14 @@
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import React from "react";
 
 type Props = {
   className?: string;
+  image: string | StaticImageData;
 };
 
-const BeMyAgentFormSideImg = (props: Props) => {
-  const { images } = useAssets();
+const StepsModalSideImg = (props: Props) => {
   return (
     <div
       className={cn(
@@ -17,7 +17,7 @@ const BeMyAgentFormSideImg = (props: Props) => {
       )}
     >
       <Image
-        src={images.FeelingRefreshed}
+        src={props.image}
         alt="person relaxing on couch"
         fill
         style={{ objectFit: "cover" }}
@@ -27,4 +27,4 @@ const BeMyAgentFormSideImg = (props: Props) => {
   );
 };
 
-export default BeMyAgentFormSideImg;
+export default StepsModalSideImg;
