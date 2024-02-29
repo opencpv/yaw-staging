@@ -47,6 +47,8 @@ import UserNoImage from "/public/assets/images/placeholder/user-no-image.jpeg";
 import Brochure from "/public/assets/images/contact/brochure.png";
 import SavedSearches from "/public/assets/images/dashboard/saved-searches.png";
 import FeelingRefreshed from "/public/assets/images/dashboard/feeling-refreshed.jpg";
+import LadyStirringAtPhone from "/public/assets/images/dashboard/lady-stirring-at-phone.jpg";
+// import LadyOnCouch from "/public/assets/images/dashboard/lady-on-couch.jpg";
 
 export const useAssets = () => {
   return {
@@ -101,6 +103,8 @@ export const useAssets = () => {
       Brochure,
       SavedSearches,
       FeelingRefreshed,
+      LadyStirringAtPhone,
+      // LadyOnCouch,
     },
   };
 };
