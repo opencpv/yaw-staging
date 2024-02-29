@@ -2,49 +2,24 @@
 
 import { styled } from "@stitches/react";
 import { useEffect, useRef } from "react";
-import PreferredType from "./pages/PreferredType";
-import PropertyRequirements from "./pages/PropertyRequirements";
-import FeaturesAndAmenities from "./pages/FeaturesAndAmenities";
-import ContactInformation from "./pages/ContactInformation";
-import EmploymentInformation from "./pages/EmploymentInformation";
-import LeaseHolderInformation from "./pages/LeaseHolderInformation";
-import Location from "./pages/Location";
 import { ClientOnly } from "@/components/ui/ClientOnly";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { cn } from "@/lib/utils";
-import StepsSummary from "./pages/steps-summary/StepsSummary";
-import { beMyAgentStepsStore } from "@/store/dashboard/beMyAgentStepsStore";
-import StepsModalSideImg from "../../../../../../components/__shared/modals/steps/StepsModalSideImg";
+import { firstToKnowStepsStore } from "@/store/dashboard/firstToKnowStepsStore";
+import StepsModalSideImg from "@/components/__shared/modals/steps/StepsModalSideImg";
 import { useScrollToTop } from "@/lib/custom-hooks/useWindowEvents";
 import { format } from "date-fns";
 import { enUS } from "date-fns/locale";
+import Intro from "./pages/Intro";
 
 export const views = [
-  <Location key={"location"} />,
-  <ClientOnly key={"preferred-type"}>
-    <PreferredType infoText key={"preferred-type"} />
-  </ClientOnly>,
-  <ClientOnly key={"property-requirements"}>
-    <PropertyRequirements key={"property-requirements"} />
-  </ClientOnly>,
-  <ClientOnly key={"features"}>
-    <FeaturesAndAmenities key={"features"} />
-  </ClientOnly>,
-  <ClientOnly key={"lease-holder-information"}>
-    <LeaseHolderInformation key={"lease-holder-information"} />
-  </ClientOnly>,
-  <ClientOnly key={"contact-information"}>
-    <ContactInformation key={"contact-information"} />
-  </ClientOnly>,
-  <ClientOnly key={"employment-information"}>
-    <EmploymentInformation key={"employment-information"} />
-  </ClientOnly>,
-  <ClientOnly key={"steps-summary"}>
-    <StepsSummary key={"steps-summary"} />
-  </ClientOnly>,
+  <Intro key={"intro"} />,
+  // <ClientOnly key={"preferred-type"}>
+  //   <PreferredType infoText key={"preferred-type"} />
+  // </ClientOnly>,
 ];
 
-export const beMyAgentDefaultValues = {
+export const firstToKnowDefaultValues = {
   locationCity: "Accra",
   locationNeighbourhood: "Dansoman",
   priceRangeMinimum: "100",
@@ -68,7 +43,7 @@ export const beMyAgentDefaultValues = {
   moveInDate: format(new Date(), "do MMM yyyy", { locale: enUS }),
 };
 
-export default function BeMyAgentForm() {
+export default function FirstToKnowForm() {
   const { images } = useAssets();
 
   const {
@@ -77,7 +52,7 @@ export default function BeMyAgentForm() {
     lastSlide,
     setFirstSlide,
     setLastSlide,
-  } = beMyAgentStepsStore();
+  } = firstToKnowStepsStore();
 
   const formRef = useRef<HTMLDivElement>(null);
   // const [otp, setOtp] = useState(false);

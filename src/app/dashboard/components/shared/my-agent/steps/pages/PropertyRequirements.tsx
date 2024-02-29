@@ -204,7 +204,7 @@ export default function PropertyRequirements() {
             <CustomDatePicker
               name="moveInDate"
               label="Desired Move In Date"
-              value={agentFormData?.moveInDate}
+              value={agentFormData?.moveInDate as string}
               onChange={(value) => handleOnChange("moveInDate", value)}
             />
           </div>

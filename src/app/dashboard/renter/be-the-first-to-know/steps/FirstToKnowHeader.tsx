@@ -1,27 +1,27 @@
 import React from "react";
-import Progress from "../../Progress";
+import Progress from "@/app/dashboard/components/shared/Progress";
 import Button from "@/components/__shared/ui/button/Button";
-import { beMyAgentStepsStore } from "@/store/dashboard/beMyAgentStepsStore";
+import { firstToKnowStepsStore } from "@/store/dashboard/firstToKnowStepsStore";
 import { useFormikContext } from "formik";
-import { BeMyAgentFormType } from "./types";
+import { FirstToKnowFormType } from "./types";
 import { useLocalStorage } from "@uidotdev/usehooks";
 
 type Props = {
   onClose: () => void;
 };
 
-const BeMyAgentHeader = ({ onClose }: Props) => {
+const FirstToKnowHeader = ({ onClose }: Props) => {
   const { values } = useFormikContext();
 
-  const [agentFormData, setAgentFormData] =
-    useLocalStorage<BeMyAgentFormType>("agent-form");
+  const [firstToKnowFormData, setFirstToKnowFormData] =
+    useLocalStorage<FirstToKnowFormType>("first-to-know-form");
 
-  const { progressValue } = beMyAgentStepsStore();
+  const { progressValue } = firstToKnowStepsStore();
 
   return (
     <section className="flex flex-col gap-4">
       <div className="flex items-center justify-between gap-5">
-        <h4 className="font-semibold">Be My Agent</h4>
+        <h4 className="font-semibold">Be The First to Know</h4>
         <Button
           color="white"
           greenHover
@@ -29,7 +29,7 @@ const BeMyAgentHeader = ({ onClose }: Props) => {
           className="border px-5"
           onClick={() => {
             onClose();
-            setAgentFormData(values as any);
+            setFirstToKnowFormData(values as any);
           }}
         >
           Save & Exit
@@ -43,4 +43,4 @@ const BeMyAgentHeader = ({ onClose }: Props) => {
   );
 };
 
-export default BeMyAgentHeader;
+export default FirstToKnowHeader;

@@ -2,7 +2,7 @@
 import React from "react";
 import useStepsSummaryContent from "././hooks/useStepsSummaryContent";
 import { cn } from "@/lib/utils";
-import { beMyAgentProcessStore } from "@/store/dashboard/beMyAgentProcessStore";
+import { beMyAgentStepsStore } from "@/store/dashboard/beMyAgentStepsStore";
 
 type Props = {
   handleMenuClick: (id: number, page: string) => void;
@@ -10,7 +10,7 @@ type Props = {
 
 const Sidebar = ({ handleMenuClick }: Props) => {
   const processSummaryContent = useStepsSummaryContent();
-  const { selectedSummaryPage } = beMyAgentProcessStore();
+  const { selectedSummaryPage } = beMyAgentStepsStore();
 
   return (
     <section className="relative bottom-10 bg-white lg:h-screen lg:bg-transparent">

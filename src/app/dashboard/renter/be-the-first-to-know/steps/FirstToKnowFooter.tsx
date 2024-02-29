@@ -1,33 +1,31 @@
 import React, { useEffect } from "react";
-import { NavigationButton } from "./BeMyAgentForm";
 import { cn } from "@/lib/utils";
-import { views as BeMyAgentViews } from "./BeMyAgentForm";
-import { beMyAgentStepsStore } from "@/store/dashboard/beMyAgentStepsStore";
+import { views as firstToKnowViews } from "./FirstToKnowForm";
+import { firstToKnowStepsStore } from "@/store/dashboard/firstToKnowStepsStore";
 import Button from "@/components/__shared/ui/button/Button";
 import { useFormikContext } from "formik";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import { BeMyAgentFormType } from "./types";
+import { FirstToKnowFormType } from "./types";
 
 type Props = {
   onClose: () => void;
 };
 
-const BeMyAgentFooter = ({ onClose }: Props) => {
-  const { submitForm, values, errors, resetForm } = useFormikContext();
+const FirstToKnowFooter = ({ onClose }: Props) => {
+  const { submitForm, values, resetForm } = useFormikContext();
   const { activeSlide, setActiveSlide, lastSlide, firstSlide } =
-    beMyAgentStepsStore();
+    firstToKnowStepsStore();
 
-  const [agentFormData, setAgentFormData] =
-    useLocalStorage<BeMyAgentFormType>("agent-form");
+  const [firstToKnowFormData, setFirstToKnowFormData] =
+    useLocalStorage<FirstToKnowFormType>("first-to-know-form");
 
   useEffect(() => {
     if (lastSlide) {
-      setAgentFormData({
+      setFirstToKnowFormData({
         ...(values as any), // set the values of the form to localStorage (which itself is a copy of initial values + local storage values)
-        // ...agentFormData,
       });
     }
-  }, [lastSlide, setAgentFormData, values, agentFormData]);
+  }, [lastSlide, setFirstToKnowFormData, values, firstToKnowFormData]);
 
   const handleBack = () => {
     if (activeSlide > 0) {
@@ -35,17 +33,17 @@ const BeMyAgentFooter = ({ onClose }: Props) => {
     }
 
     if (firstSlide) {
-      localStorage.removeItem("agent-form");
+      localStorage.removeItem("first-to-know-form");
       resetForm({});
       onClose();
     }
   };
 
   const handleForward = () => {
-    if (activeSlide === BeMyAgentViews.length - 2) {
+    if (activeSlide === firstToKnowViews.length - 2) {
       submitForm(); // tentative
     }
-    if (activeSlide < BeMyAgentViews.length - 1) {
+    if (activeSlide < firstToKnowViews.length - 1) {
       setActiveSlide(activeSlide + 1);
     }
   };
@@ -76,7 +74,7 @@ const BeMyAgentFooter = ({ onClose }: Props) => {
       >
         {lastSlide
           ? "Proceed to pay"
-          : activeSlide === BeMyAgentViews.length - 2 // last but one
+          : activeSlide === firstToKnowViews.length - 2 // last but one
             ? "Summary"
             : "Continue"}
       </Button>
@@ -84,4 +82,4 @@ const BeMyAgentFooter = ({ onClose }: Props) => {
   );
 };
 
-export default BeMyAgentFooter;
+export default FirstToKnowFooter;

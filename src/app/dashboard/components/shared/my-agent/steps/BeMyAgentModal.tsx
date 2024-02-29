@@ -7,11 +7,8 @@ import { MdOutlineEdit } from "react-icons/md";
 import { cn } from "@/lib/utils";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import Modal from "@/components/__shared/modals/Modal";
-import { useDisclosure } from "@nextui-org/react";
 import BeMyAgentHeader from "./BeMyAgentHeader";
 import BeMyAgentFooter from "./BeMyAgentFooter";
-import { beMyAgentProcessStore } from "@/store/dashboard/beMyAgentProcessStore";
-import { useHideDocumentScrollBar } from "@/lib/custom-hooks/useWindowEvents";
 import * as Dialog from "@radix-ui/react-dialog";
 import { ClientOnly } from "@/components/ui/ClientOnly";
 import StepsModal from "@/components/__shared/modals/steps/StepsModal";
@@ -91,9 +88,9 @@ const BeMyAgentModal = (props: Props) => {
           ...beMyAgentDefaultValues,
           ...agentFormData, // localStorage data takes precedence over default values. Makes changes persist on reload
         }}
-        // validationSchema={myAgentValidationSchema} 
+        // validationSchema={myAgentValidationSchema}
         // enableReinitialize
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) => console.log("")}
       >
         <Form>
           <StepsModal

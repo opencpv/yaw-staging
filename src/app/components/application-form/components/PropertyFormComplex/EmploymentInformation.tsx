@@ -89,7 +89,7 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
                   </div>{" "}
                   <div className="mt-2 flex gap-3">
                     <CustomDatePicker
-                      placeholderDate={propertyData?.employmentStartDate}
+                      value={propertyData?.employmentStartDate as string}
                       label="Start Date"
                       onChange={(value) =>
                         setPropertyData({
@@ -100,7 +100,7 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
                     />
                     <CustomDatePicker
                       label="End Date"
-                      placeholderDate={propertyData?.employmentEndDate}
+                      value={propertyData?.employmentEndDate as string}
                       disabled={propertyData?.currentlyEmployed && true}
                       onChange={(value) =>
                         setPropertyData({
