@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import useProcessSummaryContent from "./hooks/useProcessSummaryContent";
+import useStepsSummaryContent from "././hooks/useStepsSummaryContent";
 import { cn } from "@/lib/utils";
 import { beMyAgentProcessStore } from "@/store/dashboard/beMyAgentProcessStore";
 
@@ -9,7 +9,7 @@ type Props = {
 };
 
 const Sidebar = ({ handleMenuClick }: Props) => {
-  const processSummaryContent = useProcessSummaryContent();
+  const processSummaryContent = useStepsSummaryContent();
   const { selectedSummaryPage } = beMyAgentProcessStore();
 
   return (

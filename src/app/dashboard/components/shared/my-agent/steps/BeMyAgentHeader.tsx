@@ -1,13 +1,22 @@
 import React from "react";
-import Progress from "./Progress";
+import Progress from "../../Progress";
 import Button from "@/components/__shared/ui/button/Button";
 import { beMyAgentProcessStore } from "@/store/dashboard/beMyAgentProcessStore";
+import { useFormikContext } from "formik";
+import { BeMyAgentFormType } from "./types";
+import { useLocalStorage } from "@uidotdev/usehooks";
+
 
 type Props = {
   onClose: () => void;
 };
 
 const BeMyAgentHeader = ({ onClose }: Props) => {
+  const { values } = useFormikContext();
+
+  const [agentFormData, setAgentFormData] =
+    useLocalStorage<BeMyAgentFormType>("agent-form");
+
   const { progressValue } = beMyAgentProcessStore();
 
   return (
@@ -19,7 +28,7 @@ const BeMyAgentHeader = ({ onClose }: Props) => {
           greenHover
           radius="full"
           className="border px-5"
-          onClick={onClose}
+          onClick={() => {onClose(); setAgentFormData(values as any);}}
         >
           Save & Exit
         </Button>

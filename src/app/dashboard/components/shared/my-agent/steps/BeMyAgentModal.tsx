@@ -89,11 +89,11 @@ const BeMyAgentModal = (props: Props) => {
       <Formik
         initialValues={{
           ...beMyAgentDefaultValues,
-          ...agentFormData, // localStorage data takes precedence over default values
+          ...agentFormData, // localStorage data takes precedence over default values. Makes changes persist on reload
         }}
-        validationSchema={myAgentValidationSchema}
+        // validationSchema={myAgentValidationSchema} 
         // enableReinitialize
-        onSubmit={(values) => console.log("")}
+        onSubmit={(values) => console.log(values)}
       >
         <Form>
           <StepsModal

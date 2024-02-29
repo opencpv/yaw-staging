@@ -1,15 +1,9 @@
-import { styled } from "@stitches/react";
-import styles from "./index.module.css";
-import TextFieldInput from "../../TextFieldInput";
-import CustomTextAreaInput from "../../CustomTextAreaInput";
-import { CustomDatePicker } from "../../CustomDatePicker";
+import styles from "../../index.module.css";
+import { CustomDatePicker } from "@/app/components/CustomDatePicker";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import CustomCheckBoxes from "../../CustomCheckBoxes";
-import { ClientOnly } from "@/components/ui/ClientOnly";
-import CustomSelect from "../../CustomSelect";
-import { BeMyAgentFormType } from "./types";
-import InfoText from "../../listing-form/components/InfoText";
-import { useEffect } from "react";
+import CustomSelect from "@/app/components/CustomSelect";
+import { BeMyAgentFormType } from "../types";
+import InfoText from "@/app/components/listing-form/components/InfoText";
 
 export default function PropertyRequirements() {
   const [agentFormData, setAgentFormData] =
@@ -210,32 +204,11 @@ export default function PropertyRequirements() {
             <CustomDatePicker
               name="moveInDate"
               label="Desired Move In Date"
-              placeholderDate={agentFormData?.moveInDate}
+              value={agentFormData?.moveInDate}
               onChange={(value) => handleOnChange("moveInDate", value)}
             />
           </div>
         </div>
-
-        {/* Rent advance options */}
-        {/* <div className="flex flex-col gap-4">
-          <h3>Rent Advance Options</h3>
-          <ClientOnly>
-            <CustomCheckBoxes
-              color="accent"
-              onChange={(value: any) =>
-                handleOnChange("rentAdvanceOptions", value)
-              }
-              data={[
-                {
-                  name: "1 year",
-                  value: "1",
-                },
-                { name: "2 years", value: "2" },
-                { name: "3 years", value: "3" },
-              ]}
-            />
-          </ClientOnly>
-        </div> */}
       </div>
     </>
   );

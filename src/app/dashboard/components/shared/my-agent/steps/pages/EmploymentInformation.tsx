@@ -1,24 +1,17 @@
-/* eslint-disable react/no-unescaped-entities */
-import { SelectSearchInput } from "@/app/components/SelectSearchInput";
 import TextFieldInput from "@/app/components/TextFieldInput";
-import PhoneNumberInput from "@/components/__shared/PhoneInput";
-
-import CustomRadioInput from "@/app/components/CustomRadioInput";
 import { styled } from "@stitches/react";
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { useState } from "react";
 import CountryInput from "@/components/__shared/CountryInput";
-import { CustomDatePicker } from "@/app/components/CustomDatePicker";
 import CurrencyInput from "@/components/__shared/CurrencyInput";
 import CustomSelect from "@/app/components/CustomSelect";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import PhoneNumberInputv2 from "@/components/__shared/PhoneInputv2";
-import { MostRecentEmployment } from "../../application-form/components/content";
-import { BeMyAgentFormType } from "./types";
-import styles from "./index.module.css";
+import { MostRecentEmployment } from "../../../../../../components/application-form/components/content";
+import { BeMyAgentFormType } from "../types";
+import styles from "../../index.module.css";
 
 type Props = {};
 
-const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
+const EmploymentInformation = React.forwardRef<HTMLInputElement, Props>(
   ({}, ref) => {
     const [agentFormData, setAgentFormData] =
       useLocalStorage<BeMyAgentFormType>("agent-form");
@@ -120,7 +113,7 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
   },
 );
 
-EmploymentInformationForm.displayName = "EmploymentInformationForm";
+EmploymentInformation.displayName = "EmploymentInformation";
 
 const Root = styled("div", {
   ".form-col": {
@@ -130,4 +123,4 @@ const Root = styled("div", {
   },
 });
 
-export default EmploymentInformationForm;
+export default EmploymentInformation;

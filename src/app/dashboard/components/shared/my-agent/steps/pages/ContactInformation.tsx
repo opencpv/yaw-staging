@@ -1,31 +1,21 @@
 import { styled } from "@stitches/react";
-import React, {
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import TextFieldInput from "@/app/components/TextFieldInput";
 import CountryInput from "@/components/__shared/CountryInput";
-import PhoneNumberInputv2 from "@/components/__shared/PhoneInputv2";
-import FormSwitch from "@/app/contact/components/FormSwitch";
 import CustomTextAreaInput from "@/app/components/CustomTextAreaInput";
-import CustomSelect from "@/app/components/CustomSelect";
-import { PreferedMethodOfContact } from "../../application-form/components/content";
-import styles from "./index.module.css";
-import { BeMyAgentFormType } from "./types";
+import styles from "../../index.module.css";
+import { BeMyAgentFormType } from "../types";
 import OptionFilterTabs from "@/components/__shared/OptionFilterTabs";
 import InputPhoneNumber from "@/components/__shared/form/InputPhoneNumber";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
-import { FaEnvelope } from "react-icons/fa";
 import { MdOutlineMailOutline, MdOutlineWhatsapp } from "react-icons/md";
 import { E164Number } from "libphonenumber-js/core";
+import { useField } from "formik";
 
 type Props = {};
 
-const ContactInformationForm = React.forwardRef<HTMLInputElement, Props>(
+const ContactInformation = React.forwardRef<HTMLInputElement, Props>(
   ({}, ref) => {
     const [agentFormData, setAgentFormData] =
       useLocalStorage<BeMyAgentFormType>("agent-form");
@@ -35,6 +25,8 @@ const ContactInformationForm = React.forwardRef<HTMLInputElement, Props>(
 
     const { handlePhone, handleCountryChange, phone } =
       usePhoneInputDisclosure();
+
+    const [field, meta, helpers] = useField("preferredMethodOfContact");
 
     return (
       <Root>
@@ -106,14 +98,11 @@ const ContactInformationForm = React.forwardRef<HTMLInputElement, Props>(
                   ]}
                   selectedKey={agentFormData?.preferredMethodOfContact}
                   onSelectionChange={(key) => {
+                    helpers.setValue(key as any);
                     setAgentFormData({
                       ...agentFormData,
                       preferredMethodOfContact: key as any,
                     });
-                    // setAgentFormData({
-                    //   ...agentFormData,
-                    //   preferredMethodOfContact: key as any,
-                    // });
                   }}
                   radius="large"
                   padding="medium"
@@ -163,43 +152,6 @@ const ContactInformationForm = React.forwardRef<HTMLInputElement, Props>(
                 />
               </div>
             </div>
-            {/* <PhoneNumberInputv2
-              initialCountry={phoneNumberSelectedCountry}
-              onChange2={(value) => setPhoneNumberSelectedCountry(value)}
-              label="Phone"
-              initialValue={agentFormData?.phoneNumber}
-              name="phoneNumber"
-              onChange={(value) =>
-                setAgentFormData({
-                  ...agentFormData,
-                  phoneNumber: value,
-                })
-              }
-            /> */}
-
-            {/* <FormSwitch
-                label="Available on whatsapp"
-                onChange={(value) =>
-                  setAgentFormData({
-                    ...agentFormData,
-                    availableOnWhatsapp: value,
-                  })
-                }
-              /> */}
-
-            {/* <CustomSelect
-                options={PreferedMethodOfContact}
-                placeholder={
-                  agentFormData?.preferredMethodOfContact || "Select"
-                }
-                label="Preferred Method Of Contact"
-                onChange={(value) =>
-                  setAgentFormData({
-                    ...agentFormData,
-                    preferredMethodOfContact: value,
-                  })
-                }
-              /> */}
             <CustomTextAreaInput
               label="Purpose for Moving"
               placeholder={
@@ -221,9 +173,9 @@ const ContactInformationForm = React.forwardRef<HTMLInputElement, Props>(
   },
 );
 
-ContactInformationForm.displayName == "ContactInformationForm";
+ContactInformation.displayName == "ContactInformation";
 
-export default ContactInformationForm;
+export default ContactInformation;
 
 const Root = styled("div", {
   ".form-col": {

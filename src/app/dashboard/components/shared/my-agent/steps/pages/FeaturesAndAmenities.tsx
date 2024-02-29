@@ -3,17 +3,24 @@ import { useEffect, useState } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { GiRoad } from "react-icons/gi";
 import { BsPerson, BsSpeedometer2 } from "react-icons/bs";
-import { TbAirConditioning} from "react-icons/tb";
-import { PiForkKnife, PiMonitorLight, PiPawPrintLight, PiSwimmingPool, PiWallLight } from "react-icons/pi";
+import { TbAirConditioning } from "react-icons/tb";
+import {
+  PiForkKnife,
+  PiMonitorLight,
+  PiPawPrintLight,
+  PiSwimmingPool,
+  PiWallLight,
+} from "react-icons/pi";
 import { BiCctv } from "react-icons/bi";
-import Tiles from "../../listing-form/components/icons/Tiles";
-import Amenity from "../../listing-form/components/Amenity";
-import styles from "./index.module.css";
-import { BeMyAgentFormType } from "./types";
+import Tiles from "../../../../../../components/listing-form/components/icons/Tiles";
+import Amenity from "../../../../../../components/listing-form/components/Amenity";
+import styles from "../../index.module.css";
+import { BeMyAgentFormType } from "../types";
 import { CiWifiOn } from "react-icons/ci";
 import { IoCarOutline } from "react-icons/io5";
 import { LiaDoorOpenSolid, LiaHotTubSolid } from "react-icons/lia";
 import { RiAlarmWarningLine, RiBilliardsLine } from "react-icons/ri";
+import { useField } from "formik";
 
 const data = [
   { name: "wifi", icon: <CiWifiOn size="44" /> },
@@ -39,12 +46,15 @@ export default function FeaturesAndAmenities() {
   const [agentFormData, setAgentFormData] =
     useLocalStorage<BeMyAgentFormType>("agent-form");
   const [selected, setSelected] = useState<any>([]);
+  const [field, meta, helpers] = useField("featuresAndAmenities");
 
   const handleAmenityClick = (r: any) => {
     if (selected?.includes(r?.name)) {
       setSelected(selected?.filter((item: any) => item !== r?.name));
+      helpers.setValue(selected?.filter((item: any) => item !== r?.name));
     } else {
       setSelected([...selected, r?.name]);
+      helpers.setValue([...selected, r?.name]);
     }
   };
 

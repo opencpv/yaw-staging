@@ -24,9 +24,10 @@ const BeMyAgentFooter = ({ onClose }: Props) => {
     if (lastSlide) {
       setAgentFormData({
         ...(values as any), // set the values of the form to localStorage (which itself is a copy of initial values + local storage values)
+        // ...agentFormData,
       });
     }
-  }, [lastSlide, setAgentFormData, values]);
+  }, [lastSlide, setAgentFormData, values, agentFormData]);
 
   const handleBack = () => {
     if (activeSlide > 0) {
@@ -34,11 +35,15 @@ const BeMyAgentFooter = ({ onClose }: Props) => {
     }
 
     if (firstSlide) {
+      localStorage.removeItem("agent-form");
       onClose();
     }
   };
 
   const handleForward = () => {
+    if (activeSlide === BeMyAgentViews.length - 2) {
+      submitForm(); // tentative
+    }
     if (activeSlide < BeMyAgentViews.length - 1) {
       setActiveSlide(activeSlide + 1);
     }

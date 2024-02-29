@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/popover";
 import { useField } from "formik";
 import { formatDate } from "@/lib/utils/stringManipulation";
+import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 
 type Props = {
   label: string;
@@ -22,6 +23,7 @@ type Props = {
   placeholderDate?: string;
   className?: string;
   name?: string;
+  value?: string;
 };
 export function CustomDatePicker({
   label,
@@ -30,15 +32,25 @@ export function CustomDatePicker({
   placeholderDate,
   className,
   name,
+  value,
 }: Props) {
   const [date, setDate] = React.useState<Date>();
+  const [open, setOpen] = React.useState(false);
   const [field, meta, helpers] = useField(name as string);
+  const {onOpen} = useToastDisclosure()
+
 
   React.useEffect(() => {
     if (placeholderDate) {
       setDate(new Date(placeholderDate));
     }
   }, [placeholderDate]);
+
+
+  const isBefore = (value: Date) => {
+    const today = new Date();
+    return value?.getTime() < today.getTime();
+  };
 
   return (
     <div
@@ -48,7 +60,7 @@ export function CustomDatePicker({
       )}
     >
       <label htmlFor="">{label}</label>
-      <Popover>
+      <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
             variant={"outline"}
@@ -57,11 +69,12 @@ export function CustomDatePicker({
               !field.value && "text-muted-foreground",
             )}
             name={field.name}
-            value={field.value}
+            value={value || field.value}
+            onClick={() => setOpen(!open)}
           >
             <CalendarIcon className="mr-2 h-4 w-4" />
             {/* {field.value ? format(field.value, "PPP") : <span>DD/MM/YYYY</span>} */}
-            {field.value ? formatDate(field.value) : <span>DD/MM/YYYY</span>}
+            {formatDate(value || field?.value)}
           </Button>
         </PopoverTrigger>
         <PopoverContent
@@ -72,9 +85,14 @@ export function CustomDatePicker({
             mode="single"
             selected={field.value}
             onSelect={(value) => {
-              helpers.setValue(value);
+              if (isBefore(value as Date)) {
+                onOpen("Please select a future date", true);
+                return;
+              }
+              helpers.setValue(formatDate(value as Date));
               setDate(value);
               onChange(value);
+              setOpen(false);
             }}
             disabled={disabled}
             initialFocus

@@ -1,19 +1,17 @@
-import { SelectSearchInput } from "@/app/components/SelectSearchInput";
 import TextFieldInput from "@/app/components/TextFieldInput";
 import { styled } from "@stitches/react";
-import { ErrorMessage, Field, Form, Formik } from "formik";
 import CustomRadioInput from "@/app/components/CustomRadioInput";
 import CustomSelect from "@/app/components/CustomSelect";
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { CustomDatePicker } from "@/app/components/CustomDatePicker";
+import React from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import { LeaseData } from "../../application-form/components/content";
-import styles from "./index.module.css";
-import { BeMyAgentFormType } from "./types";
-import CustomTextAreaInput from "../../CustomTextAreaInput";
+import styles from "../../index.module.css";
+import { BeMyAgentFormType } from "../types";
+import CustomTextAreaInput from "@/app/components/CustomTextAreaInput";
+
+
 type Props = {};
 
-const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
+const LeaseHolderInformation = React.forwardRef<HTMLInputElement, Props>(
   ({}, ref) => {
     const [agentFormData, setAgentFormData] =
       useLocalStorage<BeMyAgentFormType>("agent-form");
@@ -191,9 +189,9 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
   },
 );
 
-PersonalInformationForm2.displayName == "PersonalInformationForm2";
+LeaseHolderInformation.displayName == "LeaseHolderInformation";
 
-export default PersonalInformationForm2;
+export default LeaseHolderInformation;
 
 const Root = styled("div", {
   ".form-col": {

@@ -2,57 +2,51 @@
 
 import { styled } from "@stitches/react";
 import { useEffect, useRef } from "react";
-import BestDescribes from "./BestDescribes";
-import PropertyInformation from "./PropertyRequirements";
-import FeaturesAndAmenities from "./FeaturesAndAmenities";
-import ContactInformationForm from "./ContactInformation";
-import EmploymentInformationForm from "./EmploymentInformation";
-import PersonalInformationForm2 from "./PersonalInformationForm2";
-import Image from "next/image";
-import Location from "./Location";
+import PreferredType from "./pages/PreferredType";
+import PropertyRequirements from "./pages/PropertyRequirements";
+import FeaturesAndAmenities from "./pages/FeaturesAndAmenities";
+import ContactInformation from "./pages/ContactInformation";
+import EmploymentInformation from "./pages/EmploymentInformation";
+import LeaseHolderInformation from "./pages/LeaseHolderInformation";
+import Location from "./pages/Location";
 import { ClientOnly } from "@/components/ui/ClientOnly";
-import Button from "@/components/__shared/ui/button/Button";
-import { BeMyAgentFormType } from "./types";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { cn } from "@/lib/utils";
-import ProcessSummary from "./ProcessSummary";
+import StepsSummary from "./pages/steps-summary/StepsSummary";
 import { beMyAgentProcessStore } from "@/store/dashboard/beMyAgentProcessStore";
-import StepsModalSideImg from "../../../../components/__shared/modals/steps/StepsModalSideImg";
-import Sidebar from "./process-summary/Sidebar";
+import StepsModalSideImg from "../../../../../../components/__shared/modals/steps/StepsModalSideImg";
 import { useScrollToTop } from "@/lib/custom-hooks/useWindowEvents";
+import {format} from "date-fns"
+import {enUS} from "date-fns/locale"
 
 export const views = [
   <Location key={"location"} />,
-  <ClientOnly key={"best-describes"}>
-    <BestDescribes infoText key={"best-describes"} />
+  <ClientOnly key={"preferred-type"}>
+    <PreferredType infoText key={"preferred-type"} />
   </ClientOnly>,
-  <ClientOnly key={"property-information"}>
-    <PropertyInformation key={"property-information"} />
+  <ClientOnly key={"property-requirements"}>
+    <PropertyRequirements key={"property-requirements"} />
   </ClientOnly>,
-  // <ClientOnly key={"utilities"}>
-  //   <Utilities key={"utilities"} />
-  // </ClientOnly>,
   <ClientOnly key={"features"}>
     <FeaturesAndAmenities key={"features"} />
   </ClientOnly>,
-  <ClientOnly key={"personal-information"}>
-    <PersonalInformationForm2 key={"personal-information"} />
+  <ClientOnly key={"lease-holder-information"}>
+    <LeaseHolderInformation key={"lease-holder-information"} />
   </ClientOnly>,
   <ClientOnly key={"contact-information"}>
-    <ContactInformationForm key={"contact-information"} />
+    <ContactInformation key={"contact-information"} />
   </ClientOnly>,
   <ClientOnly key={"employment-information"}>
-    <EmploymentInformationForm key={"employment-information"} />
+    <EmploymentInformation key={"employment-information"} />
   </ClientOnly>,
-  <ClientOnly key={"process-summary"}>
-    <ProcessSummary key={"process-summary"} />
+  <ClientOnly key={"steps-summary"}>
+    <StepsSummary key={"steps-summary"} />
   </ClientOnly>,
-  // <ClientOnly key={"screening"}>
-  //   <ScreeningAndOtherDetailsForm key={"screening"} />
-  // </ClientOnly>,
 ];
 
 export const beMyAgentDefaultValues = {
+  locationCity: "Accra",
+  locationNeighbourhood: "Dansoman",
   priceRangeMinimum: "100",
   priceRangeMaximum: "100",
   bedMinimum: "1",
@@ -71,6 +65,7 @@ export const beMyAgentDefaultValues = {
   mostRecentEmployment: "Employed",
   employersCountry: "Republic of Ghana",
   monthlyIncome: "1000 - 2000",
+  moveInDate: format(new Date(), "do MMM yyyy", { locale: enUS }),
 };
 
 export default function BeMyAgentForm() {
