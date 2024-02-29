@@ -23,7 +23,7 @@ type Props = {
   placeholderDate?: string;
   className?: string;
   name?: string;
-  value?: string;
+  value: string;
 };
 export function CustomDatePicker({
   label,
@@ -37,15 +37,13 @@ export function CustomDatePicker({
   const [date, setDate] = React.useState<Date>();
   const [open, setOpen] = React.useState(false);
   const [field, meta, helpers] = useField(name as string);
-  const {onOpen} = useToastDisclosure()
-
+  const { onOpen } = useToastDisclosure();
 
   React.useEffect(() => {
     if (placeholderDate) {
       setDate(new Date(placeholderDate));
     }
   }, [placeholderDate]);
-
 
   const isBefore = (value: Date) => {
     const today = new Date();
@@ -74,7 +72,7 @@ export function CustomDatePicker({
           >
             <CalendarIcon className="mr-2 h-4 w-4" />
             {/* {field.value ? format(field.value, "PPP") : <span>DD/MM/YYYY</span>} */}
-            {formatDate(value || field?.value)}
+            {field.value ? formatDate(field.value) : value}
           </Button>
         </PopoverTrigger>
         <PopoverContent
@@ -86,10 +84,10 @@ export function CustomDatePicker({
             selected={field.value}
             onSelect={(value) => {
               if (isBefore(value as Date)) {
-                onOpen("Please select a future date", true);
+                onOpen("❌ Please select a future date", true);
                 return;
               }
-              helpers.setValue(formatDate(value as Date));
+              helpers.setValue(value);
               setDate(value);
               onChange(value);
               setOpen(false);
