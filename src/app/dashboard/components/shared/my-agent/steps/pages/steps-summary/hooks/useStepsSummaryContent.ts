@@ -3,8 +3,7 @@ import { BeMyAgentFormType } from "../../../types";
 import capitalizeName, { formatDate } from "@/lib/utils/stringManipulation";
 
 const useStepsSummaryContent = () => {
-  const [agentFormData] =
-    useLocalStorage<BeMyAgentFormType>("agent-form");
+  const [agentFormData] = useLocalStorage<BeMyAgentFormType>("agent-form");
 
   const stepsPages = [
     {
@@ -50,7 +49,8 @@ const useStepsSummaryContent = () => {
                 agentFormData?.leaseTermMaximum || ""
               }`,
         Preferred_Payment_Option: agentFormData?.paymentOption || "-",
-        Desired_Move_in_Date: agentFormData?.moveInDate || "-",
+        Desired_Move_in_Date:
+          formatDate(agentFormData?.moveInDate as string) || "-",
       },
     },
     {

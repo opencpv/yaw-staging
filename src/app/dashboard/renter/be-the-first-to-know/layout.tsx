@@ -34,15 +34,6 @@ const BeTheFirstToKnowLayout = ({
         <FaChevronLeft />
       </Link>
       <h2>Be the first to Know</h2>
-      {/* <LargeButton
-        icon={<MdOutlineLibraryAdd />}
-        label="Create"
-        className="mt-10 min-w-fit xxs:min-w-[15rem]"
-      /> */}
-      {/* <Button className="mt-10 bg-primary-600">
-        <MdOutlineLibraryAdd />
-        Create Search Criteria
-      </Button> */}
       <FirstToKnowModal />
       {/* <section className="flex h-[100vh] w-full flex-col items-center justify-center">
           <Image
