@@ -28,12 +28,12 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
     return (
       <Root className="p1 px-2">
         <div>
-          <p className="text-[1.5625rem] text-[#073B3A] font-semibold">
+          <p className="text-[1.5625rem] font-semibold text-[#073B3A]">
             Personal Information
           </p>
         </div>
         <div className="grid grid-cols-3 gap-x-5 gap-y-5 pt-7">
-          <div className="col-span-3 lg:col-span-1 form-col w-full">
+          <div className="form-col col-span-3 w-full lg:col-span-1">
             <TextFieldInput
               type="text"
               name="title"
@@ -73,9 +73,9 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
               }
             />
           </div>
-          <div className="col-span-3 lg:col-span-1  form-col">
+          <div className="form-col col-span-3  lg:col-span-1">
             <CustomDatePicker
-              placeholderDate={propertyData?.moveInDate}
+              value={propertyData?.moveInDate as string}
               label="Desired Move In Date"
               onChange={(value) =>
                 setPropertyData({ ...propertyData, moveInDate: value })
@@ -111,7 +111,7 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
           </ClientOnly>
         </div>
         {formType == "complex" && (
-          <div className="mt-5 flex justify-start lg:justify-end w-full">
+          <div className="mt-5 flex w-full justify-start lg:justify-end">
             <SwiperSlideControls
               ref={ref}
               setActiveIndex={setActiveIndex}
@@ -121,7 +121,7 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
         )}
       </Root>
     );
-  }
+  },
 );
 
 PersonalInformationForm2.displayName == "PersonalInformationForm2";

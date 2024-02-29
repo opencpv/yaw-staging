@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-type BeMyAgentProcessStore = {
+type BeMyAgentStepsStore = {
   activeSlide: number;
   firstSlide: boolean;
   lastSlide: boolean;
@@ -19,7 +19,7 @@ type BeMyAgentProcessStore = {
   setSelectedSummaryPage: (page: string) => void;
 };
 
-export const beMyAgentProcessStore = create<BeMyAgentProcessStore>((set) => ({
+export const beMyAgentStepsStore = create<BeMyAgentStepsStore>((set) => ({
   activeSlide: 0,
   firstSlide: true,
   lastSlide: false,

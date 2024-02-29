@@ -11,7 +11,6 @@ import CountryInput from "@/components/__shared/CountryInput";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { PropertyDataType } from "../propertyDataType";
 
-
 type Props = {
   ref: any;
   setActiveIndex: Dispatch<SetStateAction<number>>;
@@ -26,17 +25,18 @@ const ScreeningAndOtherDetailsForm = React.forwardRef<HTMLInputElement, Props>(
       setSelectedOption(event.target.value);
     };
 
-    const [propertyData, setPropertyData] = useLocalStorage<PropertyDataType>("property1");
+    const [propertyData, setPropertyData] =
+      useLocalStorage<PropertyDataType>("property1");
     return (
       <Root className="p4 px-2">
-        <p className="text-[1.5625rem]  text-[#073B3A] font-semibold ">
+        <p className="text-[1.5625rem]  font-semibold text-[#073B3A] ">
           Screening & Other Details
         </p>
         <div>
           <div className="grid grid-cols-3 gap-x-5 gap-y-5 pt-7">
-            <div className="col-span-3 lg:col-span-1 form-col">
+            <div className="form-col col-span-3 lg:col-span-1">
               <CustomDatePicker
-                placeholderDate={propertyData?.dateOfBirth}
+                value={propertyData?.dateOfBirth as string}
                 label="Date of Birth"
                 onChange={(value) =>
                   setPropertyData({
@@ -82,7 +82,7 @@ const ScreeningAndOtherDetailsForm = React.forwardRef<HTMLInputElement, Props>(
                 }
               />
             </div>
-            <div className="col-span-3 lg:col-span-1 form-col">
+            <div className="form-col col-span-3 lg:col-span-1">
               <CustomRadioInput
                 infoBubble={true}
                 infoBubbleContent="data"
@@ -136,7 +136,7 @@ const ScreeningAndOtherDetailsForm = React.forwardRef<HTMLInputElement, Props>(
                 />
               )}
             </div>
-            <div className="col-span-3 lg:col-span-1 form-col">
+            <div className="form-col col-span-3 lg:col-span-1">
               <CustomRadioInput
                 defaultValue={propertyData?.pets}
                 label={"Do you have any pets?"}
@@ -161,7 +161,7 @@ const ScreeningAndOtherDetailsForm = React.forwardRef<HTMLInputElement, Props>(
             </div>
           </div>
         </div>
-        <div className="mt-5 flex justify-start lg:justify-end w-full">
+        <div className="mt-5 flex w-full justify-start lg:justify-end">
           <SwiperSlideControls
             ref={ref}
             setActiveIndex={setActiveIndex}
@@ -170,7 +170,7 @@ const ScreeningAndOtherDetailsForm = React.forwardRef<HTMLInputElement, Props>(
         </div>
       </Root>
     );
-  }
+  },
 );
 
 ScreeningAndOtherDetailsForm.displayName == "ScreeningAndOtherDetailsForm";

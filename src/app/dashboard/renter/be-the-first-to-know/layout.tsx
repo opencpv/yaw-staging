@@ -9,6 +9,7 @@ import AOSWrapper from "@/components/__shared/AOSWrapper";
 import ScrollTop from "@/components/__shared/ScrollTop";
 import Button from "@/components/__shared/ui/button/Button";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
+import FirstToKnowModal from "./steps/FirstToKnowModal";
 
 const BeTheFirstToKnowLayout = ({
   children,
@@ -38,10 +39,11 @@ const BeTheFirstToKnowLayout = ({
         label="Create"
         className="mt-10 min-w-fit xxs:min-w-[15rem]"
       /> */}
-      <Button className="mt-10 bg-primary-600">
+      {/* <Button className="mt-10 bg-primary-600">
         <MdOutlineLibraryAdd />
         Create Search Criteria
-      </Button>
+      </Button> */}
+      <FirstToKnowModal />
       {/* <section className="flex h-[100vh] w-full flex-col items-center justify-center">
           <Image
             src={images.SearchIcon}

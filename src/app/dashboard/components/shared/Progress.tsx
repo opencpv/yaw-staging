@@ -3,7 +3,7 @@ import { FaRegThumbsUp } from "react-icons/fa6";
 import { GiBiceps } from "react-icons/gi";
 import { IoMdHappy } from "react-icons/io";
 import { PiConfetti } from "react-icons/pi";
-import { beMyAgentProcessStore } from "@/store/dashboard/beMyAgentProcessStore";
+import { beMyAgentStepsStore } from "@/store/dashboard/beMyAgentStepsStore";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -18,7 +18,7 @@ export default function Progress({ value }: Props) {
     lastSlide,
     shouldShowMotivationMessage,
     setShouldShowMotivationMessage,
-  } = beMyAgentProcessStore();
+  } = beMyAgentStepsStore();
   const [messageIcon, setMessageIcon] = useState<React.ReactElement | null>(
     null,
   );
