@@ -72,11 +72,9 @@ const FirstToKnowFooter = ({ onClose }: Props) => {
         }}
         type="submit"
       >
-        {lastSlide
-          ? "Proceed to pay"
-          : activeSlide === firstToKnowViews.length - 2 // last but one
-            ? "Summary"
-            : "Continue"}
+        {activeSlide === firstToKnowViews.length - 2 // last but one
+          ? "Finish"
+          : "Continue"}
       </Button>
     </section>
   );
