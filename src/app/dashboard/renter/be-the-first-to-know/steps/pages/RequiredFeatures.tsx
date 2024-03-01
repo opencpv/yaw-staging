@@ -6,15 +6,15 @@ import { requiredFeatures } from "@/app/dashboard/components/shared/content";
 
 const RequiredFeatures = () => {
   const [selected, setSelected] = useState<any>([]);
-  const [field, meta, helpers] = useField("featuresAndAmenities");
+  const [field, meta, helpers] = useField("requiredFeatures");
 
   const handleAmenityClick = (r: any) => {
-    if (selected?.includes(r?.name)) {
-      setSelected(selected?.filter((item: any) => item !== r?.name));
-      helpers.setValue(selected?.filter((item: any) => item !== r?.name));
+    if (field.value?.includes(r?.name)) {
+      // setSelected(selected?.filter((item: any) => item !== r?.name));
+      helpers.setValue(field.value?.filter((item: any) => item !== r?.name));
     } else {
-      setSelected([...selected, r?.name]);
-      helpers.setValue([...selected, r?.name]);
+      // setSelected([...selected, r?.name]);
+      helpers.setValue([...field.value, r?.name]);
     }
   };
 
@@ -46,7 +46,7 @@ const RequiredFeatures = () => {
                 n={index}
                 name={r?.name}
                 icon={r?.icon}
-                selected={selected?.includes(r?.name)}
+                selected={field.value?.includes(r?.name)}
               />
             </div>
           ))}

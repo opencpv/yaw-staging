@@ -29,8 +29,8 @@ const firstToKnowValidationSchema = Yup.object({
 });
 
 const FirstToKnowModal = (props: Props) => {
-  const [firstToKnowFormData] =
-    useLocalStorage<FirstToKnowFormType>("first-to-know-form");
+  // const [firstToKnowFormData] =
+  //   useLocalStorage<FirstToKnowFormType>("first-to-know-form");
 
   const [open, setOpen] = React.useState(false);
 
@@ -43,10 +43,10 @@ const FirstToKnowModal = (props: Props) => {
       <Formik
         initialValues={{
           ...firstToKnowDefaultValues,
-          ...firstToKnowFormData, // localStorage data takes precedence over default values. Makes changes persist on reload
+          // ...firstToKnowFormData, // localStorage data takes precedence over default values. Makes changes persist on reload
         }}
         // validationSchema={firstToKnowValidationSchema}
-        onSubmit={(values) => console.log("")}
+        onSubmit={(values) => console.log(values)}
       >
         <Form>
           <StepsModal
