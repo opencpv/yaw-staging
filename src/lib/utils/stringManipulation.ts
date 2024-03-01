@@ -26,7 +26,7 @@ export const formatDate = (dateTime: string) => {
     ?.toString()
     .replace(/(\d+)(st|nd|rd|th)/, "$1"); // Remove ordinal numbers
   const date = new Date(cleanedDateTime);
-  const formattedDate = format(date, "do MMM yyyy", {
+  const formattedDate = format(date, "MMMM d, yyyy", {
     locale: enUS,
   });
   return formattedDate;
