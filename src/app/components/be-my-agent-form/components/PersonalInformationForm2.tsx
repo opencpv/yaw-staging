@@ -10,30 +10,46 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import { LeaseData } from "../../application-form/components/content";
 import styles from "./index.module.css";
 import { BeMyAgentFormType } from "./types";
+import CustomTextAreaInput from "../../CustomTextAreaInput";
 type Props = {};
 
 const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
   ({}, ref) => {
-    const [agentFormData, setagentFormData] =
+    const [agentFormData, setAgentFormData] =
       useLocalStorage<BeMyAgentFormType>("agent-form");
 
+    const handleOnChange = (name: any, value: any) => {
+      setAgentFormData({
+        ...agentFormData,
+        [name]: value,
+      });
+    };
+
     return (
-      <Root>
+      <Root className="space-y-10">
+        {/* Lease Holder Information */}
         <div>
-          <p className={`${styles.title}  font-semibold`}>
-            Personal Information
-          </p>
-        </div>
-        <div className="grid grid-cols-2 gap-x-5 gap-y-5 pt-7">
-          <div className="col-span-3 lg:col-span-1 form-col w-full">
-            <TextFieldInput
-              type="text"
-              name="title"
+          <h2 className={styles.title}>Lease Holder Information</h2>
+          <div className="grid grid-cols-1 gap-x-5 gap-y-8 lg:grid-cols-2">
+            <CustomSelect
               label="Title"
-              placeholder="Enter your Title"
-              onChange={(e) =>
-                setagentFormData({ ...agentFormData, title: e.target.value })
-              }
+              value={agentFormData?.title || "Mrs"}
+              options={[
+                { name: "mr", value: "Mr" },
+                { name: "mrs", value: "Mrs" },
+                { name: "miss", value: "Miss" },
+              ]}
+              onChange={(value) => handleOnChange("title", value)}
+            />
+            <CustomSelect
+              label="Age"
+              value={agentFormData?.dateOfBirth || "18-44"}
+              options={[
+                { name: "12-17", value: "12-17" },
+                { name: "18-44", value: "18-44" },
+                { name: "45-74", value: "45-74" },
+              ]}
+              onChange={(value) => handleOnChange("dateOfBirth", value)}
             />
             <TextFieldInput
               type="text"
@@ -41,7 +57,7 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
               label="First Name"
               placeholder="Enter your first name"
               onChange={(e) =>
-                setagentFormData({
+                setAgentFormData({
                   ...agentFormData,
                   firstName: e.target.value,
                 })
@@ -53,58 +69,129 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
               label="Last Name"
               placeholder="Enter your last name"
               onChange={(e) =>
-                setagentFormData({ ...agentFormData, lastName: e.target.value })
+                setAgentFormData({
+                  ...agentFormData,
+                  lastName: e.target.value,
+                })
               }
             />
-            <CustomSelect
-              placeholder={agentFormData?.gender}
-              label="Gender"
-              options={[
-                { name: "Male", value: "male" },
-                { name: "Female", value: "female" },
-              ]}
-              onChange={(value) =>
-                setagentFormData({ ...agentFormData, gender: value })
-              }
-            />
-          </div>
-          <div className="col-span-3 lg:col-span-1  form-col">
-            <CustomDatePicker
-              placeholderDate={agentFormData?.moveInDate}
-              label="Desired Move In Date"
-              onChange={(value) =>
-                setagentFormData({ ...agentFormData, moveInDate: value })
-              }
-            />
-            <SelectSearchInput
-              data={LeaseData}
-              placeholder={
-                `${agentFormData?.leaseTerm} months` || "Enter lease term"
-              }
-              label="Lease term"
-              onChange={(value) => {
-                console.log(value);
-                setagentFormData({ ...agentFormData, leaseTerm: value });
-              }}
-            />
+            {/* <SelectSearchInput
+                data={LeaseData}
+                placeholder="Enter lease term"
+                label="Lease term"
+                onChange={(value) => {
+                  handleOnChange("leaseTerm", value);
+                }}
+              /> */}
             <CustomSelect
               label="Marital Status"
-              placeholder={
-                agentFormData?.maritalStatus || "Select marital status"
-              }
+              value={agentFormData?.maritalStatus || "Single"}
               options={[
-                { name: "Single", value: "single" },
-                { name: "married", value: "married" },
+                { name: "single", value: "Single" },
+                { name: "married", value: "Married" },
               ]}
-              onChange={(value) =>
-                setagentFormData({ ...agentFormData, maritalStatus: value })
-              }
+              onChange={(value) => handleOnChange("maritalStatus", value)}
             />
+            <CustomSelect
+              label="Number of Tenants"
+              value={agentFormData?.tenants || "1-5"}
+              options={[
+                { name: "1-5", value: "1-5" },
+                { name: "6-10", value: "6-10" },
+                { name: "10+", value: "10+" },
+              ]}
+              onChange={(value) => handleOnChange("tenants", value)}
+            />
+          </div>
+        </div>
+        {/* Screening & Other Details */}
+        <div>
+          <h2 className={styles.title}>Screening & Other Details</h2>
+          <div className="grid grid-cols-1 gap-x-5 gap-y-8 lg:grid-cols-2">
+            <div className="form-col">
+              <CustomRadioInput
+                infoBubble={true}
+                infoBubbleContent="data"
+                defaultValue={agentFormData?.evictedBefore}
+                label={"Have you ever been evicted?"}
+                onChange={(value) =>
+                  setAgentFormData({
+                    ...agentFormData,
+                    evictedBefore: value,
+                  })
+                }
+              />
+              {agentFormData?.evictedBefore === "yes" && (
+                <CustomTextAreaInput
+                  label="State Your Reasons"
+                  placeholder={"State your reasons here"}
+                  classes="h-[52px]"
+                  name="reasonForEviction"
+                  value={agentFormData?.reasonForEviction}
+                  onChange={(e) =>
+                    setAgentFormData({
+                      ...agentFormData,
+                      reasonForEviction: e.target.value,
+                    })
+                  }
+                />
+              )}
+              <CustomRadioInput
+                infoBubble={true}
+                infoBubbleContent="data"
+                defaultValue={agentFormData?.convictedBefore}
+                label={"Have you ever been convicted?"}
+                onChange={(value) =>
+                  setAgentFormData({
+                    ...agentFormData,
+                    convictedBefore: value,
+                  })
+                }
+              />
+              {agentFormData?.convictedBefore === "yes" && (
+                <CustomTextAreaInput
+                  label="State Your Reasons"
+                  placeholder={"State your reasons here"}
+                  classes="h-[52px]"
+                  name="reasonForConviction"
+                  value={agentFormData?.reasonForConviction}
+                  onChange={(e) =>
+                    setAgentFormData({
+                      ...agentFormData,
+                      reasonForConviction: e.target.value,
+                    })
+                  }
+                />
+              )}
+            </div>
+            <div className="form-col">
+              <CustomRadioInput
+                defaultValue={agentFormData?.pets}
+                label={"Do you have any pets?"}
+                onChange={(value) =>
+                  setAgentFormData({
+                    ...agentFormData,
+                    pets: value,
+                  })
+                }
+              />
+
+              <CustomRadioInput
+                defaultValue={agentFormData?.vehicles}
+                label={"Do you have any vehicles?"}
+                onChange={(value) =>
+                  setAgentFormData({
+                    ...agentFormData,
+                    vehicles: value,
+                  })
+                }
+              />
+            </div>
           </div>
         </div>
       </Root>
     );
-  }
+  },
 );
 
 PersonalInformationForm2.displayName == "PersonalInformationForm2";
@@ -115,6 +202,6 @@ const Root = styled("div", {
   ".form-col": {
     display: "flex",
     flexDirection: "column",
-    gap: "1.5rem",
+    gap: "2rem",
   },
 });

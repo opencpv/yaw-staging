@@ -78,7 +78,7 @@ const CountryInput = ({
     <div>
       <Root>
         <div className={`font-[400] capitalize text-[#6A6968]`}>
-          <label>{label}</label>
+          <label className="normal-case">{label}</label>
         </div>
         <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
@@ -86,22 +86,25 @@ const CountryInput = ({
               variant="outline"
               role="combobox"
               aria-expanded={open}
-              className={`w-full justify-between  ${
+              className={`w-full justify-between border-[#a3a3a3] placeholder:text-neutral-500 hover:border-black/50 focus:border-2 focus:border-accent-50 focus:outline-none focus-visible:ring-0  ${
                 value ? "capitalize text-[#6A6968]" : "text-[#B4B2AF] "
               } h-[52px] whitespace-nowrap`}
             >
               {value ? value : placeholder}
-              <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+              <ChevronDown className="ml-2 h-4 w-4 shrink-0 text-neutral-500 opacity-50" />
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="z-[200] max-h-[400px] w-fit overflow-y-scroll bg-[#fefefe] p-0 ">
+          <PopoverContent className="z-[200] max-h-[400px] w-fit overflow-y-scroll bg-[#fefefe] p-0 focus:outline-none">
             <Command onValueChange={onChange}>
-              <CommandInput placeholder="Search data..." />
+              <CommandInput
+                className="focus:outline-none"
+                placeholder="Search data..."
+              />
               <CommandEmpty>No data found.</CommandEmpty>
               <CommandGroup>
                 {countryData?.map((data) => (
                   <CommandItem
-                    className="flex cursor-pointer gap-3 hover:bg-slate-100"
+                    className="flex cursor-pointer gap-3 hover:bg-accent-50"
                     key={data.value}
                     onSelect={(currentValue) => {
                       onChange(currentValue);

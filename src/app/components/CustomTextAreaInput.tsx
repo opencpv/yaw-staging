@@ -1,40 +1,52 @@
-import { Textarea } from "@/components/ui/textarea"
-import { styled } from "@stitches/react"
+import { Textarea } from "@/components/ui/textarea";
+import { styled } from "@stitches/react";
 
 type Props = {
-    label: string
-    rows? : number
-    classes: string
-    onChange : (e: any) => void
-    placeholder: string
-    name ? : string
-    initialValues? :string
-}
+  label: string;
+  rows?: number;
+  classes: string;
+  onChange: (e: any) => void;
+  placeholder: string;
+  name?: string;
+  value?: string;
+  initialValues?: string;
+};
 
-const CustomTextAreaInput = ({label,  classes, onChange, placeholder, name, initialValues}: Props) => {
-    return(
-        <Root className="text-[#6A6968]">
-            <label htmlFor="">{label}</label>
-            <textarea className={`form-input ${classes}`} 
-            placeholder={placeholder}
-            onChange={onChange} name={name}
-            defaultValue={initialValues}
-            />
-        </Root>
-    )
-}
+const CustomTextAreaInput = ({
+  label,
+  classes,
+  onChange,
+  placeholder,
+  name,
+  initialValues,
+  value,
+}: Props) => {
+  return (
+    <Root className="text-[#6A6968]">
+      <label htmlFor="">{label}</label>
+      <textarea
+        className={`form-input hidden-scrollbar pb-5 hover:border-black/50 ${classes}`}
+        placeholder={placeholder}
+        onChange={onChange}
+        name={name}
+        value={value}
+        defaultValue={initialValues}
+      />
+    </Root>
+  );
+};
 
 const Root = styled("div", {
-    fontSize: "1rem",
-    display: "flex",
-    flexDirection: "column",
-    gap: "0.9375rem",
-    ".form-input": {
-      padding: "15px",
-      fontSize: " 0.8125rem",
-      border: "1px solid #E6E6E6",
-      borderRadius: "4px",
-    },
-  });
+  fontSize: "1rem",
+  display: "flex",
+  flexDirection: "column",
+  gap: "0.9375rem",
+  ".form-input": {
+    padding: "15px",
+    fontSize: " 0.8125rem",
+    border: "1px solid #a3a3a3",
+    borderRadius: "4px",
+  },
+});
 
-export default CustomTextAreaInput
+export default CustomTextAreaInput;

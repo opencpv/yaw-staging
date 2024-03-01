@@ -9,6 +9,9 @@ import Button from "./button/Button";
 import { usePathname } from "next/navigation";
 import { MdOutlineDashboard } from "react-icons/md";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
+import { PiCirclesFour } from "react-icons/pi";
+import { CiUser } from "react-icons/ci";
+import { IoSettingsOutline } from "react-icons/io5";
 
 type Props = {
   image: string;
@@ -45,7 +48,7 @@ const Avatar = ({ image, name, className }: Props) => {
         width={50}
         height={50}
         className={cn(
-          "h-[35px] w-[35px] max-w-[50px] shrink-0 cursor-pointer rounded-full xs:h-[50px] xs:w-[50px]",
+          "h-[35px] w-[35px] max-w-[50px] shrink-0 cursor-pointer rounded-full p-4 xs:h-[50px] xs:w-[50px]",
           className,
         )}
         onClick={() => setIsOpen(!isOpen)}
@@ -57,7 +60,7 @@ const Avatar = ({ image, name, className }: Props) => {
         }`}
       >
         <ul className="divide-y">
-          <li className="deep-green-hover px-4 py-2">
+          {/* <li className="deep-green-hover px-4 py-2">
             {pathname?.includes("dashboard") ? (
               <Link href="/" className="flex items-center gap-2">
                 <LiaHomeSolid />
@@ -68,16 +71,48 @@ const Avatar = ({ image, name, className }: Props) => {
                 href={`/dashboard/${currentRole}/overview`}
                 className="flex items-center gap-2"
               >
-                <MdOutlineDashboard />
-                Dashboard
+                <PiCirclesFour />
+                Overview
               </Link>
             )}
           </li>
-          <li className="grid place-items-center px-5 py-2">
+          <li className="mt-5 grid place-items-center px-5 py-2">
             <Button color="accent" radius="full" padding="sm">
               Sign out
             </Button>
+          </li> */}
+          {/* <li className="flex items-center gap-2">
+            <Image
+              src={image}
+              alt={name as string}
+              width={50}
+              height={50}
+              className={cn(
+                "h-[35px] w-[35px] max-w-[50px] shrink-0 cursor-pointer rounded-full xs:h-[50px] xs:w-[50px]",
+                className,
+              )}
+            />
+            <div className="">
+              <h3>Enoch Ansah</h3>
+              <small className="text-shade-300">enocansah@gmail.com</small>
+            </div>
           </li>
+          <li className="space-y-5">
+            <div className="flex items-center gap-2">
+              <CiUser size={32} />
+              <p>My Account</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <IoSettingsOutline size={32} />
+              <p>Settings</p>
+            </div>
+          </li>
+          <li className="space-y-5">
+            <div className="flex items-center gap-2">
+              <CiUser size={32} />
+              <p>Log Out</p>
+            </div>
+          </li> */}
         </ul>
       </div>
     </div>

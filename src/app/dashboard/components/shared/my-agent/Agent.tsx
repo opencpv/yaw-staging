@@ -21,7 +21,7 @@ export default function Agent({
   dateCompleted,
 }: Props) {
   return (
-    <div className="flex h-full w-full max-w-[543px] flex-col items-start justify-center gap-4 rounded-2xl border border-[#E6E6E6] px-8 py-6 lg:max-w-full">
+    <div className="form-field-border flex h-full w-full max-w-[543px] flex-col items-start justify-center gap-4 rounded-2xl px-8 py-6 lg:max-w-full">
       <div className="flex w-full flex-wrap justify-between gap-5">
         <Image
           src={"/assets/svgs/agent-icon-handshake.svg"}

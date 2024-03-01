@@ -49,6 +49,7 @@ const ContactPhoneField = ({
       onChange={handlePhone}
       onInput={handleChange}
       onCountryChange={handleCountryChange}
+      className="focus:outline-none"
     />
   );
 };

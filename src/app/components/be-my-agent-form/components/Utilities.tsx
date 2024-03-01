@@ -9,22 +9,22 @@ import Electricity from "../../listing-form/components/icons/Electricity";
 import SateliteTv from "../../listing-form/components/icons/SateliteTv";
 import Internet from "../../listing-form/components/icons/Internet";
 import Amenity from "../../listing-form/components/Amenity";
-import styles from './index.module.css'
+import styles from "./index.module.css";
 import { BeMyAgentFormType } from "./types";
+import { TbDroplets } from "react-icons/tb";
+import { PiMonitorLight } from "react-icons/pi";
 
 const data = [
-  { name: "water", icon: <Water  /> },
+  { name: "water", icon: <TbDroplets size="44" /> },
   { name: "gas", icon: <MdOutlineLocalGasStation size="44" /> },
   { name: "electricity", icon: <Electricity /> },
-  { name: "satelite tv", icon: <SateliteTv  /> },
-  { name: "internet", icon: <Internet /> },
 ];
 
 export default function Utilities() {
+  const [listingFormData, setlistingFormData] =
+    useLocalStorage<BeMyAgentFormType>("agent-form");
 
-  const [selected, setSelected] = useState<any>([]);
-
-  const [listingFormData, setlistingFormData] = useLocalStorage<BeMyAgentFormType>("agent-form");
+  const [selected, setSelected] = useState<any>(listingFormData?.utilities);
 
   const handleAmenityClick = (r: any) => {
     if (selected.includes(r?.name)) {
@@ -48,31 +48,28 @@ export default function Utilities() {
   }, []);
   return (
     <>
-      <Root className="flex flex-col w-full items-center justify-center ">
-        <div className="w-full flex flex-col items-center justify-center gap-6">
-          <div className="w-full flex flex-col gap-2">
-          <p className={`${styles.title} font-semibold`}>
-              Utilities
-            </p>
-            <p className="text-[1rem] font-[400]">
-              You can add more utilities after you publish your listing
-            </p>
-          </div>
-          <div className="grid grid-cols-4 lg:grid-cols-3 w-full gap-2  lg:gap-y-0">
-            {data.map((r: any, index: number) => (
-              <div
-                key={index}
-                className="col-span-2  lg:col-span-1"
-                onClick={() => handleAmenityClick(r)}>
-                <Amenity
-                  n={index}
-                  name={r?.name}
-                  icon={r?.icon}
-                  selected={selected?.includes(r?.name)}
-                />
-              </div>
-            ))}
-          </div>
+      <Root>
+        <div className="mb-10 flex w-full flex-col gap-2">
+          <h2 className={`${styles.titleNoMargin}`}>Utilities</h2>
+          <h4 className="font-[400]">
+            You can add more utilities after you publish your listing
+          </h4>
+        </div>
+        <div className="grid w-full grid-cols-4 gap-2 lg:grid-cols-3 lg:gap-y-0">
+          {data.map((r: any, index: number) => (
+            <div
+              key={index}
+              className="col-span-2  lg:col-span-1"
+              onClick={() => handleAmenityClick(r)}
+            >
+              <Amenity
+                n={index}
+                name={r?.name}
+                icon={r?.icon}
+                selected={selected?.includes(r?.name)}
+              />
+            </div>
+          ))}
         </div>
       </Root>
     </>

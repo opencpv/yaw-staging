@@ -23,19 +23,15 @@ const ScreeningAndOtherDetailsForm = React.forwardRef<HTMLInputElement, Props>(
     };
 
     const [agentFormData, setagentFormData] =
-      useLocalStorage<BeMyAgentFormType>("agent-form", {
-        maritalStatus: "Single",
-        leaseTerm: "12 months",
-        gender: "Male",
-      });
+      useLocalStorage<BeMyAgentFormType>("agent-form");
     return (
-      <Root className="p4 px-2">
-          <p className={`${styles.title}  font-semibold`}>
+      <Root>
+        <h2 className={`${styles.title}  font-semibold`}>
           Screening & Other Details
-        </p>
+        </h2>
         <div>
           <div className="grid grid-cols-2 gap-x-5 gap-y-5 pt-7">
-            <div className="col-span-3 lg:col-span-1 form-col">
+            <div className="form-col col-span-3 lg:col-span-1">
               <CustomDatePicker
                 placeholderDate={agentFormData?.dateOfBirth}
                 label="Date of Birth"
@@ -83,7 +79,7 @@ const ScreeningAndOtherDetailsForm = React.forwardRef<HTMLInputElement, Props>(
                 }
               />
             </div>
-            <div className="col-span-3 lg:col-span-1 form-col">
+            <div className="form-col col-span-3 lg:col-span-1">
               <CustomRadioInput
                 infoBubble={true}
                 infoBubbleContent="data"
@@ -162,7 +158,7 @@ const ScreeningAndOtherDetailsForm = React.forwardRef<HTMLInputElement, Props>(
         </div>
       </Root>
     );
-  }
+  },
 );
 
 ScreeningAndOtherDetailsForm.displayName == "ScreeningAndOtherDetailsForm";

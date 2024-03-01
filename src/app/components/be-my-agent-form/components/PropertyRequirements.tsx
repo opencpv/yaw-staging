@@ -6,134 +6,225 @@ import { CustomDatePicker } from "../../CustomDatePicker";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import CustomCheckBoxes from "../../CustomCheckBoxes";
 import { ClientOnly } from "@/components/ui/ClientOnly";
+import CustomSelect from "../../CustomSelect";
+import { BeMyAgentFormType } from "./types";
+import InfoText from "../../listing-form/components/InfoText";
 
 export default function PropertyRequirements() {
-  const [agentFormData, setagentFormData] = useLocalStorage<any>(
-    "agent-form",
-    {}
-  );
+  const [agentFormData, setAgentFormData] =
+    useLocalStorage<BeMyAgentFormType>("agent-form");
   const handleOnChange = (name: any, value: any) => {
-    setagentFormData({
+    setAgentFormData({
       ...agentFormData,
       [name]: value,
     });
   };
   return (
     <>
-      <Root className=" flex flex-col w-full  h-full items-center justify-center ">
-        <div className="flex flex-col items-center justify-center w-full gap-8">
-          <div className="grid grid-cols-2 w-full">
-            <p className={`${styles.title} col-span-2`}>
-              Property Requirements
-            </p>
-          </div>
-          <div className="grid grid-cols-2 gap-x-7 w-full">
-            <div className="col-span-1 flex flex-col gap-6">
-              <div className="flex flex-col gap-4">
-                <p className="text-[1.25rem[ font-semibold">Price Range</p>
-                <TextFieldInput
-                  type="number"
-                  label="Minimum"
-                  name="priceRangeMinimum"
-                  placeholder=""
-                  onChange={(e) =>
-                    handleOnChange("priceRangeMinimum", e.target.value)
-                  }
-                />
-              </div>
-
-              <div className="flex flex-col gap-4">
-                <p className="text-[1.25rem[ font-semibold">Bed</p>
-                <TextFieldInput
-                  type="number"
-                  label="Minimum"
-                  name="bedMinimum"
-                  placeholder=""
-                  onChange={(e) => handleOnChange("bedMinimum", e.target.value)}
-                />
-              </div>
-              <div className="flex flex-col gap-4">
-                <p className="text-[1.25rem[ font-semibold">Bathroom</p>
-                <TextFieldInput
-                  type="number"
-                  label="Minimum"
-                  name="bathroomMinimum"
-                  placeholder=""
-                  onChange={(e) =>
-                    handleOnChange("bathroomMimum", e.target.value)
-                  }
-                />
-              </div>
-              <div className="flex flex-col gap-4">
-                <p className="text-[1.25rem[ font-semibold">
-                  Rent Advance Options
-                </p>
-                <ClientOnly>
-                  <CustomCheckBoxes
-                    onChange={(value: any) =>
-                      handleOnChange("rentAdvanceOptions", value)
-                    }
-                    data={[
-                      {
-                        name: "1 year",
-                        value: "1",
-                      },
-                      { name: "2 years", value: "2" },
-                      { name: "3 years", value: "3" },
-                    ]}
-                  />
-                </ClientOnly>
-              </div>
-            </div>
-            <div className="col-span-1 flex flex-col gap-6">
-              <div className="flex flex-col gap-4">
-                <p className="text-[1.25rem[ font-semibold invisible">
-                  invisible
-                </p>{" "}
-                <TextFieldInput
-                  type="number"
-                  label="Maximum"
-                  name="priceRangeMaximum"
-                  placeholder=""
-                  onChange={(e) =>
-                    handleOnChange("priceRangeMaximum", e.target.value)
-                  }
-                />
-              </div>
-
-              <div className="flex flex-col gap-4">
-                <p className="text-[1.25rem[ font-semibold invisible">
-                  invisible
-                </p>
-                <TextFieldInput
-                  type="number"
-                  label="Maximum"
-                  name="bedMaximum"
-                  placeholder=""
-                  onChange={(e) => handleOnChange("bedMaximum", e.target.value)}
-                />
-              </div>
-
-              <div className="flex flex-col gap-4">
-                <p className="text-[1.25rem[ font-semibold invisible">
-                  invisible
-                </p>
-                <TextFieldInput
-                  type="number"
-                  label="Maximum"
-                  name="bathroomMaximum"
-                  placeholder=""
-                  onChange={(e) =>
-                    handleOnChange("bathroomMaximum", e.target.value)
-                  }
-                />
-              </div>
-            </div>
+      <h2 className={`${styles.title}`}>Property Requirements</h2>
+      <div className="flex w-full flex-col gap-8">
+        {/* Price range */}
+        <div className="flex flex-col gap-4">
+          <h3>Price Range</h3>
+          <div className="grid grid-cols-2 gap-5">
+            <CustomSelect
+              label="Minimum"
+              value={agentFormData?.priceRangeMinimum || "100"}
+              prefix="GHS"
+              options={[
+                { name: "100", value: "100" },
+                { name: "1000", value: "1000" },
+                { name: "2000", value: "2000" },
+                { name: "4000", value: "4000" },
+                { name: "5000", value: "5000" },
+                { name: "6000", value: "6000" },
+                { name: "7000", value: "7000" },
+                { name: "8000", value: "8000" },
+                { name: "9000", value: "9000" },
+                { name: "10000", value: "10000" },
+              ]}
+              onChange={(value) => handleOnChange("priceRangeMinimum", value)}
+            />
+            <CustomSelect
+              label="Maximum"
+              value={agentFormData?.priceRangeMaximum || "100"}
+              prefix="GHS"
+              options={[
+                { name: "100", value: "100" },
+                { name: "1000", value: "1000" },
+                { name: "2000", value: "2000" },
+                { name: "4000", value: "4000" },
+                { name: "5000", value: "5000" },
+                { name: "6000", value: "6000" },
+                { name: "7000", value: "7000" },
+                { name: "8000", value: "8000" },
+                { name: "9000", value: "9000" },
+                { name: "10000+", value: "10000+" },
+              ]}
+              onChange={(value) => handleOnChange("priceRangeMaximum", value)}
+            />
           </div>
         </div>
-      </Root>
+        {/* Bed */}
+        <div className="flex flex-col gap-4">
+          <h3>Bed</h3>
+          <div className="grid grid-cols-2 gap-5">
+            <CustomSelect
+              label="Minimum"
+              value={agentFormData?.bedMinimum || "1"}
+              options={[
+                { name: "1", value: "1" },
+                { name: "2", value: "2" },
+                { name: "3", value: "3" },
+                { name: "4", value: "4" },
+                { name: "5", value: "5" },
+                { name: "6", value: "6" },
+                { name: "7", value: "7" },
+                { name: "8", value: "8" },
+                { name: "9", value: "9" },
+                { name: "10", value: "10" },
+              ]}
+              onChange={(value) => handleOnChange("bedMinimum", value)}
+            />
+            <CustomSelect
+              label="Maximum"
+              value={agentFormData?.bedMaximum || "1"}
+              options={[
+                { name: "1", value: "1" },
+                { name: "2", value: "2" },
+                { name: "3", value: "3" },
+                { name: "4", value: "4" },
+                { name: "5", value: "5" },
+                { name: "6", value: "6" },
+                { name: "7", value: "7" },
+                { name: "8", value: "8" },
+                { name: "9", value: "9" },
+                { name: "10+", value: "10+" },
+              ]}
+              onChange={(value) => handleOnChange("bedMaximum", value)}
+            />
+          </div>
+        </div>
+        {/* Bathroom */}
+        <div className="flex flex-col gap-4">
+          <h3>Bathroom</h3>
+          <div className="grid grid-cols-2 gap-5">
+            <CustomSelect
+              label="Minimum"
+              value={agentFormData?.bathroomMinimum || "1"}
+              options={[
+                { name: "1", value: "1" },
+                { name: "2", value: "2" },
+                { name: "3", value: "3" },
+                { name: "4", value: "4" },
+                { name: "5", value: "5" },
+                { name: "6", value: "6" },
+                { name: "7", value: "7" },
+                { name: "8", value: "8" },
+                { name: "9", value: "9" },
+                { name: "10", value: "10" },
+              ]}
+              onChange={(value) => handleOnChange("bathroomMinimum", value)}
+            />
+            <CustomSelect
+              label="Maximum"
+              value={agentFormData?.bathroomMaximum || "1"}
+              options={[
+                { name: "1", value: "1" },
+                { name: "2", value: "2" },
+                { name: "3", value: "3" },
+                { name: "4", value: "4" },
+                { name: "5", value: "5" },
+                { name: "6", value: "6" },
+                { name: "7", value: "7" },
+                { name: "8", value: "8" },
+                { name: "9", value: "9" },
+                { name: "10+", value: "10+" },
+              ]}
+              onChange={(value) => handleOnChange("bathroomMaximum", value)}
+            />
+          </div>
+        </div>
+        {/* Lease Terms */}
+        <InfoText
+          content="1-2 year lease with rent paid in advance are most common"
+          className="mt-5"
+        />
+        <div className="flex flex-col gap-4">
+          <h3>Lease Terms</h3>
+          <div className="grid grid-cols-2 gap-5">
+            <CustomSelect
+              label="Minimum"
+              value={agentFormData?.leaseTermMinimum || "1"}
+              options={[
+                { name: "1", value: "1" },
+                { name: "2", value: "2" },
+                { name: "3", value: "3" },
+                { name: "4", value: "4" },
+                { name: "5", value: "5" },
+              ]}
+              onChange={(value) => handleOnChange("leaseTermMinimum", value)}
+            />
+            <CustomSelect
+              label="Maximum"
+              value={agentFormData?.leaseTermMaximum || "1"}
+              options={[
+                { name: "1", value: "1" },
+                { name: "2", value: "2" },
+                { name: "3", value: "3" },
+                { name: "4", value: "4" },
+                { name: "5+", value: "5+" },
+              ]}
+              onChange={(value) => handleOnChange("leaseTermMaximum", value)}
+            />
+          </div>
+        </div>
+        {/* Preferred Payment Plan */}
+        <div className="flex flex-col gap-4">
+          <h3>Move In</h3>
+          <div className="grid grid-cols-1 gap-5 gap-y-8 lg:grid-cols-2">
+            <CustomSelect
+              label="Preferred Payment Option"
+              value={agentFormData?.paymentOption || "Rent Advance"}
+              options={[
+                { name: "rent advance", value: "Rent Advance" },
+                {
+                  name: "monthly payments + interests",
+                  value: "Monthly Payments + Interests",
+                },
+                { name: "any", value: "Any" },
+              ]}
+              onChange={(value) => handleOnChange("paymentOption", value)}
+            />
+            <CustomDatePicker
+              label="Desired Move In Date"
+              placeholderDate={agentFormData?.moveInDate}
+              onChange={(value) => handleOnChange("moveInDate", value)}
+            />
+          </div>
+        </div>
+
+        {/* Rent advance options */}
+        {/* <div className="flex flex-col gap-4">
+          <h3>Rent Advance Options</h3>
+          <ClientOnly>
+            <CustomCheckBoxes
+              color="accent"
+              onChange={(value: any) =>
+                handleOnChange("rentAdvanceOptions", value)
+              }
+              data={[
+                {
+                  name: "1 year",
+                  value: "1",
+                },
+                { name: "2 years", value: "2" },
+                { name: "3 years", value: "3" },
+              ]}
+            />
+          </ClientOnly>
+        </div> */}
+      </div>
     </>
   );
 }
-
-const Root = styled("div", {});

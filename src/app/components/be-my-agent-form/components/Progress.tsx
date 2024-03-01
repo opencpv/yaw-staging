@@ -1,50 +1,91 @@
 import { useEffect, useState } from "react";
 import { FaRegThumbsUp } from "react-icons/fa6";
+import { GiBiceps } from "react-icons/gi";
+import { IoMdHappy } from "react-icons/io";
+import { PiConfetti } from "react-icons/pi";
+import { beMyAgentProcessStore } from "@/store/dashboard/beMyAgentProcessStore";
+import { cn } from "@/lib/utils";
 
 type Props = {
+  /** The current value of the progress bar */
   value: number;
 };
 
 export default function Progress({ value }: Props) {
   const [message, setMessage] = useState("");
+  const {
+    firstSlide,
+    lastSlide,
+    shouldShowMotivationMessage,
+    setShouldShowMotivationMessage,
+  } = beMyAgentProcessStore();
+  const [messageIcon, setMessageIcon] = useState<React.ReactElement | null>(
+    null,
+  );
 
-  const showMessageFor3Seconds = (message: string) => {
+  const showMessageFor3Seconds = (
+    message: string,
+    icon: React.ReactElement,
+  ) => {
     setMessage(message);
+    setMessageIcon(icon);
 
     setTimeout(() => {
       setMessage(""); // Clear the message after 3 seconds
+      setMessageIcon(null);
     }, 3000);
   };
 
   useEffect(() => {
-    if (value > 5 && value < 10) {
-      showMessageFor3Seconds("Let's do this");
+    if (firstSlide) {
+      showMessageFor3Seconds("Get started", <IoMdHappy />);
+    } else if (lastSlide) {
+      showMessageFor3Seconds("You're dope", <PiConfetti />);
+      setTimeout(() => {
+        setShouldShowMotivationMessage(false);
+      }, 3000);
+    } else if (value >= 30 && value <= 40) {
+      showMessageFor3Seconds("Got this", <GiBiceps />);
+    } else if (value >= 70 && value <= 80) {
+      showMessageFor3Seconds("Almost there", <FaRegThumbsUp />);
     }
-  }, [value]);
-
-  useEffect(() => {
-    if (value > 50 && value < 55) {
-      showMessageFor3Seconds("Halfway there!!!");
+    // else if (agentFormSlide?.showContinueMessage) {
+    //   showMessageFor3Seconds("Continue from where you left off", <IoMdHappy />);
+    //   setTimeout(() => {
+    //     setAgentFormSlide({
+    //       ...agentFormSlide,
+    //       showContinueMessage: false,
+    //     });
+    //   }, 3000);
+    //   ("");
+    // }
+    else {
+      setMessage("");
+      setMessageIcon(null);
     }
-  }, [value]);
-
-  useEffect(() => {
-    if (value > 80 && value < 85) {
-      showMessageFor3Seconds("Almost there");
-    }
-  }, [value]);
+  }, [firstSlide, lastSlide, value, setShouldShowMotivationMessage]);
 
   return (
-    <div className="w-full  h-[16px] rounded-2xl bg-[#FEF8ED]">
+    <div className="h-[16px] w-full rounded-2xl bg-[#FEF8ED]">
       <div
-        className=" bg-warning-400 h-[16px] rounded-2xl transition-width duration-3000 relative justify-end"
-        style={{ width: `${value}%` }}>
+        className="duration-3000 relative h-[16px] justify-end rounded-2xl bg-accent-400 transition-width"
+        style={{ width: `${value}%` }}
+      >
         <div
-          className={` ${
-            message ? "flex" : "hidden"
-          } absolute right-[-30px] top-[30px] px-3 py-4 w-fit whitespace-nowrap bg-[#00A651] text-white rounded-2xl progress-emoji text-[13px] lg:text-[16px] flex items-center justify-center gap-3 z-[7000]`}>
+          className={cn(
+            `${
+              message && messageIcon && shouldShowMotivationMessage
+                ? "flex"
+                : "hidden"
+            } progress-emoji absolute right-0 top-8 z-50 w-fit items-center justify-center gap-3 whitespace-nowrap rounded-2xl bg-primary-300 px-3 py-4 text-[13px] text-shade-300 lg:text-base`,
+            {
+              "-right-20 lg:right-0": firstSlide,
+              "right-[10%] lg:right-0": lastSlide,
+            },
+          )}
+        >
           {message}
-          <FaRegThumbsUp color="white"/>
+          {messageIcon}
         </div>{" "}
       </div>
     </div>

@@ -87,7 +87,7 @@ export const TableRowSm = (props: TableHeaderRowProps) => {
       role="row"
       aria-label="table row"
       className={cn(
-        `light-green-hover flex cursor-default flex-col gap-4 divide-y rounded-lg border px-[10px] py-4
+        `light-green-hover form-field-border flex cursor-default flex-col gap-4 divide-y rounded-lg px-[10px] py-4
       ${styles.property_matches_card}
       `,
         props.className,
@@ -112,7 +112,7 @@ export const TableHeader = (props: TableHeaderProps) => {
       role="columnheader"
       aria-label="table header"
       tabIndex={0}
-      className={cn("text-center", props.className)}
+      className={cn("mx-auto text-center", props.className)}
     >
       {props.children}
     </div>
@@ -190,7 +190,7 @@ export const TableBody = (props: TableBodyProps) => {
           role="row"
           aria-label="table body"
           tabIndex={0}
-          className={cn(props.className)}
+          className={cn("mx-auto", props.className)}
         >
           {props.children}
         </div>

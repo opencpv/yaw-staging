@@ -7,68 +7,101 @@ import { useEffect, useRef, useState } from "react";
 import Progress from "./Progress";
 import BestDescribes from "./BestDescribes";
 import PropertyInformation from "./PropertyRequirements";
-import Utilities from "./Utilities";
 import FeaturesAndAmenities from "./FeaturesAndAmenities";
 import ContactInformationForm from "./ContactInformation";
 import EmploymentInformationForm from "./EmploymentInformation";
-import ScreeningAndOtherDetailsForm from "./ScreeningAndOtherDetailsForm";
 import PersonalInformationForm2 from "./PersonalInformationForm2";
 import Image from "next/image";
 import Location from "./Location";
-import { openSans } from "@/styles/font";
 import { ClientOnly } from "@/components/ui/ClientOnly";
+import Button from "@/components/__shared/ui/button/Button";
+import { AgentFormSlide, BeMyAgentFormType } from "./types";
+import { useAssets } from "@/lib/custom-hooks/useAssets";
+import { cn } from "@/lib/utils";
+import ProcessSummary from "./ProcessSummary";
+import { beMyAgentProcessStore } from "@/store/dashboard/beMyAgentProcessStore";
+import BeMyAgentFormSideImg from "./BeMyAgentFormSideImg";
+import Sidebar from "./process-summary/Sidebar";
 
-const image = "/assets/images/agent-modal-image.jpeg";
-
-const views = [
-  <ClientOnly key={"bes-describes"}>
-    <BestDescribes infoText key={"bes-describes"} />
+export const views = [
+  <Location key={"location"} />,
+  <ClientOnly key={"best-describes"}>
+    <BestDescribes infoText key={"best-describes"} />
   </ClientOnly>,
   <ClientOnly key={"property-information"}>
     <PropertyInformation key={"property-information"} />
   </ClientOnly>,
-  <Location key={"property-information"} />,
-  <ClientOnly key={"utitilities"}>
-    <Utilities key={"utitilities"} />
-  </ClientOnly>,
+  // <ClientOnly key={"utilities"}>
+  //   <Utilities key={"utilities"} />
+  // </ClientOnly>,
   <ClientOnly key={"features"}>
     <FeaturesAndAmenities key={"features"} />
   </ClientOnly>,
   <ClientOnly key={"personal-information"}>
     <PersonalInformationForm2 key={"personal-information"} />
   </ClientOnly>,
-  <ClientOnly key={"contact-informaiton"}>
-    <ContactInformationForm key={"contact-informaiton"} />
+  <ClientOnly key={"contact-information"}>
+    <ContactInformationForm key={"contact-information"} />
   </ClientOnly>,
   <ClientOnly key={"employment-information"}>
     <EmploymentInformationForm key={"employment-information"} />
   </ClientOnly>,
-  <ClientOnly key={"screenign"}>
-    <ScreeningAndOtherDetailsForm key={"screenign"} />
+  <ClientOnly key={"process-summary"}>
+    <ProcessSummary key={"process-summary"} />
   </ClientOnly>,
+  // <ClientOnly key={"screening"}>
+  //   <ScreeningAndOtherDetailsForm key={"screening"} />
+  // </ClientOnly>,
 ];
 
-type Props = {
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-};
+export default function BeMyAgentForm() {
+  const { images } = useAssets();
 
-export default function BeMyAgentForm({ setOpen }: Props) {
+  const {
+    activeSlide,
+    setProgressValue,
+    lastSlide,
+    setFirstSlide,
+    setLastSlide,
+  } = beMyAgentProcessStore();
+
+  const [agentFormData] = useLocalStorage<BeMyAgentFormType>("agent-form", {
+    priceRangeMinimum: "100",
+    priceRangeMaximum: "100",
+    bedMinimum: "1",
+    bedMaximum: "1",
+    bathroomMinimum: "1",
+    bathroomMaximum: "1",
+    leaseTermMinimum: "1",
+    leaseTermMaximum: "1",
+    paymentOption: "Rent Advance",
+    title: "Mrs",
+    dateOfBirth: "18-44",
+    maritalStatus: "Single",
+    tenants: "1-5",
+    country: "Republic of Ghana",
+    preferredMethodOfContact: "email",
+    mostRecentEmployment: "Employed",
+    employersCountry: "Republic of Ghana",
+    monthlyIncome: "1000-2000",
+  });
+
   const leaseRef = useRef<any>();
-  const [progressValue, setProgressValue] = useState<number>(1);
-  const [activeSlide, setActiveSlide] = useState(0);
-  const [firstSlide, setFirstSlide] = useState(true);
-  const [lastSlide, setLastSlide] = useState(false);
-  const [hideLeft, setHideLeft] = useState(false);
-  const [hideRight, setHideRight] = useState(false);
+  // const [progressValue, setProgressValue] = useState<number>(1);
+  // const [activeSlide, setActiveSlide] = useState(
+  //   agentFormSlide.activeSlide ?? 0,
+  // );
+  // const [firstSlide, setFirstSlide] = useState(true);
+  // const [lastSlide, setLastSlide] = useState(false);
+  // const [hideLeft, setHideLeft] = useState(false);
+  // const [hideRight, setHideRight] = useState(false);
   const [otp, setOtp] = useState(false);
 
-  const [agentFormData, setagentFormData] = useLocalStorage("agent-form", {});
-
-  const scrollToTop = () => {
-    if (leaseRef.current) {
-      leaseRef.current.scrollIntoView();
-    }
-  };
+  // const scrollToTop = () => {
+  //   if (leaseRef.current) {
+  //     leaseRef.current.scrollIntoView();
+  //   }
+  // };
 
   useEffect(() => {
     if (activeSlide < 1) {
@@ -77,104 +110,73 @@ export default function BeMyAgentForm({ setOpen }: Props) {
     if (activeSlide > 0) {
       setFirstSlide(false);
     }
-
-    if (activeSlide > 9) {
-      setHideLeft(true);
-      setHideRight(true);
+    if (activeSlide === views.length - 1) {
+      setLastSlide(true);
     } else {
-      setHideLeft(false);
-      setHideRight(false);
+      setLastSlide(false);
     }
 
-    const value = (activeSlide / views.length) * 100;
-    setProgressValue(value + 5);
-  }, [activeSlide]);
+    const value = ((activeSlide + 1) / views.length) * 100;
+    setProgressValue(value);
+  }, [activeSlide, setFirstSlide, setLastSlide, lastSlide, setProgressValue]);
 
-  const handleBack = () => {
-    firstSlide && setOpen(false);
-    if (activeSlide > 0) {
-      setActiveSlide((init) => init - 1);
-      setProgressValue((init) => init - 6);
+  // const handleBack = () => {
+  //   firstSlide && setOpen(false);
+  //   if (agentFormSlide?.activeSlide > 0) {
+  //     setAgentFormSlide({
+  //       activeSlide: agentFormSlide?.activeSlide - 1,
+  //     });
+  //     setProgressValue((init) => init - 6);
 
-      scrollToTop();
-    }
-  };
+  //     scrollToTop();
+  //   }
+  // };
 
-  const handleForward = () => {
-    // activeSlide > 13 && submitListing(user?.profileData?.id, agentFormData, true);
-    if (activeSlide < views.length - 1) {
-      setActiveSlide((init) => init + 1);
-      setProgressValue((init) => init + 6);
-      scrollToTop();
-    }
-  };
+  // const handleForward = () => {
+  //   // activeSlide > 13 && submitListing(user?.profileData?.id, agentFormData, true);
+  //   if (agentFormSlide?.activeSlide < views.length - 1) {
+  //     setAgentFormSlide({
+  //       activeSlide: agentFormSlide?.activeSlide + 1,
+  //     });
+  //     setProgressValue((init) => init + 6);
+  //     scrollToTop();
+  //   }
+  // };
   return (
-    <Root
-      className={`flex  max-h-[90vh] flex-col justify-between`}
-      ref={leaseRef}
-    >
-      <div className="flex h-full w-full flex-col">
-        <div className="flex flex-col gap-4">
-          <p className="w-full text-left font-semibold">Be My Agent</p>
-
-          <div className="mt-0 w-full ">
-            <Progress value={progressValue} />
-          </div>
-        </div>
-        <div className="my-10 flex h-full flex-col gap-10 lg:flex-row lg:gap-20">
-          <div className="w-full lg:flex-[40%_0_0] lg:pr-10">
-            <div className="relative h-full min-h-[222px] w-full   overflow-hidden rounded-2xl ">
-              <Image
-                src={image}
-                alt="Be MY Agent Image"
-                fill
-                objectFit="cover"
-              />
-            </div>{" "}
-          </div>
-          <div className="flex h-full w-full flex-col justify-center gap-1 lg:min-h-[80vh] ">
-            <div className="flex h-full w-full flex-col items-center justify-start ">
-              <Formik
-                initialValues={{
-                  ...agentFormData,
-                }}
-                onSubmit={() => alert("sibm")}
-              >
-                <Form className="w-full">
-                  <div>{views[activeSlide]}</div>
-                </Form>
-              </Formik>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        className={`${
-          hideLeft && hideRight
-            ? "hidden"
-            : "relative z-[3000] grid w-full grid-cols-2 gap-1 border-t-[1px] border-t-[#C1C1C1] py-7 lg:flex lg:items-center lg:justify-end lg:px-7"
-        }`}
+    <div ref={leaseRef}>
+      {/* Main area */}
+      <section
+        className={cn(
+          "mx-auto mb-10 mt-5 grid w-full max-w-screen-sm grid-cols-1 gap-10 lg:mt-10 lg:max-w-screen-3xl lg:grid-cols-5 lg:gap-28",
+          {
+            "block max-w-full px-0 lg:max-hd:max-w-screen-lg hd:max-w-screen-xl":
+              lastSlide,
+          },
+        )}
       >
-        <NavigationButton
-          className={` ${
-            hideLeft && "hidden"
-          } col-span-1  rounded-lg border-[1px] border-[#AD842A] font-semibold text-[#AD842A]`}
-          onClick={handleBack}
+        {/* Side image or side bar */}
+        <div
+          className={cn("top-10 w-full lg:sticky lg:col-span-2 lg:h-32", {
+            hidden: lastSlide,
+          })}
         >
-          {firstSlide ? "Go back" : "Back"}
-        </NavigationButton>
-        <NavigationButton
-          className={` ${
-            hideRight && "hidden"
-          } col-span-1 rounded-lg  bg-[#DDB771] font-semibold text-white`}
-          onClick={handleForward}
-        >
-          {firstSlide && "Next"}
-          {!firstSlide && !lastSlide && "Continue"}
-          {lastSlide && "Submit"}
-        </NavigationButton>
-      </div>
-    </Root>
+          <BeMyAgentFormSideImg />
+        </div>
+        <div className="lg:col-span-3">
+          {/* Form */}
+          <Formik
+            initialValues={{
+              ...agentFormData,
+            }}
+            onSubmit={() => alert("sibm")}
+          >
+            <Form>
+              <div>{views[activeSlide]}</div>
+            </Form>
+          </Formik>
+        </div>
+      </section>
+    </div>
   );
 }
 
@@ -185,21 +187,24 @@ const Root = styled("div", {
 });
 
 export const NavigationButton = styled("button", {
-  width: "100%",
+  width: "fit-content",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+  padding: "1rem",
   maxWidth: "224px",
+  minWidth: "16rem",
   borderRadius: "0.5rem",
   fontWeight: "600",
   fontSize: "16px",
   height: "52px",
-  aspectRatio: "224/52",
 
   "@media screen and (max-width:1024px)": {
     fontSize: "13px",
-    aspectRatio: "195/48",
     minHeight: "48px",
-    maxWidth: "100%",
+  },
+
+  "@media screen and (max-width: 425px)": {
+    minWidth: "fit-content",
   },
 });

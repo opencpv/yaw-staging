@@ -2,40 +2,34 @@
 import { ErrorMessage, Field, Formik, useFormik } from "formik";
 import { openSans } from "../../styles/font";
 import { styled } from "@stitches/react";
+import { InputHTMLAttributes } from "react";
 
 type TextFieldInputProps = {
-  label: string;
-  type: string;
   name: string;
-  placeholder: string;
   onChange: (value: any) => void;
+  label?: string;
 };
 
-const TextFieldInput = ({
-  label,
-  type,
-  name,
-  placeholder,
-  onChange,
-}: TextFieldInputProps) => {
+const TextFieldInput: React.FC<
+  TextFieldInputProps & InputHTMLAttributes<HTMLInputElement>
+> = ({ label, name, onChange, ...props }) => {
   return (
     <div
       className={`flex w-full flex-col gap-[0.9375rem] font-[400] capitalize text-[#6A6968]`}
     >
-      <label className="text-[16px]">{label}</label>
+      {label && <label className="normal-case">{label}</label>}
       <Field name={name}>
         {({ field, form: { touched, errors }, meta }: any) => (
           <div>
             <input
-              type={type}
-              placeholder={placeholder}
               {...field}
               onChange={(e) => {
                 field.onChange(e);
                 onChange(e);
               }}
-              className="form-input h-[52px] w-full rounded-[4px] border-[1px] border-[#E6E6E6] px-4
+              className="form-input form-field-border h-[52px] w-full rounded-[4px] px-4
               text-[0.8125rem]"
+              {...props}
             />
 
             {/* {errors[name] && (

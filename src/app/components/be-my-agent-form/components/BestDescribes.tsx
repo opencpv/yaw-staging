@@ -3,11 +3,12 @@ import { styled } from "@stitches/react";
 
 import {
   MdApartment,
+  MdOutlineApartment,
   MdOutlineHouse,
   MdOutlineWarehouse,
 } from "react-icons/md";
 import { GiFamilyHouse } from "react-icons/gi";
-import { BsHouse } from "react-icons/bs";
+import { BsHouse, BsHouses } from "react-icons/bs";
 import { LuWarehouse } from "react-icons/lu";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
@@ -19,16 +20,17 @@ import styles from "./index.module.css";
 
 import InfoText from "../../listing-form/components/InfoText";
 import { BeMyAgentFormType } from "./types";
+import { HiOutlineBuildingOffice } from "react-icons/hi2";
 
 const properties = [
-  { name: "apartment", icon: <MdApartment size="44" /> },
+  { name: "apartment", icon: <MdOutlineApartment size="44" /> },
   { name: "house", icon: <MdOutlineHouse size="44" /> },
   { name: "town house", icon: <TownHouse /> },
   { name: "detached house", icon: <DetachedHouse /> },
-  { name: "semi-detached house", icon: <BsHouse size="44" /> },
+  { name: "semi-detached house", icon: <BsHouses size="44" /> },
   { name: "self contain", icon: <LuWarehouse size="44" /> },
   { name: "compound house", icon: <MdOutlineWarehouse size="44" /> },
-  { name: "mansion", icon: <GiFamilyHouse size="44" /> },
+  { name: "mansion", icon: <HiOutlineBuildingOffice size="44" /> },
   { name: "penthouse", icon: <PentHouse /> },
 ];
 
@@ -37,59 +39,49 @@ type Props = {
 };
 
 export default function BestDescribes({ infoText }: Props) {
+  const [agentFormData, setAgentFormData] =
+    useLocalStorage<BeMyAgentFormType>("agent-form");
   const [selected, setSelected] = useState<any>([]);
-  const [agentFormData, setagentFormData] = useLocalStorage<BeMyAgentFormType>(
-    "agent-form",
-    {
-      maritalStatus: "Single",
-      leaseTerm: "12 months",
-      gender: "Male",
-    }
-  );
 
   const handleAmenityClick = (r: any) => {
-    if (selected.includes(r?.name)) {
-      setSelected(selected.filter((item: any) => item !== r?.name));
+    if (selected?.includes(r?.name)) {
+      setSelected(selected?.filter((item: any) => item !== r?.name));
     } else {
       setSelected([...selected, r?.name]);
     }
   };
 
   useEffect(() => {
-    setagentFormData((prevData: any) => ({
+    setAgentFormData((prevData: any) => ({
       ...prevData,
       propertyType: selected,
     }));
-  }, [selected]);
+  }, [selected, setAgentFormData]);
 
   useEffect(() => {
     if (agentFormData?.propertyType) {
       setSelected(agentFormData?.propertyType);
     }
-  }, []);
+  }, []); // !!!WARNING: Dependency causes Maximum update depth exceed error. Fix required
 
   return (
     <>
-      <Root className="flex flex-col w-full items-center justify-center ">
-        <div className="w-full flex flex-col items-center justify-center gap-1">
-          <div className="w-full flex flex-col gap-8">
-            <p className={`${styles.title} font-semibold`}>
-              Which of these best describes the place you’re looking for?{" "}
-            </p>
-            {infoText && (
-              <InfoText content="You may select more than one response" />
-            )}
-            <p className="text-[1.25rem] font-[400]">Property Type </p>
-          </div>
-          <div
-            className="grid grid-cols-4 lg:grid-cols-3 w-full
-            gap-y-5 gap-x-5
-            ">
+      <Root>
+        <div className="mb-10 flex w-full flex-col gap-8">
+          <h2 className={`${styles.titleNoMargin}`}>Preferred Type</h2>
+          {infoText && (
+            <InfoText content="You may select more than one response" />
+          )}
+        </div>
+        <div className="space-y-4">
+          <h3 className="font-normal">Types of Place</h3>
+          <div className="grid w-full grid-cols-4 gap-5 lg:grid-cols-3">
             {properties.map((r: any, index: number) => (
               <div
                 key={index}
-                className="col-span-2 lg:col-span-1"
-                onClick={() => handleAmenityClick(r)}>
+                className="col-span-2 h-full lg:col-span-1"
+                onClick={() => handleAmenityClick(r)}
+              >
                 <Amenity
                   n={index}
                   name={r?.name}

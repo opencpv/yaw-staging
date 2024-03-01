@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Tooltip as NextUITooltip,
   Popover,
@@ -15,14 +15,22 @@ type Props = {
 };
 
 const Tooltip = ({ children, content, className, onClick }: Props) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      setIsOpen(false);
+    });
+  }, []);
+
   return (
     <>
-      <div className="hidden md:block" onClick={onClick}>
+      <div className="hidden place-items-center md:grid" onClick={onClick}>
         <NextUITooltip
           classNames={{
             base: [
               cn(
-                "z-[30] bg-[#fefefe] cursor-pointer p-5 rounded-full",
+                "z-[30] bg-[#fefefe] cursor-pointer p-5 rounded-3xl",
                 className,
               ),
             ],
@@ -34,16 +42,23 @@ const Tooltip = ({ children, content, className, onClick }: Props) => {
         </NextUITooltip>
       </div>
 
-      <div className="md:hidden" onClick={onClick}>
-        <Popover style={{ zIndex: "30" }} placement="top">
+      {/* Popover used as Tooltip on mobile since tooltip works only on hover */}
+      <div className="grid place-items-center md:hidden" onClick={onClick}>
+        <Popover
+          style={{ zIndex: "30" }}
+          placement="top"
+          isOpen={isOpen}
+          onOpenChange={setIsOpen}
+        >
           <PopoverTrigger className="h-fit w-fit">
             <button className="h-fit w-fit">{children}</button>
           </PopoverTrigger>
           <PopoverContent
             className={cn(
-              "cursor-pointer rounded-full bg-[#fefefe] p-5",
+              "cursor-pointer rounded-3xl bg-[#fefefe] p-5",
               className,
             )}
+            onClick={() => setIsOpen(!isOpen)}
           >
             {content}
           </PopoverContent>
