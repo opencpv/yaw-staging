@@ -37,18 +37,18 @@ const CustomSelect = ({
   prefix,
   name,
 }: Props) => {
-  const [field, meta, helpers] = useField(name as string);
+  // const [field, meta, helpers] = useField(name as string);
 
   return (
     <Root className={cn("w-full text-[#6A6968] focus:border-0", className)}>
       {label && <label>{label}</label>}
       <Select
         onValueChange={(value) => {
-          helpers.setValue(value);
+          // helpers.setValue(value);
           onChange && onChange(value);
         }}
-        value={field.value || value}
-        name={field.name || name}
+        value={value}
+        name={name}
       >
         <SelectTrigger
           className={`form-input w-full capitalize hover:border-black/50 ${
