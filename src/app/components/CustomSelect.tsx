@@ -47,8 +47,8 @@ const CustomSelect = ({
           helpers.setValue(value);
           onChange && onChange(value);
         }}
-        value={value || field.value}
-        name={field.name}
+        value={field.value || value}
+        name={field.name || name}
       >
         <SelectTrigger
           className={`form-input w-full capitalize hover:border-black/50 ${

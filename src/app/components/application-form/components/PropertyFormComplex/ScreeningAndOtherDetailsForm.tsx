@@ -46,6 +46,7 @@ const ScreeningAndOtherDetailsForm = React.forwardRef<HTMLInputElement, Props>(
                 }
               />
               <CustomSelect
+                name="identificationType"
                 placeholder={
                   propertyData?.identificationType || "Please select"
                 }

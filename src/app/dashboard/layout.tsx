@@ -65,7 +65,7 @@ const Wrapper = ({ children }: LayoutProps) => {
     const getUserData = async () => {
       setLoading(true);
       const session = JSON.parse(localStorage.getItem("session") as string);
-      let { data } = await supabase.auth.getUser(session.access_token);
+      let { data } = await supabase?.auth?.getUser(session?.access_token);
       let { data: profiles, error } = await supabase
         .from("profiles")
         .select("*")

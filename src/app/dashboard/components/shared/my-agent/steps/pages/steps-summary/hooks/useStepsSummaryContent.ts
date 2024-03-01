@@ -9,8 +9,12 @@ const useStepsSummaryContent = () => {
     {
       title: "Location",
       content: {
-        City: "Accra",
-        Neighbourhood: "Dansoman",
+        City: agentFormData?.locationArray
+          ?.map((location) => location.locationCity)
+          .join(", "),
+        Neighbourhood: agentFormData?.locationArray
+          ?.map((location) => location.locationNeighbourhood)
+          .join(", "),
       },
     },
     {
@@ -49,8 +53,7 @@ const useStepsSummaryContent = () => {
                 agentFormData?.leaseTermMaximum || ""
               }`,
         Preferred_Payment_Option: agentFormData?.paymentOption || "-",
-        Desired_Move_in_Date:
-          formatDate(agentFormData?.moveInDate as string) || "-",
+        Desired_Move_in_Date: agentFormData?.moveInDate || "-",
       },
     },
     {

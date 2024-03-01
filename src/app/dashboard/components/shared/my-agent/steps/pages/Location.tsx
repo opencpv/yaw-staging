@@ -10,10 +10,12 @@ import { ClientOnly } from "@/components/ui/ClientOnly";
 import CustomSelect from "../../../../../../components/CustomSelect";
 import styles from "../../index.module.css";
 import TextFieldInput from "../../../../../../components/TextFieldInput";
+import { useField } from "formik";
 
 const Location = ({ index, city, neighbourhood }: any) => {
   const [agentFormData, setAgentFormData] = useLocalStorage<any>("agent-form");
   const locationArray = agentFormData?.locationArray || [];
+  const [field, meta, helpers] = useField("locationArray");
 
   const handleInputChange = (field: any, value: any) => {
     const updatedLocation = [...locationArray];
@@ -29,6 +31,7 @@ const Location = ({ index, city, neighbourhood }: any) => {
       locationArray: updatedLocation,
     };
 
+    helpers.setValue(updatedLocation);
     setAgentFormData(updatedAgentFormData);
   };
 
@@ -62,6 +65,8 @@ const Applicants = ({}) => {
   const [agentFormData, setAgentFormData] =
     useLocalStorage<BeMyAgentFormType>("agent-form");
 
+  const [field, meta, helpers] = useField("locationArray");
+
   const [locationLength, setLocationLength] = useState<any>(
     agentFormData?.locationArray?.length || 1,
   );
@@ -73,6 +78,8 @@ const Applicants = ({}) => {
         updatedAgentFormData.locationArray.filter(
           (_: any, currentIndex: any) => currentIndex !== index,
         );
+
+      helpers.setValue(updatedAgentFormData.locationArray);
     }
 
     setAgentFormData(updatedAgentFormData);

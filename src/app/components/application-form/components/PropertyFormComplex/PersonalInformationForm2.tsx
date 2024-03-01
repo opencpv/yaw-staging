@@ -62,6 +62,7 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
               }
             />
             <CustomSelect
+              name="gender"
               placeholder={propertyData?.gender}
               label="Gender"
               options={[
@@ -93,6 +94,7 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
               }}
             />
             <CustomSelect
+              name="maritalStatus"
               label="Marital Status"
               placeholder={
                 propertyData?.maritalStatus || "Select marital status"
