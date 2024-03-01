@@ -16,7 +16,7 @@ export type OptionTypes = {
 type Props = {
   placeholder?: string;
   options: OptionTypes[];
-  onChange: (value: any) => void;
+  onChange?: (value: any) => void;
   label?: string;
   fadeText?: boolean;
   className?: string;
@@ -37,39 +37,38 @@ const CustomSelect = ({
   prefix,
   name,
 }: Props) => {
-
   const [field, meta, helpers] = useField(name as string);
 
   return (
-      <Root className={cn("w-full text-[#6A6968] focus:border-0", className)}>
-        {label && <label>{label}</label>}
-        <Select
-          onValueChange={(value) => {
-            helpers.setValue(value);
-            onChange && onChange(value);
-          }}
-          value={field.value || value}
-          name={field.name || name}
+    <Root className={cn("w-full text-[#6A6968] focus:border-0", className)}>
+      {label && <label>{label}</label>}
+      <Select
+        onValueChange={(value) => {
+          helpers.setValue(value);
+          onChange && onChange(value);
+        }}
+        value={field.value || value}
+        name={field.name || name}
+      >
+        <SelectTrigger
+          className={`form-input w-full capitalize hover:border-black/50 ${
+            fadeText && "text-[#B4B2AF]"
+          }`}
         >
-          <SelectTrigger
-            className={`form-input w-full capitalize hover:border-black/50 ${
-              fadeText && "text-[#B4B2AF]"
-            }`}
-          >
-            <div className="flex items-center gap-5">
-              {prefix && <span>{prefix}</span>}
-              <SelectValue placeholder={placeholder} />
-            </div>
-          </SelectTrigger>
-          <SelectContent className="z-[1001]">
-            {options.map((r, index) => (
-              <SelectItem key={index} value={r?.value} className="capitalize">
-                {r?.name}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </Root>
+          <div className="flex items-center gap-5">
+            {prefix && <span>{prefix}</span>}
+            <SelectValue placeholder={placeholder} />
+          </div>
+        </SelectTrigger>
+        <SelectContent className="z-[1001]">
+          {options.map((r, index) => (
+            <SelectItem key={index} value={r?.value} className="capitalize">
+              {r?.name}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    </Root>
   );
 };
 

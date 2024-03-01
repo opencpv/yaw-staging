@@ -18,12 +18,12 @@ import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 
 type Props = {
   label: string;
-  onChange: (value: any) => void;
+  onChange?: (value: any) => void;
   disabled?: any;
   placeholderDate?: string;
   className?: string;
   name?: string;
-  value: string;
+  value?: string;
 };
 export function CustomDatePicker({
   label,
@@ -72,7 +72,9 @@ export function CustomDatePicker({
           >
             <CalendarIcon className="mr-2 h-4 w-4" />
             {/* {field.value ? format(field.value, "PPP") : <span>DD/MM/YYYY</span>} */}
-            {field.value ? formatDate(field.value) : formatDate(value)}
+            {field.value
+              ? formatDate(field.value)
+              : formatDate(value as string)}
           </Button>
         </PopoverTrigger>
         <PopoverContent
@@ -89,7 +91,7 @@ export function CustomDatePicker({
               }
               helpers.setValue(value);
               setDate(value);
-              onChange(value);
+              onChange && onChange(value);
               setOpen(false);
             }}
             disabled={disabled}

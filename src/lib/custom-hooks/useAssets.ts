@@ -48,7 +48,9 @@ import Brochure from "/public/assets/images/contact/brochure.png";
 import SavedSearches from "/public/assets/images/dashboard/saved-searches.png";
 import FeelingRefreshed from "/public/assets/images/dashboard/feeling-refreshed.jpg";
 import LadyStirringAtPhone from "/public/assets/images/dashboard/lady-stirring-at-phone.jpg";
-// import LadyOnCouch from "/public/assets/images/dashboard/lady-on-couch.jpg";
+import LadyOnCouch from "/public/assets/images/dashboard/lady-on-couch.jpg";
+import YellowNotification from "/public/assets/images/dashboard/notification.jpeg";
+import WhitePoolHouse from "/public/assets/images/dashboard/white-pool-house.jpeg";
 
 export const useAssets = () => {
   return {
@@ -104,7 +106,9 @@ export const useAssets = () => {
       SavedSearches,
       FeelingRefreshed,
       LadyStirringAtPhone,
-      // LadyOnCouch,
+      LadyOnCouch,
+      YellowNotification,
+      WhitePoolHouse,
     },
   };
 };

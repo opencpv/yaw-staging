@@ -1,22 +1,14 @@
 import styles from "../../index.module.css";
-import { CustomDatePicker } from "@/app/components/CustomDatePicker";
-import { useLocalStorage } from "@uidotdev/usehooks";
-import CustomSelect from "@/app/components/CustomSelect";
-import { FirstToKnowFormType } from "../types";
-import InfoText from "@/app/components/listing-form/components/InfoText";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
-const Intro = () => {
+const Success = () => {
   const { images } = useAssets();
 
   return (
     <>
-      <h2 className={`${styles.title}`}>
-        Put RentRight to work for you. Let our algorithm match you with your
-        dream home.
-      </h2>
+      <h2 className={`${styles.title}`}>Last page</h2>
       <div className="flex flex-col">
         <HeadsUp
           number={1}
@@ -27,30 +19,12 @@ const Intro = () => {
             alt: "lady-stirring-at-phone",
           }}
         />
-        <HeadsUp
-          number={2}
-          title="Make payment"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing."
-          image={{
-            src: images.LadyStirringAtPhone,
-            alt: "lady-stirring-at-phone",
-          }}
-        />
-        <HeadsUp
-          number={3}
-          title="Watch matches and receive notifications"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing."
-          image={{
-            src: images.YellowNotification,
-            alt: "lady-stirring-at-phone",
-          }}
-        />
       </div>
     </>
   );
 };
 
-export default Intro;
+export default Success;
 
 type Props = {
   image: {

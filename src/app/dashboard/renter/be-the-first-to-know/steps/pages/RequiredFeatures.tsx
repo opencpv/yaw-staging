@@ -1,15 +1,10 @@
-import { styled } from "@stitches/react";
-import { useEffect, useState } from "react";
-import { useLocalStorage } from "@uidotdev/usehooks";
-import Amenity from "../../../../../../components/listing-form/components/Amenity";
+import { useState } from "react";
+import Amenity from "@/app/components/listing-form/components/Amenity";
 import styles from "../../index.module.css";
-import { BeMyAgentFormType } from "../types";
 import { useField } from "formik";
-import { requiredFeatures } from "../../../content";
+import { requiredFeatures } from "@/app/dashboard/components/shared/content";
 
-export default function FeaturesAndAmenities() {
-  const [agentFormData, setAgentFormData] =
-    useLocalStorage<BeMyAgentFormType>("agent-form");
+const RequiredFeatures = () => {
   const [selected, setSelected] = useState<any>([]);
   const [field, meta, helpers] = useField("featuresAndAmenities");
 
@@ -23,22 +18,22 @@ export default function FeaturesAndAmenities() {
     }
   };
 
-  useEffect(() => {
-    setAgentFormData((prevData: any) => ({
-      ...prevData,
-      featuresAndAmenities: selected,
-    }));
-  }, [selected, setAgentFormData]);
+  // useEffect(() => {
+  //   setAgentFormData((prevData: any) => ({
+  //     ...prevData,
+  //     featuresAndAmenities: selected,
+  //   }));
+  // }, [selected, setAgentFormData]);
 
-  useEffect(() => {
-    if (agentFormData?.featuresAndAmenities) {
-      setSelected(agentFormData?.featuresAndAmenities);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (agentFormData?.featuresAndAmenities) {
+  //     setSelected(agentFormData?.featuresAndAmenities);
+  //   }
+  // }, []);
 
   return (
     <>
-      <Root>
+      <section>
         <h2 className={`${styles.title}`}>Required Features</h2>
         <div className="grid w-full grid-cols-4 gap-5 lg:grid-cols-3">
           {requiredFeatures.map((r: any, index: number) => (
@@ -56,20 +51,9 @@ export default function FeaturesAndAmenities() {
             </div>
           ))}
         </div>
-      </Root>
+      </section>
     </>
   );
-}
+};
 
-const Root = styled("div", {
-  ".amenity-col": {
-    display: "flex",
-    flexDirection: "column",
-    gap: "16px",
-    justifyContent: "center",
-    alignItems: "center",
-    "@media screen and (min-width: 1024px)": {
-      justifyContent: "start",
-    },
-  },
-});
+export default RequiredFeatures;
