@@ -18,6 +18,7 @@ import StepsModalSideImg from "../../../../../../components/__shared/modals/step
 import { useScrollToTop } from "@/lib/custom-hooks/useWindowEvents";
 import { format } from "date-fns";
 import { enUS } from "date-fns/locale";
+import { formatDate } from "@/lib/utils/stringManipulation";
 
 export const views = [
   <Location key={"location"} />,
@@ -47,6 +48,12 @@ export const views = [
 export const beMyAgentDefaultValues = {
   locationCity: "Accra",
   locationNeighbourhood: "Dansoman",
+  locationArray: [
+    {
+      locationCity: "Accra",
+      locationNeighbourhood: "Dansoman",
+    },
+  ],
   priceRangeMinimum: "100",
   priceRangeMaximum: "100",
   bedMinimum: "1",
@@ -65,7 +72,7 @@ export const beMyAgentDefaultValues = {
   mostRecentEmployment: "Employed",
   employersCountry: "Republic of Ghana",
   monthlyIncome: "1000 - 2000",
-  moveInDate: format(new Date(), "do MMM yyyy", { locale: enUS }),
+  moveInDate: formatDate(new Date().toISOString()),
 };
 
 export default function BeMyAgentForm() {

@@ -79,6 +79,7 @@ const PersonalInformationForm1 = React.forwardRef<HTMLInputElement, Props>(
               }
             />
             <CustomSelect
+              name="gender"
               placeholder={propertyData?.gender}
               label="Gender"
               options={[
@@ -90,6 +91,7 @@ const PersonalInformationForm1 = React.forwardRef<HTMLInputElement, Props>(
               }
             />
             <CustomSelect
+              name="maritalStatus"
               label="Marital Status"
               placeholder={
                 propertyData?.maritalStatus || "Select marital status"
@@ -152,6 +154,7 @@ const PersonalInformationForm1 = React.forwardRef<HTMLInputElement, Props>(
               }
             />
             <CustomSelect
+              name="mostRecentEmployment"
               options={MostRecentEmployment}
               placeholder={
                 propertyData?.mostRecentEmployment || "Most Recent Employment"
@@ -165,6 +168,7 @@ const PersonalInformationForm1 = React.forwardRef<HTMLInputElement, Props>(
               }
             />
             <CustomSelect
+              name="preferedMethodOfContact"
               options={PreferedMethodOfContact}
               placeholder={propertyData?.preferredMethodOfContact || "Select"}
               label="Preferred Method Of Contact"

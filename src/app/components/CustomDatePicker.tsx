@@ -72,7 +72,7 @@ export function CustomDatePicker({
           >
             <CalendarIcon className="mr-2 h-4 w-4" />
             {/* {field.value ? format(field.value, "PPP") : <span>DD/MM/YYYY</span>} */}
-            {field.value ? formatDate(field.value) : value}
+            {field.value ? formatDate(field.value) : formatDate(value)}
           </Button>
         </PopoverTrigger>
         <PopoverContent

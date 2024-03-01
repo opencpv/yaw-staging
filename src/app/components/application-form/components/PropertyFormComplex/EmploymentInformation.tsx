@@ -57,6 +57,7 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
           <div className="grid grid-cols-3 gap-x-5 gap-y-5">
             <div className="form-col col-span-3 lg:col-span-1">
               <CustomSelect
+                name="mostRecentEmployment"
                 options={MostRecentEmployment}
                 placeholder={
                   propertyData?.mostRecentEmployment || "Most Recent Employment"
