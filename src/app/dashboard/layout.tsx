@@ -74,6 +74,7 @@ const Wrapper = ({ children }: LayoutProps) => {
         ...(profiles && profiles[0]),
         email: data?.user?.email,
       };
+      console.log("profileData", profileData);
       setUser(profileData);
     };
 

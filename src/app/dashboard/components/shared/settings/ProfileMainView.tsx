@@ -4,7 +4,7 @@ import {
   createClientComponentClient,
 } from "@supabase/auth-helpers-nextjs";
 import { useContext, useEffect, useState } from "react";
-import ProfileInfo from "./ProfileIInfo";
+import ProfileInfo from "./ProfileInfo";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useManageAccountStore } from "@/store/dashboard/propertiesStore";
 import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
@@ -14,14 +14,14 @@ const ProfileMainView = () => {
   const supabase = createClientComponentClient();
   const [loading, setLoading] = useState<boolean>(false);
 
-  const user = useAppStore(state => state.user);
+  const user = useAppStore((state) => state.user);
+  console.log(user);
   const optionSelect = useManageAccountStore(
     (state: any) => state.filterOption,
   );
   const handleOptionChange = useManageAccountStore(
     (state: any) => state.changeOption,
   );
-
 
   return (
     <main className="pb-[60px]">
@@ -48,10 +48,7 @@ const ProfileMainView = () => {
         <Tab key="profile" title="Profile">
           <div>
             <p className="text-[1.5625rem] font-semibold">Profile</p>
-            <ProfileInfo
-              profileData={user?.profileData}
-              supabase={supabase}
-            />
+            <ProfileInfo />
           </div>
         </Tab>
         <Tab key="blocking" title="Blocking">
