@@ -37,18 +37,10 @@ const CustomSelect = ({
   prefix,
   name,
 }: Props) => {
-  const [field, meta, helpers] = useField(name as string);
-  const { FormikProvider } = require("formik");
 
-  const formik = useFormik({
-    initialValues: {
-      [name || ""]: value,
-    },
-    onSubmit: () => {},
-  });
+  const [field, meta, helpers] = useField(name as string);
 
   return (
-    <FormikProvider value={formik}>
       <Root className={cn("w-full text-[#6A6968] focus:border-0", className)}>
         {label && <label>{label}</label>}
         <Select
@@ -78,7 +70,6 @@ const CustomSelect = ({
           </SelectContent>
         </Select>
       </Root>
-    </FormikProvider>
   );
 };
 

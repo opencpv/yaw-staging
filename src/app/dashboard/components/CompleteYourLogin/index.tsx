@@ -5,6 +5,7 @@ import { Button } from "@nextui-org/react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import * as Dialog from "@radix-ui/react-dialog";
 import { useState } from "react";
+import { Form, Formik } from "formik";
 
 type Props = {
   open?: any;
@@ -39,27 +40,31 @@ function CompleteYourLogin({ open, dashboard, setOpen }: Props) {
                     <p className="text-[1.9375rem] font-bold text-primary-400">
                       Complete your registration
                     </p>
-                    <CustomSelect
-                      name="role"
-                      onChange={(value) => {
-                        setDashboardType(value);
-                      }}
-                      placeholder="Renter"
-                      label="What is your role?"
-                      options={[
-                        { name: "Renter", value: "Renter" },
-                        { name: "Renter", value: "Renter" },
-                        { name: "Renter", value: "Renter" },
-                      ]}
-                    />
-                    <div className="flex  w-full justify-end">
-                      <Button
-                        className="flex h-[52px] w-full max-w-[151px] items-center justify-center rounded-lg bg-accent-50 px-8 py-4 font-semibold text-white"
-                        onClick={handleClick}
-                      >
-                        Continue
-                      </Button>
-                    </div>
+                    <Formik initialValues={{}} onSubmit={() => {}}>
+                      <Form>
+                        <CustomSelect
+                          name="role"
+                          onChange={(value) => {
+                            setDashboardType(value);
+                          }}
+                          placeholder="Renter"
+                          label="What is your role?"
+                          options={[
+                            { name: "Renter", value: "Renter" },
+                            { name: "Renter", value: "Renter" },
+                            { name: "Renter", value: "Renter" },
+                          ]}
+                        />
+                        <div className="flex  w-full justify-end">
+                          <Button
+                            className="flex h-[52px] w-full max-w-[151px] items-center justify-center rounded-lg bg-accent-50 px-8 py-4 font-semibold text-white"
+                            onClick={handleClick}
+                          >
+                            Continue
+                          </Button>
+                        </div>
+                      </Form>
+                    </Formik>
                   </div>
                 </div>
               </div>
