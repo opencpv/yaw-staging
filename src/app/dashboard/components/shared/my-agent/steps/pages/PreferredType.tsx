@@ -12,18 +12,7 @@ import { IoHomeOutline } from "react-icons/io5";
 import { GoHome } from "react-icons/go";
 import { PiBuildings, PiHouseLine, PiWarehouse } from "react-icons/pi";
 import { useField } from "formik";
-
-const properties = [
-  { name: "apartment", icon: <PiBuildings size="44" /> },
-  { name: "house", icon: <IoHomeOutline size="44" /> },
-  { name: "town house", icon: <GoHome size="44" /> },
-  { name: "detached house", icon: <HiOutlineHome size="44" /> },
-  { name: "semi-detached house", icon: <BsHouses size="44" /> },
-  { name: "self contain", icon: <PiHouseLine size="44" /> },
-  { name: "compound house", icon: <PiWarehouse size="44" /> },
-  { name: "mansion", icon: <HiOutlineBuildingOffice size="44" /> },
-  { name: "penthouse", icon: <BsBuilding size="44" /> },
-];
+import { properties } from "../../../content";
 
 type Props = {
   infoText?: boolean;

@@ -11,36 +11,32 @@ import { useScrollToTop } from "@/lib/custom-hooks/useWindowEvents";
 import { format } from "date-fns";
 import { enUS } from "date-fns/locale";
 import Intro from "./pages/Intro";
+import SearchTitle from "./pages/SearchTitle";
+import Location from "./pages/Location";
+import PreferredType from "./pages/PreferredType";
+import Success from "./pages/Success";
+import PropertyRequirements from "./pages/PropertyRequirements";
 
 export const views = [
   <Intro key={"intro"} />,
-  // <ClientOnly key={"preferred-type"}>
-  //   <PreferredType infoText key={"preferred-type"} />
-  // </ClientOnly>,
+  <SearchTitle key={"search-title"} />,
+  <Location key={"location"} />,
+  <PreferredType key={"preferred-type"} />,
+  <PropertyRequirements key={"property-requirements"} />,
+  <Success key={"success"} />,
 ];
 
 export const firstToKnowDefaultValues = {
-  // locationCity: "Accra",
-  // locationNeighbourhood: "Dansoman",
-  // priceRangeMinimum: "100",
-  // priceRangeMaximum: "100",
-  // bedMinimum: "1",
-  // bedMaximum: "1",
-  // bathroomMinimum: "1",
-  // bathroomMaximum: "1",
-  // leaseTermMinimum: "1",
-  // leaseTermMaximum: "1",
-  // paymentOption: "Rent Advance",
-  // title: "Mrs.",
-  // dateOfBirth: "18 - 44",
-  // maritalStatus: "Single",
-  // tenants: "1 - 5",
-  // country: "Republic of Ghana",
-  // preferredMethodOfContact: "email",
-  // mostRecentEmployment: "Employed",
-  // employersCountry: "Republic of Ghana",
-  // monthlyIncome: "1000 - 2000",
-  // moveInDate: format(new Date(), "do MMM yyyy", { locale: enUS }),
+  location: "Accra",
+  priceRangeMinimum: "100",
+  priceRangeMaximum: "100",
+  bedMinimum: "1",
+  bedMaximum: "1",
+  bathroomMinimum: "1",
+  bathroomMaximum: "1",
+  preferredType: [],
+  requiredFeatures: [],
+  moveInDate: format(new Date(), "do MMM yyyy", { locale: enUS }),
 };
 
 export default function FirstToKnowForm() {
@@ -49,15 +45,15 @@ export default function FirstToKnowForm() {
   const {
     activeSlide,
     setProgressValue,
+    firstSlide,
     lastSlide,
     setFirstSlide,
     setLastSlide,
   } = firstToKnowStepsStore();
 
   const formRef = useRef<HTMLDivElement>(null);
-  // const [otp, setOtp] = useState(false);
 
-  useScrollToTop(formRef, [activeSlide], "instant");
+  // useScrollToTop(formRef, [activeSlide], "instant");
 
   useEffect(() => {
     if (activeSlide < 1) {
@@ -76,6 +72,8 @@ export default function FirstToKnowForm() {
     setProgressValue(value);
   }, [activeSlide, setFirstSlide, setLastSlide, lastSlide, setProgressValue]);
 
+  const sideImageCriteria = firstSlide || lastSlide || activeSlide === 2;
+
   return (
     <ClientOnly>
       <div>
@@ -85,17 +83,20 @@ export default function FirstToKnowForm() {
             "mx-auto mb-10 mt-5 grid w-full max-w-screen-sm grid-cols-1 gap-10 lg:mt-10 lg:max-w-screen-3xl lg:grid-cols-5 lg:gap-28",
             {
               "block max-w-full px-0 lg:max-hd:max-w-screen-lg hd:max-w-screen-xl":
-                lastSlide,
+                sideImageCriteria,
             },
           )}
         >
           {/* Side image or side bar */}
           <div
             className={cn("top-10 w-full lg:sticky lg:col-span-2 lg:h-32", {
-              hidden: lastSlide,
+              hidden: sideImageCriteria,
             })}
           >
-            <StepsModalSideImg image={images.FeelingRefreshed} />
+            <StepsModalSideImg
+              image={images.LadyOnCouch}
+              sideImageClassName="object-center lg:object-center"
+            />
           </div>
           <div className="lg:col-span-3" ref={formRef}>
             <div>{views[activeSlide]}</div>

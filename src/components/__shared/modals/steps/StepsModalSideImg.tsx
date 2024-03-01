@@ -5,6 +5,7 @@ import React from "react";
 
 type Props = {
   className?: string;
+  sideImageClassName?: string;
   image: string | StaticImageData;
 };
 
@@ -21,7 +22,7 @@ const StepsModalSideImg = (props: Props) => {
         alt="person relaxing on couch"
         fill
         style={{ objectFit: "cover" }}
-        className="rounded-[inherit] object-left-top lg:object-left"
+        className={cn("rounded-[inherit] object-left-top lg:object-left", props.sideImageClassName)}
       />
     </div>
   );

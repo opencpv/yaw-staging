@@ -6,7 +6,7 @@ import { InputHTMLAttributes } from "react";
 
 type TextFieldInputProps = {
   name: string;
-  onChange: (value: any) => void;
+  onChange?: (value: any) => void;
   label?: string;
 };
 
@@ -25,7 +25,7 @@ const TextFieldInput: React.FC<
               {...field}
               onChange={(e) => {
                 field.onChange(e);
-                onChange(e);
+                onChange && onChange(e);
               }}
               className="form-input form-field-border h-[52px] w-full rounded-[4px] px-4
               text-[0.8125rem]"
