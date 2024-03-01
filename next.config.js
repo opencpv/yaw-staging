@@ -10,6 +10,7 @@ const nextConfig = {
       "cdn.sanity.io",
       "th.bing.com",
       "plus.unsplash.com",
+      "avatar.iran.liara.run"
     ],
   },
 };
