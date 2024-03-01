@@ -9,15 +9,15 @@ import { properties } from "@/app/dashboard/components/shared/content";
 export default function PreferredType() {
   const [selected, setSelected] = useState<any>([]);
 
-  const [field, meta, helpers] = useField("propertyType");
+  const [field, meta, helpers] = useField("preferredType");
 
   const handleAmenityClick = (r: any) => {
-    if (selected?.includes(r?.name)) {
-      setSelected(selected?.filter((item: any) => item !== r?.name));
-      helpers.setValue(selected?.filter((item: any) => item !== r?.name));
+    if (field.value?.includes(r?.name)) {
+      // setSelected(selected?.filter((item: any) => item !== r?.name));
+      helpers.setValue(field.value?.filter((item: any) => item !== r?.name));
     } else {
-      setSelected([...selected, r?.name]);
-      helpers.setValue([...selected, r?.name]);
+      // setSelected([...selected, r?.name]);
+      helpers.setValue([...field.value, r?.name]);
     }
   };
 
@@ -54,7 +54,7 @@ export default function PreferredType() {
                   n={index}
                   name={r?.name}
                   icon={r?.icon}
-                  selected={selected?.includes(r?.name)}
+                  selected={field.value.includes(r?.name)}
                 />
               </div>
             ))}

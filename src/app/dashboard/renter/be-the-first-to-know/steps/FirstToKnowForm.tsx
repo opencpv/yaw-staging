@@ -16,6 +16,7 @@ import Location from "./pages/Location";
 import PreferredType from "./pages/PreferredType";
 import Success from "./pages/Success";
 import PropertyRequirements from "./pages/PropertyRequirements";
+import RequiredFeatures from "./pages/RequiredFeatures";
 
 export const views = [
   <Intro key={"intro"} />,
@@ -23,6 +24,7 @@ export const views = [
   <Location key={"location"} />,
   <PreferredType key={"preferred-type"} />,
   <PropertyRequirements key={"property-requirements"} />,
+  <RequiredFeatures key={"required-features"} />,
   <Success key={"success"} />,
 ];
 
@@ -36,7 +38,6 @@ export const firstToKnowDefaultValues = {
   bathroomMaximum: "1",
   preferredType: [],
   requiredFeatures: [],
-  moveInDate: format(new Date(), "do MMM yyyy", { locale: enUS }),
 };
 
 export default function FirstToKnowForm() {
