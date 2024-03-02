@@ -3,11 +3,11 @@ import { styled } from "@stitches/react";
 import { useField } from "formik";
 
 type Props = {
-  label: string;
   rows?: number;
   classes: string;
-  onChange: (e: any) => void;
+  onChange?: (e: any) => void;
   placeholder: string;
+  label?: string;
   name?: string;
   initialValues?: string;
 };
@@ -24,12 +24,13 @@ const CustomTextAreaInput = ({
 
   return (
     <Root className="text-[#6A6968]">
-      <label htmlFor="">{label}</label>
+      {label && <label htmlFor="">{label}</label>}
+
       <textarea
         className={`form-input hidden-scrollbar pb-5 hover:border-black/50 ${classes}`}
         placeholder={placeholder}
         onChange={(e) => {
-          onChange(e);
+          onChange && onChange(e);
           field.onChange(e);
         }}
         name={field.name}

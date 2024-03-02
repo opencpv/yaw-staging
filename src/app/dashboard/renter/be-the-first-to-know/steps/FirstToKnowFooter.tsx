@@ -57,7 +57,6 @@ const FirstToKnowFooter = ({ onClose }: Props) => {
           "col-span-1 h-[58px] rounded-lg font-semibold focus:outline-none xs:text-base sm:min-w-[16rem]",
           {
             "bg-primary-200/80 text-white hover:bg-primary-200": firstSlide,
-            invisible: lastSlide,
           },
         )}
         onClick={handleBack}
@@ -66,7 +65,12 @@ const FirstToKnowFooter = ({ onClose }: Props) => {
       </Button>
       <Button
         color="accent"
-        className="col-span-1 h-[58px] rounded-lg font-semibold focus:outline-none xs:text-base sm:min-w-[16rem]"
+        className={cn(
+          "col-span-1 h-[58px] rounded-lg font-semibold focus:outline-none xs:text-base sm:min-w-[16rem]",
+          {
+            hidden: lastSlide,
+          },
+        )}
         onClick={() => {
           handleForward();
         }}

@@ -9,7 +9,7 @@ const SearchTitle = () => {
         <TextFieldInput
           type="text"
           name="searchTitle"
-          label="Provide a search title"
+          label="Provide a title for your search criteria"
           placeholder="Search title"
         />
       </div>

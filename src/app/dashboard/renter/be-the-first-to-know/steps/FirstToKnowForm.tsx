@@ -1,13 +1,11 @@
 "use client";
 
-import { styled } from "@stitches/react";
 import { useEffect, useRef } from "react";
 import { ClientOnly } from "@/components/ui/ClientOnly";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { cn } from "@/lib/utils";
 import { firstToKnowStepsStore } from "@/store/dashboard/firstToKnowStepsStore";
 import StepsModalSideImg from "@/components/__shared/modals/steps/StepsModalSideImg";
-import { useScrollToTop } from "@/lib/custom-hooks/useWindowEvents";
 import { format } from "date-fns";
 import { enUS } from "date-fns/locale";
 import Intro from "./pages/Intro";
@@ -17,6 +15,7 @@ import PreferredType from "./pages/PreferredType";
 import Success from "./pages/Success";
 import PropertyRequirements from "./pages/PropertyRequirements";
 import RequiredFeatures from "./pages/RequiredFeatures";
+import SpecialKeyword from "./pages/SpecialKeyword";
 
 export const views = [
   <Intro key={"intro"} />,
@@ -25,6 +24,7 @@ export const views = [
   <PreferredType key={"preferred-type"} />,
   <PropertyRequirements key={"property-requirements"} />,
   <RequiredFeatures key={"required-features"} />,
+  <SpecialKeyword key={"special-keyword"} />,
   <Success key={"success"} />,
 ];
 
@@ -38,6 +38,7 @@ export const firstToKnowDefaultValues = {
   bathroomMaximum: "1",
   preferredType: [],
   requiredFeatures: [],
+  preferredMethodOfContact: "email",
 };
 
 export default function FirstToKnowForm() {
@@ -107,32 +108,3 @@ export default function FirstToKnowForm() {
     </ClientOnly>
   );
 }
-
-const Root = styled("div", {
-  ".progress-emoji": {
-    boxShadow: "0px 24px 48px -12px rgba(0, 0, 0, 0.18)",
-  },
-});
-
-export const NavigationButton = styled("button", {
-  width: "fit-content",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  padding: "1rem",
-  maxWidth: "224px",
-  minWidth: "16rem",
-  borderRadius: "0.5rem",
-  fontWeight: "600",
-  fontSize: "16px",
-  height: "52px",
-
-  "@media screen and (max-width:1024px)": {
-    fontSize: "13px",
-    minHeight: "48px",
-  },
-
-  "@media screen and (max-width: 425px)": {
-    minWidth: "fit-content",
-  },
-});
