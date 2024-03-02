@@ -1,11 +1,6 @@
 import styles from "../../index.module.css";
-import { CustomDatePicker } from "@/app/components/CustomDatePicker";
-import { useLocalStorage } from "@uidotdev/usehooks";
-import CustomSelect from "@/app/components/CustomSelect";
-import { FirstToKnowFormType } from "../types";
-import InfoText from "@/app/components/listing-form/components/InfoText";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
 const Intro = () => {
@@ -29,19 +24,19 @@ const Intro = () => {
         />
         <HeadsUp
           number={2}
-          title="Make payment"
+          title="Receive notifications"
           description="Lorem ipsum dolor sit amet, consectetur adipiscing."
           image={{
-            src: images.LadyStirringAtPhone,
+            src: images.YellowNotification,
             alt: "lady-stirring-at-phone",
           }}
         />
         <HeadsUp
           number={3}
-          title="Watch matches and receive notifications"
+          title="View matches"
           description="Lorem ipsum dolor sit amet, consectetur adipiscing."
           image={{
-            src: images.YellowNotification,
+            src: images.LadyStirringAtPhone,
             alt: "lady-stirring-at-phone",
           }}
         />

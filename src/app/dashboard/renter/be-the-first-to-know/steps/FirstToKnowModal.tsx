@@ -11,6 +11,7 @@ import FirstToKnowForm, { firstToKnowDefaultValues } from "./FirstToKnowForm";
 import * as Yup from "yup";
 import FirstToKnowFooter from "./FirstToKnowFooter";
 import FirstToKnowHeader from "./FirstToKnowHeader";
+import { firstToKnowStepsStore } from "@/store/dashboard/firstToKnowStepsStore";
 
 type Props = {
   button?: "Hire Us Now" | "Get Started" | "Ghost" | "Edit" | "Price";
@@ -32,6 +33,8 @@ const FirstToKnowModal = (props: Props) => {
   // const [firstToKnowFormData] =
   //   useLocalStorage<FirstToKnowFormType>("first-to-know-form");
 
+  const { lastSlide } = firstToKnowStepsStore();
+
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -50,11 +53,12 @@ const FirstToKnowModal = (props: Props) => {
       >
         <Form>
           <StepsModal
-            header={<Header onClose={() => setOpen(false)} />}
+            header={!lastSlide && <Header onClose={() => setOpen(false)} />}
             body={<Body />}
             footer={<Footer onClose={() => setOpen(false)} />}
             open={open}
             onOpenChange={setOpen}
+            footerClassName={lastSlide ? "border-t-0" : "border-t"}
           />
         </Form>
       </Formik>
@@ -66,9 +70,9 @@ export default FirstToKnowModal;
 
 const Header = ({ onClose }: { onClose: () => void }) => {
   return (
-    <>
+    <div className="">
       <FirstToKnowHeader onClose={onClose} />
-    </>
+    </div>
   );
 };
 
