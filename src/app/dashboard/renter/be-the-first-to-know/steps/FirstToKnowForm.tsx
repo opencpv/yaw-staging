@@ -16,6 +16,7 @@ import Success from "./pages/Success";
 import PropertyRequirements from "./pages/PropertyRequirements";
 import RequiredFeatures from "./pages/RequiredFeatures";
 import SpecialKeyword from "./pages/SpecialKeyword";
+import { useScrollToTop } from "@/lib/custom-hooks/useWindowEvents";
 
 export const views = [
   <Intro key={"intro"} />,
@@ -55,7 +56,7 @@ export default function FirstToKnowForm() {
 
   const formRef = useRef<HTMLDivElement>(null);
 
-  // useScrollToTop(formRef, [activeSlide], "instant");
+  useScrollToTop(formRef, [activeSlide], "instant");
 
   useEffect(() => {
     if (activeSlide < 1) {
