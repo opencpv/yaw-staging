@@ -86,10 +86,10 @@ export default function BeMyAgentForm() {
     setLastSlide,
   } = beMyAgentStepsStore();
 
-  const formRef = useRef<HTMLDivElement>(null);
+  const beMyAgentFormRef = useRef<HTMLDivElement>(null);
   // const [otp, setOtp] = useState(false);
 
-  useScrollToTop(formRef, [activeSlide], "instant");
+  useScrollToTop(beMyAgentFormRef, [activeSlide], "instant");
 
   useEffect(() => {
     if (activeSlide < 1) {
@@ -129,7 +129,7 @@ export default function BeMyAgentForm() {
           >
             <StepsModalSideImg image={images.FeelingRefreshed} />
           </div>
-          <div className="lg:col-span-3" ref={formRef}>
+          <div className="lg:col-span-3" ref={beMyAgentFormRef}>
             <div>{views[activeSlide]}</div>
           </div>
         </section>

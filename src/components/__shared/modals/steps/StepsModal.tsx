@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { cn } from "@/lib/utils";
 
@@ -20,17 +20,29 @@ const StepsModal = ({
   footerClassName,
   onOpenChange,
 }: Props) => {
+  useEffect(() => {
+    if (open) {
+      setTimeout(() => {
+        document.body.classList.add("pointer-events-none");
+      }, 300);
+    } else {
+      setTimeout(() => {
+        document.body.classList.remove("pointer-events-none");
+      }, 300);
+    }
+  }, [open]);
+
   return (
     <Dialog.Root onOpenChange={onOpenChange} open={open}>
       <Dialog.Portal>
         <Dialog.Overlay
           className="data-[state=open]:animate-overlayShow fixed inset-0 z-[200] bg-blackA6"
-          onClick={(e) => e.stopPropagation()}
+          style={{ pointerEvents: "initial" }}
         />
         <Dialog.Content
           className="data-[state=open]:animate-contentShow fixed left-[50%] top-[50%] z-[200] box-border flex h-[100dvh] max-h-screen w-[100dvw] translate-x-[-50%] translate-y-[-50%] flex-col overflow-y-hidden !rounded-none bg-[#fefefe] shadow-small outline-none focus:outline-none"
           onEscapeKeyDown={(e) => e.preventDefault()}
-          onClick={(e) => e.stopPropagation()}
+          style={{ pointerEvents: "initial" }}
         >
           {header && (
             <div className="flex flex-initial flex-col gap-1 px-6 py-4 text-large font-semibold">

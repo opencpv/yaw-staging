@@ -54,9 +54,13 @@ export default function FirstToKnowForm() {
     setLastSlide,
   } = firstToKnowStepsStore();
 
-  const formRef = useRef<HTMLDivElement>(null);
+  const firstToKnowFormRef = useRef<HTMLDivElement>(null);
 
-  useScrollToTop(formRef, [activeSlide], "instant");
+  useEffect(() => {
+    if (firstToKnowFormRef.current) {
+      firstToKnowFormRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
 
   useEffect(() => {
     if (activeSlide < 1) {
@@ -101,7 +105,7 @@ export default function FirstToKnowForm() {
               sideImageClassName="object-center lg:object-center"
             />
           </div>
-          <div className="lg:col-span-3" ref={formRef}>
+          <div className="lg:col-span-3" ref={firstToKnowFormRef}>
             <div>{views[activeSlide]}</div>
           </div>
         </section>
