@@ -9,8 +9,8 @@ const Intro = () => {
   return (
     <>
       <h2 className={`${styles.title}`}>
-        Put RentRight to work for you. Let our algorithm match you with your
-        dream home.
+        Put RentRight to work for you. Let our AI engine match you with your
+        dream rental.
       </h2>
       <div className="flex flex-col">
         <HeadsUp
@@ -18,7 +18,7 @@ const Intro = () => {
           title="Tell us about your dream home"
           description="Lorem ipsum dolor sit amet, consectetur adipiscing."
           image={{
-            src: images.WhitePoolHouse,
+            src: images.CoupleStirringIntoSpace,
             alt: "lady-stirring-at-phone",
           }}
         />

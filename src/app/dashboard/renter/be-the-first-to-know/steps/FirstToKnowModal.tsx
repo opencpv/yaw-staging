@@ -53,7 +53,7 @@ const FirstToKnowModal = (props: Props) => {
           <StepsModal
             header={!lastSlide && <Header onClose={onOpen} />}
             body={<Body />}
-            footer={<Footer onClose={onOpen} />}
+            footer={!lastSlide && <Footer onClose={onOpen} />}
             open={isOpen}
             onOpenChange={onOpen}
             footerClassName={lastSlide ? "border-t-0" : "border-t"}
