@@ -8,17 +8,25 @@ import { cn } from "@/lib/utils";
 
 type Props = {
   /** The current value of the progress bar */
+  firstSlide: boolean;
+  lastSlide: boolean;
+  shouldShowMotivationMessage: boolean;
+  setShouldShowMotivationMessage: (value: boolean) => void;
   value: number;
+  middleSlide?: boolean;
+  hideDopeMessage?: true;
 };
 
-export default function Progress({ value }: Props) {
+export default function Progress({
+  value,
+  firstSlide,
+  lastSlide,
+  middleSlide,
+  shouldShowMotivationMessage,
+  setShouldShowMotivationMessage,
+  hideDopeMessage,
+}: Props) {
   const [message, setMessage] = useState("");
-  const {
-    firstSlide,
-    lastSlide,
-    shouldShowMotivationMessage,
-    setShouldShowMotivationMessage,
-  } = beMyAgentStepsStore();
   const [messageIcon, setMessageIcon] = useState<React.ReactElement | null>(
     null,
   );
@@ -40,11 +48,11 @@ export default function Progress({ value }: Props) {
     if (firstSlide) {
       showMessageFor3Seconds("Get started", <IoMdHappy />);
     } else if (lastSlide) {
-      showMessageFor3Seconds("You're dope", <PiConfetti />);
+      !hideDopeMessage && showMessageFor3Seconds("You're dope", <PiConfetti />);
       setTimeout(() => {
         setShouldShowMotivationMessage(false);
       }, 3000);
-    } else if (value >= 30 && value <= 40) {
+    } else if (middleSlide ?? (value >= 30 && value <= 40)) {
       showMessageFor3Seconds("You got this", <GiBiceps />);
     } else if (value >= 70 && value <= 80) {
       showMessageFor3Seconds("Almost there", <FaRegThumbsUp />);
@@ -63,7 +71,13 @@ export default function Progress({ value }: Props) {
       setMessage("");
       setMessageIcon(null);
     }
-  }, [firstSlide, lastSlide, value, setShouldShowMotivationMessage]);
+  }, [
+    firstSlide,
+    lastSlide,
+    value,
+    setShouldShowMotivationMessage,
+    middleSlide,
+  ]);
 
   return (
     <div className="h-[16px] w-full rounded-2xl bg-[#FEF8ED]">

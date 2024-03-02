@@ -16,7 +16,13 @@ const BeMyAgentHeader = ({ onClose }: Props) => {
   const [agentFormData, setAgentFormData] =
     useLocalStorage<BeMyAgentFormType>("agent-form");
 
-  const { progressValue } = beMyAgentStepsStore();
+  const {
+    progressValue,
+    firstSlide,
+    lastSlide,
+    shouldShowMotivationMessage,
+    setShouldShowMotivationMessage,
+  } = beMyAgentStepsStore();
 
   return (
     <section className="flex flex-col gap-4">
@@ -37,7 +43,13 @@ const BeMyAgentHeader = ({ onClose }: Props) => {
       </div>
 
       <div className="mt-0 w-full">
-        <Progress value={progressValue as number} />
+        <Progress
+          value={progressValue as number}
+          firstSlide={firstSlide}
+          lastSlide={lastSlide}
+          shouldShowMotivationMessage={shouldShowMotivationMessage}
+          setShouldShowMotivationMessage={setShouldShowMotivationMessage}
+        />
       </div>
     </section>
   );
