@@ -43,8 +43,8 @@ const Success = () => {
       <div className="space-y-1 text-center">
         <h3>Search criteria created successfully</h3>
         <p className="max-w-md text-shade-200">
-          You will be notified if a listing that matches your targeted search
-          gets posted to the site
+          You will be notified if a listing that matches your dream home gets
+          posted to the site
         </p>
       </div>
       <Button
