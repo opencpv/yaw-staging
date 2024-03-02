@@ -97,7 +97,7 @@ export default function FirstToKnowForm() {
             })}
           >
             <StepsModalSideImg
-              image={images.LadyOnCouch}
+              image={images.CoupleSittingOnFloor}
               sideImageClassName="object-center lg:object-center"
             />
           </div>

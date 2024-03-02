@@ -23,6 +23,7 @@ import niceHome from "../../../public/assets/images/niceHome.png";
 import HouseSearchingCuate from "../../../public/assets/images/about/house-searching-cuate.png";
 import PropertyDetailsBanner from "../../../public/assets/images/properties/property-details.jpg";
 import EditorsChoice from "/public/assets/icons/editors-choice.svg";
+import GreenCheck from "/public/assets/icons/green-check.svg";
 import BestValue from "/public/assets/icons/best-value.svg";
 import PriceDrop from "/public/assets/icons/price-drop.svg";
 import Certified from "/public/assets/images/certified.png";
@@ -51,6 +52,9 @@ import LadyStirringAtPhone from "/public/assets/images/dashboard/lady-stirring-a
 import LadyOnCouch from "/public/assets/images/dashboard/lady-on-couch.jpg";
 import YellowNotification from "/public/assets/images/dashboard/notification.jpeg";
 import WhitePoolHouse from "/public/assets/images/dashboard/white-pool-house.jpeg";
+import LadyOnCouchLaptop from "/public/assets/images/dashboard/lady-on-couch-laptop.jpg";
+import CoupleStirringIntoSpace from "/public/assets/images/dashboard/couple-stirring-into-space.jpg";
+import CoupleSittingOnFloor from "/public/assets/images/dashboard/couple-sitting-on-floor.jpg";
 
 export const useAssets = () => {
   return {
@@ -80,6 +84,7 @@ export const useAssets = () => {
       HouseSearch,
       PeopleSell,
       Rafiki,
+      GreenCheck,
     },
     images: {
       StockImage,
@@ -109,6 +114,9 @@ export const useAssets = () => {
       LadyOnCouch,
       YellowNotification,
       WhitePoolHouse,
+      LadyOnCouchLaptop,
+      CoupleStirringIntoSpace,
+      CoupleSittingOnFloor,
     },
   };
 };
