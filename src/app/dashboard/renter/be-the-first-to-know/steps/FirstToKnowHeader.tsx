@@ -5,6 +5,7 @@ import { firstToKnowStepsStore } from "@/store/dashboard/firstToKnowStepsStore";
 import { useFormikContext } from "formik";
 import { FirstToKnowFormType } from "./types";
 import { useLocalStorage } from "@uidotdev/usehooks";
+import { views as firstToKnowViews } from "./FirstToKnowForm";
 
 type Props = {
   onClose: () => void;
@@ -16,7 +17,13 @@ const FirstToKnowHeader = ({ onClose }: Props) => {
   const [firstToKnowFormData, setFirstToKnowFormData] =
     useLocalStorage<FirstToKnowFormType>("first-to-know-form");
 
-  const { progressValue } = firstToKnowStepsStore();
+  const {
+    progressValue,
+    activeSlide,
+    lastSlide,
+    shouldShowMotivationMessage,
+    setShouldShowMotivationMessage,
+  } = firstToKnowStepsStore();
 
   return (
     <section className="flex flex-col gap-4">
@@ -37,7 +44,15 @@ const FirstToKnowHeader = ({ onClose }: Props) => {
       </div>
 
       <div className="mt-0 w-full">
-        <Progress value={progressValue as number} />
+        <Progress
+          value={progressValue as number}
+          firstSlide={activeSlide === 1}
+          lastSlide={activeSlide === firstToKnowViews.length - 2} // setting it to last but one because of the success page
+          hideDopeMessage={true}
+          middleSlide={progressValue >= 40 && progressValue <= 50}
+          shouldShowMotivationMessage={shouldShowMotivationMessage}
+          setShouldShowMotivationMessage={setShouldShowMotivationMessage}
+        />
       </div>
     </section>
   );

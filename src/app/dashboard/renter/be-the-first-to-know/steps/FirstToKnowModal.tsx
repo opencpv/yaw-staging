@@ -33,13 +33,11 @@ const FirstToKnowModal = (props: Props) => {
   // const [firstToKnowFormData] =
   //   useLocalStorage<FirstToKnowFormType>("first-to-know-form");
 
-  const { lastSlide } = firstToKnowStepsStore();
-
-  const [open, setOpen] = React.useState(false);
+  const { lastSlide, isOpen, onOpen } = firstToKnowStepsStore();
 
   return (
     <>
-      <Button color="primary" className="mt-10" onClick={() => setOpen(true)}>
+      <Button color="primary" className="mt-10" onClick={onOpen}>
         <MdOutlineLibraryAdd />
         Create Search Criteria
       </Button>
@@ -53,11 +51,11 @@ const FirstToKnowModal = (props: Props) => {
       >
         <Form>
           <StepsModal
-            header={!lastSlide && <Header onClose={() => setOpen(false)} />}
+            header={!lastSlide && <Header onClose={onOpen} />}
             body={<Body />}
-            footer={<Footer onClose={() => setOpen(false)} />}
-            open={open}
-            onOpenChange={setOpen}
+            footer={<Footer onClose={onOpen} />}
+            open={isOpen}
+            onOpenChange={onOpen}
             footerClassName={lastSlide ? "border-t-0" : "border-t"}
           />
         </Form>

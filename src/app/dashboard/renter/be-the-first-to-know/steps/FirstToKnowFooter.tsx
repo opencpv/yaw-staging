@@ -49,7 +49,14 @@ const FirstToKnowFooter = ({ onClose }: Props) => {
   };
 
   return (
-    <section className="ml-auto grid grid-cols-2 items-center gap-2 max-sm:w-full xs:justify-end">
+    <section
+      className={cn(
+        "ml-auto grid grid-cols-2 items-center gap-2 max-sm:w-full xs:justify-end",
+        {
+          "mr-auto w-full grid-cols-1 xs:justify-start": lastSlide,
+        },
+      )}
+    >
       <Button
         color={!firstSlide ? "accent" : undefined}
         variant={!firstSlide ? "outline" : "default"}
@@ -57,6 +64,7 @@ const FirstToKnowFooter = ({ onClose }: Props) => {
           "col-span-1 h-[58px] rounded-lg font-semibold focus:outline-none xs:text-base sm:min-w-[16rem]",
           {
             "bg-primary-200/80 text-white hover:bg-primary-200": firstSlide,
+            "w-fit px-14 sm:min-w-0": lastSlide,
           },
         )}
         onClick={handleBack}
