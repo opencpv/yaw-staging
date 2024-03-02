@@ -10,7 +10,7 @@ import { format } from "date-fns";
 import { enUS } from "date-fns/locale";
 import Intro from "./pages/Intro";
 import SearchTitle from "./pages/SearchTitle";
-import Location from "./pages/Location";
+import Location from "./pages/location";
 import PreferredType from "./pages/PreferredType";
 import Success from "./pages/Success";
 import PropertyRequirements from "./pages/PropertyRequirements";
