@@ -60,7 +60,7 @@ export default function FirstToKnowForm() {
     if (firstToKnowFormRef.current) {
       firstToKnowFormRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  }, []);
+  }, [activeSlide]);
 
   useEffect(() => {
     if (activeSlide < 1) {
