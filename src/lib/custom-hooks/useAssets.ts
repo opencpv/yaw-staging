@@ -1,3 +1,4 @@
+import GreenCheckGif from "../../../public/assets/gifs/green-check.gif";
 import GoogleIcon from "../../../public/assets/icons/google-icon.svg";
 import FacebookIcon from "../../../public/assets/icons/fb-icon.svg";
 import AppleIcon from "../../../public/assets/icons/apple-icon.svg";
@@ -85,6 +86,9 @@ export const useAssets = () => {
       PeopleSell,
       Rafiki,
       GreenCheck,
+    },
+    gifs: {
+      GreenCheckGif,
     },
     images: {
       StockImage,

@@ -2,7 +2,13 @@ import { BsBuilding, BsHouses } from "react-icons/bs";
 import { HiOutlineBuildingOffice, HiOutlineHome } from "react-icons/hi2";
 import { IoHomeOutline } from "react-icons/io5";
 import { GoHome } from "react-icons/go";
-import { PiBuildings, PiHouseLine, PiWarehouse } from "react-icons/pi";
+import {
+  PiBuildings,
+  PiElevatorLight,
+  PiGasCan,
+  PiHouseLine,
+  PiWarehouse,
+} from "react-icons/pi";
 import { GiRoad } from "react-icons/gi";
 import { BsPerson, BsSpeedometer2 } from "react-icons/bs";
 import { TbAirConditioning } from "react-icons/tb";
@@ -18,7 +24,15 @@ import Tiles from "@/app/components/listing-form/components/icons/Tiles";
 import { CiWifiOn } from "react-icons/ci";
 import { IoCarOutline } from "react-icons/io5";
 import { LiaDoorOpenSolid, LiaHotTubSolid } from "react-icons/lia";
-import { RiAlarmWarningLine, RiBilliardsLine } from "react-icons/ri";
+import {
+  RiAlarmWarningLine,
+  RiBilliardsLine,
+  RiFridgeLine,
+} from "react-icons/ri";
+import { HiOutlineLightningBolt } from "react-icons/hi";
+import { LuMicrowave } from "react-icons/lu";
+import { MdOutlinePropaneTank } from "react-icons/md";
+import { GrLounge } from "react-icons/gr";
 
 export const properties = [
   { name: "apartment", icon: <PiBuildings size="44" /> },
@@ -50,4 +64,16 @@ export const requiredFeatures = [
   { name: "kitchen", icon: <PiForkKnife size="44" /> },
   { name: "smoke alarm", icon: <RiAlarmWarningLine size="44" /> },
   { name: "air conditioning", icon: <TbAirConditioning size="44" /> },
+  { name: "elevator", icon: <PiElevatorLight size="44" /> },
+  { name: "generator", icon: <HiOutlineLightningBolt size="44" /> },
+  { name: "lounge", icon: <GrLounge size="44" /> },
+  { name: "refrigerator", icon: <RiFridgeLine size="44" /> },
+  { name: "gas", icon: <PiGasCan size="44" /> },
+  { name: "microwave", icon: <LuMicrowave size="44" /> },
+  // { name: "street parking", icon: <GiCarParking size="44" /> },
+  // { name: "garage parking", icon: <GiGarageDoor size="44" /> },
+  // { name: "dish washer", icon: <GiDishwasher size="44" /> },
+  // { name: "washing machine", icon: <GiWashingMachine size="44" /> },
+  // { name: "gym", icon: <GiWeights size="44" /> },
+  { name: "polytank", icon: <MdOutlinePropaneTank size="44" /> },
 ];
