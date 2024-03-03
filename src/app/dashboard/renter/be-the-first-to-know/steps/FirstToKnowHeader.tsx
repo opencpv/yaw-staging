@@ -48,7 +48,8 @@ const FirstToKnowHeader = ({ onClose }: Props) => {
           value={progressValue as number}
           firstSlide={activeSlide === 1}
           lastSlide={activeSlide === firstToKnowViews.length - 2} // setting it to last but one because of the success page
-          hideDopeMessage={true}
+          hideDopeMessage
+          hideGotThisMessage
           middleSlide={progressValue >= 40 && progressValue <= 50}
           shouldShowMotivationMessage={shouldShowMotivationMessage}
           setShouldShowMotivationMessage={setShouldShowMotivationMessage}

@@ -1,7 +1,5 @@
-import styles from "../../index.module.css";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import Button from "@/components/__shared/ui/button/Button";
 import { cn } from "@/lib/utils";
 import { FaCheck } from "react-icons/fa6";
@@ -9,14 +7,18 @@ import Link from "next/link";
 import { IoChevronForwardOutline } from "react-icons/io5";
 import AOSWrapper from "@/components/__shared/AOSWrapper";
 import { IoIosCloseCircle } from "react-icons/io";
-import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { firstToKnowStepsStore } from "@/store/dashboard/firstToKnowStepsStore";
 import { useFormikContext } from "formik";
+import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+import GreenCheckLottie from "@/components/__shared/lotties/GreenCheckLottie";
 
 const Success = () => {
   const { images, icons } = useAssets();
-  const { onOpen, setActiveSlide } = firstToKnowStepsStore();
+  const { onOpen, setActiveSlide, lastSlide } = firstToKnowStepsStore();
   const { resetForm } = useFormikContext();
+
+  const successPageRef = useRef<HTMLDivElement>(null);
 
   const handleClose = () => {
     resetForm({});
@@ -25,8 +27,24 @@ const Success = () => {
     setActiveSlide(0);
   };
 
+  useEffect(() => {
+    // Hack for radixui dialogue pointer event issues
+    if (successPageRef.current) {
+      if (!lastSlide) {
+        successPageRef.current.classList.add("pointer-events-none");
+      } else {
+        setTimeout(() => {
+          successPageRef?.current?.classList.remove("pointer-events-none");
+        }, 300);
+      }
+    }
+  }, [lastSlide]);
+
   return (
-    <div className="flex flex-col items-center justify-center gap-10">
+    <div
+      className="flex flex-col items-center justify-center gap-10"
+      ref={successPageRef}
+    >
       <div className="relative ml-auto flex w-full justify-end 2xl:left-60">
         <Button
           variant="ghost"
@@ -37,13 +55,17 @@ const Success = () => {
           <IoIosCloseCircle />
         </Button>
       </div>
-      <AOSWrapper animation="zoom-in" duration="600">
+      {/* <motion.div
+        animate={{ scale: [0, 1.2, 1], rotate: [0, -10, 0] }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+      >
         <Image src={icons.GreenCheck} alt="green check" width={70} />
-      </AOSWrapper>
+      </motion.div> */}
+      <GreenCheckLottie />
       <div className="space-y-1 text-center">
         <h3>Search criteria created successfully</h3>
         <p className="max-w-md text-shade-200">
-          You will be notified if a listing that matches your dream home gets
+          You will be notified if a listing that matches your dream place gets
           posted to the site
         </p>
       </div>
@@ -58,7 +80,7 @@ const Success = () => {
       <Link href="/properties" className="text-[#0B7371]">
         Keep searching
       </Link>
-      <Link href="/dashboard/renter/my-agent/agent-explore">
+      <Link href="/dashboard/renter/my-agent/agent-explore" className="block">
         <div className="flex flex-col items-center gap-10 rounded-xl bg-[#ECEEEC] p-6 pb-0 ssm:flex-row ssm:items-start ssm:pr-0">
           {/* #ECEEEC */}
           <div className="flex flex-col gap-5 pb-10 pt-8 max-ssm:items-center ssm:pt-14">

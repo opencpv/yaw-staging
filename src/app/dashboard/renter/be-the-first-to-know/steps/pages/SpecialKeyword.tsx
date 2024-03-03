@@ -31,7 +31,9 @@ const SpecialKeyword = () => {
         />
       </div>
       <div className="max-w-sm space-y-4">
-        <label className="text-shade-300">Preferred Method of Contact</label>
+        <label className="text-shade-300">
+          How would you like to be notified?
+        </label>
         <div className="w-fit rounded-full bg-primary-600/5 p-2">
           <OptionFilterTabs
             options={[

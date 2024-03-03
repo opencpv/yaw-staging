@@ -14,7 +14,8 @@ type Props = {
   setShouldShowMotivationMessage: (value: boolean) => void;
   value: number;
   middleSlide?: boolean;
-  hideDopeMessage?: true;
+  hideDopeMessage?: boolean;
+  hideGotThisMessage?: boolean;
 };
 
 export default function Progress({
@@ -25,6 +26,7 @@ export default function Progress({
   shouldShowMotivationMessage,
   setShouldShowMotivationMessage,
   hideDopeMessage,
+  hideGotThisMessage,
 }: Props) {
   const [message, setMessage] = useState("");
   const [messageIcon, setMessageIcon] = useState<React.ReactElement | null>(
@@ -52,7 +54,10 @@ export default function Progress({
       setTimeout(() => {
         setShouldShowMotivationMessage(false);
       }, 3000);
-    } else if (middleSlide ?? (value >= 30 && value <= 40)) {
+    } else if (
+      (middleSlide ?? (value >= 30 && value <= 40)) &&
+      !hideGotThisMessage
+    ) {
       showMessageFor3Seconds("You got this", <GiBiceps />);
     } else if (value >= 70 && value <= 80) {
       showMessageFor3Seconds("Almost there", <FaRegThumbsUp />);
