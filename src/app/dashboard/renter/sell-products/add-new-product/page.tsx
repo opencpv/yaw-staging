@@ -1,22 +1,9 @@
 "use client";
-import { styled } from "@stitches/react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form } from "formik";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
-import {
-  Button,
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownTrigger,
-} from "@nextui-org/react";
-import { FaCaretDown } from "react-icons/fa";
-
-import { Switch } from "@nextui-org/react";
-import { openSans } from "@/styles/font";
 import CustomRadioInput from "@/app/components/CustomRadioInput";
-import PhoneNumberInputv2 from "@/components/__shared/PhoneInputv2";
 import TextFieldInput from "@/app/components/TextFieldInput";
 import CustomSelect from "@/app/components/CustomSelect";
 import CustomTextAreaInput from "@/app/components/CustomTextAreaInput";
@@ -29,10 +16,7 @@ interface CategoryProp {
 }
 const AddNewProduct = () => {
   const [categories, setCategories] = useState<CategoryProp[]>([]);
-  const [selectedCategory, setselectedCategory] = useState<string>("");
   const [image, setImage] = useState<File | null>();
-  const [condition, setCondition] = useState<string>("");
-  const [negotiable, setNegotiable] = useState<boolean>(false);
   const [code, setCode] = useState();
 
   const { handlePhone, handleCountryChange, phone } = usePhoneInputDisclosure();
@@ -67,13 +51,10 @@ const AddNewProduct = () => {
         </div>
         <Formik
           initialValues={{
-            product_name: "",
-            category: "",
-            price: "",
-            description: "",
-            condition: "",
+            category: "Furniture",
+            price: "1000",
+            condition: "New",
             negotiable: false,
-            phone: "",
           }}
           onSubmit={async (values) => {
             console.log(values);
@@ -82,7 +63,7 @@ const AddNewProduct = () => {
           <Form className="grid grid-cols-1 gap-5 lg:grid-cols-3">
             <div className="space-y-8">
               <TextFieldInput
-                name="product_name"
+                name="productName"
                 label="Product name"
                 placeholder="Dining table"
               />
@@ -132,6 +113,7 @@ const AddNewProduct = () => {
               <CustomRadioInput label="Negotiable" name="negotiable" />
               <InputPhoneNumber
                 id=""
+                label="Phone"
                 name="phoneNumber"
                 value={phone}
                 onChange={handlePhone}
@@ -139,7 +121,9 @@ const AddNewProduct = () => {
               />
             </div>
             <div className="h-[100%] w-full">
-              <div className="h-[100%] w-full rounded-md border-[1px]"></div>
+              <div className="h-[100%] w-full rounded-md border-[1px]">
+                drop zone
+              </div>
               <div className="flex justify-end">
                 <button className="mt-8 rounded-md bg-[#DDB771] px-[40px] py-[15px] font-semibold text-white">
                   Add New Product
