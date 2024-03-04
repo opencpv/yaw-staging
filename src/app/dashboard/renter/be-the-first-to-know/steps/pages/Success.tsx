@@ -15,16 +15,18 @@ import GreenCheckLottie from "@/components/__shared/lotties/GreenCheckLottie";
 
 const Success = () => {
   const { images, icons } = useAssets();
-  const { onOpen, setActiveSlide, lastSlide } = firstToKnowStepsStore();
+  const { onClose, setActiveSlide, lastSlide } = firstToKnowStepsStore();
   const { resetForm } = useFormikContext();
 
   const successPageRef = useRef<HTMLDivElement>(null);
 
   const handleClose = () => {
-    resetForm({});
-    localStorage.removeItem("first-to-know-form");
-    onOpen();
-    setActiveSlide(0);
+    setTimeout(() => {
+      resetForm({});
+      localStorage.removeItem("first-to-know-form");
+      setActiveSlide(0);
+      onClose();
+    }, 300);
   };
 
   useEffect(() => {
@@ -55,12 +57,6 @@ const Success = () => {
           <IoIosCloseCircle />
         </Button>
       </div>
-      {/* <motion.div
-        animate={{ scale: [0, 1.2, 1], rotate: [0, -10, 0] }}
-        transition={{ duration: 0.5, ease: "easeInOut" }}
-      >
-        <Image src={icons.GreenCheck} alt="green check" width={70} />
-      </motion.div> */}
       <GreenCheckLottie />
       <div className="space-y-1 text-center">
         <h3>Search criteria created successfully</h3>
@@ -74,13 +70,17 @@ const Success = () => {
         className={cn(
           "h-[58px] rounded-lg bg-[#0B7371] font-semibold focus:outline-none xs:text-base sm:min-w-[22rem]",
         )}
+        onClick={handleClose}
       >
         Go to my Dashboard
       </Button>
-      <Link href="/properties" className="text-[#0B7371]">
+      <Link href="/properties" className="text-[#0B7371]" onClick={handleClose}>
         Keep searching
       </Link>
-      <Link href="/dashboard/renter/my-agent/agent-explore" className="block">
+      <Link
+        href="/dashboard/renter/my-agent/agent-explore"
+        onClick={handleClose}
+      >
         <div className="flex flex-col items-center gap-10 rounded-xl bg-[#ECEEEC] p-6 pb-0 ssm:flex-row ssm:items-start ssm:pr-0">
           {/* #ECEEEC */}
           <div className="flex flex-col gap-5 pb-10 pt-8 max-ssm:items-center ssm:pt-14">

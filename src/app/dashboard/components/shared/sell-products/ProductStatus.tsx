@@ -5,13 +5,13 @@ import Button from "../../Button";
 import supabase from "@/lib/utils/supabaseClient";
 
 interface Props {
-  isAvailalbe: boolean;
+  isAvailable: boolean;
   width?: string;
   id: number;
 }
-const ProductStatus = ({ isAvailalbe, width, id }: Props) => {
+const ProductStatus = ({ isAvailable, width, id }: Props) => {
   const [value, setValue] = useState<"available" | "sold">(
-    isAvailalbe ? "available" : "sold",
+    isAvailable ? "available" : "sold",
   );
 
   const handleSelectionChange = async (
@@ -27,14 +27,17 @@ const ProductStatus = ({ isAvailalbe, width, id }: Props) => {
       .select();
   };
   return (
-    <div className="w-fit">
+    <div className="flex w-full flex-wrap items-center gap-3">
       <Select
-        options={["available", "sold"]}
+        color="primary"
+        options={["Available", "Sold"]}
         value={value}
+        selectorIconClassName="text-neutral-800"
         handleSelectionChange={handleSelectionChange}
+        className="lg:max-xl:w-40"
       />
-      {isAvailalbe ? (
-        <div className="mt-3 flex items-center justify-center gap-2 text-xs font-[600]">
+      {isAvailable ? (
+        <div className="flex w-full items-center justify-center gap-2 text-xs font-[600]">
           Still Available?
           <Button
             isIconOnly
