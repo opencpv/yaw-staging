@@ -8,6 +8,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
+import ErrorMessage from "@/components/__shared/ui/ErrorMessage";
 
 export type OptionTypes = {
   name: string;
@@ -68,6 +69,10 @@ const CustomSelect = ({
           ))}
         </SelectContent>
       </Select>
+
+      {meta.touched && meta.error ? (
+        <ErrorMessage>{meta.error}</ErrorMessage>
+      ) : null}
     </Root>
   );
 };

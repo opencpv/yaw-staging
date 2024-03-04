@@ -4,6 +4,7 @@ import PhoneInput from "react-phone-number-input";
 import React, { useState } from "react";
 import { E164Number, CountryCode } from "libphonenumber-js/core";
 import { useField } from "formik";
+import ErrorMessage from "../ui/ErrorMessage";
 
 type Props = {
   name: string;
@@ -59,6 +60,9 @@ const InputPhoneNumber: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
         onFocus={handleFocus}
         onBlur={onBlur}
       />
+      {meta.touched && meta.error ? (
+        <ErrorMessage>{meta.error}</ErrorMessage>
+      ) : null}
     </div>
   );
 };

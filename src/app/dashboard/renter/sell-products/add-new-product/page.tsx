@@ -1,6 +1,7 @@
 "use client";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Formik, Form } from "formik";
+import * as Yup from "yup";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import CustomRadioInput from "@/app/components/CustomRadioInput";
@@ -9,6 +10,7 @@ import CustomSelect from "@/app/components/CustomSelect";
 import CustomTextAreaInput from "@/app/components/CustomTextAreaInput";
 import InputPhoneNumber from "@/components/__shared/form/InputPhoneNumber";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import FileUploader from "@/app/dashboard/components/shared/sell-products/FileUploader";
 
 interface CategoryProp {
   label: string;
@@ -16,6 +18,17 @@ interface CategoryProp {
 }
 const AddNewProduct = () => {
   const [categories, setCategories] = useState<CategoryProp[]>([]);
+
+  const validationSchema = Yup.object().shape({
+    category: Yup.string().required("This field is requiredRequired"),
+    condition: Yup.string().required("This field is required"),
+    productName: Yup.string().required("This field is required"),
+    description: Yup.string().required("This field is required"),
+    price: Yup.number().required("This field is required"),
+    phoneNumber: Yup.string().required("This field is required"),
+    images: Yup.mixed().required("This field is required"),
+  });
+
   const [image, setImage] = useState<File | null>();
   const [code, setCode] = useState();
 
@@ -46,26 +59,31 @@ const AddNewProduct = () => {
   return (
     <section>
       <main className="w-full">
-        <div className="mb-6">
+        <div className="mb-14">
           <h2>Add new product</h2>
         </div>
         <Formik
           initialValues={{
+            productName: "",
+            description: "",
+            price: "",
+            phoneNumber: "",
+            images: [],
             category: "Furniture",
-            price: "1000",
             condition: "New",
-            negotiable: false,
+            negotiable: "no",
           }}
+          validationSchema={validationSchema}
           onSubmit={async (values) => {
             console.log(values);
           }}
         >
-          <Form className="grid grid-cols-1 gap-5 lg:grid-cols-3">
+          <Form className="grid grid-cols-1 gap-x-5 gap-y-8 lg:grid-cols-3">
             <div className="space-y-8">
               <TextFieldInput
                 name="productName"
                 label="Product name"
-                placeholder="Dining table"
+                placeholder="e.g. Dining table"
               />
               <CustomSelect
                 name="category"
@@ -77,23 +95,7 @@ const AddNewProduct = () => {
                   { name: "vehicles", value: "Vehicles" },
                 ]}
               />
-              <CustomSelect
-                name="price"
-                label="Price"
-                prefix="GHS"
-                options={[
-                  { name: "100", value: "100" },
-                  { name: "1000", value: "1000" },
-                  { name: "2000", value: "2000" },
-                  { name: "4000", value: "4000" },
-                  { name: "5000", value: "5000" },
-                  { name: "6000", value: "6000" },
-                  { name: "7000", value: "7000" },
-                  { name: "8000", value: "8000" },
-                  { name: "9000", value: "9000" },
-                  { name: "10000", value: "10000" },
-                ]}
-              />
+              <TextFieldInput name="price" label="Price" prefix="GHS" />
               <CustomTextAreaInput
                 name="description"
                 label="Description"
@@ -110,7 +112,11 @@ const AddNewProduct = () => {
                   { name: "used", value: "Used" },
                 ]}
               />
-              <CustomRadioInput label="Negotiable" name="negotiable" />
+              <CustomRadioInput
+                options={["yes", "no"]}
+                label="Negotiable"
+                name="negotiable"
+              />
               <InputPhoneNumber
                 id=""
                 label="Phone"
@@ -120,12 +126,18 @@ const AddNewProduct = () => {
                 onCountryChange={handleCountryChange}
               />
             </div>
-            <div className="h-[100%] w-full">
-              <div className="h-[100%] w-full rounded-md border-[1px]">
-                drop zone
-              </div>
-              <div className="flex justify-end">
-                <button className="mt-8 rounded-md bg-[#DDB771] px-[40px] py-[15px] font-semibold text-white">
+            <div className="flex h-[100%] w-full flex-col">
+              <FileUploader
+                onFileSelect={(file) => {
+                  setImage(file);
+                  console.log(image);
+                }}
+              />
+              <div className="mt-auto flex justify-end">
+                <button
+                  type="submit"
+                  className="mt-8 rounded-md bg-[#DDB771] px-[40px] py-[15px] font-semibold text-white"
+                >
                   Add New Product
                 </button>
               </div>

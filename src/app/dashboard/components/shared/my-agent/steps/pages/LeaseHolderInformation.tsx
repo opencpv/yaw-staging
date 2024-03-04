@@ -8,7 +8,6 @@ import styles from "../../index.module.css";
 import { BeMyAgentFormType } from "../types";
 import CustomTextAreaInput from "@/app/components/CustomTextAreaInput";
 
-
 type Props = {};
 
 const LeaseHolderInformation = React.forwardRef<HTMLInputElement, Props>(
@@ -105,6 +104,7 @@ const LeaseHolderInformation = React.forwardRef<HTMLInputElement, Props>(
             <div className="form-col">
               <CustomRadioInput
                 name="evictedBefore"
+                options={["Yes", "No"]}
                 infoBubble={true}
                 infoBubbleContent="data"
                 defaultValue={agentFormData?.evictedBefore}
@@ -132,6 +132,7 @@ const LeaseHolderInformation = React.forwardRef<HTMLInputElement, Props>(
               )}
               <CustomRadioInput
                 name="convictedBefore"
+                options={["Yes", "No"]}
                 infoBubble={true}
                 infoBubbleContent="data"
                 defaultValue={agentFormData?.convictedBefore}
@@ -161,6 +162,7 @@ const LeaseHolderInformation = React.forwardRef<HTMLInputElement, Props>(
             <div className="form-col">
               <CustomRadioInput
                 name="pets"
+                options={["Yes", "No"]}
                 defaultValue={agentFormData?.pets}
                 label={"Do you have any pets?"}
                 onChange={(value) =>
@@ -172,6 +174,7 @@ const LeaseHolderInformation = React.forwardRef<HTMLInputElement, Props>(
               />
               <CustomRadioInput
                 name="vehicles"
+                options={["Yes", "No"]}
                 defaultValue={agentFormData?.vehicles}
                 label={"Do you have any vehicles?"}
                 onChange={(value) =>
