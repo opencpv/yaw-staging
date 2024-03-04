@@ -10,19 +10,20 @@ import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import "@/styles/custom-swiper.css";
 
-
 const SliderPaginationOnly = ({
   images,
   className,
-  disabledOnInteraction
+  disabledOnInteraction,
 }: SliderPaginationOnlyProps) => {
-
+  console.log(images);
   return (
     <div className={`relative h-80 w-72 ${className}`}>
       <Swiper
         autoplay={{
           delay: 6000,
-          disableOnInteraction: disabledOnInteraction ? disabledOnInteraction : false,
+          disableOnInteraction: disabledOnInteraction
+            ? disabledOnInteraction
+            : false,
           waitForTransition: false,
         }}
         pagination={{
@@ -31,11 +32,11 @@ const SliderPaginationOnly = ({
           dynamicMainBullets: 3,
         }}
         modules={[Pagination, Autoplay]}
-        className={`h-80 w-72 rounded-lg slider-pagination-only ${className}`}
+        className={`slider-pagination-only h-80 w-72 rounded-lg ${className}`}
       >
         {images.map((image, idx) => (
           <SwiperSlide key={idx + 1}>
-            <div className="relative w-full h-full">
+            <div className="relative h-full w-full">
               <Image
                 src={image.src}
                 alt={image.name}
@@ -47,7 +48,7 @@ const SliderPaginationOnly = ({
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="relative h-10 rounded-b-lg bottom-10 z-10 bg-neutral-600 bg-opacity-30 pointer-events-none"></div>
+      <div className="pointer-events-none relative bottom-10 z-10 h-10 rounded-b-lg bg-neutral-600 bg-opacity-30"></div>
     </div>
   );
 };

@@ -18,7 +18,7 @@ import {
 import images from "@/enum/temp/images";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
 
-type Props = {};
+type Props = { data: any };
 
 const FeaturedListingAndAds = (props: Props) => {
   const {
@@ -130,7 +130,7 @@ const FeaturedListingAndAds = (props: Props) => {
           </div>
         )}
         {/* Ads */}
-        <AdsSliderColumn />
+        <AdsSliderColumn ads={props.data.ads} />
       </div>
       <ArrowLink href="/properties" text="Show all" color="#202457" />
       {/* Ads  mobile*/}

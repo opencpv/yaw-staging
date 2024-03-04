@@ -10,12 +10,12 @@ import MobileVersion from "./MobileVersion";
 import DesktopVersion from "./DesktopVersion";
 
 const SlideItem = ({ image }: { image: StaticImageData }) => (
-  <div className="relative lg:mx-10  lg:w-[772px] lg:max-w-[772px] md:max-w-[679px] aspect-[679/527] lg:aspect-[772/599] ">
+  <div className="relative aspect-[679/527]  md:max-w-[679px] lg:mx-10 lg:aspect-[772/599] lg:w-[772px] lg:max-w-[772px] ">
     <Image src={image} alt="slide image" fill className="rounded-2xl" />
   </div>
 );
 
-const SimpleSlider = () => {
+const SimpleSlider = ({ data }: { data: any }) => {
   const { images } = useAssets();
   const sliderRef = useRef<any>(null);
 
@@ -30,9 +30,12 @@ const SimpleSlider = () => {
   }, []);
 
   return (
-    <div className="w-full lg:px-0 px-5 xs:px-10 bg-[#333]" id="q5y40WLNHa7Htg==">
+    <div
+      className="w-full bg-[#333] px-5 xs:px-10 lg:px-0"
+      id="q5y40WLNHa7Htg=="
+    >
       <div className="flex lg:justify-center">
-        <p className="max-w-5xl mt-10 mb-8 text-sm font-semibold text-white lg:mt-40 lg:text-center md:mb-20 lg:mb-24">
+        <p className="mb-8 mt-10 max-w-5xl text-sm font-semibold text-white md:mb-20 lg:mb-24 lg:mt-40 lg:text-center">
           Lorem ipsum dolor sit amet consectetur. Sit consequat a elit
           scelerisque felis fames. In fames feugiat est risus in. Elit vulputate
           viverra duis nunc nulla nulla. Facilisi suspendisse libero praesent

@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import { montserat } from "@/styles/font";
-import fetchFaqData from "../lib/fetchFaqData";
 import onlyUnique from "@/lib/utils/onlyUnique,";
 import groupByCategory from "../lib/groupFAQ";
 import FAQItem from "./FAQItem";
@@ -9,37 +8,36 @@ import Loader from "@/components/__shared/loader/Loader";
 import { useFaqStore } from "@/store/faq/useFaqStore";
 import style from "../Faq.module.css";
 
-const FAQBrowser = () => {
+const FAQBrowser = ({
+  data,
+  faqCategories = [],
+}: {
+  data: any[];
+  faqCategories: any[];
+}) => {
   // const [active, setActive] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
-  const [categories, setCategories] = useState<string[]>([]);
-  const [data, setData] = useState<any>({});
   const [selectedCategory, setselectedCategory] = useState<string | null>(null);
-
+  const [newData, setnewData] = useState<any[]>([]);
   const active = useFaqStore((state) => state.activeBrowser);
   const setActive = useFaqStore((state) => state.setActiveBrowser);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-
+  const [filteredData, setfilteredData] = useState<any[]>([]);
   const handleToggle = (index: number | null) => {
     setOpenIndex((prevIndex) => (prevIndex === index ? null : index));
   };
 
   useEffect(() => {
-    fetchFaqData()
-      .then((data) => {
-        const cats = data.map((item: any) => item.category.title);
-        const grouped = groupByCategory(data);
-        setData(grouped);
-        setLoading(false);
-        // console.log(grouped);
-        const unique = cats.filter(onlyUnique);
-        setselectedCategory(unique[0]);
-        setCategories(unique);
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-  }, []);
+    if (data) {
+      setselectedCategory(faqCategories[0].title);
+      console.log(faqCategories[0].title);
+      console.log(data);
+      setfilteredData(
+        data.filter((item) => item.category.title === faqCategories[0].title),
+      );
+      setLoading(false);
+    }
+  }, [faqCategories]);
 
   return (
     <>
@@ -50,12 +48,17 @@ const FAQBrowser = () => {
       ) : (
         <div className="flex flex-wrap items-start gap-10 pt-10 md:divide-x">
           <div className="flex flex-1 flex-wrap gap-12 sm:max-w-[180px]">
-            {categories.map((category, index) => (
+            {faqCategories.map((category: any, index: number) => (
               <button
                 key={index}
                 onClick={() => {
                   setActive(index);
-                  setselectedCategory(category);
+                  setselectedCategory(category.title);
+                  setfilteredData(
+                    data.filter(
+                      (item) => item.category.title === category.title,
+                    ),
+                  );
                 }}
                 className={`min-w-max px-1.5 py-1.5 text-start font-semibold transition-all duration-200 ${
                   active == index
@@ -63,17 +66,17 @@ const FAQBrowser = () => {
                     : ""
                 } text-[#45808B]`}
               >
-                {category}
+                {category.title}
               </button>
             ))}
           </div>
           <div className="faq-items min-w-full max-w-4xl flex-[6] sm:min-w-0 md:pl-10">
             {selectedCategory &&
-              data[selectedCategory].map((categoryObj: any, index: number) => (
+              filteredData.map((faqItem: any, index: number) => (
                 <FAQItem
                   key={index}
-                  title={categoryObj.title}
-                  text={categoryObj.description}
+                  title={faqItem.title}
+                  text={faqItem.description}
                   isActive={index === openIndex}
                   onClick={() => handleToggle(index)}
                 />

@@ -3,8 +3,11 @@ import rentalDeals from "@/enum/deals/rentalDeals";
 import Image from "next/image";
 import React from "react";
 import DealCard from "../DealCard";
+import { urlForImage } from "@/lib/utils/sanity/utils";
 
-type Props = {};
+type Props = {
+  data: any;
+};
 
 const HomeRentalDealsSection = (props: Props) => {
   return (
@@ -12,7 +15,7 @@ const HomeRentalDealsSection = (props: Props) => {
       <div className="w-full space-y-3.5 min-[810px]:w-7/12">
         <div className="flex items-start gap-5">
           <h2 className="w-fit font-[500] capitalize text-neutral-900">
-            Our Apartment Rental Deals
+            {props.data.tagTitle}
           </h2>
           <Image
             src="/assets/icons/deals.svg"
@@ -22,18 +25,19 @@ const HomeRentalDealsSection = (props: Props) => {
           />
         </div>
         <p className="max-w-2xl font-[500] text-neutral-500">
-          RentRightGH employs the latest data on rental rates and apartment
-          availability in real-time to aid you in finding superb apartment
-          deals. To identify such deals, we follow a systematic approach that
-          includes various steps.
+          {props.data.tagDescription}
         </p>
       </div>
       <div className="grid items-center gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {rentalDeals.map((deal, idx) => {
-          const { id, title, body, icon, href } = deal;
+        {props.data.tags.map((tag: any, idx: number) => {
           return (
-            <AOSWrapper key={id} animation="fade-up">
-              <DealCard href={href} title={title} body={body} icon={icon} />
+            <AOSWrapper key={idx} animation="fade-up">
+              <DealCard
+                href={tag.url}
+                title={tag.title}
+                body={tag.description}
+                icon={urlForImage(tag.icon.customImageItem)?.url() as string}
+              />
             </AOSWrapper>
           );
         })}
