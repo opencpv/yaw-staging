@@ -86,6 +86,7 @@ const Applicants = ({}) => {
       <div className="col-span-3 flex flex-col gap-2  lg:col-span-1">
         <CustomRadioInput
           defaultValue={`${propertyData?.otherApplicants ? "yes" : "no"}`}
+          options={["yes", "no"]}
           label={"Are there additional applicants"}
           onChange={(value) => {
             setPropertyData({

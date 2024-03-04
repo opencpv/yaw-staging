@@ -86,6 +86,7 @@ const ScreeningAndOtherDetailsForm = React.forwardRef<HTMLInputElement, Props>(
             <div className="form-col col-span-3 lg:col-span-1">
               <CustomRadioInput
                 infoBubble={true}
+                options={["yes", "no"]}
                 infoBubbleContent="data"
                 defaultValue={propertyData?.evictedBefore}
                 label={"Have you ever been evicted?"}
@@ -112,6 +113,7 @@ const ScreeningAndOtherDetailsForm = React.forwardRef<HTMLInputElement, Props>(
               )}
               <CustomRadioInput
                 infoBubble={true}
+                options={["yes", "no"]}
                 infoBubbleContent="data"
                 defaultValue={propertyData?.convictedBefore}
                 label={"Have you ever been convicted?"}
@@ -140,6 +142,7 @@ const ScreeningAndOtherDetailsForm = React.forwardRef<HTMLInputElement, Props>(
             <div className="form-col col-span-3 lg:col-span-1">
               <CustomRadioInput
                 defaultValue={propertyData?.pets}
+                options={["yes", "no"]}
                 label={"Do you have any pets?"}
                 onChange={(value) =>
                   setPropertyData({
@@ -151,6 +154,7 @@ const ScreeningAndOtherDetailsForm = React.forwardRef<HTMLInputElement, Props>(
 
               <CustomRadioInput
                 defaultValue={propertyData?.vehicles}
+                options={["yes", "no"]}
                 label={"Do you have any vehicles?"}
                 onChange={(value) =>
                   setPropertyData({

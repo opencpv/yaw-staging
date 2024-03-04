@@ -1,3 +1,4 @@
+import ErrorMessage from "@/components/__shared/ui/ErrorMessage";
 import { Textarea } from "@/components/ui/textarea";
 import { styled } from "@stitches/react";
 import { useField } from "formik";
@@ -27,7 +28,7 @@ const CustomTextAreaInput = ({
       {label && <label htmlFor="">{label}</label>}
 
       <textarea
-        className={`form-input hidden-scrollbar pb-5 hover:border-black/50 ${classes}`}
+        className={`form-input hidden-scrollbar pb-5 hover:border-black/50 focus:outline-accent-50 ${classes}`}
         placeholder={placeholder}
         onChange={(e) => {
           onChange && onChange(e);
@@ -37,6 +38,9 @@ const CustomTextAreaInput = ({
         value={field.value}
         defaultValue={initialValues}
       />
+      {meta.touched && meta.error ? (
+        <ErrorMessage>{meta.error}</ErrorMessage>
+      ) : null}
     </Root>
   );
 };

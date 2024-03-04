@@ -112,7 +112,7 @@ small {
 }
 
 .PhoneInputInput {
-  @apply form-field-border rounded-md px-3 py-4;
+  @apply form-field-border rounded-md px-3 py-4 focus:outline-accent-50;
 }
 
 .section {
