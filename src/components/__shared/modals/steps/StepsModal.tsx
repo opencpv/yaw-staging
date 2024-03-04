@@ -30,6 +30,10 @@ const StepsModal = ({
         document.body.classList.remove("pointer-events-none");
       }, 300);
     }
+
+    return () => {
+      document.body.classList.remove("pointer-events-none");
+    };
   }, [open]);
 
   return (

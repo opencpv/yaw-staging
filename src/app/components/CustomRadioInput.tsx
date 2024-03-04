@@ -6,10 +6,10 @@ import { useField } from "formik";
 type Props = {
   label: string;
   name?: string;
-  onChange: (e: any) => void;
   defaultValue?: string;
   infoBubble?: boolean;
   infoBubbleContent?: string;
+  onChange?: (e: any) => void;
 };
 
 const CustomRadioInput = ({
@@ -33,7 +33,7 @@ const CustomRadioInput = ({
         onValueChange={(value) => {
           helpers.setValue(value);
           setValue(value);
-          onChange(value);
+          onChange && onChange(value);
         }}
         value={field.value}
         name={field.name}

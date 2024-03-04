@@ -36,12 +36,6 @@ const RtApplicationRowSm = ({
 
   return (
     <>
-      <DestructiveModal
-        isOpen={isOpen}
-        onClose={onClose}
-        onOpenChange={onOpenChange}
-        label="Are you sure you want to delete this application?"
-      />
       <TableRowSm>
         {/* Property */}
         <TableBodySm href="/properties/2">
@@ -61,13 +55,13 @@ const RtApplicationRowSm = ({
             </div>
           </div>
         </TableBodySm>
-        {/* Date */}
         <TableBodySm className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 pt-3.5">
           {/* Status */}
           <div>
             <RtApplicationStatus status={status} />
           </div>
           <div className="flex flex-col items-center justify-center gap-y-1">
+            {/* Date */}
             <h4 className="text-sm font-[600]">{formatDate(date)}</h4>
             <small className="inline-block text-[0.6rem] text-neutral-400">
               {daysDifference < 1
@@ -81,7 +75,7 @@ const RtApplicationRowSm = ({
           {status === "not submitted" && (
             <>
               <EditButton onOpen={() => ""} />
-              <ButtonDelete onOpen={onOpen} />
+              <ButtonDelete table="" id="" />
             </>
           )}
           <ButtonMessage type={2} />

@@ -6,13 +6,6 @@ import { formatDate } from "@/lib/utils/stringManipulation";
 import RtApplicationStatus from "./RtApplicationStatus";
 import { useDaysDifference } from "@/lib/custom-hooks/useDaysDifference";
 import capitalizeName from "@/lib/utils/stringManipulation";
-import DestructiveModal from "@/components/__shared/modals/DestructiveModal";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-  useDisclosure,
-} from "@nextui-org/react";
 import { RenterApplicationsInterface } from "../../../../../../interfaces";
 import {
   TableBody,
@@ -20,15 +13,7 @@ import {
 } from "../../../components/shared/table/Table";
 import TbPropertyImage from "../../../components/shared/TbPropertyImage";
 import PaymentStructure from "../../../components/shared/PaymentStructure";
-import Rating from "../../../components/shared/Rating";
-import ButtonDelete from "@/components/__shared/ui/button/ButtonDelete";
-import TbUserImage from "@/app/dashboard/components/shared/TbUserImage";
-import ButtonMessage from "@/components/__shared/ui/button/ButtonMessage";
-import { FaChartBar } from "react-icons/fa";
-import { PiChatCenteredDots } from "react-icons/pi";
-import { BiDotsVerticalRounded } from "react-icons/bi";
-import { FiTrash2 } from "react-icons/fi";
-import { MdOutlineEdit } from "react-icons/md";
+import RtApplicationAction from "./RtApplicationAction";
 
 const RtApplicationRow = ({
   propertyImage,
@@ -43,16 +28,8 @@ const RtApplicationRow = ({
 
   const daysDifference = useDaysDifference(date);
 
-  const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
-
   return (
     <>
-      <DestructiveModal
-        isOpen={isOpen}
-        onClose={onClose}
-        onOpenChange={onOpenChange}
-        label="Are you sure you want to delete this application?"
-      />
       <TableBodyRow className="grid-cols-5">
         {/* Property */}
         <TableBody
@@ -99,7 +76,7 @@ const RtApplicationRow = ({
         </TableBody> */}
         {/* Posted On */}
         <TableBody className="col-span-1 text-center">
-          <h4 className="text-sm font-[600]">{formatDate(date)}</h4>
+          <h4 className="text-sm">{formatDate(date)}</h4>
           <small className="inline-block text-[0.6rem] text-neutral-400">
             {daysDifference < 1
               ? `Less Than A Day Ago`
@@ -112,44 +89,7 @@ const RtApplicationRow = ({
         </TableBody>
         {/* Actions */}
         <TableBody className="col-span-1 mx-auto">
-          <Popover style={{ zIndex: "99999" }} placement="left">
-            <PopoverTrigger className="h-fit w-fit">
-              <button className="col-span-1 ml-auto h-fit w-fit p-2">
-                <BiDotsVerticalRounded />
-              </button>
-            </PopoverTrigger>
-            <PopoverContent className="rounded-md bg-[#fefefe] px-0 py-0">
-              <div className="flex flex-col divide-y rounded-md">
-                {status === "not submitted" && (
-                  <>
-                    <button
-                      className="deep-green-hover flex w-full  items-center gap-2 px-4 py-2"
-                      onClick={() => ""}
-                    >
-                      <span className="mr-auto">Edit</span>
-                      <MdOutlineEdit />
-                    </button>
-                    <button
-                      className="deep-green-hover flex w-full items-center gap-2 px-4 py-2"
-                      onClick={onOpen}
-                    >
-                      <span className="mr-auto">Delete</span>
-
-                      <FiTrash2 />
-                    </button>
-                  </>
-                )}
-                <button
-                  className="deep-green-hover flex w-full items-center  gap-2 px-4 py-2"
-                  onClick={() => ""}
-                >
-                  <span className="mr-auto">Message</span>
-
-                  <PiChatCenteredDots />
-                </button>
-              </div>
-            </PopoverContent>
-          </Popover>
+          <RtApplicationAction status={status} id="" table="" />
         </TableBody>
       </TableBodyRow>
     </>

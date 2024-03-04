@@ -4,7 +4,6 @@ import React from "react";
 import RtApplicationRow from "./RtApplicationRow";
 import { useFetchTableWithPagination } from "@/lib/custom-hooks/useFetch";
 import TableSkeleton from "../../../components/shared/skeleton/TableSkeleton";
-import Spinner from "../../../components/shared/Spinner";
 import { useApplicationsStore } from "@/store/dashboard/applicationsStore";
 import Pagination from "@/components/__shared/Pagination";
 import {
@@ -44,7 +43,7 @@ const RtManageApplicationsTable = (props: Props) => {
   return (
     <section className="hidden lg:block">
       {error && <p>Error: {error.message}</p>}
-      <Table className="mb-8 hidden lg:flex">
+      <Table className="mb-8">
         <TableHeaderRow className="grid-cols-5" gap="2rem">
           <TableHeader className="col-span-2">Property</TableHeader>
           {/* <TableHeader className="col-span-1">Property Owner</TableHeader> */}
