@@ -6,6 +6,7 @@ import styles from "../../index.module.css";
 import { BeMyAgentFormType } from "../types";
 import { useField } from "formik";
 import { requiredFeatures } from "../../../content";
+import InfoText from "@/app/components/listing-form/components/InfoText";
 
 export default function FeaturesAndAmenities() {
   const [agentFormData, setAgentFormData] =
@@ -39,7 +40,10 @@ export default function FeaturesAndAmenities() {
   return (
     <>
       <Root>
-        <h2 className={`${styles.title}`}>Required Features</h2>
+        <div className="mb-10 flex w-full flex-col gap-8">
+          <h2 className={`${styles.titleNoMargin}`}>Required Features</h2>
+          <InfoText content="You may select more than one response" />
+        </div>
         <div className="grid w-full grid-cols-4 gap-5 lg:grid-cols-3">
           {requiredFeatures.map((r: any, index: number) => (
             <div

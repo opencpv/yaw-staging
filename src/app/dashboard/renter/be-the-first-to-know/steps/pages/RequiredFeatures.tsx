@@ -3,6 +3,7 @@ import Amenity from "@/app/components/listing-form/components/Amenity";
 import styles from "../../index.module.css";
 import { useField } from "formik";
 import { requiredFeatures } from "@/app/dashboard/components/shared/content";
+import InfoText from "@/app/components/listing-form/components/InfoText";
 
 const RequiredFeatures = () => {
   const [selected, setSelected] = useState<any>([]);
@@ -34,7 +35,10 @@ const RequiredFeatures = () => {
   return (
     <>
       <section>
-        <h2 className={`${styles.title}`}>Required Features</h2>
+        <div className="mb-10 flex w-full flex-col gap-8">
+          <h2 className={`${styles.titleNoMargin}`}>Required Features</h2>
+          <InfoText content="You may select more than one response" />
+        </div>
         <div className="grid w-full grid-cols-4 gap-5 lg:grid-cols-3">
           {requiredFeatures.map((r: any, index: number) => (
             <div

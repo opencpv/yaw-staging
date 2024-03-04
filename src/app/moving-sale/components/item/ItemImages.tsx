@@ -8,7 +8,7 @@ type Props = {};
 
 const ItemImages = (props: Props) => {
   return (
-    <section className="relative grid grid-cols-2 gap-2 mb-16 h-60 md:h-[27rem]">
+    <section className="relative mb-16 grid h-60 grid-cols-2 gap-2 md:h-[27rem]">
       <div className="relative col-span-1 hidden min-[350px]:block">
         <Image
           src="/assets/images/about/young-couple.webp"
@@ -18,8 +18,8 @@ const ItemImages = (props: Props) => {
           style={{ objectFit: "cover" }}
         />
       </div>
-      <div className="grid grid-cols-1 col-span-2 gap-2 min-[350px]:col-span-1 sm:grid-cols-2">
-        {[1, 2, 3, 4].map((_, idx) => (
+      <div className="col-span-2 grid grid-cols-1 gap-2 min-[350px]:col-span-1 sm:grid-cols-2">
+        {[1, 2, 3].map((_, idx) => (
           <div key={idx + 1} className="relative even:hidden sm:even:block ">
             <Image
               src="/assets/images/about/young-couple.webp"
