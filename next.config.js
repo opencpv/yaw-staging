@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    taint: true,
+  },
   images: {
     domains: [
       "res.cloudinary.com",
@@ -10,7 +13,8 @@ const nextConfig = {
       "cdn.sanity.io",
       "th.bing.com",
       "plus.unsplash.com",
-      "avatar.iran.liara.run"
+      "avatar.iran.liara.run",
+      "cdn.sanity.io"
     ],
   },
 };

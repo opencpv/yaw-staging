@@ -42,7 +42,13 @@ const cities = [
   "Goaso",
 ];
 
-const CitySearchForm = ({ className }: { className?: string }) => {
+const CitySearchForm = ({
+  className,
+  defaultValue = "Madina, Accra",
+}: {
+  className?: string;
+  defaultValue?: string;
+}) => {
   return (
     <div
       className={`flex h-40 w-full max-w-5xl items-center justify-center bg-primary-500 bg-opacity-80 sm:h-52 md:w-full 2k:h-64 ${styles.rectangle} ${className}`}
@@ -55,7 +61,7 @@ const CitySearchForm = ({ className }: { className?: string }) => {
         /> */}
         <input
           className="h-full w-full rounded-l-xl rounded-r-none bg-secondary-300 px-6 py-3 text-lg font-[600] text-neutral-900 placeholder:text-neutral-400 focus:outline-none xs:text-2xl"
-          placeholder="Madina, Accra"
+          placeholder={defaultValue}
         />
 
         <button

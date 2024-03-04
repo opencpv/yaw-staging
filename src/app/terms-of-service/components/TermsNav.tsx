@@ -1,14 +1,9 @@
 "use client";
-import fetchFaqData from "@/app/faq/lib/fetchFaqData";
-import groupByCategory from "@/app/faq/lib/groupFAQ";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import fetchTermsData from "../lib/fetchTermsData";
 import Link from "next/link";
-import { openSans } from "@/styles/font";
 import { usePathname } from "next/navigation";
-import Logo from "@/components/__shared/Logo";
 
 const TermsNav = ({
   data,

@@ -1,14 +1,13 @@
 import Head from "next/head";
 import TermsNav from "./components/TermsNav";
-import fetchTermsData from "./lib/fetchTermsData";
-import { GetServerSideProps } from "next";
-import { useEffect, useState } from "react";
-import fetchFaqData from "../faq/lib/fetchFaqData";
+import { TERMS_QUERY } from "@/lib/utils/sanity/queries";
+import { SanityDocument } from "next-sanity";
+import { loadQuery } from "@/lib/utils/sanity/sanityStore";
 import MainView from "./components/MainView";
-import { openSans } from "../../styles/font";
 
 const page = async () => {
-  const data = await fetchTermsData();
+  const initial = await loadQuery<SanityDocument[]>(TERMS_QUERY);
+  const data = initial.data[0];
 
   return (
     <>

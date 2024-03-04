@@ -13,6 +13,7 @@ import Button from "@/components/__shared/ui/button/Button";
 
 // import required modules
 import { Pagination, Autoplay } from "swiper/modules";
+import { urlForImage } from "@/lib/utils/sanity/utils";
 
 let images = [
   "/assets/images/home/promotion-1.jpg",
@@ -20,7 +21,7 @@ let images = [
   "/assets/images/home/promotion-1.jpg",
 ];
 
-const PromotionSlider = () => {
+const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
   return (
     <>
       <Swiper
@@ -34,11 +35,11 @@ const PromotionSlider = () => {
         className={`mySwiper relative h-[29rem] w-full rounded-3xl`}
       >
         {/* Promotee info from database */}
-        {images.map((image, idx) => (
-          <SwiperSlide key={idx + 1}>
+        {promotions.map((promotion: any, idx: number) => (
+          <SwiperSlide key={idx}>
             <div className="relative h-full w-full">
               <Image
-                src={image}
+                src={urlForImage(promotion?.image)?.url() as string}
                 alt=""
                 fill
                 style={{ objectFit: "cover" }}
@@ -49,10 +50,10 @@ const PromotionSlider = () => {
             <div className="absolute left-3 top-32 z-50 space-y-20 min-[300px]:left-10">
               <div className="space-y-3 text-sm ">
                 <h1 className="text-3xl font-[700] text-accent-100">
-                  Promotion
+                  {promotion.title}
                 </h1>
-                <p className="text-white">Lorem ipsum</p>
-                <Link href="" className="inline-block">
+                <p className="text-white"> {promotion.subtitle}</p>
+                <Link href={promotion.url} className="inline-block">
                   <Button className="flex min-w-fit items-center gap-3 rounded-md border-none bg-accent-200 capitalize text-white hover:bg-neutral-300 hover:text-neutral-600">
                     View item <IoIosArrowRoundForward />
                   </Button>
@@ -60,10 +61,7 @@ const PromotionSlider = () => {
               </div>
               {/* Promotion description */}
               <p className="relative z-30 line-clamp-5 w-10/12 text-sm font-[600] leading-relaxed text-white lg:ml-10">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Exercitationem nulla possimus, eum amet minima dicta ducimus
-                facilis? Libero, deserunt quam molestias tempore, assumenda modi
-                mollitia pariatur et quas, exercitationem tenetur?
+                {promotion.description}
               </p>
             </div>
           </SwiperSlide>
