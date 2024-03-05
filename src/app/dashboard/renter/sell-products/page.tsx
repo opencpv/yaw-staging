@@ -20,13 +20,16 @@ import {
   TableSm,
 } from "../../components/shared/table/Table";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
+import { cn } from "@/lib/utils";
 
 const Sell = () => {
   // const [products, setproducts] = useState<any[]>([]);
   // const [supabase, setsupabase] = useState<any>();
   // const [id, setid] = useState<string>("");
 
-  let products: any[] = [
+  const { currentRole } = useDashboardStore();
+
+  let items: any[] = [
     {
       id: "1",
       product: "Dining Table",
@@ -95,46 +98,58 @@ const Sell = () => {
     <>
       <main>
         <section className="mb-6">
-          <h2>Products</h2>
+          <h2>Items</h2>
           {/* product count */}
-          {products.length > 0 ? (
+          {items?.length > 0 ? (
             <small className="inline-block text-sm capitalize">
-              Showing {products.length} product
-              {products.length > 1 ? "s" : null}
+              Showing {items.length} {items.length > 1 ? "Items" : "Item"}
             </small>
           ) : null}
         </section>
 
         {/* table display in desktop view */}
-        <Table>
-          <TableHeaderRow className="grid-cols-6" gap="2rem">
-            <TableHeader className="col-span-2">Product</TableHeader>
-            <TableHeader className="col-span-1">Category</TableHeader>
-            <TableHeader className="col-span-1">Date created</TableHeader>
-            <TableHeader className="col-span-1">Status</TableHeader>
-            <TableHeader className="col-span-1">Actions</TableHeader>
-          </TableHeaderRow>
-          <TableBodyRowGroup>
-            {/* if product count is zero display this */}
-            {products.length === 0 ? (
-              <TableBodyRow className="grid-cols-6">
-                <TableBody className="col-span-6">
-                  <AddProduct />
-                </TableBody>
-              </TableBodyRow>
-            ) : null}
+        <div className="flex flex-col gap-8">
+          <Table
+            className={cn("mb-8", {
+              "min-h-[35rem]": items?.length > 3,
+            })}
+          >
+            <TableHeaderRow className="grid-cols-6" gap="2rem">
+              <TableHeader className="col-span-2">Item</TableHeader>
+              <TableHeader className="col-span-1">Category</TableHeader>
+              <TableHeader className="col-span-1">Date created</TableHeader>
+              <TableHeader className="col-span-1">Status</TableHeader>
+              <TableHeader className="col-span-1">Actions</TableHeader>
+            </TableHeaderRow>
+            <TableBodyRowGroup>
+              {/* if product count is zero display this */}
+              {items.length === 0 ? (
+                <TableBodyRow className="grid-cols-6">
+                  <TableBody className="col-span-6">
+                    <AddProduct />
+                  </TableBody>
+                </TableBodyRow>
+              ) : null}
 
-            {products?.map((product, index) => (
-              <>
-                <DesktopProductCard data={product} key={index} />
-              </>
-            ))}
-          </TableBodyRowGroup>
-        </Table>
+              {items?.map((product, index) => (
+                <>
+                  <DesktopProductCard data={product} key={index} />
+                </>
+              ))}
+            </TableBodyRowGroup>
+          </Table>
+          <Button
+            href={`/dashboard/${currentRole}/sell-products/add-new-product`}
+            color="accent"
+            className="self-end"
+          >
+            Add New Product
+          </Button>
+        </div>
 
         {/* table display in mobile and tablet view */}
         <TableSm className="mx-auto mb-10 mt-3 w-fit">
-          {products?.map((product, index) => (
+          {items?.map((product, index) => (
             <MobileProductCard data={product} key={`mobile-${index}`} />
           ))}
         </TableSm>

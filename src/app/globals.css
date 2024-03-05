@@ -147,7 +147,7 @@ small {
 }
 
 .Toastify__toast-container {
-  @apply flex items-center justify-center flex-col;
+  @apply flex flex-col flex-wrap items-center justify-center;
 }
 
 /* to be removed after temporary landing page */
