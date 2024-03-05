@@ -149,7 +149,7 @@ const Sell = () => {
             color="accent"
             className="self-end"
           >
-            Add New Product
+            Add New Item
           </Button>
         </div>
       </main>
