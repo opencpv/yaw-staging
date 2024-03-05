@@ -7,29 +7,20 @@
     width: 100px;
 }
 
-@keyframes changeBackgroundColor {
-    0% {
-        background-color: #17441E;
-        /* Start color */
-    }
-
-    30% {
-        background: linear-gradient(91deg, #17441E 29.11%, #FFDE99 115.2%);        /* Middle color */
-    }
-
-    60% {
-        background: linear-gradient(91deg, #1F5C29 29.11%, #6B614D 115.2%);        /* End color */
-    }
-    100% {
-        background-color: #17441E;
-        /* Start color */
-    }
-}
-
 .coming_soon {
-    animation: changeBackgroundColor 7.5s infinite;
-    animation-delay: 1s; /* Delay the start of the animation by 1 second */
-    animation-timing-function: ease; /* Use a linear timing function */
-
-    animation-duration: 7.5s;
+  background: linear-gradient(80deg, #22652c, #17441e, #ffde99);
+  background-size: 200% 200%;
+  animation: comingSoonAnimation 10s ease infinite;
+}
+ 
+@keyframes comingSoonAnimation {
+  0% {
+    background-position: 0% 51%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 51%;
+  }
 }

@@ -11,8 +11,13 @@ function useTLPage() {
   const { onOpen: toastOnOpen } = useToastDisclosureVariant1();
 
   const optionSelect = useGetNotifiedStore((state: any) => state.filterOption);
- 
-  const handleSubmit = (values: any, setFieldError: any, phone : any) => {
+
+  const handleSubmit = (
+    values: any,
+    setFieldError: any,
+    phone: any,
+    func: any,
+  ) => {
     values.phone = phone;
     if (optionSelect === "mobile") {
       if (!phone || phone.length < 8) {
@@ -20,10 +25,11 @@ function useTLPage() {
         toastOnOpen("Please enter a valid mobile number", "error");
       } else {
         toastOnOpen("You are subscribed now!!!", "success");
+        func((init: boolean) => !init);
       }
     } else {
-      // Handle other cases
       toastOnOpen("You are subscribed now!!!", "success");
+      func((init: boolean) => !init);
     }
   };
 

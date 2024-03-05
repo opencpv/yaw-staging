@@ -8,15 +8,15 @@ type Props = {
 
 function TLPTags({ variant, content }: Props) {
   const options: any = {
-    "coming-soon": ` !text-white text-20 leading-[1.75rem] font-semibold ${styles.coming_soon}`,
+    "coming-soon": ` !text-white 2xl:text-20 leading-[1.75rem] font-semibold ${styles.coming_soon}`,
     white:
-      "bg-[#FFFFFF29]  text-[#F4C86A] text-[1rem] font-semibold text-[#0B6E4F] leading-[1.4rem] bg-white",
+      "bg-[#FFFFFF29] text-sm  2xl:text-[1rem] font-semibold text-[#0B6E4F] leading-[1.4rem] bg-white",
   };
   return (
-    <Button
-      className={`${options[variant]} px-4 py-2 capitalize rounded-2xl w-fit `}>
+    <div
+      className={`${options[variant]} px-4 py-2 capitalize rounded-2xl w-fit cursor-pointer flex items-center justify-center gap-[0.625rem]`}>
       {content}
-    </Button>
+    </div>
   );
 }
 
