@@ -1,32 +1,79 @@
 import CaUploadIcon from "@/app/components/icons/CaUploadIcon";
+import ErrorMessage from "@/components/__shared/ui/ErrorMessage";
+import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { cn } from "@/lib/utils";
+import { useField } from "formik";
 import Image from "next/image";
 import React, { useCallback, useEffect } from "react";
-import Dropzone, { useDropzone } from "react-dropzone";
-import { FaTimes } from "react-icons/fa";
+import Dropzone, {
+  DropEvent,
+  FileRejection,
+  useDropzone,
+} from "react-dropzone";
 import { LiaTimesSolid } from "react-icons/lia";
 
 interface Props {
-  onFileSelect: (file: File) => void;
+  onFileSelect?: (file: File) => void;
 }
+
 const FileUploader = ({ onFileSelect }: Props) => {
-  const [files, setFiles] = React.useState([]);
-  console.log(files);
+  const [field, meta, helpers] = useField("images");
+
+  const [files, setFiles] = React.useState<any[]>([]);
+  const { onOpen } = useToastDisclosure();
+
+  const onDropRejected = (
+    fileRejections: FileRejection[],
+    event: DropEvent,
+  ) => {
+    fileRejections.forEach((file) => {
+      const { file: fileObj, errors } = file;
+      onOpen(
+        `❌ ${errors[0].code.replaceAll("-", " ")} - ${fileObj.name} | ${
+          errors[0].code === "file-too-large"
+            ? "Max file size is 2MB"
+            : "Min file size is 100KB"
+        }`,
+      );
+    });
+  };
 
   const onDrop = useCallback(
     (acceptedFiles: any) => {
-      // Do something with the files
-      let data = acceptedFiles.map((file: any) => (
-        <Preview
-          key={file.path}
-          file={file}
-          setFiles={setFiles}
-          files={files}
-        />
-      ));
-      setFiles(data);
+      if (files.length + acceptedFiles.length > 5) {
+        // max 5 files
+        onOpen("❌ You can only upload up to 5 files", true);
+        return;
+      }
+
+      const newFiles = acceptedFiles.map(
+        (
+          file: any, // create new files
+        ) =>
+          Object.assign(file, {
+            preview: URL.createObjectURL(file),
+          }),
+      );
+
+      const newFilesArray = [...files, ...newFiles]; // combine old and new files
+
+      setFiles(
+        newFilesArray.map((file: any) =>
+          Object.assign(file, {
+            preview: URL.createObjectURL(file),
+          }),
+        ),
+      );
+
+      helpers.setValue(
+        newFilesArray.map((file: any) =>
+          Object.assign(file, {
+            preview: URL.createObjectURL(file),
+          }),
+        ),
+      );
     },
-    [files],
+    [files, onOpen, helpers],
   );
 
   useEffect(() => {
@@ -35,9 +82,6 @@ const FileUploader = ({ onFileSelect }: Props) => {
       files.forEach((file: any) => URL.revokeObjectURL(file.preview));
   }, [files]);
 
-  // const { getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject, acceptedFiles } =
-  //   useDropzone({});
-
   return (
     <>
       <Dropzone
@@ -45,7 +89,12 @@ const FileUploader = ({ onFileSelect }: Props) => {
         minSize={100000}
         maxSize={2097152}
         onDrop={onDrop}
+        onDropRejected={onDropRejected}
         multiple
+        accept={{
+          "image/jpeg": [],
+          "image/png": [],
+        }}
       >
         {/* minSize= 100kb, MaxSize is 2mb */}
         {({
@@ -60,10 +109,12 @@ const FileUploader = ({ onFileSelect }: Props) => {
               <input {...getInputProps()} />
               <div
                 className={cn(
-                  "flex h-fit w-full flex-col items-center justify-center rounded-md border border-dashed border-neutral-400 p-20",
+                  "flex h-fit w-full flex-col items-center justify-center rounded-md border border-dashed p-20",
                   {
-                    "border-primary-100": isDragActive,
-                    "border-primary-500": isDragAccept,
+                    "border-neutral-400":
+                      !isDragActive && !isDragAccept && !isDragReject,
+                    "border-neutral-800": isDragActive,
+                    "border-success-100": isDragAccept,
                     "border-error-100": isDragReject,
                   },
                 )}
@@ -73,7 +124,7 @@ const FileUploader = ({ onFileSelect }: Props) => {
                   Select or drag and drop images here <br></br>( Minimum 5 )
                 </p>
                 <p className="mt-2 text-[8px] opacity-[0.4]">
-                  JPG, PNG file size no more than 10MB
+                  JPG, PNG file size no more than 2MB and no less than 100KB
                 </p>
                 <button
                   type="button"
@@ -86,7 +137,17 @@ const FileUploader = ({ onFileSelect }: Props) => {
           </>
         )}
       </Dropzone>
-      <ul className="mt-5 flex flex-wrap gap-5">{files}</ul>
+      <ul className="mt-5 flex flex-wrap gap-5">
+        {files?.map((file: any) => (
+          <Preview
+            key={file.name}
+            file={file}
+            setFiles={setFiles}
+            files={files}
+          />
+        ))}
+      </ul>
+      {meta.touched && meta.error && <ErrorMessage>{meta.error}</ErrorMessage>}
     </>
   );
 };
@@ -110,6 +171,8 @@ const Preview = ({ file, setFiles, files }: any) => {
         fill
         style={{ objectFit: "cover" }}
         className="rounded-[inherit]"
+        // Revoke data uri after image is loaded
+        onLoad={() => URL.revokeObjectURL(file.preview)}
       />
     </li>
   );

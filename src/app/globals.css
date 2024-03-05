@@ -147,7 +147,7 @@ small {
 }
 
 .Toastify__toast-container {
-  @apply flex items-center justify-center;
+  @apply flex flex-wrap items-center justify-center;
 }
 
 .unselectable {

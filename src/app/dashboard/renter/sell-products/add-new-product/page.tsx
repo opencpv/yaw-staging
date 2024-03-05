@@ -26,11 +26,11 @@ const AddNewProduct = () => {
     description: Yup.string().required("This field is required"),
     price: Yup.number().required("This field is required"),
     phoneNumber: Yup.string().required("This field is required"),
-    images: Yup.mixed().required("This field is required"),
+    // images: Yup.mixed().required("This field is required"),
+    images: Yup.array()
+      .min(3, "Please upload at least 3 images")
+      .required("This field is required"),
   });
-
-  const [image, setImage] = useState<File | null>();
-  const [code, setCode] = useState();
 
   const { handlePhone, handleCountryChange, phone } = usePhoneInputDisclosure();
 
@@ -60,7 +60,7 @@ const AddNewProduct = () => {
     <section>
       <main className="w-full">
         <div className="mb-14">
-          <h2>Add new product</h2>
+          <h2>Add item for sale</h2>
         </div>
         <Formik
           initialValues={{
@@ -127,18 +127,13 @@ const AddNewProduct = () => {
               />
             </div>
             <div className="flex h-[100%] w-full flex-col">
-              <FileUploader
-                onFileSelect={(file) => {
-                  setImage(file);
-                  console.log(image);
-                }}
-              />
+              <FileUploader />
               <div className="mt-auto flex justify-end">
                 <button
                   type="submit"
                   className="mt-8 rounded-md bg-[#DDB771] px-[40px] py-[15px] font-semibold text-white"
                 >
-                  Add New Product
+                  Add New Item
                 </button>
               </div>
             </div>

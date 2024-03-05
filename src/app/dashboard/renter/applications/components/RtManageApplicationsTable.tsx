@@ -15,6 +15,7 @@ import {
 import Button from "@/components/__shared/ui/button/Button";
 import { IoArchiveOutline } from "react-icons/io5";
 import Loader from "@/components/__shared/loader/Loader";
+import { cn } from "@/lib/utils";
 
 type Props = {};
 
@@ -43,7 +44,11 @@ const RtManageApplicationsTable = (props: Props) => {
   return (
     <section className="hidden lg:block">
       {error && <p>Error: {error.message}</p>}
-      <Table className="mb-8">
+      <Table
+        className={cn("mb-8", {
+          "min-h-[35rem]": currentPage && currentPage.length > 3,
+        })}
+      >
         <TableHeaderRow className="grid-cols-5" gap="2rem">
           <TableHeader className="col-span-2">Property</TableHeader>
           {/* <TableHeader className="col-span-1">Property Owner</TableHeader> */}
@@ -91,7 +96,7 @@ const RtManageApplicationsTable = (props: Props) => {
       <div className="grid place-items-end">
         <Button
           variant="ghost"
-          className="ml-auto mt-5"
+          className="ml-auto"
           title="View all applications"
         >
           Archive <IoArchiveOutline />
