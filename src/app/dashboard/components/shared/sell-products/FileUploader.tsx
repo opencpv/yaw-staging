@@ -31,8 +31,8 @@ const FileUploader = ({ onFileSelect }: Props) => {
       onOpen(
         `❌ ${errors[0].code.replaceAll("-", " ")} - ${fileObj.name} | ${
           errors[0].code === "file-too-large"
-            ? "Max file size is 2MB"
-            : "Min file size is 100KB"
+            ? "Maximum file size is 2MB"
+            : "Minimum file size is 100KB"
         }`,
       );
     });
