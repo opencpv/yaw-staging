@@ -11,6 +11,7 @@ import CustomTextAreaInput from "@/app/components/CustomTextAreaInput";
 import InputPhoneNumber from "@/components/__shared/form/InputPhoneNumber";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import FileUploader from "@/app/dashboard/components/shared/sell-products/FileUploader";
+import Button from "@/components/__shared/ui/button/Button";
 
 interface CategoryProp {
   label: string;
@@ -129,12 +130,9 @@ const AddNewProduct = () => {
             <div className="flex h-[100%] w-full flex-col">
               <FileUploader />
               <div className="mt-auto flex justify-end">
-                <button
-                  type="submit"
-                  className="mt-8 rounded-md bg-[#DDB771] px-[40px] py-[15px] font-semibold text-white"
-                >
+                <Button type="submit" color="accent" className="mt-8">
                   Add New Item
-                </button>
+                </Button>
               </div>
             </div>
           </Form>
