@@ -34,7 +34,6 @@ const FileUploader = ({ onFileSelect }: Props) => {
             ? "Max file size is 2MB"
             : "Min file size is 100KB"
         }`,
-        true,
       );
     });
   };
@@ -159,8 +158,9 @@ const Preview = ({ file, setFiles, files }: any) => {
   return (
     <li className="relative aspect-square w-28 rounded-md">
       <div className="absolute inset-0 z-10 h-full w-full rounded-[inherit] bg-black bg-opacity-20"></div>
+      <div className="absolute right-2 top-1 z-20 cursor-pointer rounded-full bg-neutral-100 p-2.5"></div>
       <LiaTimesSolid
-        className="absolute right-2 top-1 z-20 cursor-pointer text-primary-500"
+        className="text-primary-500"
         onClick={() => {
           const newFiles = files?.filter((f: any) => f.name !== file.name);
           setFiles(newFiles);

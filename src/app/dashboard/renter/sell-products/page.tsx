@@ -138,6 +138,12 @@ const Sell = () => {
               ))}
             </TableBodyRowGroup>
           </Table>
+          {/* table display in mobile and tablet view */}
+          <TableSm className="mx-auto w-fit">
+            {items?.map((product, index) => (
+              <MobileProductCard data={product} key={`mobile-${index}`} />
+            ))}
+          </TableSm>
           <Button
             href={`/dashboard/${currentRole}/sell-products/add-new-product`}
             color="accent"
@@ -146,13 +152,6 @@ const Sell = () => {
             Add New Product
           </Button>
         </div>
-
-        {/* table display in mobile and tablet view */}
-        <TableSm className="mx-auto mb-10 mt-3 w-fit">
-          {items?.map((product, index) => (
-            <MobileProductCard data={product} key={`mobile-${index}`} />
-          ))}
-        </TableSm>
       </main>
     </>
   );
