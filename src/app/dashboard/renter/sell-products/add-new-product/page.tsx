@@ -22,7 +22,7 @@ const AddNewProduct = () => {
   const validationSchema = Yup.object().shape({
     category: Yup.string().required("This field is requiredRequired"),
     condition: Yup.string().required("This field is required"),
-    productName: Yup.string().required("This field is required"),
+    itemName: Yup.string().required("This field is required"),
     description: Yup.string().required("This field is required"),
     price: Yup.number().required("This field is required"),
     phoneNumber: Yup.string().required("This field is required"),
@@ -64,7 +64,7 @@ const AddNewProduct = () => {
         </div>
         <Formik
           initialValues={{
-            productName: "",
+            itemName: "",
             description: "",
             price: "",
             phoneNumber: "",
@@ -81,8 +81,8 @@ const AddNewProduct = () => {
           <Form className="grid grid-cols-1 gap-x-5 gap-y-8 lg:grid-cols-3">
             <div className="space-y-8">
               <TextFieldInput
-                name="productName"
-                label="Product name"
+                name="itemName"
+                label="Item name"
                 placeholder="e.g. Dining table"
               />
               <CustomSelect
@@ -99,7 +99,7 @@ const AddNewProduct = () => {
               <CustomTextAreaInput
                 name="description"
                 label="Description"
-                placeholder="Describe your product"
+                placeholder="Describe your item"
                 classes="h-[167px]"
               />
             </div>

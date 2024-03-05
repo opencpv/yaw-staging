@@ -156,16 +156,17 @@ export default FileUploader;
 
 const Preview = ({ file, setFiles, files }: any) => {
   return (
-    <li className="relative aspect-square w-28 rounded-md">
+    <li className="relative aspect-square w-24 rounded-md sm:w-28">
       <div className="absolute inset-0 z-10 h-full w-full rounded-[inherit] bg-black bg-opacity-20"></div>
-      <div className="absolute right-2 top-1 z-20 cursor-pointer rounded-full bg-neutral-100 p-2.5"></div>
-      <LiaTimesSolid
-        className="text-primary-500"
+      <div
+        className="absolute right-2 top-1 z-20 shrink-0 cursor-pointer rounded-full bg-neutral-100 p-2.5"
         onClick={() => {
           const newFiles = files?.filter((f: any) => f.name !== file.name);
           setFiles(newFiles);
         }}
-      />
+      >
+        <LiaTimesSolid className="text-primary-500" />
+      </div>
       <Image
         src={URL.createObjectURL(file)}
         alt="preview"
