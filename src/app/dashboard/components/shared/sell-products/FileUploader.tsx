@@ -34,15 +34,16 @@ const FileUploader = ({ onFileSelect }: Props) => {
             ? "Max file size is 2MB"
             : "Min file size is 100KB"
         }`,
+        true,
       );
     });
   };
 
   const onDrop = useCallback(
     (acceptedFiles: any) => {
-      if (files.length + acceptedFiles.length > 5) {
+      if (files.length + acceptedFiles.length > 10) {
         // max 5 files
-        onOpen("❌ You can only upload up to 5 files", true);
+        onOpen("❌ You can only upload up to 10 files", true);
         return;
       }
 
@@ -109,7 +110,7 @@ const FileUploader = ({ onFileSelect }: Props) => {
               <input {...getInputProps()} />
               <div
                 className={cn(
-                  "flex h-fit w-full flex-col items-center justify-center rounded-md border border-dashed p-20",
+                  "flex h-fit w-full flex-col items-center justify-center rounded-md border border-dashed px-8 py-20 lg:px-20",
                   {
                     "border-neutral-400":
                       !isDragActive && !isDragAccept && !isDragReject,
@@ -121,14 +122,14 @@ const FileUploader = ({ onFileSelect }: Props) => {
               >
                 <CaUploadIcon />
                 <p className="mt-4 text-center text-[13px]">
-                  Select or drag and drop images here <br></br>( Minimum 5 )
+                  Select or drag and drop images here <br></br>( Minimum 3 )
                 </p>
-                <p className="mt-2 text-[8px] opacity-[0.4]">
+                <p className="mt-2 text-center text-[8px] opacity-[0.4]">
                   JPG, PNG file size no more than 2MB and no less than 100KB
                 </p>
                 <button
                   type="button"
-                  className="mt-4 rounded-sm border bg-[#FBFDFE] px-3 py-2 text-[#8A8A8A]"
+                  className="mt-4 rounded-md border bg-[#FBFDFE] px-3 py-2 text-[#8A8A8A]"
                 >
                   Select file
                 </button>
