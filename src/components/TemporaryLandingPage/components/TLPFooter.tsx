@@ -13,7 +13,7 @@ function TlpFooter() {
       <div className={" flex flex-row flex-wrap gap-x-1 gap-y-4"}>
         <div className="flex flex-wrap gap-x-2 gap-y-2 text-shade-50">
           <span>Copyright &copy; {getCurrentYear()} SBG REALTY LLC 2024</span>
-          <span>| All rights reserved </span>
+          <span className="hidden lg:flex">| All rights reserved </span>
         </div>
       </div>
       <div className={" mt-2 flex flex-row flex-wrap gap-2  lg:mt-0 lg:gap-4"}>
@@ -34,7 +34,7 @@ function TlpFooter() {
             contact@rentright.com
           </p>
         </div>
-        <div className={"flex flex-row items-center gap-2"}>
+        <div className={" flex-row items-center gap-2 hidden lg:flex"}>
           <svg
             width="24"
             height="24"
@@ -47,7 +47,7 @@ function TlpFooter() {
               fill="#DDB771"
             />
           </svg>
-          <p className="text-[#ffff]">(+233) 25 898 2889</p>
+          <p className="text-[#ffff] ">(+233) 25 898 2889</p>
         </div>
 
         {/* <div className="flex items-center gap-1 text-white">

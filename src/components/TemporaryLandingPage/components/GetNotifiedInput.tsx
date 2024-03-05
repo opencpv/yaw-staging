@@ -15,7 +15,7 @@ import { useState } from "react";
 
 function GetNotifiedInput() {
   const { handleSubmit } = useTLPage();
-  const [showInputs, setShowInputs] = useState<any>();
+  const [showInputs, setShowInputs] = useState<any>(false);
   const optionSelect = useGetNotifiedStore((state: any) => state.filterOption);
   const {
     handleCountryChange,
@@ -30,14 +30,21 @@ function GetNotifiedInput() {
       className={`flex w-full flex-col gap-6 sm:flex-row sm:gap-10 ${styles.root}`}
     >
       <div className="flex w-full flex-col gap-4">
-        <div className="flex items-center gap-3">
+        <div
+          className={`flex items-center ${
+            showInputs ? "justify-center" : "justify-start"
+          } gap-3 sm:justify-start`}
+        >
           <p
-            className="text-center text-20 font-semibold leading-[2.1875rem] text-[#F2B94E]
-          xs:whitespace-nowrap xs:text-left 2xl:text-[1.5625rem]"
+            className="2xl:text-[1.5625rem text-left text-20 font-semibold
+          leading-[2.1875rem] text-[#F2B94E] xs:whitespace-nowrap"
           >
             Get notified when we go live!
           </p>
-          <button className="animate animate-pulse appearance-none" onClick={() => setShowInputs((init : boolean) => !init)}>
+          <button
+            className="appearance-none"
+            onClick={() => setShowInputs((init: boolean) => !init)}
+          >
             {" "}
             <MdOutlineKeyboardArrowRight size="30" color="#F2B94E" />
           </button>
@@ -50,11 +57,11 @@ function GetNotifiedInput() {
             email: "",
           }}
           onSubmit={(values, { setFieldError }) => {
-            handleSubmit(values, setFieldError, phone);
+            handleSubmit(values, setFieldError, phone, setShowInputs);
           }}
         >
           {({ handleBlur, handleChange, values, errors }) => (
-            <Form className="flex w-full flex-col items-center gap-4 xs:max-w-[345px]">
+            <Form className="flex w-full flex-col items-center gap-2 xs:max-w-[345px]">
               {optionSelect == "email" && (
                 <input
                   required
