@@ -1,31 +1,31 @@
 "use client";
-import React, { useState } from "react";
-import Select from "../../../components/shared/ui/Select";
+import React from "react";
 import { useSelectDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { cn } from "@nextui-org/react";
 import { BsInfoCircle } from "react-icons/bs";
 import Tooltip from "@/components/ui/Tooltip";
 
-export type RenterApplicationStatus =
-  | "accepted"
-  | "declined"
-  | "under review"
-  | "incomplete";
+export type ItemPublicationStatus =
+  | "active"
+  | "inactive"
+  | "suspended"
+  | "archived";
 
 type Props = {
-  status: RenterApplicationStatus;
+  status: ItemPublicationStatus;
+  productStatus: "available" | "sold";
 };
 
-const RtApplicationStatus = ({ status }: Props) => {
+const PublicationStatus = ({ status, productStatus }: Props) => {
   return (
     <>
       <Tooltip
         content={
-          status === "accepted"
+          status === "active"
             ? "The lister has reviewed your application and should be in touch with you shortly. Check your messages or contact them directly if a response is delayed."
-            : status === "declined"
+            : status === "inactive"
               ? "The lister has declined your application. Continue your search or contact them directly with more questions."
-              : status === "under review"
+              : status === "suspended"
                 ? "The lister has received your application and should respond shortly. Contact them directly if a response is delayed."
                 : "Please submit form for review."
         }
@@ -34,19 +34,20 @@ const RtApplicationStatus = ({ status }: Props) => {
           className={cn(
             "flex w-44 items-center justify-center rounded-full p-2 py-2.5 text-neutral-800 shadow-sm",
             {
-              "bg-red-300": status === "declined",
-              "bg-[#B0E3C9]": status === "accepted",
-              "bg-accent-500": status === "under review",
-              "bg-primary-200/20": status === "incomplete",
+              "bg-red-300": status === "inactive" && productStatus === "sold",
+              "bg-[#B0E3C9]":
+                status === "active" && productStatus === "available",
+              "bg-accent-500": status === "suspended",
+              "bg-primary-200/20": status === "archived",
             },
           )}
         >
           <div className="flex items-center gap-5">
             <small className="text-xs">
-              {status === "accepted" && "Accepted"}
-              {status === "declined" && "Declined"}
-              {status === "under review" && "Under review"}
-              {status === "incomplete" && "Incomplete"}
+              {status === "active" && productStatus === "available" && "Active"}
+              {status === "inactive" && productStatus === "sold" && "Inactive"}
+              {status === "suspended" && "Suspended"}
+              {status === "archived" && "Archived"}
             </small>
             <BsInfoCircle />
           </div>
@@ -56,4 +57,4 @@ const RtApplicationStatus = ({ status }: Props) => {
   );
 };
 
-export default RtApplicationStatus;
+export default PublicationStatus;

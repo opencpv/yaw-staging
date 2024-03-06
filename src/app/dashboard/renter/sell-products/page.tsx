@@ -37,7 +37,8 @@ const Sell = () => {
       condition: "used",
       img_url: "/assets/images/about/young-couple.webp",
       price: 10000,
-      isAvailable: true,
+      is_available: true,
+      item_publication_status: "suspended",
     },
     {
       id: "2",
@@ -46,7 +47,8 @@ const Sell = () => {
       condition: "used",
       img_url: "/assets/images/about/young-couple.webp",
       price: 10000,
-      isAvailable: false,
+      is_available: true,
+      item_publication_status: "active",
     },
     {
       id: "3",
@@ -55,7 +57,18 @@ const Sell = () => {
       condition: "new",
       img_url: "/assets/images/about/young-couple.webp",
       price: 10000,
-      isAvailable: false,
+      is_available: false,
+      item_publication_status: "archived",
+    },
+    {
+      id: "4",
+      product: "Mifi",
+      category: "Electronics",
+      condition: "used",
+      img_url: "/assets/images/about/young-couple.webp",
+      price: 10000,
+      is_available: false,
+      item_publication_status: "inactive",
     },
   ];
 
@@ -116,9 +129,9 @@ const Sell = () => {
           >
             <TableHeaderRow className="grid-cols-6" gap="2rem">
               <TableHeader className="col-span-2">Item</TableHeader>
-              <TableHeader className="col-span-1">Category</TableHeader>
               <TableHeader className="col-span-1">Date created</TableHeader>
               <TableHeader className="col-span-1">Status</TableHeader>
+              <TableHeader className="col-span-1">Publication</TableHeader>
               <TableHeader className="col-span-1">Actions</TableHeader>
             </TableHeaderRow>
             <TableBodyRowGroup>
@@ -133,7 +146,19 @@ const Sell = () => {
 
               {items?.map((product, index) => (
                 <>
-                  <DesktopProductCard data={product} key={index} />
+                  <DesktopProductCard
+                    // status={
+                    //   index === 1
+                    //     ? ""
+                    //     : index === 3
+                    //       ? "inactive"
+                    //       : index === 0
+                    //         ? "suspended"
+                    //         : "archived"
+                    // }
+                    data={product}
+                    key={index}
+                  />
                 </>
               ))}
             </TableBodyRowGroup>
@@ -176,7 +201,7 @@ const AddProduct = () => {
           href={`/dashboard/${currentRole}/sell-products/add-new-product`}
           color="primary"
         >
-          Add New Product
+          Publish
         </Button>
       </div>
     </div>

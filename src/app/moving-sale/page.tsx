@@ -2,7 +2,7 @@
 import React from "react";
 import Category from "./components/category/Category";
 import CallOut from "@/components/__shared/ui/CallOut";
-import Select from "../dashboard/components/Select";
+import Select from "../dashboard/components/shared/ui/Select";
 import Button from "@/components/__shared/ui/button/Button";
 import { FaChevronDown } from "react-icons/fa";
 import ItemCard from "./components/item/ItemCard";

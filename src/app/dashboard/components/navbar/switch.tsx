@@ -2,7 +2,7 @@
 import capitalizeName, { LowerCase } from "@/lib/utils/stringManipulation";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { IoIosArrowDown } from "react-icons/io";
-import Select from "../Select";
+import Select from "../shared/ui/Select";
 import { UserRole } from "../../types";
 import { useRouter } from "next/navigation";
 

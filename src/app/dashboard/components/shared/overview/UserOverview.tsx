@@ -1,5 +1,5 @@
 "use client";
-import Callout from "@/app/dashboard/components/Callout";
+import Callout from "@/app/dashboard/components/shared/ui/Callout";
 import Button from "@/components/__shared/ui/button/Button";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";

@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Callout from "@/app/dashboard/components/Callout";
+import Callout from "@/app/dashboard/components/shared/ui/Callout";
 import { BsPatchExclamation } from "react-icons/bs";
 import { CiLock } from "react-icons/ci";
 import Button from "@/components/__shared/ui/button/Button";

@@ -64,6 +64,7 @@ const Select = ({
           {
             "pl-2 text-base bg-transparent data-[hover=true]:bg-transparent shadow-none":
               variant === "ghost",
+            "bg-neutral-300": disabled,
           },
           triggerClassName,
         ),

@@ -10,8 +10,13 @@ import TbPropertyImage from "../TbPropertyImage";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import Actions from "./Actions";
 import ProductCondition from "./ProductCondition";
+import PublicationStatus, { ItemPublicationStatus } from "./PublicationStatus";
 
-const DesktopProductCard = ({ data }: { data: any }) => {
+type Props = {
+  data: any;
+};
+
+const DesktopProductCard = ({ data }: Props) => {
   return (
     <TableBodyRow className="grid-cols-6">
       {/* Product */}
@@ -25,10 +30,6 @@ const DesktopProductCard = ({ data }: { data: any }) => {
           </p>
         </div>
       </TableBody>
-      {/* Category */}
-      <TableBody className="col-span-1 font-semibold">
-        <p>{data.category}</p>{" "}
-      </TableBody>
       {/* Date Created */}
       <TableBody className="col-span-1 text-center">
         <h4>{"October 29, 2024"}</h4>
@@ -38,7 +39,18 @@ const DesktopProductCard = ({ data }: { data: any }) => {
       </TableBody>
       {/* Status */}
       <TableBody className="col-span-1">
-        <ProductStatus isAvailable={data.isAvailable} id={data.id} />
+        <ProductStatus
+          publicationStatus={data.item_publication_status}
+          isAvailable={data.is_available}
+          id={data.id}
+        />
+      </TableBody>
+      {/* Publication */}
+      <TableBody className="col-span-1 font-semibold">
+        <PublicationStatus
+          status={data.item_publication_status}
+          productStatus={data.is_available ? "available" : "sold"}
+        />
       </TableBody>
       {/* Actions */}
       <TableBody className="col-span-1 mx-auto">

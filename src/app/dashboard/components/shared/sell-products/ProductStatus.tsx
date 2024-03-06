@@ -1,15 +1,21 @@
 import { useState } from "react";
-import Select from "../../Select";
+import Select from "../ui/Select";
 import { FaRegCheckCircle, FaRegTimesCircle } from "react-icons/fa";
-import Button from "../../Button";
 import supabase from "@/lib/utils/supabaseClient";
+import { ItemPublicationStatus } from "./PublicationStatus";
 
 interface Props {
   isAvailable: boolean;
-  width?: string;
+  publicationStatus: ItemPublicationStatus;
   id: number;
+  width?: string;
 }
-const ProductStatus = ({ isAvailable, width, id }: Props) => {
+const ProductStatus = ({
+  isAvailable,
+  width,
+  id,
+  publicationStatus,
+}: Props) => {
   const [value, setValue] = useState<"available" | "sold">(
     isAvailable ? "available" : "sold",
   );
@@ -31,31 +37,14 @@ const ProductStatus = ({ isAvailable, width, id }: Props) => {
       <Select
         color="primary"
         options={["Available", "Sold"]}
+        disabled={
+          publicationStatus === "suspended" || publicationStatus === "archived"
+        }
         value={value}
         selectorIconClassName="text-neutral-800"
         handleSelectionChange={handleSelectionChange}
         className="lg:max-xl:w-40"
       />
-      {isAvailable ? (
-        <div className="flex w-full items-center justify-center gap-2 text-xs font-[600]">
-          Still Available?
-          <Button
-            isIconOnly
-            className="rounded-md border-0 bg-white p-1 shadow-large"
-          >
-            <FaRegCheckCircle className="text-xl text-green-500" />
-          </Button>
-          <Button
-            isIconOnly
-            className="rounded-md border-0 bg-white p-1 shadow-large"
-          >
-            <FaRegTimesCircle
-              className="text-xl text-red-500"
-              onClick={() => setValue("sold")}
-            />
-          </Button>
-        </div>
-      ) : null}
     </div>
   );
 };

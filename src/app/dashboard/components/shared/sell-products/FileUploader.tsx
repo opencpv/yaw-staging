@@ -13,6 +13,11 @@ import Dropzone, {
 import { LiaTimesSolid } from "react-icons/lia";
 
 interface Props {
+  name?: string;
+  /** minimum file size in bytes */
+  minSize?: { byte: number; kb?: string; mb?: string };
+  /** maximum file size in bytes */
+  maxSize?: { byte: number; kb?: string; mb?: string };
   onFileSelect?: (file: File) => void;
 }
 
@@ -32,7 +37,9 @@ const FileUploader = ({ onFileSelect }: Props) => {
         `❌ ${errors[0].code.replaceAll("-", " ")} - ${fileObj.name} | ${
           errors[0].code === "file-too-large"
             ? "Maximum file size is 2MB"
-            : "Minimum file size is 100KB"
+            : errors[0].code === "file-too-small"
+              ? "Minimum file size is 100KB"
+              : null
         }`,
       );
     });
@@ -85,7 +92,7 @@ const FileUploader = ({ onFileSelect }: Props) => {
   return (
     <>
       <Dropzone
-        maxFiles={5}
+        // maxFiles={5}
         minSize={100000}
         maxSize={2097152}
         onDrop={onDrop}
@@ -113,8 +120,7 @@ const FileUploader = ({ onFileSelect }: Props) => {
                   {
                     "border-neutral-400":
                       !isDragActive && !isDragAccept && !isDragReject,
-                    "border-neutral-800": isDragActive,
-                    "border-success-100": isDragAccept,
+                    "border-neutral-800": isDragActive || isDragAccept,
                     "border-error-100": isDragReject,
                   },
                 )}
