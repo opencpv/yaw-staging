@@ -131,7 +131,7 @@ const AddNewProduct = () => {
               <FileUploader />
               <div className="mt-auto flex justify-end">
                 <Button type="submit" color="accent" className="mt-8">
-                  Add New Item
+                  Publish
                 </Button>
               </div>
             </div>

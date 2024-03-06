@@ -72,7 +72,7 @@ const RtApplicationRowSm = ({
         </TableBodySm>
         {/* Actions */}
         <TableBodySm className="flex justify-center gap-1.5 pt-3">
-          {status === "not submitted" && (
+          {status === "incomplete" && (
             <>
               <EditButton onOpen={() => ""} />
               <ButtonDelete table="" id="" />

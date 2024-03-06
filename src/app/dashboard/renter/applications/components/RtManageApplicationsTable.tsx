@@ -76,11 +76,11 @@ const RtManageApplicationsTable = (props: Props) => {
                 date={applicant.created_at as string}
                 status={
                   idx === 1
-                    ? "completed"
+                    ? "accepted"
                     : idx === 3
                       ? "declined"
                       : idx === 0
-                        ? "not submitted"
+                        ? "incomplete"
                         : "under review"
                 }
               />

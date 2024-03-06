@@ -36,7 +36,7 @@ const SellYourItem = (props: Props) => {
             color="primary"
             className="w-full p-2 px-4 text-sm capitalize"
           >
-            Add New Product <FaArrowRight />
+            Add Sale Item <FaArrowRight />
           </Button>
         </div>
       </div>

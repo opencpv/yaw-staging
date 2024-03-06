@@ -4,7 +4,7 @@ import {
   PopoverTrigger,
   useDisclosure,
 } from "@nextui-org/react";
-import React from "react";
+import React, { useState } from "react";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { FiTrash2 } from "react-icons/fi";
 import { MdOutlineEdit } from "react-icons/md";
@@ -18,6 +18,7 @@ type Props = {
 
 const Actions = ({ id, table }: Props) => {
   const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
+  const [popoverIsOpen, setPopoverIsOpen] = useState(false);
 
   return (
     <>
@@ -29,33 +30,37 @@ const Actions = ({ id, table }: Props) => {
         id={id}
         table={table}
       />
-      <Popover style={{ zIndex: "99999" }} placement="left">
-        <PopoverTrigger className="h-fit w-fit">
+      <Popover
+        style={{ zIndex: "99999" }}
+        placement="left"
+        isOpen={popoverIsOpen}
+        onOpenChange={setPopoverIsOpen}
+      >
+        <PopoverTrigger
+          className="h-fit w-fit"
+          onClick={() => setPopoverIsOpen(true)}
+        >
           <button className="col-span-1 ml-auto h-fit w-fit p-2">
             <BiDotsVerticalRounded />
           </button>
         </PopoverTrigger>
         <PopoverContent className="rounded-md bg-[#fefefe] px-0 py-0">
           <div className="flex flex-col divide-y rounded-md">
-            {status === "not submitted" && ( // may have status implemented. Find out
-              <>
-                <button
-                  className="deep-green-hover flex w-full  items-center gap-2 px-4 py-2"
-                  onClick={() => ""}
-                >
-                  <span className="mr-auto">Edit</span>
-                  <MdOutlineEdit />
-                </button>
-                <button
-                  className="deep-green-hover flex w-full items-center gap-2 px-4 py-2"
-                  onClick={onOpen}
-                >
-                  <span className="mr-auto">Delete</span>
+            <button
+              className="deep-green-hover flex w-full  items-center gap-2 px-4 py-2"
+              onClick={() => ""}
+            >
+              <span className="mr-auto">Edit</span>
+              <MdOutlineEdit />
+            </button>
+            <button
+              className="deep-green-hover flex w-full items-center gap-2 px-4 py-2"
+              onClick={onOpen}
+            >
+              <span className="mr-auto">Delete</span>
 
-                  <FiTrash2 />
-                </button>
-              </>
-            )}
+              <FiTrash2 />
+            </button>
           </div>
         </PopoverContent>
       </Popover>

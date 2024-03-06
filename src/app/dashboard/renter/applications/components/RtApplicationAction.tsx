@@ -4,22 +4,23 @@ import {
   PopoverTrigger,
   useDisclosure,
 } from "@nextui-org/react";
-import React from "react";
+import React, { useState } from "react";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { FiTrash2 } from "react-icons/fi";
 import { MdOutlineEdit } from "react-icons/md";
 import { PiChatCenteredDots } from "react-icons/pi";
-import { Status } from "./RtApplicationStatus";
+import { RenterApplicationStatus } from "./RtApplicationStatus";
 import DestructiveModal from "@/components/__shared/modals/DestructiveModal";
 
 type Props = {
-  status: Status;
+  status: RenterApplicationStatus;
   id: string;
   table: string;
 };
 
 const RtApplicationAction = ({ status, id, table }: Props) => {
   const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
+  const [popoverIsOpen, setPopoverIsOpen] = useState(false);
 
   return (
     <>
@@ -31,15 +32,23 @@ const RtApplicationAction = ({ status, id, table }: Props) => {
         id={id}
         table={table}
       />
-      <Popover style={{ zIndex: "99999" }} placement="left">
-        <PopoverTrigger className="h-fit w-fit">
+      <Popover
+        style={{ zIndex: "99999" }}
+        placement="left"
+        isOpen={popoverIsOpen}
+        onOpenChange={setPopoverIsOpen}
+      >
+        <PopoverTrigger
+          className="h-fit w-fit"
+          onClick={() => setPopoverIsOpen(true)}
+        >
           <button className="col-span-1 ml-auto h-fit w-fit p-2">
             <BiDotsVerticalRounded />
           </button>
         </PopoverTrigger>
         <PopoverContent className="rounded-md bg-[#fefefe] px-0 py-0">
           <div className="flex flex-col divide-y rounded-md">
-            {status === "not submitted" && (
+            {status === "incomplete" && (
               <>
                 <button
                   className="deep-green-hover flex w-full  items-center gap-2 px-4 py-2"

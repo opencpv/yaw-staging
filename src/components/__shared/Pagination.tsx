@@ -32,7 +32,7 @@ const Pagination = ({
             prevDisabled === true
               ? "cursor-not-allowed bg-neutral-300"
               : "border bg-transparent"
-          } p-1`}
+          } h-full p-1`}
           onClick={() => {
             setPage((prev) => (prev > 1 ? prev - 1 : prev));
             handlePrev && handlePrev();
@@ -59,7 +59,7 @@ const Pagination = ({
             nextDisabled === true
               ? "cursor-not-allowed bg-neutral-300"
               : "border bg-transparent"
-          } p-1`}
+          } h-full p-1`}
           onClick={() => {
             setPage((prev) => (prev < 10 ? prev + 1 : prev));
             handleNext && handleNext();
