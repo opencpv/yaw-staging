@@ -41,7 +41,11 @@ const MobileProductCard = ({ data }: { data: any }) => {
 
         {/* Status */}
         <TableBodySm className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 pt-3.5">
-          <ProductStatus isAvailable={data.isAvailable} id={data.id} />
+          <ProductStatus
+            publicationStatus={data.item_publication_status}
+            isAvailable={data.isAvailable}
+            id={data.id}
+          />
         </TableBodySm>
         {/* Date */}
         <TableBodySm className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 pt-3.5">
