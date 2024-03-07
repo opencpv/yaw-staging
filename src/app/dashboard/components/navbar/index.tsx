@@ -37,20 +37,29 @@ const Navbar = () => {
         } flex flex-nowrap items-center gap-4
         bg-primary-500 p-2 xs:gap-16 xs:p-4 2xl:p-[1.875rem]`}
       >
-        <div className="flex w-full items-center justify-start xs:gap-6 md:gap-10 lg:gap-20">
-          <Logo size="xs" className="hidden xs:inline-block" />
+        <div className="flex items-center justify-start xs:gap-6 md:w-full md:gap-10 lg:gap-20">
+          <Logo size="xs" />
           {/* search icon for mobile */}
           <AiOutlineSearch
             size={22}
             color="white"
-            className="shrink-0 md:hidden"
+            className="hidden shrink-0 xs:block md:hidden"
             role="search"
             aria-label="search"
             onClick={() => setExpandMobileSearch(!expandMobileSearch)}
           />
           <Search className="hidden md:flex" />
         </div>
-        <div className="relative flex w-fit items-center gap-7">
+        <div className="relative flex w-fit items-center ssm:gap-7">
+          {/* search icon for mobile */}
+          <AiOutlineSearch
+            size={22}
+            color="white"
+            className="mr-5 shrink-0 max-xs:block xs:hidden md:hidden"
+            role="search"
+            aria-label="search"
+            onClick={() => setExpandMobileSearch(!expandMobileSearch)}
+          />
           <Switch />
           {unreadNotifications?.length > 0 && <NotificationsPopover />}{" "}
           <div>
@@ -58,16 +67,12 @@ const Navbar = () => {
               {user?.firstname as string}
             </p>
           </div>
-          {/* {user?.avatar_url == undefined ? (
-            <Loader />
-          ) : (
-            <Avatar image={user?.avatar_url} name={user?.full_name} />
-          )} */}
           {user?.avatar_url && (
             <Avatar
               image={user?.avatar_url}
               name={`${user?.firstname || ""} ${user?.lastname || ""}`}
               email={user?.email}
+              className="max-ssm:hidden"
             />
           )}
         </div>
