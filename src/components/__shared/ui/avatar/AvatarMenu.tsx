@@ -11,55 +11,49 @@ import { FaRegUser } from "react-icons/fa6";
 import { TbLogout } from "react-icons/tb";
 import Avatar from "./Avatar";
 import { useAppStore } from "@/store/dashboard/AppStore";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@radix-ui/react-popover";
 
 type Props = {
+  /** ClassName for the avatar  */
   className?: string;
+  /** ClassName for the popover menu  */
+  popoverClassName?: string;
 };
 
-const AvatarMenu: React.FC<Props> = ({ className }) => {
+const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
   const pathname = usePathname();
   const { currentRole } = useDashboardStore();
   const { user } = useAppStore();
-
-  const [isOpen, setIsOpen] = useState(false);
-  const avatarRef = useRef<HTMLImageElement>(null);
 
   const name =
     user?.firstname && user?.lastname
       ? `${user?.firstname} ${user?.lastname}`
       : null;
 
-  useEffect(() => {
-    const handleClick = (e: MouseEvent) => {
-      if (!avatarRef.current?.contains(e.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-
-    document.body.addEventListener("click", handleClick);
-
-    return () => {
-      document.body.removeEventListener("click", handleClick);
-    };
-  }, []);
-
   return (
-    <div className="relative">
-      {user?.avatar_url && (
-        <div className="" ref={avatarRef} onClick={() => setIsOpen(!isOpen)}>
-          <Avatar
-            image={user?.avatar_url}
-            name={name}
-            email={user?.email}
-            className={cn("", className)}
-          />
-        </div>
-      )}
+    <Popover>
+      <PopoverTrigger asChild>
+        {user?.avatar_url && (
+          <div>
+            <Avatar
+              image={user?.avatar_url}
+              name={name}
+              email={user?.email}
+              className={cn("", className)}
+            />
+          </div>
+        )}
+      </PopoverTrigger>
       {/* Avatar Menu */}
-      <div
-        className={`${style.avatarMenu} ${
-          isOpen ? `${style.avatarMenuVisible}` : `${style.avatarMenuHidden}`
-        }`}
+      <PopoverContent
+        className={cn(
+          "z-50 w-fit rounded-lg bg-white text-neutral-600 shadow-lg transition-all xs:min-w-[18rem]",
+          popoverClassName,
+        )}
       >
         <ul>
           <li
@@ -73,7 +67,6 @@ const AvatarMenu: React.FC<Props> = ({ className }) => {
                 image={user?.avatar_url}
                 name={name as string}
                 email={user?.email}
-                className="max-ssm:hidden"
               />
             )}
             <div className="">
@@ -118,8 +111,8 @@ const AvatarMenu: React.FC<Props> = ({ className }) => {
             </div>
           </li>
         </ul>
-      </div>
-    </div>
+      </PopoverContent>
+    </Popover>
   );
 };
 
