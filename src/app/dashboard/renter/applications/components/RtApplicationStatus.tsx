@@ -5,6 +5,8 @@ import { useSelectDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { cn } from "@nextui-org/react";
 import { BsInfoCircle } from "react-icons/bs";
 import Tooltip from "@/components/ui/Tooltip";
+import { HiOutlineBadgeCheck } from "react-icons/hi";
+import { MdHourglassTop } from "react-icons/md";
 
 export type RenterApplicationStatus =
   | "accepted"
@@ -32,24 +34,28 @@ const RtApplicationStatus = ({ status }: Props) => {
       >
         <div
           className={cn(
-            "flex w-44 items-center justify-center rounded-full p-2 py-2.5 text-neutral-800 shadow-sm",
+            "flex w-fit shrink-0 items-center justify-center gap-2 rounded-full p-1.5 px-2.5 shadow-sm",
             {
-              "bg-red-300": status === "declined",
-              "bg-[#B0E3C9]": status === "accepted",
-              "bg-accent-500": status === "under review",
-              "bg-primary-200/20": status === "incomplete",
+              "bg-[#FEEFEF] text-[#DA1414]": status === "declined",
+              "bg-[#EDF9F0] text-[#287D3C]": status === "accepted",
+              "bg-[#FFF4EC] text-[#B95000]": status === "under review",
+              "bg-[#FEEFEF] text-[#DA1414] ": status === "incomplete",
             },
           )}
         >
-          <div className="flex items-center gap-5">
-            <small className="text-xs">
-              {status === "accepted" && "Accepted"}
-              {status === "declined" && "Declined"}
-              {status === "under review" && "Under review"}
-              {status === "incomplete" && "Incomplete"}
-            </small>
+          {status === "accepted" ? (
+            <HiOutlineBadgeCheck />
+          ) : status === "under review" ? (
+            <MdHourglassTop />
+          ) : (
             <BsInfoCircle />
-          </div>
+          )}
+          <small className="text-xs">
+            {status === "accepted" && "Accepted"}
+            {status === "declined" && "Declined"}
+            {status === "under review" && "Under review"}
+            {status === "incomplete" && "Incomplete"}
+          </small>
         </div>
       </Tooltip>
     </>

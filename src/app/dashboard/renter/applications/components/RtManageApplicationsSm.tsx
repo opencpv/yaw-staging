@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import RtApplicationRowSm from "./RtApplicationRowSm";
 import { useFetchTableWithInfiniteScroll } from "@/lib/custom-hooks/useFetch";
 import TableSkeletonSm from "../../../components/shared/skeleton/TableSkeletonSm";
@@ -10,10 +10,16 @@ import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchError
 import { TableSm } from "../../../components/shared/table/Table";
 import { IoArchiveOutline } from "react-icons/io5";
 import Button from "@/components/__shared/ui/button/Button";
+import RtMobileFilters from "./RtMobileFilters";
+import { RenterApplicationStatus } from "./RtApplicationStatus";
 
 type Props = {};
 
+type Status = "all" | RenterApplicationStatus;
+
 const RtManageApplicationsSm = (props: Props) => {
+  const [statusValue, setStatusValue] = useState<Status>("all");
+
   const {
     data: applicants,
     error,
@@ -28,7 +34,11 @@ const RtManageApplicationsSm = (props: Props) => {
   });
 
   return (
-    <div className="lg:hidden">
+    <div className="flex flex-col gap-6 lg:hidden">
+      <RtMobileFilters
+        value={statusValue}
+        handleSelectionChange={(e) => setStatusValue(e.target.value as Status)}
+      />
       <FetchingStates
         data={applicants}
         error={error}
@@ -40,7 +50,7 @@ const RtManageApplicationsSm = (props: Props) => {
           <p className="mt-4 italic">There are no applications yet.</p>
         }
       />
-      <TableSm className="mx-auto mb-10 mt-3 w-fit">
+      <TableSm className="mx-auto mb-10">
         {applicants?.map((applicant, idx) => (
           <RtApplicationRowSm
             key={applicant.id as string}

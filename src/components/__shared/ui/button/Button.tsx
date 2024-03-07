@@ -85,7 +85,7 @@ const Button: React.FC<Props> = ({
             "deep-green-hover hover:scale-100": greenHover,
             " hover:scale-[1.02]":
               greenHover === false || greenHover === undefined,
-            "h-fit w-fit": isIconOnly,
+            "h-fit w-fit p-0": isIconOnly,
           },
           className,
         )}
@@ -133,7 +133,7 @@ const Button: React.FC<Props> = ({
             "deep-green-hover hover:scale-100": greenHover,
             " hover:scale-[1.02]":
               greenHover === false || greenHover === undefined,
-            "h-fit w-fit": isIconOnly,
+            "h-fit w-fit p-0": isIconOnly,
           },
           className,
         )}

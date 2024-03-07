@@ -19,6 +19,8 @@ import Rating from "../../../components/shared/Rating";
 import ButtonDelete from "@/components/__shared/ui/button/ButtonDelete";
 import EditButton from "@/components/__shared/ui/button/EditButton";
 import ButtonMessage from "@/components/__shared/ui/button/ButtonMessage";
+import { useAppStore } from "@/store/dashboard/AppStore";
+import Avatar from "@/components/__shared/ui/Avatar";
 
 const RtApplicationRowSm = ({
   propertyImage,
@@ -34,6 +36,8 @@ const RtApplicationRowSm = ({
 
   const daysDifference = useDaysDifference(date);
 
+  const { user } = useAppStore();
+
   return (
     <>
       <TableRowSm>
@@ -43,7 +47,7 @@ const RtApplicationRowSm = ({
             <TbPropertyImageSm title={propertyTitle} image={propertyImage} />
             <div className="flex flex-col justify-between gap-2">
               <div className="flex flex-col gap-1 truncate lg:gap-[0.62rem]">
-                <h4 className="truncate">Single Room</h4>
+                <h4 className="truncate">Two Bed Room Apartment</h4>
                 <p className="truncate text-[0.8125rem] text-[#B0B0B0]">
                   Assin Fosu
                 </p>
@@ -55,14 +59,28 @@ const RtApplicationRowSm = ({
             </div>
           </div>
         </TableBodySm>
-        <TableBodySm className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 pt-3.5">
-          {/* Status */}
-          <div>
-            <RtApplicationStatus status={status} />
+        {/* Property owner */}
+        <TableBodySm className="flex items-center justify-between gap-5">
+          <h4 className="text-shade-200">Property Owner</h4>
+          <div className="flex items-center gap-2">
+            <Avatar
+              image={user?.avatar_url as string}
+              name={user?.firstname as string}
+              size="sm"
+            />
+            <span className="font-semibold">Bernice Asantewa</span>
           </div>
-          <div className="flex flex-col items-center justify-center gap-y-1">
-            {/* Date */}
-            <h4 className="text-sm font-[600]">{formatDate(date)}</h4>
+        </TableBodySm>
+        {/* Status */}
+        <TableBodySm className="flex items-center justify-between gap-x-5 gap-y-3">
+          <h4 className="text-shade-200">Status</h4>
+          <RtApplicationStatus status={status} />
+        </TableBodySm>
+        {/* Date */}
+        <TableBodySm className="flex items-center justify-between">
+          <h4 className="text-shade-200">Date</h4>
+          <div className="flex flex-col items-center">
+            <h4 className="text-sm">{formatDate(date)}</h4>
             <small className="inline-block text-[0.6rem] text-neutral-400">
               {daysDifference < 1
                 ? `Less Than A Day Ago`
@@ -71,7 +89,7 @@ const RtApplicationRowSm = ({
           </div>
         </TableBodySm>
         {/* Actions */}
-        <TableBodySm className="flex justify-center gap-1.5 pt-3">
+        <TableBodySm className="flex items-center justify-end gap-1.5">
           {status === "incomplete" && (
             <>
               <EditButton onOpen={() => ""} />
