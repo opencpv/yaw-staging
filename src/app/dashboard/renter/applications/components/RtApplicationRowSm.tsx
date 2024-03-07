@@ -40,7 +40,11 @@ const RtApplicationRowSm = ({
 
   return (
     <>
-      <TableRowSm>
+      <TableRowSm
+        className={
+          status === "incomplete" ? "rounded-md border border-[#DA1414]" : ""
+        }
+      >
         {/* Property */}
         <TableBodySm href="/properties/2">
           <div className="flex flex-wrap gap-5 truncate xsm:flex-nowrap">
