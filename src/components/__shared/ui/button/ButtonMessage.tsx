@@ -42,13 +42,10 @@ const ButtonMessage = ({ color, className, id, children, type }: Props) => {
       <Button
         isIconOnly
         title="Send message"
-        className={cn(
-          "flex w-full max-w-[200px] items-center justify-center rounded-md bg-secondary-500 px-4 text-neutral-800 hover:bg-primary-200 hover:text-white",
-          className,
-        )}
+        className={cn("", className)}
         // onClick={onOpen}
       >
-        <PiChatCenteredDots size={16} />
+        <PiChatCenteredDots size={24} className="text-neutral-700" />
       </Button>
     );
   else

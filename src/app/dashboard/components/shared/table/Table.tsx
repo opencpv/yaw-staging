@@ -50,7 +50,7 @@ export const TableSm = (props: TableProps) => {
     <section
       role="table"
       aria-label="table"
-      className={cn("flex flex-col gap-10 lg:hidden", props.className)}
+      className={cn("flex max-w-lg flex-col gap-16 lg:hidden", props.className)}
     >
       {props.children}
     </section>
@@ -87,9 +87,7 @@ export const TableRowSm = (props: TableHeaderRowProps) => {
       role="row"
       aria-label="table row"
       className={cn(
-        `light-green-hover form-field-border flex cursor-default flex-col gap-4 divide-y rounded-lg px-[10px] py-4
-      ${styles.property_matches_card}
-      `,
+        `light-green-hover flex cursor-default flex-col gap-4 border-b px-[10px] pb-8 last:border-b-0`,
         props.className,
       )}
     >
@@ -207,7 +205,10 @@ export const TableBodySm = (props: TableBodyProps) => {
           href={props.href}
           aria-label="table body"
           tabIndex={0}
-          className={cn("block text-neutral-700", props.className)}
+          className={cn(
+            "block pb-2 text-neutral-700 first:border-b first:pb-4",
+            props.className,
+          )}
         >
           {props.children}
         </Link>
@@ -215,7 +216,10 @@ export const TableBodySm = (props: TableBodyProps) => {
         <div
           aria-label="table body"
           tabIndex={0}
-          className={cn("text-neutral-700", props.className)}
+          className={cn(
+            "pb-2 text-neutral-700 first:border-b first:pb-4",
+            props.className,
+          )}
         >
           {props.children}
         </div>

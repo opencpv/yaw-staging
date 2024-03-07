@@ -15,10 +15,11 @@ type Props = {
   image: string;
   name: string | null;
   email?: string;
+  size?: "sm" | "lg";
   className?: string;
 };
 
-const Avatar = ({ image, name, className, email }: Props) => {
+const Avatar = ({ image, name, className, email, size }: Props) => {
   const pathname = usePathname();
   const { currentRole } = useDashboardStore();
 
@@ -47,8 +48,12 @@ const Avatar = ({ image, name, className, email }: Props) => {
         width={50}
         height={50}
         className={cn(
-          "h-[35px] w-[35px] max-w-[50px] shrink-0 cursor-pointer rounded-full xs:h-[50px] xs:w-[50px]",
+          "size-[35px] max-w-[50px] shrink-0 cursor-pointer rounded-full",
           className,
+          {
+            "xs:size-[35px]": size === "sm",
+            "xs:size-[50px]": size !== "sm",
+          },
         )}
         onClick={() => setIsOpen(!isOpen)}
         ref={avatarRef}
