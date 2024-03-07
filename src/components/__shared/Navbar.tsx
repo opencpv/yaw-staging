@@ -11,7 +11,7 @@ import Share from "./ui/share/Share";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
 import ButtonHireUs from "./ui/button/ButtonHireUs";
 import { useHideDocumentScrollBar } from "@/lib/custom-hooks/useWindowEvents";
-import Avatar from "./ui/Avatar";
+import Avatar from "./ui/avatar/Avatar.jsx";
 import { useAppStore } from "@/store/dashboard/AppStore";
 
 const Navbar = (props: any) => {

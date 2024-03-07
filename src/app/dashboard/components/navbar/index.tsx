@@ -15,8 +15,9 @@ import { IoIosCloseCircle } from "react-icons/io";
 import { useRef, useState } from "react";
 import Loader from "@/components/__shared/loader/Loader";
 import { useDashboardMenuStore } from "@/store/navmenu/useDashboardMenuStore";
-import Avatar from "@/components/__shared/ui/Avatar";
+import Avatar from "@/components/__shared/ui/avatar/Avatar";
 import { getFirstWord } from "@/lib/utils/stringManipulation";
+import AvatarMenu from "@/components/__shared/ui/avatar/AvatarMenu";
 
 const Navbar = () => {
   const user = useAppStore((state) => state.user);
@@ -65,14 +66,7 @@ const Navbar = () => {
               {user?.firstname as string}
             </p>
           </div>
-          {user?.avatar_url && (
-            <Avatar
-              image={user?.avatar_url}
-              name={`${user?.firstname || ""} ${user?.lastname || ""}`}
-              email={user?.email}
-              className="max-ssm:hidden"
-            />
-          )}
+          <AvatarMenu className="max-ssm:hidden" />
         </div>
       </Root>
       {/* search bar for mobile */}

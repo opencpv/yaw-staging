@@ -209,7 +209,7 @@ export const TableBodySm = (props: TableBodyProps) => {
           aria-label="table body"
           tabIndex={0}
           className={cn(
-            "block px-5 pb-2 text-neutral-700 first:border-b first:pb-4",
+            "block pb-2 text-neutral-700 first:border-b first:pb-4",
             props.className,
           )}
         >

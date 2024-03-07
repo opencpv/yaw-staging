@@ -18,7 +18,8 @@ import PaginationMenu from "./PaginationMenu";
 import { useDashboardMenuStore } from "@/store/navmenu/useDashboardMenuStore";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import Avatar from "@/components/__shared/ui/Avatar";
+import Avatar from "@/components/__shared/ui/avatar/Avatar";
+import AvatarMenu from "@/components/__shared/ui/avatar/AvatarMenu";
 
 type PaginationTabProps = {
   active: string;
@@ -166,20 +167,15 @@ const Pagination = () => {
       </Button>
 
       {user?.avatar_url && (
-        <div className="relative top-2 order-1 mr-auto flex items-center gap-5 ssm:order-3 ssm:hidden">
-          <Avatar
-            image={user?.avatar_url}
-            name={`${user?.firstname || ""} ${user?.lastname || ""}`}
-            email={user?.email}
-            size="sm"
-          />
+        <div className="relative order-1 my-auto mr-auto flex items-center gap-5 ssm:order-3 ssm:hidden">
+          <AvatarMenu />
           <span className="text-shade-200">
             {user?.firstname} {user?.lastname}
           </span>
         </div>
       )}
       <button
-        className="relative bottom-1 order-4 ml-auto mt-2 h-max w-fit items-center justify-center rounded-xl border border-primary-800 px-3 py-2 text-primary-800 ssm:order-4 md:hidden"
+        className="order-4 my-auto ml-auto h-max w-fit items-center justify-center rounded-xl border border-primary-800 px-3 py-2 text-primary-800 ssm:order-4 md:hidden"
         onClick={() => setIsOpen(true)}
       >
         <div className="flex flex-col items-center gap-3">
