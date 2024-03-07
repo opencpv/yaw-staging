@@ -36,7 +36,7 @@ export default async function Home() {
             <HomeManagePropertiesSection data={data} />
             {/* Find Apartments in Popular Cities */}
             <AOSWrapper animation="fade-up">
-              <HomePopularCities />
+              <HomePopularCities data={data} />
             </AOSWrapper>
             <FeedbackButton />
           </div>
