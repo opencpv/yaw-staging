@@ -110,7 +110,7 @@ const Sell = () => {
   return (
     <>
       <main>
-        <section className="mb-6">
+        <section className="mb-6 space-y-5">
           <h2>Items</h2>
           {/* product count */}
           {items?.length > 0 ? (
@@ -139,7 +139,7 @@ const Sell = () => {
               {items.length === 0 ? (
                 <TableBodyRow className="grid-cols-6">
                   <TableBody className="col-span-6">
-                    <AddProduct />
+                    <AddItem />
                   </TableBody>
                 </TableBodyRow>
               ) : null}
@@ -164,7 +164,7 @@ const Sell = () => {
             </TableBodyRowGroup>
           </Table>
           {/* table display in mobile and tablet view */}
-          <TableSm className="mx-auto w-fit">
+          <TableSm>
             {items?.map((product, index) => (
               <MobileProductCard data={product} key={`mobile-${index}`} />
             ))}
@@ -172,7 +172,7 @@ const Sell = () => {
           <Button
             href={`/dashboard/${currentRole}/sell-products/add-new-product`}
             color="accent"
-            className="self-end"
+            className="bottom-10 right-10 z-30 max-lg:fixed max-lg:shadow-lg lg:self-end"
           >
             Add New Item
           </Button>
@@ -184,7 +184,7 @@ const Sell = () => {
 
 export default Sell;
 
-const AddProduct = () => {
+const AddItem = () => {
   const { currentRole } = useDashboardStore();
   const { images } = useAssets();
   return (
@@ -201,7 +201,7 @@ const AddProduct = () => {
           href={`/dashboard/${currentRole}/sell-products/add-new-product`}
           color="primary"
         >
-          Publish
+          Add New Item
         </Button>
       </div>
     </div>

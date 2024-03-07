@@ -58,7 +58,7 @@ const RtManageApplicationsSm = (props: Props) => {
           <p className="mt-4 italic">There are no applications yet.</p>
         }
       />
-      <TableSm className="mx-auto mb-10 flex-1">
+      <TableSm className="mb-10 flex-1">
         {applicants?.map((applicant, idx) => (
           <RtApplicationRowSm
             key={applicant.id as string}
