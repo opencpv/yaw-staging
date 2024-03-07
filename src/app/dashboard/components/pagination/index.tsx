@@ -17,6 +17,8 @@ import "swiper/css/free-mode";
 import PaginationMenu from "./PaginationMenu";
 import { useDashboardMenuStore } from "@/store/navmenu/useDashboardMenuStore";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
+import { useAppStore } from "@/store/dashboard/AppStore";
+import Avatar from "@/components/__shared/ui/Avatar";
 
 type PaginationTabProps = {
   active: string;
@@ -52,6 +54,7 @@ const PaginationTab = ({ active, icon, name, link }: PaginationTabProps) => {
 };
 
 const Pagination = () => {
+  const { user } = useAppStore();
   const vw = useViewport();
   const [active, setActive] = useState("");
   const router = useRouter();
@@ -112,16 +115,6 @@ const Pagination = () => {
       className="flex items-start gap-7 px-5 py-1 pb-4 md:items-center"
       ref={scrollableRef}
     >
-      {/* {atEnd && (
-        <button
-          onClick={handleScrollToLeft}
-          className="flex aspect-square
-                  w-full max-w-[52px] items-center justify-center rounded-full
-                  bg-[#396261] hover:scale-[1.02] md:max-w-[83px]"
-        >
-          <MdKeyboardArrowLeft color="white" size={24} />
-        </button>
-      )} */}
       <Swiper
         direction={"horizontal"}
         slidesPerView={"auto"}
@@ -130,7 +123,7 @@ const Pagination = () => {
         scrollbar={false}
         mousewheel={true}
         modules={[FreeMode, Scrollbar, Mousewheel]}
-        className="mySwiper invisible hidden h-fit w-full md:visible"
+        className="mySwiper invisible order-2 hidden h-fit w-full ssm:order-1 md:visible"
         wrapperClass="justify-between"
       >
         {currentRole === "renter" &&
@@ -163,34 +156,36 @@ const Pagination = () => {
               ),
           )}
       </Swiper>
-
-      {/* {!atEnd && (
-        <button
-          onClick={handleScrollToRight}
-          className="flex aspect-square
-                  w-full max-w-[52px] items-center justify-center rounded-full
-                  bg-[#396261] hover:scale-[1.02] md:max-w-[83px]"
-        >
-          <MdKeyboardArrowRight color="white" size={24} />
-        </button>
-      )} */}
       <Button
-        className="hidden h-full w-16 items-center justify-center rounded-xl bg-primary-200 px-4 py-3 text-white md:flex lg:h-24 lg:min-w-unit-16 lg:px-2"
+        className="hidden h-full w-16 items-center justify-center rounded-xl bg-primary-200 px-4 py-3 text-white ssm:order-2 md:flex lg:h-24 lg:min-w-unit-16 lg:px-2"
         onClick={() => setIsOpen(true)}
       >
         <div className="flex items-center justify-center">
           <HiBars3BottomRight size={25} />
         </div>
       </Button>
+
+      {user?.avatar_url && (
+        <div className="relative top-2 order-1 mr-auto flex items-center gap-5 ssm:order-3 ssm:hidden">
+          <Avatar
+            image={user?.avatar_url}
+            name={`${user?.firstname || ""} ${user?.lastname || ""}`}
+            email={user?.email}
+            size="sm"
+          />
+          <span className="text-shade-200">
+            {user?.firstname} {user?.lastname}
+          </span>
+        </div>
+      )}
       <button
-        className="relative bottom-1 ml-auto mt-2 h-max w-fit items-center justify-center rounded-xl border border-primary-800 px-3 py-2 text-primary-800 md:hidden"
+        className="relative bottom-1 order-4 ml-auto mt-2 h-max w-fit items-center justify-center rounded-xl border border-primary-800 px-3 py-2 text-primary-800 ssm:order-4 md:hidden"
         onClick={() => setIsOpen(true)}
       >
         <div className="flex flex-col items-center gap-3">
           <HiBars3BottomRight size={25} />
         </div>
       </button>
-
       <PaginationMenu />
     </Root>
   );
