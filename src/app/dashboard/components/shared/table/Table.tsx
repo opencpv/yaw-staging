@@ -51,7 +51,7 @@ export const TableSm = (props: TableProps) => {
       role="table"
       aria-label="table"
       className={cn(
-        "flex w-full max-w-xl flex-col gap-16 lg:hidden",
+        "mx-auto flex w-full max-w-xl flex-col gap-16 lg:hidden",
         props.className,
       )}
     >
