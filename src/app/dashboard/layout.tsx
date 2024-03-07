@@ -5,7 +5,7 @@ import Pagination from "./components/pagination";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
-import { NotificationType } from "./components/shared/notifications/types";
+import { NotificationType } from "./renter/notifications/components/types";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import CompleteYourLogin from "./components/CompleteYourLogin";
@@ -38,9 +38,7 @@ const Wrapper = ({ children }: LayoutProps) => {
   const supabase = createClientComponentClient();
   const user = useAppStore((state) => state.user);
   const setUser = useAppStore((state) => state.setUser);
-  const setNotifications = useNotificationStore(
-    (state) => state.setNotifications,
-  );
+
   const [loading, setLoading] = useState<boolean>(false);
   const [excludeWrapper, setExcludeWrapper] = useState(false);
 
@@ -98,39 +96,6 @@ const Wrapper = ({ children }: LayoutProps) => {
     });
   }, [supabase, pathname, setUser]);
 
-  useEffect(() => {
-    const getNotifications = async () => {
-      try {
-        const {
-          data: data,
-          error,
-          status: dataStatus,
-        } = await supabase.from("notifications").select("*");
-
-        if (data) {
-          setNotifications(data);
-        }
-
-        if (dataStatus === 200) {
-          setNotificationsLoading(true);
-        }
-      } catch (error) {
-        console.log(error);
-        return error;
-      }
-    };
-    const notifications = supabase
-      .channel("custom-all-channel")
-      .on(
-        "postgres_changes",
-        { event: "*", schema: "public", table: "notifications" },
-        (payload) => {
-          getNotifications();
-        },
-      )
-      .subscribe();
-  }, [user, supabase, setNotifications]);
-
   return (
     <div>
       <div>
@@ -155,20 +120,22 @@ const Wrapper = ({ children }: LayoutProps) => {
         ) : (
           <div className={`wrapper text-neutral-800`}>{children}</div>
         )}
-        <ClientOnly>
-          <HowToSwitch
-            dashboard
-            open={firstTimeModalOpen}
-            setOpen={setFirstTimeModalOpen}
-          />
-        </ClientOnly>
-        <ClientOnly>
-          <CompleteYourLogin
-            dashboard
-            open={!dashboardType && open}
-            setOpen={setTypeModalOpen}
-          />
-        </ClientOnly>
+     <div className="absolute bottom-0 right-0 invisible">
+          <ClientOnly>
+            <HowToSwitch
+              dashboard
+              open={firstTimeModalOpen}
+              setOpen={setFirstTimeModalOpen}
+            />
+          </ClientOnly>
+          <ClientOnly>
+            <CompleteYourLogin
+              dashboard
+              open={!dashboardType && open}
+              setOpen={setTypeModalOpen}
+            />
+          </ClientOnly>
+     </div>
       </div>
     </div>
   );

@@ -13,9 +13,9 @@ type Props = {
 };
 
 const NotificationsSmItem: React.FC<Props> = ({ currentNotification }) => (
-  <Dialog.Root>
+  <Dialog.Root >
     <Dialog.Trigger asChild>
-      <button className="">
+      <button className="w-full">
         <NotificationItem
           sender={currentNotification?.sender_name}
           type={currentNotification?.type}
@@ -27,7 +27,7 @@ const NotificationsSmItem: React.FC<Props> = ({ currentNotification }) => (
     </Dialog.Trigger>
     <Dialog.Portal>
       <Dialog.Overlay className="data-[state=open]:animate-overlayShow fixed inset-0 bg-[#000000AD]" />
-      <Dialog.Content className="data-[state=open]:animate-contentShow fixed left-[50%] top-[50%]  max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] overflow-y-scroll rounded-[6px] bg-white p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
+      <Dialog.Content className="data-[state=open]:animate-contentShow fixed left-[50%] top-[50%]  max-h-[80vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] overflow-y-scroll rounded-[6px] bg-white p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none z-[6100]">
         <NotificationDetailsFull currentNotification={currentNotification} />
         <Dialog.Close asChild>
           <button
