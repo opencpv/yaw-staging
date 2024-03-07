@@ -15,10 +15,12 @@ import { RenterApplicationStatus } from "./RtApplicationStatus";
 
 type Props = {};
 
-type Status = "all" | RenterApplicationStatus;
+type StatusFilter = "all" | RenterApplicationStatus;
+type DateFilter = "newest" | "oldest" | "last modified";
 
 const RtManageApplicationsSm = (props: Props) => {
-  const [statusValue, setStatusValue] = useState<Status>("all");
+  const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
+  const [dateFilter, setDateFilter] = useState<DateFilter>("newest");
 
   const {
     data: applicants,
@@ -34,10 +36,16 @@ const RtManageApplicationsSm = (props: Props) => {
   });
 
   return (
-    <div className="flex flex-col gap-6 lg:hidden">
+    <div className="flex flex-col gap-10 lg:hidden">
       <RtMobileFilters
-        value={statusValue}
-        handleSelectionChange={(e) => setStatusValue(e.target.value as Status)}
+        statusFilter={statusFilter}
+        dateFilter={dateFilter}
+        handleStatusSelectionChange={(e) =>
+          setStatusFilter(e.target.value as StatusFilter)
+        }
+        handleDateSelectionChange={(e) =>
+          setDateFilter(e.target.value as DateFilter)
+        }
       />
       <FetchingStates
         data={applicants}
@@ -50,7 +58,7 @@ const RtManageApplicationsSm = (props: Props) => {
           <p className="mt-4 italic">There are no applications yet.</p>
         }
       />
-      <TableSm className="mx-auto mb-10">
+      <TableSm className="mx-auto mb-10 flex-1">
         {applicants?.map((applicant, idx) => (
           <RtApplicationRowSm
             key={applicant.id as string}
