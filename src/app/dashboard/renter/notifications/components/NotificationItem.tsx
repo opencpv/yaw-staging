@@ -14,9 +14,10 @@ import { NotificationType } from "./types";
 type Props = {
   notification: NotificationType;
   selected?: boolean;
+  popover?: boolean;
 };
 
-const notificationItems: any =  {
+const notificationItems: any = {
   admin: <MdOutlineAdminPanelSettings size={24} color="#E32636" />,
 
   message: <MessageIcon width={"24"} color="#DCA847" />,
@@ -24,10 +25,19 @@ const notificationItems: any =  {
   alert: <IoPersonOutline size={24} color="#00974A" />,
 };
 
-const NotificationItem: React.FC<Props> = ({ notification, selected }) => {
+const NotificationItem: React.FC<Props> = ({
+  notification,
+  selected,
+  popover,
+}) => {
   const { setCurrentNotification } = useNotifications();
   return (
-    <Root className={`flex w-full items-start justify-between `}>
+    <Root
+      className={`flex w-full items-start justify-between `}
+      onClick={(e) => {
+        setCurrentNotification(notification);
+      }}
+    >
       <motion.div
         className={`flex w-full justify-between gap-4  ${
           selected && "bg-[#E6EBEB]"
@@ -41,12 +51,7 @@ const NotificationItem: React.FC<Props> = ({ notification, selected }) => {
           damping: 10,
         }}
       >
-        <div
-          className="flex gap-4"
-          onClick={(e) => {
-            setCurrentNotification(notification);
-          }}
-        >
+        <div className="flex gap-4">
           <div className="pt-1">{notificationItems[notification?.type]}</div>
 
           <div className="flex flex-col gap-1">
@@ -54,7 +59,7 @@ const NotificationItem: React.FC<Props> = ({ notification, selected }) => {
               <div className="font-semibold">
                 {notification?.type == "message" && notification?.type}
                 {notification?.type == "admin" && notification?.type}
-                {notification?.type == "alert" && notification?.sender}
+                {notification?.type == "alert" && notification?.sender_name}
               </div>
               <div className="h-[3px] w-[3px] rounded-full bg-[#0000008F]">
                 .
@@ -64,7 +69,11 @@ const NotificationItem: React.FC<Props> = ({ notification, selected }) => {
               </div>
             </div>
             <div className="flex flex-col items-start gap-1 text-left text-[16px]">
-              <div className={`text-[16px] font-[400] text-black ${!notification?.read && "font-bold"}`}>
+              <div
+                className={`text-[16px] font-[400] text-black ${
+                  !notification?.read && !popover && "font-bold"
+                }`}
+              >
                 {notification?.subject}
               </div>
               <div
@@ -76,7 +85,7 @@ const NotificationItem: React.FC<Props> = ({ notification, selected }) => {
             </div>
           </div>
         </div>
-        <div>
+        <div className="hidden items-start lg:flex">
           <MarkAndDeletePopup read={notification?.read} />
         </div>
       </motion.div>

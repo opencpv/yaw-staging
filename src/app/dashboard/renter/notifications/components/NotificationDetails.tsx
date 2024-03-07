@@ -4,6 +4,7 @@ import { Field, Form, Formik } from "formik";
 import { NotificationType } from "./types";
 import NtfDetailsSkeleton from "@/app/dashboard/renter/notifications/components/NtfDetailsSkeleton";
 import moment from "moment";
+import { CustomScroll } from "./CustomScroll";
 
 type Props = {
   currentNotification?: NotificationType
@@ -11,11 +12,11 @@ type Props = {
 
 const NotificationDetailsFull: React.FC<Props> = ({ currentNotification }) => {
   return (
-    <div className="w-full">
+    <CustomScroll className="w-full max-h-[80vh] overflow-y-scroll">
       {currentNotification ? (
-        <Root className="flex h-full flex-col justify-start gap-4 2xl:gap-8">
+        <Root className="flex h-full flex-col justify-start gap-4 2xl:gap-8 pr-1">
           <div className="flex flex-col gap-2 2xl:gap-4">
-            <div className=" text-black font-bold ">
+            <div className=" text-black font-bold capitalize ">
               <h2>{currentNotification?.subject}</h2>
             </div>
             <div className="flex  gap-2 text-[10px] uppercase 2xl:leading-[14px] text-[#0000008F]">
@@ -40,7 +41,7 @@ const NotificationDetailsFull: React.FC<Props> = ({ currentNotification }) => {
       ) : (
         <NtfDetailsSkeleton />
       )}
-    </div>
+    </CustomScroll>
   );
 };
 

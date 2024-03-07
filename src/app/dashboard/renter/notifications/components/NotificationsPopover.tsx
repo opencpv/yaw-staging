@@ -39,19 +39,18 @@ const NotificationsPopover = () => {
       <Popover.Portal>
         <PopoverContent
           sideOffset={5}
-          className="z-[99999] min-w-[400px] bg-[#fefefe] "
+          className="z-[99999] w-[90vw] md:w-fit lg:min-w-[400px] bg-[#fefefe] "
         >
           <div className="flex items-center justify-between ">
-            <p className="text-20 2xl:text-25 font-bold ">Notifications</p>
+            <p className="text-20 font-semibold 2xl:text-25 ">Notifications</p>
             <p
               className="cursor-pointer text-[10px] font-bold text-[#DDB771]"
               onClick={() => {
                 router.push("/dashboard/renter/notifications");
                 setOpen(false);
-
               }}
             >
-              See All 
+              See All
             </p>
           </div>
 
@@ -59,7 +58,7 @@ const NotificationsPopover = () => {
 
           {unreadNotifications && (
             <div className="flex w-full justify-end">
-              <Button  className="flex bg-unset text-black focus:!unset active:unset items-center justify-end gap-2 p-2 hover:bg-[#073b3a12]">
+              <Button className="bg-unset focus:!unset active:unset flex items-center justify-end gap-2 p-2 text-black hover:bg-[#073b3a12]">
                 <div className="flex gap-0">
                   <CaMarkAsRead />
                 </div>
@@ -67,7 +66,7 @@ const NotificationsPopover = () => {
               </Button>
             </div>
           )}
-          <CustomScroll className="flex max-h-[60vh] flex-col gap-5 overflow-y-scroll 2xl:gap-8">
+          <div className="scrollbar-hide flex max-h-[60vh] flex-col gap-5 overflow-y-scroll 2xl:gap-8">
             {unreadNotifications?.map((r: any, index: number) => (
               <div
                 key={index}
@@ -77,19 +76,13 @@ const NotificationsPopover = () => {
                   setOpen(false);
                 }}
               >
-                <NotificationItem
-                  type={r?.type}
-                  sender={r?.sender_name}
-                  subject={r?.subject}
-                  time={r?.sent}
-                  content={r?.content}
-                />
+                <NotificationItem popover={true} notification={r} />
               </div>
             ))}
-          </CustomScroll>
-          <PopoverClose aria-label="Close">
+          </div>
+          {/* <PopoverClose aria-label="Close">
             <Cross2Icon />
-          </PopoverClose>
+          </PopoverClose> */}
           <PopoverArrow />
         </PopoverContent>
       </Popover.Portal>

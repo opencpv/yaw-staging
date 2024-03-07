@@ -52,7 +52,7 @@ const Page = () => {
             </div>
           )}
         </div>
-        <CustomScroll className="max-h-[80vh] hidden flex-col gap-4 2xl:gap-6 overflow-y-scroll lg:flex ">
+        <CustomScroll className="max-h-[78vh] hidden flex-col gap-4 2xl:gap-6 overflow-y-scroll lg:flex ">
           {notifications?.map((r: any, index: number) => (
             <div
               className={`w-full sc-${index}`}
@@ -71,9 +71,8 @@ const Page = () => {
             <div
               className="w-full"
               key={index}
-         
             >
-              <NotificationsSmItem currentNotification={r} />
+              <NotificationsSmItem notification={r} />
             </div>
           ))}
         </div>
