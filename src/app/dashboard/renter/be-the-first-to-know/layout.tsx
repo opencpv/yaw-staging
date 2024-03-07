@@ -21,20 +21,10 @@ const BeTheFirstToKnowLayout = ({
 
   return (
     <main>
-      <Link
-        href={`/dashboard/${currentRole}/be-the-first-to-know`}
-        className="relative mb-5 h-10 w-10 place-items-center rounded-full p-2 transition-all hover:scale-105 hover:bg-slate-100 fhd:right-28"
-        style={{
-          display:
-            pathname === `/dashboard/${currentRole}/be-the-first-to-know`
-              ? "none"
-              : "grid",
-        }}
-      >
-        <FaChevronLeft />
-      </Link>
       <h2>Be the first to Know</h2>
-      <FirstToKnowModal />
+      <div className="fixed bottom-10 right-5 z-50 shadow-lg">
+        <FirstToKnowModal />
+      </div>
       {/* <section className="flex h-[100vh] w-full flex-col items-center justify-center">
           <Image
             src={images.SearchIcon}

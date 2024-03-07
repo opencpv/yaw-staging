@@ -172,7 +172,7 @@ const Sell = () => {
           <Button
             href={`/dashboard/${currentRole}/sell-products/add-new-product`}
             color="accent"
-            className="bottom-10 right-10 z-30 max-lg:fixed max-lg:shadow-lg lg:self-end"
+            className="bottom-10 right-5 z-30 max-lg:fixed max-lg:shadow-lg lg:self-end"
           >
             Add New Item
           </Button>
