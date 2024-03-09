@@ -51,7 +51,7 @@ export const TableSm = (props: TableProps) => {
       role="table"
       aria-label="table"
       className={cn(
-        "mx-auto flex w-full max-w-xl flex-col gap-16 lg:hidden",
+        "mx-auto flex w-full max-w-xl flex-col gap-10 lg:hidden",
         props.className,
       )}
     >
@@ -90,7 +90,7 @@ export const TableRowSm = (props: TableHeaderRowProps) => {
       role="row"
       aria-label="table row"
       className={cn(
-        `light-green-hover flex cursor-default flex-col gap-4 border-b pb-8 pt-5 last:border-b-0`,
+        `flex cursor-default flex-col gap-4 overflow-hidden rounded-lg px-5 pb-8 pt-5 hover:bg-[#faf9f9]`,
         props.className,
       )}
     >
@@ -220,7 +220,7 @@ export const TableBodySm = (props: TableBodyProps) => {
           aria-label="table body"
           tabIndex={0}
           className={cn(
-            "px-5 pb-2 text-neutral-700 first:border-b first:pb-4",
+            "pb-2 text-neutral-700 first:border-b first:pb-4",
             props.className,
           )}
         >

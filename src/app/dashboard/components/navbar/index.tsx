@@ -33,8 +33,8 @@ const Navbar = () => {
       <Root
         className={`relative ${
           isOpen ? "z-[50]" : "max-md:z-[70]"
-        } flex flex-nowrap items-center gap-4
-        bg-primary-500 p-2 xs:gap-16 xs:p-4 2xl:p-[1.875rem]`}
+        } flex h-fit flex-nowrap items-center gap-4 bg-primary-500 p-2
+        py-10 xs:gap-16 xs:p-4 2xl:p-[1.875rem]`}
       >
         <div className="flex items-center justify-start xs:gap-6 md:w-full md:gap-10 lg:gap-20">
           <Logo size="xs" />
@@ -88,7 +88,7 @@ const Navbar = () => {
 };
 
 const Root = styled("div", {
-  maxHeight: "52px",
+  // maxHeight: "52px",
   //   maxWidth: "1728px",
   width: "100%",
   aspectRatio: "1728/52",

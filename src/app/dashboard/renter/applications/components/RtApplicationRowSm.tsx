@@ -41,18 +41,9 @@ const RtApplicationRowSm = ({
 
   return (
     <>
-      <TableRowSm
-        className={cn("", {
-          "rounded-md border border-[#DA1414]": status === "incomplete",
-        })}
-      >
+      <TableRowSm>
         {/* Property */}
-        <TableBodySm
-          href="/properties/2"
-          className={cn("", {
-            "px-5": status === "incomplete",
-          })}
-        >
+        <TableBodySm href="/properties/2">
           <div className="flex flex-wrap gap-5 truncate xsm:flex-nowrap">
             <TbPropertyImageSm title={propertyTitle} image={propertyImage} />
             <div className="flex flex-col justify-between gap-2">
@@ -71,35 +62,29 @@ const RtApplicationRowSm = ({
         </TableBodySm>
         {/* Property owner */}
         <TableBodySm
-          className={cn("flex items-center justify-between gap-5", {
-            "px-5": status === "incomplete",
-          })}
+          className={cn("grid grid-cols-2 items-center justify-between gap-5")}
         >
-          <h4 className="text-shade-200">Property Owner</h4>
-          <div className="flex items-center gap-2">
+          <h4 className="text-shade-200">Contact</h4>
+          <div className="ml-auto flex items-center gap-2">
             <Avatar
               image={user?.avatar_url as string}
               name={user?.firstname as string}
               size="sm"
             />
-            <span className="font-semibold">Bernice Asantewa</span>
+            <span className="min-w-max overflow-x-hidden font-semibold">
+              Bernice
+            </span>
           </div>
         </TableBodySm>
         {/* Status */}
         <TableBodySm
-          className={cn("flex items-center justify-between gap-x-5 gap-y-3", {
-            "px-5": status === "incomplete",
-          })}
+          className={cn("flex items-center justify-between gap-x-5 gap-y-3")}
         >
           <h4 className="text-shade-200">Status</h4>
           <RtApplicationStatus status={status} />
         </TableBodySm>
         {/* Date */}
-        <TableBodySm
-          className={cn("flex items-center justify-between", {
-            "px-5": status === "incomplete",
-          })}
-        >
+        <TableBodySm className={cn("flex items-center justify-between")}>
           <h4 className="text-shade-200">Date</h4>
           <div className="flex flex-col items-center">
             <h4 className="text-sm">{formatDate(date)}</h4>
@@ -111,18 +96,15 @@ const RtApplicationRowSm = ({
           </div>
         </TableBodySm>
         {/* Actions */}
-        <TableBodySm
-          className={cn("flex items-center justify-end gap-1.5", {
-            "px-5": status === "incomplete",
-          })}
-        >
-          {status === "incomplete" && (
+        <TableBodySm className={cn("flex items-center justify-end gap-1.5")}>
+          {status === "incomplete" ? (
             <>
               <EditButton onOpen={() => ""} />
               <ButtonDelete table="" id="" />
             </>
+          ) : (
+            <ButtonMessage type={2} />
           )}
-          <ButtonMessage type={2} />
         </TableBodySm>
       </TableRowSm>
     </>

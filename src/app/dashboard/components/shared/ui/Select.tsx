@@ -35,7 +35,7 @@ const Select = ({
   return (
     <NextUISelect
       size="sm"
-      radius={radius ? radius : "full"}
+      radius={"full"}
       label="select"
       //   selectionMode="single"
       isDisabled={disabled}
@@ -43,10 +43,14 @@ const Select = ({
       selectedKeys={[value]}
       classNames={{
         // mainWrapper: [variant === "ghost" && "hover:bg-transparent"],
-        base: cn("w-44 mx-auto text-xs", className, {
-          "text-base": variant === "ghost",
-          "opacity-100": disabled,
-        }),
+        base: cn(
+          "w-44 mx-auto text-xs hover:bg-neutral-100 rounded-full",
+          className,
+          {
+            "text-base": variant === "ghost",
+            "opacity-100": disabled,
+          },
+        ),
         value: cn("text-xs", valueClassName, {
           "text-base": variant === "ghost",
         }),
