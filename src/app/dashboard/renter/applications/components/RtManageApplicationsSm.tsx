@@ -15,12 +15,11 @@ import { RenterApplicationStatus } from "./RtApplicationStatus";
 
 type Props = {};
 
-type StatusFilter = "all" | RenterApplicationStatus;
+type StatusFilter = "all" | "archived" | RenterApplicationStatus;
 type DateFilter = "newest" | "oldest" | "last modified";
 
 const RtManageApplicationsSm = (props: Props) => {
   const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
-  const [dateFilter, setDateFilter] = useState<DateFilter>("newest");
 
   const {
     data: applicants,
@@ -39,12 +38,8 @@ const RtManageApplicationsSm = (props: Props) => {
     <div className="flex flex-col gap-10 lg:hidden">
       <RtMobileFilters
         statusFilter={statusFilter}
-        dateFilter={dateFilter}
         handleStatusSelectionChange={(e) =>
           setStatusFilter(e.target.value as StatusFilter)
-        }
-        handleDateSelectionChange={(e) =>
-          setDateFilter(e.target.value as DateFilter)
         }
       />
       <FetchingStates
@@ -58,7 +53,7 @@ const RtManageApplicationsSm = (props: Props) => {
           <p className="mt-4 italic">There are no applications yet.</p>
         }
       />
-      <TableSm className="mb-10 flex-1">
+      <TableSm className="flex-1">
         {applicants?.map((applicant, idx) => (
           <RtApplicationRowSm
             key={applicant.id as string}
@@ -82,11 +77,6 @@ const RtManageApplicationsSm = (props: Props) => {
       </TableSm>
       <div className="text-center">
         {isLoading && loadMore ? "Fetching..." : null}
-      </div>
-      <div className="my-14 ml-auto grid place-items-end">
-        <Button variant="ghost" className="" title="View all applications">
-          Archive <IoArchiveOutline />
-        </Button>
       </div>
       <div className="grid place-items-center">
         <ButtonInfiniteLoading

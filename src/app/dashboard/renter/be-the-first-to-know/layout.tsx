@@ -23,7 +23,9 @@ const BeTheFirstToKnowLayout = ({
     <main>
       <h2>Be the first to Know</h2>
       <div className="fixed bottom-10 right-5 z-50 shadow-lg">
-        <FirstToKnowModal />
+        {pathname === "/dashboard/renter/be-the-first-to-know" && (
+          <FirstToKnowModal />
+        )}
       </div>
       {/* <section className="flex h-[100vh] w-full flex-col items-center justify-center">
           <Image
@@ -69,8 +71,7 @@ const BeTheFirstToKnowLayout = ({
           className="mb-6"
           style={{
             display:
-              pathname === "/dashboard/lister/be-the-first-to-know" ||
-              "/dashboard/renter/be-the-first-to-know"
+              pathname === "/dashboard/renter/be-the-first-to-know"
                 ? "none"
                 : "grid",
           }}

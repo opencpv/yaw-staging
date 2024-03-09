@@ -25,7 +25,7 @@ const Switch = () => {
       <Select
         options={["Renter", "Lister"]}
         value={currentRole}
-        className="mx-0 w-32"
+        className="mx-0 w-32 hover:bg-transparent"
         variant="ghost"
         color="primary"
         selectorIcon={<IoIosArrowDown />}
