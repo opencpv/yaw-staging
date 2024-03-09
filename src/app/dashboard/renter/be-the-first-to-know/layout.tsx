@@ -22,7 +22,7 @@ const BeTheFirstToKnowLayout = ({
   return (
     <main>
       <h2>Be the first to Know</h2>
-      <div className="fixed bottom-10 right-5 z-50 shadow-lg">
+      <div className="fixed bottom-10 right-5 z-30 shadow-lg">
         {pathname === "/dashboard/renter/be-the-first-to-know" && (
           <FirstToKnowModal />
         )}
