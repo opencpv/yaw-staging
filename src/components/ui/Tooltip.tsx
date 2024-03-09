@@ -29,7 +29,10 @@ const Tooltip = ({ children, content, className, onClick }: Props) => {
         <NextUITooltip
           classNames={{
             base: [
-              cn("z-[30] bg-[#fefefe] cursor-pointer p-5 max-w-2xl", className),
+              cn(
+                "z-[30] bg-[#fefefe] focus:outline-none cursor-pointer p-5 max-w-2xl",
+                className,
+              ),
             ],
           }}
           content={content}
@@ -47,6 +50,9 @@ const Tooltip = ({ children, content, className, onClick }: Props) => {
           placement="top"
           isOpen={isOpen}
           onOpenChange={setIsOpen}
+          classNames={{
+            base: "focus:outline-none",
+          }}
         >
           <PopoverTrigger className="h-fit w-fit">
             <button className="h-fit w-fit">{children}</button>
