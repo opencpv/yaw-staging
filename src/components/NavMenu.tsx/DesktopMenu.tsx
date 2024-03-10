@@ -24,7 +24,7 @@ export const DesktopMenu = (props: any) => {
         className={"flex w-max flex-col gap-10 border-r border-r-white pr-10"}
       >
         {/* main links before login */}
-        {false &&
+        {true &&
           linksBeforeLogin.map(
             (r, idx) =>
               r.name.toLowerCase() !== "more" && (
@@ -67,7 +67,7 @@ export const DesktopMenu = (props: any) => {
           )}
 
         {/* main links after login */}
-        {true &&
+        {!true &&
           links.map(
             (r, idx) =>
               r.name.toLowerCase() !== "more" && (
@@ -152,7 +152,7 @@ export const DesktopMenu = (props: any) => {
       </div>
 
       {/* before login */}
-      {!true &&
+      {true &&
         active !== null && ( // implement appropriately
           <>
             <motion.div
