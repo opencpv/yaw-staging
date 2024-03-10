@@ -39,7 +39,7 @@ function GetNotifiedInput() {
             className="2xl:text-[1.5625rem text-left text-20 font-semibold
           leading-[2.1875rem] text-[#F2B94E] xs:whitespace-nowrap"
           >
-            Get notified when we go live!
+            Click here to get notified!
           </p>
           <button
             className="appearance-none"

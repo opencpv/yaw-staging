@@ -1,6 +1,8 @@
 import { styled } from "@stitches/react";
 
 export const CustomScroll: any = styled("div", {
+  overflow: "auto", // Add this line to hide scrollbar when not needed
+
   "&::-webkit-scrollbar-track": {
     width: "4px",
     backgroundColor: "#F1F1F1",

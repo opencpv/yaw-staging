@@ -5,7 +5,7 @@ import { styled } from "@stitches/react";
 import Image from "next/image";
 import Switch from "./switch";
 import Search from "./search";
-import NotificationsPopover from "../shared/notifications/NotificationsPopover";
+import NotificationsPopover from "../../renter/notifications/components/NotificationsPopover";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import style from "../../Dashboard.module.css";
 import { useLocalStorage } from "@uidotdev/usehooks";
@@ -15,11 +15,13 @@ import { IoIosCloseCircle } from "react-icons/io";
 import { useRef, useState } from "react";
 import Loader from "@/components/__shared/loader/Loader";
 import { useDashboardMenuStore } from "@/store/navmenu/useDashboardMenuStore";
+import useNotifications from "../../renter/notifications/useNotifications";
 
 const Navbar = () => {
   const { icons } = useAssets();
 
   const user = useAppStore((state) => state.user);
+  const { unreadNotifications } = useNotifications();
 
   const [dashboardType, setDashboardType] =
     useLocalStorage<any>("dashboard-type");
@@ -50,7 +52,7 @@ const Navbar = () => {
         </div>
         <div className="relative flex w-fit items-center gap-7">
           <Switch />
-          <NotificationsPopover />
+          {unreadNotifications?.length > 0 && <NotificationsPopover />}{" "}
           {/* <div>
             <p className="hidden whitespace-nowrap text-sm text-[#fff] xs:block">
               {user?.full_name}

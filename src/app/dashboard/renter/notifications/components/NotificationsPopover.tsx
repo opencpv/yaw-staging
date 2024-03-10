@@ -1,23 +1,27 @@
 import React, { useContext, useState } from "react";
 import * as Popover from "@radix-ui/react-popover";
 import { styled, keyframes } from "@stitches/react";
-import { violet, mauve, blackA } from "@radix-ui/colors";
+
 import { MixerHorizontalIcon, Cross2Icon } from "@radix-ui/react-icons";
 import { IoMdNotifications } from "react-icons/io";
 import NotificationItem from "./NotificationItem";
 import { demoNotifications } from "./content/demoNotifications";
 import CaMarkAsRead from "./icons/CaMarkAsRead";
 import { CustomScroll } from "./CustomScroll";
-
-import { useAppStore } from "@/store/dashboard/AppStore";
 import { useNotificationStore } from "@/store/dashboard/notificationStore";
+import useNotifications from "@/app/dashboard/renter/notifications/useNotifications";
+import NtfSkeleton from "@/app/dashboard/renter/notifications/components/NtfSkeleton";
+import { useRouter } from "next/navigation";
+import { Button } from "@nextui-org/react";
 
 const NotificationsPopover = () => {
-  const [currentNotification, setCurrentNotification] = useState("");
-  const notifications = useNotificationStore((state) => state.notifications);
+  const { unreadNotifications, unreadIsLoading } = useNotifications();
+  const { setCurrentNotification } = useNotificationStore();
+  const router = useRouter();
+  const [open, setOpen] = useState<boolean>(false);
 
   return (
-    <Popover.Root>
+    <Popover.Root onOpenChange={setOpen} open={open}>
       <Popover.Trigger asChild>
         <button className="relative flex aspect-square min-h-[52px] w-full min-w-[52px] items-center justify-center">
           <div
@@ -25,7 +29,7 @@ const NotificationsPopover = () => {
           flex h-[26px] w-[26px] items-center justify-center rounded-full
           bg-[#B71851] text-[14px] text-[#fff]"
           >
-            3
+            {unreadNotifications?.length}
           </div>
           <IconButton aria-label="Update dimensions">
             <IoMdNotifications color="white" size="28" />
@@ -33,36 +37,52 @@ const NotificationsPopover = () => {
         </button>
       </Popover.Trigger>
       <Popover.Portal>
-        <PopoverContent sideOffset={5} className="z-[99999] bg-[#fefefe]">
+        <PopoverContent
+          sideOffset={5}
+          className="z-[99999] w-[90vw] md:w-fit lg:min-w-[400px] bg-[#fefefe] "
+        >
           <div className="flex items-center justify-between ">
-            <p className="text-[25px] font-bold ">Notifications</p>
-            <p className="text-[10px] font-bold text-[#DDB771]">See All</p>
+            <p className="text-20 font-semibold 2xl:text-25 ">Notifications</p>
+            <p
+              className="cursor-pointer text-[10px] font-bold text-[#DDB771]"
+              onClick={() => {
+                router.push("/dashboard/renter/notifications");
+                setOpen(false);
+              }}
+            >
+              See All
+            </p>
           </div>
 
-          <div className="flex w-full justify-end">
-            <button className="flex items-center justify-end gap-2 p-2 hover:bg-[#073b3a12]">
-              <div className="flex gap-0">
-                <CaMarkAsRead />
-              </div>
-              <p className="text-[10px] font-bold">Mark all as read</p>
-            </button>
-          </div>
-          <CustomScroll className="flex max-h-[60vh] flex-col gap-8 overflow-y-scroll">
-            {notifications?.map((r: any, index: number) => (
-              <div key={index} onClick={(e) => setCurrentNotification(r?.name)}>
-                <NotificationItem
-                  type={r?.type}
-                  sender={r?.sender_name}
-                  subject={r?.subject}
-                  time={r?.sent}
-                  content={r?.content}
-                />
+          {unreadIsLoading && <NtfSkeleton />}
+
+          {unreadNotifications && (
+            <div className="flex w-full justify-end mb-2">
+              <Button className="bg-unset focus:!unset active:unset flex items-center justify-end gap-2 p-2 text-black hover:bg-[#073b3a12]">
+                <div className="flex gap-0">
+                  <CaMarkAsRead />
+                </div>
+                <p className="text-[10px] font-bold">Mark all as read</p>
+              </Button>
+            </div>
+          )}
+          <div className="scrollbar-hide flex max-h-[60vh] flex-col gap-5 overflow-y-scroll 2xl:gap-8">
+            {unreadNotifications?.map((r: any, index: number) => (
+              <div
+                key={index}
+                onClick={(e) => {
+                  router.push("/dashboard/renter/notifications");
+                  setCurrentNotification(r);
+                  setOpen(false);
+                }}
+              >
+                <NotificationItem popover={true} notification={r} />
               </div>
             ))}
-          </CustomScroll>
-          <PopoverClose aria-label="Close">
+          </div>
+          {/* <PopoverClose aria-label="Close">
             <Cross2Icon />
-          </PopoverClose>
+          </PopoverClose> */}
           <PopoverArrow />
         </PopoverContent>
       </Popover.Portal>
@@ -107,9 +127,7 @@ const PopoverContent = styled(Popover.Content, {
     '&[data-side="bottom"]': { animationName: slideUpAndFade },
     '&[data-side="left"]': { animationName: slideRightAndFade },
   },
-  "&:focus": {
-    boxShadow: `hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px, 0 0 0 2px ${violet.violet7}`,
-  },
+
   "@madia screen and (max-width: 1024px)": {
     width: "75%",
   },
@@ -128,55 +146,12 @@ const PopoverClose = styled(Popover.Close, {
   display: "inline-flex",
   alignItems: "center",
   justifyContent: "center",
-  color: violet.violet11,
+  // color: violet.violet11,
   position: "absolute",
   top: 5,
   right: 5,
-
-  "&:hover": { backgroundColor: violet.violet4 },
-  "&:focus": { boxShadow: `0 0 0 2px ${violet.violet7}` },
 });
-
-const Flex = styled("div", { display: "flex" });
 
 const IconButton = styled("button", {});
-const Fieldset = styled("fieldset", {
-  all: "unset",
-  display: "flex",
-  gap: 20,
-  alignItems: "center",
-});
-
-const Label = styled("label", {
-  fontSize: 13,
-  color: violet.violet11,
-  width: 75,
-});
-
-const Input = styled("input", {
-  all: "unset",
-  width: "100%",
-  display: "inline-flex",
-  alignItems: "center",
-  justifyContent: "center",
-  flex: "1",
-  borderRadius: 4,
-  padding: "0 10px",
-  fontSize: 13,
-  lineHeight: 1,
-  color: violet.violet11,
-  boxShadow: `0 0 0 1px ${violet.violet7}`,
-  height: 25,
-
-  "&:focus": { boxShadow: `0 0 0 2px ${violet.violet8}` },
-});
-
-const Text = styled("p", {
-  margin: 0,
-  color: mauve.mauve12,
-  fontSize: 15,
-  lineHeight: "19px",
-  fontWeight: 500,
-});
 
 export default NotificationsPopover;
