@@ -90,7 +90,7 @@ export const TableRowSm = (props: TableHeaderRowProps) => {
       role="row"
       aria-label="table row"
       className={cn(
-        `flex cursor-default flex-col gap-4 overflow-hidden rounded-lg px-5 pb-8 pt-5 hover:bg-[#faf9f9]`,
+        `flex cursor-default flex-col gap-4 overflow-hidden rounded-lg px-5 pb-8 pt-5 hover:bg-[#fafaf9]`,
         props.className,
       )}
     >

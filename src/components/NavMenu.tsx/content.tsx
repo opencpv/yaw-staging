@@ -146,6 +146,29 @@ export const linksBeforeLogin = [
   },
   { id: "#", url: "/moving-sale", name: "MOVING SALE" },
   { id: "#", url: "/blog", name: "AREA VIBES" },
+  {
+    id: "#",
+    url: "",
+    name: "MORE",
+    sub: [
+      {
+        url: "/faq",
+        name: "How to",
+      },
+      {
+        url: "/b2b",
+        name: "Invoices",
+      },
+      {
+        url: "/join-us",
+        name: "Join Us",
+      },
+      {
+        url: "/contact",
+        name: "Report Fraud",
+      },
+    ],
+  },
 ];
 
 export const bottomLinksBeforeLogin = [

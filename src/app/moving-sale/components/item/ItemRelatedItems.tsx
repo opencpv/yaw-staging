@@ -8,7 +8,7 @@ const ItemRelatedItems = (props: Props) => {
   return (
     <section>
       {/* Related products */}
-      <h3 className="text-xl text-neutral-500 font-[500] mb-6">
+      <h3 className="mb-6 text-xl font-[500] text-neutral-500">
         Related products
       </h3>
       <SliderMultiItems

@@ -131,7 +131,7 @@ export default function Menu(props: any) {
 
       {/* bottom links */}
       <MenuBottomLinks
-        links={true ? bottomLinks : bottomLinksBeforeLogin}
+        links={true ? bottomLinksBeforeLogin : bottomLinks}
         ref={bottomLinksRef}
       />
     </Root>
