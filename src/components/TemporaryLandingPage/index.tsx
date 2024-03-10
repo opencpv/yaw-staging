@@ -34,7 +34,7 @@ function TemporayLandingPage() {
           <GetNotifiedInput />
         </div>
       </div>
-      <div className=" w-full pt-10 pb-5 xl:pb-2 2xl:pb-10">
+      <div className=" w-full pt-10 pb-3 xl:pb-1 2xl:pb-5">
         <TlpFooter />
       </div>
     </div>

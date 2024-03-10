@@ -12,17 +12,17 @@ type Props = {
 
 const NotificationDetailsFull: React.FC<Props> = ({ currentNotification }) => {
   return (
-    <CustomScroll className="w-full max-h-[80vh] overflow-y-scroll">
+    <CustomScroll className="max-h-[80vh] overflow-y-scroll  w-full ">
       {currentNotification ? (
-        <Root className="flex h-full flex-col justify-start gap-4 2xl:gap-8 pr-1">
+        <Root className=" flex h-full flex-col justify-start gap-4 2xl:gap-8  pr-1  ">
           <div className="flex flex-col gap-2 2xl:gap-4">
             <div className=" text-black font-bold capitalize ">
-              <h2>{currentNotification?.subject}</h2>
+              <h2 className="font-bold">{currentNotification?.subject}</h2>
             </div>
             <div className="flex  gap-2 text-[10px] uppercase 2xl:leading-[14px] text-[#0000008F]">
               <p className="font-bold">Date</p>
-              <p className="font-semibold">{moment(currentNotification?.sent).fromNow()} </p>
-              <p className="font-bold">{moment(currentNotification?.time).fromNow()}</p>
+              <p className="font-semibold">{moment(currentNotification?.sent).format("DD MMMM, YYYY")} </p>
+              <p className="font-bold">{moment(currentNotification?.created_at).fromNow()}</p>
             </div>
           </div>
           <div className="text-[16px] font-[400] 2xl:leading-[22.4px] text-[#00000066]">

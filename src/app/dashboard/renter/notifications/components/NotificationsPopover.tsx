@@ -57,7 +57,7 @@ const NotificationsPopover = () => {
           {unreadIsLoading && <NtfSkeleton />}
 
           {unreadNotifications && (
-            <div className="flex w-full justify-end">
+            <div className="flex w-full justify-end mb-2">
               <Button className="bg-unset focus:!unset active:unset flex items-center justify-end gap-2 p-2 text-black hover:bg-[#073b3a12]">
                 <div className="flex gap-0">
                   <CaMarkAsRead />

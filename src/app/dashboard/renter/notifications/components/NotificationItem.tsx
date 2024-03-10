@@ -6,7 +6,7 @@ import MessageIcon from "./icons/CaMessageIcon";
 import { IoPersonOutline } from "react-icons/io5";
 import MarkAndDeletePopup from "./MarkAndDeletePopup";
 import { motion } from "framer-motion";
-import { ReactHTMLElement } from "react";
+import { ReactHTMLElement, useRef } from "react";
 import moment from "moment";
 import useNotifications from "../useNotifications";
 import { NotificationType } from "./types";
@@ -15,6 +15,7 @@ type Props = {
   notification: NotificationType;
   selected?: boolean;
   popover?: boolean;
+  containerRef?: React.RefObject<HTMLElement>; // Reference to the container
 };
 
 const notificationItems: any = {
@@ -29,6 +30,7 @@ const NotificationItem: React.FC<Props> = ({
   notification,
   selected,
   popover,
+  containerRef,
 }) => {
   const { setCurrentNotification } = useNotifications();
   return (
@@ -52,11 +54,13 @@ const NotificationItem: React.FC<Props> = ({
         }}
       >
         <div className="flex gap-4">
-          <div className="pt-1">{notificationItems[notification?.type]}</div>
+          <div className={`pt-1 ${notification?.read && "opacity-50"}`}>
+            {notificationItems[notification?.type]}
+          </div>
 
           <div className="flex flex-col gap-1">
             <div className="flex items-center gap-2 text-[10px] uppercase text-[#0000008F]">
-              <div className="font-semibold">
+              <div className={`font-semibold`}>
                 {notification?.type == "message" && notification?.type}
                 {notification?.type == "admin" && notification?.type}
                 {notification?.type == "alert" && notification?.sender_name}
@@ -86,7 +90,10 @@ const NotificationItem: React.FC<Props> = ({
           </div>
         </div>
         <div className="hidden items-start lg:flex">
-          <MarkAndDeletePopup read={notification?.read} />
+          <MarkAndDeletePopup
+            containerRef={containerRef}
+            read={notification?.read}
+          />
         </div>
       </motion.div>
     </Root>

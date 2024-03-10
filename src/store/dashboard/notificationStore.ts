@@ -9,7 +9,7 @@ type AppStore = {
   setNotifications: (notifications: NotificationType[]) => void;
   setUnReadNotifications: (notifications: NotificationType[]) => void;
 
-  setCurrentNotification: (notification: NotificationType | null) => void; // Setter for currentNotification
+  setCurrentNotification: any
 };
 
 export const useNotificationStore = create<AppStore>((set) => ({
@@ -24,6 +24,6 @@ export const useNotificationStore = create<AppStore>((set) => ({
   setUnReadNotifications: (notifications) =>
     set((state) => ({ ...state, unreadNotifications: notifications })),
 
-  setCurrentNotification: (notification) =>
+  setCurrentNotification: (notification : any) =>
     set((state) => ({ ...state, currentNotification: notification })),
 }));

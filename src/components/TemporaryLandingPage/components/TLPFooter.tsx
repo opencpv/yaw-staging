@@ -12,11 +12,11 @@ function TlpFooter() {
     <div className="flex w-full flex-col justify-between gap-1 bg-transparent text-[1rem] font-semibold lg:flex-row lg:px-10 ">
       <div className={" flex flex-row flex-wrap gap-x-1 gap-y-4"}>
         <div className="flex flex-wrap gap-x-2 gap-y-2 text-shade-50">
-          <span>Copyright &copy; {getCurrentYear()} SBG REALTY LLC 2024</span>
+          <span>Copyright &copy; {getCurrentYear()} ESODO LLC</span>
           <span className="hidden lg:flex">| All rights reserved </span>
         </div>
       </div>
-      <div className={" mt-2 flex flex-row flex-wrap gap-2  lg:mt-0 lg:gap-4"}>
+      <div className={" mt-2 flex flex-col lg:flex-row flex-wrap gap-2  lg:mt-0 lg:gap-4"}>
         <div className={"flex flex-row items-center gap-2"}>
           <svg
             width="24"
@@ -31,10 +31,10 @@ function TlpFooter() {
             />
           </svg>
           <p className="text-[#ffff]" title="contact@rentright.com">
-            contact@rentright.com
+            contact@rentrightgh.com
           </p>
         </div>
-        <div className={" flex-row items-center gap-2 hidden lg:flex"}>
+        <div className={" flex-row items-center gap-2 flex"}>
           <svg
             width="24"
             height="24"
@@ -47,7 +47,7 @@ function TlpFooter() {
               fill="#DDB771"
             />
           </svg>
-          <p className="text-[#ffff] ">(+233) 25 898 2889</p>
+          <p className="text-[#ffff] ">(+233) 54 686 3012</p>
         </div>
 
         {/* <div className="flex items-center gap-1 text-white">

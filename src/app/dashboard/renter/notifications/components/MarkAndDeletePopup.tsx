@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as Popover from "@radix-ui/react-popover";
 import { MixerHorizontalIcon, Cross2Icon } from "@radix-ui/react-icons";
 import { BiDotsVerticalRounded } from "react-icons/bi";
@@ -7,11 +7,31 @@ import DeleteModal from "./DeleteModal";
 
 type Props = {
   read: boolean;
+  containerRef?: React.RefObject<HTMLElement>; // Reference to the container
+
 };
 
-const MarkAndDeletePopup = ({ read }: Props) => {
+const MarkAndDeletePopup = ({ read, containerRef }: Props) => {
   const [open, setOpen] = useState<boolean>();
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setOpen(false); // Close the popover when scrolling
+    };
+
+    window.addEventListener("scroll", handleScroll); // Listen for scroll events on window
+
+    if (containerRef?.current) {
+      containerRef?.current.addEventListener("scroll", handleScroll); // Listen for scroll events on container
+    }
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll); // Cleanup window event listener
+      if (containerRef?.current) {
+        containerRef.current.removeEventListener("scroll", handleScroll); // Cleanup container event listener
+      }
+    };
+  }, [containerRef]); // This effect runs when containerRef changes
   return (
     <Popover.Root onOpenChange={setOpen} open={open}>
       <Popover.Trigger asChild>
@@ -31,9 +51,9 @@ const MarkAndDeletePopup = ({ read }: Props) => {
         >
           {!read && (
             <button
-            onClick={() => {
-              setOpen(false)
-            }}
+              onClick={() => {
+                setOpen(false);
+              }}
               className="w-full border-b-[1px]
             border-[#0000001A] px-8 pb-2 pt-2 hover:bg-primary-300
             "

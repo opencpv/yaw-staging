@@ -8,4 +8,5 @@ export type NotificationType = {
   sent?: string;
   sender_name?: string;
   read: boolean
+  created_at : string
 };
