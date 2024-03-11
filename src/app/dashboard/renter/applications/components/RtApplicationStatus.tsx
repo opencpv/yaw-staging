@@ -1,33 +1,63 @@
 "use client";
 import React, { useState } from "react";
-import Select from "../../../components/Select";
+import Select from "../../../components/shared/ui/Select";
 import { useSelectDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { cn } from "@nextui-org/react";
+import { BsInfoCircle } from "react-icons/bs";
+import Tooltip from "@/components/ui/Tooltip";
+import { HiOutlineBadgeCheck } from "react-icons/hi";
+import { MdHourglassTop } from "react-icons/md";
 
-export type Status = "accepted" | "declined" | "pending";
+export type RenterApplicationStatus =
+  | "accepted"
+  | "declined"
+  | "under review"
+  | "incomplete";
 
 type Props = {
-  status: Status;
+  status: RenterApplicationStatus;
 };
 
 const RtApplicationStatus = ({ status }: Props) => {
-  const { value, handleSelectionChange } = useSelectDisclosure<Status>(status);
-
   return (
     <>
-      <Select
-        color="primary"
-        options={["Accepted", "Declined", "Pending"]}
-        value={status}
-        disabled
-        handleSelectionChange={handleSelectionChange}
-        className="lg:max-xl:w-40"
-        selectorIconClassName="text-neutral-800"
-        triggerClassName={cn({
-          "bg-red-300": status === "declined",
-          "bg-[#B0E3C9]": status === "accepted",
-        })}
-      />
+      <Tooltip
+        content={
+          status === "accepted"
+            ? "The lister has reviewed your application and should be in touch with you shortly. Check your messages or contact them directly if a response is delayed."
+            : status === "declined"
+              ? "The lister has declined your application. Continue your search or contact them directly with more questions."
+              : status === "under review"
+                ? "The lister has received your application and should respond shortly. Contact them directly if a response is delayed."
+                : "Please submit form for review."
+        }
+      >
+        <div
+          className={cn(
+            "flex w-fit shrink-0 items-center justify-center gap-2 rounded-full p-1.5 px-2.5 shadow-sm",
+            {
+              "bg-[#FEEFEF] text-[#DA1414]": status === "declined",
+              "bg-[#EDF9F0] text-[#287D3C]": status === "accepted",
+              "bg-[#FFF4EC] text-[#B95000]": status === "under review",
+              "bg-[#FEEFEF] text-[#DA1414] ": status === "incomplete",
+            },
+          )}
+        >
+          {status === "accepted" ? (
+            <HiOutlineBadgeCheck />
+          ) : status === "under review" ? (
+            <MdHourglassTop />
+          ) : (
+            <BsInfoCircle />
+          )}
+          <small className="text-xs">
+            {status === "accepted" && "Accepted"}
+            {status === "declined" && "Declined"}
+            {status === "under review" && "Under review"}
+            {status === "incomplete" && "Incomplete"}
+          </small>
+        </div>
+      </Tooltip>
     </>
   );
 };

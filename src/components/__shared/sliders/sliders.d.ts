@@ -30,6 +30,7 @@ type SliderMultiItemsProps = {
   autoplay?: boolean;
   /** class for a swiper slide item */
   swiperSlideClassName?: string;
+  centeredSlides?: boolean;
 };
 
 type SliderGridProps = {

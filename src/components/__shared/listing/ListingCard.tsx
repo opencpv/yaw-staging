@@ -24,6 +24,7 @@ import { IoEyeOutline } from "react-icons/io5";
 import Button from "../ui/button/Button";
 import { FaHeart, FaRegEyeSlash } from "react-icons/fa6";
 import ListingCardButton from "./ListingCardButton";
+import { FiTrash2 } from "react-icons/fi";
 
 const ListingCard = (props: ListingCardInterface) => {
   return (
@@ -99,10 +100,10 @@ const ListingCard = (props: ListingCardInterface) => {
               {props.liked && !props.isRecommendationsPage && (
                 <Button
                   variant="ghost"
-                  className="gap-3 text-lg font-semibold text-neutral-300 underline"
+                  className="gap-3 text-lg font-semibold text-white underline"
                 >
-                  Unfavourite
-                  <FaHeart />
+                  Delete
+                  <FiTrash2 />
                 </Button>
               )}
             </div>

@@ -2,7 +2,6 @@
 
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
-import Menu from "../NavMenu.tsx";
 import { usePathname } from "next/navigation.js";
 import { useEffect, useState } from "react";
 import Logo from "@/components/__shared/Logo";
@@ -11,14 +10,15 @@ import Share from "./ui/share/Share";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
 import ButtonHireUs from "./ui/button/ButtonHireUs";
 import { useHideDocumentScrollBar } from "@/lib/custom-hooks/useWindowEvents";
+import { useAppStore } from "@/store/dashboard/AppStore";
+import AvatarMenu from "./ui/avatar/AvatarMenu";
 
 const Navbar = (props: any) => {
   const pathname = usePathname();
   const { icons } = useAssets();
   const [isScrolling, setIsScrolling] = useState<boolean>(false);
-  const [locationOrigin, setLocationOrigin] = useState<string>("");
-  // const [toggle, setToggle] = useState(false)
   const { toggle, setToggle } = useMenuStore();
+  const { user } = useAppStore();
 
   useHideDocumentScrollBar(toggle);
 
@@ -49,7 +49,7 @@ const Navbar = (props: any) => {
   return (
     <>
       <nav
-        className={`no-print z-40 w-full px-8 py-3 ${
+        className={`no-print z-40 w-full px-3 py-3 sm:px-8 ${
           props.isMenuOpen && "absolute"
         } ${
           isNotTargetPage
@@ -60,11 +60,6 @@ const Navbar = (props: any) => {
         } top-0 bg-primary-500`}
       >
         <div className="flex items-center justify-between">
-          {/* <Menu
-            isOpen={toggle}
-            layout
-            // toggleMenu={() => { setToggle(false) }}
-          /> */}
           <Logo />
           <div className="flex w-full items-center justify-end md:gap-[31px] lg:gap-[73px]">
             {!pathname?.includes("/properties/") ? (
@@ -73,20 +68,23 @@ const Navbar = (props: any) => {
               <div className="flex items-center gap-4">
                 <LikeHeart liked={false} className="text-5xl text-white" />
                 <Share
-                  url={`${locationOrigin}/properties/${props.propertyName}`}
+                  url={`${location.origin}/properties/${props.propertyName}`}
                   title={props.propertyName}
                   className="text-5xl text-white"
                 />
               </div>
             )}
-            {/* Hamburger button */}
-            <button
-              onClick={() => {
-                setToggle(true);
-              }}
-            >
-              <Image src={icons.Hamburger} alt="menu" />
-            </button>
+            <div className="flex items-center gap-5">
+              {user?.avatar_url && <AvatarMenu />}
+              {/* Hamburger button */}
+              <button
+                onClick={() => {
+                  setToggle(true);
+                }}
+              >
+                <Image src={icons.Hamburger} alt="menu" />
+              </button>
+            </div>
           </div>
         </div>
       </nav>

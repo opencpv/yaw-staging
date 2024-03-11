@@ -17,7 +17,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { ErrorMessage, Field } from "formik";
+import { ErrorMessage, Field, useField } from "formik";
 import { styled } from "@stitches/react";
 import { SelectSearchInput } from "@/app/components/SelectSearchInput";
 import axios from "axios";
@@ -36,6 +36,8 @@ type Props = {
   label: string;
   onChange: (value: any) => void;
   initialValue?: string;
+  name?: string;
+  value?: string;
 };
 
 const CountryInput = ({
@@ -43,16 +45,18 @@ const CountryInput = ({
   placeholder = "Select your country",
   label,
   onChange,
+  name,
+  value,
 }: Props) => {
   const [countryData, setCountryData] = useState<DataItem[]>();
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState("");
+  // const [value, setValue] = React.useState("");
 
-  useEffect(() => {
-    if (initialValue) {
-      setValue(initialValue);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (initialValue) {
+  //     setValue(initialValue);
+  //   }
+  // }, [initialValue]);
 
   useEffect(() => {
     axios
@@ -74,11 +78,13 @@ const CountryInput = ({
       .catch((error) => console.log(error.message));
   }, []);
 
+  const [field, meta, helpers] = useField(name as string);
+
   return (
     <div>
       <Root>
         <div className={`font-[400] capitalize text-[#6A6968]`}>
-          <label>{label}</label>
+          <label className="normal-case">{label}</label>
         </div>
         <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
@@ -86,26 +92,37 @@ const CountryInput = ({
               variant="outline"
               role="combobox"
               aria-expanded={open}
-              className={`w-full justify-between  ${
-                value ? "capitalize text-[#6A6968]" : "text-[#B4B2AF] "
+              className={`w-full justify-between border-[#a3a3a3] placeholder:text-neutral-500 hover:border-black/50 focus:border-2 focus:border-accent-50 focus:outline-none focus-visible:ring-0  ${
+                field.value ? "capitalize text-[#6A6968]" : "text-[#B4B2AF] "
               } h-[52px] whitespace-nowrap`}
+              name={field.name}
+              value={value || field.value}
             >
-              {value ? value : placeholder}
-              <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+              {field.value ? field.value : value || placeholder}
+              <ChevronDown className="ml-2 h-4 w-4 shrink-0 text-neutral-500 opacity-50" />
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="z-[200] max-h-[400px] w-fit overflow-y-scroll bg-[#fefefe] p-0 ">
-            <Command onValueChange={onChange}>
-              <CommandInput placeholder="Search data..." />
+          <PopoverContent className="z-[200] max-h-[400px] w-fit overflow-y-scroll bg-[#fefefe] p-0 focus:outline-none">
+            <Command
+              onValueChange={(value) => {
+                onChange(value);
+                helpers.setValue(value);
+              }}
+            >
+              <CommandInput
+                className="focus:outline-none"
+                placeholder="Search data..."
+              />
               <CommandEmpty>No data found.</CommandEmpty>
               <CommandGroup>
                 {countryData?.map((data) => (
                   <CommandItem
-                    className="flex cursor-pointer gap-3 hover:bg-slate-100"
+                    className="flex cursor-pointer gap-3 hover:bg-accent-50"
                     key={data.value}
                     onSelect={(currentValue) => {
                       onChange(currentValue);
-                      setValue(currentValue === value ? "" : currentValue);
+                      // setValue(currentValue === value ? "" : currentValue);
+                      helpers.setValue(currentValue);
                       setOpen(false);
                     }}
                   >

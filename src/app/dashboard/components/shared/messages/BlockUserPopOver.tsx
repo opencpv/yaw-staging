@@ -8,8 +8,13 @@ import {
 } from "@nextui-org/react";
 import { FaBan, FaEllipsisV } from "react-icons/fa";
 import DestructiveModal from "@/components/__shared/modals/DestructiveModal";
+import { MdLockOpen } from "react-icons/md";
 
-const BlockUserPopOver = () => {
+type Props = {
+  isBlocked?: boolean;
+};
+
+const BlockUserPopOver = (props: Props) => {
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
 
   return (
@@ -29,10 +34,17 @@ const BlockUserPopOver = () => {
           className="cursor-pointer bg-primary-400 font-[300] text-white"
           onClick={onOpen}
         >
-          <div className="flex items-center gap-2">
-            Block this user
-            <FaBan />
-          </div>
+          {props.isBlocked ? (
+            <div className="flex items-center gap-2">
+              Unblock this user
+              <MdLockOpen />
+            </div>
+          ) : (
+            <div className="flex items-center gap-2">
+              Block this user
+              <FaBan />
+            </div>
+          )}
         </PopoverContent>
       </Popover>
 
@@ -41,6 +53,8 @@ const BlockUserPopOver = () => {
         onClose={onClose}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
+        id=""
+        table=""
       />
     </>
   );

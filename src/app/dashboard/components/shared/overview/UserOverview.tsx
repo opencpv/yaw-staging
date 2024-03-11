@@ -1,5 +1,5 @@
 "use client";
-import Callout from "@/app/dashboard/components/Callout";
+import Callout from "@/app/dashboard/components/shared/ui/Callout";
 import Button from "@/components/__shared/ui/button/Button";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
@@ -106,7 +106,7 @@ const UserOverview = ({
                 </div>
                 <Button
                   href="settings"
-                  className="flex w-fit items-center gap-1.5 rounded-md bg-[#597C7B] p-1 px-4 text-sm font-[400] text-white"
+                  className="flex w-fit items-center gap-1.5 rounded-md bg-[#597C7B] p-1 px-4 text-sm font-semibold text-white"
                 >
                   Complete your profile <HiOutlinePencil />{" "}
                 </Button>

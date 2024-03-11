@@ -1,9 +1,12 @@
+import { format, getDate } from "date-fns";
+import { enUS } from "date-fns/locale";
+
 const capitalizeName = (initialName: string, delimiter?: string) => {
-  let nameSplit = initialName.split(delimiter ? delimiter : "%20");
-  let nameSplitCapitalized = nameSplit.map(
-    (name) => name.slice(0, 1).toUpperCase() + name.slice(1)
+  let nameSplit = initialName?.split(delimiter ? delimiter : "%20");
+  let nameSplitCapitalized = nameSplit?.map(
+    (name) => name.slice(0, 1).toUpperCase() + name.slice(1),
   );
-  return nameSplitCapitalized.join(" ");
+  return nameSplitCapitalized?.join(" ");
 };
 
 export const formatTime = (dateTime: string) => {
@@ -19,31 +22,26 @@ export const formatTime = (dateTime: string) => {
 };
 
 export const formatDate = (dateTime: string) => {
-  const date = new Date(dateTime);
-  // Define an array of suffixes for the day of the month.
-  const suffixes = ["th", "st", "nd", "rd"];
-  const day = date.getDate();
-  const daySuffix = suffixes[day % 10] || "th";
-
-  // Format the date with a custom day format and a capitalized month abbreviation.
-  const formattedDate = new Intl.DateTimeFormat("en-US", {
-    year: "numeric",
-    month: "short",
-  }).format(date);
-
-  // Construct the final formatted date with the day and year.
-  const finalDate = `${day}${daySuffix} ${formattedDate}`;
-
-  return finalDate;
+  const cleanedDateTime = dateTime
+    ?.toString()
+    .replace(/(\d+)(st|nd|rd|th)/, "$1"); // Remove ordinal numbers
+  const date = new Date(cleanedDateTime);
+  const formattedDate = format(date, "MMMM d, yyyy", {
+    locale: enUS,
+  });
+  return formattedDate;
 };
 
-
 export const LowerCase = (text: string) => {
-  return text?.toLowerCase()
-}
+  return text?.toLowerCase();
+};
 
 export const UpperCase = (text: string) => {
-  return text?.toUpperCase()
-}
+  return text?.toUpperCase();
+};
 
-export default capitalizeName
+export default capitalizeName;
+
+export const getFirstWord = (str: string, delimiter: string = " ") => {
+  return str?.split(delimiter)[0];
+};

@@ -35,7 +35,7 @@ const Wrapper = ({ children }: LayoutProps) => {
   const [typeModalOpen, setTypeModalOpen] = useState(false);
   const [firstTimeModalOpen, setFirstTimeModalOpen] = useState(false);
 
-  const supabase = createClientComponentClient();
+  const supabase = createClientComponentClient<Database>();
   const user = useAppStore((state) => state.user);
   const setUser = useAppStore((state) => state.setUser);
   const setNotifications = useNotificationStore(
@@ -47,7 +47,7 @@ const Wrapper = ({ children }: LayoutProps) => {
   const { currentRole, setCurrentRole } = useDashboardStore();
 
   useEffect(() => {
-    const supabase = createClientComponentClient();
+    const supabase = createClientComponentClient<Database>();
     if (!supabase) {
       redirect("/");
     }
@@ -67,23 +67,24 @@ const Wrapper = ({ children }: LayoutProps) => {
     const getUserData = async () => {
       setLoading(true);
       const session = JSON.parse(localStorage.getItem("session") as string);
-      let { data } = await supabase.auth.getUser(session.access_token);
+      let { data } = await supabase?.auth?.getUser(session?.access_token);
       let { data: profiles, error } = await supabase
         .from("profiles")
         .select("*")
-        .eq("id", data?.user?.id);
+        .eq("id", data?.user?.id as string);
       const profileData = {
         ...(profiles && profiles[0]),
         email: data?.user?.email,
       };
-      console.log(profileData);
       setUser(profileData);
     };
 
     getUserData().then(() => {
       setLoading(false);
     });
+  }, [supabase, setUser]);
 
+  useEffect(() => {
     const wrapperExclusionList = [
       "/dashboard/lister/my-agent",
       "/dashboard/renter/my-agent",
@@ -96,7 +97,7 @@ const Wrapper = ({ children }: LayoutProps) => {
         setExcludeWrapper(false);
       }
     });
-  }, [supabase, pathname, setUser]);
+  }, [pathname]);
 
   useEffect(() => {
     const getNotifications = async () => {
@@ -139,7 +140,7 @@ const Wrapper = ({ children }: LayoutProps) => {
           <Pagination />
         </div>
         {isSwitchingRole && (
-          <section className="absolute z-50 inset-0 bg-white/50 backdrop-blur-sm overflow-x-hidden flex h-screen max-h-screen w-screen items-center justify-center">
+          <section className="absolute inset-0 z-50 flex h-screen max-h-screen w-screen items-center justify-center overflow-x-hidden bg-white/50 backdrop-blur-sm">
             <div className="flex flex-col items-center justify-center gap-5">
               <Loader />
               <h4>

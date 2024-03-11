@@ -35,26 +35,29 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
         otherApplicants: false,
         employersCountry: "Ghana",
         country: "Ghana",
-        availableOnWhatsapp:false
-      }
+        availableOnWhatsapp: false,
+      },
     );
     const [selectedCurrency, setSelectedCurrency] =
       useLocalStorage<any>("selectedCurrency");
 
-    const [employersPhoneNumberSelectedCountry, setEmployersPhoneNumberSelectedCountry] =
-      useLocalStorage<any>("employersPhoneNumberSelectedCountry");
+    const [
+      employersPhoneNumberSelectedCountry,
+      setEmployersPhoneNumberSelectedCountry,
+    ] = useLocalStorage<any>("employersPhoneNumberSelectedCountry");
 
     const [isChecked, setIsChecked] = useState(true); // State to store the checkbox state
 
     return (
       <Root className="p3 px-2">
-        <p className="text-[1.5625rem] text-[#073B3A] font-semibold ">
+        <p className="text-[1.5625rem] font-semibold text-[#073B3A] ">
           Employment Information
         </p>
         <div className="pt-7">
           <div className="grid grid-cols-3 gap-x-5 gap-y-5">
-            <div className="col-span-3 lg:col-span-1 form-col">
+            <div className="form-col col-span-3 lg:col-span-1">
               <CustomSelect
+                name="mostRecentEmployment"
                 options={MostRecentEmployment}
                 placeholder={
                   propertyData?.mostRecentEmployment || "Most Recent Employment"
@@ -69,7 +72,7 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
               />
               {propertyData?.mostRecentEmployment == "employed" && (
                 <div>
-                  <div className="flex gap-3 items-center justify-start text-shade200]">
+                  <div className="text-shade200] flex items-center justify-start gap-3">
                     <input
                       type="checkbox"
                       name="currentlyEmployed"
@@ -85,9 +88,9 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
                     />
                     <p className="text-[#737373]">Current</p>
                   </div>{" "}
-                  <div className="flex gap-3 mt-2">
+                  <div className="mt-2 flex gap-3">
                     <CustomDatePicker
-                      placeholderDate={propertyData?.employmentStartDate}
+                      value={propertyData?.employmentStartDate as string}
                       label="Start Date"
                       onChange={(value) =>
                         setPropertyData({
@@ -98,7 +101,7 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
                     />
                     <CustomDatePicker
                       label="End Date"
-                      placeholderDate={propertyData?.employmentEndDate}
+                      value={propertyData?.employmentEndDate as string}
                       disabled={propertyData?.currentlyEmployed && true}
                       onChange={(value) =>
                         setPropertyData({
@@ -113,7 +116,7 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
               <TextFieldInput
                 name="employer"
                 type="text"
-                label="Employer / source of Incone"
+                label="Employer or Income Source"
                 placeholder={propertyData?.employer || "Enter employer name"}
                 onChange={(e) =>
                   setPropertyData({
@@ -123,7 +126,7 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
                 }
               />
             </div>
-            <div className="col-span-3 lg:col-span-1 form-col">
+            <div className="form-col col-span-3 lg:col-span-1">
               <CountryInput
                 initialValue={propertyData?.employersCountry}
                 label="Employer's Country"
@@ -163,7 +166,9 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
               />
               <PhoneNumberInputv2
                 initialCountry={employersPhoneNumberSelectedCountry}
-                onChange2={(value) => setEmployersPhoneNumberSelectedCountry(value)}
+                onChange2={(value) =>
+                  setEmployersPhoneNumberSelectedCountry(value)
+                }
                 label="Phone"
                 initialValue={propertyData?.phoneNumber}
                 name="phoneNumber"
@@ -175,7 +180,7 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
                 }
               />
             </div>
-            <div className="col-span-3 lg:col-span-1 form-col">
+            <div className="form-col col-span-3 lg:col-span-1">
               <TextFieldInput
                 name="jobTitle"
                 type="text"
@@ -210,12 +215,12 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
             </div>
           </div>
         </div>
-        <div className="mt-5 flex justify-start lg:justify-end w-full">
+        <div className="mt-5 flex w-full justify-start lg:justify-end">
           <SwiperSlideControls ref={ref} setActiveIndex={setActiveIndex} />
         </div>
       </Root>
     );
-  }
+  },
 );
 
 EmploymentInformationForm.displayName = "EmploymentInformationForm";

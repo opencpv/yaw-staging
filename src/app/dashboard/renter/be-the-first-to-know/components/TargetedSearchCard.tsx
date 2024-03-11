@@ -85,7 +85,7 @@ const TargetedSearchCard = ({ href, property, state, count }: Props) => {
         </div>
         <div className="flex items-center gap-2">
           <EditButton onOpen={() => ""} />
-          <ButtonDelete onOpen={() => ""} />
+          <ButtonDelete id="" table="" />
         </div>
       </div>
     </div>

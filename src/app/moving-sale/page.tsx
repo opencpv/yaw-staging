@@ -2,7 +2,7 @@
 import React from "react";
 import Category from "./components/category/Category";
 import CallOut from "@/components/__shared/ui/CallOut";
-import Select from "../dashboard/components/Select";
+import Select from "../dashboard/components/shared/ui/Select";
 import Button from "@/components/__shared/ui/button/Button";
 import { FaChevronDown } from "react-icons/fa";
 import ItemCard from "./components/item/ItemCard";
@@ -51,7 +51,7 @@ const MovingSalesPage = () => {
           </div>
         </section>
         {/* Categories */}
-        <section className="mx-auto mb-10 flex justify-center">
+        {/* <section className="mx-auto mb-10 flex justify-center">
           <div className="mx-auto flex flex-wrap justify-center gap-5">
             {[1, 2, 3, 4, 5, 6].map((_, idx) => (
               <Category
@@ -69,7 +69,7 @@ const MovingSalesPage = () => {
             text="You may select more than one response"
             className="w-full md:w-9/12"
           />
-        </div>
+        </div> */}
         <div className="mb-5 flex flex-wrap items-center justify-between gap-3 text-sm">
           <p className="">Showing 12 results</p>
           <div className="flex flex-wrap items-center gap-3">
@@ -92,7 +92,7 @@ const MovingSalesPage = () => {
           </div>
         </div>
         {/* Items */}
-        <section className="grid gap-x-4 gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <section className="grid gap-x-4 gap-y-20 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {[1, 2, 3, 4, 5, 6, 12, 7, 8, 4, 20, 7].map((_, idx) => (
             <ItemCard
               key={idx + 1}

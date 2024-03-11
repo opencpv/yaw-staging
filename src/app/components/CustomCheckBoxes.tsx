@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import * as Checkbox from "@radix-ui/react-checkbox";
 import { CheckIcon } from "@radix-ui/react-icons";
 import { useLocalStorage } from "@uidotdev/usehooks";
+import { cn } from "@/lib/utils";
 
 type Data = {
   name: string;
@@ -11,21 +12,22 @@ type Data = {
 type Props = {
   data: Data[];
   onChange: any;
+  color?: "primary" | "accent";
 };
-const CustomCheckBoxes = ({ data, onChange }: Props) => {
+const CustomCheckBoxes = ({ data, onChange, color }: Props) => {
   const [selected, setSelected] = useState<any>([]);
-  const [listingFormData, setlistingFormData] = useLocalStorage(
+  const [listingFormData, setListingFormData] = useLocalStorage(
     "listing-form",
     {
       advancePaymentDuration: [],
-    }
+    },
   );
 
   useEffect(() => {
     if (selected) {
       onChange && onChange(selected);
     }
-  }, [selected?.length]);
+  }, [onChange, selected]);
 
   const handleChange = (r: any) => {
     if (selected.includes(r?.name)) {
@@ -42,22 +44,33 @@ const CustomCheckBoxes = ({ data, onChange }: Props) => {
   }, []);
 
   return (
-    <form className="flex flex-wrap gap-5 w-full">
-      {data?.map((r: any, index: number) => (
-        <div className="flex items-center gap-3 w-fit" key={index}>
+    <form className="flex w-full flex-wrap gap-5">
+      {data?.map((r, index: number) => (
+        <div className="flex w-fit items-center gap-3" key={index}>
           <Checkbox.Root
             checked={selected?.includes(r?.name)}
             onCheckedChange={() => handleChange(r)}
-            className="shadow-blackA4 hover:bg-violet3 flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-[4px] bg-white border-[1px] border-[#DCDCDC]"
-            id="c1"
+            className={cn(
+              "form-field-border flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-[4px] border bg-white shadow-blackA4 hover:bg-violet3",
+              {
+                "data-[state=checked]:border-0 data-[state=checked]:bg-accent-50":
+                  color === "accent",
+                "data-[state=checked]:bg-primary-100": color === "primary",
+              },
+            )}
+            id={r?.name}
           >
-            <Checkbox.Indicator className="text-violet11">
+            <Checkbox.Indicator
+              className={cn("text-violet11", {
+                "text-white": color === "primary" || color === "accent",
+              })}
+            >
               <CheckIcon />
             </Checkbox.Indicator>
           </Checkbox.Root>
           <label
-            className=" leading-none text-[#737373] font-[400] text-[16px]"
-            htmlFor="c1"
+            className="text-[0.975rem] font-[400] leading-5 text-[#737373]"
+            htmlFor={r?.name}
           >
             {r?.name}
           </label>

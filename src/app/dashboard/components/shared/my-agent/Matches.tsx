@@ -59,7 +59,7 @@ export default function MatchesYet() {
         </TableBodyRowGroup>
       </Table>
 
-      <TableSm>
+      <TableSm className="mx-auto w-fit">
         {Array.from({ length: 5 }).map((r, index) => (
           <PropertyRowSm key={index} />
         ))}
@@ -69,21 +69,16 @@ export default function MatchesYet() {
 }
 
 const PropertyRowSm = () => {
-  const [active, setActive] = useState<
-    "rent" | "virtual" | "in-person" | undefined
-  >(undefined);
-
   return (
     <TableRowSm>
       {/* Property */}
-      <TableBodySm href="/properties/2" className="space-y-4">
-        <h4>Property</h4>
-        <div className="flex flex-wrap justify-between gap-5 truncate">
+      <TableBodySm href="/properties/2">
+        <div className="flex flex-wrap gap-5 truncate xsm:flex-nowrap">
           <TbPropertyImageSm
             title="Single Room at Assin Fosu"
             image="/assets/images/niceHome.png"
           />
-          <div className="flex flex-col justify-between gap-2">
+          <div className="flex flex-col flex-wrap justify-between gap-2">
             <div className="flex flex-col gap-1 truncate lg:gap-[0.62rem]">
               <h4 className="truncate">Single Room</h4>
               <p className="truncate text-[0.8125rem] text-[#B0B0B0]">
@@ -96,9 +91,9 @@ const PropertyRowSm = () => {
       </TableBodySm>
       {/* Completed */}
       <TableBodySm className="flex items-center justify-between gap-5 pt-3">
-        <h4 className="font-normal">Completed</h4>
+        <h4>Completed</h4>
         <div className="flex flex-col items-center justify-center text-center">
-          <p className="font-semibold">{formatDate("15 Aug. 2023")}</p>
+          <p className="font-semibold">{formatDate("15 Aug 2023")}</p>
           <p className="text-[0.625rem] text-shade-200">20 days ago</p>
         </div>
       </TableBodySm>
@@ -106,24 +101,16 @@ const PropertyRowSm = () => {
       <TableBodySm className="space-y-4 py-3">
         <h4>Actions</h4>
         <div className="mx-auto flex w-full max-w-sm flex-col items-center justify-center gap-2">
-          <div
-            className="flex w-full items-center justify-center"
-            onClick={() => setActive("rent")}
-          >
+          <div className="flex w-full items-center justify-center">
             {" "}
-            <ApplicationForm
-              type="simple"
-              green={active === "rent"}
-              variant="agent-form"
-              active={active === "rent"}
-            />
+            <ApplicationForm type="simple" variant="agent-form" />
           </div>
-          <div onClick={() => setActive("virtual")} className="w-full">
-            <ScheduleVirtualTourModal active={active == "virtual"} />
+          <div className="w-full">
+            <ScheduleVirtualTourModal />
           </div>{" "}
-          <div onClick={() => setActive("in-person")} className="w-full">
+          <div className="w-full">
             {" "}
-            <SchedulePhysicalTourModal active={active == "in-person"} />
+            <SchedulePhysicalTourModal />
           </div>{" "}
         </div>
       </TableBodySm>
@@ -132,10 +119,6 @@ const PropertyRowSm = () => {
 };
 
 const PropertyRow = () => {
-  const [active, setActive] = useState<
-    "rent" | "virtual" | "in-person" | undefined
-  >(undefined);
-
   return (
     <TableBodyRow className="grid-cols-6 gap-16 lg:max-llg:gap-8" gap="2rem">
       {/* Property */}
@@ -163,21 +146,16 @@ const PropertyRow = () => {
       {/* Actions */}
       <TableBody className="col-span-3">
         <div className="grid w-full grid-cols-3 items-center justify-center lg:gap-x-5">
-          <div onClick={() => setActive("rent")}>
+          <div>
             {" "}
-            <ApplicationForm
-              type="simple"
-              green={active === "rent"}
-              variant="agent-form"
-              active={active === "rent"}
-            />
+            <ApplicationForm type="simple" variant="agent-form" />
           </div>
-          <div onClick={() => setActive("virtual")}>
-            <ScheduleVirtualTourModal active={active === "virtual"} />
+          <div>
+            <ScheduleVirtualTourModal />
           </div>{" "}
-          <div onClick={() => setActive("in-person")}>
+          <div>
             {" "}
-            <SchedulePhysicalTourModal active={active === "in-person"} />
+            <SchedulePhysicalTourModal />
           </div>{" "}
         </div>
 

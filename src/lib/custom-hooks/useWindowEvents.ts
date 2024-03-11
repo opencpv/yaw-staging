@@ -19,14 +19,32 @@ export const useHashChangeScroll = (amount = 200) => {
   }, [amount]);
 };
 
+export const useScrollToTop = (
+  ref?: RefObject<HTMLElement>,
+  deps: React.DependencyList = [],
+  behavior: ScrollBehavior = "smooth",
+) => {
+  useEffect(() => {
+    if (ref?.current) {
+      ref.current.scrollIntoView({
+        block: "start",
+        inline: "nearest",
+        behavior,
+      });
+    } else {
+      window.scrollTo({ top: 0, behavior });
+    }
+  }, [ref, behavior, ...deps]);
+};
+
 export const useScrollIntoView = (
   refElement: RefObject<HTMLElement>,
-  block: "start" | "center" | "end" | "nearest" = "start",
+  block: ScrollLogicalPosition,
 ) => {
   useEffect(() => {
     if (refElement.current) {
       refElement.current.scrollIntoView({
-        block: block,
+        block,
         inline: "nearest",
         behavior: "smooth",
       });

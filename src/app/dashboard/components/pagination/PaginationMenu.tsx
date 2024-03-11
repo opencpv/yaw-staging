@@ -7,8 +7,6 @@ import { useDashboardMenuStore } from "@/store/navmenu/useDashboardMenuStore";
 import { useHideDocumentScrollBar } from "@/lib/custom-hooks/useWindowEvents";
 import PaginationMenuItem from "./PaginationMenuItem";
 import { PgRoutesLister, PgRoutesRenter } from "./links";
-import MenuScrollDownButton from "@/components/NavMenu.tsx/components/MenuScrollDownButton";
-import { pagination } from "@nextui-org/react";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 
 const PaginationMenu = () => {

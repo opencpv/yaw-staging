@@ -3,7 +3,7 @@ import React from "react";
 import HowToVideosSection from "../how_to/HowToVideosSection";
 import OptionFilterTabs from "@/components/__shared/OptionFilterTabs";
 import { useHowToTabsStore } from "@/store/faq/useFaqStore";
-import Select from "@/app/dashboard/components/Select";
+import Select from "@/app/dashboard/components/shared/ui/Select";
 import { useSelectDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 
 type Props = {};

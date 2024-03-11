@@ -37,7 +37,7 @@ const RenterOverviewMV = ({
         </div>
         <Button
           href="settings"
-          className="flex items-center gap-1.5 rounded-md bg-[#597C7B] p-1 px-4 text-xs font-[400] text-white"
+          className="flex items-center gap-1.5 rounded-md bg-[#597C7B] p-1 px-4 text-xs font-semibold text-white"
         >
           Complete your profile <HiOutlinePencil />{" "}
         </Button>

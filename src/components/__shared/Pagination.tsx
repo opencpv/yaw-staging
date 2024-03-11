@@ -29,8 +29,10 @@ const Pagination = ({
           isIconOnly
           disabled={prevDisabled}
           className={`${
-            prevDisabled === true ? "bg-neutral-300" : "border bg-transparent"
-          } p-1`}
+            prevDisabled === true
+              ? "cursor-not-allowed bg-neutral-300"
+              : "border bg-transparent"
+          } h-full p-1`}
           onClick={() => {
             setPage((prev) => (prev > 1 ? prev - 1 : prev));
             handlePrev && handlePrev();
@@ -40,12 +42,13 @@ const Pagination = ({
         </Button>
         <NextUIPagination
           classNames={{
-            item: "rounded-md border bg-transparent h-10 font-[500]",
-            cursor: "border-accent-50 outline-accent-50 text-accent-50",
+            item: "rounded-md border bg-transparent data-[active=true]:border-accent-50 data-[active=true]:text-accent-50 border-neutral-400 text-neutral-800 h-10 font-[500]",
+            cursor:
+              "border-accent-50 bg-transparent outline-accent-50 text-accent-50",
+            ellipsis: "text-neutral-899",
           }}
           total={Math.ceil(total)}
           variant="bordered"
-          color="secondary"
           page={page}
           onChange={setPage}
         />
@@ -53,8 +56,10 @@ const Pagination = ({
           isIconOnly
           disabled={nextDisabled}
           className={`${
-            nextDisabled === true ? "bg-neutral-300" : "border bg-transparent"
-          } p-1`}
+            nextDisabled === true
+              ? "cursor-not-allowed bg-neutral-300"
+              : "border bg-transparent"
+          } h-full p-1`}
           onClick={() => {
             setPage((prev) => (prev < 10 ? prev + 1 : prev));
             handleNext && handleNext();

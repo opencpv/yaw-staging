@@ -36,7 +36,7 @@ export const Table = (props: TableProps) => {
       role="table"
       aria-label="table"
       className={cn(
-        "hidden min-h-[35rem] cursor-default flex-col gap-2 lg:flex",
+        "hidden cursor-default flex-col gap-2 lg:flex",
         props.className,
       )}
     >
@@ -50,7 +50,10 @@ export const TableSm = (props: TableProps) => {
     <section
       role="table"
       aria-label="table"
-      className={cn("flex flex-col gap-5 lg:hidden", props.className)}
+      className={cn(
+        "mx-auto flex w-full max-w-xl flex-col gap-10 lg:hidden",
+        props.className,
+      )}
     >
       {props.children}
     </section>
@@ -87,9 +90,7 @@ export const TableRowSm = (props: TableHeaderRowProps) => {
       role="row"
       aria-label="table row"
       className={cn(
-        `light-green-hover flex cursor-default flex-col gap-4 divide-y rounded-lg border px-[10px] py-4
-      ${styles.property_matches_card}
-      `,
+        `flex cursor-default flex-col gap-4 overflow-hidden rounded-lg px-5 pb-8 pt-5 hover:bg-[#fafaf9]`,
         props.className,
       )}
     >
@@ -112,7 +113,7 @@ export const TableHeader = (props: TableHeaderProps) => {
       role="columnheader"
       aria-label="table header"
       tabIndex={0}
-      className={cn("text-center", props.className)}
+      className={cn("mx-auto text-center", props.className)}
     >
       {props.children}
     </div>
@@ -190,7 +191,7 @@ export const TableBody = (props: TableBodyProps) => {
           role="row"
           aria-label="table body"
           tabIndex={0}
-          className={cn(props.className)}
+          className={cn("mx-auto", props.className)}
         >
           {props.children}
         </div>
@@ -207,7 +208,10 @@ export const TableBodySm = (props: TableBodyProps) => {
           href={props.href}
           aria-label="table body"
           tabIndex={0}
-          className={cn("block text-neutral-700", props.className)}
+          className={cn(
+            "block pb-2 text-neutral-700 first:border-b first:pb-4",
+            props.className,
+          )}
         >
           {props.children}
         </Link>
@@ -215,7 +219,10 @@ export const TableBodySm = (props: TableBodyProps) => {
         <div
           aria-label="table body"
           tabIndex={0}
-          className={cn("text-neutral-700", props.className)}
+          className={cn(
+            "pb-2 text-neutral-700 first:border-b first:pb-4",
+            props.className,
+          )}
         >
           {props.children}
         </div>

@@ -3,7 +3,7 @@
 import * as Collapsible from "@radix-ui/react-collapsible";
 import { styled } from "@stitches/react";
 import { useState } from "react";
-import { links } from "./content";
+import { links, linksBeforeLogin } from "./content";
 import Link from "next/link";
 import ArrowDownNav from "@/app/components/icons/CaArrowDownNav.";
 import { BsArrowDownCircleFill } from "react-icons/bs";
@@ -129,29 +129,70 @@ export const MobileMenu = (props: any) => {
   const { setToggle } = useMenuStore();
 
   return (
-    <div className={`flex flex-col gap-4 px-8 ${props?.className}`}>
-      <div className="my-14 flex justify-center">
-        <ButtonHireUs className="inline-flex text-2xl" />
-      </div>
+    <div className={`px-8 pt-10 ${props?.className}`}>
       <div className="space-y-10">
-        {links.map((r, index) =>
-          r?.sub ? (
-            <MenuOption key={index} name={r.name} sub={r?.sub} sub2={r?.sub2} /> // sub links ---> View all listings, how to, etc...
-          ) : (
-            r?.name.toLowerCase() !== "faq" && ( // main links ---> Home for rent, Login, Moving sale, etc...
-              <Link
-                href={r?.url}
+        {/* Before login */}
+        <Link
+          href="/login"
+          className="text-2xl font-semibold uppercase text-white"
+        >
+          Get Started
+        </Link>
+        <hr className="h-[1px] w-full bg-white" />
+        {true &&
+          linksBeforeLogin.map((r, index) =>
+            r?.sub ? (
+              <MenuOption
                 key={index}
-                className="mb-10 block"
-                onClick={() => setToggle(false)}
-              >
-                <p className={"text-2xl !font-semibold uppercase text-[#fff]"}>
-                  {r?.name}
-                </p>
-              </Link>
-            )
-          ),
-        )}
+                name={r.name}
+                sub={r?.sub}
+                sub2={r?.sub2}
+              /> // sub links ---> View all listings, how to, etc...
+            ) : (
+              r?.name.toLowerCase() !== "area vibes" && ( // main links ---> Home for rent, Login, Moving sale, etc...
+                <Link
+                  href={r?.url}
+                  key={index}
+                  className="mb-10 block"
+                  onClick={() => setToggle(false)}
+                >
+                  <p
+                    className={"text-2xl !font-semibold uppercase text-[#fff]"}
+                  >
+                    {r?.name}
+                  </p>
+                </Link>
+              )
+            ),
+          )}
+
+        {/* After login */}
+        {false &&
+          links.map((r, index) =>
+            r?.sub ? (
+              <MenuOption
+                key={index}
+                name={r.name}
+                sub={r?.sub}
+                sub2={r?.sub2}
+              /> // sub links ---> View all listings, how to, etc...
+            ) : (
+              r?.name.toLowerCase() !== "faq" && ( // main links ---> Home for rent, Login, Moving sale, etc...
+                <Link
+                  href={r?.url}
+                  key={index}
+                  className="mb-10 block"
+                  onClick={() => setToggle(false)}
+                >
+                  <p
+                    className={"text-2xl !font-semibold uppercase text-[#fff]"}
+                  >
+                    {r?.name}
+                  </p>
+                </Link>
+              )
+            ),
+          )}
       </div>
     </div>
   );

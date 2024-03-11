@@ -16,7 +16,7 @@ const SubscribeForm = (props: Props) => {
             bg-[#D9D9D9] px-10
             text-xl text-neutral-800 placeholder:text-xl
             xs:text-2xl xs:placeholder:text-2xl md:min-h-[95px] md:rounded-r-[0px] lg:w-3/5"
-        placeholder={"Email or phone number"}
+        placeholder={"Email or WhatsApp"}
       />
       <Button
         color="accent"

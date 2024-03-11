@@ -1,3 +1,4 @@
+import GreenCheckGif from "../../../public/assets/gifs/green-check.gif";
 import GoogleIcon from "../../../public/assets/icons/google-icon.svg";
 import FacebookIcon from "../../../public/assets/icons/fb-icon.svg";
 import AppleIcon from "../../../public/assets/icons/apple-icon.svg";
@@ -23,6 +24,7 @@ import niceHome from "../../../public/assets/images/niceHome.png";
 import HouseSearchingCuate from "../../../public/assets/images/about/house-searching-cuate.png";
 import PropertyDetailsBanner from "../../../public/assets/images/properties/property-details.jpg";
 import EditorsChoice from "/public/assets/icons/editors-choice.svg";
+import GreenCheck from "/public/assets/icons/green-check.svg";
 import BestValue from "/public/assets/icons/best-value.svg";
 import PriceDrop from "/public/assets/icons/price-drop.svg";
 import Certified from "/public/assets/images/certified.png";
@@ -46,6 +48,15 @@ import Clipboard from "/public/assets/images/dashboard/clipboard.png";
 import UserNoImage from "/public/assets/images/placeholder/user-no-image.jpeg";
 import Brochure from "/public/assets/images/contact/brochure.png";
 import SavedSearches from "/public/assets/images/dashboard/saved-searches.png";
+import FeelingRefreshed from "/public/assets/images/dashboard/feeling-refreshed.jpg";
+import LadyStirringAtPhone from "/public/assets/images/dashboard/lady-stirring-at-phone.jpg";
+import LadyOnCouch from "/public/assets/images/dashboard/lady-on-couch.jpg";
+import YellowNotification from "/public/assets/images/dashboard/notification.jpeg";
+import WhitePoolHouse from "/public/assets/images/dashboard/white-pool-house.jpeg";
+import LadyOnCouchLaptop from "/public/assets/images/dashboard/lady-on-couch-laptop.jpg";
+import CoupleStirringIntoSpace from "/public/assets/images/dashboard/couple-stirring-into-space.jpg";
+import CoupleSittingOnFloor from "/public/assets/images/dashboard/couple-sitting-on-floor.jpg";
+
 export const useAssets = () => {
   return {
     icons: {
@@ -74,6 +85,10 @@ export const useAssets = () => {
       HouseSearch,
       PeopleSell,
       Rafiki,
+      GreenCheck,
+    },
+    gifs: {
+      GreenCheckGif,
     },
     images: {
       StockImage,
@@ -98,6 +113,14 @@ export const useAssets = () => {
       UserNoImage,
       Brochure,
       SavedSearches,
+      FeelingRefreshed,
+      LadyStirringAtPhone,
+      LadyOnCouch,
+      YellowNotification,
+      WhitePoolHouse,
+      LadyOnCouchLaptop,
+      CoupleStirringIntoSpace,
+      CoupleSittingOnFloor,
     },
   };
 };

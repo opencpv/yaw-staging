@@ -17,7 +17,10 @@ interface Props extends React.HTMLAttributes<HTMLButtonElement> {
   arrowIcon?: boolean;
   radius?: "sm" | "full";
   href?: string;
+  type?: "button" | "submit" | "reset";
+  replace?: boolean;
   title?: string;
+  greenHover?: boolean;
   onClick?: (e?: any) => void;
 }
 
@@ -35,18 +38,23 @@ const Button: React.FC<Props> = ({
   padding,
   onClick,
   title,
+  replace,
+  greenHover,
+  type,
   ...props
 }: Props) => {
   if (href)
     return (
       <NextUIButton
         as={Link}
+        replace={replace}
         href={href}
         isDisabled={disabled}
         title={title}
         isIconOnly={isIconOnly}
+        type={type}
         className={cn(
-          `min-h-fit max-w-sm space-x-2 whitespace-normal rounded-md bg-transparent px-10 py-3 font-[600] hover:scale-[1.02] ${
+          `min-h-fit max-w-sm space-x-2 whitespace-normal rounded-md bg-transparent px-10 py-3 font-[600] ${
             borderColor && `border border-[${borderColor}]`
           }`,
           {
@@ -67,13 +75,17 @@ const Button: React.FC<Props> = ({
               variant === "outline" && color === "black",
             "border border-[#21A19F] bg-transparent text-[#21A19F]":
               variant === "outline" && color === "gradient",
-            "h-unit-4 w-fit min-w-unit-5 max-w-none justify-normal rounded-none bg-transparent p-0 text-neutral-800":
+            "h-unit-4 w-fit min-w-unit-5 max-w-none justify-normal rounded-none bg-transparent p-0 text-neutral-800 hover:scale-100":
               variant === "ghost",
             "rounded-full": radius === "full",
             "h-unit-6 min-w-unit-5 px-2.5 py-1.5": padding === "sm",
             "cursor-not-allowed bg-gray-300 text-neutral-600": disabled,
             "bg-none":
               disabled && (variant === "outline" || variant === "ghost"),
+            "deep-green-hover hover:scale-100": greenHover,
+            " hover:scale-[1.02]":
+              greenHover === false || greenHover === undefined,
+            "h-fit w-fit p-0": isIconOnly,
           },
           className,
         )}
@@ -88,8 +100,9 @@ const Button: React.FC<Props> = ({
         isDisabled={disabled}
         title={title}
         isIconOnly={isIconOnly}
+        type={type}
         className={cn(
-          `min-h-fit max-w-sm space-x-2 whitespace-normal rounded-md bg-transparent p-3 px-10 font-[600] hover:scale-[1.02] ${
+          `min-h-fit max-w-sm space-x-2 whitespace-normal rounded-md bg-transparent p-3 px-10 font-[600] ${
             borderColor && `border border-[${borderColor}]`
           }`,
           {
@@ -110,13 +123,17 @@ const Button: React.FC<Props> = ({
               variant === "outline" && color === "black",
             "border border-[#21A19F] bg-transparent text-[#21A19F]":
               variant === "outline" && color === "gradient",
-            "h-unit-4 w-fit min-w-unit-5 max-w-none justify-normal rounded-none bg-transparent p-0 text-neutral-800":
+            "h-unit-4 w-fit min-w-unit-5 max-w-none justify-normal rounded-none bg-transparent p-0 text-neutral-800 hover:scale-100":
               variant === "ghost",
             "rounded-full": radius === "full",
             "h-unit-6 min-w-unit-5 px-2.5 py-1.5": padding === "sm",
             "cursor-not-allowed bg-gray-300 text-neutral-600": disabled,
             "bg-none":
               disabled && (variant === "outline" || variant === "ghost"),
+            "deep-green-hover hover:scale-100": greenHover,
+            " hover:scale-[1.02]":
+              greenHover === false || greenHover === undefined,
+            "h-fit w-fit p-0": isIconOnly,
           },
           className,
         )}
