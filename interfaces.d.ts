@@ -1,4 +1,4 @@
-import { Status } from "@/app/dashboard/renter/applications/components/RtApplicationStatus";
+import { RenterApplicationStatus } from "@/app/dashboard/renter/applications/components/RtApplicationStatus";
 
 interface ListingCardInterface extends ListingInterface {
   propertyDescription?: string;
@@ -58,7 +58,7 @@ interface ListerApplicationsInterface extends ApplicationsInterface {
 interface RenterApplicationsInterface extends ApplicationsInterface {
   listerImage: string;
   listerName: string;
-  status: Status;
+  status: RenterApplicationStatus;
 }
 
 interface ChatInterface {

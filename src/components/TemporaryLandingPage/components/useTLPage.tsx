@@ -12,60 +12,24 @@ function useTLPage() {
 
   const optionSelect = useGetNotifiedStore((state: any) => state.filterOption);
 
-  const handleSubmit = async (values: any, setFieldError: any, phone: any) => {
+  const handleSubmit = (
+    values: any,
+    setFieldError: any,
+    phone: any,
+    func: any,
+  ) => {
     values.phone = phone;
     if (optionSelect === "mobile") {
       if (!phone || phone.length < 8) {
         setFieldError("phone", "Please enter a valid mobile number.");
         toastOnOpen("Please enter a valid mobile number", "error");
       } else {
-        const result = await sendData("phone", values);
-        if (result?.ok) {
-          toastOnOpen("You are subscribed now!!!", "success");
-        }
+        toastOnOpen("You are subscribed now!!!", "success");
+        func((init: boolean) => !init);
       }
     } else {
-      const result = await sendData("email", values);
-      if (result?.ok) {
-        toastOnOpen("You are subscribed now!!!", "success");
-      }
-    }
-  };
-
-  const sendData = async (type: any, values: any) => {
-    // const requestBody: any = {};
-    // if (type === "email") {
-    //   requestBody.email = values?.email;
-    // } else if (type === "phone") {
-    //   requestBody.number = values?.phone;
-    // }
-    // requestBody.waitlist_id = 13213;
-
-    // console.log(requestBody)
-
-    try {
-      const response = await fetch(
-        "https://api.getwaitlist.com/api/v1/signup",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: values?.email || "N/A",
-            phone: values?.phone,
-            waitlist_id: 13213,
-          }),
-        },
-      );
-
-      if (!response.ok) {
-        toastOnOpen("Please try again. Request failed", "error");
-      }
-      console.log(response);
-      return response;
-    } catch (error) {
-      toastOnOpen("Please try again. Request failed", "error");
+      toastOnOpen("You are subscribed now!!!", "success");
+      func((init: boolean) => !init);
     }
   };
 

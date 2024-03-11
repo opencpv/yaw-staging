@@ -9,6 +9,7 @@ import AOSWrapper from "@/components/__shared/AOSWrapper";
 import ScrollTop from "@/components/__shared/ScrollTop";
 import Button from "@/components/__shared/ui/button/Button";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
+import FirstToKnowModal from "./steps/FirstToKnowModal";
 
 const BeTheFirstToKnowLayout = ({
   children,
@@ -20,28 +21,12 @@ const BeTheFirstToKnowLayout = ({
 
   return (
     <main>
-      <Link
-        href={`/dashboard/${currentRole}/be-the-first-to-know`}
-        className="relative mb-5 h-10 w-10 place-items-center rounded-full p-2 transition-all hover:scale-105 hover:bg-slate-100 fhd:right-28"
-        style={{
-          display:
-            pathname === `/dashboard/${currentRole}/be-the-first-to-know`
-              ? "none"
-              : "grid",
-        }}
-      >
-        <FaChevronLeft />
-      </Link>
       <h2>Be the first to Know</h2>
-      {/* <LargeButton
-        icon={<MdOutlineLibraryAdd />}
-        label="Create"
-        className="mt-10 min-w-fit xxs:min-w-[15rem]"
-      /> */}
-      <Button className="mt-10 bg-primary-600">
-        <MdOutlineLibraryAdd />
-        Create Search Criteria
-      </Button>
+      <div className="fixed bottom-10 right-5 z-30 shadow-lg">
+        {pathname === "/dashboard/renter/be-the-first-to-know" && (
+          <FirstToKnowModal />
+        )}
+      </div>
       {/* <section className="flex h-[100vh] w-full flex-col items-center justify-center">
           <Image
             src={images.SearchIcon}
@@ -86,8 +71,7 @@ const BeTheFirstToKnowLayout = ({
           className="mb-6"
           style={{
             display:
-              pathname === "/dashboard/lister/be-the-first-to-know" ||
-              "/dashboard/renter/be-the-first-to-know"
+              pathname === "/dashboard/renter/be-the-first-to-know"
                 ? "none"
                 : "grid",
           }}

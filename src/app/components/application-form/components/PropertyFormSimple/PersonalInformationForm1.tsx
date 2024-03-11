@@ -39,7 +39,7 @@ const PersonalInformationForm1 = React.forwardRef<HTMLInputElement, Props>(
         preferredMethodOfContact: "phone",
         otherApplicants: false,
         availableOnWhatsapp: false,
-      }
+      },
     );
     const [phoneNumberSelectedCountry, setPhoneNumberSelectedCountry] =
       useLocalStorage<any>("phoneNumberSelectedCountry");
@@ -47,7 +47,7 @@ const PersonalInformationForm1 = React.forwardRef<HTMLInputElement, Props>(
     return (
       <Root className="p1 px-2 ">
         <div className="grid grid-cols-3 gap-x-5 gap-y-5 ">
-          <div className="col-span-3 lg:col-span-1 form-col w-full">
+          <div className="form-col col-span-3 w-full lg:col-span-1">
             <TextFieldInput
               type="text"
               name="firstName"
@@ -79,6 +79,7 @@ const PersonalInformationForm1 = React.forwardRef<HTMLInputElement, Props>(
               }
             />
             <CustomSelect
+              name="gender"
               placeholder={propertyData?.gender}
               label="Gender"
               options={[
@@ -90,6 +91,7 @@ const PersonalInformationForm1 = React.forwardRef<HTMLInputElement, Props>(
               }
             />
             <CustomSelect
+              name="maritalStatus"
               label="Marital Status"
               placeholder={
                 propertyData?.maritalStatus || "Select marital status"
@@ -126,7 +128,7 @@ const PersonalInformationForm1 = React.forwardRef<HTMLInputElement, Props>(
               }
             />
           </div>
-          <div className="col-span-3 lg:col-span-1  form-col">
+          <div className="form-col col-span-3  lg:col-span-1">
             <TextFieldInput
               name="currentAddress1"
               type="text"
@@ -152,6 +154,7 @@ const PersonalInformationForm1 = React.forwardRef<HTMLInputElement, Props>(
               }
             />
             <CustomSelect
+              name="mostRecentEmployment"
               options={MostRecentEmployment}
               placeholder={
                 propertyData?.mostRecentEmployment || "Most Recent Employment"
@@ -165,6 +168,7 @@ const PersonalInformationForm1 = React.forwardRef<HTMLInputElement, Props>(
               }
             />
             <CustomSelect
+              name="preferedMethodOfContact"
               options={PreferedMethodOfContact}
               placeholder={propertyData?.preferredMethodOfContact || "Select"}
               label="Preferred Method Of Contact"
@@ -176,7 +180,7 @@ const PersonalInformationForm1 = React.forwardRef<HTMLInputElement, Props>(
               }
             />
             <CustomDatePicker
-              placeholderDate={propertyData?.moveInDate}
+              value={propertyData?.moveInDate as string}
               label="Desired Move In Date"
               onChange={(value) =>
                 setPropertyData({ ...propertyData, moveInDate: value })
@@ -194,7 +198,7 @@ const PersonalInformationForm1 = React.forwardRef<HTMLInputElement, Props>(
               }}
             />
           </div>
-          <div className="col-span-3 lg:col-span-1  form-col">
+          <div className="form-col col-span-3  lg:col-span-1">
             <CustomTextAreaInput
               label="Any Additional Information?"
               placeholder={"Message"}
@@ -215,7 +219,7 @@ const PersonalInformationForm1 = React.forwardRef<HTMLInputElement, Props>(
         </div>
       </Root>
     );
-  }
+  },
 );
 
 PersonalInformationForm1.displayName == "PersonalInformationForm1";

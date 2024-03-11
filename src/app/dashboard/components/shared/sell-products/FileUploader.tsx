@@ -1,40 +1,187 @@
 import CaUploadIcon from "@/app/components/icons/CaUploadIcon";
+import ErrorMessage from "@/components/__shared/ui/ErrorMessage";
+import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import { cn } from "@/lib/utils";
+import { useField } from "formik";
+import Image from "next/image";
 import React, { useCallback, useEffect } from "react";
-import Dropzone, { useDropzone } from "react-dropzone";
+import Dropzone, {
+  DropEvent,
+  FileRejection,
+  useDropzone,
+} from "react-dropzone";
+import { LiaTimesSolid } from "react-icons/lia";
 
 interface Props {
-  onFileSelect: (file: File) => void;
+  name?: string;
+  /** minimum file size in bytes */
+  minSize?: { byte: number; kb?: string; mb?: string };
+  /** maximum file size in bytes */
+  maxSize?: { byte: number; kb?: string; mb?: string };
+  onFileSelect?: (file: File) => void;
 }
-const FileUploader = ({ onFileSelect }: Props) => {
-  const onDrop = useCallback((acceptedFiles: any) => {
-    // Do something with the files
-    console.log(acceptedFiles);
-  }, []);
 
-  const { getRootProps, getInputProps, isDragActive, acceptedFiles } =
-    useDropzone({});
+const FileUploader = ({ onFileSelect }: Props) => {
+  const [field, meta, helpers] = useField("images");
+
+  const [files, setFiles] = React.useState<any[]>([]);
+  const { onOpen } = useToastDisclosure();
+
+  const onDropRejected = (
+    fileRejections: FileRejection[],
+    event: DropEvent,
+  ) => {
+    fileRejections.forEach((file) => {
+      const { file: fileObj, errors } = file;
+      onOpen(
+        `❌ ${errors[0].code.replaceAll("-", " ")} - ${fileObj.name} | ${
+          errors[0].code === "file-too-large"
+            ? "Maximum file size is 2MB"
+            : errors[0].code === "file-too-small"
+              ? "Minimum file size is 100KB"
+              : null
+        }`,
+      );
+    });
+  };
+
+  const onDrop = useCallback(
+    (acceptedFiles: any) => {
+      if (files.length + acceptedFiles.length > 10) {
+        // max 5 files
+        onOpen("❌ You can only upload up to 10 files", true);
+        return;
+      }
+
+      const newFiles = acceptedFiles.map(
+        (
+          file: any, // create new files
+        ) =>
+          Object.assign(file, {
+            preview: URL.createObjectURL(file),
+          }),
+      );
+
+      const newFilesArray = [...files, ...newFiles]; // combine old and new files
+
+      setFiles(
+        newFilesArray.map((file: any) =>
+          Object.assign(file, {
+            preview: URL.createObjectURL(file),
+          }),
+        ),
+      );
+
+      helpers.setValue(
+        newFilesArray.map((file: any) =>
+          Object.assign(file, {
+            preview: URL.createObjectURL(file),
+          }),
+        ),
+      );
+    },
+    [files, onOpen, helpers],
+  );
+
+  useEffect(() => {
+    // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
+    return () =>
+      files.forEach((file: any) => URL.revokeObjectURL(file.preview));
+  }, [files]);
 
   return (
-    <Dropzone>
-      {({ getRootProps, getInputProps }) => (
-        <div {...getRootProps()} className="h-full">
-          <input {...getInputProps()} />
-          <div className="border-[1px]  w-full h-[100%] flex flex-col items-center justify-center rounded-md">
-            <CaUploadIcon />
-            <p className="text-center text-[13px] mt-4">
-              Select or drag and drop images here <br></br>( Maximum 5 )
-            </p>
-            <p className="text-[8px] opacity-[0.4] mt-2 ">
-              JPG, PNG file size no more than 10MB
-            </p>
-            <button className="px-3 py-2 bg-[#FBFDFE] mt-4 text-[#8A8A8A]">
-              Select file
-            </button>
-          </div>
-        </div>
-      )}
-    </Dropzone>
+    <>
+      <Dropzone
+        // maxFiles={5}
+        minSize={100000}
+        maxSize={2097152}
+        onDrop={onDrop}
+        onDropRejected={onDropRejected}
+        multiple
+        accept={{
+          "image/jpeg": [],
+          "image/png": [],
+        }}
+      >
+        {/* minSize= 100kb, MaxSize is 2mb */}
+        {({
+          getRootProps,
+          getInputProps,
+          isDragActive,
+          isDragAccept,
+          isDragReject,
+        }) => (
+          <>
+            <div {...getRootProps()}>
+              <input {...getInputProps()} />
+              <div
+                className={cn(
+                  "flex h-fit w-full flex-col items-center justify-center rounded-md border border-dashed px-8 py-20 lg:px-20",
+                  {
+                    "border-neutral-400":
+                      !isDragActive && !isDragAccept && !isDragReject,
+                    "border-neutral-800": isDragActive || isDragAccept,
+                    "border-error-100": isDragReject,
+                  },
+                )}
+              >
+                <CaUploadIcon />
+                <p className="mt-4 text-center text-[13px]">
+                  Select or drag and drop images here <br></br>( Minimum 3 )
+                </p>
+                <p className="mt-2 text-center text-[8px] opacity-[0.4]">
+                  JPG, PNG file size no more than 2MB and no less than 100KB
+                </p>
+                <button
+                  type="button"
+                  className="mt-4 rounded-md border bg-[#FBFDFE] px-3 py-2 text-[#8A8A8A]"
+                >
+                  Select file
+                </button>
+              </div>
+            </div>
+          </>
+        )}
+      </Dropzone>
+      <ul className="mt-5 flex flex-wrap gap-5">
+        {files?.map((file: any) => (
+          <Preview
+            key={file.name}
+            file={file}
+            setFiles={setFiles}
+            files={files}
+          />
+        ))}
+      </ul>
+      {meta.touched && meta.error && <ErrorMessage>{meta.error}</ErrorMessage>}
+    </>
   );
 };
 
 export default FileUploader;
+
+const Preview = ({ file, setFiles, files }: any) => {
+  return (
+    <li className="relative aspect-square w-24 rounded-md sm:w-28">
+      <div className="absolute inset-0 z-10 h-full w-full rounded-[inherit] bg-black bg-opacity-20"></div>
+      <div
+        className="absolute right-2 top-1 z-20 shrink-0 cursor-pointer rounded-full bg-neutral-100 p-2.5"
+        onClick={() => {
+          const newFiles = files?.filter((f: any) => f.name !== file.name);
+          setFiles(newFiles);
+        }}
+      >
+        <LiaTimesSolid className="text-primary-500" />
+      </div>
+      <Image
+        src={URL.createObjectURL(file)}
+        alt="preview"
+        fill
+        style={{ objectFit: "cover" }}
+        className="rounded-[inherit]"
+        // Revoke data uri after image is loaded
+        onLoad={() => URL.revokeObjectURL(file.preview)}
+      />
+    </li>
+  );
+};

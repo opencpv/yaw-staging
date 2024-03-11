@@ -38,27 +38,27 @@ body {
 }
 
 h1 {
-  @apply text-3xl font-bold sm:text-6xl;
+  @apply max-w-3xl text-3xl font-bold sm:text-6xl;
 }
 
 h2 {
-  @apply text-[1.563rem] font-[600] leading-[2.2rem];
+  @apply max-w-3xl text-[1.563rem] font-[600] leading-[2.2rem];
 }
 
 h3 {
-  @apply text-xl font-[600];
+  @apply max-w-3xl text-xl font-[600];
 }
 
 h4 {
-  @apply text-base font-[600];
+  @apply max-w-3xl text-base font-[600];
 }
 
 h5 {
-  @apply text-sm font-[600];
+  @apply max-w-3xl text-sm font-[600];
 }
 
 small {
-  @apply block text-sm;
+  @apply block max-w-3xl text-sm;
 }
 
 .gradient-to-bottom {
@@ -112,7 +112,7 @@ small {
 }
 
 .PhoneInputInput {
-  @apply form-field-border rounded-md px-3 py-4;
+  @apply form-field-border rounded-md px-3 py-4 focus:outline-accent-50;
 }
 
 .section {
@@ -147,7 +147,7 @@ small {
 }
 
 .Toastify__toast-container {
-  @apply flex items-center justify-center flex-col;
+  @apply flex flex-wrap items-center justify-center;
 }
 
 .unselectable {
@@ -181,9 +181,9 @@ input[type="search"]::-webkit-search-cancel-button {
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23777'><path d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/></svg>");
 }
 
-:focus {
+/* :focus {
   @apply outline-accent-50;
-}
+} */
 
 @media (min-width: 640px) {
   .skeleton-flex {

@@ -93,7 +93,7 @@ const PropertyRowSm = () => {
       <TableBodySm className="flex items-center justify-between gap-5 pt-3">
         <h4>Completed</h4>
         <div className="flex flex-col items-center justify-center text-center">
-          <p className="font-semibold">{formatDate("15 Aug. 2023")}</p>
+          <p className="font-semibold">{formatDate("15 Aug 2023")}</p>
           <p className="text-[0.625rem] text-shade-200">20 days ago</p>
         </div>
       </TableBodySm>

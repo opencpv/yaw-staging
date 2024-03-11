@@ -112,7 +112,7 @@ const FeaturedListings = ({ className, showAllButton }: Props) => {
             {listings?.map((listing, idx) => (
               <SwiperSlide
                 key={idx + 1}
-                className={`aspect-square min-w-[16rem] max-w-[16rem] xs:aspect-auto xs:min-w-[23rem] xs:max-w-[23rem]`}
+                className={`aspect-square h-full min-w-[16rem] max-w-[16rem] xs:aspect-auto xs:min-w-[23rem] xs:max-w-[23rem]`}
               >
                 <ListingCard
                   key={listing.id}

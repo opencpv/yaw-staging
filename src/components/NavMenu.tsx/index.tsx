@@ -3,7 +3,7 @@ import * as Collapsible from "@radix-ui/react-collapsible";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ExpandCircle, FadeInOut } from "@/lib/animations";
-import { bottomLinks } from "./content";
+import { bottomLinks, bottomLinksBeforeLogin } from "./content";
 import { FaChevronDown } from "react-icons/fa";
 import MenuBottomLinks from "./components/MenuBottomLinks";
 import MenuArea from "./components/MenuArea";
@@ -130,7 +130,10 @@ export default function Menu(props: any) {
       /> */}
 
       {/* bottom links */}
-      <MenuBottomLinks links={bottomLinks} ref={bottomLinksRef} />
+      <MenuBottomLinks
+        links={true ? bottomLinksBeforeLogin : bottomLinks}
+        ref={bottomLinksRef}
+      />
     </Root>
   );
 }

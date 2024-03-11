@@ -135,7 +135,7 @@ export default function ListingFormForm({ setOpen }: Props) {
 
   const handleForward = () => {
     activeSlide > 13 &&
-      submitListing(user?.profileData?.id, listingFormData, true);
+      submitListing(user?.id as string, listingFormData, true);
     if (activeSlide < views.length - 1) {
       setActiveSlide((init) => init + 1);
 
