@@ -12,7 +12,7 @@ import FormSwitch from "@/app/contact/components/FormSwitch";
 import Toggle from "@/components/ui/Toggle";
 import AllReviewsReceived from "./components/AllReviewsReceived";
 import useReviews from "./components/useReviews";
-import Select from "../../components/Select";
+import Select from "../../components/shared/ui/Select";
 
 export default function MyReviews() {
   const { activePage, setActivePage, subActivePage, setSubActivePage } =
@@ -36,19 +36,21 @@ export default function MyReviews() {
           />
         </div>
 
-       { activePage == "reviews given" && <div className="my-2 lg:hidden">
-          <Select
-            options={["All", "Properties", "Property Owners", "Service Pros"]}
-            value={filter as string}
-            className="mx-0 w-60 font-bold"
-            valueClassName="font-bold"
-            variant="ghost"
-            color="primary"
-            handleSelectionChange={(e) => setFilter(e.target.value)}
-          />
-        </div>}
+        {activePage == "reviews given" && (
+          <div className="my-2 lg:hidden">
+            <Select
+              options={["All", "Properties", "Property Owners", "Service Pros"]}
+              value={filter as string}
+              className="mx-0 w-60 font-bold"
+              valueClassName="font-bold"
+              variant="ghost"
+              color="primary"
+              handleSelectionChange={(e) => setFilter(e.target.value)}
+            />
+          </div>
+        )}
 
-        <div className="hidden w-full flex-col items-start gap-5 md:flex-row md:flex lg:items-center">
+        <div className="hidden w-full flex-col items-start gap-5 md:flex md:flex-row lg:items-center">
           {activePage == "reviews given" && (
             <Toggle
               label="View By"
