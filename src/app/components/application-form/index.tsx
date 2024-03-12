@@ -7,6 +7,7 @@ import { SaveAndExit } from "./components/PropertyFormComplex/SaveAndExit";
 import { GreyAnimation } from "./components/GreyAnimation";
 import { openSans } from "@/styles/font";
 import { ClientOnly } from "@/components/ui/ClientOnly";
+import { Form, Formik } from "formik";
 
 type Type = {
   type: "simple" | "complex";
@@ -76,7 +77,11 @@ const ApplicationForm = ({
               </ClientOnly>
             ) : (
               <ClientOnly>
-                <PropertyFormComplex setOpen={setOpen} />
+                <Formik initialValues={{}} onSubmit={() => {}}>
+                  <Form>
+                    <PropertyFormComplex setOpen={setOpen} />
+                  </Form>
+                </Formik>
               </ClientOnly>
             )}
 

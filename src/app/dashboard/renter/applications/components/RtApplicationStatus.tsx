@@ -1,29 +1,29 @@
 "use client";
 import React, { useState } from "react";
-import Select from "../../../components/Select";
+import Select from "../../../components/shared/ui/Select";
 import { useSelectDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { cn } from "@nextui-org/react";
 import { BsInfoCircle } from "react-icons/bs";
 import Tooltip from "@/components/ui/Tooltip";
+import { HiOutlineBadgeCheck } from "react-icons/hi";
+import { MdHourglassTop } from "react-icons/md";
 
-export type Status =
-  | "completed"
+export type RenterApplicationStatus =
+  | "accepted"
   | "declined"
   | "under review"
-  | "not submitted";
+  | "incomplete";
 
 type Props = {
-  status: Status;
+  status: RenterApplicationStatus;
 };
 
 const RtApplicationStatus = ({ status }: Props) => {
-  const { value, handleSelectionChange } = useSelectDisclosure<Status>(status);
-
   return (
     <>
       <Tooltip
         content={
-          status === "completed"
+          status === "accepted"
             ? "The lister has reviewed your application and should be in touch with you shortly. Check your messages or contact them directly if a response is delayed."
             : status === "declined"
               ? "The lister has declined your application. Continue your search or contact them directly with more questions."
@@ -34,24 +34,28 @@ const RtApplicationStatus = ({ status }: Props) => {
       >
         <div
           className={cn(
-            "flex w-44 items-center justify-center rounded-full p-2 py-2.5 text-neutral-800 shadow-sm",
+            "flex w-fit shrink-0 items-center justify-center gap-2 rounded-full p-1.5 px-2.5 shadow-sm",
             {
-              "bg-red-300": status === "declined",
-              "bg-[#B0E3C9]": status === "completed",
-              "bg-accent-500": status === "under review",
-              "bg-primary-200/20": status === "not submitted",
+              "bg-[#FEEFEF] text-[#DA1414]": status === "declined",
+              "bg-[#EDF9F0] text-[#287D3C]": status === "accepted",
+              "bg-[#FFF4EC] text-[#B95000]": status === "under review",
+              "bg-[#FEEFEF] text-[#DA1414] ": status === "incomplete",
             },
           )}
         >
-          <div className="flex items-center gap-5">
-            <small className="text-xs">
-              {status === "completed" && "Completed"}
-              {status === "declined" && "Declined"}
-              {status === "under review" && "Under review"}
-              {status === "not submitted" && "Not submitted"}
-            </small>
+          {status === "accepted" ? (
+            <HiOutlineBadgeCheck />
+          ) : status === "under review" ? (
+            <MdHourglassTop />
+          ) : (
             <BsInfoCircle />
-          </div>
+          )}
+          <small className="text-xs">
+            {status === "accepted" && "Accepted"}
+            {status === "declined" && "Declined"}
+            {status === "under review" && "Under review"}
+            {status === "incomplete" && "Incomplete"}
+          </small>
         </div>
       </Tooltip>
     </>

@@ -9,6 +9,7 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import { submitListing, submitOrEditListing } from "./components/api/submit";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { ClientOnly } from "@/components/ui/ClientOnly";
+import { Form, Formik } from "formik";
 
 const ListingFormModal = () => {
   const [animation, setAnimation] = useState(false);
@@ -18,7 +19,7 @@ const ListingFormModal = () => {
     {},
   );
   const { user } = useAppStore();
-  const owner_id = user?.profileData?.id;
+  const owner_id = user?.id as string;
   const [template_id, setTemplateId] = useState(25);
 
   return (
@@ -46,7 +47,11 @@ const ListingFormModal = () => {
         >
           <div className={`relative z-[1001]`}>
             <ClientOnly>
-              <ListingFormForm setOpen={setOpen} />
+              <Formik initialValues={{}} onSubmit={() => {}}>
+                <Form>
+                  <ListingFormForm setOpen={setOpen} />
+                </Form>
+              </Formik>
             </ClientOnly>
           </div>
 

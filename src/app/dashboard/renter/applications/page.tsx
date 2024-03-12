@@ -11,7 +11,7 @@ const ApplicationsPage = () => {
   const { images } = useAssets();
   return (
     <main className="text-neutral-800">
-      <section className="mb-6">
+      <section className="mb-6 space-y-5">
         <h2>My Applications</h2>
         <small className="inline-block text-sm capitalize">
           {fetchCount &&

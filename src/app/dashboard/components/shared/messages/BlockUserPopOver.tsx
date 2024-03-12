@@ -53,6 +53,8 @@ const BlockUserPopOver = (props: Props) => {
         onClose={onClose}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
+        id=""
+        table=""
       />
     </>
   );

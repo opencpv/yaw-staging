@@ -5,60 +5,58 @@ import CaDashEdit from "../../icons/CaDashEdit";
 import CaDashDelete from "../../icons/CaDashDelete";
 import ProductStatus from "./ProductStatus";
 import DeleteProductButton from "./DeleteProductButton";
+import { TableBody, TableBodyRow } from "../table/Table";
+import TbPropertyImage from "../TbPropertyImage";
+import { formatPrice } from "@/lib/utils/numberManipulation";
+import Actions from "./Actions";
+import ProductCondition from "./ProductCondition";
+import PublicationStatus, { ItemPublicationStatus } from "./PublicationStatus";
 
-const DesktopProductCard = ({ data }: { data: any }) => {
+type Props = {
+  data: any;
+};
+
+const DesktopProductCard = ({ data }: Props) => {
   return (
-    <>
-      <div className="flex w-full gap-[10px] p-[10px]">
-        <div className="relative  aspect-[5/3] w-[60%]">
-          <Image
-            src={data.img_url}
-            alt="product image"
-            className="rounded-md "
-            fill
-          />
-        </div>
-
-        <div className="">
-          <p className="text-[16px] font-semibold">{data.product_name}</p>
-          {data.condition == "NEW" ? (
-            <p className=" mb-[10px] mt-[10px] w-full rounded-full  bg-[#54C38A] py-1 text-center text-[13px] capitalize text-white">
-              {data.condition}
-            </p>
-          ) : (
-            <p className=" mb-[10px] mt-[10px] w-full rounded-full  bg-[#54C38A] py-1 text-center text-[13px] capitalize  text-[#545454]">
-              {data.condition}
-            </p>
-          )}
+    <TableBodyRow className="grid-cols-6">
+      {/* Product */}
+      <TableBody className="col-span-2 flex w-full gap-[0.62rem] truncate p-2.5">
+        <TbPropertyImage title={data.product} image={data.img_url} />
+        <div className="flex flex-col gap-2">
+          <p className="font-semibold">{data.product}</p>
+          <ProductCondition condition={data.condition} />
           <p className="text-[13px] font-bold text-[#8A8A8A]">
-            GHS {data.price}
+            GHS {formatPrice(data.price)}
           </p>
         </div>
-      </div>
-      <div className="flex h-[100%] items-center justify-center font-semibold">
-        <p>{data.category}</p>{" "}
-      </div>
-      <div className="flex h-[100%] items-center justify-center ">
-        <div className="text-center">
-          <p className="font-semibold">{formatDate(data.created_at)}</p>
-          <p className="text-[#B0B0B0]">
-            {calculateDaysSinceCreation(data.created_at)} days ago
-          </p>
-        </div>
-      </div>
-
-      <div className="flex h-full  items-center justify-center">
-        <ProductStatus isAvailalbe={data.available} id={data.id} />
-      </div>
-      <div className="flex h-full w-full items-center justify-center">
-        <div className="flex gap-2">
-          <button className="cursor-pointer rounded-[8px] bg-secondary-50 p-4">
-            <CaDashEdit />
-          </button>
-          <DeleteProductButton id={data.id} table="sell_items" />
-        </div>
-      </div>
-    </>
+      </TableBody>
+      {/* Date Created */}
+      <TableBody className="col-span-1 text-center">
+        <h4>{"October 29, 2024"}</h4>
+        <small className="inline-block text-[0.6rem] text-neutral-400">
+          3 days ago
+        </small>
+      </TableBody>
+      {/* Status */}
+      <TableBody className="col-span-1">
+        <ProductStatus
+          publicationStatus={data.item_publication_status}
+          isAvailable={data.is_available}
+          id={data.id}
+        />
+      </TableBody>
+      {/* Publication */}
+      <TableBody className="col-span-1 font-semibold">
+        <PublicationStatus
+          status={data.item_publication_status}
+          productStatus={data.is_available ? "available" : "sold"}
+        />
+      </TableBody>
+      {/* Actions */}
+      <TableBody className="col-span-1 mx-auto">
+        <Actions id={data.id} table="sell_items" />
+      </TableBody>
+    </TableBodyRow>
   );
 };
 

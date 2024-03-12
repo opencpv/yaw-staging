@@ -4,7 +4,7 @@ import CaAgentTickGreenBg from "./icons/CaAgentTickGreenBg";
 import AgentButtons from "./Button";
 import Link from "next/link";
 import Button from "@/components/__shared/ui/button/Button";
-import BeMyAgentModal from "@/app/components/be-my-agent-form";
+import BeMyAgentModal from "@/app/dashboard/components/shared/my-agent/steps/BeMyAgentModal";
 import { ClientOnly } from "@/components/ui/ClientOnly";
 
 type Props = {
@@ -28,7 +28,7 @@ export default function Agent({
           width={100}
           height={100}
           alt="A house inside a hand"
-          className="h-[70px] w-[70px] sm:h-[100px] sm:w-[100px]"
+          className="mr-auto h-[70px] w-[70px] sm:h-[100px] sm:w-[100px]"
         />
         {state === "default" ? (
           <ClientOnly>

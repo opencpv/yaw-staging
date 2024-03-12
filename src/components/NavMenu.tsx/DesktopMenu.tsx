@@ -1,6 +1,6 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { links } from "./content";
+import { links, linksBeforeLogin } from "./content";
 import { motion } from "framer-motion";
 import Separator from "../Separator";
 import { FadeInOut } from "@/lib/animations";
@@ -23,8 +23,93 @@ export const DesktopMenu = (props: any) => {
       <div
         className={"flex w-max flex-col gap-10 border-r border-r-white pr-10"}
       >
-        {/* main links */}
-        {links.map(
+        {/* main links before login */}
+        {true &&
+          linksBeforeLogin.map(
+            (r, idx) =>
+              r.name.toLowerCase() !== "more" && (
+                <>
+                  {r.name.toLowerCase() === "faq" ? (
+                    <MenuLink
+                      key={idx}
+                      active={active === idx}
+                      linkObject={r}
+                      onClick={() => {
+                        setFaqActivePage("faq");
+                        if (r?.sub) {
+                          setActive(idx as number);
+                          setSubId(null);
+                        } else {
+                          setActive(null);
+                          router.push(r?.url);
+                        }
+                      }}
+                    />
+                  ) : (
+                    <MenuLink
+                      key={idx}
+                      active={active === idx}
+                      linkObject={r}
+                      onClick={() => {
+                        if (r?.sub) {
+                          setActive(idx as number);
+                          setSubId(null);
+                        } else {
+                          setActive(null);
+                          router.push(r?.url);
+                          // props?.toggleMenu();
+                        }
+                      }}
+                    />
+                  )}
+                </>
+              ),
+          )}
+
+        {/* main links after login */}
+        {!true &&
+          links.map(
+            (r, idx) =>
+              r.name.toLowerCase() !== "more" && (
+                <>
+                  {r.name.toLowerCase() === "faq" ? (
+                    <MenuLink
+                      key={idx}
+                      active={active === idx}
+                      linkObject={r}
+                      onClick={() => {
+                        setFaqActivePage("faq");
+                        if (r?.sub) {
+                          setActive(idx as number);
+                          setSubId(null);
+                        } else {
+                          setActive(null);
+                          router.push(r?.url);
+                        }
+                      }}
+                    />
+                  ) : (
+                    <MenuLink
+                      key={idx}
+                      active={active === idx}
+                      linkObject={r}
+                      onClick={() => {
+                        if (r?.sub) {
+                          setActive(idx as number);
+                          setSubId(null);
+                        } else {
+                          setActive(null);
+                          router.push(r?.url);
+                          // props?.toggleMenu();
+                        }
+                      }}
+                    />
+                  )}
+                </>
+              ),
+          )}
+
+        {/* {links.map(
           (r, idx) =>
             r.name.toLowerCase() !== "more" && (
               <>
@@ -63,33 +148,64 @@ export const DesktopMenu = (props: any) => {
                 )}
               </>
             ),
-        )}
+        )} */}
       </div>
-      {active !== null && (
-        <>
-          <motion.div
-            key={active}
-            className={"flex flex-col gap-8"}
-            animate={"open"}
-            variants={FadeInOut}
-            initial={"closed"}
-            exit={"closed"}
-          >
-            {/* sub links --> view all listings, etc... */}
-            {links[active]?.sub?.map((l, ldx) => (
-              <MenuLink
-                key={ldx}
-                active={ldx === subId}
-                linkObject={l}
-                isSubLink
-                onClick={() => {
-                  setToggle(false);
-                }}
-              />
-            ))}
-          </motion.div>
-        </>
-      )}
+
+      {/* before login */}
+      {true &&
+        active !== null && ( // implement appropriately
+          <>
+            <motion.div
+              key={active}
+              className={"flex flex-col gap-8"}
+              animate={"open"}
+              variants={FadeInOut}
+              initial={"closed"}
+              exit={"closed"}
+            >
+              {/* sub links --> view all listings, etc... */}
+              {linksBeforeLogin[active]?.sub?.map((l, ldx) => (
+                <MenuLink
+                  key={ldx}
+                  active={ldx === subId}
+                  linkObject={l}
+                  isSubLink
+                  onClick={() => {
+                    setToggle(false);
+                  }}
+                />
+              ))}
+            </motion.div>
+          </>
+        )}
+
+      {true &&
+        active !== null && ( // implement appropriately
+          <>
+            <motion.div
+              key={active}
+              className={"flex flex-col gap-8"}
+              animate={"open"}
+              variants={FadeInOut}
+              initial={"closed"}
+              exit={"closed"}
+            >
+              {/* sub links --> view all listings, etc... */}
+              {links[active]?.sub?.map((l, ldx) => (
+                <MenuLink
+                  key={ldx}
+                  active={ldx === subId}
+                  linkObject={l}
+                  isSubLink
+                  onClick={() => {
+                    setToggle(false);
+                  }}
+                />
+              ))}
+            </motion.div>
+          </>
+        )}
+
       {subId !== null && (
         <>
           <Separator

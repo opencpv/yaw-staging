@@ -69,6 +69,7 @@ const config: Config = {
         },
         error: {
           50: "#FEF3F2",
+          100: "#851e1e",
         },
         // white: "#fff",
       },

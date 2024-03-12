@@ -14,19 +14,19 @@ type Props = {
 const ListingCardButton = (props: Props) => {
   return (
     <Button
+      variant="outline"
+      color="white"
       href={props.href}
       className={cn(
-        "group/btn min-h-unit-12 gap-3 rounded-xl bg-neutral-100 px-6 text-lg font-semibold capitalize text-neutral-400 hover:bg-primary-200 hover:text-white",
+        "min-h-unit-12 gap-3 rounded-xl px-6 text-lg font-semibold capitalize text-white",
         props.className,
       )}
     >
       {props.label}
       {props.icon === "eye open" && (
-        <MdOutlineRemoveRedEye className="text-neutral-800 group-hover/btn:text-white" />
+        <MdOutlineRemoveRedEye className="text-white" />
       )}
-      {props.icon === "eye close" && (
-        <FaRegEyeSlash className="text-neutral-800 group-hover/btn:text-white" />
-      )}
+      {props.icon === "eye close" && <FaRegEyeSlash className="text-white" />}
     </Button>
   );
 };

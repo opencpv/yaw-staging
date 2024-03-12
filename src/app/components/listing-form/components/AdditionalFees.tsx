@@ -84,6 +84,7 @@ const AdditionalFees = ({}) => {
       <div className="col-span-3 flex flex-col gap-2  lg:col-span-1">
         <CustomRadioInput
           defaultValue={`${lisitingFormData?.additionalFees ? "yes" : "no"}`}
+          options={["yes", "no"]}
           label={"Do you require other fees?"}
           onChange={(value) => {
             setlisitingFormData({

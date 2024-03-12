@@ -32,13 +32,13 @@ const ContactInformationForm = React.forwardRef<HTMLInputElement, Props>(
       useLocalStorage<any>("phoneNumberSelectedCountry");
 
     return (
-      <Root className="text-[#6A6968] px-2  ">
+      <Root className="px-2 text-[#6A6968]  ">
         <div className="p2 h-full ">
-          <p className="text-[1.5625rem] text-[#073B3A] font-semibold">
+          <p className="text-[1.5625rem] font-semibold text-[#073B3A]">
             Contact Information
           </p>
           <div className="grid grid-cols-3 gap-x-5 gap-y-5 pt-7">
-            <div className="col-span-3 lg:col-span-1 form-col">
+            <div className="form-col col-span-3 lg:col-span-1">
               <TextFieldInput
                 name="email"
                 type="email"
@@ -97,7 +97,7 @@ const ContactInformationForm = React.forwardRef<HTMLInputElement, Props>(
                 }
               />
             </div>
-            <div className="col-span-3 lg:col-span-1 form-col">
+            <div className="form-col col-span-3 lg:col-span-1">
               <TextFieldInput
                 name="currentAddress1"
                 type="text"
@@ -138,8 +138,9 @@ const ContactInformationForm = React.forwardRef<HTMLInputElement, Props>(
                 }
               />
             </div>
-            <div className="col-span-3 lg:col-span-1 form-col">
+            <div className="form-col col-span-3 lg:col-span-1">
               <CustomSelect
+                name="preferedMethodOfContact"
                 options={PreferedMethodOfContact}
                 placeholder={propertyData?.preferredMethodOfContact || "Select"}
                 label="Preferred Method Of Contact"
@@ -152,13 +153,13 @@ const ContactInformationForm = React.forwardRef<HTMLInputElement, Props>(
               />
             </div>
           </div>
-          <div className="mt-5 flex justify-start lg:justify-end w-full">
+          <div className="mt-5 flex w-full justify-start lg:justify-end">
             <SwiperSlideControls ref={ref} setActiveIndex={setActiveIndex} />
           </div>
         </div>
       </Root>
     );
-  }
+  },
 );
 
 ContactInformationForm.displayName == "ContactInformationForm";
