@@ -36,9 +36,9 @@ export default async function Home() {
             <HomeManagePropertiesSection data={data} />
             {/* Find Apartments in Popular Cities */}
             <AOSWrapper animation="fade-up">
-              <HomePopularCities data={data} />
+              <HomePopularCities />
             </AOSWrapper>
-            <FeedbackButton />
+            <FeedbackButton data={data} />
           </div>
         </main>
         <ScrollTopAndSocial threshHoldMin={820} threshHoldMax={5206} />

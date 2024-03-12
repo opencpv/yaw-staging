@@ -11,7 +11,7 @@ import SkeletonRectangle from "@/components/__shared/ui/skeleton/SkeletonRectang
 import { fetchOrderRule, revalidationRule } from "@/lib/utils/fetchRules";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
 
-const HomePopularCities = ({ data }: { data: any }) => {
+const HomePopularCities = () => {
   const {
     data: cities,
     isLoading,
