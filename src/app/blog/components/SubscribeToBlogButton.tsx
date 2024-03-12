@@ -9,7 +9,7 @@ import { AnimationStyle } from "@/components/__shared/types";
 
 type Props = {
   className?: string;
-  animation?: AnimationStyle
+  animation?: AnimationStyle;
 };
 
 const SubscribeToBlogButton = ({ className, animation }: Props) => {
@@ -27,7 +27,7 @@ const SubscribeToBlogButton = ({ className, animation }: Props) => {
       <AOSWrapper animation={animation ? animation : "fade-up"} duration="1000">
         <Button
           color="accent"
-          className={`w-full py-8 mb-20 text-lg uppercase min-h-fit ${className}`}
+          className={`min-h-fit w-full py-8 text-lg uppercase ${className}`}
           onClick={onOpen}
         >
           Subscribe to our blog

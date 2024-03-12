@@ -57,6 +57,7 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
           <div className="grid grid-cols-3 gap-x-5 gap-y-5">
             <div className="form-col col-span-3 lg:col-span-1">
               <CustomSelect
+                name="mostRecentEmployment"
                 options={MostRecentEmployment}
                 placeholder={
                   propertyData?.mostRecentEmployment || "Most Recent Employment"
@@ -89,7 +90,7 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
                   </div>{" "}
                   <div className="mt-2 flex gap-3">
                     <CustomDatePicker
-                      placeholderDate={propertyData?.employmentStartDate}
+                      value={propertyData?.employmentStartDate as string}
                       label="Start Date"
                       onChange={(value) =>
                         setPropertyData({
@@ -100,7 +101,7 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
                     />
                     <CustomDatePicker
                       label="End Date"
-                      placeholderDate={propertyData?.employmentEndDate}
+                      value={propertyData?.employmentEndDate as string}
                       disabled={propertyData?.currentlyEmployed && true}
                       onChange={(value) =>
                         setPropertyData({

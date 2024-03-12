@@ -2,11 +2,15 @@ import Button from "@/components/__shared/ui/button/Button";
 import Modal from "@/components/__shared/modals/Modal";
 import React from "react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
+import { useRouter } from "next/navigation";
+import supabase from "@/lib/utils/supabaseClient";
 
 type ModalProps = {
   isOpen: boolean;
   onOpenChange: () => void;
   onClose: () => void;
+  id: string;
+  table: string;
   label?: string;
   backdropClassName?: string;
   handleDestruction?: () => void;
@@ -14,7 +18,8 @@ type ModalProps = {
 
 type ModalFooterProps = {
   onClose: () => void;
-  handleDestruction?: () => void;
+  id: string;
+  table: string;
 };
 
 type ModalBodyProps = {
@@ -27,12 +32,14 @@ const DestructiveModal = ({
   onClose,
   label,
   backdropClassName,
+  id,
+  table,
 }: ModalProps) => {
   return (
     <Modal
       header={<ModalHeader />}
       body={<ModalBody label={label} />}
-      footer={<ModalFooter onClose={onClose} />}
+      footer={<ModalFooter onClose={onClose} id={id} table={table} />}
       isOpen={isOpen}
       onOpenChange={onOpenChange}
       size="md"
@@ -62,7 +69,17 @@ const ModalBody = ({ label }: ModalBodyProps) => {
   );
 };
 
-const ModalFooter = ({ onClose, handleDestruction }: ModalFooterProps) => {
+const ModalFooter = ({ onClose, table, id }: ModalFooterProps) => {
+  const router = useRouter();
+
+  const handleDestruction = async () => {
+    const { error } = await supabase.from(table).delete().eq("id", id);
+
+    if (!error) {
+      router.refresh();
+    }
+  };
+
   return (
     <div className="flex w-full justify-end gap-2">
       <Button

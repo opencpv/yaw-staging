@@ -15,12 +15,11 @@ import { IoIosCloseCircle } from "react-icons/io";
 import { useRef, useState } from "react";
 import Loader from "@/components/__shared/loader/Loader";
 import { useDashboardMenuStore } from "@/store/navmenu/useDashboardMenuStore";
-import Avatar from "@/components/__shared/ui/Avatar";
+import Avatar from "@/components/__shared/ui/avatar/Avatar";
 import { getFirstWord } from "@/lib/utils/stringManipulation";
+import AvatarMenu from "@/components/__shared/ui/avatar/AvatarMenu";
 
 const Navbar = () => {
-  const { icons } = useAssets();
-
   const user = useAppStore((state) => state.user);
 
   const [dashboardType, setDashboardType] =
@@ -33,39 +32,41 @@ const Navbar = () => {
     <>
       <Root
         className={`relative ${
-          isOpen ? "z-[50]" : "z-[70]"
-        } flex flex-nowrap items-center gap-4 bg-primary-500
-        p-2 xs:gap-16 xs:p-4 md:z-[initial] 2xl:p-[1.875rem]`}
+          isOpen ? "z-[50]" : "max-md:z-[70]"
+        } flex h-fit flex-nowrap items-center gap-4 bg-primary-500 p-2
+        py-10 xs:gap-16 xs:p-4 2xl:p-[1.875rem]`}
       >
-        <div className="flex w-full items-center justify-start xs:gap-6 md:gap-10 lg:gap-20">
-          <Logo size="xs" className="hidden xs:inline-block" />
+        <div className="flex items-center justify-start xs:gap-6 md:w-full md:gap-10 lg:gap-20">
+          <Logo size="xs" />
           {/* search icon for mobile */}
           <AiOutlineSearch
             size={22}
             color="white"
-            className="shrink-0 md:hidden"
+            className="hidden shrink-0 xs:block md:hidden"
             role="search"
             aria-label="search"
             onClick={() => setExpandMobileSearch(!expandMobileSearch)}
           />
           <Search className="hidden md:flex" />
         </div>
-        <div className="relative flex w-fit items-center gap-7">
+        <div className="relative flex w-fit items-center ssm:gap-7">
+          {/* search icon for mobile */}
+          <AiOutlineSearch
+            size={22}
+            color="white"
+            className="mr-5 shrink-0 max-xs:block xs:hidden md:hidden"
+            role="search"
+            aria-label="search"
+            onClick={() => setExpandMobileSearch(!expandMobileSearch)}
+          />
           <Switch />
           <NotificationsPopover />
           <div>
             <p className="hidden whitespace-nowrap text-sm text-[#fff] ssm:block">
-              {getFirstWord(user?.full_name)}
+              {user?.firstname as string}
             </p>
           </div>
-          {/* {user?.avatar_url == undefined ? (
-            <Loader />
-          ) : (
-            <Avatar image={user?.avatar_url} name={user?.full_name} />
-          )} */}
-          {user?.avatar_url && (
-            <Avatar image={user?.avatar_url} name={user?.full_name} />
-          )}
+          <AvatarMenu className="max-ssm:hidden" />
         </div>
       </Root>
       {/* search bar for mobile */}
@@ -87,7 +88,7 @@ const Navbar = () => {
 };
 
 const Root = styled("div", {
-  maxHeight: "52px",
+  // maxHeight: "52px",
   //   maxWidth: "1728px",
   width: "100%",
   aspectRatio: "1728/52",

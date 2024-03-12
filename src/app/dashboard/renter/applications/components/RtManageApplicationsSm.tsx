@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import RtApplicationRowSm from "./RtApplicationRowSm";
 import { useFetchTableWithInfiniteScroll } from "@/lib/custom-hooks/useFetch";
 import TableSkeletonSm from "../../../components/shared/skeleton/TableSkeletonSm";
@@ -10,10 +10,17 @@ import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchError
 import { TableSm } from "../../../components/shared/table/Table";
 import { IoArchiveOutline } from "react-icons/io5";
 import Button from "@/components/__shared/ui/button/Button";
+import RtMobileFilters from "./RtMobileFilters";
+import { RenterApplicationStatus } from "./RtApplicationStatus";
 
 type Props = {};
 
+type StatusFilter = "all" | "archived" | RenterApplicationStatus;
+type DateFilter = "newest" | "oldest" | "last modified";
+
 const RtManageApplicationsSm = (props: Props) => {
+  const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
+
   const {
     data: applicants,
     error,
@@ -28,7 +35,13 @@ const RtManageApplicationsSm = (props: Props) => {
   });
 
   return (
-    <div className="lg:hidden">
+    <div className="flex flex-col gap-10 lg:hidden">
+      <RtMobileFilters
+        statusFilter={statusFilter}
+        handleStatusSelectionChange={(e) =>
+          setStatusFilter(e.target.value as StatusFilter)
+        }
+      />
       <FetchingStates
         data={applicants}
         error={error}
@@ -40,7 +53,7 @@ const RtManageApplicationsSm = (props: Props) => {
           <p className="mt-4 italic">There are no applications yet.</p>
         }
       />
-      <TableSm className="mx-auto mb-10 mt-3 flex w-fit lg:hidden">
+      <TableSm className="flex-1">
         {applicants?.map((applicant, idx) => (
           <RtApplicationRowSm
             key={applicant.id as string}
@@ -52,11 +65,11 @@ const RtManageApplicationsSm = (props: Props) => {
             date={applicant.created_at as string}
             status={
               idx === 1 || idx === 9
-                ? "completed"
+                ? "accepted"
                 : idx === 3 || idx === 12
                   ? "declined"
                   : idx === 0
-                    ? "not submitted"
+                    ? "incomplete"
                     : "under review"
             }
           />
@@ -64,11 +77,6 @@ const RtManageApplicationsSm = (props: Props) => {
       </TableSm>
       <div className="text-center">
         {isLoading && loadMore ? "Fetching..." : null}
-      </div>
-      <div className="my-14 ml-auto grid place-items-end">
-        <Button variant="ghost" className="" title="View all applications">
-          Archive <IoArchiveOutline />
-        </Button>
       </div>
       <div className="grid place-items-center">
         <ButtonInfiniteLoading

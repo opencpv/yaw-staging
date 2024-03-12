@@ -49,6 +49,7 @@ type Props = {
   isSelectElement?: boolean;
   /** options to use when isSelectElement is true */
   options?: OptionTypes[];
+  name?: string;
 };
 
 const CurrencyInput = ({
@@ -64,6 +65,7 @@ const CurrencyInput = ({
   infoBubble,
   isSelectElement,
   options,
+  name,
 }: Props) => {
   const [currencyData, setCurrencyData] = useState<DataItem[]>();
   const [selectedCurrency, setSelectedCurrency] = useState<any>({});
@@ -95,9 +97,10 @@ const CurrencyInput = ({
   }, [value]);
 
   useEffect(() => {
-    onChange2 && onChange2(selectedCurrency);
-    onChange(totalValue);
-  }, [totalValue, onChange, onChange2, selectedCurrency]);
+    // onChange2 && onChange2(selectedCurrency);
+    // onChange(totalValue);
+  }, [totalValue, onChange, selectedCurrency]);
+
   useEffect(() => {
     axios
       .get("https://restcountries.com/v3.1/all?fields=currencies")
@@ -142,7 +145,7 @@ const CurrencyInput = ({
                 <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="z-[200] max-h-[400px] w-fit overflow-y-scroll bg-[#fefefe] p-0 ">
+            <PopoverContent className="z-[200] max-h-[400px] w-fit overflow-y-scroll bg-[#fefefe] p-0 focus:outline-none">
               <Command onValueChange={onChange}>
                 <CommandInput placeholder="Search data..." />
                 <CommandEmpty>No data found.</CommandEmpty>
@@ -163,8 +166,10 @@ const CurrencyInput = ({
               </Command>
             </PopoverContent>
           </Popover>
+
           {isSelectElement ? (
             <CustomSelect
+              name={name}
               value={value2}
               options={options as OptionTypes[]}
               onChange={(value) => onChange2 && onChange2(value)}

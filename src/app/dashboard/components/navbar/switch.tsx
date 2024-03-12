@@ -2,7 +2,7 @@
 import capitalizeName, { LowerCase } from "@/lib/utils/stringManipulation";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { IoIosArrowDown } from "react-icons/io";
-import Select from "../Select";
+import Select from "../shared/ui/Select";
 import { UserRole } from "../../types";
 import { useRouter } from "next/navigation";
 
@@ -25,7 +25,7 @@ const Switch = () => {
       <Select
         options={["Renter", "Lister"]}
         value={currentRole}
-        className="mx-0 w-32"
+        className="mx-0 w-32 hover:bg-transparent"
         variant="ghost"
         color="primary"
         selectorIcon={<IoIosArrowDown />}

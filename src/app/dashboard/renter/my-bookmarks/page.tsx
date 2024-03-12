@@ -1,6 +1,6 @@
 "use client";
 import OptionFilterTabs from "@/components/__shared/OptionFilterTabs";
-import Select from "../../components/Select";
+import Select from "../../components/shared/ui/Select";
 import Button from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import ListingCard from "@/components/__shared/listing/ListingCard";

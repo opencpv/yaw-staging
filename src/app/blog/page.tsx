@@ -52,10 +52,11 @@ const page = (props: Props) => {
             </section>
           </AOSWrapper>
         </div>
+
         {/* Other posts -- right side of Grid */}
         <div className="col-span-1 space-y-5">
           {/* Recent posts */}
-          <div className="space-y-5 pt-28 lg:pt-0">
+          <div className="space-y-28 pt-28 lg:pt-0">
             <OtherPosts
               title="Recent posts"
               posts={[1, 2, 3].map((post, idx) => ({
@@ -65,6 +66,11 @@ const page = (props: Props) => {
                 href: "/blog/c/p",
               }))}
             />
+            <div className="space-y-10 lg:pt-16">
+              {/* Authors */}
+              <Authors />
+              <SubscribeToBlogButton />
+            </div>
             {/* Popular posts */}
             <OtherPosts
               title="Popular posts"
@@ -75,10 +81,7 @@ const page = (props: Props) => {
                 href: "/blog/c/p",
               }))}
             />
-            <SubscribeToBlogButton />
           </div>
-          {/* Authors */}
-          <Authors />
         </div>
       </section>
     </div>

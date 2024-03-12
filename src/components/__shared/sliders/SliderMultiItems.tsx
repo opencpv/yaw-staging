@@ -19,6 +19,7 @@ const SliderMultiItems = ({
   hasNavAndPagination,
   autoplay,
   swiperSlideClassName,
+  centeredSlides,
 }: SliderMultiItemsProps) => {
   return (
     <>
@@ -36,7 +37,7 @@ const SliderMultiItems = ({
           }
           slidesPerView={slidesPerView ? slidesPerView : 1.5}
           spaceBetween={15}
-          centeredSlides
+          centeredSlides={centeredSlides || true}
           breakpoints={{
             ...breakpoints,
             330: {

@@ -1,5 +1,5 @@
 import { styled } from "@stitches/react";
-import { Field } from "formik";
+import { Field, useField, useFormik } from "formik";
 import {
   Select,
   SelectContent,
@@ -8,6 +8,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
+import ErrorMessage from "@/components/__shared/ui/ErrorMessage";
 
 export type OptionTypes = {
   name: string;
@@ -16,11 +17,12 @@ export type OptionTypes = {
 type Props = {
   placeholder?: string;
   options: OptionTypes[];
-  onChange: (value: any) => void;
+  onChange?: (value: any) => void;
   label?: string;
   fadeText?: boolean;
   className?: string;
   value?: string;
+  name?: string;
   /** A string that shows before the value. Eg: GHS 1000 */
   prefix?: string;
 };
@@ -34,11 +36,21 @@ const CustomSelect = ({
   value,
   className,
   prefix,
+  name,
 }: Props) => {
+  const [field, meta, helpers] = useField(name as string);
+
   return (
     <Root className={cn("w-full text-[#6A6968] focus:border-0", className)}>
       {label && <label>{label}</label>}
-      <Select onValueChange={onChange} value={value}>
+      <Select
+        onValueChange={(value) => {
+          helpers.setValue(value);
+          onChange && onChange(value);
+        }}
+        value={field.value || value}
+        name={field.name || name}
+      >
         <SelectTrigger
           className={`form-input w-full capitalize hover:border-black/50 ${
             fadeText && "text-[#B4B2AF]"
@@ -57,6 +69,10 @@ const CustomSelect = ({
           ))}
         </SelectContent>
       </Select>
+
+      {meta.touched && meta.error ? (
+        <ErrorMessage>{meta.error}</ErrorMessage>
+      ) : null}
     </Root>
   );
 };
