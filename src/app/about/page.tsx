@@ -21,6 +21,7 @@ export const metadata: Metadata = {
 const About = async () => {
   const initial = await loadQuery<SanityDocument[]>(ABOUT_PAGE_QUERY);
   const data = initial.data[0];
+
   const heading1 = data.heading1;
   const heading2 = data.heading2;
   const featuredImage = data.featuredImage;

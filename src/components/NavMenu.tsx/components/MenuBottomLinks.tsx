@@ -36,10 +36,6 @@ const MenuBottomLinks = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
                 setToggle(false);
               }}
             />
-          ) : LowerCase(r?.name) === "feedback" ? (
-            <Feedback key={index}>
-              <h2 className="bottomLink transition-all">Feedback</h2>
-            </Feedback>
           ) : (
             <Link
               key={index}

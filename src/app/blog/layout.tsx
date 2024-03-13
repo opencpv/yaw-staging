@@ -4,12 +4,17 @@ import FeaturedListings from "@/components/__shared/listing/FeaturedListings";
 import ScrollTopAndSocial from "@/components/ui/ScrollTopAndSocial";
 import React from "react";
 import FeedbackButton from "@/components/feedback/FeedbackButton";
+import { loadQuery } from "@/lib/utils/sanity/sanityStore";
+import { SanityDocument } from "next-sanity";
+import { HOME_PAGE_QUERY } from "@/lib/utils/sanity/queries";
 
 type Props = {
   children: React.ReactNode;
 };
 
-const layout = ({ children }: Props) => {
+const layout = async ({ children }: Props) => {
+  const initial = await loadQuery<SanityDocument[]>(HOME_PAGE_QUERY);
+  const data = initial.data[0];
   return (
     <>
       <Navbar />
@@ -19,7 +24,7 @@ const layout = ({ children }: Props) => {
           <FeaturedListings />
         </div>
         <div className="mt-20">
-          <FeedbackButton />
+          <FeedbackButton data={data} />
         </div>
         <ScrollTopAndSocial threshHoldMin={300} threshHoldMax={2500} />
       </main>
