@@ -30,10 +30,6 @@ const Footer = () => {
             <ReportLink key={r?.label} className="font-[400]" />
           ) : LowerCase(r.label) === "how to" ? (
             <HowToLink key={r?.label} className="font-[400]" />
-          ) : LowerCase(r?.label) === "feedback" ? (
-            <Feedback key={r?.label}>
-              <h2 className="font-[400]">Feedback</h2>
-            </Feedback>
           ) : (
             <Link key={r?.label} href={r?.href}>
               <h2 className="font-[400]">{r.label}</h2>
