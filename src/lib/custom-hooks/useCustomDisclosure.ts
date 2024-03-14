@@ -46,14 +46,14 @@ export const useToastDisclosureVariant1 = () => {
   const onOpen = (message: string, variant: string) => {
     const toastId = toast(message, {
       position: "top-right",
-      autoClose: false,
+      autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: false,
       draggable: false,
       progress: undefined,
       theme: "dark",
-      progressStyle: { background: "white" },
+      progressStyle: { background: "#22652c" },
       bodyStyle: { paddingRight: "2.5rem" },
       style: variants[variant],
     });
