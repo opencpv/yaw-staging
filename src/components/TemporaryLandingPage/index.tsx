@@ -14,7 +14,7 @@ function TemporayLandingPage() {
   const { icons } = useAssets();
   return (
     <div
-      className={`flex flex-col gap-20  bg-center w-full min-h-[100vh] sm:h-[120vh] lg:h-[140vh] 2xl:h-screen px-5 lg:px-20 pt-10 xs:py-10 bg-cover bg-no-repeat items-center justify-center xs:justify-between relative ${styles.tempImage}`}>
+      className={`flex flex-col gap-20  bg-center w-full min-h-[100vh] sm:h-[120vh] lg:h-[140vh] 2xl:h-screen px-5 lg:px-20 pt-10 xs:py-10 bg-cover bg-no-repeat items-center justify-center xs:justify-between relative ${styles.tempImage} ${styles.root}`}>
 
       <div className=" absolute  right-5 top-5 xs:top-10 sm:left-5 w-full max-w-[72px] lg:max-w-[100px] 2xl:max-w-[150px] aspect-[72/52] lg:aspect-[150/110]">
         <div className="relative w-full aspect-[72/52] lg:aspect-[150/110]">

@@ -6,7 +6,7 @@ import {
 import { useGetNotifiedStore } from "./store";
 import { E164Number } from "libphonenumber-js/core";
 import { useContactForm } from "@/app/contact/components/forms/hooks/useContactForm";
-
+import parsePhoneNumber from "libphonenumber-js";
 function useTLPage() {
   const { onOpen: toastOnOpen } = useToastDisclosureVariant1();
 
@@ -19,8 +19,10 @@ function useTLPage() {
     func: any,
   ) => {
     values.phone = phone;
+
+    const phoneNUmber = parsePhoneNumber(values?.phone || "");
     if (optionSelect === "mobile") {
-      if (!phone || phone.length < 8) {
+      if (!phone || !phoneNUmber?.isValid() || !phoneNUmber?.isPossible()) {
         setFieldError("phone", "Please enter a valid mobile number.");
         toastOnOpen("Please enter a valid mobile number", "error");
       } else {

@@ -142,6 +142,11 @@ small {
   @apply flex items-center justify-center flex-col;
 }
 
+/* to be removed after temporary landing page */
+.Toastify__close-button {
+  display: none !important;
+}
+
 .unselectable {
   -moz-user-select: none;
   -webkit-user-select: none;

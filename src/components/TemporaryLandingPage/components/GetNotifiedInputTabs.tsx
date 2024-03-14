@@ -3,6 +3,8 @@ import { useGetNotifiedStore } from "./store";
 import CaTlpEmail from "../icons/CaTLPEmail";
 import CaTLPWhatsapp from "../icons/CaTLPWhatsapp";
 import { FaWhatsapp } from "react-icons/fa";
+import styles from "../index.module.css";
+
 
 function GetNotifiedInputTabs() {
   const optionSelect = useGetNotifiedStore((state: any) => state.filterOption);
@@ -10,7 +12,7 @@ function GetNotifiedInputTabs() {
     (state: any) => state.changeOption
   );
   return (
-    <div>
+    <div className={`${styles.get_notified_button}`}>
       <Tabs
         variant="light"
         aria-label="Tabs variants"

@@ -31,7 +31,7 @@ function TlpFooter() {
             />
           </svg>
           <p className="text-[#ffff]" title="contact@rentright.com">
-            contact@rentrightgh.com
+            contact@rentrightGH.com
           </p>
         </div>
         <div className={" flex-row items-center gap-2 flex"}>
