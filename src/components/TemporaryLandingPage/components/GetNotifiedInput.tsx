@@ -42,11 +42,11 @@ function GetNotifiedInput() {
             Click here to get notified!
           </p>
           <button
-            className="appearance-none"
+            className="appearance-none hover:bg-accent-50 rounded-full"
             onClick={() => setShowInputs((init: boolean) => !init)}
           >
             {" "}
-            <MdOutlineKeyboardArrowRight size="30" color="#F2B94E" />
+            <MdOutlineKeyboardArrowRight size="25"  className="text-[#F2B94E] hover:text-black transition "  />
           </button>
         </div>
         {showInputs && <GetNotifiedInputTabs />}{" "}

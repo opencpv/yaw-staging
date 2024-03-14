@@ -35,23 +35,26 @@ type Props = {
   variant: "success" | "error";
 };
 export const useToastDisclosureVariant1 = () => {
-  const variants : any = {
-    success: { width: "30rem", maxWidth: "30rem", background: "#396261" },
-    error: { width: "30rem", maxWidth: "30rem", background: "#5b0d0d" },
+  const variants: any = {
+    success: {
+      width: "100%",
+      maxWidth: "30rem",
+      background: "#22652c",
+    },
+    error: { width: "100%", maxWidth: "30rem", background: "#5b0d0d" },
   };
   const onOpen = (message: string, variant: string) => {
     const toastId = toast(message, {
       position: "top-right",
-      autoClose: 2000,
+      autoClose: false,
       hideProgressBar: false,
       closeOnClick: true,
-      pauseOnHover: true,
+      pauseOnHover: false,
       draggable: false,
       progress: undefined,
-
       theme: "dark",
-      progressStyle: { background: "#396261" },
-      bodyStyle: { paddingRight: "2.5rem", },
+      progressStyle: { background: "white" },
+      bodyStyle: { paddingRight: "2.5rem" },
       style: variants[variant],
     });
 
@@ -63,7 +66,6 @@ export const useToastDisclosureVariant1 = () => {
   return { onOpen };
 };
 
-
 export const useSelectDisclosure = <T extends string>(defaultOption: T) => {
   const [value, setValue] = useState<T>(defaultOption);
   const handleSelectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -72,7 +74,6 @@ export const useSelectDisclosure = <T extends string>(defaultOption: T) => {
 
   return { value, setValue, handleSelectionChange };
 };
-
 
 export const usePhoneInputDisclosure = () => {
   const [phone, setPhone] = React.useState<E164Number>();

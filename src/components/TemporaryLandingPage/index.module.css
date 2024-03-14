@@ -6,7 +6,9 @@
 .root .PhoneInput {
     width: 100px;
 }
-
+.get_notified_button button:focus {
+  outline: none !important;
+}
 .coming_soon {
   background: linear-gradient(80deg, #22652c, #17441e, #ffde99);
   background-size: 200% 200%;
