@@ -38,9 +38,11 @@ type Props = {
   backgroundColor?: any;
   backdrop?: any;
   backdropClassName?: string;
+  bodyClassName?: string;
   className?: string;
   footerClassName?: string;
   wrapperClassName?: string;
+  scrollBehavior?: "normal" | "inside";
 };
 
 const Modal = ({
@@ -61,6 +63,8 @@ const Modal = ({
   className,
   footerClassName,
   wrapperClassName,
+  bodyClassName,
+  scrollBehavior,
 }: Props) => {
   const setHideWindowScrollbar = useModalFullscreenStore(
     (state) => state.setHideWindowScrollbar,
@@ -72,9 +76,13 @@ const Modal = ({
         classNames={{
           backdrop: cn("z-[9999]", backdropClassName),
           wrapper: cn("z-[99999]", wrapperClassName),
-          body: cn("hidden-scrollbar", {
-            "overflow-y-auto": size === "full",
-          }),
+          body: cn(
+            "hidden-scrollbar",
+            {
+              "overflow-y-auto": size === "full",
+            },
+            bodyClassName,
+          ),
           footer: footerClassName,
           base: cn(
             `relative focus:outline-none ${
@@ -87,7 +95,13 @@ const Modal = ({
           ),
         }}
         // scrollBehavior={size === "full" ? "inside" : "inside"}
-        scrollBehavior={size === "full" ? "normal" : "inside"}
+        scrollBehavior={
+          scrollBehavior
+            ? scrollBehavior
+            : size === "full"
+              ? "normal"
+              : "inside"
+        }
         size={size ? size : "sm"}
         isDismissable={isDismissible === false ? isDismissible : true}
         isKeyboardDismissDisabled={!isDismissible ? true : false}
@@ -115,17 +129,21 @@ const Modal = ({
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">
-                {header}
-              </ModalHeader>
+              {header && (
+                <ModalHeader className="flex flex-col gap-1">
+                  {header}
+                </ModalHeader>
+              )}
               <ModalBody>{body}</ModalBody>
-              <ModalFooter
-                style={{
-                  justifyContent: footerAlignment ? footerAlignment : "start",
-                }}
-              >
-                {footer}
-              </ModalFooter>
+              {footer && (
+                <ModalFooter
+                  style={{
+                    justifyContent: footerAlignment ? footerAlignment : "start",
+                  }}
+                >
+                  {footer}
+                </ModalFooter>
+              )}
             </>
           )}
         </ModalContent>

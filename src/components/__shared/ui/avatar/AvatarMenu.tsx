@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import React, { useEffect, useRef, useState } from "react";
 import style from "../../Shared.module.css";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { MdOutlineHome } from "react-icons/md";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { LuSettings } from "react-icons/lu";
@@ -16,6 +16,9 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@radix-ui/react-popover";
+import supabase from "@/lib/utils/supabaseClient";
+import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import { useUserSession } from "@/lib/custom-hooks/database/useUserSession";
 
 type Props = {
   /** ClassName for the avatar  */
@@ -27,7 +30,10 @@ type Props = {
 const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
   const pathname = usePathname();
   const { currentRole } = useDashboardStore();
-  const { user } = useAppStore();
+  const { user, setUser } = useAppStore();
+  const userSession = useUserSession();
+  const router = useRouter();
+  const { onOpen } = useToastDisclosure();
 
   const name =
     user?.firstname && user?.lastname
@@ -37,10 +43,10 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        {user?.avatar_url && (
+        {userSession?.session && (
           <div>
             <Avatar
-              image={user?.avatar_url}
+              image={user?.avatar_url as string}
               name={name}
               email={user?.email}
               className={cn("", className)}
@@ -62,9 +68,9 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
               "items-center": !name || name === " ",
             })}
           >
-            {user?.avatar_url && (
+            {userSession?.session && (
               <Avatar
-                image={user?.avatar_url}
+                image={user?.avatar_url as string}
                 name={name as string}
                 email={user?.email}
               />
@@ -104,7 +110,19 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
           </li>
           <hr className="mx-5" />
           {/* Logout */}
-          <li className="deep-green-hover cursor-pointer space-y-5 py-4 pb-5 pl-8 pr-4 pt-10">
+          <li
+            className="deep-green-hover cursor-pointer space-y-5 py-4 pb-5 pl-8 pr-4 pt-10"
+            onClick={async () => {
+              const { error } = await supabase.auth.signOut();
+              if (error) {
+                onOpen("❌ " + error.message);
+                console.log(error);
+              } else {
+                setUser(null);
+                router.push("/");
+              }
+            }}
+          >
             <div className="flex items-center gap-2">
               <TbLogout size={20} />
               <p>Log Out</p>

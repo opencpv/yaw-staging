@@ -4,4 +4,5 @@ export interface LoginButtonProps {
   icon: Provider;
   text: string;
   onClick?: () => void;
+  className?: string;
 }

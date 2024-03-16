@@ -10,9 +10,9 @@ import { CustomScroll } from "../../components/shared/notifications/CustomScroll
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { redirect } from "next/navigation";
 import CaMarkAsRead from "../../components/shared/notifications/icons/CaMarkAsRead";
-import supabase from "@/lib/utils/supabaseClient";
 import { NotificationType } from "../../components/shared/notifications/types";
 import { useAppStore } from "@/store/dashboard/AppStore";
+import { supabase } from "@/supabase/client";
 
 const Page = () => {
   const [currentNotification, setCurrentNotification] =
@@ -21,7 +21,6 @@ const Page = () => {
   const { user } = useAppStore();
 
   useEffect(() => {
-    const supabase = createClientComponentClient<Database>();
     if (!supabase) {
       redirect("/");
     }

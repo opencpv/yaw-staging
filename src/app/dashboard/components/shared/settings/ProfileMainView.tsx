@@ -9,9 +9,9 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import { useManageAccountStore } from "@/store/dashboard/propertiesStore";
 import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
 import Blocking from "./Blocking";
+import { supabase } from "@/supabase/client";
 
 const ProfileMainView = () => {
-  const supabase = createClientComponentClient<Database>();
   const [loading, setLoading] = useState<boolean>(false);
 
   const user = useAppStore((state) => state.user);

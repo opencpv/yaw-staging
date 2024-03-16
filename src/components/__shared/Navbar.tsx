@@ -12,6 +12,8 @@ import ButtonHireUs from "./ui/button/ButtonHireUs";
 import { useHideDocumentScrollBar } from "@/lib/custom-hooks/useWindowEvents";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import AvatarMenu from "./ui/avatar/AvatarMenu";
+import { useUserData } from "@/lib/custom-hooks/database/useUserData";
+import { useUserSession } from "@/lib/custom-hooks/database/useUserSession";
 
 const Navbar = (props: any) => {
   const pathname = usePathname();
@@ -19,8 +21,11 @@ const Navbar = (props: any) => {
   const [isScrolling, setIsScrolling] = useState<boolean>(false);
   const { toggle, setToggle } = useMenuStore();
   const { user } = useAppStore();
+  const userSession = useUserSession();
 
   useHideDocumentScrollBar(toggle);
+
+  useUserData();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -75,7 +80,7 @@ const Navbar = (props: any) => {
               </div>
             )}
             <div className="flex items-center gap-5">
-              {user?.avatar_url && <AvatarMenu />}
+              {userSession?.session && <AvatarMenu />}
               {/* Hamburger button */}
               <button
                 onClick={() => {

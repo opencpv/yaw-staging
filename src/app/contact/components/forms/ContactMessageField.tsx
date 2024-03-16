@@ -21,7 +21,7 @@ const ContactMessageField = (props: Props) => {
         className={cn(
           `${
             style.requiredPlaceholder
-          } w-full rounded-md border p-4 shadow-sm outline-none transition-all hover:border-black/50 focus:border-black focus:outline-none ${
+          } w-full rounded-md border p-4 shadow-sm outline-none transition-all hover:border-black/50 focus:border-accent-50 focus:outline-none ${
             props.error && "border-neutral-500"
           }`,
           props.className,

@@ -20,6 +20,7 @@ import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import Avatar from "@/components/__shared/ui/avatar/Avatar";
 import AvatarMenu from "@/components/__shared/ui/avatar/AvatarMenu";
+import { useUserSession } from "@/lib/custom-hooks/database/useUserSession";
 
 type PaginationTabProps = {
   active: string;
@@ -56,6 +57,7 @@ const PaginationTab = ({ active, icon, name, link }: PaginationTabProps) => {
 
 const Pagination = () => {
   const { user } = useAppStore();
+  const userSession = useUserSession();
   const vw = useViewport();
   const [active, setActive] = useState("");
   const router = useRouter();
@@ -166,7 +168,7 @@ const Pagination = () => {
         </div>
       </Button>
 
-      {user?.avatar_url && (
+      {userSession?.session && (
         <div className="relative order-1 my-auto mr-auto flex items-center gap-5 ssm:order-3 ssm:hidden">
           <AvatarMenu />
           <span className="text-shade-200">

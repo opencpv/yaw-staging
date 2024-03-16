@@ -1,8 +1,6 @@
 "use client";
-import { openSans } from "@/styles/font";
 import Navbar from "./components/navbar";
 import Pagination from "./components/pagination";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import { NotificationType } from "./components/shared/notifications/types";
@@ -16,6 +14,8 @@ import { useNotificationStore } from "@/store/dashboard/notificationStore";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { LowerCase } from "@/lib/utils/stringManipulation";
 import Loader from "@/components/__shared/loader/Loader";
+import { supabase } from "@/supabase/client";
+import { useUserData } from "@/lib/custom-hooks/database/useUserData";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -35,7 +35,6 @@ const Wrapper = ({ children }: LayoutProps) => {
   const [typeModalOpen, setTypeModalOpen] = useState(false);
   const [firstTimeModalOpen, setFirstTimeModalOpen] = useState(false);
 
-  const supabase = createClientComponentClient<Database>();
   const user = useAppStore((state) => state.user);
   const setUser = useAppStore((state) => state.setUser);
   const setNotifications = useNotificationStore(
@@ -47,7 +46,6 @@ const Wrapper = ({ children }: LayoutProps) => {
   const { currentRole, setCurrentRole } = useDashboardStore();
 
   useEffect(() => {
-    const supabase = createClientComponentClient<Database>();
     if (!supabase) {
       redirect("/");
     }
@@ -63,26 +61,7 @@ const Wrapper = ({ children }: LayoutProps) => {
     localStorage.setItem("user-dashboard-role", LowerCase(currentRole));
   }, [firstTIme, dashboardType, setFirstTime, currentRole]);
 
-  useEffect(() => {
-    const getUserData = async () => {
-      setLoading(true);
-      const session = JSON.parse(localStorage.getItem("session") as string);
-      let { data } = await supabase?.auth?.getUser(session?.access_token);
-      let { data: profiles, error } = await supabase
-        .from("profiles")
-        .select("*")
-        .eq("id", data?.user?.id as string);
-      const profileData = {
-        ...(profiles && profiles[0]),
-        email: data?.user?.email,
-      };
-      setUser(profileData);
-    };
-
-    getUserData().then(() => {
-      setLoading(false);
-    });
-  }, [supabase, setUser]);
+  useUserData();
 
   useEffect(() => {
     const wrapperExclusionList = [
@@ -130,7 +109,7 @@ const Wrapper = ({ children }: LayoutProps) => {
         },
       )
       .subscribe();
-  }, [user, supabase, setNotifications]);
+  }, [user, setNotifications]);
 
   return (
     <div>

@@ -2,12 +2,9 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import withErrorHandler from "@/app/api/withErrorHandler";
+import { supabase } from "@/supabase/server";
 
 export const POST = withErrorHandler(async (request: any) => {
-  const cookieStore = cookies();
-  const supabase = createServerComponentClient({
-    cookies: () => cookieStore,
-  });
   const user: any = await supabase.auth.getUser();
   console.log(user);
   let reqError: any = null;
@@ -27,10 +24,6 @@ export const POST = withErrorHandler(async (request: any) => {
 });
 
 export const PUT = withErrorHandler(async (request: any) => {
-  const cookieStore = cookies();
-  const supabase = createServerComponentClient({
-    cookies: () => cookieStore,
-  });
   return new NextResponse(JSON.stringify({ message: "success" }), {
     status: 200,
   });

@@ -5,6 +5,8 @@ import { MdOutlineChat } from "react-icons/md";
 import Checkbox from "../form/Checkbox";
 import Button from "../ui/button/Button";
 import { useListingStore } from "@/store/listing/useListingStore";
+import SignInRequiredModal from "../modals/SignInRequiredModal";
+import { useUserSession } from "@/lib/custom-hooks/database/useUserSession";
 
 type ModalProps = {
   isOpen: boolean;
@@ -32,18 +34,35 @@ const FavoriteModal = ({ isOpen, onOpenChange, onClose }: ModalProps) => {
 };
 
 const ModalHeader = ({ onClose }: ModalHeaderProps) => {
+  const [signInModalOpen, setSignInModalOpen] = useState(false);
+  const userSession = useUserSession();
+
   return (
-    <span className="flex flex-wrap items-center justify-between gap-5">
-      <MdOutlineChat className="shrink-0 text-xl text-primary-200 md:text-4xl" />
-      <Button
-        color="black"
-        variant="outline"
-        className="h-6 w-fit rounded-3xl px-4 text-sm hover:bg-[#E7F8F2]"
-        onClick={onClose}
-      >
-        Save
-      </Button>
-    </span>
+    <>
+      <SignInRequiredModal
+        open={signInModalOpen}
+        onOpenChange={setSignInModalOpen}
+        onClose={() => setSignInModalOpen(false)}
+      />
+      <span className="flex flex-wrap items-center justify-between gap-5">
+        <MdOutlineChat className="shrink-0 text-xl text-primary-200 md:text-4xl" />
+        <Button
+          color="black"
+          variant="outline"
+          className="h-6 w-fit rounded-3xl px-4 text-sm hover:bg-[#E7F8F2]"
+          onClick={async () => {
+            if (!userSession) {
+              setSignInModalOpen(true);
+            } else {
+              // handle favorite logic
+              onClose && onClose();
+            }
+          }}
+        >
+          Save
+        </Button>
+      </span>
+    </>
   );
 };
 
