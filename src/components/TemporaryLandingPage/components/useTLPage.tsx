@@ -12,6 +12,12 @@ function useTLPage() {
 
   const optionSelect = useGetNotifiedStore((state: any) => state.filterOption);
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // Smooth scrolling animation
+    });
+  };
   const handleSubmit = (
     values: any,
     setFieldError: any,
@@ -26,10 +32,12 @@ function useTLPage() {
         setFieldError("phone", "Please enter a valid mobile number.");
         toastOnOpen("Please enter a valid mobile number", "error");
       } else {
+        scrollToTop();
         toastOnOpen("Congratulations! You are in the loop!!", "success");
         func((init: boolean) => !init);
       }
     } else {
+      scrollToTop();
       toastOnOpen("Congratulations! You are in the loop!!", "success");
       func((init: boolean) => !init);
     }

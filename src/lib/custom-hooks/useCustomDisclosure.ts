@@ -46,21 +46,19 @@ export const useToastDisclosureVariant1 = () => {
   const onOpen = (message: string, variant: string) => {
     const toastId = toast(message, {
       position: "top-right",
-      autoClose: false,
+      autoClose: 7000,
       hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
+      closeOnClick: false,
+      pauseOnHover: true,
       draggable: false,
       progress: undefined,
       theme: "dark",
-      progressStyle: { background: "white" },
+      progressStyle: { background: "#22652c" },
       bodyStyle: { paddingRight: "2.5rem" },
+     
       style: variants[variant],
     });
 
-    window.addEventListener("scroll", () => {
-      toast.dismiss(toastId);
-    });
   };
 
   return { onOpen };
