@@ -46,7 +46,7 @@ export const useToastDisclosureVariant1 = () => {
   const onOpen = (message: string, variant: string) => {
     const toastId = toast(message, {
       position: "top-right",
-      autoClose: 7000,
+      autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: false,
       pauseOnHover: true,
