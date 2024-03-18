@@ -43,7 +43,7 @@ const ContactTabs = (props: Props) => {
   return (
     <div className="flex items-center">
       <div
-        className="relative flex gap-12 overflow-x-scroll lg:overflow-x-auto"
+        className="hidden-scrollbar relative flex gap-12 overflow-x-scroll lg:overflow-x-auto"
         ref={scrollContainerRef}
       >
         <Tab
@@ -73,7 +73,7 @@ const ContactTabs = (props: Props) => {
         </Tab>
       </div>
       <div
-        className={`sc-button absolute right-0 pl-5 transition-all md:hidden ${
+        className={`sc-button absolute right-0 bg-white p-1 px-2 pl-5 transition-all md:hidden ${
           isEndOfContainer && "pointer-events-none touch-none"
         }`}
         onClick={scrollToRight}
