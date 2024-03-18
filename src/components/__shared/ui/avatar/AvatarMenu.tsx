@@ -16,9 +16,9 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@radix-ui/react-popover";
-import supabase from "@/lib/utils/supabaseClient";
 import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { useUserSession } from "@/lib/custom-hooks/database/useUserSession";
+import { supabase } from "@/supabase/client";
 
 type Props = {
   /** ClassName for the avatar  */
@@ -39,6 +39,8 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
     user?.firstname && user?.lastname
       ? `${user?.firstname} ${user?.lastname}`
       : null;
+
+  // console.log("session avi", userSession);
 
   return (
     <Popover>

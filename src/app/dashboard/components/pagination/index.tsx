@@ -168,7 +168,7 @@ const Pagination = () => {
         </div>
       </Button>
 
-      {userSession?.session && (
+      {user && (
         <div className="relative order-1 my-auto mr-auto flex items-center gap-5 ssm:order-3 ssm:hidden">
           <AvatarMenu />
           <span className="text-shade-200">

@@ -43,7 +43,7 @@ const Navbar = (props: any) => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [pathname]);
+  }, [pathname, userSession]);
 
   const shouldChangeColor =
     (isScrolling && pathname?.includes("/properties/")) ||
@@ -80,7 +80,7 @@ const Navbar = (props: any) => {
               </div>
             )}
             <div className="flex items-center gap-5">
-              {userSession?.session && <AvatarMenu />}
+              {user && <AvatarMenu />}
               {/* Hamburger button */}
               <button
                 onClick={() => {
