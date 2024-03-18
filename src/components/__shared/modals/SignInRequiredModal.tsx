@@ -91,6 +91,7 @@ const SignInRequiredModal = ({ open, onOpenChange, onClose }: Props) => {
         scrollBehavior="normal"
         hideCloseButton
         bodyClassName="p-0"
+        // wrapperClassName="overflow-y"
       />
     </>
   );

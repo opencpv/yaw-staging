@@ -1,9 +1,8 @@
-import supabase from "./supabaseClient";
+import { supabase } from "@/supabase/client";
 
 const userSession = async () => {
   try {
     const { data, error } = await supabase.auth.getSession();
-    // console.log(data);
     if (error) {
       return null;
     } else {

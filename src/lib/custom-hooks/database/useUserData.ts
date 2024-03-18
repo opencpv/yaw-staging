@@ -12,7 +12,6 @@ export const useUserData = () => {
       const session = JSON.parse(localStorage.getItem("session") as string);
       try {
         let { data } = await supabase?.auth?.getUser(session?.access_token);
-        console.log(data);
         let { data: profiles, error } = await supabase
           .from("profiles")
           .select("*")

@@ -15,7 +15,7 @@ const Avatar = ({ image, name, className, email, size }: Props) => {
   return (
     <Image
       src={image}
-      alt={name as string}
+      alt={(name as string) || "avatar"}
       width={50}
       height={50}
       className={cn(
