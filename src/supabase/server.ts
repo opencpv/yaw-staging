@@ -1,11 +1,17 @@
 "use server";
 
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createServerComponentClient as _createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { Database } from "../../database.types";
+import { cache } from "react";
 
-const cookiesStore = cookies();
+// export const dynamic = "force-dynamic"
 
-export const supabase = createServerComponentClient<Database>({
-  cookies: () => cookiesStore,
+const createServerComponentClient = cache(() => {
+  const cookieStore = cookies();
+  return _createServerComponentClient<Database>({
+    cookies: () => cookieStore,
+  });
 });
+
+export const supabase = createServerComponentClient();
