@@ -4568,22 +4568,29 @@
   dependencies:
     "@typescript-eslint/utils" "^5.54.0"
 
-"@tanstack/query-core@5.25.0":
-  version "5.25.0"
-  resolved "https://registry.npmjs.org/@tanstack/query-core/-/query-core-5.25.0.tgz"
-  integrity sha512-vlobHP64HTuSE68lWF1mEhwSRC5Q7gaT+a/m9S+ItuN+ruSOxe1rFnR9j0ACWQ314BPhBEVKfBQ6mHL0OWfdbQ==
+"@tanstack/query-core@5.28.4":
+  version "5.28.4"
+  resolved "https://registry.npmjs.org/@tanstack/query-core/-/query-core-5.28.4.tgz"
+  integrity sha512-uQZqOFqLWUvXNIQZ63XdKzg22NtHzgCBUfDmjDHi3BoF+nUYeBNvMi/xFPtFrMhqRzG2Ir4mYaGsWZzmiEjXpA==
 
-"@tanstack/query-devtools@5.24.0":
-  version "5.24.0"
-  resolved "https://registry.npmjs.org/@tanstack/query-devtools/-/query-devtools-5.24.0.tgz"
-  integrity sha512-pThim455t69zrZaQKa7IRkEIK8UBTS+gHVAdNfhO72Xh4rWpMc63ovRje5/n6iw63+d6QiJzVadsJVdPoodSeQ==
+"@tanstack/query-devtools@5.28.3":
+  version "5.28.3"
+  resolved "https://registry.npmjs.org/@tanstack/query-devtools/-/query-devtools-5.28.3.tgz"
+  integrity sha512-Kxch05PVnxLUAyRiz2gXYQhXATHfXbQQwvz858YPjYYQyi7yk8SyS9Z5hyw90bRb0pd3rjelXyGFCsNMWvEghw==
 
-"@tanstack/react-query-devtools@^5.25.0":
-  version "5.25.0"
-  resolved "https://registry.npmjs.org/@tanstack/react-query-devtools/-/react-query-devtools-5.25.0.tgz"
-  integrity sha512-bqtr1Bwvo/jspJXb2l4R1DSZ848TvIzGBk4V0b6YGS5EQ3015dhm3mPqyTgh0DquK5ZR0h1yP/4DpzhhvTnFHA==
+"@tanstack/react-query-devtools@^5.28.4":
+  version "5.28.4"
+  resolved "https://registry.npmjs.org/@tanstack/react-query-devtools/-/react-query-devtools-5.28.4.tgz"
+  integrity sha512-oS+3INjCIX4Nkh0IAV6LH2mgLqJjkcd/DDxp8dwdWCGloLrz6IBj+bOuuI2wD0zb8r7l45wIAYIhl4Z6XyTupQ==
   dependencies:
-    "@tanstack/query-core" "5.8.2"
+    "@tanstack/query-devtools" "5.28.3"
+
+"@tanstack/react-query@^5.28.4", "@tanstack/react-query@^5.8.2":
+  version "5.28.4"
+  resolved "https://registry.npmjs.org/@tanstack/react-query/-/react-query-5.28.4.tgz"
+  integrity sha512-BErcoB/QQG6YwLSUKnaGxF+lSc270RH2w3kMBpG0i4YzDCsFs2pdxPX1WVknQvFk9bNgukMb158hc2Zb4SdwSA==
+  dependencies:
+    "@tanstack/query-core" "5.28.4"
 
 "@tanstack/react-virtual@3.0.0-beta.54":
   version "3.0.0-beta.54"
@@ -8531,7 +8538,7 @@ module-alias@^2.2.2:
   resolved "https://registry.npmjs.org/module-alias/-/module-alias-2.2.3.tgz"
   integrity sha512-23g5BFj4zdQL/b6tor7Ji+QY4pEfNH784BMslY9Qb0UnJWRAt+lQGLYmRaM0KDBwIG23ffEBELhZDP2rhi9f/Q==
 
-moment@^2.29.4, "moment@>= 2.x":
+moment@^2.29.4, moment@^2.30.1, "moment@>= 2.x":
   version "2.30.1"
   resolved "https://registry.npmjs.org/moment/-/moment-2.30.1.tgz"
   integrity sha512-uEmtNhbDOrWPFS+hdjFCBfy9f2YoyzRpwcl+DqpC6taX21FzsTLQVbMV/W7PzNSX6x/bhC1zA3c2UQ5NzH6how==
