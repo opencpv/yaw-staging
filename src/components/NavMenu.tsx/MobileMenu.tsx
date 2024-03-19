@@ -3,7 +3,6 @@
 import * as Collapsible from "@radix-ui/react-collapsible";
 import { styled } from "@stitches/react";
 import { useState } from "react";
-import { linksAfterLogin, linksBeforeLogin } from "./content";
 import Link from "next/link";
 import ArrowDownNav from "@/app/components/icons/CaArrowDownNav.";
 import { BsArrowDownCircleFill } from "react-icons/bs";
@@ -18,6 +17,7 @@ import HowToLink from "@/components/__shared/HowToLink";
 import FaqLink from "@/components/__shared/FaqLink";
 import { cn } from "@/lib/utils";
 import { useAppStore } from "@/store/dashboard/AppStore";
+import { useMenuLinks } from "./content";
 
 const MenuOption = ({
   name,
@@ -130,6 +130,7 @@ const MenuOption = ({
 export const MobileMenu = (props: any) => {
   const { setToggle } = useMenuStore();
   const { user } = useAppStore();
+  const { linksAfterLogin, linksBeforeLogin } = useMenuLinks();
 
   return (
     <div className={`px-8 pt-10 ${props?.className}`}>

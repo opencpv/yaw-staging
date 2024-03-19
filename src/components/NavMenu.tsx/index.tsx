@@ -3,7 +3,6 @@ import * as Collapsible from "@radix-ui/react-collapsible";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ExpandCircle, FadeInOut } from "@/lib/animations";
-import { bottomLinksAfterLogin, bottomLinksBeforeLogin } from "./content";
 import { FaChevronDown } from "react-icons/fa";
 import MenuBottomLinks from "./components/MenuBottomLinks";
 import MenuArea from "./components/MenuArea";
@@ -11,8 +10,10 @@ import MenuScrollDownButton from "./components/MenuScrollDownButton";
 import { useIsElementInViewport } from "./hooks/useIsElementInViewport";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
 import { useAppStore } from "@/store/dashboard/AppStore";
+import { useMenuLinks } from "./content";
 
 export default function Menu(props: any) {
+  const { bottomLinksAfterLogin, bottomLinksBeforeLogin } = useMenuLinks();
   const [hide, setHide] = useState(false);
   const [windowLimit, setWindowLimit] = useState(false);
   const toggle = useMenuStore((state) => state.toggle);

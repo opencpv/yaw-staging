@@ -1,6 +1,5 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { linksAfterLogin, linksBeforeLogin } from "./content";
 import { motion } from "framer-motion";
 import Separator from "../Separator";
 import { FadeInOut } from "@/lib/animations";
@@ -9,8 +8,10 @@ import { useMenuStore } from "@/store/navmenu/useMenuStore";
 import { useFaqHowToSwitchStore } from "@/store/faq/useFaqStore";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
+import { useMenuLinks } from "./content";
 
 export const DesktopMenu = (props: any) => {
+  const { linksAfterLogin, linksBeforeLogin } = useMenuLinks();
   const [active, setActive] = useState<number | null>(null);
   const [subId, setSubId] = useState<number | null>(null);
   const router = useRouter();
@@ -89,23 +90,6 @@ export const DesktopMenu = (props: any) => {
                         } else {
                           setActive(null);
                           router.push(r?.url);
-                        }
-                      }}
-                    />
-                  ) : r.name.toLowerCase() === "hire us" ? (
-                    <MenuLink
-                      key={idx}
-                      active={active === idx}
-                      linkObject={r}
-                      onClick={() => {
-                        if (r?.sub) {
-                          setActive(idx as number);
-                          setSubId(null);
-                        } else {
-                          setActive(null);
-                          router.push(
-                            "/dashboard" + currentRole + "my-agent/explore",
-                          );
                         }
                       }}
                     />

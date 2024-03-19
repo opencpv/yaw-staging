@@ -14,6 +14,7 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import AvatarMenu from "./ui/avatar/AvatarMenu";
 import { useUserData } from "@/lib/custom-hooks/database/useUserData";
 import { useUserSession } from "@/lib/custom-hooks/database/useUserSession";
+import { cn } from "@/lib/utils";
 
 const Navbar = (props: any) => {
   const pathname = usePathname();
@@ -67,7 +68,11 @@ const Navbar = (props: any) => {
           <Logo />
           <div className="flex w-full items-center justify-end md:gap-[31px] lg:gap-[73px]">
             {!pathname?.includes("/properties/") ? (
-              <ButtonHireUs className="w-fit px-[4.5rem] text-xl" />
+              <ButtonHireUs
+                className={cn("w-fit px-[4.5rem] text-xl", {
+                  invisible: user,
+                })}
+              />
             ) : (
               <div className="flex items-center gap-4">
                 <LikeHeart liked={false} className="text-5xl text-white" />
