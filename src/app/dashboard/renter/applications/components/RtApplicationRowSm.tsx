@@ -19,6 +19,9 @@ import Rating from "../../../components/shared/Rating";
 import ButtonDelete from "@/components/__shared/ui/button/ButtonDelete";
 import EditButton from "@/components/__shared/ui/button/EditButton";
 import ButtonMessage from "@/components/__shared/ui/button/ButtonMessage";
+import { useAppStore } from "@/store/dashboard/AppStore";
+import Avatar from "@/components/__shared/ui/avatar/Avatar";
+import { cn } from "@/lib/utils";
 
 const RtApplicationRowSm = ({
   propertyImage,
@@ -34,14 +37,10 @@ const RtApplicationRowSm = ({
 
   const daysDifference = useDaysDifference(date);
 
+  const { user } = useAppStore();
+
   return (
     <>
-      <DestructiveModal
-        isOpen={isOpen}
-        onClose={onClose}
-        onOpenChange={onOpenChange}
-        label="Are you sure you want to delete this application?"
-      />
       <TableRowSm>
         {/* Property */}
         <TableBodySm href="/properties/2">
@@ -49,7 +48,7 @@ const RtApplicationRowSm = ({
             <TbPropertyImageSm title={propertyTitle} image={propertyImage} />
             <div className="flex flex-col justify-between gap-2">
               <div className="flex flex-col gap-1 truncate lg:gap-[0.62rem]">
-                <h4 className="truncate">Single Room</h4>
+                <h4 className="truncate">Two Bed Room Apartment</h4>
                 <p className="truncate text-[0.8125rem] text-[#B0B0B0]">
                   Assin Fosu
                 </p>
@@ -61,14 +60,34 @@ const RtApplicationRowSm = ({
             </div>
           </div>
         </TableBodySm>
-        {/* Date */}
-        <TableBodySm className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 pt-3.5">
-          {/* Status */}
-          <div>
-            <RtApplicationStatus status={status} />
+        {/* Property owner */}
+        <TableBodySm
+          className={cn("grid grid-cols-2 items-center justify-between gap-5")}
+        >
+          <h4 className="text-shade-200">Contact</h4>
+          <div className="ml-auto flex items-center gap-2">
+            <Avatar
+              image={user?.avatar_url as string}
+              name={user?.firstname as string}
+              size="sm"
+            />
+            <span className="min-w-max overflow-x-hidden font-semibold">
+              Bernice
+            </span>
           </div>
-          <div className="flex flex-col items-center justify-center gap-y-1">
-            <h4 className="text-sm font-[600]">{formatDate(date)}</h4>
+        </TableBodySm>
+        {/* Status */}
+        <TableBodySm
+          className={cn("flex items-center justify-between gap-x-5 gap-y-3")}
+        >
+          <h4 className="text-shade-200">Status</h4>
+          <RtApplicationStatus status={status} />
+        </TableBodySm>
+        {/* Date */}
+        <TableBodySm className={cn("flex items-center justify-between")}>
+          <h4 className="text-shade-200">Date</h4>
+          <div className="flex flex-col items-center">
+            <h4 className="text-sm">{formatDate(date)}</h4>
             <small className="inline-block text-[0.6rem] text-neutral-400">
               {daysDifference < 1
                 ? `Less Than A Day Ago`
@@ -77,14 +96,15 @@ const RtApplicationRowSm = ({
           </div>
         </TableBodySm>
         {/* Actions */}
-        <TableBodySm className="flex justify-center gap-1.5 pt-3">
-          {status === "not submitted" && (
+        <TableBodySm className={cn("flex items-center justify-end gap-1.5")}>
+          {status === "incomplete" ? (
             <>
               <EditButton onOpen={() => ""} />
-              <ButtonDelete onOpen={onOpen} />
+              <ButtonDelete table="" id="" />
             </>
+          ) : (
+            <ButtonMessage type={2} />
           )}
-          <ButtonMessage type={2} />
         </TableBodySm>
       </TableRowSm>
     </>

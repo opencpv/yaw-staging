@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { HiSaveAs } from "react-icons/hi";
 import Modal from "./Modal";
 import {
@@ -105,6 +105,7 @@ const ModalFooter = () => {
 
 const RecentSearch = ({ title, date }: { title: string; date: string }) => {
   const { isOpen, onOpenChange, onOpen, onClose } = useDisclosure();
+  const [popoverIsOpen, setPopoverIsOpen] = useState(false);
 
   return (
     <div className="grid grid-cols-9 gap-6 ssm:items-center">
@@ -123,8 +124,15 @@ const RecentSearch = ({ title, date }: { title: string; date: string }) => {
       >
         Run Search
       </Button>
-      <Popover style={{ zIndex: "99999" }}>
-        <PopoverTrigger className="h-fit w-fit">
+      <Popover
+        style={{ zIndex: "99999" }}
+        isOpen={popoverIsOpen}
+        onOpenChange={setPopoverIsOpen}
+      >
+        <PopoverTrigger
+          className="h-fit w-fit"
+          onClick={() => setPopoverIsOpen(true)}
+        >
           <button className="col-span-1 ml-auto h-fit w-fit p-2">
             <BiDotsVerticalRounded />
           </button>
@@ -143,6 +151,8 @@ const RecentSearch = ({ title, date }: { title: string; date: string }) => {
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         backdropClassName="z-[99999]"
+        id=""
+        table=""
       />
     </div>
   );

@@ -3,7 +3,7 @@ import React from "react";
 import PaymentWarning from "./PaymentWarning";
 import Button from "@/components/__shared/ui/button/Button";
 import { FaRegCheckCircle, FaRegTimesCircle } from "react-icons/fa";
-import Select from "../../../components/Select";
+import Select from "../../../components/shared/ui/Select";
 import Schedule from "node-schedule";
 import { useSelectDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { PropertyStatusInterface } from "../../../../../../interfaces";

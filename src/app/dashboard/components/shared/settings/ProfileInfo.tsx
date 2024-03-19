@@ -85,7 +85,7 @@ const ProfileInfo = () => {
                 <p>{user.full_name}</p>
                 <div className="border- relative mt-5 aspect-[227/164] max-h-[164px] w-full max-w-[227px] rounded-[18px]">
                   <Image
-                    src={user.profile_img}
+                    src={user.profile_img as string}
                     placeholder="blur"
                     objectFit="contain"
                     loading="eager"
@@ -111,7 +111,7 @@ const ProfileInfo = () => {
                   bio: user?.bio,
                   number: user?.phone,
                 }}
-                onSubmit={async (values) => {
+                onSubmit={async (values: any) => {
                   const dto = values;
                   delete values.number;
                   dto.number = phone;

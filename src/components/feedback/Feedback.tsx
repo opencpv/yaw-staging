@@ -11,9 +11,10 @@ type Props = {
   // handleClick: () => void;
   className?: string;
   children: React.ReactNode;
+  data: any;
 };
 
-const Feedback = ({ children }: Props) => {
+const Feedback = ({ children, data }: Props) => {
   const { onOpen, isOpen, onOpenChange, onClose } = useDisclosure();
   const { onOpen: toastOnOpen } = useToastDisclosure();
 
@@ -41,7 +42,12 @@ const Feedback = ({ children }: Props) => {
         }
         isDismissible={false}
         header={<FeedbackHeader handleClose={onClose} />}
-        body={<FeedbackBody handleSubmitFeedback={handleSubmitFeedback} />}
+        body={
+          <FeedbackBody
+            data={data}
+            handleSubmitFeedback={handleSubmitFeedback}
+          />
+        }
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         size="lg"

@@ -8,7 +8,7 @@ import { ListingForm } from "./types";
 export default function AgencyInformation() {
   const [listingFormData, setListingFormData] = useLocalStorage<ListingForm>(
     "listing-form",
-    {}
+    {},
   );
   const handleOnChange = (name: any, value: any) => {
     setListingFormData({
@@ -18,14 +18,15 @@ export default function AgencyInformation() {
   };
   return (
     <>
-      <div className="w-full h-full flex flex-col items-center justify-center">
-        <div className="w-full lg:w-[75%] flex flex-col gap-4">
+      <div className="flex h-full w-full flex-col items-center justify-center">
+        <div className="flex w-full flex-col gap-4 lg:w-[75%]">
           <p className={`${styles.title}`}>Agency Infomation</p>
 
           <div className="grid grid-cols-3 gap-x-5">
-            <div className="flex flex-col gap-6  col-span-3 lg:col-span-1">
+            <div className="col-span-3 flex flex-col  gap-6 lg:col-span-1">
               <CustomRadioInput
                 defaultValue={listingFormData?.agentFee}
+                options={["yes", "no"]}
                 label="Do you charge an Agent Fee?"
                 onChange={(value) => handleOnChange("agentFee", value)}
               />
@@ -39,6 +40,7 @@ export default function AgencyInformation() {
 
               <CustomRadioInput
                 defaultValue={listingFormData?.viewingFee}
+                options={["yes", "no"]}
                 label="Do you charge a Viewing Fee?"
                 onChange={(value) => handleOnChange("viewingFee", value)}
               />

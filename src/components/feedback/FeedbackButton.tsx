@@ -4,12 +4,14 @@ import { HiOutlineChatBubbleOvalLeftEllipsis } from "react-icons/hi2";
 import Feedback from "./Feedback";
 import AOSWrapper from "../__shared/AOSWrapper";
 
-type Props = {};
+type Props = {
+  data: any;
+};
 
 const FeedbackButton = (props: Props) => {
   return (
     <AOSWrapper animation="fade-right" className="w-fit">
-      <Feedback>
+      <Feedback data={props.data}>
         <div className="ml-5 inline-flex w-fit items-center">
           <div
             className={`relative z-20 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-t from-primary-500 to-primary-400 shadow-lg`}

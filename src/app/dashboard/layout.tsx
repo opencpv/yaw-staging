@@ -5,7 +5,7 @@ import Pagination from "./components/pagination";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
-import { NotificationType } from "./components/shared/notifications/types";
+import { NotificationType } from "./renter/notifications/components/types";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import CompleteYourLogin from "./components/CompleteYourLogin";
@@ -35,19 +35,17 @@ const Wrapper = ({ children }: LayoutProps) => {
   const [typeModalOpen, setTypeModalOpen] = useState(false);
   const [firstTimeModalOpen, setFirstTimeModalOpen] = useState(false);
 
-  const supabase = createClientComponentClient();
+  const supabase = createClientComponentClient<Database>();
   const user = useAppStore((state) => state.user);
   const setUser = useAppStore((state) => state.setUser);
-  const setNotifications = useNotificationStore(
-    (state) => state.setNotifications,
-  );
+
   const [loading, setLoading] = useState<boolean>(false);
   const [excludeWrapper, setExcludeWrapper] = useState(false);
 
   const { currentRole, setCurrentRole } = useDashboardStore();
 
   useEffect(() => {
-    const supabase = createClientComponentClient();
+    const supabase = createClientComponentClient<Database>();
     if (!supabase) {
       redirect("/");
     }
@@ -67,11 +65,11 @@ const Wrapper = ({ children }: LayoutProps) => {
     const getUserData = async () => {
       setLoading(true);
       const session = JSON.parse(localStorage.getItem("session") as string);
-      let { data } = await supabase.auth.getUser(session.access_token);
+      let { data } = await supabase?.auth?.getUser(session?.access_token);
       let { data: profiles, error } = await supabase
         .from("profiles")
         .select("*")
-        .eq("id", data?.user?.id);
+        .eq("id", data?.user?.id as string);
       const profileData = {
         ...(profiles && profiles[0]),
         email: data?.user?.email,
@@ -83,7 +81,9 @@ const Wrapper = ({ children }: LayoutProps) => {
     getUserData().then(() => {
       setLoading(false);
     });
+  }, [supabase, setUser]);
 
+  useEffect(() => {
     const wrapperExclusionList = [
       "/dashboard/lister/my-agent",
       "/dashboard/renter/my-agent",
@@ -96,40 +96,7 @@ const Wrapper = ({ children }: LayoutProps) => {
         setExcludeWrapper(false);
       }
     });
-  }, [supabase, pathname, setUser]);
-
-  useEffect(() => {
-    const getNotifications = async () => {
-      try {
-        const {
-          data: data,
-          error,
-          status: dataStatus,
-        } = await supabase.from("notifications").select("*");
-
-        if (data) {
-          setNotifications(data);
-        }
-
-        if (dataStatus === 200) {
-          setNotificationsLoading(true);
-        }
-      } catch (error) {
-        console.log(error);
-        return error;
-      }
-    };
-    const notifications = supabase
-      .channel("custom-all-channel")
-      .on(
-        "postgres_changes",
-        { event: "*", schema: "public", table: "notifications" },
-        (payload) => {
-          getNotifications();
-        },
-      )
-      .subscribe();
-  }, [user, supabase, setNotifications]);
+  }, [pathname]);
 
   return (
     <div>
@@ -155,20 +122,22 @@ const Wrapper = ({ children }: LayoutProps) => {
         ) : (
           <div className={`wrapper text-neutral-800`}>{children}</div>
         )}
-        <ClientOnly>
-          <HowToSwitch
-            dashboard
-            open={firstTimeModalOpen}
-            setOpen={setFirstTimeModalOpen}
-          />
-        </ClientOnly>
-        <ClientOnly>
-          <CompleteYourLogin
-            dashboard
-            open={!dashboardType && open}
-            setOpen={setTypeModalOpen}
-          />
-        </ClientOnly>
+        <div className="invisible absolute bottom-0 right-0">
+          <ClientOnly>
+            <HowToSwitch
+              dashboard
+              open={firstTimeModalOpen}
+              setOpen={setFirstTimeModalOpen}
+            />
+          </ClientOnly>
+          <ClientOnly>
+            <CompleteYourLogin
+              dashboard
+              open={!dashboardType && open}
+              setOpen={setTypeModalOpen}
+            />
+          </ClientOnly>
+        </div>
       </div>
     </div>
   );

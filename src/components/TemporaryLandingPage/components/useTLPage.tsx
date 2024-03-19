@@ -6,66 +6,40 @@ import {
 import { useGetNotifiedStore } from "./store";
 import { E164Number } from "libphonenumber-js/core";
 import { useContactForm } from "@/app/contact/components/forms/hooks/useContactForm";
-
+import parsePhoneNumber from "libphonenumber-js";
 function useTLPage() {
   const { onOpen: toastOnOpen } = useToastDisclosureVariant1();
 
   const optionSelect = useGetNotifiedStore((state: any) => state.filterOption);
 
-  const handleSubmit = async (values: any, setFieldError: any, phone: any) => {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // Smooth scrolling animation
+    });
+  };
+  const handleSubmit = (
+    values: any,
+    setFieldError: any,
+    phone: any,
+    func: any,
+  ) => {
     values.phone = phone;
+
+    const phoneNUmber = parsePhoneNumber(values?.phone || "");
     if (optionSelect === "mobile") {
-      if (!phone || phone.length < 8) {
+      if (!phone || !phoneNUmber?.isValid() || !phoneNUmber?.isPossible()) {
         setFieldError("phone", "Please enter a valid mobile number.");
         toastOnOpen("Please enter a valid mobile number", "error");
       } else {
-        const result = await sendData("phone", values);
-        if (result?.ok) {
-          toastOnOpen("You are subscribed now!!!", "success");
-        }
+        scrollToTop();
+        toastOnOpen("Congratulations! You are in the loop!!", "success");
+        func((init: boolean) => !init);
       }
     } else {
-      const result = await sendData("email", values);
-      if (result?.ok) {
-        toastOnOpen("You are subscribed now!!!", "success");
-      }
-    }
-  };
-
-  const sendData = async (type: any, values: any) => {
-    // const requestBody: any = {};
-    // if (type === "email") {
-    //   requestBody.email = values?.email;
-    // } else if (type === "phone") {
-    //   requestBody.number = values?.phone;
-    // }
-    // requestBody.waitlist_id = 13213;
-
-    // console.log(requestBody)
-
-    try {
-      const response = await fetch(
-        "https://api.getwaitlist.com/api/v1/signup",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: values?.email || "N/A",
-            phone: values?.phone,
-            waitlist_id: 13213,
-          }),
-        },
-      );
-
-      if (!response.ok) {
-        toastOnOpen("Please try again. Request failed", "error");
-      }
-      console.log(response);
-      return response;
-    } catch (error) {
-      toastOnOpen("Please try again. Request failed", "error");
+      scrollToTop();
+      toastOnOpen("Congratulations! You are in the loop!!", "success");
+      func((init: boolean) => !init);
     }
   };
 

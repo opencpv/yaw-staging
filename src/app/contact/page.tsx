@@ -12,12 +12,16 @@ import ContactForm from "./components/ContactForm";
 import ContactFormSideImage from "./components/ContactFormSideImage";
 import { useRef } from "react";
 import { Metadata } from "next";
-
+import { loadQuery } from "@/lib/utils/sanity/sanityStore";
+import { SanityDocument } from "next-sanity";
+import { HOME_PAGE_QUERY } from "@/lib/utils/sanity/queries";
 export const metadata: Metadata = {
   title: "Contact",
 };
 
-const Page = () => {
+const Page = async () => {
+  const initial = await loadQuery<SanityDocument[]>(HOME_PAGE_QUERY);
+  const data = initial.data[0];
   return (
     <>
       <Navbar />
@@ -38,7 +42,7 @@ const Page = () => {
         </Root>
         <ScrollTopAndSocial threshHoldMin={450} threshHoldMax={1400} />
         <div className="mt-20 lg:mt-0">
-          <FeedbackButton />
+          <FeedbackButton data={data} />
         </div>
       </main>
       <Footer />

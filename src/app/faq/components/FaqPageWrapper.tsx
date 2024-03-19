@@ -9,14 +9,18 @@ import FaqHeader from "./FaqHeader";
 import { LowerCase } from "@/lib/utils/stringManipulation";
 
 const FaqPageWrapper = ({
-  data,
+  faqData,
+  howToData,
+  tagsData,
   faqCategories,
 }: {
-  data: any;
+  faqData: any;
+  howToData: any;
+  tagsData: any;
   faqCategories: any[];
 }) => {
   const activePage = useFaqHowToSwitchStore((state) => state.activePage);
-
+  console.log(tagsData);
   return (
     <>
       <Navbar />
@@ -24,9 +28,11 @@ const FaqPageWrapper = ({
         <FaqHeader />
         <FaqHowToSwitch />
         {LowerCase(activePage as string) === "faq" && (
-          <FaqPage data={data} faqCategories={faqCategories} />
+          <FaqPage data={faqData} faqCategories={faqCategories} />
         )}
-        {LowerCase(activePage as string) === "how to" && <HowToPage />}
+        {LowerCase(activePage as string) === "how to" && (
+          <HowToPage tags={tagsData} />
+        )}
       </main>
       <Footer />
     </>

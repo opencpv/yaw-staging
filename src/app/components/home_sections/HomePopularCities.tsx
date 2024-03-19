@@ -11,7 +11,7 @@ import SkeletonRectangle from "@/components/__shared/ui/skeleton/SkeletonRectang
 import { fetchOrderRule, revalidationRule } from "@/lib/utils/fetchRules";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
 
-const HomePopularCities = ({ data }: { data: any }) => {
+const HomePopularCities = () => {
   const {
     data: cities,
     isLoading,
@@ -52,9 +52,9 @@ const HomePopularCities = ({ data }: { data: any }) => {
           }
           errorComponent={<FetchErrorMessage specificData="cities" />}
         />
-        {cities?.map((city) => (
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]?.map((city, idx) => (
           <PopularCitiesCard
-            key={city.id}
+            key={idx}
             location="Kumasi"
             description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, doloribus!"
             propertyNumber={232}

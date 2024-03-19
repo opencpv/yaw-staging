@@ -3,10 +3,10 @@ import { toast } from "react-toastify";
 import { E164Number, CountryCode } from "libphonenumber-js/core";
 
 export const useToastDisclosure = () => {
-  const onOpen = (message: string) => {
+  const onOpen = (message: string, timed?: boolean) => {
     const toastId = toast(message, {
       position: "top-center",
-      autoClose: false,
+      autoClose: timed ? 4000 : false,
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
@@ -36,32 +36,32 @@ type Props = {
 };
 export const useToastDisclosureVariant1 = () => {
   const variants: any = {
-    success: { width: "30rem", maxWidth: "30rem", background: "#396261" },
-    error: { width: "30rem", maxWidth: "30rem", background: "#5b0d0d" },
+    success: {
+      width: "100%",
+      maxWidth: "30rem",
+      background: "#22652c",
+    },
+    error: { width: "100%", maxWidth: "30rem", background: "#5b0d0d" },
   };
   const onOpen = (message: string, variant: string) => {
     const toastId = toast(message, {
       position: "top-right",
-      autoClose: 2000,
+      autoClose: 5000,
       hideProgressBar: false,
-      closeOnClick: true,
+      closeOnClick: false,
       pauseOnHover: true,
       draggable: false,
       progress: undefined,
       theme: "dark",
-      progressStyle: { background: "#396261" },
-      bodyStyle: { paddingRight: "2.5rem", },
-      style: variants[variant],
-    });
+      progressStyle: { background: "#22652c" },
+      bodyStyle: { paddingRight: "2.5rem" },
 
-    window.addEventListener("scroll", () => {
-      toast.dismiss(toastId);
+      style: variants[variant],
     });
   };
 
   return { onOpen };
 };
-
 
 export const useSelectDisclosure = <T extends string>(defaultOption: T) => {
   const [value, setValue] = useState<T>(defaultOption);
@@ -71,7 +71,6 @@ export const useSelectDisclosure = <T extends string>(defaultOption: T) => {
 
   return { value, setValue, handleSelectionChange };
 };
-
 
 export const usePhoneInputDisclosure = () => {
   const [phone, setPhone] = React.useState<E164Number>();

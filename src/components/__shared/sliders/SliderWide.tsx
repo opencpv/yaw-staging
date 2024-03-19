@@ -46,8 +46,9 @@ const SliderWide = ({
             delay: 6000,
           }
         }
+        loop // experimental
         modules={[Navigation, Pagination, Autoplay]}
-        className={`w-full rounded-3xl h-60 slider-wide sm:h-80 ${className}`}
+        className={`slider-wide h-60 w-full rounded-3xl sm:h-80 ${className}`}
         onSlideChange={(swiper) => {
           setActiveIndex(swiper.activeIndex);
           onSlideChange && onSlideChange(swiper);
@@ -57,7 +58,7 @@ const SliderWide = ({
           <SwiperSlide key={idx + 1}>
             {image.href ? (
               <Link href={`${image.href}`}>
-                <div className="relative w-full h-full">
+                <div className="relative h-full w-full">
                   <Image
                     src={image.src}
                     alt={image.name}
@@ -68,7 +69,7 @@ const SliderWide = ({
                 </div>
               </Link>
             ) : (
-              <div className="relative w-full h-full" onClick={onClick}>
+              <div className="relative h-full w-full" onClick={onClick}>
                 <Image
                   src={image.src}
                   alt={image.name}
@@ -84,7 +85,7 @@ const SliderWide = ({
       <div className="">
         {/* Navigation buttons */}
         <div
-          className={`slider-wide-prev-btn absolute left-[5%] z-20 flex h-12 w-12 shrink-0 cursor-default items-center justify-center rounded-full bottom-[40%] ${
+          className={`slider-wide-prev-btn absolute bottom-[40%] left-[5%] z-20 flex h-12 w-12 shrink-0 cursor-default items-center justify-center rounded-full ${
             activeIndex === 0 ? "bg-white/30" : "bg-white"
           }`}
           style={{ opacity: navigation ? "1" : "0" }}
@@ -93,10 +94,8 @@ const SliderWide = ({
         </div>
         {/* <div className="w-full space-x-3 text-center custom-l-pagination bottom-40"></div> */}
         <div
-          className={`slider-wide-next-btn absolute right-[5%] z-20 flex h-12 w-12 shrink-0 cursor-default items-center justify-center rounded-full bg-white bottom-[40%] ${
-            activeIndex === lastIndex
-              ? "bg-white/30"
-              : "bg-white"
+          className={`slider-wide-next-btn absolute bottom-[40%] right-[5%] z-20 flex h-12 w-12 shrink-0 cursor-default items-center justify-center rounded-full bg-white ${
+            activeIndex === lastIndex ? "bg-white/30" : "bg-white"
           }`}
           style={{ opacity: navigation ? "1" : "0" }}
         >

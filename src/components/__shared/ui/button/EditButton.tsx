@@ -14,13 +14,10 @@ const EditButton = ({ onOpen, className }: Props) => {
     <Button
       isIconOnly
       title="Edit"
-      className={cn(
-        "flex w-full max-w-[200px] items-center justify-center rounded-md bg-secondary-500 px-4 text-neutral-800 hover:bg-primary-200 hover:text-white",
-        className,
-      )}
+      className={cn("", className)}
       onClick={onOpen}
     >
-      <MdOutlineEdit size={16} />
+      <MdOutlineEdit size={24} className="text-neutral-700" />
     </Button>
   );
 };
