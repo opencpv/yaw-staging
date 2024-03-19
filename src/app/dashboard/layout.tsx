@@ -1,7 +1,7 @@
 "use client";
 import Navbar from "./components/navbar";
 import Pagination from "./components/pagination";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { NotificationType } from "./components/shared/notifications/types";
 import { useAppStore } from "@/store/dashboard/AppStore";
@@ -11,7 +11,7 @@ import HowToSwitch from "./components/HowToSwitch";
 import { ClientOnly } from "@/components/ui/ClientOnly";
 import { usePathname } from "next/navigation";
 import { useNotificationStore } from "@/store/dashboard/notificationStore";
-import { useDashboardStore } from "@/store/dashboard/dashboardStore";
+import { Role, useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { LowerCase } from "@/lib/utils/stringManipulation";
 import Loader from "@/components/__shared/loader/Loader";
 import { supabase } from "@/supabase/client";
@@ -26,40 +26,28 @@ const Wrapper = ({ children }: LayoutProps) => {
   const [notificationsLoading, setNotificationsLoading] = useState<
     boolean | null
   >();
-  const { isSwitchingRole } = useDashboardStore();
-  const [dashboardType, setDashboardType] = useLocalStorage("dashboard-type");
-  const [firstTIme, setFirstTime] = useLocalStorage(
-    "dashboard-first-time",
-    true,
-  );
-  const [typeModalOpen, setTypeModalOpen] = useState(false);
-  const [firstTimeModalOpen, setFirstTimeModalOpen] = useState(false);
 
-  const user = useAppStore((state) => state.user);
-  const setUser = useAppStore((state) => state.setUser);
+  const { user } = useAppStore();
   const setNotifications = useNotificationStore(
     (state) => state.setNotifications,
   );
-  const [loading, setLoading] = useState<boolean>(false);
   const [excludeWrapper, setExcludeWrapper] = useState(false);
 
-  const { currentRole, setCurrentRole } = useDashboardStore();
+  const { currentRole, setCurrentRole, isSwitchingRole } = useDashboardStore();
 
   useEffect(() => {
     if (!supabase) {
       redirect("/");
     }
-
-    if (pathname?.includes("/lister")) setCurrentRole("lister");
-    if (pathname?.includes("/renter")) setCurrentRole("renter");
-  }, [pathname, setCurrentRole]);
+  }, []);
 
   useEffect(() => {
-    dashboardType && firstTIme && setFirstTimeModalOpen(true);
-    dashboardType && setFirstTime(false);
-
-    localStorage.setItem("user-dashboard-role", LowerCase(currentRole));
-  }, [firstTIme, dashboardType, setFirstTime, currentRole]);
+    if (!isSwitchingRole) {
+      // to make sure it doesn't click with actual switch
+      if (pathname?.includes("/lister")) setCurrentRole("lister");
+      if (pathname?.includes("/renter")) setCurrentRole("renter");
+    }
+  }, [pathname, setCurrentRole, isSwitchingRole]);
 
   useUserData();
 
@@ -109,7 +97,7 @@ const Wrapper = ({ children }: LayoutProps) => {
         },
       )
       .subscribe();
-  }, [user, setNotifications]);
+  }, [setNotifications]);
 
   return (
     <div>
@@ -136,18 +124,7 @@ const Wrapper = ({ children }: LayoutProps) => {
           <div className={`wrapper text-neutral-800`}>{children}</div>
         )}
         <ClientOnly>
-          <HowToSwitch
-            dashboard
-            open={firstTimeModalOpen}
-            setOpen={setFirstTimeModalOpen}
-          />
-        </ClientOnly>
-        <ClientOnly>
-          <CompleteYourLogin
-            dashboard
-            open={!dashboardType && open}
-            setOpen={setTypeModalOpen}
-          />
+          <CompleteYourLogin open={user?.is_first_time} />
         </ClientOnly>
       </div>
     </div>

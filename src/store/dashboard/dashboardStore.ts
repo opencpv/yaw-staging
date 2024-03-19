@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-type Role = "renter" | "lister";
+export type Role = "renter" | "lister";
 
 type DashboardStore = {
   currentRole: Role;

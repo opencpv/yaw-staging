@@ -32,7 +32,13 @@ export const DesktopMenu = (props: any) => {
         {/* main links before login */}
         {!user && (
           <>
-            <Link href="uppercase text-white text-2xl">Sign in</Link>
+            <Link
+              href="/login"
+              className="text-2xl font-semibold uppercase text-white"
+              onClick={() => setToggle(false)}
+            >
+              Sign in
+            </Link>
             {linksBeforeLogin.map(
               (r, idx) =>
                 r.name.toLowerCase() !== "more" && (

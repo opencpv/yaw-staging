@@ -45,16 +45,15 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        {userSession?.session && (
-          <div>
-            <Avatar
-              image={user?.avatar_url as string}
-              name={name}
-              email={user?.email}
-              className={cn("", className)}
-            />
-          </div>
-        )}
+        <div>
+          <Avatar
+            image={user?.avatar_url as string}
+            name={name}
+            email={user?.email}
+            className={cn("", className)}
+            display={userSession?.session && true}
+          />
+        </div>
       </PopoverTrigger>
       {/* Avatar Menu */}
       <PopoverContent
@@ -70,13 +69,12 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
               "items-center": !name || name === " ",
             })}
           >
-            {userSession?.session && (
-              <Avatar
-                image={user?.avatar_url as string}
-                name={name as string}
-                email={user?.email}
-              />
-            )}
+            <Avatar
+              display={userSession?.session && true}
+              image={user?.avatar_url as string}
+              name={name as string}
+              email={user?.email}
+            />
             <div className="">
               {name && <h3 className="max-sm:text-lg">{name}</h3>}
               <small className="text-shade-300">{user?.email}</small>
@@ -122,6 +120,7 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
               } else {
                 setUser(null);
                 router.push("/");
+                router.refresh();
               }
             }}
           >

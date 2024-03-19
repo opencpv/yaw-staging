@@ -1,5 +1,4 @@
 "use client";
-import capitalizeName, { LowerCase } from "@/lib/utils/stringManipulation";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { IoIosArrowDown } from "react-icons/io";
 import Select from "../shared/ui/Select";
@@ -12,12 +11,21 @@ const Switch = () => {
     useDashboardStore();
 
   const handleRoleSwitch = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!e || !e.target) {
+      console.error("e or e.target is null in Switch.handleRoleSwitch");
+      return;
+    }
+    const selectedRole = e.target.value as UserRole;
+    if (selectedRole === currentRole) {
+      router.push(`/dashboard/${currentRole}/overview`);
+    }
+    setCurrentRole(selectedRole);
     setIsSwitchingRole(true);
-    setCurrentRole(e.target.value as UserRole);
-
-    if (currentRole === "lister") router.push("/dashboard/renter/overview");
-    else if (currentRole === "renter")
-      router.push("/dashboard/lister/overview");
+    if (!router) {
+      console.error("router is null in Switch.handleRoleSwitch");
+      return;
+    }
+    router.push(`/dashboard/${selectedRole}/overview`);
   };
 
   return (
