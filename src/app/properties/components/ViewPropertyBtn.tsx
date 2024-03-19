@@ -30,7 +30,7 @@ const ViewPropertyBtn = ({ href, className, disabled }: Props) => {
       {pathname === "/" ? (
         <Link
           href={`${href}`}
-          className={`absolute bottom-20 right-5 z-10 scale-75 transition-all hover:-translate-y-2 min-[350px]:bottom-28 xs:bottom-60 xs:max-[660px]:bottom-28 min-[560px]:right-40 min-[560px]:max-[680px]:right-80 md:scale-100 ${className}`}
+          className={`absolute bottom-20 right-5 z-10 scale-75 transition-all hover:-translate-y-2 ssm:right-80 sm:bottom-64 md:scale-100 lg:bottom-72 lg:right-20 ${className}`}
         >
           <div
             className={`flex h-32 w-32 items-center justify-center rounded-full border border-white`}
