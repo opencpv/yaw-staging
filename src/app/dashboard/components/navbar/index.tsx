@@ -5,7 +5,7 @@ import { styled } from "@stitches/react";
 import Image from "next/image";
 import Switch from "./switch";
 import Search from "./search";
-import NotificationsPopover from "../shared/notifications/NotificationsPopover";
+import NotificationsPopover from "../../renter/notifications/components/NotificationsPopover";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import style from "../../Dashboard.module.css";
 import { useLocalStorage } from "@uidotdev/usehooks";
@@ -18,9 +18,11 @@ import { useDashboardMenuStore } from "@/store/navmenu/useDashboardMenuStore";
 import Avatar from "@/components/__shared/ui/avatar/Avatar";
 import { getFirstWord } from "@/lib/utils/stringManipulation";
 import AvatarMenu from "@/components/__shared/ui/avatar/AvatarMenu";
+import useNotifications from "../../renter/notifications/useNotifications";
 
 const Navbar = () => {
   const user = useAppStore((state) => state.user);
+  const { unreadNotifications } = useNotifications();
 
   const [dashboardType, setDashboardType] =
     useLocalStorage<any>("dashboard-type");
@@ -60,7 +62,7 @@ const Navbar = () => {
             onClick={() => setExpandMobileSearch(!expandMobileSearch)}
           />
           <Switch />
-          <NotificationsPopover />
+          {unreadNotifications?.length > 0 && <NotificationsPopover />}{" "}
           <div>
             <p className="hidden whitespace-nowrap text-sm text-[#fff] ssm:block">
               {user?.firstname as string}

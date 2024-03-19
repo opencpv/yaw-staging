@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { styled } from "@stitches/react";
 import Image from "next/image";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -86,7 +85,7 @@ const ProfileInfo = () => {
                 <p>{user.full_name}</p>
                 <div className="border- relative mt-5 aspect-[227/164] max-h-[164px] w-full max-w-[227px] rounded-[18px]">
                   <Image
-                    src={user.profile_img as string}
+                    src={user.profile_img}
                     placeholder="blur"
                     objectFit="contain"
                     loading="eager"
@@ -114,8 +113,7 @@ const ProfileInfo = () => {
                 }}
                 onSubmit={async (values) => {
                   const dto = values;
-                  delete values.number; // typescript error
-                  // values.number = null; // maybe alternative?
+                  delete values.number;
                   dto.number = phone;
                   setSubmitLoading(true);
                   try {

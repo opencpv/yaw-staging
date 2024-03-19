@@ -1,50 +1,61 @@
 // @ts-nocheck
 "use client";
-import { useContext, useEffect, useState } from "react";
-import NotificationItem from "../../components/shared/notifications/NotificationItem";
-import NotificationDetailsFull from "../../components/shared/notifications/NotificationDetails";
-import { demoNotifications } from "../../components/shared/notifications/content/demoNotifications";
-import NotificationsSmItem from "../../components/shared/notifications/NotificationsSmItem";
+import { useContext, useEffect, useRef, useState } from "react";
+import NotificationItem from "./components/NotificationItem";
+import NotificationDetailsFull from "./components/NotificationDetails";
+import { demoNotifications } from "./components/content/demoNotifications";
+import NotificationsSmItem from "./components/NotificationsSmItem";
 import { styled } from "@stitches/react";
-import { CustomScroll } from "../../components/shared/notifications/CustomScroll";
+import { CustomScroll } from "./components/CustomScroll";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { redirect } from "next/navigation";
-import CaMarkAsRead from "../../components/shared/notifications/icons/CaMarkAsRead";
+import CaMarkAsRead from "./components/icons/CaMarkAsRead";
 import supabase from "@/lib/utils/supabaseClient";
-import { NotificationType } from "../../components/shared/notifications/types";
+import { NotificationType } from "./components/types";
 import { useAppStore } from "@/store/dashboard/AppStore";
+import useNotifications from "./useNotifications";
+import { useProtectedRoute } from "@/lib/custom-hooks/useProtectedRoute";
+import NtfSkeleton from "./components/NtfSkeleton";
+import { Button } from "@nextui-org/react";
 
 const Page = () => {
-  const [currentNotification, setCurrentNotification] =
-    useState<NotificationType>();
-  // const [notifications, setNotifications] = useState<NotificationType | any>();
-  const { user } = useAppStore();
+  const {
+    notifications,
+    isLoading,
+    currentNotification,
+    setCurrentNotification,
+  } = useNotifications();
 
   useEffect(() => {
-    const supabase = createClientComponentClient<Database>();
-    if (!supabase) {
-      redirect("/");
+    const scElement: any = document.querySelector(
+      `.sc-${currentNotification?.id}`,
+    );
+    console.log(scElement);
+    if (scElement) {
+      scElement.scrollIntoView({ behavior: "smooth" });
     }
-  }, []);
+  }, [currentNotification?.id]);
 
-  // useEffect(() => {
-  //   setCurrentNotification(demoNotifications[0]);
-  // }, []);
+  const ref = useRef(null);
 
   return (
-    <div className={`flex grid-cols-3 gap-5 lg:grid `}>
-      <div className=" lg:col-span-1  ">
-        <div className="mb-2 px-3">
+    <div className={`flex grid-cols-2 gap-5 lg:grid lg:grid-cols-4  `}>
+      <div className=" w-full lg:col-span-2 ">
+        <div className="mb-1">
           <h2>Notifications</h2>
 
-          <div className="flex w-full justify-end">
-            <button className="flex items-center justify-end gap-2 p-2 hover:bg-[#073b3a12]">
-              <div className="flex gap-0">
-                <CaMarkAsRead />
-              </div>
-              <p className="text-[10px] font-bold">Mark all as read</p>
-            </button>
-          </div>
+          {isLoading && <NtfSkeleton />}
+
+          {notifications?.length > 0 && (
+            <div className="flex w-full justify-end">
+              <Button className="bg-unset flex items-center justify-end gap-2 p-2 text-black hover:bg-[#073b3a12]">
+                <div className="flex gap-0">
+                  <CaMarkAsRead />
+                </div>
+                <p className="text-[10px] font-bold">Mark all as read</p>
+              </Button>
+            </div>
+          )}
         </div>
         <CustomScroll className="hidden max-h-[70vh] flex-col gap-6 overflow-y-scroll lg:flex ">
           {user?.notifications?.map(
@@ -84,8 +95,10 @@ const Page = () => {
           )}
         </div>
       </div>
-      <div className="col-span-2 mt-14 hidden h-full min-h-[50vh] lg:flex">
-        <NotificationDetailsFull currentNotification={currentNotification} />
+      <div className="col-span-2 mt-14 hidden h-full  w-full  lg:flex">
+        <div className="w-full">
+          <NotificationDetailsFull currentNotification={currentNotification} />
+        </div>
       </div>
     </div>
   );
