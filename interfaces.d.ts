@@ -1,4 +1,5 @@
 import { RenterApplicationStatus } from "@/app/dashboard/renter/applications/components/RtApplicationStatus";
+import { inter } from "@/lib/utils/fonts";
 
 interface ListingCardInterface extends ListingInterface {
   propertyDescription?: string;
@@ -145,4 +146,18 @@ export interface SentimentResponse {
     transcriptionSecondsCount: number;
   };
   sentiments: SentimentSpan[];
+}
+
+
+export interface SanityReference {
+  _ref: string;
+  _type: string;
+  _key: string;
+}
+
+export interface HowTo {
+  title: string;
+  description: string;
+  video_url: string;
+  tags: { tag: string }[]
 }

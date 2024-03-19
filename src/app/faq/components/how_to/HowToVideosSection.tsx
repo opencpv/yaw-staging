@@ -1,29 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import HowToVideo from "./HowToVideo";
 import Button from "@/components/__shared/ui/button/Button";
+import LoadingIndicator from "@/components/LoadingIndicator";
+import { HowTo } from "../../../../../interfaces";
 
-type Props = {};
+type Props = { content: HowTo[] };
 
 const HowToVideosSection = (props: Props) => {
+  const [displayCount, setDisplayCount] = useState(8); // Initial number of items to display
+
+  const handleLoadMore = () => {
+    // Increase the number of items to display by a certain amount (e.g., 3)
+    if (displayCount >= props.content.length) {
+      setDisplayCount(props.content.length);
+      return;
+    }
+    setDisplayCount((prevCount) => prevCount + 4);
+  };
   return (
-    <div>
-      <div
-        className="gap-x-5 gap-y-20 space-y-10 xs:grid xs:space-y-0"
-        style={{ gridTemplateColumns: "repeat(auto-fit, minmax(350px,1fr))" }}
-      >
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((_, idx) => (
-          <HowToVideo
-            key={idx + 1}
-            src="https://www.youtube.com/embed/BUE2LaSzijM?si=8eueNCIhs07gOvFO"
-            heading="Lorem ipsum dolor sit amet, consectetur adipisicing."
-            body="Lorem ipsum dolor sit amet, consectetur adipisicing.Lorem ipsum dolor sit amet, consectetur adipisicing."
-          />
-        ))}
-      </div>
-      <div className="flex justify-center pt-14">
-        <Button color="accent">Load more</Button>
-      </div>
-    </div>
+    <>
+      {props.content ? (
+        <div>
+          <div
+            className="gap-x-5 gap-y-20 space-y-10 xs:grid xs:space-y-0"
+            style={{
+              gridTemplateColumns: "repeat(auto-fit, minmax(350px,1fr))",
+            }}
+          >
+            {props.content.map((item: HowTo, idx: number) => (
+              <HowToVideo
+                key={idx}
+                src={item.video_url}
+                heading={item.title}
+                body={item.description}
+              />
+            ))}
+          </div>
+          <div className="flex justify-center pt-14">
+            {displayCount < props.content.length && (
+              <Button color="accent" onClick={handleLoadMore}>
+                Load more
+              </Button>
+            )}
+            {props.content.length === 0 && <p>No results found</p>}
+          </div>
+        </div>
+      ) : (
+        <LoadingIndicator />
+      )}
+    </>
   );
 };
 
