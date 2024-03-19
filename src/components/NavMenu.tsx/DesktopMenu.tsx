@@ -9,6 +9,7 @@ import { useFaqHowToSwitchStore } from "@/store/faq/useFaqStore";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { useMenuLinks } from "./content";
+import Link from "next/link";
 
 export const DesktopMenu = (props: any) => {
   const { linksAfterLogin, linksBeforeLogin } = useMenuLinks();
@@ -29,47 +30,51 @@ export const DesktopMenu = (props: any) => {
         className={"flex w-max flex-col gap-10 border-r border-r-white pr-10"}
       >
         {/* main links before login */}
-        {!user &&
-          linksBeforeLogin.map(
-            (r, idx) =>
-              r.name.toLowerCase() !== "more" && (
-                <>
-                  {r.name.toLowerCase() === "faq" ? (
-                    <MenuLink
-                      key={idx}
-                      active={active === idx}
-                      linkObject={r}
-                      onClick={() => {
-                        setFaqActivePage("faq");
-                        if (r?.sub) {
-                          setActive(idx as number);
-                          setSubId(null);
-                        } else {
-                          setActive(null);
-                          router.push(r?.url);
-                        }
-                      }}
-                    />
-                  ) : (
-                    <MenuLink
-                      key={idx}
-                      active={active === idx}
-                      linkObject={r}
-                      onClick={() => {
-                        if (r?.sub) {
-                          setActive(idx as number);
-                          setSubId(null);
-                        } else {
-                          setActive(null);
-                          router.push(r?.url);
-                          // props?.toggleMenu();
-                        }
-                      }}
-                    />
-                  )}
-                </>
-              ),
-          )}
+        {!user && (
+          <>
+            <Link href="uppercase text-white text-2xl">Sign in</Link>
+            {linksBeforeLogin.map(
+              (r, idx) =>
+                r.name.toLowerCase() !== "more" && (
+                  <>
+                    {r.name.toLowerCase() === "faq" ? (
+                      <MenuLink
+                        key={idx}
+                        active={active === idx}
+                        linkObject={r}
+                        onClick={() => {
+                          setFaqActivePage("faq");
+                          if (r?.sub) {
+                            setActive(idx as number);
+                            setSubId(null);
+                          } else {
+                            setActive(null);
+                            router.push(r?.url);
+                          }
+                        }}
+                      />
+                    ) : (
+                      <MenuLink
+                        key={idx}
+                        active={active === idx}
+                        linkObject={r}
+                        onClick={() => {
+                          if (r?.sub) {
+                            setActive(idx as number);
+                            setSubId(null);
+                          } else {
+                            setActive(null);
+                            router.push(r?.url);
+                            // props?.toggleMenu();
+                          }
+                        }}
+                      />
+                    )}
+                  </>
+                ),
+            )}
+          </>
+        )}
 
         {/* main links after login */}
         {user &&
