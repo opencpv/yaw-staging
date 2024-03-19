@@ -4,20 +4,30 @@ import { SanityDocument } from "next-sanity";
 import {
   FAQ_CATEGORIES_QUERY,
   FAQ_PAGE_QUERY,
-  HOME_PAGE_QUERY,
+  HOW_TO_PAGE_QUERY,
+  HOW_TO_TAGS_QUERY,
 } from "@/lib/utils/sanity/queries";
-import ClientPageWrapper from "@/components/__shared/ClientPageWrapper";
 import FaqPageWrapper from "./components/FaqPageWrapper";
 const FAQ = async () => {
-  const initial = await loadQuery<SanityDocument[]>(FAQ_PAGE_QUERY);
-  const data = initial.data;
+  const initialFaqData = await loadQuery<SanityDocument[]>(FAQ_PAGE_QUERY);
+  const faqData = initialFaqData.data;
+  const initialHowToData = await loadQuery<SanityDocument[]>(HOW_TO_PAGE_QUERY);
+  const howToData = initialHowToData.data;
+  const intialTagsData = await loadQuery<SanityDocument[]>(HOW_TO_TAGS_QUERY);
+  const tagsData = intialTagsData.data;
   const faqCategories = await loadQuery<SanityDocument[]>(FAQ_CATEGORIES_QUERY);
+
   return (
     <>
       <Head>
         <title>FAQ - RentRightGh</title>
       </Head>
-      <FaqPageWrapper data={data} faqCategories={faqCategories.data} />
+      <FaqPageWrapper
+        tagsData={tagsData}
+        faqData={faqData}
+        howToData={howToData}
+        faqCategories={faqCategories.data}
+      />
     </>
   );
 };
