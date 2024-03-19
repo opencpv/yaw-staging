@@ -1,7 +1,7 @@
-export const links = [
+export const linksAfterLogin = [
   {
     id: "#",
-    url: "/login",
+    url: "",
     name: "HIRE US",
   },
   {
@@ -38,6 +38,8 @@ export const links = [
   // },
   { id: "#", url: "/moving-sale", name: "MOVING SALE" },
   { id: "#", url: "/blog", name: "AREA VIBES" },
+  { id: "#", url: "/about", name: "OUR SERVICES" },
+  { id: "#", url: "/faq", name: "FAQ" },
   {
     id: "#",
     url: "",
@@ -73,11 +75,9 @@ export const links = [
       },
     ],
   },
-  { id: "#", url: "/about", name: "OUR SERVICES" },
-  { id: "#", url: "/faq", name: "FAQ" },
 ];
 
-export const bottomLinks = [
+export const bottomLinksAfterLogin = [
   // COMMENTED OUT FOR NOW DON'T DELETE !!!
   // {
   //   url: "/about",

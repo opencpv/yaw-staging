@@ -3,13 +3,14 @@ import * as Collapsible from "@radix-ui/react-collapsible";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ExpandCircle, FadeInOut } from "@/lib/animations";
-import { bottomLinks, bottomLinksBeforeLogin } from "./content";
+import { bottomLinksAfterLogin, bottomLinksBeforeLogin } from "./content";
 import { FaChevronDown } from "react-icons/fa";
 import MenuBottomLinks from "./components/MenuBottomLinks";
 import MenuArea from "./components/MenuArea";
 import MenuScrollDownButton from "./components/MenuScrollDownButton";
 import { useIsElementInViewport } from "./hooks/useIsElementInViewport";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
+import { useAppStore } from "@/store/dashboard/AppStore";
 
 export default function Menu(props: any) {
   const [hide, setHide] = useState(false);
@@ -19,6 +20,7 @@ export default function Menu(props: any) {
   const bottomLinksRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLElement>(null);
   const isInViewport = useIsElementInViewport(bottomLinksRef, menuRef);
+  const { user } = useAppStore();
 
   useEffect(() => {
     // focus the menu for accessibility
@@ -131,7 +133,7 @@ export default function Menu(props: any) {
 
       {/* bottom links */}
       <MenuBottomLinks
-        links={true ? bottomLinksBeforeLogin : bottomLinks}
+        links={user ? bottomLinksAfterLogin : bottomLinksBeforeLogin}
         ref={bottomLinksRef}
       />
     </Root>

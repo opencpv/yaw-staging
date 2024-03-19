@@ -11,16 +11,22 @@ export const useUserData = () => {
       setLoading(true);
       const session = JSON.parse(localStorage.getItem("session") as string);
       try {
-        let { data } = await supabase?.auth?.getUser(session?.access_token);
+        let { data: userDetails } = await supabase?.auth?.getUser(
+          session?.access_token,
+        );
         let { data: profiles, error } = await supabase
           .from("profiles")
           .select("*")
-          .eq("id", data?.user?.id as string);
+          .eq("id", userDetails?.user?.id as string);
         const profileData = {
           ...(profiles && profiles[0]),
-          email: data?.user?.email,
+          email: userDetails?.user?.email,
         };
-        setUser(profileData);
+        if (userDetails.user) {
+          setUser(profileData);
+        } else {
+          setUser(null); // prevents creating a user object with email
+        }
       } catch (error) {
         console.error(error);
       } finally {
@@ -30,4 +36,6 @@ export const useUserData = () => {
 
     getUserData();
   }, [setUser]);
+
+  return { loading };
 };

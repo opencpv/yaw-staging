@@ -21,7 +21,6 @@ const Navbar = (props: any) => {
   const [isScrolling, setIsScrolling] = useState<boolean>(false);
   const { toggle, setToggle } = useMenuStore();
   const { user } = useAppStore();
-  const userSession = useUserSession();
 
   useHideDocumentScrollBar(toggle);
 
@@ -43,7 +42,7 @@ const Navbar = (props: any) => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [pathname, userSession]);
+  }, [pathname]);
 
   const shouldChangeColor =
     (isScrolling && pathname?.includes("/properties/")) ||
