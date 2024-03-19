@@ -20,7 +20,6 @@ const FaqPageWrapper = ({
   faqCategories: any[];
 }) => {
   const activePage = useFaqHowToSwitchStore((state) => state.activePage);
-  console.log(tagsData);
   return (
     <>
       <Navbar />
@@ -31,7 +30,7 @@ const FaqPageWrapper = ({
           <FaqPage data={faqData} faqCategories={faqCategories} />
         )}
         {LowerCase(activePage as string) === "how to" && (
-          <HowToPage tags={tagsData} />
+          <HowToPage tags={tagsData} howtos={howToData} />
         )}
       </main>
       <Footer />
