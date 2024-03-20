@@ -38,6 +38,7 @@ const ModalBody = ({ onClose }: { onClose: () => void }) => {
   const bodyRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
+    // to prevent click propagation i.e prevent buttons from getting clicked clicked when modal is open
     if (bodyRef.current) {
       bodyRef.current.style.pointerEvents = "none";
       setTimeout(() => {

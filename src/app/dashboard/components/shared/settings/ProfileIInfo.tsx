@@ -157,6 +157,7 @@ const ProfileInfo = () => {
                           whatsapp: values.whatsapp,
                           phone,
                           bio: values.bio,
+                          full_name: `${values.firstName} ${values.lastName}`,
                         })
                         .eq("id", user.id)
                         .select();
