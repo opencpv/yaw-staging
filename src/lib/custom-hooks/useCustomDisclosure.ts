@@ -3,23 +3,34 @@ import { toast } from "react-toastify";
 import { E164Number, CountryCode } from "libphonenumber-js/core";
 
 export const useToastDisclosure = () => {
-  const onOpen = (message: string, timed?: boolean) => {
-    const toastId = toast(message, {
-      position: "top-center",
-      autoClose: timed ? 4000 : false,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-      progressStyle: { background: "#F1B346" },
-      bodyStyle: { paddingRight: "2.5rem" },
-      style: {
-        marginRight: "auto",
-        marginLeft: "auto",
+  const onOpen = (
+    message: string,
+    timed?: boolean,
+    state?: "success" | "error",
+  ) => {
+    const toastId = toast(
+      state === "success"
+        ? `👍️ ${message}`
+        : state === "error"
+          ? `❌ ${message}`
+          : message,
+      {
+        position: "top-center",
+        autoClose: timed ? 4000 : false,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        progressStyle: { background: "#F1B346" },
+        bodyStyle: { paddingRight: "2.5rem" },
+        style: {
+          marginRight: "auto",
+          marginLeft: "auto",
+        },
       },
-    });
+    );
 
     // Add event listener to dismiss the toast when the user scrolls
     window.addEventListener("scroll", () => {

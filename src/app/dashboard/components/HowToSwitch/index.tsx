@@ -10,6 +10,7 @@ import { supabase } from "@/supabase/client";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useRouter } from "next/navigation";
 import { Role } from "@/store/dashboard/dashboardStore";
+import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 
 type Props = {
   open: boolean;
@@ -21,6 +22,7 @@ function HowToSwitch({ open }: Props) {
   const [firstTimeRole, setFirstTimeRole] = useLocalStorage<Role | undefined>(
     "first-time-role",
   );
+  const { onOpen } = useToastDisclosure();
 
   useEffect(() => {
     setOpen(open);
@@ -46,6 +48,7 @@ function HowToSwitch({ open }: Props) {
   const handleRoleIfFirstTime = () => {
     if (firstTimeRole) {
       router.push(`/dashboard/${firstTimeRole}/settings`);
+      onOpen("Please complete your profile");
       setTimeout(() => {
         setFirstTimeRole(undefined);
         localStorage.removeItem("first-time-role");

@@ -1,15 +1,16 @@
-// @ts-nocheck
 import { styled } from "@stitches/react";
 import Image from "next/image";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { AiOutlineLink } from "react-icons/ai";
-import { FaFacebook, FaLinkedin, FaTwitter, FaWhatsapp } from "react-icons/fa";
+import { FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { IoLogoWhatsapp } from "react-icons/io";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import Loader from "@/components/__shared/loader/Loader";
-import { UserType, useAppStore } from "@/store/dashboard/AppStore";
+import { useAppStore } from "@/store/dashboard/AppStore";
 import PhoneNumberInputv2 from "@/components/__shared/PhoneInputv2";
+import { supabase } from "@/supabase/client";
+import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 
 interface Props {
   icon: any;
@@ -51,20 +52,28 @@ const IconField = ({
   );
 };
 
-const ProfileInfo = ({
-  profileData,
-  supabase,
-}: {
-  profileData: UserType | null;
-  supabase: any;
-}) => {
+const ProfileInfo = () => {
   const [countries, setCountries] = useState([]);
-  const [currentData, setCurrentData] = useState<any>({});
   const [phone, setphone] = useState<string>("");
   const [code, setCode] = useState<string>("");
   const [submitLoading, setSubmitLoading] = useState(false);
   const user = useAppStore((state) => state.user);
   const [loading, setloading] = useState(true);
+  const { onOpen } = useToastDisclosure();
+
+  const firstName = useMemo(() => {
+    // try to get firstname from full_name
+    if (user?.full_name) {
+      return user?.full_name.split(" ")[0];
+    }
+  }, [user?.full_name]);
+
+  const lastName = useMemo(() => {
+    // try to get lastname from full_name
+    if (user?.full_name) {
+      return user?.full_name.split(" ").slice(1).join(" ");
+    }
+  }, [user?.full_name]);
 
   useEffect(() => {
     if (user) {
@@ -81,9 +90,21 @@ const ProfileInfo = ({
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
+  }, []);
 
-    setCurrentData(profileData);
-  }, [profileData]);
+  const initialValues = {
+    firstName: user?.firstname || firstName,
+    lastName: user?.lastname || lastName,
+    email: user?.email,
+    user,
+    country: user?.country,
+    twitter: user?.twitter,
+    facebook: user?.facebook,
+    linkedIn: user?.linkedin,
+    whatsapp: user?.whatsapp,
+    bio: user?.bio,
+    number: user?.phone,
+  };
 
   return (
     <Root>
@@ -116,24 +137,11 @@ const ProfileInfo = ({
                 <Loader />
               ) : (
                 <Formik
-                  key={JSON.stringify(profileData)}
-                  initialValues={{
-                    firstName: user?.firstname,
-                    lastName: user?.lastname,
-                    email: user?.email,
-                    user,
-                    country: user?.country,
-                    twitter: user?.twitter,
-                    facebook: user?.facebook,
-                    linkedIn: user?.linkedin,
-                    whatsapp: user.whatsapp,
-                    bio: user?.bio,
-                    number: user?.phone,
-                  }}
+                  key={JSON.stringify(user)}
+                  initialValues={initialValues}
                   onSubmit={async (values) => {
                     const dto = values;
-                    delete values.number; // typescript error
-                    // values.number = null; // maybe alternative?
+                    delete values.number;
                     dto.number = phone;
                     setSubmitLoading(true);
                     try {
@@ -150,13 +158,19 @@ const ProfileInfo = ({
                           phone,
                           bio: values.bio,
                         })
-                        .select()
-                        .eq("id", user.id);
+                        .eq("id", user.id)
+                        .select();
 
-                      console.log("Response data:", data);
+                      if (data)
+                        onOpen(
+                          "Profile updated successfully",
+                          undefined,
+                          "success",
+                        );
                       if (error) throw error;
                     } catch (error) {
                       console.log("Error updating profile:", error);
+                      onOpen("Error updating profile", undefined, "error");
                     } finally {
                       setSubmitLoading(false);
                     }
@@ -257,7 +271,7 @@ const ProfileInfo = ({
                             className={"form-input"}
                             label={"LinkedIn"}
                             type={"text"}
-                            placeholder="https://facebook.com/abcd"
+                            placeholder="https://linkedin.com/abcd"
                           />
                           <IconField
                             icon={<FaFacebook size={24} color="black" />}
@@ -265,7 +279,7 @@ const ProfileInfo = ({
                             className={"form-input"}
                             label={"Facebook"}
                             type={"text"}
-                            placeholder="https://linkedin.com/abcd"
+                            placeholder="https://facebook.com/abcd"
                           />
                           <IconField
                             icon={<IoLogoWhatsapp size={24} color="black" />}
