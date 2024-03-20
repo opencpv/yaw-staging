@@ -31,24 +31,21 @@ function GetNotifiedInput() {
     >
       <div className="flex w-full flex-col gap-4">
         <div
-          className={`flex items-center ${
-            showInputs ? "justify-center" : "justify-start"
-          } gap-3 sm:justify-start`}
+          className={`flex items-center justify-start gap-3 sm:justify-start`}
         >
-          <p
-            className="2xl:text-[1.5625rem text-left text-20 font-semibold
-          leading-[2.1875rem] text-[#F2B94E] xs:whitespace-nowrap"
-          >
-            Click here to get notified!
-          </p>
           <button
-            className="appearance-none rounded-full hover:bg-accent-50"
+            className="rounded-full-50 group flex appearance-none items-center justify-start gap-4"
             onClick={() => setShowInputs((init: boolean) => !init)}
           >
-            {" "}
+            <p
+              className="2xl:text-[1.5625rem text-left text-20 font-semibold
+          leading-[2.1875rem] text-[#F2B94E] xs:whitespace-nowrap"
+            >
+              Click here to get notified!
+            </p>
             <MdOutlineKeyboardArrowRight
               size="25"
-              className="text-[#F2B94E] transition hover:text-black "
+              className=" rounded-full text-[#F2B94E]  transition-all group-hover:bg-accent-50 group-hover:text-black "
             />
           </button>
         </div>
