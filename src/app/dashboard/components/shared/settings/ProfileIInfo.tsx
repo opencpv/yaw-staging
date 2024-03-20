@@ -69,7 +69,6 @@ const ProfileInfo = ({
   useEffect(() => {
     if (user) {
       setloading(false);
-      console.log("user", user);
     }
   }, [user]);
 

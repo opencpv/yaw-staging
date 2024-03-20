@@ -18,7 +18,6 @@ const initialValues = {
 };
 
 function CompleteYourLogin({ open }: Props) {
-  const { currentRole, setCurrentRole } = useDashboardStore();
   const [_open, setOpen] = useState(false);
   const [howToSwitchOpen, setHowToSwitchOpen] = useState(false);
   const [firstTimeRole, setFirstTimeRole] = useLocalStorage<Role | undefined>(
@@ -63,7 +62,14 @@ function CompleteYourLogin({ open }: Props) {
                           setFirstTimeRole(values.role.toLowerCase() as Role);
                         }}
                       >
-                        <Form className="flex flex-col gap-5">
+                        <Form
+                          className="flex flex-col gap-5"
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                            }
+                          }}
+                        >
                           <CustomSelect
                             name="role"
                             label="What is your role?"

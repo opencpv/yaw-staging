@@ -13,7 +13,6 @@ const Dashboard = () => {
   const { user, setUser } = useAppStore();
   const { currentRole } = useDashboardStore();
   const router = useRouter();
-  const [firstTimeRole] = useLocalStorage<Role | undefined>("first-time-role");
 
   useUserData();
 
@@ -32,11 +31,12 @@ const Dashboard = () => {
     getProperties();
   }, [setUser]);
 
-  // useEffect(() => {
-  //   if (!firstTimeRole) {
-  //     router.replace(`/dashboard/${currentRole}/overview`);
-  //   }
-  // }, [router, currentRole, firstTimeRole]);
+  useEffect(() => {
+    const firstTimeRole = localStorage.getItem("first-time-role");
+    if (!firstTimeRole || firstTimeRole !== currentRole) {
+      router.replace(`/dashboard/${currentRole}/overview`);
+    }
+  }, [router, currentRole]);
 
   return (
     <>

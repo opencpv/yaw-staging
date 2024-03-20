@@ -1,5 +1,3 @@
-"use client";
-import { useEffect } from "react";
 import Navbar from "@/components/__shared/Navbar";
 import Footer from "@/components/__shared/footer/Footer";
 import ScrollTopAndSocial from "@/components/ui/ScrollTopAndSocial";
@@ -13,8 +11,6 @@ import FeedbackButton from "@/components/feedback/FeedbackButton";
 import AOSWrapper from "@/components/__shared/AOSWrapper";
 
 export default function Home() {
-
-
   return (
     <>
       <Navbar />

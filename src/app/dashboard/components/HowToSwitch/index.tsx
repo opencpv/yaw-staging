@@ -45,9 +45,10 @@ function HowToSwitch({ open }: Props) {
 
   const handleRoleIfFirstTime = () => {
     if (firstTimeRole) {
-      router.push(`/dashboard/${firstTimeRole}/overview`);
+      router.push(`/dashboard/${firstTimeRole}/settings`);
       setTimeout(() => {
         setFirstTimeRole(undefined);
+        localStorage.removeItem("first-time-role");
       }, 300);
     }
   };
@@ -85,10 +86,18 @@ function HowToSwitch({ open }: Props) {
               <div className="mt-20 flex w-full justify-center">
                 <Button
                   className="flex h-[52px] w-full max-w-[151px] items-center justify-center rounded-lg bg-[#073B3A] font-semibold text-white"
+                  role="button"
                   onClick={() => {
                     setOpen(false);
                     handleFirstTimeUpdate();
                     handleRoleIfFirstTime();
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      setOpen(false);
+                      handleFirstTimeUpdate();
+                      handleRoleIfFirstTime();
+                    }
                   }}
                 >
                   Continue
