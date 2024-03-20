@@ -18,7 +18,7 @@ const Avatar = ({ image, name, className, email, size, display }: Props) => {
     <>
       {display !== undefined && display ? (
         <Image
-          src={image}
+          src={image || ""}
           alt={(name as string) || "avatar"}
           width={50}
           height={50}

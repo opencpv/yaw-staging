@@ -1,4 +1,5 @@
 "use client";
+import { useUserData } from "@/lib/custom-hooks/database/useUserData";
 import { LowerCase } from "@/lib/utils/stringManipulation";
 import supabase from "@/lib/utils/supabaseClient";
 import { useAppStore } from "@/store/dashboard/AppStore";
@@ -14,6 +15,8 @@ const Dashboard = () => {
   const router = useRouter();
   const [firstTimeRole] = useLocalStorage<Role | undefined>("first-time-role");
 
+  useUserData();
+
   useEffect(() => {
     const getProperties = async () => {
       let { data: property, error } = await supabase
@@ -27,17 +30,13 @@ const Dashboard = () => {
       }
     };
     getProperties();
+  }, [setUser]);
 
-    // if (!firstTimeRole) {
-    //   if (currentRole === "renter") {
-    //     router.replace("/dashboard/renter/overview");
-    //   } else if (currentRole === "lister") {
-    //     router.replace("/dashboard/lister/overview");
-    //   }
-    // } else {
-    //   router.replace("/dashboard/renter/overview");
-    // }
-  }, [router, currentRole, setUser, firstTimeRole]);
+  // useEffect(() => {
+  //   if (!firstTimeRole) {
+  //     router.replace(`/dashboard/${currentRole}/overview`);
+  //   }
+  // }, [router, currentRole, firstTimeRole]);
 
   return (
     <>

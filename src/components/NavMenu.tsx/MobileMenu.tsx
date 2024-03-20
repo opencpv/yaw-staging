@@ -143,6 +143,7 @@ export const MobileMenu = (props: any) => {
         <Link
           href="/login"
           className="text-2xl font-semibold uppercase text-white"
+          onClick={() => setToggle(false)}
         >
           Get Started
         </Link>
