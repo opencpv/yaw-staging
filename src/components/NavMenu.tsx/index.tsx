@@ -1,9 +1,7 @@
 import { styled } from "@stitches/react";
-import * as Collapsible from "@radix-ui/react-collapsible";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { ExpandCircle, FadeInOut } from "@/lib/animations";
-import { FaChevronDown } from "react-icons/fa";
+import { ExpandCircle } from "@/lib/animations";
 import MenuBottomLinks from "./components/MenuBottomLinks";
 import MenuArea from "./components/MenuArea";
 import MenuScrollDownButton from "./components/MenuScrollDownButton";
@@ -79,23 +77,26 @@ export default function Menu(props: any) {
     <Root
       ref={menuRef}
       tabindex="0"
-      className="hidden-scrollbar menu-bg fixed top-0 z-50 min-h-[100svh] w-full gap-20 overflow-y-scroll pb-20 lg:pb-0"
+      className="hidden-scrollbar menu-bg fixed top-0 z-50 min-h-svh w-full gap-20 overflow-y-scroll pb-20 lg:pb-0"
       variants={ExpandCircle}
       exit={{
         ...ExpandCircle.closed,
         transitionEnd: {
           // display: 'none',
+          opacity: 0,
         },
       }}
       animate={
         props?.isOpen
           ? {
               ...ExpandCircle.open(),
+              opacity: 1,
             }
           : {
               ...ExpandCircle.closed,
               transitionEnd: {
                 // display: 'none',
+                opacity: 0,
               },
             }
       }
@@ -103,6 +104,7 @@ export default function Menu(props: any) {
         ...ExpandCircle.closed,
         transitionEnd: {
           // display: 'none',
+          opacity: 0,
         },
       }}
       {...props}

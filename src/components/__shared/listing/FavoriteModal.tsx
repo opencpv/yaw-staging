@@ -50,7 +50,7 @@ const ModalHeader = ({ onClose }: ModalHeaderProps) => {
           color="black"
           variant="outline"
           className="h-6 w-fit rounded-3xl px-4 text-sm hover:bg-[#E7F8F2]"
-          onClick={async () => {
+          onClick={async (e) => {
             if (!userSession) {
               setSignInModalOpen(true);
             } else {

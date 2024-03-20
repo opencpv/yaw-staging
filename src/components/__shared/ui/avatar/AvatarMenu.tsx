@@ -40,7 +40,16 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
       ? `${user?.firstname} ${user?.lastname}`
       : null;
 
-  // console.log("session avi", userSession);
+  const handleSignOut = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      onOpen(error.message, undefined, "error");
+      console.log(error);
+    } else {
+      setUser(null);
+      router.refresh();
+    }
+  };
 
   return (
     <Popover>
@@ -112,17 +121,7 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
           {/* Logout */}
           <li
             className="deep-green-hover cursor-pointer space-y-5 py-4 pb-5 pl-8 pr-4 pt-10"
-            onClick={async () => {
-              const { error } = await supabase.auth.signOut();
-              if (error) {
-                onOpen("❌ " + error.message);
-                console.log(error);
-              } else {
-                setUser(null);
-                router.push("/");
-                router.refresh();
-              }
-            }}
+            onClick={handleSignOut}
           >
             <div className="flex items-center gap-2">
               <TbLogout size={20} />
