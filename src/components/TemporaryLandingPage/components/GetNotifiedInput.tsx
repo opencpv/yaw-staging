@@ -42,11 +42,14 @@ function GetNotifiedInput() {
             Click here to get notified!
           </p>
           <button
-            className="appearance-none hover:bg-accent-50 rounded-full"
+            className="appearance-none rounded-full hover:bg-accent-50"
             onClick={() => setShowInputs((init: boolean) => !init)}
           >
             {" "}
-            <MdOutlineKeyboardArrowRight size="25"  className="text-[#F2B94E] hover:text-black transition "  />
+            <MdOutlineKeyboardArrowRight
+              size="25"
+              className="text-[#F2B94E] transition hover:text-black "
+            />
           </button>
         </div>
         {showInputs && <GetNotifiedInputTabs />}{" "}
@@ -89,7 +92,7 @@ function GetNotifiedInput() {
 
               <Button
                 type="submit"
-                className="hope h-[3.25rem] w-full rounded-lg bg-[#095B5A] px-10 py-[15px] font-semibold text-white"
+                className="hope mt-3 h-[3.25rem] w-full rounded-lg bg-[#095B5A] px-10 py-[15px] font-semibold text-white"
               >
                 Subscribe
               </Button>
@@ -108,6 +111,7 @@ const Root = styled("div", {
   ".PhoneInput input": {
     height: "3.25rem",
     backgroundColor: "#F9F9F9",
+    flex: 1,
   },
 });
 export default GetNotifiedInput;

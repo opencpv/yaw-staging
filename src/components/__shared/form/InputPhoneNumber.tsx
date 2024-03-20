@@ -42,7 +42,7 @@ const InputPhoneNumber: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
   };
 
   return (
-    <div className="space-y-4">
+    <div className="w-full space-y-4    ">
       {props.label && <label className="text-shade-300">{props.label}</label>}
       <PhoneInput
         id={id}
