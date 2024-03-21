@@ -89,29 +89,20 @@ const Pagination = () => {
     }
   }, [pathname, currentRole]);
 
-  const handleScrollToRight = () => {
-    const element: any = scrollableRef.current;
-    const scrollableWidth = element.scrollWidth;
-    console.log(element.scrollLeft + element.clientWidth, scrollableWidth);
-    if (element.scrollLeft + element.clientWidth >= scrollableWidth) {
-      setAtEnd(true);
-    } else {
-      element.scrollLeft += element.clientWidth;
-    }
-  };
+  const swiperRef = useRef<any>();
 
-  const handleScrollToLeft = () => {
-    const element: any = scrollableRef.current;
-    const scrollableWidth = element.scrollWidth;
-    if (element.scrollLeft <= 0) {
-      setAtEnd(false);
-      console.log("here");
-    } else {
-      element.scrollLeft += -element.clientWidth;
-      console.log("er");
+  useEffect(() => {
+    if (window.innerWidth < 640) {
+      swiperRef.current.classList.remove("swiper");
     }
-    console.log(element.scrollLeft);
-  };
+    if (swiperRef.current && vw?.width) {
+      if (vw?.width < 640) {
+        swiperRef.current.classList.remove("swiper");
+      } else {
+        swiperRef.current.classList.add("swiper");
+      }
+    }
+  }, [vw.width]);
 
   return (
     <Root
@@ -128,6 +119,7 @@ const Pagination = () => {
         modules={[FreeMode, Scrollbar, Mousewheel]}
         className="mySwiper invisible order-2 hidden h-fit w-full ssm:order-1 md:visible"
         wrapperClass="justify-between"
+        ref={swiperRef}
       >
         {currentRole === "renter" &&
           PgRoutesRenter.map(
@@ -169,10 +161,10 @@ const Pagination = () => {
       </Button>
 
       {user && (
-        <div className="relative order-1 my-auto mr-auto flex items-center gap-5 ssm:order-3 ssm:hidden">
+        <div className="relative order-1 my-auto mr-auto flex w-full flex-1 items-center gap-5 ssm:order-3 ssm:hidden">
           <AvatarMenu />
           <span className="text-shade-200">
-            {user?.firstname} {user?.lastname}
+            {user.firstname || user.lastname}
           </span>
         </div>
       )}

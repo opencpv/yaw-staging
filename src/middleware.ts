@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const middleware = async (req: NextRequest) => {
   const res = NextResponse.next();
+  // create a supabase client configured to use cookies
   const supabase = createMiddlewareClient({ req, res });
   const {
     data: { session },
@@ -14,6 +15,7 @@ export const middleware = async (req: NextRequest) => {
   }
 
   if (error) {
+    console.log(error);
     return NextResponse.redirect(new URL("/login", req.url));
   }
 
@@ -25,7 +27,7 @@ export const middleware = async (req: NextRequest) => {
 export const config = {
   matcher: [
     /**
-     * Match all request paths "/dashboard/currentRole/" excepts for ones starting with:
+     * Match all request paths "/dashboard/[currentRole]/" excepts for ones starting with:
      * - settings
      */
     "/dashboard/renter/((?!settings).*)",

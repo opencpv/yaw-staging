@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "@/styles/custom-swiper.css";
@@ -12,38 +12,30 @@ import "swiper/css";
 import "swiper/css/grid";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import useViewport from "@/lib/custom-hooks/useViewport";
+import { useRouter } from "next/navigation";
 
 const SliderGrid = ({ items }: SliderGridProps) => {
-  // useEffect(() => {
-  //   let swiperInstance = false;
+  const [shouldRefresh, setShouldRefresh] = useState(false);
+  // console.log(shouldRefresh);
 
-  //   const initializeSwiper = () => {
-  //     // swiperInstance = new Swiper('.swiper-grid', {
-  //     //  {}
-  //     // });
-  //   };
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 900) {
+        // console.log("crossed 909");
+        setShouldRefresh(true);
+      } else if (shouldRefresh && window.innerWidth >= 900) {
+        window.location.reload();
+        setShouldRefresh(false);
+      }
+    };
 
-  //   initializeSwiper();
+    window.addEventListener("resize", handleResize);
 
-  //   const handleResize = () => {
-  //     // Detect the breakpoint and re-initialize Swiper
-  //     if (window.innerWidth === 640) {
-  //       // initializeSwiper();
-  //       // alert("reached 640px !")
-
-  //     }
-  //   };
-
-  //   window.addEventListener('resize', handleResize);
-
-  //   return () => {
-  //     window.removeEventListener('resize', handleResize);
-  //     // Destroy Swiper instance on component unmount
-  //     // if (swiperInstance) {
-  //     //   swiperInstance.destroy();
-  //     // }
-  //   };
-  // }, []);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [shouldRefresh]);
 
   return (
     <div className="mb-10 h-full w-full">
