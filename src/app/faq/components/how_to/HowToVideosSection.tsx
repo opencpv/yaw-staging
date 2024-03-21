@@ -8,7 +8,7 @@ const HowToVideosSection = (props: Props) => {
   return (
     <div>
       <div
-        className="gap-x-5 gap-y-20 space-y-10 xs:grid xs:space-y-0"
+        className="gap-x-5 gap-y-16 space-y-16 xs:grid xs:space-y-0"
         style={{ gridTemplateColumns: "repeat(auto-fit, minmax(350px,1fr))" }}
       >
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((_, idx) => (
