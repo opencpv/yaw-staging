@@ -16,7 +16,7 @@ const page = async () => {
   return (
     <section className="h-screen bg-terms-bg bg-cover">
       <nav className="w-full">{data && <TermsNav data={data[0]} />}</nav>
-      <main className="wrapper flex w-full flex-col items-center justify-center">
+      <main className="wrapper flex w-full flex-col items-center justify-center pt-0">
         <div className={`flex h-full w-full flex-col`}>
           {data && (
             <div className="flex h-full w-full items-center justify-center px-4 pb-4 pl-5 ">

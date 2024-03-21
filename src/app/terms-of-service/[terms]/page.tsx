@@ -14,7 +14,7 @@ const Terms = async (props: any) => {
     <>
       {data && <TermsNav data={data[0]} primary={false} />}
       <main className="flex flex-col items-center justify-center">
-        <div className={`wrapper w-full`}>
+        <div className={`wrapper w-full max-lg:pt-0`}>
           {data && <TermsMainView data={currentTerms[0]} />}
         </div>
         <Footer />
