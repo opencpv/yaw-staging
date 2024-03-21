@@ -13,7 +13,7 @@ const Authors = ({ authors }: Props) => {
   const [currentAuthorIndex, setCurrentAuthorIndex] = useState<number>(0);
 
   return (
-    <div key={authors[currentAuthorIndex]?.id} className="space-y-1">
+    <div key={authors[currentAuthorIndex]?._id} className="space-y-1">
       <div className="flex max-w-lg flex-wrap items-center gap-3 rounded-[5rem] bg-white p-5 shadow-large">
         <div className="relative h-20 w-20">
           <Image
@@ -46,7 +46,7 @@ const Authors = ({ authors }: Props) => {
         {authors.map((author, idx) => (
           <AuthorImageCircle
             key={idx + 1}
-            image={urlForImage(author.profile_image).url() as string}
+            image={urlForImage(author?.profile_image)?.url() as string}
             name={author.name}
             onClick={() => setCurrentAuthorIndex(idx as number)}
           />
