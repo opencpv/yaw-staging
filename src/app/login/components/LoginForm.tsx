@@ -1,11 +1,25 @@
 "use client";
-import { useAssets } from "@/lib/custom-hooks/useAssets";
+
 import { LoginButton } from "./LoginButton";
 import { useRouter } from "next/navigation";
 import Logo from "@/components/__shared/Logo";
 import ButtonMenu from "@/components/__shared/ui/button/ButtonMenu";
+import { useEffect } from "react";
+import { useAppStore } from "@/store/dashboard/AppStore";
+import { useUserData } from "@/lib/custom-hooks/database/useUserData";
 
 export const LoginForm = () => {
+  const router = useRouter();
+  const { user } = useAppStore();
+
+  useUserData();
+
+  useEffect(() => {
+    if (user) {
+      router.back();
+    }
+  }, [user, router]);
+
   return (
     <>
       <div className="relative flex w-full justify-center">

@@ -51,10 +51,6 @@ export const useMenuLinks = () => {
       name: "MORE",
       sub: [
         {
-          url: "/about",
-          name: "Our Services",
-        },
-        {
           url: "/faq",
           name: "FAQ",
         },

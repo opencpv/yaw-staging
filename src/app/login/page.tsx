@@ -3,15 +3,17 @@ import Head from "next/head";
 import Image from "next/image";
 import { LoginForm } from "./components/LoginForm";
 import { LoginFooter } from "./components/LoginFooter";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Login",
+};
 
 const Login = () => {
   const { images } = useAssets();
 
   return (
     <>
-      <Head>
-        <title>Login - RentRightGh</title>
-      </Head>
       <main className="hidden-scrollbar grid h-[100svh] max-h-[100svh] w-full grid-cols-1 overflow-y-auto bg-darkGreenBg lg:grid-cols-2">
         <div className="hidden min-h-screen w-full lg:relative lg:block">
           <Image

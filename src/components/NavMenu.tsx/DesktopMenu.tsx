@@ -30,57 +30,47 @@ export const DesktopMenu = (props: any) => {
         className={"flex w-max flex-col gap-10 border-r border-r-white pr-10"}
       >
         {/* main links before login */}
-        {!user && (
-          <>
-            <Link
-              href="/login"
-              className="text-2xl font-semibold uppercase text-white"
-              onClick={() => setToggle(false)}
-            >
-              Sign in
-            </Link>
-            {linksBeforeLogin.map(
-              (r, idx) =>
-                r.name.toLowerCase() !== "more" && (
-                  <>
-                    {r.name.toLowerCase() === "faq" ? (
-                      <MenuLink
-                        key={idx}
-                        active={active === idx}
-                        linkObject={r}
-                        onClick={() => {
-                          setFaqActivePage("faq");
-                          if (r?.sub) {
-                            setActive(idx as number);
-                            setSubId(null);
-                          } else {
-                            setActive(null);
-                            router.push(r?.url);
-                          }
-                        }}
-                      />
-                    ) : (
-                      <MenuLink
-                        key={idx}
-                        active={active === idx}
-                        linkObject={r}
-                        onClick={() => {
-                          if (r?.sub) {
-                            setActive(idx as number);
-                            setSubId(null);
-                          } else {
-                            setActive(null);
-                            router.push(r?.url);
-                            // props?.toggleMenu();
-                          }
-                        }}
-                      />
-                    )}
-                  </>
-                ),
-            )}
-          </>
-        )}
+        {!user &&
+          linksBeforeLogin.map(
+            (r, idx) =>
+              r.name.toLowerCase() !== "more" && (
+                <>
+                  {r.name.toLowerCase() === "faq" ? (
+                    <MenuLink
+                      key={idx}
+                      active={active === idx}
+                      linkObject={r}
+                      onClick={() => {
+                        setFaqActivePage("faq");
+                        if (r?.sub) {
+                          setActive(idx as number);
+                          setSubId(null);
+                        } else {
+                          setActive(null);
+                          router.push(r?.url);
+                        }
+                      }}
+                    />
+                  ) : (
+                    <MenuLink
+                      key={idx}
+                      active={active === idx}
+                      linkObject={r}
+                      onClick={() => {
+                        if (r?.sub) {
+                          setActive(idx as number);
+                          setSubId(null);
+                        } else {
+                          setActive(null);
+                          router.push(r?.url);
+                          // props?.toggleMenu();
+                        }
+                      }}
+                    />
+                  )}
+                </>
+              ),
+          )}
 
         {/* main links after login */}
         {user &&

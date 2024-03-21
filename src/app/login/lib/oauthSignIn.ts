@@ -1,4 +1,4 @@
-import { supabase } from "@/supabase/client";
+import { supabase } from "@/supabase/server";
 import { Provider } from "@supabase/supabase-js";
 
 const oauthSignIn = async (
