@@ -14,10 +14,10 @@ export const middleware = async (req: NextRequest) => {
     return res;
   }
 
-  if (error) {
-    console.log(error);
-    return NextResponse.redirect(new URL("/login", req.url));
-  }
+  // if (error) {
+  //   console.log(error);
+  //   return NextResponse.redirect(new URL("/login", req.url));
+  // }
 
   const redirectUrl = req.nextUrl.clone();
   redirectUrl.pathname = "/login";
