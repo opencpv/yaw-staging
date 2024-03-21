@@ -12,10 +12,9 @@ const Terms = async (props: any) => {
   const currentTerms = terms.filter((obj: any) => obj.slug == currentPath);
   return (
     <>
+      {data && <TermsNav data={data[0]} primary={false} />}
       <main className="flex flex-col items-center justify-center">
-        {data && <TermsNav data={data[0]} primary={false} />}
-        
-        <div className={` w-full max-w-[1728px]`}>
+        <div className={`wrapper w-full`}>
           {data && <TermsMainView data={currentTerms[0]} />}
         </div>
         <Footer />

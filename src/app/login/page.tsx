@@ -15,7 +15,7 @@ const Login = () => {
 
   return (
     <>
-      <main className="hidden-scrollbar grid h-[100svh] max-h-[100svh] w-full grid-cols-1 overflow-y-auto bg-darkGreenBg lg:grid-cols-2">
+      <main className="hidden-scrollbar grid h-svh max-h-svh w-full grid-cols-1 overflow-y-auto bg-darkGreenBg lg:grid-cols-2">
         <div className="hidden min-h-screen w-full lg:relative lg:block">
           <Image
             src={images.StockImage}
