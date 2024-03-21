@@ -6,10 +6,32 @@ import Authors from "./components/author/Authors";
 import AOSWrapper from "@/components/__shared/AOSWrapper";
 import SubscribeToBlogButton from "./components/SubscribeToBlogButton";
 import PostSlider from "./components/post/PostSlider";
+import { loadQuery } from "@sanity/react-loader";
+import { SanityDocument } from "next-sanity";
+import {
+  AUTHORS,
+  BLOG_CATEGORIES,
+  BLOG_QUERY,
+} from "@/lib/utils/sanity/queries";
+import { urlForImage } from "@/lib/utils/sanity/utils";
+import slugify from "@/lib/utils/slugify";
 
-type Props = {};
+const page = async () => {
+  const initialBlogData: any = await loadQuery<SanityDocument[]>(BLOG_QUERY);
+  const blogData = initialBlogData.data;
+  const blogCategoriesData: any =
+    await loadQuery<SanityDocument[]>(BLOG_CATEGORIES);
+  const categories = blogCategoriesData.data;
+  const initialAuthorsData: any = await loadQuery<SanityDocument[]>(AUTHORS);
+  const sliderBlogData = blogData.slice(0, 3);
+  const postsCount = blogData.length;
+  const recentPosts =
+    blogData.length > 3
+      ? blogData.slice(postsCount - 3, postsCount + 1)
+      : blogData;
+  const sortedBlogPosts = blogData.sort((a: any, b: any) => a.view - b.views);
+  const popularPosts = sortedBlogPosts.slice(0, 3);
 
-const page = (props: Props) => {
   return (
     <div className="wrapper pb-0 sm:pb-0">
       <section className="relative h-fit w-full">
@@ -17,35 +39,38 @@ const page = (props: Props) => {
           pagination
           autoplay
           className="shape-3 h-60 rounded-none sm:h-[30rem]"
-          images={[1, 2, 3].map((image) => ({
-            src: "/assets/images/about/about-slider-img.webp",
-            name: "",
-            href: "/blog/c/p",
+          images={sliderBlogData.map((post: any, index: number) => ({
+            src: urlForImage(post.featured_image)?.url() as string,
+            name: post.title,
+            href: `/blog/${slugify(post.category.category_title)}/${slugify(
+              post.title,
+            )}$id=${post._id}`,
           }))}
         />
       </section>
       <section className="grid-cols-4 gap-x-5 md:pt-28 lg:grid">
         <div className="col-span-3">
-          {/* Recent posts */}
           <OtherPosts
             className="section md:hidden"
             title="Recent posts"
-            posts={[1, 2, 3, 4, 5].map((post, idx) => ({
-              title: "Market Voice: Interview with the wild bunch",
-              author: "Jane Doe",
+            posts={recentPosts.map((post: any, index: number) => ({
+              title: post.title,
+              author: post.author.name,
               image: "",
-              href: "/blog/c/p",
+              href: `/blog/${slugify(post.category.category_title)}/${slugify(
+                post.title,
+              )}$id=${post._id}`,
             }))}
           />
-          <PostSlider />
+          <PostSlider posts={sliderBlogData} />
           <AOSWrapper animation="fade-up" className="section">
             <section className="grid gap-x-3.5 gap-y-7 xs:grid-cols-2 md:grid-cols-3">
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((category, idx) => (
+              {categories.map((category: any, index: number) => (
                 <CategoryCard
-                  key={idx + 1}
-                  href="/blog/category"
-                  category="Category"
-                  image="/assets/images/about/black-businessman.webp"
+                  key={index + 1}
+                  href={`/blog/${slugify(category.category_title)}`}
+                  category={category.category_title}
+                  image={urlForImage(category.category_image)?.url() as string}
                   className="w-full"
                 />
               ))}
@@ -59,26 +84,30 @@ const page = (props: Props) => {
           <div className="space-y-28 pt-28 lg:pt-0">
             <OtherPosts
               title="Recent posts"
-              posts={[1, 2, 3].map((post, idx) => ({
-                title: "Market Voice: Interview with the wild bunch",
-                author: "Jane Doe",
+              posts={recentPosts.map((post: any, idx: any) => ({
+                title: post.title,
+                author: post.author.name,
                 image: "",
-                href: "/blog/c/p",
+                href: `/blog/${slugify(post.category.category_title)}/${slugify(
+                  post.title,
+                )}$id=${post._id}`,
               }))}
             />
             <div className="space-y-10 lg:pt-16">
               {/* Authors */}
-              <Authors />
+              <Authors authors={initialAuthorsData.data} />
               <SubscribeToBlogButton />
             </div>
             {/* Popular posts */}
             <OtherPosts
               title="Popular posts"
-              posts={[1, 2, 3].map((post, idx) => ({
-                title: "Market Voice: Interview with the wild bunch",
-                author: "Jane Doe",
+              posts={popularPosts.map((post: any, idx: number) => ({
+                title: post.title,
+                author: post.author.name,
                 image: "",
-                href: "/blog/c/p",
+                href: `/blog/${post.category.category_title}/${slugify(
+                  post.title,
+                )}$id=${post._id}`,
               }))}
             />
           </div>

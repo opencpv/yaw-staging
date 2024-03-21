@@ -152,7 +152,24 @@ export interface SentimentResponse {
 export interface SanityReference {
   _ref: string;
   _type: string;
-  _key: string;
+}
+
+
+
+type SanityImageReference = {
+  _type: string;
+  asset: SanityReference;
+
+}
+export interface BlogAuthor {
+  profile_image: SanityImageReference;
+  _createdAt: string;
+  _rev: string;
+  _type: string;
+  name: string;
+  bio: string;
+  _id: string;
+  _updatedAt: string;
 }
 
 export interface HowTo {
