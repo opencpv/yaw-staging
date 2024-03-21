@@ -17,7 +17,7 @@ const TermsNav = ({
   data: any;
   primary?: boolean;
 }) => {
-  const { icons } = useAssets();
+  const { icons, images } = useAssets();
   const [categories, setCategories] = useState<any[]>();
   const path = usePathname();
 
