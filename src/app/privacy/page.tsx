@@ -1,16 +1,19 @@
+import legal from "@/enum/about/legal";
 import "./privacy-policy.css";
 
 const Privacy = () => {
   return (
     <main className="wrapper max-w-4xl">
       {/* Privacy Policy for Rent Right */}
-      <h1 className="mb-5 text-4xl">Privacy Policy for Rent Right </h1>
+      <h1>Privacy Policy</h1>
+      <h6>Last updated: Mar 22, 2024</h6>
       <section className="policy">
         <p>
-          At Rent Right, accessible from rentright-staging.vercel.app, one of
-          our main priorities is the privacy of our visitors. This Privacy
-          Policy document contains types of information that is collected and
-          recorded by Rent Right and how we use it.
+          At Rent Right, accessible from{" "}
+          <a href={legal.websiteUrl}>{legal.websiteUrl}</a>, one of our main
+          priorities is the privacy of our visitors. This Privacy Policy
+          document contains types of information that is collected and recorded
+          by Rent Right and how we use it.
         </p>
 
         <p>
@@ -26,7 +29,7 @@ const Privacy = () => {
         </p>
       </section>
 
-      <ul className="mt-10 space-y-10">
+      <ul>
         {/* Consent */}
         <li className="policy">
           <h2>Consent</h2>
