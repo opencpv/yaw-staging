@@ -16,6 +16,7 @@ import { LowerCase } from "@/lib/utils/stringManipulation";
 import Loader from "@/components/__shared/loader/Loader";
 import { supabase } from "@/supabase/client";
 import { useUserData } from "@/lib/custom-hooks/database/useUserData";
+import RoleSwitcherOverlay from "./components/shared/ui/RoleSwitcherOverlay";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -106,18 +107,7 @@ const Wrapper = ({ children }: LayoutProps) => {
         <div className="sticky top-0 z-50 bg-white pt-2 md:static md:bg-none">
           <Pagination />
         </div>
-        {isSwitchingRole && (
-          <section className="absolute inset-0 z-50 flex h-screen max-h-screen w-screen items-center justify-center overflow-x-hidden bg-white/50 backdrop-blur-sm">
-            <div className="flex flex-col items-center justify-center gap-5">
-              <Loader />
-              <h4>
-                Getting {currentRole}&apos;s dashboard ready{" "}
-                <span className="animate-pulse">...</span>{" "}
-              </h4>
-            </div>
-          </section>
-        )}
-
+        {isSwitchingRole ? <RoleSwitcherOverlay /> : null}
         {excludeWrapper ? (
           <div className={`text-neutral-800`}>{children}</div>
         ) : (

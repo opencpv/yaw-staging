@@ -8,11 +8,19 @@ export const LoginFooter = () => {
           By signing in, you agree to the following:
         </p>
         <div className="flex flex-wrap items-center justify-center gap-4">
-          <Link href="/terms-of-service" className="text-white underline">
+          <Link
+            href="/terms-of-service"
+            target="_blank"
+            className="text-white underline"
+          >
             Terms and Conditions
           </Link>
           <div className="hidden h-full w-0.5 bg-white [@media_(min-width:310px)]:block"></div>
-          <Link href="/privacy" className="text-white underline">
+          <Link
+            href="/privacy"
+            target="_blank"
+            className="text-white underline"
+          >
             Privacy Policy
           </Link>
         </div>

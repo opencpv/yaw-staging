@@ -16,16 +16,17 @@ const Switch = () => {
       return;
     }
     const selectedRole = e.target.value as UserRole;
-    if (selectedRole === currentRole) {
-      router.push(`/dashboard/${currentRole}/overview`);
+    if (selectedRole !== ("" as UserRole)) {
+      setCurrentRole(selectedRole);
+      setIsSwitchingRole(true);
     }
-    setCurrentRole(selectedRole);
-    setIsSwitchingRole(true);
+    if (selectedRole !== ("" as UserRole)) {
+      router.push(`/dashboard/${selectedRole}/overview`); // For reason it doesn't work in the first if clause
+    }
     if (!router) {
       console.error("router is null in Switch.handleRoleSwitch");
       return;
     }
-    router.push(`/dashboard/${selectedRole}/overview`);
   };
 
   return (
