@@ -178,3 +178,7 @@ export interface HowTo {
   video_url: string;
   tags: { tag: string }[]
 }
+
+export interface BlogPost {
+
+}
