@@ -18,7 +18,7 @@ const TermsMainView = ({ data }: { data: any }) => {
         {data && <h3 className="inline">{data.title}</h3>}
       </div>
       {data && (
-        <ul className="px-5 lg:px-0">
+        <ul>
           {data.termsItem.map((item: any, index: number) => (
             <TermItem key={index} data={item} index={index} />
           ))}

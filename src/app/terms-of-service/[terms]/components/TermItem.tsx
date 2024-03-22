@@ -9,7 +9,7 @@ const TermItem = ({ data, index }: { data: any; index: number }) => {
   );
 
   const Title = () => (
-    <h2 className="flex w-fit items-center justify-center font-bold text-[#073B3A] lg:text-4xl">
+    <h2 className="flex w-fit items-center justify-center font-bold text-[#11605E] lg:text-4xl">
       {data.termsArray.title}
     </h2>
   );
@@ -20,7 +20,7 @@ const TermItem = ({ data, index }: { data: any; index: number }) => {
 
   return (
     <>
-      <div className="mb-8 hidden gap-4 lg:flex lg:gap-5">
+      <div className="mb-14 hidden gap-4 lg:flex lg:gap-5">
         <Bullet />
         <div className="w-full lg:space-y-4">
           <Title />
