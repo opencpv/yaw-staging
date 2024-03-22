@@ -32,9 +32,10 @@ const Dashboard = () => {
   }, [setUser]);
 
   useEffect(() => {
+    console.log(user);
     const firstTimeRole = localStorage.getItem("first-time-role");
     if (user && (!firstTimeRole || firstTimeRole !== currentRole)) {
-      router.replace(`/dashboard/${currentRole}/overview`);
+      router.replace(`/dashboard/${currentRole}/overview`); // first time moves to settings
     }
   }, [router, currentRole, user]);
 

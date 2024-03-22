@@ -3,6 +3,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const middleware = async (req: NextRequest) => {
   const res = NextResponse.next();
+  const redirectUrl = req.nextUrl.clone();
+  redirectUrl.pathname = "/login";
+
   // create a supabase client configured to use cookies
   const supabase = createMiddlewareClient({ req, res });
   const {
@@ -10,17 +13,8 @@ export const middleware = async (req: NextRequest) => {
     error,
   } = await supabase.auth.getSession();
 
-  if (session) {
-    return res;
-  }
-
-  if (error) {
-    console.log(error);
-    return NextResponse.redirect(new URL("/login", req.url));
-  }
-
-  const redirectUrl = req.nextUrl.clone();
-  redirectUrl.pathname = "/login";
+  if (session) return res;
+  if (error) return NextResponse.redirect(new URL("/login", req.url));
   return NextResponse.redirect(redirectUrl);
 };
 
