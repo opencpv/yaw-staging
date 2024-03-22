@@ -129,6 +129,14 @@ body {
     @apply border border-neutral-400 hover:border-black/50;
   }
 
+  .form-input {
+    @apply form-field-border rounded-md px-3 py-4 focus:outline-accent-50;
+  }
+
+  .form-textarea {
+    @apply form-field-border rounded-md px-3 py-4 focus:outline-accent-50;
+  }
+
   .gradient-to-bottom {
     @apply bg-gradient-to-b from-primary-500 to-primary-400/80;
   }
@@ -153,10 +161,6 @@ body {
     @apply relative before:absolute before:inset-0 before:z-10 before:h-full before:w-full before:rounded-2xl before:bg-gradient-to-b before:from-primary-500/60 before:to-primary-500/50;
   }
 
-  .PhoneInputInput {
-    @apply form-field-border rounded-md px-3 py-4 focus:outline-accent-50;
-  }
-
   .section {
     @apply pt-28;
   }
@@ -172,6 +176,10 @@ body {
   .wrapper-section {
     @apply mx-auto max-w-screen-3xl px-5 pb-0 pt-28 sm:px-10 sm:pb-0;
   }
+}
+
+.PhoneInputInput {
+  @apply form-field-border rounded-md px-3 py-4 focus:outline-accent-50;
 }
 
 input[type="search"]::-webkit-search-cancel-button {

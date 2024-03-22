@@ -1,13 +1,15 @@
-"use client";
 import Head from "next/head";
 import ProfileMainView from "../../components/shared/settings/ProfileMainView";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Profile",
+  description: ""
+};
 
 const Settings = () => {
   return (
     <>
-      <Head>
-        <title>Dashboard - Settings</title>
-      </Head>
       <ProfileMainView />
     </>
   );

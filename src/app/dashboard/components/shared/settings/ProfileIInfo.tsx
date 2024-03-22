@@ -10,7 +10,12 @@ import Loader from "@/components/__shared/loader/Loader";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import PhoneNumberInputv2 from "@/components/__shared/PhoneInputv2";
 import { supabase } from "@/supabase/client";
-import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import {
+  usePhoneInputDisclosure,
+  useToastDisclosure,
+} from "@/lib/custom-hooks/useCustomDisclosure";
+import InputPhoneNumber from "@/components/__shared/form/InputPhoneNumber";
+import { useRouter } from "next/navigation";
 
 interface Props {
   icon: any;
@@ -33,16 +38,15 @@ const IconField = ({
 }: Props) => {
   return (
     <div className="form-div relative">
-      <div className="flex items-center gap-2">
-        {icon}
-        <label className="text-gray-500">{label}:</label>
+      <div className="relative flex items-center">
+        <div className="absolute left-0 top-0">{icon}</div>
+        <label className="pl-8">{label}:</label>
       </div>
       <AiOutlineLink className="link-icon absolute" size={16} color="#737373" />
-
       <Field
         type={type}
         name={name}
-        className={className}
+        className={`form-input ${className}`}
         style={{ paddingInline: "2.5rem" }}
         placeholder={placeholder}
       />
@@ -54,12 +58,12 @@ const IconField = ({
 
 const ProfileInfo = () => {
   const [countries, setCountries] = useState([]);
-  const [phone, setphone] = useState<string>("");
-  const [code, setCode] = useState<string>("");
   const [submitLoading, setSubmitLoading] = useState(false);
   const user = useAppStore((state) => state.user);
-  const [loading, setloading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const { onOpen } = useToastDisclosure();
+  const { phone, handlePhone, handleCountryChange } = usePhoneInputDisclosure();
+  const router = useRouter();
 
   const firstName = useMemo(() => {
     // try to get firstname from full_name
@@ -77,7 +81,7 @@ const ProfileInfo = () => {
 
   useEffect(() => {
     if (user) {
-      setloading(false);
+      setLoading(false);
     }
   }, [user]);
 
@@ -114,10 +118,11 @@ const ProfileInfo = () => {
         <>
           {user && (
             <>
-              <div className="py-10 pt-6">
-                <p>{user?.full_name}</p>
-                <p>Your Profile Picture</p>
-                <div className="border- relative mt-5 aspect-[227/164] max-h-[164px] w-full max-w-[227px] rounded-[18px]">
+              <div className="py-8 pt-6">
+                <h4 className="font-normal text-shade-300">
+                  Your Profile Picture
+                </h4>
+                <div className="relative mt-5 aspect-video w-60 rounded-xl">
                   {user?.avatar_url !== undefined ? (
                     <Image
                       src={user?.avatar_url as string}
@@ -127,6 +132,7 @@ const ProfileInfo = () => {
                       blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAHPAzcDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAECAwb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APJAAAAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAACAAAAIqAAAIqAAAAAIqAAAAAAAIqAAAAAAAoAAAAAAACooAAAAAAAAAAKAAAAAAADQAAAAAAACoAoAAAAAAAAAAAAAAAAAAAAAAAAAAACKgAAAACKgAAAACKgAACKgAAAACKgAAAAAACAAAAAAACiKAAAAAAAACgAAAAAAAAAKgCgAAAAA0AAAAAAAAAAqAKIoAAAAAAAAAAAAAAAAAAAAAICoAAAAAAIAAAAAACAAAAgAAAAAIAAAAAAACAAAAAAAAKgCgAAAAAAAKigAAAAAAAAAAAAAAogDYAAAAAAAAAAAAAAAKIAogCiAKIoAICiAKIAogCoAAAAAAAAgAAAAAAAgAAAIqAAAAAAgAAAAAACKgAAAAAAAAAAKIoAAAAAAAAKIAoAAAAAAAAAAAAANgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAIAAAAAIAAAAAAgAAAAAAAIAAAAAAAAAAAAAACiAKAAAAAAAAqAKIAoAAAAAAAAANiAKIAogCiAKIAogCiAKAAAAAAAACAogCiAKIAogAAAAAAAAAIAqAAAACAqAAAAAACAAAAAAAAgAAAAAAAAAAAAAAAAAACoAoigAAAAAAAAAAAAKgCiAKIA2AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAogCoAAAAAAICoAAAAAAAAgAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAKgCiAKAAAAAAAAAAAAADYAAAAAAAAAAAAAAAAAAAAAAgCiAKIAAAAAAAAACAKIAAAAAAAAACAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACiAKIAogCiAOgAAAAAAAAgCiAKIAqAAAAAAAAAAAAAAIAogAAAAAAAAAAAIAqAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2AAAAAAAAAAAAAAAAAACAogCiAAAAAAAAAAAAICiAAAAAAAAAAAAgCoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANgAAAAAAAAAAgKIAogAAAAAAAAAAAAACAogAAAAAAAAAAAIAqAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADYgCiAKIAAAAAAAAAAAAAAAAAAACAKgAAAAAAAAAAgKIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAKIAogCiAKIAogCiANgAAAAAAAAAAAAAAAAAAAAgKgAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAICiAKIAqAAAAAAAAAAAAAAAAAAAAADYAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAioAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAogCoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANgAAAAAAAAAAAAACAAAAAAAAAAAAAAAAACKgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADYgCiAKIAogCiAKgAAAAAAAAAAAAAAAAAAAAAAAgqAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoCCgIKAgoCgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgqAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgqAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAACgAAAAAAAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgqAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAACooAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAigIAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAACgAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAKIoAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAIqAAAAAAAAAAAAAAAAAAAAAAAAAAAKgCgAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAICoAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACiAKAAAAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACiAKIAogCgAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAioAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//2Q=="
                       alt="User picture"
                       fill
+                      className="rounded-[inherit]"
                     />
                   ) : (
                     <Loader />
@@ -162,12 +168,14 @@ const ProfileInfo = () => {
                         .eq("id", user.id)
                         .select();
 
-                      if (data)
+                      if (data) {
                         onOpen(
                           "Profile updated successfully",
                           undefined,
                           "success",
                         );
+                        router.refresh();
+                      }
                       if (error) throw error;
                     } catch (error) {
                       console.log("Error updating profile:", error);
@@ -178,155 +186,159 @@ const ProfileInfo = () => {
                   }}
                   enableReinitialize={true}
                 >
-                  <Form className="border-t-2 border-[#E0E4EC] pt-8">
-                    <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-3">
-                      <div className="col-span-1">
-                        <p className="mb-5 font-semibold">My Profile Summary</p>
-                        <div className="flex flex-col gap-5">
-                          <div className="form-div">
-                            <label>First Name:</label>
-                            <Field
-                              type="text"
-                              name="firstName"
-                              // placeholder={firstname}
-                              className="form-input"
-                            />
-                            <ErrorMessage name="firstName" />
-                          </div>
-                          <div className="form-div">
-                            <label>Last Name:</label>
-                            <Field
-                              type="text"
-                              name="lastName"
-                              // placeholder="Doe"
-                              className="form-input"
-                            />
-                            <ErrorMessage name="lastName" />
-                          </div>
-                          <div className="form-div">
-                            <label>Email Address:</label>
-                            <Field
-                              type="email"
-                              name="email"
-                              placeholder="johndoe@gmail.com"
-                              disabled
-                              className="form-input"
-                            />
-                            <ErrorMessage name="email" />
-                          </div>
-                          <div className="form-div">
-                            <label>Country:</label>
-                            <Field
-                              as="select"
-                              id="country"
-                              name="country"
-                              className="form-input bg-white"
-                            >
-                              {countries.map((country: any, index) => (
-                                <option
-                                  key={index}
-                                  value={country.name.common}
-                                  className="py-5"
-                                >
-                                  {country.name.common}
-                                </option>
-                              ))}
-                            </Field>
-
-                            <ErrorMessage
-                              name="country"
-                              component="div"
-                              className="error"
-                            />
-                          </div>
-
-                          <div className="form-div">
-                            <PhoneNumberInputv2
-                              label="Phone"
-                              onChange={(selection) => {
-                                setphone(selection);
-                              }}
-                              onChange2={(selection) => {}}
-                              placeholder="Select your country"
-                              initialValue={user.phone}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-span-1">
-                        <p className="mb-5 font-semibold">
-                          My Social Media Accounts
-                        </p>
-                        <div className="flex flex-col gap-5">
-                          <IconField
-                            icon={<FaTwitter size={24} color="black" />}
-                            name={"twitter"}
-                            className={"form-input"}
-                            label={"Twitter"}
-                            type={"text"}
-                            placeholder="https://twitter.com/abcd"
-                          />
-                          <IconField
-                            icon={<FaLinkedin size={24} color="black" />}
-                            name={"linkedIn"}
-                            className={"form-input"}
-                            label={"LinkedIn"}
-                            type={"text"}
-                            placeholder="https://linkedin.com/abcd"
-                          />
-                          <IconField
-                            icon={<FaFacebook size={24} color="black" />}
-                            name={"facebook"}
-                            className={"form-input"}
-                            label={"Facebook"}
-                            type={"text"}
-                            placeholder="https://facebook.com/abcd"
-                          />
-                          <IconField
-                            icon={<IoLogoWhatsapp size={24} color="black" />}
-                            name={"whatsapp"}
-                            className={"form-input"}
-                            label={"WhatsApp"}
-                            type={"text"}
-                            placeholder="https://wa.whatsapp.com/abc"
-                          />
-                        </div>
-                      </div>
-                      <div className="col-span-1">
-                        <div className="form-div">
-                          <label className="mb-5">Bio:</label>
-                          <Field
-                            as="textarea" // Use 'textarea' as the component
-                            id="bio"
-                            name="bio"
-                            placeholder="Enter your bio"
-                            className="form-input-textarea max-w-[422px] rounded-[4px]
-                border border-[#E6E6E6] px-4
-                py-2 text-[#737373]"
-                            rows="15" // Optional: Set the number of rows for the text area
-                            cols="50" // Optional: Set the number of columns for the text area
-                          />
-                        </div>
-                        <>
-                          {submitLoading ? (
-                            <div className="mt-8 flex justify-center">
-                              <div className="relative py-4">
-                                <Loader />
-                              </div>
+                  {({ handleChange, handleBlur }) => (
+                    <Form className="border-t-2 pt-8">
+                      <div className="grid grid-cols-1 gap-x-5 gap-y-8 sm:grid-cols-2 xl:grid-cols-3">
+                        {/* My Profile Summary */}
+                        <div className="col-span-1">
+                          <h3 className="mb-5 text-shade-300">
+                            My Profile Summary
+                          </h3>
+                          <div className="flex flex-col gap-x-5 gap-y-8">
+                            <div className="form-div">
+                              <label>First Name:</label>
+                              <Field
+                                name="firstName"
+                                placeholder="Jane"
+                                className="form-input"
+                              />
+                              <ErrorMessage name="firstName" />
                             </div>
-                          ) : (
-                            <button
-                              type="submit"
-                              className="mt-5 aspect-[160/52] max-h-[52px] w-full
-              max-w-[160px] rounded-[8px] bg-[#DDB771] text-[#ffff]"
-                            >
-                              Update Profile
-                            </button>
-                          )}
-                        </>
+                            <div className="form-div">
+                              <label>Last Name:</label>
+                              <Field
+                                name="lastName"
+                                placeholder="Doe"
+                                className="form-input"
+                              />
+                              <ErrorMessage name="lastName" />
+                            </div>
+                            <div className="form-div">
+                              <label>Email Address:</label>
+                              <Field
+                                type="email"
+                                name="email"
+                                placeholder="johndoe@gmail.com"
+                                disabled
+                                className="form-input"
+                              />
+                              <ErrorMessage name="email" />
+                            </div>
+                            <div className="form-div">
+                              <label>Country:</label>
+                              <Field
+                                as="select"
+                                id="country"
+                                name="country"
+                                className="form-input bg-white"
+                              >
+                                {countries.map((country: any, index) => (
+                                  <option
+                                    key={index}
+                                    value={country.name.common}
+                                    className="py-5"
+                                  >
+                                    {country.name.common}
+                                  </option>
+                                ))}
+                              </Field>
+
+                              <ErrorMessage
+                                name="country"
+                                component="div"
+                                className="error"
+                              />
+                            </div>
+
+                            <div className="form-div">
+                              <label>Phone:</label>
+                              <InputPhoneNumber
+                                name="phone"
+                                value={user.phone as string}
+                                onChange={(val) => {
+                                  handlePhone(val);
+                                  handleChange(val);
+                                }}
+                                onBlur={handleBlur}
+                                onCountryChange={handleCountryChange}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        {/* My Social Media Accounts */}
+                        <div className="col-span-1">
+                          <h3 className="mb-5 text-shade-300">
+                            My Social Media Accounts
+                          </h3>
+                          <div className="flex flex-col gap-x-5 gap-y-8">
+                            <IconField
+                              icon={<FaTwitter size={24} color="black" />}
+                              name={"twitter"}
+                              className={"form-input"}
+                              label={"Twitter"}
+                              type={"text"}
+                              placeholder="https://twitter.com/abcd"
+                            />
+                            <IconField
+                              icon={<FaLinkedin size={24} color="black" />}
+                              name={"linkedIn"}
+                              className={"form-input"}
+                              label={"LinkedIn"}
+                              type={"text"}
+                              placeholder="https://linkedin.com/abcd"
+                            />
+                            <IconField
+                              icon={<FaFacebook size={24} color="black" />}
+                              name={"facebook"}
+                              className={"form-input"}
+                              label={"Facebook"}
+                              type={"text"}
+                              placeholder="https://facebook.com/abcd"
+                            />
+                            <IconField
+                              icon={<IoLogoWhatsapp size={24} color="black" />}
+                              name={"whatsapp"}
+                              className={"form-input"}
+                              label={"WhatsApp"}
+                              type={"text"}
+                              placeholder="https://wa.whatsapp.com/abc"
+                            />
+                          </div>
+                        </div>
+                        {/* Bio */}
+                        <div className="col-span-full md:col-span-1 xl:mt-12">
+                          <div className="form-div">
+                            <label>Bio:</label>
+                            <Field
+                              as="textarea"
+                              id="bio"
+                              name="bio"
+                              placeholder="Enter your bio"
+                              className="form-textarea text-[#737373]"
+                              rows="15"
+                              cols="50"
+                            />
+                          </div>
+                          <>
+                            {submitLoading ? (
+                              <div className="mt-8 flex justify-center">
+                                <div className="relative py-4">
+                                  <Loader />
+                                </div>
+                              </div>
+                            ) : (
+                              <button
+                                type="submit"
+                                className="mt-8 aspect-[160/52] max-h-[52px] w-full max-w-[160px] rounded-[8px] bg-[#DDB771] text-[#ffff]"
+                              >
+                                Update Profile
+                              </button>
+                            )}
+                          </>
+                        </div>
                       </div>
-                    </div>
-                  </Form>
+                    </Form>
+                  )}
                 </Formik>
               )}
             </>
@@ -344,56 +356,17 @@ const Root = styled("div", {
     gap: "0.875rem",
     color: "#6A6968",
   },
-  " .form-input": {
-    maxHeight: "52px",
-    padding: "0.9375rem",
-
-    aspectRatio: "422/52",
-    border: "1px solid #E6E6E6",
-    borderRadius: "4px",
-    color: "#737373",
-    backgroundColor: "white",
-  },
 
   ".form-input option": {
     backgroundColor: "white",
   },
   ".form-input option:hover": {
-    backgroundColor: "green",
-  },
-  "form-input-textarea": {
-    padding: "0.9375rem",
-    maxWidth: "541px",
-    width: "100%",
-    aspectRatio: "541/368",
-    border: "1px solid #E6E6E6",
-    borderRadius: "4px",
-    color: "#737373",
+    backgroundColor: "#DDB771",
   },
   "& .link-icon": {
     top: "75%",
     transform: "translateY(-75%)",
     left: "1rem",
-  },
-});
-
-const Navigation = styled("button", {
-  fontSize: "16px",
-  fontWeight: "400",
-  color: "#8A8A8A",
-  padding: "0.5rem",
-  "&:hover": {
-    backgroundColor: "#8a8a8a05",
-    color: "black",
-  },
-
-  variants: {
-    type: {
-      active: {
-        color: "#307A4A",
-        borderBottom: "2px solid #307A4A",
-      },
-    },
   },
 });
 
