@@ -33,10 +33,10 @@ const Dashboard = () => {
 
   useEffect(() => {
     const firstTimeRole = localStorage.getItem("first-time-role");
-    if (!firstTimeRole || firstTimeRole !== currentRole) {
+    if (user && (!firstTimeRole || firstTimeRole !== currentRole)) {
       router.replace(`/dashboard/${currentRole}/overview`);
     }
-  }, [router, currentRole]);
+  }, [router, currentRole, user]);
 
   return (
     <>
