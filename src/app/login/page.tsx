@@ -1,5 +1,4 @@
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import Head from "next/head";
 import Image from "next/image";
 import { LoginForm } from "./components/LoginForm";
 import { LoginFooter } from "./components/LoginFooter";

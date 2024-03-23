@@ -47,7 +47,8 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
     } else {
       setTimeout(() => {
         setUser(null);
-      }, 300);
+      }, 500);
+      router.push("/");
       router.refresh();
     }
   };
@@ -68,7 +69,7 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
       {/* Avatar Menu */}
       <PopoverContent
         className={cn(
-          "z-50 w-fit rounded-lg bg-white text-neutral-600 shadow-lg transition-all xs:min-w-[18rem]",
+          "z-50 w-fit rounded-lg border-none bg-white text-neutral-600 shadow-lg outline-none transition-all focus:border-none focus:outline-none xs:min-w-[18rem]",
           popoverClassName,
         )}
       >
@@ -121,10 +122,10 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
           <hr className="mx-5" />
           {/* Logout */}
           <li
-            className="deep-green-hover cursor-pointer space-y-5 py-4 pb-5 pl-8 pr-4 pt-10"
+            className="deep-green-hover cursor-pointer space-y-5 py-4 pb-5 pl-8 pr-4 pt-5"
             onClick={handleSignOut}
           >
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 pt-5">
               <TbLogout size={20} />
               <p>Log Out</p>
             </div>

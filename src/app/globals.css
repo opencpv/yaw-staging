@@ -57,6 +57,12 @@ body {
   small {
     @apply block max-w-3xl text-sm;
   }
+
+  li,
+  a,
+  div {
+    @apply focus:outline-accent-50;
+  }
 }
 
 .green-gradient {
