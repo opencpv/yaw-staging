@@ -21,7 +21,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <main className="grid h-lvh place-items-center">
+      <main className="grid h-screen place-items-center">
         <Loader />
       </main>
     </>

@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { MdOutlineHome } from "react-icons/md";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
-import { LuSettings } from "react-icons/lu";
+import { LuLayoutDashboard, LuSettings } from "react-icons/lu";
 import { FaRegUser } from "react-icons/fa6";
 import { TbLogout } from "react-icons/tb";
 import Avatar from "./Avatar";
@@ -104,8 +104,8 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
                 href={`/dashboard/${currentRole}/overview`}
                 className="flex items-center gap-2 pb-2.5 pt-4"
               >
-                <FaRegUser size={20} />
-                <p>My Account</p>
+                <LuLayoutDashboard size={20} />
+                <p>Dashboard</p>
               </Link>
             )}
           </li>
@@ -115,8 +115,8 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
               href={`/dashboard/${currentRole}/settings`}
               className="flex items-center gap-2 pb-4 pt-2.5"
             >
-              <LuSettings size={20} />
-              <p>Settings</p>
+              <FaRegUser size={20} />
+              <p>My Account</p>
             </Link>
           </li>
           <hr className="mx-5" />

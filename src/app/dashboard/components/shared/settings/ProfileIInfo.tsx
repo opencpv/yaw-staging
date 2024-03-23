@@ -120,7 +120,7 @@ const ProfileInfo = () => {
             <>
               <div className="py-8 pt-6">
                 <h4 className="font-normal text-shade-300">
-                  Your Profile Picture
+                  Update Profile Picture
                 </h4>
                 <div className="relative mt-5 aspect-video w-60 rounded-xl">
                   {user?.avatar_url !== undefined ? (
