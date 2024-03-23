@@ -99,14 +99,18 @@ const UserOverview = ({
               <div className="space-y-2">
                 <h4 className="">{name}</h4>
                 <div className="mb-4 flex flex-wrap items-center gap-x-5 gap-y-3 text-base">
-                  <div className="flex items-center gap-2 text-neutral-700">
-                    <FaRegEnvelope className="text-primary-400" />
-                    {email}
-                  </div>
-                  <div className="flex items-center gap-2 text-neutral-700">
-                    <BsTelephone className="text-primary-400" />
-                    {telephone}
-                  </div>
+                  {email && (
+                    <div className="flex items-center gap-2 text-neutral-700">
+                      <FaRegEnvelope className="text-primary-400" />
+                      {email}
+                    </div>
+                  )}
+                  {telephone && (
+                    <div className="flex items-center gap-2 text-neutral-700">
+                      <BsTelephone className="text-primary-400" />
+                      {telephone}
+                    </div>
+                  )}
                 </div>
                 <Button
                   href="settings"

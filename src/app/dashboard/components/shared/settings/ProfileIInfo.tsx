@@ -188,7 +188,7 @@ const ProfileInfo = () => {
                 >
                   {({ handleChange, handleBlur }) => (
                     <Form className="border-t-2 pt-8">
-                      <div className="grid grid-cols-1 gap-x-5 gap-y-8 sm:grid-cols-2 xl:grid-cols-3">
+                      <div className="grid grid-cols-1 gap-x-5 gap-y-16 sm:grid-cols-2 xl:grid-cols-3">
                         {/* My Profile Summary */}
                         <div className="col-span-1">
                           <h3 className="mb-5 text-shade-300">
@@ -224,7 +224,7 @@ const ProfileInfo = () => {
                               />
                               <ErrorMessage name="email" />
                             </div>
-                            <div className="form-div">
+                            {/* <div className="form-div">
                               <label>Country:</label>
                               <Field
                                 as="select"
@@ -248,16 +248,16 @@ const ProfileInfo = () => {
                                 component="div"
                                 className="error"
                               />
-                            </div>
+                            </div> */}
 
                             <div className="form-div">
-                              <label>Phone:</label>
+                              <label>WhatsApp:</label>
                               <InputPhoneNumber
                                 name="phone"
-                                value={user.phone as string}
+                                value={(user.phone as string) || phone}
                                 onChange={(val) => {
                                   handlePhone(val);
-                                  handleChange(val);
+                                  // handleChange && handleChange(val);
                                 }}
                                 onBlur={handleBlur}
                                 onCountryChange={handleCountryChange}
@@ -306,16 +306,19 @@ const ProfileInfo = () => {
                           </div>
                         </div>
                         {/* Bio */}
-                        <div className="col-span-full md:col-span-1 xl:mt-12">
+                        <div className="col-span-full md:col-span-1">
+                          <h3 className="mb-5 text-shade-300">Bio</h3>
                           <div className="form-div">
-                            <label>Bio:</label>
+                            <label className="hidden xl:invisible xl:block">
+                              Bio
+                            </label>
                             <Field
                               as="textarea"
                               id="bio"
                               name="bio"
-                              placeholder="Enter your bio"
+                              placeholder="Share a little bit about yourself"
                               className="form-textarea text-[#737373]"
-                              rows="15"
+                              rows="10"
                               cols="50"
                             />
                           </div>

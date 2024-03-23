@@ -1,12 +1,10 @@
 "use client";
 import { cn } from "@/lib/utils";
-import React, { useEffect, useRef, useState } from "react";
-import style from "../../Shared.module.css";
+import React from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { MdOutlineHome } from "react-icons/md";
+import { MdOutlineDashboard, MdOutlineHome } from "react-icons/md";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
-import { LuLayoutDashboard, LuSettings } from "react-icons/lu";
 import { FaRegUser } from "react-icons/fa6";
 import { TbLogout } from "react-icons/tb";
 import Avatar from "./Avatar";
@@ -96,7 +94,7 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
             {/* My Account */}
             {pathname?.includes("dashboard") ? (
               <Link href="/" className="flex items-center gap-2 pb-2.5 pt-4">
-                <MdOutlineHome size={20} />
+                <MdOutlineHome size={24} />
                 <p>Home</p>
               </Link>
             ) : (
@@ -104,7 +102,7 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
                 href={`/dashboard/${currentRole}/overview`}
                 className="flex items-center gap-2 pb-2.5 pt-4"
               >
-                <LuLayoutDashboard size={20} />
+                <MdOutlineDashboard size={20} />
                 <p>Dashboard</p>
               </Link>
             )}

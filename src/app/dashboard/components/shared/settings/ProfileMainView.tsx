@@ -6,7 +6,6 @@ import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
 import Blocking from "./Blocking";
 
 const ProfileMainView = () => {
-  const user = useAppStore((state) => state.user);
   const optionSelect = useManageAccountStore(
     (state: any) => state.filterOption,
   );
@@ -42,10 +41,11 @@ const ProfileMainView = () => {
           <div>
             <Blocking />
           </div>
-        </Tab>{" "}
-        <Tab key="account-setting" title="Account Setting">
-          <div>Account Setting</div>
         </Tab>
+        {/* !!! COMMENTED OUT FOR NOW */}
+        {/* <Tab key="account-setting" title="Account Setting">
+          <div>Account Setting</div>
+        </Tab> */}
       </Tabs>
     </main>
   );
