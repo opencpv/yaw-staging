@@ -48,7 +48,6 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
       setTimeout(() => {
         setUser(null);
       }, 300);
-      if (pathname === "/dashboard") router.push("/");
       router.refresh();
     }
   };

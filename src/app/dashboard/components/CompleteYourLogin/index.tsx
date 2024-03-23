@@ -20,9 +20,7 @@ const initialValues = {
 function CompleteYourLogin({ open }: Props) {
   const [_open, setOpen] = useState(false);
   const [howToSwitchOpen, setHowToSwitchOpen] = useState(false);
-  const [firstTimeRole, setFirstTimeRole] = useLocalStorage<Role | undefined>(
-    "first-time-role",
-  );
+  const { setFirstTimeRole } = useDashboardStore();
 
   useEffect(() => {
     setOpen(open as boolean); // open when is_first_time is true
@@ -56,10 +54,8 @@ function CompleteYourLogin({ open }: Props) {
                         onSubmit={(values) => {
                           setOpen(false);
                           setHowToSwitchOpen(true);
-                          // setCurrentRole(
-                          //   (values.role?.toLowerCase() as Role) || "renter",
-                          // );
-                          setFirstTimeRole(values.role.toLowerCase() as Role);
+                          setFirstTimeRole(values.role.toLowerCase() as Role); // resorting to firstTimeRole instead of CurrentRole
+                          // on first time login
                         }}
                       >
                         <Form

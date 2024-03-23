@@ -14,11 +14,11 @@ export const LoginForm = () => {
 
   useUserData();
 
-  useEffect(() => {
-    if (user) {
-      router.back();
-    }
-  }, [user, router]);
+  // useEffect(() => {
+  //   if (user) {
+  //     router.back();
+  //   }
+  // }, [user, router]);
 
   return (
     <>

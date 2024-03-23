@@ -21,7 +21,7 @@ const Switch = () => {
       setIsSwitchingRole(true);
     }
     if (selectedRole !== ("" as UserRole)) {
-      router.push(`/dashboard/${selectedRole}/overview`); // For reason it doesn't work in the first if clause
+      router.replace(`/dashboard/${selectedRole}/overview`); // For reason it doesn't work in the first if block
     }
     if (!router) {
       console.error("router is null in Switch.handleRoleSwitch");

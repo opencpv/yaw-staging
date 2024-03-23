@@ -9,7 +9,7 @@ import Image from "next/image";
 import { supabase } from "@/supabase/client";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useRouter } from "next/navigation";
-import { Role } from "@/store/dashboard/dashboardStore";
+import { Role, useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 
 type Props = {
@@ -19,9 +19,7 @@ function HowToSwitch({ open }: Props) {
   const [_open, setOpen] = useState(false);
   const { user, setUser } = useAppStore();
   const router = useRouter();
-  const [firstTimeRole, setFirstTimeRole] = useLocalStorage<Role | undefined>(
-    "first-time-role",
-  );
+  const { firstTimeRole, setFirstTimeRole } = useDashboardStore();
   const { onOpen } = useToastDisclosure();
 
   useEffect(() => {
@@ -51,7 +49,6 @@ function HowToSwitch({ open }: Props) {
       onOpen("Please complete your profile");
       setTimeout(() => {
         setFirstTimeRole(undefined);
-        localStorage.removeItem("first-time-role");
       }, 300);
     }
   };
