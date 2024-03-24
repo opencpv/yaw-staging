@@ -9,7 +9,6 @@ import { useFaqHowToSwitchStore } from "@/store/faq/useFaqStore";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { useMenuLinks } from "./content";
-import Link from "next/link";
 
 export const DesktopMenu = (props: any) => {
   const { linksAfterLogin, linksBeforeLogin } = useMenuLinks();
@@ -18,7 +17,6 @@ export const DesktopMenu = (props: any) => {
   const router = useRouter();
   const setToggle = useMenuStore((state) => state.setToggle);
   const { user } = useAppStore();
-  const { currentRole } = useDashboardStore();
 
   const setFaqActivePage = useFaqHowToSwitchStore(
     (state) => state.setActivePage,

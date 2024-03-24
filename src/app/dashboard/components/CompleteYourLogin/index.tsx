@@ -68,7 +68,7 @@ function CompleteYourLogin({ open }: Props) {
                         >
                           <CustomSelect
                             name="role"
-                            label="What is your role?"
+                            label="I am a"
                             options={[
                               { name: "renter", value: "Renter" },
                               { name: "lister", value: "Lister" },

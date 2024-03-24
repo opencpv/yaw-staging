@@ -20,13 +20,21 @@ const LikeHeart = ({ liked, className, id }: Props) => {
   const { onOpen, isOpen, onOpenChange, onClose } = useDisclosure();
   const { onOpen: toastOnOpen } = useToastDisclosure();
   const [signInModalOpen, setSignInModalOpen] = useState(false);
-  const { user } = useAppStore();
+  const [user, setUser] = useState<User | null>(null);
+  // const { user } = useAppStore();
 
   const toggleLiked = () => {
     setIsLiked((prevState) => !prevState);
   };
 
   useEffect(() => {
+    const getUser = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      setUser(user as unknown as User);
+    };
+    getUser();
     // get the property id from session storage
     // to be able to handle liked property logic
     const propertyId = sessionStorage.getItem("favoritePropertyId");

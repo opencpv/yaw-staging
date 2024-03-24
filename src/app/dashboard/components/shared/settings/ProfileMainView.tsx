@@ -1,8 +1,7 @@
 "use client";
 import ProfileInfo from "./ProfileIInfo";
-import { useAppStore } from "@/store/dashboard/AppStore";
 import { useManageAccountStore } from "@/store/dashboard/propertiesStore";
-import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
+import { Tabs, Tab } from "@nextui-org/react";
 import Blocking from "./Blocking";
 
 const ProfileMainView = () => {

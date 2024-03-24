@@ -44,19 +44,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // const [noNavbar, setNoNavbar] = useState(false);
-  // const pathname = usePathname();
-
-  // useEffect(() => {
-  //   uniquePages.forEach((element) => {
-  //     if (pathname && pathname.split("/").includes(element)) {
-  //       setNoNavbar(true);
-  //     } else {
-  //       setNoNavbar(false);
-  //     }
-  //   });
-  // }, [pathname]);
-
   return (
     <html
       lang="en"

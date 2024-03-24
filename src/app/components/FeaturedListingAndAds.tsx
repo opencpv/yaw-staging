@@ -135,7 +135,7 @@ const FeaturedListingAndAds = (props: Props) => {
         <AdsSliderColumn />
       </div>
       <ArrowLink href="/properties" text="Show all" color="#202457" />
-      {/* Ads  mobile*/}
+      {/* Ads mobile*/}
       <section className="section h-fit w-full lg:hidden">
         <SliderWide
           autoplay

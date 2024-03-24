@@ -23,7 +23,7 @@ const SignInRequiredModal = ({ open, onOpenChange, onClose }: Props) => {
         isOpen={open}
         onOpenChange={onOpenChange}
         size="5xl"
-        scrollBehavior="inside"
+        scrollBehavior="normal"
         hideCloseButton
         bodyClassName="p-0"
       />

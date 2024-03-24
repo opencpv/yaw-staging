@@ -41,7 +41,7 @@ const TextInput = (
           } ${labelClassName}`,
         ),
         inputWrapper: cn(
-          `form-field-border rounded-md group-data-[focus=true]:border-accent-50 group-data-[focus=true]:border-2 ${className}`,
+          `border-neutral-400 border hover:border-black/50 rounded-md group-data-[focus=true]:border-accent-50 group-data-[focus=true]:border-2 ${className}`,
         ),
         input: cn(`text-base py-8 focus:border-accent-50 ${className}`),
         // innerWrapper: cn(`${className} text-base`)

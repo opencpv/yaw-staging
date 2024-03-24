@@ -5,7 +5,7 @@ export const middleware = async (req: NextRequest) => {
   const res = NextResponse.next();
 
   // create a supabase client configured to use cookies
-  const supabase = createMiddlewareClient<Database>({ req, res });
+  // const supabase = createMiddlewareClient<Database>({ req, res });
   // const {
   //   data: { session },
   //   error,

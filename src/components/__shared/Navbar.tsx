@@ -13,7 +13,6 @@ import { useHideDocumentScrollBar } from "@/lib/custom-hooks/useWindowEvents";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import AvatarMenu from "./ui/avatar/AvatarMenu";
 import { useUserData } from "@/lib/custom-hooks/database/useUserData";
-import { useUserSession } from "@/lib/custom-hooks/database/useUserSession";
 import { cn } from "@/lib/utils";
 
 const Navbar = (props: any) => {

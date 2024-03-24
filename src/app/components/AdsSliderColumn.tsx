@@ -10,12 +10,12 @@ let images = [
 
 const AdsSliderColumn = () => {
   return (
-    <div className="col-span-2 hidden h-full gap-4 flex-col lg:flex">
+    <div className="col-span-2 hidden h-full flex-col gap-4 lg:flex">
       {images.map((imageOuter, idx) => (
         <SliderPaginationOnly
           disabledOnInteraction
           key={idx + 1}
-          className="h-full w-full flex-1 last:flex-[2]"
+          className="h-full min-h-60 w-full flex-1 last:flex-[2]"
           images={[1, 2, 3].map((image) => ({
             name: "4 bedroom apartment",
             src: imageOuter,

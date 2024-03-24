@@ -14,6 +14,7 @@ import {
 } from "@/lib/custom-hooks/useCustomDisclosure";
 import InputPhoneNumber from "@/components/__shared/form/InputPhoneNumber";
 import { useRouter } from "next/navigation";
+import Button from "@/components/__shared/ui/button/Button";
 
 interface Props {
   icon: any;
@@ -117,9 +118,7 @@ const ProfileInfo = () => {
           {user && (
             <>
               <div className="py-8 pt-6">
-                <h4 className="font-normal text-shade-300">
-                  Update Profile Picture
-                </h4>
+                <h3 className="text-shade-300">Update Profile Picture</h3>
                 <div className="relative mt-5 aspect-video w-60 rounded-xl">
                   {user?.avatar_url !== undefined ? (
                     <Image
@@ -322,12 +321,13 @@ const ProfileInfo = () => {
                                 </div>
                               </div>
                             ) : (
-                              <button
+                              <Button
+                                color="accent"
                                 type="submit"
-                                className="mt-8 aspect-[160/52] max-h-[52px] w-full max-w-[160px] rounded-[8px] bg-[#DDB771] text-[#ffff]"
+                                className="mt-8"
                               >
                                 Update Profile
-                              </button>
+                              </Button>
                             )}
                           </>
                         </div>
