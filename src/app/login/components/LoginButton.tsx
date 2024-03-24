@@ -51,7 +51,7 @@ export const LoginButton = ({
   return (
     <button
       className={cn(
-        "flex h-fit w-full max-w-md flex-col items-center gap-5 rounded-lg bg-white px-4 py-5 transition-all duration-200 hover:opacity-90 min-[310px]:flex-row min-[350px]:gap-x-16 lg:px-8",
+        "flex h-fit w-full max-w-md flex-col items-center gap-5 rounded-lg bg-white px-4 py-5 transition-all duration-200 hover:opacity-90 focus:outline-accent-50 min-[310px]:flex-row min-[350px]:gap-x-16 lg:px-8",
         className,
       )}
       onClick={async () => {
