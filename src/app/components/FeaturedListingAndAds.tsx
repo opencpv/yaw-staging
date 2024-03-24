@@ -62,6 +62,7 @@ const FeaturedListingAndAds = (props: Props) => {
             {listings?.map((listing) => {
               return (
                 <ListingCard
+                  id={listing.id}
                   key={listing.id}
                   href={`/properties/${listing.property_id}?property_name=${listing.propertyName}&city=${listing.city}&price=${listing.price}&payment_structure=${listing.paymentStructure}&amount_per_month=${listing.monthlyAmount}&rating=${listing.ratingCount}&property_description=${listing.propertyDescription}`.replaceAll(
                     " ",
@@ -106,6 +107,7 @@ const FeaturedListingAndAds = (props: Props) => {
               <SliderGrid
                 items={listings?.map((listing) => (
                   <ListingCard
+                    id={listing.id}
                     key={listing.id}
                     href={`/properties/${listing.property_id}?property_name=${listing.propertyName}&city=${listing.city}&price=${listing.price}&payment_structure=${listing.paymentStructure}&amount_per_month=${listing.monthlyAmount}&rating=${listing.ratingCount}&property_description=${listing.propertyDescription}`.replaceAll(
                       " ",

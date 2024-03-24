@@ -12,7 +12,11 @@ export const useToastDisclosure = () => {
     error: { width: "100%", maxWidth: "30rem", background: "#5b0d0d" },
   };
 
-  const onOpen = (message: string, state?: "success" | "error") => {
+  const onOpen = (
+    message: string,
+    state?: "success" | "error",
+    autoClose = 5000,
+  ) => {
     const toastId = toast(
       state === "success"
         ? `👍️ ${message}`
@@ -21,7 +25,7 @@ export const useToastDisclosure = () => {
           : message,
       {
         position: "top-right",
-        autoClose: 5000,
+        autoClose: autoClose,
         hideProgressBar: false,
         closeOnClick: false,
         pauseOnHover: true,

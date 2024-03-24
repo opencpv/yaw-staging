@@ -192,6 +192,7 @@ const ListingCard = (props: ListingCardInterface) => {
         </Swiper>
         {/* Listing info */}
         <ListingInfo
+          id={props.id}
           liked={props.liked}
           monthlyAmount={props.monthlyAmount}
           paymentStructure={props.paymentStructure}

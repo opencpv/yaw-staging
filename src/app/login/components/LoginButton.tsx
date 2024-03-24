@@ -76,6 +76,7 @@ export const LoginButton = ({
               alt={icon}
               height={41}
               width={41}
+              className="size-[28px] xs:size-[41px]"
             />
           )}
           <p
