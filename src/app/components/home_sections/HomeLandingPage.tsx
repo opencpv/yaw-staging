@@ -10,6 +10,7 @@ type Props = {
 };
 
 const HomeLandingPage = (props: Props) => {
+  console.log(props.data);
   return (
     <ShapedLanding
       property="2 Bedroom house at Amasaman"
