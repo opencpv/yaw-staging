@@ -18,6 +18,7 @@ import { HOME_PAGE_QUERY } from "@/lib/utils/sanity/queries";
 export default async function Home() {
   const initial = await loadQuery<SanityDocument[]>(HOME_PAGE_QUERY);
   const data = initial.data[0];
+
   return (
     <ClientPageWrapper>
       <>

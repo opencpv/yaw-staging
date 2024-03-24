@@ -84,6 +84,7 @@ function GetNotifiedInput() {
                   onChange={handlePhone}
                   onInput={handleChange}
                   onCountryChange={handleCountryChange}
+                  showError={false}
                 />
               )}
 
