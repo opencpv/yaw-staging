@@ -14,16 +14,13 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import AvatarMenu from "./ui/avatar/AvatarMenu";
 import { useUserData } from "@/lib/custom-hooks/database/useUserData";
 import { cn } from "@/lib/utils";
-import { useGetUser } from "@/lib/custom-hooks/database/useGetUser";
 
 const Navbar = (props: any) => {
   const pathname = usePathname();
   const { icons } = useAssets();
   const [isScrolling, setIsScrolling] = useState<boolean>(false);
   const { toggle, setToggle } = useMenuStore();
-  // const { user } = useAppStore();
-
-  const user = useGetUser();
+  const { user } = useAppStore();
 
   useHideDocumentScrollBar(toggle);
 
