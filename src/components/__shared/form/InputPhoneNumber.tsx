@@ -14,6 +14,7 @@ type Props = {
   id?: string;
   placeholder?: string;
   onBlur?: (e: any) => void;
+  showError?: boolean;
 };
 
 const InputPhoneNumber: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
@@ -24,6 +25,7 @@ const InputPhoneNumber: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
   onBlur,
   onCountryChange,
   placeholder,
+  showError = true,
   ...props
 }) => {
   const [country] = useState<CountryCode>("GH");
@@ -60,9 +62,13 @@ const InputPhoneNumber: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
         onFocus={handleFocus}
         onBlur={onBlur}
       />
-      {meta.touched && meta.error ? (
-        <ErrorMessage>{meta.error}</ErrorMessage>
-      ) : null}
+      {showError && (
+        <>
+          {meta.touched && meta.error ? (
+            <ErrorMessage>{meta.error}</ErrorMessage>
+          ) : null}
+        </>
+      )}
     </div>
   );
 };
