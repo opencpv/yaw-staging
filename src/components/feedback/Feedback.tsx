@@ -20,7 +20,8 @@ const Feedback = ({ children }: Props) => {
   const handleSubmitFeedback = () => {
     onClose();
     toastOnOpen(
-      "👍 Thank you! Your feedback is invaluable and will contribute to improving our services.",
+      "Thank you! Your feedback is invaluable and will contribute to improving our services.",
+      "success",
     );
   };
 

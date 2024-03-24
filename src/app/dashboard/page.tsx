@@ -14,14 +14,14 @@ const Dashboard = () => {
   useUserData();
 
   useEffect(() => {
-    if (user) {
-      router.replace(`/dashboard/${currentRole}/overview`);
-    }
+    // if (user) {
+    router.replace(`/dashboard/${currentRole}/overview`);
+    // }
   }, [router, currentRole, user]);
 
   return (
     <>
-      <main className="grid h-screen place-items-center">
+      <main className="grid h-40 place-items-center">
         <Loader />
       </main>
     </>

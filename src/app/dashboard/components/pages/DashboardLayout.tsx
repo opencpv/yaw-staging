@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import CompleteYourLogin from "../../components/CompleteYourLogin";
 import { ClientOnly } from "@/components/ui/ClientOnly";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useNotificationStore } from "@/store/dashboard/notificationStore";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { supabase } from "@/supabase/client";
@@ -18,6 +18,7 @@ type LayoutProps = {
 
 const Wrapper = ({ children }: LayoutProps) => {
   const pathname = usePathname();
+  const router = useRouter();
   const [notificationsLoading, setNotificationsLoading] = useState<
     boolean | null
   >();
@@ -29,6 +30,16 @@ const Wrapper = ({ children }: LayoutProps) => {
   const [excludeWrapper, setExcludeWrapper] = useState(false);
 
   const { setCurrentRole, isSwitchingRole } = useDashboardStore();
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      const { data, error } = await supabase.auth.getUser();
+      if (error || !data?.user) {
+        router.push("/");
+      }
+    };
+    checkAuth();
+  }, [router]);
 
   useEffect(() => {
     if (!isSwitchingRole) {

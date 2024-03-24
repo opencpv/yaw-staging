@@ -83,7 +83,7 @@ function HowToSwitch({ open }: Props) {
                   />
                 </div>
               </div>
-              <div className="mt-20 flex w-full justify-center">
+              <div className="mt-8 flex w-full justify-center">
                 <Button
                   className="flex h-[52px] w-full max-w-[151px] items-center justify-center rounded-lg bg-[#073B3A] font-semibold text-white"
                   role="button"

@@ -15,6 +15,7 @@ type Props = {
   placeholder?: string;
   onBlur?: (e: any) => void;
   className?: string;
+  defaultValue?: E164Number;
 };
 
 const InputPhoneNumber: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
@@ -26,6 +27,7 @@ const InputPhoneNumber: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
   onCountryChange,
   placeholder,
   className,
+  defaultValue,
   ...props
 }) => {
   const [country] = useState<CountryCode>("GH");
@@ -46,6 +48,7 @@ const InputPhoneNumber: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
         id={id}
         name={field.name || name}
         value={field.value || value}
+        defaultValue={defaultValue}
         onChange={(value) => {
           onChange(value);
           helpers.setValue(value);

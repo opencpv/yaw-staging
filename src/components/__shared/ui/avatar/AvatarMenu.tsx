@@ -41,7 +41,7 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
   const handleSignOut = async () => {
     const { error } = await supabase.auth.signOut();
     if (error) {
-      onOpen(error.message, undefined, "error");
+      onOpen(error.message, "error");
     } else {
       setTimeout(() => {
         setUser(null);

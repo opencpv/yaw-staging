@@ -1,14 +1,12 @@
 import { styled } from "@stitches/react";
 import Image from "next/image";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import { AiOutlineLink } from "react-icons/ai";
+import { Formik, Form, Field, ErrorMessage, useField } from "formik";
+import { AiFillInstagram, AiOutlineLink } from "react-icons/ai";
 import { FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
-import { IoLogoWhatsapp } from "react-icons/io";
 import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import Loader from "@/components/__shared/loader/Loader";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import PhoneNumberInputv2 from "@/components/__shared/PhoneInputv2";
 import { supabase } from "@/supabase/client";
 import {
   usePhoneInputDisclosure,
@@ -107,7 +105,7 @@ const ProfileInfo = () => {
     linkedIn: user?.linkedin,
     whatsapp: user?.whatsapp,
     bio: user?.bio,
-    number: user?.phone,
+    phone: user?.phone,
   };
 
   return (
@@ -146,9 +144,6 @@ const ProfileInfo = () => {
                   key={JSON.stringify(user)}
                   initialValues={initialValues}
                   onSubmit={async (values) => {
-                    const dto = values;
-                    delete values.number;
-                    dto.number = phone;
                     setSubmitLoading(true);
                     try {
                       const { data, error } = await supabase
@@ -161,7 +156,7 @@ const ProfileInfo = () => {
                           facebook: values.facebook,
                           linkedin: values.linkedIn,
                           whatsapp: values.whatsapp,
-                          phone,
+                          phone: values.phone,
                           bio: values.bio,
                           full_name: `${values.firstName} ${values.lastName}`,
                         })
@@ -169,24 +164,20 @@ const ProfileInfo = () => {
                         .select();
 
                       if (data) {
-                        onOpen(
-                          "Profile updated successfully",
-                          undefined,
-                          "success",
-                        );
+                        onOpen("Profile updated successfully", "success");
                         router.refresh();
                       }
                       if (error) throw error;
                     } catch (error) {
                       console.log("Error updating profile:", error);
-                      onOpen("Error updating profile", undefined, "error");
+                      onOpen("Error updating profile", "error");
                     } finally {
                       setSubmitLoading(false);
                     }
                   }}
                   enableReinitialize={true}
                 >
-                  {({ handleChange, handleBlur }) => (
+                  {({ handleChange, handleBlur, values }) => (
                     <Form className="border-t-2 pt-8">
                       <div className="grid grid-cols-1 gap-x-5 gap-y-16 sm:grid-cols-2 xl:grid-cols-3">
                         {/* My Profile Summary */}
@@ -249,15 +240,16 @@ const ProfileInfo = () => {
                                 className="error"
                               />
                             </div> */}
-
                             <div className="form-div">
                               <label>WhatsApp:</label>
                               <InputPhoneNumber
                                 name="phone"
-                                value={(user.phone as string) || phone}
+                                value={values.phone as string}
                                 onChange={(val) => {
                                   handlePhone(val);
-                                  // handleChange && handleChange(val);
+                                  handleChange({
+                                    target: { name: "phone", value: val },
+                                  });
                                 }}
                                 onBlur={handleBlur}
                                 onCountryChange={handleCountryChange}
@@ -296,12 +288,12 @@ const ProfileInfo = () => {
                               placeholder="https://facebook.com/abcd"
                             />
                             <IconField
-                              icon={<IoLogoWhatsapp size={24} color="black" />}
+                              icon={<AiFillInstagram size={26} color="black" />}
                               name={"whatsapp"}
                               className={"form-input"}
-                              label={"WhatsApp"}
+                              label={"Instagram"}
                               type={"text"}
-                              placeholder="https://wa.whatsapp.com/abc"
+                              placeholder="https://instagram.com/username"
                             />
                           </div>
                         </div>

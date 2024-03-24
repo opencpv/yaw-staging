@@ -58,7 +58,7 @@ const ContactForm = () => {
               setLoading(false);
               resetForm();
               setPhone(undefined);
-              onOpen("👍 Successfully sent");
+              onOpen("Successfully sent", "success");
             }
           });
       }}

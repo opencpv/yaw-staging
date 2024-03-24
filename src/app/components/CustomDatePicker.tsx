@@ -86,7 +86,7 @@ export function CustomDatePicker({
             selected={field.value}
             onSelect={(value) => {
               if (isBefore(value as Date)) {
-                onOpen("❌ Please select a future date", true);
+                onOpen("Please select a future date", "error");
                 return;
               }
               helpers.setValue(value);

@@ -20,7 +20,8 @@ const Survey = ({ children }: Props) => {
   const handleSubmitSurvey = () => {
     onClose();
     toastOnOpen(
-      "👍 Thank you! Your feedback is invaluable and will contribute to improving our services.",
+      "Thank you! Your feedback is invaluable and will contribute to improving our services.",
+      "success",
     );
   };
 
