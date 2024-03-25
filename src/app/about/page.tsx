@@ -16,6 +16,7 @@ import { urlForImage } from "@/lib/utils/sanity/utils";
 
 export const metadata: Metadata = {
   title: "About us",
+  description: "", // tentative
 };
 
 const About = async () => {

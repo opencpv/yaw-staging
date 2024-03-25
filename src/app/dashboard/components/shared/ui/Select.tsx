@@ -47,7 +47,7 @@ const Select = ({
           "w-44 mx-auto text-xs hover:bg-neutral-100 rounded-full",
           className,
           {
-            "text-base rounded-none": variant === "ghost",
+            "text-base rounded-md": variant === "ghost",
             "opacity-100": disabled,
           },
         ),

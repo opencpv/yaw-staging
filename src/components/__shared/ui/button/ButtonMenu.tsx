@@ -17,6 +17,7 @@ const ButtonMenu = ({ className }: Props) => {
         "group mb-5 grid h-10 w-10 place-items-center rounded-full p-2 transition-all hover:scale-105 hover:bg-slate-50/70",
         className,
       )}
+      title="Menu"
     >
       <FaChevronLeft className="text-white group-hover:text-neutral-600" />
     </div>
