@@ -33,7 +33,7 @@ const HomeRentalDealsSection = (props: Props) => {
           return (
             // <AOSWrapper key={idx} animation="fade-up">
             <DealCard
-              key={id}
+              key={idx}
               href={tag.url}
               title={tag.title}
               body={tag.description}

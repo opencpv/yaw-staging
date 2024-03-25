@@ -4,6 +4,7 @@ import { SanityDocument } from "next-sanity";
 import { loadQuery } from "@/lib/utils/sanity/sanityStore";
 import MainView from "./components/MainView";
 import legal from "@/enum/about/legal";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Terms of Service",

@@ -36,12 +36,7 @@ export const useToastDisclosure = () => {
         bodyStyle: { paddingRight: "2.5rem" },
         style: variants[state || "success"],
       },
-    });
-
-    // Add event listener to dismiss the toast when the user scrolls
-    window.addEventListener("scroll", () => {
-      toast.dismiss(toastId);
-    });
+    );
   };
 
   return { onOpen };

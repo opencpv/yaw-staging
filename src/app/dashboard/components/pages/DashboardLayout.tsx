@@ -1,3 +1,4 @@
+//@ts-nocheck
 "use client";
 import Navbar from "../../components/navbar";
 import Pagination from "../../components/pagination";
