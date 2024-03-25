@@ -38,12 +38,26 @@ const About = async () => {
       <main className="overflow-x-hidden pb-8 sm:pb-14">
         <div className="wrapper flex items-center justify-center pb-0 sm:pb-0">
           <div className="grid items-center gap-x-36 gap-y-5 lg:grid-cols-2">
-            <h1 className="text-2xl font-[700] leading-normal text-[#305A61] sm:text-4xl">
-              {heading1}
-            </h1>
-            <h2 className="max-w-2xl text-lg font-[500] text-[#65969F]">
-              {heading2}
-            </h2>
+            <div className="w-full">
+              {heading1.split("#").map((heading: string, index: number) => (
+                <h1
+                  className="text-2xl font-[700] leading-normal text-[#305A61] sm:text-4xl"
+                  key={index}
+                >
+                  {heading}
+                </h1>
+              ))}
+            </div>
+            <div className="w-full">
+              {heading2.split("#").map((heading: string, index: number) => (
+                <h2
+                  className="max-w-2xl text-lg font-[500] text-[#65969F]"
+                  key={index}
+                >
+                  {heading}
+                </h2>
+              ))}
+            </div>
           </div>
         </div>
         <div className="mt-14 flex items-center justify-center">
