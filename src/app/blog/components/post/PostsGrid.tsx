@@ -6,6 +6,7 @@ import convertSlugToString from "@/lib/utils/convertSlugToString";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import SkeletonLong from "@/components/__shared/ui/skeleton/SkeletonLong";
 import capitalizeName from "@/lib/utils/stringManipulation";
+import slugify from "@/lib/utils/slugify";
 
 interface IPostsGridProps {
   posts: any[];
@@ -49,7 +50,11 @@ const PostsGrid: React.FunctionComponent<IPostsGridProps> = (props) => {
                     body={post?.summary}
                     postedAt="November 7th 2023"
                     rating={post?.rating}
-                    href="/blog/c/p"
+                    href={
+                      `/blog/${slugify(
+                        post?.category?.category_title,
+                      )}/${slugify(post?.title)}?id=${post?._id}` as string
+                    }
                   />
                 ))}
               </>

@@ -10,5 +10,8 @@ export const TERMS_QUERY = groq`*[_type == 'terms']{...}`;
 export const BLOG_QUERY = groq`*[_type == 'blog']{_id,author->,category->,title,featured_image,date,summary,rating}`;
 export const BLOG_CATEGORIES = groq`*[_type == 'category']{...}`;
 export const AUTHORS = groq`*[_type == 'author']{...}`;
+export const SINGLE_BLOG_POST = (id: string) => {
+    return groq`*[_type == 'blog' && _id == "${id}"]{...,author->,category->}`
+}
 
 

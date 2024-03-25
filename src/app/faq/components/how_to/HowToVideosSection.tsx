@@ -17,6 +17,7 @@ const HowToVideosSection = (props: Props) => {
     }
     setDisplayCount((prevCount) => prevCount + 4);
   };
+
   return (
     <>
       {props.content ? (

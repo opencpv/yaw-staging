@@ -21,15 +21,17 @@ const HowToPage = (props: Props) => {
   const { value, handleSelectionChange } = useSelectDisclosure<string>("all");
 
   function filterByTag(array: HowTo[], tag: string) {
-    return array.filter((item) => item.tags.some((t) => t.tag === tag));
+    return array.filter((item) =>
+      item.tags.some((t) => t.tag.toLowerCase() === tag),
+    );
   }
   useEffect(() => {
-    console.log("values", value);
     const data = props.howtos;
     if (value === "all") {
       setcontent(data);
     } else {
       setcontent(filterByTag(data, value));
+      console.log(filterByTag(data, value));
     }
   }, [value]);
 

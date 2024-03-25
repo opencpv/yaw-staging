@@ -40,11 +40,11 @@ const HomeManagePropertiesSection = (props: Props) => {
             ) : (
               <ManagePropertiesInfo
                 key={idx + 1}
-                href="/about"
-                activity="Manage your property"
-                image="/assets/images/Stock.jpg"
-                title="Want to rent your property?"
-                body="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est nihil temporibus omnis. Repellendus adipisci harum quidem porro, maxime soluta! Accusamus ad amet eveniet culpa, mollitia velit? Sit quam nisi quaerat accusantium commodi ullam, iure reiciendis!"
+                href={card.link}
+                activity={card.linkLabel}
+                image={urlForImage(card.aboutCardImage)?.url() as string}
+                title={card.aboutCardTitle}
+                body={card.aboutCardDescription}
               />
             ),
           )}

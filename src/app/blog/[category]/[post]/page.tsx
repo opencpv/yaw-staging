@@ -9,23 +9,46 @@ import BreadCrumbPreLink from "@/components/__shared/ui/BreadCrumbPreLink";
 import SubscribeToBlogButton from "../../components/SubscribeToBlogButton";
 import Share from "@/components/__shared/ui/share/Share";
 import Print from "@/components/__shared/ui/Print";
+import { loadQuery } from "@sanity/react-loader";
+import { SanityDocument } from "next-sanity";
+import { SINGLE_BLOG_POST } from "@/lib/utils/sanity/queries";
+import slugify from "@/lib/utils/slugify";
+import { urlForImage } from "@/lib/utils/sanity/utils";
+import BlogTextComponent from "../../components/BlogTextComponent";
+import { PortableText } from "@portabletext/react";
+import "../../style.css";
+import handlePageViewCounter from "@/lib/utils/handlePageViewCounter";
 
-type Props = {};
+type Props = {
+  params: { slug: string };
+  searchParams: { id: string };
+};
 
-const page = (props: Props) => {
+const page = async ({ params, searchParams }: Props) => {
+  const intialPostData: any = await loadQuery<SanityDocument[]>(
+    SINGLE_BLOG_POST(searchParams.id),
+  );
+  const post = intialPostData.data[0];
+  handlePageViewCounter(post);
+
   return (
     <div className="wrapper overflow-x-hidden text-neutral-500">
       <h3 className="mb-8 text-xl font-[500]">
-        <BreadCrumbPreLink label="Blog" href="/blog" /> - Posted by{" "}
-        <span className="text-primary-500">Jane Doe</span>
+        <BreadCrumbPreLink
+          label="Blog"
+          href={`/blog/${slugify(post.category.category_title)}/${slugify(
+            post.title,
+          )}`}
+        />
+        - Posted by <span className="text-primary-500">{post.author.name}</span>
       </h3>
       <h1 className="mb-5 text-2xl font-[700] text-primary-200 md:text-4xl">
-        Mastering the Art of Home Decor: Simple Tips for a Cozy Living Space
+        {post.title}
       </h1>
       <AOSWrapper animation="fade-up">
         <div className="shape-3 relative mb-16 h-60 w-full lg:h-[30rem]">
           <Image
-            src="/assets/images/about/about-slider-img.webp"
+            src={urlForImage(post.featured_image)?.url() as string}
             alt=""
             className=""
             fill
@@ -33,48 +56,15 @@ const page = (props: Props) => {
           />
         </div>
       </AOSWrapper>
-
       <h3 className="no-print mb-8 text-xl font-[500]">
         <BreadCrumbPreLink label="Category" href="/blog/Category" /> /
-        <span className=""> Blog title</span>
+        <span className="">{post.title}</span>
       </h3>
       <section className="print-content mb-20 grid-cols-4 gap-5 sm:grid">
         <div className="col-span-3">
           {/* Blog content --- CMS */}
-          <div className="mb-20">
-            <p className="mb-5 leading-7">
-              One of the easiest ways to add coziness to your home is by
-              incorporating soft textures and fabrics. Consider investing in
-              plush throw blankets, fluffy pillows, and soft area rugs. These
-              elements not only introduce warmth but also invite you to unwind
-              after a long day. Opt for neutral tones for a timeless look or
-              experiment with muted pastels to create a soothing ambiance.
-            </p>
-            <p className="mb-5 leading-7">
-              The right lighting can significantly impact the atmosphere of your
-              living space. Choose warm-toned light bulbs to create a cozy glow
-              that mimics natural sunlight. Strategically place floor lamps,
-              table lamps, or string lights to achieve a well-lit yet inviting
-              ambiance. Consider installing dimmer switches for flexibility,
-              allowing you to adjust the lighting based on different moods and
-              occasions.
-            </p>
-            <p className="mb-5 leading-7">
-              Infuse your living space with personal touches that tell a story.
-              Display cherished photos, artwork, or sentimental items that hold
-              special memories. These pieces not only add character to your home
-              but also contribute to a sense of belonging. Arrange them
-              thoughtfully, creating a gallery wall or incorporating them into
-              your decor to foster a welcoming and personal atmosphere.
-            </p>
-            <p className="mb-5 leading-7">
-              A clutter-free space is essential for a cozy environment.
-              Streamline your decor by decluttering surfaces and organizing
-              belongings. Invest in stylish storage solutions like baskets or
-              decorative boxes to keep essentials within reach yet neatly tucked
-              away. A tidy living space not only promotes a serene atmosphere
-              but also allows the beauty of your decor to shine through.
-            </p>
+          <div className="blog mb-20">
+            <PortableText value={post.content} />
           </div>
           {/* Rate blog */}
           <h3 className="no-print mb-3 text-xl font-[500] text-neutral-800">
