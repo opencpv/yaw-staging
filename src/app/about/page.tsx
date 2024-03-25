@@ -70,9 +70,9 @@ const About = async () => {
           {/* <AboutBanner data={bannerData} /> */}
           <AOSWrapper animation="fade-up" className="relative w-full">
             <div className="relative flex max-w-screen-xl flex-col items-center justify-between gap-10 bg-opacity-90 bg-gradient-to-r from-[#21A19F] to-[#1EA9A6A1] p-5 text-white xs:items-start xs:p-10 lg:flex-row min-[1048px]:max-xl:w-11/12 fhd:mx-auto">
-              <div className="">
-                <h2 className="text-2xl font-[700] md:text-4xl">Ipsum Lorem</h2>
-                <p className="mt-5 max-w-2xl text-base font-[500] md:text-lg">
+              <div className="space-y-5">
+                <h2 className="font-[700] md:text-4xl">Ipsum Lorem</h2>
+                <p className="max-w-2xl text-base font-[500] md:text-lg">
                   Lorem ipsum dolor sit amet consectetur. Orci suspendisse
                   fringilla consequat placerat velit dui. Sit in condimentum sed
                   a orci ac. Porttitor sagittis facilisi consequat morbi tortor
