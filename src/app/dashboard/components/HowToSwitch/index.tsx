@@ -11,6 +11,7 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import { useRouter } from "next/navigation";
 import { Role, useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import { createClient } from "@/lib/utils/supabase/client";
 
 type Props = {
   open: boolean;
@@ -21,6 +22,7 @@ function HowToSwitch({ open }: Props) {
   const router = useRouter();
   const { firstTimeRole, setFirstTimeRole } = useDashboardStore();
   const { onOpen } = useToastDisclosure();
+  const supabase = createClient();
 
   useEffect(() => {
     setOpen(open);

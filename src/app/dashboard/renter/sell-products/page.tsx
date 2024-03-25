@@ -19,7 +19,6 @@ import {
 } from "../../components/shared/table/Table";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { cn } from "@/lib/utils";
-import { supabase } from "@/supabase/client";
 
 const Sell = () => {
   // const [products, setproducts] = useState<any[]>([]);

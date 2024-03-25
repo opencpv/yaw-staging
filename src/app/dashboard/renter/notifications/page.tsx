@@ -12,7 +12,6 @@ import { redirect } from "next/navigation";
 import CaMarkAsRead from "../../components/shared/notifications/icons/CaMarkAsRead";
 import { NotificationType } from "../../components/shared/notifications/types";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import { supabase } from "@/supabase/client";
 
 const Page = () => {
   const [currentNotification, setCurrentNotification] =
@@ -20,11 +19,11 @@ const Page = () => {
   // const [notifications, setNotifications] = useState<NotificationType | any>();
   const { user } = useAppStore();
 
-  useEffect(() => {
-    if (!supabase) {
-      redirect("/");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!supabase) {
+  //     redirect("/");
+  //   }
+  // }, []);
 
   // useEffect(() => {
   //   setCurrentNotification(demoNotifications[0]);

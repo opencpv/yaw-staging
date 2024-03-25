@@ -59,8 +59,8 @@ const Navbar = (props: any) => {
           isNotTargetPage
             ? "sticky bg-primary-500"
             : shouldChangeColor
-              ? "fixed bg-primary-500 transition-all"
-              : "fixed bg-transparent transition-all"
+              ? "fixed bg-primary-500 transition-all duration-300"
+              : "fixed bg-transparent transition-all duration-300"
         } top-0 bg-primary-500`}
       >
         <div className="flex items-center justify-between">

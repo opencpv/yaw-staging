@@ -15,6 +15,7 @@ import {
 import InputPhoneNumber from "@/components/__shared/form/InputPhoneNumber";
 import { useRouter } from "next/navigation";
 import Button from "@/components/__shared/ui/button/Button";
+import { createClient } from "@/lib/utils/supabase/client";
 
 interface Props {
   icon: any;
@@ -35,6 +36,8 @@ const IconField = ({
   placeholder,
   defaultValue,
 }: Props) => {
+  const supabase = createClient();
+
   return (
     <div className="form-div relative">
       <div className="relative flex items-center">

@@ -14,9 +14,9 @@ const Dashboard = () => {
   useUserData();
 
   useEffect(() => {
-    // if (user) {
-    router.replace(`/dashboard/${currentRole}/overview`);
-    // }
+    if (user) {
+      router.replace(`/dashboard/${currentRole}/overview`);
+    }
   }, [router, currentRole, user]);
 
   return (

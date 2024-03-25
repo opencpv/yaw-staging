@@ -23,10 +23,16 @@ const Layout = async ({ children }: LayoutProps) => {
   const headerList = headers();
   const pathname = headerList.get("x-pathname") || "";
 
+  // protected route
   if ((error || !data?.user) && pathname !== "/dashboard") {
     redirect("/login");
   }
 
+  if (data?.user && pathname === "/login") {
+    redirect("/dashboard");
+  }
+
   return <DashboardLayout>{children}</DashboardLayout>;
 };
+
 export default Layout;

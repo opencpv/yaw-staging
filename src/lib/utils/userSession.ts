@@ -1,6 +1,8 @@
 import { supabase } from "@/supabase/client";
+import { createClient } from "./supabase/client";
 
 const userSession = async () => {
+  const supabase = createClient();
   try {
     const { data, error } = await supabase.auth.getSession();
     if (error) {

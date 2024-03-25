@@ -59,7 +59,7 @@ body {
   }
 
   li,
-  a:not(button a),
+  a:not(a[role="button"]),
   div {
     @apply focus:outline-accent-50;
   }

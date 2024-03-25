@@ -1,15 +1,21 @@
+import { createClient } from "@/lib/utils/supabase/client";
 import { supabase } from "@/supabase/client";
 import { useEffect, useState } from "react";
 
-export const useGetUser = () => {
+export const useGetUser = (): User | null => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
+    const supabase = createClient();
     const getUser = async () => {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      setUser(user as unknown as User);
+      try {
+        const { data } = await supabase.auth.getUser();
+        if (data && data.user) {
+          setUser(data.user as unknown as User);
+        }
+      } catch (error) {
+        console.error(error);
+      }
     };
     getUser();
   }, []);

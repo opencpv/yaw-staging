@@ -153,8 +153,12 @@ export const useMenuLinks = () => {
       name: "MORE",
       sub: [
         {
+          url: "/blog",
+          name: "Area Vibes",
+        },
+        {
           url: "/faq",
-          name: "How to",
+          name: "How To",
         },
         {
           url: "/b2b",

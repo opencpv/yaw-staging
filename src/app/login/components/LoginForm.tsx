@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useUserData } from "@/lib/custom-hooks/database/useUserData";
 import { supabase } from "@/supabase/client";
+import { createClient } from "@/lib/utils/supabase/client";
 
 export const LoginForm = () => {
   const router = useRouter();
@@ -16,6 +17,8 @@ export const LoginForm = () => {
   useUserData();
 
   useEffect(() => {
+    const supabase = createClient();
+
     const checkAuth = async () => {
       const { data, error } = await supabase.auth.getUser();
       if (error) {

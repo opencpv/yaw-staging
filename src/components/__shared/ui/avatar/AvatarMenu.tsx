@@ -17,6 +17,7 @@ import {
 import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { useUserSession } from "@/lib/custom-hooks/database/useUserSession";
 import { supabase } from "@/supabase/client";
+import { createClient } from "@/lib/utils/supabase/client";
 
 type Props = {
   /** ClassName for the avatar  */
@@ -29,9 +30,10 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
   const pathname = usePathname();
   const { currentRole } = useDashboardStore();
   const { user, setUser } = useAppStore();
-  const userSession = useUserSession();
+  // const userSession = useUserSession();
   const router = useRouter();
   const { onOpen } = useToastDisclosure();
+  const supabase = createClient();
 
   const name =
     user?.firstname && user?.lastname
@@ -60,7 +62,7 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
             name={name}
             email={user?.email}
             className={cn("", className)}
-            display={userSession?.session && true}
+            display={user ? true : false}
           />
         </div>
       </PopoverTrigger>
@@ -79,7 +81,7 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
             })}
           >
             <Avatar
-              display={userSession?.session && true}
+              display={user ? true : false}
               image={user?.avatar_url as string}
               name={name as string}
               email={user?.email}

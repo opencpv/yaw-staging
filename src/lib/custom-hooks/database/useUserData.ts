@@ -1,5 +1,6 @@
+import { createClient } from "@/lib/utils/supabase/client";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import { supabase } from "@/supabase/client";
+// import { supabase } from "@/supabase/client";
 import { useEffect, useState } from "react";
 
 export const useUserData = () => {
@@ -7,13 +8,15 @@ export const useUserData = () => {
   const { setUser } = useAppStore();
 
   useEffect(() => {
+    const supabase = createClient();
     const getUserData = async () => {
       setLoading(true);
       const session = JSON.parse(localStorage.getItem("session") as string);
       try {
-        let { data: userDetails } = await supabase?.auth?.getUser(
-          session?.access_token,
-        );
+        // let { data: userDetails } = await supabase?.auth?.getUser(
+        //   session?.access_token,
+        // );
+        let { data: userDetails } = await supabase?.auth?.getUser();
         let { data: profiles, error } = await supabase
           .from("profiles")
           .select("*")
