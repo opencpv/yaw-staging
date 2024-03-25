@@ -1,22 +1,34 @@
 "use client";
 import Loader from "@/components/__shared/loader/Loader";
+import { useGetUser } from "@/lib/custom-hooks/database/useGetUser";
 import { useUserData } from "@/lib/custom-hooks/database/useUserData";
-import { useAppStore } from "@/store/dashboard/AppStore";
+import { createClient } from "@/lib/utils/supabase/client";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 const Dashboard = () => {
-  const { user } = useAppStore();
   const { currentRole } = useDashboardStore();
   const router = useRouter();
 
   useUserData();
 
+  const user = useGetUser();
+
   useEffect(() => {
-    if (user) {
-      router.replace(`/dashboard/${currentRole}/overview`);
-    }
+    const handleRedirect = async () => {
+      const supabase = createClient();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (user) {
+        router.replace(`/dashboard/${currentRole}/overview`);
+      } else {
+        router.replace(`/login`);
+      }
+    };
+
+    handleRedirect();
   }, [router, currentRole, user]);
 
   return (
