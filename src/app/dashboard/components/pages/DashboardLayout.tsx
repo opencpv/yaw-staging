@@ -32,16 +32,6 @@ const Wrapper = ({ children }: LayoutProps) => {
   const { setCurrentRole, isSwitchingRole } = useDashboardStore();
 
   useEffect(() => {
-    const checkAuth = async () => {
-      const { data, error } = await supabase.auth.getUser();
-      if (error || !data?.user) {
-        router.push("/");
-      }
-    };
-    checkAuth();
-  }, [router]);
-
-  useEffect(() => {
     if (!isSwitchingRole) {
       // to make sure it doesn't conflict with actual switch
       if (pathname?.includes("/lister")) setCurrentRole("lister");

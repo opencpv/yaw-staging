@@ -40,10 +40,7 @@ const PopularCitiesCard = ({
             <h2 className="text-base font-[700]">{location}</h2>
             <p className="inline-block text-sm font-[700]">{description}</p>
           </div>
-          <Link
-            href={`/properties/?location${location}`}
-            className="flex items-center gap-2 visited:no-underline hover:no-underline active:no-underline"
-          >
+          <div className="flex items-center gap-2 visited:no-underline hover:no-underline active:no-underline">
             <div className="flex items-center gap-1 text-accent-50">
               <FaHouseUser />
               <span className="text-accent font-[700]">
@@ -51,7 +48,7 @@ const PopularCitiesCard = ({
               </span>
             </div>
             <CgArrowLongRight className="text-white" />
-          </Link>
+          </div>
         </div>
       </div>
     </Link>

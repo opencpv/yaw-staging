@@ -8,7 +8,7 @@ import HomePromotionSection from "./components/home_sections/HomePromotionSectio
 import HomeRentalDealsSection from "./components/home_sections/HomeRentalDealsSection";
 import HomeManagePropertiesSection from "./components/home_sections/HomeManagePropertiesSection";
 import FeedbackButton from "@/components/feedback/FeedbackButton";
-import AOSWrapper from "@/components/__shared/AOSWrapper";
+// import AOSWrapper from "@/components/__shared/AOSWrapper";
 
 export default function Home() {
   return (
@@ -20,16 +20,16 @@ export default function Home() {
         <div className="wrapper-2">
           <HomePromotionSection />
           {/* Featured Listings and Ads */}
-          <FeaturedListingAndAds />
+          {/* <FeaturedListingAndAds /> */}
 
           {/* Apartment Rentals */}
           <HomeRentalDealsSection />
           {/* Manage Your Properties With Us */}
           <HomeManagePropertiesSection />
           {/* Find Apartments in Popular Cities */}
-          <AOSWrapper animation="fade-up">
-            <HomePopularCities />
-          </AOSWrapper>
+          {/* <AOSWrapper animation="fade-up"> */}
+          <HomePopularCities />
+          {/* </AOSWrapper> */}
           <FeedbackButton />
         </div>
       </main>
