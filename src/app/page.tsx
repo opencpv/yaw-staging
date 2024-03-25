@@ -20,7 +20,7 @@ export default function Home() {
         <div className="wrapper-2">
           <HomePromotionSection />
           {/* Featured Listings and Ads */}
-          {/* <FeaturedListingAndAds /> */}
+          <FeaturedListingAndAds />
 
           {/* Apartment Rentals */}
           <HomeRentalDealsSection />
