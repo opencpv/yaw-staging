@@ -14,8 +14,9 @@ const SlideItem = ({ image }: { image: StaticImageData }) => (
     <Image src={image} alt="slide image" fill className="rounded-2xl" />
   </div>
 );
-
 const SimpleSlider = ({ data }: { data: any }) => {
+  console.log(data);
+
   const { images } = useAssets();
   const sliderRef = useRef<any>(null);
 
@@ -41,10 +42,7 @@ const SimpleSlider = ({ data }: { data: any }) => {
       </div>
       <div className="flex lg:justify-center">
         <p className="mb-8 max-w-5xl text-sm font-semibold text-white md:mb-20 lg:mb-24 lg:text-center">
-          Lorem ipsum dolor sit amet consectetur. Sit consequat a elit
-          scelerisque felis fames. In fames feugiat est risus in. Elit vulputate
-          viverra duis nunc nulla nulla. Facilisi suspendisse libero praesent
-          sed diam nulla sed non in. Id commodo
+          {data.title}
         </p>
       </div>
       <MobileVersion />
