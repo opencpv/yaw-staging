@@ -21,7 +21,7 @@ const Layout = async ({ children }: LayoutProps) => {
   const supabase = createClient();
   const { data, error } = await supabase.auth.getUser();
   const headerList = headers();
-  const pathname = headerList.get("x-invoke-path") || "";
+  const pathname = headerList.get("x-pathname") || "";
 
   if ((error || !data?.user) && pathname !== "/dashboard") {
     redirect("/login");
