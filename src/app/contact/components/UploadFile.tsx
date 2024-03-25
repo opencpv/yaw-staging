@@ -10,22 +10,26 @@ type Props = {
 export const UploadFile = ({ file, handleFileUpload }: Props) => {
   return (
     <Root className="max-w-[673px]">
-      <div className="flex items-center w-full">
+      <div className="flex w-full items-center">
         <label
-          className="flex flex-col gap-y-3 w-full max-w-xl min-[390px]:items-center min-[390px]:flex-row min-[390px]:h-16"
+          className="flex w-full max-w-xl flex-col gap-y-3 min-[390px]:h-16 min-[390px]:flex-row min-[390px]:items-center"
           htmlFor="file"
         >
           <div
-            className="flex items-center gap-2 border text-neutral-400 rounded-l-md h-16 p-3 py-4 min-w-[100px] w-full min-[390px]:border-r-0 min-[390px]:h-full"
+            className="form-field-border flex h-16 w-full min-w-[100px] items-center gap-2 rounded-l-md border p-3 py-4 text-neutral-400 min-[390px]:h-full min-[390px]:border-r-0"
             title={file ?? ""}
           >
             <AiOutlineLink className="shrink-0" size="18" color="#737373" />
-            <p className="truncate hidden min-[390px]:block">{file ? file : "Choose File (optional)"}</p>
-            <p className="truncate min-[390px]:hidden">{file ? file : "Upload File (optional)"}</p>
+            <p className="hidden truncate min-[390px]:block">
+              {file ? file : "Choose File (optional)"}
+            </p>
+            <p className="truncate min-[390px]:hidden">
+              {file ? file : "Upload File (optional)"}
+            </p>
           </div>
           <div
             // type=""
-            className="hidden rounded-[4px] bg-[#DDB771] items-center justify-center upload-button min-w-[128px] h-16 text-white cursor-pointer min-[390px]:h-full min-[390px]:-translate-x-2 w-[128px] min-[390px]:flex"
+            className="upload-button hidden h-16 w-[128px] min-w-[128px] cursor-pointer items-center justify-center rounded-[4px] bg-[#DDB771] text-white min-[390px]:flex min-[390px]:h-full min-[390px]:-translate-x-2"
           >
             Upload
             <input

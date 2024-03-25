@@ -14,6 +14,7 @@ type Props = {
   id?: string;
   placeholder?: string;
   onBlur?: (e: any) => void;
+  className?: string;
   showError?: boolean;
 };
 
@@ -25,6 +26,7 @@ const InputPhoneNumber: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
   onBlur,
   onCountryChange,
   placeholder,
+  className,
   showError = true,
   ...props
 }) => {
@@ -32,10 +34,6 @@ const InputPhoneNumber: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
   const [showCode, setShowCode] = useState<boolean>(false);
 
   const [field, meta, helpers] = useField(name as string);
-
-  // document.querySelector(".PhoneInput")?.addEventListener("focus", () => {
-  //     console.log("FOCUS")
-  // })
 
   const handleFocus = (e: any) => {
     setShowCode(true);
@@ -61,6 +59,7 @@ const InputPhoneNumber: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
         placeholder={placeholder}
         onFocus={handleFocus}
         onBlur={onBlur}
+        className={className}
       />
       {showError && (
         <>

@@ -14,7 +14,7 @@ type Props = {
 };
 
 function Details({ variant }: Props) {
-  const icons = useAssets();
+  const { images } = useAssets();
   return (
     <Root className="flex w-full flex-col justify-center rounded-2xl border-[1px] border-shade-50  bg-[#FAFAFA] p-2 text-[0.625rem]">
       <div
@@ -43,7 +43,7 @@ function Details({ variant }: Props) {
             variant == "receipt" && "hidden"
           }`}
         >
-          <Image src={icons.icons.Logo} fill alt="Logo" />
+          <Image src={images.Logo} fill alt="Logo" />
         </div>
       </div>
       <div

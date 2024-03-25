@@ -30,11 +30,9 @@ export default function Blocking() {
   const [blockedUsers, setBlockedUsers] = useState(true);
   return (
     <div className="flex flex-col gap-5">
-      <div className="border-b-2 border-[#E0E4EC] py-6">
+      <div className="border-b-2 py-6">
         <div className="flex max-w-[610px] flex-col gap-5">
-          <p className="text-[1.25rem] font-semibold lg:text-[1.5625rem]">
-            Block Users
-          </p>
+          <h3>Block Users</h3>
           <p className="text-shade-200">
             Once you block someone, that person can no longer send you
             messages.They may be able to rate and review you and you can still
@@ -45,7 +43,7 @@ export default function Blocking() {
       <div className="flex max-w-[603px] flex-col gap-8">
         <div className="flex items-center justify-between">
           {" "}
-          <p className="text-[1.25rem] font-semibold">Your Blocked List</p>
+          <h4 className="text-lg">Your Blocked List</h4>
           {blockedUsers && (
             <Button
               className="h-[38px] rounded-lg bg-[#073B3A] px-5 py-2.5 text-white"
@@ -63,9 +61,9 @@ export default function Blocking() {
         )}
       </div>
       {!blockedUsers && (
-        <div className="flex h-full min-h-[495px] w-full flex-col items-center justify-center gap-8 bg-[#F7F7F7]">
+        <div className="flex min-h-72 w-full max-w-screen-lg flex-col items-center justify-center gap-8 bg-[#F7F7F7] px-5 py-20">
           <CaBlockingBlock />
-          <p className="text-[1.25rem] font-semibold text-shade-200">
+          <p className="text-center text-lg font-semibold text-shade-200">
             You have no blocked users
           </p>
         </div>
@@ -79,7 +77,7 @@ type BProps = {
 };
 const BlockCard = ({ data }: BProps) => {
   return (
-    <div className="] flex w-full cursor-pointer items-center justify-between gap-3 px-5 hover:bg-primary-300">
+    <div className="flex w-full cursor-pointer items-center justify-between gap-3 hover:bg-primary-300">
       <div className="flex w-full items-center gap-6">
         <div className="relative aspect-square w-full max-w-[69px] overflow-hidden rounded-full">
           <Image fill alt="Persona image" src={data?.image} objectFit="cover" />

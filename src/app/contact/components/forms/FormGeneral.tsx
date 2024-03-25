@@ -87,13 +87,6 @@ const FormGeneral = (props: Props) => {
                     error={errors.fullname}
                   />
                 </div>
-
-                <div className="form-div">
-                  <ContactEmailField
-                    value={values.email}
-                    handleChange={handleChange}
-                  />
-                </div>
                 <div className="form-div">
                   <ContactPhoneField
                     phone={phone}

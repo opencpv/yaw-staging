@@ -74,6 +74,7 @@ const ListingInfo = (props: ListingCardInterface) => {
             </small>
             <LikeHeart
               liked={props.liked}
+              id={props.id}
               className="inline-block text-lg text-primary-800"
             />
           </div>

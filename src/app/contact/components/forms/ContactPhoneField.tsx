@@ -12,6 +12,7 @@ import { useContactForm } from "./hooks/useContactForm";
 import InputPhoneNumber from "@/components/__shared/form/InputPhoneNumber";
 import { E164Number, CountryCode } from "libphonenumber-js/core";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import PreferredContactMethod from "@/components/__shared/form/PreferredContactMethod";
 
 type Props = {
   phone?: E164Number;
@@ -39,17 +40,34 @@ const ContactPhoneField = ({
   handleCountryChange,
   handleBlur,
 }: Props) => {
+  const [preferredContact, setPreferredContact] = useState<
+    "email" | "whatsapp"
+  >("email");
+
   return (
-    <InputPhoneNumber
+    // <InputPhoneNumber
+    //   id="phone"
+    //   name="phone"
+    //   value={phone}
+    //   placeholder="WhatsApp"
+    //   onBlur={handleBlur}
+    //   onChange={handlePhone}
+    //   onInput={handleChange}
+    //   onCountryChange={handleCountryChange}
+    //   className="focus:outline-none"
+    // />
+
+    <PreferredContactMethod
       id="phone"
       name="phone"
-      value={phone}
+      value={phone as E164Number}
       placeholder="WhatsApp"
+      selectedKey={preferredContact}
       onBlur={handleBlur}
+      onChangePhone={handlePhone}
       onChange={handlePhone}
-      onInput={handleChange}
-      onCountryChange={handleCountryChange}
-      className="focus:outline-none"
+      handleCountryChange={handleCountryChange}
+      onSelectionChange={setPreferredContact}
     />
   );
 };

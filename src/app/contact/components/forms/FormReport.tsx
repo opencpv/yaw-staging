@@ -87,13 +87,6 @@ const FormReport = (props: Props) => {
                     error={errors.fullname}
                   />
                 </div>
-
-                <div className="form-div">
-                  <ContactEmailField
-                    value={values.email}
-                    handleChange={handleChange}
-                  />
-                </div>
                 <div className="form-div">
                   <ContactPhoneField
                     phone={phone}
@@ -103,12 +96,6 @@ const FormReport = (props: Props) => {
                     handleCountryChange={handleCountryChange}
                   />
                 </div>
-                {/* <div className="">
-                            <FormSwitch
-                              label="Available on whatsapp"
-                              onChange={(checked) => setIsWhatsapp(checked)}
-                            />
-                          </div> */}
                 <ContactMessageField error={errors.message} />
                 <ContactUploadField />
 

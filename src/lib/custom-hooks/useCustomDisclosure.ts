@@ -3,22 +3,38 @@ import { toast } from "react-toastify";
 import { E164Number, CountryCode } from "libphonenumber-js/core";
 
 export const useToastDisclosure = () => {
-  const onOpen = (message: string, timed?: boolean) => {
-    const toastId = toast(message, {
-      position: "top-center",
-      autoClose: timed ? 4000 : false,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-      progressStyle: { background: "#F1B346" },
-      bodyStyle: { paddingRight: "2.5rem" },
+  const variants = {
+    success: {
+      width: "100%",
+      maxWidth: "30rem",
+      background: "#22652c",
+    },
+    error: { width: "100%", maxWidth: "30rem", background: "#5b0d0d" },
+  };
 
-      style: {
-        marginRight: "auto",
-        marginLeft: "auto",
+  const onOpen = (
+    message: string,
+    state?: "success" | "error",
+    autoClose = 5000,
+  ) => {
+    const toastId = toast(
+      state === "success"
+        ? `👍️ ${message}`
+        : state === "error"
+          ? `❌ ${message}`
+          : message,
+      {
+        position: "top-right",
+        autoClose: autoClose,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "dark",
+        progressStyle: { background: "#F1B346" },
+        bodyStyle: { paddingRight: "2.5rem" },
+        style: variants[state || "success"],
       },
     });
 

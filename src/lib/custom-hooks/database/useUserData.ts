@@ -1,0 +1,44 @@
+import { createClient } from "@/lib/utils/supabase/client";
+import { useAppStore } from "@/store/dashboard/AppStore";
+// import { supabase } from "@/supabase/client";
+import { useEffect, useState } from "react";
+
+export const useUserData = () => {
+  const [loading, setLoading] = useState(false);
+  const { setUser } = useAppStore();
+
+  useEffect(() => {
+    const supabase = createClient();
+    const getUserData = async () => {
+      setLoading(true);
+      const session = JSON.parse(localStorage.getItem("session") as string);
+      try {
+        // let { data: userDetails } = await supabase?.auth?.getUser(
+        //   session?.access_token,
+        // );
+        let { data: userDetails } = await supabase?.auth?.getUser();
+        let { data: profiles, error } = await supabase
+          .from("profiles")
+          .select("*")
+          .eq("id", userDetails?.user?.id as string);
+        const profileData = {
+          ...(profiles && profiles[0]),
+          email: userDetails?.user?.email,
+        };
+        if (userDetails.user) {
+          setUser(profileData);
+        } else {
+          setUser(null); // prevents creating a user object with email
+        }
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getUserData();
+  }, [setUser]);
+
+  return { loading };
+};

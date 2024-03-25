@@ -3,7 +3,6 @@
 import * as Collapsible from "@radix-ui/react-collapsible";
 import { styled } from "@stitches/react";
 import { useState } from "react";
-import { links, linksBeforeLogin } from "./content";
 import Link from "next/link";
 import ArrowDownNav from "@/app/components/icons/CaArrowDownNav.";
 import { BsArrowDownCircleFill } from "react-icons/bs";
@@ -16,6 +15,9 @@ import { LowerCase } from "@/lib/utils/stringManipulation";
 import ReportLink from "@/components/__shared/ReportLink";
 import HowToLink from "@/components/__shared/HowToLink";
 import FaqLink from "@/components/__shared/FaqLink";
+import { cn } from "@/lib/utils";
+import { useAppStore } from "@/store/dashboard/AppStore";
+import { useMenuLinks } from "./content";
 
 const MenuOption = ({
   name,
@@ -127,72 +129,69 @@ const MenuOption = ({
 
 export const MobileMenu = (props: any) => {
   const { setToggle } = useMenuStore();
+  const { user } = useAppStore();
+  const { linksAfterLogin, linksBeforeLogin } = useMenuLinks();
 
   return (
     <div className={`px-8 pt-10 ${props?.className}`}>
-      <div className="space-y-10">
-        {/* Before login */}
+      {/* Before login */}
+      <div
+        className={cn("space-y-10", {
+          hidden: user,
+        })}
+      >
         <Link
           href="/login"
           className="text-2xl font-semibold uppercase text-white"
+          onClick={() => setToggle(false)}
         >
           Get Started
         </Link>
         <hr className="h-[1px] w-full bg-white" />
-        {true &&
-          linksBeforeLogin.map((r, index) =>
-            r?.sub ? (
-              <MenuOption
+        {linksBeforeLogin.map((r, index) =>
+          r?.sub ? (
+            <MenuOption key={index} name={r.name} sub={r?.sub} sub2={r?.sub2} /> // sub links ---> View all listings, how to, etc...
+          ) : (
+            r?.name.toLowerCase() !== "area vibes" && ( // main links ---> Home for rent, Login, Moving sale, etc...
+              <Link
+                href={r?.url}
                 key={index}
-                name={r.name}
-                sub={r?.sub}
-                sub2={r?.sub2}
-              /> // sub links ---> View all listings, how to, etc...
-            ) : (
-              r?.name.toLowerCase() !== "area vibes" && ( // main links ---> Home for rent, Login, Moving sale, etc...
-                <Link
-                  href={r?.url}
-                  key={index}
-                  className="mb-10 block"
-                  onClick={() => setToggle(false)}
-                >
-                  <p
-                    className={"text-2xl !font-semibold uppercase text-[#fff]"}
-                  >
-                    {r?.name}
-                  </p>
-                </Link>
-              )
-            ),
-          )}
+                className="mb-10 block"
+                onClick={() => setToggle(false)}
+              >
+                <p className={"text-2xl !font-semibold uppercase text-[#fff]"}>
+                  {r?.name}
+                </p>
+              </Link>
+            )
+          ),
+        )}
+      </div>
 
-        {/* After login */}
-        {false &&
-          links.map((r, index) =>
-            r?.sub ? (
-              <MenuOption
+      {/* After login */}
+      <div
+        className={cn("space-y-10", {
+          hidden: !user,
+        })}
+      >
+        {linksAfterLogin.map((r, index) =>
+          r?.sub ? (
+            <MenuOption key={index} name={r.name} sub={r?.sub} sub2={r?.sub2} /> // sub links ---> View all listings, how to, etc...
+          ) : (
+            r?.name.toLowerCase() !== "faq" && ( // main links ---> Home for rent, Login, Moving sale, etc...
+              <Link
+                href={r?.url}
                 key={index}
-                name={r.name}
-                sub={r?.sub}
-                sub2={r?.sub2}
-              /> // sub links ---> View all listings, how to, etc...
-            ) : (
-              r?.name.toLowerCase() !== "faq" && ( // main links ---> Home for rent, Login, Moving sale, etc...
-                <Link
-                  href={r?.url}
-                  key={index}
-                  className="mb-10 block"
-                  onClick={() => setToggle(false)}
-                >
-                  <p
-                    className={"text-2xl !font-semibold uppercase text-[#fff]"}
-                  >
-                    {r?.name}
-                  </p>
-                </Link>
-              )
-            ),
-          )}
+                className="mb-10 block"
+                onClick={() => setToggle(false)}
+              >
+                <p className={"text-2xl !font-semibold uppercase text-[#fff]"}>
+                  {r?.name}
+                </p>
+              </Link>
+            )
+          ),
+        )}
       </div>
     </div>
   );

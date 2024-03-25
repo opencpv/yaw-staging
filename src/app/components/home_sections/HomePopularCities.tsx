@@ -10,6 +10,7 @@ import Image from "next/image";
 import SkeletonRectangle from "@/components/__shared/ui/skeleton/SkeletonRectangle";
 import { fetchOrderRule, revalidationRule } from "@/lib/utils/fetchRules";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
+import { getPopularCities } from "@/utils";
 
 const HomePopularCities = () => {
   const {
@@ -24,6 +25,9 @@ const HomePopularCities = () => {
       .order("created_at", fetchOrderRule()),
     revalidationRule(),
   );
+
+  // const cities = await getPopularCities();
+
   return (
     <section
       className={`${cities && cities?.length < 1 && "hidden"} space-y-5 pt-32`}

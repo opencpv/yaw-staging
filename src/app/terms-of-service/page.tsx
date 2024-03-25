@@ -1,32 +1,32 @@
-import Head from "next/head";
 import TermsNav from "./components/TermsNav";
 import { TERMS_QUERY } from "@/lib/utils/sanity/queries";
 import { SanityDocument } from "next-sanity";
 import { loadQuery } from "@/lib/utils/sanity/sanityStore";
 import MainView from "./components/MainView";
+import legal from "@/enum/about/legal";
+
+export const metadata: Metadata = {
+  title: "Terms of Service",
+  description: `Read and understand the terms and conditions of using ${legal.companyName}  platform, including but not limited to the terms of use and any additional terms and conditions that we may provide from time to time.`, // tentative
+};
 
 const page = async () => {
   const initial = await loadQuery<SanityDocument[]>(TERMS_QUERY);
   const data = initial.data[0];
 
   return (
-    <>
-      <Head>
-        <title>Terms of Service</title>
-      </Head>
-      <main className="flex w-full flex-col items-center justify-center">
-        <div
-          className={`flex h-full min-h-[100vh] w-full max-w-[1728px] flex-col bg-terms-bg bg-cover`}
-        >
-          <div className="w-full">{data && <TermsNav data={data[0]} />}</div>
+    <section className="min-h-screen bg-terms-bg bg-cover">
+      <nav className="w-full">{data && <TermsNav data={data[0]} />}</nav>
+      <main className="wrapper flex w-full flex-col items-center justify-center max-sm:pt-0">
+        <div className={`flex h-full w-full flex-col`}>
           {data && (
-            <div className="flex h-full w-full items-center justify-center px-4 pb-4 pl-5 ">
+            <div className="flex h-full w-full items-center justify-center pb-4 pl-5 ">
               <MainView data={data[0]} />
             </div>
           )}
         </div>
       </main>
-    </>
+    </section>
   );
 };
 

@@ -89,12 +89,6 @@ const FormWriters = (props: Props) => {
                   />
                 </div>
                 <div className="form-div">
-                  <ContactEmailField
-                    value={values.email}
-                    handleChange={handleChange}
-                  />
-                </div>
-                <div className="form-div">
                   <ContactPhoneField
                     phone={phone}
                     handleBlur={handleBlur}

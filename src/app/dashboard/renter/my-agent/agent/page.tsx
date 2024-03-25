@@ -25,23 +25,17 @@ export default function Page() {
                 gridTemplateColumns: "repeat(auto-fit, minmax(450px, 1fr))",
               }}
             >
-              {[1].map((item) => (
-                <Agent
-                  key={item}
-                  name="My Agent One"
-                  state="completed"
-                  dateCreated="5 Aug. 2023 13:55pm"
-                  dateCompleted="15 Aug. 2023 13:55pm"
-                />
-              ))}
-              {[1].map((item) => (
-                <Agent
-                  key={item}
-                  name="My Agent Two"
-                  state="started"
-                  dateCreated="5 Aug. 2023 13:55pm"
-                />
-              ))}
+              <Agent
+                name="My Agent One"
+                state="completed"
+                dateCreated="5 Aug. 2023 13:55pm"
+                dateCompleted="15 Aug. 2023 13:55pm"
+              />
+              <Agent
+                name="My Agent Two"
+                state="started"
+                dateCreated="5 Aug. 2023 13:55pm"
+              />
               <Agent name="My Agent Search" state="default" />
             </div>
           </AOSWrapper>

@@ -7,7 +7,7 @@ type Props = {
   options: string[];
   value: string;
   handleSelectionChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  radius?: "full" | "lg" | "md" | "none";
+  radius?: "full" | "none";
   variant?: "default" | "ghost";
   color?: "default" | "primary";
   selectorIcon?: React.ReactNode;
@@ -22,7 +22,7 @@ const Select = ({
   options,
   handleSelectionChange,
   value,
-  radius,
+  radius = "full",
   selectorIcon,
   className,
   valueClassName,
@@ -35,7 +35,7 @@ const Select = ({
   return (
     <NextUISelect
       size="sm"
-      radius={"full"}
+      radius={radius}
       label="select"
       //   selectionMode="single"
       isDisabled={disabled}
@@ -47,7 +47,7 @@ const Select = ({
           "w-44 mx-auto text-xs hover:bg-neutral-100 rounded-full",
           className,
           {
-            "text-base": variant === "ghost",
+            "text-base rounded-none": variant === "ghost",
             "opacity-100": disabled,
           },
         ),

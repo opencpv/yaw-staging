@@ -33,17 +33,22 @@ const FavoriteModal = ({ isOpen, onOpenChange, onClose }: ModalProps) => {
 
 const ModalHeader = ({ onClose }: ModalHeaderProps) => {
   return (
-    <span className="flex flex-wrap items-center justify-between gap-5">
-      <MdOutlineChat className="shrink-0 text-xl text-primary-200 md:text-4xl" />
-      <Button
-        color="black"
-        variant="outline"
-        className="h-6 w-fit rounded-3xl px-4 text-sm hover:bg-[#E7F8F2]"
-        onClick={onClose}
-      >
-        Save
-      </Button>
-    </span>
+    <>
+      <span className="flex flex-wrap items-center justify-between gap-5">
+        <MdOutlineChat className="shrink-0 text-xl text-primary-200 md:text-4xl" />
+        <Button
+          color="black"
+          variant="outline"
+          className="h-6 w-fit rounded-3xl px-4 text-sm hover:bg-[#E7F8F2]"
+          onClick={(e) => {
+            // handle favorite logic
+            onClose && onClose();
+          }}
+        >
+          Save
+        </Button>
+      </span>
+    </>
   );
 };
 

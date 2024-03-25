@@ -1,17 +1,17 @@
 import { styled } from "@stitches/react";
-import * as Collapsible from "@radix-ui/react-collapsible";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { ExpandCircle, FadeInOut } from "@/lib/animations";
-import { bottomLinks, bottomLinksBeforeLogin } from "./content";
-import { FaChevronDown } from "react-icons/fa";
+import { ExpandCircle } from "@/lib/animations";
 import MenuBottomLinks from "./components/MenuBottomLinks";
 import MenuArea from "./components/MenuArea";
 import MenuScrollDownButton from "./components/MenuScrollDownButton";
 import { useIsElementInViewport } from "./hooks/useIsElementInViewport";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
+import { useAppStore } from "@/store/dashboard/AppStore";
+import { useMenuLinks } from "./content";
 
 export default function Menu(props: any) {
+  const { bottomLinksAfterLogin, bottomLinksBeforeLogin } = useMenuLinks();
   const [hide, setHide] = useState(false);
   const [windowLimit, setWindowLimit] = useState(false);
   const toggle = useMenuStore((state) => state.toggle);
@@ -19,6 +19,7 @@ export default function Menu(props: any) {
   const bottomLinksRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLElement>(null);
   const isInViewport = useIsElementInViewport(bottomLinksRef, menuRef);
+  const { user } = useAppStore();
 
   useEffect(() => {
     // focus the menu for accessibility
@@ -76,23 +77,26 @@ export default function Menu(props: any) {
     <Root
       ref={menuRef}
       tabIndex="0"
-      className="hidden-scrollbar menu-bg fixed top-0 z-50 min-h-[100svh] w-full gap-20 overflow-y-scroll pb-20 lg:pb-0"
+      className="hidden-scrollbar menu-bg fixed top-0 z-50 min-h-dvh w-full gap-20 overflow-y-scroll pb-20 lg:pb-0"
       variants={ExpandCircle}
       exit={{
         ...ExpandCircle.closed,
         transitionEnd: {
           // display: 'none',
+          opacity: 0,
         },
       }}
       animate={
         props?.isOpen
           ? {
               ...ExpandCircle.open(),
+              opacity: 1,
             }
           : {
               ...ExpandCircle.closed,
               transitionEnd: {
                 // display: 'none',
+                opacity: 0,
               },
             }
       }
@@ -100,6 +104,7 @@ export default function Menu(props: any) {
         ...ExpandCircle.closed,
         transitionEnd: {
           // display: 'none',
+          opacity: 0,
         },
       }}
       {...props}
@@ -131,7 +136,7 @@ export default function Menu(props: any) {
 
       {/* bottom links */}
       <MenuBottomLinks
-        links={true ? bottomLinksBeforeLogin : bottomLinks}
+        links={user ? bottomLinksAfterLogin : bottomLinksBeforeLogin}
         ref={bottomLinksRef}
       />
     </Root>

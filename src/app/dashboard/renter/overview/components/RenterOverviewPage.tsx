@@ -10,17 +10,31 @@ import SellYourItem from "../../../components/shared/overview/SellYourItem";
 import RenterActivityCard from "./RenterActivityCard";
 import ScrollTop from "@/components/__shared/ScrollTop";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
+import { useUserData } from "@/lib/custom-hooks/database/useUserData";
+import { useAppStore } from "@/store/dashboard/AppStore";
 
 type Props = {};
 
 const RenterOverviewPage = (props: Props) => {
   const { images } = useAssets();
-
   const { setIsSwitchingRole } = useDashboardStore();
+  const { user } = useAppStore();
+
+  useUserData();
 
   useEffect(() => {
     setIsSwitchingRole(false);
   }, [setIsSwitchingRole]);
+
+  const formattedPhone = React.useMemo(() => {
+    if (user?.phone) {
+      const phoneNumber = user.phone.toString();
+      return `(${phoneNumber.slice(0, 4)}) ${phoneNumber.slice(
+        4,
+        8,
+      )} ${phoneNumber.slice(8, 11)} ${phoneNumber.slice(11)}`;
+    }
+  }, [user?.phone]);
 
   return (
     <main className="text-neutral-800">
@@ -28,10 +42,10 @@ const RenterOverviewPage = (props: Props) => {
         {/* Grid col */}
         <div className="col-span-3">
           <UserOverview
-            name="John Doe"
-            picture="/assets/images/profile-image.jpg"
-            email="johndoe@gmail.com"
-            telephone="(+233) 1235 554 55"
+            name={user?.full_name as string}
+            picture={user?.avatar_url as string}
+            email={user?.email as string}
+            telephone={formattedPhone as string}
             className="md:mb-20"
             type="renter"
           />

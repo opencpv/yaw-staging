@@ -12,6 +12,8 @@ import ButtonHireUs from "./ui/button/ButtonHireUs";
 import { useHideDocumentScrollBar } from "@/lib/custom-hooks/useWindowEvents";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import AvatarMenu from "./ui/avatar/AvatarMenu";
+import { useUserData } from "@/lib/custom-hooks/database/useUserData";
+import { cn } from "@/lib/utils";
 
 const Navbar = (props: any) => {
   const pathname = usePathname();
@@ -21,6 +23,8 @@ const Navbar = (props: any) => {
   const { user } = useAppStore();
 
   useHideDocumentScrollBar(toggle);
+
+  useUserData();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,15 +59,19 @@ const Navbar = (props: any) => {
           isNotTargetPage
             ? "sticky bg-primary-500"
             : shouldChangeColor
-              ? "fixed bg-primary-500 transition-all"
-              : "fixed bg-transparent transition-all"
+              ? "fixed bg-primary-500 transition-all duration-300"
+              : "fixed bg-transparent transition-all duration-300"
         } top-0 bg-primary-500`}
       >
         <div className="flex items-center justify-between">
           <Logo />
           <div className="flex w-full items-center justify-end md:gap-[31px] lg:gap-[73px]">
             {!pathname?.includes("/properties/") ? (
-              <ButtonHireUs className="w-fit px-[4.5rem] text-xl" />
+              <ButtonHireUs
+                className={cn("w-fit px-[4.5rem] text-xl", {
+                  invisible: user,
+                })}
+              />
             ) : (
               <div className="flex items-center gap-4">
                 <LikeHeart liked={false} className="text-5xl text-white" />
@@ -75,7 +83,7 @@ const Navbar = (props: any) => {
               </div>
             )}
             <div className="flex items-center gap-5">
-              {user?.avatar_url && <AvatarMenu />}
+              {user && <AvatarMenu />}
               {/* Hamburger button */}
               <button
                 onClick={() => {

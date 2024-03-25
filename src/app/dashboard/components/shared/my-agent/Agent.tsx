@@ -22,7 +22,7 @@ export default function Agent({
 }: Props) {
   return (
     <div className="form-field-border flex h-full w-full max-w-[543px] flex-col items-start justify-center gap-4 rounded-2xl px-8 py-6 lg:max-w-full">
-      <div className="flex w-full flex-wrap justify-between gap-5">
+      <div className="flex w-full flex-wrap justify-between gap-y-5">
         <Image
           src={"/assets/svgs/agent-icon-handshake.svg"}
           width={100}
