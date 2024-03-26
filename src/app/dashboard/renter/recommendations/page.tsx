@@ -40,7 +40,7 @@ export default function Page() {
           isValidating={isValidating}
           isLoadingComponent={<SkeletonListing count={3} />}
           errorComponent={<FetchErrorMessage specificData="properties" />}
-          noDataMessageComponent={
+          emptyStateComponent={
             <p className="mt-4 text-center italic">
               There are no properties yet.
             </p>

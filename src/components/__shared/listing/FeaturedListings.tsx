@@ -66,7 +66,7 @@ const FeaturedListings = ({ className, showAllButton }: Props) => {
             </div>
           }
           errorComponent={<FetchErrorMessage />}
-          noDataMessageComponent={
+          emptyStateComponent={
             <p className="mt-4 text-center italic">
               There are no properties yet.
             </p>
