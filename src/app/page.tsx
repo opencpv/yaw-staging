@@ -33,9 +33,7 @@ export default async function Home() {
 
             <HomeManagePropertiesSection data={data} />
 
-            {/* <AOSWrapper animation="fade-up"> */}
             <HomePopularCities />
-            {/* </AOSWrapper> */}
 
             <FeedbackButton data={data} />
           </div>

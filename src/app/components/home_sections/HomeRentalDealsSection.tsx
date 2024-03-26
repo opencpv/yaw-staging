@@ -31,15 +31,15 @@ const HomeRentalDealsSection = (props: Props) => {
       <div className="grid items-center gap-5 md:grid-cols-2 lg:grid-cols-3">
         {props.data.tags.map((tag: any, idx: number) => {
           return (
-            // <AOSWrapper key={idx} animation="fade-up">
-            <DealCard
-              key={idx}
-              href={tag.url}
-              title={tag.title}
-              body={tag.description}
-              icon={urlForImage(tag.icon.customImageItem)?.url() as string}
-            />
-            // </AOSWrapper>
+            <AOSWrapper key={idx} animation="fade-up">
+              <DealCard
+                key={idx}
+                href={tag.url}
+                title={tag.title}
+                body={tag.description}
+                icon={urlForImage(tag.icon.customImageItem)?.url() as string}
+              />
+            </AOSWrapper>
           );
         })}
       </div>
