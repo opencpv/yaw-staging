@@ -95,29 +95,6 @@ body {
   clip-path: polygon(10% 0, 0 20%, 0 100%, 90% 100%, 100% 80%, 100% 0);
 }
 
-.skeleton-flex {
-  display: grid;
-  grid-auto-flow: column;
-  overflow-x: hidden;
-  gap: 1.25rem;
-}
-
-.skeleton-flex > div {
-  width: 15rem;
-  min-width: 15rem;
-}
-
-.skeleton-grid {
-  display: flex;
-  gap: 1.25rem;
-  overflow-x: hidden;
-}
-
-.skeleton-grid > div {
-  width: 22rem;
-  min-width: 22rem;
-}
-
 .Toastify__toast-container {
   @apply flex flex-wrap items-center justify-center;
 }
@@ -176,6 +153,22 @@ body {
     @apply pt-28;
   }
 
+  .skeleton-wrapper-swiper {
+    @apply grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3;
+  }
+
+  .skeleton-wrapper-grid {
+    @apply mx-auto grid grid-cols-1 justify-center gap-x-5 gap-y-16 md:grid-cols-2 lg:grid-cols-3;
+  }
+
+  .skeleton-wrapper-flex {
+    @apply flex gap-5 overflow-x-auto;
+  }
+
+  .skeleton-wrapper-flex > div {
+    @apply min-w-60;
+  }
+
   .wrapper {
     @apply mx-auto max-w-screen-3xl px-5 pb-8 pt-12 sm:pb-14 lg:px-10;
   }
@@ -198,23 +191,6 @@ input[type="search"]::-webkit-search-cancel-button {
 /* :focus {
   @apply outline-accent-50;
 } */
-
-@media (min-width: 640px) {
-  .skeleton-flex {
-    width: 22rem;
-    min-width: 22rem;
-  }
-  .skeleton-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1024px) {
-  .skeleton-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
 
 /* @media (min-width: 640px) { // wrapper has paddings. section is solely for separating top and bottom sections 
   .section {

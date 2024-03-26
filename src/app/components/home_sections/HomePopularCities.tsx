@@ -2,14 +2,13 @@
 import SliderMultiItems from "@/components/__shared/sliders/SliderMultiItems";
 import React from "react";
 import PopularCitiesCard from "../PopularCitiesCard";
-import supabase from "@/lib/utils/supabaseClient";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import Image from "next/image";
 import SkeletonRectangle from "@/components/__shared/ui/skeleton/SkeletonRectangle";
-import { fetchOrderRule, revalidationRule } from "@/lib/utils/fetchRules";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
 import { createClient } from "@/lib/utils/supabase/client";
 import { useQuery } from "@tanstack/react-query";
+import times from "lodash/times";
 
 const HomePopularCities = () => {
   const supabase = createClient();
@@ -53,13 +52,13 @@ const HomePopularCities = () => {
           isLoading={isLoading}
           isValidating={isFetching}
           isLoadingComponent={
-            <SkeletonRectangle count={3} childrenClassName="w-full h-[20rem]" />
+            <SkeletonRectangle count={3} className="h-[20rem] w-full" />
           }
           errorComponent={<FetchErrorMessage specificData="cities" />}
         />
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]?.map((city, idx) => (
+        {cities?.map((city) => (
           <PopularCitiesCard
-            key={idx}
+            key={city.id}
             location="Kumasi"
             description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, doloribus!"
             propertyNumber={232}
@@ -70,24 +69,27 @@ const HomePopularCities = () => {
         <FetchingStates
           data={cities}
           error={error}
-          isLoading={isLoading}
-          isValidating={isFetching}
-          isLoadingComponent={
-            <div className="skeleton-flex h-44">
-              <SkeletonRectangle count={2} />
-            </div>
-          }
           errorComponent={<FetchErrorMessage specificData="cities" />}
         />
         <SliderMultiItems
-          items={cities?.map((city) => (
-            <PopularCitiesCard
-              key={city.id}
-              location="Kumasi"
-              description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, doloribus!"
-              propertyNumber={232}
-            />
-          ))}
+          items={
+            isLoading
+              ? times(5).map((_, idx) => (
+                  <SkeletonRectangle
+                    className="relative min-h-60 w-full rounded-lg p-5 hover:scale-105 sm:p-20"
+                    key={idx}
+                    count={1}
+                  />
+                ))
+              : cities?.map((city) => (
+                  <PopularCitiesCard
+                    key={city.id}
+                    location="Kumasi"
+                    description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, doloribus!"
+                    propertyNumber={232}
+                  />
+                ))
+          }
           swiperSlideClassName="max-w-md"
         />
       </div>

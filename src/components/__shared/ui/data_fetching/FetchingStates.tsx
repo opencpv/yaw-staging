@@ -4,11 +4,12 @@ import React from "react";
 import FetchErrorMessage from "./FetchErrorMessage";
 
 type Props = {
-  isLoading: boolean;
   error: PostgrestError | undefined | Error | null;
-  isValidating: boolean;
+  /** When data is re-fetching */
   data: Record<string, unknown>[] | undefined | any[] | any | null;
-  isLoadingComponent: React.ReactNode;
+  isValidating?: boolean;
+  isLoading?: boolean;
+  isLoadingComponent?: React.ReactNode;
   errorComponent?: React.ReactNode;
   emptyStateComponent?: React.ReactNode;
 };
