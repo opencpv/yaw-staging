@@ -113,7 +113,7 @@ const FeaturedListingAndAds = (props: Props) => {
                 items={
                   isLoading
                     ? times(5).map((_, idx) => (
-                        <SkeletonListing key={idx} count={1} cardType={1} />
+                        <SkeletonListing key={idx} cardType={1} />
                       ))
                     : listings?.map((listing) => (
                         <ListingCard

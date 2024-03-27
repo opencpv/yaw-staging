@@ -1,9 +1,7 @@
 type SkeletonProps = {
+  className?: string;
   /** Number of skeletons to display. Eg: count={8} */
-  count: number;
-  className?: string;
-  display?: "gridy" | "flexy";
-  className?: string;
+  count?: number;
 };
 
 type SkeletonListingProps = SkeletonProps & {
