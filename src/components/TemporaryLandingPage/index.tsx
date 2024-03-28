@@ -17,6 +17,7 @@ function TemporayLandingPage() {
       <div className=" absolute  right-5 top-5 aspect-[72/52] w-full max-w-[72px] xs:top-10 sm:left-5 lg:aspect-[150/110] lg:max-w-[100px] 2xl:max-w-[150px]">
         <div className="relative aspect-[72/52] w-full lg:aspect-[150/110]">
           <Image src={images.Logo} alt="RentRightGH logo" fill />
+
         </div>
       </div>
 
