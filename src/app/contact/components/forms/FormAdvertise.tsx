@@ -98,13 +98,6 @@ const FormAdvertise = (props: Props) => {
                     className="p-3 py-7"
                   />
                 </div>
-
-                <div className="form-div">
-                  <ContactEmailField
-                    value={values.email}
-                    handleChange={handleChange}
-                  />
-                </div>
                 <div className="form-div">
                   <ContactPhoneField
                     phone={phone}

@@ -1,8 +1,6 @@
 "use client";
 
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import supabase from "@/lib/utils/supabaseClient";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -75,8 +73,7 @@ const Sell = () => {
   // !!! Temporarily commented out
 
   // useEffect(() => {
-  //   const supabase = createClientComponentClient<Database>();
-  //   if (!supabase) {
+  // if (!supabase) {
   //     redirect("/");
   //   } else {
   //     setsupabase(supabase);

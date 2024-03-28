@@ -43,8 +43,8 @@ const MovingSalesPage = () => {
               href: "/blog/c/p",
             }))}
           />
-          <div className="pointer-events-none absolute inset-0 z-10 flex h-full w-full items-center rounded-xl">
-            <div className="absolute h-full w-full rounded-xl bg-opacity-20 bg-gradient-to-r from-primary-500 to-transparent"></div>
+          <div className="pointer-events-none absolute inset-0 z-10 flex h-full w-full items-center rounded-l-3xl">
+            <div className="absolute h-full w-full rounded-l-[inherit] bg-opacity-20 bg-gradient-to-r from-primary-500 to-transparent"></div>
             <h1 className="relative z-20 pl-5 text-4xl font-[700] xs:pl-20 sm:text-5xl">
               Shop
             </h1>

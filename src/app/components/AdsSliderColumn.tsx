@@ -17,7 +17,7 @@ const AdsSliderColumn = ({ ads = [] }: { ads: any }) => {
         <SliderPaginationOnly
           disabledOnInteraction
           key={idx + 1}
-          className="h-full w-full flex-1 last:flex-[2]"
+          className="h-full min-h-60 w-full flex-1 last:flex-[2]"
           images={ad.adImages.map((image: any) => ({
             name: image.alt,
             src: urlForImage(image.customImageItem)?.url() as string,

@@ -1,51 +1,41 @@
 "use client";
-import { LowerCase } from "@/lib/utils/stringManipulation";
-import supabase from "@/lib/utils/supabaseClient";
-import { useAppStore } from "@/store/dashboard/AppStore";
+import Loader from "@/components/__shared/loader/Loader";
+import { useGetUser } from "@/lib/custom-hooks/database/useGetUser";
+import { useUserData } from "@/lib/custom-hooks/database/useUserData";
+import { createClient } from "@/lib/utils/supabase/client";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
-import Head from "next/head";
 import { useRouter } from "next/navigation";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 
 const Dashboard = () => {
-  const { user, setUser } = useAppStore();
   const { currentRole } = useDashboardStore();
   const router = useRouter();
 
-  useEffect(() => {
-    const getProperties = async () => {
-      let { data: property, error } = await supabase
-        .from("property")
-        .select("*");
+  useUserData();
 
-      if (property) {
-        setUser({
-          properties: { property },
-        });
+  const user = useGetUser();
+
+  useEffect(() => {
+    const handleRedirect = async () => {
+      const supabase = createClient();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (user) {
+        router.replace(`/dashboard/${currentRole}/overview`);
+      } else {
+        router.replace(`/login`);
       }
     };
-    getProperties();
 
-    const userRole = localStorage.getItem("user-dashboard-role");
-
-    if (userRole) {
-      if (userRole === "renter") {
-        router.replace("/dashboard/renter/overview");
-      } else if (userRole === "lister") {
-        router.replace("/dashboard/lister/overview");
-      }
-    } else {
-      router.replace("/dashboard/renter/overview");
-    }
-  }, [router, currentRole, setUser]);
+    handleRedirect();
+  }, [router, currentRole, user]);
 
   return (
     <>
-      <Head>
-        <title>Settings - RentRightGh</title>
-        <base href="/dashboard"></base>
-      </Head>
-      <main className={"h-[100vh] w-full bg-black"}></main>
+      <main className="grid h-40 place-items-center">
+        <Loader />
+      </main>
     </>
   );
 };

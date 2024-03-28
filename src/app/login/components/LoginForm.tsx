@@ -1,11 +1,36 @@
 "use client";
-import { useAssets } from "@/lib/custom-hooks/useAssets";
+
 import { LoginButton } from "./LoginButton";
 import { useRouter } from "next/navigation";
 import Logo from "@/components/__shared/Logo";
 import ButtonMenu from "@/components/__shared/ui/button/ButtonMenu";
+import { useEffect } from "react";
+import { useAppStore } from "@/store/dashboard/AppStore";
+import { useUserData } from "@/lib/custom-hooks/database/useUserData";
+import { supabase } from "@/supabase/client";
+import { createClient } from "@/lib/utils/supabase/client";
 
 export const LoginForm = () => {
+  const router = useRouter();
+  const { user } = useAppStore();
+
+  useUserData();
+
+  useEffect(() => {
+    const supabase = createClient();
+
+    const checkAuth = async () => {
+      const { data, error } = await supabase.auth.getUser();
+      if (error) {
+        return;
+      }
+      if (data?.user) {
+        router.push("/dashboard");
+      }
+    };
+    checkAuth();
+  }, [router]);
+
   return (
     <>
       <div className="relative flex w-full justify-center">

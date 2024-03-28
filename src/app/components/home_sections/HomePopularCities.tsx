@@ -4,12 +4,12 @@ import React from "react";
 import PopularCitiesCard from "../PopularCitiesCard";
 import { useQuery } from "@supabase-cache-helpers/postgrest-swr";
 import supabase from "@/lib/utils/supabaseClient";
-import AOSWrapper from "@/components/__shared/AOSWrapper";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import Image from "next/image";
 import SkeletonRectangle from "@/components/__shared/ui/skeleton/SkeletonRectangle";
 import { fetchOrderRule, revalidationRule } from "@/lib/utils/fetchRules";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
+import { getPopularCities } from "@/utils";
 
 const HomePopularCities = () => {
   const {
@@ -24,6 +24,9 @@ const HomePopularCities = () => {
       .order("created_at", fetchOrderRule()),
     revalidationRule(),
   );
+
+  // const cities = await getPopularCities();
+
   return (
     <section
       className={`${cities && cities?.length < 1 && "hidden"} space-y-5 pt-32`}

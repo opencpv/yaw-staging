@@ -13,14 +13,14 @@ type Props = {
 };
 
 const Logo = ({ className, size, onClick }: Props) => {
-  const { icons } = useAssets();
+  const { images } = useAssets();
   const { setToggle } = useMenuStore();
   const { setIsOpen } = useDashboardMenuStore();
 
   return (
     <Link href="/">
       <Image
-        src={icons.Logo}
+        src={images.Logo}
         alt="RentRightGH logo"
         width={
           size === "md" ? 112 : size === "lg" ? 128 : size === "xs" ? 60 : 96

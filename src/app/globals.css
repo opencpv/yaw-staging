@@ -25,10 +25,6 @@ body {
     sans-serif;
 }
 
-.form-field-border {
-  @apply border border-neutral-400 hover:border-black/50;
-}
-
 .faq-items .faq-title {
   border-bottom-width: 1px;
 }
@@ -37,32 +33,36 @@ body {
   border-bottom-width: 0;
 }
 
-h1 {
-  @apply max-w-3xl text-3xl font-bold sm:text-6xl;
-}
+@layer base {
+  h1 {
+    @apply max-w-3xl text-3xl font-bold sm:text-6xl;
+  }
 
-h2 {
-  @apply max-w-3xl text-[1.563rem] font-[600] leading-[2.2rem];
-}
+  h2 {
+    @apply max-w-3xl text-[1.563rem] font-[600] leading-[2.2rem];
+  }
 
-h3 {
-  @apply max-w-3xl text-xl font-[600];
-}
+  h3 {
+    @apply max-w-3xl text-xl font-[600];
+  }
 
-h4 {
-  @apply max-w-3xl text-base font-[600];
-}
+  h4 {
+    @apply max-w-3xl text-base font-[600];
+  }
 
-h5 {
-  @apply max-w-3xl text-sm font-[600];
-}
+  h5 {
+    @apply max-w-3xl text-sm font-[600];
+  }
 
-small {
-  @apply block max-w-3xl text-sm;
-}
+  small {
+    @apply block max-w-3xl text-sm;
+  }
 
-.gradient-to-bottom {
-  @apply bg-gradient-to-b from-primary-500 to-primary-400/80;
+  li,
+  a:not(a[role="button"]),
+  div {
+    @apply focus:outline-accent-50;
+  }
 }
 
 .green-gradient {
@@ -89,34 +89,6 @@ small {
   /* IE and Edge */
   scrollbar-width: none;
   /* Firefox */
-}
-
-.light-green-hover {
-  @apply hover:bg-primary-300/20;
-}
-
-.deep-green-hover {
-  @apply hover:bg-primary-300/50;
-}
-
-.menu-bg {
-  @apply bg-primary-900 before:pointer-events-none before:fixed before:-left-64 before:top-28 before:h-[50rem] before:w-[50rem] before:rounded-full before:bg-primary-200 before:opacity-[0.12] after:pointer-events-none after:fixed after:-right-64 after:-top-60 after:hidden after:h-[45rem] after:w-[50rem] after:rounded-full after:bg-primary-200 after:opacity-[0.12] after:lg:block;
-}
-
-.overlay {
-  @apply relative before:absolute before:inset-0 before:h-full before:w-full before:bg-primary-500/60;
-}
-
-.overlay-rounded {
-  @apply relative before:absolute before:inset-0 before:z-10 before:h-full before:w-full before:rounded-2xl before:bg-gradient-to-b before:from-primary-500/60 before:to-primary-500/50;
-}
-
-.PhoneInputInput {
-  @apply form-field-border rounded-md px-3 py-4 focus:outline-accent-50;
-}
-
-.section {
-  @apply pt-28;
 }
 
 .shape-3 {
@@ -163,17 +135,54 @@ small {
   -o-user-select: none;
 }
 
-.wrapper,
-.wrapper-2 {
-  @apply mx-auto max-w-screen-3xl px-5 pb-8 pt-12 sm:pb-14 lg:px-10;
+@layer components {
+  .form-field-border {
+    @apply border border-neutral-400 hover:border-black/50;
+  }
+
+  .form-input {
+    @apply form-field-border rounded-md px-3 py-4 focus:outline-accent-50;
+  }
+
+  .form-textarea {
+    @apply form-field-border rounded-md px-3 py-4 focus:outline-accent-50;
+  }
+
+  .gradient-to-bottom {
+    @apply bg-gradient-to-b from-primary-500 to-primary-400/80;
+  }
+
+  .light-green-hover {
+    @apply hover:bg-primary-300/20;
+  }
+
+  .deep-green-hover {
+    @apply hover:bg-primary-300/50;
+  }
+
+  .menu-bg {
+    @apply bg-primary-900 before:pointer-events-none before:fixed before:-left-64 before:top-28 before:h-[50rem] before:w-[50rem] before:rounded-full before:bg-primary-200 before:opacity-[0.12] after:pointer-events-none after:fixed after:-right-64 after:-top-60 after:hidden after:h-[45rem] after:w-[50rem] after:rounded-full after:bg-primary-200 after:opacity-[0.12] after:lg:block;
+  }
+
+  .overlay {
+    @apply relative before:absolute before:inset-0 before:h-full before:w-full before:bg-primary-500/60;
+  }
+
+  .overlay-rounded {
+    @apply relative before:absolute before:inset-0 before:z-10 before:h-full before:w-full before:rounded-2xl before:bg-gradient-to-b before:from-primary-500/60 before:to-primary-500/50;
+  }
+
+  .section {
+    @apply pt-28;
+  }
+
+  .wrapper {
+    @apply mx-auto max-w-screen-3xl px-5 pb-8 pt-12 sm:pb-14 lg:px-10;
+  }
 }
 
-.wrapper-2 {
-  @apply px-5 sm:px-5;
-}
-
-.wrapper-section {
-  @apply mx-auto max-w-screen-3xl px-5 pb-0 pt-28 sm:px-10 sm:pb-0;
+.PhoneInputInput {
+  @apply form-field-border rounded-md px-3 py-4 focus:outline-accent-50;
 }
 
 input[type="search"]::-webkit-search-cancel-button {

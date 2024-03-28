@@ -12,6 +12,8 @@ import InputPhoneNumber from "@/components/__shared/form/InputPhoneNumber";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import FileUploader from "@/app/dashboard/components/shared/sell-products/FileUploader";
 import Button from "@/components/__shared/ui/button/Button";
+import { supabase } from "@/supabase/client";
+import { createClient } from "@/lib/utils/supabase/client";
 
 interface CategoryProp {
   label: string;
@@ -36,7 +38,7 @@ const AddNewProduct = () => {
   const { handlePhone, handleCountryChange, phone } = usePhoneInputDisclosure();
 
   useEffect(() => {
-    const supabase = createClientComponentClient<Database>();
+    const supabase = createClient();
     if (!supabase) {
       redirect("/");
     } else {

@@ -20,7 +20,6 @@ const HomeLandingPage = (props: Props) => {
       position="right"
       disableOnSmallScreens={true}
     >
-      {/* Find your new home */}
       <div className="relative top-60 z-10 grid w-full gap-16 overflow-x-hidden md:top-72 md:grid-cols-5 lg:gap-28">
         <div className="col-span-5 w-11/12 space-y-4 px-5 capitalize xs:px-10 md:order-2 md:col-span-2 md:w-full md:translate-x-[-10%] md:pl-0">
           <AOSWrapper animation="fade-right" duration="2000">

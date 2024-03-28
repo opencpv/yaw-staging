@@ -6,7 +6,7 @@ export type Json =
   | { [key: string]: Json | undefined }
   | Json[]
 
-export interface Database {
+export type Database = {
   public: {
     Tables: {
       application_autosave: {
@@ -45,7 +45,7 @@ export interface Database {
             isOneToOne: false
             referencedRelation: "renter_profile"
             referencedColumns: ["id"]
-          }
+          },
         ]
       }
       contact_us: {
@@ -117,6 +117,54 @@ export interface Database {
         }
         Relationships: []
       }
+      hubtel_payments: {
+        Row: {
+          amount: number | null
+          client_id: string
+          created_at: string
+          id: number
+          paylink_id: string | null
+          payment_type: string | null
+          phone: string | null
+          status: string | null
+        }
+        Insert: {
+          amount?: number | null
+          client_id?: string
+          created_at?: string
+          id?: number
+          paylink_id?: string | null
+          payment_type?: string | null
+          phone?: string | null
+          status?: string | null
+        }
+        Update: {
+          amount?: number | null
+          client_id?: string
+          created_at?: string
+          id?: number
+          paylink_id?: string | null
+          payment_type?: string | null
+          phone?: string | null
+          status?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_hubtel_payments_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "distinct_messages"
+            referencedColumns: ["sender_id"]
+          },
+          {
+            foreignKeyName: "public_hubtel_payments_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       listing_autosave: {
         Row: {
           created_at: string
@@ -153,7 +201,7 @@ export interface Database {
             isOneToOne: false
             referencedRelation: "renter_profile"
             referencedColumns: ["id"]
-          }
+          },
         ]
       }
       messages: {
@@ -209,7 +257,7 @@ export interface Database {
             isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["id"]
-          }
+          },
         ]
       }
       notifications: {
@@ -217,6 +265,7 @@ export interface Database {
           content: string | null
           created_at: string
           id: number
+          read: boolean | null
           receiver_id: string
           sender_id: string | null
           sender_name: string
@@ -228,6 +277,7 @@ export interface Database {
           content?: string | null
           created_at?: string
           id?: number
+          read?: boolean | null
           receiver_id: string
           sender_id?: string | null
           sender_name?: string
@@ -239,6 +289,7 @@ export interface Database {
           content?: string | null
           created_at?: string
           id?: number
+          read?: boolean | null
           receiver_id?: string
           sender_id?: string | null
           sender_name?: string
@@ -274,19 +325,37 @@ export interface Database {
             isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["id"]
-          }
+          },
         ]
+      }
+      product_category: {
+        Row: {
+          category: string
+          created_at: string
+          id: number
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          id?: number
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          id?: number
+        }
+        Relationships: []
       }
       profiles: {
         Row: {
           avatar_url: string | null
           bio: string | null
-          code: string | null
           country: string | null
           facebook: string | null
           firstname: string | null
           full_name: string | null
           id: string
+          is_first_time: boolean
           lastname: string | null
           linkedin: string | null
           phone: string | null
@@ -298,12 +367,12 @@ export interface Database {
         Insert: {
           avatar_url?: string | null
           bio?: string | null
-          code?: string | null
           country?: string | null
           facebook?: string | null
           firstname?: string | null
           full_name?: string | null
           id: string
+          is_first_time?: boolean
           lastname?: string | null
           linkedin?: string | null
           phone?: string | null
@@ -315,12 +384,12 @@ export interface Database {
         Update: {
           avatar_url?: string | null
           bio?: string | null
-          code?: string | null
           country?: string | null
           facebook?: string | null
           firstname?: string | null
           full_name?: string | null
           id?: string
+          is_first_time?: boolean
           lastname?: string | null
           linkedin?: string | null
           phone?: string | null
@@ -336,7 +405,7 @@ export interface Database {
             isOneToOne: true
             referencedRelation: "users"
             referencedColumns: ["id"]
-          }
+          },
         ]
       }
       property: {
@@ -383,7 +452,7 @@ export interface Database {
             isOneToOne: false
             referencedRelation: "property_owner_profile"
             referencedColumns: ["user_id"]
-          }
+          },
         ]
       }
       property_available: {
@@ -409,7 +478,7 @@ export interface Database {
             isOneToOne: false
             referencedRelation: "property"
             referencedColumns: ["id"]
-          }
+          },
         ]
       }
       property_images: {
@@ -453,7 +522,7 @@ export interface Database {
             isOneToOne: false
             referencedRelation: "property"
             referencedColumns: ["id"]
-          }
+          },
         ]
       }
       property_owner_profile: {
@@ -489,7 +558,7 @@ export interface Database {
             isOneToOne: true
             referencedRelation: "profiles"
             referencedColumns: ["id"]
-          }
+          },
         ]
       }
       regular_application: {
@@ -588,7 +657,7 @@ export interface Database {
             isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["id"]
-          }
+          },
         ]
       }
       search_critieria: {
@@ -641,7 +710,67 @@ export interface Database {
             isOneToOne: false
             referencedRelation: "renter_profile"
             referencedColumns: ["id"]
-          }
+          },
+        ]
+      }
+      sell_items: {
+        Row: {
+          avaliable: boolean
+          category: string
+          condition: string
+          created_at: string
+          description: string
+          id: number
+          img_url: string
+          negotiable: boolean | null
+          phone: string
+          price: number | null
+          product_name: string
+          user_id: string
+        }
+        Insert: {
+          avaliable?: boolean
+          category: string
+          condition?: string
+          created_at?: string
+          description: string
+          id?: number
+          img_url: string
+          negotiable?: boolean | null
+          phone: string
+          price?: number | null
+          product_name: string
+          user_id: string
+        }
+        Update: {
+          avaliable?: boolean
+          category?: string
+          condition?: string
+          created_at?: string
+          description?: string
+          id?: number
+          img_url?: string
+          negotiable?: boolean | null
+          phone?: string
+          price?: number | null
+          product_name?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sell_items_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "distinct_messages"
+            referencedColumns: ["sender_id"]
+          },
+          {
+            foreignKeyName: "sell_items_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
         ]
       }
       standard_template: {
@@ -775,7 +904,7 @@ export interface Database {
             isOneToOne: false
             referencedRelation: "property"
             referencedColumns: ["id"]
-          }
+          },
         ]
       }
       subscribers: {
@@ -831,7 +960,7 @@ export interface Database {
             isOneToOne: true
             referencedRelation: "users"
             referencedColumns: ["id"]
-          }
+          },
         ]
       }
     }
@@ -846,3 +975,85 @@ export interface Database {
     }
   }
 }
+
+type PublicSchema = Database[Extract<keyof Database, "public">]
+
+export type Tables<
+  PublicTableNameOrOptions extends
+    | keyof (PublicSchema["Tables"] & PublicSchema["Views"])
+    | { schema: keyof Database },
+  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
+    ? keyof (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
+        Database[PublicTableNameOrOptions["schema"]]["Views"])
+    : never = never,
+> = PublicTableNameOrOptions extends { schema: keyof Database }
+  ? (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
+      Database[PublicTableNameOrOptions["schema"]]["Views"])[TableName] extends {
+      Row: infer R
+    }
+    ? R
+    : never
+  : PublicTableNameOrOptions extends keyof (PublicSchema["Tables"] &
+        PublicSchema["Views"])
+    ? (PublicSchema["Tables"] &
+        PublicSchema["Views"])[PublicTableNameOrOptions] extends {
+        Row: infer R
+      }
+      ? R
+      : never
+    : never
+
+export type TablesInsert<
+  PublicTableNameOrOptions extends
+    | keyof PublicSchema["Tables"]
+    | { schema: keyof Database },
+  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
+    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
+    : never = never,
+> = PublicTableNameOrOptions extends { schema: keyof Database }
+  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+      Insert: infer I
+    }
+    ? I
+    : never
+  : PublicTableNameOrOptions extends keyof PublicSchema["Tables"]
+    ? PublicSchema["Tables"][PublicTableNameOrOptions] extends {
+        Insert: infer I
+      }
+      ? I
+      : never
+    : never
+
+export type TablesUpdate<
+  PublicTableNameOrOptions extends
+    | keyof PublicSchema["Tables"]
+    | { schema: keyof Database },
+  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
+    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
+    : never = never,
+> = PublicTableNameOrOptions extends { schema: keyof Database }
+  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+      Update: infer U
+    }
+    ? U
+    : never
+  : PublicTableNameOrOptions extends keyof PublicSchema["Tables"]
+    ? PublicSchema["Tables"][PublicTableNameOrOptions] extends {
+        Update: infer U
+      }
+      ? U
+      : never
+    : never
+
+export type Enums<
+  PublicEnumNameOrOptions extends
+    | keyof PublicSchema["Enums"]
+    | { schema: keyof Database },
+  EnumName extends PublicEnumNameOrOptions extends { schema: keyof Database }
+    ? keyof Database[PublicEnumNameOrOptions["schema"]]["Enums"]
+    : never = never,
+> = PublicEnumNameOrOptions extends { schema: keyof Database }
+  ? Database[PublicEnumNameOrOptions["schema"]]["Enums"][EnumName]
+  : PublicEnumNameOrOptions extends keyof PublicSchema["Enums"]
+    ? PublicSchema["Enums"][PublicEnumNameOrOptions]
+    : never

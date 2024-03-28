@@ -34,13 +34,14 @@ const FileUploader = ({ onFileSelect }: Props) => {
     fileRejections.forEach((file) => {
       const { file: fileObj, errors } = file;
       onOpen(
-        `❌ ${errors[0].code.replaceAll("-", " ")} - ${fileObj.name} | ${
+        `${errors[0].code.replaceAll("-", " ")} - ${fileObj.name} | ${
           errors[0].code === "file-too-large"
             ? "Maximum file size is 2MB"
             : errors[0].code === "file-too-small"
               ? "Minimum file size is 100KB"
               : null
         }`,
+        "error",
       );
     });
   };
@@ -49,7 +50,7 @@ const FileUploader = ({ onFileSelect }: Props) => {
     (acceptedFiles: any) => {
       if (files.length + acceptedFiles.length > 10) {
         // max 5 files
-        onOpen("❌ You can only upload up to 10 files", true);
+        onOpen("You can only upload up to 10 files", "error");
         return;
       }
 

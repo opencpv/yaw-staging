@@ -11,6 +11,7 @@ import LargeButton from "@/app/dashboard/lister/properties/components/LargeButto
 import { TbBuildingCommunity } from "react-icons/tb";
 import AOSWrapper from "@/components/__shared/AOSWrapper";
 import { BiInfoCircle } from "react-icons/bi";
+import { useAppStore } from "@/store/dashboard/AppStore";
 
 const UserOverview = ({
   name,
@@ -22,6 +23,7 @@ const UserOverview = ({
 }: UserOverviewProps) => {
   const [hidden, setHidden] = useState(false);
   const [hiddenCompletely, setHiddenCompletely] = useState(false);
+  const { user } = useAppStore();
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -38,7 +40,9 @@ const UserOverview = ({
   return (
     <div className={className}>
       <h2 className="mb-6">Overview</h2>
-      <h3 className="mb-6 text-neutral-700 md:hidden">Welcome, John</h3>
+      <h3 className="mb-6 text-neutral-700 md:hidden">
+        Welcome, {user?.firstname || user?.lastname}
+      </h3>
       <Callout
         className={`w-full transition-all sm:w-10/12 ${
           hidden ? "mb-0 h-0 p-0" : "mb-6 h-fit"
@@ -80,7 +84,7 @@ const UserOverview = ({
         <div className="hidden max-h-60 w-full max-w-[850px] rounded-xl bg-primary-400 p-10 pb-0 pt-20 md:block">
           <div className="mx-auto w-11/12">
             <h3 className="mb-4 text-xl font-[600] text-white">
-              Welcome, John
+              Welcome, {user?.firstname || user?.lastname}
             </h3>
             <div className="flex max-h-60 items-center gap-x-6 gap-y-3 rounded-xl bg-white p-8 py-16 shadow-2xl">
               <div className="relative h-32 w-32 rounded-xl shadow-lg">
@@ -95,20 +99,24 @@ const UserOverview = ({
               <div className="space-y-2">
                 <h4 className="">{name}</h4>
                 <div className="mb-4 flex flex-wrap items-center gap-x-5 gap-y-3 text-base">
-                  <div className="flex items-center gap-2 text-neutral-700">
-                    <FaRegEnvelope className="text-primary-400" />
-                    {email}
-                  </div>
-                  <div className="flex items-center gap-2 text-neutral-700">
-                    <BsTelephone className="text-primary-400" />
-                    {telephone}
-                  </div>
+                  {email && (
+                    <div className="flex items-center gap-2 text-neutral-700">
+                      <FaRegEnvelope className="text-primary-400" />
+                      {email}
+                    </div>
+                  )}
+                  {telephone && (
+                    <div className="flex items-center gap-2 text-neutral-700">
+                      <BsTelephone className="text-primary-400" />
+                      {telephone}
+                    </div>
+                  )}
                 </div>
                 <Button
                   href="settings"
                   className="flex w-fit items-center gap-1.5 rounded-md bg-[#597C7B] p-1 px-4 text-sm font-semibold text-white"
                 >
-                  Complete your profile <HiOutlinePencil />{" "}
+                  Edit profile <HiOutlinePencil />{" "}
                 </Button>
               </div>
             </div>

@@ -50,24 +50,6 @@ const Page = async () => {
   );
 };
 
-// const SlideUpAnimation = ({ children }: { children: React.ReactNode }) => {
-//   return (
-//     <motion.div
-//       className="w-full h-full"
-//       initial={{ y: 50 }}
-//       animate={{ y: 0 }}
-//       exit={{ y: -50 }}
-//       transition={{
-//         type: "spring",
-//         stiffness: "10",
-//         duration: "1000",
-//       }}
-//     >
-//       {children}
-//     </motion.div>
-//   );
-// };
-
 const Root = styled("div", {
   ".banner": {
     background:

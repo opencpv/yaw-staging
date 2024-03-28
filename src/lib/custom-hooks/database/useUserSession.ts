@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 export const useUserSession = () => {
   const [session, setSession] = useState<{ session: Session } | null>(null);
+  
   useEffect(() => {
     const getUserSession = async () => {
       const data = await userSession();
@@ -12,7 +13,7 @@ export const useUserSession = () => {
 
     getUserSession();
 
-  }, [session]);
+  }, []);
   
   return session;
 };

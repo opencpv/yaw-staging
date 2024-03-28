@@ -21,6 +21,17 @@ export const metadata: Metadata = {
   applicationName: "RentRightGH website",
   description: "Genuine listings without stress", // tentative
   keywords: ["Genuine listings", "rental", "property management", "agent"], // tentative
+  metadataBase: new URL("https://rentrightgh.com"),
+  alternates: {
+    canonical: "/",
+    languages: {
+      "en-US": "/en-US",
+      "de-DE": "/de-DE",
+    },
+  },
+  // openGraph: {
+  //   images: '/opengraph-image.png',
+  // },
 };
 
 export const viewport: Viewport = {

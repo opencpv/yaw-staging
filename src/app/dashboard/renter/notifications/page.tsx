@@ -14,7 +14,6 @@ import supabase from "@/lib/utils/supabaseClient";
 import { NotificationType } from "./components/types";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import useNotifications from "./useNotifications";
-import { useProtectedRoute } from "@/lib/custom-hooks/useProtectedRoute";
 import NtfSkeleton from "./components/NtfSkeleton";
 import { Button } from "@nextui-org/react";
 

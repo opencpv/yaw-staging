@@ -1,18 +1,22 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { links, linksBeforeLogin } from "./content";
 import { motion } from "framer-motion";
 import Separator from "../Separator";
 import { FadeInOut } from "@/lib/animations";
 import MenuLink from "./components/MenuLink";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
 import { useFaqHowToSwitchStore } from "@/store/faq/useFaqStore";
+import { useAppStore } from "@/store/dashboard/AppStore";
+import { useDashboardStore } from "@/store/dashboard/dashboardStore";
+import { useMenuLinks } from "./content";
 
 export const DesktopMenu = (props: any) => {
+  const { linksAfterLogin, linksBeforeLogin } = useMenuLinks();
   const [active, setActive] = useState<number | null>(null);
   const [subId, setSubId] = useState<number | null>(null);
   const router = useRouter();
   const setToggle = useMenuStore((state) => state.setToggle);
+  const { user } = useAppStore();
 
   const setFaqActivePage = useFaqHowToSwitchStore(
     (state) => state.setActivePage,
@@ -24,7 +28,7 @@ export const DesktopMenu = (props: any) => {
         className={"flex w-max flex-col gap-10 border-r border-r-white pr-10"}
       >
         {/* main links before login */}
-        {true &&
+        {!user &&
           linksBeforeLogin.map(
             (r, idx) =>
               r.name.toLowerCase() !== "more" && (
@@ -67,8 +71,8 @@ export const DesktopMenu = (props: any) => {
           )}
 
         {/* main links after login */}
-        {!true &&
-          links.map(
+        {user &&
+          linksAfterLogin.map(
             (r, idx) =>
               r.name.toLowerCase() !== "more" && (
                 <>
@@ -108,105 +112,63 @@ export const DesktopMenu = (props: any) => {
                 </>
               ),
           )}
-
-        {/* {links.map(
-          (r, idx) =>
-            r.name.toLowerCase() !== "more" && (
-              <>
-                {r.name.toLowerCase() === "faq" ? (
-                  <MenuLink
-                    key={idx}
-                    active={active === idx}
-                    linkObject={r}
-                    onClick={() => {
-                      setFaqActivePage("faq");
-                      if (r?.sub) {
-                        setActive(idx as number);
-                        setSubId(null);
-                      } else {
-                        setActive(null);
-                        router.push(r?.url);
-                      }
-                    }}
-                  />
-                ) : (
-                  <MenuLink
-                    key={idx}
-                    active={active === idx}
-                    linkObject={r}
-                    onClick={() => {
-                      if (r?.sub) {
-                        setActive(idx as number);
-                        setSubId(null);
-                      } else {
-                        setActive(null);
-                        router.push(r?.url);
-                        // props?.toggleMenu();
-                      }
-                    }}
-                  />
-                )}
-              </>
-            ),
-        )} */}
       </div>
 
-      {/* before login */}
-      {true &&
-        active !== null && ( // implement appropriately
-          <>
-            <motion.div
-              key={active}
-              className={"flex flex-col gap-8"}
-              animate={"open"}
-              variants={FadeInOut}
-              initial={"closed"}
-              exit={"closed"}
-            >
-              {/* sub links --> view all listings, etc... */}
-              {linksBeforeLogin[active]?.sub?.map((l, ldx) => (
-                <MenuLink
-                  key={ldx}
-                  active={ldx === subId}
-                  linkObject={l}
-                  isSubLink
-                  onClick={() => {
-                    setToggle(false);
-                  }}
-                />
-              ))}
-            </motion.div>
-          </>
-        )}
+      {/* sub links before login */}
+      {!user && active !== null && (
+        <>
+          <motion.div
+            key={active}
+            className={"flex flex-col gap-8"}
+            animate={"open"}
+            variants={FadeInOut}
+            initial={"closed"}
+            exit={"closed"}
+          >
+            {/* sub links --> view all listings, etc... */}
+            {linksBeforeLogin[active]?.sub?.map((l, ldx) => (
+              <MenuLink
+                key={ldx}
+                active={ldx === subId}
+                linkObject={l}
+                isSubLink
+                onClick={() => {
+                  setToggle(false);
+                }}
+              />
+            ))}
+          </motion.div>
+        </>
+      )}
 
-      {true &&
-        active !== null && ( // implement appropriately
-          <>
-            <motion.div
-              key={active}
-              className={"flex flex-col gap-8"}
-              animate={"open"}
-              variants={FadeInOut}
-              initial={"closed"}
-              exit={"closed"}
-            >
-              {/* sub links --> view all listings, etc... */}
-              {links[active]?.sub?.map((l, ldx) => (
-                <MenuLink
-                  key={ldx}
-                  active={ldx === subId}
-                  linkObject={l}
-                  isSubLink
-                  onClick={() => {
-                    setToggle(false);
-                  }}
-                />
-              ))}
-            </motion.div>
-          </>
-        )}
+      {/* sub links after login */}
+      {user && active !== null && (
+        <>
+          <motion.div
+            key={active}
+            className={"flex flex-col gap-8"}
+            animate={"open"}
+            variants={FadeInOut}
+            initial={"closed"}
+            exit={"closed"}
+          >
+            {/* sub links --> view all listings, etc... */}
+            {linksAfterLogin[active]?.sub?.map((l, ldx) => (
+              <MenuLink
+                key={ldx}
+                active={ldx === subId}
+                linkObject={l}
+                isSubLink
+                onClick={() => {
+                  setToggle(false);
+                }}
+              />
+            ))}
+          </motion.div>
+        </>
+      )}
 
-      {subId !== null && (
+      {subId !== null && ( // REVISIT. IS IT STILL APPLICABLE?
         <>
           <Separator
             color={"primary"}
