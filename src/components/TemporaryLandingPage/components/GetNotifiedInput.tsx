@@ -79,7 +79,7 @@ function GetNotifiedInput() {
                   id="phone"
                   name="phone"
                   value={phone}
-                  placeholder={phoneInputPlaceholder}
+                  placeholder={"Phone number"}
                   onBlur={handleBlur}
                   onChange={handlePhone}
                   onInput={handleChange}
