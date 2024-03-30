@@ -60,5 +60,7 @@ export const middleware = async (req: NextRequest) => {
 //     "/dashboard/renter/:path*",
 //     "/dashboard/lister/:path*",
 //     "/dashboard/service-pro/:path*",
+// "/((?!_next/static|_next/image|favicon.ico).*)"
+
 //   ],
 // };

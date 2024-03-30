@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Check, ChevronDown, ChevronsDown, ChevronsUpDown } from "lucide-react";
+import { IoChevronDown } from "react-icons/io5";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -142,7 +142,7 @@ const CurrencyInput = ({
                 className="form-field-border h-[52px] w-full max-w-[100px] justify-between whitespace-nowrap uppercase text-[#6A6968] focus:border-2 focus:border-accent-50 focus:outline-none focus-visible:ring-0"
               >
                 {value ? value : placeholder}
-                <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                <IoChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
               </Button>
             </PopoverTrigger>
             <PopoverContent className="z-[200] max-h-[400px] w-fit overflow-y-scroll bg-[#fefefe] p-0 focus:outline-none">

@@ -36,9 +36,7 @@ const page = async (props: Props) => {
             <LuChevronsRight />
             <Link href="/blog">Blogs</Link>
           </div>
-          <AOSWrapper animation="fade-up" duration="2000">
-            <h1 className="text-5xl font-[700]">Blog</h1>
-          </AOSWrapper>
+          <h1 className="text-5xl font-[700]">Blog</h1>
         </div>
       </div>
       <div className="wrapper">

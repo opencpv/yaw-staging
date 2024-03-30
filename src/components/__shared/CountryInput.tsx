@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Check, ChevronDown, ChevronsDown, ChevronsUpDown } from "lucide-react";
+import { IoChevronDown } from "react-icons/io5";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -99,7 +99,7 @@ const CountryInput = ({
               value={value || field.value}
             >
               {field.value ? field.value : value || placeholder}
-              <ChevronDown className="ml-2 h-4 w-4 shrink-0 text-neutral-500 opacity-50" />
+              <IoChevronDown className="ml-2 h-4 w-4 shrink-0 text-neutral-500 opacity-50" />
             </Button>
           </PopoverTrigger>
           <PopoverContent className="z-[200] max-h-[400px] w-fit overflow-y-scroll bg-[#fefefe] p-0 focus:outline-none">

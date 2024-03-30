@@ -17,7 +17,7 @@ const SkeletonListing = ({
             <Skeleton
               className={cn("min-w-full", {
                 "h-52 rounded-xl": cardType === 1,
-                "h-80 rounded-3xl": cardType === 2,
+                "h-[26rem] rounded-3xl": cardType === 2,
               })}
             />
             <div className="flex justify-between">

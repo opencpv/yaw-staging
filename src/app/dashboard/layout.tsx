@@ -25,6 +25,7 @@ const Layout = async ({ children }: LayoutProps) => {
 
   // protected route
   if ((error || !data?.user) && pathname !== "/dashboard") {
+    // dashboard/**/*
     redirect("/login");
   }
 

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Check, ChevronDown, ChevronsDown, ChevronsUpDown } from "lucide-react";
+import { IoCheckmark, IoChevronDown } from "react-icons/io5";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -58,7 +58,7 @@ export function SelectSearchInput({
             {value
               ? data.find((data) => data.value === value)?.label
               : placeholder}
-            <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+            <IoChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
         <PopoverContent className="z-[1001] w-fit bg-[#fefefe] p-0 ">
@@ -80,7 +80,7 @@ export function SelectSearchInput({
                     setOpen(false);
                   }}
                 >
-                  <Check
+                  <IoCheckmark
                     className={cn(
                       "mr-2 h-4 w-4",
                       value === data.value ? "opacity-100" : "opacity-0",

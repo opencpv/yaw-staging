@@ -1,5 +1,5 @@
 import { NotificationType } from "@/app/dashboard/renter/notifications/components/types";
-import create from "zustand";
+import { create } from "zustand";
 
 type AppStore = {
   notifications: NotificationType[];
@@ -9,7 +9,7 @@ type AppStore = {
   setNotifications: (notifications: NotificationType[]) => void;
   setUnReadNotifications: (notifications: NotificationType[]) => void;
 
-  setCurrentNotification: any
+  setCurrentNotification: any;
 };
 
 export const useNotificationStore = create<AppStore>((set) => ({
@@ -24,6 +24,6 @@ export const useNotificationStore = create<AppStore>((set) => ({
   setUnReadNotifications: (notifications) =>
     set((state) => ({ ...state, unreadNotifications: notifications })),
 
-  setCurrentNotification: (notification : any) =>
+  setCurrentNotification: (notification: any) =>
     set((state) => ({ ...state, currentNotification: notification })),
 }));

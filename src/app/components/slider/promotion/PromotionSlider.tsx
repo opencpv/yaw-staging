@@ -35,18 +35,32 @@ const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
           modules={[Pagination, Autoplay]}
           className={`mySwiper relative h-[29rem] w-full rounded-3xl`}
         >
-          {/* Promotee info from database */}
           {promotions.map((promotion: any, idx: number) => (
             <SwiperSlide key={idx}>
-              <div className="relative h-full w-full">
-                <Image
-                  src={urlForImage(promotion?.image)?.url() as string}
-                  alt=""
-                  fill
-                  style={{ objectFit: "cover" }}
-                  className="brightness-[0.60]"
-                />
-              </div>
+              {idx === 0 ? ( // maybe promotion.type === "video" | "image"?
+                <div className="relative h-full w-full">
+                  <Image
+                    src={urlForImage(promotion?.image)?.url() as string}
+                    alt=""
+                    fill
+                    style={{ objectFit: "cover" }}
+                    className="brightness-[0.60]"
+                  />
+                </div>
+              ) : idx === 1 ? (
+                <>
+                  <div className="absolute inset-0 z-10 h-full w-full rounded-3xl bg-black/50"></div>
+                  <iframe
+                    src={
+                      "https://www.youtube.com/embed/rR4n-0KYeKQ?si=mkrWRrNoOTSiHw9q"
+                    }
+                    title={promotion?.title || ""}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    className="absolute inset-0 h-full w-full rounded-3xl"
+                  ></iframe>
+                </>
+              ) : null}
+
               {/* Promotion label */}
               <div className="absolute left-3 top-32 z-50 space-y-20 min-[300px]:left-10">
                 <div className="space-y-3 text-sm ">

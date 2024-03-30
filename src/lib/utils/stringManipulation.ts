@@ -1,5 +1,6 @@
 import { format, getDate } from "date-fns";
 import { enUS } from "date-fns/locale";
+import { map, toPairs } from "lodash";
 
 const capitalizeName = (initialName: string, delimiter?: string) => {
   let nameSplit = initialName?.split(delimiter ? delimiter : "%20");
@@ -44,4 +45,11 @@ export default capitalizeName;
 
 export const getFirstWord = (str: string, delimiter: string = " ") => {
   return str?.split(delimiter)[0];
+};
+
+export const addQueryParamsToUrl = (baseurl: string, params: any) => {
+  const query = map(toPairs(params), (pair) => pair.join("="))
+    .join("&")
+    .replaceAll(" ", "_");
+  return `${baseurl}?${query}`;
 };

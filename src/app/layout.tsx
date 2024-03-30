@@ -55,7 +55,9 @@ export default async function RootLayout({
     >
       <Script src="https://widget.cloudinary.com/v2.0/global/all.js" />
 
-      <body className={`bg-white text-neutral-800 light ${openSans.className}`}>
+      <body
+        className={`bg-white text-neutral-800 light ${openSans.className} ${openSansLocal.className}`}
+      >
         <Providers>
           <MenuWrapper>
             <LoadingIndicator />

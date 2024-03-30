@@ -1,5 +1,4 @@
 import { RenterApplicationStatus } from "@/app/dashboard/renter/applications/components/RtApplicationStatus";
-import { inter } from "@/lib/utils/fonts";
 
 interface ListingCardInterface extends ListingInterface {
   propertyDescription?: string;
@@ -148,19 +147,15 @@ export interface SentimentResponse {
   sentiments: SentimentSpan[];
 }
 
-
 export interface SanityReference {
   _ref: string;
   _type: string;
 }
 
-
-
 type SanityImageReference = {
   _type: string;
   asset: SanityReference;
-
-}
+};
 export interface BlogAuthor {
   profile_image: SanityImageReference;
   _createdAt: string;
@@ -176,9 +171,7 @@ export interface HowTo {
   title: string;
   description: string;
   video_url: string;
-  tags: { tag: string }[]
+  tags: { tag: string }[];
 }
 
-export interface BlogPost {
-
-}
+export interface BlogPost {}

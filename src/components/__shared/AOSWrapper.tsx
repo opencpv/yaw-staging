@@ -5,7 +5,7 @@ import "aos/dist/aos.css";
 import { AnimationStyle } from "./types";
 
 type Props = {
-  animation: AnimationStyle
+  animation: AnimationStyle;
   duration?: string;
   delay?: string;
   offset?: string;

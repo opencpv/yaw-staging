@@ -9,10 +9,13 @@ import { revalidationRule, fetchOrderRule } from "@/lib/utils/fetchRules";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
 import { useQuery } from "@tanstack/react-query";
 import { getListings } from "@/actions/listing";
+import { addQueryParamsToUrl } from "@/lib/utils/stringManipulation";
+import { createClient } from "@/lib/utils/supabase/client";
 
 type Props = {};
 
 const PropertiesListing = (props: Props) => {
+  const supabase = createClient();
   // const {
   //   data: listings,
   //   error,
@@ -30,11 +33,16 @@ const PropertiesListing = (props: Props) => {
   const {
     data: listings,
     error,
-    isPending: isLoading,
-    isFetching: isValidating,
+    isLoading,
+    isFetching,
   } = useQuery({
-    queryKey: ["listings"],
-    queryFn: async () => await getListings(),
+    queryKey: ["featured_listing"],
+    queryFn: async () => {
+      const { data: listings } = await supabase
+        .from("standard_template")
+        .select(); // TODO: fetch only needed columns
+      return listings;
+    },
   });
 
   return (
@@ -45,7 +53,7 @@ const PropertiesListing = (props: Props) => {
           data={listings}
           error={error}
           isLoading={isLoading}
-          isValidating={isValidating}
+          isValidating={isFetching}
           isLoadingComponent={<SkeletonListing count={3} />}
           errorComponent={<FetchErrorMessage specificData="properties" />}
           emptyStateComponent={
@@ -58,10 +66,14 @@ const PropertiesListing = (props: Props) => {
           <ListingCard
             key={listing.id}
             cardType="2"
-            href={`/properties/${listing.property_id}?property_name=${listing.property_name}&city=${listing.city}&price=${listing.monthly_amount}&payment_structure=${listing.advance_payment_options}&amount_per_month=${listing.monthly_amount}&rating=${8}&property_description=${listing.description}`.replaceAll(
-              " ",
-              "_",
-            )}
+            href={addQueryParamsToUrl(`/properties/${listing.property_id}`, {
+              property_name: listing.property_name,
+              city: listing.city,
+              price: listing.monthly_amount,
+              payment_structure: listing.advance_payment_options,
+              amount_per_month: listing.monthly_amount,
+              rating: 4,
+            })}
             propertyName={listing.property_name as string}
             city={listing.city as string}
             images={images} // TODO: check database
