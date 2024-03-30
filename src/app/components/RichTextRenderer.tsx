@@ -13,7 +13,7 @@ const RichTextRenderer = ({ content }: { content: any }) => {
     },
   };
 
-  return <PortableText value={[content]} components={components} />;
+  return <PortableText value={content} />;
 };
 
 export default RichTextRenderer;

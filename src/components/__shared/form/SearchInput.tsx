@@ -1,9 +1,13 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { ConfigProvider, Input } from "antd";
 import { CiSearch } from "react-icons/ci";
+import { loadQuery } from "@sanity/react-loader";
+import { SanityDocument } from "next-sanity";
+import { BLOG_CATEGORY_QUERY } from "@/lib/utils/sanity/queries";
 
 const SearchInput = ({ placeholder, onPressEnter }: SearchInputProps) => {
+  const [searchText, setSearchText] = useState<string>("");
   return (
     <ConfigProvider
       theme={{
@@ -20,7 +24,12 @@ const SearchInput = ({ placeholder, onPressEnter }: SearchInputProps) => {
         placeholder={placeholder ? placeholder : "Search"}
         prefix={<CiSearch className="text-neutral-500" />}
         allowClear
-        onPressEnter={onPressEnter}
+        onChange={(e) => setSearchText(e.target.value)}
+        onPressEnter={async () => {
+          const blogCategoriesData: any =
+            await loadQuery<SanityDocument[]>(BLOG_CATEGORY_QUERY);
+          console.log(blogCategoriesData);
+        }}
       />
     </ConfigProvider>
   );

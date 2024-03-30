@@ -8,10 +8,14 @@ export const HOW_TO_TAGS_QUERY = groq`*[_type == 'htags']{...}`;
 export const FAQ_CATEGORIES_QUERY = groq`*[_type == 'faqCategory']{...}`;
 export const TERMS_QUERY = groq`*[_type == 'terms']{...}`;
 export const BLOG_QUERY = groq`*[_type == 'blog']{_id,author->,category->,title,featured_image,date,summary,rating}`;
-export const BLOG_CATEGORIES = groq`*[_type == 'category']{...}`;
+export const BLOG_CATEGORY_QUERY = groq`*[_type == 'category']{...}`;
 export const AUTHORS = groq`*[_type == 'author']{...}`;
 export const SINGLE_BLOG_POST = (id: string) => {
     return groq`*[_type == 'blog' && _id == "${id}"]{...,author->,category->}`
+}
+export const SEARCH_BLOG_QUERY = (text: string) => {
+    return groq`*[_type == 'blog' &&  title similar(${text}, 0.8)]{...,author->,category->}`
+
 }
 
 

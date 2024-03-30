@@ -1,9 +1,6 @@
-import { useAssets } from "@/lib/custom-hooks/useAssets";
 import TermItem from "./TermItem";
 
 const TermsMainView = ({ data }: { data: any }) => {
-  const { images } = useAssets();
-
   return (
     <section className="w-full lg:px-[30px]">
       <div className="flex h-96 min-h-96 items-center bg-terms-bg bg-cover bg-center px-4 max-lg:-mx-5 md:px-[30px] lg:w-full lg:rounded-2xl lg:pl-[100px]">

@@ -15,7 +15,7 @@ const TermItem = ({ data, index }: { data: any; index: number }) => {
   );
 
   const Description = () => (
-    <RichTextRenderer content={data.termsArray.description[0]} />
+    <RichTextRenderer content={data.termsArray.description} />
   );
 
   return (
@@ -26,7 +26,7 @@ const TermItem = ({ data, index }: { data: any; index: number }) => {
           <Title />
           <div className="font-semibold text-shade-200 lg:text-xl">
             <Description />
-          </div>{" "}
+          </div>
         </div>
       </div>
       <div className="mb-6 flex flex-col gap-6 lg:hidden">

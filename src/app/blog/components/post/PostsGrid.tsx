@@ -14,7 +14,7 @@ interface IPostsGridProps {
 
 const PostsGrid: React.FunctionComponent<IPostsGridProps> = (props) => {
   const path = usePathname();
-  const currentCategory = convertSlugToString(path?.split("/")[2] as string);
+  const currentCategory = path?.split("/")[2];
   const [posts, setPosts] = React.useState<any[]>([]);
   const [loading, setLoading] = React.useState(true);
   React.useEffect(() => {
@@ -22,16 +22,17 @@ const PostsGrid: React.FunctionComponent<IPostsGridProps> = (props) => {
       setPosts(props.posts);
       setLoading(false);
     } else {
+      posts.forEach((post) => {
+        console.log("slugified title", slugify(post.category.category_title));
+      });
       const filteredPosts = props.posts.filter(
-        (post) =>
-          post.category.category_title ===
-          capitalizeName(convertSlugToString(currentCategory)),
+        (post) => slugify(post.category.category_title) === currentCategory,
       );
       setPosts(filteredPosts);
-      console.log(filteredPosts);
       setLoading(false);
     }
-  }, [currentCategory]);
+  }, []);
+
   return (
     <>
       <section className="space-y-16">

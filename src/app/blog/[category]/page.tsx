@@ -7,7 +7,7 @@ import TabsAndSearch from "../components/category/TabsAndSearch";
 import AOSWrapper from "@/components/__shared/AOSWrapper";
 import {
   AUTHORS,
-  BLOG_CATEGORIES,
+  BLOG_CATEGORY_QUERY,
   BLOG_QUERY,
 } from "@/lib/utils/sanity/queries";
 import slugify from "@/lib/utils/slugify";
@@ -21,7 +21,7 @@ type Props = {};
 
 const page = async (props: Props) => {
   const blogCategoriesData: any =
-    await loadQuery<SanityDocument[]>(BLOG_CATEGORIES);
+    await loadQuery<SanityDocument[]>(BLOG_CATEGORY_QUERY);
   const categories = blogCategoriesData.data;
   const blogPostsData: any = await loadQuery<SanityDocument[]>(BLOG_QUERY);
   const posts = blogPostsData.data;

@@ -10,7 +10,7 @@ import { loadQuery } from "@sanity/react-loader";
 import { SanityDocument } from "next-sanity";
 import {
   AUTHORS,
-  BLOG_CATEGORIES,
+  BLOG_CATEGORY_QUERY,
   BLOG_QUERY,
 } from "@/lib/utils/sanity/queries";
 import { urlForImage } from "@/lib/utils/sanity/utils";
@@ -20,7 +20,7 @@ const page = async () => {
   const initialBlogData: any = await loadQuery<SanityDocument[]>(BLOG_QUERY);
   const blogData = initialBlogData.data;
   const blogCategoriesData: any =
-    await loadQuery<SanityDocument[]>(BLOG_CATEGORIES);
+    await loadQuery<SanityDocument[]>(BLOG_CATEGORY_QUERY);
   const categories = blogCategoriesData.data;
   const initialAuthorsData: any = await loadQuery<SanityDocument[]>(AUTHORS);
   const sliderBlogData = blogData.slice(0, 3);
@@ -40,7 +40,7 @@ const page = async () => {
           pagination
           autoplay
           className="shape-3 h-60 rounded-none sm:h-[30rem]"
-          images={sliderBlogData.map((post: any, index: number) => ({
+          images={sliderBlogData.map((post: any) => ({
             src: urlForImage(post.featured_image)?.url() as string,
             name: post.title,
             href: `/blog/${slugify(post.category.category_title)}/${slugify(
@@ -54,7 +54,7 @@ const page = async () => {
           <OtherPosts
             className="section md:hidden"
             title="Recent posts"
-            posts={recentPosts.map((post: any, index: number) => ({
+            posts={recentPosts.map((post: any) => ({
               title: post.title,
               author: post.author.name,
               image: "",
