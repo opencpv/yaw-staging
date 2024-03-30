@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { HTMLAttributeAnchorTarget } from "react";
 import { Button as NextUIButton } from "@nextui-org/react";
 import { cn } from "@nextui-org/react";
 import { FaArrowRight } from "react-icons/fa";
@@ -21,6 +21,7 @@ interface Props extends React.HTMLAttributes<HTMLButtonElement> {
   replace?: boolean;
   title?: string;
   greenHover?: boolean;
+  target?: HTMLAttributeAnchorTarget;
   onClick?: (e?: any) => void;
 }
 
@@ -41,6 +42,7 @@ const Button: React.FC<Props> = ({
   replace,
   greenHover,
   type,
+  target,
   ...props
 }: Props) => {
   if (href)
@@ -48,6 +50,7 @@ const Button: React.FC<Props> = ({
       <NextUIButton
         as={Link}
         replace={replace}
+        target={target}
         href={href}
         isDisabled={disabled}
         title={title}

@@ -70,6 +70,10 @@ const Modal = ({
     (state) => state.setHideWindowScrollbar,
   );
 
+  useEffect(() => {
+    isOpen ? setHideWindowScrollbar(true) : setHideWindowScrollbar(false);
+  }, [isOpen, setHideWindowScrollbar]);
+
   return (
     <>
       <NextUIModal
