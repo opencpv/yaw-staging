@@ -7,7 +7,6 @@ import CaBackArrow from "../components/icons/CaBackArrow";
 import useCartStore from "@/store/cart/useCartStore";
 import CaCartItem from "../components/icons/CaCartItem";
 import { CartProp } from "../../../interfaces";
-import { openSans } from "@/styles/font";
 import { boolean } from "yup";
 import { useState } from "react";
 import CaNormalArrowDown from "../components/icons/CaNormalArrowDown";

@@ -7,7 +7,7 @@ import { IoPersonOutline } from "react-icons/io5";
 import MarkAndDeletePopup from "./MarkAndDeletePopup";
 import { motion } from "framer-motion";
 import { ReactHTMLElement, useRef } from "react";
-import moment from "moment";
+// import moment from "moment";
 import useNotifications from "../useNotifications";
 import { NotificationType } from "./types";
 
@@ -69,7 +69,7 @@ const NotificationItem: React.FC<Props> = ({
                 .
               </div>
               <div className="font-bold">
-                {moment(notification?.time).fromNow()}
+                {/* {moment(notification?.time).fromNow()} */}
               </div>
             </div>
             <div className="flex flex-col items-start gap-1 text-left text-[16px]">

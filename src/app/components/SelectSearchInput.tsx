@@ -18,7 +18,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { ErrorMessage, Field } from "formik";
-import { openSans } from "../../styles/font";
 import { styled } from "@stitches/react";
 
 type DataItem = {

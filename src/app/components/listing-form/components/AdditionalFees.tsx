@@ -3,7 +3,6 @@ import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import React, { useEffect, useState } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { styled } from "@stitches/react";
-import { openSans } from "@/styles/font";
 import CustomRadioInput from "@/app/components/CustomRadioInput";
 import { ListingForm } from "./types";
 import CurrencyInput from "@/components/__shared/CurrencyInput";

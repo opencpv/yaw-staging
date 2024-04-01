@@ -1,6 +1,5 @@
 "use client";
 import { ErrorMessage, Field, Formik, useFormik } from "formik";
-import { openSans } from "../../styles/font";
 import { styled } from "@stitches/react";
 import { InputHTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
@@ -53,7 +52,7 @@ const TextFieldInput: React.FC<
       </Field>
 
       <ErrorMessage
-        className={`text-error-100 text-[13px]`}
+        className={`text-[13px] text-error-100`}
         name={name}
         component="p"
       />

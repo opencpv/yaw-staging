@@ -1,5 +1,4 @@
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import { openSans } from "@/lib/utils/fonts";
 import Image from "next/image";
 
 const BreadCrumb = ({ link }: { link: string }) => {

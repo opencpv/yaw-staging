@@ -1,4 +1,4 @@
-import { usePaystackPayment } from "react-paystack";
+// import { usePaystackPayment } from "react-paystack";
 
 interface PaymentBttonProps {
   email?: string;
@@ -24,10 +24,10 @@ const PaymentButton = ({
     console.log("closed");
   };
 
-  const initializePayment = usePaystackPayment(config);
+  //   const initializePayment = usePaystackPayment(config);
 
   const handleButtonClick = () => {
-    initializePayment({ onSuccess, onClose });
+    // initializePayment({ onSuccess, onClose });
     console.log(config);
   };
   return (
