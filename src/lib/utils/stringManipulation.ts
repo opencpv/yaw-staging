@@ -1,6 +1,5 @@
 import { format, getDate } from "date-fns";
 import { enUS } from "date-fns/locale";
-import { map, toPairs } from "lodash";
 
 const capitalizeName = (initialName: string, delimiter?: string) => {
   let nameSplit = initialName?.split(delimiter ? delimiter : "%20");
