@@ -3,7 +3,7 @@ import { styled } from "@stitches/react";
 import { Field, Form, Formik } from "formik";
 import { NotificationType } from "./types";
 import NtfDetailsSkeleton from "@/app/dashboard/renter/notifications/components/NtfDetailsSkeleton";
-// import moment from "moment";
+import moment from "moment";
 import { CustomScroll } from "./CustomScroll";
 
 type Props = {
@@ -21,12 +21,12 @@ const NotificationDetailsFull: React.FC<Props> = ({ currentNotification }) => {
             </div>
             <div className="flex  gap-2 text-[10px] uppercase text-[#0000008F] 2xl:leading-[14px]">
               <p className="font-bold">Date</p>
-              {/* <p className="font-semibold">
+              <p className="font-semibold">
                 {moment(currentNotification?.sent).format("DD MMMM, YYYY")}{" "}
               </p>
               <p className="font-bold">
                 {moment(currentNotification?.created_at).fromNow()}
-              </p> */}
+              </p>
             </div>
           </div>
           <div className="text-[16px] font-[400] text-[#00000066] 2xl:leading-[22.4px]">
