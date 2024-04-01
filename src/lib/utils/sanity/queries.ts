@@ -15,7 +15,6 @@ export const SINGLE_BLOG_POST = (id: string) => {
 }
 export const SEARCH_BLOG_QUERY = (text: string) => {
     return groq`*[_type == 'blog' &&  title similar(${text}, 0.8)]{...,author->,category->}`
-
 }
 
-
+export const CONTACT_US_PAGE_QUERY = groq`*[_type == 'contact'][0] {   general->{     _id,     _type,     title,     images,     pdfDocument,     "pdfUrl": pdfDocument.asset->url,     video   },   reports->{     _id,     _type,     title,     images,     pdfDocument,     "pdfUrl": pdfDocument.asset->url,     video   },   advertise->{     _id,     _type,     title,     images,     pdfDocument,     "pdfUrl": pdfDocument.asset->url,     video   },   writers->{     _id,     _type,     title,     images,     pdfDocument,     "pdfUrl": pdfDocument.asset->url,     video   } }`

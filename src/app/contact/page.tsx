@@ -14,7 +14,10 @@ import { useRef } from "react";
 import { Metadata } from "next";
 import { loadQuery } from "@/lib/utils/sanity/sanityStore";
 import { SanityDocument } from "next-sanity";
-import { HOME_PAGE_QUERY } from "@/lib/utils/sanity/queries";
+import {
+  CONTACT_US_PAGE_QUERY,
+  HOME_PAGE_QUERY,
+} from "@/lib/utils/sanity/queries";
 export const metadata: Metadata = {
   title: "Contact",
 };
@@ -22,6 +25,8 @@ export const metadata: Metadata = {
 const Page = async () => {
   const initial = await loadQuery<SanityDocument[]>(HOME_PAGE_QUERY);
   const data = initial.data[0];
+  const aboutReqData = await loadQuery<SanityDocument[]>(CONTACT_US_PAGE_QUERY);
+
   return (
     <>
       <Navbar />
@@ -35,7 +40,7 @@ const Page = async () => {
               <ContactTabs />
               <div className="flex h-full grid-cols-2 flex-col gap-10 md:grid">
                 <ContactForm />
-                <ContactFormSideImage />
+                <ContactFormSideImage data={aboutReqData.data} />
               </div>
             </div>
           </div>
