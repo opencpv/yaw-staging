@@ -13,7 +13,6 @@ import { EffectCoverflow, FreeMode, Mousewheel } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/effect-coverflow";
-import { times } from "lodash";
 import { createClient } from "@/lib/utils/supabase/client";
 import { useQuery } from "@tanstack/react-query";
 import { addQueryParamsToUrl } from "@/lib/utils/stringManipulation";
@@ -104,7 +103,7 @@ const FeaturedListings = ({ className, showAllButton }: Props) => {
             className="mySwiper h-fit w-full"
           >
             {isLoading
-              ? times(5).map((_, idx) => (
+              ? Array.from({ length: 5 }, (_, idx) => (
                   <SwiperSlide
                     key={idx + 1}
                     className={`aspect-square h-full min-w-[16rem] max-w-[16rem] xs:aspect-auto xs:min-w-[23rem] xs:max-w-[23rem]`}

@@ -11,7 +11,5 @@ export const BLOG_QUERY = groq`*[_type == 'blog']{_id,author->,category->,title,
 export const BLOG_CATEGORIES = groq`*[_type == 'category']{...}`;
 export const AUTHORS = groq`*[_type == 'author']{...}`;
 export const SINGLE_BLOG_POST = (id: string) => {
-    return groq`*[_type == 'blog' && _id == "${id}"]{...,author->,category->}`
-}
-
-
+  return groq`*[_type == 'blog' && _id == "${id}"]{...,author->,category->}`;
+};

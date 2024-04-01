@@ -8,7 +8,6 @@ import SkeletonRectangle from "@/components/__shared/ui/skeleton/SkeletonRectang
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
 import { createClient } from "@/lib/utils/supabase/client";
 import { useQuery } from "@tanstack/react-query";
-import times from "lodash/times";
 
 const HomePopularCities = () => {
   const supabase = createClient();
@@ -74,7 +73,7 @@ const HomePopularCities = () => {
         <SliderMultiItems
           items={
             isLoading
-              ? times(5).map((_, idx) => (
+              ? Array.from({ length: 3 }, (_, idx) => (
                   <SkeletonRectangle
                     className="relative min-h-60 w-full rounded-lg p-5 hover:scale-105 sm:p-20"
                     key={idx}

@@ -48,8 +48,10 @@ export const getFirstWord = (str: string, delimiter: string = " ") => {
 };
 
 export const addQueryParamsToUrl = (baseurl: string, params: any) => {
-  const query = map(toPairs(params), (pair) => pair.join("="))
+  const query = Object.entries(params)
+    .map(([key, value]) => `${key}=${value}`)
     .join("&")
     .replaceAll(" ", "_");
+
   return `${baseurl}?${query}`;
 };

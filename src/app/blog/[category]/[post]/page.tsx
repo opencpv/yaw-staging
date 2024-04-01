@@ -45,17 +45,15 @@ const page = async ({ params, searchParams }: Props) => {
       <h1 className="mb-5 text-2xl font-[700] text-primary-200 md:text-4xl">
         {post.title}
       </h1>
-      <AOSWrapper animation="zoom-in">
-        <div className="shape-3 relative mb-16 h-60 w-full lg:h-[30rem]">
-          <Image
-            src={urlForImage(post.featured_image)?.url() as string}
-            alt=""
-            className=""
-            fill
-            style={{ objectFit: "cover" }}
-          />
-        </div>
-      </AOSWrapper>
+      <div className="shape-3 fade-in relative mb-16 h-60 w-full lg:h-[30rem]">
+        <Image
+          src={urlForImage(post.featured_image)?.url() as string}
+          alt=""
+          className=""
+          fill
+          style={{ objectFit: "cover" }}
+        />
+      </div>
       <h3 className="no-print mb-8 text-xl font-[500]">
         <BreadCrumbPreLink label="Category" href="/blog/Category" /> /
         <span className="">{post.title}</span>

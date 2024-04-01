@@ -7,19 +7,11 @@ import React from "react";
 import AdsSliderColumn from "./AdsSliderColumn";
 import ArrowLink from "./link/ArrowLink";
 import SliderWide from "@/components/__shared/sliders/SliderWide";
-// import { useQuery } from "@supabase-cache-helpers/postgrest-swr";
-import supabase from "@/lib/utils/supabaseClient";
-import {
-  fetchCountRule,
-  fetchOrderRule,
-  revalidationRule,
-} from "@/lib/utils/fetchRules";
 import images from "@/enum/temp/images";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
 import { createClient } from "@/lib/utils/supabase/client";
 import { useQuery } from "@tanstack/react-query";
 import { cn } from "@/lib/utils";
-import { times } from "lodash";
 
 type Props = { data: any };
 
@@ -112,7 +104,7 @@ const FeaturedListingAndAds = (props: Props) => {
               <SliderGrid
                 items={
                   isLoading
-                    ? times(5).map((_, idx) => (
+                    ? Array.from({ length: 5 }, (_, idx) => (
                         <SkeletonListing key={idx} cardType={1} />
                       ))
                     : listings?.map((listing) => (
