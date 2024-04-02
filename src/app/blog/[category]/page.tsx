@@ -20,11 +20,17 @@ import PostsGrid from "../components/post/PostsGrid";
 type Props = {};
 
 const page = async (props: Props) => {
-  const blogCategoriesData: any =
-    await loadQuery<SanityDocument[]>(BLOG_CATEGORY_QUERY);
-  const categories = blogCategoriesData.data;
-  const blogPostsData: any = await loadQuery<SanityDocument[]>(BLOG_QUERY);
-  const posts = blogPostsData.data;
+  let blogCategoriesData: any, categories: any, blogPostsData: any, posts: any;
+  try {
+    blogCategoriesData = await loadQuery<SanityDocument[]>(BLOG_CATEGORY_QUERY);
+    categories = blogCategoriesData.data;
+    blogPostsData = await loadQuery<SanityDocument[]>(BLOG_QUERY);
+    posts = blogPostsData.data;
+  } catch (error) {
+    blogCategoriesData = [];
+    categories = [];
+    posts = [];
+  }
 
   return (
     <>

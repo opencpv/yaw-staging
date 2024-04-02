@@ -1,7 +1,7 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-
 
 const CategoryCard = ({
   category,
@@ -9,6 +9,7 @@ const CategoryCard = ({
   href,
   className,
 }: CategoryCardProps) => {
+  console.log(href);
   return (
     <Link href={`${href}`}>
       <div className={`relative h-64 w-72 ${className}`}>
@@ -20,7 +21,7 @@ const CategoryCard = ({
           className="md:rounded-3xl"
         />
         <div className="absolute bottom-0 w-full bg-neutral-800 bg-opacity-60 p-4 md:rounded-b-3xl">
-          <p className="text-white text-center text-sm">{category}</p>
+          <p className="text-center text-sm text-white">{category}</p>
         </div>
       </div>
     </Link>

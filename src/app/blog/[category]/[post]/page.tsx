@@ -27,12 +27,20 @@ type Props = {
 };
 
 const page = async ({ params, searchParams }: Props) => {
-  const intialPostData: any = await loadQuery<SanityDocument[]>(
-    SINGLE_BLOG_POST(searchParams.id),
-  );
-  const post = intialPostData.data[0];
+  let intialPostData: any, post: any;
+
   // handlePageViewCounter(post);
   const sanityClient = client;
+  try {
+    intialPostData = await loadQuery<SanityDocument[]>(
+      SINGLE_BLOG_POST(searchParams.id),
+    );
+    post = intialPostData.data[0];
+  } catch (error) {
+    intialPostData = [];
+    post = null;
+  }
+
   const SampleImageComponent = ({
     value,
     isInline = false,

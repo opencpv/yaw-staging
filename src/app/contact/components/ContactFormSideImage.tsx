@@ -14,8 +14,6 @@ const ContactFormSideImage = (props: Props) => {
   const activeTab = useContactStore((state) => state.activeKey);
   const { images } = useAssets();
   const SidePanel = (data: any) => {
-    console.log(props.data);
-
     if (data.data) {
       if (data.data.video) {
         return (
