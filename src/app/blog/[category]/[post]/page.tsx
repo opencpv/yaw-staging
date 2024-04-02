@@ -20,6 +20,7 @@ import "../../style.css";
 import handlePageViewCounter from "@/lib/utils/handlePageViewCounter";
 import urlBuilder from "@sanity/image-url";
 import { client } from "@/lib/utils/sanity/client";
+import axios from "axios";
 
 type Props = {
   params: { slug: string };
@@ -36,9 +37,12 @@ const page = async ({ params, searchParams }: Props) => {
       SINGLE_BLOG_POST(searchParams.id),
     );
     post = intialPostData.data[0];
+    const res = await axios.put("/api/blog-view", { id: 1 });
+    console.log(res.data);
   } catch (error) {
     intialPostData = [];
     post = null;
+    console.log(error);
   }
 
   const SampleImageComponent = ({

@@ -11,7 +11,7 @@ function GenuineListingRow() {
             text-[2rem] font-bold leading-[2.8rem] text-white sm:text-[3rem]
             sm:leading-[4.1rem] md:text-[3.5rem] md:leading-[4.5rem] 2xl:text-[3.8125rem] 2xl:leading-[5.3375rem] `}
           >
-            Genuine Listings
+            Guaranteed Listings
             <br /> Without Stress
           </p>
         </div>
