@@ -32,7 +32,11 @@ const Layout = async ({ children }: LayoutProps) => {
     redirect("/dashboard");
   }
 
-  return <DashboardLayout>{children}</DashboardLayout>;
+  return (
+    <>
+      <DashboardLayout>{children}</DashboardLayout>
+    </>
+  );
 };
 
 export default Layout;
