@@ -2,30 +2,32 @@
 import SliderMultiItems from "@/components/__shared/sliders/SliderMultiItems";
 import React from "react";
 import PopularCitiesCard from "../PopularCitiesCard";
-import { useQuery } from "@supabase-cache-helpers/postgrest-swr";
 import supabase from "@/lib/utils/supabaseClient";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import Image from "next/image";
 import SkeletonRectangle from "@/components/__shared/ui/skeleton/SkeletonRectangle";
 import { fetchOrderRule, revalidationRule } from "@/lib/utils/fetchRules";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
-import { getPopularCities } from "@/utils";
+import { createClient } from "@/lib/utils/supabase/client";
+import { useQuery } from "@tanstack/react-query";
 
 const HomePopularCities = () => {
+  const supabase = createClient();
+
   const {
     data: cities,
-    isLoading,
-    isValidating,
     error,
-  } = useQuery(
-    supabase
-      .from("standard_template")
-      .select("id")
-      .order("created_at", fetchOrderRule()),
-    revalidationRule(),
-  );
-
-  // const cities = await getPopularCities();
+    isLoading,
+    isFetching,
+  } = useQuery({
+    queryKey: ["featured_listing"],
+    queryFn: async () => {
+      const { data: listings } = await supabase
+        .from("standard_template")
+        .select(); // TODO: fetch only needed columns
+      return listings;
+    },
+  });
 
   return (
     <section
@@ -49,7 +51,7 @@ const HomePopularCities = () => {
           data={cities}
           error={error}
           isLoading={isLoading}
-          isValidating={isValidating}
+          isValidating={isFetching}
           isLoadingComponent={
             <SkeletonRectangle count={3} childrenClassName="w-full h-[20rem]" />
           }
@@ -69,7 +71,7 @@ const HomePopularCities = () => {
           data={cities}
           error={error}
           isLoading={isLoading}
-          isValidating={isValidating}
+          isValidating={isFetching}
           isLoadingComponent={
             <div className="skeleton-flex h-44">
               <SkeletonRectangle count={2} />

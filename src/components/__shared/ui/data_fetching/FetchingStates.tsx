@@ -10,7 +10,7 @@ type Props = {
   data: Record<string, unknown>[] | undefined | any[] | any | null;
   isLoadingComponent: React.ReactNode;
   errorComponent?: React.ReactNode;
-  noDataMessageComponent?: React.ReactNode;
+  emptyStateComponent?: React.ReactNode;
 };
 
 const FetchingStates = ({
@@ -20,7 +20,7 @@ const FetchingStates = ({
   data,
   isLoadingComponent,
   errorComponent,
-  noDataMessageComponent,
+  emptyStateComponent,
 }: Props) => {
   return (
     <>
@@ -32,7 +32,7 @@ const FetchingStates = ({
       {isValidating === false &&
         !error &&
         data?.length === 0 &&
-        noDataMessageComponent}
+        emptyStateComponent}
     </>
   );
 };

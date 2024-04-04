@@ -36,7 +36,7 @@ const LsManageApplicationsSm = (props: Props) => {
         isValidating={isValidating}
         isLoadingComponent={<TableSkeletonSm rows={4} />}
         errorComponent={<FetchErrorMessage specificData="applications" />}
-        noDataMessageComponent={
+        emptyStateComponent={
           <p className="mt-4 italic">There are no applications yet.</p>
         }
       />

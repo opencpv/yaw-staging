@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import ListingCard from "@/components/__shared/listing/ListingCard";
 import SliderGrid from "@/components/__shared/sliders/SliderGrid";
@@ -8,8 +7,10 @@ import React from "react";
 import AdsSliderColumn from "./AdsSliderColumn";
 import ArrowLink from "./link/ArrowLink";
 import SliderWide from "@/components/__shared/sliders/SliderWide";
-import { useQuery } from "@supabase-cache-helpers/postgrest-swr";
+// import { useQuery } from "@supabase-cache-helpers/postgrest-swr";
 import supabase from "@/lib/utils/supabaseClient";
+import { createClient } from "@/lib/utils/supabase/client";
+import { useQuery } from "@tanstack/react-query";
 import {
   fetchCountRule,
   fetchOrderRule,
@@ -21,20 +22,21 @@ import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchError
 type Props = {};
 
 const FeaturedListingAndAds = (props: Props) => {
+  const supabase = createClient();
   const {
     data: listings,
-    isLoading,
-    isValidating,
     error,
-  } = useQuery(
-    supabase
-      .from("standard_template")
-      .select(
-        "id, property_name, property_id, description, monthly_amount, city",
-      )
-      .order("created_at", fetchOrderRule()),
-    revalidationRule(),
-  );
+    isLoading,
+    isFetching,
+  } = useQuery({
+    queryKey: ["featured_listing"],
+    queryFn: async () => {
+      const { data: listings } = await supabase
+        .from("standard_template")
+        .select(); // TODO: fetch only needed columns
+      return listings;
+    },
+  });
 
   return (
     <section className="section">
@@ -48,12 +50,12 @@ const FeaturedListingAndAds = (props: Props) => {
               data={listings}
               error={error}
               isLoading={isLoading}
-              isValidating={isValidating}
+              isValidating={isFetching}
               isLoadingComponent={<SkeletonListing count={3} />}
               errorComponent={
                 <FetchErrorMessage specificData="featured listing" />
               }
-              noDataMessageComponent={
+              emptyStateComponent={
                 <p className="mt-4 text-center italic">
                   There are no properties yet.
                 </p>
@@ -64,7 +66,7 @@ const FeaturedListingAndAds = (props: Props) => {
                 <ListingCard
                   id={listing.id}
                   key={listing.id}
-                  href={`/properties/${listing.property_id}?property_name=${listing.propertyName}&city=${listing.city}&price=${listing.price}&payment_structure=${listing.paymentStructure}&amount_per_month=${listing.monthlyAmount}&rating=${listing.ratingCount}&property_description=${listing.propertyDescription}`.replaceAll(
+                  href={`/properties/${listing.property_id}?property_name=${listing.property_name}&city=${listing.city}&price=${listing.monthly_amount}&payment_structure=${listing.monthly_amount}&amount_per_month=${listing.monthly_amount}&rating=${listing.monthly_amount}&property_description=${listing.description}`.replaceAll(
                     " ",
                     "_",
                   )}
@@ -73,7 +75,7 @@ const FeaturedListingAndAds = (props: Props) => {
                   images={images} // TODO: check database
                   liked={false} // TODO: check implementation
                   membership={"Certified" as Membership} // TODO: check database
-                  monthlyAmount={listing.monthly_amount as number}
+                  monthlyAmount={parseFloat(listing.monthly_amount as string)}
                   paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
                   propertyDescription={listing.description as string}
                   price={4000} // TODO: check database
@@ -92,13 +94,13 @@ const FeaturedListingAndAds = (props: Props) => {
                 data={listings}
                 error={error}
                 isLoading={isLoading}
-                isValidating={isValidating}
+                isValidating={isFetching}
                 isLoadingComponent={
                   <div className="skeleton-grid">
-                    <SkeletonListing count={3} />
+                    <SkeletonListing count={9} />
                   </div>
                 }
-                noDataMessageComponent={
+                emptyStateComponent={
                   <p className="mt-4 text-center italic">
                     There are no properties yet.
                   </p>
@@ -109,7 +111,7 @@ const FeaturedListingAndAds = (props: Props) => {
                   <ListingCard
                     id={listing.id}
                     key={listing.id}
-                    href={`/properties/${listing.property_id}?property_name=${listing.propertyName}&city=${listing.city}&price=${listing.price}&payment_structure=${listing.paymentStructure}&amount_per_month=${listing.monthlyAmount}&rating=${listing.ratingCount}&property_description=${listing.propertyDescription}`.replaceAll(
+                    href={`/properties/${listing.property_id}?property_name=${listing.property_name}&city=${listing.city}&price=${listing.monthly_amount}&payment_structure=${listing.monthly_amount}&amount_per_month=${listing.monthly_amount}&rating=${listing.monthly_amount}&property_description=${listing.description}`.replaceAll(
                       " ",
                       "_",
                     )}
@@ -134,7 +136,9 @@ const FeaturedListingAndAds = (props: Props) => {
         {/* Ads */}
         <AdsSliderColumn />
       </div>
-      <ArrowLink href="/properties" text="Show all" color="#202457" />
+      {listings && (
+        <ArrowLink href="/properties" text="Show all" color="#202457" />
+      )}
       {/* Ads mobile*/}
       <section className="section h-fit w-full lg:hidden">
         <SliderWide
