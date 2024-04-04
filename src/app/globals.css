@@ -174,14 +174,6 @@ body {
   .wrapper {
     @apply mx-auto max-w-screen-3xl px-5 pb-8 pt-12 sm:pb-14 lg:px-10;
   }
-
-  .wrapper-2 {
-    @apply mx-auto max-w-screen-3xl px-5 pb-8 pt-12 sm:px-5 sm:pb-14 lg:px-10;
-  }
-
-  .wrapper-section {
-    @apply mx-auto max-w-screen-3xl px-5 pb-0 pt-28 sm:px-10 sm:pb-0;
-  }
 }
 
 .PhoneInputInput {

@@ -96,7 +96,7 @@ const About = async () => {
         >
           <VerticalSlider />
         </AOSWrapper>
-        <FeaturedListings className="wrapper-section" />
+        <FeaturedListings className="wrapper pb-0 pt-28" />
       </main>
       <Footer />
     </>

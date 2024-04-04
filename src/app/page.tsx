@@ -16,17 +16,16 @@ export default function Home() {
       <Navbar />
       <main className="overflow-x-hidden bg-secondary-50">
         <HomeLandingPage />
-        {/* Promotion */}
-        <div className="wrapper-2">
+
+        <div className="wrapper sm:px-5 lg:px-10">
           <HomePromotionSection />
-          {/* Featured Listings and Ads */}
+
           <FeaturedListingAndAds />
 
-          {/* Apartment Rentals */}
           <HomeRentalDealsSection />
-          {/* Manage Your Properties With Us */}
+
           <HomeManagePropertiesSection />
-          {/* Find Apartments in Popular Cities */}
+
           {/* <AOSWrapper animation="fade-up"> */}
           <HomePopularCities />
           {/* </AOSWrapper> */}
