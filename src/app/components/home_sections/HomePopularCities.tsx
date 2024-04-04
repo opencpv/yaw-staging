@@ -4,7 +4,6 @@ import React from "react";
 import PopularCitiesCard from "../PopularCitiesCard";
 import { useQuery } from "@supabase-cache-helpers/postgrest-swr";
 import supabase from "@/lib/utils/supabaseClient";
-import AOSWrapper from "@/components/__shared/AOSWrapper";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import Image from "next/image";
 import SkeletonRectangle from "@/components/__shared/ui/skeleton/SkeletonRectangle";

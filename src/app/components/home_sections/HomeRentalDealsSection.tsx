@@ -32,9 +32,15 @@ const HomeRentalDealsSection = (props: Props) => {
         {rentalDeals.map((deal, idx) => {
           const { id, title, body, icon, href } = deal;
           return (
-            // <AOSWrapper key={id} animation="fade-up">
-              <DealCard key={id} href={href} title={title} body={body} icon={icon} />
-            // </AOSWrapper>
+            <AOSWrapper key={id} animation="fade-up">
+              <DealCard
+                key={id}
+                href={href}
+                title={title}
+                body={body}
+                icon={icon}
+              />
+            </AOSWrapper>
           );
         })}
       </div>
