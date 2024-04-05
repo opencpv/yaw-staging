@@ -27,7 +27,7 @@ const InputWithSavedSearch = ({
         <input
           type="search"
           className={cn(
-            "col-span-9 w-full bg-transparent text-neutral-800 outline-none focus:outline-none",
+            "col-span-10 w-full bg-transparent text-neutral-800 outline-none focus:outline-none",
             inputClassName,
           )}
           placeholder="Madina, Accra"
@@ -55,9 +55,10 @@ const InputWithSavedSearch = ({
             className="mx-auto"
           />
         </Link>
-        <div className="deep-green-hover col-span-1 grid h-full w-full place-items-center">
+        {/* !!! COMMENTED OUT FOR NOW */}
+        {/* <div className="deep-green-hover col-span-1 grid h-full w-full place-items-center">
           <SaveSearchModal className="mx-auto" />
-        </div>
+        </div> */}
       </div>
     </div>
   );

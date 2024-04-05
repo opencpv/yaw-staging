@@ -14,15 +14,11 @@ import Image from "next/image";
 import {
   MdChevronLeft,
   MdChevronRight,
-  MdOutlineRemoveRedEye,
 } from "react-icons/md";
 import ListingInfo from "./ListingInfo";
 import ListingDeals from "./ListingDeals";
 import { ListingCardInterface } from "../../../../interfaces";
-import { FaTrash } from "react-icons/fa";
-import { IoEyeOutline } from "react-icons/io5";
 import Button from "../ui/button/Button";
-import { FaHeart, FaRegEyeSlash } from "react-icons/fa6";
 import ListingCardButton from "./ListingCardButton";
 import { FiTrash2 } from "react-icons/fi";
 
@@ -187,7 +183,7 @@ const ListingCard = (props: ListingCardInterface) => {
         </Swiper>
         {/* Listing info */}
         <ListingInfo
-          id={props.id}
+          propertyId={props.propertyId}
           liked={props.liked}
           monthlyAmount={props.monthlyAmount}
           paymentStructure={props.paymentStructure}

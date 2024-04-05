@@ -5,8 +5,11 @@ import { HiOutlineHomeModern } from "react-icons/hi2";
 import Link from "next/link";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import { ListingCardInterface } from "../../../../interfaces";
+import { useAppStore } from "@/store/dashboard/AppStore";
 
 const ListingInfo = (props: ListingCardInterface) => {
+  const {user} = useAppStore()
+
   return (
     <div
       className={`w-full space-y-6 rounded-b-lg px-5 py-4 ${props.className}`}
@@ -74,7 +77,8 @@ const ListingInfo = (props: ListingCardInterface) => {
             </small>
             <LikeHeart
               liked={props.liked}
-              id={props.id}
+              propertyId={props.propertyId as string}
+              userId={user?.id as string}
               className="inline-block text-lg text-primary-800"
             />
           </div>

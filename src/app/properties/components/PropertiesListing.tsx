@@ -11,10 +11,12 @@ import { useQuery } from "@tanstack/react-query";
 import { getListings } from "@/actions/listing";
 import { addQueryParamsToUrl } from "@/lib/utils/stringManipulation";
 import { createClient } from "@/lib/utils/supabase/client";
+import { useAppStore } from "@/store/dashboard/AppStore";
 
 type Props = {};
 
 const PropertiesListing = (props: Props) => {
+  const { user } = useAppStore();
   const supabase = createClient();
   // const {
   //   data: listings,
@@ -36,10 +38,10 @@ const PropertiesListing = (props: Props) => {
     isLoading,
     isFetching,
   } = useQuery({
-    queryKey: ["featured_listing"],
+    queryKey: ["listings"],
     queryFn: async () => {
       const { data: listings } = await supabase
-        .from("standard_template")
+        .from("merged_properties_view")
         .select(); // TODO: fetch only needed columns
       return listings;
     },
@@ -74,10 +76,11 @@ const PropertiesListing = (props: Props) => {
               amount_per_month: listing.monthly_amount,
               rating: 4,
             })}
+            propertyId={listing.property_id as number}
             propertyName={listing.property_name as string}
             city={listing.city as string}
             images={images} // TODO: check database
-            liked={false} // TODO: check implementation
+            liked={listing.favorite_user_id === user?.id}
             membership={"Certified" as Membership} // TODO: check database
             monthlyAmount={2000}
             paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database

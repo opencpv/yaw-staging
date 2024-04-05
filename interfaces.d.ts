@@ -8,7 +8,8 @@ interface ListingCardInterface extends ListingInterface {
   monthlyAmount?: number;
   price?: number;
   liked?: boolean;
-  id?: number | string;
+  propertyId?: number | string;
+  userId?: number | string;
   deal?: Deal;
   membership?: Membership;
   className?: string;

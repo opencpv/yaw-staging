@@ -1,10 +1,10 @@
 import { Database as DB } from "./database.types";
 
 declare global {
+  type Database = DB;
   type ApplicationAutosave =
     DB["public"]["Tables"]["application_autosave"]["Row"];
   type ContactUs = DB["public"]["Tables"]["contact_us"]["Row"];
-  type Database = DB;
   type DistinctMessage = DB["public"]["Views"]["distinct_messages"]["Row"];
   type FAQ = DB["public"]["Tables"]["faq"]["Row"];
   type ListingAutosave = DB["public"]["Tables"]["listing_autosave"]["Row"];
@@ -24,6 +24,8 @@ declare global {
   type StandardTemplate = DB["public"]["Tables"]["standard_template"]["Row"];
   type Subscriber = DB["public"]["Tables"]["subscribers"]["Row"];
   type User = DB["public"]["Tables"]["profiles"]["Row"];
+  type UserFavoriteProperty =
+    DB["public"]["Tables"]["user_favorite_properties"]["Row"];
 
   type PaymentStructure =
     | "Yearly"

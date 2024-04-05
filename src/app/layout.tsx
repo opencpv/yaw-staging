@@ -7,7 +7,8 @@ import Script from "next/script";
 import { openSans, openSansLocal } from "@/lib/utils/fonts";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import MenuWrapper from "@/components/__shared/MenuWrapper";
+// import MenuWrapper from "@/components/__shared/MenuWrapper";
+import MenuWrapperNoSSR from "@/components/__shared/MenuWrapperNoSSR";
 import { Metadata, Viewport } from "next";
 
 const uniquePages = ["login", "terms-of-service"];
@@ -54,11 +55,11 @@ export default function RootLayout({
         className={`bg-white text-neutral-800 light ${openSans.className} ${openSansLocal.className}`}
       >
         <Providers>
-          <MenuWrapper>
+          <MenuWrapperNoSSR>
             <LoadingIndicator />
             <ToastContainer />
             {children}
-          </MenuWrapper>
+          </MenuWrapperNoSSR>
         </Providers>
       </body>
     </html>

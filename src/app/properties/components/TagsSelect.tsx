@@ -6,7 +6,6 @@ import {
   DropdownMenu,
   DropdownTrigger,
 } from "@nextui-org/react";
-import { Switch } from "@nextui-org/react";
 import React, { useEffect, useState } from "react";
 import { FaCaretDown } from "react-icons/fa";
 import AdvancedForm from "./AdvancedForm";
@@ -59,7 +58,9 @@ const TagsSelect = () => {
               radius="small"
             />
           </div>
-          <div>
+          {/* !!! COMMENTED OUT FOR NOW */}
+
+          {/* <div>
             <Dropdown>
               <DropdownTrigger>
                 <Button isIconOnly className="bg-transparent">
@@ -80,8 +81,8 @@ const TagsSelect = () => {
                 <DropdownItem key="singles">Singles</DropdownItem>
               </DropdownMenu>
             </Dropdown>
-          </div>
-          <div className="flex items-center justify-center gap-2">
+          </div> */}
+          {/* <div className="flex items-center justify-center gap-2">
             <div className="">
               <Toggle
                 isSelected={isAdvancedActive}
@@ -89,9 +90,9 @@ const TagsSelect = () => {
                 label="Advanced search"
               />
             </div>
-          </div>
+          </div> */}
         </section>
-        <AdvancedForm isActive={isAdvancedActive} />
+        {/* <AdvancedForm isActive={isAdvancedActive} /> */}
       </div>
     </div>
   );
