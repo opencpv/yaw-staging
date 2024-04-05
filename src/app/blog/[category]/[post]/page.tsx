@@ -28,22 +28,14 @@ type Props = {
 };
 
 const page = async ({ params, searchParams }: Props) => {
-  let intialPostData: any, post: any;
-
   // handlePageViewCounter(post);
   const sanityClient = client;
-  try {
-    intialPostData = await loadQuery<SanityDocument[]>(
-      SINGLE_BLOG_POST(searchParams.id),
-    );
-    post = intialPostData.data[0];
-    const res = await axios.put("/api/blog-view", { id: 1 });
-    console.log(res.data);
-  } catch (error) {
-    intialPostData = [];
-    post = null;
-    console.log(error);
-  }
+  const intialPostData = await loadQuery<SanityDocument[]>(
+    SINGLE_BLOG_POST(searchParams.id),
+  );
+  const post = intialPostData.data[0];
+  // const res = await axios.put("/api/blog-view", { id: 1 });
+  console.log(post);
 
   const SampleImageComponent = ({
     value,
@@ -84,17 +76,19 @@ const page = async ({ params, searchParams }: Props) => {
   };
   return (
     <>
-      {post && (
+      {
         <div className="wrapper overflow-x-hidden text-neutral-500">
           <h3 className="mb-8 text-xl font-[500]">
             {/* <BreadCrumbPreLink
-              label="Blog"
-              href={`/blog/${slugify(post.category.category_title)}/${slugify(
-                post.title,
-              )}`}
-            /> */}
+                  label="Blog"
+                  href={`/blog/${slugify(post.category.category_title)}/${slugify(
+                    post.title,
+                  )}`}
+                /> */}
             Posted by{" "}
-            <span className="text-primary-500">{post.author.name}</span>
+            {post && (
+              <span className="text-primary-500">{post.author.name}</span>
+            )}
           </h3>
           <h1 className="mb-5 text-2xl font-[700] text-primary-200 md:text-4xl">
             {post.title}
@@ -184,7 +178,7 @@ const page = async ({ params, searchParams }: Props) => {
             />
           </section>
         </div>
-      )}
+      }
     </>
   );
 };
