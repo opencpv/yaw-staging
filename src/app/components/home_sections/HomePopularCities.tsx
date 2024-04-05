@@ -53,7 +53,7 @@ const HomePopularCities = () => {
           isLoading={isLoading}
           isValidating={isFetching}
           isLoadingComponent={
-            <SkeletonRectangle count={3} childrenClassName="w-full h-[20rem]" />
+            <SkeletonRectangle count={3} className="h-[20rem] w-full" />
           }
           errorComponent={<FetchErrorMessage specificData="cities" />}
         />

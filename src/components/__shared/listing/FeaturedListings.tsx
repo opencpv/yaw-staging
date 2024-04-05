@@ -62,7 +62,7 @@ const FeaturedListings = ({ className, showAllButton }: Props) => {
           isValidating={isValidating}
           isLoadingComponent={
             <div className="flex gap-5 overflow-x-hidden">
-              <SkeletonListing count={5} childrenClassName="w-96" />
+              <SkeletonListing count={5} className="w-96" />
             </div>
           }
           errorComponent={<FetchErrorMessage />}
