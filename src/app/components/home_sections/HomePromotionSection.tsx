@@ -9,10 +9,7 @@ const HomePromotionSection = (props: Props) => {
     <section className="flex items-center justify-center pt-16">
       <div className="relative h-fit w-full max-w-[1100px]">
         <PromotionSlider />
-        <VerticalSliderScrollFixOverlay
-          href="/"
-          className="md:-translate-x-32"
-        />
+        <VerticalSliderScrollFixOverlay className="md:-translate-x-32" />
       </div>
     </section>
   );

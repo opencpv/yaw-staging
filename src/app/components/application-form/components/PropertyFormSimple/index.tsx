@@ -7,7 +7,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import PersonalInformationForm1 from "./PersonalInformationForm1";
 import { Progress } from "../Progress";
-import { openSans } from "@/styles/font";
+
 import { ExpandCircle, ExpandCircleFromBottom } from "@/lib/animations";
 import { GreyAnimation } from "../GreyAnimation";
 import { useLocalStorage } from "@uidotdev/usehooks";

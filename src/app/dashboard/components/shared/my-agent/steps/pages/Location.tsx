@@ -5,7 +5,7 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import { styled } from "@stitches/react";
 import CustomRadioInput from "@/app/components/CustomRadioInput";
 import { BeMyAgentFormType } from "../types";
-import { openSans } from "@/styles/font";
+
 import { ClientOnly } from "@/components/ui/ClientOnly";
 import CustomSelect from "../../../../../../components/CustomSelect";
 import styles from "../../index.module.css";

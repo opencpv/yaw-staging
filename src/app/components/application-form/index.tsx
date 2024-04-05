@@ -5,7 +5,7 @@ import PropertyFormSimple from "./components/PropertyFormSimple";
 import PropertyFormComplex from "./components/PropertyFormComplex";
 import { SaveAndExit } from "./components/PropertyFormComplex/SaveAndExit";
 import { GreyAnimation } from "./components/GreyAnimation";
-import { openSans } from "@/styles/font";
+
 import { ClientOnly } from "@/components/ui/ClientOnly";
 import { Form, Formik } from "formik";
 

@@ -2,7 +2,7 @@
 import React, { useContext, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { SaveAndExit } from "../application-form/components/PropertyFormComplex/SaveAndExit";
-import { openSans } from "@/styles/font";
+
 import CaComment from "./components/icons/CaComment";
 import ListingFormForm from "./components/ListingFormForm";
 import { useLocalStorage } from "@uidotdev/usehooks";

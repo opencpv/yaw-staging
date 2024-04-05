@@ -4,9 +4,7 @@ import { HiOutlineChatBubbleOvalLeftEllipsis } from "react-icons/hi2";
 import Feedback from "./Feedback";
 import AOSWrapper from "../__shared/AOSWrapper";
 
-type Props = {
-  data: any;
-};
+type Props = {};
 
 const FeedbackButton = (props: Props) => {
   return (

@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import fetchTermsData from "../lib/fetchTermsData";
 import Link from "next/link";
-import { openSans } from "@/styles/font";
+
 import { usePathname } from "next/navigation";
 import Logo from "@/components/__shared/Logo";
 

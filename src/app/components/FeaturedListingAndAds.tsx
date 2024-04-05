@@ -7,22 +7,17 @@ import React from "react";
 import AdsSliderColumn from "./AdsSliderColumn";
 import ArrowLink from "./link/ArrowLink";
 import SliderWide from "@/components/__shared/sliders/SliderWide";
-// import { useQuery } from "@supabase-cache-helpers/postgrest-swr";
-import supabase from "@/lib/utils/supabaseClient";
-import { createClient } from "@/lib/utils/supabase/client";
-import { useQuery } from "@tanstack/react-query";
-import {
-  fetchCountRule,
-  fetchOrderRule,
-  revalidationRule,
-} from "@/lib/utils/fetchRules";
 import images from "@/enum/temp/images";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
+import { createClient } from "@/lib/utils/supabase/client";
+import { useQuery } from "@tanstack/react-query";
+import { cn } from "@/lib/utils";
 
 type Props = {};
 
 const FeaturedListingAndAds = (props: Props) => {
   const supabase = createClient();
+
   const {
     data: listings,
     error,
@@ -40,7 +35,14 @@ const FeaturedListingAndAds = (props: Props) => {
 
   return (
     <section className="section">
-      <h2 className="mb-5 text-neutral-900">Featured Listings</h2>
+      <h2
+        className={cn("mb-5 text-neutral-900", {
+          hidden: listings && listings.length < 1 && !isLoading,
+          block: isLoading,
+        })}
+      >
+        Featured Listings
+      </h2>
       {/* Listing cards */}
       <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-8 lg:items-start">
         {/* Shows when number of listings is less than 10 */}
@@ -51,7 +53,7 @@ const FeaturedListingAndAds = (props: Props) => {
               error={error}
               isLoading={isLoading}
               isValidating={isFetching}
-              isLoadingComponent={<SkeletonListing count={3} />}
+              isLoadingComponent={<SkeletonListing count={5} />}
               errorComponent={
                 <FetchErrorMessage specificData="featured listing" />
               }
@@ -93,13 +95,6 @@ const FeaturedListingAndAds = (props: Props) => {
               <FetchingStates
                 data={listings}
                 error={error}
-                isLoading={isLoading}
-                isValidating={isFetching}
-                isLoadingComponent={
-                  <div className="skeleton-grid">
-                    <SkeletonListing count={9} />
-                  </div>
-                }
                 emptyStateComponent={
                   <p className="mt-4 text-center italic">
                     There are no properties yet.
@@ -107,28 +102,34 @@ const FeaturedListingAndAds = (props: Props) => {
                 }
               />
               <SliderGrid
-                items={listings?.map((listing) => (
-                  <ListingCard
-                    id={listing.id}
-                    key={listing.id}
-                    href={`/properties/${listing.property_id}?property_name=${listing.property_name}&city=${listing.city}&price=${listing.monthly_amount}&payment_structure=${listing.monthly_amount}&amount_per_month=${listing.monthly_amount}&rating=${listing.monthly_amount}&property_description=${listing.description}`.replaceAll(
-                      " ",
-                      "_",
-                    )}
-                    propertyName={listing.property_name as string}
-                    city={listing.city as string}
-                    propertyDescription={listing.description as string}
-                    images={images}
-                    price={3600}
-                    paymentStructure={"Yearly" as PaymentStructure}
-                    monthlyAmount={200}
-                    deal={"Editor's Choice" as Deal}
-                    membership={"Verified" as Membership}
-                    rating={4.2}
-                    ratingCount={403}
-                    liked={false}
-                  />
-                ))}
+                items={
+                  isLoading
+                    ? Array.from({ length: 5 }, (_, idx) => (
+                        <SkeletonListing key={idx} cardType={1} />
+                      ))
+                    : listings?.map((listing) => (
+                        <ListingCard
+                          id={listing.id}
+                          key={listing.id}
+                          href={`/properties/${listing.property_id}?property_name=${listing.property_name}&city=${listing.city}&price=${listing.monthly_amount}&payment_structure=${listing.monthly_amount}&amount_per_month=${listing.monthly_amount}&rating=${listing.monthly_amount}&property_description=${listing.description}`.replaceAll(
+                            " ",
+                            "_",
+                          )}
+                          propertyName={listing.property_name as string}
+                          city={listing.city as string}
+                          propertyDescription={listing.description as string}
+                          images={images}
+                          price={3600}
+                          paymentStructure={"Yearly" as PaymentStructure}
+                          monthlyAmount={200}
+                          deal={"Editor's Choice" as Deal}
+                          membership={"Verified" as Membership}
+                          rating={4.2}
+                          ratingCount={403}
+                          liked={false}
+                        />
+                      ))
+                }
               />
             </div>
           </div>

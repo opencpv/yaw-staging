@@ -4,7 +4,6 @@ import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import React, { useEffect, useState } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { styled } from "@stitches/react";
-import { openSans } from "@/styles/font";
 import { PropertyDataType } from "./propertyDataType";
 import CustomRadioInput from "@/app/components/CustomRadioInput";
 import { ClientOnly } from "@/components/ui/ClientOnly";

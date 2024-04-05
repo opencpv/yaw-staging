@@ -73,7 +73,7 @@ const UserOverview = ({
           </div>
         </div>
       </Callout>
-      <AOSWrapper animation="fade-up">
+      <div className="fade-in-bottom">
         {type === "lister" && (
           <LargeButton
             label="Add your property"
@@ -131,7 +131,7 @@ const UserOverview = ({
           className="flex w-full flex-col items-center gap-x-6 gap-y-3 rounded-xl bg-white p-8 shadow-2xl sm:max-h-60 sm:flex-row sm:justify-start sm:py-16 md:hidden"
           type={type}
         />
-      </AOSWrapper>
+      </div>
     </div>
   );
 };

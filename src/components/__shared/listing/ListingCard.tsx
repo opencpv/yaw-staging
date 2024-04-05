@@ -149,12 +149,7 @@ const ListingCard = (props: ListingCardInterface) => {
               <SwiperSlide key={index}>
                 {" "}
                 {/* listing images with pagination and controls */}
-                <Link
-                  href={`${props.href}?property_name=${props.propertyName}&city=${props.city}&price=${props.price}&payment_structure=${props.paymentStructure}&amount_per_month=${props.monthlyAmount}&rating=${props.ratingCount}&property_description=${props.propertyDescription}`.replaceAll(
-                    " ",
-                    "_",
-                  )}
-                >
+                <Link href={`${props.href}`}>
                   <div className="relative h-full w-full">
                     <Image
                       src={image}

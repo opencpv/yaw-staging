@@ -11,7 +11,7 @@ type Props = {};
 const page = (props: Props) => {
   return (
     <>
-      <div className="relative flex items-center justify-center bg-gradient-to-b from-primary-500 to-primary-500/80 text-white w-full h-60 mb-10 lg:h-[27rem]">
+      <div className="relative mb-10 flex h-60 w-full items-center justify-center bg-gradient-to-b from-primary-500 to-primary-500/80 text-white lg:h-[27rem]">
         <BackgroundImage />
         <div className="flex flex-col items-center gap-3">
           <div className="flex items-center gap-3">
@@ -19,9 +19,7 @@ const page = (props: Props) => {
             <LuChevronsRight />
             <Link href="/blog">Blogs</Link>
           </div>
-          <AOSWrapper animation="fade-up" duration="2000">
-            <h1 className="text-5xl font-[700]">Blog</h1>
-          </AOSWrapper>
+          <h1 className="text-5xl font-[700]">Blog</h1>
         </div>
       </div>
       <div className="wrapper">
@@ -50,7 +48,7 @@ const page = (props: Props) => {
             ))}
           </section>
         </div>
-        <p className="text-center mb-20">pagination</p>
+        <p className="mb-20 text-center">pagination</p>
       </div>
     </>
   );

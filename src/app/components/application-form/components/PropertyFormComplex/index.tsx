@@ -8,7 +8,7 @@ import "swiper/css";
 import EmploymentInformationForm from "./EmploymentInformation";
 import ScreeningAndOtherDetailsForm from "./ScreeningAndOtherDetailsForm";
 import { useState } from "react";
-import { openSans } from "@/styles/font";
+
 import React from "react";
 import ContactInformationForm from "./ContactInformation";
 import PersonalInformationForm2 from "./PersonalInformationForm2";
