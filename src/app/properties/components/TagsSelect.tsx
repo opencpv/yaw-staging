@@ -11,27 +11,29 @@ import { FaCaretDown } from "react-icons/fa";
 import AdvancedForm from "./AdvancedForm";
 import OptionFilterTabs from "@/components/__shared/OptionFilterTabs";
 import Toggle from "@/components/ui/Toggle";
-
-type FilterOption =
-  | "all"
-  | "top rated"
-  | "editor's choice"
-  | "price drop"
-  | "best value";
+import {
+  FilterOption,
+  FilterOptionArray,
+  propertyFilterStore,
+} from "@/store/properties/usePropertiesStore";
 
 const TagsSelect = () => {
   const tabsRef = React.useRef<HTMLDivElement>(null);
 
   const [isAdvancedActive, setIsAdvancedActive] = useState<boolean>(false);
-  const [option, setOption] = useState<FilterOption>("all");
-
+  const { filter, setFilter } = propertyFilterStore();
   const handleIsActive = () => {
     setIsAdvancedActive((prevState) => !prevState);
   };
 
-  const changeFilterOption = (option: React.Key) => {
-    setOption(option as FilterOption);
-  };
+  const filterOptionArray: FilterOptionArray = [
+    "all",
+    "top rated",
+    "realtors's choice",
+    "price drop",
+    "best value",
+    "no viewing fee",
+  ];
 
   useEffect(() => {
     if (tabsRef.current && location.href.includes("sk=true")) {
@@ -46,15 +48,9 @@ const TagsSelect = () => {
           <div className="w-full">
             <OptionFilterTabs
               variant="gradient"
-              options={[
-                "all",
-                "top rated",
-                "editor's choice",
-                "price drop",
-                "best value",
-              ]}
-              selectedKey={option}
-              onSelectionChange={changeFilterOption}
+              options={filterOptionArray}
+              selectedKey={filter}
+              onSelectionChange={(key) => setFilter(key as FilterOption)}
               radius="small"
             />
           </div>

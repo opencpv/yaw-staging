@@ -2,15 +2,18 @@
 
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import React from "react";
+import React, { FormEvent } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import SaveSearchModal from "../modals/SaveSearchModal";
+import Button from "../ui/button/Button";
+import { usePathname } from "next/navigation";
 
 type Props = {
   className?: string;
   inputClassName?: string;
   searchIconColor?: string;
   separatorClassName?: string;
+  onSubmit?: (e: FormEvent<HTMLFormElement>) => void;
 };
 
 const InputWithSavedSearch = ({
@@ -18,12 +21,20 @@ const InputWithSavedSearch = ({
   inputClassName,
   searchIconColor,
   separatorClassName,
+  onSubmit,
 }: Props) => {
   const [showDivider, setShowDivider] = React.useState(false);
+  const pathname = usePathname();
 
   return (
     <div className={cn("relative flex w-full items-center", className)}>
-      <div className="relative grid h-full w-full grid-cols-12 items-center">
+      <form
+        className="relative grid h-full w-full grid-cols-12 items-center"
+        onSubmit={(e) => {
+          e.preventDefault();
+          onSubmit?.(e);
+        }}
+      >
         <input
           type="search"
           className={cn(
@@ -44,8 +55,10 @@ const InputWithSavedSearch = ({
           )}
           style={{ visibility: showDivider ? "visible" : "hidden" }}
         ></div>
-        <Link
-          href="/properties?sk=true"
+        <Button
+          href={pathname === "/properties" ? undefined : "/properties?sk=true"}
+          type="submit"
+          isIconOnly
           className="col-span-1 mx-auto mr-2 xs:mr-auto"
           title="search"
         >
@@ -54,12 +67,12 @@ const InputWithSavedSearch = ({
             color={searchIconColor ?? "#737373"}
             className="mx-auto"
           />
-        </Link>
+        </Button>
         {/* !!! COMMENTED OUT FOR NOW */}
         {/* <div className="deep-green-hover col-span-1 grid h-full w-full place-items-center">
           <SaveSearchModal className="mx-auto" />
         </div> */}
-      </div>
+      </form>
     </div>
   );
 };

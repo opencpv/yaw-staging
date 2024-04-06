@@ -12,10 +12,13 @@ import { getListings } from "@/actions/listing";
 import { addQueryParamsToUrl } from "@/lib/utils/stringManipulation";
 import { createClient } from "@/lib/utils/supabase/client";
 import { useAppStore } from "@/store/dashboard/AppStore";
+import { propertyFilterStore } from "@/store/properties/usePropertiesStore";
+import { useFetchProperties } from "../fetchHooks";
 
 type Props = {};
 
 const PropertiesListing = (props: Props) => {
+  const { searchString, filter } = propertyFilterStore();
   const { user } = useAppStore();
   const supabase = createClient();
   // const {
@@ -32,20 +35,7 @@ const PropertiesListing = (props: Props) => {
   //   ...revalidationRule(),
   // });
 
-  const {
-    data: listings,
-    error,
-    isLoading,
-    isFetching,
-  } = useQuery({
-    queryKey: ["listings"],
-    queryFn: async () => {
-      const { data: listings } = await supabase
-        .from("merged_properties_view")
-        .select(); // TODO: fetch only needed columns
-      return listings;
-    },
-  });
+  const { data: listings, error, isLoading, isFetching } = useFetchProperties();
 
   return (
     <>
