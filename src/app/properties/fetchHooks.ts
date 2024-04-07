@@ -10,14 +10,20 @@ export const useFetchProperties = () => {
   const query = useQuery({
     queryKey: ["listings", searchString, filter],
     queryFn: async () => {
-      let query = supabase.from("merged_properties_view").select();
+      let query = supabase
+        .from("merged_properties_view")
+        .select()
+        .order("created_at", { ascending: false });
       if (searchString) {
-        query = query.ilike("query_string", `%${searchString}%`, );
+        query = query.textSearch("query_string", `${searchString}`, {
+          config: "english",
+          type: "plain",
+        });
       }
-      if (filter === "all") {
+      if (filter === "realtor's choice") {
         query = query;
       }
-      if (filter === "top rated") {
+      if (filter === "verified") {
         query = query;
       }
       if (filter === "no viewing fee") {

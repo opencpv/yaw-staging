@@ -62,7 +62,10 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
 
   return (
     <>
-      <Navbar propertyName={`${listing?.property_name} at ${listing?.city}`} />
+      <Navbar
+        propertyName={`${listing?.property_name} at ${listing?.city}`}
+        propertyId={listing?.property_id}
+      />
       <FetchingStates
         data={listing}
         error={error}

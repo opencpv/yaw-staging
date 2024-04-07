@@ -108,14 +108,14 @@ const BeTheFirstToKnow = () => {
           city={listing.city as string}
           images={demoimages} // TODO: check database
           liked={false} // TODO: check implementation
-          membership={"Certified" as Membership} // TODO: check database
+          guarantee={"Certified" as GuaranteeTag} // TODO: check database
           monthlyAmount={listing.monthly_amount as number}
           paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
           propertyDescription={listing.description as string}
           price={4000} // TODO: check database
           rating={4.5} // TODO: check database
           ratingCount={105} // TODO: check database
-          deal={"Best Value" as Deal} // TODO: check database
+          hint={"Best Value" as HintTag} // TODO: check database
           showNotViewed
           isViewed={idx === 5 || idx === 3 || idx === 7 ? false : true}
         />

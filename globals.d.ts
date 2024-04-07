@@ -33,18 +33,6 @@ declare global {
     | "Quarterly"
     | "Every-6-Months"
     | "Every-3-Years";
-  type Deal =
-    | "Editor's Choice"
-    | "Price Drop"
-    | "Best Value"
-    | "None"
-    | "none"
-    | "";
-  type Membership =
-    | "Certified"
-    | "Verified"
-    | "Unverified"
-    | "None"
-    | "none"
-    | "";
+  type HintTag = "Realtor's Choice" | "Top Rated" | "Best Value";
+  type GuaranteeTag = "Certified" | "Verified";
 }

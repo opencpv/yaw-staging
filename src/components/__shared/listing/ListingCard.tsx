@@ -11,10 +11,7 @@ import "@/styles/custom-swiper.css";
 import { Pagination, Navigation } from "swiper/modules";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  MdChevronLeft,
-  MdChevronRight,
-} from "react-icons/md";
+import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import ListingInfo from "./ListingInfo";
 import ListingDeals from "./ListingDeals";
 import { ListingCardInterface } from "../../../../interfaces";
@@ -22,7 +19,7 @@ import Button from "../ui/button/Button";
 import ListingCardButton from "./ListingCardButton";
 import { FiTrash2 } from "react-icons/fi";
 
-const ListingCard = (props: ListingCardInterface) => {
+const ListingCard = (props: Partial<ListingCardInterface>) => {
   return (
     <>
       <div
@@ -60,7 +57,7 @@ const ListingCard = (props: ListingCardInterface) => {
                 : "h-52 rounded-t-lg"
           } `}
         >
-          <ListingDeals membership={props.membership} deal={props.deal} />
+          <ListingDeals guarantee={props.guarantee} hint={props.hint} />
           {/* For be the first to know detail listings only */}
           <div
             className={
@@ -183,16 +180,16 @@ const ListingCard = (props: ListingCardInterface) => {
         </Swiper>
         {/* Listing info */}
         <ListingInfo
-          propertyId={props.propertyId}
-          liked={props.liked}
-          monthlyAmount={props.monthlyAmount}
-          paymentStructure={props.paymentStructure}
-          price={props.price}
-          propertyDescription={props.propertyDescription}
+          propertyId={props.propertyId as string | number}
+          liked={props.liked as boolean}
+          monthlyAmount={props.monthlyAmount as number}
+          paymentStructure={props.paymentStructure as PaymentStructure}
+          price={props.price as number}
+          propertyDescription={props.propertyDescription as string}
           propertyName={props.propertyName}
-          city={props.city}
-          rating={props.rating}
-          ratingCount={props.ratingCount}
+          city={props.city as string}
+          rating={props.rating as number}
+          ratingCount={props.ratingCount as number}
           className={`bg-white text-neutral-800 ${
             props.showOnlyImage && "hidden"
           }`}

@@ -7,8 +7,8 @@ import { formatPrice } from "@/lib/utils/numberManipulation";
 import { ListingCardInterface } from "../../../../interfaces";
 import { useAppStore } from "@/store/dashboard/AppStore";
 
-const ListingInfo = (props: ListingCardInterface) => {
-  const {user} = useAppStore()
+const ListingInfo = (props: Partial<ListingCardInterface>) => {
+  const { user } = useAppStore();
 
   return (
     <div

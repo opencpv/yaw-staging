@@ -74,7 +74,12 @@ const Navbar = (props: any) => {
               />
             ) : (
               <div className="flex items-center gap-4">
-                <LikeHeart liked={false} className="text-5xl text-white" />
+                <LikeHeart
+                  liked={false}
+                  userId={user?.id as string | number}
+                  propertyId={props.propertyId}
+                  className="text-5xl text-white"
+                />
                 <Share
                   url={`${location.origin}/properties/${props.propertyName}`}
                   title={props.propertyName}

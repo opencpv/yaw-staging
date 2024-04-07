@@ -27,11 +27,8 @@ const TagsSelect = () => {
   };
 
   const filterOptionArray: FilterOptionArray = [
-    "all",
-    "top rated",
-    "realtors's choice",
-    "price drop",
-    "best value",
+    "realtor's choice",
+    "verified",
     "no viewing fee",
   ];
 

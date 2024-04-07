@@ -66,7 +66,7 @@ const FeaturedListingAndAds = (props: Props) => {
             {listings?.map((listing) => {
               return (
                 <ListingCard
-                  id={listing.id}
+                  propertyId={listing.id}
                   key={listing.id}
                   href={`/properties/${listing.property_id}?property_name=${listing.property_name}&city=${listing.city}&price=${listing.monthly_amount}&payment_structure=${listing.monthly_amount}&amount_per_month=${listing.monthly_amount}&rating=${listing.monthly_amount}&property_description=${listing.description}`.replaceAll(
                     " ",
@@ -76,14 +76,14 @@ const FeaturedListingAndAds = (props: Props) => {
                   city={listing.city as string}
                   images={images} // TODO: check database
                   liked={false} // TODO: check implementation
-                  membership={"Certified" as Membership} // TODO: check database
+                  guarantee={"Certified" as GuaranteeTag} // TODO: check database
                   monthlyAmount={parseFloat(listing.monthly_amount as string)}
                   paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
                   propertyDescription={listing.description as string}
                   price={4000} // TODO: check database
                   rating={4.5} // TODO: check database
                   ratingCount={105} // TODO: check database
-                  deal={"Best Value" as Deal} // TODO: check database
+                  hint={"Best Value" as HintTag} // TODO: check database
                 />
               );
             })}
@@ -109,7 +109,7 @@ const FeaturedListingAndAds = (props: Props) => {
                       ))
                     : listings?.map((listing) => (
                         <ListingCard
-                          id={listing.id}
+                          propertyId={listing.id}
                           key={listing.id}
                           href={`/properties/${listing.property_id}?property_name=${listing.property_name}&city=${listing.city}&price=${listing.monthly_amount}&payment_structure=${listing.monthly_amount}&amount_per_month=${listing.monthly_amount}&rating=${listing.monthly_amount}&property_description=${listing.description}`.replaceAll(
                             " ",
@@ -122,8 +122,8 @@ const FeaturedListingAndAds = (props: Props) => {
                           price={3600}
                           paymentStructure={"Yearly" as PaymentStructure}
                           monthlyAmount={200}
-                          deal={"Editor's Choice" as Deal}
-                          membership={"Verified" as Membership}
+                          hint={"Realtor's Choice" as HintTag}
+                          guarantee={"Verified" as GuaranteeTag}
                           rating={4.2}
                           ratingCount={403}
                           liked={false}

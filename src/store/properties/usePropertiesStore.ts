@@ -7,10 +7,8 @@ type PropertyCarouselStore = {
 
 export type FilterOption =
   | "all"
-  | "top rated"
-  | "realtors's choice"
-  | "price drop"
-  | "best value"
+  | "realtor's choice"
+  | "verified"
   | "no viewing fee";
 
 export type FilterOptionArray = Array<FilterOption>;

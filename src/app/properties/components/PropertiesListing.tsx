@@ -14,13 +14,12 @@ import { createClient } from "@/lib/utils/supabase/client";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { propertyFilterStore } from "@/store/properties/usePropertiesStore";
 import { useFetchProperties } from "../fetchHooks";
+import PropertiesEmptyState from "./PropertiesEmptyState";
 
 type Props = {};
 
 const PropertiesListing = (props: Props) => {
-  const { searchString, filter } = propertyFilterStore();
   const { user } = useAppStore();
-  const supabase = createClient();
   // const {
   //   data: listings,
   //   error,
@@ -48,11 +47,7 @@ const PropertiesListing = (props: Props) => {
           isValidating={isFetching}
           isLoadingComponent={<SkeletonListing count={3} />}
           errorComponent={<FetchErrorMessage specificData="properties" />}
-          emptyStateComponent={
-            <p className="mt-4 text-center italic">
-              There are no properties yet.
-            </p>
-          }
+          emptyStateComponent={<PropertiesEmptyState />}
         />
         {listings?.map((listing) => (
           <ListingCard
@@ -71,14 +66,14 @@ const PropertiesListing = (props: Props) => {
             city={listing.city as string}
             images={images} // TODO: check database
             liked={listing.favorite_user_id === user?.id}
-            membership={"Certified" as Membership} // TODO: check database
+            guarantee={"Certified" as GuaranteeTag} // TODO: check database
             monthlyAmount={2000}
             paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
             propertyDescription={listing.description as string}
             price={4000} // TODO: check database
             rating={4.5} // TODO: check database
             ratingCount={105} // TODO: check database
-            deal={"Best Value" as Deal} // TODO: check database
+            hint={"Best Value" as HintTag} // TODO: check database
           />
         ))}
       </section>
