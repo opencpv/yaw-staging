@@ -9,7 +9,8 @@ export type FilterOption =
   | "all"
   | "realtor's choice"
   | "verified"
-  | "no viewing fee";
+  | "no viewing fee"
+  | "no advance";
 
 export type FilterOptionArray = Array<FilterOption>;
 

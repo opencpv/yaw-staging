@@ -27,9 +27,11 @@ const TagsSelect = () => {
   };
 
   const filterOptionArray: FilterOptionArray = [
+    "all",
     "realtor's choice",
     "verified",
     "no viewing fee",
+    "no advance",
   ];
 
   useEffect(() => {
