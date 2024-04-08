@@ -21,7 +21,6 @@ import { styled } from "@stitches/react";
 import { SelectSearchInput } from "@/app/components/SelectSearchInput";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { montserat } from "@/styles/font";
 import Image from "next/image";
 import { dateDefault } from "@/enum/defaultPhone";
 
