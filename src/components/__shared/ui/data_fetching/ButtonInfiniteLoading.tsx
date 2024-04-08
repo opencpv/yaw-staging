@@ -24,14 +24,11 @@ const ButtonInfiniteLoading = ({
           color="accent"
           className={`${
             isLoading || (data?.length === 0 && "hidden")
-          } rounded-xl font-[600] p-2 px-5`}
+          } rounded-xl p-2 px-5 font-[600]`}
           disabled={loadMore === null ? true : false}
+          isLoading={isValidating && loadMore ? true : false}
         >
-          {isValidating && loadMore
-            ? "Loading More..."
-            : loadMore
-            ? "Load More"
-            : `${noDataMessage}`}
+          {loadMore ? "Load More" : `${noDataMessage}`}
         </Button>
       )}
     </>

@@ -13,6 +13,7 @@ interface Props extends React.HTMLAttributes<HTMLButtonElement> {
   color?: "primary" | "accent" | "white" | "gradient" | "black";
   borderColor?: string;
   isIconOnly?: boolean;
+  isLoading?: boolean;
   disabled?: boolean;
   arrowIcon?: boolean;
   radius?: "sm" | "full";
@@ -32,6 +33,7 @@ const Button: React.FC<Props> = ({
   variant,
   color,
   isIconOnly,
+  isLoading,
   disabled,
   arrowIcon,
   radius,
@@ -55,6 +57,7 @@ const Button: React.FC<Props> = ({
         isDisabled={disabled}
         title={title}
         isIconOnly={isIconOnly}
+        isLoading={isLoading}
         type={type}
         className={cn(
           `min-h-fit max-w-sm space-x-2 whitespace-normal rounded-md bg-transparent px-10 py-3 font-[600] ${
@@ -103,6 +106,7 @@ const Button: React.FC<Props> = ({
         isDisabled={disabled}
         title={title}
         isIconOnly={isIconOnly}
+        isLoading={isLoading}
         type={type}
         className={cn(
           `min-h-fit max-w-sm space-x-2 whitespace-normal rounded-md bg-transparent p-3 px-10 font-[600] ${
