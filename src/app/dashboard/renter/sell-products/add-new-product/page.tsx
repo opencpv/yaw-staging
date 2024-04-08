@@ -12,8 +12,7 @@ import InputPhoneNumber from "@/components/__shared/form/InputPhoneNumber";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import FileUploader from "@/app/dashboard/components/shared/sell-products/FileUploader";
 import Button from "@/components/__shared/ui/button/Button";
-import { supabase } from "@/supabase/client";
-import { createClient } from "@/lib/utils/supabase/client";
+import { createClient } from "@/lib/utils/supabase/auth/client";
 
 interface CategoryProp {
   label: string;

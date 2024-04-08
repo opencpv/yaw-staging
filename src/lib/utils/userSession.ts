@@ -1,5 +1,4 @@
-import { supabase } from "@/supabase/client";
-import { createClient } from "./supabase/client";
+import { createClient } from "./supabase/auth/client";
 
 const userSession = async () => {
   const supabase = createClient();

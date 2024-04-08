@@ -1,5 +1,5 @@
 // @ts-nocheck
-import supabase from "@/lib/utils/supabaseClient";
+import supabase from "@/lib/utils/supabase/supabaseClient";
 import { ListingForm } from "../types";
 import { submitImage } from "./image";
 
@@ -7,7 +7,7 @@ export const submitListing = async (
   owner: string,
   listingData: ListingForm,
   is_complete = false,
-  image?: any
+  image?: any,
 ) => {
   const { data, error } = await supabase
     .from("property")
@@ -70,7 +70,7 @@ export const editListing = async (
   listingData: ListingForm,
   id?: number,
   is_complete = false,
-  image?: any
+  image?: any,
 ) => {
   const { data: success1, error } = await supabase
     .from("standard_template")
@@ -120,7 +120,7 @@ export const submitOrEditListing = async (
   listingFormData: ListingForm,
   id?: number,
   is_complete = false,
-  image?: any
+  image?: any,
 ) => {
   const { data, error } = await supabase
     .from("standard_template")

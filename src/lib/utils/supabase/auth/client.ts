@@ -1,5 +1,4 @@
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { createBrowserClient } from "@supabase/ssr";
 
 // export function createClient() {
 //   return createBrowserClient<Database>(

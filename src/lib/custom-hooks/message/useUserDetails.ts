@@ -1,4 +1,4 @@
-import supabase from "@/lib/utils/supabaseClient";
+import supabase from "@/lib/utils/supabase/supabaseClient";
 import { useEffect, useState } from "react";
 
 export const useUserDetails = (id: string | undefined) => {

@@ -16,8 +16,7 @@ import {
 } from "@radix-ui/react-popover";
 import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { useUserSession } from "@/lib/custom-hooks/database/useUserSession";
-import { supabase } from "@/supabase/client";
-import { createClient } from "@/lib/utils/supabase/client";
+import { createClient } from "@/lib/utils/supabase/auth/client";
 
 type Props = {
   /** ClassName for the avatar  */

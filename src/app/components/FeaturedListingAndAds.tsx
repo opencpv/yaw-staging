@@ -9,7 +9,7 @@ import ArrowLink from "./link/ArrowLink";
 import SliderWide from "@/components/__shared/sliders/SliderWide";
 import images from "@/enum/temp/images";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
-import { createClient } from "@/lib/utils/supabase/client";
+import { createClient } from "@/lib/utils/supabase/auth/client";
 import { useQuery } from "@tanstack/react-query";
 import { cn } from "@/lib/utils";
 

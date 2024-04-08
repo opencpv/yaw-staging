@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 // import MenuWrapper from "@/components/__shared/MenuWrapper";
 import MenuWrapperNoSSR from "@/components/__shared/MenuWrapperNoSSR";
 import { Metadata, Viewport } from "next";
+import TemporayLandingPage from "@/components/TemporaryLandingPage";
 
 const uniquePages = ["login", "terms-of-service"];
 
@@ -67,7 +68,7 @@ export default async function RootLayout({
             ) : (
               children // Otherwise, render the children
             )}
-          </MenuWrapper>
+          </MenuWrapperNoSSR>
         </Providers>
       </body>
     </html>

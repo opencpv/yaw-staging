@@ -3,7 +3,7 @@
 "use client";
 import React from "react";
 import ListingCard from "./ListingCard";
-import supabase from "@/lib/utils/supabaseClient";
+import supabase from "@/lib/utils/supabase/supabaseClient";
 import { useQuery } from "@supabase-cache-helpers/postgrest-swr";
 import SkeletonListing from "../ui/skeleton/SkeletonListing";
 import FetchingStates from "../ui/data_fetching/FetchingStates";

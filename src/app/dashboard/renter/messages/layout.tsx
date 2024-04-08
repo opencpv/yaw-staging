@@ -2,7 +2,7 @@
 "use client";
 import React, { FormEvent, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import supabase from "@/lib/utils/supabaseClient";
+import supabase from "@/lib/utils/supabase/supabaseClient";
 import { useCurrentUserId } from "@/lib/custom-hooks/useCurrentUserId";
 import NoMessageState from "../../components/shared/messages/NoMessageState";
 import { fetchOrderRule } from "@/lib/utils/fetchRules";

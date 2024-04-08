@@ -6,7 +6,7 @@ import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingState
 import Image from "next/image";
 import SkeletonRectangle from "@/components/__shared/ui/skeleton/SkeletonRectangle";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
-import { createClient } from "@/lib/utils/supabase/client";
+import { createClient } from "@/lib/utils/supabase/auth/client";
 import { useQuery } from "@tanstack/react-query";
 
 const HomePopularCities = () => {

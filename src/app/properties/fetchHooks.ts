@@ -1,8 +1,7 @@
-import { createClient } from "@/lib/utils/supabase/client";
+import supabase from "@/lib/utils/supabase/supabaseClient";
 import { propertyFilterStore } from "@/store/properties/usePropertiesStore";
+import { useOffsetInfiniteScrollQuery } from "@supabase-cache-helpers/postgrest-swr";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
-
-const supabase = createClient();
 
 export const useFetchProperties = () => {
   const { searchString, filter } = propertyFilterStore();
@@ -47,7 +46,8 @@ export const useFetchProperties2 = () => {
       let query = supabase
         .from("merged_properties_view")
         .select()
-        .order("created_at", { ascending: false });
+        .order("created_at", { ascending: false })
+        .range(0, 6);
       if (searchString) {
         query = query.textSearch("query_string", `${searchString}`, {
           config: "english",
@@ -68,18 +68,8 @@ export const useFetchProperties2 = () => {
       return listings;
     },
     initialPageParam: 0,
-    // maxPages: 3,
-    getNextPageParam: (lastPage, allPages, lastPageParam) => {
-      if (lastPage?.length === 0) {
-        return undefined;
-      }
-      return lastPageParam + 1;
-    },
-    getPreviousPageParam: (firstPage, allPages, firstPageParam) => {
-      if (firstPageParam <= 1) {
-        return undefined;
-      }
-      return firstPageParam - 1;
+    getNextPageParam: (lastPage, allPages) => {
+      return lastPage?.length > 0 ? allPages?.length + 1 : undefined;
     },
   });
 

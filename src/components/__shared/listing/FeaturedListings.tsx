@@ -13,7 +13,7 @@ import { EffectCoverflow, FreeMode, Mousewheel } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/effect-coverflow";
-import { createClient } from "@/lib/utils/supabase/client";
+import { createClient } from "@/lib/utils/supabase/auth/client";
 import { useQuery } from "@tanstack/react-query";
 import { addQueryParamsToUrl } from "@/lib/utils/stringManipulation";
 

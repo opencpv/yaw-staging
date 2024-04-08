@@ -10,7 +10,7 @@ import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchError
 import { useQuery } from "@tanstack/react-query";
 import { getListings } from "@/actions/listing";
 import { addQueryParamsToUrl } from "@/lib/utils/stringManipulation";
-import { createClient } from "@/lib/utils/supabase/client";
+import { createClient } from "@/lib/utils/supabase/auth/client";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { propertyFilterStore } from "@/store/properties/usePropertiesStore";
 import { useFetchProperties, useFetchProperties2 } from "../fetchHooks";
@@ -45,6 +45,8 @@ const PropertiesListing = (props: Props) => {
     status,
   } = useFetchProperties2();
 
+  console.log(data);
+
   return (
     <>
       {/* Listing */}
@@ -58,9 +60,9 @@ const PropertiesListing = (props: Props) => {
           errorComponent={<FetchErrorMessage specificData="properties" />}
           emptyStateComponent={<PropertiesEmptyState />}
         />
-        {data?.pages.map((group, idx) => (
+        {data?.pages.map((page, idx) => (
           <React.Fragment key={idx}>
-            {group?.data?.map((listing) => (
+            {page?.map((listing) => (
               <ListingCard
                 key={listing.id}
                 cardType="2"

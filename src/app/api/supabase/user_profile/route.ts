@@ -1,8 +1,5 @@
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import withErrorHandler from "@/app/api/withErrorHandler";
-import { supabase } from "@/supabase/server";
 
 export const POST = withErrorHandler(async (request: any) => {
   // const user: any = await supabase.auth.getUser();

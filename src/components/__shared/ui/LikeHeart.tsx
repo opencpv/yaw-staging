@@ -7,7 +7,7 @@ import FavoriteModal from "../listing/FavoriteModal";
 import SignInRequiredModal from "../modals/SignInRequiredModal";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createClient } from "@/lib/utils/supabase/client";
+import { createClient } from "@/lib/utils/supabase/auth/client";
 // import { updateLikedProperty } from "@/app/properties/_actions";
 
 type Props = {

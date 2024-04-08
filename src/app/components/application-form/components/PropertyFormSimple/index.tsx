@@ -13,7 +13,7 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import { PropertyDataType } from "../propertyDataType";
 
 import * as Yup from "yup";
-import supabase from "@/lib/utils/supabaseClient";
+import supabase from "@/lib/utils/supabase/supabaseClient";
 import { useEffect, useState } from "react";
 import Loader from "@/components/__shared/loader/Loader";
 import { ClientOnly } from "@/components/ui/ClientOnly";

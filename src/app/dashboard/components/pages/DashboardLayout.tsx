@@ -9,10 +9,9 @@ import { ClientOnly } from "@/components/ui/ClientOnly";
 import { usePathname, useRouter } from "next/navigation";
 import { useNotificationStore } from "@/store/dashboard/notificationStore";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
-import { supabase } from "@/supabase/client";
 import { useUserData } from "@/lib/custom-hooks/database/useUserData";
 import RoleSwitcherOverlay from "../../components/shared/ui/RoleSwitcherOverlay";
-import { createClient } from "@/lib/utils/supabase/client";
+import { createClient } from "@/lib/utils/supabase/auth/client";
 
 type LayoutProps = {
   children: React.ReactNode;
