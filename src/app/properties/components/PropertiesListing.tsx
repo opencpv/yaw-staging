@@ -30,7 +30,7 @@ const PropertiesListing = (props: Props) => {
         <FetchingStates
           data={listings}
           error={error}
-          isLoading={status === "pending"}
+          isLoading={isLoading}
           isValidating={isValidating}
           isLoadingComponent={<SkeletonListing count={3} />}
           errorComponent={<FetchErrorMessage specificData="properties" />}
@@ -70,7 +70,6 @@ const PropertiesListing = (props: Props) => {
           isLoading={isLoading}
           isValidating={isValidating}
           loadMore={loadMore}
-          noDataMessage="There are no more properties to show."
         />
       </div>
     </>
