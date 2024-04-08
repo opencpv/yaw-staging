@@ -5,8 +5,8 @@ import FetchErrorMessage from "./FetchErrorMessage";
 
 type Props = {
   error: PostgrestError | undefined | Error | null;
-  /** When data is re-fetching */
   data: Record<string, unknown>[] | undefined | any[] | any | null;
+  /** When data is re-fetching */
   isValidating?: boolean;
   isLoading?: boolean;
   isLoadingComponent?: React.ReactNode;
