@@ -1,24 +1,25 @@
 import { RenterApplicationStatus } from "@/app/dashboard/renter/applications/components/RtApplicationStatus";
 
 interface ListingCardInterface extends ListingInterface {
-  propertyDescription?: string;
-  rating?: number;
-  ratingCount?: number;
-  paymentStructure?: PaymentStructure;
-  monthlyAmount?: number;
-  price?: number;
-  liked?: boolean;
-  id?: number | string;
-  deal?: Deal;
-  membership?: Membership;
-  className?: string;
-  cardType?: "1" | "2";
-  city?: string;
-  showOnlyImage?: boolean;
-  isMyFavoritePage?: boolean;
-  isRecommendationsPage?: boolean;
-  showNotViewed?: boolean;
-  isViewed?: boolean;
+  propertyDescription: string;
+  rating: number;
+  ratingCount: number;
+  paymentStructure: PaymentStructure;
+  monthlyAmount: number;
+  price: number;
+  liked: boolean;
+  propertyId: number | string;
+  userId: number | string;
+  hint: HintTag;
+  guarantee: GuaranteeTag;
+  className: string;
+  cardType: "1" | "2";
+  city: string;
+  showOnlyImage: boolean;
+  isMyFavoritePage: boolean;
+  isRecommendationsPage: boolean;
+  showNotViewed: boolean;
+  isViewed: boolean;
 }
 
 interface RenterPaidFeatureInterface {

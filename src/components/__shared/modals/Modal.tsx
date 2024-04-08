@@ -71,8 +71,10 @@ const Modal = ({
   );
 
   useEffect(() => {
-    isOpen ? setHideWindowScrollbar(true) : setHideWindowScrollbar(false);
-  }, [isOpen, setHideWindowScrollbar]);
+    isOpen && size === "full"
+      ? setHideWindowScrollbar(true)
+      : setHideWindowScrollbar(false);
+  }, [isOpen, setHideWindowScrollbar, size]);
 
   return (
     <>

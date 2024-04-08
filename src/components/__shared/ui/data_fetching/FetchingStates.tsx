@@ -5,11 +5,12 @@ import FetchErrorMessage from "./FetchErrorMessage";
 
 type Props = {
   error: PostgrestError | undefined | Error | null;
-  /** When data is re-fetching */
   data: Record<string, unknown>[] | undefined | any[] | any | null;
+  /** When data is re-fetching */
   isValidating?: boolean;
   isLoading?: boolean;
   isLoadingComponent?: React.ReactNode;
+  isFetchingComponent?: React.ReactNode;
   errorComponent?: React.ReactNode;
   emptyStateComponent?: React.ReactNode;
 };
@@ -20,16 +21,17 @@ const FetchingStates = ({
   error,
   data,
   isLoadingComponent,
+  isFetchingComponent,
   errorComponent,
   emptyStateComponent,
 }: Props) => {
   return (
     <>
       {isLoading
-        ? isLoadingComponent
+        ? isLoading && (isLoadingComponent || <Spinner />)
         : error
           ? errorComponent ?? <FetchErrorMessage />
-          : isValidating && <Spinner />}
+          : isValidating && (isLoadingComponent || <Spinner />)}
       {isValidating === false &&
         !error &&
         data?.length === 0 &&
