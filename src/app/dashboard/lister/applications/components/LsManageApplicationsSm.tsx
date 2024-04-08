@@ -67,7 +67,6 @@ const LsManageApplicationsSm = (props: Props) => {
           isLoading={isLoading}
           isValidating={isValidating}
           loadMore={loadMore}
-          noDataMessage="No more applications"
         />
       </div>
     </div>

@@ -43,7 +43,6 @@ const PropertiesListing = (props: Props) => {
             href={addQueryParamsToUrl(`/properties/${listing.property_id}`, {
               property_name: listing.property_name,
               city: listing.city,
-              price: listing.monthly_amount,
               payment_structure: listing.advance_payment_options,
               amount_per_month: listing.monthly_amount,
               rating: 4,
@@ -58,7 +57,6 @@ const PropertiesListing = (props: Props) => {
             monthlyAmount={2000}
             paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
             propertyDescription={listing.description as string}
-            price={4000} // TODO: check database
             rating={4.5} // TODO: check database
             ratingCount={105} // TODO: check database
           />

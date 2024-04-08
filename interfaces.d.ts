@@ -6,7 +6,6 @@ interface ListingCardInterface extends ListingInterface {
   ratingCount: number;
   paymentStructure: PaymentStructure;
   monthlyAmount: number;
-  price: number;
   liked: boolean;
   propertyId: number | string;
   userId: number | string;

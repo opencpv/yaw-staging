@@ -93,7 +93,6 @@ const FavoriteListingCard = (props: Partial<ListingCardInterface>) => {
           liked={props.liked}
           monthlyAmount={props.monthlyAmount}
           paymentStructure={props.paymentStructure}
-          price={props.price}
           propertyDescription={props.propertyDescription}
           propertyName={props.propertyName}
           city={props.city}

@@ -67,7 +67,6 @@ const ManagePropertiesSmallScreenView = () => {
           isLoading={isLoading}
           isValidating={isValidating}
           loadMore={loadMore}
-          noDataMessage="No more Properties"
         />
       </div>
     </div>

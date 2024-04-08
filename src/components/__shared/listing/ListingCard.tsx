@@ -184,7 +184,6 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
           liked={props.liked as boolean}
           monthlyAmount={props.monthlyAmount as number}
           paymentStructure={props.paymentStructure as PaymentStructure}
-          price={props.price as number}
           propertyDescription={props.propertyDescription as string}
           propertyName={props.propertyName}
           city={props.city as string}

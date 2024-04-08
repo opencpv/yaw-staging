@@ -31,11 +31,13 @@ const FeaturedListings = ({ className, showAllButton }: Props) => {
     isLoading,
     isFetching,
   } = useQuery({
-    queryKey: ["featured_listing", 2],
+    queryKey: ["featured_listing", { type: "bottom-page" }],
     queryFn: async () => {
       const { data: listings } = await supabase
-        .from("standard_template")
-        .select(); // TODO: fetch only needed columns
+        .from("merged_properties_view")
+        .select(
+          "id, property_id, property_name, description, city, monthly_amount, advance_payment_options, favorite_user_id",
+        );
       return listings;
     },
   });
@@ -124,7 +126,6 @@ const FeaturedListings = ({ className, showAllButton }: Props) => {
                         {
                           property_name: listing.property_name,
                           city: listing.city,
-                          price: listing.monthly_amount,
                           payment_structure: listing.advance_payment_options,
                           amount_per_month: listing.monthly_amount,
                           rating: 4,
@@ -140,7 +141,6 @@ const FeaturedListings = ({ className, showAllButton }: Props) => {
                       )}
                       paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
                       propertyDescription={listing.description as string}
-                      price={4000} // TODO: check database
                       rating={4.5} // TODO: check database
                       ratingCount={105} // TODO: check database
                       hint={"Best Value" as HintTag} // TODO: check database

@@ -68,7 +68,6 @@ export default function Page() {
             monthlyAmount={listing.monthly_amount as number}
             paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
             propertyDescription={listing.description as string}
-            price={4000} // TODO: check database
             rating={4.5} // TODO: check database
             ratingCount={105} // TODO: check database
             hint={"Best Value" as HintTag} // TODO: check database

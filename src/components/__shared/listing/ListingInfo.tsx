@@ -67,7 +67,7 @@ const ListingInfo = (props: Partial<ListingCardInterface>) => {
             <p className="text-sm font-[700] text-neutral-900">
               GHS&nbsp;
               <span className="font-[500]">
-                {formatPrice(props?.price as number)} / Month
+                {formatPrice(props?.monthlyAmount as number)} / Month
               </span>
             </p>
           </div>

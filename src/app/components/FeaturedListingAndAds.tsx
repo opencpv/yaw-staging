@@ -80,7 +80,6 @@ const FeaturedListingAndAds = (props: Props) => {
                   monthlyAmount={parseFloat(listing.monthly_amount as string)}
                   paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
                   propertyDescription={listing.description as string}
-                  price={4000} // TODO: check database
                   rating={4.5} // TODO: check database
                   ratingCount={105} // TODO: check database
                   hint={"Best Value" as HintTag} // TODO: check database
@@ -119,7 +118,6 @@ const FeaturedListingAndAds = (props: Props) => {
                           city={listing.city as string}
                           propertyDescription={listing.description as string}
                           images={images}
-                          price={3600}
                           paymentStructure={"Yearly" as PaymentStructure}
                           monthlyAmount={200}
                           hint={"Realtor's Choice" as HintTag}
