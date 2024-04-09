@@ -50,16 +50,19 @@ export default function Page() {
           <ListingCard
             key={listing.id as string}
             cardType="2"
-            href={`/properties/${listing.property_id}?property_name=${listing.property_name}&city=${listing.city}&price=${listing.price}&payment_structure=${listing.payment_structure}&amount_per_month=${listing.monthly_amount}&rating=${listing.rating_count}&property_description=${listing.description}`.replaceAll(
-              " ",
-              "_",
-            )}
+            href={`/properties/${listing.property_id}?property_name=${
+              listing.property_name
+            }&city=${listing.city}&price=${listing.price}&payment_structure=${
+              listing.payment_structure
+            }&amount_per_month=${listing.monthly_amount as number}&rating=${
+              listing.rating_count
+            }&property_description=${listing.description}`.replaceAll(" ", "_")}
             propertyName={listing.property_name as string}
             city={listing.city as string}
             images={demoimages} // TODO: check database
             liked={true} // TODO: check implementation
             guarantee={"Certified" as GuaranteeTag} // TODO: check database
-            monthlyAmount={listing.monthly_amount as number}
+            monthlyAmount={listing.monthly_amount as number as number}
             paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
             propertyDescription={listing.description as string}
             rating={4.5} // TODO: check database

@@ -561,6 +561,38 @@ export type Database = {
           },
         ]
       }
+      property_reviews: {
+        Row: {
+          created_at: string
+          id: number
+          property: number | null
+          rating: number | null
+          review: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          property?: number | null
+          rating?: number | null
+          review?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          property?: number | null
+          rating?: number | null
+          review?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_property_reviews_property_fkey"
+            columns: ["property"]
+            isOneToOne: false
+            referencedRelation: "property"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       regular_application: {
         Row: {
           additional_information: string | null
@@ -796,7 +828,7 @@ export type Database = {
           lease_length: number | null
           lease_start_date: string | null
           lease_type: string | null
-          monthly_amount: string | null
+          monthly_amount: number | null
           neighbourhood: string | null
           price_drop: boolean
           property_id: number | null
@@ -804,7 +836,7 @@ export type Database = {
           property_size: string | null
           property_type: string | null
           query_string: string | null
-          refundable_security_deposit: string | null
+          refundable_security_deposit: number | null
           renter_knowledge: string | null
           require_additional_fees: boolean | null
           require_advance_payment: boolean | null
@@ -812,9 +844,10 @@ export type Database = {
           require_application_form: boolean | null
           require_refundable_security_deposit: boolean | null
           require_viewing_fee: boolean | null
+          subtitle: string | null
           suited_for: Json[] | null
-          total_amount: string | null
-          utilities: string | null
+          total_amount: number | null
+          utilities: string[] | null
           viewing_fee: number | null
         }
         Insert: {
@@ -839,7 +872,7 @@ export type Database = {
           lease_length?: number | null
           lease_start_date?: string | null
           lease_type?: string | null
-          monthly_amount?: string | null
+          monthly_amount?: number | null
           neighbourhood?: string | null
           price_drop?: boolean
           property_id?: number | null
@@ -847,7 +880,7 @@ export type Database = {
           property_size?: string | null
           property_type?: string | null
           query_string?: string | null
-          refundable_security_deposit?: string | null
+          refundable_security_deposit?: number | null
           renter_knowledge?: string | null
           require_additional_fees?: boolean | null
           require_advance_payment?: boolean | null
@@ -855,9 +888,10 @@ export type Database = {
           require_application_form?: boolean | null
           require_refundable_security_deposit?: boolean | null
           require_viewing_fee?: boolean | null
+          subtitle?: string | null
           suited_for?: Json[] | null
-          total_amount?: string | null
-          utilities?: string | null
+          total_amount?: number | null
+          utilities?: string[] | null
           viewing_fee?: number | null
         }
         Update: {
@@ -882,7 +916,7 @@ export type Database = {
           lease_length?: number | null
           lease_start_date?: string | null
           lease_type?: string | null
-          monthly_amount?: string | null
+          monthly_amount?: number | null
           neighbourhood?: string | null
           price_drop?: boolean
           property_id?: number | null
@@ -890,7 +924,7 @@ export type Database = {
           property_size?: string | null
           property_type?: string | null
           query_string?: string | null
-          refundable_security_deposit?: string | null
+          refundable_security_deposit?: number | null
           renter_knowledge?: string | null
           require_additional_fees?: boolean | null
           require_advance_payment?: boolean | null
@@ -898,9 +932,10 @@ export type Database = {
           require_application_form?: boolean | null
           require_refundable_security_deposit?: boolean | null
           require_viewing_fee?: boolean | null
+          subtitle?: string | null
           suited_for?: Json[] | null
-          total_amount?: string | null
-          utilities?: string | null
+          total_amount?: number | null
+          utilities?: string[] | null
           viewing_fee?: number | null
         }
         Relationships: [
@@ -1036,7 +1071,7 @@ export type Database = {
           lease_length: number | null
           lease_start_date: string | null
           lease_type: string | null
-          monthly_amount: string | null
+          monthly_amount: number | null
           neighbourhood: string | null
           price_drop: boolean | null
           property_id: number | null
@@ -1044,7 +1079,7 @@ export type Database = {
           property_size: string | null
           property_type: string | null
           query_string: string | null
-          refundable_security_deposit: string | null
+          refundable_security_deposit: number | null
           renter_knowledge: string | null
           require_additional_fees: boolean | null
           require_advance_payment: boolean | null
@@ -1052,9 +1087,10 @@ export type Database = {
           require_application_form: boolean | null
           require_refundable_security_deposit: boolean | null
           require_viewing_fee: boolean | null
+          subtitle: string | null
           suited_for: Json[] | null
-          total_amount: string | null
-          utilities: string | null
+          total_amount: number | null
+          utilities: string[] | null
           viewing_fee: number | null
         }
         Relationships: [

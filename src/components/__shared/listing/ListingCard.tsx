@@ -54,7 +54,7 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
               ? "h-[26rem] rounded-2xl"
               : props.cardType === "2"
                 ? "h-80 rounded-2xl"
-                : "h-52 rounded-t-lg"
+                : "h-72 rounded-t-md"
           } `}
         >
           <ListingDeals guarantee={props.guarantee} hint={props.hint} />
@@ -179,20 +179,7 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
           </div>
         </Swiper>
         {/* Listing info */}
-        <ListingInfo
-          propertyId={props.propertyId as string | number}
-          liked={props.liked as boolean}
-          monthlyAmount={props.monthlyAmount as number}
-          paymentStructure={props.paymentStructure as PaymentStructure}
-          propertyDescription={props.propertyDescription as string}
-          propertyName={props.propertyName}
-          city={props.city as string}
-          rating={props.rating as number}
-          ratingCount={props.ratingCount as number}
-          className={`bg-white text-neutral-800 ${
-            props.showOnlyImage && "hidden"
-          }`}
-        />
+        <ListingInfo {...props} />
         {/* Deals */}
       </div>
     </>

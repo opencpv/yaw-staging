@@ -2,6 +2,9 @@ import { RenterApplicationStatus } from "@/app/dashboard/renter/applications/com
 
 interface ListingCardInterface extends ListingInterface {
   propertyDescription: string;
+  subtitle: string;
+  propertyType: string;
+  bedrooms: number;
   rating: number;
   ratingCount: number;
   paymentStructure: PaymentStructure;
@@ -14,11 +17,13 @@ interface ListingCardInterface extends ListingInterface {
   className: string;
   cardType: "1" | "2";
   city: string;
+  neighbourhood: string;
   showOnlyImage: boolean;
   isMyFavoritePage: boolean;
   isRecommendationsPage: boolean;
   showNotViewed: boolean;
   isViewed: boolean;
+  advancePeriod: number;
 }
 
 interface RenterPaidFeatureInterface {

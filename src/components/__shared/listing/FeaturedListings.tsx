@@ -127,7 +127,7 @@ const FeaturedListings = ({ className, showAllButton }: Props) => {
                           property_name: listing.property_name,
                           city: listing.city,
                           payment_structure: listing.advance_payment_options,
-                          amount_per_month: listing.monthly_amount,
+                          amount_per_month: listing.monthly_amount as number,
                           rating: 4,
                         },
                       )}
@@ -136,9 +136,7 @@ const FeaturedListings = ({ className, showAllButton }: Props) => {
                       images={images} // TODO: check database
                       liked={false} // TODO: check implementation
                       guarantee={"Certified" as GuaranteeTag} // TODO: check database
-                      monthlyAmount={parseFloat(
-                        listing.monthly_amount as string,
-                      )}
+                      monthlyAmount={listing.monthly_amount as number}
                       paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
                       propertyDescription={listing.description as string}
                       rating={4.5} // TODO: check database

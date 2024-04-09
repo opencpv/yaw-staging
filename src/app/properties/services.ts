@@ -8,7 +8,7 @@ export const useFetchProperties = () => {
   let query = supabase
     .from("merged_properties_view")
     .select(
-      "id, property_id, property_name, description, city, monthly_amount, advance_payment_options, favorite_user_id",
+      "id, property_id, property_type, description, city, bedrooms, monthly_amount, advance_payment_options, favorite_user_id, subtitle, neighbourhood, advance_period",
     )
     .order("created_at", { ascending: false });
   if (searchString) {

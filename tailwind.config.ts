@@ -71,7 +71,6 @@ const config: Config = {
           50: "#FEF3F2",
           100: "#851e1e",
         },
-        // white: "#fff",
       },
       gridTemplateColumns: {
         "autofit-listing-card": "repeat(auto-fit, minmax(380px, 1fr))",

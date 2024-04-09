@@ -38,27 +38,34 @@ const PropertiesListing = (props: Props) => {
         />
         {listings?.map((listing) => (
           <ListingCard
-            key={listing.id}
             cardType="2"
+            propertyId={listing.id as number}
+            key={listing.id}
             href={addQueryParamsToUrl(`/properties/${listing.property_id}`, {
-              property_name: listing.property_name,
+              property_type: listing.property_type,
+              bedrooms: listing.bedrooms,
               city: listing.city,
+              neighbourhood: listing.neighbourhood,
+              subtitle: listing.subtitle,
+              advance_period: listing.advance_period,
               payment_structure: listing.advance_payment_options,
-              amount_per_month: listing.monthly_amount,
+              amount_per_month: listing.monthly_amount as number,
               rating: 4,
             })}
-            propertyId={listing.property_id as number}
-            propertyName={listing.property_name as string}
+            bedrooms={listing.bedrooms as number}
+            propertyType={listing.property_type as string}
             city={listing.city as string}
+            neighbourhood={listing.neighbourhood as string}
             images={images} // TODO: check database
-            liked={listing.favorite_user_id === user?.id}
+            liked={false} // TODO: check implementation
             guarantee={"Certified" as GuaranteeTag} // TODO: check database
-            hint={"Best Value" as HintTag} // TODO: check database
-            monthlyAmount={2000}
+            monthlyAmount={listing.monthly_amount as number}
             paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
-            propertyDescription={listing.description as string}
+            subtitle={listing.subtitle as string}
             rating={4.5} // TODO: check database
             ratingCount={105} // TODO: check database
+            hint={"Best Value" as HintTag} // TODO: check database
+            advancePeriod={listing.advance_period as number}
           />
         ))}
       </section>

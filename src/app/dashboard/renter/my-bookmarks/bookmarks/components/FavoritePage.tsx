@@ -33,7 +33,7 @@ const FavoritePage = () => {
           images={images} // TODO: check database
           liked={false} // TODO: check implementation
           guarantee={"Certified" as GuaranteeTag} // TODO: check database
-          monthlyAmount={listing.monthly_amount as number}
+          monthlyAmount={listing.monthly_amount as number as number}
           paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
           propertyDescription={listing.description as string}
           rating={4.5} // TODO: check database
@@ -49,7 +49,7 @@ const FavoritePage = () => {
           images={images} // TODO: check database
           liked={false} // TODO: check implementation
           guarantee={"Certified" as GuaranteeTag} // TODO: check database
-          monthlyAmount={listing.monthly_amount as number}
+          monthlyAmount={listing.monthly_amount as number as number}
           paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
           propertyDescription={listing.description as string}
           rating={4.5} // TODO: check database
@@ -65,7 +65,7 @@ const FavoritePage = () => {
           images={images} // TODO: check database
           liked={false} // TODO: check implementation
           guarantee={"Certified" as GuaranteeTag} // TODO: check database
-          monthlyAmount={listing.monthly_amount as number}
+          monthlyAmount={listing.monthly_amount as number as number}
           paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
           propertyDescription={listing.description as string}
           rating={4.5} // TODO: check database
