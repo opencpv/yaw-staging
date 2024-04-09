@@ -1,7 +1,7 @@
 "use client";
 import { Formik, Form } from "formik";
 import { useRef, useState } from "react";
-import supabase from "@/lib/utils/supabaseClient";
+import supabase from "@/lib/utils/supabase/supabaseClient";
 import Loader from "@/components/__shared/loader/Loader";
 import ContactSchema from "@/app/contact/components/forms/lib/contactSchema";
 import {

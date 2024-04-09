@@ -1,6 +1,5 @@
-import { createClient } from "@/lib/utils/supabase/client";
+import { createClient } from "@/lib/utils/supabase/auth/client";
 import { useAppStore } from "@/store/dashboard/AppStore";
-// import { supabase } from "@/supabase/client";
 import { useEffect, useState } from "react";
 
 export const useUserData = () => {

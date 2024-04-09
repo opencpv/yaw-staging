@@ -34,7 +34,8 @@ const VerticalSliderScrollFixOverlay = ({ className, href }: Props) => {
           ref={overlayRef}
           className={cn(
             `${
-              pointerEvents && "pointer-events-none"
+              ""
+              // pointerEvents && "pointer-events-none"
             } absolute left-0 top-0 z-10 h-full w-full -translate-x-16 bg-transparent opacity-0`,
             className,
           )}

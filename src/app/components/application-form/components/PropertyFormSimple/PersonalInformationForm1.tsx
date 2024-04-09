@@ -1,6 +1,5 @@
 import { SelectSearchInput } from "@/app/components/SelectSearchInput";
 import TextFieldInput from "@/app/components/TextFieldInput";
-import { openSans } from "@/styles/font";
 import { styled } from "@stitches/react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import {

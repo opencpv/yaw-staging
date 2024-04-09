@@ -1,25 +1,29 @@
 import { RenterApplicationStatus } from "@/app/dashboard/renter/applications/components/RtApplicationStatus";
-import { inter } from "@/lib/utils/fonts";
 
 interface ListingCardInterface extends ListingInterface {
-  propertyDescription?: string;
-  rating?: number;
-  ratingCount?: number;
-  paymentStructure?: PaymentStructure;
-  monthlyAmount?: number;
-  price?: number;
-  liked?: boolean;
-  id?: number | string;
-  deal?: Deal;
-  membership?: Membership;
-  className?: string;
-  cardType?: "1" | "2";
-  city?: string;
-  showOnlyImage?: boolean;
-  isMyFavoritePage?: boolean;
-  isRecommendationsPage?: boolean;
-  showNotViewed?: boolean;
-  isViewed?: boolean;
+  propertyDescription: string;
+  subtitle: string;
+  propertyType: string;
+  bedrooms: number;
+  rating: number;
+  ratingCount: number;
+  paymentStructure: PaymentStructure;
+  monthlyAmount: number;
+  liked: boolean;
+  propertyId: number | string;
+  userId: number | string;
+  hint: HintTag;
+  guarantee: GuaranteeTag;
+  className: string;
+  cardType: "1" | "2";
+  city: string;
+  neighbourhood: string;
+  showOnlyImage: boolean;
+  isMyFavoritePage: boolean;
+  isRecommendationsPage: boolean;
+  showNotViewed: boolean;
+  isViewed: boolean;
+  advancePeriod: number;
 }
 
 interface RenterPaidFeatureInterface {
@@ -148,19 +152,15 @@ export interface SentimentResponse {
   sentiments: SentimentSpan[];
 }
 
-
 export interface SanityReference {
   _ref: string;
   _type: string;
 }
 
-
-
 type SanityImageReference = {
   _type: string;
   asset: SanityReference;
-
-}
+};
 export interface BlogAuthor {
   profile_image: SanityImageReference;
   _createdAt: string;
@@ -176,9 +176,7 @@ export interface HowTo {
   title: string;
   description: string;
   video_url: string;
-  tags: { tag: string }[]
+  tags: { tag: string }[];
 }
 
-export interface BlogPost {
-
-}
+export interface BlogPost {}

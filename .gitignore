@@ -42,3 +42,6 @@ next-env.d.ts
 # script
 /merge-push.sh
 /commit.sh
+
+# gitpod
+.gitpod.yml

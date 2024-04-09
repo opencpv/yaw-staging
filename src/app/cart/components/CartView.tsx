@@ -1,6 +1,5 @@
 import useCartStore from "@/store/cart/useCartStore";
 import { CartProp } from "../../../../interfaces";
-import { openSans } from "@/styles/font";
 import CaCartItem from "@/app/components/icons/CaCartItem";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import CaDropdownArrow from "@/app/components/icons/CaDropdownArrow";

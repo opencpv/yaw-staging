@@ -18,7 +18,7 @@ import { ListingCardInterface } from "../../../../../../../interfaces";
 import CaDashEye from "../../../../components/icons/CaDashEye";
 import { MdDelete } from "react-icons/md";
 
-const FavoriteListingCard = (props: ListingCardInterface) => {
+const FavoriteListingCard = (props: Partial<ListingCardInterface>) => {
   return (
     <>
       <div className={`relative cursor-default ${props.className}`}>
@@ -93,7 +93,6 @@ const FavoriteListingCard = (props: ListingCardInterface) => {
           liked={props.liked}
           monthlyAmount={props.monthlyAmount}
           paymentStructure={props.paymentStructure}
-          price={props.price}
           propertyDescription={props.propertyDescription}
           propertyName={props.propertyName}
           city={props.city}
@@ -104,7 +103,7 @@ const FavoriteListingCard = (props: ListingCardInterface) => {
           }`}
         />
         {/* Deals */}
-        <ListingDeals membership={props.membership} deal={props.deal} />
+        <ListingDeals guarantee={props.guarantee} hint={props.hint} />
       </div>
     </>
   );

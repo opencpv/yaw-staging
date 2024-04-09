@@ -83,7 +83,7 @@ const SliderGrid = ({ items }: SliderGridProps) => {
               rows: 3,
             },
           },
-          1240: {
+          1280: {
             slidesPerView: 3,
             grid: {
               rows: 3,

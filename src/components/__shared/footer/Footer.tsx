@@ -5,7 +5,6 @@ import CaTwitter from "@/app/components/icons/CaTwitter";
 import CaWhatsappBusiness from "@/app/components/icons/CaWhatsappBusiness";
 import Link from "next/link";
 import CaFacebook from "@/app/components/icons/CaFacebook";
-import { montserat } from "@/styles/font";
 import quickLinks from "@/enum/footer/quickLinks";
 import { getCurrentYear } from "@/lib/utils/numberManipulation";
 import Logo from "@/components/__shared/Logo";
@@ -22,7 +21,7 @@ import { MdLocalPhone } from "react-icons/md";
 const Footer = () => {
   return (
     <footer
-      className={`gap no-print flex w-full flex-col gap-[min(10vh,10rem)] bg-[#131B1A] ${montserat.className} font-montserrat`}
+      className={`gap no-print flex w-full flex-col gap-[min(10vh,10rem)] bg-[#131B1A] font-montserrat`}
     >
       <div className="flex flex-col justify-center gap-10 bg-[#333] px-5 py-8 text-[#8A8A8A] [@media(min-width:950px)]:flex-row">
         {quickLinks.map((r) =>
