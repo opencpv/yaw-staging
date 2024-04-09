@@ -1,3 +1,4 @@
+//@ts-nocheck
 "use client";
 import ListingCard from "@/components/__shared/listing/ListingCard";
 import SliderGrid from "@/components/__shared/sliders/SliderGrid";
@@ -9,32 +10,19 @@ import ArrowLink from "./link/ArrowLink";
 import SliderWide from "@/components/__shared/sliders/SliderWide";
 import images from "@/enum/temp/images";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
-import { createClient } from "@/lib/utils/supabase/auth/client";
-import { useQuery } from "@tanstack/react-query";
 import { cn } from "@/lib/utils";
 import { addQueryParamsToUrl } from "@/lib/utils/stringManipulation";
+import { useFetchFeaturedListings } from "../properties/services";
 
 type Props = { data: any };
 
 const FeaturedListingAndAds = (props: Props) => {
-  const supabase = createClient();
-
   const {
     data: listings,
     error,
     isLoading,
     isFetching,
-  } = useQuery({
-    queryKey: ["featured_listing"],
-    queryFn: async () => {
-      const { data: listings } = await supabase
-        .from("merged_properties_view")
-        .select(
-          "id, property_id, property_type, description, city, bedrooms, monthly_amount, advance_payment_options, favorite_user_id, subtitle, neighbourhood, advance_period",
-        );
-      return listings;
-    },
-  });
+  } = useFetchFeaturedListings();
 
   return (
     <section className="section">
@@ -91,7 +79,13 @@ const FeaturedListingAndAds = (props: Props) => {
                   neighbourhood={listing.neighbourhood as string}
                   images={images} // TODO: check database
                   liked={false} // TODO: check implementation
-                  guarantee={"Certified" as GuaranteeTag} // TODO: check database
+                  guarantee={
+                    listing.property.is_verified
+                      ? ("Verified" as GuaranteeTag)
+                      : listing.property.profiles.is_certified
+                        ? ("Certified" as GuaranteeTag)
+                        : undefined
+                  }
                   monthlyAmount={listing.monthly_amount as number}
                   paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
                   subtitle={listing.subtitle as string}
@@ -99,6 +93,7 @@ const FeaturedListingAndAds = (props: Props) => {
                   ratingCount={105} // TODO: check database
                   hint={"Best Value" as HintTag} // TODO: check database
                   advancePeriod={listing.advance_period as number}
+                  ViewingFee={listing.viewing_fee as number}
                 />
               );
             })}

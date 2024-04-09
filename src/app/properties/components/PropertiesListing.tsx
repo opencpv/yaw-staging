@@ -1,3 +1,4 @@
+//@ts-nocheck
 "use client";
 import React from "react";
 import ListingCard from "@/components/__shared/listing/ListingCard";
@@ -10,8 +11,16 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import { useFetchProperties } from "../services";
 import PropertiesEmptyState from "./PropertiesEmptyState";
 import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
+import SomethingWentWrong from "@/app/components/SomethingWentWrong";
 
 type Props = {};
+
+type Listing = {
+  property: {
+    id: number;
+    is_verified: boolean;
+  };
+} & MergedStandardTemplateView;
 
 const PropertiesListing = (props: Props) => {
   const { user } = useAppStore();
@@ -33,7 +42,9 @@ const PropertiesListing = (props: Props) => {
           isLoading={isLoading}
           isValidating={isValidating}
           isLoadingComponent={<SkeletonListing count={3} />}
-          errorComponent={<FetchErrorMessage specificData="properties" />}
+          errorComponent={
+            <SomethingWentWrong className="col-span-full h-fit" />
+          }
           emptyStateComponent={<PropertiesEmptyState />}
         />
         {listings?.map((listing) => (
@@ -58,14 +69,27 @@ const PropertiesListing = (props: Props) => {
             neighbourhood={listing.neighbourhood as string}
             images={images} // TODO: check database
             liked={false} // TODO: check implementation
-            guarantee={"Certified" as GuaranteeTag} // TODO: check database
+            guarantee={
+              listing.property.is_verified
+                ? ("Verified" as GuaranteeTag)
+                : listing.property.profiles.is_certified
+                  ? ("Certified" as GuaranteeTag)
+                  : undefined
+            }
             monthlyAmount={listing.monthly_amount as number}
             paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
             subtitle={listing.subtitle as string}
             rating={4.5} // TODO: check database
             ratingCount={105} // TODO: check database
-            hint={"Best Value" as HintTag} // TODO: check database
+            hint={
+              listing.property.is_realtors_choice
+                ? "Realtor's Choice"
+                : listing.property.is_best_value
+                  ? "Best Value"
+                  : undefined
+            }
             advancePeriod={listing.advance_period as number}
+            ViewingFee={listing.viewing_fee as number}
           />
         ))}
       </section>

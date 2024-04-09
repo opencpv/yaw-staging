@@ -34,7 +34,7 @@ const FeaturedListings = ({ className, showAllButton }: Props) => {
     queryKey: ["featured_listing", { type: "bottom-page" }],
     queryFn: async () => {
       const { data: listings } = await supabase
-        .from("merged_properties_view")
+        .from("merged_standard_template_view")
         .select(
           "id, property_id, property_name, description, city, monthly_amount, advance_payment_options, favorite_user_id",
         );

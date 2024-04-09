@@ -26,8 +26,8 @@ declare global {
   type User = DB["public"]["Tables"]["profiles"]["Row"];
   type UserFavoriteProperty =
     DB["public"]["Tables"]["user_favorite_properties"]["Row"];
-  type MergedPropertiesView =
-    DB["public"]["Views"]["merged_properties_view"]["Row"];
+  type MergedStandardTemplateView =
+    DB["public"]["Views"]["merged_standard_template_view"]["Row"];
 
   type PaymentStructure =
     | "Yearly"

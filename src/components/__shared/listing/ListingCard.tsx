@@ -13,7 +13,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import ListingInfo from "./ListingInfo";
-import ListingDeals from "./ListingDeals";
+import ListingTags from "./ListingTags";
 import { ListingCardInterface } from "../../../../interfaces";
 import Button from "../ui/button/Button";
 import ListingCardButton from "./ListingCardButton";
@@ -57,7 +57,7 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
                 : "h-72 rounded-t-md"
           } `}
         >
-          <ListingDeals guarantee={props.guarantee} hint={props.hint} />
+          <ListingTags guarantee={props.guarantee} hint={props.hint} />
           {/* For be the first to know detail listings only */}
           <div
             className={
@@ -180,7 +180,6 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
         </Swiper>
         {/* Listing info */}
         <ListingInfo {...props} />
-        {/* Deals */}
       </div>
     </>
   );

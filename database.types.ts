@@ -355,6 +355,7 @@ export type Database = {
           firstname: string | null
           full_name: string | null
           id: string
+          is_certified: boolean
           is_first_time: boolean
           lastname: string | null
           linkedin: string | null
@@ -372,6 +373,7 @@ export type Database = {
           firstname?: string | null
           full_name?: string | null
           id: string
+          is_certified?: boolean
           is_first_time?: boolean
           lastname?: string | null
           linkedin?: string | null
@@ -389,6 +391,7 @@ export type Database = {
           firstname?: string | null
           full_name?: string | null
           id?: string
+          is_certified?: boolean
           is_first_time?: boolean
           lastname?: string | null
           linkedin?: string | null
@@ -413,8 +416,10 @@ export type Database = {
           created_at: string
           id: number
           is_available: boolean
+          is_best_value: boolean
           is_paid_for: boolean
           is_published: boolean
+          is_realtors_choice: boolean
           is_verified: boolean
           owner_uid: string | null
           status: string
@@ -425,8 +430,10 @@ export type Database = {
           created_at?: string
           id?: number
           is_available?: boolean
+          is_best_value?: boolean
           is_paid_for?: boolean
           is_published?: boolean
+          is_realtors_choice?: boolean
           is_verified?: boolean
           owner_uid?: string | null
           status?: string
@@ -437,8 +444,10 @@ export type Database = {
           created_at?: string
           id?: number
           is_available?: boolean
+          is_best_value?: boolean
           is_paid_for?: boolean
           is_published?: boolean
+          is_realtors_choice?: boolean
           is_verified?: boolean
           owner_uid?: string | null
           status?: string
@@ -447,11 +456,18 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "property_owner_uid_fkey"
+            foreignKeyName: "public_property_owner_uid_fkey"
             columns: ["owner_uid"]
             isOneToOne: false
-            referencedRelation: "property_owner_profile"
-            referencedColumns: ["user_id"]
+            referencedRelation: "distinct_messages_view"
+            referencedColumns: ["sender_id"]
+          },
+          {
+            foreignKeyName: "public_property_owner_uid_fkey"
+            columns: ["owner_uid"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
           },
         ]
       }
@@ -1047,7 +1063,7 @@ export type Database = {
           },
         ]
       }
-      merged_properties_view: {
+      merged_standard_template_view: {
         Row: {
           additional_fees: Json | null
           address: string | null

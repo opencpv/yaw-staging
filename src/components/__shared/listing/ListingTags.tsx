@@ -3,15 +3,16 @@ import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import React from "react";
 import { ListingCardInterface } from "../../../../interfaces";
+import { cn } from "@/lib/utils";
 
-const ListingDeals = (props: Partial<ListingCardInterface>) => {
+const ListingTags = (props: Partial<ListingCardInterface>) => {
   const { icons } = useAssets();
   return (
     <div className="absolute top-4 z-10 flex w-full items-center justify-between text-neutral-900">
       <div
-        className={`ml-4 rounded-md bg-white px-3 py-2 shadow-md ${
-          !props.guarantee && "invisible"
-        }`}
+        className={cn("ml-4 rounded-md bg-white px-3 py-2 shadow-md", {
+          invisible: !props.hint,
+        })}
       >
         {/* Hint */}
         <div className="flex items-center gap-2">
@@ -78,4 +79,4 @@ const ListingDeals = (props: Partial<ListingCardInterface>) => {
   );
 };
 
-export default ListingDeals;
+export default ListingTags;
