@@ -11,10 +11,11 @@ export const BLOG_QUERY = groq`*[_type == 'blog']{_id,author->,category->,title,
 export const BLOG_CATEGORY_QUERY = groq`*[_type == 'category']{...}`;
 export const AUTHORS = groq`*[_type == 'author']{...}`;
 export const SINGLE_BLOG_POST = (id: string) => {
-    return groq`*[_type == 'blog' && _id == "${id}"]{...,author->,category->}`
-}
+  return groq`*[_type == 'blog' && _id == "${id}"]{...,author->,category->}`;
+};
 export const SEARCH_BLOG_QUERY = (text: string) => {
-    return groq`*[_type == 'blog' &&  title similar(${text}, 0.8)]{...,author->,category->}`
-}
+  return groq`*[_type == 'blog' &&  title similar(${text}, 0.8)]{...,author->,category->}`;
+};
+export const PROMOTIONS_QUERY = groq`*[_type == 'promotions']{...}`;
 
-export const CONTACT_US_PAGE_QUERY = groq`*[_type == 'contact'][0] {   general->{     _id,     _type,     title,     images,     pdfDocument,     "pdfUrl": pdfDocument.asset->url,     video   },   reports->{     _id,     _type,     title,     images,     pdfDocument,     "pdfUrl": pdfDocument.asset->url,     video   },   advertise->{     _id,     _type,     title,     images,     pdfDocument,     "pdfUrl": pdfDocument.asset->url,     video   },   writers->{     _id,     _type,     title,     images,     pdfDocument,     "pdfUrl": pdfDocument.asset->url,     video   } }`
+export const CONTACT_US_PAGE_QUERY = groq`*[_type == 'contact'][0] {   general->{     _id,     _type,     title,     images,     pdfDocument,     "pdfUrl": pdfDocument.asset->url,     video   },   reports->{     _id,     _type,     title,     images,     pdfDocument,     "pdfUrl": pdfDocument.asset->url,     video   },   advertise->{     _id,     _type,     title,     images,     pdfDocument,     "pdfUrl": pdfDocument.asset->url,     video   },   writers->{     _id,     _type,     title,     images,     pdfDocument,     "pdfUrl": pdfDocument.asset->url,     video   } }`;
