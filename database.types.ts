@@ -153,7 +153,7 @@ export type Database = {
             foreignKeyName: "public_hubtel_payments_client_id_fkey"
             columns: ["client_id"]
             isOneToOne: false
-            referencedRelation: "distinct_messages"
+            referencedRelation: "distinct_messages_view"
             referencedColumns: ["sender_id"]
           },
           {
@@ -234,7 +234,7 @@ export type Database = {
             foreignKeyName: "messages_recipient_id_fkey"
             columns: ["recipient_id"]
             isOneToOne: false
-            referencedRelation: "distinct_messages"
+            referencedRelation: "distinct_messages_view"
             referencedColumns: ["sender_id"]
           },
           {
@@ -248,7 +248,7 @@ export type Database = {
             foreignKeyName: "messages_sender_id_fkey"
             columns: ["sender_id"]
             isOneToOne: false
-            referencedRelation: "distinct_messages"
+            referencedRelation: "distinct_messages_view"
             referencedColumns: ["sender_id"]
           },
           {
@@ -302,7 +302,7 @@ export type Database = {
             foreignKeyName: "notifications_receiver_id_fkey"
             columns: ["receiver_id"]
             isOneToOne: false
-            referencedRelation: "distinct_messages"
+            referencedRelation: "distinct_messages_view"
             referencedColumns: ["sender_id"]
           },
           {
@@ -316,7 +316,7 @@ export type Database = {
             foreignKeyName: "notifications_sender_id_fkey"
             columns: ["sender_id"]
             isOneToOne: false
-            referencedRelation: "distinct_messages"
+            referencedRelation: "distinct_messages_view"
             referencedColumns: ["sender_id"]
           },
           {
@@ -549,7 +549,7 @@ export type Database = {
             foreignKeyName: "property_owner_profile_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: true
-            referencedRelation: "distinct_messages"
+            referencedRelation: "distinct_messages_view"
             referencedColumns: ["sender_id"]
           },
           {
@@ -557,6 +557,38 @@ export type Database = {
             columns: ["user_id"]
             isOneToOne: true
             referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      property_reviews: {
+        Row: {
+          created_at: string
+          id: number
+          property: number | null
+          rating: number | null
+          review: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          property?: number | null
+          rating?: number | null
+          review?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          property?: number | null
+          rating?: number | null
+          review?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_property_reviews_property_fkey"
+            columns: ["property"]
+            isOneToOne: false
+            referencedRelation: "property"
             referencedColumns: ["id"]
           },
         ]
@@ -648,7 +680,7 @@ export type Database = {
             foreignKeyName: "renter_profile_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: false
-            referencedRelation: "distinct_messages"
+            referencedRelation: "distinct_messages_view"
             referencedColumns: ["sender_id"]
           },
           {
@@ -761,7 +793,7 @@ export type Database = {
             foreignKeyName: "sell_items_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: false
-            referencedRelation: "distinct_messages"
+            referencedRelation: "distinct_messages_view"
             referencedColumns: ["sender_id"]
           },
           {
@@ -796,13 +828,15 @@ export type Database = {
           lease_length: number | null
           lease_start_date: string | null
           lease_type: string | null
-          monthly_amount: string | null
+          monthly_amount: number | null
           neighbourhood: string | null
+          price_drop: boolean
           property_id: number | null
           property_name: string | null
           property_size: string | null
           property_type: string | null
-          refundable_security_deposit: string | null
+          query_string: string | null
+          refundable_security_deposit: number | null
           renter_knowledge: string | null
           require_additional_fees: boolean | null
           require_advance_payment: boolean | null
@@ -810,9 +844,10 @@ export type Database = {
           require_application_form: boolean | null
           require_refundable_security_deposit: boolean | null
           require_viewing_fee: boolean | null
+          subtitle: string | null
           suited_for: Json[] | null
-          total_amount: string | null
-          utilities: string | null
+          total_amount: number | null
+          utilities: string[] | null
           viewing_fee: number | null
         }
         Insert: {
@@ -837,13 +872,15 @@ export type Database = {
           lease_length?: number | null
           lease_start_date?: string | null
           lease_type?: string | null
-          monthly_amount?: string | null
+          monthly_amount?: number | null
           neighbourhood?: string | null
+          price_drop?: boolean
           property_id?: number | null
           property_name?: string | null
           property_size?: string | null
           property_type?: string | null
-          refundable_security_deposit?: string | null
+          query_string?: string | null
+          refundable_security_deposit?: number | null
           renter_knowledge?: string | null
           require_additional_fees?: boolean | null
           require_advance_payment?: boolean | null
@@ -851,9 +888,10 @@ export type Database = {
           require_application_form?: boolean | null
           require_refundable_security_deposit?: boolean | null
           require_viewing_fee?: boolean | null
+          subtitle?: string | null
           suited_for?: Json[] | null
-          total_amount?: string | null
-          utilities?: string | null
+          total_amount?: number | null
+          utilities?: string[] | null
           viewing_fee?: number | null
         }
         Update: {
@@ -878,13 +916,15 @@ export type Database = {
           lease_length?: number | null
           lease_start_date?: string | null
           lease_type?: string | null
-          monthly_amount?: string | null
+          monthly_amount?: number | null
           neighbourhood?: string | null
+          price_drop?: boolean
           property_id?: number | null
           property_name?: string | null
           property_size?: string | null
           property_type?: string | null
-          refundable_security_deposit?: string | null
+          query_string?: string | null
+          refundable_security_deposit?: number | null
           renter_knowledge?: string | null
           require_additional_fees?: boolean | null
           require_advance_payment?: boolean | null
@@ -892,9 +932,10 @@ export type Database = {
           require_application_form?: boolean | null
           require_refundable_security_deposit?: boolean | null
           require_viewing_fee?: boolean | null
+          subtitle?: string | null
           suited_for?: Json[] | null
-          total_amount?: string | null
-          utilities?: string | null
+          total_amount?: number | null
+          utilities?: string[] | null
           viewing_fee?: number | null
         }
         Relationships: [
@@ -928,9 +969,52 @@ export type Database = {
         }
         Relationships: []
       }
+      user_favorite_properties: {
+        Row: {
+          created_at: string
+          id: number
+          property_id: number
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          property_id: number
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          property_id?: number
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_user_favorite_properties_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "property"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "public_user_favorite_properties_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "distinct_messages_view"
+            referencedColumns: ["sender_id"]
+          },
+          {
+            foreignKeyName: "public_user_favorite_properties_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
-      distinct_messages: {
+      distinct_messages_view: {
         Row: {
           content: string | null
           created_at: string | null
@@ -951,7 +1035,7 @@ export type Database = {
             foreignKeyName: "messages_recipient_id_fkey"
             columns: ["recipient_id"]
             isOneToOne: false
-            referencedRelation: "distinct_messages"
+            referencedRelation: "distinct_messages_view"
             referencedColumns: ["sender_id"]
           },
           {
@@ -959,6 +1043,76 @@ export type Database = {
             columns: ["sender_id"]
             isOneToOne: true
             referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      merged_properties_view: {
+        Row: {
+          additional_fees: Json | null
+          address: string | null
+          advance_payment_options: Json[] | null
+          advance_period: number | null
+          agent_fee: string | null
+          available_date: string | null
+          bathrooms: number | null
+          bedrooms: number | null
+          city: string | null
+          created_at: string | null
+          description: string | null
+          digital_address: string | null
+          favorite_user_id: string | null
+          features_and_amenities: Json[] | null
+          furnish_level: string | null
+          id: number | null
+          is_complete: boolean | null
+          lease_details: string | null
+          lease_end_date: string | null
+          lease_length: number | null
+          lease_start_date: string | null
+          lease_type: string | null
+          monthly_amount: number | null
+          neighbourhood: string | null
+          price_drop: boolean | null
+          property_id: number | null
+          property_name: string | null
+          property_size: string | null
+          property_type: string | null
+          query_string: string | null
+          refundable_security_deposit: number | null
+          renter_knowledge: string | null
+          require_additional_fees: boolean | null
+          require_advance_payment: boolean | null
+          require_agent_fee: boolean | null
+          require_application_form: boolean | null
+          require_refundable_security_deposit: boolean | null
+          require_viewing_fee: boolean | null
+          subtitle: string | null
+          suited_for: Json[] | null
+          total_amount: number | null
+          utilities: string[] | null
+          viewing_fee: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_user_favorite_properties_user_id_fkey"
+            columns: ["favorite_user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "public_user_favorite_properties_user_id_fkey"
+            columns: ["favorite_user_id"]
+            isOneToOne: false
+            referencedRelation: "distinct_messages_view"
+            referencedColumns: ["sender_id"]
+          },
+          {
+            foreignKeyName: "standard_template_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "property"
             referencedColumns: ["id"]
           },
         ]

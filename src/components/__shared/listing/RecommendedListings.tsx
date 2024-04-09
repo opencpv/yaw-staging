@@ -3,7 +3,7 @@
 "use client";
 import React from "react";
 import ListingCard from "./ListingCard";
-import supabase from "@/lib/utils/supabaseClient";
+import supabase from "@/lib/utils/supabase/supabaseClient";
 import { useQuery } from "@supabase-cache-helpers/postgrest-swr";
 import SkeletonListing from "../ui/skeleton/SkeletonListing";
 import FetchingStates from "../ui/data_fetching/FetchingStates";
@@ -62,11 +62,11 @@ const RecommendedListings = ({ className, showAllButton }: Props) => {
           isValidating={isValidating}
           isLoadingComponent={
             <div className="flex gap-5 overflow-x-hidden">
-              <SkeletonListing count={5} childrenClassName="w-96" />
+              <SkeletonListing count={5} className="w-96" />
             </div>
           }
           errorComponent={<FetchErrorMessage />}
-          noDataMessageComponent={
+          emptyStateComponent={
             <p className="mt-4 text-center italic">
               There are no properties yet.
             </p>
@@ -125,14 +125,13 @@ const RecommendedListings = ({ className, showAllButton }: Props) => {
                   city={listing.city as string}
                   images={images} // TODO: check database
                   liked={false} // TODO: check implementation
-                  membership={"Certified" as Membership} // TODO: check database
-                  monthlyAmount={listing.monthly_amount as number}
+                  guarantee={"Certified" as GuaranteeTag} // TODO: check database
+                  monthlyAmount={listing.monthly_amount as number as number}
                   paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
                   propertyDescription={listing.description as string}
-                  price={4000} // TODO: check database
                   rating={4.5} // TODO: check database
                   ratingCount={105} // TODO: check database
-                  deal={"Best Value" as Deal} // TODO: check database
+                  hint={"Best Value" as HintTag} // TODO: check database
                   showOnlyImage
                 />
               </SwiperSlide>

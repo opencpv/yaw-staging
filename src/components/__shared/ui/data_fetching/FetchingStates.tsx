@@ -4,13 +4,15 @@ import React from "react";
 import FetchErrorMessage from "./FetchErrorMessage";
 
 type Props = {
-  isLoading: boolean;
   error: PostgrestError | undefined | Error | null;
-  isValidating: boolean;
   data: Record<string, unknown>[] | undefined | any[] | any | null;
-  isLoadingComponent: React.ReactNode;
+  /** When data is re-fetching */
+  isValidating?: boolean;
+  isLoading?: boolean;
+  isLoadingComponent?: React.ReactNode;
+  isFetchingComponent?: React.ReactNode;
   errorComponent?: React.ReactNode;
-  noDataMessageComponent?: React.ReactNode;
+  emptyStateComponent?: React.ReactNode;
 };
 
 const FetchingStates = ({
@@ -19,20 +21,21 @@ const FetchingStates = ({
   error,
   data,
   isLoadingComponent,
+  isFetchingComponent,
   errorComponent,
-  noDataMessageComponent,
+  emptyStateComponent,
 }: Props) => {
   return (
     <>
       {isLoading
-        ? isLoadingComponent
+        ? isLoading && (isLoadingComponent || <Spinner />)
         : error
           ? errorComponent ?? <FetchErrorMessage />
-          : isValidating && <Spinner />}
+          : isValidating && (isLoadingComponent || <Spinner />)}
       {isValidating === false &&
         !error &&
         data?.length === 0 &&
-        noDataMessageComponent}
+        emptyStateComponent}
     </>
   );
 };

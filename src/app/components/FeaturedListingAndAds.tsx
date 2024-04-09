@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import ListingCard from "@/components/__shared/listing/ListingCard";
 import SliderGrid from "@/components/__shared/sliders/SliderGrid";
@@ -8,37 +7,45 @@ import React from "react";
 import AdsSliderColumn from "./AdsSliderColumn";
 import ArrowLink from "./link/ArrowLink";
 import SliderWide from "@/components/__shared/sliders/SliderWide";
-import { useQuery } from "@supabase-cache-helpers/postgrest-swr";
-import supabase from "@/lib/utils/supabaseClient";
-import {
-  fetchCountRule,
-  fetchOrderRule,
-  revalidationRule,
-} from "@/lib/utils/fetchRules";
 import images from "@/enum/temp/images";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
+import { createClient } from "@/lib/utils/supabase/auth/client";
+import { useQuery } from "@tanstack/react-query";
+import { cn } from "@/lib/utils";
+import { addQueryParamsToUrl } from "@/lib/utils/stringManipulation";
 
 type Props = { data: any };
 
 const FeaturedListingAndAds = (props: Props) => {
+  const supabase = createClient();
+
   const {
     data: listings,
-    isLoading,
-    isValidating,
     error,
-  } = useQuery(
-    supabase
-      .from("standard_template")
-      .select(
-        "id, property_name, property_id, description, monthly_amount, city",
-      )
-      .order("created_at", fetchOrderRule()),
-    revalidationRule(),
-  );
+    isLoading,
+    isFetching,
+  } = useQuery({
+    queryKey: ["featured_listing"],
+    queryFn: async () => {
+      const { data: listings } = await supabase
+        .from("merged_properties_view")
+        .select(
+          "id, property_id, property_type, description, city, bedrooms, monthly_amount, advance_payment_options, favorite_user_id, subtitle, neighbourhood, advance_period",
+        );
+      return listings;
+    },
+  });
 
   return (
     <section className="section">
-      <h2 className="mb-5 text-neutral-900">Featured Listings</h2>
+      <h2
+        className={cn("mb-5 text-neutral-900", {
+          hidden: listings && listings.length < 1 && !isLoading,
+          block: isLoading,
+        })}
+      >
+        Featured Listings
+      </h2>
       {/* Listing cards */}
       <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-8 lg:items-start">
         {/* Shows when number of listings is less than 10 */}
@@ -48,12 +55,12 @@ const FeaturedListingAndAds = (props: Props) => {
               data={listings}
               error={error}
               isLoading={isLoading}
-              isValidating={isValidating}
-              isLoadingComponent={<SkeletonListing count={3} />}
+              isValidating={isFetching}
+              isLoadingComponent={<SkeletonListing count={5} />}
               errorComponent={
                 <FetchErrorMessage specificData="featured listing" />
               }
-              noDataMessageComponent={
+              emptyStateComponent={
                 <p className="mt-4 text-center italic">
                   There are no properties yet.
                 </p>
@@ -62,24 +69,36 @@ const FeaturedListingAndAds = (props: Props) => {
             {listings?.map((listing) => {
               return (
                 <ListingCard
-                  id={listing.id}
+                  propertyId={listing.id as number}
                   key={listing.id}
-                  href={`/properties/${listing.property_id}?property_name=${listing.propertyName}&city=${listing.city}&price=${listing.price}&payment_structure=${listing.paymentStructure}&amount_per_month=${listing.monthlyAmount}&rating=${listing.ratingCount}&property_description=${listing.propertyDescription}`.replaceAll(
-                    " ",
-                    "_",
+                  href={addQueryParamsToUrl(
+                    `/properties/${listing.property_id}`,
+                    {
+                      property_type: listing.property_type,
+                      bedrooms: listing.bedrooms,
+                      city: listing.city,
+                      neighbourhood: listing.neighbourhood,
+                      subtitle: listing.subtitle,
+                      advance_period: listing.advance_period,
+                      payment_structure: listing.advance_payment_options,
+                      amount_per_month: listing.monthly_amount as number,
+                      rating: 4,
+                    },
                   )}
-                  propertyName={listing.property_name as string}
+                  bedrooms={listing.bedrooms as number}
+                  propertyType={listing.property_type as string}
                   city={listing.city as string}
+                  neighbourhood={listing.neighbourhood as string}
                   images={images} // TODO: check database
                   liked={false} // TODO: check implementation
-                  membership={"Certified" as Membership} // TODO: check database
+                  guarantee={"Certified" as GuaranteeTag} // TODO: check database
                   monthlyAmount={listing.monthly_amount as number}
                   paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
-                  propertyDescription={listing.description as string}
-                  price={4000} // TODO: check database
+                  subtitle={listing.subtitle as string}
                   rating={4.5} // TODO: check database
                   ratingCount={105} // TODO: check database
-                  deal={"Best Value" as Deal} // TODO: check database
+                  hint={"Best Value" as HintTag} // TODO: check database
+                  advancePeriod={listing.advance_period as number}
                 />
               );
             })}
@@ -91,42 +110,55 @@ const FeaturedListingAndAds = (props: Props) => {
               <FetchingStates
                 data={listings}
                 error={error}
-                isLoading={isLoading}
-                isValidating={isValidating}
-                isLoadingComponent={
-                  <div className="skeleton-grid">
-                    <SkeletonListing count={3} />
-                  </div>
-                }
-                noDataMessageComponent={
+                emptyStateComponent={
                   <p className="mt-4 text-center italic">
                     There are no properties yet.
                   </p>
                 }
               />
               <SliderGrid
-                items={listings?.map((listing) => (
-                  <ListingCard
-                    id={listing.id}
-                    key={listing.id}
-                    href={`/properties/${listing.property_id}?property_name=${listing.propertyName}&city=${listing.city}&price=${listing.price}&payment_structure=${listing.paymentStructure}&amount_per_month=${listing.monthlyAmount}&rating=${listing.ratingCount}&property_description=${listing.propertyDescription}`.replaceAll(
-                      " ",
-                      "_",
-                    )}
-                    propertyName={listing.property_name as string}
-                    city={listing.city as string}
-                    propertyDescription={listing.description as string}
-                    images={images}
-                    price={3600}
-                    paymentStructure={"Yearly" as PaymentStructure}
-                    monthlyAmount={200}
-                    deal={"Editor's Choice" as Deal}
-                    membership={"Verified" as Membership}
-                    rating={4.2}
-                    ratingCount={403}
-                    liked={false}
-                  />
-                ))}
+                items={
+                  isLoading
+                    ? Array.from({ length: 5 }, (_, idx) => (
+                        <SkeletonListing key={idx} cardType={1} />
+                      ))
+                    : listings?.map((listing) => (
+                        <ListingCard
+                          propertyId={listing.id as number}
+                          key={listing.id}
+                          href={addQueryParamsToUrl(
+                            `/properties/${listing.property_id}`,
+                            {
+                              property_type: listing.property_type,
+                              bedrooms: listing.bedrooms,
+                              city: listing.city,
+                              neighbourhood: listing.neighbourhood,
+                              subtitle: listing.subtitle,
+                              advance_period: listing.advance_period,
+                              payment_structure:
+                                listing.advance_payment_options,
+                              amount_per_month:
+                                listing.monthly_amount as number,
+                              rating: 4,
+                            },
+                          )}
+                          bedrooms={listing.bedrooms as number}
+                          propertyType={listing.property_type as string}
+                          city={listing.city as string}
+                          neighbourhood={listing.neighbourhood as string}
+                          images={images} // TODO: check database
+                          liked={false} // TODO: check implementation
+                          guarantee={"Certified" as GuaranteeTag} // TODO: check database
+                          monthlyAmount={listing.monthly_amount as number}
+                          paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
+                          subtitle={listing.subtitle as string}
+                          rating={4.5} // TODO: check database
+                          ratingCount={105} // TODO: check database
+                          hint={"Best Value" as HintTag} // TODO: check database
+                          advancePeriod={listing.advance_period as number}
+                        />
+                      ))
+                }
               />
             </div>
           </div>
@@ -134,7 +166,9 @@ const FeaturedListingAndAds = (props: Props) => {
         {/* Ads */}
         <AdsSliderColumn ads={props.data.ads} />
       </div>
-      <ArrowLink href="/properties" text="Show all" color="#202457" />
+      {listings && (
+        <ArrowLink href="/properties" text="Show all" color="#202457" />
+      )}
       {/* Ads mobile*/}
       <section className="section h-fit w-full lg:hidden">
         <SliderWide

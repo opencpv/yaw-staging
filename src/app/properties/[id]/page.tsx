@@ -19,7 +19,7 @@ import PropertyDetailsImages from "./components/PropertyDetailsImages";
 import PropertyDetailsFeatures from "./components/PropertyDetailsFeatures";
 import BreadCrumbPreLink from "@/components/__shared/ui/BreadCrumbPreLink";
 import { useQuery } from "@supabase-cache-helpers/postgrest-swr";
-import supabase from "@/lib/utils/supabaseClient";
+import supabase from "@/lib/utils/supabase/supabaseClient";
 import { Skeleton } from "@nextui-org/react";
 import SkeletonTextual from "@/components/__shared/ui/skeleton/SkeletonTextual";
 import SkeletonLong from "@/components/__shared/ui/skeleton/SkeletonLong";
@@ -62,7 +62,10 @@ const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
 
   return (
     <>
-      <Navbar propertyName={`${listing?.property_name} at ${listing?.city}`} />
+      <Navbar
+        propertyName={`${listing?.property_name} at ${listing?.city}`}
+        propertyId={listing?.property_id}
+      />
       <FetchingStates
         data={listing}
         error={error}

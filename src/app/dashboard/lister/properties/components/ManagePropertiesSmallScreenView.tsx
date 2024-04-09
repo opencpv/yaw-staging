@@ -39,7 +39,7 @@ const ManagePropertiesSmallScreenView = () => {
         isValidating={isValidating}
         isLoadingComponent={<TableSkeletonSm rows={4} />}
         errorComponent={<FetchErrorMessage specificData="properties" />}
-        noDataMessageComponent={
+        emptyStateComponent={
           <p className="mt-4 italic">
             There are no properties in this category
           </p>
@@ -67,7 +67,6 @@ const ManagePropertiesSmallScreenView = () => {
           isLoading={isLoading}
           isValidating={isValidating}
           loadMore={loadMore}
-          noDataMessage="No more Properties"
         />
       </div>
     </div>

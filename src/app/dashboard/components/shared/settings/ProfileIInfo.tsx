@@ -7,7 +7,6 @@ import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import Loader from "@/components/__shared/loader/Loader";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import { supabase } from "@/supabase/client";
 import {
   usePhoneInputDisclosure,
   useToastDisclosure,
@@ -15,7 +14,7 @@ import {
 import InputPhoneNumber from "@/components/__shared/form/InputPhoneNumber";
 import { useRouter } from "next/navigation";
 import Button from "@/components/__shared/ui/button/Button";
-import { createClient } from "@/lib/utils/supabase/client";
+import { createClient } from "@/lib/utils/supabase/auth/client";
 
 interface Props {
   icon: any;
@@ -36,8 +35,6 @@ const IconField = ({
   placeholder,
   defaultValue,
 }: Props) => {
-  const supabase = createClient();
-
   return (
     <div className="form-div relative">
       <div className="relative flex items-center">
@@ -66,6 +63,7 @@ const ProfileInfo = () => {
   const { onOpen } = useToastDisclosure();
   const { phone, handlePhone, handleCountryChange } = usePhoneInputDisclosure();
   const router = useRouter();
+  const supabase = createClient();
 
   const firstName = useMemo(() => {
     // try to get firstname from full_name

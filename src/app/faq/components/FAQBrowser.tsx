@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import { montserat } from "@/styles/font";
 import onlyUnique from "@/lib/utils/onlyUnique,";
 import groupByCategory from "../lib/groupFAQ";
 import FAQItem from "./FAQItem";

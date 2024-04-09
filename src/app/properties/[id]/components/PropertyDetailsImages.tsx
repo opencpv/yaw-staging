@@ -22,15 +22,15 @@ const PropertyDetailsImages = (props: Props) => {
         onClose={onClose}
         isOpen={isOpen}
       />
-      <AOSWrapper animation="fade-up" className="h-full mb-10 max-h-[150rem]">
+      <section className="fade-in-bottom mb-10 h-full max-h-[150rem]">
         <div
-          className="hidden h-full grid-cols-2 gap-3 cursor-pointer lg:grid"
+          className="hidden h-full cursor-pointer grid-cols-2 gap-3 lg:grid"
           onClick={onOpen}
         >
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((_, idx) => (
             <div
               key={idx + 1}
-              className={`relative property-details-img-group ${
+              className={`property-details-img-group relative ${
                 idx === 4 || idx === 5 ? "row-span-2" : "row-span-1"
               }`}
             >
@@ -45,7 +45,7 @@ const PropertyDetailsImages = (props: Props) => {
           ))}
         </div>
         {/* Slider */}
-        <div className="w-full cursor-pointer h-fit lg:hidden">
+        <div className="h-fit w-full cursor-pointer lg:hidden">
           <SliderWide
             pagination
             navigation
@@ -53,12 +53,12 @@ const PropertyDetailsImages = (props: Props) => {
             images={[1, 2, 3, 4, 5].map((image) => ({
               src: "/assets/images/Stock.jpg",
               name: "",
-              href: ""
+              href: "",
             }))}
           />
         </div>
         <ReportIssue className="mt-5" />
-      </AOSWrapper>
+      </section>
     </>
   );
 };

@@ -17,38 +17,36 @@ export default function AgentLandingPage() {
   return (
     <div>
       <div className="relative mx-auto max-w-screen-3xl px-5 sm:px-10">
-        <AOSWrapper animation="fade-up">
-          <div className="relative flex h-fit w-full items-center justify-center rounded-3xl bg-transparent bg-[length:600px_400px] bg-right bg-no-repeat pt-5 lg:bg-[#E6F6EE] lg:bg-[url('/assets/images/dashboard/my-agent-shapes.png')] lg:p-10">
-            <div className="flex w-full flex-col items-center justify-between gap-10 lg:flex-row">
-              <div className="space-y-8">
-                <AgentButtons variant={"agent"} content="Agent Services" />
-                <div className="max-w-xl space-y-7">
-                  <h2 className="text-2xl leading-tight text-[#333333] sm:text-4xl">
-                    Let RentRightGh take it from here
-                  </h2>
-                  <p className="text-shade-200">
-                    Lorem ipsum dolor sit amet consectetur. Mollis id enim
-                    turpis egestas ut urna posuere. Nec elementum placerat in
-                    mauris. Dui convallis dolor ante quisque porta eget leo
-                    hendrerit purus. Diam lorem faucibus tortor arcu at.
-                  </p>
-                  <div className="flex w-full flex-wrap items-center gap-5">
-                    <ClientOnly>
-                      <BeMyAgentModal button="Hire Us Now" />
-                    </ClientOnly>
-                    <LearnMoreYoutubeBtn />
-                  </div>
+        <div className="fade-in-bottom relative flex h-fit w-full items-center justify-center rounded-3xl bg-transparent bg-[length:600px_400px] bg-right bg-no-repeat pt-5 lg:bg-[#E6F6EE] lg:bg-[url('/assets/images/dashboard/my-agent-shapes.png')] lg:p-10">
+          <div className="flex w-full flex-col items-center justify-between gap-10 lg:flex-row">
+            <div className="space-y-8">
+              <AgentButtons variant={"agent"} content="Agent Services" />
+              <div className="max-w-xl space-y-7">
+                <h2 className="text-2xl leading-tight text-[#333333] sm:text-4xl">
+                  Let RentRightGh take it from here
+                </h2>
+                <p className="text-shade-200">
+                  Lorem ipsum dolor sit amet consectetur. Mollis id enim turpis
+                  egestas ut urna posuere. Nec elementum placerat in mauris. Dui
+                  convallis dolor ante quisque porta eget leo hendrerit purus.
+                  Diam lorem faucibus tortor arcu at.
+                </p>
+                <div className="flex w-full flex-wrap items-center gap-5">
+                  <ClientOnly>
+                    <BeMyAgentModal button="Hire Us Now" />
+                  </ClientOnly>
+                  <LearnMoreYoutubeBtn />
                 </div>
               </div>
-              <Image
-                src={images.BusinessPersonWithHouseKeys}
-                alt="person holding mini house"
-                width={350}
-                className="bg-[url('/assets/images/dashboard/my-agent-shapes.png')] bg-cover bg-right bg-no-repeat lg:bg-none"
-              />
             </div>
+            <Image
+              src={images.BusinessPersonWithHouseKeys}
+              alt="person holding mini house"
+              width={350}
+              className="bg-[url('/assets/images/dashboard/my-agent-shapes.png')] bg-cover bg-right bg-no-repeat lg:bg-none"
+            />
           </div>
-        </AOSWrapper>
+        </div>
         {/* How it works */}
         <div className="mt-20 grid grid-cols-2 gap-x-12 gap-y-20 px-4 lg:mt-40">
           <div className="col-span-2 hidden h-full items-center justify-center border lg:col-span-1 lg:flex">

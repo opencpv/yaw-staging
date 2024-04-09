@@ -1,5 +1,4 @@
 "use client";
-import { openSans } from "@/styles/font";
 import ChooseTemplate from "./ChooseTemplate";
 import TellUsAboutYourPlace from "./TellUsAboutYourPlace";
 import { styled } from "@stitches/react";

@@ -1,4 +1,3 @@
-import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
 import { NextRequest, NextResponse } from "next/server";
 
 export const middleware = async (req: NextRequest) => {
@@ -60,5 +59,7 @@ export const middleware = async (req: NextRequest) => {
 //     "/dashboard/renter/:path*",
 //     "/dashboard/lister/:path*",
 //     "/dashboard/service-pro/:path*",
+// "/((?!_next/static|_next/image|favicon.ico).*)"
+
 //   ],
 // };

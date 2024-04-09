@@ -1,5 +1,5 @@
 import { cache } from "react";
-import { createClient } from "./lib/utils/supabase/server";
+import { createClient } from "./lib/utils/supabase/auth/server";
 
 export const getPopularCities = async () => {
   const supabase = createClient();
