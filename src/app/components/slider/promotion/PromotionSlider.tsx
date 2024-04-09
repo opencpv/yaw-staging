@@ -30,7 +30,7 @@ const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
 
   return (
     <>
-      {/* When promotion open a modal */}
+      {/* When promotion opens a modal */}
       <PromotionModal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
@@ -60,14 +60,14 @@ const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
                     className="brightness-[0.60]"
                   />
                 </div>
-              ) : idx === 1 ? (
+              ) : idx === 1 ? ( // maybe promotion.type === "video" | "image"
                 <>
                   <iframe
                     src={
-                      "https://www.youtube.com/embed/rR4n-0KYeKQ?si=mkrWRrNoOTSiHw9q"
+                      "https://www.youtube.com/embed/rR4n-0KYeKQ?si=mkrWRrNoOTSiHw9q?rel=0" // rel=0 is important to suggest only RentRightGH related videos
                     }
                     title={promotion?.title || ""}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
                     className="absolute inset-0 h-full w-full rounded-3xl"
                   ></iframe>
                 </>
@@ -78,7 +78,7 @@ const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
                 className={cn(
                   "absolute left-3 top-32 z-50 space-y-20 min-[300px]:left-10",
                   {
-                    hidden: idx === 1,
+                    hidden: idx === 1, // if promotion.type === "video", hide the label
                   },
                 )}
               >
@@ -89,11 +89,11 @@ const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
                   <p className="text-white"> {promotion.subtitle}</p>
                   <Button
                     href={promotion?.url ? promotion?.url : undefined}
-                    target={true ? "_self" : "_blank"} // if ?*.target? is "self", open on same tab otherwise open in new tab
+                    target={true ? "_self" : "_blank"} // if ?*.target? is "self", open on same tab otherwise open in new tab. TODO: change logic for "true"
                     className={cn(
                       "flex w-fit items-center gap-3 rounded-md border-none bg-accent-200 capitalize text-white hover:bg-neutral-300 hover:text-neutral-600",
                       {
-                        invisible: !promotion.url || false, // if there is not promotion.url || ?*.type? is not modal, hide the button
+                        invisible: !promotion.url || false, // if there is not promotion.url || ?*.type? is not modal, hide the button. TODO: change logic for "false"
                       },
                     )}
                     onClick={
