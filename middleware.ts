@@ -1,27 +1,65 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function middleware(req: any) {
-  const res = NextResponse.next();
+export const middleware = async (req: NextRequest) => {
+  const origin = req.nextUrl.origin;
+  const pathname = req.nextUrl.pathname;
+  const requestHeaders = new Headers(req.headers);
+  requestHeaders.set("x-origin", origin);
+  requestHeaders.set("x-pathname", pathname);
 
-  // Create a Supabase client configured to use cookies
-  // const supabase = createMiddlewareClient({ req, res });
+  const res = NextResponse.next({
+    request: {
+      headers: requestHeaders,
+    },
+  });
 
-  // // Refresh session if expired - required for Server Components
-  // await supabase.auth.getSession();
+  // create a supabase client configured to use cookies
+  // const supabase = createMiddlewareClient<Database>({ req, res });
+  // const {
+  //   data: { session },
+  //   error,
+  // } = await supabase.auth.getSession();
 
+  // if (error) return NextResponse.redirect(new URL("/login", req.url));
+
+  // if (session) {
+  //   if (
+  //     req.nextUrl.pathname.includes("/dashboard/renter") ||
+  //     req.nextUrl.pathname.includes("/dashboard/lister") ||
+  //     req.nextUrl.pathname.includes("/dashboard/service-pro")
+  //   ) {
+  //     return res;
+  //   }
+  //   if (req.nextUrl.pathname === "/login") {
+  //     return NextResponse.redirect(new URL("/dashboard", req.url));
+  //   }
+  // }
+
+  // if (!session) {
+  //   if (
+  //     req.nextUrl.pathname.includes("/dashboard/renter") ||
+  //     req.nextUrl.pathname.includes("/dashboard/lister") ||
+  //     req.nextUrl.pathname.includes("/dashboard/service-pro")
+  //   )
+  //     return NextResponse.redirect(new URL("/", req.url));
+  // }
   return res;
-}
+  // return NextResponse.redirect(new URL("/login", req.url));
+};
 
-// Ensure the middleware is only called for relevant paths.
 // export const config = {
 //   matcher: [
-//     /*
-//      * Match all request paths except for the ones starting with:
-//      * - _next/static (static files)
-//      * - _next/image (image optimization files)
-//      * - favicon.ico (favicon file)
-//      * Feel free to modify this pattern to include more paths.
+//     /**
+//      * Match all request paths "/dashboard/[currentRole]/" excepts for ones starting with:
+//      * - settings
 //      */
-//     "/((?!_next/static|_next/image|favicon.ico).*)",
+//     // "/dashboard/renter/((?!settings).*)",
+//     // "/dashboard/lister/((?!settings).*)",
+//     // "/dashboard/service-pro/((?!settings).*)",
+//     "/dashboard/renter/:path*",
+//     "/dashboard/lister/:path*",
+//     "/dashboard/service-pro/:path*",
+// "/((?!_next/static|_next/image|favicon.ico).*)"
+
 //   ],
 // };
