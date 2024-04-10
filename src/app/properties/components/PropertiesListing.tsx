@@ -5,7 +5,6 @@ import ListingCard from "@/components/__shared/listing/ListingCard";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
 import images from "@/enum/temp/images";
-import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
 import { addQueryParamsToUrl } from "@/lib/utils/stringManipulation";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useFetchProperties } from "../services";
