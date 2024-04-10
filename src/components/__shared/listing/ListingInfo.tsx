@@ -79,49 +79,56 @@ const ListingInfo = (props: Partial<ListingCardInterface>) => {
             </p>
           </div>
         </div>
-        {props.advancePeriod && (
-          <div className="w-max rounded-xl bg-[#E7F8F2] px-3 py-1 text-xs text-indigo-950">
-            {props.advancePeriod === 1 ? (
-              <small>
-                <span
-                  className={cn("xl:max-2xl:hidden", {
-                    "max-xsm:hidden lg:max-xl:hidden xl:max-2xl:inline":
-                      props.cardType === "2",
-                  })}
-                >
-                  One Year Advance
-                </span>
-                <span
-                  className={cn("hidden xl:max-2xl:inline", {
-                    "hidden max-xsm:inline lg:max-xl:inline xl:max-2xl:hidden":
-                      props.cardType === "2",
-                  })}
-                >
-                  1yr Advance
-                </span>
-              </small>
-            ) : props.advancePeriod === 2 ? (
-              <small>
-                <span
-                  className={cn("xl:max-2xl:hidden", {
-                    "max-xsm:hidden lg:max-xl:hidden xl:max-2xl:inline":
-                      props.cardType === "2",
-                  })}
-                >
-                  Two Year Advance
-                </span>
-                <span
-                  className={cn("hidden xl:max-2xl:inline", {
-                    "hidden max-xsm:inline lg:max-xl:inline xl:max-2xl:hidden":
-                      props.cardType === "2",
-                  })}
-                >
-                  2yr Advance
-                </span>
-              </small>
-            ) : null}
-          </div>
-        )}
+        <div
+          className={cn("w-max rounded-xl px-3 py-1 text-xs ", {
+            "bg-[#E7F8F2] text-indigo-950": props.advancePeriod,
+            "bg-[#EEF2FA] text-[#2E5AAC]": !props.advancePeriod,
+          })}
+        >
+          {props.advancePeriod === 1 ? (
+            <small>
+              <span
+                className={cn("xl:max-2xl:hidden", {
+                  "max-xsm:hidden lg:max-xl:hidden xl:max-2xl:inline":
+                    props.cardType === "2",
+                })}
+              >
+                One Year Advance
+              </span>
+              <span
+                className={cn("hidden xl:max-2xl:inline", {
+                  "hidden max-xsm:inline lg:max-xl:inline xl:max-2xl:hidden":
+                    props.cardType === "2",
+                })}
+              >
+                1yr Advance
+              </span>
+            </small>
+          ) : props.advancePeriod === 2 ? (
+            <small>
+              <span
+                className={cn("xl:max-2xl:hidden", {
+                  "max-xsm:hidden lg:max-xl:hidden xl:max-2xl:inline":
+                    props.cardType === "2",
+                })}
+              >
+                Two Year Advance
+              </span>
+              <span
+                className={cn("hidden xl:max-2xl:inline", {
+                  "hidden max-xsm:inline lg:max-xl:inline xl:max-2xl:hidden":
+                    props.cardType === "2",
+                })}
+              >
+                2yr Advance
+              </span>
+            </small>
+          ) : !props.advancePeriod ? (
+            <small className="px-1.5">
+              <span>No Advance</span>
+            </small>
+          ) : null}
+        </div>
       </div>
       {/* City and like */}
       <div className="flex flex-wrap items-center justify-between gap-2">
