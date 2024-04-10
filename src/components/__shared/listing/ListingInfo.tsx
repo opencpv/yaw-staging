@@ -67,7 +67,7 @@ const ListingInfo = (props: Partial<ListingCardInterface>) => {
       {/* monthly amount */}
       <div className="flex w-full flex-wrap items-center justify-between gap-2 pt-1 text-xs">
         <div className="flex items-center gap-2">
-          {props.ViewingFee && (
+          {!props.ViewingFee && (
             <Image src={icons.NoViewingFee} alt="" title="no viewing fee" />
           )}
           <div className="w-fit">

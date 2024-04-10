@@ -13,10 +13,13 @@ import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchError
 import { cn } from "@/lib/utils";
 import { addQueryParamsToUrl } from "@/lib/utils/stringManipulation";
 import { useFetchFeaturedListings } from "../properties/services";
+import { useAppStore } from "@/store/dashboard/AppStore";
+import SomethingWentWrong from "./SomethingWentWrong";
 
 type Props = { data: any };
 
 const FeaturedListingAndAds = (props: Props) => {
+  const { user } = useAppStore();
   const {
     data: listings,
     error,
@@ -46,7 +49,7 @@ const FeaturedListingAndAds = (props: Props) => {
               isValidating={isFetching}
               isLoadingComponent={<SkeletonListing count={5} />}
               errorComponent={
-                <FetchErrorMessage specificData="featured listing" />
+                <SomethingWentWrong className="col-span-full h-fit" />
               }
               emptyStateComponent={
                 <p className="mt-4 text-center italic">
@@ -78,11 +81,11 @@ const FeaturedListingAndAds = (props: Props) => {
                   city={listing.city as string}
                   neighbourhood={listing.neighbourhood as string}
                   images={images} // TODO: check database
-                  liked={false} // TODO: check implementation
+                  liked={listing.favorite_user_id === user?.id}
                   guarantee={
-                    listing.property.is_verified
+                    listing.is_property_verified
                       ? ("Verified" as GuaranteeTag)
-                      : listing.property.profiles.is_certified
+                      : listing.is_lister_certified
                         ? ("Certified" as GuaranteeTag)
                         : undefined
                   }
@@ -91,7 +94,13 @@ const FeaturedListingAndAds = (props: Props) => {
                   subtitle={listing.subtitle as string}
                   rating={4.5} // TODO: check database
                   ratingCount={105} // TODO: check database
-                  hint={"Best Value" as HintTag} // TODO: check database
+                  hint={
+                    listing.property.is_realtors_choice
+                      ? ("Realtor's Choice" as HintTag)
+                      : listing.property.is_best_value
+                        ? ("Best Value" as HintTag)
+                        : undefined
+                  }
                   advancePeriod={listing.advance_period as number}
                   ViewingFee={listing.viewing_fee as number}
                 />
@@ -105,6 +114,9 @@ const FeaturedListingAndAds = (props: Props) => {
               <FetchingStates
                 data={listings}
                 error={error}
+                errorComponent={
+                  <SomethingWentWrong className="col-span-full h-fit" />
+                }
                 emptyStateComponent={
                   <p className="mt-4 text-center italic">
                     There are no properties yet.
@@ -142,15 +154,28 @@ const FeaturedListingAndAds = (props: Props) => {
                           city={listing.city as string}
                           neighbourhood={listing.neighbourhood as string}
                           images={images} // TODO: check database
-                          liked={false} // TODO: check implementation
-                          guarantee={"Certified" as GuaranteeTag} // TODO: check database
+                          liked={listing.favorite_user_id === user?.id} // TODO: check implementation
+                          guarantee={
+                            listing.is_property_verified
+                              ? ("Verified" as GuaranteeTag)
+                              : listing.is_lister_certified
+                                ? ("Certified" as GuaranteeTag)
+                                : undefined
+                          }
                           monthlyAmount={listing.monthly_amount as number}
                           paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
                           subtitle={listing.subtitle as string}
                           rating={4.5} // TODO: check database
                           ratingCount={105} // TODO: check database
-                          hint={"Best Value" as HintTag} // TODO: check database
+                          hint={
+                            listing.property.is_realtors_choice
+                              ? ("Realtor's Choice" as HintTag)
+                              : listing.property.is_best_value
+                                ? ("Best Value" as HintTag)
+                                : undefined
+                          }
                           advancePeriod={listing.advance_period as number}
+                          ViewingFee={listing.viewing_fee as number}
                         />
                       ))
                 }

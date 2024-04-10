@@ -68,11 +68,11 @@ const PropertiesListing = (props: Props) => {
             city={listing.city as string}
             neighbourhood={listing.neighbourhood as string}
             images={images} // TODO: check database
-            liked={false} // TODO: check implementation
+            liked={listing.favorite_user_id === user?.id} // TODO: check implementation
             guarantee={
-              listing.property.is_verified
+              listing.is_property_verified
                 ? ("Verified" as GuaranteeTag)
-                : listing.property.profiles.is_certified
+                : listing.is_lister_certified
                   ? ("Certified" as GuaranteeTag)
                   : undefined
             }
@@ -83,9 +83,9 @@ const PropertiesListing = (props: Props) => {
             ratingCount={105} // TODO: check database
             hint={
               listing.property.is_realtors_choice
-                ? "Realtor's Choice"
+                ? ("Realtor's Choice" as HintTag)
                 : listing.property.is_best_value
-                  ? "Best Value"
+                  ? ("Best Value" as HintTag)
                   : undefined
             }
             advancePeriod={listing.advance_period as number}

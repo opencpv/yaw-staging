@@ -839,6 +839,8 @@ export type Database = {
           furnish_level: string | null
           id: number
           is_complete: boolean | null
+          is_lister_certified: boolean
+          is_property_verified: boolean | null
           lease_details: string | null
           lease_end_date: string | null
           lease_length: number | null
@@ -883,6 +885,8 @@ export type Database = {
           furnish_level?: string | null
           id?: number
           is_complete?: boolean | null
+          is_lister_certified: boolean
+          is_property_verified?: boolean | null
           lease_details?: string | null
           lease_end_date?: string | null
           lease_length?: number | null
@@ -927,6 +931,8 @@ export type Database = {
           furnish_level?: string | null
           id?: number
           is_complete?: boolean | null
+          is_lister_certified?: boolean
+          is_property_verified?: boolean | null
           lease_details?: string | null
           lease_end_date?: string | null
           lease_length?: number | null
@@ -1082,6 +1088,8 @@ export type Database = {
           furnish_level: string | null
           id: number | null
           is_complete: boolean | null
+          is_lister_certified: boolean | null
+          is_property_verified: boolean | null
           lease_details: string | null
           lease_end_date: string | null
           lease_length: number | null
@@ -1135,7 +1143,10 @@ export type Database = {
       }
     }
     Functions: {
-      [_ in never]: never
+      update_lister_certification: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never

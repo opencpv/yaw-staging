@@ -21,12 +21,12 @@ export const useFetchProperties = () => {
   let query = supabase
     .from("merged_standard_template_view")
     .select(
-      "id, property_id, property!inner (id, is_verified, is_best_value, is_realtors_choice, profiles!inner (id, is_certified)), property_type, description, city, bedrooms, monthly_amount, advance_payment_options, favorite_user_id, subtitle, neighbourhood, advance_period, viewing_fee",
+      "id, property_id, property!inner (id, is_best_value, is_realtors_choice), is_property_verified, is_lister_certified, property_type, description, city, bedrooms, monthly_amount, advance_payment_options, favorite_user_id, subtitle, neighbourhood, advance_period, viewing_fee",
     )
-    .order("property (is_verified)", { ascending: false })
+    .order("is_property_verified", { ascending: false })
     .order("property (is_realtors_choice)", { ascending: false })
     .order("property (is_best_value)", { ascending: false })
-    // .order("property!inner (profiles (is_certified))", { ascending: false })
+    .order("is_lister_certified", { ascending: false })
     .order("created_at", { ascending: false });
   if (searchString) {
     query = query.textSearch("query_string", `${formattedSearchString}`, {
@@ -36,10 +36,15 @@ export const useFetchProperties = () => {
   }
 
   if (filter === "realtor's choice") {
-    query = query.is("property.is_realtors_choice", true);
+    query = query.or(`is_realtors_choice.eq.true, is_best_value.eq.true`, {
+      // TODO: add is price drop
+      referencedTable: "property",
+    });
   }
   if (filter === "verified") {
-    query = query.is("property.is_verified", true);
+    query = query.or(
+      `is_property_verified.eq.true, is_lister_certified.eq.true`,
+    );
   }
   if (filter === "no viewing fee") {
     query = query.is("viewing_fee", null);
@@ -64,8 +69,13 @@ export const useFetchFeaturedListings = () => {
       const { data: listings } = await supabase
         .from("merged_standard_template_view")
         .select(
-          "id, property_id, property!inner (id, is_verified, profiles!inner (id, is_certified)), property_type, description, city, bedrooms, monthly_amount, advance_payment_options, favorite_user_id, subtitle, neighbourhood, advance_period, viewing_fee",
-        );
+          "id, property_id, property!inner (id, is_best_value, is_realtors_choice), is_property_verified, is_lister_certified, property_type, description, city, bedrooms, monthly_amount, advance_payment_options, favorite_user_id, subtitle, neighbourhood, advance_period, viewing_fee",
+        )
+        .order("is_property_verified", { ascending: false })
+        .order("property (is_realtors_choice)", { ascending: false })
+        .order("property (is_best_value)", { ascending: false })
+        .order("is_lister_certified", { ascending: false })
+        .order("created_at", { ascending: false });
       return listings;
     },
   });
