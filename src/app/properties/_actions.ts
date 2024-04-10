@@ -1,9 +1,7 @@
 "use server";
 
-import { createClient } from "@/lib/utils/supabase/auth/server";
+import supabase from "@/lib/utils/supabase/supabaseClient";
 import { revalidatePath } from "next/cache";
-
-const supabase = createClient();
 
 export const updateLikedProperty = async (
   userId: number | string,

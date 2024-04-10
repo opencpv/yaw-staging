@@ -49,7 +49,7 @@ const PropertiesListing = (props: Props) => {
         {listings?.map((listing) => (
           <ListingCard
             cardType="2"
-            propertyId={listing.id as number}
+            propertyId={listing.property_id as number}
             key={listing.id}
             href={addQueryParamsToUrl(`/properties/${listing.property_id}`, {
               property_type: listing.property_type,
@@ -67,7 +67,7 @@ const PropertiesListing = (props: Props) => {
             city={listing.city as string}
             neighbourhood={listing.neighbourhood as string}
             images={images} // TODO: check database
-            liked={listing.favorite_user_id === user?.id} // TODO: check implementation
+            liked={listing.favorite_user_id === user?.id}
             guarantee={
               listing.is_property_verified
                 ? ("Verified" as GuaranteeTag)

@@ -60,7 +60,7 @@ const FeaturedListingAndAds = (props: Props) => {
             {listings?.map((listing) => {
               return (
                 <ListingCard
-                  propertyId={listing.id as number}
+                  propertyId={listing.property_id as number}
                   key={listing.id}
                   href={addQueryParamsToUrl(
                     `/properties/${listing.property_id}`,
@@ -131,7 +131,7 @@ const FeaturedListingAndAds = (props: Props) => {
                       ))
                     : listings?.map((listing) => (
                         <ListingCard
-                          propertyId={listing.id as number}
+                          propertyId={listing.property_id as number}
                           key={listing.id}
                           href={addQueryParamsToUrl(
                             `/properties/${listing.property_id}`,

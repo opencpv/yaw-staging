@@ -7,8 +7,8 @@ import FavoriteModal from "../listing/FavoriteModal";
 import SignInRequiredModal from "../modals/SignInRequiredModal";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createClient } from "@/lib/utils/supabase/auth/client";
-// import { updateLikedProperty } from "@/app/properties/_actions";
+import supabase from "@/lib/utils/supabase/supabaseClient";
+import { updateLikedProperty } from "@/app/properties/_actions";
 
 type Props = {
   userId: string | number;
@@ -24,8 +24,6 @@ const LikeHeart = ({ liked, className, userId, propertyId }: Props) => {
   const { onOpen: toastOnOpen } = useToastDisclosure();
   const [signInModalOpen, setSignInModalOpen] = useState(false);
   const { user } = useAppStore();
-
-  const supabase = createClient();
 
   const { mutateAsync, mutate } = useMutation({
     mutationFn: async ({
@@ -72,12 +70,48 @@ const LikeHeart = ({ liked, className, userId, propertyId }: Props) => {
     },
   });
 
-  const toggleLiked = async () => {
-    // const { data, error } = await updateLikedProperty(userId, propertyId);
-    await mutateAsync({
-      userId: userId as string,
-      propertyId: propertyId as number,
-    });
+  // const toggleLiked = async () => {
+  //   // const { data, error } = await updateLikedProperty(userId, propertyId);
+  //   // await mutateAsync({
+  //   //   userId: userId as string,
+  //   //   propertyId: propertyId as number,
+  //   // });
+  //   setIsLiked(!isLiked);
+  // };
+
+  const handleDislike = async () => {
+    setIsLiked(!isLiked);
+    const { error } = await updateLikedProperty(userId, propertyId);
+    if (error) {
+      toastOnOpen(error.message, "error");
+      setIsLiked(!isLiked);
+    }
+  };
+
+  const handleLike = async () => {
+    if (user) {
+      setIsLiked(!isLiked);
+      const { error } = await updateLikedProperty(userId, propertyId);
+      if (error) {
+        toastOnOpen(error.message, "error");
+        setIsLiked(!isLiked);
+      }
+    } else if (!user) {
+      // store property id in session storage
+      sessionStorage.setItem(
+        "favoritePropertyId",
+        propertyId?.toString() || "",
+      );
+      sessionStorage.setItem("windowScrollHeight", window.scrollY.toString());
+      setSignInModalOpen(true);
+    }
+    // else {
+    //   setIsLiked(!isLiked);
+    //   setTimeout(() => {
+    //     // TODO: implement appropriately
+    //     onOpen();
+    //   }, 500);
+    // }
   };
 
   useEffect(() => {
@@ -92,36 +126,15 @@ const LikeHeart = ({ liked, className, userId, propertyId }: Props) => {
         behavior: "smooth",
       });
       onOpen(); // depends on whether the user has opted for the contacting
-      mutate({
-        userId: user.id,
-        propertyId: parseInt(propertyId),
-      });
+      // mutate({
+      //   userId: user.id,
+      //   propertyId: parseInt(propertyId),
+      // });
       // remove the property id from session storage
       sessionStorage.removeItem("favoritePropertyId");
       sessionStorage.removeItem("windowScrollHeight");
     }
-  }, [user, onOpen, mutate]);
-
-  const handleLike = () => {
-    if (user) {
-      toggleLiked();
-    }
-    if (!user) {
-      // store property id in session storage
-      sessionStorage.setItem(
-        "favoritePropertyId",
-        propertyId?.toString() || "",
-      );
-      sessionStorage.setItem("windowScrollHeight", window.scrollY.toString());
-      setSignInModalOpen(true);
-    } else {
-      toggleLiked();
-      setTimeout(() => {
-        // TODO: implement appropriately
-        onOpen();
-      }, 500);
-    }
-  };
+  }, [user, onOpen]);
 
   const handleSaveFavoriteOption = () => {
     onClose();
@@ -146,10 +159,10 @@ const LikeHeart = ({ liked, className, userId, propertyId }: Props) => {
         onOpenChange={onOpenChange}
         onClose={handleSaveFavoriteOption}
       />
-      {liked || isLiked ? (
+      {isLiked ? (
         <FaHeart
           className={`cursor-pointer ${isLiked && "ping"} ${className}`}
-          onClick={toggleLiked}
+          onClick={handleDislike}
         />
       ) : (
         <FaRegHeart
