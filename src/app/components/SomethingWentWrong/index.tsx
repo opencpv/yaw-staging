@@ -7,9 +7,10 @@ import Button from "@/components/__shared/ui/button/Button";
 
 type Props = {
   className?: string;
+  onTryAgain?: () => void;
 };
 
-function SomethingWentWrong({ className }: Props) {
+function SomethingWentWrong({ className, onTryAgain }: Props) {
   const router = useRouter();
   return (
     <div className={cn("h-screen w-full", className)}>
@@ -30,7 +31,9 @@ function SomethingWentWrong({ className }: Props) {
             </Button>
             <Button
               variant="outline"
-              onClick={() => router.refresh()}
+              onClick={() => {
+                onTryAgain ? onTryAgain() : router.refresh();
+              }}
               className="border border-accent-200 text-accent-200"
             >
               Try Again

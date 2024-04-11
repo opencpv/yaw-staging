@@ -48,6 +48,42 @@ export type Database = {
           },
         ]
       }
+      contact_owner_preference: {
+        Row: {
+          created_at: string
+          id: number
+          should_be_contacted: boolean
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          should_be_contacted?: boolean
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          should_be_contacted?: boolean
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_contact_owner_preference_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "distinct_messages_view"
+            referencedColumns: ["sender_id"]
+          },
+          {
+            foreignKeyName: "public_contact_owner_preference_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       contact_us: {
         Row: {
           company_name: string | null
@@ -840,7 +876,7 @@ export type Database = {
           id: number
           is_complete: boolean | null
           is_lister_certified: boolean
-          is_property_verified: boolean | null
+          is_property_verified: boolean
           lease_details: string | null
           lease_end_date: string | null
           lease_length: number | null
@@ -886,7 +922,7 @@ export type Database = {
           id?: number
           is_complete?: boolean | null
           is_lister_certified: boolean
-          is_property_verified?: boolean | null
+          is_property_verified: boolean
           lease_details?: string | null
           lease_end_date?: string | null
           lease_length?: number | null
@@ -932,7 +968,7 @@ export type Database = {
           id?: number
           is_complete?: boolean | null
           is_lister_certified?: boolean
-          is_property_verified?: boolean | null
+          is_property_verified?: boolean
           lease_details?: string | null
           lease_end_date?: string | null
           lease_length?: number | null

@@ -33,5 +33,7 @@ export const updateLikedProperty = async (
       .select();
   }
 
+  revalidatePath("/properties");
+
   return query;
 };

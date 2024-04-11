@@ -56,7 +56,8 @@ export const useFetchProperties = () => {
   const result = useOffsetInfiniteScrollQuery(query, {
     pageSize: 9,
     revalidateOnFocus: false,
-    revalidateIfStale: false,
+    revalidateIfStale: true,
+    revalidateAll: true,
   });
 
   return result;
@@ -78,6 +79,7 @@ export const useFetchFeaturedListings = () => {
         .order("created_at", { ascending: false });
       return listings;
     },
+    refetchOnMount: true,
   });
 
   return query;

@@ -39,10 +39,13 @@ const PropertiesListing = (props: Props) => {
           data={listings}
           error={error}
           isLoading={isLoading}
-          isValidating={isValidating}
+          // isValidating={isValidating}
           isLoadingComponent={<SkeletonListing count={3} />}
           errorComponent={
-            <SomethingWentWrong className="col-span-full h-fit" />
+            <SomethingWentWrong
+              className="col-span-full h-fit"
+              onTryAgain={() => loadMore && loadMore()}
+            />
           }
           emptyStateComponent={<PropertiesEmptyState />}
         />
@@ -67,7 +70,7 @@ const PropertiesListing = (props: Props) => {
             city={listing.city as string}
             neighbourhood={listing.neighbourhood as string}
             images={images} // TODO: check database
-            liked={listing.favorite_user_id === user?.id}
+            liked={listing.favorite_user_id === (user?.id as string)}
             guarantee={
               listing.is_property_verified
                 ? ("Verified" as GuaranteeTag)
