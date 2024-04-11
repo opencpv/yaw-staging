@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 
 import "swiper/css";
@@ -21,6 +21,11 @@ import { FiTrash2 } from "react-icons/fi";
 import { cn } from "@/lib/utils";
 
 const ListingCard = (props: Partial<ListingCardInterface>) => {
+  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const lastIndex = props.images?.lastIndexOf(
+    props.images[props.images.length - 1],
+  );
+
   return (
     <>
       <div
@@ -57,6 +62,9 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
                 ? "h-80 rounded-2xl"
                 : "h-72 rounded-t-md"
           } `}
+          onSlideChange={(swiper) => {
+            setActiveIndex(swiper.activeIndex);
+          }}
         >
           <ListingTags guarantee={props.guarantee} hint={props.hint} />
           {/* For be the first to know detail listings only */}
@@ -159,7 +167,37 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
           )}
 
           {/* Pagination bullets and button */}
-          <PaginationControls {...props} />
+          <div
+            className={cn(
+              `custom-l-prev absolute bottom-20 left-[5%] z-10 flex h-10 w-10 shrink-0 cursor-default items-center justify-center rounded-full bg-white transition-opacity md:pointer-events-none md:opacity-0 md:group-hover/parent:pointer-events-auto md:group-hover/parent:opacity-100 ${
+                activeIndex === 0 && "hidden"
+              }`,
+              {
+                hidden: props.showOnlyImage,
+                "bottom-48": props.cardType === "2",
+              },
+            )}
+          >
+            <MdChevronLeft className="text-lg text-neutral-700" />
+          </div>
+          <div
+            className={`custom-l-pagination bottom-40 w-full space-x-3 text-center ${
+              props.showOnlyImage && "hidden"
+            }`}
+          ></div>
+          <div
+            className={cn(
+              `custom-l-next absolute bottom-20 right-[5%] z-10 flex h-10 w-10 shrink-0 cursor-default items-center justify-center rounded-full bg-white transition-opacity md:pointer-events-none md:opacity-0 md:group-hover/parent:pointer-events-auto md:group-hover/parent:opacity-100 ${
+                lastIndex === activeIndex && "hidden"
+              }`,
+              {
+                hidden: props.showOnlyImage,
+                "bottom-48": props.cardType === "2",
+              },
+            )}
+          >
+            <MdChevronRight className="text-lg text-neutral-700" />
+          </div>
         </Swiper>
         {/* Listing info */}
         <ListingInfo {...props} />
@@ -169,39 +207,3 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
 };
 
 export default ListingCard;
-
-const PaginationControls = (props: Partial<ListingCardInterface>) => {
-  const swiper = useSwiper();
-
-  return (
-    <>
-      <div
-        className={cn(
-          "custom-l-prev absolute bottom-20 left-[5%] z-10 flex h-10 w-10 shrink-0 cursor-default items-center justify-center rounded-full bg-white opacity-0 transition-opacity md:pointer-events-none md:group-hover/parent:pointer-events-auto md:group-hover/parent:opacity-100",
-          {
-            hidden: props.showOnlyImage,
-            "bottom-48": props.cardType === "2",
-          },
-        )}
-      >
-        <MdChevronLeft className="text-lg text-neutral-700" />
-      </div>
-      <div
-        className={`custom-l-pagination bottom-40 w-full space-x-3 text-center ${
-          props.showOnlyImage && "hidden"
-        }`}
-      ></div>
-      <div
-        className={cn(
-          "custom-l-next absolute bottom-20 right-[5%] z-10 flex h-10 w-10 shrink-0 cursor-default items-center justify-center rounded-full bg-white opacity-0 transition-opacity md:pointer-events-none md:group-hover/parent:pointer-events-auto md:group-hover/parent:opacity-100",
-          {
-            hidden: props.showOnlyImage,
-            "bottom-48": props.cardType === "2",
-          },
-        )}
-      >
-        <MdChevronRight className="text-lg text-neutral-700" />
-      </div>
-    </>
-  );
-};
