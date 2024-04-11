@@ -1,73 +1,65 @@
-import { createServerClient, type CookieOptions } from '@supabase/ssr'
-import { NextResponse, type NextRequest } from 'next/server'
+import { NextRequest, NextResponse } from "next/server";
 
-export async function middleware(request: NextRequest) {
-  let response = NextResponse.next({
+export const middleware = async (req: NextRequest) => {
+  const origin = req.nextUrl.origin;
+  const pathname = req.nextUrl.pathname;
+  const requestHeaders = new Headers(req.headers);
+  requestHeaders.set("x-origin", origin);
+  requestHeaders.set("x-pathname", pathname);
+
+  const res = NextResponse.next({
     request: {
-      headers: request.headers,
+      headers: requestHeaders,
     },
-  })
+  });
 
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        get(name: string) {
-          return request.cookies.get(name)?.value
-        },
-        set(name: string, value: string, options: CookieOptions) {
-          request.cookies.set({
-            name,
-            value,
-            ...options,
-          })
-          response = NextResponse.next({
-            request: {
-              headers: request.headers,
-            },
-          })
-          response.cookies.set({
-            name,
-            value,
-            ...options,
-          })
-        },
-        remove(name: string, options: CookieOptions) {
-          request.cookies.set({
-            name,
-            value: '',
-            ...options,
-          })
-          response = NextResponse.next({
-            request: {
-              headers: request.headers,
-            },
-          })
-          response.cookies.set({
-            name,
-            value: '',
-            ...options,
-          })
-        },
-      },
-    }
-  )
+  // create a supabase client configured to use cookies
+  // const supabase = createMiddlewareClient<Database>({ req, res });
+  // const {
+  //   data: { session },
+  //   error,
+  // } = await supabase.auth.getSession();
 
-  await supabase.auth.getUser()
+  // if (error) return NextResponse.redirect(new URL("/login", req.url));
 
-  return response
-}
+  // if (session) {
+  //   if (
+  //     req.nextUrl.pathname.includes("/dashboard/renter") ||
+  //     req.nextUrl.pathname.includes("/dashboard/lister") ||
+  //     req.nextUrl.pathname.includes("/dashboard/service-pro")
+  //   ) {
+  //     return res;
+  //   }
+  //   if (req.nextUrl.pathname === "/login") {
+  //     return NextResponse.redirect(new URL("/dashboard", req.url));
+  //   }
+  // }
 
-export const config = {
-  matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * Feel free to modify this pattern to include more paths.
-     */
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
-  ],
-}
+  // if (!session) {
+  //   if (
+  //     req.nextUrl.pathname.includes("/dashboard/renter") ||
+  //     req.nextUrl.pathname.includes("/dashboard/lister") ||
+  //     req.nextUrl.pathname.includes("/dashboard/service-pro")
+  //   )
+  //     return NextResponse.redirect(new URL("/", req.url));
+  // }
+  return res;
+  // return NextResponse.redirect(new URL("/login", req.url));
+};
+
+// export const config = {
+//   matcher: [
+//     /**
+//      * Match all request paths "/dashboard/[currentRole]/" excepts for ones starting with:
+//      * - settings
+//      */
+//     // "/dashboard/renter/((?!settings).*)",
+//     // "/dashboard/lister/((?!settings).*)",
+//     // "/dashboard/service-pro/((?!settings).*)",
+//     "/dashboard/renter/:path*",
+//     "/dashboard/lister/:path*",
+//     "/dashboard/service-pro/:path*",
+// "/((?!_next/static|_next/image|favicon.ico).*)"
+
+//   ],
+// };

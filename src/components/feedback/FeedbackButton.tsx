@@ -10,20 +10,20 @@ type Props = {
 
 const FeedbackButton = (props: Props) => {
   return (
-    // <AOSWrapper animation="fade-right" className="w-fit">
-    <Feedback data={props.data}>
-      <div className="ml-5 inline-flex w-fit items-center">
-        <div
-          className={`relative z-20 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-t from-primary-500 to-primary-400 shadow-lg`}
-        >
-          <HiOutlineChatBubbleOvalLeftEllipsis className="text-3xl text-white" />
+    <AOSWrapper animation="fade-right" className="w-fit">
+      <Feedback data={props.data}>
+        <div className="ml-5 inline-flex w-fit items-center">
+          <div
+            className={`relative z-20 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-t from-primary-500 to-primary-400 shadow-lg`}
+          >
+            <HiOutlineChatBubbleOvalLeftEllipsis className="text-3xl text-white" />
+          </div>
+          <div className="relative left-[-12%] flex h-14 w-52 items-center justify-center rounded-r-[3rem] bg-gradient-to-b from-primary-500 to-primary-400 text-white">
+            Feedback
+          </div>
         </div>
-        <div className="relative left-[-12%] flex h-14 w-52 items-center justify-center rounded-r-[3rem] bg-gradient-to-b from-primary-500 to-primary-400 text-white">
-          Feedback
-        </div>
-      </div>
-    </Feedback>
-    // </AOSWrapper>
+      </Feedback>
+    </AOSWrapper>
   );
 };
 

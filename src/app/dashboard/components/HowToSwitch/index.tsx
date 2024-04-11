@@ -6,12 +6,11 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { useEffect, useState } from "react";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import Image from "next/image";
-import { supabase } from "@/supabase/client";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useRouter } from "next/navigation";
 import { Role, useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
-import { createClient } from "@/lib/utils/supabase/client";
+import { createClient } from "@/lib/utils/supabase/auth/client";
 
 type Props = {
   open: boolean;

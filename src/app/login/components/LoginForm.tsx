@@ -7,8 +7,7 @@ import ButtonMenu from "@/components/__shared/ui/button/ButtonMenu";
 import { useEffect } from "react";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useUserData } from "@/lib/custom-hooks/database/useUserData";
-import { supabase } from "@/supabase/client";
-import { createClient } from "@/lib/utils/supabase/client";
+import { createClient } from "@/lib/utils/supabase/auth/client";
 
 export const LoginForm = () => {
   const router = useRouter();

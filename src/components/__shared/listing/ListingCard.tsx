@@ -11,22 +11,15 @@ import "@/styles/custom-swiper.css";
 import { Pagination, Navigation } from "swiper/modules";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  MdChevronLeft,
-  MdChevronRight,
-  MdOutlineRemoveRedEye,
-} from "react-icons/md";
+import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import ListingInfo from "./ListingInfo";
 import ListingDeals from "./ListingDeals";
 import { ListingCardInterface } from "../../../../interfaces";
-import { FaTrash } from "react-icons/fa";
-import { IoEyeOutline } from "react-icons/io5";
 import Button from "../ui/button/Button";
-import { FaHeart, FaRegEyeSlash } from "react-icons/fa6";
 import ListingCardButton from "./ListingCardButton";
 import { FiTrash2 } from "react-icons/fi";
 
-const ListingCard = (props: ListingCardInterface) => {
+const ListingCard = (props: Partial<ListingCardInterface>) => {
   return (
     <>
       <div
@@ -61,10 +54,10 @@ const ListingCard = (props: ListingCardInterface) => {
               ? "h-[26rem] rounded-2xl"
               : props.cardType === "2"
                 ? "h-80 rounded-2xl"
-                : "h-52 rounded-t-lg"
+                : "h-72 rounded-t-md"
           } `}
         >
-          <ListingDeals membership={props.membership} deal={props.deal} />
+          <ListingDeals guarantee={props.guarantee} hint={props.hint} />
           {/* For be the first to know detail listings only */}
           <div
             className={
@@ -149,12 +142,7 @@ const ListingCard = (props: ListingCardInterface) => {
               <SwiperSlide key={index}>
                 {" "}
                 {/* listing images with pagination and controls */}
-                <Link
-                  href={`${props.href}?property_name=${props.propertyName}&city=${props.city}&price=${props.price}&payment_structure=${props.paymentStructure}&amount_per_month=${props.monthlyAmount}&rating=${props.ratingCount}&property_description=${props.propertyDescription}`.replaceAll(
-                    " ",
-                    "_",
-                  )}
-                >
+                <Link href={`${props.href}`}>
                   <div className="relative h-full w-full">
                     <Image
                       src={image}
@@ -191,21 +179,7 @@ const ListingCard = (props: ListingCardInterface) => {
           </div>
         </Swiper>
         {/* Listing info */}
-        <ListingInfo
-          id={props.id}
-          liked={props.liked}
-          monthlyAmount={props.monthlyAmount}
-          paymentStructure={props.paymentStructure}
-          price={props.price}
-          propertyDescription={props.propertyDescription}
-          propertyName={props.propertyName}
-          city={props.city}
-          rating={props.rating}
-          ratingCount={props.ratingCount}
-          className={`bg-white text-neutral-800 ${
-            props.showOnlyImage && "hidden"
-          }`}
-        />
+        <ListingInfo {...props} />
         {/* Deals */}
       </div>
     </>

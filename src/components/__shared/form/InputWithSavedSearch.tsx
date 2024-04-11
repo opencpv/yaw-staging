@@ -2,15 +2,19 @@
 
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import React from "react";
+import React, { FormEvent } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import SaveSearchModal from "../modals/SaveSearchModal";
+import Button from "../ui/button/Button";
+import { usePathname } from "next/navigation";
 
 type Props = {
   className?: string;
   inputClassName?: string;
   searchIconColor?: string;
   separatorClassName?: string;
+  onSubmit?: (e: FormEvent<HTMLFormElement>) => void;
+  onInput?: (e: React.FormEvent<HTMLInputElement>) => void;
 };
 
 const InputWithSavedSearch = ({
@@ -18,24 +22,35 @@ const InputWithSavedSearch = ({
   inputClassName,
   searchIconColor,
   separatorClassName,
+  onSubmit,
+  onInput,
 }: Props) => {
   const [showDivider, setShowDivider] = React.useState(false);
+  const pathname = usePathname();
 
   return (
     <div className={cn("relative flex w-full items-center", className)}>
-      <div className="relative grid h-full w-full grid-cols-12 items-center">
+      <form
+        className="relative grid h-full w-full grid-cols-12 items-center"
+        onSubmit={(e) => {
+          e.preventDefault();
+          onSubmit?.(e);
+        }}
+      >
         <input
           type="search"
           className={cn(
-            "col-span-9 w-full bg-transparent text-neutral-800 outline-none focus:outline-none",
+            "col-span-10 w-full bg-transparent text-neutral-800 outline-none focus:outline-none",
             inputClassName,
           )}
           placeholder="Madina, Accra"
-          onInput={(e) =>
+          onInput={(e) => {
             e.currentTarget.value !== ""
               ? setShowDivider(true)
-              : setShowDivider(false)
-          }
+              : setShowDivider(false);
+
+            onInput?.(e);
+          }}
         />
         <div
           className={cn(
@@ -44,8 +59,10 @@ const InputWithSavedSearch = ({
           )}
           style={{ visibility: showDivider ? "visible" : "hidden" }}
         ></div>
-        <Link
-          href="/properties?sk=true"
+        <Button
+          href={pathname === "/properties" ? undefined : "/properties?sk=true"}
+          type="submit"
+          isIconOnly
           className="col-span-1 mx-auto mr-2 xs:mr-auto"
           title="search"
         >
@@ -54,11 +71,12 @@ const InputWithSavedSearch = ({
             color={searchIconColor ?? "#737373"}
             className="mx-auto"
           />
-        </Link>
-        <div className="deep-green-hover col-span-1 grid h-full w-full place-items-center">
+        </Button>
+        {/* !!! COMMENTED OUT FOR NOW */}
+        {/* <div className="deep-green-hover col-span-1 grid h-full w-full place-items-center">
           <SaveSearchModal className="mx-auto" />
-        </div>
-      </div>
+        </div> */}
+      </form>
     </div>
   );
 };

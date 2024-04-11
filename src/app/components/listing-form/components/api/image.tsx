@@ -1,7 +1,7 @@
-import supabase from "@/lib/utils/supabaseClient";
+import supabase from "@/lib/utils/supabase/supabaseClient";
 
 export const submitImage = async (property: number, images: any) => {
-  const imageRecords = images.map((image : any) => ({
+  const imageRecords = images.map((image: any) => ({
     property_id: property,
     filename: image?.filename,
     filesize: image?.preview?.filesize,

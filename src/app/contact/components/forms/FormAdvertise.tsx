@@ -1,7 +1,7 @@
 import { Form, Formik } from "formik";
 import React from "react";
 import { E164Number } from "libphonenumber-js/core";
-import supabase from "@/lib/utils/supabaseClient";
+import supabase from "@/lib/utils/supabase/supabaseClient";
 import { sendContactUsEmail } from "../../api";
 import TextInput from "@/components/__shared/form/TextInput";
 import InputPhoneNumber from "@/components/__shared/form/InputPhoneNumber";

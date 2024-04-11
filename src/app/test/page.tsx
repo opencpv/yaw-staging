@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 "use client";
-import supabase from "@/lib/utils/supabaseClient";
+import supabase from "@/lib/utils/supabase/supabaseClient";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import axios from "axios";
 import Head from "next/head";

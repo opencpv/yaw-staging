@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { HTMLAttributeAnchorTarget } from "react";
 import { Button as NextUIButton } from "@nextui-org/react";
 import { cn } from "@nextui-org/react";
 import { FaArrowRight } from "react-icons/fa";
@@ -13,6 +13,7 @@ interface Props extends React.HTMLAttributes<HTMLButtonElement> {
   color?: "primary" | "accent" | "white" | "gradient" | "black";
   borderColor?: string;
   isIconOnly?: boolean;
+  isLoading?: boolean;
   disabled?: boolean;
   arrowIcon?: boolean;
   radius?: "sm" | "full";
@@ -21,6 +22,7 @@ interface Props extends React.HTMLAttributes<HTMLButtonElement> {
   replace?: boolean;
   title?: string;
   greenHover?: boolean;
+  target?: HTMLAttributeAnchorTarget;
   onClick?: (e?: any) => void;
 }
 
@@ -31,6 +33,7 @@ const Button: React.FC<Props> = ({
   variant,
   color,
   isIconOnly,
+  isLoading,
   disabled,
   arrowIcon,
   radius,
@@ -41,6 +44,7 @@ const Button: React.FC<Props> = ({
   replace,
   greenHover,
   type,
+  target,
   ...props
 }: Props) => {
   if (href)
@@ -48,10 +52,12 @@ const Button: React.FC<Props> = ({
       <NextUIButton
         as={Link}
         replace={replace}
+        target={target}
         href={href}
         isDisabled={disabled}
         title={title}
         isIconOnly={isIconOnly}
+        isLoading={isLoading}
         type={type}
         className={cn(
           `min-h-fit max-w-sm space-x-2 whitespace-normal rounded-md bg-transparent px-10 py-3 font-[600] ${
@@ -100,6 +106,7 @@ const Button: React.FC<Props> = ({
         isDisabled={disabled}
         title={title}
         isIconOnly={isIconOnly}
+        isLoading={isLoading}
         type={type}
         className={cn(
           `min-h-fit max-w-sm space-x-2 whitespace-normal rounded-md bg-transparent p-3 px-10 font-[600] ${

@@ -2,7 +2,7 @@
 import Loader from "@/components/__shared/loader/Loader";
 import { useGetUser } from "@/lib/custom-hooks/database/useGetUser";
 import { useUserData } from "@/lib/custom-hooks/database/useUserData";
-import { createClient } from "@/lib/utils/supabase/client";
+import { createClient } from "@/lib/utils/supabase/auth/client";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";

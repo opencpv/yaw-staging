@@ -1,5 +1,4 @@
-import { createClient } from "@/lib/utils/supabase/client";
-import { supabase } from "@/supabase/client";
+import { createClient } from "@/lib/utils/supabase/auth/client";
 import { useEffect, useState } from "react";
 
 export const useGetUser = (): User | null => {

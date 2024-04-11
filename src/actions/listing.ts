@@ -1,6 +1,6 @@
 "use server";
 
-import supabase from "@/lib/utils/supabaseClient";
+import supabase from "@/lib/utils/supabase/supabaseClient";
 
 export const getListings = async () => {
   const { data, error } = await supabase.from("standard_template").select("*");

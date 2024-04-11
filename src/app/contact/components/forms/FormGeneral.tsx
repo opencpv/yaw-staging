@@ -1,7 +1,7 @@
 import { Form, Formik } from "formik";
 import React, { useRef } from "react";
 import { E164Number } from "libphonenumber-js/core";
-import supabase from "@/lib/utils/supabaseClient";
+import supabase from "@/lib/utils/supabase/supabaseClient";
 import { sendContactUsEmail } from "../../api";
 import TextInput from "@/components/__shared/form/TextInput";
 import InputPhoneNumber from "@/components/__shared/form/InputPhoneNumber";
@@ -59,7 +59,7 @@ const FormGeneral = (props: Props) => {
               message: values.message,
               file_url: values.fileUrl,
             },
-          ])  
+          ])
           .select()
           .then(({ data, error }) => {
             if (error) {

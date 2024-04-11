@@ -3,7 +3,7 @@ import Modal from "@/components/__shared/modals/Modal";
 import React from "react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { useRouter } from "next/navigation";
-import supabase from "@/lib/utils/supabaseClient";
+import supabase from "@/lib/utils/supabase/supabaseClient";
 
 type ModalProps = {
   isOpen: boolean;

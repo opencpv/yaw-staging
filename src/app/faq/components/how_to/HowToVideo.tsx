@@ -25,7 +25,7 @@ const HowToVideo = (props: Props) => {
           <iframe
             src={props.src}
             title={props.heading}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
             className="absolute inset-0 h-full w-full rounded-3xl"
             ref={videoRef}
           ></iframe>
