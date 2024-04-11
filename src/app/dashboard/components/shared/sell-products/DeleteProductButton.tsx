@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 interface Props {
   id: number;
-  table: string;
+  table: TableNames;
 }
 const DeleteProductButton = ({ id, table }: Props) => {
   const router = useRouter();

@@ -6,7 +6,7 @@ import Button from "../ui/button/Button";
 import { handleFavoriteDialogSave } from "@/components/actions";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
-import { useSessionStorage } from "@uidotdev/usehooks";
+import { useLocalStorage, useSessionStorage } from "@uidotdev/usehooks";
 
 type ModalProps = {
   isOpen: boolean;
@@ -40,6 +40,8 @@ const ModalHeader = ({ onClose }: { onClose: () => void }) => {
   const [isLoading, setIsLoading] = useState(false);
   const { user } = useAppStore();
   const { onOpen: onToastOpen } = useToastDisclosure();
+  const [shouldOpenModal, setShouldOpenModal] =
+    useLocalStorage<boolean>("shouldOpenModal");
 
   const [contactUponFavorite] = useSessionStorage("contactUponFavorite", true);
   const shouldBeContacted = contactUponFavorite ? true : false;
@@ -78,6 +80,8 @@ const ModalHeader = ({ onClose }: { onClose: () => void }) => {
             }
             setIsLoading(false);
             handleSaveFavoriteOption();
+            setShouldOpenModal(!shouldOpenModal);
+            localStorage.removeItem("shouldOpenModal");
           }}
         >
           Save

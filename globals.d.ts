@@ -2,6 +2,7 @@ import { Database as DB } from "./database.types";
 
 declare global {
   type Database = DB;
+  type TableNames = keyof DB["public"]["Tables"];
   type ApplicationAutosave =
     DB["public"]["Tables"]["application_autosave"]["Row"];
   type ContactUs = DB["public"]["Tables"]["contact_us"]["Row"];

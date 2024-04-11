@@ -5,12 +5,14 @@ import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { useRouter } from "next/navigation";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 
+type TableNames = keyof Database["public"]["Tables"];
+
 type ModalProps = {
   isOpen: boolean;
   onOpenChange: () => void;
   onClose: () => void;
   id: string;
-  table: string;
+  table: TableNames;
   label?: string;
   backdropClassName?: string;
   handleDestruction?: () => void;
@@ -19,7 +21,7 @@ type ModalProps = {
 type ModalFooterProps = {
   onClose: () => void;
   id: string;
-  table: string;
+  table: TableNames;
 };
 
 type ModalBodyProps = {

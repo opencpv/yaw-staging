@@ -13,7 +13,7 @@ import DestructiveModal from "@/components/__shared/modals/DestructiveModal";
 
 type Props = {
   id: string;
-  table: string;
+  table: TableNames;
 };
 
 const Actions = ({ id, table }: Props) => {

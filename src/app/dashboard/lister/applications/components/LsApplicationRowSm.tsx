@@ -46,7 +46,7 @@ const LsApplicationRowSm = ({
         onOpenChange={onOpenChange}
         label="Are you sure you want to delete this application?"
         id=""
-        table=""
+        table="regular_application"
       />
       <TableRowSm>
         {/* Applicant */}

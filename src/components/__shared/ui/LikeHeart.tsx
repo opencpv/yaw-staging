@@ -7,6 +7,7 @@ import SignInRequiredModal from "../modals/SignInRequiredModal";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { updateLikedProperty } from "@/app/properties/_actions";
 import { getUserFavorite } from "@/components/services";
+import { useLocalStorage, useSessionStorage } from "@uidotdev/usehooks";
 
 type Props = {
   userId: string | number;
@@ -20,15 +21,12 @@ const LikeHeart = ({ liked, className, userId, propertyId }: Props) => {
   const { onOpen, isOpen, onOpenChange, onClose } = useDisclosure();
   const { onOpen: toastOnOpen } = useToastDisclosure();
   const [signInModalOpen, setSignInModalOpen] = useState(false);
-  const [shouldOpenModal, setShouldOpenModal] = useState(false);
+  const [shouldOpenModal, setShouldOpenModal] = useLocalStorage("shouldOpenModal", false)
   const { user } = useAppStore();
-
-  console.log(shouldOpenModal);
 
   const handleContactPreference = React.useCallback(async () => {
     if (shouldOpenModal) {
       onOpen();
-      setShouldOpenModal(false);
     }
   }, [onOpen, shouldOpenModal]);
 
@@ -68,12 +66,11 @@ const LikeHeart = ({ liked, className, userId, propertyId }: Props) => {
   useEffect(() => {
     const fetchFavorite = async () => {
       const { data: favorite } = await getUserFavorite(user?.id as string);
-      console.log("favorite", favorite);
       setShouldOpenModal(!favorite);
     };
 
     fetchFavorite();
-  }, [user?.id, isLiked]);
+  }, [user?.id, setShouldOpenModal]);
 
   useEffect(() => {
     // this happens after the user signs in following favoriting
