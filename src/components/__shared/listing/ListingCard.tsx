@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -18,12 +18,13 @@ import { ListingCardInterface } from "../../../../interfaces";
 import Button from "../ui/button/Button";
 import ListingCardButton from "./ListingCardButton";
 import { FiTrash2 } from "react-icons/fi";
+import { cn } from "@/lib/utils";
 
 const ListingCard = (props: Partial<ListingCardInterface>) => {
   return (
     <>
       <div
-        className={`relative cursor-default ${props.className} ${
+        className={`group/parent relative cursor-default ${props.className} ${
           props.cardType === "2"
             ? null
             : "rounded-b-lg rounded-t-lg shadow-[1px_3px_13px_rgba(0,_0,_0,_0.10)]"
@@ -49,7 +50,7 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
                 }
           }
           modules={[Pagination, Navigation]}
-          className={`listing-card-slider group relative w-full ${
+          className={`listing-card-slider group/parent relative w-full ${
             props.cardType === "2" && !props.showOnlyImage
               ? "h-[26rem] rounded-2xl"
               : props.cardType === "2"
@@ -80,7 +81,7 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
           <div
             className={
               props.isMyFavoritePage || props.isRecommendationsPage
-                ? "absolute inset-0 z-30 flex h-full w-full -translate-x-full items-center justify-center rounded-[inherit] bg-black bg-opacity-30 transition-all delay-500 group-hover:translate-x-0"
+                ? "group/parent-hover:translate-x-0 absolute inset-0 z-30 flex h-full w-full -translate-x-full items-center justify-center rounded-[inherit] bg-black bg-opacity-30 transition-all delay-500"
                 : "hidden"
             }
           >
@@ -158,25 +159,7 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
           )}
 
           {/* Pagination bullets and button */}
-          <div
-            className={`custom-l-prev absolute left-[5%] z-10 flex h-10 w-10 shrink-0 cursor-default items-center justify-center rounded-full bg-white ${
-              props.cardType === "2" ? "bottom-48" : "bottom-20"
-            } ${props.showOnlyImage && "hidden"}`}
-          >
-            <MdChevronLeft className="text-lg text-neutral-700" />
-          </div>
-          <div
-            className={`custom-l-pagination bottom-40 w-full space-x-3 text-center ${
-              props.showOnlyImage && "hidden"
-            }`}
-          ></div>
-          <div
-            className={`custom-l-next absolute right-[5%] z-10 flex h-10 w-10 shrink-0 cursor-default items-center justify-center rounded-full bg-white ${
-              props.cardType === "2" ? "bottom-48" : "bottom-20"
-            } ${props.showOnlyImage && "hidden"}`}
-          >
-            <MdChevronRight className="text-lg text-neutral-700" />
-          </div>
+          <PaginationControls {...props} />
         </Swiper>
         {/* Listing info */}
         <ListingInfo {...props} />
@@ -186,3 +169,39 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
 };
 
 export default ListingCard;
+
+const PaginationControls = (props: Partial<ListingCardInterface>) => {
+  const swiper = useSwiper();
+
+  return (
+    <>
+      <div
+        className={cn(
+          "custom-l-prev absolute bottom-20 left-[5%] z-10 flex h-10 w-10 shrink-0 cursor-default items-center justify-center rounded-full bg-white opacity-0 transition-opacity md:pointer-events-none md:group-hover/parent:pointer-events-auto md:group-hover/parent:opacity-100",
+          {
+            hidden: props.showOnlyImage,
+            "bottom-48": props.cardType === "2",
+          },
+        )}
+      >
+        <MdChevronLeft className="text-lg text-neutral-700" />
+      </div>
+      <div
+        className={`custom-l-pagination bottom-40 w-full space-x-3 text-center ${
+          props.showOnlyImage && "hidden"
+        }`}
+      ></div>
+      <div
+        className={cn(
+          "custom-l-next absolute bottom-20 right-[5%] z-10 flex h-10 w-10 shrink-0 cursor-default items-center justify-center rounded-full bg-white opacity-0 transition-opacity md:pointer-events-none md:group-hover/parent:pointer-events-auto md:group-hover/parent:opacity-100",
+          {
+            hidden: props.showOnlyImage,
+            "bottom-48": props.cardType === "2",
+          },
+        )}
+      >
+        <MdChevronRight className="text-lg text-neutral-700" />
+      </div>
+    </>
+  );
+};
