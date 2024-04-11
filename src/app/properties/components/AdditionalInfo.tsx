@@ -3,8 +3,8 @@ import { cn } from "@/lib/utils";
 import React from "react";
 
 type Props = {
-  className?: string;
   children: React.ReactNode;
+  className?: string;
 };
 
 const AdditionalInfo = ({ children, className }: Props) => {

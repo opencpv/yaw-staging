@@ -13,10 +13,10 @@ import { cn } from "@/lib/utils";
 
 type Props = {
   availableFrom: string;
-  agentFee: number;
-  viewingFee: number;
-  refundableSecurityDeposit: number;
   utilities: string[];
+  refundableSecurityDeposit?: number;
+  agentFee?: number;
+  viewingFee?: number;
   thingsToKnow?: string;
   advancePeriod?: number;
 };
@@ -62,20 +62,32 @@ const PropertyDetailsPayment = (props: Props) => {
                   Atque illo dolore voluptatum."
           className="mt-2"
         />
-        <AdditionalInfo className={`${!props.agentFee && "hidden"}`}>
+        <AdditionalInfo
+          className={cn("", {
+            hidden: !props.agentFee,
+          })}
+        >
           <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2 border-b py-2 last:border-b-0">
             <p className="w-full flex-1">Agent</p>
-            <p className="w-full flex-1">GHS {formatPrice(props.agentFee)}</p>
+            <p className="w-full flex-1">
+              GHS {props.agentFee && formatPrice(props.agentFee)}
+            </p>
             <Button className="flex min-w-[8rem] flex-1 items-center justify-center gap-2 justify-self-end rounded-lg bg-secondary-400 p-2 text-white">
               Add to cart
               <FaPlusCircle className="shrink-0" />
             </Button>
           </div>
         </AdditionalInfo>
-        <AdditionalInfo className={`${!props.viewingFee && "hidden"}`}>
+        <AdditionalInfo
+          className={cn("", {
+            hidden: !props.viewingFee,
+          })}
+        >
           <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2 border-b py-2 last:border-b-0">
             <p className="w-full flex-1">Viewing</p>
-            <p className="w-full flex-1">GHS {formatPrice(props.viewingFee)}</p>
+            <p className="w-full flex-1">
+              GHS {props.viewingFee && formatPrice(props.viewingFee)}
+            </p>
             <Button className="flex min-w-[8rem] flex-1 items-center justify-center gap-2 justify-self-end rounded-lg bg-secondary-400 p-2 text-white">
               Add to cart
               <FaPlusCircle className="shrink-0" />
@@ -83,11 +95,17 @@ const PropertyDetailsPayment = (props: Props) => {
           </div>
         </AdditionalInfo>
         <AdditionalInfoTitle title="Property Fees" />
-        <AdditionalInfo>
+        <AdditionalInfo
+          className={cn("", {
+            hidden: !props.refundableSecurityDeposit,
+          })}
+        >
           <div className="flex flex-wrap justify-between gap-2">
             <p className="">Refundable Security Deposit</p>
             <p className="">
-              GHS {formatPrice(props.refundableSecurityDeposit)}
+              GHS{" "}
+              {props.refundableSecurityDeposit &&
+                formatPrice(props.refundableSecurityDeposit)}
             </p>
           </div>
         </AdditionalInfo>

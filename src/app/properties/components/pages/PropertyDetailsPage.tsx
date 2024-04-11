@@ -165,7 +165,7 @@ const PropertyDetailsPage = ({ params }: Props) => {
 
                       <ApplicationForm type="simple" />
                       <PropertyDetailsFigures
-                        monthlyRent={22000}
+                        monthlyRent={listing?.monthly_amount as number}
                         bedroomTotal={listing?.bedrooms as number}
                         bathroomTotal={listing?.bathrooms as number}
                         squareMeter={{ from: 468, to: 967 }}

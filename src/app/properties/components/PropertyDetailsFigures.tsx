@@ -28,7 +28,7 @@ const PropertyDetailsFigures = ({
         </h4>
         <p className="text-center sm:text-start">
           <span className="mr-2 font-[600]">GHS </span>
-          {formatPrice(monthlyRent)}
+          {(monthlyRent && formatPrice(monthlyRent)) || "-"}
         </p>
       </div>
       <div className="flex flex-col gap-1 px-5 py-2 sm:py-0">
