@@ -9,9 +9,9 @@ import { HiOutlinePencil } from "react-icons/hi";
 import UserOverviewMV from "./UserOverviewMV";
 import LargeButton from "@/app/dashboard/lister/properties/components/LargeButton";
 import { TbBuildingCommunity } from "react-icons/tb";
-import AOSWrapper from "@/components/__shared/AOSWrapper";
 import { BiInfoCircle } from "react-icons/bi";
 import { useAppStore } from "@/store/dashboard/AppStore";
+import { AiOutlineUser } from "react-icons/ai";
 
 const UserOverview = ({
   name,
@@ -88,13 +88,19 @@ const UserOverview = ({
             </h3>
             <div className="flex max-h-60 items-center gap-x-6 gap-y-3 rounded-xl bg-white p-8 py-16 shadow-2xl">
               <div className="relative h-32 w-32 rounded-xl shadow-lg">
-                <Image
-                  src={picture}
-                  alt={name}
-                  className="rounded-xl"
-                  fill
-                  style={{ objectFit: "cover" }}
-                />
+                {picture ? (
+                  <Image
+                    src={picture}
+                    alt={name}
+                    className="rounded-[inherit]"
+                    fill
+                    style={{ objectFit: "cover" }}
+                  />
+                ) : (
+                  <div className="grid h-full w-full place-items-center rounded-[inherit] bg-neutral-100">
+                    <AiOutlineUser size={32} />
+                  </div>
+                )}
               </div>
               <div className="space-y-2">
                 <h4 className="">{name}</h4>
