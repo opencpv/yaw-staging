@@ -14,8 +14,8 @@ type Props = {
   picture: string;
   rating: number;
   reviews: number;
-  telephone: string;
-  whatsappNumber: string;
+  telephone?: string;
+  whatsappNumber?: string;
   id?: string;
 };
 
@@ -24,11 +24,11 @@ const PropertyOwnerInfo = (props: Props) => {
   return (
     <AOSWrapper
       animation="fade-up"
-      className="flex items-center justify-center w-full mx-auto"
+      className="mx-auto flex w-full items-center justify-center"
     >
-      <div className="flex flex-col items-center w-full gap-10 mt-12 sm:w-11/12">
+      <div className="mt-12 flex w-full flex-col items-center gap-10 sm:w-11/12">
         <div className="flex items-center gap-10 font-[600]">
-          <div className="relative w-24 h-24 rounded-full">
+          <div className="relative h-24 w-24 rounded-full">
             <Image
               src={images.StockImage}
               className="rounded-full transition-all hover:scale-105"
@@ -38,27 +38,36 @@ const PropertyOwnerInfo = (props: Props) => {
               title={props.name}
             />
           </div>
-          <div className="flex flex-col items-center gap-2 text-primary-500 text-xl min-[360px]:flex-row">
+          <div className="flex flex-col items-center gap-2 text-xl text-primary-500 min-[360px]:flex-row">
             <FaStar className="text-yellow-400" />
-            <p className="underline cursor-pointer">{props.rating}</p>
+            <p className="cursor-pointer underline">{props.rating}</p>
           </div>
-          <p className="text-[#93B5BC] text-xl">{props.reviews} Reviews</p>
+          <p className="text-xl text-[#93B5BC]">{props.reviews} Reviews</p>
         </div>
         {/* Contact this property */}
-        <div className="flex flex-col items-center w-full gap-2 px-10 py-8 border border-neutral-300 rounded-xl">
-          <h2 className="text-center capitalize text-neutral-800 font-[600] text-2xl sm:w-9/12">
+        <div className="flex w-full flex-col items-center gap-2 rounded-xl border border-neutral-300 px-10 py-8">
+          <h2 className="text-center text-2xl font-[600] capitalize text-neutral-800 sm:w-9/12">
             Contact This Property
           </h2>
-          <ButtonCall
+
+          {props.telephone && (
+            <ButtonCall
+              color="gradient"
+              phoneNumber="0023434331"
+              className="py-7"
+            />
+          )}
+          <ButtonMessage
+            id={props.id as string}
             color="gradient"
-            phoneNumber="0023434331"
             className="py-7"
           />
-          <ButtonMessage id={props.id as string} color="gradient" className="py-7" />
-          <ButtonWhatsApp color="gradient" className="py-7" />
+          {props.whatsappNumber && (
+            <ButtonWhatsApp color="gradient" className="py-7" />
+          )}
         </div>
         {/* Report issue */}
-        <div className="relative self-start -top-6 mb-10">
+        <div className="relative -top-6 mb-10 self-start">
           <ReportIssue />
         </div>
       </div>

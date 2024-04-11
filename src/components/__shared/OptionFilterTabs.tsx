@@ -110,6 +110,7 @@ const OptionFilterTabs = (
                 )}
               </div>
             }
+            tabIndex={0}
           />
         ))}
       </Tabs>

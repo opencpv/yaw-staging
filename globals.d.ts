@@ -1,11 +1,10 @@
-import { Database as DB } from "./database.types";
+import { Database as DB, Tables, Enums } from "./database.types";
 
 declare global {
   type Database = DB;
   type TableNames = keyof DB["public"]["Tables"];
-  type ApplicationAutosave =
-    DB["public"]["Tables"]["application_autosave"]["Row"];
-  type ContactUs = DB["public"]["Tables"]["contact_us"]["Row"];
+  type ApplicationAutosave = Tables<"application_autosave">;
+  type ContactUs = Tables<"contact_us">;
   type DistinctMessage = DB["public"]["Views"]["distinct_messages"]["Row"];
   type FAQ = DB["public"]["Tables"]["faq"]["Row"];
   type ListingAutosave = DB["public"]["Tables"]["listing_autosave"]["Row"];

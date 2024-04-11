@@ -6,9 +6,9 @@ import { BsInfoCircle } from "react-icons/bs";
 
 type Props = {
   monthlyRent: number;
-  bedroomTotal: number;
-  bathroomTotal: number;
-  squareMeter: { from: number; to: number };
+  bedroomTotal?: number;
+  bathroomTotal?: number;
+  squareMeter?: { from: number; to: number };
 };
 
 const PropertyDetailsFigures = ({
@@ -35,20 +35,26 @@ const PropertyDetailsFigures = ({
         <h4 className="text-center text-sm font-[400] text-primary-400">
           Bedrooms
         </h4>
-        <p className="text-center">{bedroomTotal}</p>
+        <p className="text-center">{bedroomTotal || "-"}</p>
       </div>
       <div className="flex flex-col gap-1 px-5 py-2 sm:py-0">
         <h4 className="text-center text-sm font-[400] text-primary-400">
           Bathrooms
         </h4>
-        <p className="text-center">{bathroomTotal}</p>
+        <p className="text-center">{bathroomTotal || "-"}</p>
       </div>
       <div className="flex flex-col gap-1 px-5 py-2 sm:py-0">
         <h4 className="text-center text-sm font-[400] text-primary-400">
           Square Meter
         </h4>
         <p className="text-center">
-          {squareMeter.from} - {squareMeter.to} M<sup>2</sup>
+          {squareMeter ? (
+            <>
+              {squareMeter.from} - {squareMeter.to} M<sup>2</sup>
+            </>
+          ) : (
+            <span>-</span>
+          )}
         </p>
       </div>
     </div>

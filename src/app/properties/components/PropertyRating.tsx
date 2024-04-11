@@ -1,6 +1,6 @@
 import React from "react";
-import ReviewComment from "../../components/ReviewComment";
-import ReviewCount from "../../components/ReviewCount";
+import ReviewComment from "./ReviewComment";
+import ReviewCount from "./ReviewCount";
 import { HiOutlineHomeModern, HiStar } from "react-icons/hi2";
 import Button from "@/components/__shared/ui/button/Button";
 import { BsBookmarkStarFill } from "react-icons/bs";

@@ -85,6 +85,25 @@ export const useFetchFeaturedListings = () => {
   return query;
 };
 
+export const useFetchPropertyDetails = (propertyId: number) => {
+  const query = useQuery({
+    queryKey: ["property_details", propertyId],
+    queryFn: async () => {
+      const { data: listing } = await supabase
+        .from("merged_standard_template_view")
+        .select(
+          "*, property!inner (id, profiles!inner (id, fullname, avatar_url, profile_img, phone, whatsapp))",
+        )
+        .eq("property_id", propertyId)
+        .single();
+      return listing;
+    },
+    refetchOnMount: true,
+  });
+
+  return query;
+};
+
 const formatString = (str: string): string => {
   return str
     .replace(/[^\w\s]/gi, "")
