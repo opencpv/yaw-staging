@@ -7,9 +7,9 @@ import AdditionalInfoTitle from "./AdditionalInfoTitle";
 import CallOut from "@/components/__shared/ui/CallOut";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import capitalizeName from "@/lib/utils/stringManipulation";
-import AOSWrapper from "@/components/__shared/AOSWrapper";
+import { contentAccordionVariants, fadeUp } from "@/lib/animations";
 import { motion } from "framer-motion";
-import { contentAccordionVariants } from "@/lib/animations";
+import { cn } from "@/lib/utils";
 
 type Props = {
   availableFrom: string;
@@ -18,7 +18,7 @@ type Props = {
   refundableSecurityDeposit: number;
   utilities: string[];
   thingsToKnow?: string;
-  years?: number;
+  advancePeriod?: number;
 };
 
 const PropertyDetailsPayment = (props: Props) => {
@@ -26,11 +26,21 @@ const PropertyDetailsPayment = (props: Props) => {
 
   return (
     <>
-      <AOSWrapper animation="fade-up" className="mb-12">
+      <motion.section {...fadeUp} className="mb-12">
         <AdditionalInfoTitle title="Advance Payment Options" />
-        <AdditionalInfo>
+        <AdditionalInfo
+          className={cn("", {
+            hidden: !props.advancePeriod,
+          })}
+        >
           <ul className="properties-li">
-            <li>1, 2 year(s)</li>
+            <li>
+              {props.advancePeriod === 1
+                ? "1 year"
+                : props.advancePeriod === 2
+                  ? "2 years"
+                  : null}
+            </li>
           </ul>
         </AdditionalInfo>
         <AdditionalInfo>
@@ -41,8 +51,8 @@ const PropertyDetailsPayment = (props: Props) => {
             </p>
           </div>
         </AdditionalInfo>
-      </AOSWrapper>
-      <AOSWrapper animation="fade-up" className="mt-12">
+      </motion.section>
+      <motion.div {...fadeUp} className="mt-12">
         <h2 className="mt-6 text-2xl font-[600] text-neutral-800">
           Additional Information
         </h2>
@@ -52,7 +62,7 @@ const PropertyDetailsPayment = (props: Props) => {
                   Atque illo dolore voluptatum."
           className="mt-2"
         />
-        <AdditionalInfo className="">
+        <AdditionalInfo className={`${!props.agentFee && "hidden"}`}>
           <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2 border-b py-2 last:border-b-0">
             <p className="w-full flex-1">Agent</p>
             <p className="w-full flex-1">GHS {formatPrice(props.agentFee)}</p>
@@ -62,7 +72,7 @@ const PropertyDetailsPayment = (props: Props) => {
             </Button>
           </div>
         </AdditionalInfo>
-        <AdditionalInfo>
+        <AdditionalInfo className={`${!props.viewingFee && "hidden"}`}>
           <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2 border-b py-2 last:border-b-0">
             <p className="w-full flex-1">Viewing</p>
             <p className="w-full flex-1">GHS {formatPrice(props.viewingFee)}</p>
@@ -112,7 +122,7 @@ const PropertyDetailsPayment = (props: Props) => {
             {showMore ? "Show Less" : "Read More"}
           </Button>
         </AdditionalInfo>
-      </AOSWrapper>
+      </motion.div>
     </>
   );
 };

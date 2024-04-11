@@ -17,7 +17,6 @@ type ModalProps = {
 const FavoriteModal = ({ isOpen, onOpenChange, onClose }: ModalProps) => {
   useEffect(() => {
     return () => {
-      console.log("unloaded");
       sessionStorage.removeItem("contactUponFavorite");
     };
   }, []);

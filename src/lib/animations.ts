@@ -28,7 +28,7 @@ export const ExpandCircle = {
   open: (
     d = window.screen.height >= window.screen.width
       ? window.screen.height
-      : window.screen.width
+      : window.screen.width,
   ) => ({
     clipPath: `circle(${d * 2 + 300}px at right top)`,
     transition: {
@@ -53,7 +53,7 @@ export const ExpandCircleFromBottom = {
   open: (
     d = window.screen.height >= window.screen.width
       ? window.screen.height
-      : window.screen.width
+      : window.screen.width,
   ) => ({
     clipPath: `circle(${d * 2 + 300}px at right bottom)`,
     transition: {
@@ -114,7 +114,7 @@ export const SlideInFromLeft = {
     },
   },
   closed: {
-    x: '-100%', // Move the element 100% to the left
+    x: "-100%", // Move the element 100% to the left
     opacity: 0,
     transition: {
       ease: "linear",
@@ -131,4 +131,16 @@ export const contentAccordionVariants = (height = "6rem") => {
     expanded: { height: "auto" },
     collapsed: { height },
   };
+};
+
+export const fadeUp = {
+  initial: { y: 100, opacity: 0 },
+  whileInView: { y: 0, opacity: 1 },
+  viewport: { once: true },
+  transition: {
+    duration: 0.8,
+    ease: "easeInOut",
+    stiffness: 100,
+    velocity: 0.5,
+  },
 };

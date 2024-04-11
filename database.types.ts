@@ -863,7 +863,7 @@ export type Database = {
           address: string | null
           advance_payment_options: Json[] | null
           advance_period: number | null
-          agent_fee: string | null
+          agent_fee: number | null
           available_date: string | null
           bathrooms: number | null
           bedrooms: number | null
@@ -909,7 +909,7 @@ export type Database = {
           address?: string | null
           advance_payment_options?: Json[] | null
           advance_period?: number | null
-          agent_fee?: string | null
+          agent_fee?: number | null
           available_date?: string | null
           bathrooms?: number | null
           bedrooms?: number | null
@@ -955,7 +955,7 @@ export type Database = {
           address?: string | null
           advance_payment_options?: Json[] | null
           advance_period?: number | null
-          agent_fee?: string | null
+          agent_fee?: number | null
           available_date?: string | null
           bathrooms?: number | null
           bedrooms?: number | null
@@ -1111,7 +1111,7 @@ export type Database = {
           address: string | null
           advance_payment_options: Json[] | null
           advance_period: number | null
-          agent_fee: string | null
+          agent_fee: number | null
           available_date: string | null
           bathrooms: number | null
           bedrooms: number | null

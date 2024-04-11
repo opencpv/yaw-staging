@@ -75,7 +75,7 @@ const Navbar = (props: any) => {
             ) : (
               <div className="flex items-center gap-4">
                 <LikeHeart
-                  liked={false}
+                  liked={props.liked}
                   userId={user?.id as string | number}
                   propertyId={props.propertyId}
                   className="text-5xl text-white"

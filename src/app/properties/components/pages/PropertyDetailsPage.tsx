@@ -1,7 +1,6 @@
 "use client";
 import "../../style.css";
-import React, { useEffect, useMemo, useState } from "react";
-import Button from "@/components/__shared/ui/button/Button";
+import React, { useEffect, useMemo } from "react";
 import { HiMiniShieldCheck } from "react-icons/hi2";
 import Footer from "@/components/__shared/footer/Footer";
 import { Rate } from "antd";
@@ -17,20 +16,19 @@ import PropertyRating from "../PropertyRating";
 import PropertyDetailsImages from "../PropertyDetailsImages";
 import PropertyDetailsFeatures from "../PropertyDetailsFeatures";
 import BreadCrumbPreLink from "@/components/__shared/ui/BreadCrumbPreLink";
-import { useQuery } from "@supabase-cache-helpers/postgrest-swr";
-import supabase from "@/lib/utils/supabase/supabaseClient";
 import { Skeleton } from "@nextui-org/react";
 import SkeletonTextual from "@/components/__shared/ui/skeleton/SkeletonTextual";
 import SkeletonLong from "@/components/__shared/ui/skeleton/SkeletonLong";
 import SkeletonRectangle from "@/components/__shared/ui/skeleton/SkeletonRectangle";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import style from "@/app/components/landing/Shape.module.css";
-import { revalidationRule } from "@/lib/utils/fetchRules";
-import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
-import { useUserDetails } from "@/lib/custom-hooks/message/useUserDetails";
 import ViewPropertyBtn from "../ViewPropertyBtn";
 import { useFetchPropertyDetails } from "../../services";
 import SomethingWentWrong from "@/app/components/SomethingWentWrong";
+import { useAppStore } from "@/store/dashboard/AppStore";
+import { useAssets } from "@/lib/custom-hooks/useAssets";
+import { cn } from "@/lib/utils";
+import { list } from "postcss";
 
 type Props = {
   params: {
@@ -38,20 +36,10 @@ type Props = {
   };
 };
 
-type PropertyDetailsExt = {
-  property: {
-    owner_uid: {
-      fullname: string;
-      avatar_url: string;
-      profile_img: string;
-      phone: string;
-      whatsapp: string;
-    };
-  };
-} & MergedStandardTemplateView;
-
 const PropertyDetailsPage = ({ params }: Props) => {
   const { id: propertyId } = params;
+  const { user } = useAppStore();
+  const { images } = useAssets();
 
   const {
     data: listing,
@@ -74,9 +62,15 @@ const PropertyDetailsPage = ({ params }: Props) => {
     return `${listing?.bedrooms} Bedroom ${listing?.property_type} at ${listing?.city}`;
   }, [listing?.bedrooms, listing?.property_type, listing?.city]);
 
+  useEffect(() => {}, []);
+
   return (
     <>
-      <Navbar propertyName={propertyName} propertyId={listing?.property_id} />
+      <Navbar
+        propertyName={propertyName}
+        propertyId={listing?.property_id}
+        liked={listing?.favorite_user_id === (user?.id as string)}
+      />
       <FetchingStates
         data={listing}
         error={error}
@@ -150,12 +144,14 @@ const PropertyDetailsPage = ({ params }: Props) => {
                           {propertyName2}
                         </h2>
 
-                        <div className="flex items-center gap-2">
-                          <HiMiniShieldCheck className="text-lg text-green-700" />
-                          <p className="text-sm text-neutral-800">
-                            Verified Listing
-                          </p>
-                        </div>
+                        {listing?.is_property_verified && (
+                          <div className="flex items-center gap-2">
+                            <HiMiniShieldCheck className="text-lg text-green-700" />
+                            <p className="text-sm text-neutral-800">
+                              Verified Listing
+                            </p>
+                          </div>
+                        )}
                       </div>
                       <p className="max-w-2xl text-neutral-800">
                         {listing?.description}
@@ -174,15 +170,26 @@ const PropertyDetailsPage = ({ params }: Props) => {
                         bathroomTotal={listing?.bathrooms as number}
                         squareMeter={{ from: 468, to: 967 }}
                       />
-                      <p className="relative bottom-5 inline-block rounded-lg bg-[#E7F8F2] p-3 text-xs font-[500] text-gray-900">
-                        One Year Advance
+                      <p
+                        className={cn(
+                          "relative bottom-5 inline-block rounded-lg bg-[#E7F8F2] p-3 text-xs font-[500] text-gray-900",
+                          {
+                            hidden: !listing?.advance_period,
+                          },
+                        )}
+                      >
+                        {listing?.advance_period === 1
+                          ? "One Year Advance"
+                          : listing?.advance_period === 2
+                            ? "Two Year Advance"
+                            : null}
                       </p>
                     </div>
                     <PropertyOwnerInfo
-                      name={listing?.property?.profiles?.fullname as string}
+                      name={listing?.property?.profiles?.full_name as string}
                       picture={
-                        listing?.property?.profiles?.profile_img ||
-                        listing?.property?.profiles?.avatar_url
+                        (listing?.property?.profiles?.profile_img as string) ||
+                        images.NoProfileUser
                       }
                       rating={3.5}
                       reviews={120}
@@ -197,9 +204,10 @@ const PropertyDetailsPage = ({ params }: Props) => {
                   {/*  */}
                   <PropertyDetailsPayment
                     availableFrom="YY-MM-DD"
-                    agentFee={500}
-                    viewingFee={500}
+                    agentFee={listing?.agent_fee as number}
+                    viewingFee={listing?.viewing_fee as number}
                     refundableSecurityDeposit={500}
+                    advancePeriod={listing?.advance_period as number}
                     utilities={[
                       "water",
                       "gas",
@@ -217,7 +225,6 @@ const PropertyDetailsPage = ({ params }: Props) => {
                   gravida at ac pharetra amet malesuada molestie. Amet pretium donec
                   odio dis. Sagittis interdum nibh consectetur pellentesque nunc diam
                   eleifend eu turpis. Tempor urna fames interdum vitae mattis."
-                    // years={}
                   />
                 </div>
               </section>

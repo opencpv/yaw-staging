@@ -1,10 +1,11 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: {
-    template: "%s | RentRightGH",
-    default: "Property",
-  },
+  // title: {
+  //   template: "%s | Property",
+  //   default: "Property",
+  // },
+  title: "Property",
   description: "", // tentative
 };
 

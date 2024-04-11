@@ -1,17 +1,18 @@
 "use client";
-import AOSWrapper from "@/components/__shared/AOSWrapper";
 import ReportIssue from "@/components/__shared/ReportIssue";
 import ButtonCall from "@/components/__shared/ui/button/ButtonCall";
 import ButtonMessage from "@/components/__shared/ui/button/ButtonMessage";
 import ButtonWhatsApp from "@/components/__shared/ui/button/ButtonWhatsApp";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import React from "react";
 import { FaStar } from "react-icons/fa";
+import { motion } from "framer-motion";
+import { fadeUp } from "@/lib/animations";
 
 type Props = {
   name: string;
-  picture: string;
+  picture: string | StaticImageData;
   rating: number;
   reviews: number;
   telephone?: string;
@@ -22,8 +23,8 @@ type Props = {
 const PropertyOwnerInfo = (props: Props) => {
   const { images } = useAssets();
   return (
-    <AOSWrapper
-      animation="fade-up"
+    <motion.section
+      {...fadeUp}
       className="mx-auto flex w-full items-center justify-center"
     >
       <div className="mt-12 flex w-full flex-col items-center gap-10 sm:w-11/12">
@@ -71,7 +72,7 @@ const PropertyOwnerInfo = (props: Props) => {
           <ReportIssue />
         </div>
       </div>
-    </AOSWrapper>
+    </motion.section>
   );
 };
 

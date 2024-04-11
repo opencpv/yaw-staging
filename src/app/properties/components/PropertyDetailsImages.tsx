@@ -1,4 +1,3 @@
-import AOSWrapper from "@/components/__shared/AOSWrapper";
 import ReportIssue from "@/components/__shared/ReportIssue";
 import SliderWide from "@/components/__shared/sliders/SliderWide";
 import { useAssets } from "@/lib/custom-hooks/useAssets";

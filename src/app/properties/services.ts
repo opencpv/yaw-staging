@@ -92,7 +92,7 @@ export const useFetchPropertyDetails = (propertyId: number) => {
       const { data: listing } = await supabase
         .from("merged_standard_template_view")
         .select(
-          "*, property!inner (id, profiles!inner (id, fullname, avatar_url, profile_img, phone, whatsapp))",
+          "*, property!inner (id, profiles!inner (id, full_name, avatar_url, profile_img, phone, whatsapp))",
         )
         .eq("property_id", propertyId)
         .single();
