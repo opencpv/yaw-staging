@@ -11,43 +11,45 @@ const ListingTags = (props: Partial<ListingCardInterface>) => {
     <div className="absolute top-4 z-10 flex w-full items-center justify-between text-neutral-900">
       <div
         className={cn("ml-4 rounded-md bg-white px-3 py-2 shadow-md", {
-          invisible: !props.hint,
+          "pointer-events-none invisible": !props.hint,
         })}
       >
         {/* Hint */}
-        <div className="flex items-center gap-2">
-          {props.hint === "Realtor's Choice" ? (
-            <>
-              <Image
-                src={icons.EditorsChoice}
-                alt={props.hint?.toLowerCase()}
-                height={14}
-                width={14}
-              />
-              <p className="text-xs">Realtor&apos;s Choice</p>
-            </>
-          ) : props.hint === "Best Value" ? (
-            <>
-              <Image
-                src={icons.BestValue}
-                alt={props.hint?.toLowerCase()}
-                height={14}
-                width={14}
-              />
-              <p className="text-xs">Best Value</p>
-            </>
-          ) : props.hint === "Top Rated" ? (
-            <>
-              <Image
-                src={icons.BestValue} // TODO: change to best value
-                alt={props.hint?.toLowerCase()}
-                height={14}
-                width={14}
-              />
-              <p className="text-xs">Top Rated</p>
-            </>
-          ) : null}
-        </div>
+        <Tooltip content={props.hint as string}>
+          <div className="flex items-center gap-2">
+            {props.hint === "Realtor's Choice" ? (
+              <>
+                <Image
+                  src={icons.EditorsChoice}
+                  alt={props.hint?.toLowerCase()}
+                  height={14}
+                  width={14}
+                />
+                <p className="text-xs">Realtor&apos;s Choice</p>
+              </>
+            ) : props.hint === "Best Value" ? (
+              <>
+                <Image
+                  src={icons.BestValue}
+                  alt={props.hint?.toLowerCase()}
+                  height={14}
+                  width={14}
+                />
+                <p className="text-xs">Best Value</p>
+              </>
+            ) : props.hint === "Top Rated" ? (
+              <>
+                <Image
+                  src={icons.BestValue} // TODO: change to best value
+                  alt={props.hint?.toLowerCase()}
+                  height={14}
+                  width={14}
+                />
+                <p className="text-xs">Top Rated</p>
+              </>
+            ) : null}
+          </div>
+        </Tooltip>
       </div>
       {/* Guarantee */}
       {props.guarantee === "Verified" ? (

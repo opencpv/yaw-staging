@@ -9,6 +9,7 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import Image from "next/image";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { cn } from "@/lib/utils";
+import Tooltip from "@/components/ui/Tooltip";
 
 const ListingInfo = (props: Partial<ListingCardInterface>) => {
   const { user } = useAppStore();
@@ -68,7 +69,9 @@ const ListingInfo = (props: Partial<ListingCardInterface>) => {
       <div className="flex w-full flex-wrap items-center justify-between gap-2 pt-1 text-xs">
         <div className="flex items-center gap-2">
           {!props.ViewingFee && (
-            <Image src={icons.NoViewingFee} alt="" title="no viewing fee" />
+            <Tooltip content="No Viewing Fee">
+              <Image src={icons.NoViewingFee} alt="" />
+            </Tooltip>
           )}
           <div className="w-fit">
             <p className="text-sm font-[700] text-neutral-900">
