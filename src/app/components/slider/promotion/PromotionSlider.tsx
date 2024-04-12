@@ -17,6 +17,7 @@ import { urlForImage } from "@/lib/utils/sanity/utils";
 import { cn } from "@/lib/utils";
 import PromotionModal from "./PromotionModal";
 import { useDisclosure } from "@nextui-org/react";
+import { useRouter } from "next/navigation";
 
 let images = [
   "/assets/images/home/promotion-1.jpg",
@@ -27,16 +28,15 @@ let images = [
 const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [promotionalImage, setPromotionalImage] = useState("");
+  const router = useRouter()
 
   return (
     <>
-      {/* When promotion opens a modal */}
       <PromotionModal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        image={{ src: images[0], alt: "Promotional image" }}
+        image={{ src: promotionalImage, alt: "Promotional image" }}
       />
-      {/*  */}
       {promotions.length > 0 && (
         <Swiper
           direction={"vertical"}
@@ -50,7 +50,7 @@ const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
         >
           {promotions.map((promotion: any, idx: number) => (
             <SwiperSlide key={idx}>
-              {idx === 0 ? ( // maybe promotion.type === "video" | "image"?
+              {promotion.fileType === "image" || promotion.fileType == "modal" ? ( // maybe promotion.type === "video" | "image"?
                 <div className="relative h-full w-full">
                   <Image
                     src={urlForImage(promotion?.image)?.url() as string}
@@ -60,11 +60,11 @@ const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
                     className="brightness-[0.60]"
                   />
                 </div>
-              ) : idx === 1 ? ( // maybe promotion.type === "video" | "image"
+              ) : promotion.fileType === "video" ? ( // maybe promotion.type === "video" | "image"
                 <>
                   <iframe
                     src={
-                      "https://www.youtube.com/embed/rR4n-0KYeKQ?si=mkrWRrNoOTSiHw9q?rel=0" // rel=0 is important to suggest only RentRightGH related videos
+                      promotion.url // rel=0 is important to suggest only RentRightGH related videos
                     }
                     title={promotion?.title || ""}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
@@ -78,7 +78,7 @@ const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
                 className={cn(
                   "absolute left-3 top-32 z-50 space-y-20 min-[300px]:left-10",
                   {
-                    hidden: idx === 1, // if promotion.type === "video", hide the label
+                    hidden: promotion.fileType === "video", // if promotion.type === "video", hide the label
                   },
                 )}
               >
@@ -88,7 +88,6 @@ const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
                   </h1>
                   <p className="text-white"> {promotion.subtitle}</p>
                   <Button
-                    href={promotion?.url ? promotion?.url : undefined}
                     target={true ? "_self" : "_blank"} // if ?*.target? is "self", open on same tab otherwise open in new tab. TODO: change logic for "true"
                     className={cn(
                       "flex w-fit items-center gap-3 rounded-md border-none bg-accent-200 capitalize text-white hover:bg-neutral-300 hover:text-neutral-600",
@@ -97,12 +96,12 @@ const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
                       },
                     )}
                     onClick={
-                      true // if ?*.type? is modal, open modal
-                        ? () => {
-                            onOpen();
-                            setPromotionalImage(promotion?.modalImage);
-                          }
-                        : undefined
+                      () => {
+                        console.log(promotion.fileType)
+                        promotion.fileType === "modal" ? onOpen() : console.log(promotion.fileType)
+                        // : router.push(promotion.url as string)
+                        setPromotionalImage(urlForImage(promotion?.image)?.url() as string);
+                      }
                     }
                   >
                     View item <IoIosArrowRoundForward />

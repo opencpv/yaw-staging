@@ -9,11 +9,10 @@ type Props = {
 };
 
 const HomeLandingPage = (props: Props) => {
-  console.log(props.data);
   return (
     <ShapedLanding
       property="2 Bedroom house at Amasaman"
-      image={urlForImage(props.data.mainBannerImage)?.url() as string}
+      image={urlForImage(props.data.bgImage)?.url() as string}
       href={props.data.mainBannerUrl}
       className="text-white"
       position="right"
@@ -22,10 +21,10 @@ const HomeLandingPage = (props: Props) => {
       <div className="relative top-60 z-10 grid w-full gap-16 overflow-x-hidden md:top-72 md:grid-cols-5 lg:gap-28">
         <div className="col-span-5 w-11/12 space-y-4 px-5 capitalize xs:px-10 md:order-2 md:col-span-2 md:w-full md:translate-x-[-10%] md:pl-0">
           <h1 className="fade-in-left max-w-2xl text-2xl font-[900] leading-tight min-[300px]:text-3xl xl:text-[2.5rem] xl:leading-snug">
-            {props.data.mainBannerTitle}
+            {props.data.title}
           </h1>
           <h4 className="fade-in-right font-[500]">
-            {props.data.mainBannerDescription}
+            {props.data.description}
           </h4>
         </div>
         <CitySearchForm

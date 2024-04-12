@@ -10,7 +10,6 @@ let images = [
 ];
 
 const AdsSliderColumn = ({ ads = [] }: { ads: any }) => {
-  console.log(ads);
   return (
     <div className="col-span-2 hidden h-full flex-col gap-4 lg:flex">
       {ads.map((ad: any, idx: number) => (

@@ -26,7 +26,7 @@ export const GET = withErrorHandler(async (request: Request) => {
   });
 
   const drafts = await sanityClient.fetch(
-    "*[_type == 'promotions' && (_id in path('drafts.**'))]",
+    "*[_type == 'homeBanner' && (_id in path('drafts.**'))]",
   );
 
   drafts.forEach(async (draft: any) => {
@@ -36,6 +36,7 @@ export const GET = withErrorHandler(async (request: Request) => {
         const publishedData = {
           ...draft,
           _id: draft._id.replace(/^drafts\./, ""),
+          isCurent:true
         }; // Copy all fields from draft and remove 'drafts.' prefix from _id
         await sanityClient
           .transaction()
