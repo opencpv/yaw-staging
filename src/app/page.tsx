@@ -8,7 +8,6 @@ import HomePromotionSection from "./components/home_sections/HomePromotionSectio
 import HomeRentalDealsSection from "./components/home_sections/HomeRentalDealsSection";
 import HomeManagePropertiesSection from "./components/home_sections/HomeManagePropertiesSection";
 import FeedbackButton from "@/components/feedback/FeedbackButton";
-import AOSWrapper from "@/components/__shared/AOSWrapper";
 import ClientPageWrapper from "@/components/__shared/ClientPageWrapper";
 import { loadQuery } from "@/lib/utils/sanity/sanityStore";
 import { SanityDocument } from "next-sanity";

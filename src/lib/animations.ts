@@ -138,7 +138,31 @@ export const fadeUp = {
   whileInView: { y: 0, opacity: 1 },
   viewport: { once: true },
   transition: {
-    duration: 0.8,
+    duration: 1.5,
+    ease: "easeInOut",
+    stiffness: 100,
+    velocity: 0.5,
+  },
+};
+
+export const fadeInLeft = {
+  initial: { x: "-100%", opacity: 0 },
+  whileInView: { x: 0, opacity: 1 },
+  viewport: { once: true },
+  transition: {
+    duration: 1.5,
+    ease: "easeInOut",
+    stiffness: 100,
+    velocity: 0.5,
+  },
+};
+
+export const fadeInRight = {
+  initial: { x: "100%", opacity: 0 },
+  whileInView: { x: 0, opacity: 1 },
+  viewport: { once: true },
+  transition: {
+    duration: 1,
     ease: "easeInOut",
     stiffness: 100,
     velocity: 0.5,
