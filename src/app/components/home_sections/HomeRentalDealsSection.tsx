@@ -3,8 +3,8 @@ import Image from "next/image";
 import React from "react";
 import DealCard from "../DealCard";
 import { urlForImage } from "@/lib/utils/sanity/utils";
-import { motion } from "framer-motion";
 import { fadeUp } from "@/lib/animations";
+import FramerWrapper from "@/components/__shared/FramerWrapper";
 
 type Props = {
   data: any;
@@ -32,7 +32,7 @@ const HomeRentalDealsSection = (props: Props) => {
       <div className="grid items-center gap-5 md:grid-cols-2 lg:grid-cols-3">
         {props.data.tags.map((tag: any, idx: number) => {
           return (
-            <motion.div {...fadeUp} key={idx}>
+            <FramerWrapper {...fadeUp} key={idx}>
               <DealCard
                 key={idx}
                 href={tag.url}
@@ -40,7 +40,7 @@ const HomeRentalDealsSection = (props: Props) => {
                 body={tag.description}
                 icon={urlForImage(tag.icon.customImageItem)?.url() as string}
               />
-            </motion.div>
+            </FramerWrapper>
           );
         })}
       </div>

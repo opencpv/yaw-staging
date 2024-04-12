@@ -1,18 +1,18 @@
 "use client";
-import AOSWrapper from "@/components/__shared/AOSWrapper";
 import Button from "@/components/__shared/ui/button/Button";
 import Modal from "@/components/__shared/modals/Modal";
 import SubscribeForm from "@/components/__shared/ui/SubscribeForm";
 import { useDisclosure } from "@nextui-org/react";
 import React from "react";
 import { AnimationStyle } from "@/components/__shared/types";
+import FramerWrapper from "@/components/__shared/FramerWrapper";
+import { fadeInLeft } from "@/lib/animations";
 
 type Props = {
   className?: string;
-  animation?: AnimationStyle;
 };
 
-const SubscribeToBlogButton = ({ className, animation }: Props) => {
+const SubscribeToBlogButton = ({ className }: Props) => {
   const { onOpen, isOpen, onOpenChange, onClose } = useDisclosure();
 
   return (
@@ -24,7 +24,7 @@ const SubscribeToBlogButton = ({ className, animation }: Props) => {
         onClose={onClose}
         size="5xl"
       />
-      <AOSWrapper animation={animation ? animation : "fade-up"} duration="1000">
+      <FramerWrapper {...fadeInLeft}>
         <Button
           color="accent"
           className={`min-h-fit w-full py-8 text-lg uppercase ${className}`}
@@ -32,7 +32,7 @@ const SubscribeToBlogButton = ({ className, animation }: Props) => {
         >
           Subscribe to our blog
         </Button>
-      </AOSWrapper>
+      </FramerWrapper>
     </>
   );
 };

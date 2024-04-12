@@ -2,7 +2,6 @@
 import Button from "@/components/__shared/ui/button/Button";
 import Feature from "./Feature";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa";
-import AOSWrapper from "@/components/__shared/AOSWrapper";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { contentAccordionVariants } from "@/lib/animations";
@@ -29,14 +28,7 @@ const PropertyDetailsFeatures = ({ features }: Props) => {
         exit="collapsed"
       >
         {features.map((feature, idx) => (
-          <AOSWrapper
-            key={idx + 1}
-            duration="600"
-            animation="fade-right"
-            delay={`${idx + 1}00`}
-          >
-            <Feature label={feature} />
-          </AOSWrapper>
+          <Feature key={idx} label={feature} />
         ))}
       </motion.div>
       <Button

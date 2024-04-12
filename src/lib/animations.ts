@@ -1,3 +1,9 @@
+import {
+  AnimationProps,
+  TargetAndTransition,
+  VariantLabels,
+} from "framer-motion";
+
 type Animate = {
   exit: any;
   enter: any;
@@ -146,7 +152,7 @@ export const fadeUp = {
 };
 
 export const fadeInLeft = {
-  initial: { x: "-100%", opacity: 0 },
+  initial: { x: 100, opacity: 0 },
   whileInView: { x: 0, opacity: 1 },
   viewport: { once: true },
   transition: {
@@ -158,11 +164,23 @@ export const fadeInLeft = {
 };
 
 export const fadeInRight = {
-  initial: { x: "100%", opacity: 0 },
+  initial: { x: -100, opacity: 0 },
   whileInView: { x: 0, opacity: 1 },
   viewport: { once: true },
   transition: {
-    duration: 1,
+    duration: 1.5,
+    ease: "easeInOut",
+    stiffness: 100,
+    velocity: 0.5,
+  },
+};
+
+export const fadeIn = {
+  initial: { opacity: 0 },
+  whileInView: { opacity: 1 },
+  viewport: { once: true },
+  transition: {
+    duration: 1.5,
     ease: "easeInOut",
     stiffness: 100,
     velocity: 0.5,
