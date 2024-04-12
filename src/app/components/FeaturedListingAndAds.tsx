@@ -9,7 +9,6 @@ import AdsSliderColumn from "./AdsSliderColumn";
 import ArrowLink from "./link/ArrowLink";
 import SliderWide from "@/components/__shared/sliders/SliderWide";
 import images from "@/enum/temp/images";
-import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
 import { cn } from "@/lib/utils";
 import { addQueryParamsToUrl } from "@/lib/utils/stringManipulation";
 import { useFetchFeaturedListings } from "../properties/services";
@@ -97,9 +96,9 @@ const FeaturedListingAndAds = (props: Props) => {
                   rating={4.5} // TODO: check database
                   ratingCount={105} // TODO: check database
                   hint={
-                    listing.property.is_realtors_choice
+                    listing?.property?.is_realtors_choice
                       ? ("Realtor's Choice" as HintTag)
-                      : listing.property.is_best_value
+                      : listing?.property?.is_best_value
                         ? ("Best Value" as HintTag)
                         : undefined
                   }
@@ -172,9 +171,9 @@ const FeaturedListingAndAds = (props: Props) => {
                           rating={4.5} // TODO: check database
                           ratingCount={105} // TODO: check database
                           hint={
-                            listing.property.is_realtors_choice
+                            listing?.property?.is_realtors_choice
                               ? ("Realtor's Choice" as HintTag)
-                              : listing.property.is_best_value
+                              : listing?.property?.is_best_value
                                 ? ("Best Value" as HintTag)
                                 : undefined
                           }

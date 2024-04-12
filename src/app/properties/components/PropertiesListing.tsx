@@ -84,9 +84,9 @@ const PropertiesListing = (props: Props) => {
             rating={4.5} // TODO: check database
             ratingCount={105} // TODO: check database
             hint={
-              listing.property.is_realtors_choice
+              listing?.property?.is_realtors_choice
                 ? ("Realtor's Choice" as HintTag)
-                : listing.property.is_best_value
+                : listing?.property?.is_best_value
                   ? ("Best Value" as HintTag)
                   : undefined
             }

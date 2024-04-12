@@ -153,6 +153,32 @@ export type Database = {
         }
         Relationships: []
       }
+      featured_properties: {
+        Row: {
+          created_at: string
+          id: number
+          property_id: number
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          property_id: number
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          property_id?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_featured_properties_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "property"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       hubtel_payments: {
         Row: {
           amount: number | null
@@ -453,6 +479,7 @@ export type Database = {
           id: number
           is_available: boolean
           is_best_value: boolean
+          is_featured: boolean
           is_paid_for: boolean
           is_published: boolean
           is_realtors_choice: boolean
@@ -467,6 +494,7 @@ export type Database = {
           id?: number
           is_available?: boolean
           is_best_value?: boolean
+          is_featured?: boolean
           is_paid_for?: boolean
           is_published?: boolean
           is_realtors_choice?: boolean
@@ -481,6 +509,7 @@ export type Database = {
           id?: number
           is_available?: boolean
           is_best_value?: boolean
+          is_featured?: boolean
           is_paid_for?: boolean
           is_published?: boolean
           is_realtors_choice?: boolean
@@ -1127,64 +1156,6 @@ export type Database = {
           furnish_level: string | null
           id: number | null
           is_complete: boolean | null
-          is_lister_certified: boolean | null
-          is_property_verified: boolean | null
-          lease_details: string | null
-          lease_end_date: string | null
-          lease_length: number | null
-          lease_start_date: string | null
-          lease_type: string | null
-          monthly_amount: number | null
-          neighbourhood: string | null
-          price_drop: boolean | null
-          property_id: number | null
-          property_name: string | null
-          property_size: string | null
-          property_type: string | null
-          query_string: string | null
-          refundable_security_deposit: number | null
-          renter_knowledge: string | null
-          require_additional_fees: boolean | null
-          require_advance_payment: boolean | null
-          require_agent_fee: boolean | null
-          require_application_form: boolean | null
-          require_refundable_security_deposit: boolean | null
-          require_viewing_fee: boolean | null
-          subtitle: string | null
-          suited_for: Json[] | null
-          total_amount: number | null
-          utilities: string[] | null
-          viewing_fee: number | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "standard_template_property_id_fkey"
-            columns: ["property_id"]
-            isOneToOne: false
-            referencedRelation: "property"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      test_merged_properties_view: {
-        Row: {
-          additional_fees: Json | null
-          address: string | null
-          advance_payment_options: Json[] | null
-          advance_period: number | null
-          agent_fee: number | null
-          available_date: string | null
-          bathrooms: number | null
-          bedrooms: number | null
-          city: string | null
-          created_at: string | null
-          description: string | null
-          digital_address: string | null
-          features_and_amenities: Json[] | null
-          furnish_level: string | null
-          id: number | null
-          is_complete: boolean | null
-          is_liked: boolean | null
           is_lister_certified: boolean | null
           is_property_verified: boolean | null
           lease_details: string | null
