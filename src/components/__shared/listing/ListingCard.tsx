@@ -55,7 +55,7 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
                 }
           }
           modules={[Pagination, Navigation]}
-          className={`listing-card-slider group/parent relative w-full ${
+          className={`listing-card-slider relative w-full ${
             props.cardType === "2" && !props.showOnlyImage
               ? "h-[26rem] rounded-2xl"
               : props.cardType === "2"
@@ -89,7 +89,7 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
           <div
             className={
               props.isMyFavoritePage || props.isRecommendationsPage
-                ? "group/parent-hover:translate-x-0 absolute inset-0 z-30 flex h-full w-full -translate-x-full items-center justify-center rounded-[inherit] bg-black bg-opacity-30 transition-all delay-500"
+                ? "absolute inset-0 z-30 flex h-full w-full -translate-x-full items-center justify-center rounded-[inherit] bg-black bg-opacity-30 transition-all delay-500 group-hover/parent:translate-x-0"
                 : "hidden"
             }
           >
@@ -173,7 +173,10 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
                 activeIndex === 0 && "hidden"
               }`,
               {
-                hidden: props.showOnlyImage,
+                hidden:
+                  props.showOnlyImage ||
+                  props.isMyFavoritePage ||
+                  props.isRecommendationsPage,
                 "bottom-48": props.cardType === "2",
               },
             )}
@@ -191,7 +194,10 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
                 lastIndex === activeIndex && "hidden"
               }`,
               {
-                hidden: props.showOnlyImage,
+                hidden:
+                  props.showOnlyImage ||
+                  props.isMyFavoritePage ||
+                  props.isRecommendationsPage,
                 "bottom-48": props.cardType === "2",
               },
             )}

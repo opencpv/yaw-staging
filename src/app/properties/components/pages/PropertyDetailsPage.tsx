@@ -69,7 +69,7 @@ const PropertyDetailsPage = ({ params }: Props) => {
       <Navbar
         propertyName={propertyName}
         propertyId={listing?.property_id}
-        liked={listing?.favorite_user_id === (user?.id as string)}
+        liked={listing?.favorite_user_ids?.includes(user?.id as string)}
       />
       <FetchingStates
         data={listing}

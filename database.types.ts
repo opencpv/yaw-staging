@@ -871,6 +871,7 @@ export type Database = {
           created_at: string
           description: string | null
           digital_address: string | null
+          favorite_user_ids: string[] | null
           features_and_amenities: Json[] | null
           furnish_level: string | null
           id: number
@@ -917,6 +918,7 @@ export type Database = {
           created_at?: string
           description?: string | null
           digital_address?: string | null
+          favorite_user_ids?: string[] | null
           features_and_amenities?: Json[] | null
           furnish_level?: string | null
           id?: number
@@ -963,6 +965,7 @@ export type Database = {
           created_at?: string
           description?: string | null
           digital_address?: string | null
+          favorite_user_ids?: string[] | null
           features_and_amenities?: Json[] | null
           furnish_level?: string | null
           id?: number
@@ -1119,7 +1122,7 @@ export type Database = {
           created_at: string | null
           description: string | null
           digital_address: string | null
-          favorite_user_id: string | null
+          favorite_user_ids: string[] | null
           features_and_amenities: Json[] | null
           furnish_level: string | null
           id: number | null
@@ -1155,19 +1158,63 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "public_user_favorite_properties_user_id_fkey"
-            columns: ["favorite_user_id"]
+            foreignKeyName: "standard_template_property_id_fkey"
+            columns: ["property_id"]
             isOneToOne: false
-            referencedRelation: "profiles"
+            referencedRelation: "property"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "public_user_favorite_properties_user_id_fkey"
-            columns: ["favorite_user_id"]
-            isOneToOne: false
-            referencedRelation: "distinct_messages_view"
-            referencedColumns: ["sender_id"]
-          },
+        ]
+      }
+      test_merged_properties_view: {
+        Row: {
+          additional_fees: Json | null
+          address: string | null
+          advance_payment_options: Json[] | null
+          advance_period: number | null
+          agent_fee: number | null
+          available_date: string | null
+          bathrooms: number | null
+          bedrooms: number | null
+          city: string | null
+          created_at: string | null
+          description: string | null
+          digital_address: string | null
+          features_and_amenities: Json[] | null
+          furnish_level: string | null
+          id: number | null
+          is_complete: boolean | null
+          is_liked: boolean | null
+          is_lister_certified: boolean | null
+          is_property_verified: boolean | null
+          lease_details: string | null
+          lease_end_date: string | null
+          lease_length: number | null
+          lease_start_date: string | null
+          lease_type: string | null
+          monthly_amount: number | null
+          neighbourhood: string | null
+          price_drop: boolean | null
+          property_id: number | null
+          property_name: string | null
+          property_size: string | null
+          property_type: string | null
+          query_string: string | null
+          refundable_security_deposit: number | null
+          renter_knowledge: string | null
+          require_additional_fees: boolean | null
+          require_advance_payment: boolean | null
+          require_agent_fee: boolean | null
+          require_application_form: boolean | null
+          require_refundable_security_deposit: boolean | null
+          require_viewing_fee: boolean | null
+          subtitle: string | null
+          suited_for: Json[] | null
+          total_amount: number | null
+          utilities: string[] | null
+          viewing_fee: number | null
+        }
+        Relationships: [
           {
             foreignKeyName: "standard_template_property_id_fkey"
             columns: ["property_id"]

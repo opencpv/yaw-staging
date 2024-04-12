@@ -21,7 +21,7 @@ export const useFetchProperties = () => {
   let query = supabase
     .from("merged_standard_template_view")
     .select(
-      "id, property_id, property!inner (id, is_best_value, is_realtors_choice), is_property_verified, is_lister_certified, property_type, description, city, bedrooms, monthly_amount, advance_payment_options, favorite_user_id, subtitle, neighbourhood, advance_period, viewing_fee",
+      "id, property_id, property!inner (id, is_best_value, is_realtors_choice), is_property_verified, is_lister_certified, property_type, description, city, bedrooms, monthly_amount, advance_payment_options, favorite_user_ids, subtitle, neighbourhood, advance_period, viewing_fee",
     )
     .order("is_property_verified", { ascending: false })
     .order("property (is_realtors_choice)", { ascending: false })
@@ -70,7 +70,7 @@ export const useFetchFeaturedListings = () => {
       const { data: listings } = await supabase
         .from("merged_standard_template_view")
         .select(
-          "id, property_id, property!inner (id, is_best_value, is_realtors_choice), is_property_verified, is_lister_certified, property_type, description, city, bedrooms, monthly_amount, advance_payment_options, favorite_user_id, subtitle, neighbourhood, advance_period, viewing_fee",
+          "id, property_id, property!inner (id, is_best_value, is_realtors_choice), is_property_verified, is_lister_certified, property_type, description, city, bedrooms, monthly_amount, advance_payment_options, favorite_user_ids, subtitle, neighbourhood, advance_period, viewing_fee",
         )
         .order("is_property_verified", { ascending: false })
         .order("property (is_realtors_choice)", { ascending: false })

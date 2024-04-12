@@ -81,7 +81,9 @@ const FeaturedListingAndAds = (props: Props) => {
                   city={listing.city as string}
                   neighbourhood={listing.neighbourhood as string}
                   images={images} // TODO: check database
-                  liked={listing.favorite_user_id === user?.id}
+                  liked={listing?.favorite_user_ids?.includes(
+                    user?.id as string,
+                  )}
                   guarantee={
                     listing.is_property_verified
                       ? ("Verified" as GuaranteeTag)
@@ -154,7 +156,9 @@ const FeaturedListingAndAds = (props: Props) => {
                           city={listing.city as string}
                           neighbourhood={listing.neighbourhood as string}
                           images={images} // TODO: check database
-                          liked={listing.favorite_user_id === user?.id} // TODO: check implementation
+                          liked={listing?.favorite_user_ids?.includes(
+                            user?.id as string,
+                          )}
                           guarantee={
                             listing.is_property_verified
                               ? ("Verified" as GuaranteeTag)

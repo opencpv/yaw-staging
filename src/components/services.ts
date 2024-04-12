@@ -9,7 +9,5 @@ export const getUserFavorite = async (userId: string) => {
     .limit(1)
     .maybeSingle();
 
-  console.log(query.data);
-
   return query;
 };
