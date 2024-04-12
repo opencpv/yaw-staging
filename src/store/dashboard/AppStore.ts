@@ -4,6 +4,7 @@ import { devtools } from "zustand/middleware";
 
 export interface UserType extends User {
   email?: string;
+  shouldBeContacted?: boolean;
 }
 
 type AppStore = {

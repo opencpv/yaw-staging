@@ -20,9 +20,17 @@ export const useUserData = () => {
           .from("profiles")
           .select("*")
           .eq("id", userDetails?.user?.id as string);
+        let { data: userPreference } = await supabase
+          .from("contact_owner_preference")
+          .select("should_be_contacted")
+          .eq("user_id", userDetails?.user?.id as string)
+          .limit(1)
+          .single();
+
         const profileData = {
           ...(profiles && profiles[0]),
           email: userDetails?.user?.email,
+          shouldBeContacted: userPreference?.should_be_contacted,
         };
         if (userDetails.user) {
           setUser(profileData);

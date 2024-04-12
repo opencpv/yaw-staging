@@ -12,6 +12,7 @@ import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchError
 import { useMySearchFilterStore } from "@/store/dashboard/mySearchStore";
 import { Switch } from "@nextui-org/react";
 import Toggle from "@/components/ui/Toggle";
+import ContactPreferenceToggle from "../favourites/components/ContactPreferenceToggle";
 
 const MySearch = () => {
   // const { value, handleSelectionChange } = useSelectDisclosure<
@@ -76,7 +77,7 @@ const MySearch = () => {
       </h4>
 
       <div className="mt-4">
-        <Toggle label="Allow property owners to contact you" />
+        <ContactPreferenceToggle />
       </div>
 
       <section className="mx-auto my-10 grid grid-cols-1 justify-center gap-x-5 gap-y-16 transition-all md:grid-cols-2 lg:grid-cols-3">
