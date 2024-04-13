@@ -10,7 +10,6 @@ type Props = {
   isValidating?: boolean;
   isLoading?: boolean;
   isLoadingComponent?: React.ReactNode;
-  isFetchingComponent?: React.ReactNode;
   errorComponent?: React.ReactNode;
   emptyStateComponent?: React.ReactNode;
 };
@@ -21,7 +20,6 @@ const FetchingStates = ({
   error,
   data,
   isLoadingComponent,
-  isFetchingComponent,
   errorComponent,
   emptyStateComponent,
 }: Props) => {
@@ -32,7 +30,7 @@ const FetchingStates = ({
         : error
           ? errorComponent ?? <FetchErrorMessage />
           : isValidating && (isLoadingComponent || <Spinner />)}
-      {isValidating === false &&
+      {(!isValidating || !isLoading) &&
         !error &&
         data?.length === 0 &&
         emptyStateComponent}

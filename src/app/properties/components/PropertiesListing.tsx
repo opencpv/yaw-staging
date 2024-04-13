@@ -10,17 +10,13 @@ import { useFetchProperties } from "../services";
 import PropertiesEmptyState from "./PropertiesEmptyState";
 import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
 import SomethingWentWrong from "@/app/components/SomethingWentWrong";
+import { propertyFilterStore } from "@/store/properties/usePropertiesStore";
 
 type Props = {};
 
-type Listing = {
-  property: {
-    id: number;
-    is_verified: boolean;
-  };
-} & MergedStandardTemplateView;
-
 const PropertiesListing = (props: Props) => {
+  const { setSearchString, setFilter, filter, searchString } =
+    propertyFilterStore();
   const { user } = useAppStore();
   const {
     data: listings,
@@ -29,6 +25,12 @@ const PropertiesListing = (props: Props) => {
     isValidating,
     loadMore,
   } = useFetchProperties();
+
+  const handleViewSimilarResults = () => {
+    // TODO: implement appropriately
+    setSearchString("Accra");
+    setFilter("all");
+  };
 
   return (
     <>
@@ -43,10 +45,15 @@ const PropertiesListing = (props: Props) => {
           errorComponent={
             <SomethingWentWrong
               className="col-span-full h-fit"
-              onTryAgain={() => loadMore && loadMore()}
+              onTryAgain={() => {
+                setSearchString(searchString);
+                setFilter(filter);
+              }}
             />
           }
-          emptyStateComponent={<PropertiesEmptyState />}
+          emptyStateComponent={
+            <PropertiesEmptyState onClick={handleViewSimilarResults} />
+          }
         />
         {listings?.map((listing) => (
           <ListingCard

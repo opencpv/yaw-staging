@@ -3,17 +3,6 @@ import { propertyFilterStore } from "@/store/properties/usePropertiesStore";
 import { useOffsetInfiniteScrollQuery } from "@supabase-cache-helpers/postgrest-swr";
 import { useQuery } from "@tanstack/react-query";
 
-type Listing = {
-  property: {
-    id: number;
-    is_verified: boolean;
-    profiles: {
-      id: number;
-      is_certified: boolean;
-    };
-  };
-} & MergedStandardTemplateView;
-
 export const useFetchProperties = () => {
   const { searchString, filter } = propertyFilterStore();
   const formattedSearchString = formatString(searchString);

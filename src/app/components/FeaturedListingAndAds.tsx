@@ -37,9 +37,9 @@ const FeaturedListingAndAds = (props: Props) => {
       </h2>
       {/* Listing cards */}
       <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-8 lg:items-start">
-        {/* Shows when number of listings is less than 10 */}
-        {listings && listings.length <= 9 ? (
-          <div className="col-span-6 grid grid-cols-1 gap-5 sm:grid-cols-2 min-[950px]:max-lg:grid-cols-3 lg:grid-cols-2 min-[1180px]:grid-cols-3">
+        {/* Shows when number of listings is less than 5 */}
+        {listings && listings.length <= 4 ? (
+          <div className="col-span-6 grid grid-cols-1 gap-5 pb-5 sm:grid-cols-2 min-[950px]:max-lg:grid-cols-3 lg:grid-cols-2 min-[1180px]:grid-cols-3">
             <FetchingStates
               data={listings}
               error={error}
@@ -109,7 +109,7 @@ const FeaturedListingAndAds = (props: Props) => {
           </div>
         ) : (
           <div className="relative col-span-6 pb-5">
-            {/* Shows when number of listings is more than 9 */}
+            {/* Shows when number of listings is more than 4 */}
             <div className="relative h-fit w-full">
               <FetchingStates
                 data={listings}

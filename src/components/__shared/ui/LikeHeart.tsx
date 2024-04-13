@@ -7,7 +7,8 @@ import SignInRequiredModal from "../modals/SignInRequiredModal";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { updateLikedProperty } from "@/app/properties/_actions";
 import { getUserFavorite } from "@/components/services";
-import { useLocalStorage, useSessionStorage } from "@uidotdev/usehooks";
+import { useLocalStorage } from "@uidotdev/usehooks";
+import { useRouter } from "next/navigation";
 
 type Props = {
   userId: string | number;
@@ -21,8 +22,12 @@ const LikeHeart = ({ liked, className, userId, propertyId }: Props) => {
   const { onOpen, isOpen, onOpenChange, onClose } = useDisclosure();
   const { onOpen: toastOnOpen } = useToastDisclosure();
   const [signInModalOpen, setSignInModalOpen] = useState(false);
-  const [shouldOpenModal, setShouldOpenModal] = useLocalStorage("shouldOpenModal", false)
+  const [shouldOpenModal, setShouldOpenModal] = useLocalStorage(
+    "shouldOpenModal",
+    false,
+  );
   const { user } = useAppStore();
+  const router = useRouter();
 
   const handleContactPreference = React.useCallback(async () => {
     if (shouldOpenModal) {
@@ -49,11 +54,14 @@ const LikeHeart = ({ liked, className, userId, propertyId }: Props) => {
       }
       handleContactPreference();
     } else if (!user) {
+      // if user user is not logged in and
+      // attempts to favorite a property
       // store property id in session storage
       sessionStorage.setItem(
         "favoritePropertyId",
         propertyId?.toString() || "",
       );
+      // set scroll position to scroll to after signing in
       sessionStorage.setItem("windowScrollHeight", window.scrollY.toString());
       setSignInModalOpen(true);
     }
@@ -73,7 +81,7 @@ const LikeHeart = ({ liked, className, userId, propertyId }: Props) => {
   }, [user?.id, setShouldOpenModal]);
 
   useEffect(() => {
-    // this happens after the user signs in following favoriting
+    // this happens after the user signs in, following favoriting
     // get the property id from session storage
     const propertyId = sessionStorage.getItem("favoritePropertyId");
     const windowScrollHeight = sessionStorage.getItem("windowScrollHeight");
@@ -89,13 +97,14 @@ const LikeHeart = ({ liked, className, userId, propertyId }: Props) => {
         if (error) {
           toastOnOpen(error.message, "error");
         }
+        router.refresh();
       };
       likeProperty();
       // remove the property id from session storage
       sessionStorage.removeItem("favoritePropertyId");
       sessionStorage.removeItem("windowScrollHeight");
     }
-  }, [user, onOpen, handleContactPreference, toastOnOpen, userId]);
+  }, [user, onOpen, handleContactPreference, toastOnOpen, userId, router]);
 
   return (
     <>
