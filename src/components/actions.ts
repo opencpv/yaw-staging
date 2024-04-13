@@ -18,7 +18,7 @@ export const handleFavoriteDialogSave = async (
     query = await supabase
       .from("contact_owner_preference")
       .update({ should_be_contacted: shouldBeContacted })
-      .eq("id", user.id)
+      .eq("user_id", user.id)
       .select("id");
   } else {
     query = await supabase

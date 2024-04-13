@@ -26,7 +26,7 @@ export const useUserData = () => {
           .select("should_be_contacted")
           .eq("user_id", userDetails?.user?.id as string)
           .limit(1)
-          .single();
+          .maybeSingle();
 
         // try to get first_name and last_name from full_name
         const firstName =
@@ -39,7 +39,7 @@ export const useUserData = () => {
         const profileData = {
           ...(profiles && profiles),
           email: userDetails?.user?.email,
-          should_be_contacted: userPreference?.should_be_contacted,
+          should_be_contacted: userPreference?.should_be_contacted || false,
           first_name: firstName,
           last_name: lastName,
           full_name: firstName + " " + lastName,

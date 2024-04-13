@@ -1,10 +1,7 @@
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import {
-  useDeleteMutation,
-  useInsertMutation,
   useOffsetInfiniteScrollQuery,
   useQuery,
-  useUpdateMutation,
 } from "@supabase-cache-helpers/postgrest-swr";
 
 export const useFetchProperties = ({
@@ -90,66 +87,6 @@ export const useFetchPropertyDetails = (propertyId: number) => {
 
   return result;
 };
-
-// export const useUpdateLikedProperty = async (userId: number | string,
-//   propertyId: number | string) => {
-
-//     const query = supabase.from("user_favorite_properties")
-//       .select("id")
-//       .eq("property_id", propertyId)
-//       .single();
-
-//     const {data} = useQuery(query);
-
-//   const { trigger: deleteLike } = useDeleteMutation(
-//     supabase.from("user_favorite_properties"),
-//     ['user_id', "property_id"],
-//     "user_id",
-//   )
-
-//   const { trigger: addLike } = useInsertMutation(
-//     supabase.from("user_favorite_properties"),
-//     ['user_id', "property_id"],
-//     "user_id",
-//   )
-
-//   if (data){
-//     deleteLike({user_id: userId as string, property_id: propertyId as number}).then((res) => {
-//       console.log(res);
-//     })
-//   }
-//   else {
-//     addLike({user_id: userId as string, property_id: propertyId as number}).then((res) => {
-//       console.log(res);
-//     })
-//   }
-
-// //   let query;
-// //   const { data } = await supabase
-// //   .from("user_favorite_properties")
-// //   .select("id")
-// //   .eq("property_id", propertyId)
-// //   .single();
-
-// // if (data) {
-// //   // if property is already liked
-// //   query = await supabase
-// //     .from("user_favorite_properties")
-// //     .delete()
-// //     .eq("user_id", userId)
-// //     .eq("property_id", propertyId)
-// //     .select();
-// // } else {
-// //   query = await supabase
-// //     .from("user_favorite_properties")
-// //     .insert({
-// //       user_id: userId as string,
-// //       property_id: propertyId as number,
-// //     })
-// //     .select();
-// // }
-
-// }
 
 const formatString = (str: string): string => {
   return str
