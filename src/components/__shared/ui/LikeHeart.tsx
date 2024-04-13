@@ -9,6 +9,9 @@ import { updateLikedProperty } from "@/app/properties/_actions";
 import { getUserFavorite } from "@/components/services";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { useRouter } from "next/navigation";
+import supabase from "@/lib/utils/supabase/supabaseClient";
+import { useInsertMutation } from "@supabase-cache-helpers/postgrest-swr";
+import { useUpdateLikedProperty } from "@/app/properties/services";
 
 type Props = {
   userId: string | number;
@@ -28,6 +31,8 @@ const LikeHeart = ({ liked, className, userId, propertyId }: Props) => {
   );
   const { user } = useAppStore();
   const router = useRouter();
+
+  // const {} = useUpdateLikedProperty(userId, propertyId);
 
   const handleContactPreference = React.useCallback(async () => {
     if (shouldOpenModal) {

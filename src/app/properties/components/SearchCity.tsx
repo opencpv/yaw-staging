@@ -2,7 +2,7 @@
 "use client";
 import InputWithSavedSearch from "@/components/__shared/form/InputWithSavedSearch";
 import { useRouter, useSearchParams } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 type Props = {};
 
@@ -11,6 +11,11 @@ const SearchCity = (props: Props) => {
   const tag = searchParams?.get("tag") as string;
   const search = searchParams?.get("search") as string;
   const router = useRouter();
+  const [value, setValue] = useState<string>(search || "");
+
+  useEffect(() => {
+    setValue(search);
+  }, [search]);
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     const formData = new FormData(e.currentTarget);
@@ -29,6 +34,7 @@ const SearchCity = (props: Props) => {
 
   const handleInput = (e: React.FormEvent<HTMLInputElement>) => {
     const search = e.target.value;
+    setValue(search);
 
     search === "" &&
       router.replace(
@@ -49,7 +55,7 @@ const SearchCity = (props: Props) => {
         name="search"
         onSubmit={handleSearch}
         onInput={handleInput}
-        defaultValue={search}
+        value={value}
       />
     </div>
   );

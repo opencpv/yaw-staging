@@ -10,6 +10,7 @@ import Image from "next/image";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { cn } from "@/lib/utils";
 import Tooltip from "@/components/ui/Tooltip";
+import Rating from "./Rating";
 
 const ListingInfo = (props: Partial<ListingCardInterface>) => {
   const { user } = useAppStore();
@@ -41,9 +42,7 @@ const ListingInfo = (props: Partial<ListingCardInterface>) => {
             )}
 
             {(props.ratingCount as number) > 0 && (
-              <small className="underline">
-                <Link href="">{props.rating}</Link>
-              </small>
+             <Rating value={4.1} />
             )}
             <small>
               ({" "}
