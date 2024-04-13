@@ -4,7 +4,6 @@ import React from "react";
 import SliderPaginationOnly from "@/components/__shared/sliders/SliderPaginationOnly";
 import SliderWide from "@/components/__shared/sliders/SliderWide";
 import OtherPostsGroup from "../../components/post/OtherPostsGroup";
-import AOSWrapper from "@/components/__shared/AOSWrapper";
 import BreadCrumbPreLink from "@/components/__shared/ui/BreadCrumbPreLink";
 import SubscribeToBlogButton from "../../components/SubscribeToBlogButton";
 import Share from "@/components/__shared/ui/share/Share";
@@ -21,6 +20,8 @@ import handlePageViewCounter from "@/lib/utils/handlePageViewCounter";
 import urlBuilder from "@sanity/image-url";
 import { client } from "@/lib/utils/sanity/client";
 import axios from "axios";
+import { fadeIn, fadeUp } from "@/lib/animations";
+import FramerWrapper from "@/components/__shared/FramerWrapper";
 
 type Props = {
   params: { slug: string };
@@ -93,7 +94,7 @@ const page = async ({ params, searchParams }: Props) => {
           <h1 className="mb-5 text-2xl font-[700] text-primary-200 md:text-4xl">
             {post.title}
           </h1>
-          <AOSWrapper animation="zoom-in">
+          <FramerWrapper {...fadeIn}>
             <div className="shape-3 relative mb-16 h-60 w-full lg:h-[30rem]">
               <Image
                 src={urlForImage(post.featured_image)?.url() as string}
@@ -103,7 +104,7 @@ const page = async ({ params, searchParams }: Props) => {
                 style={{ objectFit: "cover" }}
               />
             </div>
-          </AOSWrapper>
+          </FramerWrapper>
           <h3 className="no-print mb-8 text-xl font-[500]">
             <BreadCrumbPreLink label="Category" href={`/blog/${params.slug}`} />{" "}
             /<span className="">{post.title}</span>
@@ -132,7 +133,7 @@ const page = async ({ params, searchParams }: Props) => {
                   <Print />
                 </div>
               </div>
-              <AOSWrapper animation="fade-up" duration="1000">
+              <FramerWrapper {...fadeUp}>
                 <section className="no-print hidden h-fit w-full flex-col gap-8 md:flex min-[1000px]:flex-row">
                   <SliderPaginationOnly
                     images={[1, 2, 3, 4, 5].map((image) => ({
@@ -147,21 +148,15 @@ const page = async ({ params, searchParams }: Props) => {
                     }))}
                   />
                 </section>
-              </AOSWrapper>
-              <SubscribeToBlogButton
-                animation="fade-right"
-                className="no-print mb-14 px-8 md:hidden"
-              />
+              </FramerWrapper>
+              <SubscribeToBlogButton className="no-print mb-14 px-8 md:hidden" />
             </div>
             {/* Other posts -- right side of Grid */}
             <div className="col-span-1 space-y-5  ">
               <div className="hidden md:block">
                 <OtherPostsGroup />
               </div>
-              <SubscribeToBlogButton
-                animation="fade-left"
-                className="hidden md:inline-flex"
-              />
+              <SubscribeToBlogButton className="hidden md:inline-flex" />
             </div>
           </section>
           <section className="no-print mb-10 grid-cols-2 gap-5 xs:grid md:hidden">

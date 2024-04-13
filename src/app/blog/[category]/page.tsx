@@ -4,7 +4,6 @@ import Link from "next/link";
 import { LuChevronsRight } from "react-icons/lu";
 import BackgroundImage from "../components/category/BackgroundImage";
 import TabsAndSearch from "../components/category/TabsAndSearch";
-import AOSWrapper from "@/components/__shared/AOSWrapper";
 import {
   AUTHORS,
   BLOG_CATEGORY_QUERY,

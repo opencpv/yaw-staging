@@ -1,7 +1,8 @@
 "use client";
 import Image from "next/image";
 import ArrowLink from "./link/ArrowLink";
-import AOSWrapper from "@/components/__shared/AOSWrapper";
+import { fadeInLeft, fadeInRight } from "@/lib/animations";
+import FramerWrapper from "@/components/__shared/FramerWrapper";
 
 type Props = {
   activity: string;
@@ -32,15 +33,14 @@ const ManagePropertiesInfo = ({
             className="rounded-xl"
           />
         </div>
-        <div className="bottom-[-10%] left-0 -ml-3 flex w-[95vw] items-center justify-center rounded-lg bg-primary-400 p-10 text-white sm:absolute sm:max-w-[30rem] sm:translate-x-[9%] md:bottom-[20%]">
+        <FramerWrapper
+          {...fadeInRight}
+          className="bottom-[-10%] left-0 -ml-3 flex w-[95vw] items-center justify-center rounded-lg bg-primary-400 p-10 text-white sm:absolute sm:max-w-[30rem] sm:translate-x-[9%] md:bottom-[20%]"
+        >
           <div className="space-y-10">
             <div className="space-y-3">
-              {/* <AOSWrapper animation="zoom-in" duration="1500"> */}
               <h2 className="text-2xl font-[700] text-white">{title}</h2>
-              {/* </AOSWrapper> */}
-              {/* <AOSWrapper animation="fade-up"> */}
               <p className="line-clamp-3">{body}</p>
-              {/* </AOSWrapper> */}
             </div>
             <ArrowLink
               href={`${href}`}
@@ -48,7 +48,7 @@ const ManagePropertiesInfo = ({
               color="#D7D12D"
             />
           </div>
-        </div>
+        </FramerWrapper>
       </li>
     );
   else
@@ -63,15 +63,14 @@ const ManagePropertiesInfo = ({
             className="rounded-xl"
           />
         </div>
-        <div className="bottom-[-10%] right-0 -ml-3 flex w-[95vw] items-center justify-center rounded-lg bg-primary-400 p-10 text-white sm:absolute sm:max-w-[30rem] sm:translate-x-0 md:bottom-[20%]">
+        <FramerWrapper
+          {...fadeInLeft}
+          className="bottom-[-10%] right-0 -ml-3 flex w-[95vw] items-center justify-center rounded-lg bg-primary-400 p-10 text-white sm:absolute sm:max-w-[30rem] sm:translate-x-0 md:bottom-[20%]"
+        >
           <div className="space-y-10">
             <div className="space-y-3">
-              {/* <AOSWrapper animation="zoom-in" duration="1500"> */}
               <h2 className="text-2xl font-[700] text-white">{title}</h2>
-              {/* </AOSWrapper> */}
-              {/* <AOSWrapper animation="fade-up"> */}
               <p className="line-clamp-3">{body}</p>
-              {/* </AOSWrapper> */}
             </div>
             <ArrowLink
               href={`${href}`}
@@ -79,7 +78,7 @@ const ManagePropertiesInfo = ({
               color="#D7D12D"
             />
           </div>
-        </div>
+        </FramerWrapper>
       </li>
     );
 };

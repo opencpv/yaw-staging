@@ -25,7 +25,7 @@ const ButtonInfiniteLoading = ({
             hidden: isLoading || data?.length === 0 || !loadMore,
           })}
           disabled={loadMore === null ? true : false}
-          isLoading={isValidating && loadMore ? true : false}
+          isLoading={isValidating ? true : false}
         >
           Load More
         </Button>

@@ -2,7 +2,8 @@
 import React from "react";
 import { HiOutlineChatBubbleOvalLeftEllipsis } from "react-icons/hi2";
 import Feedback from "./Feedback";
-import AOSWrapper from "../__shared/AOSWrapper";
+import { fadeInRight } from "@/lib/animations";
+import FramerWrapper from "../__shared/FramerWrapper";
 
 type Props = {
   data: any;
@@ -10,7 +11,7 @@ type Props = {
 
 const FeedbackButton = (props: Props) => {
   return (
-    <AOSWrapper animation="fade-right" className="w-fit">
+    <FramerWrapper {...fadeInRight} className="w-fit">
       <Feedback data={props.data}>
         <div className="ml-5 inline-flex w-fit items-center">
           <div
@@ -23,7 +24,7 @@ const FeedbackButton = (props: Props) => {
           </div>
         </div>
       </Feedback>
-    </AOSWrapper>
+    </FramerWrapper>
   );
 };
 

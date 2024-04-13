@@ -5,6 +5,7 @@ import { NextUIProvider } from "@nextui-org/react";
 // import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { SWRConfig } from "swr";
 
 type Props = {
   children: React.ReactNode;
@@ -22,7 +23,9 @@ const queryClient = new QueryClient({
 const Providers = ({ children }: Props) => {
   return (
     <QueryClientProvider client={queryClient}>
-      <NextUIProvider>{children}</NextUIProvider>
+      <SWRConfig value={{ revalidateOnFocus: false }}>
+        <NextUIProvider>{children}</NextUIProvider>
+      </SWRConfig>
       {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </QueryClientProvider>
   );

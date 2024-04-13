@@ -7,7 +7,7 @@ import { useDisclosure } from "@nextui-org/react";
 
 type Props = {
   className?: string;
-  table: string;
+  table: TableNames;
   id: string;
 };
 
@@ -22,7 +22,7 @@ const ButtonDelete = ({ className, table, id }: Props) => {
         onOpenChange={onOpenChange}
         label="Are you sure you want to delete this application?"
         id=""
-        table=""
+        table={table}
       />
       <Button
         isIconOnly

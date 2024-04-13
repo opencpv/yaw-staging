@@ -43,7 +43,7 @@ const RenterOverviewPage = (props: Props) => {
         <div className="col-span-3">
           <UserOverview
             name={user?.full_name as string}
-            picture={user?.avatar_url as string}
+            picture={user?.profile_img as string}
             email={user?.email as string}
             telephone={formattedPhone as string}
             className="md:mb-20"

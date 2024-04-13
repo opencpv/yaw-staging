@@ -1,22 +1,26 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "../modals/Modal";
 import { MdOutlineChat } from "react-icons/md";
-import Checkbox from "../form/Checkbox";
 import Button from "../ui/button/Button";
-import { useListingStore } from "@/store/listing/useListingStore";
+import { handleFavoriteDialogSave } from "@/components/actions";
+import { useAppStore } from "@/store/dashboard/AppStore";
+import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import { useLocalStorage, useSessionStorage } from "@uidotdev/usehooks";
 
 type ModalProps = {
   isOpen: boolean;
   onOpenChange: () => void;
-  onClose?: () => void;
-};
-
-type ModalHeaderProps = {
-  onClose?: () => void;
+  onClose: () => void;
 };
 
 const FavoriteModal = ({ isOpen, onOpenChange, onClose }: ModalProps) => {
+  useEffect(() => {
+    return () => {
+      sessionStorage.removeItem("contactUponFavorite");
+    };
+  }, []);
+
   return (
     <Modal
       isDismissible={false}
@@ -31,7 +35,27 @@ const FavoriteModal = ({ isOpen, onOpenChange, onClose }: ModalProps) => {
   );
 };
 
-const ModalHeader = ({ onClose }: ModalHeaderProps) => {
+const ModalHeader = ({ onClose }: { onClose: () => void }) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const { user } = useAppStore();
+  const { onOpen: onToastOpen } = useToastDisclosure();
+  const [shouldOpenModal, setShouldOpenModal] =
+    useLocalStorage<boolean>("shouldOpenModal");
+
+  const [contactUponFavorite] = useSessionStorage("contactUponFavorite", true);
+  const shouldBeContacted = contactUponFavorite ? true : false;
+
+  const handleSaveFavoriteOption = () => {
+    onClose();
+    onToastOpen(
+      contactUponFavorite
+        ? "👍 Great choice! We've noted that you're open to being contacted by your property owners. Expect to hear from them soon!"
+        : "Noted! Your preference for privacy is important to us. Your property owners will not contact you unless necessary.",
+      undefined,
+      10000,
+    );
+  };
+
   return (
     <>
       <span className="flex flex-wrap items-center justify-between gap-5">
@@ -40,9 +64,23 @@ const ModalHeader = ({ onClose }: ModalHeaderProps) => {
           color="black"
           variant="outline"
           className="h-6 w-fit rounded-3xl px-4 text-sm hover:bg-[#E7F8F2]"
-          onClick={(e) => {
-            // handle favorite logic
-            onClose && onClose();
+          isLoading={isLoading}
+          onClick={async (e) => {
+            setIsLoading(true);
+            const { error } = await handleFavoriteDialogSave(
+              user?.id as string,
+              shouldBeContacted,
+            );
+            if (error) {
+              onToastOpen(error.message, "error");
+              onClose();
+              setIsLoading(false);
+              return;
+            }
+            setIsLoading(false);
+            handleSaveFavoriteOption();
+            setShouldOpenModal(!shouldOpenModal);
+            localStorage.removeItem("shouldOpenModal");
           }}
         >
           Save
@@ -61,8 +99,10 @@ const ModalBody = () => {
 };
 
 const ModalFooter = () => {
-  const [isSelected, setIsSelected] = useState<boolean>(false);
-  const { contactUponFavorite, setContactUponFavorite } = useListingStore();
+  const [contactUponFavorite, setContactUponFavorite] = useSessionStorage(
+    "contactUponFavorite",
+    true,
+  );
 
   const handleYes = () => {
     setContactUponFavorite(true);
@@ -73,34 +113,23 @@ const ModalFooter = () => {
   };
 
   return (
-    <div className="flex w-full flex-col justify-between gap-5 xs:flex-row xs:items-center">
-      <div className="order-2 flex xs:order-1">
-        <Checkbox
-          color="primary"
-          label="Don't show this again"
-          value="favorite-show-again"
-          isSelected={isSelected}
-          onValueChange={() => setIsSelected((prev) => !prev)}
-        />
-      </div>
-      <div className="order-1 flex items-center gap-2 xs:order-2">
-        <Button
-          variant={contactUponFavorite === false ? "default" : "outline"}
-          color="gradient"
-          className="py-6"
-          onClick={handleNo}
-        >
-          No
-        </Button>
-        <Button
-          variant={contactUponFavorite ? "default" : "outline"}
-          color="gradient"
-          className="py-6"
-          onClick={handleYes}
-        >
-          Yes
-        </Button>
-      </div>
+    <div className="flex w-full items-center justify-end gap-2">
+      <Button
+        variant={!contactUponFavorite ? "default" : "outline"}
+        color="gradient"
+        className="py-6"
+        onClick={handleNo}
+      >
+        No
+      </Button>
+      <Button
+        variant={contactUponFavorite ? "default" : "outline"}
+        color="gradient"
+        className="py-6"
+        onClick={handleYes}
+      >
+        Yes
+      </Button>
     </div>
   );
 };

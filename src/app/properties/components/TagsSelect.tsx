@@ -1,11 +1,4 @@
 "use client";
-import {
-  Button,
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownTrigger,
-} from "@nextui-org/react";
 import React, { useEffect, useState } from "react";
 import { FaCaretDown } from "react-icons/fa";
 import AdvancedForm from "./AdvancedForm";
@@ -16,12 +9,15 @@ import {
   FilterOptionArray,
   propertyFilterStore,
 } from "@/store/properties/usePropertiesStore";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const TagsSelect = () => {
   const tabsRef = React.useRef<HTMLDivElement>(null);
-
   const [isAdvancedActive, setIsAdvancedActive] = useState<boolean>(false);
-  const { filter, setFilter } = propertyFilterStore();
+  const searchParams = useSearchParams();
+  const tag = searchParams?.get("tag") || "all";
+  const search = searchParams?.get("search") || "";
+  const router = useRouter();
   const handleIsActive = () => {
     setIsAdvancedActive((prevState) => !prevState);
   };
@@ -48,8 +44,18 @@ const TagsSelect = () => {
             <OptionFilterTabs
               variant="gradient"
               options={filterOptionArray}
-              selectedKey={filter}
-              onSelectionChange={(key) => setFilter(key as FilterOption)}
+              selectedKey={tag}
+              onSelectionChange={(key) =>
+                router.replace(
+                  `/properties?${new URLSearchParams({
+                    search,
+                    tag: key as string,
+                  })}`,
+                  {
+                    scroll: false,
+                  },
+                )
+              }
               radius="small"
             />
           </div>

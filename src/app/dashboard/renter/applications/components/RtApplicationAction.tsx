@@ -15,7 +15,7 @@ import DestructiveModal from "@/components/__shared/modals/DestructiveModal";
 type Props = {
   status: RenterApplicationStatus;
   id: string;
-  table: string;
+  table: TableNames;
 };
 
 const RtApplicationAction = ({ status, id, table }: Props) => {

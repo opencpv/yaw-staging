@@ -2,23 +2,23 @@
 import Button from "@/components/__shared/ui/button/Button";
 import React, { useState } from "react";
 import { FaPlusCircle, FaStar, FaWhatsapp } from "react-icons/fa";
-import AdditionalInfo from "../../components/AdditionalInfo";
-import AdditionalInfoTitle from "../../components/AdditionalInfoTitle";
+import AdditionalInfo from "./AdditionalInfo";
+import AdditionalInfoTitle from "./AdditionalInfoTitle";
 import CallOut from "@/components/__shared/ui/CallOut";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import capitalizeName from "@/lib/utils/stringManipulation";
-import AOSWrapper from "@/components/__shared/AOSWrapper";
+import { contentAccordionVariants, fadeUp } from "@/lib/animations";
 import { motion } from "framer-motion";
-import { contentAccordionVariants } from "@/lib/animations";
+import { cn } from "@/lib/utils";
 
 type Props = {
   availableFrom: string;
-  agentFee: number;
-  viewingFee: number;
-  refundableSecurityDeposit: number;
   utilities: string[];
+  refundableSecurityDeposit?: number;
+  agentFee?: number;
+  viewingFee?: number;
   thingsToKnow?: string;
-  years?: number;
+  advancePeriod?: number;
 };
 
 const PropertyDetailsPayment = (props: Props) => {
@@ -26,11 +26,21 @@ const PropertyDetailsPayment = (props: Props) => {
 
   return (
     <>
-      <AOSWrapper animation="fade-up" className="mb-12">
+      <motion.section {...fadeUp} className="mb-12">
         <AdditionalInfoTitle title="Advance Payment Options" />
-        <AdditionalInfo>
+        <AdditionalInfo
+          className={cn("", {
+            hidden: !props.advancePeriod,
+          })}
+        >
           <ul className="properties-li">
-            <li>1, 2 year(s)</li>
+            <li>
+              {props.advancePeriod === 1
+                ? "1 year"
+                : props.advancePeriod === 2
+                  ? "2 years"
+                  : null}
+            </li>
           </ul>
         </AdditionalInfo>
         <AdditionalInfo>
@@ -41,8 +51,8 @@ const PropertyDetailsPayment = (props: Props) => {
             </p>
           </div>
         </AdditionalInfo>
-      </AOSWrapper>
-      <AOSWrapper animation="fade-up" className="mt-12">
+      </motion.section>
+      <motion.div {...fadeUp} className="mt-12">
         <h2 className="mt-6 text-2xl font-[600] text-neutral-800">
           Additional Information
         </h2>
@@ -52,20 +62,32 @@ const PropertyDetailsPayment = (props: Props) => {
                   Atque illo dolore voluptatum."
           className="mt-2"
         />
-        <AdditionalInfo className="">
+        <AdditionalInfo
+          className={cn("", {
+            hidden: !props.agentFee,
+          })}
+        >
           <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2 border-b py-2 last:border-b-0">
             <p className="w-full flex-1">Agent</p>
-            <p className="w-full flex-1">GHS {formatPrice(props.agentFee)}</p>
+            <p className="w-full flex-1">
+              GHS {props.agentFee && formatPrice(props.agentFee)}
+            </p>
             <Button className="flex min-w-[8rem] flex-1 items-center justify-center gap-2 justify-self-end rounded-lg bg-secondary-400 p-2 text-white">
               Add to cart
               <FaPlusCircle className="shrink-0" />
             </Button>
           </div>
         </AdditionalInfo>
-        <AdditionalInfo>
+        <AdditionalInfo
+          className={cn("", {
+            hidden: !props.viewingFee,
+          })}
+        >
           <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2 border-b py-2 last:border-b-0">
             <p className="w-full flex-1">Viewing</p>
-            <p className="w-full flex-1">GHS {formatPrice(props.viewingFee)}</p>
+            <p className="w-full flex-1">
+              GHS {props.viewingFee && formatPrice(props.viewingFee)}
+            </p>
             <Button className="flex min-w-[8rem] flex-1 items-center justify-center gap-2 justify-self-end rounded-lg bg-secondary-400 p-2 text-white">
               Add to cart
               <FaPlusCircle className="shrink-0" />
@@ -73,11 +95,17 @@ const PropertyDetailsPayment = (props: Props) => {
           </div>
         </AdditionalInfo>
         <AdditionalInfoTitle title="Property Fees" />
-        <AdditionalInfo>
+        <AdditionalInfo
+          className={cn("", {
+            hidden: !props.refundableSecurityDeposit,
+          })}
+        >
           <div className="flex flex-wrap justify-between gap-2">
             <p className="">Refundable Security Deposit</p>
             <p className="">
-              GHS {formatPrice(props.refundableSecurityDeposit)}
+              GHS{" "}
+              {props.refundableSecurityDeposit &&
+                formatPrice(props.refundableSecurityDeposit)}
             </p>
           </div>
         </AdditionalInfo>
@@ -112,7 +140,7 @@ const PropertyDetailsPayment = (props: Props) => {
             {showMore ? "Show Less" : "Read More"}
           </Button>
         </AdditionalInfo>
-      </AOSWrapper>
+      </motion.div>
     </>
   );
 };
