@@ -30,13 +30,9 @@ export const useUserData = () => {
 
         // try to get first_name and last_name from full_name
         const firstName =
-          profiles?.firstname ||
-          profiles?.full_name ||
-          profiles?.full_name?.split(" ")[0] ||
-          "";
+          profiles?.firstname || profiles?.full_name?.split(" ")[0] || "";
         const lastName =
           profiles?.lastname ||
-          profiles?.full_name ||
           profiles?.full_name?.split(" ").slice(1).join(" ") ||
           "";
 

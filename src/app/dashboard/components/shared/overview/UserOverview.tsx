@@ -41,7 +41,7 @@ const UserOverview = ({
     <div className={className}>
       <h2 className="mb-6">Overview</h2>
       <h3 className="mb-6 text-neutral-700 md:hidden">
-        Welcome, {user?.firstname || user?.lastname}
+        Welcome, {user?.full_name}
       </h3>
       <Callout
         className={`w-full transition-all sm:w-10/12 ${
@@ -84,7 +84,7 @@ const UserOverview = ({
         <div className="hidden max-h-60 w-full max-w-[850px] rounded-xl bg-primary-400 p-10 pb-0 pt-20 md:block">
           <div className="mx-auto w-11/12">
             <h3 className="mb-4 text-xl font-[600] text-white">
-              Welcome, {user?.firstname || user?.lastname}
+              Welcome, {user?.full_name}
             </h3>
             <div className="flex max-h-60 items-center gap-x-6 gap-y-3 rounded-xl bg-white p-8 py-16 shadow-2xl">
               <div className="relative h-32 w-32 rounded-xl shadow-lg">
