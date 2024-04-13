@@ -1,11 +1,10 @@
-import AOSWrapper from "@/components/__shared/AOSWrapper";
 import ReportIssue from "@/components/__shared/ReportIssue";
 import SliderWide from "@/components/__shared/sliders/SliderWide";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { useDisclosure } from "@nextui-org/react";
 import Image from "next/image";
 import PropertyGalleryModal from "./PropertyGalleryModal";
-import { ListingInterface } from "../../../../../interfaces";
+import { ListingInterface } from "../../../../interfaces";
 
 type Props = {
   images: ListingInterface;

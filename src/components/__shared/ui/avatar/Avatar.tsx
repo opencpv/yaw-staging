@@ -1,19 +1,20 @@
 "use client";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import React from "react";
 import { FaRegUser } from "react-icons/fa";
 
 type Props = {
-  image: string;
+  image: string | StaticImageData;
   name: string | null;
   email?: string;
   size?: "sm" | "lg";
   className?: string;
   display?: boolean;
+  title?: string;
 };
 
-const Avatar = ({ image, name, className, email, size, display }: Props) => {
+const Avatar = ({ image, name, className, title, size, display }: Props) => {
   return (
     <>
       {display !== undefined && display ? (
@@ -30,6 +31,7 @@ const Avatar = ({ image, name, className, email, size, display }: Props) => {
               "xs:size-[50px]": size !== "sm",
             },
           )}
+          title={title}
         />
       ) : (
         <div

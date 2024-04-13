@@ -45,12 +45,3 @@ export default capitalizeName;
 export const getFirstWord = (str: string, delimiter: string = " ") => {
   return str?.split(delimiter)[0];
 };
-
-export const addQueryParamsToUrl = (baseurl: string, params: any) => {
-  const query = Object.entries(params)
-    .map(([key, value]) => `${key}=${value}`)
-    .join("&")
-    .replaceAll(" ", "_");
-
-  return `${baseurl}?${query}`;
-};

@@ -3,7 +3,6 @@ import OtherPosts from "./components/post/OtherPosts";
 import SliderWide from "@/components/__shared/sliders/SliderWide";
 import CategoryCard from "./components/CategoryCard";
 import Authors from "./components/author/Authors";
-import AOSWrapper from "@/components/__shared/AOSWrapper";
 import SubscribeToBlogButton from "./components/SubscribeToBlogButton";
 import PostSlider from "./components/post/PostSlider";
 import { loadQuery } from "@sanity/react-loader";
@@ -15,6 +14,9 @@ import {
 } from "@/lib/utils/sanity/queries";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import slugify from "@/lib/utils/slugify";
+import { motion } from "framer-motion";
+import { fadeUp } from "@/lib/animations";
+import FramerWrapper from "@/components/__shared/FramerWrapper";
 
 const page = async () => {
   const initialBlogData: any = await loadQuery<SanityDocument[]>(BLOG_QUERY);
@@ -63,7 +65,7 @@ const page = async () => {
             }))}
           />
           <PostSlider posts={sliderBlogData} />
-          <AOSWrapper animation="fade-up" className="section">
+          <FramerWrapper {...fadeUp} className="section">
             <section className="grid gap-x-3.5 gap-y-7 xs:grid-cols-2 md:grid-cols-3">
               {categories.map((category: any, index: number) => (
                 <CategoryCard
@@ -75,7 +77,7 @@ const page = async () => {
                 />
               ))}
             </section>
-          </AOSWrapper>
+          </FramerWrapper>
         </div>
 
         {/* Other posts -- right side of Grid */}

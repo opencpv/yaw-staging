@@ -13,6 +13,8 @@ type Props = {
   inputClassName?: string;
   searchIconColor?: string;
   separatorClassName?: string;
+  name?: string;
+  value?: string;
   onSubmit?: (e: FormEvent<HTMLFormElement>) => void;
   onInput?: (e: React.FormEvent<HTMLInputElement>) => void;
 };
@@ -24,6 +26,8 @@ const InputWithSavedSearch = ({
   separatorClassName,
   onSubmit,
   onInput,
+  name,
+  value,
 }: Props) => {
   const [showDivider, setShowDivider] = React.useState(false);
   const pathname = usePathname();
@@ -44,6 +48,8 @@ const InputWithSavedSearch = ({
             inputClassName,
           )}
           placeholder="Madina, Accra"
+          name={name}
+          value={value}
           onInput={(e) => {
             e.currentTarget.value !== ""
               ? setShowDivider(true)

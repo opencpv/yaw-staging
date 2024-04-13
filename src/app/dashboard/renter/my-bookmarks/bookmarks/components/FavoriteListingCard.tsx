@@ -13,7 +13,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import ListingInfo from "@/components/__shared/listing/ListingInfo";
-import ListingDeals from "@/components/__shared/listing/ListingDeals";
+import ListingTags from "@/components/__shared/listing/ListingTags";
 import { ListingCardInterface } from "../../../../../../../interfaces";
 import CaDashEye from "../../../../components/icons/CaDashEye";
 import { MdDelete } from "react-icons/md";
@@ -103,7 +103,7 @@ const FavoriteListingCard = (props: Partial<ListingCardInterface>) => {
           }`}
         />
         {/* Deals */}
-        <ListingDeals guarantee={props.guarantee} hint={props.hint} />
+        <ListingTags guarantee={props.guarantee} hint={props.hint} />
       </div>
     </>
   );

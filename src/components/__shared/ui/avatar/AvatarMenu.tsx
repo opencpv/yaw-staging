@@ -17,6 +17,8 @@ import {
 import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { useUserSession } from "@/lib/custom-hooks/database/useUserSession";
 import { createClient } from "@/lib/utils/supabase/auth/client";
+import { useAssets } from "@/lib/custom-hooks/useAssets";
+import Tooltip from "@/components/ui/Tooltip";
 
 type Props = {
   /** ClassName for the avatar  */
@@ -29,15 +31,10 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
   const pathname = usePathname();
   const { currentRole } = useDashboardStore();
   const { user, setUser } = useAppStore();
-  // const userSession = useUserSession();
+  const { images } = useAssets();
   const router = useRouter();
   const { onOpen } = useToastDisclosure();
   const supabase = createClient();
-
-  const name =
-    user?.firstname && user?.lastname
-      ? `${user?.firstname} ${user?.lastname}`
-      : null;
 
   const handleSignOut = async () => {
     const { error } = await supabase.auth.signOut();
@@ -55,15 +52,29 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <div>
-          <Avatar
-            image={user?.avatar_url as string}
-            name={name}
-            email={user?.email}
-            className={cn("", className)}
-            display={user ? true : false}
-          />
-        </div>
+        {user?.profile_img ? (
+          <div>
+            <Avatar
+              image={user?.profile_img as string}
+              name={user?.full_name || ""}
+              email={user?.email}
+              className={cn("", className)}
+              display={user ? true : false}
+            />
+          </div>
+        ) : (
+          <div title="Upload your profile image">
+            {/* <Tooltip content="Please upload your profile image"> */}
+            <Avatar
+              image={images.NoProfileUser}
+              name={user?.full_name || ""}
+              email={user?.email}
+              className={cn("object-contain", className)}
+              display={user ? true : false}
+            />
+            {/* </Tooltip> */}
+          </div>
+        )}
       </PopoverTrigger>
       {/* Avatar Menu */}
       <PopoverContent
@@ -75,18 +86,25 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
         <ul>
           <li
             className={cn("flex gap-4 p-5", {
-              "items-start": name,
-              "items-center": !name || name === " ",
+              "items-start": user?.full_name,
+              "items-center": !user?.full_name || user?.full_name === " ",
             })}
           >
             <Avatar
               display={user ? true : false}
-              image={user?.avatar_url as string}
-              name={name as string}
+              image={
+                user?.profile_img ? user.profile_img : images.NoProfileUser
+              }
+              name={user?.full_name as string}
               email={user?.email}
+              title={
+                !user?.profile_img ? "Upload your profile image" : undefined
+              }
             />
             <div className="">
-              {name && <h3 className="max-sm:text-lg">{name}</h3>}
+              {user?.full_name && (
+                <h3 className="max-sm:text-lg">{user?.full_name}</h3>
+              )}
               <small className="text-shade-300">{user?.email}</small>
             </div>
           </li>

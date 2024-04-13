@@ -47,7 +47,7 @@ const LsApplicationRow = ({
         onOpenChange={onOpenChange}
         label="Are you sure you want to delete this application?"
         id=""
-        table=""
+        table="regular_application"
       />
       <TableBodyRow className="grid-cols-5">
         {/* Applicant */}

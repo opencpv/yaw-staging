@@ -1,12 +1,11 @@
 "use client";
 import Button from "@/components/__shared/ui/button/Button";
-import Feature from "../../components/Feature";
+import Feature from "./Feature";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa";
-import AOSWrapper from "@/components/__shared/AOSWrapper";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { contentAccordionVariants } from "@/lib/animations";
-import { FeatureInterface } from "../../../../../interfaces";
+import { FeatureInterface } from "../../../../interfaces";
 
 type Props = {
   features: FeatureInterface[];
@@ -17,11 +16,11 @@ const PropertyDetailsFeatures = ({ features }: Props) => {
 
   return (
     <section className="my-10">
-      <h2 className="text-neutral-800 font-[600] text-2xl">
+      <h2 className="text-2xl font-[600] text-neutral-800">
         Features and Amenities
       </h2>
       <motion.div
-        className="grid justify-between w-full mt-8 overflow-hidden gap-x-10 gap-y-4 sm:grid-cols-2 lg:grid-cols-3"
+        className="mt-8 grid w-full justify-between gap-x-10 gap-y-4 overflow-hidden sm:grid-cols-2 lg:grid-cols-3"
         initial="collapsed"
         variants={contentAccordionVariants("11rem")}
         animate={showMore ? "expanded" : "collapsed"}
@@ -29,19 +28,12 @@ const PropertyDetailsFeatures = ({ features }: Props) => {
         exit="collapsed"
       >
         {features.map((feature, idx) => (
-          <AOSWrapper
-            key={idx + 1}
-            duration="600"
-            animation="fade-right"
-            delay={`${idx + 1}00`}
-          >
-            <Feature label={feature} />
-          </AOSWrapper>
+          <Feature key={idx} label={feature} />
         ))}
       </motion.div>
       <Button
         variant="ghost"
-        className="flex items-center ml-auto text-sm gap-1 text-[#305A61] mt-10"
+        className="ml-auto mt-10 flex items-center gap-1 text-sm text-[#305A61]"
         onClick={() => setShowMore((current) => !current)}
       >
         {showMore ? (

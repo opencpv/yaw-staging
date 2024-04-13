@@ -6,13 +6,14 @@ import SimpleSlider from "./components/Slider/SimpleSlider";
 import "swiper/css";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import VerticalSlider from "./components/Slider/VerticalSlider";
-import AOSWrapper from "@/components/__shared/AOSWrapper";
 import FeaturedListings from "@/components/__shared/listing/FeaturedListings";
 import { Metadata } from "next";
 import { ABOUT_PAGE_QUERY } from "@/lib/utils/sanity/queries";
 import { loadQuery } from "@/lib/utils/sanity/sanityStore";
 import { SanityDocument } from "next-sanity";
 import { urlForImage } from "@/lib/utils/sanity/utils";
+import { fadeUp } from "@/lib/animations";
+import FramerWrapper from "@/components/__shared/FramerWrapper";
 
 export const metadata: Metadata = {
   title: "About us",
@@ -71,8 +72,8 @@ const About = async () => {
             />
           </div>
         </div>
-        <AOSWrapper
-          animation="fade-up"
+        <FramerWrapper
+          {...fadeUp}
           className="wrapper flex min-h-max items-center justify-center py-0 sm:py-0"
         >
           <div className="min-h-max">
@@ -80,10 +81,10 @@ const About = async () => {
               <AboutItem key={index} index={index + 1} data={data} />
             ))}
           </div>
-        </AOSWrapper>
+        </FramerWrapper>
         <section className="section">
           {/* <AboutBanner data={bannerData} /> */}
-          <AOSWrapper animation="fade-up" className="relative w-full">
+          <FramerWrapper {...fadeUp} className="relative w-full">
             <div className="relative flex max-w-screen-xl flex-col items-center justify-between gap-10 bg-opacity-90 bg-gradient-to-r from-[#21A19F] to-[#1EA9A6A1] p-5 text-white xs:items-start xs:p-10 lg:flex-row min-[1048px]:max-xl:w-11/12 fhd:mx-auto">
               <div className="space-y-5">
                 <h2 className="font-[700] md:text-4xl">{bannerData.title}</h2>
@@ -99,15 +100,15 @@ const About = async () => {
                 className="xs:self-end lg:mt-14"
               />
             </div>
-          </AOSWrapper>
+          </FramerWrapper>
           <SimpleSlider data={hSlider} />
         </section>
-        <AOSWrapper
-          animation="fade-up"
+        <FramerWrapper
+          {...fadeUp}
           className="mx-auto h-fit max-w-screen-2xl px-5 sm:px-10 lg:pt-28"
         >
           <VerticalSlider data={vSlider} />
-        </AOSWrapper>
+        </FramerWrapper>
         <FeaturedListings className="wrapper pb-0 pt-28" />
       </main>
       <Footer />

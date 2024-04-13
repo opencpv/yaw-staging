@@ -1,7 +1,7 @@
 import supabase from "@/lib/utils/supabase/supabaseClient";
 
 const fetchTable = async (
-  tableName: string,
+  tableName: TableNames,
   {
     select_fields,
     eq,

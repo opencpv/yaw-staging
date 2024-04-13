@@ -54,7 +54,7 @@ const BlockUserPopOver = (props: Props) => {
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         id=""
-        table=""
+        table="messages"
       />
     </>
   );
