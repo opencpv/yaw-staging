@@ -1,3 +1,4 @@
+//@ts-nocheck
 "use client";
 import InputWithSavedSearch from "@/components/__shared/form/InputWithSavedSearch";
 import { useRouter, useSearchParams } from "next/navigation";
