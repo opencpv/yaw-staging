@@ -4,19 +4,22 @@ import ListingCard from "@/components/__shared/listing/ListingCard";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
 import images from "@/enum/temp/images";
-import { addQueryParamsToUrl } from "@/lib/utils/stringManipulation";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useFetchProperties } from "../services";
 import PropertiesEmptyState from "./PropertiesEmptyState";
 import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
 import SomethingWentWrong from "@/app/components/SomethingWentWrong";
-import { propertyFilterStore } from "@/store/properties/usePropertiesStore";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 
 const PropertiesListing = (props: Props) => {
-  const { setSearchString, setFilter, filter, searchString } =
-    propertyFilterStore();
+  const searchParams = useSearchParams();
+  const search = searchParams?.get("search") || "";
+  const tag = searchParams?.get("tag") || "all";
+  const router = useRouter();
+
   const { user } = useAppStore();
   const {
     data: listings,
@@ -24,12 +27,20 @@ const PropertiesListing = (props: Props) => {
     isLoading,
     isValidating,
     loadMore,
-  } = useFetchProperties();
+    mutate,
+  } = useFetchProperties({ searchString: search as string, filter: tag });
 
   const handleViewSimilarResults = () => {
     // TODO: implement appropriately
-    setSearchString("Accra");
-    setFilter("all");
+    router.replace(
+      `/properties?${new URLSearchParams({
+        search: "Accra",
+        tag: "all",
+      })}`,
+      {
+        scroll: false,
+      },
+    );
   };
 
   return (
@@ -46,8 +57,7 @@ const PropertiesListing = (props: Props) => {
             <SomethingWentWrong
               className="col-span-full h-fit"
               onTryAgain={() => {
-                setSearchString(searchString);
-                setFilter(filter);
+                mutate();
               }}
             />
           }
@@ -60,17 +70,21 @@ const PropertiesListing = (props: Props) => {
             cardType="2"
             propertyId={listing.property_id as number}
             key={listing.id}
-            href={addQueryParamsToUrl(`/properties/${listing.property_id}`, {
-              property_type: listing.property_type,
-              bedrooms: listing.bedrooms,
-              city: listing.city,
-              neighbourhood: listing.neighbourhood,
-              subtitle: listing.subtitle,
-              advance_period: listing.advance_period,
-              payment_structure: listing.advance_payment_options,
-              amount_per_month: listing.monthly_amount as number,
-              rating: 4,
-            })}
+            href={`/properties/${listing.property_id}?${new URLSearchParams({
+              property_type: listing.property_type as string,
+              bedrooms: String(listing.bedrooms),
+              city: listing.city as string,
+              neighbourhood: listing.neighbourhood as string,
+              subtitle: listing.subtitle as string,
+              advance_period: String(listing.advance_period),
+              payment_structure: String(listing.advance_payment_options),
+              amount_per_month: String(listing.monthly_amount),
+              rating: String(4),
+              viewing_fee: String(listing.viewing_fee),
+              is_realtors_choice: String(listing.property?.is_realtors_choice),
+              is_best_value: String(listing.property?.is_best_value),
+              is_featured: String(listing.property?.is_featured),
+            })}`}
             bedrooms={listing.bedrooms as number}
             propertyType={listing.property_type as string}
             city={listing.city as string}

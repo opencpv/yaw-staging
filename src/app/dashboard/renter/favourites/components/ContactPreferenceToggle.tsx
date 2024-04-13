@@ -9,7 +9,7 @@ type Props = {};
 
 const ContactPreferenceToggle = (props: Props) => {
   const { user } = useAppStore();
-  const [selected, setSelected] = useState(user?.shouldBeContacted || false);
+  const [selected, setSelected] = useState(user?.should_be_contacted || false);
   const { onOpen } = useToastDisclosure();
 
   const handleToggle = async (isSelected: boolean) => {

@@ -19,7 +19,8 @@ export const useUserData = () => {
         let { data: profiles, error } = await supabase
           .from("profiles")
           .select("*")
-          .eq("id", userDetails?.user?.id as string);
+          .eq("id", userDetails?.user?.id as string)
+          .maybeSingle();
         let { data: userPreference } = await supabase
           .from("contact_owner_preference")
           .select("should_be_contacted")
@@ -27,10 +28,25 @@ export const useUserData = () => {
           .limit(1)
           .single();
 
+        // try to get first_name and last_name from full_name
+        const firstName =
+          profiles?.firstname ||
+          profiles?.full_name ||
+          profiles?.full_name?.split(" ")[0] ||
+          "";
+        const lastName =
+          profiles?.lastname ||
+          profiles?.full_name ||
+          profiles?.full_name?.split(" ").slice(1).join(" ") ||
+          "";
+
         const profileData = {
-          ...(profiles && profiles[0]),
+          ...(profiles && profiles),
           email: userDetails?.user?.email,
-          shouldBeContacted: userPreference?.should_be_contacted,
+          should_be_contacted: userPreference?.should_be_contacted,
+          first_name: firstName,
+          last_name: lastName,
+          full_name: firstName + " " + lastName,
         };
         if (userDetails.user) {
           setUser(profileData);

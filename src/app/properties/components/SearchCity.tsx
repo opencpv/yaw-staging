@@ -1,13 +1,43 @@
-//@ts-nocheck
 "use client";
 import InputWithSavedSearch from "@/components/__shared/form/InputWithSavedSearch";
-import { propertyFilterStore } from "@/store/properties/usePropertiesStore";
+import { useRouter, useSearchParams } from "next/navigation";
 import React from "react";
 
 type Props = {};
 
 const SearchCity = (props: Props) => {
-  const { setSearchString } = propertyFilterStore();
+  const searchParams = useSearchParams();
+  const tag = searchParams?.get("tag") as string;
+  const search = searchParams?.get("search") as string;
+  const router = useRouter();
+
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    const formData = new FormData(e.currentTarget);
+    const search = formData.get("search");
+
+    router.replace(
+      `/properties?${new URLSearchParams({
+        search: search as string,
+        tag,
+      })}`,
+      {
+        scroll: false,
+      },
+    );
+  };
+
+  const handleInput = (e: React.FormEvent<HTMLInputElement>) => {
+    const search = e.target.value;
+
+    search === "" &&
+      router.replace(
+        `/properties?${new URLSearchParams({
+          search: search,
+          tag,
+        })}`,
+        { scroll: false },
+      );
+  };
 
   return (
     <div className="relative w-full p-10 px-5 sm:bottom-20 sm:max-w-4xl sm:rounded-xl sm:bg-white sm:shadow-2xl md:px-20">
@@ -15,10 +45,10 @@ const SearchCity = (props: Props) => {
         className="block w-full rounded-full border border-primary-100/80 p-5 text-neutral-800 shadow-[0px_1px_64px_10px_rgba(0,_0,_0,_0.12)] sm:rounded-[inherit] sm:pl-12 sm:shadow-xl"
         inputClassName="placeholder:uppercase"
         searchIconColor="#21A19F"
-        onSubmit={(e) => setSearchString(e.target[0].value)}
-        onInput={(e) =>
-          e.target.value === "" && setSearchString(e.target.value)
-        }
+        name="search"
+        onSubmit={handleSearch}
+        onInput={handleInput}
+        defaultValue={search}
       />
     </div>
   );

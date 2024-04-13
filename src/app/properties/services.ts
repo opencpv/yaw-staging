@@ -1,16 +1,22 @@
 import supabase from "@/lib/utils/supabase/supabaseClient";
-import { propertyFilterStore } from "@/store/properties/usePropertiesStore";
-import { useOffsetInfiniteScrollQuery } from "@supabase-cache-helpers/postgrest-swr";
-import { useQuery } from "@tanstack/react-query";
+import {
+  useOffsetInfiniteScrollQuery,
+  useQuery,
+} from "@supabase-cache-helpers/postgrest-swr";
 
-export const useFetchProperties = () => {
-  const { searchString, filter } = propertyFilterStore();
+export const useFetchProperties = ({
+  searchString = "",
+  filter = "all",
+}: {
+  searchString: string;
+  filter: string;
+}) => {
   const formattedSearchString = formatString(searchString);
 
   let query = supabase
     .from("merged_standard_template_view")
     .select(
-      "id, property_id, property!inner (id, is_best_value, is_realtors_choice), is_property_verified, is_lister_certified, property_type, description, city, bedrooms, monthly_amount, advance_payment_options, favorite_user_ids, subtitle, neighbourhood, advance_period, viewing_fee",
+      "id, property_id, property!inner (id, is_best_value, is_realtors_choice, is_featured), is_property_verified, is_lister_certified, property_type, description, city, bedrooms, monthly_amount, advance_payment_options, favorite_user_ids, subtitle, neighbourhood, advance_period, viewing_fee",
     )
     .order("is_property_verified", { ascending: false })
     .order("property (is_realtors_choice)", { ascending: false })
@@ -44,8 +50,6 @@ export const useFetchProperties = () => {
 
   const result = useOffsetInfiniteScrollQuery(query, {
     pageSize: 9,
-    revalidateOnFocus: false,
-    revalidateIfStale: true,
     revalidateAll: true,
   });
 
@@ -53,45 +57,35 @@ export const useFetchProperties = () => {
 };
 
 export const useFetchFeaturedListings = () => {
-  const query = useQuery({
-    queryKey: ["featured_listing"],
-    queryFn: async () => {
-      const { data: listings } = await supabase
-        .from("merged_standard_template_view")
-        .select(
-          "id, property_id, property!inner (id, is_best_value, is_realtors_choice, is_featured), is_property_verified, is_lister_certified, property_type, description, city, bedrooms, monthly_amount, advance_payment_options, favorite_user_ids, subtitle, neighbourhood, advance_period, viewing_fee",
-        )
-        .eq("property.is_featured", true)
-        .order("is_property_verified", { ascending: false })
-        .order("property (is_realtors_choice)", { ascending: false })
-        .order("property (is_best_value)", { ascending: false })
-        .order("is_lister_certified", { ascending: false })
-        .order("created_at", { ascending: false });
-      return listings;
-    },
-    refetchOnMount: true,
-  });
+  const query = supabase
+    .from("merged_standard_template_view")
+    .select(
+      "id, property_id, property!inner (id, is_best_value, is_realtors_choice, is_featured), is_property_verified, is_lister_certified, property_type, description, city, bedrooms, monthly_amount, advance_payment_options, favorite_user_ids, subtitle, neighbourhood, advance_period, viewing_fee",
+    )
+    .eq("property.is_featured", true)
+    .order("is_property_verified", { ascending: false })
+    .order("property (is_realtors_choice)", { ascending: false })
+    .order("property (is_best_value)", { ascending: false })
+    .order("is_lister_certified", { ascending: false })
+    .order("created_at", { ascending: false });
 
-  return query;
+  const result = useQuery(query);
+
+  return result;
 };
 
 export const useFetchPropertyDetails = (propertyId: number) => {
-  const query = useQuery({
-    queryKey: ["property_details", propertyId],
-    queryFn: async () => {
-      const { data: listing } = await supabase
-        .from("merged_standard_template_view")
-        .select(
-          "*, property!inner (id, profiles!inner (id, full_name, avatar_url, profile_img, phone, whatsapp))",
-        )
-        .eq("property_id", propertyId)
-        .single();
-      return listing;
-    },
-    refetchOnMount: true,
-  });
+  const query = supabase
+    .from("merged_standard_template_view")
+    .select(
+      "*, property!inner (id, profiles!inner (id, full_name, avatar_url, profile_img, phone, whatsapp))",
+    )
+    .eq("property_id", propertyId)
+    .single();
 
-  return query;
+  const result = useQuery(query);
+
+  return result;
 };
 
 const formatString = (str: string): string => {

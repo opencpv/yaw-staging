@@ -97,7 +97,6 @@ const LikeHeart = ({ liked, className, userId, propertyId }: Props) => {
         if (error) {
           toastOnOpen(error.message, "error");
         }
-        router.refresh();
       };
       likeProperty();
       // remove the property id from session storage

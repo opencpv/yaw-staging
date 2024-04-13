@@ -36,11 +36,6 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
   const { onOpen } = useToastDisclosure();
   const supabase = createClient();
 
-  const name =
-    user?.firstname && user?.lastname
-      ? `${user?.firstname} ${user?.lastname}`
-      : null;
-
   const handleSignOut = async () => {
     const { error } = await supabase.auth.signOut();
     if (error) {
@@ -61,7 +56,7 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
           <div>
             <Avatar
               image={user?.profile_img as string}
-              name={name}
+              name={user?.full_name || ""}
               email={user?.email}
               className={cn("", className)}
               display={user ? true : false}
@@ -72,7 +67,7 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
             {/* <Tooltip content="Please upload your profile image"> */}
             <Avatar
               image={images.NoProfileUser}
-              name={name}
+              name={user?.full_name || ""}
               email={user?.email}
               className={cn("object-contain", className)}
               display={user ? true : false}
@@ -91,8 +86,8 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
         <ul>
           <li
             className={cn("flex gap-4 p-5", {
-              "items-start": name,
-              "items-center": !name || name === " ",
+              "items-start": user?.full_name,
+              "items-center": !user?.full_name || user?.full_name === " ",
             })}
           >
             <Avatar
@@ -100,14 +95,16 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
               image={
                 user?.profile_img ? user.profile_img : images.NoProfileUser
               }
-              name={name as string}
+              name={user?.full_name as string}
               email={user?.email}
               title={
                 !user?.profile_img ? "Upload your profile image" : undefined
               }
             />
             <div className="">
-              {name && <h3 className="max-sm:text-lg">{name}</h3>}
+              {user?.full_name && (
+                <h3 className="max-sm:text-lg">{user?.full_name}</h3>
+              )}
               <small className="text-shade-300">{user?.email}</small>
             </div>
           </li>

@@ -44,9 +44,8 @@ const PropertyDetailsPage = ({ params }: Props) => {
   const {
     data: listing,
     isLoading,
-    isFetching,
     error,
-    refetch,
+    mutate,
   } = useFetchPropertyDetails(parseInt(propertyId));
 
   const propertyName = useMemo(() => {
@@ -75,7 +74,6 @@ const PropertyDetailsPage = ({ params }: Props) => {
         data={listing}
         error={error}
         isLoading={isLoading}
-        isValidating={isFetching}
         isLoadingComponent={
           <div className="">
             <div className="relative mb-20 h-[50rem]">
@@ -108,7 +106,7 @@ const PropertyDetailsPage = ({ params }: Props) => {
             </div>
           </div>
         }
-        errorComponent={<SomethingWentWrong onTryAgain={() => refetch()} />}
+        errorComponent={<SomethingWentWrong onTryAgain={() => mutate()} />}
       />
       {listing && (
         <>

@@ -30,7 +30,7 @@ const HomeLandingPage = (props: Props) => {
         </div>
         <CitySearchForm
           className="col-span-5 md:order-1 md:col-span-3"
-          defaultValue={props.data.searchDefault}
+          placeholder={props.data.searchDefault}
         />
       </div>
       <ScrollDownBtn />

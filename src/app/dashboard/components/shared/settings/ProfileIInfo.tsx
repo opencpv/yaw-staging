@@ -68,20 +68,6 @@ const ProfileInfo = () => {
   const router = useRouter();
   const supabase = createClient();
 
-  const firstName = useMemo(() => {
-    // try to get firstname from full_name
-    if (user?.full_name) {
-      return user?.full_name.split(" ")[0];
-    }
-  }, [user?.full_name]);
-
-  const lastName = useMemo(() => {
-    // try to get lastname from full_name
-    if (user?.full_name) {
-      return user?.full_name.split(" ").slice(1).join(" ");
-    }
-  }, [user?.full_name]);
-
   useEffect(() => {
     if (user) {
       setLoading(false);
@@ -100,8 +86,8 @@ const ProfileInfo = () => {
   }, []);
 
   const initialValues = {
-    firstName: user?.firstname || firstName,
-    lastName: user?.lastname || lastName,
+    firstName: user?.firstname,
+    lastName: user?.lastname,
     email: user?.email,
     user,
     country: user?.country,

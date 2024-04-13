@@ -11,7 +11,6 @@ import FetchErrorMessage from "../ui/data_fetching/FetchErrorMessage";
 import Button from "../ui/button/Button";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, FreeMode, Mousewheel } from "swiper/modules";
-import { addQueryParamsToUrl } from "@/lib/utils/stringManipulation";
 import { useFetchFeaturedListings } from "@/app/properties/services";
 import { useAppStore } from "@/store/dashboard/AppStore";
 
@@ -23,12 +22,7 @@ type Props = {
 const FeaturedListings = ({ className, showAllButton }: Props) => {
   const { user } = useAppStore();
 
-  const {
-    data: listings,
-    error,
-    isLoading,
-    isFetching,
-  } = useFetchFeaturedListings();
+  const { data: listings, error, isLoading } = useFetchFeaturedListings();
 
   return (
     <>
@@ -109,20 +103,27 @@ const FeaturedListings = ({ className, showAllButton }: Props) => {
                     <ListingCard
                       propertyId={listing.property_id as number}
                       key={listing.id}
-                      href={addQueryParamsToUrl(
-                        `/properties/${listing.property_id}`,
-                        {
-                          property_type: listing.property_type,
-                          bedrooms: listing.bedrooms,
-                          city: listing.city,
-                          neighbourhood: listing.neighbourhood,
-                          subtitle: listing.subtitle,
-                          advance_period: listing.advance_period,
-                          payment_structure: listing.advance_payment_options,
-                          amount_per_month: listing.monthly_amount as number,
-                          rating: 4,
-                        },
-                      )}
+                      href={`/properties/${
+                        listing.property_id
+                      }?${new URLSearchParams({
+                        property_type: listing.property_type as string,
+                        bedrooms: String(listing.bedrooms),
+                        city: listing.city as string,
+                        neighbourhood: listing.neighbourhood as string,
+                        subtitle: listing.subtitle as string,
+                        advance_period: String(listing.advance_period),
+                        payment_structure: String(
+                          listing.advance_payment_options,
+                        ),
+                        amount_per_month: String(listing.monthly_amount),
+                        rating: String(4),
+                        viewing_fee: String(listing.viewing_fee),
+                        is_realtors_choice: String(
+                          listing.property?.is_realtors_choice,
+                        ),
+                        is_best_value: String(listing.property?.is_best_value),
+                        is_featured: String(listing.property?.is_featured),
+                      })}`}
                       bedrooms={listing.bedrooms as number}
                       propertyType={listing.property_type as string}
                       city={listing.city as string}
