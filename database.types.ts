@@ -71,14 +71,14 @@ export type Database = {
           {
             foreignKeyName: "public_contact_owner_preference_user_id_fkey"
             columns: ["user_id"]
-            isOneToOne: false
+            isOneToOne: true
             referencedRelation: "distinct_messages_view"
             referencedColumns: ["sender_id"]
           },
           {
             foreignKeyName: "public_contact_owner_preference_user_id_fkey"
             columns: ["user_id"]
-            isOneToOne: false
+            isOneToOne: true
             referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
@@ -1032,7 +1032,7 @@ export type Database = {
           {
             foreignKeyName: "standard_template_property_id_fkey"
             columns: ["property_id"]
-            isOneToOne: false
+            isOneToOne: true
             referencedRelation: "property"
             referencedColumns: ["id"]
           },
@@ -1083,8 +1083,15 @@ export type Database = {
             foreignKeyName: "public_user_favorite_properties_property_id_fkey"
             columns: ["property_id"]
             isOneToOne: false
-            referencedRelation: "property"
-            referencedColumns: ["id"]
+            referencedRelation: "merged_standard_template_view"
+            referencedColumns: ["property_id"]
+          },
+          {
+            foreignKeyName: "public_user_favorite_properties_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "standard_template"
+            referencedColumns: ["property_id"]
           },
           {
             foreignKeyName: "public_user_favorite_properties_user_id_fkey"
@@ -1189,7 +1196,7 @@ export type Database = {
           {
             foreignKeyName: "standard_template_property_id_fkey"
             columns: ["property_id"]
-            isOneToOne: false
+            isOneToOne: true
             referencedRelation: "property"
             referencedColumns: ["id"]
           },

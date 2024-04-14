@@ -7,25 +7,34 @@ export const handleFavoriteDialogSave = async (
   shouldBeContacted: boolean,
 ) => {
   let query;
-  const { data: user } = await supabase
-    .from("contact_owner_preference")
-    .select("id")
-    .eq("user_id", userId)
-    .limit(1)
-    .maybeSingle();
 
-  if (user) {
-    query = await supabase
-      .from("contact_owner_preference")
-      .update({ should_be_contacted: shouldBeContacted })
-      .eq("user_id", user.id)
-      .select("id");
-  } else {
-    query = await supabase
-      .from("contact_owner_preference")
-      .insert({ user_id: userId, should_be_contacted: shouldBeContacted })
-      .select("id");
-  }
+  query = await supabase
+    .from("contact_owner_preference")
+    .upsert(
+      { user_id: userId, should_be_contacted: shouldBeContacted },
+      { onConflict: "user_id" },
+    )
+    .select("id");
+
+  // const { data: user } = await supabase
+  //   .from("contact_owner_preference")
+  //   .select("id")
+  //   .eq("user_id", userId)
+  //   .limit(1)
+  //   .maybeSingle();
+
+  // if (user) {
+  //   query = await supabase
+  //     .from("contact_owner_preference")
+  //     .update({ should_be_contacted: shouldBeContacted })
+  //     .eq("user_id", user.id)
+  //     .select("id");
+  // } else {
+  //   query = await supabase
+  //     .from("contact_owner_preference")
+  //     .insert({ user_id: userId, should_be_contacted: shouldBeContacted })
+  //     .select("id");
+  // }
 
   return query;
 };

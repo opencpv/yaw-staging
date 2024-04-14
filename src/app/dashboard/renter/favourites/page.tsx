@@ -14,24 +14,23 @@ import demoimages from "@/enum/temp/images";
 import { Switch } from "@nextui-org/react";
 import Toggle from "@/components/ui/Toggle";
 import ContactPreferenceToggle from "./components/ContactPreferenceToggle";
+import { useFetchUserFavorites } from "../../components/shared/favorites/utils/services";
+import { useAppStore } from "@/store/dashboard/AppStore";
 
 export default function Page() {
   const [savedSearches, setSavedSearches] = useState(true);
   const { images } = useAssets();
 
+  const { user } = useAppStore();
+
   const {
     data: listings,
     error,
-    isValidating,
     isLoading,
+    isValidating,
     loadMore,
-  } = useFetchTableWithInfiniteScroll({
-    tableName: "standard_template",
-    pageSize: 9,
-    order: { column: "created_at", ...fetchOrderRule() },
-    select: "id, property_name, property_id, description, monthly_amount, city",
-    ...revalidationRule(),
-  });
+    mutate,
+  } = useFetchUserFavorites(user?.id as string);
 
   return (
     <div>
@@ -55,27 +54,68 @@ export default function Page() {
         />
         {listings?.map((listing, idx) => (
           <ListingCard
-            key={listing.id as string}
             cardType="2"
-            href={`/properties/${listing.property_id}?property_name=${
-              listing.property_name
-            }&city=${listing.city}&price=${listing.price}&payment_structure=${
-              listing.payment_structure
-            }&amount_per_month=${listing.monthly_amount as number}&rating=${
-              listing.rating_count
-            }&property_description=${listing.description}`.replaceAll(" ", "_")}
-            propertyName={listing.property_name as string}
-            city={listing.city as string}
+            propertyId={listing?.standard_template?.property?.id as number}
+            key={listing?.standard_template?.id}
+            href={`/properties/${listing?.standard_template?.property
+              ?.id}?${new URLSearchParams({
+              property_type: listing?.standard_template
+                ?.property_type as string,
+              bedrooms: String(listing?.standard_template?.bedrooms),
+              city: listing?.standard_template?.city as string,
+              neighbourhood: listing?.standard_template
+                ?.neighbourhood as string,
+              subtitle: listing?.standard_template?.subtitle as string,
+              advance_period: String(
+                listing?.standard_template?.advance_period,
+              ),
+              payment_structure: String(
+                listing?.standard_template?.advance_payment_options,
+              ),
+              amount_per_month: String(
+                listing?.standard_template?.monthly_amount,
+              ),
+              rating: String(4),
+              viewing_fee: String(listing?.standard_template?.viewing_fee),
+              is_realtors_choice: String(
+                listing?.standard_template?.property?.is_realtors_choice,
+              ),
+              is_best_value: String(
+                listing?.standard_template?.property?.is_best_value,
+              ),
+              is_featured: String(
+                listing?.standard_template?.property?.is_featured,
+              ),
+            })}`}
+            bedrooms={listing?.standard_template?.bedrooms as number}
+            propertyType={listing?.standard_template?.property_type as string}
+            city={listing?.standard_template?.city as string}
+            neighbourhood={listing?.standard_template?.neighbourhood as string}
             images={demoimages} // TODO: check database
-            liked={true} // TODO: check implementation
-            guarantee={"Certified" as GuaranteeTag} // TODO: check database
-            monthlyAmount={listing.monthly_amount as number as number}
+            liked={listing?.standard_template?.favorite_user_ids?.includes(
+              user?.id as string,
+            )}
+            guarantee={
+              listing?.standard_template?.is_property_verified
+                ? ("Verified" as GuaranteeTag)
+                : listing?.standard_template?.is_lister_certified
+                  ? ("Certified" as GuaranteeTag)
+                  : undefined
+            }
+            monthlyAmount={listing?.standard_template?.monthly_amount as number}
             paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
-            propertyDescription={listing.description as string}
+            subtitle={listing?.standard_template?.subtitle as string}
             rating={4.5} // TODO: check database
             ratingCount={105} // TODO: check database
-            hint={"Best Value" as HintTag} // TODO: check database
-            isMyFavoritePage
+            hint={
+              listing?.standard_template?.property?.is_realtors_choice
+                ? ("Realtor's Choice" as HintTag)
+                : listing?.standard_template?.property?.is_best_value
+                  ? ("Best Value" as HintTag)
+                  : undefined
+            }
+            advancePeriod={listing?.standard_template?.advance_period as number}
+            ViewingFee={listing?.standard_template?.viewing_fee as number}
           />
         ))}
       </section>
