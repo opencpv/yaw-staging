@@ -8,22 +8,28 @@ import React, { useState } from "react";
 type Props = {};
 
 const ContactPreferenceToggle = (props: Props) => {
-  const { user } = useAppStore();
+  const { user, setUser } = useAppStore();
   const [selected, setSelected] = useState(user?.should_be_contacted || false);
   const { onOpen } = useToastDisclosure();
 
   const handleToggle = async (isSelected: boolean) => {
     setSelected(isSelected);
-    const { error } = await supabase
+    const { error, data: preference } = await supabase
       .from("contact_owner_preference")
-      .insert({ should_be_contacted: selected })
+      .upsert(
+        { user_id: user?.id, should_be_contacted: isSelected },
+        { onConflict: "user_id" },
+      )
       .eq("user_id", user?.id as string)
-      .select("id");
+      .select("id, should_be_contacted")
+      .maybeSingle();
 
     if (error) {
       onOpen(error.message, "error");
       setSelected(!isSelected);
+      return;
     }
+    setUser({ ...user, should_be_contacted: preference?.should_be_contacted });
   };
 
   return (

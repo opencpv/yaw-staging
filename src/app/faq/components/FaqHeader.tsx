@@ -12,7 +12,7 @@ const FaqHeader = (
   const { images } = useAssets();
   return (
     <div
-      className={`green-gradient banner -mx-5 flex h-fit flex-wrap justify-between gap-x-5 gap-y-20 px-10 pt-10 text-white xs:mx-0 xs:rounded-3xl sm:px-24 md:pt-24`}
+      className={`green-gradient banner flex h-fit flex-wrap justify-between gap-x-5 gap-y-20 px-10 pt-10 text-white max-xs:-mx-5 xs:rounded-3xl sm:px-24 md:pt-24`}
       ref={ref}
     >
       <div className="space-y-4">
@@ -24,7 +24,7 @@ const FaqHeader = (
         alt="Four people around a giant FAQ graphic"
         width={400}
         // height={400}
-        className=" md:mb-10 lg:mb-5"
+        className="md:mb-10 lg:mb-5"
       />
     </div>
   );

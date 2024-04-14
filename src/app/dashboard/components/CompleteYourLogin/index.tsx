@@ -20,6 +20,7 @@ const initialValues = {
 function CompleteYourLogin({ open }: Props) {
   const [_open, setOpen] = useState(false);
   const [howToSwitchOpen, setHowToSwitchOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { setFirstTimeRole } = useDashboardStore();
 
   useEffect(() => {
@@ -52,6 +53,7 @@ function CompleteYourLogin({ open }: Props) {
                       <Formik
                         initialValues={initialValues}
                         onSubmit={(values) => {
+                          setLoading(true);
                           setOpen(false);
                           setHowToSwitchOpen(true);
                           setFirstTimeRole(values.role.toLowerCase() as Role); // resorting to firstTimeRole instead of CurrentRole
@@ -77,6 +79,7 @@ function CompleteYourLogin({ open }: Props) {
                           />
                           <div className="flex w-full justify-end">
                             <Button
+                              isLoading={loading}
                               type="submit"
                               className="flex h-[52px] w-full max-w-[151px] items-center justify-center rounded-lg bg-accent-50 px-8 py-4 font-semibold text-white"
                             >
