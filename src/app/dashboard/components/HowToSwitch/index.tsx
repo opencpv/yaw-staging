@@ -17,6 +17,7 @@ type Props = {
 };
 function HowToSwitch({ open }: Props) {
   const [_open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { user, setUser } = useAppStore();
   const router = useRouter();
   const { firstTimeRole, setFirstTimeRole } = useDashboardStore();
@@ -86,18 +87,21 @@ function HowToSwitch({ open }: Props) {
               </div>
               <div className="mt-8 flex w-full justify-center">
                 <Button
+                  isLoading={loading}
                   className="flex h-[52px] w-full max-w-[151px] items-center justify-center rounded-lg bg-[#073B3A] font-semibold text-white"
                   role="button"
                   onClick={() => {
                     setOpen(false);
                     handleFirstTimeUpdate();
                     handleRoleIfFirstTime();
+                    setLoading(true);
                   }}
                   onKeyDown={(e) => {
                     if (e.key === "Enter") {
                       setOpen(false);
                       handleFirstTimeUpdate();
                       handleRoleIfFirstTime();
+                      setLoading(true);
                     }
                   }}
                 >

@@ -30,7 +30,7 @@ const Page = async () => {
   return (
     <>
       <Navbar />
-      <main className="wrapper">
+      <main className="wrapper max-xs:pt-0">
         <Root className="flex flex-col items-center justify-center">
           <ContactBanner />
           <div
