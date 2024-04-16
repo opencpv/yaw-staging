@@ -11,71 +11,25 @@ import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 
 const PaginationMenu = () => {
   const { isOpen, setIsOpen } = useDashboardMenuStore();
+  const [showShapes, setShowShapes] = useState(false);
   const { currentRole } = useDashboardStore();
-
-  const [hide, setHide] = useState(false);
-
   const paginationMenuRef = useRef<HTMLElement>(null);
 
   useHideDocumentScrollBar(isOpen);
 
-  // const handleScrollDown = () => {
-  //   if (paginationMenuRef.current) {
-  //     paginationMenuRef.current.scrollTo({
-  //       top:
-  //         paginationMenuRef.current.scrollHeight -
-  //         paginationMenuRef.current.offsetHeight,
-  //       behavior: "smooth",
-  //     });
-  //     setHide(true);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     if (paginationMenuRef.current)
-  //       if (
-  //         paginationMenuRef.current.scrollHeight -
-  //           paginationMenuRef.current.offsetHeight <=
-  //         80
-  //       ) {
-  //         setHide(true);
-  //       }
-  //   };
-
-  //   const handleOnMount = () => {
-  //     if (paginationMenuRef.current)
-  //       if (
-  //         paginationMenuRef.current.scrollTop >=
-  //         paginationMenuRef.current.scrollHeight -
-  //           paginationMenuRef.current.offsetHeight -
-  //           80
-  //       ) {
-  //         setHide(true);
-  //       }
-  //   };
-
-  //   const handleScroll = () => {
-  //     if (paginationMenuRef.current)
-  //       if (paginationMenuRef.current.scrollTop > 0) {
-  //         setHide(true);
-  //       }
-  //   };
-
-  //   handleOnMount();
-  //   window.addEventListener("resize", handleResize);
-  //   paginationMenuRef?.current?.addEventListener("scroll", handleScroll);
-
-  //   return () => {
-  //     window.removeEventListener("resize", handleResize);
-  //   };
-  // }, []);
+  useEffect(() => {
+    if (isOpen)
+      setTimeout(() => {
+        setShowShapes(true);
+      }, 2000);
+    else setShowShapes(false);
+  }, [isOpen]);
 
   return (
     <section
       className={`menu-bg ${style.paginationMenu} ${
         isOpen
-          ? `${style.paginationMenuVisible}`
+          ? `${style.paginationMenuVisible} ${showShapes && "menu-bg-shapes"}`
           : `${style.paginationMenuHidden}`
       }`}
       ref={paginationMenuRef}

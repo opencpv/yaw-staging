@@ -5,6 +5,7 @@
 
 .paginationMenuHidden {
   clip-path: circle(0 at 100% 0);
+  transition: clip-path 0.4s;
 }
 
 .paginationMenuVisible {
