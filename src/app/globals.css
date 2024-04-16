@@ -60,7 +60,7 @@ body {
 
   li,
   a:not(a[role="button"]),
-  div {
+  textarea {
     @apply focus:outline-accent-50;
   }
 }

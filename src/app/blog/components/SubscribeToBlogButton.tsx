@@ -45,7 +45,7 @@ export const SubscribeModalBody = ({ onClose }: { onClose: () => void }) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     // TODO: handle logic
     onClose();
-    onOpen("Congratulations, you are in the loop!");
+    onOpen("Congratulations, you are in the loop!", "success");
   };
 
   return (

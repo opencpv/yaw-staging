@@ -107,3 +107,41 @@ export const useSliderAutoPlayDisclosure = () => {
 
   return { autoPlay, handleAutoPlay };
 };
+
+export const useFeedbackDisclosure = () => {
+  const [value1, setValue1] = useState<number>(50);
+  const [value2, setValue2] = useState<number>(50);
+  const [thumbsUpChecked, setThumbsUpChecked] = useState<boolean>(false);
+  const [thumbsDownChecked, setThumbsDownChecked] = useState<boolean>(false);
+
+  const handleFirstSlideChange = (val: number) => {
+    setValue1(val);
+  };
+
+  const handleSecondSlideChange = (val: number) => {
+    setValue2(val);
+  };
+
+  const handleThumbsUpChecked = () => {
+    setThumbsUpChecked((prevState) => !prevState);
+    setThumbsDownChecked(false);
+  };
+
+  const handleThumbsDownChecked = () => {
+    setThumbsDownChecked((prevState) => !prevState);
+    setThumbsUpChecked(false);
+  };
+
+  return {
+    value1,
+    value2,
+    setValue1,
+    setValue2,
+    thumbsUpChecked,
+    thumbsDownChecked,
+    handleFirstSlideChange,
+    handleSecondSlideChange,
+    handleThumbsUpChecked,
+    handleThumbsDownChecked,
+  };
+};

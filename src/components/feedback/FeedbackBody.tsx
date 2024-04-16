@@ -3,25 +3,33 @@ import Thumbs from "./Thumbs";
 import FeedbackSlider from "./FeedbackSlider";
 import Image from "next/image";
 import Button from "../__shared/ui/button/Button";
+import { useFeedbackDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import { cn } from "@/lib/utils";
+import { Form, Formik } from "formik";
+import FeedbackTextArea from "./FeedbackTextArea";
+import supabase from "@/lib/utils/supabase/supabaseClient";
 
 const FeedbackBody = ({
-  handleSubmitFeedback,
+  handleCloseAfterSubmission,
   data,
 }: {
-  handleSubmitFeedback: (e: React.FormEvent<HTMLFormElement>) => void;
+  handleCloseAfterSubmission: () => void;
   data: any;
 }) => {
-  const [value1, setValue1] = useState<number>(50);
-  const [value2, setValue2] = useState<number>(50);
   const feedback = data.customFeedback;
 
-  const handleFirstSlideChange = (val: number) => {
-    setValue1(val);
-  };
-
-  const handleSecondSlideChange = (val: number) => {
-    setValue2(val);
-  };
+  const {
+    value1,
+    setValue1,
+    handleFirstSlideChange,
+    value2,
+    setValue2,
+    handleSecondSlideChange,
+    handleThumbsDownChecked,
+    handleThumbsUpChecked,
+    thumbsDownChecked,
+    thumbsUpChecked,
+  } = useFeedbackDisclosure();
 
   return (
     <>
@@ -32,55 +40,98 @@ const FeedbackBody = ({
         height={128}
         className="mx-auto mt-10 aspect-square w-72"
       />
-      <form
-        className="flex flex-col items-center gap-10"
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleSubmitFeedback(e);
+      <Formik
+        initialValues={{}}
+        onSubmit={async (values, {}) => {
+          console.log(values);
+          // TODO: handle logic
+          // const {} = await supabase.from("").insert({
+
+          // });
+          handleCloseAfterSubmission();
         }}
       >
-        <div className="flex flex-col items-center gap-8">
-          <h2 className="text-2xl font-[500] text-neutral-700">
-            {feedback.question1}
-          </h2>
-          <FeedbackSlider
-            value={value1}
-            setValue={setValue1}
-            onChange={handleFirstSlideChange}
-          />
-        </div>
-        <div className="flex flex-col items-center gap-8">
-          <h2 className="text-2xl font-[500] text-neutral-700">
-            {feedback.question2}
-          </h2>
-          <FeedbackSlider
-            value={value2}
-            setValue={setValue2}
-            onChange={handleSecondSlideChange}
-          />
-        </div>
+        {({ isSubmitting }) => (
+          <Form className="flex flex-col items-center gap-10">
+            {feedback.question1 && (
+              <div className="flex flex-col items-center gap-8">
+                <h2 className="text-2xl font-[500] text-neutral-700">
+                  {feedback.question1}
+                </h2>
+                <FeedbackSlider
+                  name={feedback.question1
+                    .replaceAll(" ", "-")
+                    .replaceAll("?", "")}
+                  value={value1}
+                  setValue={setValue1}
+                  onChange={handleFirstSlideChange}
+                />
+              </div>
+            )}
+            {feedback.question2 && (
+              <div className="flex flex-col items-center gap-8">
+                <h2 className="text-2xl font-[500] text-neutral-700">
+                  {feedback.question2}
+                </h2>
+                <FeedbackSlider
+                  name={feedback.question2
+                    .replaceAll(" ", "-")
+                    .replaceAll("?", "")}
+                  value={value2}
+                  setValue={setValue2}
+                  onChange={handleSecondSlideChange}
+                />
+              </div>
+            )}
 
-        <div className="flex flex-col items-center gap-8">
-          <h2 className="text-2xl font-[500] text-neutral-700">
-            {feedback.question3}
-          </h2>
-          <Thumbs />
-        </div>
+            {/* Seems there should always be a question as that's what
+              toggles the submit button on/off
+            */}
+            <div className="flex flex-col items-center gap-8">
+              <h2 className="text-2xl font-[500] text-neutral-700">
+                {feedback.question3}
+              </h2>
+              <Thumbs
+                name={feedback.question3
+                  .replaceAll(" ", "-")
+                  .replaceAll("?", "")}
+                thumbsDownChecked={thumbsDownChecked}
+                thumbsUpChecked={thumbsUpChecked}
+                handleThumbsDownChecked={handleThumbsDownChecked}
+                handleThumbsUpChecked={handleThumbsUpChecked}
+              />
+            </div>
 
-        <textarea
-          cols={12}
-          rows={6}
-          className="mx-auto w-full rounded-md border border-neutral-300 p-4 text-base text-neutral-500 placeholder:text-neutral-400 focus:border-primary-800 focus:ring-primary-800 sm:w-10/12"
-          placeholder={feedback.question4}
-        ></textarea>
-        <Button
-          // type="submit"
-          color="gradient"
-          className="w-6/12 rounded-md py-2.5 text-lg capitalize text-white hover:opacity-80"
-        >
-          Submit
-        </Button>
-      </form>
+            {feedback.question4 && (
+              <FeedbackTextArea
+                name={feedback.question4
+                  .replaceAll(" ", "-")
+                  .replaceAll("?", "")}
+                thumbsDownChecked={thumbsDownChecked}
+                thumbsUpChecked={thumbsUpChecked}
+                placeholder={feedback.question4}
+              />
+            )}
+
+            <Button
+              type="submit"
+              color={
+                thumbsUpChecked || thumbsDownChecked ? "gradient" : undefined
+              }
+              className={cn(
+                "w-6/12 rounded-md py-2.5 text-lg capitalize text-white hover:opacity-80",
+                {
+                  "bg-gray-400 text-black":
+                    !thumbsDownChecked && !thumbsUpChecked,
+                },
+              )}
+              disabled={!thumbsDownChecked && !thumbsUpChecked}
+            >
+              Submit
+            </Button>
+          </Form>
+        )}
+      </Formik>
     </>
   );
 };

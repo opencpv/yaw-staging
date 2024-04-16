@@ -21,7 +21,7 @@ const Footer = () => {
   const { onOpen } = useToastDisclosure();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     // TODO: handle logic
-    onOpen("Congratulations, you are in the loop!");
+    onOpen("Congratulations, you are in the loop!", "success");
   };
 
   return (

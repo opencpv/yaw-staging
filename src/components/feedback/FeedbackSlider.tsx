@@ -1,16 +1,24 @@
 "use client";
 import emojiStates from "@/enum/feedback/feedbackStates";
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { ConfigProvider, Slider } from "antd";
 import Image from "next/image";
+import { useField } from "formik";
 
 type Props = {
+  name: string;
   value: number;
   onChange: (val: number) => void;
   setValue: React.Dispatch<React.SetStateAction<number>>;
 };
 
-const FeedbackSlider = ({ onChange, value, setValue }: Props) => {
+const FeedbackSlider = ({ onChange, value, setValue, name }: Props) => {
+  const [field, meta, helpers] = useField(name);
+
+  useEffect(() => {
+    helpers.setValue(value);
+  }, [helpers, value]);
+
   return (
     <>
       <ConfigProvider
@@ -66,7 +74,10 @@ const FeedbackSlider = ({ onChange, value, setValue }: Props) => {
                   <div
                     key={id}
                     className="flex w-2/12 flex-col items-center"
-                    onClick={() => setValue(fromValue + 8)}
+                    onClick={() => {
+                      setValue(fromValue + 8);
+                      helpers.setValue(fromValue + 8);
+                    }}
                   >
                     <Image
                       src={unmatchedImage}
@@ -86,7 +97,10 @@ const FeedbackSlider = ({ onChange, value, setValue }: Props) => {
             <div className="">
               <Slider
                 value={value}
-                onChange={onChange}
+                onChange={(val) => {
+                  onChange(val);
+                  helpers.setValue(val);
+                }}
                 trackStyle={{
                   borderRadius: "5px",
                 }}

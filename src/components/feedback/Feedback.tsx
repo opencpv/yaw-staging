@@ -18,8 +18,7 @@ const Feedback = ({ children, data }: Props) => {
   const { onOpen, isOpen, onOpenChange, onClose } = useDisclosure();
   const { onOpen: toastOnOpen } = useToastDisclosure();
 
-  const handleSubmitFeedback = (e: React.FormEvent<HTMLFormElement>) => {
-    // Todo: handle logic
+  const handleCloseAfterSubmission = () => {
     onClose();
     toastOnOpen(
       "Thank you! Your feedback is invaluable and will contribute to improving our services.",
@@ -47,7 +46,7 @@ const Feedback = ({ children, data }: Props) => {
         body={
           <FeedbackBody
             data={data}
-            handleSubmitFeedback={handleSubmitFeedback}
+            handleCloseAfterSubmission={handleCloseAfterSubmission}
           />
         }
         isOpen={isOpen}
@@ -55,7 +54,7 @@ const Feedback = ({ children, data }: Props) => {
         size="lg"
       />
       <div
-        className="cursor-pointer"
+        className="cursor-pointer focus:outline-none"
         onClick={onOpen}
         tabIndex={0}
         // role="button"
