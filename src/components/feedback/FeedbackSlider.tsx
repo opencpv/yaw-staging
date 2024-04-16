@@ -61,6 +61,7 @@ const FeedbackSlider = ({ onChange, value, setValue, name }: Props) => {
                         alt={label.toLowerCase()}
                         width={40}
                         height={40}
+                        className="shake-bl"
                       />
                       <h4
                         className={`cursor-default text-center font-[600] capitalize leading-4 text-primary-400`}
