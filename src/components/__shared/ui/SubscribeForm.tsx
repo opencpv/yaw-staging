@@ -2,11 +2,13 @@
 import React from "react";
 import Button from "./button/Button";
 
-type Props = {};
+type Props = {
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+};
 
-const SubscribeForm = (props: Props) => {
+const SubscribeForm = ({onSubmit}: Props) => {
   return (
-    <form className="flex h-[95px] w-full max-w-[1061px] flex-col gap-5 rounded-[32px] md:flex-row md:gap-0">
+    <form className="flex h-[95px] w-full max-w-[1061px] flex-col gap-5 rounded-[32px] md:flex-row md:gap-0" onSubmit={(e) => {e.preventDefault(); onSubmit(e)}}>
       <input
         className="h-full min-h-[70px] w-full
             rounded-[4rem]

@@ -27,13 +27,16 @@ const FetchingStates = ({
     <>
       {isLoading
         ? isLoadingComponent || (
-            <Loader className="flex w-full justify-center" />
+            <Loader position="center" className="flex w-full justify-center" />
           )
         : error
           ? errorComponent || <FetchErrorMessage />
           : isValidating &&
             (isLoadingComponent || (
-              <Loader className="flex w-full justify-center" />
+              <Loader
+                position="center"
+                className="flex w-full justify-center"
+              />
             ))}
       {(!isValidating || !isLoading) &&
         !error &&

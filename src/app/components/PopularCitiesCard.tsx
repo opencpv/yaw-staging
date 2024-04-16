@@ -22,7 +22,11 @@ const PopularCitiesCard = ({
   const propertyNumTruncated = useTruncateNumber(propertyNumber);
 
   return (
-    <Link href={`/properties/?location=${location}`}>
+    <Link
+      href={`/properties?${new URLSearchParams({
+        search: location as string,
+      })}`}
+    >
       <div
         className={`relative flex min-h-[10rem] w-full items-center justify-center rounded-lg p-5 text-white transition-all hover:scale-105 sm:p-20 ${className}`}
       >
