@@ -15,10 +15,6 @@ type Props = {
 const FeedbackSlider = ({ onChange, value, setValue, name }: Props) => {
   const [field, meta, helpers] = useField(name);
 
-  useEffect(() => {
-    helpers.setValue(value);
-  }, [helpers, value]);
-
   return (
     <>
       <ConfigProvider

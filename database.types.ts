@@ -179,6 +179,36 @@ export type Database = {
           },
         ]
       }
+      feedback: {
+        Row: {
+          created_at: string
+          feedback_title: string | null
+          id: number
+          value_a: number | null
+          value_b: number | null
+          value_c: boolean | null
+          value_d: string | null
+        }
+        Insert: {
+          created_at?: string
+          feedback_title?: string | null
+          id?: number
+          value_a?: number | null
+          value_b?: number | null
+          value_c?: boolean | null
+          value_d?: string | null
+        }
+        Update: {
+          created_at?: string
+          feedback_title?: string | null
+          id?: number
+          value_a?: number | null
+          value_b?: number | null
+          value_c?: boolean | null
+          value_d?: string | null
+        }
+        Relationships: []
+      }
       hubtel_payments: {
         Row: {
           amount: number | null
@@ -1044,18 +1074,21 @@ export type Database = {
           contact_is_email: boolean
           created_at: string
           id: number
+          subscribed: boolean | null
         }
         Insert: {
           contact: string
           contact_is_email: boolean
           created_at?: string
           id?: number
+          subscribed?: boolean | null
         }
         Update: {
           contact?: string
           contact_is_email?: boolean
           created_at?: string
           id?: number
+          subscribed?: boolean | null
         }
         Relationships: []
       }

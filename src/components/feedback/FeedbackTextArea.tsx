@@ -16,13 +16,8 @@ const FeedbackTextArea = ({
   name,
   placeholder,
 }: Props) => {
-  const [field, meta, helpers] = useField(name);
-  const { onChange, value } = field;
-  const { setValue } = helpers;
-
-  useEffect(() => {
-    setValue("");
-  }, [setValue]);
+  const [field] = useField(name);
+  const { onChange } = field;
 
   return (
     <textarea

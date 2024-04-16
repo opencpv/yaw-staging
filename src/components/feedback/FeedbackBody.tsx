@@ -3,11 +3,21 @@ import Thumbs from "./Thumbs";
 import FeedbackSlider from "./FeedbackSlider";
 import Image from "next/image";
 import Button from "../__shared/ui/button/Button";
-import { useFeedbackDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import {
+  useFeedbackDisclosure,
+  useToastDisclosure,
+} from "@/lib/custom-hooks/useCustomDisclosure";
 import { cn } from "@/lib/utils";
 import { Form, Formik } from "formik";
 import FeedbackTextArea from "./FeedbackTextArea";
 import supabase from "@/lib/utils/supabase/supabaseClient";
+
+const initialValues = {
+  value_a: 50,
+  value_b: 50,
+  value_c: true,
+  value_d: "",
+};
 
 const FeedbackBody = ({
   handleCloseAfterSubmission,
@@ -17,6 +27,7 @@ const FeedbackBody = ({
   data: any;
 }) => {
   const feedback = data.customFeedback;
+  const { onOpen } = useToastDisclosure();
 
   const {
     value1,
@@ -41,13 +52,17 @@ const FeedbackBody = ({
         className="mx-auto mt-10 aspect-square w-72"
       />
       <Formik
-        initialValues={{}}
+        initialValues={initialValues}
         onSubmit={async (values, {}) => {
           console.log(values);
-          // TODO: handle logic
-          // const {} = await supabase.from("").insert({
-
-          // });
+          const { error } = await supabase.from("feedback").insert({
+            ...values,
+            feedback_title: "Website feedback", // From feedback.title ?
+          });
+          if (error) {
+            onOpen("Something went wrong. Please try again.", "error");
+            return;
+          }
           handleCloseAfterSubmission();
         }}
       >
@@ -59,9 +74,7 @@ const FeedbackBody = ({
                   {feedback.question1}
                 </h2>
                 <FeedbackSlider
-                  name={feedback.question1
-                    .replaceAll(" ", "-")
-                    .replaceAll("?", "")}
+                  name="value_a"
                   value={value1}
                   setValue={setValue1}
                   onChange={handleFirstSlideChange}
@@ -74,9 +87,7 @@ const FeedbackBody = ({
                   {feedback.question2}
                 </h2>
                 <FeedbackSlider
-                  name={feedback.question2
-                    .replaceAll(" ", "-")
-                    .replaceAll("?", "")}
+                  name="value_b"
                   value={value2}
                   setValue={setValue2}
                   onChange={handleSecondSlideChange}
@@ -84,7 +95,7 @@ const FeedbackBody = ({
               </div>
             )}
 
-            {/* Seems there should always be a question as that's what
+            {/* Seems there should always be a question 3 as that's what
               toggles the submit button on/off
             */}
             <div className="flex flex-col items-center gap-8">
@@ -92,9 +103,7 @@ const FeedbackBody = ({
                 {feedback.question3}
               </h2>
               <Thumbs
-                name={feedback.question3
-                  .replaceAll(" ", "-")
-                  .replaceAll("?", "")}
+                name="value_c"
                 thumbsDownChecked={thumbsDownChecked}
                 thumbsUpChecked={thumbsUpChecked}
                 handleThumbsDownChecked={handleThumbsDownChecked}
@@ -104,9 +113,7 @@ const FeedbackBody = ({
 
             {feedback.question4 && (
               <FeedbackTextArea
-                name={feedback.question4
-                  .replaceAll(" ", "-")
-                  .replaceAll("?", "")}
+                name="value_d"
                 thumbsDownChecked={thumbsDownChecked}
                 thumbsUpChecked={thumbsUpChecked}
                 placeholder={feedback.question4}
@@ -114,6 +121,7 @@ const FeedbackBody = ({
             )}
 
             <Button
+              isLoading={isSubmitting}
               type="submit"
               color={
                 thumbsUpChecked || thumbsDownChecked ? "gradient" : undefined
