@@ -1,7 +1,6 @@
 "use server";
 
 import supabase from "@/lib/utils/supabase/supabaseClient";
-import { revalidatePath } from "next/cache";
 
 export const updateLikedProperty = async (
   userId: number | string,
@@ -32,8 +31,6 @@ export const updateLikedProperty = async (
       })
       .select();
   }
-
-  revalidatePath("/properties");
 
   return query;
 };

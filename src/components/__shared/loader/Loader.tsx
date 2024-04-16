@@ -1,7 +1,8 @@
+import { cn } from "@/lib/utils";
 import "./main.css";
 
-const Loader = () => {
-  return <span className="loader"></span>;
+const Loader = ({ className }: { className?: string }) => {
+  return <span className={cn("loader", className)}></span>;
 };
 
 export default Loader;

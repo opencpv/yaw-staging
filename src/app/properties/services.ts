@@ -48,12 +48,10 @@ export const useFetchProperties = ({
     query = query.is("advance_period", null);
   }
 
-  const result = useOffsetInfiniteScrollQuery(query, {
+  return useOffsetInfiniteScrollQuery(query, {
     pageSize: 9,
     revalidateAll: true,
   });
-
-  return result;
 };
 
 export const useFetchFeaturedListings = () => {
@@ -69,9 +67,7 @@ export const useFetchFeaturedListings = () => {
     .order("is_lister_certified", { ascending: false })
     .order("created_at", { ascending: false });
 
-  const result = useQuery(query);
-
-  return result;
+  return useQuery(query);
 };
 
 export const useFetchPropertyDetails = (propertyId: number) => {
@@ -83,9 +79,7 @@ export const useFetchPropertyDetails = (propertyId: number) => {
     .eq("property_id", propertyId)
     .single();
 
-  const result = useQuery(query);
-
-  return result;
+  return useQuery(query);
 };
 
 const formatString = (str: string): string => {

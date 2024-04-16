@@ -53,7 +53,7 @@ const ListingInfo = (props: Partial<ListingCardInterface>) => {
             </small>
             {(props.ratingCount === 0 || props.rating === 0) && (
               <Link
-                href=""
+                href="#"
                 className="text-neutral-900 underline hover:text-neutral-900 active:text-neutral-900"
               >
                 <small>Rate</small>

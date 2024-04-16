@@ -1,18 +1,18 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import Link from "next/link";
 import React, { FormEvent } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import SaveSearchModal from "../modals/SaveSearchModal";
 import Button from "../ui/button/Button";
-import { usePathname } from "next/navigation";
 
 type Props = {
   className?: string;
   inputClassName?: string;
   searchIconColor?: string;
   separatorClassName?: string;
+  placeholder?: string;
+  href?: string;
   name?: string;
   value?: string;
   onSubmit?: (e: FormEvent<HTMLFormElement>) => void;
@@ -28,9 +28,10 @@ const InputWithSavedSearch = ({
   onInput,
   name,
   value,
+  placeholder,
+  href,
 }: Props) => {
   const [showDivider, setShowDivider] = React.useState(false);
-  const pathname = usePathname();
 
   return (
     <div className={cn("relative flex w-full items-center", className)}>
@@ -47,7 +48,7 @@ const InputWithSavedSearch = ({
             "col-span-10 w-full bg-transparent text-neutral-800 outline-none focus:outline-none",
             inputClassName,
           )}
-          placeholder="Madina, Accra"
+          placeholder={placeholder || "Madina, Accra"}
           name={name}
           value={value}
           onInput={(e) => {
@@ -66,10 +67,10 @@ const InputWithSavedSearch = ({
           style={{ visibility: showDivider ? "visible" : "hidden" }}
         ></div>
         <Button
-          href={pathname === "/properties" ? undefined : "/properties?sk=true"}
+          href={href}
           type="submit"
           isIconOnly
-          className="col-span-1 mx-auto mr-2 xs:mr-auto"
+          className="col-span-1 mx-auto mr-2 min-w-max xs:mr-auto"
           title="search"
         >
           <AiOutlineSearch

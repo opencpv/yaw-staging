@@ -51,11 +51,6 @@ const FeaturedListingAndAds = (props: Props) => {
                   onTryAgain={() => mutate()}
                 />
               }
-              emptyStateComponent={
-                <p className="mt-4 text-center italic">
-                  There are no properties yet.
-                </p>
-              }
             />
             {listings?.map((listing) => {
               return (

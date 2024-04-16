@@ -80,7 +80,7 @@ const PropertyDetailsPage = ({ params }: Props) => {
               <SkeletonLong
                 className={`${style.shapeLeft2} h-full w-full rounded-none`}
               />
-              <ViewPropertyBtn href="" disabled />
+              <ViewPropertyBtn href="#" disabled />
             </div>
             <div className="wrapper gap-x-20 gap-y-10 lg:grid lg:grid-cols-2">
               {/* grid col */}

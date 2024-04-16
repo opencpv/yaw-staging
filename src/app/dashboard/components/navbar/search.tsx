@@ -11,6 +11,10 @@ const Search = ({ className }: { className?: string }) => {
       )}
       inputClassName="rounded-[4px] border-0 px-4 py-1"
       separatorClassName="h-[60%]"
+      href={`/properties?${new URLSearchParams({
+        search: "Madina, Accra",
+        sk: String(true),
+      })}`}
     />
   );
 };

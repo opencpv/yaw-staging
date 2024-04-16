@@ -27,7 +27,7 @@ const LikeHeart = ({ liked, className, userId, propertyId }: Props) => {
   );
   const { user } = useAppStore();
 
-  const handleContactPreference = React.useCallback(async () => {
+  const handleContactPreference = React.useCallback(() => {
     if (shouldOpenModal) {
       onOpen();
     }
