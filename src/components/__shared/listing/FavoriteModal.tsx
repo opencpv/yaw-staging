@@ -52,7 +52,7 @@ const ModalHeader = ({ onClose }: { onClose: () => void }) => {
         ? "👍 Great choice! We've noted that you're open to being contacted by your property owners. Expect to hear from them soon!"
         : "Noted! Your preference for privacy is important to us. Your property owners will not contact you unless necessary.",
       undefined,
-      10000,
+      8000,
     );
   };
 

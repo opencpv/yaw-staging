@@ -18,7 +18,8 @@ const Feedback = ({ children, data }: Props) => {
   const { onOpen, isOpen, onOpenChange, onClose } = useDisclosure();
   const { onOpen: toastOnOpen } = useToastDisclosure();
 
-  const handleSubmitFeedback = () => {
+  const handleSubmitFeedback = (e: React.FormEvent<HTMLFormElement>) => {
+    // Todo: handle logic
     onClose();
     toastOnOpen(
       "Thank you! Your feedback is invaluable and will contribute to improving our services.",

@@ -4,9 +4,13 @@ import React, { useState } from "react";
 import { ConfigProvider, Slider } from "antd";
 import Image from "next/image";
 
-const FeedbackSlider = () => {
-  const [value, setValue] = useState<number>(50);
+type Props = {
+  value: number;
+  onChange: (val: number) => void;
+  setValue: React.Dispatch<React.SetStateAction<number>>;
+};
 
+const FeedbackSlider = ({ onChange, value, setValue }: Props) => {
   return (
     <>
       <ConfigProvider
@@ -51,7 +55,7 @@ const FeedbackSlider = () => {
                         height={40}
                       />
                       <h4
-                        className={`text-center font-[600] capitalize leading-4 cursor-default text-primary-400`}
+                        className={`cursor-default text-center font-[600] capitalize leading-4 text-primary-400`}
                       >
                         {label}
                       </h4>
@@ -71,7 +75,7 @@ const FeedbackSlider = () => {
                       height={40}
                     />
                     <h4
-                      className={`text-center font-[600] capitalize leading-4 cursor-default text-neutral-400`}
+                      className={`cursor-default text-center font-[600] capitalize leading-4 text-neutral-400`}
                     >
                       {label}
                     </h4>
@@ -82,7 +86,7 @@ const FeedbackSlider = () => {
             <div className="">
               <Slider
                 value={value}
-                onChange={setValue}
+                onChange={onChange}
                 trackStyle={{
                   borderRadius: "5px",
                 }}
