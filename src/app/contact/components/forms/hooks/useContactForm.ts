@@ -46,7 +46,7 @@ export const useContactForm = () => {
     return errors;
   };
 
-  const tableName = "contact_us";
+  const tableName: keyof Database["public"]["Tables"] = "contact_us";
   const phoneInputPlaceholder = "WhatsApp Number";
 
   const errorClassName =

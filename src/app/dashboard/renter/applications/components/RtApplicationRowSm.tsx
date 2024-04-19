@@ -100,7 +100,7 @@ const RtApplicationRowSm = ({
           {status === "incomplete" ? (
             <>
               <EditButton onOpen={() => ""} />
-              <ButtonDelete table="" id="" />
+              <ButtonDelete table="application_autosave" id="" />
             </>
           ) : (
             <ButtonMessage type={2} />

@@ -1,16 +1,15 @@
-"use client";
+import { Metadata } from "next";
 
-import { useHideDocumentScrollBar } from "@/lib/custom-hooks/useWindowEvents";
-import { useModalFullscreenStore } from "@/store/modal/useModalStore";
-import { useEffect } from "react";
+export const metadata: Metadata = {
+  // title: {
+  //   template: "%s | Property",
+  //   default: "Property",
+  // },
+  title: "Property",
+  description: "", // tentative
+};
 
 const PropertyLayout = ({ children }: { children: React.ReactNode }) => {
-  const hideWindowScrollbar = useModalFullscreenStore(
-    (state) => state.hideWindowScrollbar,
-  );
-
-  useHideDocumentScrollBar(hideWindowScrollbar);
-
   return <>{children}</>;
 };
 

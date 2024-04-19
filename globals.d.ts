@@ -1,10 +1,10 @@
-import { Database as DB } from "./database.types";
+import { Database as DB, Tables, Enums } from "./database.types";
 
 declare global {
   type Database = DB;
-  type ApplicationAutosave =
-    DB["public"]["Tables"]["application_autosave"]["Row"];
-  type ContactUs = DB["public"]["Tables"]["contact_us"]["Row"];
+  type TableNames = keyof DB["public"]["Tables"];
+  type ApplicationAutosave = Tables<"application_autosave">;
+  type ContactUs = Tables<"contact_us">;
   type DistinctMessage = DB["public"]["Views"]["distinct_messages"]["Row"];
   type FAQ = DB["public"]["Tables"]["faq"]["Row"];
   type ListingAutosave = DB["public"]["Tables"]["listing_autosave"]["Row"];
@@ -26,8 +26,8 @@ declare global {
   type User = DB["public"]["Tables"]["profiles"]["Row"];
   type UserFavoriteProperty =
     DB["public"]["Tables"]["user_favorite_properties"]["Row"];
-  type MergedPropertiesView =
-    DB["public"]["Views"]["merged_properties_view"]["Row"];
+  type MergedStandardTemplateView =
+    DB["public"]["Views"]["merged_standard_template_view"]["Row"];
 
   type PaymentStructure =
     | "Yearly"

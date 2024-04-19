@@ -24,6 +24,7 @@ interface ListingCardInterface extends ListingInterface {
   showNotViewed: boolean;
   isViewed: boolean;
   advancePeriod: number;
+  ViewingFee: number;
 }
 
 interface RenterPaidFeatureInterface {

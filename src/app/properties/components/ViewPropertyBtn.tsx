@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useDisclosure } from "@nextui-org/react";
-import PropertyGalleryModal from "../[id]/components/PropertyGalleryModal";
+import PropertyGalleryModal from "./PropertyGalleryModal";
 import { useModalFullscreenStore } from "@/store/modal/useModalStore";
 
 type Props = {

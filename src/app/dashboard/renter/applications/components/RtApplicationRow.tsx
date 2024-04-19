@@ -89,7 +89,11 @@ const RtApplicationRow = ({
         </TableBody>
         {/* Actions */}
         <TableBody className="col-span-1 mx-auto">
-          <RtApplicationAction status={status} id="" table="" />
+          <RtApplicationAction
+            status={status}
+            id=""
+            table="application_autosave"
+          />
         </TableBody>
       </TableBodyRow>
     </>

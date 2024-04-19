@@ -5,11 +5,12 @@ import ArrowLink from "@/app/components/link/ArrowLink";
 import { usePathname } from "next/navigation";
 import { FaChevronLeft } from "react-icons/fa";
 import Link from "next/link";
-import AOSWrapper from "@/components/__shared/AOSWrapper";
 import ScrollTop from "@/components/__shared/ScrollTop";
 import Button from "@/components/__shared/ui/button/Button";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import FirstToKnowModal from "./steps/FirstToKnowModal";
+import FramerWrapper from "@/components/__shared/FramerWrapper";
+import { fadeUp } from "@/lib/animations";
 
 const BeTheFirstToKnowLayout = ({
   children,
@@ -78,11 +79,11 @@ const BeTheFirstToKnowLayout = ({
         >
           Search Title One
         </h3>
-        <AOSWrapper animation="fade-up">
+        <FramerWrapper {...fadeUp}>
           <div className="grid grid-cols-1 gap-x-5 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
             {children}
           </div>
-        </AOSWrapper>
+        </FramerWrapper>
       </section>
       <ScrollTop />
     </main>

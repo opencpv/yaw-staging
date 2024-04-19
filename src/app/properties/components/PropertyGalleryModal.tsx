@@ -3,7 +3,6 @@
 import Modal from "@/components/__shared/modals/Modal";
 import Carousel from "@/components/__shared/sliders/Carousel";
 import Share from "@/components/__shared/ui/share/Share";
-import { useModalFullscreenStore } from "@/store/modal/useModalStore";
 import { usePropertyCarouselStore } from "@/store/properties/usePropertiesStore";
 import React from "react";
 import { FaTimes } from "react-icons/fa";
@@ -50,17 +49,12 @@ const PropertyGalleryModal = ({
 };
 
 const ModalHeader = ({ onClose }: { onClose?: () => void }) => {
-  const setHideWindowScrollbar = useModalFullscreenStore(
-    (state) => state.setHideWindowScrollbar
-  );
-
   return (
     <div className="flex justify-between gap-5 text-5xl text-neutral-100">
       <FaTimes
-        className="bg-neutral-900 rounded-full cursor-pointer p-1.5 shrink-0"
+        className="shrink-0 cursor-pointer rounded-full bg-neutral-900 p-1.5"
         onClick={() => {
           onClose && onClose();
-          setHideWindowScrollbar(false);
         }}
       />
       <Share url="" />
@@ -70,8 +64,8 @@ const ModalHeader = ({ onClose }: { onClose?: () => void }) => {
 
 const ModalBody = () => {
   return (
-    <div className="flex items-center justify-center h-full">
-      <div className="w-full h-fit">
+    <div className="flex h-full items-center justify-center">
+      <div className="h-fit w-full">
         <Carousel
           images={carouselDemo.map((image) => ({
             src: image.src,
@@ -86,7 +80,7 @@ const ModalBody = () => {
 const ModalFooter = () => {
   const { activeIndex } = usePropertyCarouselStore();
   return (
-    <div className="flex items-center justify-center w-full text-lg text-center text-white">
+    <div className="flex w-full items-center justify-center text-center text-lg text-white">
       {carouselDemo[activeIndex].label}
     </div>
   );

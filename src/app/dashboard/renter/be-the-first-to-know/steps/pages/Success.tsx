@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils";
 import { FaCheck } from "react-icons/fa6";
 import Link from "next/link";
 import { IoChevronForwardOutline } from "react-icons/io5";
-import AOSWrapper from "@/components/__shared/AOSWrapper";
 import { IoIosCloseCircle } from "react-icons/io";
 import { firstToKnowStepsStore } from "@/store/dashboard/firstToKnowStepsStore";
 import { useFormikContext } from "formik";

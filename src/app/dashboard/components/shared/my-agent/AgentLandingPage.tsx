@@ -7,9 +7,10 @@ import BeMyAgentModal from "@/app/dashboard/components/shared/my-agent/steps/BeM
 import { ClientOnly } from "@/components/ui/ClientOnly";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import style from "./index.module.css";
-import AOSWrapper from "@/components/__shared/AOSWrapper";
 import React from "react";
 import LearnMoreYoutubeBtn from "./LearnMoreYoutubeBtn";
+import { fadeUp } from "@/lib/animations";
+import FramerWrapper from "@/components/__shared/FramerWrapper";
 
 export default function AgentLandingPage() {
   const { images } = useAssets();
@@ -85,7 +86,7 @@ export default function AgentLandingPage() {
         className={`relative mt-28 flex w-full items-start justify-center gap-5 py-10 lg:mt-52 lg:py-0 xl:px-14 2xl:px-24 ${style.myAgentExploreFooter}`}
       >
         <div className="gap relative z-10 flex w-full flex-col justify-center gap-x-24 gap-y-8 px-5 sm:px-10 lg:flex-row lg:items-center lg:pb-24">
-          <AOSWrapper animation="fade-up">
+          <FramerWrapper {...fadeUp}>
             <Image
               src={"/assets/images/agent-footer2.png"}
               alt="house with a lot of plant"
@@ -93,7 +94,7 @@ export default function AgentLandingPage() {
               height={300}
               className="relative sm:w-[400px]"
             />
-          </AOSWrapper>
+          </FramerWrapper>
           <div className="flex flex-col gap-6 py-10 text-[#eee] lg:mt-20">
             <h2 className="text-2xl leading-tight sm:text-4xl">
               Get started by letting us be your No 1 Agent

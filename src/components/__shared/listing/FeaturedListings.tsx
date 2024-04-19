@@ -1,4 +1,7 @@
 "use client";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/effect-coverflow";
 import React from "react";
 import ListingCard from "./ListingCard";
 import SkeletonListing from "../ui/skeleton/SkeletonListing";
@@ -6,16 +9,10 @@ import FetchingStates from "../ui/data_fetching/FetchingStates";
 import images from "@/enum/temp/images";
 import FetchErrorMessage from "../ui/data_fetching/FetchErrorMessage";
 import Button from "../ui/button/Button";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, FreeMode, Mousewheel } from "swiper/modules";
-
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/effect-coverflow";
-import { createClient } from "@/lib/utils/supabase/auth/client";
-import { useQuery } from "@tanstack/react-query";
-import { addQueryParamsToUrl } from "@/lib/utils/stringManipulation";
+import { useFetchFeaturedListings } from "@/app/properties/services";
+import { useAppStore } from "@/store/dashboard/AppStore";
 
 type Props = {
   className?: string;
@@ -23,24 +20,9 @@ type Props = {
 };
 
 const FeaturedListings = ({ className, showAllButton }: Props) => {
-  const supabase = createClient();
+  const { user } = useAppStore();
 
-  const {
-    data: listings,
-    error,
-    isLoading,
-    isFetching,
-  } = useQuery({
-    queryKey: ["featured_listing", { type: "bottom-page" }],
-    queryFn: async () => {
-      const { data: listings } = await supabase
-        .from("merged_properties_view")
-        .select(
-          "id, property_id, property_name, description, city, monthly_amount, advance_payment_options, favorite_user_id",
-        );
-      return listings;
-    },
-  });
+  const { data: listings, error, isLoading } = useFetchFeaturedListings();
 
   return (
     <>
@@ -119,30 +101,60 @@ const FeaturedListings = ({ className, showAllButton }: Props) => {
                     className={`aspect-square h-full min-w-[16rem] max-w-[16rem] xs:aspect-auto xs:min-w-[23rem] xs:max-w-[23rem]`}
                   >
                     <ListingCard
+                      propertyId={listing.property_id as number}
                       key={listing.id}
-                      cardType="2"
-                      href={addQueryParamsToUrl(
-                        `/properties/${listing.property_id}`,
-                        {
-                          property_name: listing.property_name,
-                          city: listing.city,
-                          payment_structure: listing.advance_payment_options,
-                          amount_per_month: listing.monthly_amount as number,
-                          rating: 4,
-                        },
-                      )}
-                      propertyName={listing.property_name as string}
+                      href={`/properties/${
+                        listing.property_id
+                      }?${new URLSearchParams({
+                        property_type: listing.property_type as string,
+                        bedrooms: String(listing.bedrooms),
+                        city: listing.city as string,
+                        neighbourhood: listing.neighbourhood as string,
+                        subtitle: listing.subtitle as string,
+                        advance_period: String(listing.advance_period),
+                        payment_structure: String(
+                          listing.advance_payment_options,
+                        ),
+                        amount_per_month: String(listing.monthly_amount),
+                        rating: String(4),
+                        viewing_fee: String(listing.viewing_fee),
+                        is_realtors_choice: String(
+                          listing.property?.is_realtors_choice,
+                        ),
+                        is_best_value: String(listing.property?.is_best_value),
+                        is_featured: String(listing.property?.is_featured),
+                      })}`}
+                      bedrooms={listing.bedrooms as number}
+                      propertyType={listing.property_type as string}
                       city={listing.city as string}
+                      neighbourhood={listing.neighbourhood as string}
                       images={images} // TODO: check database
-                      liked={false} // TODO: check implementation
-                      guarantee={"Certified" as GuaranteeTag} // TODO: check database
+                      liked={listing?.favorite_user_ids?.includes(
+                        user?.id as string,
+                      )}
+                      guarantee={
+                        listing.is_property_verified
+                          ? ("Verified" as GuaranteeTag)
+                          : listing.is_lister_certified
+                            ? ("Certified" as GuaranteeTag)
+                            : undefined
+                      }
                       monthlyAmount={listing.monthly_amount as number}
                       paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
-                      propertyDescription={listing.description as string}
+                      subtitle={listing.subtitle as string}
                       rating={4.5} // TODO: check database
                       ratingCount={105} // TODO: check database
-                      hint={"Best Value" as HintTag} // TODO: check database
+                      hint={
+                        listing?.property?.is_realtors_choice
+                          ? ("Realtor's Choice" as HintTag)
+                          : listing?.property?.is_best_value
+                            ? ("Best Value" as HintTag)
+                            : undefined
+                      }
+                      advancePeriod={listing.advance_period as number}
+                      ViewingFee={listing.viewing_fee as number}
                       showOnlyImage
+                      cardType="2"
                     />
                   </SwiperSlide>
                 ))}

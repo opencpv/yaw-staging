@@ -9426,6 +9426,8 @@ natural-compare@^1.4.0:
 
 negotiator@^0.6.3:
   version "0.6.3"
+  resolved "https://registry.npmjs.org/negotiator/-/negotiator-0.6.3.tgz"
+  integrity sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==
 
 next-sanity-client@^1.0.8:
   version "1.0.8"

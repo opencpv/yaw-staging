@@ -1,6 +1,6 @@
 "use client";
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+import React, { useState } from "react";
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -13,17 +13,23 @@ import Link from "next/link";
 import Image from "next/image";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import ListingInfo from "./ListingInfo";
-import ListingDeals from "./ListingDeals";
+import ListingTags from "./ListingTags";
 import { ListingCardInterface } from "../../../../interfaces";
 import Button from "../ui/button/Button";
 import ListingCardButton from "./ListingCardButton";
 import { FiTrash2 } from "react-icons/fi";
+import { cn } from "@/lib/utils";
 
 const ListingCard = (props: Partial<ListingCardInterface>) => {
+  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const lastIndex = props.images?.lastIndexOf(
+    props.images[props.images.length - 1],
+  );
+
   return (
     <>
       <div
-        className={`relative cursor-default ${props.className} ${
+        className={`group/parent relative cursor-default ${props.className} ${
           props.cardType === "2"
             ? null
             : "rounded-b-lg rounded-t-lg shadow-[1px_3px_13px_rgba(0,_0,_0,_0.10)]"
@@ -49,15 +55,18 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
                 }
           }
           modules={[Pagination, Navigation]}
-          className={`listing-card-slider group relative w-full ${
+          className={`listing-card-slider relative w-full ${
             props.cardType === "2" && !props.showOnlyImage
               ? "h-[26rem] rounded-2xl"
               : props.cardType === "2"
                 ? "h-80 rounded-2xl"
                 : "h-72 rounded-t-md"
           } `}
+          onSlideChange={(swiper) => {
+            setActiveIndex(swiper.activeIndex);
+          }}
         >
-          <ListingDeals guarantee={props.guarantee} hint={props.hint} />
+          <ListingTags guarantee={props.guarantee} hint={props.hint} />
           {/* For be the first to know detail listings only */}
           <div
             className={
@@ -80,7 +89,7 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
           <div
             className={
               props.isMyFavoritePage || props.isRecommendationsPage
-                ? "absolute inset-0 z-30 flex h-full w-full -translate-x-full items-center justify-center rounded-[inherit] bg-black bg-opacity-30 transition-all delay-500 group-hover:translate-x-0"
+                ? "absolute inset-0 z-30 flex h-full w-full -translate-x-full items-center justify-center rounded-[inherit] bg-black bg-opacity-30 transition-all delay-500 group-hover/parent:translate-x-0"
                 : "hidden"
             }
           >
@@ -159,9 +168,18 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
 
           {/* Pagination bullets and button */}
           <div
-            className={`custom-l-prev absolute left-[5%] z-10 flex h-10 w-10 shrink-0 cursor-default items-center justify-center rounded-full bg-white ${
-              props.cardType === "2" ? "bottom-48" : "bottom-20"
-            } ${props.showOnlyImage && "hidden"}`}
+            className={cn(
+              `custom-l-prev absolute bottom-20 left-[5%] z-10 flex h-10 w-10 shrink-0 cursor-default items-center justify-center rounded-full bg-white transition-opacity md:pointer-events-none md:opacity-0 md:group-hover/parent:pointer-events-auto md:group-hover/parent:opacity-100 ${
+                activeIndex === 0 && "hidden"
+              }`,
+              {
+                hidden:
+                  props.showOnlyImage ||
+                  props.isMyFavoritePage ||
+                  props.isRecommendationsPage,
+                "bottom-48": props.cardType === "2",
+              },
+            )}
           >
             <MdChevronLeft className="text-lg text-neutral-700" />
           </div>
@@ -171,16 +189,24 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
             }`}
           ></div>
           <div
-            className={`custom-l-next absolute right-[5%] z-10 flex h-10 w-10 shrink-0 cursor-default items-center justify-center rounded-full bg-white ${
-              props.cardType === "2" ? "bottom-48" : "bottom-20"
-            } ${props.showOnlyImage && "hidden"}`}
+            className={cn(
+              `custom-l-next absolute bottom-20 right-[5%] z-10 flex h-10 w-10 shrink-0 cursor-default items-center justify-center rounded-full bg-white transition-opacity md:pointer-events-none md:opacity-0 md:group-hover/parent:pointer-events-auto md:group-hover/parent:opacity-100 ${
+                lastIndex === activeIndex && "hidden"
+              }`,
+              {
+                hidden:
+                  props.showOnlyImage ||
+                  props.isMyFavoritePage ||
+                  props.isRecommendationsPage,
+                "bottom-48": props.cardType === "2",
+              },
+            )}
           >
             <MdChevronRight className="text-lg text-neutral-700" />
           </div>
         </Swiper>
         {/* Listing info */}
         <ListingInfo {...props} />
-        {/* Deals */}
       </div>
     </>
   );

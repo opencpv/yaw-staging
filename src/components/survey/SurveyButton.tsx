@@ -1,15 +1,16 @@
 import React from "react";
 import { HiOutlineChatBubbleOvalLeftEllipsis } from "react-icons/hi2";
-import AOSWrapper from "../__shared/AOSWrapper";
 import Survey from "./Survey";
+import FramerWrapper from "../__shared/FramerWrapper";
+import { fadeInLeft } from "@/lib/animations";
 
 type Props = {};
 
 const SurveyButton = (props: Props) => {
   return (
     <section className="section relative overflow-x-hidden">
-      <AOSWrapper
-        animation="fade-left"
+      <FramerWrapper
+        {...fadeInLeft}
         className="absolute bottom-0 right-5 w-fit"
       >
         <Survey>
@@ -24,7 +25,7 @@ const SurveyButton = (props: Props) => {
             </div>
           </div>
         </Survey>
-      </AOSWrapper>
+      </FramerWrapper>
     </section>
   );
 };

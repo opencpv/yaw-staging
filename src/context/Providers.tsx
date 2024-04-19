@@ -7,6 +7,7 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { ThemeProviderProps } from "next-themes/dist/types";
 import { useRouter } from "next/navigation";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { SWRConfig } from "swr";
 
 type Props = {
   children: React.ReactNode;
@@ -27,9 +28,9 @@ const Providers = ({ children, themeProps }: Props) => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <NextUIProvider>
-        <NextThemesProvider {...themeProps}>{children}</NextThemesProvider>
-      </NextUIProvider>
+      <SWRConfig value={{ revalidateOnFocus: false }}>
+        <NextUIProvider>{children}</NextUIProvider>
+      </SWRConfig>
       {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </QueryClientProvider>
   );

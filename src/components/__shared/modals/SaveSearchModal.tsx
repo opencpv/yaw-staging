@@ -152,7 +152,7 @@ const RecentSearch = ({ title, date }: { title: string; date: string }) => {
         onOpenChange={onOpenChange}
         backdropClassName="z-[99999]"
         id=""
-        table=""
+        table="search_critieria"
       />
     </div>
   );
