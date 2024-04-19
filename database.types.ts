@@ -48,6 +48,42 @@ export type Database = {
           },
         ]
       }
+      contact_owner_preference: {
+        Row: {
+          created_at: string
+          id: number
+          should_be_contacted: boolean
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          should_be_contacted?: boolean
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          should_be_contacted?: boolean
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_contact_owner_preference_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "distinct_messages_view"
+            referencedColumns: ["sender_id"]
+          },
+          {
+            foreignKeyName: "public_contact_owner_preference_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       contact_us: {
         Row: {
           company_name: string | null
@@ -114,6 +150,62 @@ export type Database = {
           id?: number
           message?: string | null
           phone?: string | null
+        }
+        Relationships: []
+      }
+      featured_properties: {
+        Row: {
+          created_at: string
+          id: number
+          property_id: number
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          property_id: number
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          property_id?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_featured_properties_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "property"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      feedback: {
+        Row: {
+          created_at: string
+          feedback_title: string | null
+          id: number
+          value_a: number | null
+          value_b: number | null
+          value_c: boolean | null
+          value_d: string | null
+        }
+        Insert: {
+          created_at?: string
+          feedback_title?: string | null
+          id?: number
+          value_a?: number | null
+          value_b?: number | null
+          value_c?: boolean | null
+          value_d?: string | null
+        }
+        Update: {
+          created_at?: string
+          feedback_title?: string | null
+          id?: number
+          value_a?: number | null
+          value_b?: number | null
+          value_c?: boolean | null
+          value_d?: string | null
         }
         Relationships: []
       }
@@ -355,6 +447,7 @@ export type Database = {
           firstname: string | null
           full_name: string | null
           id: string
+          is_certified: boolean
           is_first_time: boolean
           lastname: string | null
           linkedin: string | null
@@ -372,6 +465,7 @@ export type Database = {
           firstname?: string | null
           full_name?: string | null
           id: string
+          is_certified?: boolean
           is_first_time?: boolean
           lastname?: string | null
           linkedin?: string | null
@@ -389,6 +483,7 @@ export type Database = {
           firstname?: string | null
           full_name?: string | null
           id?: string
+          is_certified?: boolean
           is_first_time?: boolean
           lastname?: string | null
           linkedin?: string | null
@@ -413,8 +508,11 @@ export type Database = {
           created_at: string
           id: number
           is_available: boolean
+          is_best_value: boolean
+          is_featured: boolean
           is_paid_for: boolean
           is_published: boolean
+          is_realtors_choice: boolean
           is_verified: boolean
           owner_uid: string | null
           status: string
@@ -425,8 +523,11 @@ export type Database = {
           created_at?: string
           id?: number
           is_available?: boolean
+          is_best_value?: boolean
+          is_featured?: boolean
           is_paid_for?: boolean
           is_published?: boolean
+          is_realtors_choice?: boolean
           is_verified?: boolean
           owner_uid?: string | null
           status?: string
@@ -437,8 +538,11 @@ export type Database = {
           created_at?: string
           id?: number
           is_available?: boolean
+          is_best_value?: boolean
+          is_featured?: boolean
           is_paid_for?: boolean
           is_published?: boolean
+          is_realtors_choice?: boolean
           is_verified?: boolean
           owner_uid?: string | null
           status?: string
@@ -447,11 +551,18 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "property_owner_uid_fkey"
+            foreignKeyName: "public_property_owner_uid_fkey"
             columns: ["owner_uid"]
             isOneToOne: false
-            referencedRelation: "property_owner_profile"
-            referencedColumns: ["user_id"]
+            referencedRelation: "distinct_messages_view"
+            referencedColumns: ["sender_id"]
+          },
+          {
+            foreignKeyName: "public_property_owner_uid_fkey"
+            columns: ["owner_uid"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
           },
         ]
       }
@@ -811,7 +922,7 @@ export type Database = {
           address: string | null
           advance_payment_options: Json[] | null
           advance_period: number | null
-          agent_fee: string | null
+          agent_fee: number | null
           available_date: string | null
           bathrooms: number | null
           bedrooms: number | null
@@ -819,10 +930,13 @@ export type Database = {
           created_at: string
           description: string | null
           digital_address: string | null
+          favorite_user_ids: string[] | null
           features_and_amenities: Json[] | null
           furnish_level: string | null
           id: number
           is_complete: boolean | null
+          is_lister_certified: boolean
+          is_property_verified: boolean
           lease_details: string | null
           lease_end_date: string | null
           lease_length: number | null
@@ -855,7 +969,7 @@ export type Database = {
           address?: string | null
           advance_payment_options?: Json[] | null
           advance_period?: number | null
-          agent_fee?: string | null
+          agent_fee?: number | null
           available_date?: string | null
           bathrooms?: number | null
           bedrooms?: number | null
@@ -863,10 +977,13 @@ export type Database = {
           created_at?: string
           description?: string | null
           digital_address?: string | null
+          favorite_user_ids?: string[] | null
           features_and_amenities?: Json[] | null
           furnish_level?: string | null
           id?: number
           is_complete?: boolean | null
+          is_lister_certified: boolean
+          is_property_verified: boolean
           lease_details?: string | null
           lease_end_date?: string | null
           lease_length?: number | null
@@ -899,7 +1016,7 @@ export type Database = {
           address?: string | null
           advance_payment_options?: Json[] | null
           advance_period?: number | null
-          agent_fee?: string | null
+          agent_fee?: number | null
           available_date?: string | null
           bathrooms?: number | null
           bedrooms?: number | null
@@ -907,10 +1024,13 @@ export type Database = {
           created_at?: string
           description?: string | null
           digital_address?: string | null
+          favorite_user_ids?: string[] | null
           features_and_amenities?: Json[] | null
           furnish_level?: string | null
           id?: number
           is_complete?: boolean | null
+          is_lister_certified?: boolean
+          is_property_verified?: boolean
           lease_details?: string | null
           lease_end_date?: string | null
           lease_length?: number | null
@@ -942,7 +1062,7 @@ export type Database = {
           {
             foreignKeyName: "standard_template_property_id_fkey"
             columns: ["property_id"]
-            isOneToOne: false
+            isOneToOne: true
             referencedRelation: "property"
             referencedColumns: ["id"]
           },
@@ -954,18 +1074,21 @@ export type Database = {
           contact_is_email: boolean
           created_at: string
           id: number
+          subscribed: boolean | null
         }
         Insert: {
           contact: string
           contact_is_email: boolean
           created_at?: string
           id?: number
+          subscribed?: boolean | null
         }
         Update: {
           contact?: string
           contact_is_email?: boolean
           created_at?: string
           id?: number
+          subscribed?: boolean | null
         }
         Relationships: []
       }
@@ -993,8 +1116,15 @@ export type Database = {
             foreignKeyName: "public_user_favorite_properties_property_id_fkey"
             columns: ["property_id"]
             isOneToOne: false
-            referencedRelation: "property"
-            referencedColumns: ["id"]
+            referencedRelation: "merged_standard_template_view"
+            referencedColumns: ["property_id"]
+          },
+          {
+            foreignKeyName: "public_user_favorite_properties_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "standard_template"
+            referencedColumns: ["property_id"]
           },
           {
             foreignKeyName: "public_user_favorite_properties_user_id_fkey"
@@ -1047,13 +1177,13 @@ export type Database = {
           },
         ]
       }
-      merged_properties_view: {
+      merged_standard_template_view: {
         Row: {
           additional_fees: Json | null
           address: string | null
           advance_payment_options: Json[] | null
           advance_period: number | null
-          agent_fee: string | null
+          agent_fee: number | null
           available_date: string | null
           bathrooms: number | null
           bedrooms: number | null
@@ -1061,11 +1191,13 @@ export type Database = {
           created_at: string | null
           description: string | null
           digital_address: string | null
-          favorite_user_id: string | null
+          favorite_user_ids: string[] | null
           features_and_amenities: Json[] | null
           furnish_level: string | null
           id: number | null
           is_complete: boolean | null
+          is_lister_certified: boolean | null
+          is_property_verified: boolean | null
           lease_details: string | null
           lease_end_date: string | null
           lease_length: number | null
@@ -1095,23 +1227,9 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "public_user_favorite_properties_user_id_fkey"
-            columns: ["favorite_user_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "public_user_favorite_properties_user_id_fkey"
-            columns: ["favorite_user_id"]
-            isOneToOne: false
-            referencedRelation: "distinct_messages_view"
-            referencedColumns: ["sender_id"]
-          },
-          {
             foreignKeyName: "standard_template_property_id_fkey"
             columns: ["property_id"]
-            isOneToOne: false
+            isOneToOne: true
             referencedRelation: "property"
             referencedColumns: ["id"]
           },
@@ -1119,7 +1237,10 @@ export type Database = {
       }
     }
     Functions: {
-      [_ in never]: never
+      update_lister_certification: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never

@@ -38,7 +38,7 @@ import { cache } from "react";
 
 export const createClient = cache(() => {
   const cookieStore = cookies();
-  return createServerComponentClient<Database>({
+  return createServerComponentClient({
     cookies: () => cookieStore,
   });
 });
