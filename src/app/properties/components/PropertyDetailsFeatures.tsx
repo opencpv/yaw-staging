@@ -6,6 +6,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { contentAccordionVariants } from "@/lib/animations";
 import { FeatureInterface } from "../../../../interfaces";
+import { cn } from "@/lib/utils";
 
 type Props = {
   features: FeatureInterface[];
@@ -15,7 +16,9 @@ const PropertyDetailsFeatures = ({ features }: Props) => {
   const [showMore, setShowMore] = useState<boolean>(false);
 
   return (
-    <section className="my-10">
+    <section
+      className={cn("my-10", { hidden: features.length === 0 || !features })}
+    >
       <h2 className="text-2xl font-[600] text-neutral-800">
         Features and Amenities
       </h2>

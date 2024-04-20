@@ -16,7 +16,7 @@ export const useFetchProperties = ({
   let query = supabase
     .from("merged_property_view")
     .select(
-      "id, is_best_value, is_realtors_choice, is_featured, is_verified, profiles!inner(id, is_certified), property_type, description, city, bedrooms, monthly_amount, favorite_user_ids, subtitle, neighbourhood, advance_period, viewing_fee",
+      "id, is_best_value, is_realtors_choice, is_featured, is_verified, is_lister_certified, profiles!inner(id, is_certified), property_type, description, city, bedrooms, monthly_amount, favorite_user_ids, subtitle, neighbourhood, advance_period, viewing_fee",
     )
     .order("is_verified", { ascending: false })
     .order("is_realtors_choice", { ascending: false })
@@ -31,11 +31,10 @@ export const useFetchProperties = ({
   }
 
   if (filter === "realtor's choice") {
-    // TODO: add is price drop
     query = query.or(`is_realtors_choice.eq.true, is_best_value.eq.true`);
   }
   if (filter === "verified") {
-    query = query.eq("is_verified", true).eq("profiles.is_certified", true);
+    query = query.or(`is_verified.eq.true, is_lister_certified.eq.true`);
   }
   if (filter === "no viewing fee") {
     query = query.is("viewing_fee", null);
@@ -88,7 +87,7 @@ export const useFetchPropertyDetails = (propertyId: number) => {
     .select(
       "*, profiles!inner (id, full_name, avatar_url, profile_img, phone, whatsapp)",
     )
-    .eq("property_id", propertyId)
+    .eq("id", propertyId)
     .single();
 
   return useQuery(query);
