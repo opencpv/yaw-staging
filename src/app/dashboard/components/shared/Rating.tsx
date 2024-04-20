@@ -26,7 +26,7 @@ const Rating = (props: Props) => {
       )}
     >
       <FaStar className="text-[#FFB800]" />
-      <Link href="" className="text-[#363C91] underline">
+      <Link href="#" className="text-[#363C91] underline">
         {props.rate}
       </Link>
       <span className={props.countClassName}>( {props.count} )</span>

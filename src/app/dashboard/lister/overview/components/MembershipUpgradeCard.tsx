@@ -8,7 +8,7 @@ type Props = {};
 const MembershipUpgradeCard = (props: Props) => {
   const { images } = useAssets();
   return (
-    <div className="overlay-rounded relative mb-20 mt-20 h-fit w-full rounded-xl lg:mt-0">
+    <div className="overlay-rounded relative mt-20 h-fit w-full rounded-xl lg:mt-0">
       <Image
         src={images.PersonHoldingHouse}
         alt="Person with a house in his hands"

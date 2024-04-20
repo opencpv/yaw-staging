@@ -1,7 +1,7 @@
-import Spinner from "@/app/dashboard/components/shared/Spinner";
 import { PostgrestError } from "@supabase/supabase-js";
 import React from "react";
 import FetchErrorMessage from "./FetchErrorMessage";
+import Loader from "../../loader/Loader";
 
 type Props = {
   error: PostgrestError | undefined | Error | null;
@@ -26,10 +26,18 @@ const FetchingStates = ({
   return (
     <>
       {isLoading
-        ? isLoading && (isLoadingComponent || <Spinner />)
+        ? isLoadingComponent || (
+            <Loader position="center" className="flex w-full justify-center" />
+          )
         : error
-          ? errorComponent ?? <FetchErrorMessage />
-          : isValidating && (isLoadingComponent || <Spinner />)}
+          ? errorComponent || <FetchErrorMessage />
+          : isValidating &&
+            (isLoadingComponent || (
+              <Loader
+                position="center"
+                className="flex w-full justify-center"
+              />
+            ))}
       {(!isValidating || !isLoading) &&
         !error &&
         data?.length === 0 &&

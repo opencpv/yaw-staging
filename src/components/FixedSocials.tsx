@@ -49,23 +49,23 @@ const FixedSocials = ({ threshHoldMax, threshHoldMin }: Props) => {
         } relative  w-10 rounded-r-lg border border-primary-800 bg-white py-4 transition-transform`}
       >
         <ul className="flex flex-col gap-2">
-          <li className="grid w-8 h-8 rounded-full place-items-center bg-neutral-200">
-            <Link href="" target="_blank">
+          <li className="grid h-8 w-8 place-items-center rounded-full bg-neutral-200">
+            <Link href="#" target="_blank">
               <RiInstagramFill className="text-primary-800" title="instagram" />
             </Link>
           </li>
-          <li className="grid w-8 h-8 rounded-full place-items-center bg-neutral-200">
-            <Link href="" target="_blank">
+          <li className="grid h-8 w-8 place-items-center rounded-full bg-neutral-200">
+            <Link href="#" target="_blank">
               <RiTwitterXFill className="text-primary-800" title="x" />
             </Link>
           </li>
-          <li className="grid w-8 h-8 rounded-full place-items-center bg-neutral-200">
-            <Link href="" target="_blank">
+          <li className="grid h-8 w-8 place-items-center rounded-full bg-neutral-200">
+            <Link href="#" target="_blank">
               <FaFacebookF className="text-primary-800" title="facebook" />
             </Link>
           </li>
-          <li className="grid w-8 h-8 rounded-full place-items-center bg-neutral-200">
-            <Link href="" target="_blank">
+          <li className="grid h-8 w-8 place-items-center rounded-full bg-neutral-200">
+            <Link href="#" target="_blank">
               <IoLogoWhatsapp className="text-primary-800" title="whatsapp" />
             </Link>
           </li>

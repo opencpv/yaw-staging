@@ -14,8 +14,7 @@ import {
 } from "@/lib/utils/sanity/queries";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import slugify from "@/lib/utils/slugify";
-import { motion } from "framer-motion";
-import { fadeUp } from "@/lib/animations";
+import { fadeIn } from "@/lib/animations";
 import FramerWrapper from "@/components/__shared/FramerWrapper";
 
 const page = async () => {
@@ -65,7 +64,7 @@ const page = async () => {
             }))}
           />
           <PostSlider posts={sliderBlogData} />
-          <FramerWrapper {...fadeUp} className="section">
+          <FramerWrapper {...fadeIn} className="section">
             <section className="grid gap-x-3.5 gap-y-7 xs:grid-cols-2 md:grid-cols-3">
               {categories.map((category: any, index: number) => (
                 <CategoryCard

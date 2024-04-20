@@ -1,22 +1,16 @@
 import supabase from "@/lib/utils/supabase/supabaseClient";
-import {
-  useOffsetInfiniteScrollQuery,
-  useQuery,
-} from "@supabase-cache-helpers/postgrest-swr";
+import { useOffsetInfiniteScrollQuery } from "@supabase-cache-helpers/postgrest-swr";
 
 export const useFetchUserFavorites = (userId: string) => {
   const query = supabase
-    .from("user_favorite_properties")
+    .from("merged_property_view")
     .select(
-      "id, standard_template!inner (id, is_property_verified, is_lister_certified, property_type, description, city, bedrooms, monthly_amount, advance_payment_options, favorite_user_ids, subtitle, neighbourhood, advance_period, viewing_fee, property!inner (id, is_best_value, is_realtors_choice, is_featured))",
+      "id, is_best_value, is_realtors_choice, is_featured, is_verified, profiles!inner(id, is_certified), property_type, description, city, bedrooms, monthly_amount, favorite_user_ids, subtitle, neighbourhood, advance_period, viewing_fee",
     )
-    .eq("user_id", userId)
-    .order("created_at", { ascending: false });
+    .contains("favorite_user_ids", [userId]);
 
-  const result = useOffsetInfiniteScrollQuery(query, {
+  return useOffsetInfiniteScrollQuery(query, {
     pageSize: 9,
     revalidateAll: true,
   });
-
-  return result;
 };

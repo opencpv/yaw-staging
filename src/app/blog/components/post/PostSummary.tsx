@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FaChevronRight } from "react-icons/fa";
-import { fadeUp } from "@/lib/animations";
+import { fadeIn } from "@/lib/animations";
 import FramerWrapper from "@/components/__shared/FramerWrapper";
 
 const PostSummary = ({
@@ -16,7 +16,7 @@ const PostSummary = ({
   rating,
 }: PostProps) => {
   return (
-    <FramerWrapper {...fadeUp}>
+    <FramerWrapper {...fadeIn}>
       <div className="grid gap-x-10 gap-y-5 lg:grid-cols-3">
         <div className="relative min-h-[13rem] w-full md:h-full lg:col-span-1 lg:max-w-full">
           <Image

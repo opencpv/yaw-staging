@@ -12,7 +12,7 @@ import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchError
 import { useMySearchFilterStore } from "@/store/dashboard/mySearchStore";
 import { Switch } from "@nextui-org/react";
 import Toggle from "@/components/ui/Toggle";
-import ContactPreferenceToggle from "../favourites/components/ContactPreferenceToggle";
+import ContactPreferenceToggle from "../../components/shared/favorites/ContactPreferenceToggle";
 
 const MySearch = () => {
   // const { value, handleSelectionChange } = useSelectDisclosure<

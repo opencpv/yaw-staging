@@ -1,5 +1,4 @@
 import supabase from "@/lib/utils/supabase/supabaseClient";
-import { revalidatePath } from "next/cache";
 
 export const getUserFavorite = async (userId: string) => {
   const query = await supabase

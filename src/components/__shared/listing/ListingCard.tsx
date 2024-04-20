@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -119,7 +119,7 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
                       <div className="relative h-full w-full">
                         <Image
                           src={image}
-                          alt={props.propertyName as string}
+                          alt={`${props.bedrooms} Bedroom ${props.propertyType} in ${props.city}`}
                           fill
                           title={`${props.propertyName} at ${props.city}`}
                           className="brightness-[0.8]"
@@ -137,9 +137,8 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
                     <div className="relative h-full w-full">
                       <Image
                         src={image}
-                        alt={props.propertyName as string}
+                        alt={`${props.bedrooms} Bedroom ${props.propertyType} in ${props.city}`}
                         fill
-                        title={`${props.propertyName} at ${props.city}`}
                         className="brightness-[0.8]"
                         style={{ objectFit: "cover" }}
                       />
@@ -155,7 +154,7 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
                   <div className="relative h-full w-full">
                     <Image
                       src={image}
-                      alt={props.propertyName as string}
+                      alt={`${props.bedrooms} Bedroom ${props.propertyType} in ${props.city}`}
                       fill
                       className="brightness-[0.8]"
                       style={{ objectFit: "cover" }}

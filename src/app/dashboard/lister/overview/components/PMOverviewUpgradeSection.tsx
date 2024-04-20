@@ -17,21 +17,21 @@ const PMOverviewUpgradeSection = (props: Props) => {
           image={images._3DImage}
           alt="3D House"
           description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis mollitia eius recusandae sed, quis, vitae sequi praesentium natus id dolores atque omnis facilis tempore exercitationem perferendis sit alias consequuntur nemo."
-          href=""
+          href="#"
         />
         <FeatureUpgradeCard
           title="Get Featured"
           image={images.GetFeaturedImage}
           alt="A person holding megaphone"
           description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis mollitia eius recusandae sed, quis, vitae sequi praesentium natus id dolores atque omnis facilis tempore exercitationem perferendis sit alias consequuntur nemo."
-          href=""
+          href="#"
         />
         <FeatureUpgradeCard
           title="Verify My Listings"
           image={images.VerifyListing}
           alt="A person making a phone call"
           description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis mollitia eius recusandae sed, quis, vitae sequi praesentium natus id dolores atque omnis facilis tempore exercitationem perferendis sit alias consequuntur nemo."
-          href=""
+          href="#"
         />
       </div>
     </section>

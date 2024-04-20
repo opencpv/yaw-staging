@@ -24,7 +24,7 @@ const Layout = async ({ children }: LayoutProps) => {
   const pathname = headerList.get("x-pathname") || "";
 
   // protected route
-  if ((error || !data?.user) && pathname !== "/dashboard") {
+  if (error && pathname !== "/dashboard") {
     // dashboard/**/*
     redirect("/login");
   }

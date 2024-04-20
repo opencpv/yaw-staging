@@ -10,7 +10,7 @@ import {
 } from "@nextui-org/react";
 
 import { MdInfoOutline } from "react-icons/md";
-import CaDelete from "../../favourites/components/CaDelete";
+import CaDelete from "../../../components/shared/favorites/CaDelete";
 import useNotifications from "../useNotifications";
 
 export default function DeleteModal() {
@@ -21,7 +21,7 @@ export default function DeleteModal() {
     <>
       <button
         onClick={onOpen}
-        className=" bg-unset w-full appearance-none pb-2 pt-1 px-8  text-black hover:bg-primary-300 "
+        className=" bg-unset w-full appearance-none px-8 pb-2 pt-1  text-black hover:bg-primary-300 "
       >
         Delete
       </button>

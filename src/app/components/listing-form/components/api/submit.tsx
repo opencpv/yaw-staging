@@ -17,7 +17,7 @@ export const submitListing = async (
   if (data) {
     let property_id = data[0]?.id;
     const { data: success1, error } = await supabase
-      .from("standard_template")
+      .from("property")
       .insert([
         {
           property_id: property_id,
@@ -73,7 +73,7 @@ export const editListing = async (
   image?: any,
 ) => {
   const { data: success1, error } = await supabase
-    .from("standard_template")
+    .from("property")
     .update([
       {
         property_type: listingData?.propertyType,
@@ -123,7 +123,7 @@ export const submitOrEditListing = async (
   image?: any,
 ) => {
   const { data, error } = await supabase
-    .from("standard_template")
+    .from("property")
     .select("id")
     .eq("id", id);
 

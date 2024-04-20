@@ -28,11 +28,11 @@ const RoleSwitcherOverlay = (props: Props) => {
     <section className="absolute inset-0 z-50 flex h-screen max-h-screen w-screen items-center justify-center overflow-x-hidden bg-white/50 backdrop-blur-sm">
       <div className="flex flex-col items-center justify-center gap-5">
         <Loader />
-        <h4>
+        <h4 className="text-primary-500">
           Getting {currentRole}&apos;s dashboard ready{" "}
           <span className="animate-pulse">...</span>{" "}
         </h4>
-        <Button
+        {/* <Button
           variant="outline"
           color="black"
           radius="full"
@@ -44,7 +44,7 @@ const RoleSwitcherOverlay = (props: Props) => {
           onClick={handleCancel}
         >
           Cancel
-        </Button>
+        </Button> */}
       </div>
     </section>
   );
