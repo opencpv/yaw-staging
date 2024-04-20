@@ -31,21 +31,19 @@ export const useFetchProperties = ({
   }
 
   if (filter === "realtor's choice") {
-    query = query.or(`is_realtors_choice.eq.true, is_best_value.eq.true`, {
-      // TODO: add is price drop
-      referencedTable: "property",
-    });
+    // TODO: add is price drop
+    query = query.or(`is_realtors_choice.eq.true, is_best_value.eq.true`);
   }
   if (filter === "verified") {
-    query = query.or(
-      `is_property_verified.eq.true, is_lister_certified.eq.true`,
-    );
+    query = query.or(`is_verified.eq.true, is_certified.eq.true`, {
+      referencedTable: "profiles",
+    });
   }
   if (filter === "no viewing fee") {
-    query = query.is("viewing_fee", null);
+    query = query.is("require_viewing_fee", false);
   }
   if (filter === "no advance") {
-    query = query.is("advance_period", null);
+    query = query.is("require_advance_payment", false);
   }
 
   return useOffsetInfiniteScrollQuery(query, {
