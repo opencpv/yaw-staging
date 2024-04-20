@@ -37,7 +37,7 @@ const LikeHeart = ({ liked, className, userId, propertyId }: Props) => {
     setIsLiked(!isLiked);
     const { error } = await updateLikedProperty(userId, propertyId);
     if (error) {
-      toastOnOpen(error.message, "error");
+      toastOnOpen("Something went wrong", "error");
       setIsLiked(!isLiked);
     }
   };
@@ -47,7 +47,7 @@ const LikeHeart = ({ liked, className, userId, propertyId }: Props) => {
       setIsLiked(!isLiked);
       const { error } = await updateLikedProperty(userId, propertyId);
       if (error) {
-        toastOnOpen(error.message, "error");
+        toastOnOpen("Something went wrong", "error");
         setIsLiked(!isLiked);
       }
       handleContactPreference();

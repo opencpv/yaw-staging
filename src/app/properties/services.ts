@@ -14,14 +14,14 @@ export const useFetchProperties = ({
   const formattedSearchString = formatString(searchString);
 
   let query = supabase
-    .from("merged_standard_template_view")
+    .from("merged_property_view")
     .select(
-      "id, property_id, property!inner (id, is_best_value, is_realtors_choice, is_featured), is_property_verified, is_lister_certified, property_type, description, city, bedrooms, monthly_amount, advance_payment_options, favorite_user_ids, subtitle, neighbourhood, advance_period, viewing_fee",
+      "id, is_best_value, is_realtors_choice, is_featured, is_verified, profiles!inner(id, is_certified), property_type, description, city, bedrooms, monthly_amount, favorite_user_ids, subtitle, neighbourhood, advance_period, viewing_fee",
     )
-    .order("is_property_verified", { ascending: false })
-    .order("property (is_realtors_choice)", { ascending: false })
-    .order("property (is_best_value)", { ascending: false })
-    .order("is_lister_certified", { ascending: false })
+    .order("is_verified", { ascending: false })
+    .order("is_realtors_choice", { ascending: false })
+    .order("is_best_value", { ascending: false })
+    .order("profiles (is_certified)", { ascending: false })
     .order("created_at", { ascending: false });
   if (searchString) {
     query = query.textSearch("query_string", `${formattedSearchString}`, {
@@ -56,15 +56,31 @@ export const useFetchProperties = ({
 
 export const useFetchFeaturedListings = () => {
   const query = supabase
-    .from("merged_standard_template_view")
+    .from("merged_property_view")
     .select(
-      "id, property_id, property!inner (id, is_best_value, is_realtors_choice, is_featured), is_property_verified, is_lister_certified, property_type, description, city, bedrooms, monthly_amount, advance_payment_options, favorite_user_ids, subtitle, neighbourhood, advance_period, viewing_fee",
+      "id, is_best_value, is_realtors_choice, is_featured, is_verified, profiles!inner(id, is_certified), property_type, description, city, bedrooms, monthly_amount, favorite_user_ids, subtitle, neighbourhood, advance_period, viewing_fee",
     )
-    .eq("property.is_featured", true)
-    .order("is_property_verified", { ascending: false })
-    .order("property (is_realtors_choice)", { ascending: false })
-    .order("property (is_best_value)", { ascending: false })
-    .order("is_lister_certified", { ascending: false })
+    .eq("is_featured", true)
+    .order("is_verified", { ascending: false })
+    .order("is_realtors_choice", { ascending: false })
+    .order("is_best_value", { ascending: false })
+    .order("profiles (is_certified)", { ascending: false })
+    .order("created_at", { ascending: false });
+
+  return useQuery(query);
+};
+
+export const useFetchRecommendedListings = () => {
+  const query = supabase
+    .from("merged_property_view")
+    .select(
+      "id, is_best_value, is_realtors_choice, is_featured, is_verified, profiles!inner(id, is_certified), property_type, description, city, bedrooms, monthly_amount, favorite_user_ids, subtitle, neighbourhood, advance_period, viewing_fee",
+    )
+    .eq("is_featured", true)
+    .order("is_verified", { ascending: false })
+    .order("is_realtors_choice", { ascending: false })
+    .order("is_best_value", { ascending: false })
+    .order("profiles (is_certified)", { ascending: false })
     .order("created_at", { ascending: false });
 
   return useQuery(query);
@@ -72,9 +88,9 @@ export const useFetchFeaturedListings = () => {
 
 export const useFetchPropertyDetails = (propertyId: number) => {
   const query = supabase
-    .from("merged_standard_template_view")
+    .from("merged_property_view")
     .select(
-      "*, property!inner (id, profiles!inner (id, full_name, avatar_url, profile_img, phone, whatsapp))",
+      "*, profiles!inner (id, full_name, avatar_url, profile_img, phone, whatsapp)",
     )
     .eq("property_id", propertyId)
     .single();

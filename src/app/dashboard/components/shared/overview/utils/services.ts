@@ -6,7 +6,7 @@ export const useFetchListerLeads = ({ listerId }: { listerId: string }) => {
   const [preferredIds, setPreferredIds] = React.useState<string[]>([]);
 
   // Get from the preference table, the users who want to contacted.
-  const { data: preference, error: err1 } = useQuery(
+  const { data: preference } = useQuery(
     supabase
       .from("contact_owner_preference")
       .select("profiles!inner (id)")
@@ -22,10 +22,10 @@ export const useFetchListerLeads = ({ listerId }: { listerId: string }) => {
   // Get properties where those who have favorited
   // are included in the list of users who want to be contacted,
   // and where the owner is the current user (lister).
-  const { data: standardTemplate, error: err2 } = useQuery(
+  const { data: standardTemplate } = useQuery(
     supabase
-      .from("merged_standard_template_view")
-      .select("property!inner (id, profiles!inner (id)), favorite_user_ids")
+      .from("merged_property_view")
+      .select("id, profiles!inner (id), favorite_user_ids")
       .overlaps("favorite_user_ids", preferredIds as string[])
       .eq("property.profiles.id", listerId),
   );

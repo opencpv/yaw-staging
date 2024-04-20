@@ -67,7 +67,7 @@ const PropertyDetailsPage = ({ params }: Props) => {
     <>
       <Navbar
         propertyName={propertyName}
-        propertyId={listing?.property_id}
+        propertyId={listing?.id}
         liked={listing?.favorite_user_ids?.includes(user?.id as string)}
       />
       <FetchingStates
@@ -142,7 +142,7 @@ const PropertyDetailsPage = ({ params }: Props) => {
                           {propertyName2}
                         </h2>
 
-                        {listing?.is_property_verified && (
+                        {listing?.is_verified && (
                           <div className="flex items-center gap-2">
                             <HiMiniShieldCheck className="text-lg text-green-700" />
                             <p className="text-sm text-neutral-800">
@@ -184,18 +184,16 @@ const PropertyDetailsPage = ({ params }: Props) => {
                       </p>
                     </div>
                     <PropertyOwnerInfo
-                      name={listing?.property?.profiles?.full_name as string}
+                      name={listing?.profiles?.full_name as string}
                       picture={
-                        (listing?.property?.profiles?.profile_img as string) ||
+                        (listing?.profiles?.profile_img as string) ||
                         images.NoProfileUser
                       }
                       rating={3.5}
                       reviews={120}
-                      telephone={listing?.property?.profiles?.phone as string}
-                      whatsappNumber={
-                        listing?.property?.profiles?.whatsapp as string
-                      }
-                      id={listing?.property?.profiles?.id as string}
+                      telephone={listing?.profiles?.phone as string}
+                      whatsappNumber={listing?.profiles?.whatsapp as string}
+                      id={listing?.profiles?.id as string}
                     />
                   </section>
 

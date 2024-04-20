@@ -25,7 +25,7 @@ const ContactPreferenceToggle = (props: Props) => {
       .maybeSingle();
 
     if (error) {
-      onOpen(error.message, "error");
+      onOpen("Something went wrong", "error");
       setSelected(!isSelected);
       return;
     }

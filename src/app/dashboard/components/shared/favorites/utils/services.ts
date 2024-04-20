@@ -3,9 +3,9 @@ import { useOffsetInfiniteScrollQuery } from "@supabase-cache-helpers/postgrest-
 
 export const useFetchUserFavorites = (userId: string) => {
   const query = supabase
-    .from("merged_standard_template_view")
+    .from("merged_property_view")
     .select(
-      "id, property_id, property!inner (id, is_best_value, is_realtors_choice, is_featured), is_property_verified, is_lister_certified, property_type, description, city, bedrooms, monthly_amount, advance_payment_options, favorite_user_ids, subtitle, neighbourhood, advance_period, viewing_fee",
+      "id, is_best_value, is_realtors_choice, is_featured, is_verified, profiles!inner(id, is_certified), property_type, description, city, bedrooms, monthly_amount, favorite_user_ids, subtitle, neighbourhood, advance_period, viewing_fee",
     )
     .contains("favorite_user_ids", [userId]);
 

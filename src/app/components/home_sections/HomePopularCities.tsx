@@ -20,9 +20,7 @@ const HomePopularCities = () => {
   } = useQuery({
     queryKey: ["featured_listing"],
     queryFn: async () => {
-      const { data: listings } = await supabase
-        .from("standard_template")
-        .select(); // TODO: fetch only needed columns
+      const { data: listings } = await supabase.from("property").select(); // TODO: fetch only needed columns
       return listings;
     },
   });
