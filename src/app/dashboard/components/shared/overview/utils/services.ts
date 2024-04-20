@@ -27,7 +27,7 @@ export const useFetchListerLeads = ({ listerId }: { listerId: string }) => {
       .from("merged_property_view")
       .select("id, profiles!inner (id), favorite_user_ids")
       .overlaps("favorite_user_ids", preferredIds as string[])
-      .eq("property.profiles.id", listerId),
+      .eq("profiles.id", listerId),
   );
 
   const [ids, setIds] = React.useState<string[]>([]);

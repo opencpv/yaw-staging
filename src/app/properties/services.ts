@@ -35,15 +35,13 @@ export const useFetchProperties = ({
     query = query.or(`is_realtors_choice.eq.true, is_best_value.eq.true`);
   }
   if (filter === "verified") {
-    query = query.or(`is_verified.eq.true, is_certified.eq.true`, {
-      referencedTable: "profiles",
-    });
+    query = query.eq("is_verified", true).eq("profiles.is_certified", true);
   }
   if (filter === "no viewing fee") {
-    query = query.is("require_viewing_fee", false);
+    query = query.is("viewing_fee", null);
   }
   if (filter === "no advance") {
-    query = query.is("require_advance_payment", false);
+    query = query.is("advance_period", null);
   }
 
   return useOffsetInfiniteScrollQuery(query, {
