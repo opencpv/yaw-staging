@@ -39,7 +39,7 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
   const handleSignOut = async () => {
     const { error } = await supabase.auth.signOut();
     if (error) {
-      onOpen(error.message, "error");
+      onOpen("Something went wrong", "error");
     } else {
       setTimeout(() => {
         setUser(null);
@@ -63,7 +63,7 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
             />
           </div>
         ) : (
-          <div title="Upload your profile image">
+          <div className="p-1">
             {/* <Tooltip content="Please upload your profile image"> */}
             <Avatar
               image={images.NoProfileUser}

@@ -20,7 +20,7 @@ import handlePageViewCounter from "@/lib/utils/handlePageViewCounter";
 import urlBuilder from "@sanity/image-url";
 import { client } from "@/lib/utils/sanity/client";
 import axios from "axios";
-import { fadeIn, fadeUp } from "@/lib/animations";
+import { fadeIn } from "@/lib/animations";
 import FramerWrapper from "@/components/__shared/FramerWrapper";
 
 type Props = {
@@ -132,7 +132,7 @@ const page = async ({ params, searchParams }: Props) => {
                   <Print />
                 </div>
               </div>
-              <FramerWrapper {...fadeUp}>
+              <FramerWrapper {...fadeIn}>
                 <section className="no-print hidden h-fit w-full flex-col gap-8 md:flex min-[1000px]:flex-row">
                   <SliderPaginationOnly
                     images={[1, 2, 3, 4, 5].map((image) => ({

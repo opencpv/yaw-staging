@@ -7,7 +7,6 @@ import MenuLink from "./components/MenuLink";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
 import { useFaqHowToSwitchStore } from "@/store/faq/useFaqStore";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { useMenuLinks } from "./content";
 
 export const DesktopMenu = (props: any) => {

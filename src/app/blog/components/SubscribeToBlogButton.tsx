@@ -4,9 +4,9 @@ import Modal from "@/components/__shared/modals/Modal";
 import SubscribeForm from "@/components/__shared/ui/SubscribeForm";
 import { useDisclosure } from "@nextui-org/react";
 import React from "react";
-import { AnimationStyle } from "@/components/__shared/types";
 import FramerWrapper from "@/components/__shared/FramerWrapper";
-import { fadeInLeft } from "@/lib/animations";
+import { fadeIn } from "@/lib/animations";
+import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 
 type Props = {
   className?: string;
@@ -18,13 +18,16 @@ const SubscribeToBlogButton = ({ className }: Props) => {
   return (
     <>
       <Modal
-        body={<SubscribeModalBody />}
+        header={<div className="h-20"></div>}
+        body={<SubscribeModalBody onClose={onClose} />}
+        footer={<div className="h-20"></div>}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
+        scrollBehavior="normal"
         onClose={onClose}
         size="5xl"
       />
-      <FramerWrapper {...fadeInLeft}>
+      <FramerWrapper {...fadeIn}>
         <Button
           color="accent"
           className={`min-h-fit w-full py-8 text-lg uppercase ${className}`}
@@ -37,10 +40,17 @@ const SubscribeToBlogButton = ({ className }: Props) => {
   );
 };
 
-export const SubscribeModalBody = () => {
+export const SubscribeModalBody = ({ onClose }: { onClose: () => void }) => {
+  const { onOpen } = useToastDisclosure();
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    // TODO: handle logic
+    onClose();
+    onOpen("Congratulations, you are in the loop!", "success");
+  };
+
   return (
-    <div className="flex items-center justify-center pb-20 pt-6">
-      <SubscribeForm />
+    <div className="flex h-full items-center justify-center max-md:pb-20">
+      <SubscribeForm onSubmit={handleSubmit} />
     </div>
   );
 };

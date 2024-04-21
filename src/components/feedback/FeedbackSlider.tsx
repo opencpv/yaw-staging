@@ -1,11 +1,19 @@
 "use client";
 import emojiStates from "@/enum/feedback/feedbackStates";
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { ConfigProvider, Slider } from "antd";
 import Image from "next/image";
+import { useField } from "formik";
 
-const FeedbackSlider = () => {
-  const [value, setValue] = useState<number>(50);
+type Props = {
+  name: string;
+  value: number;
+  onChange: (val: number) => void;
+  setValue: React.Dispatch<React.SetStateAction<number>>;
+};
+
+const FeedbackSlider = ({ onChange, value, setValue, name }: Props) => {
+  const [field, meta, helpers] = useField(name);
 
   return (
     <>
@@ -49,9 +57,10 @@ const FeedbackSlider = () => {
                         alt={label.toLowerCase()}
                         width={40}
                         height={40}
+                        className="shake-bl"
                       />
                       <h4
-                        className={`text-center font-[600] capitalize leading-4 cursor-default text-primary-400`}
+                        className={`cursor-default text-center font-[600] capitalize leading-4 text-primary-400`}
                       >
                         {label}
                       </h4>
@@ -62,7 +71,10 @@ const FeedbackSlider = () => {
                   <div
                     key={id}
                     className="flex w-2/12 flex-col items-center"
-                    onClick={() => setValue(fromValue + 8)}
+                    onClick={() => {
+                      setValue(fromValue + 8);
+                      helpers.setValue(fromValue + 8);
+                    }}
                   >
                     <Image
                       src={unmatchedImage}
@@ -71,7 +83,7 @@ const FeedbackSlider = () => {
                       height={40}
                     />
                     <h4
-                      className={`text-center font-[600] capitalize leading-4 cursor-default text-neutral-400`}
+                      className={`cursor-default text-center font-[600] capitalize leading-4 text-neutral-400`}
                     >
                       {label}
                     </h4>
@@ -82,7 +94,10 @@ const FeedbackSlider = () => {
             <div className="">
               <Slider
                 value={value}
-                onChange={setValue}
+                onChange={(val) => {
+                  onChange(val);
+                  helpers.setValue(val);
+                }}
                 trackStyle={{
                   borderRadius: "5px",
                 }}

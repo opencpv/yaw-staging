@@ -19,18 +19,14 @@ export const metadata: Metadata = {
 
 const Layout = async ({ children }: LayoutProps) => {
   const supabase = createClient();
-  const { data, error } = await supabase.auth.getUser();
   const headerList = headers();
   const pathname = headerList.get("x-pathname") || "";
+  const { data, error } = await supabase.auth.getUser();
 
   // protected route
-  if ((error || !data?.user) && pathname !== "/dashboard") {
+  if ((error || !data.user) && pathname !== "/dashboard") {
     // dashboard/**/*
     redirect("/login");
-  }
-
-  if (data?.user && pathname === "/login") {
-    redirect("/dashboard");
   }
 
   return (

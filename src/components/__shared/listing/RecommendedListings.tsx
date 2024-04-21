@@ -32,7 +32,7 @@ const RecommendedListings = ({ className, showAllButton }: Props) => {
     error,
   } = useQuery(
     supabase
-      .from("standard_template")
+      .from("property")
       .select(
         "id, property_name, property_id, description, monthly_amount, city",
       )

@@ -8,7 +8,6 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import { updateLikedProperty } from "@/app/properties/_actions";
 import { getUserFavorite } from "@/components/services";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import { useRouter } from "next/navigation";
 
 type Props = {
   userId: string | number;
@@ -27,11 +26,8 @@ const LikeHeart = ({ liked, className, userId, propertyId }: Props) => {
     false,
   );
   const { user } = useAppStore();
-  const router = useRouter();
 
-  // const {} = useUpdateLikedProperty(userId, propertyId);
-
-  const handleContactPreference = React.useCallback(async () => {
+  const handleContactPreference = React.useCallback(() => {
     if (shouldOpenModal) {
       onOpen();
     }
@@ -41,7 +37,7 @@ const LikeHeart = ({ liked, className, userId, propertyId }: Props) => {
     setIsLiked(!isLiked);
     const { error } = await updateLikedProperty(userId, propertyId);
     if (error) {
-      toastOnOpen(error.message, "error");
+      toastOnOpen("Something went wrong", "error");
       setIsLiked(!isLiked);
     }
   };
@@ -51,19 +47,12 @@ const LikeHeart = ({ liked, className, userId, propertyId }: Props) => {
       setIsLiked(!isLiked);
       const { error } = await updateLikedProperty(userId, propertyId);
       if (error) {
-        toastOnOpen(error.message, "error");
+        toastOnOpen("Something went wrong", "error");
         setIsLiked(!isLiked);
       }
       handleContactPreference();
     } else if (!user) {
-      // if user user is not logged in and
-      // attempts to favorite a property
-      // store property id in session storage
-      sessionStorage.setItem(
-        "favoritePropertyId",
-        propertyId?.toString() || "",
-      );
-      // set scroll position to scroll to after signing in
+      // set scroll position to scroll to after signing in.
       sessionStorage.setItem("windowScrollHeight", window.scrollY.toString());
       setSignInModalOpen(true);
     }
@@ -83,29 +72,18 @@ const LikeHeart = ({ liked, className, userId, propertyId }: Props) => {
   }, [user?.id, setShouldOpenModal]);
 
   useEffect(() => {
-    // this happens after the user signs in, following favoriting
-    // get the property id from session storage
-    const propertyId = sessionStorage.getItem("favoritePropertyId");
+    // This happens after the user signs in, following favoriting.
     const windowScrollHeight = sessionStorage.getItem("windowScrollHeight");
 
-    if (propertyId && user) {
+    if (user && windowScrollHeight) {
       window.scrollTo({
         top: parseInt(windowScrollHeight || "400"),
         behavior: "smooth",
       });
-      handleContactPreference();
-      const likeProperty = async () => {
-        const { error } = await updateLikedProperty(userId, propertyId);
-        if (error) {
-          toastOnOpen(error.message, "error");
-        }
-      };
-      likeProperty();
-      // remove the property id from session storage
-      sessionStorage.removeItem("favoritePropertyId");
+
       sessionStorage.removeItem("windowScrollHeight");
     }
-  }, [user, onOpen, handleContactPreference, toastOnOpen, userId, router]);
+  }, [user]);
 
   return (
     <>

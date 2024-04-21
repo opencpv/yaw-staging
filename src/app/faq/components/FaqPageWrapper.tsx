@@ -23,7 +23,7 @@ const FaqPageWrapper = ({
   return (
     <>
       <Navbar />
-      <main className="wrapper relative">
+      <main className="wrapper relative max-xs:pt-0">
         <FaqHeader />
         <FaqHowToSwitch />
         {LowerCase(activePage as string) === "faq" && (

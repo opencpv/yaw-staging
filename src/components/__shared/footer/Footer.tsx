@@ -1,6 +1,5 @@
 "use client";
 import CaInstagram from "@/app/components/icons/CaInstagram";
-import CaStarRainbow from "@/app/components/icons/CaStarRainbow";
 import CaTwitter from "@/app/components/icons/CaTwitter";
 import CaWhatsappBusiness from "@/app/components/icons/CaWhatsappBusiness";
 import Link from "next/link";
@@ -9,7 +8,6 @@ import quickLinks from "@/enum/footer/quickLinks";
 import { getCurrentYear } from "@/lib/utils/numberManipulation";
 import Logo from "@/components/__shared/Logo";
 import SubscribeForm from "../ui/SubscribeForm";
-import style from "./Style.module.css";
 import Feedback from "@/components/feedback/Feedback";
 import { LowerCase } from "@/lib/utils/stringManipulation";
 import legal from "@/enum/about/legal";
@@ -17,8 +15,15 @@ import ReportLink from "@/components/__shared/ReportLink";
 import HowToLink from "@/components/__shared/HowToLink";
 import { FaEnvelope } from "react-icons/fa6";
 import { MdLocalPhone } from "react-icons/md";
+import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 
 const Footer = () => {
+  const { onOpen } = useToastDisclosure();
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    // TODO: handle logic
+    onOpen("Congratulations, you are in the loop!", "success");
+  };
+
   return (
     <footer
       className={`gap no-print flex w-full flex-col gap-[min(10vh,10rem)] bg-[#131B1A] font-montserrat`}
@@ -29,6 +34,12 @@ const Footer = () => {
             <ReportLink key={r?.label} className="font-[400]" />
           ) : LowerCase(r.label) === "how to" ? (
             <HowToLink key={r?.label} className="font-[400]" />
+          ) : LowerCase(r?.label) === "feedback" ? (
+            <Feedback data={{}}>
+              <button key={r?.label} className="text-2xl">
+                Feedback
+              </button>
+            </Feedback>
           ) : (
             <Link key={r?.label} href={r?.href}>
               <h2 className="font-[400]">{r.label}</h2>
@@ -58,7 +69,7 @@ const Footer = () => {
           </strong>
           .
         </p>
-        <SubscribeForm />
+        <SubscribeForm onSubmit={handleSubmit} />
       </div>
 
       <div className="mt-10 flex flex-col items-center gap-10 pb-14 text-[32px] text-[#fff] ">

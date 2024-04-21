@@ -46,7 +46,7 @@ const PropertiesListing = (props: Props) => {
   return (
     <>
       {/* Listing */}
-      <section className="mx-auto mb-10 grid grid-cols-1 justify-center gap-x-5 gap-y-16 transition-all md:grid-cols-2 lg:grid-cols-3">
+      <section className="mx-auto grid grid-cols-1 justify-center gap-x-5 gap-y-16 transition-all md:grid-cols-2 lg:grid-cols-3">
         <FetchingStates
           data={listings}
           error={error}
@@ -55,7 +55,7 @@ const PropertiesListing = (props: Props) => {
           isLoadingComponent={<SkeletonListing count={3} />}
           errorComponent={
             <SomethingWentWrong
-              className="col-span-full h-fit"
+              className="h-fit"
               onTryAgain={() => {
                 mutate();
               }}
@@ -68,22 +68,22 @@ const PropertiesListing = (props: Props) => {
         {listings?.map((listing) => (
           <ListingCard
             cardType="2"
-            propertyId={listing.property_id as number}
+            propertyId={listing.id as number}
             key={listing.id}
-            href={`/properties/${listing.property_id}?${new URLSearchParams({
+            href={`/properties/${listing.id}?${new URLSearchParams({
               property_type: listing.property_type as string,
               bedrooms: String(listing.bedrooms),
               city: listing.city as string,
               neighbourhood: listing.neighbourhood as string,
               subtitle: listing.subtitle as string,
               advance_period: String(listing.advance_period),
-              payment_structure: String(listing.advance_payment_options),
+
               amount_per_month: String(listing.monthly_amount),
               rating: String(4),
               viewing_fee: String(listing.viewing_fee),
-              is_realtors_choice: String(listing.property?.is_realtors_choice),
-              is_best_value: String(listing.property?.is_best_value),
-              is_featured: String(listing.property?.is_featured),
+              is_realtors_choice: String(listing.is_realtors_choice),
+              is_best_value: String(listing.is_best_value),
+              is_featured: String(listing.is_featured),
             })}`}
             bedrooms={listing.bedrooms as number}
             propertyType={listing.property_type as string}
@@ -92,9 +92,9 @@ const PropertiesListing = (props: Props) => {
             images={images} // TODO: check database
             liked={listing?.favorite_user_ids?.includes(user?.id as string)}
             guarantee={
-              listing.is_property_verified
+              listing.is_verified
                 ? ("Verified" as GuaranteeTag)
-                : listing.is_lister_certified
+                : listing.profiles?.is_certified
                   ? ("Certified" as GuaranteeTag)
                   : undefined
             }
@@ -104,9 +104,9 @@ const PropertiesListing = (props: Props) => {
             rating={4.5} // TODO: check database
             ratingCount={105} // TODO: check database
             hint={
-              listing?.property?.is_realtors_choice
+              listing.is_realtors_choice
                 ? ("Realtor's Choice" as HintTag)
-                : listing?.property?.is_best_value
+                : listing.is_best_value
                   ? ("Best Value" as HintTag)
                   : undefined
             }
@@ -115,7 +115,7 @@ const PropertiesListing = (props: Props) => {
           />
         ))}
       </section>
-      <div className="flex justify-center">
+      <div className="mt-10 flex justify-center">
         <ButtonInfiniteLoading
           data={listings}
           isLoading={isLoading}

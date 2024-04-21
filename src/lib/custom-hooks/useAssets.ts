@@ -21,6 +21,7 @@ import Seperator from "../../../public/assets/icons/seperator.svg";
 import TermsImage from "../../../public/assets/images/cuate.svg";
 import SplashImage from "../../../public/assets/images/splash.svg";
 import AboutImage from "/public/assets/images/about-image.svg";
+import Cloud from "/public/assets/icons/cloud.svg";
 import niceHome from "../../../public/assets/images/niceHome.png";
 import HouseSearchingCuate from "../../../public/assets/images/about/house-searching-cuate.png";
 import PropertyDetailsBanner from "../../../public/assets/images/properties/property-details.jpg";
@@ -48,6 +49,7 @@ import SearchIcon from "/public/svgs/SearchHomeIcon.svg";
 import Clipboard from "/public/assets/images/dashboard/clipboard.png";
 import UserNoImage from "/public/assets/images/placeholder/user-no-image.jpeg";
 import NoProfileUser from "/public/assets/images/placeholder/no-profile-user.png";
+import NoProfileOthers from "/public/assets/images/placeholder/no-profile-others.png";
 import Brochure from "/public/assets/images/contact/brochure.png";
 import SavedSearches from "/public/assets/images/dashboard/saved-searches.png";
 import FeelingRefreshed from "/public/assets/images/dashboard/feeling-refreshed.jpg";
@@ -88,6 +90,7 @@ export const useAssets = () => {
       Rafiki,
       GreenCheck,
       NoViewingFee,
+      Cloud,
     },
     gifs: {
       GreenCheckGif,
@@ -115,6 +118,7 @@ export const useAssets = () => {
       VerifyListing,
       UserNoImage,
       NoProfileUser,
+      NoProfileOthers,
       Brochure,
       SavedSearches,
       FeelingRefreshed,
