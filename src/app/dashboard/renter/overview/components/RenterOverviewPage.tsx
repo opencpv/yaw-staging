@@ -10,7 +10,6 @@ import SellYourItem from "../../../components/shared/overview/SellYourItem";
 import RenterActivityCard from "./RenterActivityCard";
 import ScrollTop from "@/components/__shared/ScrollTop";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
-import { useUserData } from "@/lib/custom-hooks/database/useUserData";
 import { useAppStore } from "@/store/dashboard/AppStore";
 
 type Props = {};
@@ -19,8 +18,6 @@ const RenterOverviewPage = (props: Props) => {
   const { images } = useAssets();
   const { setIsSwitchingRole } = useDashboardStore();
   const { user } = useAppStore();
-
-  useUserData();
 
   useEffect(() => {
     setIsSwitchingRole(false);

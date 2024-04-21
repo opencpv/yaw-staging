@@ -40,8 +40,8 @@ export const useUserData = () => {
           ...(profiles && profiles),
           email: userDetails?.user?.email,
           should_be_contacted: userPreference?.should_be_contacted || false,
-          first_name: firstName,
-          last_name: lastName,
+          firstname: firstName,
+          lastname: lastName,
           full_name: firstName + " " + lastName,
         };
         if (userDetails.user) {
