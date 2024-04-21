@@ -55,7 +55,7 @@ const PropertiesListing = (props: Props) => {
           isLoadingComponent={<SkeletonListing count={3} />}
           errorComponent={
             <SomethingWentWrong
-              className="col-span-full h-fit"
+              className="h-fit"
               onTryAgain={() => {
                 mutate();
               }}

@@ -28,7 +28,7 @@ import SomethingWentWrong from "@/app/components/SomethingWentWrong";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { cn } from "@/lib/utils";
-import { list } from "postcss";
+import { FeatureInterface } from "../../../../../interfaces";
 
 type Props = {
   params: {
@@ -204,49 +204,16 @@ const PropertyDetailsPage = ({ params }: Props) => {
                     viewingFee={listing?.viewing_fee as number}
                     refundableSecurityDeposit={500}
                     advancePeriod={listing?.advance_period as number}
-                    utilities={[
-                      "water",
-                      "gas",
-                      "electricity",
-                      "kitchen appliances",
-                      "satellite TV",
-                      "internet",
-                    ]}
-                    thingsToKnow="Lorem ipsum dolor sit amet consectetur. Et tellus viverra faucibus
-                  nunc mauris netus. Sem id tincidunt ante non a suspendisse tortor
-                  libero. Elementum in lectus varius mus accumsan. Volutpat nec mi
-                  pellentesque facilisi. Quisque facilisis nec bibendum dui nullam.
-                  Penatibus netus felis quam purus. Nascetur est lobortis egestas leo
-                  amet aenean. Vestibulum leo nibh ut pellentesque purus. Dolor
-                  gravida at ac pharetra amet malesuada molestie. Amet pretium donec
-                  odio dis. Sagittis interdum nibh consectetur pellentesque nunc diam
-                  eleifend eu turpis. Tempor urna fames interdum vitae mattis."
+                    utilities={listing?.utilities as string[]}
+                    thingsToKnow={listing?.renter_knowledge as string}
                   />
                 </div>
               </section>
             </section>
             {/* Features and Amenities */}
-            <div className={listing?.features_and_amenities ? "" : "hidden"}>
-              <PropertyDetailsFeatures
-                features={[
-                  "Wifi",
-                  "Security Cameras on Property",
-                  "Hot Tub",
-                  "Air Conditioning",
-                  "Fire Extinguisher",
-                  "Free Parking on Premises",
-                  "Gas",
-                  "Kitchen",
-                  "Pool",
-                  "Smoke Alarm",
-                  "Pool Table",
-                  "Satellite TV",
-                  "Wifi",
-                  "Security Cameras on Property",
-                  "Hot Tub",
-                ]}
-              />
-            </div>
+            <PropertyDetailsFeatures
+              features={listing?.features_and_amenities as FeatureInterface[]}
+            />
             <>
               {" "}
               {/* Rating */}

@@ -13,7 +13,7 @@ type Props = {
 function SomethingWentWrong({ className, onTryAgain }: Props) {
   const router = useRouter();
   return (
-    <div className={cn("h-screen w-full", className)}>
+    <div className={cn("col-span-full h-screen w-full", className)}>
       <div className="flex h-full w-full flex-col items-center justify-center gap-6">
         <div className="aspect-square animate-bounce">
           <CaTriangle />

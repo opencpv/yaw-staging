@@ -63,7 +63,7 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
             />
           </div>
         ) : (
-          <div title="Upload your profile image">
+          <div className="p-1">
             {/* <Tooltip content="Please upload your profile image"> */}
             <Avatar
               image={images.NoProfileUser}

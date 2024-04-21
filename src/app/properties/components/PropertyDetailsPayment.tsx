@@ -109,37 +109,45 @@ const PropertyDetailsPayment = (props: Props) => {
             </p>
           </div>
         </AdditionalInfo>
-        <AdditionalInfoTitle title="Utilities included" />
-        <AdditionalInfo>
-          <ul className="properties-li grid w-full grid-cols-1 justify-between gap-x-10 gap-y-3 xs:grid-cols-2">
-            {props.utilities.map((utility: string) => (
-              <li key={utility} className="">
-                {capitalizeName(utility)}
-              </li>
-            ))}
-          </ul>
-        </AdditionalInfo>
-        <AdditionalInfoTitle title="Things to know" />
-        <AdditionalInfo>
-          <motion.p
-            className="max-w-2xl overflow-hidden leading-normal"
-            initial="collapsed"
-            variants={contentAccordionVariants()}
-            animate={showMore ? "expanded" : "collapsed"}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
-            exit="collapsed"
-          >
-            {props.thingsToKnow}
-          </motion.p>
-          <Button
-            variant="outline"
-            className="mt-3 rounded-md px-4 py-2 text-xs text-[#65969F]"
-            borderColor="#65969F"
-            onClick={() => setShowMore((current) => !current)}
-          >
-            {showMore ? "Show Less" : "Read More"}
-          </Button>
-        </AdditionalInfo>
+        {props.utilities && props.utilities.length > 0 && (
+          <>
+            <AdditionalInfoTitle title="Utilities included" />
+            <AdditionalInfo>
+              <ul className="properties-li grid w-full grid-cols-1 justify-between gap-x-10 gap-y-3 xs:grid-cols-2">
+                {props.utilities.map((utility: string) => (
+                  <li key={utility} className="">
+                    {capitalizeName(utility)}
+                  </li>
+                ))}
+              </ul>
+            </AdditionalInfo>
+          </>
+        )}
+        {props.thingsToKnow && (
+          <>
+            <AdditionalInfoTitle title="Things to know" />
+            <AdditionalInfo>
+              <motion.p
+                className="max-w-2xl overflow-hidden leading-normal"
+                initial="collapsed"
+                variants={contentAccordionVariants()}
+                animate={showMore ? "expanded" : "collapsed"}
+                transition={{ duration: 0.8, ease: "easeInOut" }}
+                exit="collapsed"
+              >
+                {props.thingsToKnow}
+              </motion.p>
+              <Button
+                variant="outline"
+                className="mt-3 rounded-md px-4 py-2 text-xs text-[#65969F]"
+                borderColor="#65969F"
+                onClick={() => setShowMore((current) => !current)}
+              >
+                {showMore ? "Show Less" : "Read More"}
+              </Button>
+            </AdditionalInfo>
+          </>
+        )}
       </motion.div>
     </>
   );

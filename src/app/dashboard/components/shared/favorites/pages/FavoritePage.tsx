@@ -10,6 +10,7 @@ import { useFetchUserFavorites } from "../utils/services";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import SomethingWentWrong from "@/app/components/SomethingWentWrong";
 import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
+import EmptyState from "@/components/__shared/ui/EmptyState";
 
 export default function FavoritePage() {
   const [savedSearches, setSavedSearches] = useState(true);
@@ -43,9 +44,10 @@ export default function FavoritePage() {
             />
           }
           emptyStateComponent={
-            <p className="mt-4 text-center italic">
-              There are no properties yet.
-            </p>
+            <EmptyState
+              buttonLabel="Search for properties"
+              href="/properties"
+            />
           }
         />
         {listings?.map((listing, idx) => (

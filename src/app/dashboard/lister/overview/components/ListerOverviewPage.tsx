@@ -10,7 +10,6 @@ import PMOverviewUpgradeSection from "./PMOverviewUpgradeSection";
 import MembershipUpgradeCard from "./MembershipUpgradeCard";
 import PMActiveListingsSection from "./PMActiveListingsSection";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
-import { useUserData } from "@/lib/custom-hooks/database/useUserData";
 import LeadsSummary from "./LeadsSummary";
 
 type Props = {};
@@ -18,8 +17,6 @@ type Props = {};
 const ListerOverviewPage = (props: Props) => {
   const { images } = useAssets();
   const { setIsSwitchingRole } = useDashboardStore();
-
-  useUserData();
 
   useEffect(() => {
     setIsSwitchingRole(false);
