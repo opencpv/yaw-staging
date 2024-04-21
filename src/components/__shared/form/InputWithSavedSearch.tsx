@@ -17,6 +17,7 @@ type Props = {
   value?: string;
   onSubmit?: (e: FormEvent<HTMLFormElement>) => void;
   onInput?: (e: React.FormEvent<HTMLInputElement>) => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 };
 
 const InputWithSavedSearch = ({
@@ -25,6 +26,7 @@ const InputWithSavedSearch = ({
   searchIconColor,
   separatorClassName,
   onSubmit,
+  onKeyDown,
   onInput,
   name,
   value,
@@ -58,6 +60,7 @@ const InputWithSavedSearch = ({
 
             onInput?.(e);
           }}
+          onKeyDown={onKeyDown}
         />
         <div
           className={cn(

@@ -56,7 +56,7 @@ const LeadsSummary = () => {
           <LeadInfo
             key={lead.id as string}
             id={lead.id as string}
-            image={(lead.profile_img as string) || images.UserNoImage}
+            image={(lead.profile_img as string) || images.NoProfileOthers}
             name={lead.full_name as string}
             phone={lead.phone as string}
             email={"mail@email.com"}

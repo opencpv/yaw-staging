@@ -49,7 +49,7 @@ const Chat = ({
         <div className="col-span-2 flex flex-col items-center gap-2">
           <div className="relative h-16 w-16 shrink-0 rounded-full">
             <Image
-              src={images.UserNoImage}
+              src={images.NoProfileOthers}
               alt={name}
               className="rounded-full"
               fill
