@@ -90,7 +90,9 @@ const BeMyAgentModal = (props: Props) => {
         }}
         // validationSchema={myAgentValidationSchema}
         // enableReinitialize
-        onSubmit={(values) => null}
+        onSubmit={(values) => {
+          null;
+        }}
       >
         <Form>
           <StepsModal
