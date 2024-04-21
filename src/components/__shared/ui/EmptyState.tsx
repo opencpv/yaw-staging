@@ -42,7 +42,7 @@ const EmptyState = ({
         alt="cloud"
         width={150}
         // height={200}
-        className="aspect-square"
+        className="aspect-square w-[100px] sm:w-[150px]"
       />
       <h4>{tagLine || "Sorry, there are no results at the moment"}</h4>
       {description && <p className="text-shade-300">{description}</p>}

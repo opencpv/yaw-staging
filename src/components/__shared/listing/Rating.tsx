@@ -4,12 +4,14 @@ import RatingModal from "../modals/Modal";
 import { IoIosCloseCircle } from "react-icons/io";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import SignInRequiredModal from "../modals/SignInRequiredModal";
+import { cn } from "@/lib/utils";
 
 type Props = {
   value: number;
+  className: string;
 };
 
-const Rating = ({ value }: Props) => {
+const Rating = ({ value, className }: Props) => {
   const { user } = useAppStore();
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const [signInModalOpen, setSignInModalOpen] = useState(false);
@@ -63,7 +65,10 @@ const Rating = ({ value }: Props) => {
         onOpenChange={onOpenChange}
         size="2xl"
       />
-      <small className="cursor-pointer underline" onClick={handleRating}>
+      <small
+        className={cn("cursor-pointer underline", className)}
+        onClick={handleRating}
+      >
         {ratingValue}
       </small>
     </>

@@ -12,22 +12,27 @@ import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 const PaginationMenu = () => {
   const { isOpen, setIsOpen } = useDashboardMenuStore();
   const [showShapes, setShowShapes] = useState(false);
+  const [hide, setHide] = useState(false);
   const { currentRole } = useDashboardStore();
   const paginationMenuRef = useRef<HTMLElement>(null);
 
   useHideDocumentScrollBar(isOpen);
 
   useEffect(() => {
-    if (isOpen)
+    if (isOpen) {
+      setHide(false);
       setTimeout(() => {
         setShowShapes(true);
       }, 2000);
-    else setShowShapes(false);
+    } else {
+      setShowShapes(false);
+      setHide(true);
+    }
   }, [isOpen]);
 
   return (
     <section
-      className={`menu-bg ${style.paginationMenu} ${
+      className={`menu-bg ${hide && "hidden"} ${style.paginationMenu} ${
         isOpen
           ? `${style.paginationMenuVisible} ${showShapes && "menu-bg-shapes"}`
           : `${style.paginationMenuHidden}`

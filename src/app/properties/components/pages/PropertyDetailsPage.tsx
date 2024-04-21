@@ -61,8 +61,6 @@ const PropertyDetailsPage = ({ params }: Props) => {
     return `${listing?.bedrooms} Bedroom ${listing?.property_type} at ${listing?.city}`;
   }, [listing?.bedrooms, listing?.property_type, listing?.city]);
 
-  useEffect(() => {}, []);
-
   return (
     <>
       <Navbar
@@ -126,7 +124,7 @@ const PropertyDetailsPage = ({ params }: Props) => {
                 / <span>{propertyName2}</span>
               </div>
               {/* Property images */}
-              <section className="mt-8 grid grid-cols-1 gap-16 md:mt-16 lg:grid-cols-2">
+              <section className="mt-8 grid grid-cols-1 gap-16 md:mb-10 md:mt-16 lg:grid-cols-2">
                 <PropertyDetailsImages
                   images={{
                     images: [""],
@@ -185,10 +183,7 @@ const PropertyDetailsPage = ({ params }: Props) => {
                     </div>
                     <PropertyOwnerInfo
                       name={listing?.profiles?.full_name as string}
-                      picture={
-                        (listing?.profiles?.profile_img as string) ||
-                        images.NoProfileUser
-                      }
+                      picture={listing?.profiles?.profile_img as string}
                       rating={3.5}
                       reviews={120}
                       telephone={listing?.profiles?.phone as string}
