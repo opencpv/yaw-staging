@@ -28,7 +28,6 @@ const SearchInput = ({ placeholder, onPressEnter }: SearchInputProps) => {
         onPressEnter={async () => {
           const blogCategoriesData: any =
             await loadQuery<SanityDocument[]>(BLOG_CATEGORY_QUERY);
-          console.log(blogCategoriesData);
         }}
       />
     </ConfigProvider>

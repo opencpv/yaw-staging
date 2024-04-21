@@ -29,7 +29,6 @@ const FAQBrowser = ({
   useEffect(() => {
     if (data) {
       setselectedCategory(faqCategories[0].title);
-      console.log(faqCategories[0].title);
       setfilteredData(
         data.filter((item) => item.category.title === faqCategories[0].title),
       );

@@ -64,9 +64,7 @@ const FormGeneral = (props: Props) => {
           .then(({ data, error }) => {
             if (error) {
               setLoading(false);
-              console.log(error);
             } else {
-              console.log("Data:", data);
               setLoading(false);
               resetForm();
             }

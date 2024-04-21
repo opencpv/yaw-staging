@@ -192,7 +192,6 @@ const PersonalInformationForm1 = React.forwardRef<HTMLInputElement, Props>(
               }
               label="Lease term"
               onChange={(value) => {
-                console.log(value);
                 setPropertyData({ ...propertyData, leaseTerm: value });
               }}
             />

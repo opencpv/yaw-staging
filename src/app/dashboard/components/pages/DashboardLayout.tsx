@@ -75,7 +75,6 @@ const Wrapper = ({ children }: LayoutProps) => {
           setNotificationsLoading(true);
         }
       } catch (error) {
-        console.log(error);
         return error;
       }
     };

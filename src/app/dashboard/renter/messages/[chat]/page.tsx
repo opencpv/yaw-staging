@@ -25,8 +25,6 @@ const Messages = ({ params }: { params: { chat: string } }) => {
 
   const { userName } = useUserDetails(chatID);
 
-  // console.log(currentUserId);
-
   useEffect(() => {
     const getMessages = async () => {
       let { data: messages, error } = await supabase

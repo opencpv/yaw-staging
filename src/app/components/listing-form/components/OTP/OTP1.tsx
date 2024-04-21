@@ -10,7 +10,7 @@ type Props = {
   phoneNumber?: string;
 };
 
-const OTP1 = ({ phoneNumber } : Props) => {
+const OTP1 = ({ phoneNumber }: Props) => {
   const [otp, setOtp] = useState<string[]>(new Array(4).fill(""));
   const [activeOTPIndex, setActiveOTPIndex] = useState<number>(0);
   const inputRef = useRef<HTMLInputElement>();
@@ -27,12 +27,10 @@ const OTP1 = ({ phoneNumber } : Props) => {
 
   const handleOnKeyDown = (
     { key }: React.KeyboardEvent<HTMLInputElement>,
-    index: number
+    index: number,
   ) => {
     currentOTPIndex = index;
-    console.log("first", key);
     if (key === "Backspace") {
-      console.log("key pressed", currentOTPIndex);
       setActiveOTPIndex(currentOTPIndex - 1);
     }
   };
@@ -40,35 +38,35 @@ const OTP1 = ({ phoneNumber } : Props) => {
     inputRef.current?.focus();
   }, [activeOTPIndex]);
   return (
-   <>
-      <div className="flex flex-col gap-5 items-center justify-center w-full">
-        <div className="w-fit flex flex-col items-center justify-center gap-5">
-          <div className="relative w-full max-w-[542px] aspect-[542/248] mt-20">
+    <>
+      <div className="flex w-full flex-col items-center justify-center gap-5">
+        <div className="flex w-fit flex-col items-center justify-center gap-5">
+          <div className="relative mt-20 aspect-[542/248] w-full max-w-[542px]">
             <Image fill src={"/svgs/otp.svg"} alt="OTP Image" />
           </div>
-          <div className="flex flex-col gap-2 items-center">
-            <p className="text-[31px]  text-center font-semibold">
+          <div className="flex flex-col items-center gap-2">
+            <p className="text-center  text-[31px] font-semibold">
               OTP Verification
             </p>
             <p className="text-center ">
               We will send you a one-time password to your mobile number{" "}
             </p>
           </div>
-          <div className="flex items-center justify-center gap-5 mt-6 w-full">
+          <div className="mt-6 flex w-full items-center justify-center gap-5">
             <PhoneNumberInputv2
-              onChange={() => console.log("first")}
+              onChange={() => null}
               label="Enter your mobile number"
             />
           </div>
-      
-          <div className="w-full mt-8">
-            <button className="w-full max-w-[542px] h-[52px]  text-white bg-accent-50 rounded-lg flex items-center justify-center font-semibold ">
+
+          <div className="mt-8 w-full">
+            <button className="flex h-[52px] w-full  max-w-[542px] items-center justify-center rounded-lg bg-accent-50 font-semibold text-white ">
               Send
             </button>
           </div>
         </div>
       </div>
-   </>
+    </>
   );
 };
 

@@ -22,7 +22,6 @@ const FixedSocials = ({ threshHoldMax, threshHoldMin }: Props) => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       // const scrollHeight = document.body.scrollHeight;
-      // console.log(scrollPosition);
 
       if (
         scrollPosition < (threshHoldMin ?? 100) ||

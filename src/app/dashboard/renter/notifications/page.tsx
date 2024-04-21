@@ -27,7 +27,6 @@ const Page = () => {
     const scElement: any = document.querySelector(
       `.sc-${currentNotification?.id}`,
     );
-    console.log(scElement);
     if (scElement) {
       scElement.scrollIntoView({ behavior: "smooth" });
     }

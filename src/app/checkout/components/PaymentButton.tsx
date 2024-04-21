@@ -16,19 +16,14 @@ const PaymentButton = ({
     publicKey: "pk_test_8d4d7fd91874cc76ea04ef4d76fb3c346dc593dd",
   };
 
-  const onSuccess = (reference: string) => {
-    console.log(reference);
-  };
+  const onSuccess = (reference: string) => {};
 
-  const onClose = () => {
-    console.log("closed");
-  };
+  const onClose = () => {};
 
   //   const initializePayment = usePaystackPayment(config);
 
   const handleButtonClick = () => {
     // initializePayment({ onSuccess, onClose });
-    console.log(config);
   };
   return (
     <button

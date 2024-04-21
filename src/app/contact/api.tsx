@@ -6,14 +6,10 @@ export const sendContactUsEmail = (element: HTMLFormElement | null) => {
       "service_ft1rqqu",
       "template_sjcqizd",
       element as HTMLFormElement,
-      "qXvfKUtuslfUz23se"
+      "qXvfKUtuslfUz23se",
     )
     .then(
-      function (response) {
-        console.log("SUCCESS!", response.status, response.text);
-      },
-      function (error) {
-        console.log("FAILED...", error);
-      }
+      function (response) {},
+      function (error) {},
     );
 };

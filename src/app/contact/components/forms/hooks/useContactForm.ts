@@ -27,7 +27,6 @@ export const useContactForm = () => {
   };
 
   const validate = (values: any, phoneValue: E164Number | undefined) => {
-    console.log("Inside func:", phoneValue);
     const errors: any = {};
     if (!values.fullname) {
       errors.fullname === "Required";

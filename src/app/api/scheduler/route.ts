@@ -36,7 +36,7 @@ export const GET = withErrorHandler(async (request: Request) => {
         const publishedData = {
           ...draft,
           _id: draft._id.replace(/^drafts\./, ""),
-          isCurent:true
+          isCurent: true,
         }; // Copy all fields from draft and remove 'drafts.' prefix from _id
         await sanityClient
           .transaction()

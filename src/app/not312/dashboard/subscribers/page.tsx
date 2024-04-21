@@ -20,12 +20,11 @@ const { Column, ColumnGroup } = Table;
 import { CSVDownload, CSVLink } from "react-csv";
 interface DataType {
   id: number;
+  contact: string;
   created_at: string;
-  feedback_title: string;
-  value_a: number;
-  value_b: number;
-  value_c: boolean;
-  value_d: string;
+  contact_is_email: boolean;
+  subscribed: boolean;
+  campaign: string;
 }
 
 const columns: TableProps<DataType>["columns"] = [
@@ -36,29 +35,24 @@ const columns: TableProps<DataType>["columns"] = [
   },
   {
     title: "Campaign",
-    dataIndex: "feedback_title",
-    render: (text, record, index) => record.feedback_title.toUpperCase(),
+    dataIndex: "campaign",
+    render: (text, record, index) => record.campaign.toUpperCase(),
   },
   {
-    title: "Question 1",
-    dataIndex: "value_a",
-    key: "value_a  ",
+    title: "Contact 1",
+    dataIndex: "contact",
+    key: "contact  ",
   },
   {
-    title: "Question 2",
-    dataIndex: "value_b",
-    key: "value_b  ",
+    title: "Contact Type",
+    dataIndex: "contact_is_email",
+    render: (text, record, index) =>
+      record.contact_is_email ? "EMAIL" : "PHONE",
   },
   {
-    title: "Question 3",
-    dataIndex: "value_c",
-    key: "value_c",
-    render: (text, record, index) => (record.value_c ? "TRUE" : "FALSE"),
-  },
-  {
-    title: "Question 4",
-    dataIndex: "value_d",
-    key: "value_d  ",
+    title: "Subscribed",
+    dataIndex: "subscribed",
+    render: (text, record, index) => (record.subscribed ? "YES" : "NO"),
   },
   {
     title: "Date",
@@ -94,30 +88,30 @@ const PageView = () => {
     error,
     data: categories,
   } = useQuery({
-    queryKey: ["feedbackCategories"],
+    queryKey: ["subscriberCategories"],
     queryFn: async () => {
-      const feedbackCats = await axios.get(route.feedbackCategories);
-      return feedbackCats.data.data;
+      const subCategories = await axios.get(route.subscribersCategories);
+      return subCategories.data.data;
     },
   });
   const {
-    isPending: isFeedbackLoading,
-    error: feedbackError,
-    data: feedbackData,
-    refetch: refetchFeedbackData,
+    isPending: isSubsLoading,
+    error: subError,
+    data,
+    refetch: refetchSubs,
   } = useQuery({
-    queryKey: ["repoData", selectedValue],
+    queryKey: ["subscribersData", selectedValue],
     queryFn: () =>
-      fetch(`${route.feedbackData}?filter=${selectedValue || "all"}`).then(
+      fetch(`${route.subscribersData}?filter=${selectedValue || "all"}`).then(
         (res) => res.json(),
       ),
   });
 
   useEffect(() => {
-    refetchFeedbackData(); // Refetch feedback data when selected value changes
-  }, [selectedValue, refetchFeedbackData]);
+    refetchSubs(); // Refetch feedback data when selected value changes
+  }, [selectedValue, refetchSubs]);
 
-  useEffect(() => {}, [feedbackData]);
+  useEffect(() => {}, [data]);
   const FeedbackTypeFilterButton = ({ loading }: { loading: boolean }) => (
     <Dropdown>
       <DropdownTrigger>
@@ -149,7 +143,7 @@ const PageView = () => {
 
   return (
     <div className="h-[100vh]">
-      <h2 className="mb-8 text-3xl font-bold">Feedback</h2>
+      <h2 className="mb-8 text-3xl font-bold">Subscribers</h2>
       <div className="items-cente mb-8 flex h-fit justify-between">
         <div className="flex items-center gap-8">
           <p>Filter</p>
@@ -157,10 +151,10 @@ const PageView = () => {
         </div>
         <div className="flex items-center gap-2">
           <CSVLink
-            data={feedbackData || []}
-            filename={`${new Date().toLocaleDateString()}-feedback.csv`}
+            data={data || []}
+            filename={`${new Date().toLocaleDateString()}-subscribers.csv`}
           >
-            <Button loading={feedbackData == null || feedbackData == undefined}>
+            <Button loading={data == null || data == undefined}>
               Download CSV
             </Button>
           </CSVLink>
@@ -168,11 +162,9 @@ const PageView = () => {
       </div>
       <Table
         columns={columns}
-        dataSource={feedbackData}
+        dataSource={data}
         ref={tableRef}
-        loading={
-          feedbackData == null || (feedbackData == undefined && isLoading)
-        }
+        loading={data == null || (data == undefined && isLoading)}
       />
     </div>
   );

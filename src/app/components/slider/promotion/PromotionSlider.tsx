@@ -28,7 +28,7 @@ let images = [
 const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [promotionalImage, setPromotionalImage] = useState("");
-  const router = useRouter()
+  const router = useRouter();
 
   return (
     <>
@@ -50,7 +50,8 @@ const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
         >
           {promotions.map((promotion: any, idx: number) => (
             <SwiperSlide key={idx}>
-              {promotion.fileType === "image" || promotion.fileType == "modal" ? ( // maybe promotion.type === "video" | "image"?
+              {promotion.fileType === "image" ||
+              promotion.fileType == "modal" ? ( // maybe promotion.type === "video" | "image"?
                 <div className="relative h-full w-full">
                   <Image
                     src={urlForImage(promotion?.image)?.url() as string}
@@ -95,14 +96,13 @@ const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
                         invisible: !promotion.url || false, // if there is not promotion.url || ?*.type? is not modal, hide the button. TODO: change logic for "false"
                       },
                     )}
-                    onClick={
-                      () => {
-                        console.log(promotion.fileType)
-                        promotion.fileType === "modal" ? onOpen() : console.log(promotion.fileType)
-                        // : router.push(promotion.url as string)
-                        setPromotionalImage(urlForImage(promotion?.image)?.url() as string);
-                      }
-                    }
+                    onClick={() => {
+                      promotion.fileType === "modal" ? onOpen() : null;
+                      // : router.push(promotion.url as string)
+                      setPromotionalImage(
+                        urlForImage(promotion?.image)?.url() as string,
+                      );
+                    }}
                   >
                     View item <IoIosArrowRoundForward />
                   </Button>

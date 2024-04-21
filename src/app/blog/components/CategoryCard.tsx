@@ -9,7 +9,6 @@ const CategoryCard = ({
   href,
   className,
 }: CategoryCardProps) => {
-  console.log(href);
   return (
     <Link href={`${href}`}>
       <div className={`relative h-64 w-72 ${className}`}>

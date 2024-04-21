@@ -83,7 +83,6 @@ const Sell = () => {
   //       )
   //       .then((data) => setid(data.data.user?.id as string))
   //       .catch((err) => {
-  //         console.log(err.message);
   //       });
   //   }
   // }, []);
@@ -97,7 +96,6 @@ const Sell = () => {
 
   //     if (!error) {
   //       setproducts(sell_items as any[]);
-  //       console.log(sell_items);
   //     }
   //   };
 

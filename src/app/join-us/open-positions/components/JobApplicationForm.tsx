@@ -18,42 +18,48 @@ function JobApplicationForm({ variant }: Props) {
     <div className="flex flex-col gap-4 px-5 lg:px-20">
       <Link href={"/join-us/open-positions"} className="hidden lg:flex">
         <Button
-          className={`h-[52px]  py-[0.94rem]  rounded-lg font-semibold ${"bg-transparent text-[#DDB771] text-[1.125rem]"} gap-2.5 flex justify-start`}>
+          className={`h-[52px]  rounded-lg  py-[0.94rem] font-semibold ${"bg-transparent text-[1.125rem] text-[#DDB771]"} flex justify-start gap-2.5`}
+        >
           <CaJoinUsIconLeft />
           Go back
         </Button>
       </Link>
-      <Formik initialValues={{}} onSubmit={() => console.log("submitted")}>
+      <Formik
+        initialValues={{}}
+        onSubmit={() => {
+          null;
+        }}
+      >
         <Form>
           <div className="flex flex-col gap-4">
-            <p className="text-[1.9375rem] font-semibold text-[#333] hidden lg:flex">
+            <p className="hidden text-[1.9375rem] font-semibold text-[#333] lg:flex">
               {variant == "application" && <p>Application</p>}
               {variant == "resume" && <p>Resume Bank</p>}
             </p>
 
             <div className="flex flex-col gap-6">
-              <p className="font-[600] text-[1.25rem] text-shade-300">
+              <p className="text-[1.25rem] font-[600] text-shade-300">
                 Contact Information{" "}
               </p>
-              <div className="flex flex-col lg:flex-row gap-5">
+              <div className="flex flex-col gap-5 lg:flex-row">
                 <TextFieldInput
-                  onChange={() => console.log("first")}
+                  onChange={() => null}
                   label="First Name"
                   placeholder="Enter your first name"
                   type="text"
                   name="first_name"
                 />
                 <TextFieldInput
-                  onChange={() => console.log("first")}
+                  onChange={() => null}
                   label="Last Name"
                   placeholder="Enter your last name"
                   type="text"
                   name="last_name"
                 />
               </div>
-              <div className="flex gap-5  flex-col lg:flex-row ">
+              <div className="flex flex-col  gap-5 lg:flex-row ">
                 <TextFieldInput
-                  onChange={() => console.log("first")}
+                  onChange={() => null}
                   label="Email"
                   placeholder="Enter your email"
                   type="text"
@@ -61,14 +67,16 @@ function JobApplicationForm({ variant }: Props) {
                 />
                 <PhoneNumberInputv2
                   label="Phone"
-                  onChange={() => console.log("s")}
+                  onChange={() => {
+                    null;
+                  }}
                 />
               </div>
             </div>
           </div>
 
-          <div className="flex flex-col gap-6 mt-12">
-            <p className="font-[600] text-[1.25rem] text-shade-300">
+          <div className="mt-12 flex flex-col gap-6">
+            <p className="text-[1.25rem] font-[600] text-shade-300">
               Professional Profile
             </p>
             <div className="flex flex-col gap-5">
@@ -84,16 +92,17 @@ function JobApplicationForm({ variant }: Props) {
                 <input
                   placeholder="Paste your link here"
                   type="text"
-                  className="w-full rounded-[4px] h-[52px] border-[1px] px-4 border-[#E6E6E6]"
+                  className="h-[52px] w-full rounded-[4px] border-[1px] border-[#E6E6E6] px-4"
                 />
               </div>
             </div>
           </div>
-          <div className="flex justify-center mt-12">
+          <div className="mt-12 flex justify-center">
             <Link
               href={"/join-us/open-positions/submitted"}
-              className="w-full max-w-[248px]">
-              <Button className="h-[52px] w-full max-w-[248px] bg-[#DDB771] rounded-lg text-white font-semibold">
+              className="w-full max-w-[248px]"
+            >
+              <Button className="h-[52px] w-full max-w-[248px] rounded-lg bg-[#DDB771] font-semibold text-white">
                 Submit
               </Button>
             </Link>

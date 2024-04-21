@@ -46,13 +46,11 @@ const AddNewProduct = () => {
         .select("*")
         .then(({ data, error }) => {
           if (!error) {
-            console.log(error);
             const catArray: CategoryProp[] = [];
             data.forEach((element) => {
               catArray.push({ key: element.category, label: element.category });
             });
             setCategories(catArray);
-            console.log(catArray);
           }
         });
     }
@@ -76,9 +74,7 @@ const AddNewProduct = () => {
             negotiable: "no",
           }}
           validationSchema={validationSchema}
-          onSubmit={async (values) => {
-            console.log(values);
-          }}
+          onSubmit={async (values) => {}}
         >
           <Form className="grid grid-cols-1 gap-x-5 gap-y-8 lg:grid-cols-3">
             <div className="space-y-8">

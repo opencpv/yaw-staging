@@ -1,7 +1,7 @@
 "use client";
 import { usePathname } from "next/navigation";
 import NavButton from "./NavButton";
-import { FaDashcube, FaDiscourse } from "react-icons/fa";
+import { FaDashcube, FaDiscourse, FaPeopleArrows } from "react-icons/fa";
 const Sidebar = () => {
   const path = usePathname();
   return (
@@ -19,6 +19,12 @@ const Sidebar = () => {
           icon={<FaDiscourse />}
           link={"/not312/dashboard/feedback"}
           active={path === "/not312/dashboard/feedback"}
+        />
+        <NavButton
+          text="Subscribers"
+          icon={<FaPeopleArrows />}
+          link={"/not312/dashboard/subscribers"}
+          active={path === "/not312/dashboard/subscribers"}
         />
       </div>
     </aside>

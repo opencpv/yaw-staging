@@ -17,12 +17,10 @@ import { useRouter } from "next/navigation";
 
 const SliderGrid = ({ items }: SliderGridProps) => {
   const [shouldRefresh, setShouldRefresh] = useState(false);
-  // console.log(shouldRefresh);
 
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 900) {
-        // console.log("crossed 909");
         setShouldRefresh(true);
       } else if (shouldRefresh && window.innerWidth >= 900) {
         window.location.reload();

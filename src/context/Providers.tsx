@@ -3,7 +3,6 @@
 import * as React from "react";
 import { NextUIProvider } from "@nextui-org/system";
 // import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { ThemeProviderProps } from "next-themes/dist/types";
 import { useRouter } from "next/navigation";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";

@@ -14,7 +14,7 @@ const TabsAndSearch = (props: Props) => {
         <CategoryTabs categories={props.categories} />
       </div>
       <div className="w-full flex-1 md:w-9/12">
-        <SearchInput onPressEnter={() => console.log("hi")} />
+        <SearchInput onPressEnter={() => null} />
       </div>
     </>
   );

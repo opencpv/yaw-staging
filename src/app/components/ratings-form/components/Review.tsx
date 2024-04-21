@@ -9,7 +9,7 @@ function Review({ setActiveIndex }: Props) {
     <div className="flex flex-col items-center  gap-4">
       <div className="w-full">
         <CustomTextAreaInput
-          onChange={() => console.log("review changing")}
+          onChange={() => null}
           classes="min-h-[238px]"
           label="Your Review"
           placeholder="Type here..."

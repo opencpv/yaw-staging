@@ -41,7 +41,6 @@ function HowToSwitch({ open }: Props) {
     }
 
     if (error) {
-      console.log(error);
     }
   };
 

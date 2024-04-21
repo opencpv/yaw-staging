@@ -119,7 +119,6 @@ export default function ListingFormForm({ setOpen }: Props) {
     }
 
     const value = (activeSlide / views.length) * 100;
-    console.log(value);
     setProgressValue(value + 5);
   }, [activeSlide]);
 

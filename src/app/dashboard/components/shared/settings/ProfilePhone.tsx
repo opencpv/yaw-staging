@@ -36,9 +36,8 @@ const ProfilePhone = ({ phoneChange, defaultValue, codeChange }: Props) => {
         });
 
         setSelectedCountry(defaultCountry);
-        console.log(defaultCountry);
       })
-      .catch((error) => console.log(error.message));
+      .catch((error) => null);
   }, [defaultValue]);
 
   return (
