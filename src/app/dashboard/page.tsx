@@ -19,8 +19,6 @@ const Dashboard = () => {
       } = await supabase.auth.getUser();
       if (user) {
         router.replace(`/dashboard/${currentRole}/overview`);
-      } else if (error) {
-        router.replace(`/login`);
       }
     };
 

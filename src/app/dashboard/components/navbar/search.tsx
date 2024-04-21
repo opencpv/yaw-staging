@@ -2,7 +2,19 @@ import InputWithSavedSearch from "@/components/__shared/form/InputWithSavedSearc
 import { cn } from "@/lib/utils";
 import React from "react";
 
+type Props = {
+  className?: string;
+};
+
 const Search = ({ className }: { className?: string }) => {
+  const [search, setSearch] = React.useState<string>("");
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const search = formData.get("search") as string;
+    setSearch(search);
+  };
   return (
     <InputWithSavedSearch
       className={cn(
@@ -12,9 +24,11 @@ const Search = ({ className }: { className?: string }) => {
       inputClassName="rounded-[4px] border-0 px-4 py-1"
       separatorClassName="h-[60%]"
       href={`/properties?${new URLSearchParams({
-        search: "Madina, Accra",
+        search: search || "Madina, Accra",
         sk: String(true),
       })}`}
+      onSubmit={handleSubmit}
+      name="search"
     />
   );
 };
