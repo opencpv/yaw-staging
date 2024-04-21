@@ -22,9 +22,7 @@ const PostsGrid: React.FunctionComponent<IPostsGridProps> = (props) => {
       setPosts(props.posts);
       setLoading(false);
     } else {
-      posts.forEach((post) => {
-        console.log("slugified title", slugify(post.category.category_title));
-      });
+      posts.forEach((post) => {});
       const filteredPosts = props.posts.filter(
         (post) => slugify(post.category.category_title) === currentCategory,
       );

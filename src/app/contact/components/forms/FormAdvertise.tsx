@@ -45,7 +45,6 @@ const FormAdvertise = (props: Props) => {
         values.phone = phone as E164Number;
         values.fileUrl = file;
 
-        // console.log(values);
         sendContactUsEmail(formRef.current);
         setLoading(true);
         supabase
@@ -65,9 +64,7 @@ const FormAdvertise = (props: Props) => {
           .then(({ data, error }) => {
             if (error) {
               setLoading(false);
-              console.log(error);
             } else {
-              console.log("Data:", data);
               setLoading(false);
               resetForm();
             }

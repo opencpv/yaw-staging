@@ -15,7 +15,6 @@ const SliderPaginationOnly = ({
   className,
   disabledOnInteraction,
 }: SliderPaginationOnlyProps) => {
-  console.log(images);
   return (
     <div className={`relative h-80 w-72 ${className}`}>
       <Swiper

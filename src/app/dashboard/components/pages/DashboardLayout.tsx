@@ -32,8 +32,6 @@ const Wrapper = ({ children }: LayoutProps) => {
 
   const { setCurrentRole, isSwitchingRole } = useDashboardStore();
 
-  console.log(user);
-
   useEffect(() => {
     if (!isSwitchingRole) {
       // to make sure it doesn't conflict with actual switch
@@ -77,7 +75,6 @@ const Wrapper = ({ children }: LayoutProps) => {
           setNotificationsLoading(true);
         }
       } catch (error) {
-        console.log(error);
         return error;
       }
     };

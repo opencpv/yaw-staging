@@ -8,22 +8,23 @@ export const GET = withErrorHandler(async (request: NextRequest) => {
   const supabaseClient = createClient();
 
   if (filter && filter !== "all") {
-    let { data: feedback, error } = await supabaseClient
-      .from("feedback")
+    let { data, error } = await supabaseClient
+      .from("subscribers")
       .select("*")
-      .eq("feedback_title", filter);
+      .eq("campaign", filter);
+
     if (error) {
       throw new Error(error.message);
     }
-    return new NextResponse(JSON.stringify(feedback), {
+    console.log(data);
+    return new NextResponse(JSON.stringify(data), {
       status: 200,
     });
   } else {
-    let { data, error } = await supabaseClient.from("feedback").select("*");
+    let { data, error } = await supabaseClient.from("subscribers").select("*");
     if (error) {
       throw new Error(error.message);
     }
-
     return new NextResponse(JSON.stringify(data), {
       status: 200,
     });

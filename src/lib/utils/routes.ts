@@ -4,4 +4,7 @@ export const route = {
   feedbackCategories: "/api/feedback/categories",
   feedbackData: "/api/feedback",
   feedbackCount: "/api/feedback/count",
+  subscribersCount: "/api/subscription/count",
+  subscribersCategories: "/api/subscription/categories",
+  subscribersData: "/api/subscription",
 };

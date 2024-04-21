@@ -24,8 +24,6 @@ const MessagesLayout = ({ children }: Props) => {
   const currentUserId = useCurrentUserId();
   const recipientId = useMessageStore((state) => state.recipientId);
 
-  // console.log(currentUserId)
-
   useEffect(() => {
     const getDistinctMessages = async () => {
       let { data: messages, error } = await supabase

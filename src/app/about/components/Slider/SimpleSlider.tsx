@@ -15,8 +15,6 @@ const SlideItem = ({ image }: { image: StaticImageData }) => (
   </div>
 );
 const SimpleSlider = ({ data }: { data: any }) => {
-  console.log(data);
-
   const { images } = useAssets();
   const sliderRef = useRef<any>(null);
 

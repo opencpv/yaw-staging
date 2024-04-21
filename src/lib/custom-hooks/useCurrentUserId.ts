@@ -10,11 +10,9 @@ export const useCurrentUserId = () => {
         const data = await userSession();
         const userId = String(data?.session.user.id);
         setId(userId);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     };
-    
+
     fetchUserId();
   }, []);
 

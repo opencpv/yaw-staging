@@ -31,7 +31,6 @@ const HowToPage = (props: Props) => {
       setcontent(data);
     } else {
       setcontent(filterByTag(data, value));
-      console.log(filterByTag(data, value));
     }
   }, [value]);
 

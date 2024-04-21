@@ -121,7 +121,9 @@ const CurrencyInput = ({
 
         setCurrencyData(currencies);
       })
-      .catch((error) => console.log(error.message));
+      .catch((error) => {
+        null;
+      });
   }, []);
 
   return (

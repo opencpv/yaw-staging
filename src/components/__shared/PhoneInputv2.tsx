@@ -108,9 +108,10 @@ const PhoneNumberInputv2 = ({
         newCountryData.sort((a: any, b: any) => a.label.localeCompare(b.label));
 
         setCountryData(newCountryData);
-        // console.log(resData);
       })
-      .catch((error) => console.log(error.message));
+      .catch((error) => {
+        null;
+      });
   }, []);
 
   return (

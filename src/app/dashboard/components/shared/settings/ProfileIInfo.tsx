@@ -165,7 +165,6 @@ const ProfileInfo = () => {
                       }
                       if (error) throw error;
                     } catch (error) {
-                      console.log("Error updating profile:", error);
                       onOpen("Error updating profile", "error");
                     } finally {
                       setSubmitLoading(false);

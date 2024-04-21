@@ -77,9 +77,7 @@ export default function PropertyFormSimple({
           },
         ])
         .select();
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   }
 
   async function notify() {
@@ -95,9 +93,7 @@ export default function PropertyFormSimple({
           },
         ])
         .select();
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   }
 
   return (

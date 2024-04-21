@@ -53,7 +53,6 @@ const ContactForm = () => {
           .then(({ data, error }) => {
             if (error) {
               setLoading(false);
-              console.log(error);
             } else {
               setLoading(false);
               resetForm();

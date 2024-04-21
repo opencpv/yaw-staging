@@ -115,12 +115,10 @@ export const useFetchPropertyDetails = (propertyId: number) => {
 
 //   if (data){
 //     deleteLike({user_id: userId as string, property_id: propertyId as number}).then((res) => {
-//       console.log(res);
 //     })
 //   }
 //   else {
 //     addLike({user_id: userId as string, property_id: propertyId as number}).then((res) => {
-//       console.log(res);
 //     })
 //   }
 

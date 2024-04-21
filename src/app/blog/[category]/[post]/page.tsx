@@ -36,7 +36,6 @@ const page = async ({ params, searchParams }: Props) => {
   );
   const post = intialPostData.data[0];
   // const res = await axios.put("/api/blog-view", { id: 1 });
-  console.log(post);
 
   const SampleImageComponent = ({
     value,

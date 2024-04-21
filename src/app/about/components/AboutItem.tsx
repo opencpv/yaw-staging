@@ -2,8 +2,6 @@ import { urlForImage } from "@/lib/utils/sanity/utils";
 import Image from "next/image";
 
 const AboutItem = ({ data, index }: { data: any; index: number }) => {
-  console.log(data);
-
   const Heading1 = () => (
     <div className="relative mt-8 w-fit first:mt-0">
       <h2 className="border-l-8 border-[#DDB771] px-4 text-2xl font-bold text-[#2A4E55] md:text-4xl">

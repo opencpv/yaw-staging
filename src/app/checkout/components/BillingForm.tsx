@@ -77,7 +77,7 @@ const BillingForm = () => {
         /* and other goodies */
       }) => (
         <form onSubmit={handleSubmit}>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
             <CustomInputComponent
               type="text"
               name="firstname"
@@ -150,7 +150,6 @@ const BillingForm = () => {
             placeholder="Select your country"
             onChange={(selection) => {
               setcountry(selection);
-              console.log(selection);
             }}
           />
           <div className="mt-4"></div>
@@ -167,13 +166,13 @@ const BillingForm = () => {
             />
           </div>
           <div className="mt-4"></div>
-          <fieldset className="flex mb-4 gap-3 items-center">
+          <fieldset className="mb-4 flex items-center gap-3">
             <input
               type="checkbox"
               onChange={(e: any) => {
                 setsaved(e.target.checked);
               }}
-              className="h-6 w-6 border-[1px] rounded-md border-[#DCDCDC] "
+              className="h-6 w-6 rounded-md border-[1px] border-[#DCDCDC] "
             />
             <p className="text-[#737373]">Save this Information</p>
           </fieldset>

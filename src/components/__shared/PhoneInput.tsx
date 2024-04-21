@@ -29,7 +29,9 @@ const PhoneNumberInput = ({ phoneChange, defaultValue = "" }: Props) => {
         setData(resData);
         setSelectedCountry(dateDefault);
       })
-      .catch((error) => console.log(error.message));
+      .catch((error) => {
+        null;
+      });
   }, []);
 
   return (

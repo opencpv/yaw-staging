@@ -47,7 +47,9 @@ const FirstToKnowModal = (props: Props) => {
           // ...firstToKnowFormData, // localStorage data takes precedence over default values. Makes changes persist on reload
         }}
         // validationSchema={firstToKnowValidationSchema}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) => {
+          null;
+        }}
       >
         <Form>
           <StepsModal

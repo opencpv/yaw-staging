@@ -17,7 +17,6 @@ export const useUserDetails = (id: string | undefined) => {
         setUserAvi(user?.profile_img as string);
         setUserName(user?.full_name as string);
       } catch (error) {
-        console.log(error);
         return error;
       }
     };

@@ -24,8 +24,8 @@ const MobileVersion = () => {
       <Swiper
         ref={sliderRef}
         slidesPerView={1}
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => console.log(swiper)}
+        onSlideChange={() => null}
+        onSwiper={(swiper) => null}
         centeredSlides={true}
       >
         <SwiperSlide>
@@ -41,16 +41,16 @@ const MobileVersion = () => {
           <SlideItem image={images.niceHome} />
         </SwiperSlide>
       </Swiper>
-      <div className="flex justify-between items-center md:mt-[40px] mt-[32px] md:pb-[107px] pb-[30px]">
+      <div className="mt-[32px] flex items-center justify-between pb-[30px] md:mt-[40px] md:pb-[107px]">
         <button
           onClick={handlePrev}
-          className="w-[40px]  h-[40px] md:w-[70px] md:h-[70px] flex items-center justify-center bg-white rounded-full"
+          className="flex  h-[40px] w-[40px] items-center justify-center rounded-full bg-white md:h-[70px] md:w-[70px]"
         >
           <MdChevronLeft className="text-neutral-800" />
         </button>
         <button
           onClick={handleNext}
-          className="w-[40px]  h-[40px] md:w-[70px] md:h-[70px] flex items-center justify-center bg-white rounded-full"
+          className="flex  h-[40px] w-[40px] items-center justify-center rounded-full bg-white md:h-[70px] md:w-[70px]"
         >
           <MdChevronRight className="text-neutral-800" />
         </button>

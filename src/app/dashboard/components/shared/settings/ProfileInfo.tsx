@@ -58,7 +58,6 @@ const ProfileInfo = () => {
   const [code, setCode] = useState<string>("");
   const [submitLoading, setSubmitLoading] = useState(false);
   const user = useAppStore((state) => state.user);
-  console.log(user);
   const [loading, setloading] = useState(true);
   const supabase = createClientComponentClient();
 
@@ -133,10 +132,8 @@ const ProfileInfo = () => {
                       .eq("id", user.id)
                       .select();
 
-                    console.log("Response data:", data);
                     if (error) throw error;
                   } catch (error) {
-                    console.log("Error updating profile:", error);
                   } finally {
                     setSubmitLoading(false);
                   }
