@@ -1,6 +1,5 @@
 "use client";
 import Loader from "@/components/__shared/loader/Loader";
-import { useUserData } from "@/lib/custom-hooks/database/useUserData";
 import { createClient } from "@/lib/utils/supabase/auth/client";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { useRouter } from "next/navigation";

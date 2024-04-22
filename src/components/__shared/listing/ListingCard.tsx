@@ -119,9 +119,8 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
                       <div className="relative h-full w-full">
                         <Image
                           src={image}
-                          alt={`${props.bedrooms} Bedroom ${props.propertyType} in ${props.city}`}
+                          alt={`${props.bedrooms} Bedroom ${props.propertyType} at ${props.city}`}
                           fill
-                          title={`${props.propertyName} at ${props.city}`}
                           className="brightness-[0.8]"
                           style={{ objectFit: "cover" }}
                         />

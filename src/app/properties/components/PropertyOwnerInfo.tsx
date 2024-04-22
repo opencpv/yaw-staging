@@ -42,7 +42,7 @@ const PropertyOwnerInfo = (props: Props) => {
           </div>
           <div className="flex flex-col items-center gap-2 text-xl text-primary-500 min-[360px]:flex-row">
             <FaStar className="text-yellow-400" />
-            <Rating value={props.rating} className="text-base" />
+            <Rating value={props.rating} />
           </div>
           <p className="text-xl text-[#93B5BC]">{props.reviews} Reviews</p>
         </div>

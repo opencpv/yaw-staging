@@ -1,23 +1,19 @@
-//@ts-nocheck
-
 "use client";
-import React from "react";
-import ListingCard from "./ListingCard";
-import supabase from "@/lib/utils/supabase/supabaseClient";
-import { useQuery } from "@supabase-cache-helpers/postgrest-swr";
-import SkeletonListing from "../ui/skeleton/SkeletonListing";
-import FetchingStates from "../ui/data_fetching/FetchingStates";
-import { fetchOrderRule, revalidationRule } from "@/lib/utils/fetchRules";
-import images from "@/enum/temp/images";
-import FetchErrorMessage from "../ui/data_fetching/FetchErrorMessage";
-import Button from "../ui/button/Button";
-
-import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, FreeMode, Mousewheel } from "swiper/modules";
-
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/effect-coverflow";
+import React from "react";
+import ListingCard from "./ListingCard";
+import SkeletonListing from "../ui/skeleton/SkeletonListing";
+import FetchingStates from "../ui/data_fetching/FetchingStates";
+import Button from "../ui/button/Button";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectCoverflow, FreeMode, Mousewheel } from "swiper/modules";
+import { useFetchRecommendedListings } from "@/app/properties/services";
+import { useAppStore } from "@/store/dashboard/AppStore";
+import { getListingProps } from "@/lib/enum";
+import SomethingWentWrong from "@/app/components/SomethingWentWrong";
+import { cn } from "@/lib/utils";
 
 type Props = {
   className?: string;
@@ -25,24 +21,25 @@ type Props = {
 };
 
 const RecommendedListings = ({ className, showAllButton }: Props) => {
+  const { user } = useAppStore();
   const {
     data: listings,
-    isLoading,
-    isValidating,
     error,
-  } = useQuery(
-    supabase
-      .from("property")
-      .select(
-        "id, property_name, property_id, description, monthly_amount, city",
-      )
-      .order("created_at", fetchOrderRule()),
-    revalidationRule(),
-  );
+    isLoading,
+    mutate,
+  } = useFetchRecommendedListings();
 
   return (
     <>
-      <section className={`no-print h-fit w-full ${className}`}>
+      <section
+        className={cn(
+          "no-print h-fit w-full",
+          {
+            hidden: (error || (listings && listings?.length < 1)) && !isLoading,
+          },
+          className,
+        )}
+      >
         <div className="mb-8 flex flex-wrap items-center justify-between gap-5">
           <h2>Recommended Listings</h2>
           <Button
@@ -58,18 +55,13 @@ const RecommendedListings = ({ className, showAllButton }: Props) => {
         <FetchingStates
           data={listings}
           error={error}
-          isLoading={isLoading}
-          isValidating={isValidating}
-          isLoadingComponent={
-            <div className="flex gap-5 overflow-x-hidden">
-              <SkeletonListing count={5} className="w-96" />
-            </div>
-          }
-          errorComponent={<FetchErrorMessage />}
-          emptyStateComponent={
-            <p className="mt-4 text-center italic">
-              There are no properties yet.
-            </p>
+          errorComponent={
+            <SomethingWentWrong
+              className="h-fit"
+              onTryAgain={() => {
+                mutate();
+              }}
+            />
           }
         />
         {/* lg and above */}
@@ -109,33 +101,27 @@ const RecommendedListings = ({ className, showAllButton }: Props) => {
             modules={[FreeMode, EffectCoverflow, Mousewheel]}
             className="mySwiper h-fit w-full"
           >
-            {listings?.map((listing, idx) => (
-              <SwiperSlide
-                key={idx + 1}
-                className={`aspect-square min-w-[16rem] max-w-[16rem] xs:aspect-auto xs:min-w-[23rem] xs:max-w-[23rem]`}
-              >
-                <ListingCard
-                  key={listing.id}
-                  cardType="2"
-                  href={`/properties/${listing.property_id}?property_name=${listing.propertyName}&city=${listing.city}&price=${listing.price}&payment_structure=${listing.paymentStructure}&amount_per_month=${listing.monthlyAmount}&rating=${listing.ratingCount}&property_description=${listing.propertyDescription}`.replaceAll(
-                    " ",
-                    "_",
-                  )}
-                  propertyName={listing.property_name as string}
-                  city={listing.city as string}
-                  images={images} // TODO: check database
-                  liked={false} // TODO: check implementation
-                  guarantee={"Certified" as GuaranteeTag} // TODO: check database
-                  monthlyAmount={listing.monthly_amount as number as number}
-                  paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
-                  propertyDescription={listing.description as string}
-                  rating={4.5} // TODO: check database
-                  ratingCount={105} // TODO: check database
-                  hint={"Best Value" as HintTag} // TODO: check database
-                  showOnlyImage
-                />
-              </SwiperSlide>
-            ))}
+            {isLoading
+              ? Array.from({ length: 5 }, (_, idx) => (
+                  <SwiperSlide
+                    key={idx + 1}
+                    className={`aspect-square h-full min-w-[16rem] max-w-[16rem] xs:aspect-auto xs:min-w-[23rem] xs:max-w-[23rem]`}
+                  >
+                    <SkeletonListing key={idx} cardType={2} className="h-80" />
+                  </SwiperSlide>
+                ))
+              : listings?.map((listing, idx) => (
+                  <SwiperSlide
+                    key={idx}
+                    className={`aspect-square h-full min-w-[16rem] max-w-[16rem] xs:aspect-auto xs:min-w-[23rem] xs:max-w-[23rem]`}
+                  >
+                    <ListingCard
+                      key={listing.id}
+                      {...getListingProps(listing, user as UserType)}
+                      showOnlyImage
+                    />
+                  </SwiperSlide>
+                ))}
           </Swiper>
         </div>
       </section>

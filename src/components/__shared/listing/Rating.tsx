@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 
 type Props = {
   value: number;
-  className: string;
+  className?: string;
 };
 
 const Rating = ({ value, className }: Props) => {

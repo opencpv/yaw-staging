@@ -37,4 +37,8 @@ declare global {
     | "Every-3-Years";
   type HintTag = "Realtor's Choice" | "Top Rated" | "Best Value";
   type GuaranteeTag = "Certified" | "Verified";
+  type UserType = {
+    email?: string;
+    should_be_contacted?: boolean;
+  } & User;
 }
