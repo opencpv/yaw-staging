@@ -18,7 +18,13 @@ const ListingInfo = (props: Partial<ListingCardInterface>) => {
 
   return (
     <div
-      className={`w-full space-y-6 rounded-b-lg bg-white px-5 py-4 ${props.className}`}
+      className={cn(
+        "w-full space-y-6 rounded-b-lg bg-white px-5 py-4",
+        {
+          hidden: props.showOnlyImage,
+        },
+        props.className,
+      )}
     >
       <div className="space-y-3 text-sm">
         <div className="grid items-center justify-between gap-x-1 gap-y-3 min-[320px]:grid-cols-3">
@@ -41,9 +47,7 @@ const ListingInfo = (props: Partial<ListingCardInterface>) => {
               <FaStar className="text-yellow-400" />
             )}
 
-            {(props.ratingCount as number) > 0 && (
-             <Rating value={4.1} />
-            )}
+            {(props.ratingCount as number) > 0 && <Rating value={4.1} />}
             <small>
               ({" "}
               {(props.ratingCount as number) > 0

@@ -40,35 +40,23 @@ const Navbar = () => {
       >
         <div className="flex items-center justify-start xs:gap-6 md:w-full md:gap-10 lg:gap-20">
           <Logo size="xs" />
-          {/* search icon for mobile */}
-          <AiOutlineSearch
-            size={22}
-            color="white"
-            className="hidden shrink-0 xs:block md:hidden"
-            role="search"
-            aria-label="search"
-            onClick={() => setExpandMobileSearch(!expandMobileSearch)}
-          />
           <Search className="hidden md:flex" />
         </div>
-        <div className="relative flex w-fit items-center ssm:gap-7">
-          {/* search icon for mobile */}
+        <div className="relative flex w-fit items-center gap-7">
           <AiOutlineSearch
             size={22}
             color="white"
-            className="mr-5 shrink-0 max-xs:block xs:hidden md:hidden"
+            className="shrink-0 md:hidden"
             role="search"
             aria-label="search"
             onClick={() => setExpandMobileSearch(!expandMobileSearch)}
           />
-          <Switch />
+          <Switch className="max-ssm:hidden" />
           {unreadNotifications?.length > 0 && <NotificationsPopover />}{" "}
-          <div>
-            <p className="hidden whitespace-nowrap text-sm text-[#fff] ssm:block">
-              {user?.firstname as string}
-            </p>
-          </div>
-          <AvatarMenu className="max-ssm:hidden" />
+          <p className="hidden whitespace-nowrap text-sm text-[#fff] ssm:block">
+            {user?.firstname as string}
+          </p>
+          <AvatarMenu />
         </div>
       </Root>
       {/* search bar for mobile */}
