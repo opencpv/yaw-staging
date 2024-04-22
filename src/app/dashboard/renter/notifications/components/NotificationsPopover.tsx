@@ -13,6 +13,7 @@ import useNotifications from "@/app/dashboard/renter/notifications/useNotificati
 import NtfSkeleton from "@/app/dashboard/renter/notifications/components/NtfSkeleton";
 import { useRouter } from "next/navigation";
 import { Button } from "@nextui-org/react";
+import { GoBellFill } from "react-icons/go";
 
 const NotificationsPopover = () => {
   const { unreadNotifications, unreadIsLoading } = useNotifications();
@@ -24,15 +25,11 @@ const NotificationsPopover = () => {
     <Popover.Root onOpenChange={setOpen} open={open}>
       <Popover.Trigger asChild>
         <button className="relative flex aspect-square min-h-[52px] w-full min-w-[52px] items-center justify-center">
-          <div
-            className="absolute right-[0px] top-0
-          flex h-[26px] w-[26px] items-center justify-center rounded-full
-          bg-[#B71851] text-[14px] text-[#fff]"
-          >
+          <div className="absolute right-1 top-2 grid size-6 place-items-center rounded-full bg-[#B71851] text-xs font-semibold text-white">
             {unreadNotifications?.length}
           </div>
           <IconButton aria-label="Update dimensions">
-            <IoMdNotifications color="white" size="28" />
+            <GoBellFill color="white" size="28" />
           </IconButton>
         </button>
       </Popover.Trigger>
