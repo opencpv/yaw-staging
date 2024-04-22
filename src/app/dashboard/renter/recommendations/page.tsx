@@ -10,7 +10,7 @@ import ListingCard from "@/components/__shared/listing/ListingCard";
 import demoimages from "@/enum/temp/images";
 import { Switch } from "@nextui-org/react";
 import Toggle from "@/components/ui/Toggle";
-import ContactPreferenceToggle from "../../components/shared/favorites/ContactPreferenceToggle";
+import ContactPreferenceToggle from "../favourites/components/ContactPreferenceToggle";
 
 export default function Page() {
   const {

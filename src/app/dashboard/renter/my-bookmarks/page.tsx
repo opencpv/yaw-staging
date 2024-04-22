@@ -4,7 +4,7 @@ import Select from "../../components/shared/ui/Select";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import ListingCard from "@/components/__shared/listing/ListingCard";
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
-import ContactPreferenceToggle from "../../components/shared/favorites/ContactPreferenceToggle";
+import ContactPreferenceToggle from "../favourites/components/ContactPreferenceToggle";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useFetchRenterBookmarks } from "../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
