@@ -68,53 +68,27 @@ const RecommendedListings = ({ className, showAllButton }: Props) => {
         <div>
           <Swiper
             effect="coverflow"
-            mousewheel
             grabCursor
             centeredSlides
-            slidesPerView={0.5}
-            spaceBetween={10}
+            slidesPerView={"auto"}
             coverflowEffect={{
-              rotate: 20,
-              stretch: 0,
-              depth: 100,
-              modifier: 1,
+              rotate: 50,
               slideShadows: false,
             }}
-            breakpoints={{
-              360: {
-                slidesPerView: 1,
-              },
-              768: {
-                // spaceBetween: 0,
-                slidesPerView: 2,
-                coverflowEffect: {
-                  rotate: 50,
-                },
-              },
-              1300: {
-                slidesPerView: 4,
-                coverflowEffect: {
-                  rotate: 50,
-                },
-              },
-            }}
-            modules={[FreeMode, EffectCoverflow, Mousewheel]}
+            modules={[EffectCoverflow]}
             className="mySwiper h-fit w-full"
           >
             {isLoading
               ? Array.from({ length: 5 }, (_, idx) => (
                   <SwiperSlide
                     key={idx + 1}
-                    className={`aspect-square h-full min-w-[16rem] max-w-[16rem] xs:aspect-auto xs:min-w-[23rem] xs:max-w-[23rem]`}
+                    className={`h-full w-full max-w-96`}
                   >
                     <SkeletonListing key={idx} cardType={2} className="h-80" />
                   </SwiperSlide>
                 ))
               : listings?.map((listing, idx) => (
-                  <SwiperSlide
-                    key={idx}
-                    className={`aspect-square h-full min-w-[16rem] max-w-[16rem] xs:aspect-auto xs:min-w-[23rem] xs:max-w-[23rem]`}
-                  >
+                  <SwiperSlide key={idx} className={`h-full w-full max-w-96`}>
                     <ListingCard
                       key={listing.id}
                       {...getListingProps(listing, user as UserType)}

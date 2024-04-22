@@ -1,19 +1,14 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-
-import "@/styles/custom-swiper.css";
-
 import { Pagination, Navigation, Grid } from "swiper/modules";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-
+import "@/styles/custom-swiper.css";
 import "swiper/css/bundle";
 import "swiper/css";
 import "swiper/css/grid";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import useViewport from "@/lib/custom-hooks/useViewport";
-import { useRouter } from "next/navigation";
 
 const SliderGrid = ({ items }: SliderGridProps) => {
   const [shouldRefresh, setShouldRefresh] = useState(false);
