@@ -5,6 +5,7 @@ import { IoIosCloseCircle } from "react-icons/io";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import SignInRequiredModal from "../modals/SignInRequiredModal";
 import { cn } from "@/lib/utils";
+import CloseModalIcon from "../icons/CloseModalIcon";
 
 type Props = {
   value: number;
@@ -52,12 +53,7 @@ const Rating = ({ value, className }: Props) => {
         onClose={() => setSignInModalOpen(false)}
       />
       <RatingModal
-        closeButton={
-          <IoIosCloseCircle
-            className="cursor-pointer text-4xl text-red-500 xs:text-5xl"
-            onClick={onClose}
-          />
-        }
+        closeButton={<CloseModalIcon onClick={onClose} />}
         // header={}
         body={<div className="h-72">Rating form here</div>} // TODO: add rating form
         // footer={<ModalFooter />}

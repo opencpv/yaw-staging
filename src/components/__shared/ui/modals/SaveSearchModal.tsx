@@ -9,10 +9,10 @@ import {
 } from "@nextui-org/react";
 import Button from "../button/Button";
 import { BiDotsVerticalRounded } from "react-icons/bi";
-import { IoIosCloseCircle } from "react-icons/io";
 import { FiTrash2 } from "react-icons/fi";
 import DestructiveModal from "./DestructiveModal";
 import { cn } from "@/lib/utils";
+import CloseModalIcon from "../icons/CloseModalIcon";
 
 type Props = {
   className?: string;
@@ -32,12 +32,7 @@ const SaveSearchModal = (props: Props) => {
         onClick={onOpen}
       />
       <Modal
-        closeButton={
-          <IoIosCloseCircle
-            className="cursor-pointer text-4xl text-red-500 xs:text-5xl"
-            onClick={onClose}
-          />
-        }
+        closeButton={<CloseModalIcon />}
         header={<ModalHeader />}
         body={<ModalBody />}
         footer={<ModalFooter />}

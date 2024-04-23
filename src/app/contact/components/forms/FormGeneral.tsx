@@ -1,6 +1,5 @@
 import { ErrorMessage, Form, Formik } from "formik";
-import React, { useRef } from "react";
-import { E164Number } from "libphonenumber-js/core";
+import React from "react";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { sendContactUsEmail } from "../../api";
 import Loader from "@/components/__shared/ui/loader/Loader";
@@ -16,7 +15,6 @@ import {
   useToastDisclosure,
 } from "@/lib/custom-hooks/useCustomDisclosure";
 import CustomErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
-import { useSessionStorage } from "@uidotdev/usehooks";
 import capitalizeName from "@/lib/utils/stringManipulation";
 
 type Props = {};
@@ -31,7 +29,6 @@ const FormGeneral = (props: Props) => {
     tableName,
     validate,
     contactFormSession,
-    handleSessionChange,
   } = useContactForm();
 
   const { phone, setPhone, handleCountryChange, handlePhone } =
@@ -70,7 +67,7 @@ const FormGeneral = (props: Props) => {
             },
           ])
           .select()
-          .then(({ data, error }) => {
+          .then(({ error }) => {
             setLoading(false);
             if (error) {
               onOpen("Something went wrong", "error");
@@ -87,45 +84,40 @@ const FormGeneral = (props: Props) => {
     >
       {({ handleBlur, handleChange, values, errors }) => (
         <Form ref={formRef} className="flex-1 pt-8">
-          <div className="gap-5 ">
-            <div className={``}>
-              <div className="flex flex-col gap-10">
-                <div className="form-div">
-                  <ContactFullNameField
-                    value={values.fullname}
-                    handleBlur={handleBlur}
-                    handleChange={handleChange}
-                    error={errors.fullname}
-                  />
-                  <CustomErrorMessage className="mt-5">
-                    <ErrorMessage name="fullname" error={errors.fullname} />
-                  </CustomErrorMessage>
-                </div>
-                <div className="form-div">
-                  <ContactPhoneField
-                    phone={values.phone}
-                    handleBlur={handleBlur}
-                    handleChange={handleChange}
-                    handlePhone={handlePhone}
-                    handleCountryChange={handleCountryChange}
-                  />
-                </div>
-                <div className=""></div>
-                <div>
-                  <ContactMessageField
-                    value={values.message}
-                    className="w-full min-w-full"
-                    error={errors.message}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                  <CustomErrorMessage className="mt-2">
-                    <ErrorMessage name="message" error={errors.message} />
-                  </CustomErrorMessage>
-                </div>
-                <ContactUploadField />
-              </div>
+          <div className="flex flex-col gap-10">
+            <div className="form-div">
+              <ContactFullNameField
+                value={values.fullname}
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+                error={errors.fullname}
+              />
+              <CustomErrorMessage className="mt-5" error={errors.fullname}>
+                <ErrorMessage name="fullname" error={errors.fullname} />
+              </CustomErrorMessage>
             </div>
+            <div className="form-div">
+              <ContactPhoneField
+                phone={values.phone}
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+                handlePhone={handlePhone}
+                handleCountryChange={handleCountryChange}
+              />
+            </div>
+            <div>
+              <ContactMessageField
+                value={values.message}
+                className="w-full min-w-full"
+                error={errors.message}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <CustomErrorMessage className="mt-2" error={errors.message}>
+                <ErrorMessage name="message" error={errors.message} />
+              </CustomErrorMessage>
+            </div>
+            <ContactUploadField />
           </div>
           {loading ? <Loader /> : <ContactSubmitButton />}
         </Form>

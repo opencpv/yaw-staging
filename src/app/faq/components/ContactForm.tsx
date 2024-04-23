@@ -77,7 +77,7 @@ const ContactForm = () => {
                 handleChange={handleChange}
                 error={errors.fullname}
               />
-              <CustomErrorMessage className="mt-5">
+              <CustomErrorMessage className="mt-5" error={errors.fullname}>
                 <ErrorMessage name="fullname" error={errors.fullname} />
               </CustomErrorMessage>
             </div>
@@ -99,7 +99,7 @@ const ContactForm = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              <CustomErrorMessage className="mt-2">
+              <CustomErrorMessage className="mt-2" error={errors.message}>
                 <ErrorMessage name="message" error={errors.message} />
               </CustomErrorMessage>
             </div>

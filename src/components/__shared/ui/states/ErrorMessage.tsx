@@ -4,13 +4,22 @@ import React from "react";
 type Props = {
   children: React.ReactNode;
   className?: string;
+  error?: string;
 };
 
-const ErrorMessage = (props: Props) => {
+const ErrorMessage: React.FC<Props> = (props) => {
   return (
-    <p className={cn("text-error-100 text-[13px]", props.className)}>
+    <div
+      className={cn(
+        "text-[13px] text-error-100",
+        {
+          hidden: !props.error,
+        },
+        props.className,
+      )}
+    >
       {props.children}
-    </p>
+    </div>
   );
 };
 

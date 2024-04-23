@@ -6,6 +6,7 @@ import { FaTimesCircle } from "react-icons/fa";
 import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import FeedbackHeader from "./FeedbackHeader";
 import FeedbackBody from "./FeedbackBody";
+import CloseModalIcon from "../icons/CloseModalIcon";
 
 type Props = {
   // handleClick: () => void;
@@ -35,12 +36,7 @@ const Feedback = ({ children, data }: Props) => {
   return (
     <>
       <Modal
-        closeButton={
-          <FaTimesCircle
-            className="cursor-pointer text-4xl text-red-500 xs:text-5xl"
-            onClick={onClose}
-          />
-        }
+        closeButton={<CloseModalIcon onClick={onClose} />}
         isDismissible={false}
         header={<FeedbackHeader handleClose={onClose} />}
         body={

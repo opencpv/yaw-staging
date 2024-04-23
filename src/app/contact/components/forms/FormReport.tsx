@@ -89,57 +89,52 @@ const FormReport = (props: Props) => {
     >
       {({ handleBlur, handleChange, values, errors }) => (
         <Form ref={formRef} className="flex-1 pt-8">
-          <div className="gap-5 ">
-            <div className={``}>
-              <div className="flex flex-col gap-10">
-                <div className="form-div">
-                  <ContactFullNameField
-                    value={values.fullname}
-                    handleBlur={handleBlur}
-                    handleChange={handleChange}
-                    error={errors.fullname}
-                  />
-                  <CustomErrorMessage className="mt-5">
-                    <ErrorMessage name="fullname" error={errors.fullname} />
-                  </CustomErrorMessage>
-                </div>
-                <div className="form-div">
-                  <ContactPhoneField
-                    phone={values.phone}
-                    handleBlur={handleBlur}
-                    handleChange={handleChange}
-                    handlePhone={handlePhone}
-                    handleCountryChange={handleCountryChange}
-                  />
-                </div>
-                <div>
-                  <ContactMessageField
-                    placeholder="How can we help you?"
-                    className="w-full min-w-full"
-                    error={errors.message}
-                    value={values.message}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                  <CustomErrorMessage className="mt-2">
-                    <ErrorMessage name="message" error={errors.message} />
-                  </CustomErrorMessage>
-                </div>
-                <ContactUploadField />
+          <div className="flex flex-col gap-10">
+            <div className="form-div">
+              <ContactFullNameField
+                value={values.fullname}
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+                error={errors.fullname}
+              />
+              <CustomErrorMessage className="mt-5" error={errors.fullname}>
+                <ErrorMessage name="fullname" error={errors.fullname} />
+              </CustomErrorMessage>
+            </div>
+            <div className="form-div">
+              <ContactPhoneField
+                phone={values.phone}
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+                handlePhone={handlePhone}
+                handleCountryChange={handleCountryChange}
+              />
+            </div>
+            <div>
+              <ContactMessageField
+                className="w-full min-w-full"
+                error={errors.message}
+                value={values.message}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <CustomErrorMessage className="mt-2" error={errors.message}>
+                <ErrorMessage name="message" error={errors.message} />
+              </CustomErrorMessage>
+            </div>
+            <ContactUploadField />
 
-                <div className="form-div">
-                  <TextInput
-                    name="reportLink"
-                    value={contactFormSession.reportLink || values.reportLink}
-                    onChange={(e) => {
-                      handleChange(e);
-                      handleSessionChange("reportLink", e.target.value);
-                    }}
-                    placeholder="Paste URL link here (optional)"
-                    className="p-3 py-7 placeholder:text-neutral-400"
-                  />
-                </div>
-              </div>
+            <div className="form-div">
+              <TextInput
+                name="reportLink"
+                value={contactFormSession.reportLink || values.reportLink}
+                onChange={(e) => {
+                  handleChange(e);
+                  handleSessionChange("reportLink", e.target.value);
+                }}
+                placeholder="Paste URL link here (optional)"
+                className="p-3 py-7 placeholder:text-neutral-400"
+              />
             </div>
           </div>
           {loading ? <Loader /> : <ContactSubmitButton />}
