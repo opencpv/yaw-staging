@@ -19,7 +19,7 @@ const EmptyState = ({
   tagLine,
   description,
   className,
-  paddingBlock,
+  paddingBlock = "sm",
   href,
   onClick,
 }: Props) => {

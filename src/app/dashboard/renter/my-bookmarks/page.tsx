@@ -106,7 +106,7 @@ const MySearch = () => {
               }}
             />
           }
-          emptyStateComponent={<EmptyState paddingBlock="sm" />}
+          emptyStateComponent={<EmptyState />}
         />
         {listings?.map((listing) => (
           <ListingCard
