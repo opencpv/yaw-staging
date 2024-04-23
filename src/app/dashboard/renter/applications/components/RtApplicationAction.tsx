@@ -10,7 +10,7 @@ import { FiTrash2 } from "react-icons/fi";
 import { MdOutlineEdit } from "react-icons/md";
 import { PiChatCenteredDots } from "react-icons/pi";
 import { RenterApplicationStatus } from "./RtApplicationStatus";
-import DestructiveModal from "@/components/__shared/modals/DestructiveModal";
+import DestructiveModal from "@/components/__shared/ui/modals/DestructiveModal";
 
 type Props = {
   status: RenterApplicationStatus;

@@ -1,5 +1,5 @@
 "use client";
-import Navbar from "@/components/__shared/Navbar";
+import Navbar from "@/components/__shared/ui/Navbar";
 import React, { useMemo } from "react";
 import CartView from "./components/CartView";
 

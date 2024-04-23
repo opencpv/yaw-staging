@@ -3,13 +3,13 @@ import { useState } from "react";
 import SavedSearchCard from "./components/SavedSearchCard";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
-import ListingCard from "@/components/__shared/listing/ListingCard";
+import ListingCard from "@/components/__shared/ui/listing/ListingCard";
 import ContactPreferenceToggle from "./components/ContactPreferenceToggle";
 import { useFetchUserFavorites } from "./services";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import SomethingWentWrong from "@/app/components/SomethingWentWrong";
+import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
 import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
-import EmptyState from "@/components/__shared/ui/EmptyState";
+import EmptyState from "@/components/__shared/ui/states/EmptyState";
 import { getListingProps } from "@/lib/enum";
 
 export default function FavoritePage() {

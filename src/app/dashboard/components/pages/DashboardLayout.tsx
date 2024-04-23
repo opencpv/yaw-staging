@@ -5,7 +5,7 @@ import Pagination from "../../components/pagination";
 import { useEffect, useState } from "react";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import CompleteYourLogin from "../../components/CompleteYourLogin";
-import { ClientOnly } from "@/components/ui/ClientOnly";
+import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
 import { usePathname, useRouter } from "next/navigation";
 import { useNotificationStore } from "@/store/dashboard/notificationStore";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";

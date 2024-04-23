@@ -1,16 +1,16 @@
 "use client";
-import OptionFilterTabs from "@/components/__shared/OptionFilterTabs";
+import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
 import Select from "../../components/shared/ui/Select";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
-import ListingCard from "@/components/__shared/listing/ListingCard";
+import ListingCard from "@/components/__shared/ui/listing/ListingCard";
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
 import ContactPreferenceToggle from "../favourites/components/ContactPreferenceToggle";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useFetchRenterBookmarks } from "../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
-import SomethingWentWrong from "@/app/components/SomethingWentWrong";
-import EmptyState from "@/components/__shared/ui/EmptyState";
+import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
+import EmptyState from "@/components/__shared/ui/states/EmptyState";
 import { getListingProps } from "@/lib/enum";
 
 const MySearch = () => {

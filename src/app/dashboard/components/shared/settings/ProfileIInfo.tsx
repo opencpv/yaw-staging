@@ -5,13 +5,13 @@ import { AiFillInstagram, AiOutlineLink } from "react-icons/ai";
 import { FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
-import Loader from "@/components/__shared/loader/Loader";
+import Loader from "@/components/__shared/ui/loader/Loader";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import {
   usePhoneInputDisclosure,
   useToastDisclosure,
 } from "@/lib/custom-hooks/useCustomDisclosure";
-import InputPhoneNumber from "@/components/__shared/form/InputPhoneNumber";
+import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
 import { useRouter } from "next/navigation";
 import Button from "@/components/__shared/ui/button/Button";
 import { createClient } from "@/lib/utils/supabase/auth/client";

@@ -1,6 +1,6 @@
 import React from "react";
-import PromotionSlider from "../slider/promotion/PromotionSlider";
-import VerticalSliderScrollFixOverlay from "@/components/__shared/sliders/VerticalSliderScrollFixOverlay";
+import PromotionSlider from "../../../components/__shared/ui/sliders/promotion/PromotionSlider";
+import VerticalSliderScrollFixOverlay from "@/components/__shared/ui/sliders/VerticalSliderScrollFixOverlay";
 
 type Props = {
   data: any;

@@ -1,5 +1,5 @@
-import ReportIssue from "@/components/__shared/ReportIssue";
-import SliderWide from "@/components/__shared/sliders/SliderWide";
+import ReportIssue from "@/components/__shared/ui/links/ReportIssue";
+import SliderWide from "@/components/__shared/ui/sliders/SliderWide";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { useDisclosure } from "@nextui-org/react";
 import Image from "next/image";

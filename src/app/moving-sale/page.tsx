@@ -6,7 +6,7 @@ import Select from "../dashboard/components/shared/ui/Select";
 import Button from "@/components/__shared/ui/button/Button";
 import { FaChevronDown } from "react-icons/fa";
 import ItemCard from "./components/item/ItemCard";
-import SliderWide from "@/components/__shared/sliders/SliderWide";
+import SliderWide from "@/components/__shared/ui/sliders/SliderWide";
 import { useSelectDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { useDisclosure } from "@nextui-org/react";
 import ItemsFilterModal from "./components/ItemsFilterModal";

@@ -1,9 +1,9 @@
 import styles from "../../index.module.css";
-import { CustomDatePicker } from "@/app/components/CustomDatePicker";
+import { CustomDatePicker } from "@/components/__shared/ui/form/CustomDatePicker";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import CustomSelect from "@/app/components/CustomSelect";
+import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
 import { BeMyAgentFormType } from "../types";
-import InfoText from "@/app/components/listing-form/components/InfoText";
+import InfoText from "@/components/__shared/ui/listing-form/components/InfoText";
 
 export default function PropertyRequirements() {
   const [agentFormData, setAgentFormData] =

@@ -1,5 +1,5 @@
 "use client";
-import TextInput from "@/components/__shared/form/TextInput";
+import TextInput from "@/components/__shared/ui/form/TextInput";
 import React, {
   ChangeEvent,
   FocusEvent,
@@ -9,10 +9,10 @@ import React, {
   useState,
 } from "react";
 import { useContactForm } from "./hooks/useContactForm";
-import InputPhoneNumber from "@/components/__shared/form/InputPhoneNumber";
+import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
 import { E164Number, CountryCode } from "libphonenumber-js/core";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
-import PreferredContactMethod from "@/components/__shared/form/PreferredContactMethod";
+import PreferredContactMethod from "@/components/__shared/ui/form/PreferredContactMethod";
 
 type Props = {
   phone?: E164Number;

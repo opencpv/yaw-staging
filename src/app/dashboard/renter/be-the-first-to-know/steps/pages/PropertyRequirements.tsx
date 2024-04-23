@@ -1,7 +1,7 @@
 import styles from "../../index.module.css";
-import { CustomDatePicker } from "@/app/components/CustomDatePicker";
-import CustomSelect from "@/app/components/CustomSelect";
-import InfoText from "@/app/components/listing-form/components/InfoText";
+import { CustomDatePicker } from "@/components/__shared/ui/form/CustomDatePicker";
+import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
+import InfoText from "@/components/__shared/ui/listing-form/components/InfoText";
 
 export default function PropertyRequirements() {
   return (

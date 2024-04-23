@@ -4,7 +4,7 @@ import Button from "../../ui/button/Button";
 // import { useMessageStore } from "@/store/dashboard/useMessageStore";
 // import { useUserDetails } from "@/lib/custom-hooks/message/useUserDetails";
 // import { useUserSession } from "@/lib/custom-hooks/database/useUserSession";
-import LoaderDots from "../../loader/LoaderDots";
+import LoaderDots from "../loader/LoaderDots";
 // import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { PiChatCenteredDots } from "react-icons/pi";

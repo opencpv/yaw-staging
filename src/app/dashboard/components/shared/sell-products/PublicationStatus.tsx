@@ -3,7 +3,7 @@ import React from "react";
 import { useSelectDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { cn } from "@nextui-org/react";
 import { BsInfoCircle } from "react-icons/bs";
-import Tooltip from "@/components/ui/Tooltip";
+import Tooltip from "@/components/__shared/ui/Tooltip";
 
 export type ItemPublicationStatus =
   | "active"

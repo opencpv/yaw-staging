@@ -1,4 +1,4 @@
-import OptionFilterTabs from "@/components/__shared/OptionFilterTabs";
+import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
 import { useManagePropertiesStore } from "@/store/dashboard/propertiesStore";
 import React from "react";
 
@@ -6,10 +6,10 @@ type Props = {};
 
 const ManagePropertiesTabs = (props: Props) => {
   const optionSelected = useManagePropertiesStore(
-    (state) => state.filterOption
+    (state) => state.filterOption,
   );
   const handleOptionChange = useManagePropertiesStore(
-    (state) => state.changeOption
+    (state) => state.changeOption,
   );
 
   return (

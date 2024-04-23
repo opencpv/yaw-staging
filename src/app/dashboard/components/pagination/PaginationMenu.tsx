@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import style from "../../Dashboard.module.css";
-import Logo from "@/components/__shared/Logo";
+import Logo from "@/components/__shared/ui/Logo";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { useDashboardMenuStore } from "@/store/navmenu/useDashboardMenuStore";
 import { useHideDocumentScrollBar } from "@/lib/custom-hooks/useWindowEvents";
@@ -12,7 +12,6 @@ import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 const PaginationMenu = () => {
   const { isOpen, setIsOpen } = useDashboardMenuStore();
   const [showShapes, setShowShapes] = useState(false);
-  const [hide, setHide] = useState(false);
   const { currentRole } = useDashboardStore();
   const paginationMenuRef = useRef<HTMLElement>(null);
 
@@ -20,19 +19,17 @@ const PaginationMenu = () => {
 
   useEffect(() => {
     if (isOpen) {
-      setHide(false);
       setTimeout(() => {
         setShowShapes(true);
       }, 2000);
     } else {
       setShowShapes(false);
-      setHide(true);
     }
   }, [isOpen]);
 
   return (
     <section
-      className={`menu-bg ${hide && "hidden"} ${style.paginationMenu} ${
+      className={`menu-bg ${style.paginationMenu} ${
         isOpen
           ? `${style.paginationMenuVisible} ${showShapes && "menu-bg-shapes"}`
           : `${style.paginationMenuHidden}`

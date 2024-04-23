@@ -1,6 +1,6 @@
 import { LoginButton } from "./LoginButton";
 import { redirect } from "next/navigation";
-import Logo from "@/components/__shared/Logo";
+import Logo from "@/components/__shared/ui/Logo";
 import ButtonMenu from "@/components/__shared/ui/button/ButtonMenu";
 import { createClient } from "@/lib/utils/supabase/auth/server";
 

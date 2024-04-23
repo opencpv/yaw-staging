@@ -1,13 +1,13 @@
 "use client";
 import React from "react";
-import ListingCard from "@/components/__shared/listing/ListingCard";
+import ListingCard from "@/components/__shared/ui/listing/ListingCard";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useFetchProperties } from "../services";
 import PropertiesEmptyState from "./PropertiesEmptyState";
 import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
-import SomethingWentWrong from "@/app/components/SomethingWentWrong";
+import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { getListingProps } from "@/lib/enum";

@@ -1,12 +1,12 @@
-import TextFieldInput from "@/app/components/TextFieldInput";
+import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
 import { styled } from "@stitches/react";
-import CustomRadioInput from "@/app/components/CustomRadioInput";
-import CustomSelect from "@/app/components/CustomSelect";
+import CustomRadioInput from "@/components/__shared/ui/form/CustomRadioInput";
+import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
 import React from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import styles from "../../index.module.css";
 import { BeMyAgentFormType } from "../types";
-import CustomTextAreaInput from "@/app/components/CustomTextAreaInput";
+import CustomTextAreaInput from "@/components/__shared/ui/form/CustomTextAreaInput";
 
 type Props = {};
 

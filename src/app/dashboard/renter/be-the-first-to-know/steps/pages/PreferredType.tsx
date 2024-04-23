@@ -1,8 +1,8 @@
 import { styled } from "@stitches/react";
 import { useState } from "react";
-import Amenity from "@/app/components/listing-form/components/Amenity";
+import Amenity from "@/components/__shared/ui/listing-form/components/Amenity";
 import styles from "../../index.module.css";
-import InfoText from "@/app/components/listing-form/components/InfoText";
+import InfoText from "@/components/__shared/ui/listing-form/components/InfoText";
 import { useField } from "formik";
 import { properties } from "@/app/dashboard/components/shared/content";
 

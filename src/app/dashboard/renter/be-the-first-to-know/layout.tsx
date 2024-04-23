@@ -1,15 +1,15 @@
 "use client";
 import LargeButton from "../../lister/properties/components/LargeButton";
 import { MdOutlineLibraryAdd } from "react-icons/md";
-import ArrowLink from "@/app/components/link/ArrowLink";
+import ArrowLink from "@/components/__shared/ui/links/ArrowLink";
 import { usePathname } from "next/navigation";
 import { FaChevronLeft } from "react-icons/fa";
 import Link from "next/link";
-import ScrollTop from "@/components/__shared/ScrollTop";
+import ScrollTop from "@/components/__shared/ui/ScrollTop";
 import Button from "@/components/__shared/ui/button/Button";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import FirstToKnowModal from "./steps/FirstToKnowModal";
-import FramerWrapper from "@/components/__shared/FramerWrapper";
+import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 import { fadeUp } from "@/lib/animations";
 
 const BeTheFirstToKnowLayout = ({

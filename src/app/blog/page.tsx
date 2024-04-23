@@ -1,6 +1,6 @@
 import React from "react";
 import OtherPosts from "./components/post/OtherPosts";
-import SliderWide from "@/components/__shared/sliders/SliderWide";
+import SliderWide from "@/components/__shared/ui/sliders/SliderWide";
 import CategoryCard from "./components/CategoryCard";
 import Authors from "./components/author/Authors";
 import SubscribeToBlogButton from "./components/SubscribeToBlogButton";
@@ -15,7 +15,7 @@ import {
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import slugify from "@/lib/utils/slugify";
 import { fadeIn } from "@/lib/animations";
-import FramerWrapper from "@/components/__shared/FramerWrapper";
+import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 
 const page = async () => {
   const initialBlogData: any = await loadQuery<SanityDocument[]>(BLOG_QUERY);

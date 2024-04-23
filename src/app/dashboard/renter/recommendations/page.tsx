@@ -6,10 +6,10 @@ import { revalidationRule, fetchOrderRule } from "@/lib/utils/fetchRules";
 import { useFetchTableWithInfiniteScroll } from "@/lib/custom-hooks/useFetch";
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
-import ListingCard from "@/components/__shared/listing/ListingCard";
+import ListingCard from "@/components/__shared/ui/listing/ListingCard";
 import demoimages from "@/enum/temp/images";
 import { Switch } from "@nextui-org/react";
-import Toggle from "@/components/ui/Toggle";
+import Toggle from "@/components/__shared/ui/Toggle";
 import ContactPreferenceToggle from "../favourites/components/ContactPreferenceToggle";
 
 export default function Page() {

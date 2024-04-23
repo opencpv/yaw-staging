@@ -1,4 +1,4 @@
-import InputWithSavedSearch from "@/components/__shared/form/InputWithSavedSearch";
+import InputWithSavedSearch from "@/components/__shared/ui/form/InputWithSavedSearch";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import React from "react";

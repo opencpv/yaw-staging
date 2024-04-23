@@ -7,7 +7,7 @@ import RtApplicationStatus from "./RtApplicationStatus";
 import { useDaysDifference } from "@/lib/custom-hooks/useDaysDifference";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import { useDisclosure } from "@nextui-org/react";
-import DestructiveModal from "@/components/__shared/modals/DestructiveModal";
+import DestructiveModal from "@/components/__shared/ui/modals/DestructiveModal";
 import { RenterApplicationsInterface } from "../../../../../../interfaces";
 import {
   TableBodySm,

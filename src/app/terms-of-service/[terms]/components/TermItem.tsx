@@ -1,4 +1,4 @@
-import RichTextRenderer from "@/app/components/RichTextRenderer";
+import RichTextRenderer from "@/components/__shared/RichTextRenderer";
 
 const TermItem = ({ data, index }: { data: any; index: number }) => {
   const Bullet = () => (

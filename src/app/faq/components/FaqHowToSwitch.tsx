@@ -1,4 +1,4 @@
-import OptionFilterTabs from "@/components/__shared/OptionFilterTabs";
+import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
 import { useFaqHowToSwitchStore } from "@/store/faq/useFaqStore";
 import React, { useRef } from "react";
 import { useScrollIntoView } from "@/lib/custom-hooks/useWindowEvents";

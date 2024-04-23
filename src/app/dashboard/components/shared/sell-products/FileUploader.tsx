@@ -1,5 +1,5 @@
-import CaUploadIcon from "@/app/components/icons/CaUploadIcon";
-import ErrorMessage from "@/components/__shared/ui/ErrorMessage";
+import CaUploadIcon from "@/components/__shared/ui/icons/CaUploadIcon";
+import ErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
 import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { cn } from "@/lib/utils";
 import { useField } from "formik";

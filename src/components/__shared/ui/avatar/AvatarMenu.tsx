@@ -18,7 +18,7 @@ import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { useUserSession } from "@/lib/custom-hooks/database/useUserSession";
 import { createClient } from "@/lib/utils/supabase/auth/client";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import Tooltip from "@/components/ui/Tooltip";
+import Tooltip from "@/components/__shared/ui/Tooltip";
 
 type Props = {
   /** ClassName for the avatar  */

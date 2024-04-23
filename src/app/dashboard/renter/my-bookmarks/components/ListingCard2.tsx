@@ -22,10 +22,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import CaDashEye from "../../../components/icons/CaDashEye";
-import CaDashChecked from "../../../components/icons/CaDashChecked";
-import CaDashDelete from "../../../components/icons/CaDashDelete";
-import CaDashEdit from "../../../components/icons/CaDashEdit";
+import CaDashEye from "../../../../../components/__shared/ui/icons/CaDashEye";
+import CaDashChecked from "../../../../../components/__shared/ui/icons/CaDashChecked";
+import CaDashDelete from "../../../../../components/__shared/ui/icons/CaDashDelete";
+import CaDashEdit from "../../../../../components/__shared/ui/icons/CaDashEdit";
 import { ListingCardInterface } from "../../../../../../interfaces";
 
 const ListingCard2 = (props: ListingCardInterface) => {
@@ -35,7 +35,7 @@ const ListingCard2 = (props: ListingCardInterface) => {
     setIsLiked((prevState) => !prevState);
   };
   return (
-    <div className={`min-w-80 relative cursor-default ${props.className}`}>
+    <div className={`relative min-w-80 cursor-default ${props.className}`}>
       <Swiper
         pagination={{
           clickable: true,

@@ -2,11 +2,11 @@ import Image from "next/image";
 import CaAgentNoMatches from "./icons/CaAgentNoMatches";
 import ScheduleVirtualTourModal from "./ScheduleVirtualTourModal";
 import SchedulePhysicalTourModal from "./SchedulePhysicalTourModal";
-import ApplicationForm from "@/app/components/application-form";
+import ApplicationForm from "@/components/__shared/ui/application-form";
 import styles from "./index.module.css";
 import ViewModal from "./ViewModal";
 import DeleteModal from "./DeleteModal";
-import InfoText from "@/app/components/listing-form/components/InfoText";
+import InfoText from "@/components/__shared/ui/listing-form/components/InfoText";
 import React, { useEffect, useState } from "react";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import {

@@ -1,11 +1,11 @@
-import CustomTextAreaInput from "@/app/components/CustomTextAreaInput";
+import CustomTextAreaInput from "@/components/__shared/ui/form/CustomTextAreaInput";
 import styles from "../../index.module.css";
-import TextFieldInput from "@/app/components/TextFieldInput";
+import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
-import InputPhoneNumber from "@/components/__shared/form/InputPhoneNumber";
-import Toggle from "@/components/ui/Toggle";
+import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
+import Toggle from "@/components/__shared/ui/Toggle";
 import Checkbox from "@/app/dashboard/components/shared/ui/Checkbox";
-import OptionFilterTabs from "@/components/__shared/OptionFilterTabs";
+import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
 import { MdOutlineMailOutline, MdOutlineWhatsapp } from "react-icons/md";
 import { useField } from "formik";
 

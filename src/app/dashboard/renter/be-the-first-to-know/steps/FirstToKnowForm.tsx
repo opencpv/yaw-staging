@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { ClientOnly } from "@/components/ui/ClientOnly";
+import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { cn } from "@/lib/utils";
 import { firstToKnowStepsStore } from "@/store/dashboard/firstToKnowStepsStore";
-import StepsModalSideImg from "@/components/__shared/modals/steps/StepsModalSideImg";
+import StepsModalSideImg from "@/components/__shared/ui/modals/steps/StepsModalSideImg";
 import { format } from "date-fns";
 import { enUS } from "date-fns/locale";
 import Intro from "./pages/Intro";

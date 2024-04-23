@@ -1,5 +1,5 @@
 "use client";
-import CustomSelect from "@/app/components/CustomSelect";
+import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
 import { Button } from "@nextui-org/react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import * as Dialog from "@radix-ui/react-dialog";

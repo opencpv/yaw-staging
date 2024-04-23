@@ -4,7 +4,7 @@ import { Form, Formik } from "formik";
 import GetNotifiedInputTabs from "./GetNotifiedInputTabs";
 import { useGetNotifiedStore } from "./store";
 import PhoneInputWithCountrySelect from "react-phone-number-input";
-import InputPhoneNumber from "@/components/__shared/form/InputPhoneNumber";
+import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
 import { useContactForm } from "@/app/contact/components/forms/hooks/useContactForm";
 import { styled } from "@stitches/react";
 import styles from "../index.module.css";

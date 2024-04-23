@@ -1,5 +1,5 @@
 "use client";
-import ReportIssue from "@/components/__shared/ReportIssue";
+import ReportIssue from "@/components/__shared/ui/links/ReportIssue";
 import ButtonCall from "@/components/__shared/ui/button/ButtonCall";
 import ButtonMessage from "@/components/__shared/ui/button/ButtonMessage";
 import ButtonWhatsApp from "@/components/__shared/ui/button/ButtonWhatsApp";
@@ -9,7 +9,7 @@ import React from "react";
 import { FaStar } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { fadeUp } from "@/lib/animations";
-import Rating from "@/components/__shared/listing/Rating";
+import Rating from "@/components/__shared/ui/listing/Rating";
 
 type Props = {
   name: string;

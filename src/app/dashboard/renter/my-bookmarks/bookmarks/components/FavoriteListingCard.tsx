@@ -12,10 +12,10 @@ import { Pagination, Navigation } from "swiper/modules";
 import Link from "next/link";
 import Image from "next/image";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-import ListingInfo from "@/components/__shared/listing/ListingInfo";
-import ListingTags from "@/components/__shared/listing/ListingTags";
+import ListingInfo from "@/components/__shared/ui/listing/ListingInfo";
+import ListingTags from "@/components/__shared/ui/listing/ListingTags";
 import { ListingCardInterface } from "../../../../../../../interfaces";
-import CaDashEye from "../../../../components/icons/CaDashEye";
+import CaDashEye from "../../../../../../components/__shared/ui/icons/CaDashEye";
 import { MdDelete } from "react-icons/md";
 
 const FavoriteListingCard = (props: Partial<ListingCardInterface>) => {

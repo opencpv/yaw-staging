@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import CaArrowBackLong from "../icons/CaArrowBackLong";
-import RichTextRenderer from "@/app/components/RichTextRenderer";
+import RichTextRenderer from "@/components/__shared/RichTextRenderer";
 import Image from "next/image";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 

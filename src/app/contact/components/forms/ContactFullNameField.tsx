@@ -1,5 +1,5 @@
 "use client";
-import TextInput from "@/components/__shared/form/TextInput";
+import TextInput from "@/components/__shared/ui/form/TextInput";
 import React, {
   ChangeEvent,
   FocusEvent,

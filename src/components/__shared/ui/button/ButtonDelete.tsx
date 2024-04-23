@@ -2,7 +2,7 @@ import React from "react";
 import Button from "./Button";
 import { FiTrash2 } from "react-icons/fi";
 import { cn } from "@/lib/utils";
-import DestructiveModal from "../../modals/DestructiveModal";
+import DestructiveModal from "../modals/DestructiveModal";
 import { useDisclosure } from "@nextui-org/react";
 
 type Props = {

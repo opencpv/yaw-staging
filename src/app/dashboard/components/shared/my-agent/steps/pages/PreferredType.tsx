@@ -2,10 +2,10 @@ import { styled } from "@stitches/react";
 import { BsBuilding, BsHouses } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import Amenity from "../../../../../../components/listing-form/components/Amenity";
+import Amenity from "../../../../../../../components/__shared/ui/listing-form/components/Amenity";
 import styles from "../../index.module.css";
 
-import InfoText from "../../../../../../components/listing-form/components/InfoText";
+import InfoText from "../../../../../../../components/__shared/ui/listing-form/components/InfoText";
 import { BeMyAgentFormType } from "../types";
 import { HiOutlineBuildingOffice, HiOutlineHome } from "react-icons/hi2";
 import { IoHomeOutline } from "react-icons/io5";

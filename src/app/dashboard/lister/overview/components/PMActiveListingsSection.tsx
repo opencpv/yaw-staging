@@ -1,5 +1,5 @@
 "use client";
-import OptionFilterTabs from "@/components/__shared/OptionFilterTabs";
+import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
 import React, { useState } from "react";
 import ActiveListingCard from "./ActiveListingCard";
 import Button from "@/components/__shared/ui/button/Button";

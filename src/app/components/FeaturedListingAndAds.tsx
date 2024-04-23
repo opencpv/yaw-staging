@@ -1,16 +1,16 @@
 "use client";
-import ListingCard from "@/components/__shared/listing/ListingCard";
-import SliderGrid from "@/components/__shared/sliders/SliderGrid";
+import ListingCard from "@/components/__shared/ui/listing/ListingCard";
+import SliderGrid from "@/components/__shared/ui/sliders/SliderGrid";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
 import React from "react";
 import AdsSliderColumn from "./AdsSliderColumn";
-import ArrowLink from "./link/ArrowLink";
-import SliderWide from "@/components/__shared/sliders/SliderWide";
+import ArrowLink from "../../components/__shared/ui/links/ArrowLink";
+import SliderWide from "@/components/__shared/ui/sliders/SliderWide";
 import { cn } from "@/lib/utils";
 import { useFetchFeaturedListings } from "../properties/services";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import SomethingWentWrong from "./SomethingWentWrong";
+import SomethingWentWrong from "../../components/__shared/ui/states/SomethingWentWrong";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import { getListingProps } from "@/lib/enum";
 

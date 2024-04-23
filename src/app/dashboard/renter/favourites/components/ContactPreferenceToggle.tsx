@@ -1,5 +1,5 @@
 "use client";
-import Toggle from "@/components/ui/Toggle";
+import Toggle from "@/components/__shared/ui/Toggle";
 import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { useAppStore } from "@/store/dashboard/AppStore";

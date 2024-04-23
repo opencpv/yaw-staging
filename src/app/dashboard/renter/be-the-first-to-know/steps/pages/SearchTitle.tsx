@@ -1,5 +1,5 @@
 import styles from "../../index.module.css";
-import TextFieldInput from "@/app/components/TextFieldInput";
+import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
 
 const SearchTitle = () => {
   return (

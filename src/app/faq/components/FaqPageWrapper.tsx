@@ -1,10 +1,10 @@
 "use client";
-import Footer from "@/components/__shared/footer/Footer";
+import Footer from "@/components/__shared/ui/footer/Footer";
 import FaqHowToSwitch from "../components/FaqHowToSwitch";
 import FaqPage from "../components/pages/FaqPage";
 import { useFaqHowToSwitchStore } from "@/store/faq/useFaqStore";
 import HowToPage from "../components/pages/HowToPage";
-import Navbar from "@/components/__shared/Navbar";
+import Navbar from "@/components/__shared/ui/Navbar";
 import FaqHeader from "./FaqHeader";
 import { LowerCase } from "@/lib/utils/stringManipulation";
 

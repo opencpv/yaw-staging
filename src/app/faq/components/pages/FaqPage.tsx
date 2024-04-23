@@ -1,7 +1,7 @@
 import React from "react";
 import FAQBrowser from "../FAQBrowser";
 import ContactSection from "../ContactSection";
-import SurveyButton from "@/components/survey/SurveyButton";
+import SurveyButton from "@/components/__shared/ui/survey/SurveyButton";
 
 type Props = {
   data: any;

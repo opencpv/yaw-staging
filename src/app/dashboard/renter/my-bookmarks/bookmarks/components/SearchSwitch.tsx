@@ -1,4 +1,4 @@
-import OptionFilterTabs from "@/components/__shared/OptionFilterTabs";
+import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
 import { useFaqHowToSwitchStore } from "@/store/faq/useFaqStore";
 import React, { useRef } from "react";
 import { useScrollIntoView } from "@/lib/custom-hooks/useWindowEvents";
@@ -15,7 +15,7 @@ const SearchSwitch = (props: Props) => {
   useScrollIntoView(tabRef, "center");
 
   return (
-    <div className="p-3 mt-8 mb-6 border rounded-xl w-fit">
+    <div className="mb-6 mt-8 w-fit rounded-xl border p-3">
       <OptionFilterTabs
         options={["Favorites", "Saved"]}
         selectedKey={activePage}

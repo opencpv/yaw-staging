@@ -9,11 +9,11 @@ import NotificationsPopover from "../../renter/notifications/components/Notifica
 import { useAppStore } from "@/store/dashboard/AppStore";
 import style from "../../Dashboard.module.css";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import Logo from "@/components/__shared/Logo";
+import Logo from "@/components/__shared/ui/Logo";
 import { AiOutlineSearch } from "react-icons/ai";
 import { IoIosCloseCircle } from "react-icons/io";
 import { useRef, useState } from "react";
-import Loader from "@/components/__shared/loader/Loader";
+import Loader from "@/components/__shared/ui/loader/Loader";
 import { useDashboardMenuStore } from "@/store/navmenu/useDashboardMenuStore";
 import Avatar from "@/components/__shared/ui/avatar/Avatar";
 import { getFirstWord } from "@/lib/utils/stringManipulation";

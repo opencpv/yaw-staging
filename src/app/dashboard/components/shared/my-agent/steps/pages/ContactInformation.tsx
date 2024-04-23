@@ -1,13 +1,13 @@
 import { styled } from "@stitches/react";
 import React from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import TextFieldInput from "@/app/components/TextFieldInput";
-import CountryInput from "@/components/__shared/CountryInput";
-import CustomTextAreaInput from "@/app/components/CustomTextAreaInput";
+import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
+import CountryInput from "@/components/__shared/ui/form/CountryInput";
+import CustomTextAreaInput from "@/components/__shared/ui/form/CustomTextAreaInput";
 import styles from "../../index.module.css";
 import { BeMyAgentFormType } from "../types";
-import OptionFilterTabs from "@/components/__shared/OptionFilterTabs";
-import InputPhoneNumber from "@/components/__shared/form/InputPhoneNumber";
+import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
+import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { MdOutlineMailOutline, MdOutlineWhatsapp } from "react-icons/md";
 import { E164Number } from "libphonenumber-js/core";

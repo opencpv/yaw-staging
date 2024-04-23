@@ -2,8 +2,8 @@
 import React, { useEffect } from "react";
 import Button from "@/components/__shared/ui/button/Button";
 import { MdOutlineLibraryAdd } from "react-icons/md";
-import { ClientOnly } from "@/components/ui/ClientOnly";
-import StepsModal from "@/components/__shared/modals/steps/StepsModal";
+import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
+import StepsModal from "@/components/__shared/ui/modals/steps/StepsModal";
 import { Form, Formik } from "formik";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { FirstToKnowFormType } from "./types";
