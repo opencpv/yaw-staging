@@ -8,7 +8,7 @@ type Props = {
   value?: string | null;
   name?: string;
   onChangeValue?: (val: string) => void;
-  onChange?: (val: any) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (val?: any) => void;
   className?: string;
   labelClassName?: string;

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useContactForm } from "./forms/hooks/useContactForm";
 import FormGeneral from "./forms/FormGeneral";
 import FormAdvertise from "./forms/FormAdvertise";
@@ -9,6 +9,12 @@ import FormWriters from "./forms/FormWriters";
 type Props = {};
 
 const ContactForm = (props: Props) => {
+  useEffect(() => {
+    return () => {
+      sessionStorage.removeItem("contactFormSession");
+    };
+  }, []);
+
   const { activeTab } = useContactForm();
 
   if (activeTab === "general") return <FormGeneral />;

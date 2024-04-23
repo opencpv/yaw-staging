@@ -15,6 +15,7 @@ export default function PropertyRequirements() {
       [name]: value,
     });
   };
+
   return (
     <>
       <h2 className={`${styles.title}`}>Property Requirements</h2>

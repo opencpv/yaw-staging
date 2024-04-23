@@ -1,6 +1,6 @@
 "use client";
 import { Formik, Form, ErrorMessage } from "formik";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import Loader from "@/components/__shared/ui/loader/Loader";
 import CustomErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
@@ -23,6 +23,12 @@ const ContactForm = () => {
   const { onOpen } = useToastDisclosure();
 
   const { validate } = useContactForm();
+
+  useEffect(() => {
+    return () => {
+      sessionStorage.removeItem("contactFormSession");
+    };
+  }, []);
 
   return (
     <Formik
@@ -48,12 +54,13 @@ const ContactForm = () => {
             },
           ])
           .select()
-          .then(({ data, error }) => {
+          .then(({ error }) => {
             setLoading(false);
             if (error) {
               onOpen("Something went wrong", "error");
             } else {
               resetForm();
+              sessionStorage.removeItem("contactFormSession");
               setPhone(undefined);
               onOpen("Successfully sent", "success");
             }
@@ -85,9 +92,12 @@ const ContactForm = () => {
             </div>
             <div>
               <ContactMessageField
+                value={values.message}
                 placeholder="How can we help you?"
                 className="w-full min-w-full"
                 error={errors.message}
+                onChange={handleChange}
+                onBlur={handleBlur}
               />
               <CustomErrorMessage className="mt-2">
                 <ErrorMessage name="message" error={errors.message} />

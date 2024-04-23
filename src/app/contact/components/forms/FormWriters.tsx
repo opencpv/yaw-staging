@@ -16,12 +16,21 @@ import {
   useToastDisclosure,
 } from "@/lib/custom-hooks/useCustomDisclosure";
 import CustomErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
+import capitalizeName from "@/lib/utils/stringManipulation";
 
 type Props = {};
 
 const FormWriters = (props: Props) => {
-  const { activeTab, file, formRef, loading, setLoading, tableName, validate } =
-    useContactForm();
+  const {
+    activeTab,
+    file,
+    formRef,
+    loading,
+    setLoading,
+    tableName,
+    validate,
+    contactFormSession,
+  } = useContactForm();
 
   const { phone, setPhone, handleCountryChange, handlePhone } =
     usePhoneInputDisclosure();
@@ -32,19 +41,16 @@ const FormWriters = (props: Props) => {
     <Formik
       initialValues={{
         contactType: "Writers",
-        fullname: "",
-        email: "",
-        phone: "",
-        message: "",
-        fileUrl: "",
+        fullname: contactFormSession.fullname,
+        email: contactFormSession.email,
+        message: contactFormSession.message,
+        phone: contactFormSession.phone,
+        fileUrl: contactFormSession.fileUrl,
       }}
       validationSchema={ContactSchema}
-      validateOnChange={false}
-      validateOnBlur={false}
-      validate={(values) => validate(values, phone)}
+      validate={(values) => validate(values, contactFormSession.phone)}
       onSubmit={(values, { resetForm }) => {
-        values.contactType = activeTab;
-        values.phone = phone as E164Number;
+        values.contactType = capitalizeName(activeTab);
         values.fileUrl = file;
 
         sendContactUsEmail(formRef.current);
@@ -53,12 +59,12 @@ const FormWriters = (props: Props) => {
           .from(tableName)
           .insert([
             {
-              contactType: values.contactType,
+              contact_type: values.contactType,
               fullname: values.fullname,
               email: values.email,
               phone: values.phone,
               message: values.message,
-              fileUrl: values.fileUrl,
+              file_url: values.fileUrl,
             },
           ])
           .select()
@@ -68,6 +74,8 @@ const FormWriters = (props: Props) => {
               onOpen("Something went wrong", "error");
             } else {
               resetForm();
+              sessionStorage.removeItem("contactFormSession");
+
               setPhone(undefined);
               onOpen("Successfully sent", "success");
             }
@@ -93,7 +101,7 @@ const FormWriters = (props: Props) => {
                 </div>
                 <div className="form-div">
                   <ContactPhoneField
-                    phone={phone}
+                    phone={values.phone}
                     handleBlur={handleBlur}
                     handleChange={handleChange}
                     handlePhone={handlePhone}
@@ -102,9 +110,12 @@ const FormWriters = (props: Props) => {
                 </div>
                 <div>
                   <ContactMessageField
+                    value={values.message}
                     placeholder="How can we help you?"
                     className="w-full min-w-full"
                     error={errors.message}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
                   />
                   <CustomErrorMessage className="mt-2">
                     <ErrorMessage name="message" error={errors.message} />

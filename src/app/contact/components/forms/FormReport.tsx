@@ -4,7 +4,6 @@ import { E164Number } from "libphonenumber-js/core";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { sendContactUsEmail } from "../../api";
 import TextInput from "@/components/__shared/ui/form/TextInput";
-import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
 import Loader from "@/components/__shared/ui/loader/Loader";
 import ContactSchema from "./lib/contactSchema";
 import { useContactForm } from "./hooks/useContactForm";
@@ -12,19 +11,28 @@ import ContactMessageField from "./ContactMessageField";
 import ContactUploadField from "./ContactUploadField";
 import ContactSubmitButton from "./ContactSubmitButton";
 import ContactFullNameField from "./ContactFullNameField";
-import ContactEmailField from "./ContacEmailField";
 import ContactPhoneField from "./ContactPhoneField";
 import {
   usePhoneInputDisclosure,
   useToastDisclosure,
 } from "@/lib/custom-hooks/useCustomDisclosure";
 import CustomErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
+import capitalizeName from "@/lib/utils/stringManipulation";
 
 type Props = {};
 
 const FormReport = (props: Props) => {
-  const { activeTab, file, formRef, loading, setLoading, tableName, validate } =
-    useContactForm();
+  const {
+    activeTab,
+    file,
+    formRef,
+    loading,
+    setLoading,
+    tableName,
+    validate,
+    contactFormSession,
+    handleSessionChange,
+  } = useContactForm();
 
   const { phone, setPhone, handleCountryChange, handlePhone } =
     usePhoneInputDisclosure();
@@ -35,20 +43,17 @@ const FormReport = (props: Props) => {
     <Formik
       initialValues={{
         contactType: "Report",
-        fullname: "",
-        email: "",
-        message: "",
-        phone: "",
-        fileUrl: "",
-        reportLink: "",
+        fullname: contactFormSession.fullname,
+        email: contactFormSession.email,
+        phone: contactFormSession.phone,
+        message: contactFormSession.message,
+        fileUrl: contactFormSession.fileUrl,
+        reportLink: contactFormSession.reportLink,
       }}
       validationSchema={ContactSchema}
-      validateOnChange={false}
-      validateOnBlur={false}
-      validate={(values) => validate(values, phone)}
+      validate={(values) => validate(values, contactFormSession.phone)}
       onSubmit={(values, { resetForm }) => {
-        values.contactType = activeTab;
-        values.phone = phone as E164Number;
+        values.contactType = capitalizeName(activeTab);
         values.fileUrl = file;
 
         sendContactUsEmail(formRef.current);
@@ -57,22 +62,24 @@ const FormReport = (props: Props) => {
           .from(tableName)
           .insert([
             {
-              contactType: values.contactType,
+              contact_type: values.contactType,
               fullname: values.fullname,
               email: values.email,
               phone: values.phone,
               message: values.message,
-              fileUrl: values.fileUrl,
-              reportLink: values.reportLink,
+              file_url: values.fileUrl,
+              report_link: values.reportLink,
             },
           ])
           .select()
-          .then(({ data, error }) => {
+          .then(({ error }) => {
             setLoading(false);
             if (error) {
+              console.log(error);
               onOpen("Something went wrong", "error");
             } else {
               resetForm();
+              sessionStorage.removeItem("contactFormSession");
               setPhone(undefined);
               onOpen("Successfully sent", "success");
             }
@@ -98,7 +105,7 @@ const FormReport = (props: Props) => {
                 </div>
                 <div className="form-div">
                   <ContactPhoneField
-                    phone={phone}
+                    phone={values.phone}
                     handleBlur={handleBlur}
                     handleChange={handleChange}
                     handlePhone={handlePhone}
@@ -110,6 +117,9 @@ const FormReport = (props: Props) => {
                     placeholder="How can we help you?"
                     className="w-full min-w-full"
                     error={errors.message}
+                    value={values.message}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
                   />
                   <CustomErrorMessage className="mt-2">
                     <ErrorMessage name="message" error={errors.message} />
@@ -120,8 +130,11 @@ const FormReport = (props: Props) => {
                 <div className="form-div">
                   <TextInput
                     name="reportLink"
-                    value={values.reportLink}
-                    onChange={handleChange}
+                    value={contactFormSession.reportLink || values.reportLink}
+                    onChange={(e) => {
+                      handleChange(e);
+                      handleSessionChange("reportLink", e.target.value);
+                    }}
                     placeholder="Paste URL link here (optional)"
                     className="p-3 py-7 placeholder:text-neutral-400"
                   />

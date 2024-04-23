@@ -17,12 +17,22 @@ import {
   useToastDisclosure,
 } from "@/lib/custom-hooks/useCustomDisclosure";
 import CustomErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
+import capitalizeName from "@/lib/utils/stringManipulation";
 
 type Props = {};
 
 const FormAdvertise = (props: Props) => {
-  const { activeTab, file, formRef, loading, setLoading, tableName, validate } =
-    useContactForm();
+  const {
+    activeTab,
+    file,
+    formRef,
+    loading,
+    setLoading,
+    tableName,
+    validate,
+    contactFormSession,
+    handleSessionChange,
+  } = useContactForm();
 
   const { phone, setPhone, handleCountryChange, handlePhone } =
     usePhoneInputDisclosure();
@@ -32,21 +42,18 @@ const FormAdvertise = (props: Props) => {
   return (
     <Formik
       initialValues={{
-        contactType: "Advertise",
-        fullname: "",
-        email: "",
-        message: "",
-        phone: "",
-        companyName: "",
-        fileUrl: "",
+        contactType: "",
+        companyName: contactFormSession.companyName,
+        fullname: contactFormSession.fullname,
+        email: contactFormSession.email,
+        message: contactFormSession.message,
+        phone: contactFormSession.phone,
+        fileUrl: contactFormSession.fileUrl,
       }}
       validationSchema={ContactSchema}
-      validateOnChange={false}
-      validateOnBlur={false}
-      validate={(values) => validate(values, phone)}
+      validate={(values) => validate(values, contactFormSession.phone)}
       onSubmit={(values, { resetForm }) => {
-        values.contactType = activeTab;
-        values.phone = phone as E164Number;
+        values.contactType = capitalizeName(activeTab);
         values.fileUrl = file;
 
         sendContactUsEmail(formRef.current);
@@ -55,13 +62,13 @@ const FormAdvertise = (props: Props) => {
           .from(tableName)
           .insert([
             {
-              contactType: values.contactType,
+              contact_type: values.contactType,
               fullname: values.fullname,
               email: values.email,
               phone: values.phone,
               message: values.message,
-              fileUrl: values.fileUrl,
-              companyName: "",
+              file_url: values.fileUrl,
+              company_name: values.companyName,
             },
           ])
           .select()
@@ -71,6 +78,8 @@ const FormAdvertise = (props: Props) => {
               onOpen("Something went wrong", "error");
             } else {
               resetForm();
+              sessionStorage.removeItem("contactFormSession");
+
               setPhone(undefined);
               onOpen("Successfully sent", "success");
             }
@@ -99,14 +108,17 @@ const FormAdvertise = (props: Props) => {
                     name="companyName"
                     value={values.companyName}
                     label="Company Name"
-                    onChange={handleChange}
+                    onChange={(e) => {
+                      handleChange(e);
+                      handleSessionChange("companyName", e.target.value);
+                    }}
                     onBlur={handleBlur}
                     className="p-3 py-7"
                   />
                 </div>
                 <div className="form-div">
                   <ContactPhoneField
-                    phone={phone}
+                    phone={values.phone}
                     handleBlur={handleBlur}
                     handleChange={handleChange}
                     handlePhone={handlePhone}
@@ -115,8 +127,11 @@ const FormAdvertise = (props: Props) => {
                 </div>
                 <div>
                   <ContactMessageField
+                    value={values.message}
                     className="w-full min-w-full"
                     error={errors.message}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
                   />
                   <CustomErrorMessage className="mt-2">
                     <ErrorMessage name="message" error={errors.message} />

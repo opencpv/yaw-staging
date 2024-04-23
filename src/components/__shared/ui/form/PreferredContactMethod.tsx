@@ -24,6 +24,7 @@ type Props = {
     | (((value: E164Number | undefined) => void) &
         React.FormEventHandler<HTMLInputElement>)
     | undefined;
+  emailValue?: string;
 };
 
 const PreferredContactMethod = ({
@@ -34,6 +35,7 @@ const PreferredContactMethod = ({
   onChangePhone,
   handleCountryChange,
   value,
+  emailValue,
   onChange,
   ...props
 }: Props & React.HTMLProps<HTMLInputElement>) => {
@@ -56,7 +58,7 @@ const PreferredContactMethod = ({
           selectedKey={selectedKey}
           onSelectionChange={(key) => {
             helpers.setValue(key as any);
-            onSelectionChange && onSelectionChange(key as Contact);
+            onSelectionChange?.(key as Contact);
           }}
           radius="large"
           padding="medium"
@@ -70,6 +72,7 @@ const PreferredContactMethod = ({
         }
       >
         <TextFieldInput
+          value={emailValue as string}
           name="email"
           type="email"
           placeholder="Enter your email address"

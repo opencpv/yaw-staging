@@ -3,8 +3,6 @@ import React, { useRef } from "react";
 import { E164Number } from "libphonenumber-js/core";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { sendContactUsEmail } from "../../api";
-import TextInput from "@/components/__shared/ui/form/TextInput";
-import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
 import Loader from "@/components/__shared/ui/loader/Loader";
 import ContactSchema from "./lib/contactSchema";
 import { useContactForm } from "./hooks/useContactForm";
@@ -12,21 +10,29 @@ import ContactMessageField from "./ContactMessageField";
 import ContactUploadField from "./ContactUploadField";
 import ContactSubmitButton from "./ContactSubmitButton";
 import ContactFullNameField from "./ContactFullNameField";
-import ContactEmailField from "./ContacEmailField";
 import ContactPhoneField from "./ContactPhoneField";
 import {
   usePhoneInputDisclosure,
   useToastDisclosure,
 } from "@/lib/custom-hooks/useCustomDisclosure";
 import CustomErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
+import { useSessionStorage } from "@uidotdev/usehooks";
+import capitalizeName from "@/lib/utils/stringManipulation";
 
 type Props = {};
 
 const FormGeneral = (props: Props) => {
-  const { activeTab, file, formRef, loading, setLoading, tableName, validate } =
-    useContactForm();
-
-  const fullNameInputRef = useRef<HTMLInputElement>(null);
+  const {
+    activeTab,
+    file,
+    formRef,
+    loading,
+    setLoading,
+    tableName,
+    validate,
+    contactFormSession,
+    handleSessionChange,
+  } = useContactForm();
 
   const { phone, setPhone, handleCountryChange, handlePhone } =
     usePhoneInputDisclosure();
@@ -36,20 +42,17 @@ const FormGeneral = (props: Props) => {
   return (
     <Formik
       initialValues={{
-        contactType: "General",
-        fullname: "",
-        email: "",
-        message: "",
-        phone: "",
-        fileUrl: "",
+        contactType: "",
+        fullname: contactFormSession.fullname,
+        email: contactFormSession.email,
+        message: contactFormSession.message,
+        phone: contactFormSession.phone,
+        fileUrl: contactFormSession.fileUrl,
       }}
       validationSchema={ContactSchema}
-      validateOnChange={false}
-      validateOnBlur={false}
-      validate={(values) => validate(values, phone)}
+      validate={(values) => validate(values, contactFormSession.phone)}
       onSubmit={(values, { resetForm }) => {
-        values.contactType = activeTab;
-        values.phone = phone as E164Number;
+        values.contactType = capitalizeName(activeTab);
         values.fileUrl = file;
 
         sendContactUsEmail(formRef.current);
@@ -73,6 +76,8 @@ const FormGeneral = (props: Props) => {
               onOpen("Something went wrong", "error");
             } else {
               resetForm();
+              sessionStorage.removeItem("contactFormSession");
+
               setPhone(undefined);
               onOpen("Successfully sent", "success");
             }
@@ -98,7 +103,7 @@ const FormGeneral = (props: Props) => {
                 </div>
                 <div className="form-div">
                   <ContactPhoneField
-                    phone={phone}
+                    phone={values.phone}
                     handleBlur={handleBlur}
                     handleChange={handleChange}
                     handlePhone={handlePhone}
@@ -108,8 +113,11 @@ const FormGeneral = (props: Props) => {
                 <div className=""></div>
                 <div>
                   <ContactMessageField
+                    value={values.message}
                     className="w-full min-w-full"
                     error={errors.message}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
                   />
                   <CustomErrorMessage className="mt-2">
                     <ErrorMessage name="message" error={errors.message} />
