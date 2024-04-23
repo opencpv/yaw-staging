@@ -5,7 +5,6 @@ import OptionFilterTabs from "../OptionFilterTabs";
 import { MdOutlineMailOutline, MdOutlineWhatsapp } from "react-icons/md";
 import { useField } from "formik";
 import { E164Number, CountryCode } from "libphonenumber-js/core";
-import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 
 type Contact = "email" | "whatsapp";
 
@@ -84,7 +83,6 @@ const PreferredContactMethod = ({
         }
       >
         <InputPhoneNumber
-          id=""
           name="phoneNumber"
           onChange={onChange}
           onCountryChange={handleCountryChange}

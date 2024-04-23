@@ -17,8 +17,6 @@ type Props = {
 };
 
 const ContactEmailField = ({ value, handleChange, error }: Props) => {
-  const { errorClassName } = useContactForm();
-
   return (
     <TextInput
       name="email"
@@ -26,7 +24,7 @@ const ContactEmailField = ({ value, handleChange, error }: Props) => {
       value={value}
       label="Email"
       onChange={handleChange}
-      className={`p-3 py-7 ${error && `${errorClassName}`}`}
+      className={`p-3 py-7`}
     />
   );
 };

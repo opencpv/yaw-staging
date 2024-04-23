@@ -1,8 +1,9 @@
 "use client";
-import { Formik, Form } from "formik";
-import { useRef, useState } from "react";
+import { Formik, Form, ErrorMessage } from "formik";
+import { useState } from "react";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import Loader from "@/components/__shared/ui/loader/Loader";
+import CustomErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
 import ContactSchema from "@/app/contact/components/forms/lib/contactSchema";
 import {
   usePhoneInputDisclosure,
@@ -12,7 +13,6 @@ import ContactMessageField from "@/app/contact/components/forms/ContactMessageFi
 import { E164Number } from "libphonenumber-js/core";
 import ContactSubmitButton from "@/app/contact/components/forms/ContactSubmitButton";
 import ContactFullNameField from "@/app/contact/components/forms/ContactFullNameField";
-import ContactEmailField from "@/app/contact/components/forms/ContacEmailField";
 import ContactPhoneField from "@/app/contact/components/forms/ContactPhoneField";
 import { useContactForm } from "@/app/contact/components/forms/hooks/useContactForm";
 
@@ -29,15 +29,13 @@ const ContactForm = () => {
       initialValues={{
         fullname: "",
         email: "",
-        phone: "",
+        phoneNumber: "",
         message: "",
       }}
-      validateOnBlur={false}
-      validateOnChange={false}
       validationSchema={ContactSchema}
       validate={(values) => validate(values, phone)}
       onSubmit={(values, { resetForm }) => {
-        values.phone = phone as E164Number;
+        values.phoneNumber = phone as E164Number;
         setLoading(true);
         supabase
           .from("faq")
@@ -45,16 +43,16 @@ const ContactForm = () => {
             {
               fullname: values.fullname,
               email: values.email,
-              phone: values.phone,
+              phone: values.phoneNumber,
               message: values.message,
             },
           ])
           .select()
           .then(({ data, error }) => {
+            setLoading(false);
             if (error) {
-              setLoading(false);
+              onOpen("Something went wrong", "error");
             } else {
-              setLoading(false);
               resetForm();
               setPhone(undefined);
               onOpen("Successfully sent", "success");
@@ -72,12 +70,9 @@ const ContactForm = () => {
                 handleChange={handleChange}
                 error={errors.fullname}
               />
-            </div>
-            <div className="w-full">
-              <ContactEmailField
-                value={values.email}
-                handleChange={handleChange}
-              />
+              <CustomErrorMessage>
+                <ErrorMessage name="fullname" error={errors.fullname} />
+              </CustomErrorMessage>
             </div>
             <div className="w-full">
               <ContactPhoneField
@@ -88,11 +83,16 @@ const ContactForm = () => {
                 handleCountryChange={handleCountryChange}
               />
             </div>
-            <ContactMessageField
-              placeholder="How can we help you?"
-              className="w-full min-w-full"
-              error={errors.message}
-            />
+            <div className="w-full min-w-full">
+              <ContactMessageField
+                placeholder="How can we help you?"
+                className="w-full min-w-full"
+                error={errors.message}
+              />
+              <CustomErrorMessage>
+                <ErrorMessage name="message" error={errors.message} />
+              </CustomErrorMessage>
+            </div>
 
             {loading ? <Loader /> : <ContactSubmitButton label="Submit" />}
           </div>

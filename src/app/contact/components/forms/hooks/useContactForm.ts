@@ -28,28 +28,15 @@ export const useContactForm = () => {
 
   const validate = (values: any, phoneValue: E164Number | undefined) => {
     const errors: any = {};
-    if (!values.fullname) {
-      errors.fullname === "Required";
-    }
-    if (!values.message) errors.message === "Required";
-    if (
-      values.fullname &&
-      values.message &&
-      phoneValue === undefined &&
-      !values.email
-    ) {
-      alert("Email or WhatsApp Number is required");
-      errors.email = "Required";
-      errors.phone = "Required";
+    if (!values.email && !phoneValue) {
+      errors.email = "Email or WhatsApp Required";
+      errors.phone = "Email or WhatsApp Required";
     }
     return errors;
   };
 
   const tableName: keyof Database["public"]["Tables"] = "contact_us";
   const phoneInputPlaceholder = "WhatsApp Number";
-
-  const errorClassName =
-    "border-0 relative before:absolute before:inset-0 before:w-full before:h-full before:border before:border-neutral-500 before:rounded-lg before:animate-pulse";
 
   return {
     handleFileUpload,
@@ -63,7 +50,6 @@ export const useContactForm = () => {
     setLoading,
     tableName,
     phoneInputPlaceholder,
-    errorClassName,
     validate,
   };
 };

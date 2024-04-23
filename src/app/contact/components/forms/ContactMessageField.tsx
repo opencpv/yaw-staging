@@ -2,7 +2,6 @@ import { Field } from "formik";
 import React from "react";
 import style from "./ContactForm.module.css";
 import { cn } from "@/lib/utils";
-import { useContactForm } from "./hooks/useContactForm";
 
 type Props = {
   className?: string;
@@ -14,7 +13,7 @@ const ContactMessageField = (props: Props) => {
   return (
     <div className="form-div">
       <Field
-        as="textarea" // Use 'textarea' as the component
+        as="textarea"
         id="message"
         name="message"
         placeholder={props.placeholder ? props.placeholder + " *" : "Message *"}

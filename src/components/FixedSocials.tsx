@@ -40,6 +40,7 @@ const FixedSocials = ({ threshHoldMax, threshHoldMin }: Props) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [threshHoldMax, threshHoldMin]);
+
   return (
     <div className={`fixed left-0 top-[50%] z-20`}>
       <section

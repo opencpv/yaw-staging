@@ -45,21 +45,7 @@ const ContactPhoneField = ({
   >("email");
 
   return (
-    // <InputPhoneNumber
-    //   id="phone"
-    //   name="phone"
-    //   value={phone}
-    //   placeholder="WhatsApp"
-    //   onBlur={handleBlur}
-    //   onChange={handlePhone}
-    //   onInput={handleChange}
-    //   onCountryChange={handleCountryChange}
-    //   className="focus:outline-none"
-    // />
-
     <PreferredContactMethod
-      id="phone"
-      name="phone"
       value={phone as E164Number}
       placeholder="WhatsApp"
       selectedKey={preferredContact}

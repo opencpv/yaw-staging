@@ -1,13 +1,6 @@
 "use client";
 import TextInput from "@/components/__shared/ui/form/TextInput";
-import React, {
-  ChangeEvent,
-  FocusEvent,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import { useContactForm } from "./hooks/useContactForm";
+import React, { ChangeEvent, FocusEvent, useEffect, useRef } from "react";
 
 type Props = {
   value: string | null;
@@ -33,13 +26,8 @@ const ContactFullNameField = ({
   error,
 }: Props) => {
   const fullNameInputRef = useRef<HTMLInputElement>(null);
-  const { errorClassName } = useContactForm();
-  const [fullNameError, setFullNameError] = useState<string | undefined>(
-    undefined,
-  );
 
   useEffect(() => {
-    setFullNameError(error);
     if (error) {
       if (fullNameInputRef.current) {
         fullNameInputRef.current.scrollIntoView({
@@ -58,7 +46,7 @@ const ContactFullNameField = ({
       required
       onChange={handleChange}
       onBlur={handleBlur}
-      className={`p-3 py-7 ${fullNameError && `${errorClassName}`}`}
+      className={`p-3 py-7`}
       ref={fullNameInputRef}
     />
   );

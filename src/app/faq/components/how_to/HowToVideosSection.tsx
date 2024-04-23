@@ -22,12 +22,7 @@ const HowToVideosSection = (props: Props) => {
     <>
       {props.content ? (
         <div>
-          <div
-            className="gap-x-5 gap-y-16 space-y-16 xs:grid xs:space-y-0"
-            style={{
-              gridTemplateColumns: "repeat(auto-fit, minmax(350px,1fr))",
-            }}
-          >
+          <div className="grid grid-cols-1 gap-x-5 gap-y-16 md:grid-cols-2 xl:grid-cols-3">
             {props.content.map((item: HowTo, idx: number) => (
               <HowToVideo
                 key={idx}
