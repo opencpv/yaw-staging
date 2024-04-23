@@ -107,12 +107,12 @@ const PersonalInformationForm1 = React.forwardRef<HTMLInputElement, Props>(
               initialCountry={phoneNumberSelectedCountry}
               onChange2={(value) => setPhoneNumberSelectedCountry(value)}
               label="Phone"
-              initialValue={propertyData?.phoneNumber}
-              name="phoneNumber"
+              initialValue={propertyData?.phone}
+              name="phone"
               onChange={(value) =>
                 setPropertyData({
                   ...propertyData,
-                  phoneNumber: value,
+                  phone: value,
                 })
               }
             />

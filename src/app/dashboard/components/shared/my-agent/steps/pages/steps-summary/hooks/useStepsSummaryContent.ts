@@ -99,7 +99,7 @@ const useStepsSummaryContent = () => {
           capitalizeName(agentFormData?.preferredMethodOfContact as string) ||
           "-",
         Email: agentFormData?.email || "-",
-        Phone: agentFormData?.phoneNumber || "-",
+        Phone: agentFormData?.phone || "-",
       },
     },
     {

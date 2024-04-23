@@ -66,7 +66,7 @@ const SpecialKeyword = () => {
         {/* whatsapp */}
         <div className={field.value === "whatsapp" ? "block" : "hidden"}>
           <InputPhoneNumber
-            name="phoneNumber"
+            name="phone"
             value={phone}
             onChange={handlePhone}
             onCountryChange={handleCountryChange}

@@ -1,4 +1,4 @@
-import { Form, Formik } from "formik";
+import { ErrorMessage, Form, Formik } from "formik";
 import React from "react";
 import { E164Number } from "libphonenumber-js/core";
 import supabase from "@/lib/utils/supabase/supabaseClient";
@@ -14,7 +14,11 @@ import ContactSubmitButton from "./ContactSubmitButton";
 import ContactFullNameField from "./ContactFullNameField";
 import ContactEmailField from "./ContacEmailField";
 import ContactPhoneField from "./ContactPhoneField";
-import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import {
+  usePhoneInputDisclosure,
+  useToastDisclosure,
+} from "@/lib/custom-hooks/useCustomDisclosure";
+import CustomErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
 
 type Props = {};
 
@@ -25,10 +29,12 @@ const FormReport = (props: Props) => {
   const { phone, setPhone, handleCountryChange, handlePhone } =
     usePhoneInputDisclosure();
 
+  const { onOpen } = useToastDisclosure();
+
   return (
     <Formik
       initialValues={{
-        contactType: "",
+        contactType: "Report",
         fullname: "",
         email: "",
         message: "",
@@ -62,11 +68,13 @@ const FormReport = (props: Props) => {
           ])
           .select()
           .then(({ data, error }) => {
+            setLoading(false);
             if (error) {
-              setLoading(false);
+              onOpen("Something went wrong", "error");
             } else {
-              setLoading(false);
               resetForm();
+              setPhone(undefined);
+              onOpen("Successfully sent", "success");
             }
           });
       }}
@@ -84,6 +92,9 @@ const FormReport = (props: Props) => {
                     handleChange={handleChange}
                     error={errors.fullname}
                   />
+                  <CustomErrorMessage className="mt-5">
+                    <ErrorMessage name="fullname" error={errors.fullname} />
+                  </CustomErrorMessage>
                 </div>
                 <div className="form-div">
                   <ContactPhoneField
@@ -94,7 +105,16 @@ const FormReport = (props: Props) => {
                     handleCountryChange={handleCountryChange}
                   />
                 </div>
-                <ContactMessageField error={errors.message} />
+                <div>
+                  <ContactMessageField
+                    placeholder="How can we help you?"
+                    className="w-full min-w-full"
+                    error={errors.message}
+                  />
+                  <CustomErrorMessage className="mt-2">
+                    <ErrorMessage name="message" error={errors.message} />
+                  </CustomErrorMessage>
+                </div>
                 <ContactUploadField />
 
                 <div className="form-div">

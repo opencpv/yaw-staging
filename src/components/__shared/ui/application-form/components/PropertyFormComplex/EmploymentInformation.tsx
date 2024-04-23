@@ -170,8 +170,8 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
                   setEmployersPhoneNumberSelectedCountry(value)
                 }
                 label="Phone"
-                initialValue={propertyData?.phoneNumber}
-                name="phoneNumber"
+                initialValue={propertyData?.phone}
+                name="phone"
                 onChange={(value) =>
                   setPropertyData({
                     ...propertyData,

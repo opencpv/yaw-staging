@@ -40,7 +40,7 @@ export default function PropertyFormSimple({
     lastName: Yup.string().required("Last name is required"),
     email: Yup.string().email("Invalid Email").required("Email is required"),
     currentAddress1: Yup.string().required("Address is required"),
-    // phoneNumber: Yup.number().required("Field is required")
+    // phone: Yup.number().required("Field is required")
   });
 
   useEffect(() => {
@@ -63,7 +63,7 @@ export default function PropertyFormSimple({
             email: propertyData?.email,
             gender: propertyData?.gender,
             marital_status: propertyData?.maritalStatus,
-            phone: propertyData?.phoneNumber,
+            phone: propertyData?.phone,
             is_whatsapp: propertyData?.availableOnWhatsapp,
             address: propertyData?.currentAddress1,
             address_2: propertyData?.currentAddress2,

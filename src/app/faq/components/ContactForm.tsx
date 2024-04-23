@@ -29,13 +29,13 @@ const ContactForm = () => {
       initialValues={{
         fullname: "",
         email: "",
-        phoneNumber: "",
+        phone: "",
         message: "",
       }}
       validationSchema={ContactSchema}
       validate={(values) => validate(values, phone)}
       onSubmit={(values, { resetForm }) => {
-        values.phoneNumber = phone as E164Number;
+        values.phone = phone as E164Number;
         setLoading(true);
         supabase
           .from("faq")
@@ -43,7 +43,7 @@ const ContactForm = () => {
             {
               fullname: values.fullname,
               email: values.email,
-              phone: values.phoneNumber,
+              phone: values.phone,
               message: values.message,
             },
           ])
@@ -70,7 +70,7 @@ const ContactForm = () => {
                 handleChange={handleChange}
                 error={errors.fullname}
               />
-              <CustomErrorMessage>
+              <CustomErrorMessage className="mt-5">
                 <ErrorMessage name="fullname" error={errors.fullname} />
               </CustomErrorMessage>
             </div>
@@ -83,13 +83,13 @@ const ContactForm = () => {
                 handleCountryChange={handleCountryChange}
               />
             </div>
-            <div className="w-full min-w-full">
+            <div>
               <ContactMessageField
                 placeholder="How can we help you?"
                 className="w-full min-w-full"
                 error={errors.message}
               />
-              <CustomErrorMessage>
+              <CustomErrorMessage className="mt-2">
                 <ErrorMessage name="message" error={errors.message} />
               </CustomErrorMessage>
             </div>

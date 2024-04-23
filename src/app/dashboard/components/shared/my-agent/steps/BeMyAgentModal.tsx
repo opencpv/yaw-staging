@@ -31,7 +31,7 @@ const myAgentValidationSchema = Yup.object({
   // email: Yup.string()
   //   .email("Invalid email address")
   //   .required("Email is required"),
-  // phoneNumber: Yup.string().required("Phone number is required"),
+  // phone: Yup.string().required("Phone number is required"),
 });
 
 const BeMyAgentModal = (props: Props) => {

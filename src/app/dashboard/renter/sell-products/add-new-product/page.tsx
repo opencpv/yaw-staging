@@ -27,7 +27,7 @@ const AddNewProduct = () => {
     itemName: Yup.string().required("This field is required"),
     description: Yup.string().required("This field is required"),
     price: Yup.number().required("This field is required"),
-    phoneNumber: Yup.string().required("This field is required"),
+    phone: Yup.string().required("This field is required"),
     // images: Yup.mixed().required("This field is required"),
     images: Yup.array()
       .min(3, "Please upload at least 3 images")
@@ -67,7 +67,7 @@ const AddNewProduct = () => {
             itemName: "",
             description: "",
             price: "",
-            phoneNumber: "",
+            phone: "",
             images: [],
             category: "Furniture",
             condition: "New",
@@ -118,7 +118,7 @@ const AddNewProduct = () => {
               <InputPhoneNumber
                 id=""
                 label="Phone"
-                name="phoneNumber"
+                name="phone"
                 value={phone}
                 onChange={handlePhone}
                 onCountryChange={handleCountryChange}

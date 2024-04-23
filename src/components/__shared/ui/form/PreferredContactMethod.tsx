@@ -83,7 +83,7 @@ const PreferredContactMethod = ({
         }
       >
         <InputPhoneNumber
-          name="phoneNumber"
+          name="phone"
           onChange={onChange}
           onCountryChange={handleCountryChange}
           {...props}

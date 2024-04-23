@@ -1,16 +1,12 @@
 import { styled } from "@stitches/react";
 import Navbar from "@/components/__shared/ui/Navbar";
 import Footer from "@/components/__shared/ui/footer/Footer";
-import { motion } from "framer-motion";
-import PhoneNumberInputv2 from "@/components/__shared/ui/form/PhoneInputv2";
-import { useScrollIntoView } from "@/lib/custom-hooks/useWindowEvents";
 import ContactBanner from "./components/ContactBanner";
 import ContactTabs from "./components/ContactTabs";
 import ScrollTopAndSocial from "../../components/__shared/ui/ScrollTopAndSocial";
 import FeedbackButton from "../../components/__shared/ui/feedback/FeedbackButton";
 import ContactForm from "./components/ContactForm";
 import ContactFormSideImage from "./components/ContactFormSideImage";
-import { useRef } from "react";
 import { Metadata } from "next";
 import { loadQuery } from "@/lib/utils/sanity/sanityStore";
 import { SanityDocument } from "next-sanity";

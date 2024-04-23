@@ -139,13 +139,13 @@ const ContactInformation = React.forwardRef<HTMLInputElement, Props>(
               >
                 <InputPhoneNumber
                   id=""
-                  name="phoneNumber"
-                  value={agentFormData?.phoneNumber}
+                  name="phone"
+                  value={agentFormData?.phone}
                   onChange={(val) => {
                     handlePhone(val);
                     setAgentFormData({
                       ...agentFormData,
-                      phoneNumber: val as E164Number,
+                      phone: val as E164Number,
                     });
                   }}
                   onCountryChange={handleCountryChange}

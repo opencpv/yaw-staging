@@ -94,7 +94,7 @@ export type Database = {
       contact_us: {
         Row: {
           company_name: string | null
-          contact_type: string | null
+          contact_type: string
           created_at: string
           email: string | null
           file_url: string | null
@@ -107,7 +107,7 @@ export type Database = {
         }
         Insert: {
           company_name?: string | null
-          contact_type?: string | null
+          contact_type?: string
           created_at?: string
           email?: string | null
           file_url?: string | null
@@ -120,7 +120,7 @@ export type Database = {
         }
         Update: {
           company_name?: string | null
-          contact_type?: string | null
+          contact_type?: string
           created_at?: string
           email?: string | null
           file_url?: string | null

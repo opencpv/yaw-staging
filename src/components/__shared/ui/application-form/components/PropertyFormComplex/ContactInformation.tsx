@@ -1,15 +1,7 @@
-import PhoneNumberInput from "@/components/__shared/ui/form/PhoneInput";
 import { LeaseData, PreferedMethodOfContact } from "../content";
 import { styled } from "@stitches/react";
-import React, {
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import SwiperSlideControls from "../SwiperSliderControls";
-import axios from "axios";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { PropertyDataType } from "../propertyDataType";
 import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
@@ -77,12 +69,12 @@ const ContactInformationForm = React.forwardRef<HTMLInputElement, Props>(
                 initialCountry={phoneNumberSelectedCountry}
                 onChange2={(value) => setPhoneNumberSelectedCountry(value)}
                 label="Phone"
-                initialValue={propertyData?.phoneNumber}
-                name="phoneNumber"
+                initialValue={propertyData?.phone}
+                name="phone"
                 onChange={(value) =>
                   setPropertyData({
                     ...propertyData,
-                    phoneNumber: value,
+                    phone: value,
                   })
                 }
               />
