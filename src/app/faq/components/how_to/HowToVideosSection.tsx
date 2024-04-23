@@ -3,6 +3,7 @@ import HowToVideo from "./HowToVideo";
 import Button from "@/components/__shared/ui/button/Button";
 import LoadingIndicator from "@/components/LoadingIndicator";
 import { HowTo } from "../../../../../interfaces";
+import EmptyState from "@/components/__shared/ui/states/EmptyState";
 
 type Props = { content: HowTo[] };
 
@@ -38,7 +39,7 @@ const HowToVideosSection = (props: Props) => {
                 Load more
               </Button>
             )}
-            {props.content.length === 0 && <p>No results found</p>}
+            {props.content.length === 0 && <EmptyState paddingBlock="none" />}
           </div>
         </div>
       ) : (

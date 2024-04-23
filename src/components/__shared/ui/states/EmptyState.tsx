@@ -9,7 +9,7 @@ type Props = {
   tagLine?: string;
   description?: string;
   className?: string;
-  paddingBlock?: "sm" | "md" | "lg";
+  paddingBlock?: "none" | "sm" | "md" | "lg";
   href?: string;
   onClick?: () => void;
 };
@@ -30,6 +30,7 @@ const EmptyState = ({
         "col-span-full flex w-full flex-col items-center justify-center gap-5 text-center",
         {
           "py-20": paddingBlock === "sm",
+          "py-0": paddingBlock === "none",
           "py-40": paddingBlock === "md",
           "py-60": paddingBlock === "lg",
         },

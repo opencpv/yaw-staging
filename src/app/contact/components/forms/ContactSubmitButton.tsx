@@ -11,7 +11,7 @@ const ContactSubmitButton = (props: Props) => {
   return (
     <Button
       color="accent"
-      className={cn("mt-5 max-sm:w-full sm:max-w-fit", props.className)}
+      className={cn("mt-5 max-w-full xs:max-w-fit", props.className)}
       type="submit"
     >
       {props.label ?? "Submit"}
