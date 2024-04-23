@@ -19,7 +19,7 @@ const ListingInfo = (props: Partial<ListingCardInterface>) => {
   return (
     <div
       className={cn(
-        "w-full space-y-6 rounded-b-lg bg-white px-5 py-4",
+        "flex h-max w-full flex-1 flex-col gap-6 rounded-b-lg bg-white px-5 py-4",
         {
           hidden: props.showOnlyImage,
         },
@@ -137,7 +137,7 @@ const ListingInfo = (props: Partial<ListingCardInterface>) => {
         </div>
       </div>
       {/* City and like */}
-      <div className="flex flex-wrap items-center justify-between gap-2">
+      <div className="mt-auto flex flex-wrap items-center justify-between gap-2">
         <div className="text-sm text-shade-300">
           <span>{props.neighbourhood}, </span>
           <span>{props.city}</span>

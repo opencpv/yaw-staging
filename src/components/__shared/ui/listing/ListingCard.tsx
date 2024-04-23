@@ -29,7 +29,9 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
   return (
     <>
       <div
-        className={`group/parent relative cursor-default ${props.className} ${
+        className={`group/parent relative flex cursor-default flex-col ${
+          props.className
+        } ${
           props.cardType === "2"
             ? null
             : "rounded-b-lg rounded-t-lg shadow-[1px_3px_13px_rgba(0,_0,_0,_0.10)]"

@@ -47,7 +47,7 @@ const FeaturedListingAndAds = (props: Props) => {
               isLoadingComponent={<SkeletonListing count={5} />}
               errorComponent={
                 <SomethingWentWrong
-                  className="col-span-full h-fit"
+                  className="h-fit"
                   onTryAgain={() => mutate()}
                 />
               }
@@ -74,11 +74,6 @@ const FeaturedListingAndAds = (props: Props) => {
                     className="col-span-full h-fit"
                     onTryAgain={() => mutate()}
                   />
-                }
-                emptyStateComponent={
-                  <p className="mt-4 text-center italic">
-                    There are no properties yet.
-                  </p>
                 }
               />
               <SliderGrid
@@ -107,7 +102,7 @@ const FeaturedListingAndAds = (props: Props) => {
       )}
       {/* Ads mobile*/}
       {props.data.map((ad: any, idx: number) => (
-        <div className="  mt-4 w-full lg:hidden" key={idx}>
+        <div className="mt-4 w-full max-lg:mt-20 lg:hidden" key={idx}>
           <SliderWide
             autoplay
             pagination

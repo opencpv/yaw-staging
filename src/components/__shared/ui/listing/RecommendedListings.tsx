@@ -75,7 +75,8 @@ const RecommendedListings = ({ className, showAllButton }: Props) => {
               rotate: 50,
               slideShadows: false,
             }}
-            modules={[EffectCoverflow]}
+            freeMode
+            modules={[EffectCoverflow, FreeMode]}
             className="mySwiper h-fit w-full"
           >
             {isLoading
