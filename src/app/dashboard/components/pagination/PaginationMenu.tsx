@@ -67,12 +67,6 @@ const PaginationMenu = () => {
             ))}
         </div>
       </div>
-      {/* <MenuScrollDownButton
-        onClick={handleScrollDown}
-        hide={hide}
-        isInViewport={false}
-        className="min-[700]:right-14 min-[700]:bottom-5 absolute bottom-3 right-3 block xl:right-40"
-      /> */}
     </section>
   );
 };
