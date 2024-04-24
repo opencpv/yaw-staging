@@ -18,6 +18,7 @@ import {
 import CustomErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import { useContactStore } from "@/store/contact/useContactStore";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 
@@ -40,6 +41,7 @@ const FormReport = (props: Props) => {
   const { onOpen } = useToastDisclosure();
 
   const { reportIssueHref, setReportIssueHref } = useContactStore();
+  const router = useRouter();
 
   useEffect(() => {
     return () => {
@@ -91,6 +93,7 @@ const FormReport = (props: Props) => {
               setReportIssueHref("");
               setPhone(undefined);
               onOpen("Successfully sent", "success");
+              router.refresh();
             }
           });
       }}

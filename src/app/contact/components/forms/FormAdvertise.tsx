@@ -18,6 +18,7 @@ import {
 } from "@/lib/custom-hooks/useCustomDisclosure";
 import CustomErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
 import capitalizeName from "@/lib/utils/stringManipulation";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 
@@ -38,6 +39,7 @@ const FormAdvertise = (props: Props) => {
     usePhoneInputDisclosure();
 
   const { onOpen } = useToastDisclosure();
+  const router = useRouter();
 
   return (
     <Formik
@@ -79,9 +81,9 @@ const FormAdvertise = (props: Props) => {
             } else {
               resetForm();
               sessionStorage.removeItem("contactFormSession");
-
               setPhone(undefined);
               onOpen("Successfully sent", "success");
+              router.refresh();
             }
           });
       }}
