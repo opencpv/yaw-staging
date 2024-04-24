@@ -12,7 +12,7 @@ import { useMenuStore } from "@/store/navmenu/useMenuStore";
 import { useContactStore } from "@/store/contact/useContactStore";
 import { useFaqHowToSwitchStore } from "@/store/faq/useFaqStore";
 import { LowerCase } from "@/lib/utils/stringManipulation";
-import ReportLink from "@/components/__shared/ui/links/ReportLink";
+import ReportFraud from "@/components/__shared/ui/links/ReportFraud";
 import HowToLink from "@/components/__shared/ui/links/HowToLink";
 import FaqLink from "@/components/__shared/ui/links/FaqLink";
 import { cn } from "@/lib/utils";
@@ -86,7 +86,7 @@ const MenuOption = ({
                   }}
                 />
               ) : LowerCase(r?.name) === "report fraud" ? (
-                <ReportLink
+                <ReportFraud
                   className="text-base font-normal"
                   onClick={() => {
                     setToggle(false);

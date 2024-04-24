@@ -3,7 +3,7 @@ import { LowerCase } from "@/lib/utils/stringManipulation";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
 import Link from "next/link";
 import React, { LegacyRef, forwardRef } from "react";
-import ReportLink from "@/components/__shared/ui/links/ReportLink";
+import ReportFraud from "@/components/__shared/ui/links/ReportFraud";
 import HowToLink from "@/components/__shared/ui/links/HowToLink";
 
 type Props = {
@@ -29,7 +29,7 @@ const MenuBottomLinks = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
               }}
             />
           ) : LowerCase(r?.name) === "report fraud" ? (
-            <ReportLink
+            <ReportFraud
               key={index}
               className="bottomLink text-2xl transition-all"
               onClick={() => {

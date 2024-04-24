@@ -7,7 +7,7 @@ type Props = {
   onClick?: () => void;
 };
 
-const ReportLink = ({ className, onClick }: Props) => {
+const ReportFraud = ({ className, onClick }: Props) => {
   const setContactTabActiveKey = useContactStore((state) => state.setActiveKey);
 
   return (
@@ -23,4 +23,4 @@ const ReportLink = ({ className, onClick }: Props) => {
   );
 };
 
-export default ReportLink;
+export default ReportFraud;

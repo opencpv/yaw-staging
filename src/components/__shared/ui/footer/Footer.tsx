@@ -11,7 +11,7 @@ import SubscribeForm from "../SubscribeForm";
 import Feedback from "@/components/__shared/ui/feedback/Feedback";
 import { LowerCase } from "@/lib/utils/stringManipulation";
 import legal from "@/enum/about/legal";
-import ReportLink from "@/components/__shared/ui/links/ReportLink";
+import ReportFraud from "@/components/__shared/ui/links/ReportFraud";
 import HowToLink from "@/components/__shared/ui/links/HowToLink";
 import { FaEnvelope } from "react-icons/fa6";
 import { MdLocalPhone } from "react-icons/md";
@@ -31,7 +31,7 @@ const Footer = () => {
       <div className="flex flex-col justify-center gap-10 bg-[#333] px-5 py-8 text-[#8A8A8A] [@media(min-width:950px)]:flex-row">
         {quickLinks.map((r) =>
           LowerCase(r.label) === "report fraud" ? (
-            <ReportLink key={r?.label} className="font-[400]" />
+            <ReportFraud key={r?.label} className="font-[400]" />
           ) : LowerCase(r.label) === "how to" ? (
             <HowToLink key={r?.label} className="font-[400]" />
           ) : LowerCase(r?.label) === "feedback" ? (

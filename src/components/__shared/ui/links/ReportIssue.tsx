@@ -1,20 +1,27 @@
 "use client";
 import { useContactStore } from "@/store/contact/useContactStore";
+import { useLocalStorage } from "@uidotdev/usehooks";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 
 type Props = {
   className?: string;
 };
 
 const ReportIssue = ({ className }: Props) => {
-  const setContactTabActiveKey = useContactStore((state) => state.setActiveKey);
+  const href = location.href;
+  const { setActiveKey, setReportIssueHref } = useContactStore();
+
+  const handleClick = () => {
+    setActiveKey("report");
+    setReportIssueHref(href);
+  };
 
   return (
     <Link
       href="/contact"
-      className={`text-red-500 font-[600] inline-block ${className}`}
-      onClick={() => setContactTabActiveKey("report")}
+      className={`inline-block font-[600] text-red-500 ${className}`}
+      onClick={handleClick}
     >
       Report issue
     </Link>

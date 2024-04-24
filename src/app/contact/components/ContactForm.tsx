@@ -5,10 +5,13 @@ import FormGeneral from "./forms/FormGeneral";
 import FormAdvertise from "./forms/FormAdvertise";
 import FormReport from "./forms/FormReport";
 import FormWriters from "./forms/FormWriters";
+import { useContactStore } from "@/store/contact/useContactStore";
 
 type Props = {};
 
 const ContactForm = (props: Props) => {
+  const { setReportIssueHref } = useContactStore();
+
   useEffect(() => {
     return () => {
       sessionStorage.removeItem("contactFormSession");

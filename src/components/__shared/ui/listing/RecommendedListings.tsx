@@ -8,7 +8,7 @@ import SkeletonListing from "../skeleton/SkeletonListing";
 import FetchingStates from "../data_fetching/FetchingStates";
 import Button from "../button/Button";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, FreeMode, Mousewheel } from "swiper/modules";
+import { EffectCoverflow } from "swiper/modules";
 import { useFetchRecommendedListings } from "@/app/properties/services";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { getListingProps } from "@/lib/enum";
@@ -75,8 +75,8 @@ const RecommendedListings = ({ className, showAllButton }: Props) => {
               rotate: 50,
               slideShadows: false,
             }}
-            freeMode
-            modules={[EffectCoverflow, FreeMode]}
+            cssMode
+            modules={[EffectCoverflow]}
             className="mySwiper h-fit w-full"
           >
             {isLoading

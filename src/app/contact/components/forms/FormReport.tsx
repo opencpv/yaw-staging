@@ -1,6 +1,5 @@
 import { ErrorMessage, Form, Formik } from "formik";
-import React from "react";
-import { E164Number } from "libphonenumber-js/core";
+import React, { useEffect } from "react";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { sendContactUsEmail } from "../../api";
 import TextInput from "@/components/__shared/ui/form/TextInput";
@@ -18,6 +17,7 @@ import {
 } from "@/lib/custom-hooks/useCustomDisclosure";
 import CustomErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
 import capitalizeName from "@/lib/utils/stringManipulation";
+import { useContactStore } from "@/store/contact/useContactStore";
 
 type Props = {};
 
@@ -39,6 +39,14 @@ const FormReport = (props: Props) => {
 
   const { onOpen } = useToastDisclosure();
 
+  const { reportIssueHref, setReportIssueHref } = useContactStore();
+
+  useEffect(() => {
+    return () => {
+      setReportIssueHref("");
+    };
+  }, []);
+
   return (
     <Formik
       initialValues={{
@@ -48,7 +56,7 @@ const FormReport = (props: Props) => {
         phone: contactFormSession.phone,
         message: contactFormSession.message,
         fileUrl: contactFormSession.fileUrl,
-        reportLink: contactFormSession.reportLink,
+        reportLink: reportIssueHref || contactFormSession.reportLink,
       }}
       validationSchema={ContactSchema}
       validate={(values) => validate(values, contactFormSession.phone)}
@@ -80,6 +88,7 @@ const FormReport = (props: Props) => {
             } else {
               resetForm();
               sessionStorage.removeItem("contactFormSession");
+              setReportIssueHref("");
               setPhone(undefined);
               onOpen("Successfully sent", "success");
             }
@@ -124,7 +133,7 @@ const FormReport = (props: Props) => {
             </div>
             <ContactUploadField />
 
-            <div className="form-div">
+            <div className="form-div" title="Paste URL link here (optional)">
               <TextInput
                 name="reportLink"
                 value={contactFormSession.reportLink || values.reportLink}
