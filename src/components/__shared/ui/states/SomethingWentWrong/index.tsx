@@ -1,5 +1,3 @@
-"use client";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import CaTriangle from "./CaTriangle";
 import { cn } from "@/lib/utils";
@@ -8,14 +6,19 @@ import Button from "@/components/__shared/ui/button/Button";
 type Props = {
   className?: string;
   onTryAgain?: () => void;
+  error?: Error & { digest?: string };
+  reset?: () => void;
 };
 
-function SomethingWentWrong({ className, onTryAgain }: Props) {
+function SomethingWentWrong({ className, onTryAgain, reset, error }: Props) {
   const router = useRouter();
   return (
     <div className={cn("col-span-full h-screen w-full", className)}>
       <div className="flex h-full w-full flex-col items-center justify-center gap-6">
-        <div className="aspect-square animate-bounce">
+        <div
+          className="aspect-square animate-bounce"
+          style={{ animationDuration: "2s" }}
+        >
           <CaTriangle />
         </div>{" "}
         <div className="flex flex-col items-center gap-8 text-center">
@@ -32,7 +35,7 @@ function SomethingWentWrong({ className, onTryAgain }: Props) {
             <Button
               variant="outline"
               onClick={() => {
-                onTryAgain ? onTryAgain() : router.refresh();
+                onTryAgain ? onTryAgain() : reset?.();
               }}
               className="border border-accent-200 text-accent-200"
             >
