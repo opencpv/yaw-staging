@@ -13,11 +13,11 @@ type Props = {
 };
 
 const PropertyDetailsFeatures = ({ features }: Props) => {
-  const [showMore, setShowMore] = useState<boolean>(false);
+  const [showingMore, setShowingMore] = useState<boolean>(false);
 
   return (
     <section
-      className={cn("mb-10 mt-20", {
+      className={cn("mb-10 mt-32", {
         hidden: features?.length === 0 || !features,
       })}
     >
@@ -28,7 +28,7 @@ const PropertyDetailsFeatures = ({ features }: Props) => {
         className="mt-8 grid w-full justify-between gap-x-10 gap-y-4 overflow-hidden sm:grid-cols-2 lg:grid-cols-3"
         initial="collapsed"
         variants={contentAccordionVariants("2rem")}
-        animate={showMore ? "expanded" : "collapsed"}
+        animate={showingMore ? "expanded" : "collapsed"}
         transition={{ duration: 0.8, ease: "easeInOut" }}
         exit="collapsed"
       >
@@ -37,9 +37,9 @@ const PropertyDetailsFeatures = ({ features }: Props) => {
       <Button
         variant="ghost"
         className="ml-auto mt-10 flex items-center gap-1 text-sm text-[#305A61]"
-        onClick={() => setShowMore((current) => !current)}
+        onClick={() => setShowingMore((current) => !current)}
       >
-        {showMore ? (
+        {showingMore ? (
           <>
             Show Less <FaCaretUp className="text-neutral-800" />
           </>
