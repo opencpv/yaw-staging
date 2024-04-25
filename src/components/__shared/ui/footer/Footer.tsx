@@ -121,7 +121,7 @@ const Footer = () => {
             </span>
             <span>
               | {legal.copyrightNotice}{" "}
-              <Link href="/legal" className="inline-block text-[#B0B0B0]">
+              <Link href="/privacy" className="inline-block text-[#B0B0B0]">
                 | Legal
               </Link>
             </span>
@@ -136,6 +136,7 @@ const Footer = () => {
             <FaEnvelope className="text-accent-50" size={24} />
             <Link
               href={`mailto:${legal.email}`}
+              target="_blank"
               title={legal.email}
               className="text-[#ffff]"
             >
@@ -146,6 +147,7 @@ const Footer = () => {
             <MdLocalPhone className="text-accent-50" size={24} />
             <Link
               href={`tel:${legal.telephoneFormatted}`}
+              target="_blank"
               className="text-[#ffff]"
             >
               {legal.telephone}
