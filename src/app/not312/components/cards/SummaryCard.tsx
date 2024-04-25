@@ -1,6 +1,6 @@
 "use client";
 import Spinner from "@/app/dashboard/components/shared/Spinner";
-import LoaderDots from "@/components/__shared/loader/LoaderDots";
+import LoaderDots from "@/components/__shared/ui/loader/LoaderDots";
 import { Card, CardBody } from "@nextui-org/react";
 import { useQuery } from "@tanstack/react-query";
 import Button from "antd/es/button";

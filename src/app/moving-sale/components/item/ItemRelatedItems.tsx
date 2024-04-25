@@ -1,4 +1,4 @@
-import SliderMultiItems from "@/components/__shared/sliders/SliderMultiItems";
+import SliderMultiItems from "@/components/__shared/ui/sliders/SliderMultiItems";
 import React from "react";
 import ItemCard from "./ItemCard";
 

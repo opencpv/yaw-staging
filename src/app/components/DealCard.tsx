@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import ArrowLink from "./link/ArrowLink";
+import ArrowLink from "../../components/__shared/ui/links/ArrowLink";
 import Image from "next/image";
 type Props = {
   title: string;

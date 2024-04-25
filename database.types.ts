@@ -47,6 +47,13 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "application_autosave_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "random_featured_properties"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "application_autosave_renter_id_fkey"
             columns: ["renter_id"]
             isOneToOne: false
@@ -60,19 +67,19 @@ export type Database = {
           created_at: string
           id: number
           should_be_contacted: boolean
-          user_id: string | null
+          user_id: string
         }
         Insert: {
           created_at?: string
           id?: number
           should_be_contacted?: boolean
-          user_id?: string | null
+          user_id?: string
         }
         Update: {
           created_at?: string
           id?: number
           should_be_contacted?: boolean
-          user_id?: string | null
+          user_id?: string
         }
         Relationships: [
           {
@@ -94,39 +101,36 @@ export type Database = {
       contact_us: {
         Row: {
           company_name: string | null
-          contact_type: string | null
+          contact_type: string
           created_at: string
           email: string | null
           file_url: string | null
           fullname: string
           id: number
-          is_whatsapp: boolean | null
           message: string | null
           phone: string | null
           report_link: string | null
         }
         Insert: {
           company_name?: string | null
-          contact_type?: string | null
+          contact_type?: string
           created_at?: string
           email?: string | null
           file_url?: string | null
           fullname: string
           id?: number
-          is_whatsapp?: boolean | null
           message?: string | null
           phone?: string | null
           report_link?: string | null
         }
         Update: {
           company_name?: string | null
-          contact_type?: string | null
+          contact_type?: string
           created_at?: string
           email?: string | null
           file_url?: string | null
           fullname?: string
           id?: number
-          is_whatsapp?: boolean | null
           message?: string | null
           phone?: string | null
           report_link?: string | null
@@ -180,15 +184,22 @@ export type Database = {
           {
             foreignKeyName: "public_featured_properties_property_id_fkey"
             columns: ["property_id"]
-            isOneToOne: false
+            isOneToOne: true
             referencedRelation: "merged_property_view"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "public_featured_properties_property_id_fkey"
             columns: ["property_id"]
-            isOneToOne: false
+            isOneToOne: true
             referencedRelation: "property"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "public_featured_properties_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: true
+            referencedRelation: "random_featured_properties"
             referencedColumns: ["id"]
           },
         ]
@@ -306,6 +317,13 @@ export type Database = {
             columns: ["property_id"]
             isOneToOne: false
             referencedRelation: "property"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "listing_autosave_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "random_featured_properties"
             referencedColumns: ["id"]
           },
           {
@@ -738,6 +756,13 @@ export type Database = {
             referencedRelation: "property"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "property_available_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "random_featured_properties"
+            referencedColumns: ["id"]
+          },
         ]
       }
       property_images: {
@@ -787,6 +812,13 @@ export type Database = {
             columns: ["property_id"]
             isOneToOne: false
             referencedRelation: "property"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "property_images_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "random_featured_properties"
             referencedColumns: ["id"]
           },
         ]
@@ -862,6 +894,13 @@ export type Database = {
             columns: ["property"]
             isOneToOne: false
             referencedRelation: "property"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "public_property_reviews_property_fkey"
+            columns: ["property"]
+            isOneToOne: false
+            referencedRelation: "random_featured_properties"
             referencedColumns: ["id"]
           },
         ]
@@ -1140,6 +1179,13 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "public_user_favorite_properties_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "random_featured_properties"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "public_user_favorite_properties_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: false
@@ -1191,6 +1237,189 @@ export type Database = {
         ]
       }
       merged_property_view: {
+        Row: {
+          additional_fees: Json[] | null
+          address: string | null
+          advance_period: number | null
+          agent_fee: number | null
+          available_date: string | null
+          bathrooms: number | null
+          bedrooms: number | null
+          city: string | null
+          created_at: string | null
+          description: string | null
+          digital_address: string | null
+          favorite_user_ids: string[] | null
+          features_and_amenities: string[] | null
+          furnish_level: string | null
+          id: number | null
+          is_available: boolean | null
+          is_best_value: boolean | null
+          is_complete: boolean | null
+          is_featured: boolean | null
+          is_lister_certified: boolean | null
+          is_paid_for: boolean | null
+          is_published: boolean | null
+          is_realtors_choice: boolean | null
+          is_verified: boolean | null
+          lease_details: string | null
+          lease_end_date: string | null
+          lease_length: number | null
+          lease_start_date: string | null
+          lease_type: string | null
+          monthly_amount: number | null
+          neighbourhood: string | null
+          owner_uid: string | null
+          price_drop: boolean | null
+          property_name: string | null
+          property_size: string | null
+          property_type: string | null
+          query_string: string | null
+          refundable_security_deposit: number | null
+          renter_knowledge: string | null
+          require_additional_fees: boolean | null
+          require_advance_payment: boolean | null
+          require_agent_fee: boolean | null
+          require_application_form: boolean | null
+          require_refundable_security_deposit: boolean | null
+          require_viewing_fee: boolean | null
+          status: string | null
+          subtitle: string | null
+          suited_for: string[] | null
+          template_type: Database["public"]["Enums"]["template"] | null
+          total_amount: number | null
+          utilities: string[] | null
+          viewing_fee: number | null
+          vr_tour_url: string | null
+        }
+        Insert: {
+          additional_fees?: Json[] | null
+          address?: string | null
+          advance_period?: number | null
+          agent_fee?: number | null
+          available_date?: string | null
+          bathrooms?: number | null
+          bedrooms?: number | null
+          city?: string | null
+          created_at?: string | null
+          description?: string | null
+          digital_address?: string | null
+          favorite_user_ids?: string[] | null
+          features_and_amenities?: string[] | null
+          furnish_level?: string | null
+          id?: number | null
+          is_available?: boolean | null
+          is_best_value?: boolean | null
+          is_complete?: boolean | null
+          is_featured?: boolean | null
+          is_lister_certified?: boolean | null
+          is_paid_for?: boolean | null
+          is_published?: boolean | null
+          is_realtors_choice?: boolean | null
+          is_verified?: boolean | null
+          lease_details?: string | null
+          lease_end_date?: string | null
+          lease_length?: number | null
+          lease_start_date?: string | null
+          lease_type?: string | null
+          monthly_amount?: number | null
+          neighbourhood?: string | null
+          owner_uid?: string | null
+          price_drop?: boolean | null
+          property_name?: string | null
+          property_size?: string | null
+          property_type?: string | null
+          query_string?: string | null
+          refundable_security_deposit?: number | null
+          renter_knowledge?: string | null
+          require_additional_fees?: boolean | null
+          require_advance_payment?: boolean | null
+          require_agent_fee?: boolean | null
+          require_application_form?: boolean | null
+          require_refundable_security_deposit?: boolean | null
+          require_viewing_fee?: boolean | null
+          status?: string | null
+          subtitle?: string | null
+          suited_for?: string[] | null
+          template_type?: Database["public"]["Enums"]["template"] | null
+          total_amount?: number | null
+          utilities?: string[] | null
+          viewing_fee?: number | null
+          vr_tour_url?: string | null
+        }
+        Update: {
+          additional_fees?: Json[] | null
+          address?: string | null
+          advance_period?: number | null
+          agent_fee?: number | null
+          available_date?: string | null
+          bathrooms?: number | null
+          bedrooms?: number | null
+          city?: string | null
+          created_at?: string | null
+          description?: string | null
+          digital_address?: string | null
+          favorite_user_ids?: string[] | null
+          features_and_amenities?: string[] | null
+          furnish_level?: string | null
+          id?: number | null
+          is_available?: boolean | null
+          is_best_value?: boolean | null
+          is_complete?: boolean | null
+          is_featured?: boolean | null
+          is_lister_certified?: boolean | null
+          is_paid_for?: boolean | null
+          is_published?: boolean | null
+          is_realtors_choice?: boolean | null
+          is_verified?: boolean | null
+          lease_details?: string | null
+          lease_end_date?: string | null
+          lease_length?: number | null
+          lease_start_date?: string | null
+          lease_type?: string | null
+          monthly_amount?: number | null
+          neighbourhood?: string | null
+          owner_uid?: string | null
+          price_drop?: boolean | null
+          property_name?: string | null
+          property_size?: string | null
+          property_type?: string | null
+          query_string?: string | null
+          refundable_security_deposit?: number | null
+          renter_knowledge?: string | null
+          require_additional_fees?: boolean | null
+          require_advance_payment?: boolean | null
+          require_agent_fee?: boolean | null
+          require_application_form?: boolean | null
+          require_refundable_security_deposit?: boolean | null
+          require_viewing_fee?: boolean | null
+          status?: string | null
+          subtitle?: string | null
+          suited_for?: string[] | null
+          template_type?: Database["public"]["Enums"]["template"] | null
+          total_amount?: number | null
+          utilities?: string[] | null
+          viewing_fee?: number | null
+          vr_tour_url?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_property_owner_uid_fkey"
+            columns: ["owner_uid"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "public_property_owner_uid_fkey"
+            columns: ["owner_uid"]
+            isOneToOne: false
+            referencedRelation: "distinct_messages_view"
+            referencedColumns: ["sender_id"]
+          },
+        ]
+      }
+      random_featured_properties: {
         Row: {
           additional_fees: Json[] | null
           address: string | null

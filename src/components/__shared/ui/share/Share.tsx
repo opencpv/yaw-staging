@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { IoIosShareAlt } from "react-icons/io";
-import Modal from "../../modals/Modal";
+import Modal from "../modals/Modal";
 import { useDisclosure } from "@nextui-org/react";
 import ShareModalBody from "./ShareModalBody";
 
@@ -29,7 +29,7 @@ const ShareModalHeader = ({ title }: { title: string }) => {
   return (
     <div className="space-y-3">
       <h1 className="text-2xl font-[700]">Share</h1>
-      <h2 className="font-[500] text-base">{title}</h2>
+      <h2 className="text-base font-[500]">{title}</h2>
     </div>
   );
 };

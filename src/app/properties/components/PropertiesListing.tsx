@@ -1,16 +1,16 @@
 "use client";
 import React from "react";
-import ListingCard from "@/components/__shared/listing/ListingCard";
+import ListingCard from "@/components/__shared/ui/listing/ListingCard";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
-import images from "@/enum/temp/images";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useFetchProperties } from "../services";
 import PropertiesEmptyState from "./PropertiesEmptyState";
 import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
-import SomethingWentWrong from "@/app/components/SomethingWentWrong";
+import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
+import { getListingProps } from "@/lib/enum";
 
 type Props = {};
 
@@ -51,7 +51,6 @@ const PropertiesListing = (props: Props) => {
           data={listings}
           error={error}
           isLoading={isLoading}
-          // isValidating={isValidating}
           isLoadingComponent={<SkeletonListing count={3} />}
           errorComponent={
             <SomethingWentWrong
@@ -67,51 +66,8 @@ const PropertiesListing = (props: Props) => {
         />
         {listings?.map((listing) => (
           <ListingCard
-            cardType="2"
-            propertyId={listing.id as number}
             key={listing.id}
-            href={`/properties/${listing.id}?${new URLSearchParams({
-              property_type: listing.property_type as string,
-              bedrooms: String(listing.bedrooms),
-              city: listing.city as string,
-              neighbourhood: listing.neighbourhood as string,
-              subtitle: listing.subtitle as string,
-              advance_period: String(listing.advance_period),
-
-              amount_per_month: String(listing.monthly_amount),
-              rating: String(4),
-              viewing_fee: String(listing.viewing_fee),
-              is_realtors_choice: String(listing.is_realtors_choice),
-              is_best_value: String(listing.is_best_value),
-              is_featured: String(listing.is_featured),
-            })}`}
-            bedrooms={listing.bedrooms as number}
-            propertyType={listing.property_type as string}
-            city={listing.city as string}
-            neighbourhood={listing.neighbourhood as string}
-            images={images} // TODO: check database
-            liked={listing?.favorite_user_ids?.includes(user?.id as string)}
-            guarantee={
-              listing.is_verified
-                ? ("Verified" as GuaranteeTag)
-                : listing.profiles?.is_certified
-                  ? ("Certified" as GuaranteeTag)
-                  : undefined
-            }
-            monthlyAmount={listing.monthly_amount as number}
-            paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
-            subtitle={listing.subtitle as string}
-            rating={4.5} // TODO: check database
-            ratingCount={105} // TODO: check database
-            hint={
-              listing.is_realtors_choice
-                ? ("Realtor's Choice" as HintTag)
-                : listing.is_best_value
-                  ? ("Best Value" as HintTag)
-                  : undefined
-            }
-            advancePeriod={listing.advance_period as number}
-            ViewingFee={listing.viewing_fee as number}
+            {...getListingProps(listing, user as UserType)}
           />
         ))}
       </section>

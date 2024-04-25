@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
-import ArrowLink from "./link/ArrowLink";
+import ArrowLink from "../../components/__shared/ui/links/ArrowLink";
 import { fadeInLeft, fadeInRight } from "@/lib/animations";
-import FramerWrapper from "@/components/__shared/FramerWrapper";
+import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 
 type Props = {
   activity: string;

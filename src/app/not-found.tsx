@@ -1,5 +1,5 @@
-import PageNotFound from "./components/PageNotFound";
-import SomethingWentWrong from "./components/SomethingWentWrong";
+import PageNotFound from "../components/__shared/ui/states/PageNotFound";
+import SomethingWentWrong from "../components/__shared/ui/states/SomethingWentWrong";
 
 function Page() {
   return (

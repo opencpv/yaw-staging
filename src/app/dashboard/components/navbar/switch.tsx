@@ -4,8 +4,9 @@ import { IoIosArrowDown } from "react-icons/io";
 import Select from "../shared/ui/Select";
 import { UserRole } from "../../types";
 import { useRouter } from "next/navigation";
+import { cn } from "@/lib/utils";
 
-const Switch = () => {
+const Switch = ({ className }: { className?: string }) => {
   const router = useRouter();
   const { currentRole, setCurrentRole, setIsSwitchingRole } =
     useDashboardStore();
@@ -30,15 +31,20 @@ const Switch = () => {
   };
 
   return (
-    <button className="gap-2 text-white md:gap-5">
+    <button
+      className={cn(
+        "gap-2 text-primary-500 ssm:text-white md:gap-5",
+        className,
+      )}
+    >
       <Select
         options={["Renter", "Lister"]}
         value={currentRole}
-        className="mx-0 w-32 hover:bg-transparent"
+        className="mx-0 w-32 hover:bg-transparent max-ssm:font-semibold"
         variant="ghost"
         color="primary"
         selectorIcon={<IoIosArrowDown />}
-        selectorIconClassName="text-white"
+        selectorIconClassName="text-primary-500 ssm:text-white"
         handleSelectionChange={handleRoleSwitch}
       />
     </button>

@@ -9,7 +9,7 @@ import { FeatureInterface } from "../../../../interfaces";
 import { cn } from "@/lib/utils";
 
 type Props = {
-  features: FeatureInterface[];
+  features?: FeatureInterface[];
 };
 
 const PropertyDetailsFeatures = ({ features }: Props) => {
@@ -17,7 +17,9 @@ const PropertyDetailsFeatures = ({ features }: Props) => {
 
   return (
     <section
-      className={cn("my-10", { hidden: features.length === 0 || !features })}
+      className={cn("mb-10 mt-20", {
+        hidden: features?.length === 0 || !features,
+      })}
     >
       <h2 className="text-2xl font-[600] text-neutral-800">
         Features and Amenities
@@ -25,14 +27,12 @@ const PropertyDetailsFeatures = ({ features }: Props) => {
       <motion.div
         className="mt-8 grid w-full justify-between gap-x-10 gap-y-4 overflow-hidden sm:grid-cols-2 lg:grid-cols-3"
         initial="collapsed"
-        variants={contentAccordionVariants("11rem")}
+        variants={contentAccordionVariants("2rem")}
         animate={showMore ? "expanded" : "collapsed"}
         transition={{ duration: 0.8, ease: "easeInOut" }}
         exit="collapsed"
       >
-        {features.map((feature, idx) => (
-          <Feature key={idx} label={feature} />
-        ))}
+        {features?.map((feature, idx) => <Feature key={idx} label={feature} />)}
       </motion.div>
       <Button
         variant="ghost"

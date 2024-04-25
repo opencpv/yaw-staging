@@ -1,7 +1,7 @@
 import { Input } from "@nextui-org/react";
 import React from "react";
 import RadioChoices from "./RadioChoices";
-import TextInput from "@/components/__shared/form/TextInput";
+import TextInput from "@/components/__shared/ui/form/TextInput";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import { useItemFilterStore } from "@/store/moving_sales/useMovingSalesStore";
 
@@ -12,7 +12,9 @@ const ItemFilterPriceRange = (props: Props) => {
   const setNegotiation = useItemFilterStore((state) => state.setNegotiation);
   const priceRangeFrom = useItemFilterStore((state) => state.priceRangeFrom);
   const priceRangeTo = useItemFilterStore((state) => state.priceRangeTo);
-  const setPriceRangeFrom = useItemFilterStore((state) => state.setPriceRangeFrom);
+  const setPriceRangeFrom = useItemFilterStore(
+    (state) => state.setPriceRangeFrom,
+  );
   const setPriceRangeTo = useItemFilterStore((state) => state.setPriceRangeTo);
 
   return (

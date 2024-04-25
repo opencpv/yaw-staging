@@ -1,5 +1,5 @@
 import Button from "@/components/__shared/ui/button/Button";
-import Modal from "@/components/__shared/modals/Modal";
+import Modal from "@/components/__shared/ui/modals/Modal";
 import React from "react";
 import CategoryCheckboxes from "./category/CategoryCheckboxes";
 import ItemsFilterModalOption from "./ItemsFilterModalOption";
@@ -53,7 +53,7 @@ const FilterModalBody = () => {
 
 const FilterModalFooter = ({ onClose }: FilterModalFooterProps) => {
   return (
-    <Button color="accent" className="max-w-xs w-48" onClick={onClose}>
+    <Button color="accent" className="w-48 max-w-xs" onClick={onClose}>
       Filter
     </Button>
   );

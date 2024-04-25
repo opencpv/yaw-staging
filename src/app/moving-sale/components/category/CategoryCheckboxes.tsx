@@ -1,4 +1,4 @@
-import Checkbox from "@/components/__shared/form/Checkbox";
+import Checkbox from "@/components/__shared/ui/form/Checkbox";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import { useItemFilterStore } from "@/store/moving_sales/useMovingSalesStore";
 import { CheckboxGroup, cn } from "@nextui-org/react";

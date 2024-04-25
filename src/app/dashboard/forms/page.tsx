@@ -2,14 +2,14 @@
 "use client";
 import { styled } from "@stitches/react";
 import { useState } from "react";
-import ApplicationForm from "../../components/application-form";
-import ImageOptionsPopover from "../../components/listing-form/components/ChooseImages/ImageOptionsPopover";
-import ListingFormModal from "../../components/listing-form";
+import ApplicationForm from "../../../components/__shared/ui/application-form";
+import ImageOptionsPopover from "../../../components/__shared/ui/listing-form/components/ChooseImages/ImageOptionsPopover";
+import ListingFormModal from "../../../components/__shared/ui/listing-form";
 import CompleteYourLogin from "../components/CompleteYourLogin";
 import HowToSwitch from "../components/HowToSwitch";
-import RatingsForm from "@/app/components/ratings-form";
-import AllReviewsModal from "@/app/components/all-reviews-modal";
-import { ClientOnly } from "@/components/ui/ClientOnly";
+import RatingsForm from "@/components/__shared/ui/ratings-form";
+import AllReviewsModal from "@/components/__shared/ui/modals/all-reviews-modal";
+import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
 
 export default function Page() {
   const [ratingsModal, setRatingsModal] = useState();

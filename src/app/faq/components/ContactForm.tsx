@@ -1,39 +1,45 @@
 "use client";
-import { Formik, Form } from "formik";
-import { useRef, useState } from "react";
+import { Formik, Form, ErrorMessage } from "formik";
+import { useState } from "react";
 import supabase from "@/lib/utils/supabase/supabaseClient";
-import Loader from "@/components/__shared/loader/Loader";
+import Loader from "@/components/__shared/ui/loader/Loader";
+import CustomErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
 import ContactSchema from "@/app/contact/components/forms/lib/contactSchema";
 import {
   usePhoneInputDisclosure,
   useToastDisclosure,
 } from "@/lib/custom-hooks/useCustomDisclosure";
-import ContactMessageField from "@/app/contact/components/forms/ContactMessageField";
 import { E164Number } from "libphonenumber-js/core";
 import ContactSubmitButton from "@/app/contact/components/forms/ContactSubmitButton";
 import ContactFullNameField from "@/app/contact/components/forms/ContactFullNameField";
-import ContactEmailField from "@/app/contact/components/forms/ContacEmailField";
 import ContactPhoneField from "@/app/contact/components/forms/ContactPhoneField";
 import { useContactForm } from "@/app/contact/components/forms/hooks/useContactForm";
+import FaqMessageField from "./FaqMessageField";
+import { useSessionStorage } from "@uidotdev/usehooks";
+import { useRouter } from "next/navigation";
 
 const ContactForm = () => {
   const [loading, setLoading] = useState(false);
   const { phone, setPhone, handleCountryChange, handlePhone } =
     usePhoneInputDisclosure();
   const { onOpen } = useToastDisclosure();
-
-  const { validate } = useContactForm();
+  const { validate, contactFormSession } = useContactForm();
+  const [faqFormSession, setFaqFormSession] = useSessionStorage(
+    "faqFormSession",
+    {
+      message: "",
+    },
+  );
+  const router = useRouter();
 
   return (
     <Formik
       initialValues={{
-        fullname: "",
-        email: "",
-        phone: "",
-        message: "",
+        fullname: contactFormSession.fullname,
+        email: contactFormSession.email,
+        phone: contactFormSession.phone,
+        message: faqFormSession.message,
       }}
-      validateOnBlur={false}
-      validateOnChange={false}
       validationSchema={ContactSchema}
       validate={(values) => validate(values, phone)}
       onSubmit={(values, { resetForm }) => {
@@ -50,14 +56,17 @@ const ContactForm = () => {
             },
           ])
           .select()
-          .then(({ data, error }) => {
+          .then(({ error }) => {
+            setLoading(false);
             if (error) {
-              setLoading(false);
+              onOpen("Something went wrong", "error");
             } else {
-              setLoading(false);
               resetForm();
+              sessionStorage.removeItem("contactFormSession");
+              sessionStorage.removeItem("faqFormSession");
               setPhone(undefined);
               onOpen("Successfully sent", "success");
+              router.refresh();
             }
           });
       }}
@@ -72,12 +81,9 @@ const ContactForm = () => {
                 handleChange={handleChange}
                 error={errors.fullname}
               />
-            </div>
-            <div className="w-full">
-              <ContactEmailField
-                value={values.email}
-                handleChange={handleChange}
-              />
+              <CustomErrorMessage className="mt-5" error={errors.fullname}>
+                <ErrorMessage name="fullname" error={errors.fullname} />
+              </CustomErrorMessage>
             </div>
             <div className="w-full">
               <ContactPhoneField
@@ -88,11 +94,25 @@ const ContactForm = () => {
                 handleCountryChange={handleCountryChange}
               />
             </div>
-            <ContactMessageField
-              placeholder="How can we help you?"
-              className="w-full min-w-full"
-              error={errors.message}
-            />
+            <div>
+              <FaqMessageField
+                value={faqFormSession.message || values.message}
+                placeholder="How can we help you?"
+                className="w-full min-w-full"
+                error={errors.message}
+                onChange={(e) => {
+                  handleChange(e);
+                  setFaqFormSession({
+                    ...faqFormSession,
+                    message: e.currentTarget.value,
+                  });
+                }}
+                onBlur={handleBlur}
+              />
+              <CustomErrorMessage className="mt-2" error={errors.message}>
+                <ErrorMessage name="message" error={errors.message} />
+              </CustomErrorMessage>
+            </div>
 
             {loading ? <Loader /> : <ContactSubmitButton label="Submit" />}
           </div>

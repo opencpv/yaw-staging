@@ -1,9 +1,9 @@
 import useCartStore from "@/store/cart/useCartStore";
 import { CartProp } from "../../../../interfaces";
-import CaCartItem from "@/app/components/icons/CaCartItem";
+import CaCartItem from "@/components/__shared/ui/icons/CaCartItem";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import CaDropdownArrow from "@/app/components/icons/CaDropdownArrow";
-import DeleteIconButton from "@/app/components/buttons/DeleteIconButton";
+import CaDropdownArrow from "@/components/__shared/ui/icons/CaDropdownArrow";
+import DeleteIconButton from "@/components/__shared/ui/button/DeleteIconButton";
 
 const CartView = () => {
   const {

@@ -1,7 +1,7 @@
-import CustomInputComponent from "@/app/components/CustomInputComponent";
-import CountryInput from "@/components/__shared/CountryInput";
-import CurrencyInput from "@/components/__shared/CurrencyInput";
-import PhoneNumberInputv2 from "@/components/__shared/PhoneInputv2";
+import CustomInputComponent from "@/components/__shared/ui/form/CustomInputComponent";
+import CountryInput from "@/components/__shared/ui/form/CountryInput";
+import CurrencyInput from "@/components/__shared/ui/form/CurrencyInput";
+import PhoneNumberInputv2 from "@/components/__shared/ui/form/PhoneInputv2";
 import { Formik } from "formik";
 import { ChangeEvent, useState } from "react";
 import PaymentButton from "./PaymentButton";

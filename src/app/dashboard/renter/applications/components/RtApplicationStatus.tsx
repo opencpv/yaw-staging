@@ -4,7 +4,7 @@ import Select from "../../../components/shared/ui/Select";
 import { useSelectDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { cn } from "@nextui-org/react";
 import { BsInfoCircle } from "react-icons/bs";
-import Tooltip from "@/components/ui/Tooltip";
+import Tooltip from "@/components/__shared/ui/Tooltip";
 import { HiOutlineBadgeCheck } from "react-icons/hi";
 import { MdHourglassTop } from "react-icons/md";
 

@@ -1,9 +1,9 @@
-import Footer from "@/components/__shared/footer/Footer";
-import Navbar from "@/components/__shared/Navbar";
-import FeaturedListings from "@/components/__shared/listing/FeaturedListings";
-import ScrollTopAndSocial from "@/components/ui/ScrollTopAndSocial";
+import Footer from "@/components/__shared/ui/footer/Footer";
+import Navbar from "@/components/__shared/ui/Navbar";
+import FeaturedListings from "@/components/__shared/ui/listing/FeaturedListings";
+import ScrollTopAndSocial from "@/components/__shared/ui/ScrollTopAndSocial";
 import React from "react";
-import FeedbackButton from "@/components/feedback/FeedbackButton";
+import FeedbackButton from "@/components/__shared/ui/feedback/FeedbackButton";
 import { loadQuery } from "@/lib/utils/sanity/sanityStore";
 import { SanityDocument } from "next-sanity";
 import { HOME_PAGE_QUERY } from "@/lib/utils/sanity/queries";

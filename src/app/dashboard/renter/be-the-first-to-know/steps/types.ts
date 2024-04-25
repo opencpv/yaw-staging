@@ -11,7 +11,7 @@ export type FirstToKnowFormType = Partial<{
   bathroomMaximum: string;
   requiredFeatures: [];
   city: string;
-  phoneNumber: string | E164Number;
+  phone: string | E164Number;
   availableOnWhatsapp: boolean;
   preferredMethodOfContact: "email" | "whatsapp";
 }>;

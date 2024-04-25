@@ -1,49 +1,57 @@
-import { Form, Formik } from "formik";
-import React, { useRef } from "react";
-import { E164Number } from "libphonenumber-js/core";
+import { ErrorMessage, Form, Formik } from "formik";
+import React from "react";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { sendContactUsEmail } from "../../api";
-import TextInput from "@/components/__shared/form/TextInput";
-import InputPhoneNumber from "@/components/__shared/form/InputPhoneNumber";
-import Loader from "@/components/__shared/loader/Loader";
+import Loader from "@/components/__shared/ui/loader/Loader";
 import ContactSchema from "./lib/contactSchema";
 import { useContactForm } from "./hooks/useContactForm";
 import ContactMessageField from "./ContactMessageField";
 import ContactUploadField from "./ContactUploadField";
 import ContactSubmitButton from "./ContactSubmitButton";
 import ContactFullNameField from "./ContactFullNameField";
-import ContactEmailField from "./ContacEmailField";
 import ContactPhoneField from "./ContactPhoneField";
-import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import {
+  usePhoneInputDisclosure,
+  useToastDisclosure,
+} from "@/lib/custom-hooks/useCustomDisclosure";
+import CustomErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
+import capitalizeName from "@/lib/utils/stringManipulation";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 
 const FormGeneral = (props: Props) => {
-  const { activeTab, file, formRef, loading, setLoading, tableName, validate } =
-    useContactForm();
-
-  const fullNameInputRef = useRef<HTMLInputElement>(null);
+  const {
+    activeTab,
+    file,
+    formRef,
+    loading,
+    setLoading,
+    tableName,
+    validate,
+    contactFormSession,
+  } = useContactForm();
 
   const { phone, setPhone, handleCountryChange, handlePhone } =
     usePhoneInputDisclosure();
+
+  const { onOpen } = useToastDisclosure();
+  const router = useRouter();
 
   return (
     <Formik
       initialValues={{
         contactType: "",
-        fullname: "",
-        email: "",
-        message: "",
-        phone: "",
-        fileUrl: "",
+        fullname: contactFormSession.fullname,
+        email: contactFormSession.email,
+        message: contactFormSession.message,
+        phone: contactFormSession.phone,
+        fileUrl: contactFormSession.fileUrl,
       }}
       validationSchema={ContactSchema}
-      validateOnChange={false}
-      validateOnBlur={false}
-      validate={(values) => validate(values, phone)}
+      validate={(values) => validate(values, contactFormSession.phone)}
       onSubmit={(values, { resetForm }) => {
-        values.contactType = activeTab;
-        values.phone = phone as E164Number;
+        values.contactType = capitalizeName(activeTab);
         values.fileUrl = file;
 
         sendContactUsEmail(formRef.current);
@@ -61,12 +69,16 @@ const FormGeneral = (props: Props) => {
             },
           ])
           .select()
-          .then(({ data, error }) => {
+          .then(({ error }) => {
+            setLoading(false);
             if (error) {
-              setLoading(false);
+              onOpen("Something went wrong", "error");
             } else {
-              setLoading(false);
               resetForm();
+              sessionStorage.removeItem("contactFormSession");
+              setPhone(undefined);
+              onOpen("Successfully sent", "success");
+              router.refresh();
             }
           });
       }}
@@ -74,36 +86,40 @@ const FormGeneral = (props: Props) => {
     >
       {({ handleBlur, handleChange, values, errors }) => (
         <Form ref={formRef} className="flex-1 pt-8">
-          <div className="gap-5 ">
-            <div className={``}>
-              <div className="flex flex-col gap-10">
-                <div className="form-div">
-                  <ContactFullNameField
-                    value={values.fullname}
-                    handleBlur={handleBlur}
-                    handleChange={handleChange}
-                    error={errors.fullname}
-                  />
-                </div>
-                <div className="form-div">
-                  <ContactPhoneField
-                    phone={phone}
-                    handleBlur={handleBlur}
-                    handleChange={handleChange}
-                    handlePhone={handlePhone}
-                    handleCountryChange={handleCountryChange}
-                  />
-                </div>
-                {/* <div className="">
-                            <FormSwitch
-                              label="Available on whatsapp"
-                              onChange={(checked) => setIsWhatsapp(checked)}
-                            />
-                          </div> */}
-                <ContactMessageField error={errors.message} />
-                <ContactUploadField />
-              </div>
+          <div className="flex flex-col gap-10">
+            <div className="form-div">
+              <ContactFullNameField
+                value={values.fullname}
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+                error={errors.fullname}
+              />
+              <CustomErrorMessage className="mt-5" error={errors.fullname}>
+                <ErrorMessage name="fullname" error={errors.fullname} />
+              </CustomErrorMessage>
             </div>
+            <div className="form-div">
+              <ContactPhoneField
+                phone={values.phone}
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+                handlePhone={handlePhone}
+                handleCountryChange={handleCountryChange}
+              />
+            </div>
+            <div>
+              <ContactMessageField
+                value={values.message}
+                className="w-full min-w-full"
+                error={errors.message}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <CustomErrorMessage className="mt-2" error={errors.message}>
+                <ErrorMessage name="message" error={errors.message} />
+              </CustomErrorMessage>
+            </div>
+            <ContactUploadField />
           </div>
           {loading ? <Loader /> : <ContactSubmitButton />}
         </Form>

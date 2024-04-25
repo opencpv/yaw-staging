@@ -1,7 +1,6 @@
 import React from "react";
 import FAQBrowser from "../FAQBrowser";
 import ContactSection from "../ContactSection";
-import SurveyButton from "@/components/survey/SurveyButton";
 
 type Props = {
   data: any;
@@ -16,7 +15,6 @@ const FaqPage = (props: Props) => {
       </h2>
       <FAQBrowser data={props.data} faqCategories={props.faqCategories} />
       <ContactSection />
-      <SurveyButton />
     </>
   );
 };

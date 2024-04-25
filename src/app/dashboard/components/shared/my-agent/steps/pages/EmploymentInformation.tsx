@@ -1,11 +1,11 @@
-import TextFieldInput from "@/app/components/TextFieldInput";
+import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
 import { styled } from "@stitches/react";
 import React, { useState } from "react";
-import CountryInput from "@/components/__shared/CountryInput";
-import CurrencyInput from "@/components/__shared/CurrencyInput";
-import CustomSelect from "@/app/components/CustomSelect";
+import CountryInput from "@/components/__shared/ui/form/CountryInput";
+import CurrencyInput from "@/components/__shared/ui/form/CurrencyInput";
+import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import { MostRecentEmployment } from "../../../../../../components/application-form/components/content";
+import { MostRecentEmployment } from "../../../../../../../components/__shared/ui/application-form/components/content";
 import { BeMyAgentFormType } from "../types";
 import styles from "../../index.module.css";
 

@@ -1,5 +1,5 @@
 "use client";
-import Tooltip from "@/components/ui/Tooltip";
+import Tooltip from "@/components/__shared/ui/Tooltip";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import React from "react";
 import { BsInfoCircle } from "react-icons/bs";

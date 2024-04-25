@@ -1,19 +1,19 @@
 import Image from "next/image";
 import AboutItem from "./components/AboutItem";
-import Navbar from "@/components/__shared/Navbar";
-import Footer from "@/components/__shared/footer/Footer";
+import Navbar from "@/components/__shared/ui/Navbar";
+import Footer from "@/components/__shared/ui/footer/Footer";
 import SimpleSlider from "./components/Slider/SimpleSlider";
 import "swiper/css";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import VerticalSlider from "./components/Slider/VerticalSlider";
-import FeaturedListings from "@/components/__shared/listing/FeaturedListings";
+import FeaturedListings from "@/components/__shared/ui/listing/FeaturedListings";
 import { Metadata } from "next";
 import { ABOUT_PAGE_QUERY } from "@/lib/utils/sanity/queries";
 import { loadQuery } from "@/lib/utils/sanity/sanityStore";
 import { SanityDocument } from "next-sanity";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import { fadeUp } from "@/lib/animations";
-import FramerWrapper from "@/components/__shared/FramerWrapper";
+import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 
 export const metadata: Metadata = {
   title: "About us",

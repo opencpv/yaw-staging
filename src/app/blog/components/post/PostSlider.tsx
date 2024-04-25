@@ -1,5 +1,5 @@
 "use client";
-import SliderWide from "@/components/__shared/sliders/SliderWide";
+import SliderWide from "@/components/__shared/ui/sliders/SliderWide";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import slugify from "@/lib/utils/slugify";
 import { useBlogPostSlider } from "@/store/blog/blogStore";

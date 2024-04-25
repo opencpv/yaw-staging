@@ -3,14 +3,14 @@ import { useAssets } from "@/lib/custom-hooks/useAssets";
 import BillingForm from "./components/BillingForm";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import CaBackArrow from "../components/icons/CaBackArrow";
+import CaBackArrow from "../../components/__shared/ui/icons/CaBackArrow";
 import useCartStore from "@/store/cart/useCartStore";
-import CaCartItem from "../components/icons/CaCartItem";
+import CaCartItem from "../../components/__shared/ui/icons/CaCartItem";
 import { CartProp } from "../../../interfaces";
 import { boolean } from "yup";
 import { useState } from "react";
-import CaNormalArrowDown from "../components/icons/CaNormalArrowDown";
-import CaNormalArrowUp from "../components/icons/CaNormalArrowUp";
+import CaNormalArrowDown from "../../components/__shared/ui/icons/CaNormalArrowDown";
+import CaNormalArrowUp from "../../components/__shared/ui/icons/CaNormalArrowUp";
 
 const Checkout = () => {
   const { icons } = useAssets();

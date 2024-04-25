@@ -1,5 +1,5 @@
 "use client";
-import SliderPaginationOnly from "@/components/__shared/sliders/SliderPaginationOnly";
+import SliderPaginationOnly from "@/components/__shared/ui/sliders/SliderPaginationOnly";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import React from "react";
 

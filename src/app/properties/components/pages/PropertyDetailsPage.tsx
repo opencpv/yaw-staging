@@ -2,13 +2,13 @@
 import "../../style.css";
 import React, { useEffect, useMemo } from "react";
 import { HiMiniShieldCheck } from "react-icons/hi2";
-import Footer from "@/components/__shared/footer/Footer";
+import Footer from "@/components/__shared/ui/footer/Footer";
 import { Rate } from "antd";
-import Navbar from "@/components/__shared/Navbar";
-import ReportIssue from "@/components/__shared/ReportIssue";
+import Navbar from "@/components/__shared/ui/Navbar";
+import ReportIssue from "@/components/__shared/ui/links/ReportIssue";
 import ShapedLanding from "@/app/components/landing/ShapedLanding";
-import ApplicationForm from "@/app/components/application-form";
-import RecommendedListings from "@/components/__shared/listing/RecommendedListings";
+import ApplicationForm from "@/components/__shared/ui/application-form";
+import RecommendedListings from "@/components/__shared/ui/listing/RecommendedListings";
 import PropertyDetailsFigures from "../PropertyDetailsFigures";
 import PropertyOwnerInfo from "../PropertyOwnerInfo";
 import PropertyDetailsPayment from "../PropertyDetailsPayment";
@@ -24,7 +24,7 @@ import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingState
 import style from "@/app/components/landing/Shape.module.css";
 import ViewPropertyBtn from "../ViewPropertyBtn";
 import { useFetchPropertyDetails } from "../../services";
-import SomethingWentWrong from "@/app/components/SomethingWentWrong";
+import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { cn } from "@/lib/utils";
@@ -60,8 +60,6 @@ const PropertyDetailsPage = ({ params }: Props) => {
   const propertyName2 = useMemo(() => {
     return `${listing?.bedrooms} Bedroom ${listing?.property_type} at ${listing?.city}`;
   }, [listing?.bedrooms, listing?.property_type, listing?.city]);
-
-  useEffect(() => {}, []);
 
   return (
     <>
@@ -126,7 +124,7 @@ const PropertyDetailsPage = ({ params }: Props) => {
                 / <span>{propertyName2}</span>
               </div>
               {/* Property images */}
-              <section className="mt-8 grid grid-cols-1 gap-16 md:mt-16 lg:grid-cols-2">
+              <section className="mt-8 grid grid-cols-1 gap-16 md:mb-10 md:mt-16 lg:grid-cols-2">
                 <PropertyDetailsImages
                   images={{
                     images: [""],
@@ -185,10 +183,7 @@ const PropertyDetailsPage = ({ params }: Props) => {
                     </div>
                     <PropertyOwnerInfo
                       name={listing?.profiles?.full_name as string}
-                      picture={
-                        (listing?.profiles?.profile_img as string) ||
-                        images.NoProfileUser
-                      }
+                      picture={listing?.profiles?.profile_img as string}
                       rating={3.5}
                       reviews={120}
                       telephone={listing?.profiles?.phone as string}

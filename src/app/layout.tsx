@@ -8,7 +8,7 @@ import { openSansLocal } from "@/lib/utils/fonts";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // import MenuWrapper from "@/components/__shared/MenuWrapper";
-import MenuWrapperNoSSR from "@/components/__shared/MenuWrapperNoSSR";
+import MenuWrapperNoSSR from "@/components/__shared/hoc/MenuWrapperNoSSR";
 import { Metadata, Viewport } from "next";
 import TemporayLandingPage from "@/components/TemporaryLandingPage";
 

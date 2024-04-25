@@ -1,5 +1,5 @@
 "use client";
-import OptionFilterTabs from "@/components/__shared/OptionFilterTabs";
+import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
 import convertSlugToString from "@/lib/utils/convertSlugToString";
 import slugify from "@/lib/utils/slugify";
 import capitalizeName from "@/lib/utils/stringManipulation";

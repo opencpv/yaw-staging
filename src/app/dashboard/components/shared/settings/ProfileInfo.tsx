@@ -6,9 +6,9 @@ import { FaFacebook, FaLinkedin, FaTwitter, FaWhatsapp } from "react-icons/fa";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Loader from "@/components/__shared/loader/Loader";
+import Loader from "@/components/__shared/ui/loader/Loader";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import PhoneNumberInputv2 from "@/components/__shared/PhoneInputv2";
+import PhoneNumberInputv2 from "@/components/__shared/ui/form/PhoneInputv2";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 interface Props {

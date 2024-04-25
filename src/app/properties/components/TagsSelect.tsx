@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { FaCaretDown } from "react-icons/fa";
 import AdvancedForm from "./AdvancedForm";
-import OptionFilterTabs from "@/components/__shared/OptionFilterTabs";
-import Toggle from "@/components/ui/Toggle";
+import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
+import Toggle from "@/components/__shared/ui/Toggle";
 import {
   FilterOption,
   FilterOptionArray,

@@ -1,5 +1,5 @@
-import Navbar from "@/components/__shared/Navbar";
-import Footer from "@/components/__shared/footer/Footer";
+import Navbar from "@/components/__shared/ui/Navbar";
+import Footer from "@/components/__shared/ui/footer/Footer";
 import { Metadata } from "next";
 import React from "react";
 

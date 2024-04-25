@@ -1,6 +1,6 @@
 //@ts-nocheck
 "use client";
-import InputWithSavedSearch from "@/components/__shared/form/InputWithSavedSearch";
+import InputWithSavedSearch from "@/components/__shared/ui/form/InputWithSavedSearch";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 

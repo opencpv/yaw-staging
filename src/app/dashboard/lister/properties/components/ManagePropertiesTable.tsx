@@ -5,7 +5,7 @@ import { useFetchTableWithPagination } from "@/lib/custom-hooks/useFetch";
 import TableSkeleton from "../../../components/shared/skeleton/TableSkeleton";
 import Spinner from "../../../components/shared/Spinner";
 import { useManagePropertiesStore } from "@/store/dashboard/propertiesStore";
-import Pagination from "@/components/__shared/Pagination";
+import Pagination from "@/components/__shared/ui/Pagination";
 import { UpperCase } from "@/lib/utils/stringManipulation";
 import { PropertyStatusInterface } from "../../../../../../interfaces";
 

@@ -1,5 +1,5 @@
 "use client";
-import ReportIssue from "@/components/__shared/ReportIssue";
+import ReportIssue from "@/components/__shared/ui/links/ReportIssue";
 import ButtonCall from "@/components/__shared/ui/button/ButtonCall";
 import ButtonMessage from "@/components/__shared/ui/button/ButtonMessage";
 import ButtonWhatsApp from "@/components/__shared/ui/button/ButtonWhatsApp";
@@ -9,6 +9,7 @@ import React from "react";
 import { FaStar } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { fadeUp } from "@/lib/animations";
+import Rating from "@/components/__shared/ui/listing/Rating";
 
 type Props = {
   name: string;
@@ -31,7 +32,7 @@ const PropertyOwnerInfo = (props: Props) => {
         <div className="flex items-center gap-10 font-[600]">
           <div className="relative h-24 w-24 rounded-full">
             <Image
-              src={images.StockImage}
+              src={props.picture || images.NoProfileOthers}
               className="rounded-full transition-all hover:scale-105"
               alt={props.name}
               fill
@@ -41,7 +42,7 @@ const PropertyOwnerInfo = (props: Props) => {
           </div>
           <div className="flex flex-col items-center gap-2 text-xl text-primary-500 min-[360px]:flex-row">
             <FaStar className="text-yellow-400" />
-            <p className="cursor-pointer underline">{props.rating}</p>
+            <Rating value={props.rating} className="text-xl" />
           </div>
           <p className="text-xl text-[#93B5BC]">{props.reviews} Reviews</p>
         </div>

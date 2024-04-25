@@ -1,8 +1,8 @@
 import { Rate } from "antd";
 import Image from "next/image";
 import React from "react";
-import SliderPaginationOnly from "@/components/__shared/sliders/SliderPaginationOnly";
-import SliderWide from "@/components/__shared/sliders/SliderWide";
+import SliderPaginationOnly from "@/components/__shared/ui/sliders/SliderPaginationOnly";
+import SliderWide from "@/components/__shared/ui/sliders/SliderWide";
 import OtherPostsGroup from "../../components/post/OtherPostsGroup";
 import BreadCrumbPreLink from "@/components/__shared/ui/BreadCrumbPreLink";
 import SubscribeToBlogButton from "../../components/SubscribeToBlogButton";
@@ -21,7 +21,7 @@ import urlBuilder from "@sanity/image-url";
 import { client } from "@/lib/utils/sanity/client";
 import axios from "axios";
 import { fadeIn } from "@/lib/animations";
-import FramerWrapper from "@/components/__shared/FramerWrapper";
+import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 
 type Props = {
   params: { slug: string };
