@@ -6,7 +6,7 @@ import ContactTabs from "./components/ContactTabs";
 import ScrollTopAndSocial from "../../components/__shared/ui/ScrollTopAndSocial";
 import FeedbackButton from "../../components/__shared/ui/feedback/FeedbackButton";
 import ContactForm from "./components/ContactForm";
-import ContactFormSideImage from "./components/ContactFormSideImage";
+import ContactFormSideContent from "./components/ContactFormSideContent";
 import { Metadata } from "next";
 import { loadQuery } from "@/lib/utils/sanity/sanityStore";
 import { SanityDocument } from "next-sanity";
@@ -36,7 +36,7 @@ const Page = async () => {
               <ContactTabs />
               <div className="flex h-full grid-cols-2 flex-col gap-10 md:grid">
                 <ContactForm />
-                <ContactFormSideImage data={aboutReqData.data} />
+                <ContactFormSideContent data={aboutReqData.data} />
               </div>
             </div>
           </div>

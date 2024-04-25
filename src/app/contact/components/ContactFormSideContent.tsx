@@ -15,13 +15,11 @@ type Props = {
   data: any;
 };
 
-const ContactFormSideImage = (props: Props) => {
+const ContactFormSideContent = (props: Props) => {
   const activeTab = useContactStore((state) => state.activeKey);
   const { images } = useAssets();
   const { data: listings } = useFetchRandomFeaturedListings();
   const { user } = useAppStore();
-
-  console.log(listings);
 
   const SidePanel = (data: any) => {
     if (data.data) {
@@ -97,4 +95,4 @@ const ContactFormSideImage = (props: Props) => {
     return <SidePanel data={props.data["writers"]} />;
 };
 
-export default ContactFormSideImage;
+export default ContactFormSideContent;
