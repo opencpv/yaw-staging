@@ -12,7 +12,7 @@ function PageNotFound({ className }: Props) {
   const router = useRouter();
 
   return (
-    <div className={cn("col-span-full h-screen w-full p-10", className)}>
+    <div className={cn("col-span-full h-svh w-full p-10", className)}>
       <div className="flex h-full w-full flex-col items-center justify-center gap-6">
         <div
           className=" relative aspect-square w-full max-w-[384px] animate-bounce"

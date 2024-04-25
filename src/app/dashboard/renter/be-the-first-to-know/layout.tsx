@@ -18,7 +18,6 @@ const BeTheFirstToKnowLayout = ({
   children: React.ReactNode;
 }) => {
   const pathname = usePathname();
-  const { currentRole } = useDashboardStore();
 
   return (
     <main>
@@ -80,9 +79,7 @@ const BeTheFirstToKnowLayout = ({
           Search Title One
         </h3>
         <FramerWrapper {...fadeUp}>
-          <div className="grid grid-cols-1 gap-x-5 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
-            {children}
-          </div>
+          <div className="listing-grid">{children}</div>
         </FramerWrapper>
       </section>
       <ScrollTop />

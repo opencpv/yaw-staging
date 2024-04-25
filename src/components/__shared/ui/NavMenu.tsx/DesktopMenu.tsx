@@ -1,5 +1,5 @@
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Separator from "../../../Separator";
 import { FadeInOut } from "@/lib/animations";
@@ -22,7 +22,7 @@ export const DesktopMenu = (props: any) => {
   );
 
   return (
-    <div className={`flex-row gap-12 px-8  ${props?.className} `}>
+    <div className={`flex-row gap-12 px-8 ${props?.className} `}>
       <div
         className={"flex w-max flex-col gap-10 border-r border-r-white pr-10"}
       >
@@ -31,10 +31,9 @@ export const DesktopMenu = (props: any) => {
           linksBeforeLogin.map(
             (r, idx) =>
               r.name.toLowerCase() !== "more" && (
-                <>
+                <React.Fragment key={idx}>
                   {r.name.toLowerCase() === "faq" ? (
                     <MenuLink
-                      key={idx}
                       active={active === idx}
                       linkObject={r}
                       onClick={() => {
@@ -50,7 +49,6 @@ export const DesktopMenu = (props: any) => {
                     />
                   ) : (
                     <MenuLink
-                      key={idx}
                       active={active === idx}
                       linkObject={r}
                       onClick={() => {
@@ -65,7 +63,7 @@ export const DesktopMenu = (props: any) => {
                       }}
                     />
                   )}
-                </>
+                </React.Fragment>
               ),
           )}
 
@@ -74,10 +72,9 @@ export const DesktopMenu = (props: any) => {
           linksAfterLogin.map(
             (r, idx) =>
               r.name.toLowerCase() !== "more" && (
-                <>
+                <React.Fragment key={idx}>
                   {r.name.toLowerCase() === "faq" ? (
                     <MenuLink
-                      key={idx}
                       active={active === idx}
                       linkObject={r}
                       onClick={() => {
@@ -93,7 +90,6 @@ export const DesktopMenu = (props: any) => {
                     />
                   ) : (
                     <MenuLink
-                      key={idx}
                       active={active === idx}
                       linkObject={r}
                       onClick={() => {
@@ -108,7 +104,7 @@ export const DesktopMenu = (props: any) => {
                       }}
                     />
                   )}
-                </>
+                </React.Fragment>
               ),
           )}
       </div>
@@ -117,7 +113,6 @@ export const DesktopMenu = (props: any) => {
       {!user && active !== null && (
         <>
           <motion.div
-            key={active}
             className={"flex flex-col gap-8"}
             animate={"open"}
             variants={FadeInOut}
@@ -144,13 +139,14 @@ export const DesktopMenu = (props: any) => {
       {user && active !== null && (
         <>
           <motion.div
-            key={active}
+            key={(Math.random() * 12788781).toString()}
             className={"flex flex-col gap-8"}
             animate={"open"}
             variants={FadeInOut}
             initial={"closed"}
             exit={"closed"}
           >
+            Math.random()
             {/* sub links --> view all listings, etc... */}
             {linksAfterLogin[active]?.sub?.map((l, ldx) => (
               <MenuLink
@@ -175,6 +171,7 @@ export const DesktopMenu = (props: any) => {
             className="h-full min-h-[350px]"
           />
           <motion.div
+            key={(Math.random() * 175512).toString()}
             className={"flex flex-[0_0_30%] flex-col text-[#FCAB10]"}
             animate={FadeInOut.open}
             variants={FadeInOut}

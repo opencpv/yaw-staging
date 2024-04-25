@@ -46,7 +46,7 @@ const PropertiesListing = (props: Props) => {
   return (
     <>
       {/* Listing */}
-      <section className="mx-auto grid grid-cols-1 justify-center gap-x-5 gap-y-16 transition-all md:grid-cols-2 lg:grid-cols-3">
+      <section className="listing-grid">
         <FetchingStates
           data={listings}
           error={error}

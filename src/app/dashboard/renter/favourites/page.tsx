@@ -23,7 +23,7 @@ export default function FavoritePage() {
     isValidating,
     loadMore,
     mutate,
-  } = useFetchUserFavorites(user?.id as string);
+  } = useFetchUserFavorites({ userId: user?.id as string });
 
   return (
     <div>
@@ -31,7 +31,7 @@ export default function FavoritePage() {
       <div className="mt-4">
         <ContactPreferenceToggle />
       </div>
-      <section className="mx-auto my-10 grid grid-cols-1 justify-center gap-x-3 gap-y-16 transition-all sm:grid-cols-2 lg:grid-cols-3">
+      <section className="listing-grid">
         <FetchingStates
           data={listings}
           error={error}

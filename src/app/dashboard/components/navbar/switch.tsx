@@ -31,7 +31,7 @@ const Switch = ({ className }: { className?: string }) => {
   };
 
   return (
-    <button
+    <div
       className={cn(
         "gap-2 text-primary-500 ssm:text-white md:gap-5",
         className,
@@ -47,7 +47,7 @@ const Switch = ({ className }: { className?: string }) => {
         selectorIconClassName="text-primary-500 ssm:text-white"
         handleSelectionChange={handleRoleSwitch}
       />
-    </button>
+    </div>
   );
 };
 
