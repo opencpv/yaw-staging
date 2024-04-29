@@ -1,7 +1,6 @@
 import React from "react";
 import LikeHeart from "../LikeHeart";
 import { FaRegStar, FaStar } from "react-icons/fa";
-import { HiOutlineHomeModern } from "react-icons/hi2";
 import Link from "next/link";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import { ListingCardInterface } from "../../../../../interfaces";
@@ -88,7 +87,7 @@ const ListingInfo = (props: Partial<ListingCardInterface>) => {
         <div
           className={cn("w-max rounded-xl px-3 py-1 text-xs ", {
             "bg-[#E7F8F2] text-indigo-950": props.advancePeriod,
-            "bg-[#EEF2FA] text-[#2E5AAC]": !props.advancePeriod,
+            "text-info bg-info-bg": !props.advancePeriod,
           })}
         >
           {props.advancePeriod === 1 ? (

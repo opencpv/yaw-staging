@@ -55,7 +55,7 @@ const NotificationsPopover = () => {
 
           {unreadNotifications && (
             <div className="mb-2 flex w-full justify-end">
-              <Button className="bg-unset focus:!unset active:unset flex items-center justify-end gap-2 p-2 text-black hover:bg-[#073b3a12]">
+              <Button className="bg-unset focus:!unset active:unset flex items-center justify-end gap-2 p-2 text-black hover:bg-[#11605E12]">
                 <div className="flex gap-0">
                   <CaMarkAsRead />
                 </div>

@@ -102,7 +102,7 @@ const Root = styled("div", {
       "linear-gradient(271deg, rgba(255, 255, 255, 0.83) 55.34%, rgba(255, 255, 255, 0.83) 124.12%)",
   },
   "required-message": {
-    color: "#073B3A",
+    color: "#11605E",
     fontSize: "14px",
   },
 });

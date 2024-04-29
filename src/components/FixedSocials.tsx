@@ -72,7 +72,7 @@ const FixedSocials = ({ threshHoldMax, threshHoldMin }: Props) => {
         </ul>
       </section>
       <section
-        className={`relative -z-10 grid h-7 w-6 cursor-pointer place-items-center bg-gradient-to-b from-[#073B3A] to-primary-400 ${
+        className={`from-primary relative -z-10 grid h-7 w-6 cursor-pointer place-items-center bg-gradient-to-b to-primary-400 ${
           shouldShowArrow && !shouldShowSocials
             ? "translate-x-0 opacity-70"
             : "-translate-x-[100%]"

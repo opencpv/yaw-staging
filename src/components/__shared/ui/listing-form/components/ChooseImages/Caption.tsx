@@ -23,7 +23,7 @@ const Caption = () => (
             <input className="form-input" placeholder="Add your caption here" />
           </TFormDiv>
           <div className="flex w-full justify-end">
-            <div className="flex aspect-[116/52] h-[52px] w-full max-w-[116px] items-center justify-center rounded-lg bg-[#073B3A] font-semibold text-white">
+            <div className="bg-primary flex aspect-[116/52] h-[52px] w-full max-w-[116px] items-center justify-center rounded-lg font-semibold text-white">
               Save
             </div>
           </div>

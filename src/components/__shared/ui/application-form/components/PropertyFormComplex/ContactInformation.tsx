@@ -26,7 +26,7 @@ const ContactInformationForm = React.forwardRef<HTMLInputElement, Props>(
     return (
       <Root className="px-2 text-[#6A6968]  ">
         <div className="p2 h-full ">
-          <p className="text-[1.5625rem] font-semibold text-[#073B3A]">
+          <p className="text-primary text-[1.5625rem] font-semibold">
             Contact Information
           </p>
           <div className="grid grid-cols-3 gap-x-5 gap-y-5 pt-7">
