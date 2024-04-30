@@ -8,7 +8,7 @@ type Props = {};
 
 const Landing = (props: Props) => {
   return (
-    <section className="wrapper space-y-8 text-shade-200">
+    <section className="section wrapper space-y-8 pb-20 pt-10 text-shade-200">
       <div className="space-y-1">
         <h1 className="text-2xl capitalize text-neutral-800 min-[300px]:text-3xl">
           Find your new home with{" "}

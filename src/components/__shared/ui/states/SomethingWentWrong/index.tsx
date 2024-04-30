@@ -16,7 +16,7 @@ function SomethingWentWrong({ className, onTryAgain, reset, error }: Props) {
   const hasInternet = navigator.onLine;
 
   return (
-    <div className={cn("col-span-full h-svh w-full", className)}>
+    <main className={cn("col-span-full h-svh w-full", className)}>
       <div className="flex h-full w-full flex-col items-center justify-center gap-6">
         <div
           className="aspect-square animate-bounce"
@@ -49,7 +49,7 @@ function SomethingWentWrong({ className, onTryAgain, reset, error }: Props) {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
 
