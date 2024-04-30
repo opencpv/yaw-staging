@@ -23,7 +23,6 @@ const ContactFormSideImage = (props: Props) => {
     writers: "writersSection",
   };
   const sectionData = props.data[tabToData[activeTab]];
-  console.log(activeTab);
 
   const SidePanel = (data: any) => {
     if (sectionData) {

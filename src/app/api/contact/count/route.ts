@@ -1,7 +1,7 @@
 import { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/utils/supabase/auth/server";
-import withErrorHandler from "../withErrorHandler";
+import withErrorHandler from "../../withErrorHandler";
 
 export const GET = withErrorHandler(async (request: NextRequest) => {
   const supabaseClient = createClient();
@@ -10,8 +10,8 @@ export const GET = withErrorHandler(async (request: NextRequest) => {
   if (error) {
     throw new Error(error.message);
   }
-
-  return new NextResponse(JSON.stringify(data), {
+  console.log(data?.length);
+  return new NextResponse(JSON.stringify({ count: data?.length }), {
     status: 200,
   });
 });

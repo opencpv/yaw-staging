@@ -4,6 +4,7 @@ import NavButton from "./NavButton";
 import {
   FaDashcube,
   FaDiscourse,
+  FaMailBulk,
   FaPeopleArrows,
   FaQuestionCircle,
 } from "react-icons/fa";
@@ -36,6 +37,12 @@ const Sidebar = () => {
           icon={<FaQuestionCircle />}
           link={"/not312/dashboard/faq"}
           active={path === "/not312/dashboard/faq"}
+        />
+        <NavButton
+          text="Contact Us"
+          icon={<FaMailBulk />}
+          link={"/not312/dashboard/contact"}
+          active={path === "/not312/dashboard/contact"}
         />
       </div>
     </aside>

@@ -33,7 +33,12 @@ const SurveyBody = ({
         height={128}
         className=" mx-auto mt-10 h-32 w-32 xs:h-72 xs:w-72"
       />
-      <Formik initialValues={{}} onSubmit={(values) => console.log(values)}>
+      <Formik
+        initialValues={{}}
+        onSubmit={(values) => {
+          null;
+        }}
+      >
         <form className="flex flex-col items-center gap-10">
           <div className="flex flex-col items-center gap-8">
             <h2 className="text-2xl font-[500] text-neutral-700">

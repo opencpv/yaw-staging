@@ -42,7 +42,6 @@ export const POST = withErrorHandler(async (request: any) => {
       ACL: "public-read",
       Body: Buffer.from(fileBuffer),
     });
-    console.log(uploadRes);
 
     return NextResponse.json({
       message: "uploaded successfully",

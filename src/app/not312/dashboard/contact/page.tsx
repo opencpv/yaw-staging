@@ -20,12 +20,16 @@ const { Column, ColumnGroup } = Table;
 import { CSVDownload, CSVLink } from "react-csv";
 interface DataType {
   id: number;
-  created_at: string;
+  fullname: string;
   feedback_title: string;
-  value_a: number;
-  value_b: number;
-  value_c: boolean;
-  value_d: string;
+  company_name: string;
+  phone: string;
+  email: string;
+  message: string;
+  contact_type: string;
+  report_link: string;
+  created_at: string;
+  file_url: string;
 }
 
 const columns: TableProps<DataType>["columns"] = [
@@ -40,24 +44,56 @@ const columns: TableProps<DataType>["columns"] = [
     key: "fullname",
   },
   {
-    title: "Email",
-    dataIndex: "email",
-    key: "email",
+    title: "Company",
+    dataIndex: "company_name",
+    render: (text, record, index) => record.company_name || "N/A",
   },
   {
     title: "Phone",
     dataIndex: "phone",
-    key: "phone",
+    render: (text, record, index) => record.phone || "N/A",
+  },
+  {
+    title: "Email",
+    dataIndex: "email",
+    render: (text, record, index) => record.email || "N/A",
   },
   {
     title: "Message",
     dataIndex: "message",
-    key: "message",
+    render: (text, record, index) => (
+      <p className="w-[300px]">{record.message}</p>
+    ),
+  },
+  {
+    title: "Contact Type",
+    dataIndex: "contact_type",
+    render: (text, record, index) => record.contact_type || "N/A",
+  },
+  {
+    title: "Report Link",
+    dataIndex: "report_link",
+    render: (text, record, index) => record.report_link || "N/A",
   },
   {
     title: "Date",
     dataIndex: "created_at",
     render: (text, record, index) => record.created_at.split("T")[0],
+  },
+  {
+    title: "File",
+    dataIndex: "file_url",
+    render: (text, record, index) => (
+      <>
+        {record.file_url ? (
+          <a href={record.file_url}>
+            <Button>Download</Button>
+          </a>
+        ) : (
+          "N/A"
+        )}
+      </>
+    ),
   },
 ];
 
@@ -65,32 +101,101 @@ const PageView = () => {
   const tableRef = useRef<any>();
   const [selectedKeys, setSelectedKeys] = useState<any>(new Set(["all"]));
 
-  const selectedValue: any = useMemo(
+  const [selectedExportTypeKey, setSelectedExportTypeKey] = useState<any>(
+    new Set(["csv"]),
+  );
+  const selectedValue = useMemo(
     () => Array.from(selectedKeys).join(", ").replaceAll("_", " "),
     [selectedKeys],
   );
+  const selectedExportValue = useMemo(
+    () => Array.from(selectedExportTypeKey).join(", ").replaceAll("_", " "),
+    [selectedExportTypeKey],
+  );
 
-  const { isLoading, error, data } = useQuery({
-    queryKey: ["repoData", selectedValue],
-    queryFn: () => fetch(`${route.faqData}`).then((res) => res.json()),
+  const contactCategories = [
+    {
+      label: "General",
+      key: "general",
+    },
+    {
+      label: "Report",
+      key: "report",
+    },
+    {
+      label: "Writers",
+      key: "writers",
+    },
+    {
+      label: "Advertise",
+      key: "advertise",
+    },
+    {
+      label: "All",
+      key: "all",
+    },
+  ];
+
+  const {
+    isPending: isContactLoading,
+    error: contactError,
+    data: contactData,
+    refetch: refetchContactData,
+  } = useQuery({
+    queryKey: ["contactData", selectedValue],
+    queryFn: () =>
+      fetch(`${route.contactData}?filter=${selectedValue || "all"}`).then(
+        (res) => res.json(),
+      ),
   });
 
-  useEffect(() => {}, [isLoading]);
-
   useEffect(() => {
-    console.log(data);
-  }, [isLoading]);
+    refetchContactData(); // Refetch contact data when selected value changes
+  }, [selectedValue, refetchContactData]);
+
+  const ContactFilterButton = ({ loading }: { loading: boolean }) => (
+    <Dropdown>
+      <DropdownTrigger>
+        <Button
+          className=" bg-blue-600 font-bold text-white"
+          color="primary"
+          loading={loading}
+        >
+          {capitalizeName(selectedValue)}
+        </Button>
+      </DropdownTrigger>
+      <DropdownMenu
+        aria-label="contact filter"
+        variant="bordered"
+        disallowEmptySelection
+        selectionMode="single"
+        items={contactCategories}
+        selectedKeys={selectedKeys}
+        onSelectionChange={setSelectedKeys}
+      >
+        {(item: any) => (
+          <DropdownItem key={item.key} color={"default"} className={""}>
+            {capitalizeName(item.label)}
+          </DropdownItem>
+        )}
+      </DropdownMenu>
+    </Dropdown>
+  );
 
   return (
     <div className="h-[100vh]">
-      <h2 className="mb-8 text-3xl font-bold">Feedback</h2>
+      <h2 className="mb-8 text-3xl font-bold">Contact</h2>
       <div className="items-cente mb-8 flex h-fit justify-between">
+        <div className="flex items-center gap-8">
+          <p>Filter</p>
+          <ContactFilterButton loading={false} />
+        </div>
         <div className="flex items-center gap-2">
           <CSVLink
-            data={data || []}
-            filename={`${new Date().toLocaleDateString()}-feedback.csv`}
+            data={contactData || []}
+            filename={`${new Date().toLocaleDateString()}-contact.csv`}
           >
-            <Button loading={data == null || data == undefined}>
+            <Button loading={contactData == null || contactData == undefined}>
               Download CSV
             </Button>
           </CSVLink>
@@ -98,9 +203,9 @@ const PageView = () => {
       </div>
       <Table
         columns={columns}
-        dataSource={data}
+        dataSource={contactData}
         ref={tableRef}
-        loading={data == null || isLoading}
+        loading={contactData == null || contactData == undefined}
       />
     </div>
   );

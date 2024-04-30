@@ -75,12 +75,6 @@ const PageView = () => {
     queryFn: () => fetch(`${route.faqData}`).then((res) => res.json()),
   });
 
-  useEffect(() => {}, [isLoading]);
-
-  useEffect(() => {
-    console.log(data);
-  }, [isLoading]);
-
   return (
     <div className="h-[100vh]">
       <h2 className="mb-8 text-3xl font-bold">Feedback</h2>

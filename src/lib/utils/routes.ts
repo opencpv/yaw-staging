@@ -9,4 +9,6 @@ export const route = {
   subscribersData: "/api/subscription",
   faqData: "/api/faq",
   faqCount: "/api/faq/count",
+  contactsCount: "/api/contact/count",
+  contactData: "/api/contact",
 };

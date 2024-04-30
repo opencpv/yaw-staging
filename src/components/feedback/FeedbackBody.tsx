@@ -54,7 +54,6 @@ const FeedbackBody = ({
       <Formik
         initialValues={initialValues}
         onSubmit={async (values, {}) => {
-          console.log(values);
           const { error } = await supabase.from("feedback").insert({
             ...values,
             feedback_title: "Website feedback", // From feedback.title ?

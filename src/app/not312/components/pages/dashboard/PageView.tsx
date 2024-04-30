@@ -21,6 +21,11 @@ const PageView = () => {
           link="/not312/dashboard/faq"
           api={route.faqCount}
         />
+        <SummaryCard
+          title="Contacts"
+          link="/not312/dashboard/contact"
+          api={route.contactsCount}
+        />
       </div>
     </div>
   );
