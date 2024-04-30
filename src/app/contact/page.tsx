@@ -1,22 +1,17 @@
 import { styled } from "@stitches/react";
 import Navbar from "@/components/__shared/Navbar";
 import Footer from "@/components/__shared/footer/Footer";
-import { motion } from "framer-motion";
-import PhoneNumberInputv2 from "@/components/__shared/PhoneInputv2";
-import { useScrollIntoView } from "@/lib/custom-hooks/useWindowEvents";
 import ContactBanner from "./components/ContactBanner";
 import ContactTabs from "./components/ContactTabs";
 import ScrollTopAndSocial from "../../components/ui/ScrollTopAndSocial";
 import FeedbackButton from "../../components/feedback/FeedbackButton";
 import ContactForm from "./components/ContactForm";
 import ContactFormSideImage from "./components/ContactFormSideImage";
-import { useRef } from "react";
 import { Metadata } from "next";
 import { loadQuery } from "@/lib/utils/sanity/sanityStore";
 import { SanityDocument } from "next-sanity";
 import {
   CONTACT_US_PAGE_QUERY,
-  CONTACT_US_PAGE_QUERY_2,
   HOME_PAGE_QUERY,
 } from "@/lib/utils/sanity/queries";
 export const metadata: Metadata = {
@@ -27,7 +22,7 @@ const Page = async () => {
   const initial = await loadQuery<SanityDocument[]>(HOME_PAGE_QUERY);
   const data = initial.data[0];
   const contactUsData = await loadQuery<SanityDocument[]>(
-    CONTACT_US_PAGE_QUERY_2,
+    CONTACT_US_PAGE_QUERY,
   );
 
   return (

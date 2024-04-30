@@ -20,9 +20,7 @@ export const PROMOTIONS_QUERY = groq`*[_type == 'promotions']{...}`;
 export const HOME_BANNER_QUERY = groq`*[_type == 'homeBanner']{...}`;
 export const ADS_QUERY = groq`*[_type == 'ads']{...}`;
 
-export const CONTACT_US_PAGE_QUERY = groq`*[_type == 'contact'][0] {   general->{     _id,     _type,     title,     images,     pdfDocument,     "pdfUrl": pdfDocument.asset->url,     video   },   reports->{     _id,     _type,     title,     images,     pdfDocument,     "pdfUrl": pdfDocument.asset->url,     video   },   advertise->{     _id,     _type,     title,     images,     pdfDocument,     "pdfUrl": pdfDocument.asset->url,     video   },   writers->{     _id,     _type,     title,     images,     pdfDocument,     "pdfUrl": pdfDocument.asset->url,     video   } }`;
-
-export const CONTACT_US_PAGE_QUERY_2 = groq`*[_type == 'contactUs']  {
+export const CONTACT_US_PAGE_QUERY = groq`*[_type == 'contactUs']  {
   _id,
   _type,
   reportSection-> {
@@ -67,3 +65,9 @@ export const CONTACT_US_PAGE_QUERY_2 = groq`*[_type == 'contactUs']  {
   }
 }
  `;
+
+export const JOBS_QUERY = groq`*[_type == 'job'] {_id,
+description_brief,
+description,
+image,
+"imgUrl":image.asset->url}`;

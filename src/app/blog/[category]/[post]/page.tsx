@@ -11,15 +11,11 @@ import Print from "@/components/__shared/ui/Print";
 import { loadQuery } from "@sanity/react-loader";
 import { SanityDocument } from "next-sanity";
 import { SINGLE_BLOG_POST } from "@/lib/utils/sanity/queries";
-import slugify from "@/lib/utils/slugify";
 import { urlForImage } from "@/lib/utils/sanity/utils";
-import BlogTextComponent from "../../components/BlogTextComponent";
 import { PortableText } from "@portabletext/react";
 import "../../style.css";
-import handlePageViewCounter from "@/lib/utils/handlePageViewCounter";
 import urlBuilder from "@sanity/image-url";
 import { client } from "@/lib/utils/sanity/client";
-import axios from "axios";
 import { fadeIn } from "@/lib/animations";
 import FramerWrapper from "@/components/__shared/FramerWrapper";
 
@@ -29,13 +25,11 @@ type Props = {
 };
 
 const page = async ({ params, searchParams }: Props) => {
-  // handlePageViewCounter(post);
   const sanityClient = client;
   const intialPostData = await loadQuery<SanityDocument[]>(
     SINGLE_BLOG_POST(searchParams.id),
   );
   const post = intialPostData.data[0];
-  // const res = await axios.put("/api/blog-view", { id: 1 });
 
   const SampleImageComponent = ({
     value,
@@ -57,10 +51,7 @@ const page = async ({ params, searchParams }: Props) => {
           loading="lazy"
           fill
           style={{
-            // Display alongside text if image appears inside a block text span
             display: isInline ? "inline-block" : "block",
-
-            // Avoid jumping around with aspect-ratio CSS property
           }}
         />
       </div>
@@ -70,8 +61,6 @@ const page = async ({ params, searchParams }: Props) => {
   const components = {
     types: {
       image: SampleImageComponent,
-      // Any other custom types you have in your content
-      // Examples: mapLocation, contactForm, code, featuredProjects, latestNews, etc.
     },
   };
   return (
@@ -79,12 +68,6 @@ const page = async ({ params, searchParams }: Props) => {
       {
         <div className="wrapper overflow-x-hidden text-neutral-500">
           <h3 className="mb-8 text-xl font-[500]">
-            {/* <BreadCrumbPreLink
-                  label="Blog"
-                  href={`/blog/${slugify(post.category.category_title)}/${slugify(
-                    post.title,
-                  )}`}
-                /> */}
             Posted by{" "}
             {post && (
               <span className="text-primary-500">{post.author.name}</span>

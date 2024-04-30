@@ -1,5 +1,3 @@
-"use client";
-
 import Navbar from "@/components/__shared/Navbar";
 import { useEffect } from "react";
 
