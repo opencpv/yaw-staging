@@ -39,7 +39,6 @@ const demoJobData = [
 const Page = async () => {
   const jobsResponse = await loadQuery<SanityDocument[]>(JOBS_QUERY);
   const jobsData = jobsResponse.data || [];
-  console.log(jobsData);
   return (
     <div className="flex items-center justify-center">
       <div className="flex w-full max-w-[1728px] flex-col items-center justify-center">

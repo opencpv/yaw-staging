@@ -11,4 +11,6 @@ export const route = {
   faqCount: "/api/faq/count",
   contactsCount: "/api/contact/count",
   contactData: "/api/contact",
+  applicantData: "/api/applicant",
+  applicantsCount: "/api/applicant/count",
 };

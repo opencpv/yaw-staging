@@ -20,12 +20,12 @@ const { Column, ColumnGroup } = Table;
 import { CSVDownload, CSVLink } from "react-csv";
 interface DataType {
   id: number;
+  firstname: string;
+  lastname: string;
+  cover_letter_url: string;
+  resume_url: string;
+  additional_link: string;
   created_at: string;
-  feedback_title: string;
-  value_a: number;
-  value_b: number;
-  value_c: boolean;
-  value_d: string;
 }
 
 const columns: TableProps<DataType>["columns"] = [
@@ -35,24 +35,77 @@ const columns: TableProps<DataType>["columns"] = [
     render: (text, record, index) => index + 1,
   },
   {
-    title: "Fullname",
-    dataIndex: "fullname",
-    key: "fullname",
+    title: "Firstname",
+    dataIndex: "firstname",
+    key: "firstname",
   },
   {
-    title: "Email",
-    dataIndex: "email",
-    key: "email",
+    title: "Lastname",
+    dataIndex: "lastname",
+    key: "lastname",
   },
   {
-    title: "Phone",
-    dataIndex: "phone",
-    key: "phone",
+    title: "Cover Letter",
+    dataIndex: "cover_letter_url",
+    render: (text, record, index) => (
+      <>
+        {record.cover_letter_url ? (
+          <a
+            href={record.cover_letter_url}
+            download={record.cover_letter_url}
+            target="_blank"
+          >
+            <Button type="primary" className=" bg-slate-600 font-bold">
+              Download
+            </Button>
+          </a>
+        ) : (
+          "N/A"
+        )}
+      </>
+    ),
   },
   {
-    title: "Message",
-    dataIndex: "message",
-    key: "message",
+    title: "Resume",
+    dataIndex: "resume_url",
+    render: (text, record, index) => (
+      <>
+        {record.resume_url ? (
+          <a
+            href={record.resume_url}
+            download={record.resume_url}
+            target="_blank"
+          >
+            <Button type="primary" className=" bg-slate-600 font-bold">
+              Download
+            </Button>
+          </a>
+        ) : (
+          "N/A"
+        )}
+      </>
+    ),
+  },
+  {
+    title: "Extra",
+    dataIndex: "additional_link",
+    render: (text, record, index) => (
+      <>
+        {record.additional_link ? (
+          <a
+            href={record.additional_link}
+            download={record.additional_link}
+            target="_blank"
+          >
+            <Button type="primary" className=" bg-slate-600 font-bold">
+              Download
+            </Button>
+          </a>
+        ) : (
+          "N/A"
+        )}
+      </>
+    ),
   },
   {
     title: "Date",
@@ -72,17 +125,17 @@ const PageView = () => {
 
   const { isLoading, error, data } = useQuery({
     queryKey: ["repoData", selectedValue],
-    queryFn: () => fetch(`${route.faqData}`).then((res) => res.json()),
+    queryFn: () => fetch(`${route.applicantData}`).then((res) => res.json()),
   });
 
   return (
     <div className="h-[100vh]">
-      <h2 className="mb-8 text-3xl font-bold">Feedback</h2>
+      <h2 className="mb-8 text-3xl font-bold">Applicants</h2>
       <div className="items-cente mb-8 flex h-fit justify-between">
         <div className="flex w-full items-center justify-end gap-2">
           <CSVLink
             data={data || []}
-            filename={`${new Date().toLocaleDateString()}-faqs.csv`}
+            filename={`${new Date().toLocaleDateString()}-applicants.csv`}
           >
             <Button loading={data == null || data == undefined}>
               Download CSV

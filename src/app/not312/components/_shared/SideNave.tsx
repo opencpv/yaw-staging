@@ -8,6 +8,7 @@ import {
   FaPeopleArrows,
   FaQuestionCircle,
 } from "react-icons/fa";
+import { FaPeopleCarryBox } from "react-icons/fa6";
 const Sidebar = () => {
   const path = usePathname();
   return (
@@ -43,6 +44,12 @@ const Sidebar = () => {
           icon={<FaMailBulk />}
           link={"/not312/dashboard/contact"}
           active={path === "/not312/dashboard/contact"}
+        />
+        <NavButton
+          text="Applicants"
+          icon={<FaPeopleCarryBox />}
+          link={"/not312/dashboard/applicants"}
+          active={path === "/not312/dashboard/applicants"}
         />
       </div>
     </aside>

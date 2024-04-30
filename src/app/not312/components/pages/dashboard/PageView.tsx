@@ -26,6 +26,11 @@ const PageView = () => {
           link="/not312/dashboard/contact"
           api={route.contactsCount}
         />
+        <SummaryCard
+          title="Applicants"
+          link="/not312/dashboard/applicants"
+          api={route.applicantsCount}
+        />
       </div>
     </div>
   );
