@@ -4,6 +4,7 @@ import React from "react";
 import Landing from "./components/Landing";
 import Promotions from "./components/sections/Promotions";
 import FeaturedListings from "./components/sections/FeaturedListings";
+import RentalDeals from "./components/sections/RentalDeals";
 
 type Props = {};
 
@@ -14,6 +15,7 @@ const page = (props: Props) => {
       <Landing />
       <Promotions />
       <FeaturedListings />
+      <RentalDeals />
       <Footer />
     </>
   );

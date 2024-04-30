@@ -24,7 +24,7 @@ const FeaturedListings = (props: Props) => {
   } = useFetchFeaturedListings();
 
   return (
-    <section className="wrapper section max-w-screen-xl">
+    <section className="wrapper section">
       <div className="space-y-10">
         <div className="flex items-center justify-between gap-5">
           <h2 className="uppercase">Featured Listings</h2>

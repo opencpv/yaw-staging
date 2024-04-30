@@ -2,8 +2,9 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import "swiper/css/effect-fade";
 import Image from "next/image";
-import { Navigation } from "swiper/modules";
+import { Navigation, EffectFade } from "swiper/modules";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 
 type Props = {};
@@ -28,12 +29,9 @@ const PromotionSlider = (props: Props) => {
       <Swiper
         slidesPerView={1}
         spaceBetween={20}
-        navigation={{
-          nextEl: ".promotions-swiper-button-next",
-          prevEl: ".promotions-swiper-button-prev",
-        }}
         className="h-full w-full"
-        modules={[Navigation]}
+        modules={[Navigation, EffectFade]}
+        fadeEffect={{ crossFade: true }}
         ref={sliderRef}
       >
         {[1, 2, 3]?.map((item) => (
@@ -60,11 +58,17 @@ const PromotionSlider = (props: Props) => {
         ))}
       </Swiper>
       <div className="absolute left-0 top-32 z-10 flex flex-wrap items-center gap-5 pt-2">
-        <button className="promotions-swiper-button-left grid h-14 w-20 place-items-center rounded-lg border-2 border-primary bg-white text-primary hover:bg-primary hover:text-white">
-          <FaChevronLeft size={15} onClick={handlePrev} />
+        <button
+          className="grid h-14 w-20 place-items-center rounded-lg border-2 border-primary bg-white text-primary hover:bg-primary hover:text-white"
+          onClick={handlePrev}
+        >
+          <FaChevronLeft size={15} />
         </button>
-        <button className="promotions-swiper-button-right grid h-14 w-20 place-items-center rounded-lg border-2 border-primary bg-white text-primary hover:bg-primary hover:text-white">
-          <FaChevronRight size={15} onClick={handleNext} />
+        <button
+          className="grid h-14 w-20 place-items-center rounded-lg border-2 border-primary bg-white text-primary hover:bg-primary hover:text-white"
+          onClick={handleNext}
+        >
+          <FaChevronRight size={15} />
         </button>
       </div>
     </div>

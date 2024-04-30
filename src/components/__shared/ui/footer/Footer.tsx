@@ -54,7 +54,7 @@ const Footer = () => {
       <div className="mx-auto flex flex-col items-center gap-10 px-6 text-[#fff] lg:w-8/12">
         <p
           className={
-            "max-w-[1077px] text-[32px] font-[500] xl:text-[48px] 2xl:tracking-[-1.92px]"
+            "max-w-[1077px] text-[32px] font-[500] leading-normal xl:text-[48px] 2xl:tracking-[-1.92px]"
           }
         >
           Sign up to get the{" "}
