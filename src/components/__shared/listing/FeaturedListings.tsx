@@ -17,9 +17,14 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 type Props = {
   className?: string;
   showAllButton?: boolean;
+  showTitle?: boolean;
 };
 
-const FeaturedListings = ({ className, showAllButton }: Props) => {
+const FeaturedListings = ({
+  className,
+  showAllButton,
+  showTitle = true,
+}: Props) => {
   const { user } = useAppStore();
 
   const { data: listings, error, isLoading } = useFetchFeaturedListings();
@@ -28,7 +33,9 @@ const FeaturedListings = ({ className, showAllButton }: Props) => {
     <>
       <section className={`no-print h-fit w-full ${className}`}>
         <div className="mb-8 flex flex-wrap items-center justify-between gap-5">
-          <h2>Featured Listings</h2>
+          {showTitle && (
+            <h2 className="text-2xl font-[700]">Featured Listings</h2>
+          )}
           <Button
             href="/properties"
             variant="ghost"

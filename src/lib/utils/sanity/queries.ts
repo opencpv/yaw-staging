@@ -21,3 +21,49 @@ export const HOME_BANNER_QUERY = groq`*[_type == 'homeBanner']{...}`;
 export const ADS_QUERY = groq`*[_type == 'ads']{...}`;
 
 export const CONTACT_US_PAGE_QUERY = groq`*[_type == 'contact'][0] {   general->{     _id,     _type,     title,     images,     pdfDocument,     "pdfUrl": pdfDocument.asset->url,     video   },   reports->{     _id,     _type,     title,     images,     pdfDocument,     "pdfUrl": pdfDocument.asset->url,     video   },   advertise->{     _id,     _type,     title,     images,     pdfDocument,     "pdfUrl": pdfDocument.asset->url,     video   },   writers->{     _id,     _type,     title,     images,     pdfDocument,     "pdfUrl": pdfDocument.asset->url,     video   } }`;
+
+export const CONTACT_US_PAGE_QUERY_2 = groq`*[_type == 'contactUs']  {
+  _id,
+  _type,
+  reportSection-> {
+    _id,
+    _type,
+    fileType,
+    videoUrl,
+    image,
+    "imgURL": image.asset->url,
+    pdf,
+    "pdfUrl": pdf.asset->url
+  },
+  generalSection-> {
+    _id,
+    _type,
+    fileType,
+    videoUrl,
+    image,
+      "imgURL": image.asset->url,
+    pdf,
+    "pdfUrl": pdf.asset->url
+  },
+  advertiseSection-> {
+    _id,
+    _type,
+    fileType,
+    videoUrl,
+    image,
+      "imgURL": image.asset->url,
+    pdf,
+    "pdfUrl": pdf.asset->url
+  },
+  writersSection-> {
+    _id,
+    _type,
+    fileType,
+    videoUrl,
+    image,
+      "imgURL": image.asset->url,
+    pdf,
+    "pdfUrl": pdf.asset->url
+  }
+}
+ `;

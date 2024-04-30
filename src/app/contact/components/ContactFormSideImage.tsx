@@ -1,4 +1,5 @@
 "use client";
+import FeaturedListings from "@/components/__shared/listing/FeaturedListings";
 import SliderPaginationOnly from "@/components/__shared/sliders/SliderPaginationOnly";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { urlForImage } from "@/lib/utils/sanity/utils";
@@ -6,41 +7,52 @@ import { useContactStore } from "@/store/contact/useContactStore";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { writer } from "repl";
 type Props = {
   data: any;
 };
 
 const ContactFormSideImage = (props: Props) => {
-  const activeTab = useContactStore((state) => state.activeKey);
   const { images } = useAssets();
+
+  const activeTab = useContactStore((state) => state.activeKey);
+  const tabToData: any = {
+    general: "generalSection",
+    report: "reportSection",
+    advertise: "advertiseSection",
+    writers: "writersSection",
+  };
+  const sectionData = props.data[tabToData[activeTab]];
+  console.log(activeTab);
+
   const SidePanel = (data: any) => {
-    if (data.data) {
-      if (data.data.video) {
+    if (sectionData) {
+      if (sectionData.videoUrl) {
         return (
           <div className="relative aspect-video w-full flex-1 rounded-2xl md:mt-10 md:aspect-auto md:h-[40rem]">
             <iframe
-              src={data.data.video}
-              title={data.data.title}
+              src={sectionData.videoUrl}
+              title={activeTab}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
               className="absolute inset-0 h-full w-full rounded-3xl"
             ></iframe>
           </div>
         );
-      } else if (data.data.images) {
+      } else if (sectionData.imgURL) {
         return (
           <SliderPaginationOnly
-            images={data.data.images.map((image: any) => ({
-              src: `${urlForImage(image)?.url() as string}`,
+            images={[1].map((image: any) => ({
+              src: sectionData.imgURL,
               name: "",
             }))}
             className="aspect-square w-full md:h-[40rem] md:w-full"
           />
         );
-      } else if (data.data.pdfUrl) {
+      } else if (sectionData.pdfUrl) {
         return (
           <Link
-            href={data.data.pdfUrl}
+            href={sectionData.pdfUrl}
             target="_blank"
             title="brochure"
             className="flex w-full flex-1 items-center justify-center rounded-lg bg-neutral-200 shadow-2xl md:mt-10"
@@ -57,7 +69,7 @@ const ContactFormSideImage = (props: Props) => {
           </Link>
         );
       } else {
-        return <></>;
+        return <FeaturedListings showTitle={false} />;
       }
     } else {
       return <></>;
