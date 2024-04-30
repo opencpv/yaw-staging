@@ -4,50 +4,47 @@ import { fadeUp } from "@/lib/animations";
 import Image from "next/image";
 import React from "react";
 import DealCard from "../ui/DealCard";
+import ManagePropertiesInfo from "../ui/ManagePropertiesInfo";
 
 type Props = {};
 
-const RentalDeals = (props: Props) => {
+const ManageProperties = (props: Props) => {
   return (
-    <section className="bg-[#F4F4F4] py-10">
-      <div className="section wrapper">
-        <div className="flex flex-col items-center gap-5 text-center font-medium text-shade-300">
-          <div className="flex items-center gap-5 ">
-            <h2 className="uppercase">Our apartment rental deals</h2>
-            <Image
-              src="/assets/icons/deals.svg"
-              alt="handshake"
-              width={25}
-              height={25}
-            />
-          </div>
-          <p className="leading-relaxed">
-            {legal.companyName} employs the latest data on rental rates and
-            apartment availability in real-time to aid you in finding superb
-            apartment deals. To identify such deals, we follow a systematic
-            approach that includes various steps.
-          </p>
+    <section className="bg-[#F2F2F2] py-16">
+      <div className="mb-14 w-full space-y-3.5 min-[810px]:w-7/12">
+        <div className="flex items-start gap-5">
+          <h2 className="w-fit font-[500] uppercase text-neutral-900">
+            Manage your properties with us
+          </h2>
+          <Image
+            src="/assets/icons/manage.svg"
+            alt="shield"
+            width={25}
+            height={25}
+          />
         </div>
-        <div className="mt-12 grid items-center gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {[1, 2, 3].map((tag: any, idx: number) => {
-            return (
-              <FramerWrapper {...fadeUp} key={idx}>
-                <DealCard
-                  key={idx}
-                  href={"/about"}
-                  title={"Lorem ipsum dolor sit amet. Lorem ipsum"}
-                  body={
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum"
-                  }
-                  icon={"/assets/icons/manage.svg"}
-                />
-              </FramerWrapper>
-            );
-          })}
-        </div>
+        <p className="max-w-2xl font-[500] text-shade-300">
+        Effortlessly manage your rental properties with the most advanced tools on the market. From rent collection to maintenance, we've got you covered. Say goodbye to stress and hello to seamless property management.
+        </p>
+      </div>
+      <div className="">
+        <ul className="space-y-10 sm:space-y-20">
+          {[1,2].map((card: any, idx: number) =>
+              <ManagePropertiesInfo
+                key={idx + 1}
+                position="right"
+                href={card.link}
+                activity={card.linkLabel}
+                image={""}
+                title={card.aboutCardTitle}
+                body={card.aboutCardDescription}
+              />
+            )
+          }
+        </ul>
       </div>
     </section>
   );
 };
 
-export default RentalDeals;
+export default ManageProperties;
