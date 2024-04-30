@@ -24,11 +24,14 @@ const ManageProperties = (props: Props) => {
           />
         </div>
         <p className="max-w-2xl font-[500] text-shade-300">
-        Effortlessly manage your rental properties with the most advanced tools on the market. From rent collection to maintenance, we've got you covered. Say goodbye to stress and hello to seamless property management.
+          Effortlessly manage your rental properties with the most advanced
+          tools on the market. From rent collection to maintenance, we've got
+          you covered. Say goodbye to stress and hello to seamless property
+          management.
         </p>
       </div>
       <div className="">
-        <ul className="space-y-10 sm:space-y-20">
+        {/* <ul className="space-y-10 sm:space-y-20">
           {[1,2].map((card: any, idx: number) =>
               <ManagePropertiesInfo
                 key={idx + 1}
@@ -41,7 +44,7 @@ const ManageProperties = (props: Props) => {
               />
             )
           }
-        </ul>
+        </ul> */}
       </div>
     </section>
   );
