@@ -16,13 +16,13 @@ export const useContactForm = () => {
   const activeTab = useContactStore((state) => state.activeKey);
   const [loading, setLoading] = React.useState(false);
   const [_, setCountry] = React.useState<CountryCode>("GH");
-  const [file, setFile] = React.useState<string>("");
+  const [file, setFile] = React.useState<File>();
 
   const { phone, handlePhone, handleCountryChange } = usePhoneInputDisclosure();
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      setFile(e.target.files[0]?.name);
+      setFile(e.target.files[0]);
     }
   };
 

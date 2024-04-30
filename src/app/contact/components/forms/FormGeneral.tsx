@@ -3,24 +3,33 @@ import React, { useRef } from "react";
 import { E164Number } from "libphonenumber-js/core";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { sendContactUsEmail } from "../../api";
-import TextInput from "@/components/__shared/form/TextInput";
-import InputPhoneNumber from "@/components/__shared/form/InputPhoneNumber";
 import Loader from "@/components/__shared/loader/Loader";
 import ContactSchema from "./lib/contactSchema";
 import { useContactForm } from "./hooks/useContactForm";
 import ContactMessageField from "./ContactMessageField";
-import ContactUploadField from "./ContactUploadField";
 import ContactSubmitButton from "./ContactSubmitButton";
 import ContactFullNameField from "./ContactFullNameField";
-import ContactEmailField from "./ContacEmailField";
 import ContactPhoneField from "./ContactPhoneField";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import { UploadFile } from "../UploadFile";
+import axios from "axios";
+import { generateString } from "@/lib/utils";
+import slugify from "@/lib/utils/slugify";
+import { toast } from "react-toastify";
 
 type Props = {};
 
 const FormGeneral = (props: Props) => {
-  const { activeTab, file, formRef, loading, setLoading, tableName, validate } =
-    useContactForm();
+  const {
+    activeTab,
+    file,
+    formRef,
+    loading,
+    setLoading,
+    tableName,
+    handleFileUpload,
+    validate,
+  } = useContactForm();
 
   const fullNameInputRef = useRef<HTMLInputElement>(null);
 
@@ -41,13 +50,28 @@ const FormGeneral = (props: Props) => {
       validateOnChange={false}
       validateOnBlur={false}
       validate={(values) => validate(values, phone)}
-      onSubmit={(values, { resetForm }) => {
+      onSubmit={async (values, { resetForm }) => {
         values.contactType = activeTab;
         values.phone = phone as E164Number;
-        values.fileUrl = file;
-
-        sendContactUsEmail(formRef.current);
+        const newFilename: string =
+          generateString(8) + "-" + slugify(file?.name || "");
+        var newFile = new File([file as File], newFilename, {
+          type: file?.type,
+        });
         setLoading(true);
+        const fileForm = new FormData();
+        fileForm.append("file", newFile);
+        const fileUrl = `https://rentright.nyc3.cdn.digitaloceanspaces.com/${newFilename}`;
+        const uploadRes = await axios.post(
+          `${location.origin}/api/file-upload`,
+          fileForm,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          },
+        );
+        sendContactUsEmail(formRef.current);
         supabase
           .from(tableName)
           .insert([
@@ -57,7 +81,7 @@ const FormGeneral = (props: Props) => {
               email: values.email,
               phone: values.phone,
               message: values.message,
-              file_url: values.fileUrl,
+              file_url: fileUrl,
             },
           ])
           .select()
@@ -66,6 +90,7 @@ const FormGeneral = (props: Props) => {
               setLoading(false);
             } else {
               setLoading(false);
+              toast.success("Your message has been sent");
               resetForm();
             }
           });
@@ -94,18 +119,22 @@ const FormGeneral = (props: Props) => {
                     handleCountryChange={handleCountryChange}
                   />
                 </div>
-                {/* <div className="">
-                            <FormSwitch
-                              label="Available on whatsapp"
-                              onChange={(checked) => setIsWhatsapp(checked)}
-                            />
-                          </div> */}
+
                 <ContactMessageField error={errors.message} />
-                <ContactUploadField />
+                <UploadFile
+                  file={file as File}
+                  handleFileUpload={handleFileUpload}
+                />
               </div>
             </div>
           </div>
-          {loading ? <Loader /> : <ContactSubmitButton />}
+          {loading ? (
+            <div className="mt-2">
+              <Loader />
+            </div>
+          ) : (
+            <ContactSubmitButton />
+          )}
         </Form>
       )}
     </Formik>

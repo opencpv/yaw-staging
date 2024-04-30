@@ -15,12 +15,24 @@ import ContactFullNameField from "./ContactFullNameField";
 import ContactEmailField from "./ContacEmailField";
 import ContactPhoneField from "./ContactPhoneField";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import { generateString } from "@/lib/utils";
+import slugify from "@/lib/utils/slugify";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 type Props = {};
 
 const FormReport = (props: Props) => {
-  const { activeTab, file, formRef, loading, setLoading, tableName, validate } =
-    useContactForm();
+  const {
+    activeTab,
+    file,
+    formRef,
+    loading,
+    setLoading,
+    tableName,
+    handleFileUpload,
+    validate,
+  } = useContactForm();
 
   const { phone, setPhone, handleCountryChange, handlePhone } =
     usePhoneInputDisclosure();
@@ -40,11 +52,27 @@ const FormReport = (props: Props) => {
       validateOnChange={false}
       validateOnBlur={false}
       validate={(values) => validate(values, phone)}
-      onSubmit={(values, { resetForm }) => {
+      onSubmit={async (values, { resetForm }) => {
         values.contactType = activeTab;
         values.phone = phone as E164Number;
-        values.fileUrl = file;
-
+        values.fileUrl = file?.name as string;
+        const newFilename: string =
+          generateString(8) + "-" + slugify(file?.name || "");
+        var newFile = new File([file as File], newFilename, {
+          type: file?.type,
+        });
+        const fileForm = new FormData();
+        fileForm.append("file", newFile);
+        const fileUrl = `https://rentright.nyc3.cdn.digitaloceanspaces.com/${newFilename}`;
+        const uploadRes = await axios.post(
+          `${location.origin}/api/file-upload`,
+          fileForm,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          },
+        );
         sendContactUsEmail(formRef.current);
         setLoading(true);
         supabase
@@ -56,7 +84,7 @@ const FormReport = (props: Props) => {
               email: values.email,
               phone: values.phone,
               message: values.message,
-              fileUrl: values.fileUrl,
+              fileUrl: fileUrl,
               reportLink: values.reportLink,
             },
           ])
@@ -65,6 +93,7 @@ const FormReport = (props: Props) => {
             if (error) {
               setLoading(false);
             } else {
+              toast.success("Your message has been sent");
               setLoading(false);
               resetForm();
             }

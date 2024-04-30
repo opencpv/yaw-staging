@@ -26,11 +26,9 @@ export const metadata: Metadata = {
 const Page = async () => {
   const initial = await loadQuery<SanityDocument[]>(HOME_PAGE_QUERY);
   const data = initial.data[0];
-  const aboutReqData = await loadQuery<SanityDocument[]>(CONTACT_US_PAGE_QUERY);
   const contactUsData = await loadQuery<SanityDocument[]>(
     CONTACT_US_PAGE_QUERY_2,
   );
-  console.log(contactUsData.data[0]);
 
   return (
     <>
