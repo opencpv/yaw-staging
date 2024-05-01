@@ -11,7 +11,7 @@ export const CustomScroll: any = styled("div", {
   "&::-webkit-scrollbar-thumb": {
     width: "2px",
     maxHeight: "181px",
-    backgroundColor: "#073B3A88",
+    backgroundColor: "#11605E88",
     borderRadius: "4px",
   },
   "&::-webkit-scrollbar": {

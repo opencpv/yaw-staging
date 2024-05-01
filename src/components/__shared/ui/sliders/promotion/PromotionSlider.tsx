@@ -19,12 +19,6 @@ import PromotionModal from "./PromotionModal";
 import { useDisclosure } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 
-let images = [
-  "/assets/images/home/promotion-1.jpg",
-  "/assets/images/home/promotion-1.jpg",
-  "/assets/images/home/promotion-1.jpg",
-];
-
 const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [promotionalImage, setPromotionalImage] = useState("");
@@ -83,11 +77,13 @@ const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
                   },
                 )}
               >
-                <div className="space-y-3 text-sm">
-                  <h1 className="text-3xl font-[700] text-accent-100">
+                <div className="absolute -top-10 left-0 space-y-3 text-sm xs:top-0">
+                  <h1 className="line-clamp-2 text-3xl font-[700] text-accent-100">
                     {promotion.title}
                   </h1>
-                  <p className="text-white"> {promotion.subtitle}</p>
+                  <p className="line-clamp-1 text-white">
+                    {promotion.subtitle}
+                  </p>
                   <Button
                     target={true ? "_self" : "_blank"} // if ?*.target? is "self", open on same tab otherwise open in new tab. TODO: change logic for "true"
                     className={cn(
@@ -108,7 +104,7 @@ const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
                   </Button>
                 </div>
                 {/* Promotion description */}
-                <p className="relative z-30 line-clamp-5 w-10/12 text-sm font-[600] leading-relaxed text-white lg:ml-10">
+                <p className="relative top-28 z-30 line-clamp-5 w-10/12 text-sm font-[600] leading-relaxed text-white lg:ml-10">
                   {promotion.description}
                 </p>
               </div>

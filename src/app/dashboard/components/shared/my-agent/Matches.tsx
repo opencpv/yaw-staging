@@ -59,7 +59,7 @@ export default function MatchesYet() {
         </TableBodyRowGroup>
       </Table>
 
-      <TableSm className="mx-auto w-fit">
+      <TableSm className="mx-auto">
         {Array.from({ length: 5 }).map((r, index) => (
           <PropertyRowSm key={index} />
         ))}

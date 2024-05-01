@@ -79,6 +79,8 @@
   background-color: #ffffff !important;
   opacity: 1 !important;
   z-index: 50 !important;
+  width: 18px !important;
+  height: 18px !important;
 }
 
 .slider-wide .swiper-pagination-bullets {

@@ -98,7 +98,7 @@ export default function PropertyFormSimple({
 
   return (
     <Root className={`flex flex-col gap-8`}>
-      <div className="flex flex-col gap-6 text-[1.5625rem] text-[#073B3A]">
+      <div className="text-primary flex flex-col gap-6 text-[1.5625rem]">
         <p className="border-b-[1px] border-b-[#0000000F] pb-2 font-bold">
           Application Form
         </p>

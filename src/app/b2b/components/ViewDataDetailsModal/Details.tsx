@@ -19,7 +19,7 @@ function Details({ variant }: Props) {
     <Root className="flex w-full flex-col justify-center rounded-2xl border-[1px] border-shade-50  bg-[#FAFAFA] p-2 text-[0.625rem]">
       <div
         className={`flex items-center justify-between rounded-xl px-4 py-2 ${
-          variant == "invoice" ? "bg-[#073B3A]" : "bg-[#]"
+          variant == "invoice" ? "bg-primary" : "bg-[#]"
         }`}
       >
         <div

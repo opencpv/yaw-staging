@@ -87,7 +87,7 @@ function HowToSwitch({ open }: Props) {
               <div className="mt-8 flex w-full justify-center">
                 <Button
                   isLoading={loading}
-                  className="flex h-[52px] w-full max-w-[151px] items-center justify-center rounded-lg bg-[#073B3A] font-semibold text-white"
+                  className="bg-primary flex h-[52px] w-full max-w-[151px] items-center justify-center rounded-lg font-semibold text-white"
                   role="button"
                   onClick={() => {
                     setOpen(false);
