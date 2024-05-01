@@ -1,4 +1,5 @@
 "use client";
+import FeaturedListings from "@/components/__shared/listing/FeaturedListings";
 import SliderPaginationOnly from "@/components/__shared/ui/sliders/SliderPaginationOnly";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { urlForImage } from "@/lib/utils/sanity/utils";
@@ -11,33 +12,43 @@ import demoimages from "@/enum/temp/images";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { getListingProps } from "@/lib/enum";
 
+import { writer } from "repl";
 type Props = {
   data: any;
 };
 
 const ContactFormSideImage = (props: Props) => {
-  const activeTab = useContactStore((state) => state.activeKey);
   const { images } = useAssets();
+
+  const activeTab = useContactStore((state) => state.activeKey);
+  const tabToData: any = {
+    general: "generalSection",
+    report: "reportSection",
+    advertise: "advertiseSection",
+    writers: "writersSection",
+  };
+  const sectionData = props.data[tabToData[activeTab]];
+
   const { data: listings } = useFetchRandomFeaturedListings();
   const { user } = useAppStore();
 
   console.log(listings);
 
   const SidePanel = (data: any) => {
-    if (data.data) {
-      if (data.data.video) {
+    if (sectionData) {
+      if (sectionData.videoUrl) {
         return (
           <div className="relative aspect-video w-full flex-1 rounded-2xl md:mt-8 md:aspect-auto md:h-[40rem]">
             <iframe
-              src={data.data.video}
-              title={data.data.title}
+              src={sectionData.videoUrl}
+              title={activeTab}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
               className="absolute inset-0 h-full w-full rounded-3xl"
             ></iframe>
           </div>
         );
-      } else if (data.data.images) {
+      } else if (sectionData.imgURL) {
         // ?data.data.featuredListing? // NOTE: Using this as featured listing //Todo: use correct name
         return (
           <SliderPaginationOnly
@@ -55,18 +66,18 @@ const ContactFormSideImage = (props: Props) => {
         // ?data.data.image? // TODO: use the correct name
         return (
           <SliderPaginationOnly
-            images={data.data.images.map((image: any) => ({
-              src: `${urlForImage(image)?.url() as string}`,
+            images={[1].map((image: any) => ({
+              src: sectionData.imgURL,
               name: "",
               href: "",
             }))}
             className="aspect-square w-full md:mt-4 md:h-[40rem] md:w-full"
           />
         );
-      } else if (data.data.pdfUrl) {
+      } else if (sectionData.pdfUrl) {
         return (
           <Link
-            href={data.data.pdfUrl}
+            href={sectionData.pdfUrl}
             target="_blank"
             title="brochure"
             className="flex w-full flex-1 items-center justify-center rounded-lg bg-neutral-200 shadow-2xl md:mt-8"
@@ -82,7 +93,7 @@ const ContactFormSideImage = (props: Props) => {
           </Link>
         );
       } else {
-        return <></>;
+        return <FeaturedListings showTitle={false} />;
       }
     } else {
       return <></>;

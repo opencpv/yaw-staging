@@ -5,7 +5,7 @@ import Link from "next/link";
 import Footer from "@/components/__shared/ui/footer/Footer";
 import Navbar from "@/components/__shared/ui/Navbar";
 
-function Page() {
+const JoinUsPage = async () => {
   return (
     <div className="flex flex-col items-center justify-center">
       <div className="flex w-full max-w-[1728px] flex-col items-center justify-center">
@@ -91,6 +91,6 @@ function Page() {
       </div>
     </div>
   );
-}
+};
 
-export default Page;
+export default JoinUsPage;

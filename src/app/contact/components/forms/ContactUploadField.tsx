@@ -8,7 +8,7 @@ const ContactUploadField = (props: Props) => {
   const { file, handleFileUpload } = useContactForm();
   return (
     <div>
-      <UploadFile file={file} handleFileUpload={handleFileUpload} />
+      <UploadFile file={file as File} handleFileUpload={handleFileUpload} />
     </div>
   );
 };

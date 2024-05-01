@@ -18,19 +18,31 @@ import {
 import CustomErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import { useRouter } from "next/navigation";
+import { generateString } from "@/lib/utils";
+import slugify from "@/lib/utils/slugify";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 type Props = {};
 
 const FormWriters = (props: Props) => {
   const {
+   
     activeTab,
+   
     file,
+   
     formRef,
+   
     loading,
+   
     setLoading,
+   
     tableName,
+   
+    handleFileUpload,
     validate,
-    contactFormSession,
+ , contactFormSession,
   } = useContactForm();
 
   const { phone, setPhone, handleCountryChange, handlePhone } =
@@ -51,10 +63,26 @@ const FormWriters = (props: Props) => {
       }}
       validationSchema={ContactSchema}
       validate={(values) => validate(values, contactFormSession.phone)}
-      onSubmit={(values, { resetForm }) => {
+      onSubmit={async (values, { resetForm }) => {
         values.contactType = capitalizeName(activeTab);
-        values.fileUrl = file;
-
+        const newFilename: string =
+          generateString(8) + "-" + slugify(file?.name || "");
+        var newFile = new File([file as File], newFilename, {
+          type: file?.type,
+        });
+        setLoading(true);
+        const fileForm = new FormData();
+        fileForm.append("file", newFile);
+        const fileUrl = `https://rentright.nyc3.cdn.digitaloceanspaces.com/${newFilename}`;
+        const uploadRes = await axios.post(
+          `${location.origin}/api/file-upload`,
+          fileForm,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          },
+        );
         sendContactUsEmail(formRef.current);
         setLoading(true);
         supabase
@@ -75,6 +103,7 @@ const FormWriters = (props: Props) => {
             if (error) {
               onOpen("Something went wrong", "error");
             } else {
+              toast.success("Your message has been sent");
               resetForm();
               sessionStorage.removeItem("contactFormSession");
               setPhone(undefined);

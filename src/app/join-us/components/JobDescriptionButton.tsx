@@ -6,9 +6,12 @@ import { Button, Link } from "@nextui-org/react";
 import JoinUsButtons from "./JoinUsButtons";
 import ModalCloseIcon from "@/components/__shared/ui/modals/ModalCloseIcon";
 import { HiOutlineDownload } from "react-icons/hi";
+import { PortableText } from "next-sanity";
 
-type Props = {};
-export default function JobDescriptionButton({}: Props) {
+type Props = {
+  description: any;
+};
+export default function JobDescriptionButton({ description }: Props) {
   const [animation, setAnimation] = useState(false);
 
   const { user } = useAppStore();
@@ -34,56 +37,13 @@ export default function JobDescriptionButton({}: Props) {
               <p className="border-b-[1px] border-shade-50 py-3 text-[1.5rem] font-semibold text-shade-300">
                 JOB DESCRIPTION
               </p>
-              <p className="hidden-scrollbar  overflow-y-scroll text-shade-300">
-                Lorem ipsum dolor sit amet consectetur. Bibendum felis nunc
-                tincidunt odio tristique massa tempus ornare rhoncus. Enim et
-                pellentesque sed id porttitor nibh ante ullamcorper. Sodales non
-                tortor congue ac commodo at lacus. Mattis nisl risus semper enim
-                vitae nisl aliquam donec vestibulum. Nulla nisl dapibus nunc id
-                sit amet aenean vitae praesent. Parturient interdum dignissim
-                tortor tempor. Amet praesent nulla elementum urna arcu risus
-                nisl malesuada. Eget amet velit eleifend rutrum. Est gravida
-                sapien interdum enim eros vitae sapien nisl tristique. Gravida
-                ipsum blandit enim massa adipiscing adipiscing lorem ipsum.
-                Eleifend condimentum gravida venenatis sit dignissim morbi
-                libero integer urna. Curabitur ac cum arcu massa metus. Amet
-                eget quam sem accumsan consequat sem odio consequat. Mattis
-                purus diam suspendisse sit elementum viverra turpis ut. Donec
-                lorem lacus viverra urna id. Elementum urna elementum mauris
-                vestibulum nibh volutpat pretium. Nulla eget interdum venenatis
-                id. A eget neque eget curabitur magna. Rutrum tincidunt dolor
-                nullam dignissim ultricies. Aliquam sem non sit arcu hendrerit
-                amet turpis. Vitae enim egestas quis ornare. Faucibus eleifend
-                consectetur vitae aenean egestas. Nulla pretium tortor risus
-                viverra volutpat arcu facilisis varius. Sit fames turpis dolor
-                morbi neque ut nullam. Vulputate eleifend felis facilisis felis
-                id urna pellentesque sed donec. Sed convallis venenatis pulvinar
-                tempus vehicula sem aenean vulputate sed. Tincidunt velit lectus
-                eget egestas. Facilisi lorem enim faucibus lacinia suscipit in
-                hendrerit. Natoque lacus facilisis proin arcu. Vitae arcu
-                posuere habitant nisl ut nisl in tincidunt dui. Duis a egestas
-                consectetur molestie faucibus. Elementum mi integer dolor in.
-                Gravida diam scelerisque risus adipiscing. Pellentesque eget ac
-                dictum eros elementum auctor pharetra a. Sit viverra sit
-                dignissim tortor purus mauris integer id ligula. Ante facilisis
-                aenean ac maecenas dolor feugiat vivamus etiam felis. Vitae sed
-                etiam aliquam sit non eget aliquet suspendisse elit. Dis arcu a
-                dapibus sed egestas. In a gravida commodo tortor vel aenean
-                senectus ac. At ac sollicitudin amet augue. Sit lectus. t.
-                Natoque lacus facilisis proin arcu. Vitae arcu posuere habitant
-                nisl ut nisl in tincidunt dui. Duis a egestas consectetur
-                molestie faucibus. Elementum mi integer dolor in. Gravida diam
-                scelerisque risus adipiscing. Pellentesque eget ac dictum eros
-                elementum auctor pharetra a. Sit viverra sit dignissim tortor
-                purus mauris integer id ligula. Ante facilisis aenean ac
-                maecenas dolor feugiat vivamus etiam felis. Vitae sed etiam
-                aliquam sit non eget aliquet suspendisse elit. Dis arcu a
-                dapibus sed egestas. In a gravida commodo tortor vel aene
-              </p>
+              <div className="hidden-scrollbar  overflow-y-scroll text-shade-300">
+                <PortableText value={description} />
+              </div>
               <div className="sticky bottom-2 grid h-[40px] grid-cols-2 gap-1 pb-5">
                 <Button className="bg-secondary-500 text-[1rem] font-semibold text-shade-300 ">
                   Download
-                  <HiOutlineDownload size="24" colour="#3F3F46" />
+                  <HiOutlineDownload size="24" color="#3F3F46" />
                 </Button>
                 <Link
                   href="/join-us/open-positions/application"

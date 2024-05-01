@@ -12,7 +12,7 @@ import { route } from "@/lib/utils/routes";
 import { client } from "@/lib/utils/sanity/client";
 import { Button } from "antd";
 import axios from "axios";
-import Loader from "@/components/__shared/ui/loader/Loader";
+import Loader from "@/components/__shared/loader/Loader";
 import type { TableProps } from "antd";
 import { Space, Table, Tag } from "antd";
 import Spinner from "@/app/dashboard/components/shared/Spinner";
@@ -20,12 +20,16 @@ const { Column, ColumnGroup } = Table;
 import { CSVDownload, CSVLink } from "react-csv";
 interface DataType {
   id: number;
-  created_at: string;
+  fullname: string;
   feedback_title: string;
-  value_a: number;
-  value_b: number;
-  value_c: boolean;
-  value_d: string;
+  company_name: string;
+  phone: string;
+  email: string;
+  message: string;
+  contact_type: string;
+  report_link: string;
+  created_at: string;
+  file_url: string;
 }
 
 const columns: TableProps<DataType>["columns"] = [
@@ -35,35 +39,61 @@ const columns: TableProps<DataType>["columns"] = [
     render: (text, record, index) => index + 1,
   },
   {
-    title: "Campaign",
-    dataIndex: "feedback_title",
-    render: (text, record, index) => record.feedback_title.toUpperCase(),
+    title: "Fullname",
+    dataIndex: "fullname",
+    key: "fullname",
   },
   {
-    title: "Question 1",
-    dataIndex: "value_a",
-    key: "value_a  ",
+    title: "Company",
+    dataIndex: "company_name",
+    render: (text, record, index) => record.company_name || "N/A",
   },
   {
-    title: "Question 2",
-    dataIndex: "value_b",
-    key: "value_b  ",
+    title: "Phone",
+    dataIndex: "phone",
+    render: (text, record, index) => record.phone || "N/A",
   },
   {
-    title: "Question 3",
-    dataIndex: "value_c",
-    key: "value_c",
-    render: (text, record, index) => (record.value_c ? "TRUE" : "FALSE"),
+    title: "Email",
+    dataIndex: "email",
+    render: (text, record, index) => record.email || "N/A",
   },
   {
-    title: "Question 4",
-    dataIndex: "value_d",
-    key: "value_d  ",
+    title: "Message",
+    dataIndex: "message",
+    render: (text, record, index) => (
+      <p className="w-[300px]">{record.message}</p>
+    ),
+  },
+  {
+    title: "Contact Type",
+    dataIndex: "contact_type",
+    render: (text, record, index) => record.contact_type || "N/A",
+  },
+  {
+    title: "Report Link",
+    dataIndex: "report_link",
+    render: (text, record, index) => record.report_link || "N/A",
   },
   {
     title: "Date",
     dataIndex: "created_at",
     render: (text, record, index) => record.created_at.split("T")[0],
+  },
+  {
+    title: "File",
+    dataIndex: "file_url",
+    render: (text, record, index) => (
+      <>
+        {record.file_url ? (
+          <a href={record.file_url}>
+            <Button>Download</Button>
+          </a>
+        ) : (
+          "N/A"
+        )}
+      </>
+    ),
   },
 ];
 
@@ -83,37 +113,47 @@ const PageView = () => {
     [selectedExportTypeKey],
   );
 
-  useEffect(() => {}, [selectedValue]);
-  const {
-    isLoading,
-    error,
-    data: categories,
-  } = useQuery({
-    queryKey: ["feedbackCategories"],
-    queryFn: async () => {
-      const feedbackCats = await axios.get(route.feedbackCategories);
-      return feedbackCats.data.data;
+  const contactCategories = [
+    {
+      label: "General",
+      key: "general",
     },
-  });
+    {
+      label: "Report",
+      key: "report",
+    },
+    {
+      label: "Writers",
+      key: "writers",
+    },
+    {
+      label: "Advertise",
+      key: "advertise",
+    },
+    {
+      label: "All",
+      key: "all",
+    },
+  ];
+
   const {
-    isPending: isFeedbackLoading,
-    error: feedbackError,
-    data: feedbackData,
-    refetch: refetchFeedbackData,
+    isPending: isContactLoading,
+    error: contactError,
+    data: contactData,
+    refetch: refetchContactData,
   } = useQuery({
-    queryKey: ["repoData", selectedValue],
+    queryKey: ["contactData", selectedValue],
     queryFn: () =>
-      fetch(`${route.feedbackData}?filter=${selectedValue || "all"}`).then(
+      fetch(`${route.contactData}?filter=${selectedValue || "all"}`).then(
         (res) => res.json(),
       ),
   });
 
   useEffect(() => {
-    refetchFeedbackData(); // Refetch feedback data when selected value changes
-  }, [selectedValue, refetchFeedbackData]);
+    refetchContactData(); // Refetch contact data when selected value changes
+  }, [selectedValue, refetchContactData]);
 
-  useEffect(() => {}, [feedbackData]);
-  const FeedbackTypeFilterButton = ({ loading }: { loading: boolean }) => (
+  const ContactFilterButton = ({ loading }: { loading: boolean }) => (
     <Dropdown>
       <DropdownTrigger>
         <Button
@@ -125,11 +165,11 @@ const PageView = () => {
         </Button>
       </DropdownTrigger>
       <DropdownMenu
-        aria-label="feedback filter"
+        aria-label="contact filter"
         variant="bordered"
         disallowEmptySelection
         selectionMode="single"
-        items={categories}
+        items={contactCategories}
         selectedKeys={selectedKeys}
         onSelectionChange={setSelectedKeys}
       >
@@ -144,18 +184,18 @@ const PageView = () => {
 
   return (
     <div className="h-[100vh]">
-      <h2 className="mb-8 text-3xl font-bold">Feedback</h2>
+      <h2 className="mb-8 text-3xl font-bold">Contact</h2>
       <div className="items-cente mb-8 flex h-fit justify-between">
         <div className="flex items-center gap-8">
           <p>Filter</p>
-          <FeedbackTypeFilterButton loading={isLoading} />
+          <ContactFilterButton loading={false} />
         </div>
         <div className="flex items-center gap-2">
           <CSVLink
-            data={feedbackData || []}
-            filename={`${new Date().toLocaleDateString()}-feedback.csv`}
+            data={contactData || []}
+            filename={`${new Date().toLocaleDateString()}-contact.csv`}
           >
-            <Button loading={feedbackData == null || feedbackData == undefined}>
+            <Button loading={contactData == null || contactData == undefined}>
               Download CSV
             </Button>
           </CSVLink>
@@ -163,11 +203,9 @@ const PageView = () => {
       </div>
       <Table
         columns={columns}
-        dataSource={feedbackData}
+        dataSource={contactData}
         ref={tableRef}
-        loading={
-          feedbackData == null || (feedbackData == undefined && isLoading)
-        }
+        loading={contactData == null || contactData == undefined}
       />
     </div>
   );

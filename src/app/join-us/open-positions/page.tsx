@@ -5,7 +5,9 @@ import JobCard from "./components/JobCard";
 import { JobType } from "../types";
 import JobCantFindCard from "./components/JobCantFindCard";
 import Link from "next/link";
-
+import { loadQuery } from "@/lib/utils/sanity/sanityStore";
+import { JOBS_QUERY } from "@/lib/utils/sanity/queries";
+import { SanityDocument } from "next-sanity";
 const demoJobData = [
   {
     pic: "",
@@ -34,18 +36,21 @@ const demoJobData = [
   // Add more jobs as needed
 ];
 
-function Page() {
+const Page = async () => {
+  const jobsResponse = await loadQuery<SanityDocument[]>(JOBS_QUERY);
+  const jobsData = jobsResponse.data || [];
   return (
     <div className="flex items-center justify-center">
-      <div className="flex flex-col items-center justify-center max-w-[1728px] w-full">
+      <div className="flex w-full max-w-[1728px] flex-col items-center justify-center">
         <div
-          className={`flex items-center justify-center w-full max-w-[1728px] h-[432px] flex-col gap-1 lg:gap-6  shrink-0
-               ${styles.open_positions_header} !bg-cover`}>
-          <p className="capitalize text-[1.5625rem] lg:text-[1.9375rem] text-white font-semibold order-2 lg:order-1">
+          className={`flex h-[432px] w-full max-w-[1728px] shrink-0 flex-col items-center justify-center gap-1  lg:gap-6
+               ${styles.open_positions_header} !bg-cover`}
+        >
+          <p className="order-2 text-[1.5625rem] font-semibold capitalize text-white lg:order-1 lg:text-[1.9375rem]">
             Open Positions
           </p>
 
-          <div className="flex flex-col lg:flex-row items-center justify-center gap-4 order-1 lg:order-2">
+          <div className="order-1 flex flex-col items-center justify-center gap-4 lg:order-2 lg:flex-row">
             <Link href={"/join-us"}>
               <JoinUsButtons
                 variant="text-yellow-accent"
@@ -57,7 +62,8 @@ function Page() {
             </Link>
             <Link
               href={"/join-us/open-positions/resume-bank"}
-              className="hidden lg:flex">
+              className="hidden lg:flex"
+            >
               <JoinUsButtons
                 variant="outline-yellow-accent"
                 content="Resume Bank"
@@ -65,17 +71,17 @@ function Page() {
             </Link>
           </div>
         </div>
-        <div className="flex flex-col gap-3  lg:gap-6 mt-10 lg:mt-20 w-full px-5 2xl:px-0">
-          <p className="text-shade-300 text-20 lg:text-25 font-semibold">
+        <div className="mt-10 flex w-full  flex-col gap-3 px-5 lg:mt-20 lg:gap-6 2xl:px-0">
+          <p className="text-20 font-semibold text-shade-300 lg:text-25">
             Available Positions
           </p>
-          <div className="grid grid-cols-3 gap-x-5 gap-y-5 lg:gap-y-10">
-            {demoJobData.map((r: JobType, index: number) => (
-              <div className="w-full col-span-3 lg:col-span-1" key={index}>
+          <div className="grid grid-cols-3 gap-x-5 gap-y-5 pb-8 lg:gap-y-10">
+            {jobsData.map((r: any, index: number) => (
+              <div className="col-span-3 w-full lg:col-span-1" key={index}>
                 <JobCard job={r} />
               </div>
             ))}
-            <div className="w-full col-span-3 lg:col-span-1 h-full">
+            <div className="col-span-3 h-full w-full lg:col-span-1">
               <JobCantFindCard />
             </div>
           </div>
@@ -83,6 +89,6 @@ function Page() {
       </div>
     </div>
   );
-}
+};
 
 export default Page;
