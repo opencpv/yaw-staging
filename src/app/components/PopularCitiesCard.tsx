@@ -22,7 +22,11 @@ const PopularCitiesCard = ({
   const propertyNumTruncated = useTruncateNumber(propertyNumber);
 
   return (
-    <Link href={`/properties/?location=${location}`}>
+    <Link
+      href={`/properties?${new URLSearchParams({
+        search: location as string,
+      })}`}
+    >
       <div
         className={`relative flex min-h-[10rem] w-full items-center justify-center rounded-lg p-5 text-white transition-all hover:scale-105 sm:p-20 ${className}`}
       >
@@ -40,10 +44,7 @@ const PopularCitiesCard = ({
             <h2 className="text-base font-[700]">{location}</h2>
             <p className="inline-block text-sm font-[700]">{description}</p>
           </div>
-          <Link
-            href={`/properties/?location${location}`}
-            className="flex items-center gap-2 visited:no-underline hover:no-underline active:no-underline"
-          >
+          <div className="flex items-center gap-2 visited:no-underline hover:no-underline active:no-underline">
             <div className="flex items-center gap-1 text-accent-50">
               <FaHouseUser />
               <span className="text-accent font-[700]">
@@ -51,7 +52,7 @@ const PopularCitiesCard = ({
               </span>
             </div>
             <CgArrowLongRight className="text-white" />
-          </Link>
+          </div>
         </div>
       </div>
     </Link>

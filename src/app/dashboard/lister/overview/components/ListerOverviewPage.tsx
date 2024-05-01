@@ -10,6 +10,7 @@ import PMOverviewUpgradeSection from "./PMOverviewUpgradeSection";
 import MembershipUpgradeCard from "./MembershipUpgradeCard";
 import PMActiveListingsSection from "./PMActiveListingsSection";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
+import LeadsSummary from "./LeadsSummary";
 
 type Props = {};
 
@@ -40,7 +41,7 @@ const ListerOverviewPage = (props: Props) => {
             heading="Hire Us !"
             description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, officiis."
             buttonLabel="Explore"
-            href=""
+            href="#"
             className="mb-20 mt-20 md:mt-56"
           />
           <PMAnalyticsSection />
@@ -56,7 +57,7 @@ const ListerOverviewPage = (props: Props) => {
             buttonLabel="Purchase Now"
             imageWidth={400}
             // imageHeight={240}
-            href=""
+            href="#"
           />
           <div className="section">
             <h2 className="mb-5">Moving sales</h2>
@@ -64,13 +65,14 @@ const ListerOverviewPage = (props: Props) => {
           </div>
         </div>
         {/* Grid col */}
-        <div className="col-span-1">
+        <div className="col-span-1 flex flex-col gap-20">
           <MembershipUpgradeCard />
           <PaidFeaturesSection
             type="lister"
-            className="col-span-1 mb-24 hidden lg:block"
+            className="col-span-1 hidden lg:block"
           />
           <PMActiveListingsSection />
+          <LeadsSummary />
         </div>
       </section>
     </main>

@@ -1,0 +1,3 @@
+.blog p {
+  @apply mb-5 leading-7;
+}

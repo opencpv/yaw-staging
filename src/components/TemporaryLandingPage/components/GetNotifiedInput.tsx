@@ -4,7 +4,7 @@ import { Form, Formik } from "formik";
 import GetNotifiedInputTabs from "./GetNotifiedInputTabs";
 import { useGetNotifiedStore } from "./store";
 import PhoneInputWithCountrySelect from "react-phone-number-input";
-import InputPhoneNumber from "@/components/__shared/form/InputPhoneNumber";
+import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
 import { useContactForm } from "@/app/contact/components/forms/hooks/useContactForm";
 import { styled } from "@stitches/react";
 import styles from "../index.module.css";
@@ -31,22 +31,22 @@ function GetNotifiedInput() {
     >
       <div className="flex w-full flex-col gap-4">
         <div
-          className={`flex items-center ${
-            showInputs ? "justify-center" : "justify-start"
-          } gap-3 sm:justify-start`}
+          className={`flex items-center justify-start gap-3 sm:justify-start`}
         >
-          <p
-            className="2xl:text-[1.5625rem text-left text-20 font-semibold
-          leading-[2.1875rem] text-[#F2B94E] xs:whitespace-nowrap"
-          >
-            Click here to get notified!
-          </p>
           <button
-            className="appearance-none hover:bg-accent-50 rounded-full"
+            className="rounded-full-50 group flex appearance-none items-center justify-start gap-4"
             onClick={() => setShowInputs((init: boolean) => !init)}
           >
-            {" "}
-            <MdOutlineKeyboardArrowRight size="25"  className="text-[#F2B94E] hover:text-black transition "  />
+            <p
+              className="2xl:text-[1.5625rem text-left text-20 font-semibold
+          leading-[2.1875rem] text-[#F2B94E] xs:whitespace-nowrap"
+            >
+              Click here to get notified!
+            </p>
+            <MdOutlineKeyboardArrowRight
+              size="25"
+              className=" rounded-full text-[#F2B94E]  transition-all group-hover:bg-accent-50 group-hover:text-black "
+            />
           </button>
         </div>
         {showInputs && <GetNotifiedInputTabs />}{" "}
@@ -79,17 +79,18 @@ function GetNotifiedInput() {
                   id="phone"
                   name="phone"
                   value={phone}
-                  placeholder={phoneInputPlaceholder}
+                  placeholder={"Phone number"}
                   onBlur={handleBlur}
                   onChange={handlePhone}
                   onInput={handleChange}
                   onCountryChange={handleCountryChange}
+                  showError={false}
                 />
               )}
 
               <Button
                 type="submit"
-                className="hope h-[3.25rem] w-full rounded-lg bg-[#095B5A] px-10 py-[15px] font-semibold text-white"
+                className="hope mt-3 h-[3.25rem] w-full rounded-lg bg-[#095B5A] px-10 py-[15px] font-semibold text-white"
               >
                 Subscribe
               </Button>
@@ -108,6 +109,7 @@ const Root = styled("div", {
   ".PhoneInput input": {
     height: "3.25rem",
     backgroundColor: "#F9F9F9",
+    flex: 1,
   },
 });
 export default GetNotifiedInput;

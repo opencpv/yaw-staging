@@ -1,12 +1,19 @@
-import Navbar from "@/components/__shared/Navbar";
+import Navbar from "@/components/__shared/ui/Navbar";
 import Image from "next/image";
 import React from "react";
 import TagsSelect from "./components/TagsSelect";
-import Footer from "@/components/__shared/footer/Footer";
+import Footer from "@/components/__shared/ui/footer/Footer";
 import FixedSocials from "@/components/FixedSocials";
-import ScrollTop from "@/components/__shared/ScrollTop";
+import ScrollTop from "@/components/__shared/ui/ScrollTop";
 import PropertiesListing from "./components/PropertiesListing";
 import SearchCity from "./components/SearchCity";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Properties",
+  description:
+    "Find your dream home in Ghana. Browse through a wide variety of properties for rent. Compare properties and get notified when new listings match your preferences.", // tentative
+};
 
 const page = () => {
   return (

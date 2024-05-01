@@ -1,35 +1,36 @@
-"use client";
-import Head from "next/head";
-import FaqHeader from "./components/FaqHeader";
-import BreadCrumb from "./components/Breadcrumb";
-import FAQBrowser from "./components/FAQBrowser";
-import Footer from "@/components/__shared/footer/Footer";
-import ContactSection from "./components/ContactSection";
-import { useAssets } from "@/lib/custom-hooks/useAssets";
-import FaqHowToSwitch from "./components/FaqHowToSwitch";
-import FaqPage from "./components/pages/FaqPage";
-import { useFaqHowToSwitchStore } from "@/store/faq/useFaqStore";
-import { LowerCase } from "@/lib/utils/stringManipulation";
-import HowToPage from "./components/pages/HowToPage";
-import Navbar from "@/components/__shared/Navbar";
+import { loadQuery } from "@/lib/utils/sanity/sanityStore";
+import { SanityDocument } from "next-sanity";
+import {
+  FAQ_CATEGORIES_QUERY,
+  FAQ_PAGE_QUERY,
+  HOW_TO_PAGE_QUERY,
+  HOW_TO_TAGS_QUERY,
+} from "@/lib/utils/sanity/queries";
+import FaqPageWrapper from "./components/FaqPageWrapper";
+import { Metadata } from "next";
 
-const FAQ = () => {
-  const activePage = useFaqHowToSwitchStore((state) => state.activePage);
+export const metadata: Metadata = {
+  title: "FAQ",
+  description: "", // tentative
+};
 
-  // const { icons } = useAssets();
+const FAQ = async () => {
+  const initialFaqData = await loadQuery<SanityDocument[]>(FAQ_PAGE_QUERY);
+  const faqData = initialFaqData.data;
+  const initialHowToData = await loadQuery<SanityDocument[]>(HOW_TO_PAGE_QUERY);
+  const howToData = initialHowToData.data;
+  const intialTagsData = await loadQuery<SanityDocument[]>(HOW_TO_TAGS_QUERY);
+  const tagsData = intialTagsData.data;
+  const faqCategories = await loadQuery<SanityDocument[]>(FAQ_CATEGORIES_QUERY);
+
   return (
     <>
-      <Head>
-        <title>FAQ - RentRightGh</title>
-      </Head>
-      <Navbar />
-      <main className="wrapper relative">
-        <FaqHeader />
-        <FaqHowToSwitch />
-        {LowerCase(activePage as string) === "faq" && <FaqPage />}
-        {LowerCase(activePage as string) === "how to" && <HowToPage />}
-      </main>
-      <Footer />
+      <FaqPageWrapper
+        tagsData={tagsData}
+        faqData={faqData}
+        howToData={howToData}
+        faqCategories={faqCategories.data}
+      />
     </>
   );
 };

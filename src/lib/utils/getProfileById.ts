@@ -1,4 +1,4 @@
-import supabase from "./supabaseClient";
+import supabase from "./supabase/supabaseClient";
 
 const getProfileByUserId = async (userId: string) => {
   const { data, error } = await supabase

@@ -17,11 +17,11 @@ const ButtonHireUs = ({ className }: Props) => {
       onClick={() => setToggle(false)}
       color="primary"
       className={cn(
-        `hidden h-14 w-64 items-center justify-center rounded-lg border border-white px-8 py-4 text-lg font-[600] capitalize hover:bg-neutral-300 hover:text-neutral-600 md:flex lg:inline-flex`,
+        `hidden h-12 items-center justify-center rounded-lg border border-white px-[initial] text-lg font-[600] capitalize  hover:bg-neutral-300 hover:text-neutral-600 md:flex lg:inline-flex`,
         className,
       )}
     >
-      Hire Us
+      Get started
     </Button>
   );
 };

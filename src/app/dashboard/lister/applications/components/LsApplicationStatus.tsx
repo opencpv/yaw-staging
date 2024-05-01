@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import Select from "../../../components/Select";
+import Select from "../../../components/shared/ui/Select";
 import { useSelectDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 
 const LsApplicationStatus = () => {

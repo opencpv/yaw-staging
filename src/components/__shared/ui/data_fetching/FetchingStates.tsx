@@ -1,16 +1,17 @@
-import Spinner from "@/app/dashboard/components/shared/Spinner";
 import { PostgrestError } from "@supabase/supabase-js";
 import React from "react";
 import FetchErrorMessage from "./FetchErrorMessage";
+import Loader from "../loader/Loader";
 
 type Props = {
-  isLoading: boolean;
   error: PostgrestError | undefined | Error | null;
-  isValidating: boolean;
   data: Record<string, unknown>[] | undefined | any[] | any | null;
-  isLoadingComponent: React.ReactNode;
+  /** When data is re-fetching */
+  isValidating?: boolean;
+  isLoading?: boolean;
+  isLoadingComponent?: React.ReactNode;
   errorComponent?: React.ReactNode;
-  noDataMessageComponent?: React.ReactNode;
+  emptyStateComponent?: React.ReactNode;
 };
 
 const FetchingStates = ({
@@ -20,19 +21,27 @@ const FetchingStates = ({
   data,
   isLoadingComponent,
   errorComponent,
-  noDataMessageComponent,
+  emptyStateComponent,
 }: Props) => {
   return (
     <>
       {isLoading
-        ? isLoadingComponent
+        ? isLoadingComponent || (
+            <Loader position="center" className="flex w-full justify-center" />
+          )
         : error
-          ? errorComponent ?? <FetchErrorMessage />
-          : isValidating && <Spinner />}
-      {isValidating === false &&
+          ? errorComponent || <FetchErrorMessage />
+          : isValidating &&
+            (isLoadingComponent || (
+              <Loader
+                position="center"
+                className="flex w-full justify-center"
+              />
+            ))}
+      {(!isValidating || !isLoading) &&
         !error &&
         data?.length === 0 &&
-        noDataMessageComponent}
+        emptyStateComponent}
     </>
   );
 };

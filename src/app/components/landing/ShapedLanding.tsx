@@ -5,6 +5,7 @@ import Image from "next/image";
 import React from "react";
 import style from "./Shape.module.css";
 import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 type Props = {
   position: "left" | "right";
@@ -30,23 +31,22 @@ const ShapedLanding = ({
   if (pathname === "/")
     return (
       <section
-        className={`${
-          position === "left" && disableOnSmallScreens
-            ? style.shapeLeft
-            : position === "right" && disableOnSmallScreens
-            ? style.shapeRight
-            : position === "left" &&
-              (disableOnSmallScreens === false ||
-                disableOnSmallScreens === undefined)
-            ? style.shapeLeft2
-            : position === "right" &&
-              (disableOnSmallScreens === false ||
-                disableOnSmallScreens === undefined)
-            ? style.shapeRight2
-            : null
-        } relative w-full min-h-[50rem] sm:min-h-[65rem] ${className}`}
+        className={cn(
+          `${
+            position === "left" && disableOnSmallScreens
+              ? style.shapeLeft
+              : position === "right" && disableOnSmallScreens
+                ? style.shapeRight
+                : position === "left" && !disableOnSmallScreens
+                  ? style.shapeLeft2
+                  : position === "right" && !disableOnSmallScreens
+                    ? style.shapeRight2
+                    : null
+          } relative min-h-[50rem] w-full sm:min-h-[65rem] image-overlay`,
+          className,
+        )}
       >
-        <Image src={image} alt={property} fill style={{ objectFit: "cover" }} />
+        <Image src={image}  alt={property} fill style={{ objectFit: "cover" }} />
         {children}
         <ViewPropertyBtn href={`${href}`} />
       </section>
@@ -54,21 +54,24 @@ const ShapedLanding = ({
   else
     return (
       <section
-        className={`${
-          position === "left" && disableOnSmallScreens
-            ? style.shapeLeft
-            : position === "right" && disableOnSmallScreens
-            ? style.shapeRight
-            : position === "left" &&
-              (disableOnSmallScreens === false ||
-                disableOnSmallScreens === undefined)
-            ? style.shapeLeft2
-            : position === "right" &&
-              (disableOnSmallScreens === false ||
-                disableOnSmallScreens === undefined)
-            ? style.shapeRight2
-            : null
-        } relative w-full min-h-[50rem] sm:min-h-[65rem] ${className}`}
+        className={cn(
+          `${
+            position === "left" && disableOnSmallScreens
+              ? style.shapeLeft
+              : position === "right" && disableOnSmallScreens
+                ? style.shapeRight
+                : position === "left" &&
+                    (disableOnSmallScreens === false ||
+                      disableOnSmallScreens === undefined)
+                  ? style.shapeLeft2
+                  : position === "right" &&
+                      (disableOnSmallScreens === false ||
+                        disableOnSmallScreens === undefined)
+                    ? style.shapeRight2
+                    : null
+          } relative min-h-[50rem] w-full`,
+          className,
+        )}
       >
         <Image src={image} alt={property} fill style={{ objectFit: "cover" }} />
         {children}

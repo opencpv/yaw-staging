@@ -1,24 +1,30 @@
-import { Status } from "@/app/dashboard/renter/applications/components/RtApplicationStatus";
+import { RenterApplicationStatus } from "@/app/dashboard/renter/applications/components/RtApplicationStatus";
 
 interface ListingCardInterface extends ListingInterface {
-  propertyDescription?: string;
-  rating?: number;
-  ratingCount?: number;
-  paymentStructure?: PaymentStructure;
-  monthlyAmount?: number;
-  price?: number;
-  liked?: boolean;
-  id?: number | string;
-  deal?: Deal;
-  membership?: Membership;
-  className?: string;
-  cardType?: "1" | "2";
-  city?: string;
-  showOnlyImage?: boolean;
-  isMyFavoritePage?: boolean;
-  isRecommendationsPage?: boolean;
-  showNotViewed?: boolean;
-  isViewed?: boolean;
+  propertyDescription: string;
+  subtitle: string;
+  propertyType: string;
+  bedrooms: number;
+  rating: number;
+  ratingCount: number;
+  paymentStructure: PaymentStructure;
+  monthlyAmount: number;
+  liked: boolean;
+  propertyId: number | string;
+  userId: number | string;
+  hint: HintTag;
+  guarantee: GuaranteeTag;
+  className: string;
+  cardType: "1" | "2";
+  city: string;
+  neighbourhood: string;
+  showOnlyImage: boolean;
+  isMyFavoritePage: boolean;
+  isRecommendationsPage: boolean;
+  showNotViewed: boolean;
+  isViewed: boolean;
+  advancePeriod: number;
+  ViewingFee: number;
 }
 
 interface RenterPaidFeatureInterface {
@@ -58,7 +64,7 @@ interface ListerApplicationsInterface extends ApplicationsInterface {
 interface RenterApplicationsInterface extends ApplicationsInterface {
   listerImage: string;
   listerName: string;
-  status: Status;
+  status: RenterApplicationStatus;
 }
 
 interface ChatInterface {
@@ -68,6 +74,7 @@ interface ChatInterface {
   last_message: string;
   messages_count: number;
   id: string | null;
+  isBlocked?: boolean;
 }
 
 type FeatureInterface =
@@ -145,3 +152,32 @@ export interface SentimentResponse {
   };
   sentiments: SentimentSpan[];
 }
+
+export interface SanityReference {
+  _ref: string;
+  _type: string;
+}
+
+type SanityImageReference = {
+  _type: string;
+  asset: SanityReference;
+};
+export interface BlogAuthor {
+  profile_image: SanityImageReference;
+  _createdAt: string;
+  _rev: string;
+  _type: string;
+  name: string;
+  bio: string;
+  _id: string;
+  _updatedAt: string;
+}
+
+export interface HowTo {
+  title: string;
+  description: string;
+  video_url: string;
+  tags: { tag: string }[];
+}
+
+export interface BlogPost {}

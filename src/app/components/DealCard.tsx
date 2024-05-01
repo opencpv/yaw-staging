@@ -1,12 +1,12 @@
 "use client";
 import React from "react";
-import ArrowLink from "./link/ArrowLink";
-
+import ArrowLink from "../../components/__shared/ui/links/ArrowLink";
+import Image from "next/image";
 type Props = {
   title: string;
   href: string;
   body: string;
-  icon: React.ReactNode;
+  icon: string;
   className?: string;
 };
 
@@ -16,7 +16,7 @@ const DealCard = ({ title, body, href, icon, className }: Props) => {
       className={`w-full space-y-4 rounded-xl bg-white/30 px-8 pb-12 pt-6 shadow-lg ${className}`}
     >
       <div className="grid h-16 w-16 place-items-center rounded-full bg-white shadow-lg">
-        {icon}
+        <img src={icon} width={50} height={50} alt="" />
       </div>
       <div className="w-full space-y-4 sm:w-10/12">
         <div className="flex gap-3">

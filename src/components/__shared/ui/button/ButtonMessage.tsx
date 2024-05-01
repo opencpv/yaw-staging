@@ -4,7 +4,7 @@ import Button from "../../ui/button/Button";
 // import { useMessageStore } from "@/store/dashboard/useMessageStore";
 // import { useUserDetails } from "@/lib/custom-hooks/message/useUserDetails";
 // import { useUserSession } from "@/lib/custom-hooks/database/useUserSession";
-import LoaderDots from "../../loader/LoaderDots";
+import LoaderDots from "../loader/LoaderDots";
 // import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { PiChatCenteredDots } from "react-icons/pi";
@@ -42,13 +42,10 @@ const ButtonMessage = ({ color, className, id, children, type }: Props) => {
       <Button
         isIconOnly
         title="Send message"
-        className={cn(
-          "flex w-full items-center justify-center rounded-md bg-secondary-50 px-4 text-neutral-800",
-          className,
-        )}
+        className={cn("", className)}
         // onClick={onOpen}
       >
-        <PiChatCenteredDots size={16} />
+        <PiChatCenteredDots size={24} className="text-neutral-700" />
       </Button>
     );
   else

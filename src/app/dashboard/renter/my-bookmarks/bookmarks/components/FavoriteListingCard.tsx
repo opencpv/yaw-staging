@@ -12,13 +12,13 @@ import { Pagination, Navigation } from "swiper/modules";
 import Link from "next/link";
 import Image from "next/image";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-import ListingInfo from "@/components/__shared/listing/ListingInfo";
-import ListingDeals from "@/components/__shared/listing/ListingDeals";
+import ListingInfo from "@/components/__shared/ui/listing/ListingInfo";
+import ListingTags from "@/components/__shared/ui/listing/ListingTags";
 import { ListingCardInterface } from "../../../../../../../interfaces";
-import CaDashEye from "../../../../components/icons/CaDashEye";
+import CaDashEye from "../../../../../../components/__shared/ui/icons/CaDashEye";
 import { MdDelete } from "react-icons/md";
 
-const FavoriteListingCard = (props: ListingCardInterface) => {
+const FavoriteListingCard = (props: Partial<ListingCardInterface>) => {
   return (
     <>
       <div className={`relative cursor-default ${props.className}`}>
@@ -93,7 +93,6 @@ const FavoriteListingCard = (props: ListingCardInterface) => {
           liked={props.liked}
           monthlyAmount={props.monthlyAmount}
           paymentStructure={props.paymentStructure}
-          price={props.price}
           propertyDescription={props.propertyDescription}
           propertyName={props.propertyName}
           city={props.city}
@@ -104,7 +103,7 @@ const FavoriteListingCard = (props: ListingCardInterface) => {
           }`}
         />
         {/* Deals */}
-        <ListingDeals membership={props.membership} deal={props.deal} />
+        <ListingTags guarantee={props.guarantee} hint={props.hint} />
       </div>
     </>
   );

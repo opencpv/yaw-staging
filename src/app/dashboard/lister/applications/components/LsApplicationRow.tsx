@@ -8,7 +8,7 @@ import { AiOutlineEye } from "react-icons/ai";
 import ApplicationStatus from "./LsApplicationStatus";
 import { useDaysDifference } from "@/lib/custom-hooks/useDaysDifference";
 import capitalizeName from "@/lib/utils/stringManipulation";
-import DestructiveModal from "@/components/__shared/modals/DestructiveModal";
+import DestructiveModal from "@/components/__shared/ui/modals/DestructiveModal";
 import { useDisclosure } from "@nextui-org/react";
 import ButtonDelete from "@/components/__shared/ui/button/ButtonDelete";
 import {
@@ -46,6 +46,8 @@ const LsApplicationRow = ({
         onClose={onClose}
         onOpenChange={onOpenChange}
         label="Are you sure you want to delete this application?"
+        id=""
+        table="regular_application"
       />
       <TableBodyRow className="grid-cols-5">
         {/* Applicant */}

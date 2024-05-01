@@ -3,29 +3,40 @@ import { toast } from "react-toastify";
 import { E164Number, CountryCode } from "libphonenumber-js/core";
 
 export const useToastDisclosure = () => {
-  const onOpen = (message: string) => {
-    const toastId = toast(message, {
-      position: "top-center",
-      autoClose: false,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-      progressStyle: { background: "#F1B346" },
-      bodyStyle: { paddingRight: "2.5rem" },
+  const variants = {
+    success: {
+      width: "100%",
+      maxWidth: "30rem",
+      background: "#22652c",
+    },
+    error: { width: "100%", maxWidth: "30rem", background: "#5b0d0d" },
+  };
 
-      style: {
-        marginRight: "auto",
-        marginLeft: "auto",
+  const onOpen = (
+    message: string,
+    state?: "success" | "error",
+    autoClose = 5000,
+  ) => {
+    const toastId = toast(
+      state === "success"
+        ? `👍️ ${message}`
+        : state === "error"
+          ? `❌ ${message}`
+          : message,
+      {
+        position: "top-right",
+        autoClose: autoClose,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "dark",
+        progressStyle: { background: "#F1B346" },
+        bodyStyle: { paddingRight: "2.5rem" },
+        style: variants[state || "success"],
       },
-    });
-
-    // Add event listener to dismiss the toast when the user scrolls
-    window.addEventListener("scroll", () => {
-      toast.dismiss(toastId);
-    });
+    );
   };
 
   return { onOpen };
@@ -55,10 +66,9 @@ export const useToastDisclosureVariant1 = () => {
       theme: "dark",
       progressStyle: { background: "#22652c" },
       bodyStyle: { paddingRight: "2.5rem" },
-     
+
       style: variants[variant],
     });
-
   };
 
   return { onOpen };
@@ -96,4 +106,42 @@ export const useSliderAutoPlayDisclosure = () => {
   };
 
   return { autoPlay, handleAutoPlay };
+};
+
+export const useFeedbackDisclosure = () => {
+  const [value1, setValue1] = useState<number>(50);
+  const [value2, setValue2] = useState<number>(50);
+  const [thumbsUpChecked, setThumbsUpChecked] = useState<boolean>(false);
+  const [thumbsDownChecked, setThumbsDownChecked] = useState<boolean>(false);
+
+  const handleFirstSlideChange = (val: number) => {
+    setValue1(val);
+  };
+
+  const handleSecondSlideChange = (val: number) => {
+    setValue2(val);
+  };
+
+  const handleThumbsUpChecked = () => {
+    setThumbsUpChecked((prevState) => !prevState);
+    setThumbsDownChecked(false);
+  };
+
+  const handleThumbsDownChecked = () => {
+    setThumbsDownChecked((prevState) => !prevState);
+    setThumbsUpChecked(false);
+  };
+
+  return {
+    value1,
+    value2,
+    setValue1,
+    setValue2,
+    thumbsUpChecked,
+    thumbsDownChecked,
+    handleFirstSlideChange,
+    handleSecondSlideChange,
+    handleThumbsUpChecked,
+    handleThumbsDownChecked,
+  };
 };

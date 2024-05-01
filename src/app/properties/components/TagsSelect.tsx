@@ -1,38 +1,34 @@
 "use client";
-import {
-  Button,
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownTrigger,
-} from "@nextui-org/react";
-import { Switch } from "@nextui-org/react";
 import React, { useEffect, useState } from "react";
 import { FaCaretDown } from "react-icons/fa";
 import AdvancedForm from "./AdvancedForm";
-import OptionFilterTabs from "@/components/__shared/OptionFilterTabs";
-import Toggle from "@/components/ui/Toggle";
-
-type FilterOption =
-  | "all"
-  | "top rated"
-  | "editor's choice"
-  | "price drop"
-  | "best value";
+import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
+import Toggle from "@/components/__shared/ui/Toggle";
+import {
+  FilterOption,
+  FilterOptionArray,
+  propertyFilterStore,
+} from "@/store/properties/usePropertiesStore";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const TagsSelect = () => {
   const tabsRef = React.useRef<HTMLDivElement>(null);
-
   const [isAdvancedActive, setIsAdvancedActive] = useState<boolean>(false);
-  const [option, setOption] = useState<FilterOption>("all");
-
+  const searchParams = useSearchParams();
+  const tag = searchParams?.get("tag") || "all";
+  const search = searchParams?.get("search") || "";
+  const router = useRouter();
   const handleIsActive = () => {
     setIsAdvancedActive((prevState) => !prevState);
   };
 
-  const changeFilterOption = (option: React.Key) => {
-    setOption(option as FilterOption);
-  };
+  const filterOptionArray: FilterOptionArray = [
+    "all",
+    "realtor's choice",
+    "verified",
+    "no viewing fee",
+    "no advance",
+  ];
 
   useEffect(() => {
     if (tabsRef.current && location.href.includes("sk=true")) {
@@ -47,19 +43,25 @@ const TagsSelect = () => {
           <div className="w-full">
             <OptionFilterTabs
               variant="gradient"
-              options={[
-                "all",
-                "top rated",
-                "editor's choice",
-                "price drop",
-                "best value",
-              ]}
-              selectedKey={option}
-              onSelectionChange={changeFilterOption}
+              options={filterOptionArray}
+              selectedKey={tag}
+              onSelectionChange={(key) =>
+                router.replace(
+                  `/properties?${new URLSearchParams({
+                    search,
+                    tag: key as string,
+                  })}`,
+                  {
+                    scroll: false,
+                  },
+                )
+              }
               radius="small"
             />
           </div>
-          <div>
+          {/* !!! COMMENTED OUT FOR NOW */}
+
+          {/* <div>
             <Dropdown>
               <DropdownTrigger>
                 <Button isIconOnly className="bg-transparent">
@@ -80,8 +82,8 @@ const TagsSelect = () => {
                 <DropdownItem key="singles">Singles</DropdownItem>
               </DropdownMenu>
             </Dropdown>
-          </div>
-          <div className="flex items-center justify-center gap-2">
+          </div> */}
+          {/* <div className="flex items-center justify-center gap-2">
             <div className="">
               <Toggle
                 isSelected={isAdvancedActive}
@@ -89,9 +91,9 @@ const TagsSelect = () => {
                 label="Advanced search"
               />
             </div>
-          </div>
+          </div> */}
         </section>
-        <AdvancedForm isActive={isAdvancedActive} />
+        {/* <AdvancedForm isActive={isAdvancedActive} /> */}
       </div>
     </div>
   );

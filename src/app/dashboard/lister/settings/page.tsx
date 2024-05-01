@@ -1,9 +1,11 @@
-import React from "react";
+import ProfileMainView from "../../components/shared/settings/ProfileMainView";
 
-type Props = {};
-
-const page = (props: Props) => {
-  return <div>page</div>;
+const Settings = () => {
+  return (
+    <>
+      <ProfileMainView />
+    </>
+  );
 };
 
-export default page;
+export default Settings;

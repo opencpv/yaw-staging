@@ -1,27 +1,32 @@
 import { styled } from "@stitches/react";
-import Navbar from "@/components/__shared/Navbar";
-import Footer from "@/components/__shared/footer/Footer";
-import { motion } from "framer-motion";
-import PhoneNumberInputv2 from "@/components/__shared/PhoneInputv2";
-import { useScrollIntoView } from "@/lib/custom-hooks/useWindowEvents";
+import Navbar from "@/components/__shared/ui/Navbar";
+import Footer from "@/components/__shared/ui/footer/Footer";
 import ContactBanner from "./components/ContactBanner";
 import ContactTabs from "./components/ContactTabs";
-import ScrollTopAndSocial from "../../components/ui/ScrollTopAndSocial";
-import FeedbackButton from "../../components/feedback/FeedbackButton";
+import ScrollTopAndSocial from "../../components/__shared/ui/ScrollTopAndSocial";
+import FeedbackButton from "../../components/__shared/ui/feedback/FeedbackButton";
 import ContactForm from "./components/ContactForm";
 import ContactFormSideImage from "./components/ContactFormSideImage";
-import { useRef } from "react";
 import { Metadata } from "next";
-
+import { loadQuery } from "@/lib/utils/sanity/sanityStore";
+import { SanityDocument } from "next-sanity";
+import {
+  CONTACT_US_PAGE_QUERY,
+  HOME_PAGE_QUERY,
+} from "@/lib/utils/sanity/queries";
 export const metadata: Metadata = {
   title: "Contact",
 };
 
-const Page = () => {
+const Page = async () => {
+  const initial = await loadQuery<SanityDocument[]>(HOME_PAGE_QUERY);
+  const data = initial.data[0];
+  const aboutReqData = await loadQuery<SanityDocument[]>(CONTACT_US_PAGE_QUERY);
+
   return (
     <>
       <Navbar />
-      <main className="wrapper">
+      <main className="wrapper max-xs:pt-0">
         <Root className="flex flex-col items-center justify-center">
           <ContactBanner />
           <div
@@ -31,38 +36,20 @@ const Page = () => {
               <ContactTabs />
               <div className="flex h-full grid-cols-2 flex-col gap-10 md:grid">
                 <ContactForm />
-                <ContactFormSideImage />
+                <ContactFormSideImage data={aboutReqData.data} />
               </div>
             </div>
           </div>
         </Root>
         <ScrollTopAndSocial threshHoldMin={450} threshHoldMax={1400} />
         <div className="mt-20 lg:mt-0">
-          <FeedbackButton />
+          <FeedbackButton data={data} />
         </div>
       </main>
       <Footer />
     </>
   );
 };
-
-// const SlideUpAnimation = ({ children }: { children: React.ReactNode }) => {
-//   return (
-//     <motion.div
-//       className="w-full h-full"
-//       initial={{ y: 50 }}
-//       animate={{ y: 0 }}
-//       exit={{ y: -50 }}
-//       transition={{
-//         type: "spring",
-//         stiffness: "10",
-//         duration: "1000",
-//       }}
-//     >
-//       {children}
-//     </motion.div>
-//   );
-// };
 
 const Root = styled("div", {
   ".banner": {

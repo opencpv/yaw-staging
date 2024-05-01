@@ -1,46 +1,57 @@
 "use client";
-import AOSWrapper from "@/components/__shared/AOSWrapper";
 import Button from "@/components/__shared/ui/button/Button";
-import Modal from "@/components/__shared/modals/Modal";
+import Modal from "@/components/__shared/ui/modals/Modal";
 import SubscribeForm from "@/components/__shared/ui/SubscribeForm";
 import { useDisclosure } from "@nextui-org/react";
 import React from "react";
-import { AnimationStyle } from "@/components/__shared/types";
+import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
+import { fadeIn } from "@/lib/animations";
+import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import ModalCloseIcon from "@/components/__shared/ui/modals/ModalCloseIcon";
 
 type Props = {
   className?: string;
-  animation?: AnimationStyle
 };
 
-const SubscribeToBlogButton = ({ className, animation }: Props) => {
+const SubscribeToBlogButton = ({ className }: Props) => {
   const { onOpen, isOpen, onOpenChange, onClose } = useDisclosure();
 
   return (
     <>
       <Modal
-        body={<SubscribeModalBody />}
+        header={<div className="h-20"></div>}
+        body={<SubscribeModalBody onClose={onClose} />}
+        footer={<div className="h-20"></div>}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
+        scrollBehavior="normal"
         onClose={onClose}
         size="5xl"
       />
-      <AOSWrapper animation={animation ? animation : "fade-up"} duration="1000">
+      <FramerWrapper {...fadeIn}>
         <Button
           color="accent"
-          className={`w-full py-8 mb-20 text-lg uppercase min-h-fit ${className}`}
+          className={`min-h-fit w-full py-8 text-lg uppercase ${className}`}
           onClick={onOpen}
         >
           Subscribe to our blog
         </Button>
-      </AOSWrapper>
+      </FramerWrapper>
     </>
   );
 };
 
-export const SubscribeModalBody = () => {
+export const SubscribeModalBody = ({ onClose }: { onClose: () => void }) => {
+  const { onOpen } = useToastDisclosure();
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    // TODO: handle logic
+    onClose();
+    onOpen("Congratulations, you are in the loop!", "success");
+  };
+
   return (
-    <div className="flex items-center justify-center pb-20 pt-6">
-      <SubscribeForm />
+    <div className="flex h-full items-center justify-center max-md:pb-20">
+      <SubscribeForm onSubmit={handleSubmit} />
     </div>
   );
 };

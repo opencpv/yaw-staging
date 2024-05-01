@@ -1,29 +1,56 @@
+import { cn } from "@/lib/utils";
 import { Skeleton } from "@nextui-org/react";
 import React from "react";
 
-
-const SkeletonListing = ({ count, childrenClassName }: SkeletonProps) => {
-  let countArray = Array.from({ length: count }, (_, idx) => idx + 1);
+const SkeletonListing = ({
+  count,
+  className,
+  cardType = 2,
+}: SkeletonListingProps) => {
+  let countArray = Array.from({ length: count as number }, (_, idx) => idx + 1);
 
   return (
     <>
-      {countArray.map((_, idx) => (
-        <div
-          key={idx + 1}
-          className={`space-y-3 ${childrenClassName}`}
-        >
-          <Skeleton className={`rounded-xl min-w-full h-60`} />
-          <div className="flex justify-between">
-            <Skeleton className="rounded-md w-32 h-5" />
-            <Skeleton className="rounded-md w-20 h-5" />
+      {count &&
+        countArray.map((_, idx) => (
+          <div key={idx + 1} className={cn("space-y-3", className)}>
+            <Skeleton
+              className={cn("min-w-full", {
+                "h-52 rounded-xl": cardType === 1,
+                "h-[26rem] rounded-3xl": cardType === 2,
+              })}
+            />
+            <div className="flex justify-between">
+              <Skeleton className="h-5 w-32 rounded-md" />
+              <Skeleton className="h-5 w-20 rounded-md" />
+            </div>
+            <Skeleton className="h-10 w-full rounded-md" />
+            <div className="flex justify-between">
+              <Skeleton className="h-5 w-40 rounded-md" />
+              <Skeleton className="h-8 w-8 rounded-full" />
+            </div>
           </div>
-          <Skeleton className="rounded-md w-full h-10" />
+        ))}
+
+      {count === undefined && (
+        <div className={cn("space-y-3", className)}>
+          <Skeleton
+            className={cn("min-w-full", {
+              "h-52 rounded-xl": cardType === 1,
+              "h-80 rounded-3xl": cardType === 2,
+            })}
+          />
           <div className="flex justify-between">
-            <Skeleton className="rounded-md w-40 h-5" />
-            <Skeleton className="rounded-full w-8 h-8" />
+            <Skeleton className="h-5 w-32 rounded-md" />
+            <Skeleton className="h-5 w-20 rounded-md" />
+          </div>
+          <Skeleton className="h-10 w-full rounded-md" />
+          <div className="flex justify-between">
+            <Skeleton className="h-5 w-40 rounded-md" />
+            <Skeleton className="h-8 w-8 rounded-full" />
           </div>
         </div>
-      ))}
+      )}
     </>
   );
 };

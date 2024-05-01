@@ -23,9 +23,9 @@ const HowToVideo = (props: Props) => {
       <div className="relative aspect-video cursor-pointer rounded-2xl">
         <div className="rounded-2xl">
           <iframe
-            src={videoSrc}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
+            src={props.src}
+            title={props.heading}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
             className="absolute inset-0 h-full w-full rounded-3xl"
             ref={videoRef}
           ></iframe>

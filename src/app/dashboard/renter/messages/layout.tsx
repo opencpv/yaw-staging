@@ -2,10 +2,9 @@
 "use client";
 import React, { FormEvent, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import supabase from "@/lib/utils/supabaseClient";
+import supabase from "@/lib/utils/supabase/supabaseClient";
 import { useCurrentUserId } from "@/lib/custom-hooks/useCurrentUserId";
 import NoMessageState from "../../components/shared/messages/NoMessageState";
-import { useProtectedRoute } from "@/lib/custom-hooks/useProtectedRoute";
 import { fetchOrderRule } from "@/lib/utils/fetchRules";
 import { useMessageStore } from "@/store/dashboard/useMessageStore";
 import realTime from "@/lib/utils/realTime";
@@ -17,8 +16,6 @@ type Props = {
 };
 
 const MessagesLayout = ({ children }: Props) => {
-  // useProtectedRoute();
-
   const pathname = usePathname();
   const [messageContent, setMessageContent] = useState<string>("");
   const [messages, setMessages] = useState<DistinctMessage[]>([]);
@@ -26,8 +23,6 @@ const MessagesLayout = ({ children }: Props) => {
   const [isLoading, setIsLoading] = useState(true);
   const currentUserId = useCurrentUserId();
   const recipientId = useMessageStore((state) => state.recipientId);
-
-  // console.log(currentUserId)
 
   useEffect(() => {
     const getDistinctMessages = async () => {
@@ -74,13 +69,13 @@ const MessagesLayout = ({ children }: Props) => {
   // });
 
   return (
-    <div className="h-[100svh]">
+    <div className="h-svh">
       <h2 className="sticky top-0 z-40 mb-5 bg-white pb-5">Messages</h2>
       {messages && messages?.length < 0 && (
         <NoMessageState className="mt-20 lg:hidden" />
       )}
 
-      <section className="h-full max-h-[100svh] grid-cols-6 gap-5 lg:grid">
+      <section className="h-full max-h-svh grid-cols-6 gap-5 lg:grid">
         {/* grid col */}
         <Chats isLoading={isLoading} error={error} messages={messages} />
         {/* grid col */}
@@ -89,7 +84,7 @@ const MessagesLayout = ({ children }: Props) => {
             (pathname === "/dashboard/lister/messages" ||
               pathname === "/dashboard/renter/messages") &&
             "hidden" // hide chat area on mobile
-          } relative col-span-4 h-full max-h-[100svh] w-full lg:block lg:max-xl:col-span-3`} // show chat area on desktop
+          } relative col-span-4 h-full max-h-svh w-full lg:block lg:max-xl:col-span-3`} // show chat area on desktop
         >
           {children} {/* chat area */}
           {(pathname?.includes("/dashboard/lister/messages/") ||

@@ -1,55 +1,111 @@
 import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
-import { useListingStore } from "@/store/listing/useListingStore";
 import { useDisclosure } from "@nextui-org/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-import FavoriteModal from "../listing/FavoriteModal";
+import FavoriteModal from "./listing/FavoriteModal";
+import SignInRequiredModal from "./modals/SignInRequiredModal";
+import { useAppStore } from "@/store/dashboard/AppStore";
+import { updateLikedProperty } from "@/app/properties/_actions";
+import { getUserFavorite } from "@/components/services";
+import { useLocalStorage } from "@uidotdev/usehooks";
 
 type Props = {
+  userId: string | number;
+  propertyId: string | number;
   liked?: boolean;
   className?: string;
 };
 
-const LikeHeart = ({ liked, className }: Props) => {
-  const [isLiked, setIsLiked] = useState<boolean>(false);
-  const { contactUponFavorite } = useListingStore();
+const LikeHeart = ({ liked, className, userId, propertyId }: Props) => {
+  const [isLiked, setIsLiked] = useState<boolean>(liked as boolean);
   const { onOpen, isOpen, onOpenChange, onClose } = useDisclosure();
   const { onOpen: toastOnOpen } = useToastDisclosure();
+  const [signInModalOpen, setSignInModalOpen] = useState(false);
+  const [shouldOpenModal, setShouldOpenModal] = useLocalStorage(
+    "shouldOpenModal",
+    false,
+  );
+  const { user } = useAppStore();
 
-  const toggleLiked = () => {
-    setIsLiked((prevState) => !prevState);
+  const handleContactPreference = React.useCallback(() => {
+    if (shouldOpenModal) {
+      onOpen();
+    }
+  }, [onOpen, shouldOpenModal]);
+
+  const handleDislike = async () => {
+    setIsLiked(!isLiked);
+    const { error } = await updateLikedProperty(userId, propertyId);
+    if (error) {
+      toastOnOpen("Something went wrong", "error");
+      setIsLiked(!isLiked);
+    }
   };
 
-  const handleSaveFavoriteOption = () => {
-    onClose();
-    toastOnOpen(
-      contactUponFavorite
-        ? "👍 Great choice! We've noted that you're open to being contacted by your property owners. Expect to hear from them soon!"
-        : "Noted! Your preference for privacy is important to us. Your property owners will not contact you unless necessary."
-    );
+  const handleLike = async () => {
+    if (user) {
+      setIsLiked(!isLiked);
+      const { error } = await updateLikedProperty(userId, propertyId);
+      if (error) {
+        toastOnOpen("Something went wrong", "error");
+        setIsLiked(!isLiked);
+      }
+      handleContactPreference();
+    } else if (!user) {
+      // set scroll position to scroll to after signing in.
+      sessionStorage.setItem("windowScrollHeight", window.scrollY.toString());
+      setSignInModalOpen(true);
+    }
   };
+
+  useEffect(() => {
+    setIsLiked(liked as boolean);
+  }, [liked]);
+
+  useEffect(() => {
+    const fetchFavorite = async () => {
+      const { data: favorite } = await getUserFavorite(user?.id as string);
+      setShouldOpenModal(!favorite);
+    };
+
+    fetchFavorite();
+  }, [user?.id, setShouldOpenModal]);
+
+  useEffect(() => {
+    // This happens after the user signs in, following favoriting.
+    const windowScrollHeight = sessionStorage.getItem("windowScrollHeight");
+
+    if (user && windowScrollHeight) {
+      window.scrollTo({
+        top: parseInt(windowScrollHeight || "400"),
+        behavior: "smooth",
+      });
+
+      sessionStorage.removeItem("windowScrollHeight");
+    }
+  }, [user]);
 
   return (
     <>
+      <SignInRequiredModal
+        open={signInModalOpen}
+        onOpenChange={setSignInModalOpen}
+        onClose={() => setSignInModalOpen(false)}
+      />
       <FavoriteModal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        onClose={handleSaveFavoriteOption}
+        onClose={onClose}
       />
-      {liked || isLiked ? (
+      {isLiked ? (
         <FaHeart
           className={`cursor-pointer ${isLiked && "ping"} ${className}`}
-          onClick={toggleLiked}
+          onClick={handleDislike}
         />
       ) : (
         <FaRegHeart
           className={`cursor-pointer ${className}`}
-          onClick={() => {
-            toggleLiked();
-            setTimeout(() => {
-              onOpen();
-            }, 500);
-          }}
+          onClick={handleLike}
         />
       )}
     </>

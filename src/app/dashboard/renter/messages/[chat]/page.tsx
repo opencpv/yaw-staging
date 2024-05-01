@@ -6,7 +6,7 @@ import { Spinner } from "@nextui-org/react";
 import { useCurrentUserId } from "@/lib/custom-hooks/useCurrentUserId";
 import NoMessageState from "../../../components/shared/messages/NoMessageState";
 // import { useQuery } from "@tanstack/react-query";
-import supabase from "@/lib/utils/supabaseClient";
+import supabase from "@/lib/utils/supabase/supabaseClient";
 import { fetchOrderRule } from "@/lib/utils/fetchRules";
 import realTime from "@/lib/utils/realTime";
 import UsernameDisplayBar from "../../../components/shared/messages/UsernameDisplayBar";
@@ -24,8 +24,6 @@ const Messages = ({ params }: { params: { chat: string } }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const { userName } = useUserDetails(chatID);
-
-  // console.log(currentUserId);
 
   useEffect(() => {
     const getMessages = async () => {

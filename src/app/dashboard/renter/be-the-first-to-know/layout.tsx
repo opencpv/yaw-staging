@@ -1,13 +1,16 @@
 "use client";
 import LargeButton from "../../lister/properties/components/LargeButton";
 import { MdOutlineLibraryAdd } from "react-icons/md";
-import ArrowLink from "@/app/components/link/ArrowLink";
+import ArrowLink from "@/components/__shared/ui/links/ArrowLink";
 import { usePathname } from "next/navigation";
 import { FaChevronLeft } from "react-icons/fa";
 import Link from "next/link";
-import AOSWrapper from "@/components/__shared/AOSWrapper";
-import ScrollTop from "@/components/__shared/ScrollTop";
+import ScrollTop from "@/components/__shared/ui/ScrollTop";
 import Button from "@/components/__shared/ui/button/Button";
+import { useDashboardStore } from "@/store/dashboard/dashboardStore";
+import FirstToKnowModal from "./steps/FirstToKnowModal";
+import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
+import { fadeUp } from "@/lib/animations";
 
 const BeTheFirstToKnowLayout = ({
   children,
@@ -15,36 +18,16 @@ const BeTheFirstToKnowLayout = ({
   children: React.ReactNode;
 }) => {
   const pathname = usePathname();
+  const { currentRole } = useDashboardStore();
 
   return (
     <main>
-      <Link
-        href={
-          pathname?.includes("/lister")
-            ? "/dashboard/lister/be-the-first-to-know"
-            : "/dashboard/renter/be-the-first-to-know"
-        }
-        className="relative mb-5 h-10 w-10 place-items-center rounded-full p-2 transition-all hover:scale-105 hover:bg-slate-100 fhd:right-28"
-        style={{
-          display:
-            pathname === "/dashboard/lister/be-the-first-to-know" ||
-            "dashboard/renter/be-the-first-to-know"
-              ? "none"
-              : "grid",
-        }}
-      >
-        <FaChevronLeft />
-      </Link>
       <h2>Be the first to Know</h2>
-      {/* <LargeButton
-        icon={<MdOutlineLibraryAdd />}
-        label="Create"
-        className="mt-10 min-w-fit xxs:min-w-[15rem]"
-      /> */}
-      <Button className="mt-10 bg-primary-600">
-        <MdOutlineLibraryAdd />
-        Create Search Criteria
-      </Button>
+      <div className="fixed bottom-10 right-5 z-30 shadow-lg">
+        {pathname === "/dashboard/renter/be-the-first-to-know" && (
+          <FirstToKnowModal />
+        )}
+      </div>
       {/* <section className="flex h-[100vh] w-full flex-col items-center justify-center">
           <Image
             src={images.SearchIcon}
@@ -89,19 +72,18 @@ const BeTheFirstToKnowLayout = ({
           className="mb-6"
           style={{
             display:
-              pathname === "/dashboard/lister/be-the-first-to-know" ||
-              "/dashboard/renter/be-the-first-to-know"
+              pathname === "/dashboard/renter/be-the-first-to-know"
                 ? "none"
                 : "grid",
           }}
         >
           Search Title One
         </h3>
-        <AOSWrapper animation="fade-up">
+        <FramerWrapper {...fadeUp}>
           <div className="grid grid-cols-1 gap-x-5 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
             {children}
           </div>
-        </AOSWrapper>
+        </FramerWrapper>
       </section>
       <ScrollTop />
     </main>

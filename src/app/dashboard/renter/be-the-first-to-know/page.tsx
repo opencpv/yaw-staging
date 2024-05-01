@@ -9,7 +9,7 @@ import { RxTarget } from "react-icons/rx";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
-import ListingCard from "@/components/__shared/listing/ListingCard";
+import ListingCard from "@/components/__shared/ui/listing/ListingCard";
 import { useFetchTableWithInfiniteScroll } from "@/lib/custom-hooks/useFetch";
 import { revalidationRule, fetchOrderRule } from "@/lib/utils/fetchRules";
 import TargetedSearchCard, {
@@ -81,7 +81,7 @@ const BeTheFirstToKnow = () => {
         isValidating={isValidating}
         isLoadingComponent={<SkeletonListing count={3} />}
         errorComponent={<FetchErrorMessage specificData="properties" />}
-        noDataMessageComponent={
+        emptyStateComponent={
           <p className="mt-4 text-center italic">
             There are no properties yet.
           </p>

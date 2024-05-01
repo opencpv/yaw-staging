@@ -1,5 +1,6 @@
 "use client";
-import SliderPaginationOnly from "@/components/__shared/sliders/SliderPaginationOnly";
+import SliderPaginationOnly from "@/components/__shared/ui/sliders/SliderPaginationOnly";
+import { urlForImage } from "@/lib/utils/sanity/utils";
 import React from "react";
 
 let images = [
@@ -8,17 +9,17 @@ let images = [
   "/assets/images/home/promotion-1.jpg",
 ];
 
-const AdsSliderColumn = () => {
+const AdsSliderColumn = ({ ads = [] }: { ads: any }) => {
   return (
-    <div className="col-span-2 hidden h-full gap-4 flex-col lg:flex">
-      {images.map((imageOuter, idx) => (
+    <div className="col-span-2 hidden h-full flex-col gap-4 lg:flex">
+      {ads.map((ad: any, idx: number) => (
         <SliderPaginationOnly
           disabledOnInteraction
           key={idx + 1}
-          className="h-full w-full flex-1 last:flex-[2]"
-          images={[1, 2, 3].map((image) => ({
-            name: "4 bedroom apartment",
-            src: imageOuter,
+          className="h-full min-h-60 w-full flex-1 last:flex-[2]"
+          images={ad.adImages.map((image: any) => ({
+            name: image.alt,
+            src: urlForImage(image.customImageItem)?.url() as string,
           }))}
         />
       ))}

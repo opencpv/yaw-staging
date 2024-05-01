@@ -2,7 +2,7 @@ import { useState } from "react";
 import NoReviews from "./NoReviews";
 import ReviewCard from "./ReviewsGivenCard";
 import { mockReviewData } from "./content";
-import SlideEnter from "@/app/components/listing-form/components/SlideEnter";
+import SlideEnter from "@/components/__shared/ui/listing-form/components/SlideEnter";
 import DelayEnter from "@/components/DelayEnter";
 import ReviewsGivenCard from "./ReviewsGivenCard";
 

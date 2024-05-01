@@ -1,3 +1,4 @@
+import GreenCheckGif from "../../../public/assets/gifs/green-check.gif";
 import GoogleIcon from "../../../public/assets/icons/google-icon.svg";
 import FacebookIcon from "../../../public/assets/icons/fb-icon.svg";
 import AppleIcon from "../../../public/assets/icons/apple-icon.svg";
@@ -7,7 +8,8 @@ import XIcon from "../../../public/assets/icons/x-icon.svg";
 import PhoneIcon from "../../../public/assets/icons/phone-icon.svg";
 import MailIcon from "../../../public/assets/icons/mail-icon.svg";
 import ArrowIcon from "../../../public/assets/icons/arrow-icon.svg";
-import Logo from "../../../public/assets/icons/logo.svg";
+import NoViewingFee from "../../../public/assets/icons/no-viewing-fee.svg";
+import Logo from "../../../public/assets/images/Logo.png";
 import Hamburger from "../../../public/assets/icons/nav-icon.svg";
 import FaqImage from "../../../public/assets/images/faq/faq-image.png";
 import FaqArrowIcon from "../../../public/assets/icons/arrow-circle-right.svg";
@@ -19,10 +21,12 @@ import Seperator from "../../../public/assets/icons/seperator.svg";
 import TermsImage from "../../../public/assets/images/cuate.svg";
 import SplashImage from "../../../public/assets/images/splash.svg";
 import AboutImage from "/public/assets/images/about-image.svg";
+import Cloud from "/public/assets/icons/cloud.svg";
 import niceHome from "../../../public/assets/images/niceHome.png";
 import HouseSearchingCuate from "../../../public/assets/images/about/house-searching-cuate.png";
 import PropertyDetailsBanner from "../../../public/assets/images/properties/property-details.jpg";
 import EditorsChoice from "/public/assets/icons/editors-choice.svg";
+import GreenCheck from "/public/assets/icons/green-check.svg";
 import BestValue from "/public/assets/icons/best-value.svg";
 import PriceDrop from "/public/assets/icons/price-drop.svg";
 import Certified from "/public/assets/images/certified.png";
@@ -44,8 +48,19 @@ import VerifyListing from "/public/assets/images/dashboard/overview/p-manager/ve
 import SearchIcon from "/public/svgs/SearchHomeIcon.svg";
 import Clipboard from "/public/assets/images/dashboard/clipboard.png";
 import UserNoImage from "/public/assets/images/placeholder/user-no-image.jpeg";
+import NoProfileUser from "/public/assets/images/placeholder/no-profile-user.png";
+import NoProfileOthers from "/public/assets/images/placeholder/no-profile-others.png";
 import Brochure from "/public/assets/images/contact/brochure.png";
 import SavedSearches from "/public/assets/images/dashboard/saved-searches.png";
+import FeelingRefreshed from "/public/assets/images/dashboard/feeling-refreshed.jpg";
+import LadyStirringAtPhone from "/public/assets/images/dashboard/lady-stirring-at-phone.jpg";
+import LadyOnCouch from "/public/assets/images/dashboard/lady-on-couch.jpg";
+import YellowNotification from "/public/assets/images/dashboard/notification.jpeg";
+import WhitePoolHouse from "/public/assets/images/dashboard/white-pool-house.jpeg";
+import LadyOnCouchLaptop from "/public/assets/images/dashboard/lady-on-couch-laptop.jpg";
+import CoupleStirringIntoSpace from "/public/assets/images/dashboard/couple-stirring-into-space.jpg";
+import CoupleSittingOnFloor from "/public/assets/images/dashboard/couple-sitting-on-floor.jpg";
+
 export const useAssets = () => {
   return {
     icons: {
@@ -58,7 +73,6 @@ export const useAssets = () => {
       PhoneIcon,
       MailIcon,
       ArrowIcon,
-      Logo,
       Hamburger,
       FaqArrowIcon,
       ArrowDown,
@@ -74,8 +88,15 @@ export const useAssets = () => {
       HouseSearch,
       PeopleSell,
       Rafiki,
+      GreenCheck,
+      NoViewingFee,
+      Cloud,
+    },
+    gifs: {
+      GreenCheckGif,
     },
     images: {
+      Logo,
       StockImage,
       FaqImage,
       ContactImage,
@@ -96,8 +117,18 @@ export const useAssets = () => {
       GetFeaturedImage,
       VerifyListing,
       UserNoImage,
+      NoProfileUser,
+      NoProfileOthers,
       Brochure,
       SavedSearches,
+      FeelingRefreshed,
+      LadyStirringAtPhone,
+      LadyOnCouch,
+      YellowNotification,
+      WhitePoolHouse,
+      LadyOnCouchLaptop,
+      CoupleStirringIntoSpace,
+      CoupleSittingOnFloor,
     },
   };
 };

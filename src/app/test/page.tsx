@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 "use client";
-import supabase from "@/lib/utils/supabaseClient";
+import supabase from "@/lib/utils/supabase/supabaseClient";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import axios from "axios";
 import Head from "next/head";
@@ -29,8 +29,6 @@ const Test = () => {
         <button
           className="mt-4 rounded-full bg-white p-2 "
           onClick={async () => {
-            console.log(file);
-
             // Check if file is not null before proceeding
             if (file) {
               const formData = new FormData();
@@ -50,7 +48,6 @@ const Test = () => {
                 );
 
                 // Handle the response as needed
-                console.log("Response:", response.data);
               } catch (error) {
                 // Handle errors
                 console.error("Error:", error);

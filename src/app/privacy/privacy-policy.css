@@ -1,0 +1,32 @@
+main > ul {
+  @apply mt-10 space-y-10;
+}
+
+h1 {
+  @apply mb-20 text-center text-3xl font-semibold sm:text-4xl;
+}
+
+h2 {
+  @apply mb-2 font-montserrat;
+  /* font-family: var(--font-montserrat); */
+}
+
+h6 {
+  @apply mb-5 text-sm font-normal italic;
+}
+
+p {
+  @apply leading-loose;
+}
+
+a {
+  @apply text-accent-100;
+}
+
+.policy p {
+  @apply mb-5 last:mb-0;
+}
+
+.policy ul {
+  @apply relative list-disc space-y-5 xs:left-16;
+}

@@ -5,6 +5,7 @@ import JobCard from "./components/JobCard";
 import { JobType } from "../types";
 import JobCantFindCard from "./components/JobCantFindCard";
 import Link from "next/link";
+import Footer from "@/components/__shared/ui/footer/Footer";
 
 const demoJobData = [
   {
@@ -36,10 +37,10 @@ const demoJobData = [
 
 function Page() {
   return (
-    <div className="flex items-center justify-center">
-      <div className="flex flex-col items-center justify-center max-w-[1728px] w-full">
+    <div className="flex flex-col items-center justify-center gap-20">
+      <div className="flex flex-col items-center justify-center  w-full ">
         <div
-          className={`flex items-center justify-center w-full max-w-[1728px] h-[432px] flex-col gap-1 lg:gap-6  shrink-0
+          className={`flex items-center justify-center w-full  h-[432px] flex-col gap-1 lg:gap-6  shrink-0
                ${styles.open_positions_header} !bg-cover`}>
           <p className="capitalize text-[1.5625rem] lg:text-[1.9375rem] text-white font-semibold order-2 lg:order-1">
             Open Positions
@@ -65,7 +66,7 @@ function Page() {
             </Link>
           </div>
         </div>
-        <div className="flex flex-col gap-3  lg:gap-6 mt-10 lg:mt-20 w-full px-5 2xl:px-0">
+        <div className="flex flex-col gap-3  lg:gap-6 mt-10 lg:mt-20 w-full px-5 2xl:px-0 max-w-[1728px]">
           <p className="text-shade-300 text-20 lg:text-25 font-semibold">
             Available Positions
           </p>
@@ -81,6 +82,7 @@ function Page() {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }

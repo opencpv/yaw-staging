@@ -11,27 +11,27 @@ const PMOverviewUpgradeSection = (props: Props) => {
   return (
     <section className={`mb-20 ${props.className}`}>
       <h2 className="mb-6">Upgrade</h2>
-      <div className="grid-auto-min-200 mb-5 w-full gap-5">
+      <div className="grid-auto-min-200 mb-5 w-full gap-x-5 gap-y-10">
         <FeatureUpgradeCard
           title="3D Images"
           image={images._3DImage}
           alt="3D House"
           description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis mollitia eius recusandae sed, quis, vitae sequi praesentium natus id dolores atque omnis facilis tempore exercitationem perferendis sit alias consequuntur nemo."
-          href=""
+          href="#"
         />
         <FeatureUpgradeCard
           title="Get Featured"
           image={images.GetFeaturedImage}
           alt="A person holding megaphone"
           description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis mollitia eius recusandae sed, quis, vitae sequi praesentium natus id dolores atque omnis facilis tempore exercitationem perferendis sit alias consequuntur nemo."
-          href=""
+          href="#"
         />
         <FeatureUpgradeCard
           title="Verify My Listings"
           image={images.VerifyListing}
           alt="A person making a phone call"
           description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis mollitia eius recusandae sed, quis, vitae sequi praesentium natus id dolores atque omnis facilis tempore exercitationem perferendis sit alias consequuntur nemo."
-          href=""
+          href="#"
         />
       </div>
     </section>

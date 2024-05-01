@@ -17,6 +17,11 @@ import "swiper/css/free-mode";
 import PaginationMenu from "./PaginationMenu";
 import { useDashboardMenuStore } from "@/store/navmenu/useDashboardMenuStore";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
+import { useAppStore } from "@/store/dashboard/AppStore";
+import Avatar from "@/components/__shared/ui/avatar/Avatar";
+import AvatarMenu from "@/components/__shared/ui/avatar/AvatarMenu";
+import { useUserSession } from "@/lib/custom-hooks/database/useUserSession";
+import Switch from "../navbar/switch";
 
 type PaginationTabProps = {
   active: string;
@@ -52,6 +57,8 @@ const PaginationTab = ({ active, icon, name, link }: PaginationTabProps) => {
 };
 
 const Pagination = () => {
+  const { user } = useAppStore();
+  const userSession = useUserSession();
   const vw = useViewport();
   const [active, setActive] = useState("");
   const router = useRouter();
@@ -83,45 +90,26 @@ const Pagination = () => {
     }
   }, [pathname, currentRole]);
 
-  const handleScrollToRight = () => {
-    const element: any = scrollableRef.current;
-    const scrollableWidth = element.scrollWidth;
-    console.log(element.scrollLeft + element.clientWidth, scrollableWidth);
-    if (element.scrollLeft + element.clientWidth >= scrollableWidth) {
-      setAtEnd(true);
-    } else {
-      element.scrollLeft += element.clientWidth;
-    }
-  };
+  const swiperRef = useRef<any>();
 
-  const handleScrollToLeft = () => {
-    const element: any = scrollableRef.current;
-    const scrollableWidth = element.scrollWidth;
-    if (element.scrollLeft <= 0) {
-      setAtEnd(false);
-      console.log("here");
-    } else {
-      element.scrollLeft += -element.clientWidth;
-      console.log("er");
+  useEffect(() => {
+    if (window.innerWidth < 640) {
+      swiperRef.current.classList.remove("swiper");
     }
-    console.log(element.scrollLeft);
-  };
+    if (swiperRef.current && vw?.width) {
+      if (vw?.width < 640) {
+        swiperRef.current.classList.remove("swiper");
+      } else {
+        swiperRef.current.classList.add("swiper");
+      }
+    }
+  }, [vw.width]);
 
   return (
     <Root
       className="flex items-start gap-7 px-5 py-1 pb-4 md:items-center"
       ref={scrollableRef}
     >
-      {/* {atEnd && (
-        <button
-          onClick={handleScrollToLeft}
-          className="flex aspect-square
-                  w-full max-w-[52px] items-center justify-center rounded-full
-                  bg-[#396261] hover:scale-[1.02] md:max-w-[83px]"
-        >
-          <MdKeyboardArrowLeft color="white" size={24} />
-        </button>
-      )} */}
       <Swiper
         direction={"horizontal"}
         slidesPerView={"auto"}
@@ -130,8 +118,9 @@ const Pagination = () => {
         scrollbar={false}
         mousewheel={true}
         modules={[FreeMode, Scrollbar, Mousewheel]}
-        className="mySwiper invisible hidden h-fit w-full md:visible"
+        className="mySwiper invisible order-2 hidden h-fit w-full ssm:order-1 md:visible"
         wrapperClass="justify-between"
+        ref={swiperRef}
       >
         {currentRole === "renter" &&
           PgRoutesRenter.map(
@@ -163,34 +152,24 @@ const Pagination = () => {
               ),
           )}
       </Swiper>
-
-      {/* {!atEnd && (
-        <button
-          onClick={handleScrollToRight}
-          className="flex aspect-square
-                  w-full max-w-[52px] items-center justify-center rounded-full
-                  bg-[#396261] hover:scale-[1.02] md:max-w-[83px]"
-        >
-          <MdKeyboardArrowRight color="white" size={24} />
-        </button>
-      )} */}
       <Button
-        className="hidden h-full w-16 items-center justify-center rounded-xl bg-primary-200 px-4 py-3 text-white md:flex lg:h-24 lg:min-w-unit-16 lg:px-2"
+        className="hidden h-full w-16 items-center justify-center rounded-xl bg-primary-200 px-4 py-3 text-white ssm:order-2 md:flex lg:h-24 lg:min-w-unit-16 lg:px-2"
         onClick={() => setIsOpen(true)}
       >
         <div className="flex items-center justify-center">
           <HiBars3BottomRight size={25} />
         </div>
       </Button>
+
+      <Switch className="relative order-1 my-auto mr-auto flex w-full flex-1 items-center gap-5 ssm:order-3 ssm:hidden" />
       <button
-        className="relative bottom-1 ml-auto mt-2 h-max w-fit items-center justify-center rounded-xl border border-primary-800 px-3 py-2 text-primary-800 md:hidden"
+        className="order-4 my-auto ml-auto h-max w-fit items-center justify-center rounded-xl border border-primary-800 px-3 py-2 text-primary-800 ssm:order-4 md:hidden"
         onClick={() => setIsOpen(true)}
       >
         <div className="flex flex-col items-center gap-3">
           <HiBars3BottomRight size={25} />
         </div>
       </button>
-
       <PaginationMenu />
     </Root>
   );

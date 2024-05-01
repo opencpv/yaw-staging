@@ -6,7 +6,7 @@ import { FaFacebook, FaLinkedin, FaTwitter, FaWhatsapp } from "react-icons/fa";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Loader from "@/components/__shared/loader/Loader";
+import Loader from "@/components/__shared/ui/loader/Loader";
 import ProfilePhone from "./ProfilePhone";
 
 interface Props {
@@ -30,7 +30,7 @@ const IconField = ({
 }: Props) => {
   return (
     <div className="form-div relative">
-      <div className="flex gap-2 items-center">
+      <div className="flex items-center gap-2">
         {icon}
         <label className="text-[#737373]">{label}:</label>
       </div>
@@ -87,7 +87,7 @@ const ProfileInfo = ({
 
   return (
     <Root>
-      <div className="flex gap-5 mt-3">
+      <div className="mt-3 flex gap-5">
         <Navigation type={"active"}>Profile</Navigation>
         <Navigation>Blocking</Navigation>
         <Navigation>Account Setting</Navigation>
@@ -99,7 +99,7 @@ const ProfileInfo = ({
           <div className="py-10 pt-6">
             <p>{currentData?.fullname}</p>
             <p>Your Profile Picture</p>
-            <div className="max-w-[227px] max-h-[164px] w-full relative aspect-[227/164] rounded-[18px] mt-5 border-">
+            <div className="border- relative mt-5 aspect-[227/164] max-h-[164px] w-full max-w-[227px] rounded-[18px]">
               <Image
                 src={currentData.avatar_url}
                 placeholder="blur"
@@ -147,10 +147,8 @@ const ProfileInfo = ({
                   .select()
                   .eq("id", profileData.id);
 
-                console.log("Response data:", data);
                 if (error) throw error;
               } catch (error) {
-                console.log("Error updating profile:", error);
               } finally {
                 setSubmitLoading(false);
               }
@@ -158,7 +156,7 @@ const ProfileInfo = ({
             enableReinitialize={true}
           >
             <Form className="border-t-2 border-[#E0E4EC] pt-8">
-              <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
+              <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-3">
                 <div className="col-span-1">
                   <p className="mb-5 font-semibold">My Profile Summary</p>
                   <div className="flex flex-col gap-5">
@@ -221,7 +219,7 @@ const ProfileInfo = ({
 
                     <div className="form-div">
                       <label>Phone:</label>
-                      <div className="flex gap-4 max-w-[422px] ">
+                      <div className="flex max-w-[422px] gap-4 ">
                         <ProfilePhone
                           phoneChange={handlePhone}
                           codeChange={handleCode}
@@ -233,7 +231,7 @@ const ProfileInfo = ({
                   </div>
                 </div>
                 <div className="col-span-1">
-                  <p className="font-semibold mb-5">My Social Media Accounts</p>
+                  <p className="mb-5 font-semibold">My Social Media Accounts</p>
                   <div className="flex flex-col gap-5">
                     <IconField
                       icon={<FaTwitter size={24} color="black" />}
@@ -277,25 +275,25 @@ const ProfileInfo = ({
                       id="bio"
                       name="bio"
                       placeholder="Enter your bio"
-                      className="form-input-textarea px-4 max-w-[422px]
-                  border-[#E6E6E6] rounded-[4px] text-[#737373]
-                  border py-2"
+                      className="form-input-textarea max-w-[422px] rounded-[4px]
+                  border border-[#E6E6E6] px-4
+                  py-2 text-[#737373]"
                       rows="15" // Optional: Set the number of rows for the text area
                       cols="50" // Optional: Set the number of columns for the text area
                     />
                   </div>
                   <>
                     {submitLoading ? (
-                      <div className="flex justify-center mt-8">
-                        <div className="py-4 relative">
+                      <div className="mt-8 flex justify-center">
+                        <div className="relative py-4">
                           <Loader />
                         </div>
                       </div>
                     ) : (
                       <button
                         type="submit"
-                        className="max-w-[160px] max-h-[52px] w-full aspect-[160/52]
-                mt-5 bg-[#DDB771] text-[#ffff] rounded-[8px]"
+                        className="mt-5 aspect-[160/52] max-h-[52px] w-full
+                max-w-[160px] rounded-[8px] bg-[#DDB771] text-[#ffff]"
                       >
                         Update Profile
                       </button>

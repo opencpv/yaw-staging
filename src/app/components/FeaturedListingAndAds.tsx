@@ -1,150 +1,119 @@
-// @ts-nocheck
 "use client";
-import ListingCard from "@/components/__shared/listing/ListingCard";
-import SliderGrid from "@/components/__shared/sliders/SliderGrid";
+import ListingCard from "@/components/__shared/ui/listing/ListingCard";
+import SliderGrid from "@/components/__shared/ui/sliders/SliderGrid";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
 import React from "react";
 import AdsSliderColumn from "./AdsSliderColumn";
-import ArrowLink from "./link/ArrowLink";
-import SliderWide from "@/components/__shared/sliders/SliderWide";
-import { useQuery } from "@supabase-cache-helpers/postgrest-swr";
-import supabase from "@/lib/utils/supabaseClient";
-import {
-  fetchCountRule,
-  fetchOrderRule,
-  revalidationRule,
-} from "@/lib/utils/fetchRules";
-import images from "@/enum/temp/images";
-import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
+import ArrowLink from "../../components/__shared/ui/links/ArrowLink";
+import SliderWide from "@/components/__shared/ui/sliders/SliderWide";
+import { cn } from "@/lib/utils";
+import { useFetchFeaturedListings } from "../properties/services";
+import { useAppStore } from "@/store/dashboard/AppStore";
+import SomethingWentWrong from "../../components/__shared/ui/states/SomethingWentWrong";
+import { urlForImage } from "@/lib/utils/sanity/utils";
+import { getListingProps } from "@/lib/enum";
 
-type Props = {};
+type Props = { data: any };
 
 const FeaturedListingAndAds = (props: Props) => {
+  const { user } = useAppStore();
   const {
     data: listings,
-    isLoading,
-    isValidating,
     error,
-  } = useQuery(
-    supabase
-      .from("standard_template")
-      .select(
-        "id, property_name, property_id, description, monthly_amount, city",
-      )
-      .order("created_at", fetchOrderRule()),
-    revalidationRule(),
-  );
+    isLoading,
+    mutate,
+  } = useFetchFeaturedListings();
 
   return (
     <section className="section">
-      <h2 className="mb-5 text-neutral-900">Featured Listings</h2>
+      <h2
+        className={cn("mb-5 text-neutral-900", {
+          hidden: listings && listings.length < 1 && !isLoading,
+          block: isLoading,
+        })}
+      >
+        Featured Listings
+      </h2>
       {/* Listing cards */}
       <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-8 lg:items-start">
-        {/* Shows when number of listings is less than 10 */}
-        {listings && listings.length <= 9 ? (
-          <div className="col-span-6 grid grid-cols-1 gap-5 sm:grid-cols-2 min-[950px]:max-lg:grid-cols-3 lg:grid-cols-2 min-[1180px]:grid-cols-3">
+        {/* Shows when number of listings is less than 5 */}
+        {listings && listings.length <= 4 ? (
+          <div className="col-span-6 grid grid-cols-1 gap-5 pb-5 sm:grid-cols-2 min-[950px]:max-lg:grid-cols-3 lg:grid-cols-2 min-[1180px]:grid-cols-3">
             <FetchingStates
               data={listings}
               error={error}
               isLoading={isLoading}
-              isValidating={isValidating}
-              isLoadingComponent={<SkeletonListing count={3} />}
+              isLoadingComponent={<SkeletonListing count={5} />}
               errorComponent={
-                <FetchErrorMessage specificData="featured listing" />
-              }
-              noDataMessageComponent={
-                <p className="mt-4 text-center italic">
-                  There are no properties yet.
-                </p>
+                <SomethingWentWrong
+                  className="h-fit"
+                  onTryAgain={() => mutate()}
+                />
               }
             />
             {listings?.map((listing) => {
               return (
                 <ListingCard
                   key={listing.id}
-                  href={`/properties/${listing.property_id}?property_name=${listing.propertyName}&city=${listing.city}&price=${listing.price}&payment_structure=${listing.paymentStructure}&amount_per_month=${listing.monthlyAmount}&rating=${listing.ratingCount}&property_description=${listing.propertyDescription}`.replaceAll(
-                    " ",
-                    "_",
-                  )}
-                  propertyName={listing.property_name as string}
-                  city={listing.city as string}
-                  images={images} // TODO: check database
-                  liked={false} // TODO: check implementation
-                  membership={"Certified" as Membership} // TODO: check database
-                  monthlyAmount={listing.monthly_amount as number}
-                  paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
-                  propertyDescription={listing.description as string}
-                  price={4000} // TODO: check database
-                  rating={4.5} // TODO: check database
-                  ratingCount={105} // TODO: check database
-                  deal={"Best Value" as Deal} // TODO: check database
+                  {...getListingProps(listing, user as UserType)}
+                  cardType="1"
                 />
               );
             })}
           </div>
         ) : (
           <div className="relative col-span-6 pb-5">
-            {/* Shows when number of listings is more than 9 */}
+            {/* Shows when number of listings is more than 4 */}
             <div className="relative h-fit w-full">
               <FetchingStates
                 data={listings}
                 error={error}
-                isLoading={isLoading}
-                isValidating={isValidating}
-                isLoadingComponent={
-                  <div className="skeleton-grid">
-                    <SkeletonListing count={3} />
-                  </div>
-                }
-                noDataMessageComponent={
-                  <p className="mt-4 text-center italic">
-                    There are no properties yet.
-                  </p>
+                errorComponent={
+                  <SomethingWentWrong
+                    className="col-span-full h-fit"
+                    onTryAgain={() => mutate()}
+                  />
                 }
               />
               <SliderGrid
-                items={listings?.map((listing) => (
-                  <ListingCard
-                    key={listing.id}
-                    href={`/properties/${listing.property_id}?property_name=${listing.propertyName}&city=${listing.city}&price=${listing.price}&payment_structure=${listing.paymentStructure}&amount_per_month=${listing.monthlyAmount}&rating=${listing.ratingCount}&property_description=${listing.propertyDescription}`.replaceAll(
-                      " ",
-                      "_",
-                    )}
-                    propertyName={listing.property_name as string}
-                    city={listing.city as string}
-                    propertyDescription={listing.description as string}
-                    images={images}
-                    price={3600}
-                    paymentStructure={"Yearly" as PaymentStructure}
-                    monthlyAmount={200}
-                    deal={"Editor's Choice" as Deal}
-                    membership={"Verified" as Membership}
-                    rating={4.2}
-                    ratingCount={403}
-                    liked={false}
-                  />
-                ))}
+                items={
+                  isLoading
+                    ? Array.from({ length: 5 }, (_, idx) => (
+                        <SkeletonListing key={idx} cardType={1} />
+                      ))
+                    : listings?.map((listing) => (
+                        <ListingCard
+                          key={listing.id}
+                          {...getListingProps(listing, user as UserType)}
+                          cardType="1"
+                        />
+                      ))
+                }
               />
             </div>
           </div>
         )}
         {/* Ads */}
-        <AdsSliderColumn />
+        <AdsSliderColumn ads={props.data} />
       </div>
-      <ArrowLink href="/properties" text="Show all" color="#202457" />
-      {/* Ads  mobile*/}
-      <section className="section h-fit w-full lg:hidden">
-        <SliderWide
-          autoplay
-          pagination
-          navigation
-          images={[1, 2, 3, 4, 5].map((image) => ({
-            src: "/assets/images/home/promotion-1.jpg",
-            name: "",
-          }))}
-        />
-      </section>
+      {listings && (
+        <ArrowLink href="/properties" text="Show all" color="#202457" />
+      )}
+      {/* Ads mobile*/}
+      {props.data.map((ad: any, idx: number) => (
+        <div className="mt-4 w-full max-lg:mt-20 lg:hidden" key={idx}>
+          <SliderWide
+            autoplay
+            pagination
+            navigation
+            images={ad.adImages.map((adImage: any) => ({
+              src: urlForImage(adImage.customImageItem)?.url(),
+              name: "",
+            }))}
+          />
+        </div>
+      ))}
     </section>
   );
 };

@@ -4,7 +4,7 @@ import demoimages from "@/enum/temp/images";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
-import ListingCard from "@/components/__shared/listing/ListingCard";
+import ListingCard from "@/components/__shared/ui/listing/ListingCard";
 import { useFetchTableWithInfiniteScroll } from "@/lib/custom-hooks/useFetch";
 import { revalidationRule, fetchOrderRule } from "@/lib/utils/fetchRules";
 import { useEffect } from "react";
@@ -90,7 +90,7 @@ const BeTheFirstToKnow = () => {
         isValidating={isValidating}
         isLoadingComponent={<SkeletonListing count={3} />}
         errorComponent={<FetchErrorMessage specificData="properties" />}
-        noDataMessageComponent={
+        emptyStateComponent={
           <p className="mt-4 text-center italic">
             There are no properties yet.
           </p>
@@ -100,22 +100,24 @@ const BeTheFirstToKnow = () => {
         <ListingCard
           key={listing.id as string}
           cardType="2"
-          href={`/properties/${listing.property_id}?property_name=${listing.property_name}&city=${listing.city}&price=${listing.price}&payment_structure=${listing.payment_structure}&amount_per_month=${listing.monthly_amount}&rating=${listing.rating_count}&property_description=${listing.description}`.replaceAll(
-            " ",
-            "_",
-          )}
+          href={`/properties/${listing.property_id}?property_name=${
+            listing.property_name
+          }&city=${listing.city}&price=${listing.price}&payment_structure=${
+            listing.payment_structure
+          }&amount_per_month=${listing.monthly_amount as number}&rating=${
+            listing.rating_count
+          }&property_description=${listing.description}`.replaceAll(" ", "_")}
           propertyName={listing.property_name as string}
           city={listing.city as string}
           images={demoimages} // TODO: check database
           liked={false} // TODO: check implementation
-          membership={"Certified" as Membership} // TODO: check database
-          monthlyAmount={listing.monthly_amount as number}
+          guarantee={"Certified" as GuaranteeTag} // TODO: check database
+          monthlyAmount={listing.monthly_amount as number as number}
           paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
           propertyDescription={listing.description as string}
-          price={4000} // TODO: check database
           rating={4.5} // TODO: check database
           ratingCount={105} // TODO: check database
-          deal={"Best Value" as Deal} // TODO: check database
+          hint={"Best Value" as HintTag} // TODO: check database
           showNotViewed
           isViewed={idx === 5 || idx === 3 || idx === 7 ? false : true}
         />

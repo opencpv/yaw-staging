@@ -5,23 +5,23 @@
 
 .paginationMenuHidden {
   clip-path: circle(0 at 100% 0);
+  transition: clip-path 0.4s;
+  opacity: 0;
 }
 
 .paginationMenuVisible {
   clip-path: circle(150% at 100% 0);
+  opacity: 1;
 }
 
 .visibleMobileSearch {
-  /* transform: initial; */
   @apply visible translate-y-full;
 }
 
 .hiddenMobileSearch {
   transform: scaleY(0);
   @apply -translate-y-full;
-  /* padding: 0; */
-  /* margin: 0; */
-  /* height: 0; */
   visibility: hidden;
   opacity: 0;
 }
+

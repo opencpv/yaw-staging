@@ -1,14 +1,15 @@
+//@ts-nocheck
 "use client";
 import { styled } from "@stitches/react";
 import { useState } from "react";
-import ApplicationForm from "../../components/application-form";
-import ImageOptionsPopover from "../../components/listing-form/components/ChooseImages/ImageOptionsPopover";
-import ListingFormModal from "../../components/listing-form";
+import ApplicationForm from "../../../components/__shared/ui/application-form";
+import ImageOptionsPopover from "../../../components/__shared/ui/listing-form/components/ChooseImages/ImageOptionsPopover";
+import ListingFormModal from "../../../components/__shared/ui/listing-form";
 import CompleteYourLogin from "../components/CompleteYourLogin";
 import HowToSwitch from "../components/HowToSwitch";
-import RatingsForm from "@/app/components/ratings-form";
-import AllReviewsModal from "@/app/components/all-reviews-modal";
-import { ClientOnly } from "@/components/ui/ClientOnly";
+import RatingsForm from "@/components/__shared/ui/ratings-form";
+import AllReviewsModal from "@/components/__shared/ui/modals/all-reviews-modal";
+import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
 
 export default function Page() {
   const [ratingsModal, setRatingsModal] = useState();
@@ -18,10 +19,10 @@ export default function Page() {
     <Root className="w-full">
       <div className="w-full min-w-full">
         <div
-          className="p-hero w-full flex items-center justify-center"
+          className="p-hero flex w-full items-center justify-center"
           style={{}}
         >
-          <div className="flex lg:flex-row flex-wrap flex-col gap-5 w-full items-center justify-center px-5">
+          <div className="flex w-full flex-col flex-wrap items-center justify-center gap-5 px-5 lg:flex-row">
             <ApplicationForm type="complex" />
             <ApplicationForm type="simple" />
             <ClientOnly>
@@ -41,10 +42,10 @@ export default function Page() {
               open1={ratingsModal}
             /> */}
             <ClientOnly>
-              <CompleteYourLogin dashboard={false} />
+              <CompleteYourLogin />
             </ClientOnly>
             <ClientOnly>
-              <HowToSwitch dashboard={false} />
+              <HowToSwitch />
             </ClientOnly>
             <AllReviewsModal
               variant="property"

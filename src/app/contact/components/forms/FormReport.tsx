@@ -1,48 +1,67 @@
-import { Form, Formik } from "formik";
-import React from "react";
-import { E164Number } from "libphonenumber-js/core";
-import supabase from "@/lib/utils/supabaseClient";
+import { ErrorMessage, Form, Formik } from "formik";
+import React, { useEffect } from "react";
+import supabase from "@/lib/utils/supabase/supabaseClient";
 import { sendContactUsEmail } from "../../api";
-import TextInput from "@/components/__shared/form/TextInput";
-import InputPhoneNumber from "@/components/__shared/form/InputPhoneNumber";
-import Loader from "@/components/__shared/loader/Loader";
+import TextInput from "@/components/__shared/ui/form/TextInput";
+import Loader from "@/components/__shared/ui/loader/Loader";
 import ContactSchema from "./lib/contactSchema";
 import { useContactForm } from "./hooks/useContactForm";
 import ContactMessageField from "./ContactMessageField";
 import ContactUploadField from "./ContactUploadField";
 import ContactSubmitButton from "./ContactSubmitButton";
 import ContactFullNameField from "./ContactFullNameField";
-import ContactEmailField from "./ContacEmailField";
 import ContactPhoneField from "./ContactPhoneField";
-import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import {
+  usePhoneInputDisclosure,
+  useToastDisclosure,
+} from "@/lib/custom-hooks/useCustomDisclosure";
+import CustomErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
+import capitalizeName from "@/lib/utils/stringManipulation";
+import { useContactStore } from "@/store/contact/useContactStore";
 
 type Props = {};
 
 const FormReport = (props: Props) => {
-  const { activeTab, file, formRef, loading, setLoading, tableName, validate } =
-    useContactForm();
+  const {
+    activeTab,
+    file,
+    formRef,
+    loading,
+    setLoading,
+    tableName,
+    validate,
+    contactFormSession,
+    handleSessionChange,
+  } = useContactForm();
 
   const { phone, setPhone, handleCountryChange, handlePhone } =
     usePhoneInputDisclosure();
 
+  const { onOpen } = useToastDisclosure();
+
+  const { reportIssueHref, setReportIssueHref } = useContactStore();
+
+  useEffect(() => {
+    return () => {
+      setReportIssueHref("");
+    };
+  }, []);
+
   return (
     <Formik
       initialValues={{
-        contactType: "",
-        fullname: "",
-        email: "",
-        message: "",
-        phone: "",
-        fileUrl: "",
-        reportLink: "",
+        contactType: "Report",
+        fullname: contactFormSession.fullname,
+        email: contactFormSession.email,
+        phone: contactFormSession.phone,
+        message: contactFormSession.message,
+        fileUrl: contactFormSession.fileUrl,
+        reportLink: reportIssueHref || contactFormSession.reportLink,
       }}
       validationSchema={ContactSchema}
-      validateOnChange={false}
-      validateOnBlur={false}
-      validate={(values) => validate(values, phone)}
+      validate={(values) => validate(values, contactFormSession.phone)}
       onSubmit={(values, { resetForm }) => {
-        values.contactType = activeTab;
-        values.phone = phone as E164Number;
+        values.contactType = capitalizeName(activeTab);
         values.fileUrl = file;
 
         sendContactUsEmail(formRef.current);
@@ -51,24 +70,27 @@ const FormReport = (props: Props) => {
           .from(tableName)
           .insert([
             {
-              contactType: values.contactType,
+              contact_type: values.contactType,
               fullname: values.fullname,
               email: values.email,
               phone: values.phone,
               message: values.message,
-              fileUrl: values.fileUrl,
-              reportLink: values.reportLink,
+              file_url: values.fileUrl,
+              report_link: values.reportLink,
             },
           ])
           .select()
-          .then(({ data, error }) => {
+          .then(({ error }) => {
+            setLoading(false);
             if (error) {
-              setLoading(false);
               console.log(error);
+              onOpen("Something went wrong", "error");
             } else {
-              console.log("Data:", data);
-              setLoading(false);
               resetForm();
+              sessionStorage.removeItem("contactFormSession");
+              setReportIssueHref("");
+              setPhone(undefined);
+              onOpen("Successfully sent", "success");
             }
           });
       }}
@@ -76,52 +98,52 @@ const FormReport = (props: Props) => {
     >
       {({ handleBlur, handleChange, values, errors }) => (
         <Form ref={formRef} className="flex-1 pt-8">
-          <div className="gap-5 ">
-            <div className={``}>
-              <div className="flex flex-col gap-10">
-                <div className="form-div">
-                  <ContactFullNameField
-                    value={values.fullname}
-                    handleBlur={handleBlur}
-                    handleChange={handleChange}
-                    error={errors.fullname}
-                  />
-                </div>
+          <div className="flex flex-col gap-10">
+            <div className="form-div">
+              <ContactFullNameField
+                value={values.fullname}
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+                error={errors.fullname}
+              />
+              <CustomErrorMessage className="mt-5" error={errors.fullname}>
+                <ErrorMessage name="fullname" error={errors.fullname} />
+              </CustomErrorMessage>
+            </div>
+            <div className="form-div">
+              <ContactPhoneField
+                phone={values.phone}
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+                handlePhone={handlePhone}
+                handleCountryChange={handleCountryChange}
+              />
+            </div>
+            <div>
+              <ContactMessageField
+                className="w-full min-w-full"
+                error={errors.message}
+                value={values.message}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <CustomErrorMessage className="mt-2" error={errors.message}>
+                <ErrorMessage name="message" error={errors.message} />
+              </CustomErrorMessage>
+            </div>
+            <ContactUploadField />
 
-                <div className="form-div">
-                  <ContactEmailField
-                    value={values.email}
-                    handleChange={handleChange}
-                  />
-                </div>
-                <div className="form-div">
-                  <ContactPhoneField
-                    phone={phone}
-                    handleBlur={handleBlur}
-                    handleChange={handleChange}
-                    handlePhone={handlePhone}
-                    handleCountryChange={handleCountryChange}
-                  />
-                </div>
-                {/* <div className="">
-                            <FormSwitch
-                              label="Available on whatsapp"
-                              onChange={(checked) => setIsWhatsapp(checked)}
-                            />
-                          </div> */}
-                <ContactMessageField error={errors.message} />
-                <ContactUploadField />
-
-                <div className="form-div">
-                  <TextInput
-                    name="reportLink"
-                    value={values.reportLink}
-                    onChange={handleChange}
-                    placeholder="Paste URL link here (optional)"
-                    className="p-3 py-7 placeholder:text-neutral-400"
-                  />
-                </div>
-              </div>
+            <div className="form-div" title="Paste URL link here (optional)">
+              <TextInput
+                name="reportLink"
+                value={contactFormSession.reportLink || values.reportLink}
+                onChange={(e) => {
+                  handleChange(e);
+                  handleSessionChange("reportLink", e.target.value);
+                }}
+                placeholder="Paste URL link here (optional)"
+                className="p-3 py-7 placeholder:text-neutral-400"
+              />
             </div>
           </div>
           {loading ? <Loader /> : <ContactSubmitButton />}

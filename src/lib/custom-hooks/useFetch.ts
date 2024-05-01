@@ -6,7 +6,7 @@ import {
   useQuery,
   useSubscriptionQuery,
 } from "@supabase-cache-helpers/postgrest-swr";
-import supabase from "../utils/supabaseClient";
+import supabase from "../utils/supabase/supabaseClient";
 import { useState } from "react";
 
 type FetchTableType = {
@@ -175,7 +175,7 @@ const useRealTimeSubscription = ({
       schema: "public",
     },
     ["id"],
-    { callback: () => payload() }
+    { callback: () => payload() },
   );
 
   return { status, channel };
@@ -234,7 +234,7 @@ const useFetchTableForRealtime = ({
 const useRevalidationRule = (
   revalidateOnFocus = false,
   revalidateOnReconnect = true,
-  revalidateIfStale = false
+  revalidateIfStale = false,
 ) => {
   return {
     revalidateOnFocus,

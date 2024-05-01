@@ -1,29 +1,30 @@
 "use client";
-import SliderMultiItems from "@/components/__shared/sliders/SliderMultiItems";
+import SliderMultiItems from "@/components/__shared/ui/sliders/SliderMultiItems";
 import React from "react";
 import PopularCitiesCard from "../PopularCitiesCard";
-import { useQuery } from "@supabase-cache-helpers/postgrest-swr";
-import supabase from "@/lib/utils/supabaseClient";
-import AOSWrapper from "@/components/__shared/AOSWrapper";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import Image from "next/image";
 import SkeletonRectangle from "@/components/__shared/ui/skeleton/SkeletonRectangle";
-import { fetchOrderRule, revalidationRule } from "@/lib/utils/fetchRules";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
+import { createClient } from "@/lib/utils/supabase/auth/client";
+import { useQuery } from "@tanstack/react-query";
 
 const HomePopularCities = () => {
+  const supabase = createClient();
+
   const {
     data: cities,
-    isLoading,
-    isValidating,
     error,
-  } = useQuery(
-    supabase
-      .from("standard_template")
-      .select("id")
-      .order("created_at", fetchOrderRule()),
-    revalidationRule(),
-  );
+    isLoading,
+    isFetching,
+  } = useQuery({
+    queryKey: ["featured_listing"],
+    queryFn: async () => {
+      const { data: listings } = await supabase.from("property").select(); // TODO: fetch only needed columns
+      return listings;
+    },
+  });
+
   return (
     <section
       className={`${cities && cities?.length < 1 && "hidden"} space-y-5 pt-32`}
@@ -46,9 +47,9 @@ const HomePopularCities = () => {
           data={cities}
           error={error}
           isLoading={isLoading}
-          isValidating={isValidating}
+          isValidating={isFetching}
           isLoadingComponent={
-            <SkeletonRectangle count={3} childrenClassName="w-full h-[20rem]" />
+            <SkeletonRectangle count={3} className="h-[20rem] w-full" />
           }
           errorComponent={<FetchErrorMessage specificData="cities" />}
         />
@@ -65,24 +66,27 @@ const HomePopularCities = () => {
         <FetchingStates
           data={cities}
           error={error}
-          isLoading={isLoading}
-          isValidating={isValidating}
-          isLoadingComponent={
-            <div className="skeleton-flex h-44">
-              <SkeletonRectangle count={2} />
-            </div>
-          }
           errorComponent={<FetchErrorMessage specificData="cities" />}
         />
         <SliderMultiItems
-          items={cities?.map((city) => (
-            <PopularCitiesCard
-              key={city.id}
-              location="Kumasi"
-              description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, doloribus!"
-              propertyNumber={232}
-            />
-          ))}
+          items={
+            isLoading
+              ? Array.from({ length: 3 }, (_, idx) => (
+                  <SkeletonRectangle
+                    className="relative min-h-60 w-full rounded-lg p-5 hover:scale-105 sm:p-20"
+                    key={idx}
+                    count={1}
+                  />
+                ))
+              : cities?.map((city) => (
+                  <PopularCitiesCard
+                    key={city.id}
+                    location="Kumasi"
+                    description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, doloribus!"
+                    propertyNumber={232}
+                  />
+                ))
+          }
           swiperSlideClassName="max-w-md"
         />
       </div>

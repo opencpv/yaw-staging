@@ -4,9 +4,8 @@ import React from "react";
 import RtApplicationRow from "./RtApplicationRow";
 import { useFetchTableWithPagination } from "@/lib/custom-hooks/useFetch";
 import TableSkeleton from "../../../components/shared/skeleton/TableSkeleton";
-import Spinner from "../../../components/shared/Spinner";
 import { useApplicationsStore } from "@/store/dashboard/applicationsStore";
-import Pagination from "@/components/__shared/Pagination";
+import Pagination from "@/components/__shared/ui/Pagination";
 import {
   Table,
   TableBodyRowGroup,
@@ -15,7 +14,8 @@ import {
 } from "../../../components/shared/table/Table";
 import Button from "@/components/__shared/ui/button/Button";
 import { IoArchiveOutline } from "react-icons/io5";
-import Loader from "@/components/__shared/loader/Loader";
+import Loader from "@/components/__shared/ui/loader/Loader";
+import { cn } from "@/lib/utils";
 
 type Props = {};
 
@@ -44,11 +44,15 @@ const RtManageApplicationsTable = (props: Props) => {
   return (
     <section className="hidden lg:block">
       {error && <p>Error: {error.message}</p>}
-      <Table className="mb-8 hidden lg:flex">
+      <Table
+        className={cn("mb-8", {
+          "min-h-[35rem]": currentPage && currentPage.length > 3,
+        })}
+      >
         <TableHeaderRow className="grid-cols-5" gap="2rem">
           <TableHeader className="col-span-2">Property</TableHeader>
           {/* <TableHeader className="col-span-1">Property Owner</TableHeader> */}
-          <TableHeader className="col-span-1">Received</TableHeader>
+          <TableHeader className="col-span-1">Applied on</TableHeader>
           <TableHeader className="col-span-1">Status</TableHeader>
           <TableHeader className="col-span-1">Actions</TableHeader>
         </TableHeaderRow>
@@ -59,7 +63,7 @@ const RtManageApplicationsTable = (props: Props) => {
             </tr>
           )}
           {isLoading ? (
-            <TableSkeleton rows={5} columns={5} />
+            <TableSkeleton rows={4} columns={4} />
           ) : (
             currentPage?.map((applicant, idx) => (
               <RtApplicationRow
@@ -71,7 +75,13 @@ const RtManageApplicationsTable = (props: Props) => {
                 propertyPrice={30000}
                 date={applicant.created_at as string}
                 status={
-                  idx === 1 ? "accepted" : idx === 3 ? "declined" : "pending"
+                  idx === 1
+                    ? "accepted"
+                    : idx === 3
+                      ? "declined"
+                      : idx === 0
+                        ? "incomplete"
+                        : "under review"
                 }
               />
             ))
@@ -86,7 +96,7 @@ const RtManageApplicationsTable = (props: Props) => {
       <div className="grid place-items-end">
         <Button
           variant="ghost"
-          className="ml-auto mt-5"
+          className="ml-auto"
           title="View all applications"
         >
           Archive <IoArchiveOutline />

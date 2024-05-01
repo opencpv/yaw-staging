@@ -10,11 +10,11 @@ function WhatWeDo() {
     "virtual tours",
   ];
   return (
-    <div className="flex flex-col  flex-wrap items-start gap-4 justify-start">
+    <div className="flex flex-col  flex-wrap items-start justify-start gap-4">
       <div className="flex items-center gap-2">
-        <p className="text-white">What we do</p>
+        <p className="select-none text-white">What we do</p>
 
-        <div className=" relative w-[31px] h-[24px]">
+        <div className=" relative h-[24px] w-[31px]">
           <Image
             src={"/svgs/tlp/arrowdown.svg"}
             fill

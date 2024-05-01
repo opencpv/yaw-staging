@@ -1,91 +1,84 @@
 "use client";
 import React from "react";
-import { useFetchTableWithInfiniteScroll } from "@/lib/custom-hooks/useFetch";
-import ListingCard from "@/components/__shared/listing/ListingCard";
+import ListingCard from "@/components/__shared/ui/listing/ListingCard";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
-import images from "@/enum/temp/images";
-import { revalidationRule, fetchOrderRule } from "@/lib/utils/fetchRules";
-import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
-import { useQuery } from "@tanstack/react-query";
-import { getListings } from "@/actions/listing";
+import { useAppStore } from "@/store/dashboard/AppStore";
+import { useFetchProperties } from "../services";
+import PropertiesEmptyState from "./PropertiesEmptyState";
+import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
+import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { getListingProps } from "@/lib/enum";
 
 type Props = {};
 
 const PropertiesListing = (props: Props) => {
-  // const {
-  //   data: listings,
-  //   error,
-  //   isValidating,
-  //   isLoading,
-  //   loadMore,
-  // } = useFetchTableWithInfiniteScroll({
-  //   tableName: "standard_template",
-  //   pageSize: 9,
-  //   order: { column: "created_at", ...fetchOrderRule() },
-  //   select: "id, property_name, property_id, description, monthly_amount, city",
-  //   ...revalidationRule(),
-  // });
+  const searchParams = useSearchParams();
+  const search = searchParams?.get("search") || "";
+  const tag = searchParams?.get("tag") || "all";
+  const router = useRouter();
 
+  const { user } = useAppStore();
   const {
     data: listings,
     error,
-    isPending: isLoading,
-    isFetching: isValidating,
-  } = useQuery({
-    queryKey: ["listings"],
-    queryFn: async () => await getListings(),
-  });
+    isLoading,
+    isValidating,
+    loadMore,
+    mutate,
+  } = useFetchProperties({ searchString: search as string, filter: tag });
+
+  const handleViewSimilarResults = () => {
+    // TODO: implement appropriately
+    router.replace(
+      `/properties?${new URLSearchParams({
+        search: "Accra",
+        tag: "all",
+      })}`,
+      {
+        scroll: false,
+      },
+    );
+  };
 
   return (
     <>
       {/* Listing */}
-      <section className="mx-auto mb-10 grid grid-cols-1 justify-center gap-x-5 gap-y-16 transition-all md:grid-cols-2 lg:grid-cols-3">
+      <section className="mx-auto grid grid-cols-1 justify-center gap-x-5 gap-y-16 transition-all md:grid-cols-2 lg:grid-cols-3">
         <FetchingStates
           data={listings}
           error={error}
           isLoading={isLoading}
-          isValidating={isValidating}
           isLoadingComponent={<SkeletonListing count={3} />}
-          errorComponent={<FetchErrorMessage specificData="properties" />}
-          noDataMessageComponent={
-            <p className="mt-4 text-center italic">
-              There are no properties yet.
-            </p>
+          errorComponent={
+            <SomethingWentWrong
+              className="h-fit"
+              onTryAgain={() => {
+                mutate();
+              }}
+            />
+          }
+          emptyStateComponent={
+            <PropertiesEmptyState onClick={handleViewSimilarResults} />
           }
         />
         {listings?.map((listing) => (
           <ListingCard
             key={listing.id}
-            cardType="2"
-            href={`/properties/${listing.property_id}?property_name=${listing.property_name}&city=${listing.city}&price=${listing.monthly_amount}&payment_structure=${listing.advance_payment_options}&amount_per_month=${listing.monthly_amount}&rating=${8}&property_description=${listing.description}`.replaceAll(
-              " ",
-              "_",
-            )}
-            propertyName={listing.property_name as string}
-            city={listing.city as string}
-            images={images} // TODO: check database
-            liked={false} // TODO: check implementation
-            membership={"Certified" as Membership} // TODO: check database
-            monthlyAmount={2000}
-            paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
-            propertyDescription={listing.description as string}
-            price={4000} // TODO: check database
-            rating={4.5} // TODO: check database
-            ratingCount={105} // TODO: check database
-            deal={"Best Value" as Deal} // TODO: check database
+            {...getListingProps(listing, user as UserType)}
           />
         ))}
       </section>
-      {/* <div className="flex justify-center">
-        <Button
+      <div className="mt-10 flex justify-center">
+        <ButtonInfiniteLoading
           data={listings}
           isLoading={isLoading}
           isValidating={isValidating}
           loadMore={loadMore}
-          noDataMessage="There are no more properties to show."
         />
-      </div> */}
+      </div>
     </>
   );
 };

@@ -13,6 +13,7 @@ import useNotifications from "@/app/dashboard/renter/notifications/useNotificati
 import NtfSkeleton from "@/app/dashboard/renter/notifications/components/NtfSkeleton";
 import { useRouter } from "next/navigation";
 import { Button } from "@nextui-org/react";
+import { GoBellFill } from "react-icons/go";
 
 const NotificationsPopover = () => {
   const { unreadNotifications, unreadIsLoading } = useNotifications();
@@ -24,22 +25,18 @@ const NotificationsPopover = () => {
     <Popover.Root onOpenChange={setOpen} open={open}>
       <Popover.Trigger asChild>
         <button className="relative flex aspect-square min-h-[52px] w-full min-w-[52px] items-center justify-center">
-          <div
-            className="absolute right-[0px] top-0
-          flex h-[26px] w-[26px] items-center justify-center rounded-full
-          bg-[#B71851] text-[14px] text-[#fff]"
-          >
+          <div className="absolute right-1 top-2 grid size-6 place-items-center rounded-full bg-[#B71851] text-xs font-semibold text-white">
             {unreadNotifications?.length}
           </div>
           <IconButton aria-label="Update dimensions">
-            <IoMdNotifications color="white" size="28" />
+            <GoBellFill color="white" size="28" />
           </IconButton>
         </button>
       </Popover.Trigger>
       <Popover.Portal>
         <PopoverContent
           sideOffset={5}
-          className="z-[99999] w-[90vw] md:w-fit lg:min-w-[400px] bg-[#fefefe] "
+          className="z-[99999] w-[90vw] bg-[#fefefe] md:w-fit lg:min-w-[400px] "
         >
           <div className="flex items-center justify-between ">
             <p className="text-20 font-semibold 2xl:text-25 ">Notifications</p>
@@ -57,7 +54,7 @@ const NotificationsPopover = () => {
           {unreadIsLoading && <NtfSkeleton />}
 
           {unreadNotifications && (
-            <div className="flex w-full justify-end mb-2">
+            <div className="mb-2 flex w-full justify-end">
               <Button className="bg-unset focus:!unset active:unset flex items-center justify-end gap-2 p-2 text-black hover:bg-[#073b3a12]">
                 <div className="flex gap-0">
                   <CaMarkAsRead />
@@ -66,7 +63,7 @@ const NotificationsPopover = () => {
               </Button>
             </div>
           )}
-          <div className="scrollbar-hide flex max-h-[60vh] flex-col gap-5 overflow-y-scroll 2xl:gap-8">
+          <div className="flex max-h-[60vh] flex-col gap-5 overflow-y-scroll scrollbar-hide 2xl:gap-8">
             {unreadNotifications?.map((r: any, index: number) => (
               <div
                 key={index}

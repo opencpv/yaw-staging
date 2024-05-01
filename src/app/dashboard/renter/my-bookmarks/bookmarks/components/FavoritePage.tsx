@@ -2,7 +2,7 @@ import { boolean } from "yup";
 import SimpleSwitch from "./SimpleSwitch";
 import { useState } from "react";
 import PropertiesListing from "@/app/properties/components/PropertiesListing";
-import ListingCard from "@/components/__shared/listing/ListingCard";
+import ListingCard from "@/components/__shared/ui/listing/ListingCard";
 import images from "@/enum/temp/images";
 import FavoriteListingCard from "./FavoriteListingCard";
 
@@ -19,7 +19,7 @@ const FavoritePage = () => {
   const [allowContact, setallowContact] = useState<boolean>(false);
   return (
     <div>
-      <h2 className="text-zinc-800 text-xl font-semibold font-['Open Sans'] leading-7 mb-4">
+      <h2 className="font-['Open Sans'] mb-4 text-xl font-semibold leading-7 text-zinc-800">
         Favourite
       </h2>
       <SimpleSwitch onChange={(state) => setallowContact(state)} />
@@ -32,14 +32,13 @@ const FavoritePage = () => {
           city={listing.city as string}
           images={images} // TODO: check database
           liked={false} // TODO: check implementation
-          membership={"Certified" as Membership} // TODO: check database
-          monthlyAmount={listing.monthly_amount as number}
+          guarantee={"Certified" as GuaranteeTag} // TODO: check database
+          monthlyAmount={listing.monthly_amount as number as number}
           paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
           propertyDescription={listing.description as string}
-          price={4000} // TODO: check database
           rating={4.5} // TODO: check database
           ratingCount={105} // TODO: check database
-          deal={"Best Value" as Deal} // TODO: check database
+          hint={"Best Value" as HintTag} // TODO: check database
         />
         <FavoriteListingCard
           key={listing.id as string}
@@ -49,14 +48,13 @@ const FavoritePage = () => {
           city={listing.city as string}
           images={images} // TODO: check database
           liked={false} // TODO: check implementation
-          membership={"Certified" as Membership} // TODO: check database
-          monthlyAmount={listing.monthly_amount as number}
+          guarantee={"Certified" as GuaranteeTag} // TODO: check database
+          monthlyAmount={listing.monthly_amount as number as number}
           paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
           propertyDescription={listing.description as string}
-          price={4000} // TODO: check database
           rating={4.5} // TODO: check database
           ratingCount={105} // TODO: check database
-          deal={"Best Value" as Deal} // TODO: check database
+          hint={"Best Value" as HintTag} // TODO: check database
         />
         <FavoriteListingCard
           key={listing.id as string}
@@ -66,14 +64,13 @@ const FavoritePage = () => {
           city={listing.city as string}
           images={images} // TODO: check database
           liked={false} // TODO: check implementation
-          membership={"Certified" as Membership} // TODO: check database
-          monthlyAmount={listing.monthly_amount as number}
+          guarantee={"Certified" as GuaranteeTag} // TODO: check database
+          monthlyAmount={listing.monthly_amount as number as number}
           paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
           propertyDescription={listing.description as string}
-          price={4000} // TODO: check database
           rating={4.5} // TODO: check database
           ratingCount={105} // TODO: check database
-          deal={"Best Value" as Deal} // TODO: check database
+          hint={"Best Value" as HintTag} // TODO: check database
         />
       </div>
     </div>

@@ -1,6 +1,7 @@
 "use client";
-import AOSWrapper from "@/components/__shared/AOSWrapper";
+import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 import Button from "@/components/__shared/ui/button/Button";
+import { fadeIn } from "@/lib/animations";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,16 +17,18 @@ const SellYourItem = (props: Props) => {
   return (
     <div className="flex w-full items-center justify-center rounded-xl py-24 shadow-large">
       <div className="flex flex-wrap justify-center gap-y-3 px-8 xs:px-16">
-        <AOSWrapper animation="zoom-in">
+        <FramerWrapper {...fadeIn}>
           <Image
             src={icons.PeopleSell}
             alt="Two people handshaking"
             width={200}
             height={200}
           />
-        </AOSWrapper>
+        </FramerWrapper>
         <div className="space-y-3">
-          <h4 className="font-[600] capitalize">Sell Your Item</h4>
+          <h4 className="font-[600] capitalize">
+            Moving? Sell slightly used items
+          </h4>
           <p className="mb-1 text-sm capitalize text-neutral-600">
             Your Exclusive Marketplace, Completely Fee-Free
           </p>
@@ -34,7 +37,7 @@ const SellYourItem = (props: Props) => {
             color="primary"
             className="w-full p-2 px-4 text-sm capitalize"
           >
-            Add New Product <FaArrowRight />
+            Add Sale Item <FaArrowRight />
           </Button>
         </div>
       </div>

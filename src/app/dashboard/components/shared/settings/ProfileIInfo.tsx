@@ -1,14 +1,23 @@
 import { styled } from "@stitches/react";
 import Image from "next/image";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import { AiOutlineLink } from "react-icons/ai";
-import { FaFacebook, FaLinkedin, FaTwitter, FaWhatsapp } from "react-icons/fa";
-import { IoLogoWhatsapp } from "react-icons/io";
-import { useEffect, useState } from "react";
+import { Formik, Form, Field, ErrorMessage, useField } from "formik";
+import { AiFillInstagram, AiOutlineLink } from "react-icons/ai";
+import { FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
-import Loader from "@/components/__shared/loader/Loader";
+import Loader from "@/components/__shared/ui/loader/Loader";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import PhoneNumberInputv2 from "@/components/__shared/PhoneInputv2";
+import {
+  usePhoneInputDisclosure,
+  useToastDisclosure,
+} from "@/lib/custom-hooks/useCustomDisclosure";
+import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
+import { useRouter } from "next/navigation";
+import Button from "@/components/__shared/ui/button/Button";
+import { createClient } from "@/lib/utils/supabase/auth/client";
+import { cn } from "@/lib/utils";
+import { PiUserLight } from "react-icons/pi";
+import NoProfileUpload from "./NoProfileUpload";
 
 interface Props {
   icon: any;
@@ -20,19 +29,26 @@ interface Props {
   defaultValue?: string;
 }
 
-const IconField = ({ icon, label, type, name, className, placeholder, defaultValue }: Props) => {
+const IconField = ({
+  icon,
+  label,
+  type,
+  name,
+  className,
+  placeholder,
+  defaultValue,
+}: Props) => {
   return (
     <div className="form-div relative">
-      <div className="flex gap-2 items-center">
-        {icon}
-        <label className="text-gray-500">{label}:</label>
+      <div className="relative flex items-center">
+        <div className="absolute left-0 top-0">{icon}</div>
+        <label className="pl-8">{label}:</label>
       </div>
       <AiOutlineLink className="link-icon absolute" size={16} color="#737373" />
-
       <Field
         type={type}
         name={name}
-        className={className}
+        className={`form-input ${className}`}
         style={{ paddingInline: "2.5rem" }}
         placeholder={placeholder}
       />
@@ -42,26 +58,19 @@ const IconField = ({ icon, label, type, name, className, placeholder, defaultVal
   );
 };
 
-const ProfileInfo = ({
-  profileData,
-  supabase,
-}: {
-  profileData: any;
-  supabase: any;
-}) => {
+const ProfileInfo = () => {
   const [countries, setCountries] = useState([]);
-  const [currentData, setCurrentData] = useState<any>({});
-  const [phone, setphone] = useState<string>("");
-  const [code, setCode] = useState<string>("");
   const [submitLoading, setSubmitLoading] = useState(false);
   const user = useAppStore((state) => state.user);
-  const [loading, setloading] = useState(true);
-
+  const [loading, setLoading] = useState(true);
+  const { onOpen } = useToastDisclosure();
+  const { phone, handlePhone, handleCountryChange } = usePhoneInputDisclosure();
+  const router = useRouter();
+  const supabase = createClient();
 
   useEffect(() => {
     if (user) {
-      setloading(false)
-      console.log("user", user)
+      setLoading(false);
     }
   }, [user]);
 
@@ -74,225 +83,258 @@ const ProfileInfo = ({
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
+  }, []);
 
-    setCurrentData(profileData);
-  }, [profileData]);
+  const initialValues = {
+    firstName: user?.firstname,
+    lastName: user?.lastname,
+    email: user?.email,
+    user,
+    country: user?.country,
+    twitter: user?.twitter,
+    facebook: user?.facebook,
+    linkedIn: user?.linkedin,
+    whatsapp: user?.whatsapp,
+    bio: user?.bio,
+    phone: user?.phone,
+  };
 
   return (
     <Root>
-
-
       {loading ? (
         <Loader />
       ) : (
-        <>{user && <>
-          <div className="py-10 pt-6">
-            <p>{user?.fullname}</p>
-            <p>Your Profile Picture</p>
-            <div className="max-w-[227px] max-h-[164px] w-full relative aspect-[227/164] rounded-[18px] mt-5 border-">
-              {user?.avatar_url !== undefined ? <Image
-                src={user?.avatar_url}
-                placeholder="blur"
-                objectFit="cover"
-                loading="eager"
-                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAHPAzcDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAECAwb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APJAAAAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAACAAAAIqAAAIqAAAAAIqAAAAAAAIqAAAAAAAoAAAAAAACooAAAAAAAAAAKAAAAAAADQAAAAAAACoAoAAAAAAAAAAAAAAAAAAAAAAAAAAACKgAAAACKgAAAACKgAACKgAAAACKgAAAAAACAAAAAAACiKAAAAAAAACgAAAAAAAAAKgCgAAAAA0AAAAAAAAAAqAKIoAAAAAAAAAAAAAAAAAAAAAICoAAAAAAIAAAAAACAAAAgAAAAAIAAAAAAACAAAAAAAAKgCgAAAAAAAKigAAAAAAAAAAAAAAogDYAAAAAAAAAAAAAAAKIAogCiAKIoAICiAKIAogCoAAAAAAAAgAAAAAAAgAAAIqAAAAAAgAAAAAACKgAAAAAAAAAAKIoAAAAAAAAKIAoAAAAAAAAAAAAANgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAIAAAAAIAAAAAAgAAAAAAAIAAAAAAAAAAAAAACiAKAAAAAAAAqAKIAoAAAAAAAAANiAKIAogCiAKIAogCiAKAAAAAAAACAogCiAKIAogAAAAAAAAAIAqAAAACAqAAAAAACAAAAAAAAgAAAAAAAAAAAAAAAAAACoAoigAAAAAAAAAAAAKgCiAKIA2AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAogCoAAAAAAICoAAAAAAAAgAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAKgCiAKAAAAAAAAAAAAADYAAAAAAAAAAAAAAAAAAAAAAgCiAKIAAAAAAAAACAKIAAAAAAAAACAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACiAKIAogCiAOgAAAAAAAAgCiAKIAqAAAAAAAAAAAAAAIAogAAAAAAAAAAAIAqAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2AAAAAAAAAAAAAAAAAACAogCiAAAAAAAAAAAAICiAAAAAAAAAAAAgCoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANgAAAAAAAAAAgKIAogAAAAAAAAAAAAACAogAAAAAAAAAAAIAqAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADYgCiAKIAAAAAAAAAAAAAAAAAAACAKgAAAAAAAAAAgKIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAKIAogCiAKIAogCiANgAAAAAAAAAAAAAAAAAAAAgKgAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAICiAKIAqAAAAAAAAAAAAAAAAAAAAADYAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAioAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAogCoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANgAAAAAAAAAAAAACAAAAAAAAAAAAAAAAACKgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADYgCiAKIAogCiAKgAAAAAAAAAAAAAAAAAAAAAAAgqAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoCCgIKAgoCgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgqAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgqAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAACgAAAAAAAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgqAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAACooAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAigIAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAACgAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAKIoAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAIqAAAAAAAAAAAAAAAAAAAAAAAAAAAKgCgAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAICoAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACiAKAAAAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACiAKIAogCgAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAioAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//2Q=="
-                alt="User picture"
-                fill
-              /> : <Loader />}
-            </div>
-          </div>
-          {user?.id == undefined ? <Loader /> : <Formik
-            key={JSON.stringify(profileData)}
-            initialValues={{
-              firstName: user?.firstname,
-              lastName: user?.lastname,
-              email: user?.email, user,
-              country: user?.country,
-              twitter: user?.twitter,
-              facebook: user?.facebook,
-              linkedIn: user?.linkedin,
-              whatsapp: user.whatsapp,
-              bio: user?.bio,
-              number: user?.phone,
-            }}
-            onSubmit={async (values) => {
-              const dto = values;
-              delete values.number;
-              dto.number = phone;
-              setSubmitLoading(true);
-              try {
-                const { data, error } = await supabase
-                  .from("profiles")
-                  .update({
-                    firstname: values.firstName,
-                    lastname: values.lastName,
-                    country: values.country,
-                    twitter: values.twitter,
-                    facebook: values.facebook,
-                    linkedin: values.linkedIn,
-                    whatsapp: values.whatsapp,
-                    phone,
-                    bio: values.bio,
-                  })
-                  .select()
-                  .eq("id", user.id);
-
-                console.log("Response data:", data);
-                if (error) throw error;
-              } catch (error) {
-                console.log("Error updating profile:", error);
-              } finally {
-                setSubmitLoading(false);
-              }
-            }}
-            enableReinitialize={true}>
-            <Form className="border-t-2 border-[#E0E4EC] pt-8">
-              <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
-                <div className="col-span-1">
-                  <p className="mb-5 font-semibold">My Profile Summary</p>
-                  <div className="flex flex-col gap-5">
-                    <div className="form-div">
-                      <label>First Name:</label>
-                      <Field
-                        type="text"
-                        name="firstName"
-                        // placeholder={firstname}
-                        className="form-input"
-                      />
-                      <ErrorMessage name="firstName" />
-                    </div>
-                    <div className="form-div">
-                      <label>Last Name:</label>
-                      <Field
-                        type="text"
-                        name="lastName"
-                        // placeholder="Doe"
-                        className="form-input"
-                      />
-                      <ErrorMessage name="lastName" />
-                    </div>
-                    <div className="form-div">
-                      <label>Email Address:</label>
-                      <Field
-                        type="email"
-                        name="email"
-                        placeholder="johndoe@gmail.com"
-                        disabled
-                        className="form-input"
-                      />
-                      <ErrorMessage name="email" />
-                    </div>
-                    <div className="form-div">
-                      <label>Country:</label>
-                      <Field
-                        as="select"
-                        id="country"
-                        name="country"
-                        className="form-input bg-white">
-                        {countries.map((country: any, index) => (
-                          <option
-                            key={index}
-                            value={country.name.common}
-                            className="py-5">
-                            {country.name.common}
-                          </option>
-                        ))}
-                      </Field>
-
-                      <ErrorMessage
-                        name="country"
-                        component="div"
-                        className="error"
-                      />
-                    </div>
-
-                    <div className="form-div">
-                      <PhoneNumberInputv2
-                        label="Phone"
-                        onChange={(selection) => {
-                          setphone(selection);
-                        }}
-                        onChange2={(selection) => {
-                        }}
-                        placeholder="Select your country"
-                        initialValue={user.phone}
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="col-span-1">
-                  <p className="font-semibold mb-5">My Social Media Accounts</p>
-                  <div className="flex flex-col gap-5">
-                    <IconField
-                      icon={<FaTwitter size={24} color="black" />}
-                      name={"twitter"}
-                      className={"form-input"}
-                      label={"Twitter"}
-                      type={"text"}
-                      placeholder="https://twitter.com/abcd"
+        <>
+          {user && (
+            <>
+              <div className="py-8 pt-6">
+                <h3 className="text-shade-300">Update Profile Picture</h3>
+                <div
+                  className={cn("relative mt-5 aspect-video w-60 rounded-xl", {
+                    "grid place-items-center border border-dashed border-shade-200":
+                      !user?.profile_img,
+                  })}
+                >
+                  {!user?.profile_img ? (
+                    <NoProfileUpload />
+                  ) : user?.profile_img ? (
+                    <Image
+                      src={user?.profile_img as string}
+                      placeholder="blur"
+                      objectFit="cover"
+                      loading="eager"
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAHPAzcDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAECAwb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APJAAAAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAACAAAAIqAAAIqAAAAAIqAAAAAAAIqAAAAAAAoAAAAAAACooAAAAAAAAAAKAAAAAAADQAAAAAAACoAoAAAAAAAAAAAAAAAAAAAAAAAAAAACKgAAAACKgAAAACKgAACKgAAAACKgAAAAAACAAAAAAACiKAAAAAAAACgAAAAAAAAAKgCgAAAAA0AAAAAAAAAAqAKIoAAAAAAAAAAAAAAAAAAAAAICoAAAAAAIAAAAAACAAAAgAAAAAIAAAAAAACAAAAAAAAKgCgAAAAAAAKigAAAAAAAAAAAAAAogDYAAAAAAAAAAAAAAAKIAogCiAKIoAICiAKIAogCoAAAAAAAAgAAAAAAAgAAAIqAAAAAAgAAAAAACKgAAAAAAAAAAKIoAAAAAAAAKIAoAAAAAAAAAAAAANgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAIAAAAAIAAAAAAgAAAAAAAIAAAAAAAAAAAAAACiAKAAAAAAAAqAKIAoAAAAAAAAANiAKIAogCiAKIAogCiAKAAAAAAAACAogCiAKIAogAAAAAAAAAIAqAAAACAqAAAAAACAAAAAAAAgAAAAAAAAAAAAAAAAAACoAoigAAAAAAAAAAAAKgCiAKIA2AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAogCoAAAAAAICoAAAAAAAAgAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAKgCiAKAAAAAAAAAAAAADYAAAAAAAAAAAAAAAAAAAAAAgCiAKIAAAAAAAAACAKIAAAAAAAAACAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACiAKIAogCiAOgAAAAAAAAgCiAKIAqAAAAAAAAAAAAAAIAogAAAAAAAAAAAIAqAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2AAAAAAAAAAAAAAAAAACAogCiAAAAAAAAAAAAICiAAAAAAAAAAAAgCoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANgAAAAAAAAAAgKIAogAAAAAAAAAAAAACAogAAAAAAAAAAAIAqAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADYgCiAKIAAAAAAAAAAAAAAAAAAACAKgAAAAAAAAAAgKIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAKIAogCiAKIAogCiANgAAAAAAAAAAAAAAAAAAAAgKgAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAICiAKIAqAAAAAAAAAAAAAAAAAAAAADYAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAioAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAogCoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANgAAAAAAAAAAAAACAAAAAAAAAAAAAAAAACKgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADYgCiAKIAogCiAKgAAAAAAAAAAAAAAAAAAAAAAAgqAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoCCgIKAgoCgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgqAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgqAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAACgAAAAAAAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgqAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAACooAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAigIAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAACgAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAKIoAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAIqAAAAAAAAAAAAAAAAAAAAAAAAAAAKgCgAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAICoAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACiAKAAAAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACiAKIAogCgAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAioAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//2Q=="
+                      alt={user?.full_name as string}
+                      fill
+                      className="rounded-[inherit]"
                     />
-                    <IconField
-                      icon={<FaLinkedin size={24} color="black" />}
-                      name={"linkedIn"}
-                      className={"form-input"}
-                      label={"LinkedIn"}
-                      type={"text"}
-                      placeholder="https://facebook.com/abcd"
-                    />
-                    <IconField
-                      icon={<FaFacebook size={24} color="black" />}
-                      name={"facebook"}
-                      className={"form-input"}
-                      label={"Facebook"}
-                      type={"text"}
-                      placeholder="https://linkedin.com/abcd"
-                    />
-                    <IconField
-                      icon={<IoLogoWhatsapp size={24} color="black" />}
-                      name={"whatsapp"}
-                      className={"form-input"}
-                      label={"WhatsApp"}
-                      type={"text"}
-                      placeholder="https://wa.whatsapp.com/abc"
-                    />
-                  </div>
-                </div>
-                <div className="col-span-1">
-                  <div className="form-div">
-                    <label className="mb-5">Bio:</label>
-                    <Field
-                      as="textarea" // Use 'textarea' as the component
-                      id="bio"
-                      name="bio"
-                      placeholder="Enter your bio"
-                      className="form-input-textarea px-4 max-w-[422px]
-                border-[#E6E6E6] rounded-[4px] text-[#737373]
-                border py-2"
-                      rows="15" // Optional: Set the number of rows for the text area
-                      cols="50" // Optional: Set the number of columns for the text area
-                    />
-                  </div>
-                  <>
-                    {submitLoading ? (
-                      <div className="flex justify-center mt-8">
-                        <div className="py-4 relative">
-                          <Loader />
-                        </div>
-                      </div>
-                    ) : (
-                      <button
-                        type="submit"
-                        className="max-w-[160px] max-h-[52px] w-full aspect-[160/52]
-              mt-5 bg-[#DDB771] text-[#ffff] rounded-[8px]">
-                        Update Profile
-                      </button>
-                    )}
-                  </>
+                  ) : (
+                    <Loader />
+                  )}
                 </div>
               </div>
-            </Form>
-          </Formik>}
-        </>}</>
+              {user?.id == undefined ? (
+                <Loader />
+              ) : (
+                <Formik
+                  key={JSON.stringify(user)}
+                  initialValues={initialValues}
+                  onSubmit={async (values) => {
+                    setSubmitLoading(true);
+                    try {
+                      const { data, error } = await supabase
+                        .from("profiles")
+                        .update({
+                          firstname: values.firstName,
+                          lastname: values.lastName,
+                          country: values.country,
+                          twitter: values.twitter,
+                          facebook: values.facebook,
+                          linkedin: values.linkedIn,
+                          whatsapp: values.whatsapp,
+                          phone: values.phone,
+                          bio: values.bio,
+                          full_name: `${values.firstName} ${values.lastName}`,
+                        })
+                        .eq("id", user.id)
+                        .select();
+
+                      if (data) {
+                        onOpen("Profile updated successfully", "success");
+                        router.refresh();
+                      }
+                      if (error) throw error;
+                    } catch (error) {
+                      onOpen("Error updating profile", "error");
+                    } finally {
+                      setSubmitLoading(false);
+                    }
+                  }}
+                  enableReinitialize={true}
+                >
+                  {({ handleChange, handleBlur, values }) => (
+                    <Form className="border-t-2 pt-8">
+                      <div className="grid grid-cols-1 gap-x-5 gap-y-16 sm:grid-cols-2 xl:grid-cols-3">
+                        {/* My Profile Summary */}
+                        <div className="col-span-1">
+                          <h3 className="mb-5 text-shade-300">
+                            My Profile Summary
+                          </h3>
+                          <div className="flex flex-col gap-x-5 gap-y-8">
+                            <div className="form-div">
+                              <label>First Name:</label>
+                              <Field
+                                name="firstName"
+                                placeholder="Jane"
+                                className="form-input"
+                              />
+                              <ErrorMessage name="firstName" />
+                            </div>
+                            <div className="form-div">
+                              <label>Last Name:</label>
+                              <Field
+                                name="lastName"
+                                placeholder="Doe"
+                                className="form-input"
+                              />
+                              <ErrorMessage name="lastName" />
+                            </div>
+                            <div className="form-div">
+                              <label>Email Address:</label>
+                              <Field
+                                type="email"
+                                name="email"
+                                placeholder="johndoe@gmail.com"
+                                disabled
+                                className="form-input"
+                              />
+                              <ErrorMessage name="email" />
+                            </div>
+                            {/* <div className="form-div">
+                              <label>Country:</label>
+                              <Field
+                                as="select"
+                                id="country"
+                                name="country"
+                                className="form-input bg-white"
+                              >
+                                {countries.map((country: any, index) => (
+                                  <option
+                                    key={index}
+                                    value={country.name.common}
+                                    className="py-5"
+                                  >
+                                    {country.name.common}
+                                  </option>
+                                ))}
+                              </Field>
+
+                              <ErrorMessage
+                                name="country"
+                                component="div"
+                                className="error"
+                              />
+                            </div> */}
+                            <div className="form-div">
+                              <label>WhatsApp:</label>
+                              <InputPhoneNumber
+                                name="phone"
+                                value={values.phone as string}
+                                onChange={(val) => {
+                                  handlePhone(val);
+                                  handleChange({
+                                    target: { name: "phone", value: val },
+                                  });
+                                }}
+                                onBlur={handleBlur}
+                                onCountryChange={handleCountryChange}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        {/* My Social Media Accounts */}
+                        <div className="col-span-1">
+                          <h3 className="mb-5 text-shade-300">
+                            My Social Media Accounts
+                          </h3>
+                          <div className="flex flex-col gap-x-5 gap-y-8">
+                            <IconField
+                              icon={<FaTwitter size={24} color="black" />}
+                              name={"twitter"}
+                              className={"form-input"}
+                              label={"Twitter"}
+                              type={"text"}
+                              placeholder="https://twitter.com/abcd"
+                            />
+                            <IconField
+                              icon={<FaLinkedin size={24} color="black" />}
+                              name={"linkedIn"}
+                              className={"form-input"}
+                              label={"LinkedIn"}
+                              type={"text"}
+                              placeholder="https://linkedin.com/abcd"
+                            />
+                            <IconField
+                              icon={<FaFacebook size={24} color="black" />}
+                              name={"facebook"}
+                              className={"form-input"}
+                              label={"Facebook"}
+                              type={"text"}
+                              placeholder="https://facebook.com/abcd"
+                            />
+                            <IconField
+                              icon={<AiFillInstagram size={26} color="black" />}
+                              name={"whatsapp"}
+                              className={"form-input"}
+                              label={"Instagram"}
+                              type={"text"}
+                              placeholder="https://instagram.com/username"
+                            />
+                          </div>
+                        </div>
+                        {/* Bio */}
+                        <div className="col-span-full md:col-span-1">
+                          <h3 className="mb-5 text-shade-300">Bio</h3>
+                          <div className="form-div">
+                            <label className="hidden xl:invisible xl:block">
+                              Bio
+                            </label>
+                            <Field
+                              as="textarea"
+                              id="bio"
+                              name="bio"
+                              placeholder="Share a little bit about yourself"
+                              className="form-textarea text-[#737373]"
+                              rows="10"
+                              cols="50"
+                            />
+                          </div>
+                          <>
+                            {submitLoading ? (
+                              <div className="mt-8 flex justify-center">
+                                <div className="relative py-4">
+                                  <Loader />
+                                </div>
+                              </div>
+                            ) : (
+                              <Button
+                                color="accent"
+                                type="submit"
+                                className="mt-8"
+                              >
+                                Update Profile
+                              </Button>
+                            )}
+                          </>
+                        </div>
+                      </div>
+                    </Form>
+                  )}
+                </Formik>
+              )}
+            </>
+          )}
+        </>
       )}
     </Root>
   );
@@ -305,56 +347,17 @@ const Root = styled("div", {
     gap: "0.875rem",
     color: "#6A6968",
   },
-  " .form-input": {
-    maxHeight: "52px",
-    padding: "0.9375rem",
-
-    aspectRatio: "422/52",
-    border: "1px solid #E6E6E6",
-    borderRadius: "4px",
-    color: "#737373",
-    backgroundColor: "white",
-  },
 
   ".form-input option": {
     backgroundColor: "white",
   },
   ".form-input option:hover": {
-    backgroundColor: "green",
-  },
-  "form-input-textarea": {
-    padding: "0.9375rem",
-    maxWidth: "541px",
-    width: "100%",
-    aspectRatio: "541/368",
-    border: "1px solid #E6E6E6",
-    borderRadius: "4px",
-    color: "#737373",
+    backgroundColor: "#DDB771",
   },
   "& .link-icon": {
     top: "75%",
     transform: "translateY(-75%)",
     left: "1rem",
-  },
-});
-
-const Navigation = styled("button", {
-  fontSize: "16px",
-  fontWeight: "400",
-  color: "#8A8A8A",
-  padding: "0.5rem",
-  "&:hover": {
-    backgroundColor: "#8a8a8a05",
-    color: "black",
-  },
-
-  variants: {
-    type: {
-      active: {
-        color: "#307A4A",
-        borderBottom: "2px solid #307A4A",
-      },
-    },
   },
 });
 

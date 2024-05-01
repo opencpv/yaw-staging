@@ -1,69 +1,83 @@
-import Image from "next/image";
 import ProductStatus from "./ProductStatus";
 import { formatDate } from "@/lib/utils/stringManipulation";
 import calculateDaysSinceCreation from "@/lib/utils/calculateDaysSinceCreation";
-import CaDashEdit from "../../icons/CaDashEdit";
-import CaDashDelete from "../../icons/CaDashDelete";
-import DeleteProductButton from "./DeleteProductButton";
+import DestructiveModal from "@/components/__shared/ui/modals/DestructiveModal";
+import { useDisclosure } from "@nextui-org/react";
+import { TableBodySm, TableRowSm } from "../table/Table";
+import TbPropertyImageSm from "../TbPropertyImageSm";
+import ProductCondition from "./ProductCondition";
+import { formatPrice } from "@/lib/utils/numberManipulation";
+import EditButton from "@/components/__shared/ui/button/EditButton";
+import ButtonDelete from "@/components/__shared/ui/button/ButtonDelete";
 
 const MobileProductCard = ({ data }: { data: any }) => {
+  const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
+
   return (
-    <div className="mb-6 grid w-full grid-cols-2 gap-y-2 divide-y divide-solid rounded-md border-2 border-[#396261] px-[24px] py-[32px] lg:hidden">
-      <p className="col-span-2 font-bold">Product</p>
-      <div className="grid w-full grid-cols-1 gap-[10px] p-[10px] md:grid-cols-8">
-        <div className="relative aspect-[5/3]   md:col-span-5">
-          <Image
-            src={data.img_url}
-            alt="product image"
-            className="rounded-md "
-            fill
+    <>
+      <DestructiveModal
+        isOpen={isOpen}
+        onClose={onClose}
+        onOpenChange={onOpenChange}
+        label="Are you sure you want to delete this application?"
+        id=""
+        table="product_category"
+      />
+
+      <TableRowSm>
+        {/* Product */}
+        <TableBodySm href="/properties/2">
+          <div className="flex flex-wrap gap-5 truncate xsm:flex-nowrap">
+            <TbPropertyImageSm title={data.product} image={data.img_url} />
+            <div className="flex flex-col gap-2">
+              <p className="font-semibold">{data.product}</p>
+              <ProductCondition condition={data.condition} />
+              <p className="text-[13px] font-bold text-[#8A8A8A]">
+                GHS {formatPrice(data.price)}
+              </p>
+            </div>
+          </div>
+        </TableBodySm>
+
+        {/* Status */}
+        <TableBodySm className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 pt-3.5">
+          <ProductStatus
+            publicationStatus={data.item_publication_status}
+            isAvailable={data.isAvailable}
+            id={data.id}
           />
-        </div>
-        <div className="md:col-span-3 ">
-          <p className="text-center text-[16px] font-semibold md:text-left">
-            {data.product_name}
-          </p>
-          {data.condition == "NEW" ? (
-            <p className=" mx-auto mb-[10px] mt-[10px] w-fit rounded-full bg-[#54C38A] px-10  py-1 text-center text-[13px] capitalize text-white md:mx-0">
-              {data.condition}
-            </p>
-          ) : (
-            <p className=" mx-auto mb-[10px] mt-[10px]  w-fit rounded-full bg-[#FFE3B0]  px-10 py-1 text-center text-[13px] capitalize text-[#545454]  md:mx-0">
-              {data.condition}
-            </p>
+        </TableBodySm>
+        {/* Date */}
+        <TableBodySm className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 pt-3.5">
+          <h4>Date</h4>
+          <div className="text-center">
+            <h4 className="text-sm font-[600]">{"October 29, 2024"}</h4>
+            <small className="inline-block text-[0.6rem] text-neutral-400">
+              3 days ago
+            </small>
+          </div>
+        </TableBodySm>
+        <TableBodySm className="flex  flex-wrap items-center justify-between gap-x-5 gap-y-3 pt-3">
+          <h4>Category</h4>
+          <p className="text-center text-[13px]">{data.category}</p>
+        </TableBodySm>
+        {/* Actions */}
+        <TableBodySm className="flex justify-center gap-1.5 pt-3">
+          {status === "not submitted" && (
+            <>
+              <EditButton onOpen={() => ""} />
+              <ButtonDelete table="product_category" id="" />
+            </>
           )}
-          <p className="text-center text-[13px] font-bold text-[#8A8A8A] md:text-left">
-            GHS {data.price}
-          </p>
-        </div>
-      </div>
-      <div className="flex h-full  items-center justify-center">
-        <ProductStatus
-          width={"w-[130px]"}
-          isAvailalbe={data.available}
-          id={data.id}
-        />
-      </div>
-      <div className="col-span-2 grid grid-cols-2 place-items-center py-4 align-middle">
-        <p className="font-bold">Category</p>
-        <p className="text-center text-[13px]">{data.category}</p>
-      </div>
-      <div className="col-span-2 grid grid-cols-2  place-items-center py-4  align-middle ">
-        <p className="font-bold">Date Created</p>
-        <div className="w-full text-center">
-          <p className="font-semibold">{formatDate(data.created_at)}</p>
-          <p className="text-[#B0B0B0]">
-            {calculateDaysSinceCreation(data.created_at)} days ago
-          </p>
-        </div>
-      </div>
-      <div className="col-span-2 grid grid-cols-2 gap-2  py-4 align-middle ">
-        <button className="flex w-full cursor-pointer justify-center rounded-[8px] bg-secondary-50 p-4">
-          <CaDashEdit />
-        </button>
-        <DeleteProductButton id={data.id} table="sell_items" />
-      </div>
-    </div>
+        </TableBodySm>
+        {/* <div className="col-span-2 grid grid-cols-2 gap-2  py-4 align-middle ">
+          <button className="flex w-full cursor-pointer justify-center rounded-[8px] bg-secondary-50 p-4">
+            <CaDashEdit />
+          </button>
+          <DeleteProductButton id={data.id} table="sell_items" />
+        </div> */}
+      </TableRowSm>
+    </>
   );
 };
 

@@ -9,7 +9,7 @@ import { formatPrice } from "@/lib/utils/numberManipulation";
 import { formatDate, formatTime } from "@/lib/utils/stringManipulation";
 import { useDaysDifference } from "@/lib/custom-hooks/useDaysDifference";
 import ButtonDelete from "@/components/__shared/ui/button/ButtonDelete";
-import DestructiveModal from "@/components/__shared/modals/DestructiveModal";
+import DestructiveModal from "@/components/__shared/ui/modals/DestructiveModal";
 import { useDisclosure } from "@nextui-org/react";
 import { ManagePropertiesInterface } from "../../../../../../interfaces";
 
@@ -24,16 +24,8 @@ const PropertyRow = ({
   const { images } = useAssets();
   const daysDifference = useDaysDifference(posted_on);
 
-  const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
-
   return (
     <>
-      <DestructiveModal
-        label="Are you sure you want to delete this property?"
-        isOpen={isOpen}
-        onClose={onClose}
-        onOpenChange={onOpenChange}
-      />
       <tr className="h-fit border-b">
         {/* Property */}
         <td className="p-2 pt-3 ">
@@ -80,7 +72,7 @@ const PropertyRow = ({
             >
               <BiPencil className="text-xl" />
             </Button>
-            <ButtonDelete onOpen={onOpen} />
+            <ButtonDelete id="" table="property" />
           </div>
         </td>
       </tr>

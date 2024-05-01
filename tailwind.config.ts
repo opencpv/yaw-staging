@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 import defaultTheme from "tailwindcss/defaultTheme";
-const { violet, blackA, mauve, green } = require("@radix-ui/colors");
-const { nextui } = require("@nextui-org/react");
+import { mauve, violet, green, blackA } from "@radix-ui/colors";
+import { nextui } from "@nextui-org/react";
 
 const config: Config = {
   content: [
@@ -47,12 +47,14 @@ const config: Config = {
           200: "#FAFBFB",
           300: "#DFE7E7",
           400: "#99B3B2",
+          500: "#ECF2F3",
         },
         accent: {
           50: "#DDB771",
           100: "#F1B346",
           200: "#AD842A",
           400: "#F5C771",
+          500: "#FEF8ED",
         },
         warning: {
           400: "#FFB733",
@@ -67,8 +69,8 @@ const config: Config = {
         },
         error: {
           50: "#FEF3F2",
+          100: "#851e1e",
         },
-        // white: "#fff",
       },
       gridTemplateColumns: {
         "autofit-listing-card": "repeat(auto-fit, minmax(380px, 1fr))",

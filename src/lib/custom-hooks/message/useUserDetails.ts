@@ -1,4 +1,4 @@
-import supabase from "@/lib/utils/supabaseClient";
+import supabase from "@/lib/utils/supabase/supabaseClient";
 import { useEffect, useState } from "react";
 
 export const useUserDetails = (id: string | undefined) => {
@@ -17,7 +17,6 @@ export const useUserDetails = (id: string | undefined) => {
         setUserAvi(user?.profile_img as string);
         setUserName(user?.full_name as string);
       } catch (error) {
-        console.log(error);
         return error;
       }
     };

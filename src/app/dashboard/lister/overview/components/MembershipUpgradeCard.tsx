@@ -8,7 +8,7 @@ type Props = {};
 const MembershipUpgradeCard = (props: Props) => {
   const { images } = useAssets();
   return (
-    <div className="overlay-rounded relative rounded-xl mb-20 w-full h-fit mt-20 lg:mt-0">
+    <div className="overlay-rounded relative mt-20 h-fit w-full rounded-xl lg:mt-0">
       <Image
         src={images.PersonHoldingHouse}
         alt="Person with a house in his hands"
@@ -16,12 +16,12 @@ const MembershipUpgradeCard = (props: Props) => {
         style={{ objectFit: "cover" }}
         className="rounded-xl"
       />
-      <div className="relative text-white space-y-3 z-20 py-28 px-10">
-        <h3 className="uppercase">Upgrade to Premium Membership</h3>
-        <small>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        </small>
-        <Button color="primary" className="text-base py-2">Upgrade Now</Button>
+      <div className="relative z-20 space-y-3 px-10 py-28 text-white">
+        <h3 className="uppercase">Upgrade to Premium GuaranteeTag</h3>
+        <small>Lorem ipsum dolor sit amet consectetur adipisicing elit.</small>
+        <Button color="primary" className="py-2 text-base">
+          Upgrade Now
+        </Button>
       </div>
     </div>
   );

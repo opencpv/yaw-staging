@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import CaArrowBackLong from "../icons/CaArrowBackLong";
-import RichTextRenderer from "@/app/components/RichTextRenderer";
+import RichTextRenderer from "@/components/__shared/RichTextRenderer";
 import Image from "next/image";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 
@@ -10,10 +10,10 @@ const MainView = ({ data }: { data: any }) => {
   const { icons, images } = useAssets();
 
   return (
-    <div className="flex h-full w-full flex-col items-center justify-between  pt-8 lg:pt-16">
-      <div className="flex  w-full flex-col items-start justify-center gap-8 text-white">
+    <div className="flex h-full w-full flex-col items-center justify-between pt-8 lg:pt-16">
+      <div className="flex w-full flex-col items-start justify-center gap-8 text-white">
         <div
-          className="flex  cursor-pointer items-center justify-center gap-2"
+          className="flex cursor-pointer items-center justify-center gap-2"
           onClick={() => router.back()}
         >
           <CaArrowBackLong />
@@ -21,15 +21,11 @@ const MainView = ({ data }: { data: any }) => {
         </div>
       </div>
 
-      <div className="flex w-full flex-col items-start justify-between gap-4  pt-8 lg:flex-row lg:items-center lg:pt-0">
-        <div className="flex  shrink-0 basis-[60%] flex-col items-start justify-center gap-4 text-white">
-          <div
-            className=" mb-4 flex flex-col  text-[2.4375rem] font-bold 
-            leading-[3.4125rem] 
-            lg:text-[3.8125rem] lg:leading-[5.3375rem] "
-          >
-            <p>{data.title}</p>
-            <p>{data.subtitle}</p>
+      <div className="flex w-full flex-col items-start justify-between gap-4 pt-8 lg:flex-row lg:items-center lg:pt-0">
+        <div className="flex shrink-0 basis-[60%] flex-col items-start justify-center gap-4 text-white">
+          <div className="mb-4 flex flex-col">
+            <h1 className="leading-tight">{data.title}</h1>
+            <h1 className="leading-tight">{data.subtitle}</h1>
           </div>
           <div className="max-w-[824px]">
             <RichTextRenderer content={data.description[0]} />

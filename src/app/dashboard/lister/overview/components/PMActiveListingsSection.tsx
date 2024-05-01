@@ -1,5 +1,5 @@
 "use client";
-import OptionFilterTabs from "@/components/__shared/OptionFilterTabs";
+import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
 import React, { useState } from "react";
 import ActiveListingCard from "./ActiveListingCard";
 import Button from "@/components/__shared/ui/button/Button";
@@ -28,7 +28,7 @@ const PMActiveListingsSection = (props: Props) => {
         {[1, 2, 3].map((_, idx) => (
           <ActiveListingCard
             key={idx + 1}
-            href=""
+            href="#"
             itemType="Property"
             date="5 December 2023"
             image="/assets/images/about/home1.webp"
@@ -38,7 +38,7 @@ const PMActiveListingsSection = (props: Props) => {
         ))}
       </div>
       <div className="flex justify-end">
-        <Link href="">
+        <Link href="#">
           <Button
             padding="sm"
             radius="full"
@@ -48,14 +48,6 @@ const PMActiveListingsSection = (props: Props) => {
           </Button>
         </Link>
       </div>
-      <LeadsSummary
-        leads={[1, 2, 3].map((_, idx) => ({
-          name: "Leslie Alexander",
-          phone: "0232442111",
-          id: `${idx + 1}`,
-          email: "leslie@gmail.com",
-        }))}
-      />
     </section>
   );
 };

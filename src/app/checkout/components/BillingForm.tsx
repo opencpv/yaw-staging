@@ -1,9 +1,10 @@
-import CustomInputComponent from "@/app/components/CustomInputComponent";
-import CountryInput from "@/components/__shared/CountryInput";
-import CurrencyInput from "@/components/__shared/CurrencyInput";
-import PhoneNumberInputv2 from "@/components/__shared/PhoneInputv2";
+import CustomInputComponent from "@/components/__shared/ui/form/CustomInputComponent";
+import CountryInput from "@/components/__shared/ui/form/CountryInput";
+import CurrencyInput from "@/components/__shared/ui/form/CurrencyInput";
+import PhoneNumberInputv2 from "@/components/__shared/ui/form/PhoneInputv2";
 import { Formik } from "formik";
 import { ChangeEvent, useState } from "react";
+import PaymentButton from "./PaymentButton";
 
 interface ErrorProps {
   firstname?: string | null;
@@ -76,7 +77,7 @@ const BillingForm = () => {
         /* and other goodies */
       }) => (
         <form onSubmit={handleSubmit}>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
             <CustomInputComponent
               type="text"
               name="firstname"
@@ -149,7 +150,6 @@ const BillingForm = () => {
             placeholder="Select your country"
             onChange={(selection) => {
               setcountry(selection);
-              console.log(selection);
             }}
           />
           <div className="mt-4"></div>
@@ -166,22 +166,17 @@ const BillingForm = () => {
             />
           </div>
           <div className="mt-4"></div>
-          <fieldset className="flex mb-4 gap-3 items-center">
+          <fieldset className="mb-4 flex items-center gap-3">
             <input
               type="checkbox"
               onChange={(e: any) => {
                 setsaved(e.target.checked);
               }}
-              className="h-6 w-6 border-[1px] rounded-md border-[#DCDCDC] "
+              className="h-6 w-6 rounded-md border-[1px] border-[#DCDCDC] "
             />
             <p className="text-[#737373]">Save this Information</p>
           </fieldset>
-          <button
-            type="submit"
-            className="text-white font-semibold py-4 bg-[#DDB771] rounded-md w-full"
-          >
-            Proceed to Payment
-          </button>
+          <PaymentButton />
         </form>
       )}
     </Formik>

@@ -1,9 +1,11 @@
 import React from "react";
 import FAQBrowser from "../FAQBrowser";
 import ContactSection from "../ContactSection";
-import SurveyButton from "@/components/survey/SurveyButton";
 
-type Props = {};
+type Props = {
+  data: any;
+  faqCategories: any[];
+};
 
 const FaqPage = (props: Props) => {
   return (
@@ -11,9 +13,8 @@ const FaqPage = (props: Props) => {
       <h2 className={`text-neutral-800 xs:text-4xl`}>
         Frequently Asked Questions
       </h2>
-      <FAQBrowser />
+      <FAQBrowser data={props.data} faqCategories={props.faqCategories} />
       <ContactSection />
-      <SurveyButton />
     </>
   );
 };

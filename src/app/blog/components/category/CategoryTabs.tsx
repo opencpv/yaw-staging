@@ -1,21 +1,39 @@
 "use client";
-import OptionFilterTabs from "@/components/__shared/OptionFilterTabs";
+import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
+import convertSlugToString from "@/lib/utils/convertSlugToString";
+import slugify from "@/lib/utils/slugify";
+import capitalizeName from "@/lib/utils/stringManipulation";
 import { useBlogCategoryStore } from "@/store/blog/blogStore";
-import React from "react";
+import { usePathname, useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
-type Props = {};
+type Props = {
+  categories: string[];
+};
 
 const CategoryTabs = (props: Props) => {
-  const categoryOption = useBlogCategoryStore((state) => state.filterOption);
+  const url = usePathname();
   const changeCategoryOption = useBlogCategoryStore(
     (state) => state.changeCategoryOption,
   );
+  const categoryOption = useBlogCategoryStore((state) => state.filterOption);
+  const router = useRouter();
+  const [options, setOptions] = useState<string[]>([]);
+
+  useEffect(() => {
+    const currentCategory = convertSlugToString(url?.split("/")[2] as string);
+    setOptions(["all", ...props.categories]);
+    changeCategoryOption(currentCategory as string);
+  }, []);
 
   return (
     <OptionFilterTabs
-      options={["all", "education", "entertainment", "news", "others"]}
+      options={options}
       selectedKey={categoryOption}
-      onSelectionChange={changeCategoryOption}
+      onSelectionChange={(selection) => {
+        changeCategoryOption(selection as string);
+        router.push(`/blog/${slugify(selection as string)}`);
+      }}
       radius="small"
       tabColor="colored"
     />

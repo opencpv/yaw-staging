@@ -1,3 +1,9 @@
+import {
+  AnimationProps,
+  TargetAndTransition,
+  VariantLabels,
+} from "framer-motion";
+
 type Animate = {
   exit: any;
   enter: any;
@@ -28,14 +34,14 @@ export const ExpandCircle = {
   open: (
     d = window.screen.height >= window.screen.width
       ? window.screen.height
-      : window.screen.width
+      : window.screen.width,
   ) => ({
     clipPath: `circle(${d * 2 + 300}px at right top)`,
     transition: {
       type: "spring",
       stiffness: 13,
       restDelta: 2,
-      duration: "0.2",
+      duration: 0.2,
     },
   }),
   closed: {
@@ -44,7 +50,7 @@ export const ExpandCircle = {
       type: "spring",
       stiffness: 100,
       damping: 40,
-      duration: "0.2",
+      duration: 0,
     },
   },
 };
@@ -53,7 +59,7 @@ export const ExpandCircleFromBottom = {
   open: (
     d = window.screen.height >= window.screen.width
       ? window.screen.height
-      : window.screen.width
+      : window.screen.width,
   ) => ({
     clipPath: `circle(${d * 2 + 300}px at right bottom)`,
     transition: {
@@ -114,7 +120,7 @@ export const SlideInFromLeft = {
     },
   },
   closed: {
-    x: '-100%', // Move the element 100% to the left
+    x: "-100%", // Move the element 100% to the left
     opacity: 0,
     transition: {
       ease: "linear",
@@ -131,4 +137,52 @@ export const contentAccordionVariants = (height = "6rem") => {
     expanded: { height: "auto" },
     collapsed: { height },
   };
+};
+
+export const fadeUp = {
+  initial: { y: 100, opacity: 0 },
+  whileInView: { y: 0, opacity: 1 },
+  viewport: { once: true },
+  transition: {
+    duration: 1,
+    ease: "easeInOut",
+    stiffness: 100,
+    velocity: 0.5,
+  },
+};
+
+export const fadeInLeft = {
+  initial: { x: 100, opacity: 0 },
+  whileInView: { x: 0, opacity: 1 },
+  viewport: { once: true },
+  transition: {
+    duration: 1,
+    ease: "easeInOut",
+    stiffness: 100,
+    velocity: 0.5,
+  },
+};
+
+export const fadeInRight = {
+  initial: { x: -100, opacity: 0 },
+  whileInView: { x: 0, opacity: 1 },
+  viewport: { once: true },
+  transition: {
+    duration: 1,
+    ease: "easeInOut",
+    stiffness: 100,
+    velocity: 0.5,
+  },
+};
+
+export const fadeIn = {
+  initial: { opacity: 0 },
+  whileInView: { opacity: 1 },
+  viewport: { once: true },
+  transition: {
+    duration: 1,
+    ease: "easeInOut",
+    stiffness: 100,
+    velocity: 0.5,
+  },
 };

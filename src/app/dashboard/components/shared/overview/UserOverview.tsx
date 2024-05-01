@@ -1,5 +1,5 @@
 "use client";
-import Callout from "@/app/dashboard/components/Callout";
+import Callout from "@/app/dashboard/components/shared/ui/Callout";
 import Button from "@/components/__shared/ui/button/Button";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
@@ -9,8 +9,9 @@ import { HiOutlinePencil } from "react-icons/hi";
 import UserOverviewMV from "./UserOverviewMV";
 import LargeButton from "@/app/dashboard/lister/properties/components/LargeButton";
 import { TbBuildingCommunity } from "react-icons/tb";
-import AOSWrapper from "@/components/__shared/AOSWrapper";
 import { BiInfoCircle } from "react-icons/bi";
+import { useAppStore } from "@/store/dashboard/AppStore";
+import { AiOutlineUser } from "react-icons/ai";
 
 const UserOverview = ({
   name,
@@ -22,6 +23,7 @@ const UserOverview = ({
 }: UserOverviewProps) => {
   const [hidden, setHidden] = useState(false);
   const [hiddenCompletely, setHiddenCompletely] = useState(false);
+  const { user } = useAppStore();
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -38,7 +40,9 @@ const UserOverview = ({
   return (
     <div className={className}>
       <h2 className="mb-6">Overview</h2>
-      <h3 className="mb-6 text-neutral-700 md:hidden">Welcome, John</h3>
+      <h3 className="mb-6 text-neutral-700 md:hidden">
+        Welcome, {user?.full_name}
+      </h3>
       <Callout
         className={`w-full transition-all sm:w-10/12 ${
           hidden ? "mb-0 h-0 p-0" : "mb-6 h-fit"
@@ -69,7 +73,7 @@ const UserOverview = ({
           </div>
         </div>
       </Callout>
-      <AOSWrapper animation="fade-up">
+      <div className="fade-in-bottom">
         {type === "lister" && (
           <LargeButton
             label="Add your property"
@@ -80,35 +84,45 @@ const UserOverview = ({
         <div className="hidden max-h-60 w-full max-w-[850px] rounded-xl bg-primary-400 p-10 pb-0 pt-20 md:block">
           <div className="mx-auto w-11/12">
             <h3 className="mb-4 text-xl font-[600] text-white">
-              Welcome, John
+              Welcome, {user?.full_name}
             </h3>
             <div className="flex max-h-60 items-center gap-x-6 gap-y-3 rounded-xl bg-white p-8 py-16 shadow-2xl">
               <div className="relative h-32 w-32 rounded-xl shadow-lg">
-                <Image
-                  src={picture}
-                  alt={name}
-                  className="rounded-xl"
-                  fill
-                  style={{ objectFit: "cover" }}
-                />
+                {picture ? (
+                  <Image
+                    src={picture}
+                    alt={name}
+                    className="rounded-[inherit]"
+                    fill
+                    style={{ objectFit: "cover" }}
+                  />
+                ) : (
+                  <div className="grid h-full w-full place-items-center rounded-[inherit] bg-neutral-100">
+                    <AiOutlineUser size={32} />
+                  </div>
+                )}
               </div>
               <div className="space-y-2">
                 <h4 className="">{name}</h4>
                 <div className="mb-4 flex flex-wrap items-center gap-x-5 gap-y-3 text-base">
-                  <div className="flex items-center gap-2 text-neutral-700">
-                    <FaRegEnvelope className="text-primary-400" />
-                    {email}
-                  </div>
-                  <div className="flex items-center gap-2 text-neutral-700">
-                    <BsTelephone className="text-primary-400" />
-                    {telephone}
-                  </div>
+                  {email && (
+                    <div className="flex items-center gap-2 text-neutral-700">
+                      <FaRegEnvelope className="text-primary-400" />
+                      {email}
+                    </div>
+                  )}
+                  {telephone && (
+                    <div className="flex items-center gap-2 text-neutral-700">
+                      <BsTelephone className="text-primary-400" />
+                      {telephone}
+                    </div>
+                  )}
                 </div>
                 <Button
                   href="settings"
-                  className="flex w-fit items-center gap-1.5 rounded-md bg-[#597C7B] p-1 px-4 text-sm font-[400] text-white"
+                  className="flex w-fit items-center gap-1.5 rounded-md bg-[#597C7B] p-1 px-4 text-sm font-semibold text-white"
                 >
-                  Complete your profile <HiOutlinePencil />{" "}
+                  Edit profile <HiOutlinePencil />{" "}
                 </Button>
               </div>
             </div>
@@ -123,7 +137,7 @@ const UserOverview = ({
           className="flex w-full flex-col items-center gap-x-6 gap-y-3 rounded-xl bg-white p-8 shadow-2xl sm:max-h-60 sm:flex-row sm:justify-start sm:py-16 md:hidden"
           type={type}
         />
-      </AOSWrapper>
+      </div>
     </div>
   );
 };

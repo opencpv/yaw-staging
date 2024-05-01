@@ -1,17 +1,8 @@
 "use client";
-import TextInput from "@/components/__shared/form/TextInput";
-import React, {
-  ChangeEvent,
-  FocusEvent,
-  FormEventHandler,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { ChangeEvent, FocusEvent, useState } from "react";
 import { useContactForm } from "./hooks/useContactForm";
-import InputPhoneNumber from "@/components/__shared/form/InputPhoneNumber";
 import { E164Number, CountryCode } from "libphonenumber-js/core";
-import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import PreferredContactMethod from "@/components/__shared/ui/form/PreferredContactMethod";
 
 type Props = {
   phone?: E164Number;
@@ -30,6 +21,7 @@ type Props = {
 
   handlePhone: (value: any) => void;
   handleCountryChange: (country: CountryCode | undefined) => void;
+  onSelectionChange?: (key: "email" | "whatsapp") => void;
 };
 
 const ContactPhoneField = ({
@@ -38,17 +30,41 @@ const ContactPhoneField = ({
   handlePhone,
   handleCountryChange,
   handleBlur,
+  onSelectionChange,
 }: Props) => {
+  const { contactFormSession, handleSessionChange } = useContactForm();
+  const [preferredContact, setPreferredContact] = useState<
+    "email" | "whatsapp"
+  >("email");
+
   return (
-    <InputPhoneNumber
-      id="phone"
-      name="phone"
-      value={phone}
+    <PreferredContactMethod
+      value={contactFormSession.phone || (phone as E164Number)}
+      emailValue={contactFormSession.email}
       placeholder="WhatsApp"
+      selectedKey={
+        (contactFormSession.preferredContact as "email" | "whatsapp") ||
+        preferredContact
+      }
       onBlur={handleBlur}
-      onChange={handlePhone}
-      onInput={handleChange}
-      onCountryChange={handleCountryChange}
+      // onChangePhone={(value) => {
+      //   handlePhone(value);
+      //   handleSessionChange("phone", value as E164Number);
+      // }}
+      onChangeEmail={(e) => {
+        handleChange?.(e);
+        handleSessionChange("email", e.target.value);
+      }}
+      onChange={(value) => {
+        handlePhone(value);
+        handleSessionChange("phone", value as E164Number);
+      }}
+      handleCountryChange={handleCountryChange}
+      onSelectionChange={(key) => {
+        setPreferredContact(key);
+        onSelectionChange?.(key);
+        handleSessionChange("preferredContact", key);
+      }}
     />
   );
 };

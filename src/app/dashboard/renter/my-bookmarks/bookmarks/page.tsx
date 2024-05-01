@@ -10,11 +10,10 @@ type Props = {};
 
 export default function SearchPage({}: Props) {
   const activePage = useSearchStore((state) => state.activePage);
-  console.log(activePage);
 
   return (
     <section>
-      <div className="text-zinc-800 text-[31px] font-semibold font-['Open Sans'] leading-[43.40px]">
+      <div className="font-['Open Sans'] text-[31px] font-semibold leading-[43.40px] text-zinc-800">
         My Bookmarks
       </div>{" "}
       <SearchSwitch />

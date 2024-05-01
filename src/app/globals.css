@@ -33,32 +33,36 @@ body {
   border-bottom-width: 0;
 }
 
-h1 {
-  @apply text-3xl font-bold sm:text-6xl;
-}
+@layer base {
+  h1 {
+    @apply max-w-3xl text-3xl font-bold sm:text-6xl;
+  }
 
-h2 {
-  @apply text-[1.563rem] font-[600] leading-[2.2rem];
-}
+  h2 {
+    @apply max-w-3xl text-[1.563rem] font-[600] leading-[2.2rem];
+  }
 
-h3 {
-  @apply text-xl font-[600];
-}
+  h3 {
+    @apply max-w-3xl text-xl font-[600];
+  }
 
-h4 {
-  @apply text-base font-[600];
-}
+  h4 {
+    @apply max-w-3xl text-base font-[600];
+  }
 
-h5 {
-  @apply text-sm font-[600];
-}
+  h5 {
+    @apply max-w-3xl text-sm font-[600];
+  }
 
-small {
-  @apply block text-sm;
-}
+  small {
+    @apply block max-w-3xl text-sm;
+  }
 
-.gradient-to-bottom {
-  @apply bg-gradient-to-b from-primary-500 to-primary-400/80;
+  li,
+  a:not(a[role="button"]),
+  textarea {
+    @apply focus:outline-accent-50;
+  }
 }
 
 .green-gradient {
@@ -87,59 +91,12 @@ small {
   /* Firefox */
 }
 
-.light-green-hover {
-  @apply hover:bg-primary-300/20;
-}
-
-.menu-bg {
-  @apply bg-primary-900 before:pointer-events-none before:fixed before:-left-64 before:top-28 before:h-[50rem] before:w-[50rem] before:rounded-full before:bg-primary-200 before:opacity-[0.12] after:pointer-events-none after:fixed after:-right-64 after:-top-60 after:hidden after:h-[45rem] after:w-[50rem] after:rounded-full after:bg-primary-200 after:opacity-[0.12] after:lg:block;
-}
-
-.overlay {
-  @apply relative before:absolute before:inset-0 before:h-full before:w-full before:bg-primary-500/60;
-}
-
-.overlay-rounded {
-  @apply relative before:absolute before:inset-0 before:z-10 before:h-full before:w-full before:rounded-2xl before:bg-gradient-to-b before:from-primary-500/60 before:to-primary-500/50;
-}
-
-.PhoneInputInput {
-  @apply rounded-md border px-3 py-4 shadow-sm hover:border-black/50 focus:border-black focus:outline-none;
-}
-
-.section {
-  @apply pt-28;
-}
-
 .shape-3 {
   clip-path: polygon(10% 0, 0 20%, 0 100%, 90% 100%, 100% 80%, 100% 0);
 }
 
-.skeleton-flex {
-  display: grid;
-  grid-auto-flow: column;
-  overflow-x: hidden;
-  gap: 1.25rem;
-}
-
-.skeleton-flex > div {
-  width: 15rem;
-  min-width: 15rem;
-}
-
-.skeleton-grid {
-  display: flex;
-  gap: 1.25rem;
-  overflow-x: hidden;
-}
-
-.skeleton-grid > div {
-  width: 22rem;
-  min-width: 22rem;
-}
-
 .Toastify__toast-container {
-  @apply flex items-center justify-center flex-col;
+  @apply flex flex-wrap items-center justify-center;
 }
 
 /* to be removed after temporary landing page */
@@ -155,17 +112,70 @@ small {
   -o-user-select: none;
 }
 
-.wrapper,
-.wrapper-2 {
-  @apply mx-auto max-w-screen-3xl px-5 pb-8 pt-12 sm:pb-14 lg:px-10;
+@layer components {
+  .form-field-border {
+    @apply border border-neutral-400 hover:border-black/50;
+  }
+
+  .form-input {
+    @apply form-field-border rounded-md px-3 py-4 focus:outline-accent-50;
+  }
+
+  .form-textarea {
+    @apply form-field-border rounded-md px-3 py-4 focus:outline-accent-50;
+  }
+
+  .gradient-to-bottom {
+    @apply bg-gradient-to-b from-primary-500 to-primary-400/80;
+  }
+
+  .light-green-hover {
+    @apply hover:bg-primary-300/20;
+  }
+
+  .deep-green-hover {
+    @apply hover:bg-primary-300/50;
+  }
+
+  .menu-bg {
+    @apply bg-primary-900 before:pointer-events-none before:fixed before:-left-64 before:top-28 before:h-[50rem] before:w-[50rem] before:rounded-full before:bg-primary-200 before:opacity-[0.12] after:pointer-events-none after:fixed after:-right-64 after:-top-60 after:hidden after:h-[45rem] after:w-[50rem] after:rounded-full after:bg-primary-200 after:opacity-[0.12] after:lg:block;
+  }
+
+  .overlay {
+    @apply relative before:absolute before:inset-0 before:h-full before:w-full before:bg-primary-500/60;
+  }
+
+  .overlay-rounded {
+    @apply relative before:absolute before:inset-0 before:z-10 before:h-full before:w-full before:rounded-2xl before:bg-gradient-to-b before:from-primary-500/60 before:to-primary-500/50;
+  }
+
+  .section {
+    @apply pt-28;
+  }
+
+  .skeleton-wrapper-swiper {
+    @apply grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3;
+  }
+
+  .skeleton-wrapper-grid {
+    @apply mx-auto grid grid-cols-1 justify-center gap-x-5 gap-y-16 md:grid-cols-2 lg:grid-cols-3;
+  }
+
+  .skeleton-wrapper-flex {
+    @apply flex gap-5 overflow-x-auto;
+  }
+
+  .skeleton-wrapper-flex > div {
+    @apply min-w-60;
+  }
+
+  .wrapper {
+    @apply mx-auto max-w-screen-3xl px-5 pb-8 pt-12 sm:pb-14 lg:px-10;
+  }
 }
 
-.wrapper-2 {
-  @apply px-5 sm:px-5;
-}
-
-.wrapper-section {
-  @apply mx-auto max-w-screen-3xl px-5 pb-0 pt-28 sm:px-10 sm:pb-0;
+.PhoneInputInput {
+  @apply form-field-border rounded-md px-3 py-4 focus:outline-accent-50;
 }
 
 input[type="search"]::-webkit-search-cancel-button {
@@ -178,26 +188,9 @@ input[type="search"]::-webkit-search-cancel-button {
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23777'><path d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/></svg>");
 }
 
-:focus {
+/* :focus {
   @apply outline-accent-50;
-}
-
-@media (min-width: 640px) {
-  .skeleton-flex {
-    width: 22rem;
-    min-width: 22rem;
-  }
-  .skeleton-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1024px) {
-  .skeleton-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
+} */
 
 /* @media (min-width: 640px) { // wrapper has paddings. section is solely for separating top and bottom sections 
   .section {
@@ -239,4 +232,16 @@ input[type="search"]::-webkit-search-cancel-button {
     scrollbar-width: none;
     /* Firefox */
   }
+}
+
+.image-overlay::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 250px;
+  z-index: 100;
+  background-image: linear-gradient(to bottom, black, black, transparent, transparent);
+  opacity: 0.5; /* Adjust as needed */
 }

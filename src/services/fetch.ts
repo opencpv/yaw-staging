@@ -1,7 +1,7 @@
-import supabase from "@/lib/utils/supabaseClient";
+import supabase from "@/lib/utils/supabase/supabaseClient";
 
 const fetchTable = async (
-  tableName: string,
+  tableName: TableNames,
   {
     select_fields,
     eq,
@@ -12,7 +12,7 @@ const fetchTable = async (
     eq?: { column: string; match: any };
     or?: string;
     order?: { column: string; ascending?: boolean };
-  } = {}
+  } = {},
 ) => {
   let query = supabase
     .from(tableName)

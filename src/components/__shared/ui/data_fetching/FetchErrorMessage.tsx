@@ -12,7 +12,7 @@ const FetchErrorMessage = ({ className, specificData }: Props) => {
   if (hasInternet)
     return (
       <p
-        className={`flex justify-center items-center text-red-500 text-center h-52 ${className}`}
+        className={`col-span-full flex h-52 items-center justify-center text-center text-red-500 ${className}`}
       >
         Error: Something went wrong while getting {specificData}.
       </p>
@@ -20,7 +20,7 @@ const FetchErrorMessage = ({ className, specificData }: Props) => {
   else
     return (
       <p
-        className={`flex justify-center items-center text-center h-52 ${className}`}
+        className={`col-span-full flex h-52 items-center justify-center text-center ${className}`}
       >
         It looks like you are offline, please check your internet.
       </p>
