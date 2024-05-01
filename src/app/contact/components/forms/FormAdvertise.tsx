@@ -28,23 +28,16 @@ type Props = {};
 
 const FormAdvertise = (props: Props) => {
   const {
-   
     activeTab,
-   
     file,
-   
     formRef,
-   
     loading,
-   
     setLoading,
-   
     tableName,
-   
     handleFileUpload,
     validate,
- ,
-    contactFormSession, handleSessionChange,
+    contactFormSession,
+    handleSessionChange,
   } = useContactForm();
 
   const { phone, setPhone, handleCountryChange, handlePhone } =
@@ -107,11 +100,10 @@ const FormAdvertise = (props: Props) => {
             if (error) {
               onOpen("Something went wrong", "error");
             } else {
-              toast.success("Your message has been sent");
               resetForm();
               sessionStorage.removeItem("contactFormSession");
               setPhone(undefined);
-              onOpen("Successfully sent", "success");
+              onOpen("Your message has been sent", "success");
               router.refresh();
             }
           });

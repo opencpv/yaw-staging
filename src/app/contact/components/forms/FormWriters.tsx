@@ -27,22 +27,15 @@ type Props = {};
 
 const FormWriters = (props: Props) => {
   const {
-   
     activeTab,
-   
     file,
-   
     formRef,
-   
     loading,
-   
     setLoading,
-   
     tableName,
-   
     handleFileUpload,
     validate,
- , contactFormSession,
+    contactFormSession,
   } = useContactForm();
 
   const { phone, setPhone, handleCountryChange, handlePhone } =

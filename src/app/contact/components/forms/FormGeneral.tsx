@@ -21,27 +21,21 @@ import axios from "axios";
 import { generateString } from "@/lib/utils";
 import slugify from "@/lib/utils/slugify";
 import { toast } from "react-toastify";
+import ContactUploadField from "./ContactUploadField";
 
 type Props = {};
 
 const FormGeneral = (props: Props) => {
   const {
-   
     activeTab,
-   
     file,
-   
     formRef,
-   
     loading,
-   
     setLoading,
-   
     tableName,
-   
     handleFileUpload,
     validate,
- , contactFormSession,
+    contactFormSession,
   } = useContactForm();
 
   const { phone, setPhone, handleCountryChange, handlePhone } =

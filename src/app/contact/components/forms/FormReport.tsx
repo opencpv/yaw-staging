@@ -28,23 +28,16 @@ type Props = {};
 
 const FormReport = (props: Props) => {
   const {
-   
     activeTab,
-   
     file,
-   
     formRef,
-   
     loading,
-   
     setLoading,
-   
     tableName,
-   
     handleFileUpload,
     validate,
- ,
-    contactFormSession, handleSessionChange,
+    contactFormSession,
+    handleSessionChange,
   } = useContactForm();
 
   const { phone, setPhone, handleCountryChange, handlePhone } =

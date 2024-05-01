@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import Thumbs from "../feedback/Thumbs";
-import FeedbackSlider from "../feedback/FeedbackSlider";
+import React from "react";
+import Thumbs from "../__shared/ui/feedback/Thumbs";
+import FeedbackSlider from "../__shared/ui/feedback/FeedbackSlider";
 import Image from "next/image";
 import Button from "../__shared/ui/button/Button";
 import { useFeedbackDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
