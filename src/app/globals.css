@@ -233,3 +233,15 @@ input[type="search"]::-webkit-search-cancel-button {
     /* Firefox */
   }
 }
+
+.image-overlay::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 250px;
+  z-index: 100;
+  background-image: linear-gradient(to bottom, black, black, transparent, transparent);
+  opacity: 0.5; /* Adjust as needed */
+}

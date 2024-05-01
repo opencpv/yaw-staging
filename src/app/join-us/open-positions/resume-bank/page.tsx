@@ -6,7 +6,7 @@ import JoinUsButtons from "../../components/JoinUsButtons";
 function Page() {
   return (
     <div>
-      <div className="flex flex-col lg:flex-row relative">
+      <div className="flex flex-col lg:flex-row relative bg-white">
         <div
           className={`${styles.left_pic} w-full h-[192px] lg:h-[100vh] lg:sticky top-0 left-0 bottom-0 lg:basis-[40%] shrink-0 grow-0 !bg-cover flex justify-center  items-center `}>
           <div className="lg:hidden flex flex-col lg:flex-row items-center justify-center gap-4">

@@ -6,107 +6,22 @@ import { Button, Link } from "@nextui-org/react";
 import JoinUsButtons from "./JoinUsButtons";
 import ModalCloseIcon from "@/components/__shared/ui/modals/ModalCloseIcon";
 import { HiOutlineDownload } from "react-icons/hi";
+import JobDescriptionModalContent from "./JobDescriptionModalContent";
 
-type Props = {};
-export default function JobDescriptionButton({}: Props) {
+type Props = {
+  onClick: any;
+};
+export default function JobDescriptionButton({  onClick }: Props) {
   const [animation, setAnimation] = useState(false);
 
   const { user } = useAppStore();
 
   return (
-    <Dialog.Root>
-      <Dialog.Trigger asChild>
-        <Button
-          className={`h-[52px] rounded-lg px-[2.5rem]  py-[0.94rem] font-semibold ${"max-w-[198px] bg-[#DDB771] text-white"} gap-2.5 `}
-        >
-          Job Description
-        </Button>
-      </Dialog.Trigger>
-      <Dialog.Portal>
-        <Dialog.Overlay className="data-[state=open]:animate-overlayShow fixed inset-0 bg-modalOverlay " />
-        <Dialog.Content
-          className={`data-[state=open]:animate-contentShow hidden-scrollbar fixed left-[50%] top-[50%] z-[1000] h-[85vh] max-h-[786px] w-[90vw] max-w-[784px] translate-x-[-50%] ${
-            animation ? " overflow-y-hidden" : "overflow-y-scroll"
-          } translate-y-[-50%] rounded-xl bg-white shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none `}
-        >
-          <div className={`relative z-[1001] p-4`}>
-            <div className="relative mt-10 flex flex-col gap-3 rounded-2xl border-[1px] border-shade-50 bg-[#FAFAFA] px-8 py-2">
-              <p className="border-b-[1px] border-shade-50 py-3 text-[1.5rem] font-semibold text-shade-300">
-                JOB DESCRIPTION
-              </p>
-              <p className="hidden-scrollbar  overflow-y-scroll text-shade-300">
-                Lorem ipsum dolor sit amet consectetur. Bibendum felis nunc
-                tincidunt odio tristique massa tempus ornare rhoncus. Enim et
-                pellentesque sed id porttitor nibh ante ullamcorper. Sodales non
-                tortor congue ac commodo at lacus. Mattis nisl risus semper enim
-                vitae nisl aliquam donec vestibulum. Nulla nisl dapibus nunc id
-                sit amet aenean vitae praesent. Parturient interdum dignissim
-                tortor tempor. Amet praesent nulla elementum urna arcu risus
-                nisl malesuada. Eget amet velit eleifend rutrum. Est gravida
-                sapien interdum enim eros vitae sapien nisl tristique. Gravida
-                ipsum blandit enim massa adipiscing adipiscing lorem ipsum.
-                Eleifend condimentum gravida venenatis sit dignissim morbi
-                libero integer urna. Curabitur ac cum arcu massa metus. Amet
-                eget quam sem accumsan consequat sem odio consequat. Mattis
-                purus diam suspendisse sit elementum viverra turpis ut. Donec
-                lorem lacus viverra urna id. Elementum urna elementum mauris
-                vestibulum nibh volutpat pretium. Nulla eget interdum venenatis
-                id. A eget neque eget curabitur magna. Rutrum tincidunt dolor
-                nullam dignissim ultricies. Aliquam sem non sit arcu hendrerit
-                amet turpis. Vitae enim egestas quis ornare. Faucibus eleifend
-                consectetur vitae aenean egestas. Nulla pretium tortor risus
-                viverra volutpat arcu facilisis varius. Sit fames turpis dolor
-                morbi neque ut nullam. Vulputate eleifend felis facilisis felis
-                id urna pellentesque sed donec. Sed convallis venenatis pulvinar
-                tempus vehicula sem aenean vulputate sed. Tincidunt velit lectus
-                eget egestas. Facilisi lorem enim faucibus lacinia suscipit in
-                hendrerit. Natoque lacus facilisis proin arcu. Vitae arcu
-                posuere habitant nisl ut nisl in tincidunt dui. Duis a egestas
-                consectetur molestie faucibus. Elementum mi integer dolor in.
-                Gravida diam scelerisque risus adipiscing. Pellentesque eget ac
-                dictum eros elementum auctor pharetra a. Sit viverra sit
-                dignissim tortor purus mauris integer id ligula. Ante facilisis
-                aenean ac maecenas dolor feugiat vivamus etiam felis. Vitae sed
-                etiam aliquam sit non eget aliquet suspendisse elit. Dis arcu a
-                dapibus sed egestas. In a gravida commodo tortor vel aenean
-                senectus ac. At ac sollicitudin amet augue. Sit lectus. t.
-                Natoque lacus facilisis proin arcu. Vitae arcu posuere habitant
-                nisl ut nisl in tincidunt dui. Duis a egestas consectetur
-                molestie faucibus. Elementum mi integer dolor in. Gravida diam
-                scelerisque risus adipiscing. Pellentesque eget ac dictum eros
-                elementum auctor pharetra a. Sit viverra sit dignissim tortor
-                purus mauris integer id ligula. Ante facilisis aenean ac
-                maecenas dolor feugiat vivamus etiam felis. Vitae sed etiam
-                aliquam sit non eget aliquet suspendisse elit. Dis arcu a
-                dapibus sed egestas. In a gravida commodo tortor vel aene
-              </p>
-              <div className="sticky bottom-2 grid h-[40px] grid-cols-2 gap-1 pb-5">
-                <Button className="bg-secondary-500 text-[1rem] font-semibold text-shade-300 ">
-                  Download
-                  <HiOutlineDownload size="24" colour="#3F3F46" />
-                </Button>
-                <Link
-                  href="/join-us/open-positions/application"
-                  className="w-full"
-                >
-                  <Button className="w-full bg-[#DDB771] text-[1rem] font-semibold text-white">
-                    Apply
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          <Dialog.Close asChild>
-            <button
-              className="absolute right-[20px] top-[15px] z-[4000] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full text-violet11 hover:bg-violet4 focus:shadow-[0_0_0_2px] focus:shadow-violet7 focus:outline-none"
-              aria-label="Close"
-            >
-              <ModalCloseIcon />
-            </button>
-          </Dialog.Close>
-        </Dialog.Content>
-      </Dialog.Portal>
-    </Dialog.Root>
+    <Button
+      onClick={onClick}
+      className={`h-[52px] rounded-lg px-[2.5rem]  py-[0.94rem] font-semibold ${"max-w-[198px] bg-[#DDB771] text-white"} gap-2.5 `}
+    >
+      Job Description
+    </Button>
   );
 }

@@ -24,12 +24,16 @@ const Navbar = (props: any) => {
 
   useHideDocumentScrollBar(toggle);
 
+  
+
   useUserData();
 
   useEffect(() => {
     const handleScroll = () => {
       if (
-        (pathname?.includes("/properties/") || pathname === "/") &&
+        (pathname?.includes("/properties/") ||
+          pathname === "/" ||
+          pathname?.includes("/join-us")) &&
         window.scrollY > 1
       ) {
         setIsScrolling(true);
@@ -45,10 +49,15 @@ const Navbar = (props: any) => {
   }, [pathname]);
 
   const shouldChangeColor =
-    (isScrolling && pathname?.includes("/properties/")) ||
-    (isScrolling && pathname === "/");
+    isScrolling &&
+    (pathname?.includes("/properties/") ||
+      pathname === "/" ||
+      pathname?.includes("/join-us"));
+
   const isNotTargetPage =
-    !pathname?.includes("/properties/") && pathname !== "/";
+    !pathname?.includes("/properties/") &&
+    pathname !== "/" &&
+    !pathname?.includes("/join-us");
 
   return (
     <>

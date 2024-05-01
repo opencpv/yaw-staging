@@ -8,10 +8,10 @@ import Navbar from "@/components/__shared/ui/Navbar";
 function Page() {
   return (
     <div className="flex flex-col items-center justify-center">
-      <div className="flex w-full max-w-[1728px] flex-col items-center justify-center">
+      <div className="flex w-full  flex-col items-center justify-center ">
         <div
-          className={`flex h-[405px] w-full max-w-[1728px] shrink-0 flex-col items-center  justify-center gap-6  lg:h-[656px]
-               ${styles.header} !bg-cover !bg-no-repeat`}
+          className={`flex h-[405px] w-full shrink-0 flex-col items-center  justify-center gap-6  lg:h-[656px]
+               ${styles.header} !bg-cover !bg-no-repeat `}
         >
           <div className="flex flex-col items-center justify-center gap-4">
             <p className="text-[1.5625rem] font-semibold capitalize text-white lg:text-[3.0625rem]">
@@ -22,7 +22,7 @@ function Page() {
               at mauris ridiculus laoreet.
             </p>
           </div>{" "}
-          <div className="flex w-full items-center justify-center gap-4 px-2">
+          <div className="flex w-full items-center justify-center gap-4 px-2 ">
             <Link
               href={"/join-us/open-positions"}
               className="flex w-full justify-end"
@@ -37,7 +37,7 @@ function Page() {
             </Link>{" "}
           </div>
         </div>
-        <div className="mt-5 grid grid-cols-2 items-start  justify-center gap-4 px-5 pt-10 lg:mt-24 lg:px-7">
+        <div className="mt-5 grid grid-cols-2 items-start  justify-center gap-8 px-5 lg:px-14 pt-10 lg:mt-24 2xl:px-7 max-w-[1728px] ">
           <p className="col-span-2 w-fit border-b-4 border-[#DDB771] pb-2 text-[1.5625rem] font-semibold capitalize text-[#333] lg:hidden lg:text-[3.0625rem]">
             What we do
           </p>
