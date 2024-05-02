@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { styled } from "@stitches/react";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
@@ -107,7 +108,6 @@ export default function Menu(props: any) {
           opacity: 0,
         },
       }}
-      {...props}
     >
       <MenuArea />
       {windowLimit ? (

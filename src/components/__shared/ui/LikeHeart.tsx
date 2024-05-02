@@ -64,7 +64,9 @@ const LikeHeart = ({ liked, className, userId, propertyId }: Props) => {
 
   useEffect(() => {
     const fetchFavorite = async () => {
-      const { data: favorite } = await getUserFavorite(user?.id as string);
+      const { data: favorite } = await getUserFavorite({
+        userId: user?.id as string,
+      });
       setShouldOpenModal(!favorite);
     };
 

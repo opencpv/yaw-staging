@@ -3,7 +3,7 @@ import { ChangeEvent } from "react";
 import { AiOutlineLink } from "react-icons/ai";
 
 type Props = {
-  file: string;
+  file: File;
   handleFileUpload: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
@@ -17,14 +17,14 @@ export const UploadFile = ({ file, handleFileUpload }: Props) => {
         >
           <div
             className="form-field-border flex h-16 w-full min-w-[100px] items-center gap-2 rounded-l-md border p-3 py-4 text-neutral-400 min-[390px]:h-full min-[390px]:border-r-0"
-            title={file ?? ""}
+            title={file?.name ?? ""}
           >
             <AiOutlineLink className="shrink-0" size="18" color="#737373" />
             <p className="hidden truncate min-[390px]:block">
-              {file ? file : "Choose File (optional)"}
+              {file ? file?.name : "Choose File (optional)"}
             </p>
             <p className="truncate min-[390px]:hidden">
-              {file ? file : "Upload File (optional)"}
+              {file ? file?.name : "Upload File (optional)"}
             </p>
           </div>
           <div

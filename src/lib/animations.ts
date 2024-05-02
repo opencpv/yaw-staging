@@ -132,10 +132,10 @@ export const SlideInFromLeft = {
   },
 };
 
-export const contentAccordionVariants = (height = "6rem") => {
+export const contentAccordionVariants = (height = "12rem") => {
   return {
-    expanded: { height: "auto" },
-    collapsed: { height },
+    collapsed: { height: "auto" },
+    expanded: { height },
   };
 };
 

@@ -37,7 +37,7 @@ export default function JobCard({ job }: Props) {
         onClose={onClose}
         closeButton={<ModalCloseIcon />}
         // size="3xl"
-        className=" max-h-[85vh] w-[90vw] max-w-[784px]  "
+        className=" max-h-[75vh] w-[90vw] max-w-[784px]  "
       />
 
       <button
@@ -48,12 +48,7 @@ export default function JobCard({ job }: Props) {
       >
         <div className="flex flex-col items-start  gap-6">
           <div className="relative aspect-[398/306] w-full overflow-hidden  rounded-t-xl lg:aspect-[542/306]">
-            <Image
-              src={"/assets/images/joinus/creative-hand.jpeg"}
-              alt={job.title}
-              fill
-              objectFit="cover"
-            />
+            <Image src={job.imgUrl} alt={job.title} fill objectFit="cover" />
           </div>{" "}
           <div className="flex flex-col gap-8 px-4">
             <div className="flex flex-col gap-2">
@@ -61,10 +56,13 @@ export default function JobCard({ job }: Props) {
                 {job.title}
               </p>
               <p className="max-h-[45px] max-w-[371px] overflow-hidden overflow-ellipsis  text-left leading-[22.4px] text-shade-200 ">
-                {job.description}
+                {job.description_brief}
               </p>
             </div>
-            <JobDescriptionButton onClick={onOpen} />
+            <JobDescriptionButton
+              onClick={onOpen}
+              description={job.description}
+            />{" "}
           </div>
         </div>
       </button>

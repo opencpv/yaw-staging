@@ -31,7 +31,7 @@ export default function PropertyFormComplex({ setOpen }: Props) {
   });
   return (
     <Root className={`flex flex-col gap-8`} ref={formRef}>
-      <div className="mt-10 flex flex-col gap-6 pl-2 pr-0 text-[1.5625rem] text-[#073B3A] lg:mt-0">
+      <div className="text-primary mt-10 flex flex-col gap-6 pl-2 pr-0 text-[1.5625rem] lg:mt-0">
         <p className="border-b-[1px] border-b-[#0000000F] pb-2 font-bold">
           Application Form
         </p>

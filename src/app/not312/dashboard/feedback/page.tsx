@@ -71,11 +71,6 @@ const PageView = () => {
   const tableRef = useRef<any>();
   const [selectedKeys, setSelectedKeys] = useState<any>(new Set(["all"]));
 
-  const [exportType, setexportType] = useState([
-    { key: "csv", label: "CSV" },
-    { key: "pdf", label: "PDF" },
-  ]);
-
   const [selectedExportTypeKey, setSelectedExportTypeKey] = useState<any>(
     new Set(["csv"]),
   );

@@ -4,21 +4,21 @@ import Link from "next/link";
 
 function Page() {
   return (
-    <div className=" flex flex-col items-center justify-start bg-[#F8F8F8] h-[100vh]">
-      <div className="bg-[url('/assets/images/b2b-home.png')] bg-no-repeat bg-cover h-[468px] w-full max-w-[1728px] text-[2.4375rem] font-bold text-white flex items-center justify-center ">
+    <div className=" flex h-[100vh] flex-col items-center justify-start bg-[#F8F8F8]">
+      <div className="flex h-[468px] w-full max-w-[1728px] items-center justify-center bg-[url('/assets/images/b2b-home.png')] bg-cover bg-no-repeat text-[2.4375rem] font-bold text-white ">
         <p className="uppercase">invoices & receipts</p>
       </div>
-      <div className="relative bg-white rounded-xl w-[90%]  max-w-[398px] lg:max-w-[495px] max-h-[234px] flex flex-col gap-2.5 px-6 py-8 lg:w-full top-[-40px] lg:top-[-90px]">
+      <div className="relative top-[-40px] flex max-h-[234px]  w-[90%] max-w-[398px] flex-col gap-2.5 rounded-xl bg-white px-6 py-8 lg:top-[-90px] lg:w-full lg:max-w-[495px]">
         <div className="flex flex-col gap-4">
           <p className="text-[#6A6968]">Customer ID Number</p>
           <input
             type="text"
             placeholder="Enter unique id no."
-            className="border-[1px] border-[#E6E6E6] rounded-[4px] p-4 h-[52px]"
+            className="h-[52px] rounded-[4px] border-[1px] border-[#E6E6E6] p-4"
           />
         </div>
         <Link href={"/b2b/data"} className="w-full">
-          <Button className="text-white bg-[#073B3A] rounded-lg flex items-center justify-center font-semibold h-[52px] w-full">
+          <Button className="bg-primary flex h-[52px] w-full items-center justify-center rounded-lg font-semibold text-white">
             Track
           </Button>
         </Link>

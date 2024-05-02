@@ -6,7 +6,7 @@ import ContactTabs from "./components/ContactTabs";
 import ScrollTopAndSocial from "../../components/__shared/ui/ScrollTopAndSocial";
 import FeedbackButton from "../../components/__shared/ui/feedback/FeedbackButton";
 import ContactForm from "./components/ContactForm";
-import ContactFormSideImage from "./components/ContactFormSideImage";
+import ContactFormSideContent from "./components/ContactFormSideContent";
 import { Metadata } from "next";
 import { loadQuery } from "@/lib/utils/sanity/sanityStore";
 import { SanityDocument } from "next-sanity";
@@ -21,7 +21,9 @@ export const metadata: Metadata = {
 const Page = async () => {
   const initial = await loadQuery<SanityDocument[]>(HOME_PAGE_QUERY);
   const data = initial.data[0];
-  const aboutReqData = await loadQuery<SanityDocument[]>(CONTACT_US_PAGE_QUERY);
+  const contactUsData = await loadQuery<SanityDocument[]>(
+    CONTACT_US_PAGE_QUERY,
+  );
 
   return (
     <>
@@ -36,7 +38,7 @@ const Page = async () => {
               <ContactTabs />
               <div className="flex h-full grid-cols-2 flex-col gap-10 md:grid">
                 <ContactForm />
-                <ContactFormSideImage data={aboutReqData.data} />
+                <ContactFormSideContent data={contactUsData.data[0]} />
               </div>
             </div>
           </div>
@@ -102,7 +104,7 @@ const Root = styled("div", {
       "linear-gradient(271deg, rgba(255, 255, 255, 0.83) 55.34%, rgba(255, 255, 255, 0.83) 124.12%)",
   },
   "required-message": {
-    color: "#073B3A",
+    color: "#11605E",
     fontSize: "14px",
   },
 });

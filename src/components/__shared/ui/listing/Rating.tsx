@@ -53,7 +53,7 @@ const Rating = ({ value, className }: Props) => {
         onClose={() => setSignInModalOpen(false)}
       />
       <RatingModal
-        closeButton={<CloseModalIcon onClick={onClose} />}
+        closeButton={<CloseModalIcon />}
         // header={}
         body={<div className="h-72">Rating form here</div>} // TODO: add rating form
         // footer={<ModalFooter />}

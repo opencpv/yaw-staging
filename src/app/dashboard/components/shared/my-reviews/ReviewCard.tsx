@@ -125,7 +125,7 @@ export default function ReviewCard({ data, variant, property, index }: Props) {
         <div className="flex flex-col items-start justify-center gap-[1.3125rem] border-b-[1px] border-b-[#E9ECEF] pb-4 pl-2 ">
           {data?.replies && (
             <div className="flex items-center gap-1">
-              <p className="font-semibold text-[#073B3A]">Replies</p>
+              <p className="text-primary font-semibold">Replies</p>
               <CaREviewsReply2 />
             </div>
           )}

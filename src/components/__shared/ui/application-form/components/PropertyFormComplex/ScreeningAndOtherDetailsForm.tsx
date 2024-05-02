@@ -29,7 +29,7 @@ const ScreeningAndOtherDetailsForm = React.forwardRef<HTMLInputElement, Props>(
       useLocalStorage<PropertyDataType>("property1");
     return (
       <Root className="p4 px-2">
-        <p className="text-[1.5625rem]  font-semibold text-[#073B3A] ">
+        <p className="text-primary  text-[1.5625rem] font-semibold ">
           Screening & Other Details
         </p>
         <div>

@@ -19,7 +19,7 @@ const SummaryCard = ({ title, link, api }: Props) => {
 
   const router = useRouter();
   return (
-    <Card className="overflw-none aspect-square w-full min-w-[240px]">
+    <Card className="overflw-none mr-4 aspect-square w-full min-w-[240px]">
       <CardBody className="flex flex-col items-center justify-center">
         {isLoading ? (
           <Spinner />

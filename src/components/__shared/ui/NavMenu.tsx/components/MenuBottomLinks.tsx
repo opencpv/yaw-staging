@@ -19,10 +19,9 @@ const MenuBottomLinks = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
       ref={ref}
     >
       {props.links.map((r, index) => (
-        <>
+        <React.Fragment key={index}>
           {LowerCase(r?.name) === "how to" ? (
             <HowToLink
-              key={index}
               className="bottomLink text-2xl transition-all"
               onClick={() => {
                 setToggle(false);
@@ -30,7 +29,6 @@ const MenuBottomLinks = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
             />
           ) : LowerCase(r?.name) === "report fraud" ? (
             <ReportFraud
-              key={index}
               className="bottomLink text-2xl transition-all"
               onClick={() => {
                 setToggle(false);
@@ -39,7 +37,6 @@ const MenuBottomLinks = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
           ) : LowerCase(r?.name) === "feedback" ? (
             <Feedback data={{}}>
               <button
-                key={index}
                 className="bottomLink text-2xl transition-all"
                 onClick={() => {
                   setToggle(false);
@@ -50,7 +47,6 @@ const MenuBottomLinks = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
             </Feedback>
           ) : (
             <Link
-              key={index}
               href={r?.url}
               className="bottomLink text-2xl transition-all"
               onClick={() => setToggle(false)}
@@ -58,7 +54,7 @@ const MenuBottomLinks = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
               {r?.name}
             </Link>
           )}
-        </>
+        </React.Fragment>
       ))}
     </div>
   );

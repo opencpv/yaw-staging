@@ -1,6 +1,7 @@
 export type JobType = {
   id: number;
-  pic: string;
+  imgUrl: string;
   title: string;
+  description_brief: string;
   description: string;
 };

@@ -15,6 +15,10 @@ import { revalidationRule, fetchOrderRule } from "@/lib/utils/fetchRules";
 import TargetedSearchCard, {
   TargetedSearchState,
 } from "@/app/dashboard/renter/be-the-first-to-know/components/TargetedSearchCard";
+import { useAppStore } from "@/store/dashboard/AppStore";
+import { useFetchBeTheFirstToKnowListings } from "./services";
+import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
+import EmptyState from "@/components/__shared/ui/states/EmptyState";
 
 let demo = [
   {
@@ -31,20 +35,16 @@ let demo = [
 const BeTheFirstToKnow = () => {
   const data = [1];
   const { images } = useAssets();
+  const { user } = useAppStore();
 
   const {
     data: listings,
     error,
-    isValidating,
     isLoading,
+    isValidating,
     loadMore,
-  } = useFetchTableWithInfiniteScroll({
-    tableName: "standard_template",
-    pageSize: 9,
-    order: { column: "created_at", ...fetchOrderRule() },
-    select: "id, property_name, property_id, description, monthly_amount, city",
-    ...revalidationRule(),
-  });
+    mutate,
+  } = useFetchBeTheFirstToKnowListings({ userId: user?.id as string });
 
   return (
     <>
@@ -78,14 +78,14 @@ const BeTheFirstToKnow = () => {
         data={listings}
         error={error}
         isLoading={isLoading}
-        isValidating={isValidating}
         isLoadingComponent={<SkeletonListing count={3} />}
-        errorComponent={<FetchErrorMessage specificData="properties" />}
-        emptyStateComponent={
-          <p className="mt-4 text-center italic">
-            There are no properties yet.
-          </p>
+        errorComponent={
+          <SomethingWentWrong
+            className="mt-20 h-fit"
+            onTryAgain={() => mutate()}
+          />
         }
+        emptyStateComponent={<EmptyState />}
       />
       {demo?.map((listing, idx) => (
         <TargetedSearchCard
