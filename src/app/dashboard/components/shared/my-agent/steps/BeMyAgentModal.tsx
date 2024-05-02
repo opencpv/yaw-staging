@@ -6,12 +6,12 @@ import Button from "@/components/__shared/ui/button/Button";
 import { MdOutlineEdit } from "react-icons/md";
 import { cn } from "@/lib/utils";
 import { formatPrice } from "@/lib/utils/numberManipulation";
-import Modal from "@/components/__shared/modals/Modal";
+import Modal from "@/components/__shared/ui/modals/Modal";
 import BeMyAgentHeader from "./BeMyAgentHeader";
 import BeMyAgentFooter from "./BeMyAgentFooter";
 import * as Dialog from "@radix-ui/react-dialog";
-import { ClientOnly } from "@/components/ui/ClientOnly";
-import StepsModal from "@/components/__shared/modals/steps/StepsModal";
+import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
+import StepsModal from "@/components/__shared/ui/modals/steps/StepsModal";
 import { Form, Formik } from "formik";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { BeMyAgentFormType } from "./types";
@@ -31,7 +31,7 @@ const myAgentValidationSchema = Yup.object({
   // email: Yup.string()
   //   .email("Invalid email address")
   //   .required("Email is required"),
-  // phoneNumber: Yup.string().required("Phone number is required"),
+  // phone: Yup.string().required("Phone number is required"),
 });
 
 const BeMyAgentModal = (props: Props) => {

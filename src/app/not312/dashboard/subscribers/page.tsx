@@ -12,7 +12,7 @@ import { route } from "@/lib/utils/routes";
 import { client } from "@/lib/utils/sanity/client";
 import { Button } from "antd";
 import axios from "axios";
-import Loader from "@/components/__shared/loader/Loader";
+import Loader from "@/components/__shared/ui/loader/Loader";
 import type { TableProps } from "antd";
 import { Space, Table, Tag } from "antd";
 import Spinner from "@/app/dashboard/components/shared/Spinner";

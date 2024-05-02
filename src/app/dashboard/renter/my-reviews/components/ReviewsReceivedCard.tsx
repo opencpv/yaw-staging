@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import CaREviewsReply2 from "./icons/CaReviewsReply2";
 import DeleteModal from "./DeleteModal";
 import ReviewStarsFixed from "./ReviewStarsFixed";
-import CustomTextAreaInput from "@/app/components/CustomTextAreaInput";
+import CustomTextAreaInput from "@/components/__shared/ui/form/CustomTextAreaInput";
 import CaThumbsUpYellow from "./icons/CaThumbsUpYellow";
 import CaThumbsDown from "./icons/CaThumbsDown";
 import useReviews from "./useReviews";
@@ -26,9 +26,8 @@ export default function ReviewsReceivedCard({
   const [editInput, setInput] = useState();
   const { replyReview, reply, setReply, updateReview } = useReviews();
 
-
   return (
-    <div className="flex w-full flex-col items-start  gap-4  border-b-1 py-3 max-w-[1103px]">
+    <div className="flex w-full max-w-[1103px] flex-col  items-start  gap-4 border-b-1 py-3">
       <div className="flex w-full flex-col items-start gap-4 border-l-4 border-l-[#00974A]   pl-4">
         <div className="flex w-full items-center justify-start gap-4">
           <div
@@ -77,10 +76,10 @@ export default function ReviewsReceivedCard({
 
       {data?.replies && (
         <div className="flex flex-col items-start justify-center gap-[1.3125rem] pb-4 pl-1 pt-2">
-            <div className="flex items-center gap-1">
-              <p className="font-semibold text-[#073B3A]">Response </p>
-              <CaREviewsReply2 />
-            </div>
+          <div className="flex items-center gap-1">
+            <p className="text-primary font-semibold">Response </p>
+            <CaREviewsReply2 />
+          </div>
           {data?.replies?.map((r: any, index: number) => (
             <div
               className="flex w-full items-center justify-start    gap-2"

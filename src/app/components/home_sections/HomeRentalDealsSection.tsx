@@ -4,7 +4,7 @@ import React from "react";
 import DealCard from "../DealCard";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import { fadeUp } from "@/lib/animations";
-import FramerWrapper from "@/components/__shared/FramerWrapper";
+import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 
 type Props = {
   data: any;

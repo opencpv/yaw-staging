@@ -4,13 +4,13 @@ import AgentButtons from "./Button";
 import CaRelume from "./icons/CaRelume";
 import CaAgentTick from "./icons/CaAgentTick";
 import BeMyAgentModal from "@/app/dashboard/components/shared/my-agent/steps/BeMyAgentModal";
-import { ClientOnly } from "@/components/ui/ClientOnly";
+import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import style from "./index.module.css";
 import React from "react";
 import LearnMoreYoutubeBtn from "./LearnMoreYoutubeBtn";
 import { fadeUp } from "@/lib/animations";
-import FramerWrapper from "@/components/__shared/FramerWrapper";
+import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 
 export default function AgentLandingPage() {
   const { images } = useAssets();

@@ -1,4 +1,4 @@
-import RichTextRenderer from "@/app/components/RichTextRenderer";
+import RichTextRenderer from "@/components/__shared/RichTextRenderer";
 
 const TermItem = ({ data, index }: { data: any; index: number }) => {
   const Bullet = () => (
@@ -9,7 +9,7 @@ const TermItem = ({ data, index }: { data: any; index: number }) => {
   );
 
   const Title = () => (
-    <h2 className="flex w-fit items-center justify-center font-bold text-[#11605E] lg:text-4xl">
+    <h2 className="text-primary flex w-fit items-center justify-center font-bold lg:text-4xl">
       {data.termsArray.title}
     </h2>
   );

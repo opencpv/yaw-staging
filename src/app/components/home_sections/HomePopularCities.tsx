@@ -1,5 +1,5 @@
 "use client";
-import SliderMultiItems from "@/components/__shared/sliders/SliderMultiItems";
+import SliderMultiItems from "@/components/__shared/ui/sliders/SliderMultiItems";
 import React from "react";
 import PopularCitiesCard from "../PopularCitiesCard";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";

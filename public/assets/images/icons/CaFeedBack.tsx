@@ -87,7 +87,7 @@ const CaFeedBack = () => {
           y2="212.2"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="#073B3A" />
+          <stop stopColor="#11605E" />
           <stop offset="1" stopColor="#1B9E9C" stopOpacity="0.37" />
         </linearGradient>
       </defs>

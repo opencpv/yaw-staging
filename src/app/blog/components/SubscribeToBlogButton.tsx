@@ -1,10 +1,10 @@
 "use client";
 import Button from "@/components/__shared/ui/button/Button";
-import Modal from "@/components/__shared/modals/Modal";
+import Modal from "@/components/__shared/ui/modals/Modal";
 import SubscribeForm from "@/components/__shared/ui/SubscribeForm";
 import { useDisclosure } from "@nextui-org/react";
 import React from "react";
-import FramerWrapper from "@/components/__shared/FramerWrapper";
+import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 import { fadeIn } from "@/lib/animations";
 import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 

@@ -8,9 +8,9 @@ import { HiOutlineUserGroup } from "react-icons/hi2";
 import ManagePropertiesTable from "./components/ManagePropertiesTable";
 import ManagePropertiesSmallScreenView from "./components/ManagePropertiesSmallScreenView";
 import ManagePropertiesTabs from "./components/ManagePropertiesTabs";
-import ListingFormModal from "@/app/components/listing-form";
+import ListingFormModal from "@/components/__shared/ui/listing-form";
 import FetchCount from "../../components/shared/FetchCount";
-import { ClientOnly } from "@/components/ui/ClientOnly";
+import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
 
 const page = () => {
   return (

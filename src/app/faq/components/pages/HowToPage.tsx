@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import HowToVideosSection from "../how_to/HowToVideosSection";
-import OptionFilterTabs from "@/components/__shared/OptionFilterTabs";
+import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
 import { useHowToTabsStore } from "@/store/faq/useFaqStore";
 import Select from "@/app/dashboard/components/shared/ui/Select";
 import { useSelectDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";

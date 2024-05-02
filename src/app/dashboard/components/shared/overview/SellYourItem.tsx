@@ -1,5 +1,5 @@
 "use client";
-import FramerWrapper from "@/components/__shared/FramerWrapper";
+import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 import Button from "@/components/__shared/ui/button/Button";
 import { fadeIn } from "@/lib/animations";
 import { useAssets } from "@/lib/custom-hooks/useAssets";

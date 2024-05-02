@@ -2,7 +2,7 @@ import { useState } from "react";
 import NoReviews from "./NoReviews";
 import ReviewCard from "./ReviewCard";
 import { mockReviewData } from "./content";
-import SlideEnter from "@/app/components/listing-form/components/SlideEnter";
+import SlideEnter from "@/components/__shared/ui/listing-form/components/SlideEnter";
 
 export default function PropertyOwnersReview() {
   const [reviews, setReviews] = useState(false);

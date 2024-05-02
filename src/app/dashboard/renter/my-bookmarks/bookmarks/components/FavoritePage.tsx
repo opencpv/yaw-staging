@@ -2,7 +2,7 @@ import { boolean } from "yup";
 import SimpleSwitch from "./SimpleSwitch";
 import { useState } from "react";
 import PropertiesListing from "@/app/properties/components/PropertiesListing";
-import ListingCard from "@/components/__shared/listing/ListingCard";
+import ListingCard from "@/components/__shared/ui/listing/ListingCard";
 import images from "@/enum/temp/images";
 import FavoriteListingCard from "./FavoriteListingCard";
 

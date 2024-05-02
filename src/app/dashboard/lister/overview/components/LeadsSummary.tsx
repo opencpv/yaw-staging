@@ -1,5 +1,5 @@
 import { useFetchListerLeads } from "@/app/dashboard/components/shared/overview/utils/services";
-import Loader from "@/components/__shared/loader/Loader";
+import Loader from "@/components/__shared/ui/loader/Loader";
 import Button from "@/components/__shared/ui/button/Button";
 import ButtonMessage from "@/components/__shared/ui/button/ButtonMessage";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";

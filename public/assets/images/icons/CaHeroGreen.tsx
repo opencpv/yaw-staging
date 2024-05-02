@@ -25,7 +25,7 @@ const CaHeroGreen = ({ width, height }: Props) => {
           y2="351"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="#073B3A" />
+          <stop stopColor="#11605E" />
           <stop offset="1" stopColor="#092929" stopOpacity="0.7" />
         </linearGradient>
       </defs>

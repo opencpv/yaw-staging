@@ -1,5 +1,5 @@
 "use client";
-import CustomSelect from "@/app/components/CustomSelect";
+import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
 import styles from "./index.module.css";
 import { Button } from "@nextui-org/react";
 import { useLocalStorage } from "@uidotdev/usehooks";

@@ -21,6 +21,7 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import Avatar from "@/components/__shared/ui/avatar/Avatar";
 import AvatarMenu from "@/components/__shared/ui/avatar/AvatarMenu";
 import { useUserSession } from "@/lib/custom-hooks/database/useUserSession";
+import Switch from "../navbar/switch";
 
 type PaginationTabProps = {
   active: string;
@@ -160,14 +161,7 @@ const Pagination = () => {
         </div>
       </Button>
 
-      {user && (
-        <div className="relative order-1 my-auto mr-auto flex w-full flex-1 items-center gap-5 ssm:order-3 ssm:hidden">
-          <AvatarMenu />
-          <span className="text-shade-200">
-            {user.firstname || user.lastname}
-          </span>
-        </div>
-      )}
+      <Switch className="relative order-1 my-auto mr-auto flex w-full flex-1 items-center gap-5 ssm:order-3 ssm:hidden" />
       <button
         className="order-4 my-auto ml-auto h-max w-fit items-center justify-center rounded-xl border border-primary-800 px-3 py-2 text-primary-800 ssm:order-4 md:hidden"
         onClick={() => setIsOpen(true)}

@@ -18,7 +18,7 @@ import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { useUserSession } from "@/lib/custom-hooks/database/useUserSession";
 import { createClient } from "@/lib/utils/supabase/auth/client";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import Tooltip from "@/components/ui/Tooltip";
+import Tooltip from "@/components/__shared/ui/Tooltip";
 
 type Props = {
   /** ClassName for the avatar  */
@@ -35,9 +35,12 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
   const router = useRouter();
   const { onOpen } = useToastDisclosure();
   const supabase = createClient();
+  const [loading, setLoading] = React.useState(false);
 
   const handleSignOut = async () => {
+    setLoading(true);
     const { error } = await supabase.auth.signOut();
+    setLoading(false);
     if (error) {
       onOpen("Something went wrong", "error");
     } else {
@@ -143,8 +146,11 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
             onClick={handleSignOut}
           >
             <div className="flex items-center gap-2 pt-5">
-              <TbLogout size={20} />
-              <p>Log Out</p>
+              <TbLogout
+                size={20}
+                className={loading ? "animate-drip-expand" : ""}
+              />
+              <p>{loading ? "Logging Out..." : "Log Out"}</p>
             </div>
           </li>
         </ul>

@@ -3,12 +3,12 @@ import React, { useEffect } from "react";
 import UserOverview from "../../../components/shared/overview/UserOverview";
 import RenterPaidFeatures from "../../../components/shared/overview/PaidFeaturesSection";
 import RenterExplore from "../../../components/shared/overview/RenterExplore";
-import RecommendedListings from "@/components/__shared/listing/RecommendedListings";
+import RecommendedListings from "@/components/__shared/ui/listing/RecommendedListings";
 import GradientBanner from "../../../components/shared/overview/GradientBanner";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import SellYourItem from "../../../components/shared/overview/SellYourItem";
 import RenterActivityCard from "./RenterActivityCard";
-import ScrollTop from "@/components/__shared/ScrollTop";
+import ScrollTop from "@/components/__shared/ui/ScrollTop";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { useAppStore } from "@/store/dashboard/AppStore";
 

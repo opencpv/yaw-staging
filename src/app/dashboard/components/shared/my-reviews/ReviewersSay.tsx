@@ -3,13 +3,13 @@ import NoReviews from "./NoReviews";
 import { mockReviewData } from "./content";
 import ReviewCard from "./ReviewCard";
 import ReviewSummary from "./ReviewSummary";
-import SlideEnter from "@/app/components/listing-form/components/SlideEnter";
+import SlideEnter from "@/components/__shared/ui/listing-form/components/SlideEnter";
 
 export default function ReviewersSay() {
   const [reviews, setReviews] = useState(true);
 
   return (
-    <div className="w-full flex-col flex items-start justify-center">
+    <div className="flex w-full flex-col items-start justify-center">
       {!reviews && <NoReviews />}
       {reviews && (
         <SlideEnter>
@@ -20,7 +20,12 @@ export default function ReviewersSay() {
 
             <div className="flex flex-col gap-14">
               {mockReviewData.map((r, index) => (
-                <ReviewCard variant="reviewers-say" key={index} data={r} index={index} />
+                <ReviewCard
+                  variant="reviewers-say"
+                  key={index}
+                  data={r}
+                  index={index}
+                />
               ))}
             </div>
           </div>

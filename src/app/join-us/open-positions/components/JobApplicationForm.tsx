@@ -1,10 +1,10 @@
 "use client";
 
-import CustomFileInput from "@/app/components/CustomFileInput";
-import TextFieldInput from "@/app/components/TextFieldInput";
-import { InfoBubble } from "@/app/components/application-form/components/InfoBubble";
+import CustomFileInput from "@/components/__shared/ui/form/CustomFileInput";
+import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
+import { InfoBubble } from "@/components/__shared/ui/application-form/components/InfoBubble";
 import JoinUsButtons from "@/app/join-us/components/JoinUsButtons";
-import PhoneNumberInputv2 from "@/components/__shared/PhoneInputv2";
+import PhoneNumberInputv2 from "@/components/__shared/ui/form/PhoneInputv2";
 import { Form, Formik } from "formik";
 import Link from "next/link";
 import CaJoinUsIconLeft from "./icons/CaJoinUsIconLongLeft";

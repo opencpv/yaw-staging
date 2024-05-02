@@ -9,7 +9,7 @@ import { formatPrice } from "@/lib/utils/numberManipulation";
 import { formatDate, formatTime } from "@/lib/utils/stringManipulation";
 import { useDaysDifference } from "@/lib/custom-hooks/useDaysDifference";
 import ButtonDelete from "@/components/__shared/ui/button/ButtonDelete";
-import DestructiveModal from "@/components/__shared/modals/DestructiveModal";
+import DestructiveModal from "@/components/__shared/ui/modals/DestructiveModal";
 import { useDisclosure } from "@nextui-org/react";
 import { ManagePropertiesInterface } from "../../../../../../interfaces";
 

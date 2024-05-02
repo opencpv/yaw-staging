@@ -4,7 +4,7 @@ import Select from "../../../components/shared/ui/Select";
 import { useSelectDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { cn } from "@nextui-org/react";
 import { BsInfoCircle } from "react-icons/bs";
-import Tooltip from "@/components/ui/Tooltip";
+import Tooltip from "@/components/__shared/ui/Tooltip";
 import { HiOutlineBadgeCheck } from "react-icons/hi";
 import { MdHourglassTop } from "react-icons/md";
 
@@ -36,10 +36,10 @@ const RtApplicationStatus = ({ status }: Props) => {
           className={cn(
             "flex w-fit shrink-0 items-center justify-center gap-2 rounded-full p-1.5 px-2.5 shadow-sm",
             {
-              "bg-[#FEEFEF] text-[#DA1414]": status === "declined",
-              "bg-[#EDF9F0] text-[#287D3C]": status === "accepted",
-              "bg-[#FFF4EC] text-[#B95000]": status === "under review",
-              "bg-[#FEEFEF] text-[#DA1414] ": status === "incomplete",
+              "bg-error-bg text-error": status === "declined",
+              "text-success bg-success-bg": status === "accepted",
+              "text-warning bg-warning-bg": status === "under review",
+              "bg-error-bg text-error ": status === "incomplete",
             },
           )}
         >

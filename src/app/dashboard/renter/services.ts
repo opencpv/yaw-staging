@@ -1,7 +1,7 @@
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { useOffsetInfiniteScrollQuery } from "@supabase-cache-helpers/postgrest-swr";
 
-export const useFetchUserBookmarks = ({
+export const useFetchRenterBookmarks = ({
   filter = "favourites",
   userId,
 }: {
@@ -12,11 +12,10 @@ export const useFetchUserBookmarks = ({
     .from("merged_property_view")
     .select(
       "id, is_best_value, is_realtors_choice, is_featured, is_verified, is_lister_certified, profiles!inner(id, is_certified), property_type, description, city, bedrooms, monthly_amount, favorite_user_ids, subtitle, neighbourhood, advance_period, viewing_fee",
-    )
-    .contains("favorite_user_ids", [userId]);
+    );
 
   if (filter === "favourites") {
-    query = query;
+    query = query.contains("favorite_user_ids", [userId]);
   }
   if (filter === "be the first to know") {
     query = query;
@@ -25,7 +24,8 @@ export const useFetchUserBookmarks = ({
     query = query;
   }
   if (filter === "all") {
-    query = query;
+    // TODO: add btftk and recommendations filters
+    query = query.contains("favorite_user_ids", [userId]);
   }
 
   return useOffsetInfiniteScrollQuery(query, {

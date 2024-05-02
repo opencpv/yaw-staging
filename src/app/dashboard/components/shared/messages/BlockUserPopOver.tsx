@@ -7,7 +7,7 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import { FaBan, FaEllipsisV } from "react-icons/fa";
-import DestructiveModal from "@/components/__shared/modals/DestructiveModal";
+import DestructiveModal from "@/components/__shared/ui/modals/DestructiveModal";
 import { MdLockOpen } from "react-icons/md";
 
 type Props = {

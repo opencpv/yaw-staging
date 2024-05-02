@@ -1,12 +1,12 @@
 import { styled } from "@stitches/react";
 import { useEffect, useState } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import Amenity from "../../../../../../components/listing-form/components/Amenity";
+import Amenity from "../../../../../../../components/__shared/ui/listing-form/components/Amenity";
 import styles from "../../index.module.css";
 import { BeMyAgentFormType } from "../types";
 import { useField } from "formik";
 import { requiredFeatures } from "../../../content";
-import InfoText from "@/app/components/listing-form/components/InfoText";
+import InfoText from "@/components/__shared/ui/listing-form/components/InfoText";
 
 export default function FeaturesAndAmenities() {
   const [agentFormData, setAgentFormData] =

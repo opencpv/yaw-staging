@@ -2,6 +2,7 @@ import React from "react";
 import { useContactStore } from "@/store/contact/useContactStore";
 import { CountryCode, E164Number } from "libphonenumber-js/core";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import { useSessionStorage } from "@uidotdev/usehooks";
 
 type FormValue = {
   fullname: string;
@@ -17,8 +18,28 @@ export const useContactForm = () => {
   const [loading, setLoading] = React.useState(false);
   const [_, setCountry] = React.useState<CountryCode>("GH");
   const [file, setFile] = React.useState<File>();
-
   const { phone, handlePhone, handleCountryChange } = usePhoneInputDisclosure();
+
+  const [contactFormSession, setContactFormSession] = useSessionStorage(
+    "contactFormSession",
+    {
+      fullname: "",
+      email: "",
+      phone: "",
+      companyName: "",
+      message: "",
+      fileUrl: "",
+      reportLink: "",
+      preferredContact: "email",
+    },
+  );
+
+  const handleSessionChange = (name: string, value: string) => {
+    setContactFormSession({
+      ...contactFormSession,
+      [name]: value,
+    });
+  };
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -28,28 +49,15 @@ export const useContactForm = () => {
 
   const validate = (values: any, phoneValue: E164Number | undefined) => {
     const errors: any = {};
-    if (!values.fullname) {
-      errors.fullname === "Required";
-    }
-    if (!values.message) errors.message === "Required";
-    if (
-      values.fullname &&
-      values.message &&
-      phoneValue === undefined &&
-      !values.email
-    ) {
-      alert("Email or WhatsApp Number is required");
-      errors.email = "Required";
-      errors.phone = "Required";
+    if (!values.email && !phoneValue) {
+      errors.email = "Email or WhatsApp Required";
+      errors.phone = "Email or WhatsApp Required";
     }
     return errors;
   };
 
   const tableName: keyof Database["public"]["Tables"] = "contact_us";
   const phoneInputPlaceholder = "WhatsApp Number";
-
-  const errorClassName =
-    "border-0 relative before:absolute before:inset-0 before:w-full before:h-full before:border before:border-neutral-500 before:rounded-lg before:animate-pulse";
 
   return {
     handleFileUpload,
@@ -63,7 +71,8 @@ export const useContactForm = () => {
     setLoading,
     tableName,
     phoneInputPlaceholder,
-    errorClassName,
     validate,
+    handleSessionChange,
+    contactFormSession,
   };
 };

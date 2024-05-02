@@ -49,18 +49,34 @@ export const useFetchProperties = ({
   });
 };
 
-export const useFetchFeaturedListings = () => {
-  const query = supabase
-    .from("merged_property_view")
-    .select(
-      "id, is_best_value, is_realtors_choice, is_featured, is_verified, profiles!inner(id, is_certified), property_type, description, city, bedrooms, monthly_amount, favorite_user_ids, subtitle, neighbourhood, advance_period, viewing_fee",
-    )
-    .eq("is_featured", true)
-    .order("is_verified", { ascending: false })
-    .order("is_realtors_choice", { ascending: false })
-    .order("is_best_value", { ascending: false })
-    .order("profiles (is_certified)", { ascending: false })
-    .order("created_at", { ascending: false });
+export const useFetchFeaturedListings = ({
+  limit,
+}: { limit?: number } = {}) => {
+  let query;
+  if (limit) {
+    query = supabase
+      .from("random_featured_properties_view")
+      .select(
+        "id, is_best_value, is_realtors_choice, is_featured, is_verified, profiles!inner(id, is_certified), property_type, description, city, bedrooms, monthly_amount, favorite_user_ids, subtitle, neighbourhood, advance_period, viewing_fee",
+      )
+      .order("is_verified", { ascending: false })
+      .order("is_realtors_choice", { ascending: false })
+      .order("is_best_value", { ascending: false })
+      .order("profiles (is_certified)", { ascending: false })
+      .order("created_at", { ascending: false })
+      .limit(limit);
+  } else {
+    query = supabase
+      .from("random_featured_properties_view")
+      .select(
+        "id, is_best_value, is_realtors_choice, is_featured, is_verified, profiles!inner(id, is_certified), property_type, description, city, bedrooms, monthly_amount, favorite_user_ids, subtitle, neighbourhood, advance_period, viewing_fee",
+      )
+      .order("is_verified", { ascending: false })
+      .order("is_realtors_choice", { ascending: false })
+      .order("is_best_value", { ascending: false })
+      .order("profiles (is_certified)", { ascending: false })
+      .order("created_at", { ascending: false });
+  }
 
   return useQuery(query);
 };
@@ -71,7 +87,7 @@ export const useFetchRecommendedListings = () => {
     .select(
       "id, is_best_value, is_realtors_choice, is_featured, is_verified, profiles!inner(id, is_certified), property_type, description, city, bedrooms, monthly_amount, favorite_user_ids, subtitle, neighbourhood, advance_period, viewing_fee",
     )
-    .eq("is_featured", true)
+    // .eq("is_featured", true)
     .order("is_verified", { ascending: false })
     .order("is_realtors_choice", { ascending: false })
     .order("is_best_value", { ascending: false })
@@ -81,7 +97,11 @@ export const useFetchRecommendedListings = () => {
   return useQuery(query);
 };
 
-export const useFetchPropertyDetails = (propertyId: number) => {
+export const useFetchPropertyDetails = ({
+  propertyId,
+}: {
+  propertyId: number;
+}) => {
   const query = supabase
     .from("merged_property_view")
     .select(

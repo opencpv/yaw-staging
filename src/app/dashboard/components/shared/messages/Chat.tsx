@@ -10,7 +10,7 @@ import { FaBan } from "react-icons/fa";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { Popover, PopoverContent, PopoverTrigger } from "@nextui-org/react";
 import { MdLockOpen } from "react-icons/md";
-import Tooltip from "@/components/ui/Tooltip";
+import Tooltip from "@/components/__shared/ui/Tooltip";
 
 const Chat = ({
   href,

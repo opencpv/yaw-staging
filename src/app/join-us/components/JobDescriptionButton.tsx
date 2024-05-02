@@ -4,7 +4,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { Button, Link } from "@nextui-org/react";
 import JoinUsButtons from "./JoinUsButtons";
-import ModalCloseIcon from "@/app/components/ModalCloseIcon";
+import ModalCloseIcon from "@/components/__shared/ui/modals/ModalCloseIcon";
 import { HiOutlineDownload } from "react-icons/hi";
 import { PortableText } from "next-sanity";
 

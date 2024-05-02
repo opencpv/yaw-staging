@@ -1,6 +1,6 @@
 import TermsNav from "../components/TermsNav";
 import TermsMainView from "./components/TermsMainView";
-import Footer from "@/components/__shared/footer/Footer";
+import Footer from "@/components/__shared/ui/footer/Footer";
 import { TERMS_QUERY } from "@/lib/utils/sanity/queries";
 import { SanityDocument } from "next-sanity";
 import { loadQuery } from "@/lib/utils/sanity/sanityStore";

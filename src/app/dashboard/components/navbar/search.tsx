@@ -1,4 +1,4 @@
-import InputWithSavedSearch from "@/components/__shared/form/InputWithSavedSearch";
+import InputWithSavedSearch from "@/components/__shared/ui/form/InputWithSavedSearch";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -33,10 +33,6 @@ const Search = ({ className }: { className?: string }) => {
       )}
       inputClassName="rounded-[4px] border-0 px-4 py-1"
       separatorClassName="h-[60%]"
-      href={`/properties?${new URLSearchParams({
-        search: search || placeholder,
-        sk: String(true),
-      })}`}
       onSubmit={handleSubmit}
       name="search"
     />

@@ -2,8 +2,8 @@ import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { useDisclosure } from "@nextui-org/react";
 import React, { useEffect, useState } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-import FavoriteModal from "../listing/FavoriteModal";
-import SignInRequiredModal from "../modals/SignInRequiredModal";
+import FavoriteModal from "./listing/FavoriteModal";
+import SignInRequiredModal from "./modals/SignInRequiredModal";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { updateLikedProperty } from "@/app/properties/_actions";
 import { getUserFavorite } from "@/components/services";
@@ -64,7 +64,9 @@ const LikeHeart = ({ liked, className, userId, propertyId }: Props) => {
 
   useEffect(() => {
     const fetchFavorite = async () => {
-      const { data: favorite } = await getUserFavorite(user?.id as string);
+      const { data: favorite } = await getUserFavorite({
+        userId: user?.id as string,
+      });
       setShouldOpenModal(!favorite);
     };
 

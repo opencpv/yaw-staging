@@ -3,6 +3,7 @@ import HowToVideo from "./HowToVideo";
 import Button from "@/components/__shared/ui/button/Button";
 import LoadingIndicator from "@/components/LoadingIndicator";
 import { HowTo } from "../../../../../interfaces";
+import EmptyState from "@/components/__shared/ui/states/EmptyState";
 
 type Props = { content: HowTo[] };
 
@@ -22,12 +23,7 @@ const HowToVideosSection = (props: Props) => {
     <>
       {props.content ? (
         <div>
-          <div
-            className="gap-x-5 gap-y-16 space-y-16 xs:grid xs:space-y-0"
-            style={{
-              gridTemplateColumns: "repeat(auto-fit, minmax(350px,1fr))",
-            }}
-          >
+          <div className="grid grid-cols-1 gap-x-5 gap-y-16 md:grid-cols-2 xl:grid-cols-3">
             {props.content.map((item: HowTo, idx: number) => (
               <HowToVideo
                 key={idx}
@@ -43,7 +39,7 @@ const HowToVideosSection = (props: Props) => {
                 Load more
               </Button>
             )}
-            {props.content.length === 0 && <p>No results found</p>}
+            {props.content.length === 0 && <EmptyState paddingBlock="none" />}
           </div>
         </div>
       ) : (

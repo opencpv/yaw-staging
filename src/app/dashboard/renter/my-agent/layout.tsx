@@ -2,11 +2,11 @@
 
 import React from "react";
 import AgentButtons from "../../components/shared/my-agent/Button";
-import { ClientOnly } from "@/components/ui/ClientOnly";
+import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
 import BeMyAgentModal from "@/app/dashboard/components/shared/my-agent/steps/BeMyAgentModal";
 import styles from "@/app/dashboard/components/shared/my-agent/index.module.css";
 import { usePathname } from "next/navigation";
-import InfoText from "@/app/components/listing-form/components/InfoText";
+import InfoText from "@/components/__shared/ui/listing-form/components/InfoText";
 
 const MyAgentLayout = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();

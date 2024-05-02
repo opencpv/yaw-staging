@@ -1,6 +1,6 @@
 import supabase from "@/lib/utils/supabase/supabaseClient";
 
-export const getUserFavorite = async (userId: string) => {
+export const getUserFavorite = async ({ userId }: { userId: string }) => {
   const query = await supabase
     .from("user_favorite_properties")
     .select("user_id")

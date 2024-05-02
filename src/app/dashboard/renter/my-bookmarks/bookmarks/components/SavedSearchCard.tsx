@@ -15,8 +15,8 @@ type Props = {
 export default function SavedSearchCard({ data }: Props) {
   const [edit, setEdit] = useState(false);
   return (
-    <div className="w-full rounded-2xl border-[1px] border-shade-50 p-2 flex flex-col gap-8 hover:scale-[1.02] cursor-pointer">
-      <div className="relative w-full aspect-[527/380] ">
+    <div className="flex w-full cursor-pointer flex-col gap-8 rounded-2xl border-[1px] border-shade-50 p-2 hover:scale-[1.02]">
+      <div className="relative aspect-[527/380] w-full ">
         <Image
           src={"/svgs/saved-searches2card.png"}
           fill
@@ -26,14 +26,17 @@ export default function SavedSearchCard({ data }: Props) {
 
       <div className="flex w-full justify-between gap-2">
         {!edit ? (
-          <div className="flex flex-col gap-1 w-full">
-            <p className="text-[1.25rem] lg:text-[1.5625rem] font-semibold">My Kasoa Search</p>
+          <div className="flex w-full flex-col gap-1">
+            <p className="text-[1.25rem] font-semibold lg:text-[1.5625rem]">
+              My Kasoa Search
+            </p>
             <p className="text-[1rem]">Date Created</p>
           </div>
         ) : (
           <input
-            className="rounded-[4px] border-[1px] border-[#E6E6E6] h-[52px] p-[0.93754rem] w-full"
-            placeholder="My Kasoa Search "></input>
+            className="h-[52px] w-full rounded-[4px] border-[1px] border-[#E6E6E6] p-[0.93754rem]"
+            placeholder="My Kasoa Search "
+          ></input>
         )}
         <div className="flex flex-col items-center justify-center">
           {!edit ? (
@@ -48,12 +51,12 @@ export default function SavedSearchCard({ data }: Props) {
           {!edit && <p className="font-semibold">01/11/23</p>}
         </div>
       </div>
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
         <DeleteModal />
         <Link href="/">
-          <div className="flex justify-between items-center">
+          <div className="flex items-center justify-between">
             <p className="text-primary-500">View Search Results</p>
-            <MdOutlineKeyboardArrowRight color="#073B3A" size="24px" />
+            <MdOutlineKeyboardArrowRight color="#11605E" size="24px" />
           </div>
         </Link>
       </div>

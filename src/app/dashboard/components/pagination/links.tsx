@@ -129,12 +129,6 @@ export const PgRoutesLister = [
     link: "/dashboard/lister/notifications",
   },
   {
-    name: "favourites",
-    url: "",
-    icon: <FaRegHeart />,
-    link: "/dashboard/lister/favourites",
-  },
-  {
     name: "settings",
     url: "",
     icon: <IoSettingsOutline />,

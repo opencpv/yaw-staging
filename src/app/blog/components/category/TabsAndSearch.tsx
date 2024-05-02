@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import CategoryTabs from "./CategoryTabs";
-import SearchInput from "@/components/__shared/form/SearchInput";
+import SearchInput from "@/components/__shared/ui/form/SearchInput";
 
 type Props = {
   categories: string[];

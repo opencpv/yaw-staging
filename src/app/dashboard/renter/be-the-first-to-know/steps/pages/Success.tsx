@@ -11,6 +11,7 @@ import { useFormikContext } from "formik";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import GreenCheckLottie from "@/components/__shared/lotties/GreenCheckLottie";
+import CloseModalIcon from "@/components/__shared/ui/icons/CloseModalIcon";
 
 const Success = () => {
   const { images, icons } = useAssets();
@@ -47,13 +48,8 @@ const Success = () => {
       ref={successPageRef}
     >
       <div className="relative ml-auto flex w-full justify-end 2xl:left-60">
-        <Button
-          variant="ghost"
-          isIconOnly
-          onClick={handleClose}
-          className="cursor-pointer text-4xl text-red-500 xs:text-5xl"
-        >
-          <IoIosCloseCircle />
+        <Button variant="ghost" isIconOnly onClick={handleClose}>
+          <CloseModalIcon />
         </Button>
       </div>
       <GreenCheckLottie />

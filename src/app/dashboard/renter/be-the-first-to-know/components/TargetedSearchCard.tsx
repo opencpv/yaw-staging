@@ -9,7 +9,7 @@ import ButtonDelete from "@/components/__shared/ui/button/ButtonDelete";
 import { IoEyeOutline } from "react-icons/io5";
 import Button from "@/components/__shared/ui/button/Button";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
-import ListingCardButton from "@/components/__shared/listing/ListingCardButton";
+import ListingCardButton from "@/components/__shared/ui/listing/ListingCardButton";
 
 export type TargetedSearchState = "match" | "no matches";
 

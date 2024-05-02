@@ -2,7 +2,8 @@ import Image from "next/image";
 import JoinUsButtons from "./components/JoinUsButtons";
 import styles from "./index.module.css";
 import Link from "next/link";
-import Footer from "@/components/__shared/footer/Footer";
+import Footer from "@/components/__shared/ui/footer/Footer";
+import Navbar from "@/components/__shared/ui/Navbar";
 
 const JoinUsPage = async () => {
   return (

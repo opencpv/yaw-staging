@@ -1,15 +1,15 @@
 "use client";
 import LargeButton from "../../lister/properties/components/LargeButton";
 import { MdOutlineLibraryAdd } from "react-icons/md";
-import ArrowLink from "@/app/components/link/ArrowLink";
+import ArrowLink from "@/components/__shared/ui/links/ArrowLink";
 import { usePathname } from "next/navigation";
 import { FaChevronLeft } from "react-icons/fa";
 import Link from "next/link";
-import ScrollTop from "@/components/__shared/ScrollTop";
+import ScrollTop from "@/components/__shared/ui/ScrollTop";
 import Button from "@/components/__shared/ui/button/Button";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import FirstToKnowModal from "./steps/FirstToKnowModal";
-import FramerWrapper from "@/components/__shared/FramerWrapper";
+import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 import { fadeUp } from "@/lib/animations";
 
 const BeTheFirstToKnowLayout = ({
@@ -18,7 +18,6 @@ const BeTheFirstToKnowLayout = ({
   children: React.ReactNode;
 }) => {
   const pathname = usePathname();
-  const { currentRole } = useDashboardStore();
 
   return (
     <main>
@@ -44,7 +43,7 @@ const BeTheFirstToKnowLayout = ({
             properties are listed. Give it a try, create your customized search
             criteria
           </p>
-          <button className="mt-[45px] rounded-md bg-[#073B3A] px-10 py-[15px] text-center font-semibold text-white">
+          <button className="mt-[45px] rounded-md bg-primary px-10 py-[15px] text-center font-semibold text-white">
             Add New Search Criteria{" "}
           </button>
         </section> */}
@@ -80,9 +79,7 @@ const BeTheFirstToKnowLayout = ({
           Search Title One
         </h3>
         <FramerWrapper {...fadeUp}>
-          <div className="grid grid-cols-1 gap-x-5 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
-            {children}
-          </div>
+          <div className="listing-grid">{children}</div>
         </FramerWrapper>
       </section>
       <ScrollTop />

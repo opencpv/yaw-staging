@@ -6,7 +6,7 @@ import { useFetchTableWithPagination } from "@/lib/custom-hooks/useFetch";
 import TableSkeleton from "../../../components/shared/skeleton/TableSkeleton";
 import Spinner from "../../../components/shared/Spinner";
 import { useApplicationsStore } from "@/store/dashboard/applicationsStore";
-import Pagination from "@/components/__shared/Pagination";
+import Pagination from "@/components/__shared/ui/Pagination";
 import {
   Table,
   TableBodyRowGroup,
@@ -15,7 +15,7 @@ import {
 } from "../../../components/shared/table/Table";
 import Button from "@/components/__shared/ui/button/Button";
 import { IoArchiveOutline } from "react-icons/io5";
-import Loader from "@/components/__shared/loader/Loader";
+import Loader from "@/components/__shared/ui/loader/Loader";
 import { cn } from "@/lib/utils";
 
 type Props = {};

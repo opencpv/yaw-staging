@@ -4,11 +4,11 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
-import CustomRadioInput from "@/app/components/CustomRadioInput";
-import TextFieldInput from "@/app/components/TextFieldInput";
-import CustomSelect from "@/app/components/CustomSelect";
-import CustomTextAreaInput from "@/app/components/CustomTextAreaInput";
-import InputPhoneNumber from "@/components/__shared/form/InputPhoneNumber";
+import CustomRadioInput from "@/components/__shared/ui/form/CustomRadioInput";
+import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
+import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
+import CustomTextAreaInput from "@/components/__shared/ui/form/CustomTextAreaInput";
+import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import FileUploader from "@/app/dashboard/components/shared/sell-products/FileUploader";
 import Button from "@/components/__shared/ui/button/Button";
@@ -27,7 +27,7 @@ const AddNewProduct = () => {
     itemName: Yup.string().required("This field is required"),
     description: Yup.string().required("This field is required"),
     price: Yup.number().required("This field is required"),
-    phoneNumber: Yup.string().required("This field is required"),
+    phone: Yup.string().required("This field is required"),
     // images: Yup.mixed().required("This field is required"),
     images: Yup.array()
       .min(3, "Please upload at least 3 images")
@@ -67,7 +67,7 @@ const AddNewProduct = () => {
             itemName: "",
             description: "",
             price: "",
-            phoneNumber: "",
+            phone: "",
             images: [],
             category: "Furniture",
             condition: "New",
@@ -118,7 +118,7 @@ const AddNewProduct = () => {
               <InputPhoneNumber
                 id=""
                 label="Phone"
-                name="phoneNumber"
+                name="phone"
                 value={phone}
                 onChange={handlePhone}
                 onCountryChange={handleCountryChange}

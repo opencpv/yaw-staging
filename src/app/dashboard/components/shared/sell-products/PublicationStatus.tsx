@@ -3,7 +3,7 @@ import React from "react";
 import { useSelectDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { cn } from "@nextui-org/react";
 import { BsInfoCircle } from "react-icons/bs";
-import Tooltip from "@/components/ui/Tooltip";
+import Tooltip from "@/components/__shared/ui/Tooltip";
 
 export type ItemPublicationStatus =
   | "active"
@@ -35,7 +35,7 @@ const PublicationStatus = ({ status, productStatus }: Props) => {
             "flex w-44 items-center justify-center rounded-full p-2 py-2.5 text-neutral-800 shadow-sm",
             {
               "bg-red-300": status === "inactive" && productStatus === "sold",
-              "bg-[#B0E3C9]":
+              "bg-primary-50":
                 status === "active" && productStatus === "available",
               "bg-accent-500": status === "suspended",
               "bg-primary-200/20": status === "archived",

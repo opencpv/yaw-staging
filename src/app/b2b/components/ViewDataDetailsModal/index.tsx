@@ -4,7 +4,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 
 import { Button } from "@nextui-org/react";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
-import ModalCloseIcon from "@/app/components/ModalCloseIcon";
+import ModalCloseIcon from "@/components/__shared/ui/modals/ModalCloseIcon";
 import Details from "./Details";
 
 type Props = {

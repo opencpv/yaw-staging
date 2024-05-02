@@ -1,6 +1,6 @@
 "use client";
 
-import Loader from "@/components/__shared/loader/Loader";
+import Loader from "@/components/__shared/ui/loader/Loader";
 import { createClient } from "@/lib/utils/supabase/auth/client";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useState } from "react";
@@ -37,13 +37,13 @@ const Admin = () => {
           <input
             type="text"
             placeholder="username"
-            className="my-2 w-full rounded-md border-2 border-darkGreenBg/25 px-2 py-2"
+            className="my-2 w-full rounded-md border-2 border-primary-500/25 px-2 py-2"
           />
           <input
             type="password"
             placeholder="password"
             onChange={(e: any) => setPassword(e.target.value)}
-            className="my-2 w-full  rounded-md  border-2 border-darkGreenBg/25 px-2 py-2"
+            className="my-2 w-full  rounded-md  border-2 border-primary-500/25 px-2 py-2"
           />
           {loading ? (
             <div className="flex justify-center">

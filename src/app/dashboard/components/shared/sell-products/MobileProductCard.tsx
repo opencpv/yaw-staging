@@ -1,7 +1,7 @@
 import ProductStatus from "./ProductStatus";
 import { formatDate } from "@/lib/utils/stringManipulation";
 import calculateDaysSinceCreation from "@/lib/utils/calculateDaysSinceCreation";
-import DestructiveModal from "@/components/__shared/modals/DestructiveModal";
+import DestructiveModal from "@/components/__shared/ui/modals/DestructiveModal";
 import { useDisclosure } from "@nextui-org/react";
 import { TableBodySm, TableRowSm } from "../table/Table";
 import TbPropertyImageSm from "../TbPropertyImageSm";

@@ -1,7 +1,7 @@
 "use client";
 
-import Modal from "@/components/__shared/modals/Modal";
-import Carousel from "@/components/__shared/sliders/Carousel";
+import Modal from "@/components/__shared/ui/modals/Modal";
+import Carousel from "@/components/__shared/ui/sliders/Carousel";
 import Share from "@/components/__shared/ui/share/Share";
 import { usePropertyCarouselStore } from "@/store/properties/usePropertiesStore";
 import React from "react";

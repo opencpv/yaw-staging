@@ -1,18 +1,18 @@
 "use client";
-import ListingCard from "@/components/__shared/listing/ListingCard";
-import SliderGrid from "@/components/__shared/sliders/SliderGrid";
+import ListingCard from "@/components/__shared/ui/listing/ListingCard";
+import SliderGrid from "@/components/__shared/ui/sliders/SliderGrid";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
 import React from "react";
 import AdsSliderColumn from "./AdsSliderColumn";
-import ArrowLink from "./link/ArrowLink";
-import SliderWide from "@/components/__shared/sliders/SliderWide";
-import images from "@/enum/temp/images";
+import ArrowLink from "../../components/__shared/ui/links/ArrowLink";
+import SliderWide from "@/components/__shared/ui/sliders/SliderWide";
 import { cn } from "@/lib/utils";
 import { useFetchFeaturedListings } from "../properties/services";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import SomethingWentWrong from "./SomethingWentWrong";
+import SomethingWentWrong from "../../components/__shared/ui/states/SomethingWentWrong";
 import { urlForImage } from "@/lib/utils/sanity/utils";
+import { getListingProps } from "@/lib/enum";
 
 type Props = { data: any };
 
@@ -37,14 +37,12 @@ const FeaturedListingAndAds = (props: Props) => {
       </h2>
       {/* Listing cards */}
       <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-8 lg:items-start">
-        {/* Shows when number of listings is less than 5 */}
-        {listings && listings.length <= 4 ? (
-          <div className="col-span-6 grid grid-cols-1 gap-5 pb-5 sm:grid-cols-2 min-[950px]:max-lg:grid-cols-3 lg:grid-cols-2 min-[1180px]:grid-cols-3">
+        <div className="relative col-span-6 pb-5">
+          {/* Shows when number of listings is more than 4 */}
+          <div className="relative h-fit w-full">
             <FetchingStates
               data={listings}
               error={error}
-              isLoading={isLoading}
-              isLoadingComponent={<SkeletonListing count={5} />}
               errorComponent={
                 <SomethingWentWrong
                   className="col-span-full h-fit"
@@ -52,141 +50,23 @@ const FeaturedListingAndAds = (props: Props) => {
                 />
               }
             />
-            {listings?.map((listing) => {
-              return (
-                <ListingCard
-                  propertyId={listing.id as number}
-                  key={listing.id}
-                  href={`/properties/${listing.id}?${new URLSearchParams({
-                    property_type: listing.property_type as string,
-                    bedrooms: String(listing.bedrooms),
-                    city: listing.city as string,
-                    neighbourhood: listing.neighbourhood as string,
-                    subtitle: listing.subtitle as string,
-                    advance_period: String(listing.advance_period),
-                    amount_per_month: String(listing.monthly_amount),
-                    rating: String(4),
-                    viewing_fee: String(listing.viewing_fee),
-                    is_realtors_choice: String(listing.is_realtors_choice),
-                    is_best_value: String(listing.is_best_value),
-                    is_featured: String(listing.is_featured),
-                  })}`}
-                  bedrooms={listing.bedrooms as number}
-                  propertyType={listing.property_type as string}
-                  city={listing.city as string}
-                  neighbourhood={listing.neighbourhood as string}
-                  images={images} // TODO: check database
-                  liked={listing?.favorite_user_ids?.includes(
-                    user?.id as string,
-                  )}
-                  guarantee={
-                    listing.is_verified
-                      ? ("Verified" as GuaranteeTag)
-                      : listing.profiles?.is_certified
-                        ? ("Certified" as GuaranteeTag)
-                        : undefined
-                  }
-                  monthlyAmount={listing.monthly_amount as number}
-                  paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
-                  subtitle={listing.subtitle as string}
-                  rating={4.5} // TODO: check database
-                  ratingCount={105} // TODO: check database
-                  hint={
-                    listing.is_realtors_choice
-                      ? ("Realtor's Choice" as HintTag)
-                      : listing.is_best_value
-                        ? ("Best Value" as HintTag)
-                        : undefined
-                  }
-                  advancePeriod={listing.advance_period as number}
-                  ViewingFee={listing.viewing_fee as number}
-                />
-              );
-            })}
+            <SliderGrid
+              items={
+                isLoading
+                  ? Array.from({ length: 5 }, (_, idx) => (
+                      <SkeletonListing key={idx} cardType={1} />
+                    ))
+                  : listings?.map((listing) => (
+                      <ListingCard
+                        key={listing.id}
+                        {...getListingProps(listing, user as UserType)}
+                        cardType="1"
+                      />
+                    ))
+              }
+            />
           </div>
-        ) : (
-          <div className="relative col-span-6 pb-5">
-            {/* Shows when number of listings is more than 4 */}
-            <div className="relative h-fit w-full">
-              <FetchingStates
-                data={listings}
-                error={error}
-                errorComponent={
-                  <SomethingWentWrong
-                    className="col-span-full h-fit"
-                    onTryAgain={() => mutate()}
-                  />
-                }
-                emptyStateComponent={
-                  <p className="mt-4 text-center italic">
-                    There are no properties yet.
-                  </p>
-                }
-              />
-              <SliderGrid
-                items={
-                  isLoading
-                    ? Array.from({ length: 5 }, (_, idx) => (
-                        <SkeletonListing key={idx} cardType={1} />
-                      ))
-                    : listings?.map((listing) => (
-                        <ListingCard
-                          propertyId={listing.id as number}
-                          key={listing.id}
-                          href={`/properties/${
-                            listing.id
-                          }?${new URLSearchParams({
-                            property_type: listing.property_type as string,
-                            bedrooms: String(listing.bedrooms),
-                            city: listing.city as string,
-                            neighbourhood: listing.neighbourhood as string,
-                            subtitle: listing.subtitle as string,
-                            advance_period: String(listing.advance_period),
-                            amount_per_month: String(listing.monthly_amount),
-                            rating: String(4),
-                            viewing_fee: String(listing.viewing_fee),
-                            is_realtors_choice: String(
-                              listing.is_realtors_choice,
-                            ),
-                            is_best_value: String(listing.is_best_value),
-                            is_featured: String(listing.is_featured),
-                          })}`}
-                          bedrooms={listing.bedrooms as number}
-                          propertyType={listing.property_type as string}
-                          city={listing.city as string}
-                          neighbourhood={listing.neighbourhood as string}
-                          images={images} // TODO: check database
-                          liked={listing?.favorite_user_ids?.includes(
-                            user?.id as string,
-                          )}
-                          guarantee={
-                            listing.is_verified
-                              ? ("Verified" as GuaranteeTag)
-                              : listing.profiles?.is_certified
-                                ? ("Certified" as GuaranteeTag)
-                                : undefined
-                          }
-                          monthlyAmount={listing.monthly_amount as number}
-                          paymentStructure={"Bi-Annually" as PaymentStructure} // TODO: check database
-                          subtitle={listing.subtitle as string}
-                          rating={4.5} // TODO: check database
-                          ratingCount={105} // TODO: check database
-                          hint={
-                            listing.is_realtors_choice
-                              ? ("Realtor's Choice" as HintTag)
-                              : listing.is_best_value
-                                ? ("Best Value" as HintTag)
-                                : undefined
-                          }
-                          advancePeriod={listing.advance_period as number}
-                          ViewingFee={listing.viewing_fee as number}
-                        />
-                      ))
-                }
-              />
-            </div>
-          </div>
-        )}
+        </div>
         {/* Ads */}
         <AdsSliderColumn ads={props.data} />
       </div>
@@ -195,7 +75,7 @@ const FeaturedListingAndAds = (props: Props) => {
       )}
       {/* Ads mobile*/}
       {props.data.map((ad: any, idx: number) => (
-        <div className="  mt-4 w-full lg:hidden" key={idx}>
+        <div className="mt-4 w-full max-lg:mt-20 lg:hidden" key={idx}>
           <SliderWide
             autoplay
             pagination

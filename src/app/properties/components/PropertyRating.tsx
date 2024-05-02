@@ -12,7 +12,7 @@ type Props = {};
 const PropertyRating = (props: Props) => {
   return (
     <motion.section {...fadeUp} className="section">
-      <div className="rounded-xl border-neutral-200 md:border-3 md:px-14 md:pb-32 md:pt-10">
+      <div className="rounded-xl border-neutral-200 md:border-3 md:px-14 md:pb-32">
         <div className="flex flex-wrap justify-between gap-5 rounded-xl bg-[#65969F] p-10 text-white">
           <div className="flex flex-wrap items-center gap-3">
             <p className="text-xl font-[600]">

@@ -30,7 +30,7 @@ export type BeMyAgentFormType = Partial<{
   email: string;
   country: string;
   city: string;
-  phoneNumber: string | E164Number;
+  phone: string | E164Number;
   availableOnWhatsapp: boolean;
   preferredMethodOfContact: "email" | "whatsapp";
   currentAddress1: string | boolean;
