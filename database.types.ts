@@ -50,7 +50,7 @@ export type Database = {
             foreignKeyName: "application_autosave_property_id_fkey"
             columns: ["property_id"]
             isOneToOne: false
-            referencedRelation: "random_featured_properties"
+            referencedRelation: "random_featured_properties_view"
             referencedColumns: ["id"]
           },
           {
@@ -199,7 +199,7 @@ export type Database = {
             foreignKeyName: "public_featured_properties_property_id_fkey"
             columns: ["property_id"]
             isOneToOne: true
-            referencedRelation: "random_featured_properties"
+            referencedRelation: "random_featured_properties_view"
             referencedColumns: ["id"]
           },
         ]
@@ -282,6 +282,36 @@ export type Database = {
           },
         ]
       }
+      join_us: {
+        Row: {
+          additional_link: string | null
+          cover_letter_url: string
+          created_at: string
+          firstname: string
+          id: number
+          lastname: string
+          resume_url: string
+        }
+        Insert: {
+          additional_link?: string | null
+          cover_letter_url: string
+          created_at?: string
+          firstname: string
+          id?: number
+          lastname: string
+          resume_url: string
+        }
+        Update: {
+          additional_link?: string | null
+          cover_letter_url?: string
+          created_at?: string
+          firstname?: string
+          id?: number
+          lastname?: string
+          resume_url?: string
+        }
+        Relationships: []
+      }
       listing_autosave: {
         Row: {
           created_at: string
@@ -323,7 +353,7 @@ export type Database = {
             foreignKeyName: "listing_autosave_property_id_fkey"
             columns: ["property_id"]
             isOneToOne: false
-            referencedRelation: "random_featured_properties"
+            referencedRelation: "random_featured_properties_view"
             referencedColumns: ["id"]
           },
           {
@@ -760,7 +790,7 @@ export type Database = {
             foreignKeyName: "property_available_property_id_fkey"
             columns: ["property_id"]
             isOneToOne: false
-            referencedRelation: "random_featured_properties"
+            referencedRelation: "random_featured_properties_view"
             referencedColumns: ["id"]
           },
         ]
@@ -818,7 +848,7 @@ export type Database = {
             foreignKeyName: "property_images_property_id_fkey"
             columns: ["property_id"]
             isOneToOne: false
-            referencedRelation: "random_featured_properties"
+            referencedRelation: "random_featured_properties_view"
             referencedColumns: ["id"]
           },
         ]
@@ -900,7 +930,7 @@ export type Database = {
             foreignKeyName: "public_property_reviews_property_fkey"
             columns: ["property"]
             isOneToOne: false
-            referencedRelation: "random_featured_properties"
+            referencedRelation: "random_featured_properties_view"
             referencedColumns: ["id"]
           },
         ]
@@ -1182,7 +1212,7 @@ export type Database = {
             foreignKeyName: "public_user_favorite_properties_property_id_fkey"
             columns: ["property_id"]
             isOneToOne: false
-            referencedRelation: "random_featured_properties"
+            referencedRelation: "random_featured_properties_view"
             referencedColumns: ["id"]
           },
           {
@@ -1419,7 +1449,7 @@ export type Database = {
           },
         ]
       }
-      random_featured_properties: {
+      random_featured_properties_view: {
         Row: {
           additional_fees: Json[] | null
           address: string | null

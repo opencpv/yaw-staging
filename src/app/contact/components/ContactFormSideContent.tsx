@@ -6,11 +6,11 @@ import { useContactStore } from "@/store/contact/useContactStore";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { useFetchRandomFeaturedListings } from "../services";
 import demoimages from "@/enum/temp/images";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { getListingProps } from "@/lib/enum";
 import { writer } from "repl";
+import { useFetchFeaturedListings } from "@/app/properties/services";
 
 type Props = {
   data: any;
@@ -19,7 +19,7 @@ type Props = {
 const ContactFormSideContent = (props: Props) => {
   const activeTab = useContactStore((state) => state.activeKey);
   const { images } = useAssets();
-  const { data: listings } = useFetchRandomFeaturedListings();
+  const { data: listings } = useFetchFeaturedListings();
   const { user } = useAppStore();
 
   const tabToData: any = {

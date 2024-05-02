@@ -46,7 +46,7 @@ const PropertyDetailsPage = ({ params }: Props) => {
     isLoading,
     error,
     mutate,
-  } = useFetchPropertyDetails(parseInt(propertyId));
+  } = useFetchPropertyDetails({ propertyId: parseInt(propertyId) });
 
   const propertyName = useMemo(() => {
     return `${listing?.bedrooms} Bedroom ${listing?.property_type} - ${listing?.neighbourhood}, ${listing?.city}`;

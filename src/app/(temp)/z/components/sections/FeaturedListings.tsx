@@ -31,13 +31,13 @@ const FeaturedListings = (props: Props) => {
           <Button
             variant="ghost"
             href={`/properties?${new URLSearchParams({ tag: "featured" })}`}
-            className="text-accent text-xl font-medium"
+            className="text-xl font-medium text-accent"
           >
             View all <HiChevronRight size={24} />
           </Button>
         </div>
         {/* Listing Slider */}
-        <div className="relative h-fit w-full">
+        <div className="relative mx-auto h-fit max-w-screen-xl">
           <FetchingStates
             data={listings}
             error={error}

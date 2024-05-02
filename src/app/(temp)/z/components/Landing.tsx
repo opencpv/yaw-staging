@@ -1,8 +1,10 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 import styles from "../style.module.css";
 import { Button } from "@/components/__shared/ui/button";
 import CitySearchForm from "./CitySearchForm";
+import { motion } from "framer-motion";
 
 type Props = {};
 
@@ -24,9 +26,48 @@ const Landing = (props: Props) => {
           className="rounded-[inherit] object-cover"
         />
         <div className="absolute bottom-10 left-10 z-10 space-y-2">
-          <h3>Get this amazing 3 bedroom flat</h3>
-          <p>Get this amazing 3 bedroom flat</p>
-          <Button className="bg-primary-200 text-white">View property</Button>
+          <motion.h3
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{
+              duration: 0.8,
+              ease: "easeInOut",
+              stiffness: 100,
+              velocity: 0.5,
+            }}
+            viewport={{ once: true }}
+          >
+            Get this amazing 3 bedroom flat
+          </motion.h3>
+          <motion.p
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{
+              duration: 0.8,
+              ease: "easeInOut",
+              stiffness: 100,
+              velocity: 0.5,
+              delay: 0.2,
+            }}
+            viewport={{ once: true }}
+          >
+            Get this amazing 3 bedroom flat
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{
+              duration: 0.8,
+              ease: "easeInOut",
+              stiffness: 100,
+              velocity: 0.5,
+              delay: 0.4,
+            }}
+            viewport={{ once: true }}
+            className="w-fit"
+          >
+            <Button className="bg-primary-200 text-white">View property</Button>
+          </motion.div>
         </div>
       </div>
       <div className="space-y-2">

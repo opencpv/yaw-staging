@@ -1,10 +1,9 @@
 "use client";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import "swiper/css/effect-fade";
 import Image from "next/image";
-import { Navigation, EffectFade } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 
 type Props = {};
@@ -13,15 +12,11 @@ const PromotionSlider = (props: Props) => {
   const sliderRef = useRef<any>(null);
 
   const handlePrev = useCallback(() => {
-    console.log("prev");
-    if (!sliderRef.current) return;
-    sliderRef.current.swiper.slidePrev();
+    if (sliderRef.current) sliderRef.current.swiper.slidePrev();
   }, []);
 
   const handleNext = useCallback(() => {
-    console.log("next");
-    if (!sliderRef.current) return;
-    sliderRef.current.swiper.slideNext();
+    if (sliderRef.current) sliderRef.current.swiper.slideNext();
   }, []);
 
   return (
@@ -30,8 +25,7 @@ const PromotionSlider = (props: Props) => {
         slidesPerView={1}
         spaceBetween={20}
         className="h-full w-full"
-        modules={[Navigation, EffectFade]}
-        fadeEffect={{ crossFade: true }}
+        modules={[Navigation]}
         ref={sliderRef}
       >
         {[1, 2, 3]?.map((item) => (

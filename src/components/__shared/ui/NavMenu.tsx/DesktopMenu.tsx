@@ -139,14 +139,13 @@ export const DesktopMenu = (props: any) => {
       {user && active !== null && (
         <>
           <motion.div
-            key={(Math.random() * 12788781).toString()}
+            key={crypto.randomUUID()}
             className={"flex flex-col gap-8"}
             animate={"open"}
             variants={FadeInOut}
             initial={"closed"}
             exit={"closed"}
           >
-            Math.random()
             {/* sub links --> view all listings, etc... */}
             {linksAfterLogin[active]?.sub?.map((l, ldx) => (
               <MenuLink
@@ -171,7 +170,7 @@ export const DesktopMenu = (props: any) => {
             className="h-full min-h-[350px]"
           />
           <motion.div
-            key={(Math.random() * 175512).toString()}
+            key={crypto.randomUUID()}
             className={"flex flex-[0_0_30%] flex-col text-[#FCAB10]"}
             animate={FadeInOut.open}
             variants={FadeInOut}

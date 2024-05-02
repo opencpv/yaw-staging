@@ -129,29 +129,16 @@ const Footer = () => {
         </div>
         <div
           className={
-            "order-1 flex flex-row flex-wrap gap-4 min-[1110px]:order-2"
+            "order-1 flex flex-row flex-wrap gap-4 text-white min-[1110px]:order-2"
           }
         >
           <div className={"flex flex-row items-center gap-2 truncate"}>
             <FaEnvelope className="text-accent-50" size={24} />
-            <Link
-              href={`mailto:${legal.email}`}
-              target="_blank"
-              title={legal.email}
-              className="text-[#ffff]"
-            >
-              {legal.email}
-            </Link>
+            <span title={legal.email}>{legal.email}</span>
           </div>
           <div className={"flex flex-row items-center gap-2"}>
             <MdLocalPhone className="text-accent-50" size={24} />
-            <Link
-              href={`tel:${legal.telephoneFormatted}`}
-              target="_blank"
-              className="text-[#ffff]"
-            >
-              {legal.telephone}
-            </Link>
+            <span>{legal.telephone}</span>
           </div>
         </div>
       </div>
