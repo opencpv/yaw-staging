@@ -6,7 +6,7 @@ import Link from "next/link";
 function JobCantFindCard() {
   return (
     <div
-      className="flex h-full w-full cursor-pointer flex-col justify-between rounded-xl border-[1px] border-shade-50 bg-white pb-4 hover:scale-[1.02]"
+      className="flex h-full w-full cursor-pointer flex-col justify-between rounded-xl border-[1px] border-shade-50 bg-white pb-4 hover:scale-[1.02] "
       style={{
         boxShadow:
           "0px 1px 2px 0px rgba(0, 0, 0, 0.06), 0px 1px 3px 0px rgba(0, 0, 0, 0.10)",
@@ -29,7 +29,7 @@ function JobCantFindCard() {
               We will get back to you when the position is available. Leave your
               resume with us.{" "}
             </p>
-            <p className="text-[#333]">
+            <p className="text-[#333] text-sm md:text-base">
               Click on the button below to submit your resume.
             </p>
           </div>

@@ -10,6 +10,7 @@ import { demoJob } from "./demo-job-description";
 import Share from "@/components/__shared/ui/share/Share";
 import downloadPdf from "@/lib/utils/downloadPdf";
 import { usePathname } from "next/navigation";
+import { PortableText } from "next-sanity";
 
 function JobDescriptionModalContent({ job }: any) {
   const pathname = usePathname();
@@ -20,7 +21,7 @@ function JobDescriptionModalContent({ job }: any) {
        `}
       >
         <div className={`relative z-[1001]`}>
-          <div className="absolute z-[2001] right-[40px] top-[35px] flex items-center gap-1">
+          <div className="absolute right-[40px] top-[35px] z-[2001] flex items-center gap-1">
             <p className="text-xs text-shade-300">Share</p>
             <Share
               url={`https://rentrightgh.com${pathname}`}
@@ -34,7 +35,7 @@ function JobDescriptionModalContent({ job }: any) {
                 <span className="capitalize">{job?.title} </span>
               </p>
               <p className="hidden-scrollbar   overflow-y-scroll text-shade-300">
-                {demoJob}
+                <PortableText value={job?.description} />
               </p>
             </div>
             <div className="sticky bottom-0 grid h-[45px] grid-cols-2 gap-1 bg-white pb-5">
