@@ -122,7 +122,7 @@ const Modal = ({
         onOpenChange={onOpenChange}
         closeButton={
           closeButton ? (
-            <div onClick={() => setHideWindowScrollbar(false)}>
+            <div onClick={() => setHideWindowScrollbar(false)} >
               {closeButton}
             </div>
           ) : (

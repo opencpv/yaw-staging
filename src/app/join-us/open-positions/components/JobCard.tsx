@@ -10,39 +10,40 @@ import { JobType } from "../../types";
 import JobDescriptionButton from "../../components/JobDescriptionButton";
 import JobDescriptionModalContent from "../../components/JobDescriptionModalContent";
 import Modal from "@/components/__shared/ui/modals/Modal";
+import { usePathname, useRouter } from "next/navigation";
+import CloseModalIcon from "@/components/__shared/ui/icons/CloseModalIcon";
+import Share from "@/components/__shared/ui/share/Share";
 
 type Props = {
   job: JobType;
 };
 
 export default function JobCard({ job }: Props) {
-  const [animation, setAnimation] = useState(false);
-
+  const router = useRouter();
   const { user } = useAppStore();
+  const pathname = usePathname();
 
   const { onOpen, isOpen, onOpenChange, onClose } = useDisclosure();
 
   return (
     <>
       <Modal
-        // header={<div className="h-20"></div>}
+        header={<div></div>}
         body={<JobDescriptionModalContent job={job} />}
         // footer={<div className="h-20"></div>}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         scrollBehavior="inside"
         onClose={onClose}
-        closeButton={
-          <div className="h-[25px] w-[25px]">
-            <ModalCloseIcon />
-          </div>
-        }
-        size="5xl"
-        className=" h-fit  max-h-[85vh] w-[90vw] max-w-[784px]  "
+        closeButton={<ModalCloseIcon />}
+        // size="3xl"
+        className=" max-h-[85vh] w-[90vw] max-w-[784px]  "
       />
 
       <button
-        onClick={onOpen}
+        onClick={() => {
+          onOpen();
+        }}
         className="w-full cursor-pointer appearance-none rounded-xl border-[1px] border-shade-50 bg-white pb-4 transition-all hover:scale-[1.02]"
       >
         <div className="flex flex-col items-start  gap-6">
