@@ -35,4 +35,5 @@ type SliderMultiItemsProps = {
 
 type SliderGridProps = {
   items: React.ReactNode[] | undefined;
+  slidesPerView?: number;
 };

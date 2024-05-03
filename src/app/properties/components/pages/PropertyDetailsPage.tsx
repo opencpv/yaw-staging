@@ -1,6 +1,6 @@
 "use client";
 import "../../style.css";
-import React, { useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 import { HiMiniShieldCheck } from "react-icons/hi2";
 import Footer from "@/components/__shared/ui/footer/Footer";
 import { Rate } from "antd";
@@ -46,7 +46,7 @@ const PropertyDetailsPage = ({ params }: Props) => {
     isLoading,
     error,
     mutate,
-  } = useFetchPropertyDetails(parseInt(propertyId));
+  } = useFetchPropertyDetails({ propertyId: parseInt(propertyId) });
 
   const propertyName = useMemo(() => {
     return `${listing?.bedrooms} Bedroom ${listing?.property_type} - ${listing?.neighbourhood}, ${listing?.city}`;
@@ -112,7 +112,7 @@ const PropertyDetailsPage = ({ params }: Props) => {
             property={propertyName}
             image="/assets/images/home/landing.jpg"
             position="left"
-          ></ShapedLanding>
+          />
           <main className="wrapper pb-0 pt-28 sm:pb-0 sm:pt-28">
             <section>
               <div className="text-2xl font-[600] text-[#305A61]">
@@ -192,9 +192,8 @@ const PropertyDetailsPage = ({ params }: Props) => {
                     />
                   </section>
 
-                  {/*  */}
                   <PropertyDetailsPayment
-                    availableFrom="YY-MM-DD"
+                    availableFrom={listing?.available_date as string}
                     agentFee={listing?.agent_fee as number}
                     viewingFee={listing?.viewing_fee as number}
                     refundableSecurityDeposit={500}
@@ -205,13 +204,11 @@ const PropertyDetailsPage = ({ params }: Props) => {
                 </div>
               </section>
             </section>
-            {/* Features and Amenities */}
+
             <PropertyDetailsFeatures
               features={listing?.features_and_amenities as FeatureInterface[]}
             />
             <>
-              {" "}
-              {/* Rating */}
               <PropertyRating />
               <ReportIssue className="mt-5" />
               {/* Recommended Listings */}

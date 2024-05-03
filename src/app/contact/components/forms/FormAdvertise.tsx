@@ -18,6 +18,11 @@ import {
 } from "@/lib/custom-hooks/useCustomDisclosure";
 import CustomErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
 import capitalizeName from "@/lib/utils/stringManipulation";
+import { useRouter } from "next/navigation";
+import { generateString } from "@/lib/utils";
+import slugify from "@/lib/utils/slugify";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 type Props = {};
 
@@ -29,6 +34,7 @@ const FormAdvertise = (props: Props) => {
     loading,
     setLoading,
     tableName,
+    handleFileUpload,
     validate,
     contactFormSession,
     handleSessionChange,
@@ -38,6 +44,7 @@ const FormAdvertise = (props: Props) => {
     usePhoneInputDisclosure();
 
   const { onOpen } = useToastDisclosure();
+  const router = useRouter();
 
   return (
     <Formik
@@ -52,10 +59,26 @@ const FormAdvertise = (props: Props) => {
       }}
       validationSchema={ContactSchema}
       validate={(values) => validate(values, contactFormSession.phone)}
-      onSubmit={(values, { resetForm }) => {
+      onSubmit={async (values, { resetForm }) => {
         values.contactType = capitalizeName(activeTab);
-        values.fileUrl = file;
-
+        const newFilename: string =
+          generateString(8) + "-" + slugify(file?.name || "");
+        var newFile = new File([file as File], newFilename, {
+          type: file?.type,
+        });
+        setLoading(true);
+        const fileForm = new FormData();
+        fileForm.append("file", newFile);
+        const fileUrl = `https://rentright.nyc3.cdn.digitaloceanspaces.com/${newFilename}`;
+        const uploadRes = await axios.post(
+          `${location.origin}/api/file-upload`,
+          fileForm,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          },
+        );
         sendContactUsEmail(formRef.current);
         setLoading(true);
         supabase
@@ -67,7 +90,7 @@ const FormAdvertise = (props: Props) => {
               email: values.email,
               phone: values.phone,
               message: values.message,
-              file_url: values.fileUrl,
+              file_url: fileUrl,
               company_name: values.companyName,
             },
           ])
@@ -79,9 +102,9 @@ const FormAdvertise = (props: Props) => {
             } else {
               resetForm();
               sessionStorage.removeItem("contactFormSession");
-
               setPhone(undefined);
-              onOpen("Successfully sent", "success");
+              onOpen("Your message has been sent", "success");
+              router.refresh();
             }
           });
       }}

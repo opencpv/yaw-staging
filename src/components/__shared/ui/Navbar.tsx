@@ -24,16 +24,16 @@ const Navbar = (props: any) => {
 
   useHideDocumentScrollBar(toggle);
 
-  
-
   useUserData();
+  const exceptionPages = ["/properties/", "/", "/join-us"];
+
+  const noNavBarPages: any = ["/join-us/open-positions/application"];
 
   useEffect(() => {
     const handleScroll = () => {
       if (
-        (pathname?.includes("/properties/") ||
-          pathname === "/" ||
-          pathname?.includes("/join-us")) &&
+        exceptionPages.some((page) => pathname?.includes(page)) &&
+        !pathname?.includes("/join-us/open-positions/submitted") &&
         window.scrollY > 1
       ) {
         setIsScrolling(true);
@@ -50,19 +50,19 @@ const Navbar = (props: any) => {
 
   const shouldChangeColor =
     isScrolling &&
-    (pathname?.includes("/properties/") ||
-      pathname === "/" ||
-      pathname?.includes("/join-us"));
+    exceptionPages.some((page) => pathname?.includes(page)) &&
+    !pathname?.includes("/join-us/open-positions/submitted");
 
   const isNotTargetPage =
-    !pathname?.includes("/properties/") &&
-    pathname !== "/" &&
-    !pathname?.includes("/join-us");
-
-  return (
+    !exceptionPages.some((page) => pathname?.includes(page)) ||
+    pathname?.includes("/join-us/open-positions/submitted");
+  
+    return (
     <>
       <nav
-        className={`no-print z-40 w-full px-3 py-3 sm:px-8 ${
+        className={`${
+          noNavBarPages?.includes(pathname) && "hidden"
+        } no-print z-40 w-full px-3 py-3 sm:px-8 ${
           props.isMenuOpen && "absolute"
         } ${
           isNotTargetPage

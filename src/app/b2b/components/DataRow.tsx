@@ -13,23 +13,24 @@ export type Data = {
 type Props = {
   variant: "invoice" | "receipt";
   data: Data;
-  index?:  string;
+  index?: string;
 };
 
 function DataRow({ data, variant, index }: Props) {
   const paidClasses: any = {
     Paid: "bg-[#FEDD9D] text-[#091E42] ",
-    Unpaid: "bg-[#B0E3C9] text-[#00763A]",
+    Unpaid: "bg-primary-50 text-[#00763A]",
   };
   return (
-    <div className="flex items-center gap-5 w-full hover:bg-primary-300">
+    <div className="flex w-full items-center gap-5 hover:bg-primary-300">
       <div className={` ${variant == "receipt" && "hidden"} p-2.5`}>
         <YellowCheckBox id={index} />
       </div>
       <div
         className={`grid ${
           variant == "invoice" ? "grid-cols-6" : "grid-cols-5"
-        }  cursor-pointer text-center h-[111px] font-semibold items-center justify-center capitalize w-full`}>
+        }  h-[111px] w-full cursor-pointer items-center justify-center text-center font-semibold capitalize`}
+      >
         <div>{data?.invoice_id}</div>
         <div>{data?.service}</div>
         <div>{data?.billing_date}</div>
@@ -37,9 +38,10 @@ function DataRow({ data, variant, index }: Props) {
         {variant == "invoice" && (
           <div className="flex justify-center">
             <div
-              className={` text-[0.625rem] w-full max-w-[144px] py-2 px-4 rounded-2xl ${
+              className={` w-full max-w-[144px] rounded-2xl px-4 py-2 text-[0.625rem] ${
                 paidClasses[data?.status]
-              }`}>
+              }`}
+            >
               {data?.status}
             </div>
           </div>

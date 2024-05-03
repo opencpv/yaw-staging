@@ -1,12 +1,12 @@
 "use client";
 import Button from "@/components/__shared/ui/button/Button";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { FaPlusCircle, FaStar, FaWhatsapp } from "react-icons/fa";
 import AdditionalInfo from "./AdditionalInfo";
 import AdditionalInfoTitle from "./AdditionalInfoTitle";
 import CallOut from "@/components/__shared/ui/CallOut";
 import { formatPrice } from "@/lib/utils/numberManipulation";
-import capitalizeName from "@/lib/utils/stringManipulation";
+import capitalizeName, { formatDate } from "@/lib/utils/stringManipulation";
 import { contentAccordionVariants, fadeUp } from "@/lib/animations";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -22,17 +22,19 @@ type Props = {
 };
 
 const PropertyDetailsPayment = (props: Props) => {
-  const [showMore, setShowMore] = useState(false);
+  const [showingMore, setShowingMore] = useState(false);
+  const thingsToKnowLength = useMemo(() => {
+    return props.thingsToKnow?.length;
+  }, []);
+  const thingsToKnowMaxLength = 238;
+
+  console.log(showingMore);
 
   return (
     <>
       <motion.section {...fadeUp} className="mb-12">
         <AdditionalInfoTitle title="Advance Payment Options" />
-        <AdditionalInfo
-          className={cn("", {
-            hidden: !props.advancePeriod,
-          })}
-        >
+        <AdditionalInfo hidden={!props.advancePeriod}>
           <ul className="properties-li">
             <li>
               {props.advancePeriod === 1
@@ -43,11 +45,11 @@ const PropertyDetailsPayment = (props: Props) => {
             </li>
           </ul>
         </AdditionalInfo>
-        <AdditionalInfo>
+        <AdditionalInfo hidden={!props.availableFrom}>
           <div className="grid grid-cols-4">
             <p className="col-span-2 sm:col-span-1">Available from: </p>
             <p className="col-span-2 text-right sm:col-span-3 sm:text-left">
-              {props.availableFrom}
+              {formatDate(props.availableFrom)}
             </p>
           </div>
         </AdditionalInfo>
@@ -62,11 +64,7 @@ const PropertyDetailsPayment = (props: Props) => {
                   Atque illo dolore voluptatum."
           className="mt-2"
         />
-        <AdditionalInfo
-          className={cn("", {
-            hidden: !props.agentFee,
-          })}
-        >
+        <AdditionalInfo hidden={!props.agentFee}>
           <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2 border-b py-2 last:border-b-0">
             <p className="w-full flex-1">Agent</p>
             <p className="w-full flex-1">
@@ -78,11 +76,7 @@ const PropertyDetailsPayment = (props: Props) => {
             </Button>
           </div>
         </AdditionalInfo>
-        <AdditionalInfo
-          className={cn("", {
-            hidden: !props.viewingFee,
-          })}
-        >
+        <AdditionalInfo hidden={!props.viewingFee}>
           <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2 border-b py-2 last:border-b-0">
             <p className="w-full flex-1">Viewing</p>
             <p className="w-full flex-1">
@@ -95,11 +89,7 @@ const PropertyDetailsPayment = (props: Props) => {
           </div>
         </AdditionalInfo>
         <AdditionalInfoTitle title="Property Fees" />
-        <AdditionalInfo
-          className={cn("", {
-            hidden: !props.refundableSecurityDeposit,
-          })}
-        >
+        <AdditionalInfo hidden={!props.refundableSecurityDeposit}>
           <div className="flex flex-wrap justify-between gap-2">
             <p className="">Refundable Security Deposit</p>
             <p className="">
@@ -115,9 +105,7 @@ const PropertyDetailsPayment = (props: Props) => {
             <AdditionalInfo>
               <ul className="properties-li grid w-full grid-cols-1 justify-between gap-x-10 gap-y-3 xs:grid-cols-2">
                 {props.utilities.map((utility: string) => (
-                  <li key={utility} className="">
-                    {capitalizeName(utility)}
-                  </li>
+                  <li key={utility}>{capitalizeName(utility)}</li>
                 ))}
               </ul>
             </AdditionalInfo>
@@ -127,23 +115,34 @@ const PropertyDetailsPayment = (props: Props) => {
           <>
             <AdditionalInfoTitle title="Things to know" />
             <AdditionalInfo>
-              <motion.p
-                className="max-w-2xl overflow-hidden leading-normal"
-                initial="collapsed"
-                variants={contentAccordionVariants()}
-                animate={showMore ? "expanded" : "collapsed"}
-                transition={{ duration: 0.8, ease: "easeInOut" }}
-                exit="collapsed"
+              <p
+                className="max-w-2xl overflow-hidden leading-normal transition-height"
+                // initial="collapsed"
+                // variants={contentAccordionVariants()}
+                // animate={showingMore ? "expanded" : "collapsed"}
+                // transition={{ duration: 0.8, ease: "easeInOut" }}
+                // exit="collapsed"
+                style={{ height: showingMore ? "auto" : "5rem" }}
               >
                 {props.thingsToKnow}
-              </motion.p>
+              </p>
               <Button
                 variant="outline"
-                className="mt-3 rounded-md px-4 py-2 text-xs text-[#65969F]"
+                className={cn(
+                  "mt-3 rounded-md border-[#65969F] px-4 py-2 text-xs text-[#65969F]",
+                  {
+                    hidden:
+                      thingsToKnowLength &&
+                      thingsToKnowLength <= thingsToKnowMaxLength,
+                    flex:
+                      thingsToKnowLength &&
+                      thingsToKnowLength > thingsToKnowMaxLength,
+                  },
+                )}
                 borderColor="#65969F"
-                onClick={() => setShowMore((current) => !current)}
+                onClick={() => setShowingMore((current) => !current)}
               >
-                {showMore ? "Show Less" : "Read More"}
+                {showingMore ? "Show Less" : "Show More"}
               </Button>
             </AdditionalInfo>
           </>

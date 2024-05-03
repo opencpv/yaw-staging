@@ -6,7 +6,6 @@ import Loader from "@/components/__shared/ui/loader/Loader";
 import ContactSchema from "./lib/contactSchema";
 import { useContactForm } from "./hooks/useContactForm";
 import ContactMessageField from "./ContactMessageField";
-import ContactUploadField from "./ContactUploadField";
 import ContactSubmitButton from "./ContactSubmitButton";
 import ContactFullNameField from "./ContactFullNameField";
 import ContactPhoneField from "./ContactPhoneField";
@@ -16,6 +15,13 @@ import {
 } from "@/lib/custom-hooks/useCustomDisclosure";
 import CustomErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
 import capitalizeName from "@/lib/utils/stringManipulation";
+import { useRouter } from "next/navigation";
+import { UploadFile } from "../UploadFile";
+import axios from "axios";
+import { generateString } from "@/lib/utils";
+import slugify from "@/lib/utils/slugify";
+import { toast } from "react-toastify";
+import ContactUploadField from "./ContactUploadField";
 
 type Props = {};
 
@@ -27,6 +33,7 @@ const FormGeneral = (props: Props) => {
     loading,
     setLoading,
     tableName,
+    handleFileUpload,
     validate,
     contactFormSession,
   } = useContactForm();
@@ -35,6 +42,7 @@ const FormGeneral = (props: Props) => {
     usePhoneInputDisclosure();
 
   const { onOpen } = useToastDisclosure();
+  const router = useRouter();
 
   return (
     <Formik
@@ -48,12 +56,27 @@ const FormGeneral = (props: Props) => {
       }}
       validationSchema={ContactSchema}
       validate={(values) => validate(values, contactFormSession.phone)}
-      onSubmit={(values, { resetForm }) => {
+      onSubmit={async (values, { resetForm }) => {
         values.contactType = capitalizeName(activeTab);
-        values.fileUrl = file;
-
-        sendContactUsEmail(formRef.current);
+        const newFilename: string =
+          generateString(8) + "-" + slugify(file?.name || "");
+        var newFile = new File([file as File], newFilename, {
+          type: file?.type,
+        });
         setLoading(true);
+        const fileForm = new FormData();
+        fileForm.append("file", newFile);
+        const fileUrl = `https://rentright.nyc3.cdn.digitaloceanspaces.com/${newFilename}`;
+        const uploadRes = await axios.post(
+          `${location.origin}/api/file-upload`,
+          fileForm,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          },
+        );
+        sendContactUsEmail(formRef.current);
         supabase
           .from(tableName)
           .insert([
@@ -63,7 +86,7 @@ const FormGeneral = (props: Props) => {
               email: values.email,
               phone: values.phone,
               message: values.message,
-              file_url: values.fileUrl,
+              file_url: fileUrl,
             },
           ])
           .select()
@@ -72,11 +95,12 @@ const FormGeneral = (props: Props) => {
             if (error) {
               onOpen("Something went wrong", "error");
             } else {
+              toast.success("Your message has been sent");
               resetForm();
               sessionStorage.removeItem("contactFormSession");
-
               setPhone(undefined);
               onOpen("Successfully sent", "success");
+              router.refresh();
             }
           });
       }}
@@ -119,7 +143,13 @@ const FormGeneral = (props: Props) => {
             </div>
             <ContactUploadField />
           </div>
-          {loading ? <Loader /> : <ContactSubmitButton />}
+          {loading ? (
+            <div className="mt-2">
+              <Loader />
+            </div>
+          ) : (
+            <ContactSubmitButton />
+          )}
         </Form>
       )}
     </Formik>

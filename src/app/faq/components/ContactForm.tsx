@@ -1,6 +1,6 @@
 "use client";
 import { Formik, Form, ErrorMessage } from "formik";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import Loader from "@/components/__shared/ui/loader/Loader";
 import CustomErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
@@ -9,34 +9,36 @@ import {
   usePhoneInputDisclosure,
   useToastDisclosure,
 } from "@/lib/custom-hooks/useCustomDisclosure";
-import ContactMessageField from "@/app/contact/components/forms/ContactMessageField";
 import { E164Number } from "libphonenumber-js/core";
 import ContactSubmitButton from "@/app/contact/components/forms/ContactSubmitButton";
 import ContactFullNameField from "@/app/contact/components/forms/ContactFullNameField";
 import ContactPhoneField from "@/app/contact/components/forms/ContactPhoneField";
 import { useContactForm } from "@/app/contact/components/forms/hooks/useContactForm";
+import FaqMessageField from "./FaqMessageField";
+import { useSessionStorage } from "@uidotdev/usehooks";
+import { useRouter } from "next/navigation";
 
 const ContactForm = () => {
   const [loading, setLoading] = useState(false);
   const { phone, setPhone, handleCountryChange, handlePhone } =
     usePhoneInputDisclosure();
   const { onOpen } = useToastDisclosure();
-
-  const { validate } = useContactForm();
-
-  useEffect(() => {
-    return () => {
-      sessionStorage.removeItem("contactFormSession");
-    };
-  }, []);
+  const { validate, contactFormSession } = useContactForm();
+  const [faqFormSession, setFaqFormSession] = useSessionStorage(
+    "faqFormSession",
+    {
+      message: "",
+    },
+  );
+  const router = useRouter();
 
   return (
     <Formik
       initialValues={{
-        fullname: "",
-        email: "",
-        phone: "",
-        message: "",
+        fullname: contactFormSession.fullname,
+        email: contactFormSession.email,
+        phone: contactFormSession.phone,
+        message: faqFormSession.message,
       }}
       validationSchema={ContactSchema}
       validate={(values) => validate(values, phone)}
@@ -61,8 +63,10 @@ const ContactForm = () => {
             } else {
               resetForm();
               sessionStorage.removeItem("contactFormSession");
+              sessionStorage.removeItem("faqFormSession");
               setPhone(undefined);
               onOpen("Successfully sent", "success");
+              router.refresh();
             }
           });
       }}
@@ -91,12 +95,18 @@ const ContactForm = () => {
               />
             </div>
             <div>
-              <ContactMessageField
-                value={values.message}
+              <FaqMessageField
+                value={faqFormSession.message || values.message}
                 placeholder="How can we help you?"
                 className="w-full min-w-full"
                 error={errors.message}
-                onChange={handleChange}
+                onChange={(e) => {
+                  handleChange(e);
+                  setFaqFormSession({
+                    ...faqFormSession,
+                    message: e.currentTarget.value,
+                  });
+                }}
                 onBlur={handleBlur}
               />
               <CustomErrorMessage className="mt-2" error={errors.message}>
