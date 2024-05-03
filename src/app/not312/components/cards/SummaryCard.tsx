@@ -24,9 +24,9 @@ const SummaryCard = ({ title, link, api }: Props) => {
         {isLoading ? (
           <Spinner />
         ) : (
-          <p className="mb-2 text-center text-8xl font-black">{data.count}</p>
+          <p className="mb-2 text-center text-3xl font-black">{data.count}</p>
         )}
-        <h3 className=" text-right font-bold">{title}</h3>
+        <h3 className=" text-right">{title}</h3>
         <Button
           className="mt-8 w-full"
           color="secondary"

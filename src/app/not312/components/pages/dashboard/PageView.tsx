@@ -3,9 +3,9 @@ import SummaryCard from "../../cards/SummaryCard";
 
 const PageView = () => {
   return (
-    <div>
+    <div className="p-8">
       <h2 className="mb-8  text-3xl font-bold ">Dashboard</h2>
-      <div className="grid w-full grid-cols-4 gap-8">
+      <div className="grid w-full grid-cols-5 gap-8">
         <SummaryCard
           title="Feedbacks"
           link="/not312/dashboard/feedback"
@@ -30,6 +30,11 @@ const PageView = () => {
           title="Applicants"
           link="/not312/dashboard/applicants"
           api={route.applicantsCount}
+        />
+        <SummaryCard
+          title="Featured Properties"
+          link="/not312/dashboard/featured-properties"
+          api={route.featuredPropertiesCount}
         />
       </div>
     </div>

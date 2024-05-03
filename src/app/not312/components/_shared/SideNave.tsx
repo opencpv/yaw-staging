@@ -7,6 +7,7 @@ import {
   FaMailBulk,
   FaPeopleArrows,
   FaQuestionCircle,
+  FaHome,
 } from "react-icons/fa";
 import { FaPeopleCarryBox } from "react-icons/fa6";
 const Sidebar = () => {
@@ -50,6 +51,12 @@ const Sidebar = () => {
           icon={<FaPeopleCarryBox />}
           link={"/not312/dashboard/applicants"}
           active={path === "/not312/dashboard/applicants"}
+        />
+        <NavButton
+          text="Featured Properties"
+          icon={<FaHome />}
+          link={"/not312/dashboard/featured-properties"}
+          active={path === "/not312/dashboard/featured-properties"}
         />
       </div>
     </aside>

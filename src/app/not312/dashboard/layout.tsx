@@ -28,7 +28,9 @@ export default function RootLayout({
   return (
     <main className="flex">
       <Sidebar />
-      <section className=" min-h-screen w-[80vw] p-8">{children}</section>
+      <section className=" h-[100vh] w-[80vw] overflow-y-clip">
+        {children}
+      </section>
     </main>
   );
 }
