@@ -37,7 +37,7 @@ export default function JobCard({ job }: Props) {
         onClose={onClose}
         closeButton={<ModalCloseIcon />}
         // size="3xl"
-        className=" max-h-[75vh] w-[90vw] max-w-[784px]  "
+        className=" [75vh] w-[90vw] max-w-[784px]  "
       />
 
       <button

@@ -25,8 +25,8 @@ function JobApplicationForm({ variant }: Props) {
     phoneInputPlaceholder,
   } = useContactForm();
   return (
-    <div className="flex flex-col gap-4 px-5 lg:px-20 pt-5">
-      <Link href={"/join-us/open-positions"} className="hidden lg:flex">
+    <div className="flex flex-col gap-4 px-5 pt-5 lg:px-20">
+      <Link href={"/join-us/open-positions"} className="hidden lg:flex absolute top-5 z-[5000]">
         <Button
           className={`h-[52px]  rounded-lg  py-[0.94rem] font-semibold ${"bg-transparent text-[1.125rem] text-[#DDB771]"} flex justify-start gap-2.5`}
         >
@@ -42,13 +42,15 @@ function JobApplicationForm({ variant }: Props) {
       >
         {({ handleBlur, handleChange, values, errors }) => (
           <Form>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 pt-16">
               <p className="hidden text-[1.9375rem] font-semibold text-[#333] lg:flex">
-                {variant == "application" && <p>Application</p>}
-                {variant == "resume" && <p>Resume Bank</p>}
+                {variant == "application" && "Application"}
+                {variant == "resume" && "Resume Bank"}
               </p>
 
-              <InfoText content="Unlock your potential and join our dynamic team where innovation meets opportunity!" />
+              {variant == "resume" && (
+                <InfoText content="Unlock your potential and join our dynamic team where innovation meets opportunity!" />
+              )}
 
               <div className="flex flex-col gap-6">
                 <p className="text-[1.25rem] font-[600] text-shade-300">
@@ -79,7 +81,7 @@ function JobApplicationForm({ variant }: Props) {
                     name="email"
                   />
                   <InputPhoneNumber
-                  label="Phone"
+                    label="Phone"
                     id="phone"
                     name="phone"
                     value={phone}
@@ -105,7 +107,11 @@ function JobApplicationForm({ variant }: Props) {
                 <div className="flex flex-col gap-3">
                   <div className="flex gap-2.5">
                     <p className="text-[#6A6968]">Additional Information</p>
-                    <InfoBubble content={"Add any other relevant information that highlights your skillset (eg. personal website, work portfolio, etc"} />
+                    <InfoBubble
+                      content={
+                        "Add other relevant information to highlights your skillset (eg. personal website, work portfolio, etc)"
+                      }
+                    />
                   </div>
                   <input
                     placeholder="Paste your link here"

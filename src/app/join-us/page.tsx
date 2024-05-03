@@ -50,7 +50,7 @@ const JoinUsPage = async () => {
             />
           </div>{" "}
           <div className="col-span-2 mt-2 flex flex-col gap-7 lg:col-span-1 lg:mt-0">
-            <p className="hidden w-fit border-b-4 border-[#DDB771] pb-2 text-[3.0625rem] font-semibold capitalize text-[#333] lg:flex">
+            <p className="hidden w-fit border-b-4 border-[#DDB771] pb-5 text-[3.0625rem] font-semibold capitalize text-[#333] lg:flex">
               What we do
             </p>
             <div className="flex flex-col gap-5 font-semibold leading-[1.45rem] tracking-[0.01rem] text-shade-300">
