@@ -26,7 +26,7 @@ function JobApplicationForm({ variant }: Props) {
   } = useContactForm();
   return (
     <div className="flex flex-col gap-4 px-5 pt-5 lg:px-20">
-      <Link href={"/join-us/open-positions"} className="hidden lg:flex">
+      <Link href={"/join-us/open-positions"} className="hidden lg:flex absolute top-5 z-[5000]">
         <Button
           className={`h-[52px]  rounded-lg  py-[0.94rem] font-semibold ${"bg-transparent text-[1.125rem] text-[#DDB771]"} flex justify-start gap-2.5`}
         >
@@ -42,7 +42,7 @@ function JobApplicationForm({ variant }: Props) {
       >
         {({ handleBlur, handleChange, values, errors }) => (
           <Form>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 pt-16">
               <p className="hidden text-[1.9375rem] font-semibold text-[#333] lg:flex">
                 {variant == "application" && "Application"}
                 {variant == "resume" && "Resume Bank"}
