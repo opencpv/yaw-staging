@@ -27,7 +27,7 @@ function CustomFileInput({ handleFile, label, infoContent }: Props) {
     <div className="flex flex-col gap-4">
       <div className="flex gap-2.5">
         <p className="text-[#6A6968]">{label}</p>
-        <InfoBubble content={infoContent} />
+        {infoContent && <InfoBubble content={infoContent} />}{" "}
       </div>{" "}
       <div className="flex w-full items-center justify-between rounded-[4px] border-[1px] border-[#E6E6E6] pl-4">
         <div className="flex h-[52px] items-center gap-4 font-[0.8125rem] text-[#B4B2AF]">
