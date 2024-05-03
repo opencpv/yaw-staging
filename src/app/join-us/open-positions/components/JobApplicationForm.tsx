@@ -100,7 +100,7 @@ function JobApplicationForm({ variant }: Props) {
                 Professional Profile
               </p>
               <div className="flex flex-col gap-5">
-                <CustomFileInput label="Upload Cover Letter" />
+                <CustomFileInput label="Upload Cover Letter"  />
                 <CustomFileInput label="Upload Resume" />
                 {/* <CustomFileInput label="Upload Video Profile" /> */}
                 {/* <CustomFileInput label="Upload Work Sample" /> */}

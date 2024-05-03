@@ -32,7 +32,6 @@ const Navbar = (props: any) => {
     "/join-us/open-positions/resume-bank",
   ];
 
-  const noNavBarPages: any = ["/join-us/open-positions/application"];
   const classes: any = {
     onlyLogo: "",
     transparentFirst: "fixed bg-primary-500 transition-all duration-300",
@@ -40,17 +39,15 @@ const Navbar = (props: any) => {
   };
 
   const [currentClass, setCurrentClass] = useState<any>("transparentFirst");
+
   useEffect(() => {
     const handleScroll = () => {
-      if (
+      const shouldBeGreen =
         exceptionPages.some((page) => pathname?.includes(page)) &&
         !pathname?.includes("/join-us/open-positions/submitted") &&
-        window.scrollY > 1
-      ) {
-        setIsScrolling(true);
-      } else {
-        setIsScrolling(false);
-      }
+        window.scrollY > 1;
+      setIsScrolling(shouldBeGreen);
+      setCurrentClass(shouldBeGreen ? "greenThroughOut" : "transparentFirst");
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -59,30 +56,15 @@ const Navbar = (props: any) => {
     };
   }, [pathname]);
 
-  const shouldChangeColor =
-    isScrolling &&
-    exceptionPages.some((page) => pathname?.includes(page)) &&
-    !pathname?.includes("/join-us/open-positions/submitted")
-
-    useEffect(() => {
-
-    }, [])
-
-  const isNotTargetPage =
-    !exceptionPages.some((page) => pathname?.includes(page)) ||
-    pathname?.includes("/join-us/open-positions/submitted");
-
   return (
     <>
       <nav
-        className={` no-print z-40 w-full px-3 py-3 sm:px-8 ${
+        className={`no-print z-40 w-full px-3 py-3 sm:px-8 ${
           props.isMenuOpen && "absolute"
         } ${
-          isNotTargetPage
-            ? classes[currentClass]
-            : shouldChangeColor
-              ? classes[currentClass]
-              : "fixed bg-transparent transition-all duration-300"
+          currentClass === "transparentFirst"
+            ? "fixed bg-transparent transition-all duration-300"
+            : classes[currentClass]
         } top-0 bg-primary-500`}
       >
         <div className="flex items-center justify-between">
