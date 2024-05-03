@@ -7,4 +7,10 @@ export const route = {
   subscribersCount: "/api/subscription/count",
   subscribersCategories: "/api/subscription/categories",
   subscribersData: "/api/subscription",
+  faqData: "/api/faq",
+  faqCount: "/api/faq/count",
+  contactsCount: "/api/contact/count",
+  contactData: "/api/contact",
+  applicantData: "/api/applicant",
+  applicantsCount: "/api/applicant/count",
 };

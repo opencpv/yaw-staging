@@ -61,7 +61,7 @@ export default function SavedSearchCard({ data }: Props) {
         <Link href="/">
           <div className="flex items-center justify-between">
             <p className="text-primary-500">View Search Results</p>
-            <MdOutlineKeyboardArrowRight color="#073B3A" size="24px" />
+            <MdOutlineKeyboardArrowRight color="#11605E" size="24px" />
           </div>
         </Link>
       </div>

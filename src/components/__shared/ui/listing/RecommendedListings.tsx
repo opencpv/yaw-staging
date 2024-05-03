@@ -64,7 +64,6 @@ const RecommendedListings = ({ className, showAllButton }: Props) => {
             />
           }
         />
-        {/* lg and above */}
         <div>
           <Swiper
             effect="coverflow"

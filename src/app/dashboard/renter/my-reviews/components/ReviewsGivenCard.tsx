@@ -114,7 +114,7 @@ export default function ReviewsGivenCard({
       {data.replies && (
         <div className="flex flex-col items-start justify-center gap-[1.3125rem] pb-4 pl-1 pt-2">
           <div className="flex items-center gap-1">
-            <p className="font-semibold text-[#073B3A]">Response </p>
+            <p className="text-primary font-semibold">Response </p>
             <CaREviewsReply2 />
           </div>
 

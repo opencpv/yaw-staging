@@ -7,11 +7,16 @@ import JoinUsButtons from "./JoinUsButtons";
 import ModalCloseIcon from "@/components/__shared/ui/modals/ModalCloseIcon";
 import { HiOutlineDownload } from "react-icons/hi";
 import JobDescriptionModalContent from "./JobDescriptionModalContent";
+import { PortableText } from "next-sanity";
+
+
 
 type Props = {
+  description: any;
   onClick: any;
+
 };
-export default function JobDescriptionButton({  onClick }: Props) {
+export default function JobDescriptionButton({ description, onClick }: Props) {
   const [animation, setAnimation] = useState(false);
 
   const { user } = useAppStore();

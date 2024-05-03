@@ -50,7 +50,7 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
 
     return (
       <Root className="p3 px-2">
-        <p className="text-[1.5625rem] font-semibold text-[#073B3A] ">
+        <p className="text-primary text-[1.5625rem] font-semibold ">
           Employment Information
         </p>
         <div className="pt-7">

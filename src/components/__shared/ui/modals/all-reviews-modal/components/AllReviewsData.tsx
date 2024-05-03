@@ -56,9 +56,7 @@ function AllReviewsData({ variant, setOpen1, setOpen2 }: Props) {
                 >
                   3.5
                 </p>
-                <p className="whitespace-nowrap text-[#073B3A]">
-                  ( 3 ) Reviews
-                </p>
+                <p className="text-primary whitespace-nowrap">( 3 ) Reviews</p>
               </div>
             </div>
           </div>

@@ -42,7 +42,7 @@ function RatingsFormForm({ setOpen, variant = "person", setOpen2 }: Props) {
               setOpen(false);
               setOpen2(true);
             }}
-            className="cursor-pointer border-b-[1px] border-[#073B3A] bg-white text-[1.25rem] text-[#073B3A]"
+            className="border-primary text-primary cursor-pointer border-b-[1px] bg-white text-[1.25rem]"
           >
             ( 150 reviews )
           </p>

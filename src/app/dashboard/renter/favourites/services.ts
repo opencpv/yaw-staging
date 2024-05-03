@@ -1,7 +1,7 @@
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { useOffsetInfiniteScrollQuery } from "@supabase-cache-helpers/postgrest-swr";
 
-export const useFetchUserFavorites = (userId: string) => {
+export const useFetchUserFavorites = ({ userId }: { userId: string }) => {
   const query = supabase
     .from("merged_property_view")
     .select(

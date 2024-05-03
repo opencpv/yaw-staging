@@ -46,7 +46,7 @@ export default function Blocking() {
           <h4 className="text-lg">Your Blocked List</h4>
           {blockedUsers && (
             <Button
-              className="h-[38px] rounded-lg bg-[#073B3A] px-5 py-2.5 text-white"
+              className="bg-primary h-[38px] rounded-lg px-5 py-2.5 text-white"
               onPress={() => setBlockedUsers(false)}
             >
               Unblock all
@@ -82,7 +82,7 @@ const BlockCard = ({ data }: BProps) => {
         <div className="relative aspect-square w-full max-w-[69px] overflow-hidden rounded-full">
           <Image fill alt="Persona image" src={data?.image} objectFit="cover" />
         </div>
-        <p className="font-semibold text-[#073B3A]">{data?.name}</p>
+        <p className="text-primary font-semibold">{data?.name}</p>
       </div>
       <div>
         <Button className="h-[38px] rounded-lg bg-secondary-400 px-5 py-2.5 text-[13px] text-white">

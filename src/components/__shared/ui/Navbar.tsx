@@ -24,16 +24,27 @@ const Navbar = (props: any) => {
 
   useHideDocumentScrollBar(toggle);
 
-  
-
   useUserData();
+  const exceptionPages = [
+    "/properties/",
+    "/",
+    "/join-us",
+    "/join-us/open-positions/resume-bank",
+  ];
 
+  const noNavBarPages: any = ["/join-us/open-positions/application"];
+  const classes: any = {
+    onlyLogo: "",
+    transparentFirst: "fixed bg-primary-500 transition-all duration-300",
+    greenThroughOut: "sticky bg-primary-500",
+  };
+
+  const [currentClass, setCurrentClass] = useState<any>("transparentFirst");
   useEffect(() => {
     const handleScroll = () => {
       if (
-        (pathname?.includes("/properties/") ||
-          pathname === "/" ||
-          pathname?.includes("/join-us")) &&
+        exceptionPages.some((page) => pathname?.includes(page)) &&
+        !pathname?.includes("/join-us/open-positions/submitted") &&
         window.scrollY > 1
       ) {
         setIsScrolling(true);
@@ -50,25 +61,27 @@ const Navbar = (props: any) => {
 
   const shouldChangeColor =
     isScrolling &&
-    (pathname?.includes("/properties/") ||
-      pathname === "/" ||
-      pathname?.includes("/join-us"));
+    exceptionPages.some((page) => pathname?.includes(page)) &&
+    !pathname?.includes("/join-us/open-positions/submitted")
+
+    useEffect(() => {
+
+    }, [])
 
   const isNotTargetPage =
-    !pathname?.includes("/properties/") &&
-    pathname !== "/" &&
-    !pathname?.includes("/join-us");
+    !exceptionPages.some((page) => pathname?.includes(page)) ||
+    pathname?.includes("/join-us/open-positions/submitted");
 
   return (
     <>
       <nav
-        className={`no-print z-40 w-full px-3 py-3 sm:px-8 ${
+        className={` no-print z-40 w-full px-3 py-3 sm:px-8 ${
           props.isMenuOpen && "absolute"
         } ${
           isNotTargetPage
-            ? "sticky bg-primary-500"
+            ? classes[currentClass]
             : shouldChangeColor
-              ? "fixed bg-primary-500 transition-all duration-300"
+              ? classes[currentClass]
               : "fixed bg-transparent transition-all duration-300"
         } top-0 bg-primary-500`}
       >

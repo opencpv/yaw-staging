@@ -10,33 +10,32 @@ import { demoJob } from "./demo-job-description";
 import Share from "@/components/__shared/ui/share/Share";
 import downloadPdf from "@/lib/utils/downloadPdf";
 import { usePathname } from "next/navigation";
+import { PortableText } from "next-sanity";
 
 function JobDescriptionModalContent({ job }: any) {
   const pathname = usePathname();
   return (
     <>
-     
       <div
-        className={`hidden-scrollbar  overflow-y-scroll bg-white
+        className={`hidden-scrollbar  flex flex-col justify-start overflow-y-scroll bg-white
        `}
       >
-        <div className={`relative z-[1001] p-4`}>
-          <div className="absolute right-[35px] top-[10px] flex items-center gap-2">
-            <p className="text-xs">Share</p>
+        <div className={`relative z-[1001]`}>
+          <div className="absolute right-[40px] top-[35px] z-[2001] flex items-center gap-1">
+            <p className="text-xs text-shade-300">Share</p>
             <Share
               url={`https://rentrightgh.com${pathname}`}
               title={job?.title}
               className="text-neutral-800"
             />
           </div>
-          <div className="relative mt-10 flex flex-col gap-3 rounded-2xl border-[1px] border-shade-50 bg-[#FAFAFA] px-8 py-2">
+          <div className="relative mt-2 flex flex-col gap-3 rounded-2xl border-[1px] border-shade-50 bg-[#FAFAFA] px-8 py-2">
             <div className="download flex flex-col gap-3">
               <p className="border-b-[1px] border-shade-50 py-3 text-[1.5rem] font-semibold text-shade-300">
-                JOB DESCRIPTION ( <span className="capitalize"
-                >{job?.title} </span>)
+                <span className="capitalize">{job?.title} </span>
               </p>
               <p className="hidden-scrollbar   overflow-y-scroll text-shade-300">
-                {demoJob}
+                <PortableText value={job?.description} />
               </p>
             </div>
             <div className="sticky bottom-0 grid h-[45px] grid-cols-2 gap-1 bg-white pb-5">
@@ -58,15 +57,6 @@ function JobDescriptionModalContent({ job }: any) {
             </div>
           </div>
         </div>
-
-        {/* <Dialog.Close asChild>
-          <button
-            className="absolute right-[20px] top-[15px] z-[4000] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full text-violet11 hover:bg-violet4 focus:shadow-[0_0_0_2px] focus:shadow-violet7 focus:outline-none"
-            aria-label="Close"
-          >
-            <ModalCloseIcon />
-          </button>
-        </Dialog.Close> */}
       </div>
     </>
   );

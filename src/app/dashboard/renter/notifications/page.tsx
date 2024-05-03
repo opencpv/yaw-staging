@@ -44,7 +44,7 @@ const Page = () => {
 
           {notifications?.length > 0 && (
             <div className="flex w-full justify-end">
-              <Button className="bg-unset flex items-center justify-end gap-2 p-2 text-black hover:bg-[#073b3a12]">
+              <Button className="bg-unset flex items-center justify-end gap-2 p-2 text-black hover:bg-[#11605E12]">
                 <div className="flex gap-0">
                   <CaMarkAsRead />
                 </div>

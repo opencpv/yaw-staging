@@ -54,7 +54,7 @@ export default function AgentButtons({
           href={href}
           as={href ? Link : undefined}
           className={cn(
-            "flex w-full max-w-fit items-center justify-center rounded-lg bg-[#073B3A] p-6 px-8 font-semibold text-white transition-all hover:scale-[1.02] lg:min-w-[8rem]",
+            "bg-primary flex w-full max-w-fit items-center justify-center rounded-lg p-6 px-8 font-semibold text-white transition-all hover:scale-[1.02] lg:min-w-[8rem]",
             className,
           )}
           onPress={onClick}
@@ -68,7 +68,7 @@ export default function AgentButtons({
           href={href}
           as={href ? Link : undefined}
           className={cn(
-            "h-[52px] rounded-lg border-[1px] border-[#073B3A]  bg-transparent px-[2.5rem] font-semibold text-[#073B3A] transition-all hover:scale-[1.02]",
+            "border-primary text-primary h-[52px] rounded-lg  border-[1px] bg-transparent px-[2.5rem] font-semibold transition-all hover:scale-[1.02]",
             className,
           )}
           onPress={onClick}
@@ -81,7 +81,7 @@ export default function AgentButtons({
           href={href}
           as={href ? Link : undefined}
           className={cn(
-            "flex max-w-fit items-center justify-center rounded-lg border border-[#073B3A] bg-transparent p-6 px-10 font-semibold text-[#073B3A] transition-all hover:scale-[1.02] lg:min-w-[8rem]",
+            "border-primary text-primary flex max-w-fit items-center justify-center rounded-lg border bg-transparent p-6 px-10 font-semibold transition-all hover:scale-[1.02] lg:min-w-[8rem]",
             className,
           )}
           onPress={onClick}
@@ -95,7 +95,7 @@ export default function AgentButtons({
           href={href}
           as={href ? Link : undefined}
           className={cn(
-            "lg:min-w-[8rem flex max-w-fit items-center justify-center rounded-lg border border-[#073B3A] bg-transparent p-6 px-10 font-semibold text-[#073B3A] transition-all hover:scale-[1.02]",
+            "lg:min-w-[8rem border-primary text-primary flex max-w-fit items-center justify-center rounded-lg border bg-transparent p-6 px-10 font-semibold transition-all hover:scale-[1.02]",
             className,
           )}
           onPress={onClick}

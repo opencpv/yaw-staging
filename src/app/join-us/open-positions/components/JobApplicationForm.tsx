@@ -11,6 +11,7 @@ import CaJoinUsIconLeft from "./icons/CaJoinUsIconLongLeft";
 import { Button } from "@nextui-org/react";
 import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
 import { useContactForm } from "@/app/contact/components/forms/hooks/useContactForm";
+import InfoText from "@/components/__shared/ui/listing-form/components/InfoText";
 
 type Props = {
   variant: "application" | "resume";
@@ -24,7 +25,7 @@ function JobApplicationForm({ variant }: Props) {
     phoneInputPlaceholder,
   } = useContactForm();
   return (
-    <div className="flex flex-col gap-4 px-5 lg:px-20 pt-20">
+    <div className="flex flex-col gap-4 px-5 pt-5 lg:px-20">
       <Link href={"/join-us/open-positions"} className="hidden lg:flex">
         <Button
           className={`h-[52px]  rounded-lg  py-[0.94rem] font-semibold ${"bg-transparent text-[1.125rem] text-[#DDB771]"} flex justify-start gap-2.5`}
@@ -43,9 +44,13 @@ function JobApplicationForm({ variant }: Props) {
           <Form>
             <div className="flex flex-col gap-4">
               <p className="hidden text-[1.9375rem] font-semibold text-[#333] lg:flex">
-                {variant == "application" && <p>Application</p>}
-                {variant == "resume" && <p>Resume Bank</p>}
+                {variant == "application" && "Application"}
+                {variant == "resume" && "Resume Bank"}
               </p>
+
+              {variant == "resume" && (
+                <InfoText content="Unlock your potential and join our dynamic team where innovation meets opportunity!" />
+              )}
 
               <div className="flex flex-col gap-6">
                 <p className="text-[1.25rem] font-[600] text-shade-300">
@@ -76,7 +81,7 @@ function JobApplicationForm({ variant }: Props) {
                     name="email"
                   />
                   <InputPhoneNumber
-                  label="Phone"
+                    label="Phone"
                     id="phone"
                     name="phone"
                     value={phone}
@@ -95,14 +100,18 @@ function JobApplicationForm({ variant }: Props) {
                 Professional Profile
               </p>
               <div className="flex flex-col gap-5">
-                <CustomFileInput label="Upload Cover Letter" infoContent="Cover letter" />
-                <CustomFileInput label="Upload Resume" infoContent="Tell use about yourself"/>
+                <CustomFileInput label="Upload Cover Letter" />
+                <CustomFileInput label="Upload Resume" />
                 {/* <CustomFileInput label="Upload Video Profile" /> */}
                 {/* <CustomFileInput label="Upload Work Sample" /> */}
                 <div className="flex flex-col gap-3">
                   <div className="flex gap-2.5">
-                    <p className="text-[#6A6968]">Link</p>
-                    <InfoBubble content={"Any other relevant details or information (eg: personal website etc)"} />
+                    <p className="text-[#6A6968]">Additional Information</p>
+                    <InfoBubble
+                      content={
+                        "Add other relevant information to highlights your skillset (eg. personal website, work portfolio, etc)"
+                      }
+                    />
                   </div>
                   <input
                     placeholder="Paste your link here"
@@ -112,7 +121,7 @@ function JobApplicationForm({ variant }: Props) {
                 </div>
               </div>
             </div>
-            <div className="mt-12 flex justify-center">
+            <div className="mt-12 flex justify-center pb-10">
               <Link
                 href={"/join-us/open-positions/submitted"}
                 className="w-full max-w-[248px]"

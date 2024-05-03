@@ -54,7 +54,7 @@ const Footer = () => {
       <div className="mx-auto flex flex-col items-center gap-10 px-6 text-[#fff] lg:w-8/12">
         <p
           className={
-            "max-w-[1077px] text-[32px] font-[500] xl:text-[48px] 2xl:tracking-[-1.92px]"
+            "max-w-[1077px] text-[32px] font-[500] leading-normal xl:text-[48px] 2xl:tracking-[-1.92px]"
           }
         >
           Sign up to get the{" "}
@@ -121,7 +121,7 @@ const Footer = () => {
             </span>
             <span>
               | {legal.copyrightNotice}{" "}
-              <Link href="/legal" className="inline-block text-[#B0B0B0]">
+              <Link href="/privacy" className="inline-block text-[#B0B0B0]">
                 | Legal
               </Link>
             </span>
@@ -129,27 +129,16 @@ const Footer = () => {
         </div>
         <div
           className={
-            "order-1 flex flex-row flex-wrap gap-4 min-[1110px]:order-2"
+            "order-1 flex flex-row flex-wrap gap-4 text-white min-[1110px]:order-2"
           }
         >
           <div className={"flex flex-row items-center gap-2 truncate"}>
             <FaEnvelope className="text-accent-50" size={24} />
-            <Link
-              href={`mailto:${legal.email}`}
-              title={legal.email}
-              className="text-[#ffff]"
-            >
-              {legal.email}
-            </Link>
+            <span title={legal.email}>{legal.email}</span>
           </div>
           <div className={"flex flex-row items-center gap-2"}>
             <MdLocalPhone className="text-accent-50" size={24} />
-            <Link
-              href={`tel:${legal.telephoneFormatted}`}
-              className="text-[#ffff]"
-            >
-              {legal.telephone}
-            </Link>
+            <span>{legal.telephone}</span>
           </div>
         </div>
       </div>

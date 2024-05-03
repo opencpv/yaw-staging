@@ -27,7 +27,7 @@ const PersonalInformationForm2 = React.forwardRef<HTMLInputElement, Props>(
     return (
       <Root className="p1 px-2">
         <div>
-          <p className="text-[1.5625rem] font-semibold text-[#073B3A]">
+          <p className="text-primary text-[1.5625rem] font-semibold">
             Personal Information
           </p>
         </div>

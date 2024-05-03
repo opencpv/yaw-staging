@@ -21,7 +21,7 @@ const MySearchItems = () => {
         </Link>
       </div>
       <div className="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-lg  bg-black bg-opacity-30 p-8 px-4  text-white shadow-inner md:aspect-square lg:w-[551px] lg:px-[115px]">
-        <p className="absolute -left-8 top-16 bg-[#B0E3C9] px-24 py-[10px] text-black shadow-md md:top-8 md:-rotate-[30deg]">
+        <p className="absolute -left-8 top-16 bg-primary-50 px-24 py-[10px] text-black shadow-md md:top-8 md:-rotate-[30deg]">
           Free Trial Limited
         </p>
         <p className="mb-3 mt-24 text-3xl font-semibold">
