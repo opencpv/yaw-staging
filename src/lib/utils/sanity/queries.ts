@@ -67,6 +67,7 @@ export const CONTACT_US_PAGE_QUERY = groq`*[_type == 'contactUs']  {
  `;
 
 export const JOBS_QUERY = groq`*[_type == 'job'] {_id,
+title,
 description_brief,
 description,
 image,

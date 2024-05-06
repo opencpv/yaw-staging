@@ -13,4 +13,5 @@ export const route = {
   contactData: "/api/contact",
   applicantData: "/api/applicant",
   applicantsCount: "/api/applicant/count",
+  featuredPropertiesCount: "/api/featured-properties/count",
 };
