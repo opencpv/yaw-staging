@@ -45,19 +45,23 @@ function JobApplicationForm({ variant }: Props) {
       >
         {({ handleBlur, handleChange, values, errors }) => (
           <Form>
-            <div className="flex flex-col gap-4 pt-16">
-              <p className="pt-5font-semibold hidden text-[1.9375rem] text-[#333] lg:flex">
+            <div className="flex flex-col gap-4 pt-8 lg:pt-16">
+              <p className="hidden pt-5 text-[1.9375rem] font-semibold text-[#333] lg:flex">
                 {variant == "application" && "Application"}
                 {variant == "resume" && "Resume Bank"}
               </p>
 
               {variant == "resume" && (
-                <div className="pt-5">
+                <div className="lg:pt-5">
                   <InfoText content="Unlock your potential and join our dynamic team where innovation meets opportunity!" />
                 </div>
               )}
 
-              <div className="flex flex-col gap-6 pt-8">
+              <div
+                className={`flex flex-col gap-6 ${
+                  variant == "resume" ? "pt-4" : "pt-8"
+                }`}
+              >
                 <p className="text-[1.25rem] font-[600] text-shade-300">
                   Contact Information{" "}
                 </p>
