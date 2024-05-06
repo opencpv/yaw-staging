@@ -6,9 +6,14 @@ type Props = {
   handleFile?: (file: File | null) => void; // Specify the type of handleFile function
   label?: string;
   infoContent?: string;
-  required? : boolean
+  required?: boolean;
+  variant?: "green" | "accent";
 };
-function CustomFileInput({ handleFile, label, infoContent, required }: Props) {
+function CustomFileInput({ handleFile, label, infoContent, required, variant }: Props) {
+  const variants  : any= {
+    green: "bg-[#11605E]",
+    accent: "bg-accent-50",
+  };
   const [fileUploaded, setFileUploaded] = useState<File | null>(null);
   const hiddenFileInput = useRef<HTMLInputElement | null>(null); // Specify the type
 
@@ -36,8 +41,9 @@ function CustomFileInput({ handleFile, label, infoContent, required }: Props) {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex gap-2.5">
-        <p className="text-[#6A6968]">{label}
-        {required && <span className="text-xs relative top-[-5px] ">*</span>}
+        <p className="text-[#6A6968]">
+          {label}
+          {required && <span className="relative top-[-5px] text-xs ">*</span>}
         </p>
         {infoContent && <InfoBubble content={infoContent} />}{" "}
       </div>{" "}
@@ -62,7 +68,7 @@ function CustomFileInput({ handleFile, label, infoContent, required }: Props) {
           )}
 
           <button
-            className="h-[52px] w-[128px] cursor-pointer rounded-[4px] bg-[#DDB771] font-[500] text-white"
+            className={`${variants[variant]} h-[52px] w-[128px] cursor-pointer rounded-[4px] font-[500] text-white`}
             style={{
               boxShadow:
                 "0px 4px 6px -2px rgba(0, 0, 0, 0.03), 0px 12px 16px -4px rgba(0, 0, 0, 0.08)",
