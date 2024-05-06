@@ -1,5 +1,4 @@
 "use client";
-import { ScrollShadow } from "@nextui-org/react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -15,7 +14,7 @@ const OtherPosts = ({ title, posts, className }: OtherPostsProps) => {
         {title}
       </div>
       {/* posts */}
-      <ul className="hidden flex-col gap-5 xs:flex">
+      <ul className="flex flex-col gap-5">
         {posts.map((post, idx) => (
           <Link key={idx + 1} href={`${post.href}`}>
             <li>
@@ -42,41 +41,6 @@ const OtherPosts = ({ title, posts, className }: OtherPostsProps) => {
           </Link>
         ))}
       </ul>
-      <ScrollShadow
-        isEnabled={false}
-        hideScrollBar
-        orientation="horizontal"
-        className="max-w-[350px] xs:hidden"
-      >
-        <ul className="flex gap-3">
-          {posts.map((post, idx) => (
-            <Link key={idx + 1} href={`${post.href}`}>
-              <li>
-                <div className="flex flex-wrap gap-2 text-sm">
-                  <div className="relative h-20 min-w-[5rem] flex-1">
-                    <Image
-                      src={post.image ? post.image : "/assets/images/Stock.jpg"}
-                      alt={post.title}
-                      className="rounded-lg"
-                      fill
-                      style={{ objectFit: "cover" }}
-                    />
-                  </div>
-                  <div className="flex min-w-[8rem] flex-[2] flex-col justify-between py-1">
-                    <h4 className="font-[500] leading-tight text-neutral-800">
-                      {post.title}
-                    </h4>
-                    <p className="mt-2 text-xs text-neutral-400">
-                      Posted by{" "}
-                      <span className="text-neutral-800">{post.author}</span>
-                    </p>
-                  </div>
-                </div>
-              </li>
-            </Link>
-          ))}
-        </ul>
-      </ScrollShadow>
     </div>
   );
 };

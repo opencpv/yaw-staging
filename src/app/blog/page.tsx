@@ -37,10 +37,10 @@ const page = async () => {
   return (
     <div className="wrapper pb-0 sm:pb-0">
       <PostSlider posts={sliderBlogData} />
-      <section className="grid-cols-4 gap-x-5 md:pt-28 lg:grid">
+      <section className="grid-cols-4 gap-x-5 lg:grid lg:pt-28">
         <div className="col-span-3">
           <OtherPosts
-            className="section md:hidden"
+            className="section lg:hidden"
             title="Recent posts"
             posts={recentPosts.map((post: any) => ({
               title: post.title,
@@ -53,7 +53,11 @@ const page = async () => {
           />
           <AdsSlider posts={sliderBlogData} />
           <FramerWrapper {...fadeIn} className="section">
-            <section className="grid gap-x-3.5 gap-y-7 xs:grid-cols-2 md:grid-cols-3">
+            <section
+              className={
+                "grid gap-x-3.5 gap-y-7 max-xs:hidden xs:grid-cols-2 md:grid-cols-3"
+              }
+            >
               {categories.map((category: any, index: number) => (
                 <CategoryCard
                   key={index + 1}
@@ -63,6 +67,22 @@ const page = async () => {
                   className="w-full"
                 />
               ))}
+            </section>
+            <section className="space-y-3 xs:hidden">
+              <h2>Category</h2>
+              <div className="hidden-scrollbar flex w-full gap-3.5 overflow-x-auto">
+                {categories.map((category: any, index: number) => (
+                  <CategoryCard
+                    key={index + 1}
+                    href={`/blog/${slugify(category.category_title)}`}
+                    category={category.category_title}
+                    image={
+                      urlForImage(category.category_image)?.url() as string
+                    }
+                    className="flex-1"
+                  />
+                ))}
+              </div>
             </section>
           </FramerWrapper>
         </div>

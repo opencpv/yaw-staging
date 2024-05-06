@@ -18,7 +18,7 @@ const PostSlider = ({ posts }: Props) => {
   };
 
   return (
-    <section className="relative mt-10 h-fit w-full md:mt-0">
+    <section className="relative h-fit w-full">
       <SliderWide
         navigation
         images={posts.map((post) => ({
@@ -28,8 +28,7 @@ const PostSlider = ({ posts }: Props) => {
             post.title,
           )}$id=${post._id}`,
         }))}
-        className="shape-polygon h-60 rounded-none sm:h-[30rem]"
-        overlay
+        className="shape-polygon rounded-none sm:h-[27rem]"
         onSlideChange={handleSlideChange}
       />
       <div className="absolute -left-10 bottom-5 z-10 space-y-2 px-20 text-white sm:bottom-20">

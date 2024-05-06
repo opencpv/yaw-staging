@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Image from "next/image";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import Link from "next/link";
-
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
 import "swiper/css";
@@ -20,7 +19,7 @@ const SliderWide = ({
   navigation,
   pagination,
   autoplay,
-  overlay,
+  overlay = true,
   onSlideChange,
   onClick,
   loop,
@@ -29,7 +28,7 @@ const SliderWide = ({
   const lastIndex = images.lastIndexOf(images[images.length - 1]);
 
   return (
-    <div className={`relative w-full sm:h-80 ${className}`}>
+    <div className={`relative aspect-video w-full sm:h-80 ${className}`}>
       <Swiper
         navigation={
           navigation && {
@@ -51,7 +50,7 @@ const SliderWide = ({
         }
         loop={loop}
         modules={[Navigation, Pagination, Autoplay]}
-        className={`slider-wide h-60 w-full rounded-3xl sm:h-80 ${className}`}
+        className={`slider-wide aspect-video w-full rounded-3xl ${className}`}
         onSlideChange={(swiper) => {
           setActiveIndex(swiper.activeIndex);
           onSlideChange && onSlideChange(swiper);
@@ -64,7 +63,7 @@ const SliderWide = ({
                 <div className="relative h-full w-full">
                   <div
                     className={cn(
-                      "absolute inset-0 z-10 size-full bg-black/30",
+                      "absolute inset-0 z-10 size-full bg-gradient-to-b from-[#3C3C3C]/60 to-black/20",
                       {
                         hidden: !overlay,
                       },
@@ -82,9 +81,12 @@ const SliderWide = ({
             ) : (
               <div className="relative h-full w-full" onClick={onClick}>
                 <div
-                  className={cn("absolute inset-0 z-10 size-full bg-black/30", {
-                    hidden: !overlay,
-                  })}
+                  className={cn(
+                    "absolute inset-0 z-10 size-full bg-gradient-to-b from-[#3C3C3C]/60 to-black/20",
+                    {
+                      hidden: !overlay,
+                    },
+                  )}
                 ></div>
                 <Image
                   src={image.src}
@@ -101,14 +103,17 @@ const SliderWide = ({
       <div className="">
         {/* Navigation buttons */}
         <div
-          className={`slider-wide-prev-btn absolute bottom-[40%] left-[5%] z-20 flex h-12 w-12 shrink-0 cursor-default items-center justify-center rounded-full bg-white`}
+          className={`slider-wide-prev-btn absolute bottom-[40%] left-[5%] z-20 flex h-12 w-12 shrink-0 cursor-default items-center justify-center rounded-full bg-white ${
+            activeIndex === 0 && "hidden"
+          }`}
           style={{ opacity: navigation ? "1" : "0" }}
         >
           <MdChevronLeft className="text-lg text-neutral-700" />
         </div>
-        {/* <div className="w-full space-x-3 text-center custom-l-pagination bottom-40"></div> */}
         <div
-          className={`slider-wide-next-btn absolute bottom-[40%] right-[5%] z-20 flex h-12 w-12 shrink-0 cursor-default items-center justify-center rounded-full bg-white`}
+          className={`slider-wide-next-btn absolute bottom-[40%] right-[5%] z-20 flex h-12 w-12 shrink-0 cursor-default items-center justify-center rounded-full bg-white ${
+            activeIndex === lastIndex && "hidden"
+          }`}
           style={{ opacity: navigation ? "1" : "0" }}
         >
           <MdChevronRight className="text-lg text-neutral-700" />

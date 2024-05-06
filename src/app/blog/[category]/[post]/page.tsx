@@ -68,7 +68,7 @@ const page = async ({ params, searchParams }: Props) => {
       {
         <div className="wrapper overflow-x-hidden text-neutral-500">
           <h3 className="mb-8 text-xl font-[500]">
-            Posted by{" "}
+            By{" "}
             {post && (
               <span className="text-primary-500">{post.author.name}</span>
             )}

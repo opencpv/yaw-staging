@@ -16,7 +16,7 @@ const AdsSlider = ({ posts }: Props) => {
   };
 
   return (
-    <section className="relative mt-10 h-fit w-full md:mt-0">
+    <section className="relative mt-10 h-fit w-full lg:mt-0">
       <SliderWide
         pagination
         images={posts.map((post) => ({
@@ -26,7 +26,7 @@ const AdsSlider = ({ posts }: Props) => {
             post.title,
           )}$id=${post._id}`,
         }))}
-        className="sm:h-96"
+        className="sm:h-[27rem]"
         onSlideChange={handleSlideChange}
       />
     </section>

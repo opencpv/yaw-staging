@@ -39,21 +39,19 @@ const page = async (props: Props) => {
             <BackgroundImage />
             <div className="flex flex-col items-center gap-3">
               <div className="flex items-center gap-3">
-                <Link href="/">Home</Link>
+                <Link href="/blog">Home</Link>
                 <LuChevronsRight />
-                <Link href="/blog">Blogs</Link>
+                <div>Topics</div>
               </div>
-              <h1 className="text-5xl font-[700]">Blog</h1>
+              <h1 className="text-5xl font-[700]">Topics</h1>
             </div>
           </div>
           <div className="wrapper">
-            <div className="mb-10 flex flex-col items-center justify-between gap-5 sm:flex-row">
-              <TabsAndSearch
-                categories={categories.map(
-                  (category: any) => category.category_title,
-                )}
-              />
-            </div>
+            <TabsAndSearch
+              categories={categories.map(
+                (category: any) => category.category_title,
+              )}
+            />
             <div className="flex items-center justify-center pb-10 text-neutral-500">
               <PostsGrid posts={posts} />
             </div>
