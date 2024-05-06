@@ -26,7 +26,10 @@ function JobApplicationForm({ variant }: Props) {
   } = useContactForm();
   return (
     <div className="flex flex-col gap-4 px-5 pt-5 lg:px-20">
-      <Link href={"/join-us/open-positions"} className="hidden lg:flex absolute top-5 z-[5000]">
+      <Link
+        href={"/join-us/open-positions"}
+        className="absolute top-5 z-[343] hidden lg:flex"
+      >
         <Button
           className={`h-[52px]  rounded-lg  py-[0.94rem] font-semibold ${"bg-transparent text-[1.125rem] text-[#DDB771]"} flex justify-start gap-2.5`}
         >
@@ -43,21 +46,24 @@ function JobApplicationForm({ variant }: Props) {
         {({ handleBlur, handleChange, values, errors }) => (
           <Form>
             <div className="flex flex-col gap-4 pt-16">
-              <p className="hidden text-[1.9375rem] font-semibold text-[#333] lg:flex">
+              <p className="pt-5font-semibold hidden text-[1.9375rem] text-[#333] lg:flex">
                 {variant == "application" && "Application"}
                 {variant == "resume" && "Resume Bank"}
               </p>
 
               {variant == "resume" && (
-                <InfoText content="Unlock your potential and join our dynamic team where innovation meets opportunity!" />
+                <div className="pt-5">
+                  <InfoText content="Unlock your potential and join our dynamic team where innovation meets opportunity!" />
+                </div>
               )}
 
-              <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-6 pt-8">
                 <p className="text-[1.25rem] font-[600] text-shade-300">
                   Contact Information{" "}
                 </p>
                 <div className="flex flex-col gap-5 lg:flex-row">
                   <TextFieldInput
+                    required
                     onChange={() => null}
                     label="First Name"
                     placeholder="Enter your first name"
@@ -65,6 +71,7 @@ function JobApplicationForm({ variant }: Props) {
                     name="first_name"
                   />
                   <TextFieldInput
+                    required
                     onChange={() => null}
                     label="Last Name"
                     placeholder="Enter your last name"
@@ -74,6 +81,7 @@ function JobApplicationForm({ variant }: Props) {
                 </div>
                 <div className="flex flex-col  gap-5 lg:flex-row ">
                   <TextFieldInput
+                    required
                     onChange={() => null}
                     label="Email"
                     placeholder="Enter your email"
@@ -81,6 +89,7 @@ function JobApplicationForm({ variant }: Props) {
                     name="email"
                   />
                   <InputPhoneNumber
+                    required
                     label="Phone"
                     id="phone"
                     name="phone"
@@ -100,8 +109,8 @@ function JobApplicationForm({ variant }: Props) {
                 Professional Profile
               </p>
               <div className="flex flex-col gap-5">
-                <CustomFileInput label="Upload Cover Letter"  />
-                <CustomFileInput label="Upload Resume" />
+                <CustomFileInput label="Upload Cover Letter" />
+                <CustomFileInput label="Upload Resume" required />
                 {/* <CustomFileInput label="Upload Video Profile" /> */}
                 {/* <CustomFileInput label="Upload Work Sample" /> */}
                 <div className="flex flex-col gap-3">
@@ -109,14 +118,14 @@ function JobApplicationForm({ variant }: Props) {
                     <p className="text-[#6A6968]">Additional Information</p>
                     <InfoBubble
                       content={
-                        "Add other relevant information to highlights your skillset (eg. personal website, work portfolio, etc)"
+                        "Add other relevant information to highlight your skillset (e.g. personal website, work portfolio, etc)"
                       }
                     />
                   </div>
                   <input
                     placeholder="Paste your link here"
                     type="text"
-                    className="h-[52px] w-full rounded-[4px] border-[1px] border-[#E6E6E6] px-4"
+                    className="h-[52px] w-full rounded-[4px] border-[1px] border-[#E6E6E6] px-4 focus:outline-accent-50"
                   />
                 </div>
               </div>

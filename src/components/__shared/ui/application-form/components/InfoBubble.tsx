@@ -6,7 +6,7 @@ type Props = {
 
 export const InfoBubble = ({content} : Props) => {
   return (
-    <Tooltip content={content} className="text-[#6A6968]">
+    <Tooltip content={content} className="text-[#6A6968] bg-primary-300">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="20"

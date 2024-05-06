@@ -5,17 +5,17 @@ import Image from "next/image";
 import { usePathname } from "next/navigation.js";
 import { useEffect, useState } from "react";
 import Logo from "@/components/__shared/ui/Logo";
-import LikeHeart from "./LikeHeart";
-import Share from "./share/Share";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
-import ButtonHireUs from "./button/ButtonHireUs";
 import { useHideDocumentScrollBar } from "@/lib/custom-hooks/useWindowEvents";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import AvatarMenu from "./avatar/AvatarMenu";
 import { useUserData } from "@/lib/custom-hooks/database/useUserData";
 import { cn } from "@/lib/utils";
+import AvatarMenu from "@/components/__shared/ui/avatar/AvatarMenu";
+import Share from "@/components/__shared/ui/share/Share";
+import LikeHeart from "@/components/__shared/ui/LikeHeart";
+import ButtonHireUs from "@/components/__shared/ui/button/ButtonHireUs";
 
-const Navbar = (props: any) => {
+const JoinUsNavbar = (props: any) => {
   const pathname = usePathname();
   const { icons } = useAssets();
   const [isScrolling, setIsScrolling] = useState<boolean>(false);
@@ -28,10 +28,7 @@ const Navbar = (props: any) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (
-        (pathname?.includes("/properties/") || pathname === "/") &&
-        window.scrollY > 1
-      ) {
+      if (window.scrollY > 1) {
         setIsScrolling(true);
       } else {
         setIsScrolling(false);
@@ -44,49 +41,30 @@ const Navbar = (props: any) => {
     };
   }, [pathname]);
 
-  const shouldChangeColor =
-    (isScrolling && pathname?.includes("/properties/")) ||
-    (isScrolling && pathname === "/");
-  const isNotTargetPage =
-    !pathname?.includes("/properties/") && pathname !== "/";
-
   return (
     <>
       <nav
         className={`no-print z-40 w-full px-3 py-3 sm:px-8 ${
           props.isMenuOpen && "absolute"
         } ${
-          isNotTargetPage
-            ? "sticky bg-primary-500"
-            : shouldChangeColor
-              ? "fixed bg-primary-500 transition-all duration-300"
-              : "fixed bg-transparent transition-all duration-300"
+          isScrolling
+            ? "fixed bg-primary-500 transition-all duration-300"
+            : "fixed bg-transparent transition-all duration-300"
         } top-0 bg-primary-500`}
       >
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between transition-all">
           <Logo />
-          <div className="flex w-full items-center justify-end md:gap-[31px] lg:gap-[73px]">
-            {!pathname?.includes("/properties/") ? (
-              <ButtonHireUs
-                className={cn("w-fit px-[4.5rem] text-xl", {
-                  invisible: user,
-                })}
-              />
-            ) : (
-              <div className="flex items-center gap-4">
-                <LikeHeart
-                  liked={props.liked}
-                  userId={user?.id as string | number}
-                  propertyId={props.propertyId}
-                  className="text-3xl text-white sm:text-4xl"
-                />
-                <Share
-                  url={`${location.origin}/properties/${props.propertyName}`}
-                  title={props.propertyName}
-                  className="text-5xl text-white"
-                />
-              </div>
-            )}
+          <div
+            className={`${
+              !isScrolling && "invisible"
+            } flex w-full items-center justify-end transition-all md:gap-[31px] lg:gap-[73px]`}
+          >
+            <ButtonHireUs
+              className={cn("w-fit px-[4.5rem] text-xl", {
+                invisible: user,
+              })}
+            />
+
             <div className="flex items-center gap-5">
               {user && <AvatarMenu />}
               {/* Hamburger button */}
@@ -105,4 +83,4 @@ const Navbar = (props: any) => {
   );
 };
 
-export default Navbar;
+export default JoinUsNavbar;

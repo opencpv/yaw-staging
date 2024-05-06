@@ -22,11 +22,12 @@ function JobDescriptionModalContent({ job }: any) {
       >
         <div className={`relative z-[1001] `}>
           <div className="absolute right-[40px] top-[30px] z-[2001] flex items-center gap-1">
-            <p className="text-xs text-shade-300">Share</p>
+            <p className="text-base text-shade-300">Share</p>
             <Share
               url={`https://rentrightgh.com${pathname}`}
               title={job?.title}
               className="text-neutral-800"
+              //make it 24 px
             />
           </div>
           <div className="relative mt-2 flex flex-col gap-3 rounded-2xl border-[1px] border-shade-50 bg-[#FAFAFA] px-4 lg:px-8 py-2">
@@ -41,7 +42,7 @@ function JobDescriptionModalContent({ job }: any) {
             <div className="sticky bottom-0 grid h-[45px] grid-cols-2 gap-1 bg-white pb-5">
               <Button
                 onClick={() => downloadPdf("Rentright Job", "download")}
-                className="bg-secondary-500 text-[1rem] font-semibold text-shade-300 "
+                className="bg-secondary-500 text-[1rem] font-semibold text-shade-300 hover:scale-[1.03] transition-all"
               >
                 Download
                 <HiOutlineDownload size="24" color="#3F3F46" />
@@ -50,7 +51,7 @@ function JobDescriptionModalContent({ job }: any) {
                 href="/join-us/open-positions/application"
                 className="w-full"
               >
-                <Button className="w-full bg-[#DDB771] text-[1rem] font-semibold text-white">
+                <Button className="w-full bg-[#DDB771] text-[1rem] font-semibold text-white hover:scale-[1.03] transition-all ">
                   Apply
                 </Button>
               </Link>

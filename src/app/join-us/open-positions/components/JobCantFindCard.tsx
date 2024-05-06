@@ -26,10 +26,10 @@ function JobCantFindCard() {
               Can&apos;t find your position?
             </p>
             <p className="overflow-ellipsis leading-[22.4px] text-shade-200  ">
-              We will get back to you when the position is available. Leave your
-              resume with us.{" "}
+              Leave your resume with us, and rest assured that we will reach out
+              to you as soon as a suitable position becomes available.
             </p>
-            <p className="text-[#333] text-sm md:text-base">
+            <p className="text-sm text-[#333] md:text-base">
               Click on the button below to submit your resume.
             </p>
           </div>

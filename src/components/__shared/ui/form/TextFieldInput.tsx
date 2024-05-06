@@ -9,24 +9,30 @@ type TextFieldInputProps = {
   onChange?: (value: any) => void;
   label?: string;
   prefix?: string;
+  required?: boolean;
 };
 
 const TextFieldInput: React.FC<
   TextFieldInputProps & InputHTMLAttributes<HTMLInputElement>
-> = ({ label, name, onChange, prefix, ...props }) => {
+> = ({ label, name, onChange, required, prefix, ...props }) => {
   return (
     <div
       className={`flex w-full flex-col gap-[0.9375rem] font-[400] capitalize text-[#6A6968]`}
     >
-      {label && <label className="normal-case">{label}</label>}
+      {label && (
+        <label className="normal-case">
+          {label} {required && <span className="text-xs relative top-[-5px] left-[-4px]">*</span>}
+        </label>
+      )}
       <Field name={name}>
-        {({ field, form: { touched, errors }, meta }: any) => (
+        {({ field, name, form: { touched, errors }, meta }: any) => (
           <div className="relative">
             {prefix && (
               <span className="absolute left-[15px] top-[17px] text-sm">
                 {prefix}
               </span>
             )}
+            {name}
             <input
               {...field}
               onChange={(e) => {
@@ -41,12 +47,6 @@ const TextFieldInput: React.FC<
               )}
               {...props}
             />
-
-            {/* {errors[name] && (
-              <p className="mt-3 text-[#851e1e] font-[400] text-[13px]">
-                {errors[name]}
-              </p>
-            )} */}
           </div>
         )}
       </Field>
