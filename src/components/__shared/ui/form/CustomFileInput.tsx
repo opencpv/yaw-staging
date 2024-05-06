@@ -7,9 +7,9 @@ type Props = {
   label?: string;
   infoContent?: string;
   required?: boolean;
-  variant?: "green" | "accent";
+  variant?: "green" | "accent" | undefined;
 };
-function CustomFileInput({ handleFile, label, infoContent, required, variant }: Props) {
+function CustomFileInput({ handleFile, label, infoContent, required, variant="green" }: Props) {
   const variants  : any= {
     green: "bg-[#11605E]",
     accent: "bg-accent-50",
@@ -68,7 +68,8 @@ function CustomFileInput({ handleFile, label, infoContent, required, variant }: 
           )}
 
           <button
-            className={`${variants[variant]} h-[52px] w-[128px] cursor-pointer rounded-[4px] font-[500] text-white`}
+         className={`${variants[variant]} h-[52px] w-[128px] cursor-pointer rounded-[4px] font-[500] text-white`}
+
             style={{
               boxShadow:
                 "0px 4px 6px -2px rgba(0, 0, 0, 0.03), 0px 12px 16px -4px rgba(0, 0, 0, 0.08)",
