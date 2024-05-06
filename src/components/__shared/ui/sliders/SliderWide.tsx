@@ -12,6 +12,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import "@/styles/custom-swiper.css";
+import { cn } from "@/lib/utils";
 
 const SliderWide = ({
   images,
@@ -19,8 +20,10 @@ const SliderWide = ({
   navigation,
   pagination,
   autoplay,
+  overlay,
   onSlideChange,
   onClick,
+  loop,
 }: SliderWideProps) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const lastIndex = images.lastIndexOf(images[images.length - 1]);
@@ -46,7 +49,7 @@ const SliderWide = ({
             delay: 6000,
           }
         }
-        loop // experimental
+        loop={loop}
         modules={[Navigation, Pagination, Autoplay]}
         className={`slider-wide h-60 w-full rounded-3xl sm:h-80 ${className}`}
         onSlideChange={(swiper) => {
@@ -59,6 +62,14 @@ const SliderWide = ({
             {image.href ? (
               <Link href={`${image.href}`}>
                 <div className="relative h-full w-full">
+                  <div
+                    className={cn(
+                      "absolute inset-0 z-10 size-full bg-black/30",
+                      {
+                        hidden: !overlay,
+                      },
+                    )}
+                  ></div>
                   <Image
                     src={image.src}
                     alt={image.name}
@@ -70,6 +81,11 @@ const SliderWide = ({
               </Link>
             ) : (
               <div className="relative h-full w-full" onClick={onClick}>
+                <div
+                  className={cn("absolute inset-0 z-10 size-full bg-black/30", {
+                    hidden: !overlay,
+                  })}
+                ></div>
                 <Image
                   src={image.src}
                   alt={image.name}

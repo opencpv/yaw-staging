@@ -6,21 +6,21 @@ import React from "react";
 
 const OtherPosts = ({ title, posts, className }: OtherPostsProps) => {
   return (
-    <div className={`max-w-lg no-print ${className}`}>
+    <div className={`no-print max-w-lg ${className}`}>
       <div
         className={
-          "bg-primary-200 text-white px-2 py-3 text-xl font-[600] rounded-md mb-2"
+          "mb-2 rounded-md bg-primary px-2 py-3 text-xl font-[600] text-white"
         }
       >
         {title}
       </div>
       {/* posts */}
-      <ul className="hidden gap-3 flex-col xs:flex">
+      <ul className="hidden flex-col gap-5 xs:flex">
         {posts.map((post, idx) => (
           <Link key={idx + 1} href={`${post.href}`}>
             <li>
               <div className="flex flex-wrap gap-2 text-sm">
-                <div className="relative min-w-[5rem] h-20 flex-1">
+                <div className="relative h-20 min-w-[5rem] flex-1">
                   <Image
                     src={post.image ? post.image : "/assets/images/Stock.jpg"}
                     alt={post.title}
@@ -29,13 +29,12 @@ const OtherPosts = ({ title, posts, className }: OtherPostsProps) => {
                     style={{ objectFit: "cover" }}
                   />
                 </div>
-                <div className="py-1 flex flex-col justify-between flex-[2] min-w-[8rem] line-clamp-3">
-                  <h4 className="font-[500] text-neutral-800 leading-tight">
+                <div className="line-clamp-3 flex min-w-[8rem] flex-[2] flex-col justify-between py-1">
+                  <h4 className="font-[500] leading-tight text-neutral-800">
                     {post.title}
                   </h4>
                   <p className="mt-auto text-xs text-neutral-400">
-                    Posted by{" "}
-                    <span className="text-neutral-800">{post.author}</span>
+                    By <span className="text-neutral-800">{post.author}</span>
                   </p>
                 </div>
               </div>
@@ -51,10 +50,10 @@ const OtherPosts = ({ title, posts, className }: OtherPostsProps) => {
       >
         <ul className="flex gap-3">
           {posts.map((post, idx) => (
-            <Link key={idx+1} href={`${post.href}`}>
+            <Link key={idx + 1} href={`${post.href}`}>
               <li>
                 <div className="flex flex-wrap gap-2 text-sm">
-                  <div className="relative min-w-[5rem] h-20 flex-1">
+                  <div className="relative h-20 min-w-[5rem] flex-1">
                     <Image
                       src={post.image ? post.image : "/assets/images/Stock.jpg"}
                       alt={post.title}
@@ -63,8 +62,10 @@ const OtherPosts = ({ title, posts, className }: OtherPostsProps) => {
                       style={{ objectFit: "cover" }}
                     />
                   </div>
-                  <div className="py-1 flex flex-col justify-between flex-[2] min-w-[8rem]">
-                    <h4 className="font-[500] text-neutral-800 leading-tight">{post.title}</h4>
+                  <div className="flex min-w-[8rem] flex-[2] flex-col justify-between py-1">
+                    <h4 className="font-[500] leading-tight text-neutral-800">
+                      {post.title}
+                    </h4>
                     <p className="mt-2 text-xs text-neutral-400">
                       Posted by{" "}
                       <span className="text-neutral-800">{post.author}</span>

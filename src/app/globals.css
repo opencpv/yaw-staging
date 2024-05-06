@@ -95,7 +95,7 @@ body {
   /* Firefox */
 }
 
-.shape-3 {
+.shape-polygon {
   clip-path: polygon(10% 0, 0 20%, 0 100%, 90% 100%, 100% 80%, 100% 0);
 }
 

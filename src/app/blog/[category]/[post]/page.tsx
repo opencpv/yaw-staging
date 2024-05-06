@@ -77,7 +77,7 @@ const page = async ({ params, searchParams }: Props) => {
             {post.title}
           </h1>
           <FramerWrapper {...fadeIn}>
-            <div className="shape-3 relative mb-16 h-60 w-full lg:h-[30rem]">
+            <div className="shape-polygon relative mb-16 h-60 w-full lg:h-[30rem]">
               <Image
                 src={urlForImage(post.featured_image)?.url() as string}
                 alt=""

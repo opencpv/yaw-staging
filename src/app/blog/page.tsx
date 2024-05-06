@@ -16,6 +16,7 @@ import { urlForImage } from "@/lib/utils/sanity/utils";
 import slugify from "@/lib/utils/slugify";
 import { fadeIn } from "@/lib/animations";
 import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
+import AdsSlider from "./components/post/AdsSlider";
 
 const page = async () => {
   const initialBlogData: any = await loadQuery<SanityDocument[]>(BLOG_QUERY);
@@ -35,20 +36,7 @@ const page = async () => {
 
   return (
     <div className="wrapper pb-0 sm:pb-0">
-      <section className="relative h-fit w-full">
-        <SliderWide
-          pagination
-          autoplay
-          className="shape-3 h-60 rounded-none sm:h-[30rem]"
-          images={sliderBlogData.map((post: any) => ({
-            src: urlForImage(post.featured_image)?.url() as string,
-            name: post.title,
-            href: `/blog/${slugify(post.category.category_title)}/${slugify(
-              post.title,
-            )}$id=${post._id}`,
-          }))}
-        />
-      </section>
+      <PostSlider posts={sliderBlogData} />
       <section className="grid-cols-4 gap-x-5 md:pt-28 lg:grid">
         <div className="col-span-3">
           <OtherPosts
@@ -63,7 +51,7 @@ const page = async () => {
               )}$id=${post._id}`,
             }))}
           />
-          <PostSlider posts={sliderBlogData} />
+          <AdsSlider posts={sliderBlogData} />
           <FramerWrapper {...fadeIn} className="section">
             <section className="grid gap-x-3.5 gap-y-7 xs:grid-cols-2 md:grid-cols-3">
               {categories.map((category: any, index: number) => (

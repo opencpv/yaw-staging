@@ -56,7 +56,7 @@ function CompleteYourLogin({ open }: Props) {
                           setLoading(true);
                           setOpen(false);
                           setHowToSwitchOpen(true);
-                          setFirstTimeRole(values.role.toLowerCase() as Role); // resorting to firstTimeRole instead of CurrentRole
+                          setFirstTimeRole((values.role.toLowerCase() as Role) || "renter"); // resorting to firstTimeRole instead of CurrentRole
                           // on first time login
                         }}
                       >
@@ -70,6 +70,7 @@ function CompleteYourLogin({ open }: Props) {
                         >
                           <CustomSelect
                             name="role"
+                            placeholder="Select your role"
                             label="I am a"
                             options={[
                               { name: "renter", value: "Renter" },
