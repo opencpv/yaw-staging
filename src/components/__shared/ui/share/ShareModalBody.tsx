@@ -12,6 +12,7 @@ import {
 import ShareButtonComponent from "./ShareButtonComponent";
 
 const ShareModalBody = (props: ShareDataProps) => {
+  console.log(props.title, props.content);
   return (
     <div className="grid grid-cols-1 gap-5 pb-10 xs:grid-cols-2">
       <ShareButtonComponent

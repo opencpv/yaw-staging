@@ -6,13 +6,7 @@ import { useDisclosure } from "@nextui-org/react";
 import ShareModalBody from "./ShareModalBody";
 import { cn } from "@/lib/utils";
 
-const Share = ({
-  title,
-  url,
-  className,
-  label = "Share",
-  content,
-}: ShareDataProps) => {
+const Share = ({ title, url, className, label = "Share" }: ShareDataProps) => {
   const { onOpenChange, isOpen, onOpen } = useDisclosure();
 
   return (
