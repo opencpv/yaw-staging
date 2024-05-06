@@ -19,6 +19,7 @@ import { client } from "@/lib/utils/sanity/client";
 import { fadeIn } from "@/lib/animations";
 import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 import slugify from "@/lib/utils/slugify";
+import { headers } from "next/headers";
 
 type Props = {
   params: { slug: string };
@@ -26,6 +27,7 @@ type Props = {
 };
 
 const page = async ({ params, searchParams }: Props) => {
+  const origin = headers().get("x-origin") || "https://www.rentrightgh.com";
   const sanityClient = client;
   const intialPostData = await loadQuery<SanityDocument[]>(
     SINGLE_BLOG_POST(searchParams.id),
@@ -89,8 +91,10 @@ const page = async ({ params, searchParams }: Props) => {
             </div>
           </FramerWrapper>
           <h3 className="no-print mb-8 text-xl font-[500]">
-            <BreadCrumbPreLink label="Category" href={`/blog/${params.slug}`} />{" "}
-            /<span className="">{post.title}</span>
+            <BreadCrumbPreLink
+              label={post?.category?.category_title}
+              href={`/blog/${slugify(post?.category?.category_title)}`}
+            />
           </h3>
           <section className="print-content mb-20 grid-cols-4 gap-5 sm:grid">
             <div className="col-span-3">
@@ -100,17 +104,14 @@ const page = async ({ params, searchParams }: Props) => {
               </div>
               {/* Rate blog */}
               <h3 className="no-print mb-3 text-xl font-[500] text-neutral-800">
-                Rate this blog
+                Rate this story
               </h3>
               <div className="no-print mb-16 flex flex-wrap items-center justify-between gap-5">
                 <Rate allowHalf allowClear defaultValue={0} />
                 <div className="flex items-center gap-3 text-2xl text-primary-200">
-                  <p className="cursor-pointer text-base font-[500] text-neutral-800">
-                    Share
-                  </p>
                   <Share
                     url={
-                      `/blog/${slugify(
+                      `${origin}/blog/${slugify(
                         post?.category?.category_title,
                       )}/${slugify(post?.title)}?id=${post?._id}` as string
                     }

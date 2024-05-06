@@ -69,7 +69,7 @@ const page = async () => {
               ))}
             </section>
             <section className="space-y-3 xs:hidden">
-              <h2>Category</h2>
+              <h3>Category</h3>
               <div className="hidden-scrollbar flex w-full gap-3.5 overflow-x-auto">
                 {categories.map((category: any, index: number) => (
                   <CategoryCard
