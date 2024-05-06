@@ -14,12 +14,12 @@ const JoinUsPage = async () => {
                ${styles.header} !bg-cover !bg-no-repeat `}
         >
           <div className="flex flex-col items-center justify-center gap-4">
-            <p className="text-[1.5625rem] font-semibold capitalize text-white lg:text-[3.0625rem]">
+            <p className="text-2xl font-semibold capitalize text-white lg:text-5xl">
               Work with us
             </p>
-            <p className="max-w-[20.624rem] text-center text-[0.8125rem] font-semibold text-white lg:max-w-[24.9375rem] lg:text-[1rem]">
-              Lorem ipsum dolor sit amet consectetur. Eget suscipit condimentum
-              at mauris ridiculus laoreet.
+            <p className="max-w-[20.624rem] text-center text-xs font-semibold text-white lg:max-w-[24.9375rem] lg:text-base">
+              Explore exciting opportunities to join our team and make a
+              meaningful impact.
             </p>
           </div>{" "}
           <div className="flex w-full items-center justify-center gap-4 px-2 ">
@@ -37,11 +37,12 @@ const JoinUsPage = async () => {
             </Link>{" "}
           </div>
         </div>
-        <div className="mt-5 grid grid-cols-2 items-start  justify-center gap-8 px-5 lg:px-14 pt-10 lg:mt-24 2xl:px-7 max-w-[1728px] ">
-          <p className="col-span-2 w-fit border-b-4 border-[#DDB771] pb-2 text-[1.5625rem] font-semibold capitalize text-[#333] lg:hidden lg:text-[3.0625rem]">
+
+        <div className="mt-5 grid max-w-[1728px] grid-cols-2  items-start justify-center gap-16 px-5 pt-10 lg:mt-24 lg:px-14 2xl:px-7 ">
+          <p className="col-span-2 w-fit border-b-4 border-[#DDB771] pb-2 text-2xl font-semibold capitalize text-[#333] lg:hidden ">
             What we do
           </p>
-          <div className="relative col-span-2  mt-5  aspect-[403/283] w-full max-w-[770px] overflow-hidden rounded-xl lg:col-span-1 lg:mt-0 lg:aspect-[770/936]">
+          <div className="relative col-span-2   aspect-[403/283] w-full max-w-[770px] overflow-hidden rounded-xl lg:col-span-1 mt-0 lg:aspect-[770/936]">
             <Image
               src={"/assets/images/joinus/house.jpeg"}
               alt="Join us House"
@@ -49,11 +50,12 @@ const JoinUsPage = async () => {
               objectFit="cover"
             />
           </div>{" "}
+
           <div className="col-span-2 mt-2 flex flex-col gap-7 lg:col-span-1 lg:mt-0">
-            <p className="hidden w-fit border-b-4 border-[#DDB771] pb-5 text-[3.0625rem] font-semibold capitalize text-[#333] lg:flex">
+            <p className="hidden w-fit border-b-4 border-[#DDB771] pb-4 text-5xl font-semibold capitalize text-[#333] lg:flex">
               What we do
             </p>
-            <div className="flex flex-col gap-5 font-semibold leading-[1.45rem] tracking-[0.01rem] text-shade-300">
+            <div className="flex flex-col gap-5 leading-[1.45rem] tracking-[0.01rem] text-shade-300">
               <p className="">
                 Lorem ipsum dolor sit amet consectetur. Amet scelerisque egestas
                 nisi faucibus risus interdum nulla sed tortor. Morbi dictum

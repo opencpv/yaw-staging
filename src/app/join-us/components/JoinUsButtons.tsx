@@ -45,7 +45,7 @@ function JoinUsButtons({
     <Button
       className={`h-[52px] rounded-lg px-[2.5rem]  py-[0.94rem] font-semibold ${
         buttonClasses[variant]
-      } gap-2.5 ${reverseIcon && "flex-row-reverse"}`}
+      } gap-2.5 ${reverseIcon && "flex-row-reverse"} hover:scale-[1.03] transition-all`}
     >
       {content}
       {icon && iconType && iconTypeOptions[iconType]}

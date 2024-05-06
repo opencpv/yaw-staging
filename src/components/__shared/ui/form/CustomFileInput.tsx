@@ -6,8 +6,9 @@ type Props = {
   handleFile?: (file: File | null) => void; // Specify the type of handleFile function
   label?: string;
   infoContent?: string;
+  required? : boolean
 };
-function CustomFileInput({ handleFile, label, infoContent }: Props) {
+function CustomFileInput({ handleFile, label, infoContent, required }: Props) {
   const [fileUploaded, setFileUploaded] = useState<File | null>(null);
   const hiddenFileInput = useRef<HTMLInputElement | null>(null); // Specify the type
 
@@ -23,28 +24,54 @@ function CustomFileInput({ handleFile, label, infoContent }: Props) {
     handleFile && handleFile(file);
   };
 
+  const handleFileRemove = () => {
+    setFileUploaded(null);
+    handleFile && handleFile(null);
+
+    // Reset file input value
+    if (hiddenFileInput.current) {
+      hiddenFileInput.current.value = "";
+    }
+  };
   return (
     <div className="flex flex-col gap-4">
       <div className="flex gap-2.5">
-        <p className="text-[#6A6968]">{label}</p>
+        <p className="text-[#6A6968]">{label}
+        {required && <span className="text-xs relative top-[-5px] ">*</span>}
+        </p>
         {infoContent && <InfoBubble content={infoContent} />}{" "}
       </div>{" "}
       <div className="flex w-full items-center justify-between rounded-[4px] border-[1px] border-[#E6E6E6] pl-4">
-        <div className="flex h-[52px] items-center gap-4 font-[0.8125rem] text-[#B4B2AF]">
+        <button
+          className="flex h-[52px] w-full items-center gap-4 font-[0.8125rem] text-[#B4B2AF]"
+          onClick={handleClick}
+        >
           <CaAttachment />
           {!fileUploaded && <p>upload</p>}
           {fileUploaded && <p>{fileUploaded.name}</p>}
-        </div>
-        <button
-          className="h-[52px] w-[128px] cursor-pointer rounded-[4px] bg-[#DDB771] font-[500] text-white"
-          style={{
-            boxShadow:
-              "0px 4px 6px -2px rgba(0, 0, 0, 0.03), 0px 12px 16px -4px rgba(0, 0, 0, 0.08)",
-          }}
-          onClick={handleClick} // ADDED
-        >
-          Upload
         </button>
+
+        <div className="flex items-center justify-center gap-5">
+          {fileUploaded && (
+            <button
+              className="rounded-2xl bg-warning-bg px-3 py-1 text-xs hover:scale-[1.03] hover:bg-warning-400"
+              onClick={handleFileRemove}
+            >
+              Remove
+            </button>
+          )}
+
+          <button
+            className="h-[52px] w-[128px] cursor-pointer rounded-[4px] bg-[#DDB771] font-[500] text-white"
+            style={{
+              boxShadow:
+                "0px 4px 6px -2px rgba(0, 0, 0, 0.03), 0px 12px 16px -4px rgba(0, 0, 0, 0.08)",
+            }}
+            onClick={handleClick} // ADDED
+          >
+            Upload
+          </button>
+        </div>
       </div>
       <input
         onChange={handleChange} // ADDED
