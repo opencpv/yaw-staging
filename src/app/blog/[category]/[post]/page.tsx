@@ -18,6 +18,7 @@ import urlBuilder from "@sanity/image-url";
 import { client } from "@/lib/utils/sanity/client";
 import { fadeIn } from "@/lib/animations";
 import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
+import slugify from "@/lib/utils/slugify";
 
 type Props = {
   params: { slug: string };
@@ -108,9 +109,14 @@ const page = async ({ params, searchParams }: Props) => {
                     Share
                   </p>
                   <Share
-                    url="https://rentright.com.gh"
-                    title="Mastering the Art of Home Decor: Simple Tips for a Cozy Living Space"
+                    url={
+                      `/blog/${slugify(
+                        post?.category?.category_title,
+                      )}/${slugify(post?.title)}?id=${post?._id}` as string
+                    }
+                    title={post?.title}
                     className="text-neutral-800"
+                    content={post?.summary}
                   />
                   <Print />
                 </div>
