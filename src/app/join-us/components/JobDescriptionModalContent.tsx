@@ -26,14 +26,14 @@ function JobDescriptionModalContent({ job }: any) {
             <Share
               url={`https://rentrightgh.com${pathname}`}
               title={job?.title}
-              className="text-neutral-800"
+              className="text-neutral-800 text-2xl"
               //make it 24 px
             />
           </div>
           <div className="relative mt-2 flex flex-col gap-3 rounded-2xl border-[1px] border-shade-50 bg-[#FAFAFA] px-4 lg:px-8 py-2">
             <div className="download flex flex-col gap-1">
               <p className="border-b-[1px] border-shade-50 py-3 text-[1.5rem] font-semibold text-shade-300">
-                <span className="capitalize">{job?.title} ggg</span>
+                <span className="capitalize">{job?.title}</span>
               </p>
               <p className="hidden-scrollbar h-[70vh]  overflow-y-scroll text-shade-300 pt-3">
                 <PortableText value={job?.description} />
