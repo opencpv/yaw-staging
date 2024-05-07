@@ -21,7 +21,7 @@ type OtherPostsProps = {
 
 type SideContentProps = {
   title: string;
-  children: React.ReactNode
+  children: React.ReactNode;
   className?: string;
 };
 

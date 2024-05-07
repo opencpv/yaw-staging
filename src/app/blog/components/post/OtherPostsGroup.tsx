@@ -25,9 +25,13 @@ const OtherPostsGroup = (props: Props) => {
         </div>
       </SideContent>
       {/* Sponsors */}
-      <SideContent title="Sponsors" className="mb-5"></SideContent>
+      <SideContent title="Sponsors" className="mb-5">
+        lorem
+      </SideContent>
       {/* Category */}
-      <SideContent title="Category" className="mb-5"></SideContent>
+      <SideContent title="Category" className="mb-5">
+        lorem
+      </SideContent>
     </>
   );
 };

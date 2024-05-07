@@ -6,7 +6,7 @@ import { useSessionStorage } from "@uidotdev/usehooks";
 import { useSearchParams } from "next/navigation";
 
 const Rating = () => {
-  const id = useSearchParams().get("id");
+  const id = useSearchParams()?.get("id");
   const [blogRating, setBlogRating] = useSessionStorage<{
     ratedBlogs: {
       id: string;
@@ -24,7 +24,7 @@ const Rating = () => {
         ...blogRating,
         ratedBlogs: [
           ...(blogRating.ratedBlogs || []),
-          { id: id, value: value },
+          { id: id as string, value: value },
         ],
       });
     }
@@ -48,8 +48,13 @@ const Rating = () => {
         defaultValue={0}
         onChange={handleChange}
         value={blogRating?.ratedBlogs?.find((blog) => blog.id === id)?.value}
-        disabled={blogRating?.ratedBlogs?.find((blog) => blog.id === id)?.value}
-      />
+        disabled={
+          blogRating?.ratedBlogs?.find((blog) => blog.id === id)?.value
+            ? true
+            : false
+        }
+      />{" "}
+      ?
       <motion.div
         variants={variants}
         animate={
