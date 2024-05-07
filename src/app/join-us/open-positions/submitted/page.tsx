@@ -18,7 +18,7 @@ function Page() {
           Thank You !
         </p>
         <p className="text-shade-200">
-          Lorem ipsum dolor sit amet consectetur.
+       We will get back to you soon.
         </p>
       </div>
       <Link

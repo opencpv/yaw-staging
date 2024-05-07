@@ -14,6 +14,7 @@ import AvatarMenu from "@/components/__shared/ui/avatar/AvatarMenu";
 import Share from "@/components/__shared/ui/share/Share";
 import LikeHeart from "@/components/__shared/ui/LikeHeart";
 import ButtonHireUs from "@/components/__shared/ui/button/ButtonHireUs";
+import { useJoinUsPageStore } from "./useJoinUsPageStore";
 
 const JoinUsNavbar = (props: any) => {
   const pathname = usePathname();
@@ -23,6 +24,7 @@ const JoinUsNavbar = (props: any) => {
   const { user } = useAppStore();
 
   useHideDocumentScrollBar(toggle);
+  const { setIsNavScrolling } = useJoinUsPageStore();
 
   useUserData();
 
@@ -30,8 +32,10 @@ const JoinUsNavbar = (props: any) => {
     const handleScroll = () => {
       if (window.scrollY > 1) {
         setIsScrolling(true);
+        setIsNavScrolling(true)
       } else {
         setIsScrolling(false);
+        setIsNavScrolling(false)
       }
     };
 

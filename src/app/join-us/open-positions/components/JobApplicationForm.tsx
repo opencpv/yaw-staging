@@ -12,6 +12,7 @@ import { Button } from "@nextui-org/react";
 import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
 import { useContactForm } from "@/app/contact/components/forms/hooks/useContactForm";
 import InfoText from "@/components/__shared/ui/listing-form/components/InfoText";
+import { useJoinUsPageStore } from "../../components/useJoinUsPageStore";
 
 type Props = {
   variant: "application" | "resume";
@@ -24,11 +25,14 @@ function JobApplicationForm({ variant }: Props) {
 
     phoneInputPlaceholder,
   } = useContactForm();
+  const { isScrolling } = useJoinUsPageStore();
   return (
     <div className="flex flex-col gap-4 px-5 pt-5 lg:px-20">
       <Link
         href={"/join-us/open-positions"}
-        className="absolute top-5 z-[343] hidden lg:flex"
+        className={`absolute top-5 ${
+          isScrolling ? "z-[11]" : "z-[343]"
+        } hidden lg:flex`}
       >
         <Button
           className={`h-[52px]  rounded-lg  py-[0.94rem] font-semibold ${"bg-transparent text-[1.125rem] text-[#DDB771]"} flex justify-start gap-2.5`}
@@ -113,8 +117,12 @@ function JobApplicationForm({ variant }: Props) {
                 Professional Profile
               </p>
               <div className="flex flex-col gap-5">
-                <CustomFileInput label="Upload Cover Letter" variant="green"/>
-                <CustomFileInput label="Upload Resume" required variant="green" />
+                <CustomFileInput label="Upload Cover Letter" variant="green" />
+                <CustomFileInput
+                  label="Upload Resume"
+                  required
+                  variant="green"
+                />
                 {/* <CustomFileInput label="Upload Video Profile" /> */}
                 {/* <CustomFileInput label="Upload Work Sample" /> */}
                 <div className="flex flex-col gap-3">

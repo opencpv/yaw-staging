@@ -4,6 +4,7 @@ import styles from "./index.module.css";
 import Link from "next/link";
 import Footer from "@/components/__shared/ui/footer/Footer";
 import Navbar from "@/components/__shared/ui/Navbar";
+import ScrollTopAndSocial from "@/components/__shared/ui/ScrollTopAndSocial";
 
 const JoinUsPage = async () => {
   return (
@@ -87,6 +88,7 @@ const JoinUsPage = async () => {
             </div>
           </div>
         </div>
+        <ScrollTopAndSocial/>
         <div className="mt-24 w-full  pt-10">
           <Footer />
         </div>{" "}

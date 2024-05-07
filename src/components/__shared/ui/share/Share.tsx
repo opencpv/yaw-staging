@@ -17,10 +17,10 @@ const Share = (props: ShareDataProps) => {
         body={<ShareModalBody url={props.url} />}
         size="lg"
       />
-      <IoIosShareAlt
-        className={`cursor-pointer ${props.className}`}
-        onClick={onOpen}
-      />
+      <button onClick={onOpen} className="appearance-none flex items-center gap-1 ">
+        {props?.withLabel && <p className={`${props.labelClassName}`}>Share</p>}{" "}
+        <IoIosShareAlt className={`cursor-pointer ${props.className}`} />
+      </button>
     </>
   );
 };
