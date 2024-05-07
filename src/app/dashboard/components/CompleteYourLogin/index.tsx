@@ -80,12 +80,16 @@ function CompleteYourLogin({ open }: Props) {
                           <CustomSelect
                             name="role"
                             placeholder="Select your role"
-                            label="I am a"
                             options={[
                               { name: "renter", value: "Renter" },
                               { name: "lister", value: "Lister" },
                               // { name: "service pro", value: "service Pro" }, // maybe future
                             ]}
+                            classNames={{
+                              option: "text-lg",
+                              placeholder: "text-lg",
+                            }}
+                            className="text-lg"
                           />
                           <RoleExplainer />
                           <div className="flex w-full justify-end">

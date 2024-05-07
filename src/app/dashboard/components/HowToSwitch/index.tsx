@@ -74,7 +74,7 @@ function HowToSwitch({ open }: Props) {
                   You can switch between portals using the “Switch Dropdown” in
                   the navigation menu
                 </p>
-                <div className="relative  h-[278px] w-full">
+                <div className="relative h-[278px] w-full">
                   <Image
                     src={"/assets/images/dasboard-switch.png"}
                     fill
