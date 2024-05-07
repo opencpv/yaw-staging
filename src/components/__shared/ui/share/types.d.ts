@@ -3,4 +3,6 @@ type ShareDataProps = {
     title?: string;
     content?: string;
     className?: string;
+    labelClassName? : string
+    withLabel? : boolean
 }
