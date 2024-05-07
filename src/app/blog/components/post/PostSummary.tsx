@@ -12,13 +12,13 @@ const PostSummary = ({
   href,
   postedAt,
   image,
-  body,
+  summary,
   rating,
 }: PostProps) => {
   return (
     <FramerWrapper {...fadeIn}>
       <div className="grid gap-x-10 gap-y-5 lg:grid-cols-3">
-        <div className="relative min-h-[13rem] w-full md:h-full lg:col-span-1 lg:max-w-full">
+        <div className="relative aspect-video w-full md:h-full lg:col-span-1 lg:max-w-full">
           <Image
             src={image ? image : "/assets/images/Stock.jpg"}
             alt={title}
@@ -28,17 +28,12 @@ const PostSummary = ({
           />
         </div>
         <div className=" max-w-3xl xs:min-w-[25rem] lg:col-span-2">
-          <h3 className="text-lg font-[500] text-neutral-800">
-            Posted By {author}
-          </h3>
-          <small className="mb-2 inline-block text-neutral-400">
-            {postedAt}
-          </small>
+          <h3 className="text-lg font-[500] text-neutral-800">By {author}</h3>
           <div className="mb-3">
             <Rate value={rating} allowHalf disabled />
           </div>
           <h2 className="mb-3 text-2xl font-[700] text-neutral-800">{title}</h2>
-          <p className="mb-3 line-clamp-4 text-neutral-500">{body}</p>
+          <p className="mb-3 line-clamp-4 text-neutral-500">{summary}</p>
           <Link
             href={`${href}`}
             className="inline-flex items-center gap-2 text-primary-400 transition-all hover:scale-105"

@@ -64,7 +64,7 @@ const OptionFilterTabs = (
             "w-auto w-full sm:max-w-[200px] sm:w-fit",
             variant === "gradient"
               ? "data-[selected=true]:bg-gradient-to-r data-[selected=true]:from-[#21A19F] data-[selected=true]:to-[#1EA9A6A1]"
-              : "data-[selected=true]:bg-primary-200",
+              : "data-[selected=true]:bg-primary-500",
             radius === "small" ? "rounded-lg" : "rounded-full",
             padding === "wide" && "px-20",
             padding === "medium" && "px-5 xs:px-8",
@@ -82,7 +82,7 @@ const OptionFilterTabs = (
             variant === "gradient" &&
               "bg-gradient-to-r from-[#21A19F] to-[#1EA9A6A1]",
             variant == "default" &&
-              "bg-primary-200 dark:bg-primary-200 shadow-none",
+              "bg-primary-500 dark:bg-primary-500 shadow-none",
             !cursorAnimation && "bg-transparent dark:bg-transparent",
             "rounded-full",
           ],

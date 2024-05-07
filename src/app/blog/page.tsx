@@ -16,6 +16,7 @@ import { urlForImage } from "@/lib/utils/sanity/utils";
 import slugify from "@/lib/utils/slugify";
 import { fadeIn } from "@/lib/animations";
 import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
+import AdsSlider from "./components/post/AdsSlider";
 
 const page = async () => {
   const initialBlogData: any = await loadQuery<SanityDocument[]>(BLOG_QUERY);
@@ -35,24 +36,11 @@ const page = async () => {
 
   return (
     <div className="wrapper pb-0 sm:pb-0">
-      <section className="relative h-fit w-full">
-        <SliderWide
-          pagination
-          autoplay
-          className="shape-3 h-60 rounded-none sm:h-[30rem]"
-          images={sliderBlogData.map((post: any) => ({
-            src: urlForImage(post.featured_image)?.url() as string,
-            name: post.title,
-            href: `/blog/${slugify(post.category.category_title)}/${slugify(
-              post.title,
-            )}$id=${post._id}`,
-          }))}
-        />
-      </section>
-      <section className="grid-cols-4 gap-x-5 md:pt-28 lg:grid">
+      <PostSlider posts={sliderBlogData} />
+      <section className="grid-cols-4 gap-x-5 lg:grid lg:pt-28">
         <div className="col-span-3">
           <OtherPosts
-            className="section md:hidden"
+            className="section lg:hidden"
             title="Recent posts"
             posts={recentPosts.map((post: any) => ({
               title: post.title,
@@ -63,9 +51,13 @@ const page = async () => {
               )}$id=${post._id}`,
             }))}
           />
-          <PostSlider posts={sliderBlogData} />
+          <AdsSlider posts={sliderBlogData} />
           <FramerWrapper {...fadeIn} className="section">
-            <section className="grid gap-x-3.5 gap-y-7 xs:grid-cols-2 md:grid-cols-3">
+            <section
+              className={
+                "grid gap-x-3.5 gap-y-7 max-xs:hidden xs:grid-cols-2 md:grid-cols-3"
+              }
+            >
               {categories.map((category: any, index: number) => (
                 <CategoryCard
                   key={index + 1}
@@ -75,6 +67,22 @@ const page = async () => {
                   className="w-full"
                 />
               ))}
+            </section>
+            <section className="space-y-3 xs:hidden">
+              <h3>Category</h3>
+              <div className="hidden-scrollbar flex w-full gap-3.5 overflow-x-auto">
+                {categories.map((category: any, index: number) => (
+                  <CategoryCard
+                    key={index + 1}
+                    href={`/blog/${slugify(category.category_title)}`}
+                    category={category.category_title}
+                    image={
+                      urlForImage(category.category_image)?.url() as string
+                    }
+                    className="flex-1"
+                  />
+                ))}
+              </div>
             </section>
           </FramerWrapper>
         </div>

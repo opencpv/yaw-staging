@@ -21,6 +21,10 @@ type Props = {
   label?: string;
   fadeText?: boolean;
   className?: string;
+  classNames?: {
+    option?: string;
+    placeholder?: string;
+  };
   value?: string;
   name?: string;
   /** A string that shows before the value. Eg: GHS 1000 */
@@ -35,6 +39,7 @@ const CustomSelect = ({
   fadeText,
   value,
   className,
+  classNames,
   prefix,
   name,
 }: Props) => {
@@ -56,14 +61,20 @@ const CustomSelect = ({
             fadeText && "text-[#B4B2AF]"
           }`}
         >
-          <div className="flex items-center gap-5">
+          <div
+            className={cn("flex items-center gap-5", classNames?.placeholder)}
+          >
             {prefix && <span>{prefix}</span>}
             <SelectValue placeholder={placeholder} />
           </div>
         </SelectTrigger>
         <SelectContent className="z-[1001]">
           {options.map((r, index) => (
-            <SelectItem key={index} value={r?.value} className="capitalize">
+            <SelectItem
+              key={index}
+              value={r?.value}
+              className={cn("capitalize", classNames?.option)}
+            >
               {r?.name}
             </SelectItem>
           ))}
@@ -71,7 +82,7 @@ const CustomSelect = ({
       </Select>
 
       {meta.touched && meta.error ? (
-        <ErrorMessage>{meta.error}</ErrorMessage>
+        <ErrorMessage error={meta.error}>{meta.error}</ErrorMessage>
       ) : null}
     </Root>
   );
