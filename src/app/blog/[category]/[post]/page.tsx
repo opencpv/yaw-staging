@@ -2,8 +2,6 @@ import Image from "next/image";
 import React from "react";
 import SliderPaginationOnly from "@/components/__shared/ui/sliders/SliderPaginationOnly";
 import SliderWide from "@/components/__shared/ui/sliders/SliderWide";
-import OtherPostsGroup from "../../components/post/OtherPostsGroup";
-import BreadCrumbPreLink from "@/components/__shared/ui/BreadCrumbPreLink";
 import SubscribeToBlogButton from "../../components/SubscribeToBlogButton";
 import Share from "@/components/__shared/ui/share/Share";
 import Print from "@/components/__shared/ui/Print";
@@ -23,6 +21,7 @@ import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { CiStar } from "react-icons/ci";
 import Rate from "@/components/__shared/ui/Rate";
 import Rating from "../../components/post/Rating";
+import SideContentGroup from "../../components/post/SideContentGroup";
 
 type Props = {
   params: { slug: string };
@@ -47,7 +46,7 @@ const StoryPage = async ({ params, searchParams }: Props) => {
     isInline: boolean;
   }) => {
     return (
-      <div className="relative mb-8 mt-2 aspect-square w-full md:aspect-video">
+      <div className="relative mb-8 mt-2 aspect-video w-full">
         <Image
           src={urlBuilder(sanityClient)
             .image(value)
@@ -100,14 +99,13 @@ const StoryPage = async ({ params, searchParams }: Props) => {
             <div className="shape-polygon relative mb-16 h-60 w-full lg:h-[30rem]">
               <Image
                 src={urlForImage(post.featured_image)?.url() as string}
-                alt=""
-                className=""
+                alt="" // TODO: fix alt
                 fill
                 style={{ objectFit: "cover" }}
               />
             </div>
           </FramerWrapper>
-          <section className="print-content mb-20 grid-cols-4 gap-5 sm:grid">
+          <section className="print-content mb-20 grid-cols-4 gap-5 md:grid">
             <div className="col-span-3">
               {/* Blog content --- CMS */}
               <div className="blog mb-20">
@@ -136,13 +134,13 @@ const StoryPage = async ({ params, searchParams }: Props) => {
               <FramerWrapper {...fadeIn}>
                 <section className="no-print hidden h-fit w-full flex-col gap-8 md:flex min-[1000px]:flex-row">
                   <SliderPaginationOnly
-                    images={[1, 2, 3, 4, 5].map((image) => ({
+                    images={[1, 2, 3].map((image) => ({
                       src: "/assets/images/niceHome.png",
                       name: "",
                     }))}
                   />
                   <SliderPaginationOnly
-                    images={[1, 2, 3, 4, 5].map((image) => ({
+                    images={[1, 2, 3].map((image) => ({
                       src: "/assets/images/niceHome.png",
                       name: "",
                     }))}
@@ -151,22 +149,22 @@ const StoryPage = async ({ params, searchParams }: Props) => {
               </FramerWrapper>
               <SubscribeToBlogButton className="no-print mb-14 px-8 md:hidden" />
             </div>
-            {/* Other posts -- right side of Grid */}
+            {/* Side content -- right side of Grid */}
             <div className="col-span-1 space-y-5 max-md:hidden">
               <div>
-                <OtherPostsGroup />
+                <SideContentGroup />
               </div>
               <SubscribeToBlogButton />
             </div>
           </section>
           <section className="no-print mb-10 grid-cols-2 gap-5 xs:grid md:hidden">
-            <OtherPostsGroup />
+            <SideContentGroup />
           </section>
           <section className="no-print h-fit w-full md:hidden">
             <SliderWide
               pagination
               navigation
-              images={[1, 2, 3, 4, 5].map((image) => ({
+              images={[1, 2, 3].map((image) => ({
                 src: "/assets/images/niceHome.png",
                 name: "",
               }))}

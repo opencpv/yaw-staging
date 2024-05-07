@@ -53,8 +53,7 @@ const Rating = () => {
             ? true
             : false
         }
-      />{" "}
-      ?
+      />
       <motion.div
         variants={variants}
         animate={

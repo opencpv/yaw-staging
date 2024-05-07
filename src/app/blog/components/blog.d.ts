@@ -23,6 +23,9 @@ type SideContentProps = {
   title: string;
   children: React.ReactNode;
   className?: string;
+  classNames?: {
+    body?: string;
+  };
 };
 
 type PostProps = {

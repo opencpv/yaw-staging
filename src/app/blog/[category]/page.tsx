@@ -36,7 +36,9 @@ const page = async (props: Props) => {
             <BackgroundImage />
             <div className="relative z-10 flex flex-col items-center gap-3">
               <div className="flex items-center gap-3">
-                <Link href="/blog">Home</Link>
+                <Link href="/blog" className="text-shade-300">
+                  Home
+                </Link>
                 <LuChevronRight />
                 <div>Stories</div>
               </div>
