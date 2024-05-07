@@ -29,7 +29,7 @@ type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-const page = async ({ params, searchParams }: Props) => {
+const StoryPage = async ({ params, searchParams }: Props) => {
   const origin = headers().get("x-origin") || "https://www.rentrightgh.com";
   const sanityClient = client;
   const initialPostData = await loadQuery<SanityDocument[]>(
@@ -178,4 +178,4 @@ const page = async ({ params, searchParams }: Props) => {
   );
 };
 
-export default page;
+export default StoryPage;
