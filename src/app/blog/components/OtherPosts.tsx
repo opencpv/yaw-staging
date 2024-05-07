@@ -32,8 +32,8 @@ const OtherPosts = ({ title, posts, className }: OtherPostsProps) => {
                   <h4 className="font-[500] leading-tight text-neutral-800">
                     {post.title}
                   </h4>
-                  <p className="mt-auto text-xs text-neutral-400">
-                    By <span className="text-neutral-800">{post.author}</span>
+                  <p className="mt-auto text-xs text-primary">
+                    by <span className="text-neutral-800">{post.author}</span>
                   </p>
                 </div>
               </div>

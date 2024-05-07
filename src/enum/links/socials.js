@@ -1,23 +1,48 @@
-import { FaFacebookF, FaWhatsapp } from "react-icons/fa"
-import { RiTwitterXLine } from "react-icons/ri"
+import { FaFacebookF, FaWhatsapp } from "react-icons/fa";
+import { RiTwitterXLine } from "react-icons/ri";
+import CaInstagram from "@/components/__shared/ui/icons/CaInstagram";
+import CaTwitter from "@/components/__shared/ui/icons/CaTwitter";
+import CaWhatsappBusiness from "@/components/__shared/ui/icons/CaWhatsappBusiness";
+import CaFacebook from "@/components/__shared/ui/icons/CaFacebook";
 
-const socialLinks = [
+export const socialLinks = {
+  monochrome: [
     {
-        name: "Facebook",
-        icon: <FaFacebookF />,
-        href: "",
+      name: "Facebook",
+      icon: <FaFacebookF />,
+      href: "",
     },
     {
-        name: "WhatsApp",
-        icon: <FaWhatsapp />,
-        href: "",
+      name: "WhatsApp",
+      icon: <FaWhatsapp />,
+      href: "",
     },
     {
-        name: "X",
-        icon: <RiTwitterXLine />,
-        href: "",
+      name: "X",
+      icon: <RiTwitterXLine />,
+      href: "",
     },
-]
-
-
-export default socialLinks
+  ],
+  coloured: [
+    {
+      name: "Facebook",
+      icon: <CaFacebook width={"40px"} />,
+      href: "#",
+    },
+    {
+      name: "X",
+      icon: <CaTwitter width={"40px"} />,
+      href: "#",
+    },
+    {
+      name: "Whatsapp",
+      icon: <CaWhatsappBusiness width={"40px"} />,
+      href: "#",
+    },
+    {
+      name: "Instagram",
+      icon: <CaInstagram width={"40px"} />,
+      href: "#",
+    },
+  ],
+};

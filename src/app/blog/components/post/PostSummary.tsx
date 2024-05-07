@@ -22,18 +22,22 @@ const PostSummary = ({
           <Image
             src={image ? image : "/assets/images/Stock.jpg"}
             alt={title}
-            className="rounded-lg"
+            className="rounded-xl"
             fill
             style={{ objectFit: "cover" }}
           />
         </div>
-        <div className=" max-w-3xl xs:min-w-[25rem] lg:col-span-2">
-          <h3 className="text-lg font-[500] text-neutral-800">By {author}</h3>
-          <div className="mb-3">
-            <Rate value={rating} allowHalf disabled />
+        <div className=" max-w-3xl space-y-3 xs:min-w-[25rem] lg:col-span-2">
+          <h3 className="text-lg font-[500] text-shade-300">
+            <span className="text-primary">by</span> {author}
+          </h3>
+          <div className="">
+            <h2 className="font-semibold text-neutral-800">{title}</h2>
+            <div>
+              <Rate className="" value={rating} allowHalf disabled />
+            </div>
           </div>
-          <h2 className="mb-3 text-2xl font-[700] text-neutral-800">{title}</h2>
-          <p className="mb-3 line-clamp-4 text-neutral-500">{summary}</p>
+          <p className="line-clamp-4 text-neutral-500">{summary}</p>
           <Link
             href={`${href}`}
             className="inline-flex items-center gap-2 text-primary-400 transition-all hover:scale-105"

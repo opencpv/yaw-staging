@@ -1,6 +1,5 @@
 import React from "react";
-import OtherPosts from "./components/post/OtherPosts";
-import SliderWide from "@/components/__shared/ui/sliders/SliderWide";
+import OtherPosts from "./components/OtherPosts";
 import CategoryCard from "./components/CategoryCard";
 import Authors from "./components/author/Authors";
 import SubscribeToBlogButton from "./components/SubscribeToBlogButton";
@@ -48,7 +47,7 @@ const page = async () => {
               image: "",
               href: `/blog/${slugify(post.category.category_title)}/${slugify(
                 post.title,
-              )}$id=${post._id}`,
+              )}?id=${post._id}`,
             }))}
           />
           <AdsSlider posts={sliderBlogData} />
@@ -99,7 +98,7 @@ const page = async () => {
                 image: "",
                 href: `/blog/${slugify(post.category.category_title)}/${slugify(
                   post.title,
-                )}$id=${post._id}`,
+                )}?id=${post._id}`,
               }))}
             />
             <div className="space-y-10 lg:pt-16">
@@ -116,7 +115,7 @@ const page = async () => {
                 image: "",
                 href: `/blog/${post.category.category_title}/${slugify(
                   post.title,
-                )}$id=${post._id}`,
+                )}?id=${post._id}`,
               }))}
             />
           </div>

@@ -19,6 +19,12 @@ type OtherPostsProps = {
   className?: string;
 };
 
+type SideContentProps = {
+  title: string;
+  children: React.ReactNode
+  className?: string;
+};
+
 type PostProps = {
   title: string;
   author: string;

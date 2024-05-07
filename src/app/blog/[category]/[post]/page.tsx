@@ -1,4 +1,3 @@
-import { Rate } from "antd";
 import Image from "next/image";
 import React from "react";
 import SliderPaginationOnly from "@/components/__shared/ui/sliders/SliderPaginationOnly";
@@ -20,19 +19,25 @@ import { fadeIn } from "@/lib/animations";
 import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 import slugify from "@/lib/utils/slugify";
 import { headers } from "next/headers";
+import { useAssets } from "@/lib/custom-hooks/useAssets";
+import { CiStar } from "react-icons/ci";
+import Rate from "@/components/__shared/ui/Rate";
+import Rating from "../../components/post/Rating";
 
 type Props = {
   params: { slug: string };
-  searchParams: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
 };
 
 const page = async ({ params, searchParams }: Props) => {
   const origin = headers().get("x-origin") || "https://www.rentrightgh.com";
   const sanityClient = client;
-  const intialPostData = await loadQuery<SanityDocument[]>(
-    SINGLE_BLOG_POST(searchParams.id),
+  const initialPostData = await loadQuery<SanityDocument[]>(
+    SINGLE_BLOG_POST(searchParams?.id as string),
   );
-  const post = intialPostData.data[0];
+  const post = initialPostData.data[0];
+
+  const { images } = useAssets();
 
   const SampleImageComponent = ({
     value,
@@ -55,6 +60,7 @@ const page = async ({ params, searchParams }: Props) => {
           fill
           style={{
             display: isInline ? "inline-block" : "block",
+            objectFit: "cover",
           }}
         />
       </div>
@@ -70,15 +76,26 @@ const page = async ({ params, searchParams }: Props) => {
     <>
       {
         <div className="wrapper overflow-x-hidden text-neutral-500">
-          <h3 className="mb-8 text-xl font-[500]">
-            By{" "}
-            {post && (
-              <span className="text-primary-500">{post.author.name}</span>
-            )}
-          </h3>
-          <h1 className="mb-5 text-2xl font-[700] text-primary-200 md:text-4xl">
+          <div className="flex items-center gap-3">
+            <Image
+              src={
+                (urlForImage(
+                  post.author.profile_image.asset._ref,
+                )?.url() as string) || images.NoProfileOthers
+              }
+              alt={post.author.name}
+              width={48}
+              height={48}
+              className="rounded-full"
+            />
+            <h3 className="text-xl font-[500]">
+              {post && <span className="text-primary">{post.author.name}</span>}
+            </h3>
+          </div>
+          <h1 className="mt-5 text-2xl font-[700] text-primary md:text-3xl">
             {post.title}
           </h1>
+          <Rate disabled value={post.rating} className="mb-10 mt-3" />
           <FramerWrapper {...fadeIn}>
             <div className="shape-polygon relative mb-16 h-60 w-full lg:h-[30rem]">
               <Image
@@ -90,12 +107,6 @@ const page = async ({ params, searchParams }: Props) => {
               />
             </div>
           </FramerWrapper>
-          <h3 className="no-print mb-8 text-xl font-[500]">
-            <BreadCrumbPreLink
-              label={post?.category?.category_title}
-              href={`/blog/${slugify(post?.category?.category_title)}`}
-            />
-          </h3>
           <section className="print-content mb-20 grid-cols-4 gap-5 sm:grid">
             <div className="col-span-3">
               {/* Blog content --- CMS */}
@@ -107,7 +118,7 @@ const page = async ({ params, searchParams }: Props) => {
                 Rate this story
               </h3>
               <div className="no-print mb-16 flex flex-wrap items-center justify-between gap-5">
-                <Rate allowHalf allowClear defaultValue={0} />
+                <Rating />
                 <div className="flex items-center gap-3 text-2xl text-primary-200">
                   <Share
                     url={
@@ -141,11 +152,11 @@ const page = async ({ params, searchParams }: Props) => {
               <SubscribeToBlogButton className="no-print mb-14 px-8 md:hidden" />
             </div>
             {/* Other posts -- right side of Grid */}
-            <div className="col-span-1 space-y-5  ">
-              <div className="hidden md:block">
+            <div className="col-span-1 space-y-5 max-md:hidden">
+              <div>
                 <OtherPostsGroup />
               </div>
-              <SubscribeToBlogButton className="hidden md:inline-flex" />
+              <SubscribeToBlogButton />
             </div>
           </section>
           <section className="no-print mb-10 grid-cols-2 gap-5 xs:grid md:hidden">

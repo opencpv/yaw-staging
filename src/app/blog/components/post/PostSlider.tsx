@@ -26,7 +26,7 @@ const PostSlider = ({ posts }: Props) => {
           name: post.title,
           href: `/blog/${slugify(post.category.category_title)}/${slugify(
             post.title,
-          )}$id=${post._id}`,
+          )}?id=${post._id}`,
         }))}
         className="shape-polygon rounded-none sm:h-[27rem]"
         onSlideChange={handleSlideChange}
@@ -38,7 +38,7 @@ const PostSlider = ({ posts }: Props) => {
         <div className="line-clamp-1 flex flex-wrap gap-2">
           <span className="">Category</span>
           <span className="hidden xs:inline">|</span>
-          <span className="">By {posts[activeIndex].author.name}</span>
+          <span className="">by {posts[activeIndex].author.name}</span>
         </div>
       </div>
     </section>

@@ -24,7 +24,7 @@ const AdsSlider = ({ posts }: Props) => {
           name: post.title,
           href: `/blog/${slugify(post.category.category_title)}/${slugify(
             post.title,
-          )}$id=${post._id}`,
+          )}?id=${post._id}`,
         }))}
         className="sm:h-[27rem]"
         onSlideChange={handleSlideChange}
