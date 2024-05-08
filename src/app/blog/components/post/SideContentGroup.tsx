@@ -26,7 +26,7 @@ const SideContentGroup = (props: Props) => {
               href={link.href}
               className="flex flex-col items-center gap-2 rounded-md bg-gray-100 p-2 text-neutral-800"
             >
-              {link.icon}
+              <span className="w-[40px]">{link.icon}</span>
               <small>{link.name}</small>
             </Link>
           ))}

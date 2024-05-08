@@ -26,22 +26,22 @@ export const socialLinks = {
   coloured: [
     {
       name: "Facebook",
-      icon: <CaFacebook width={"40px"} />,
+      icon: <CaFacebook />,
       href: "#",
     },
     {
       name: "X",
-      icon: <CaTwitter width={"40px"} />,
+      icon: <CaTwitter />,
       href: "#",
     },
     {
       name: "Whatsapp",
-      icon: <CaWhatsappBusiness width={"40px"} />,
+      icon: <CaWhatsappBusiness />,
       href: "#",
     },
     {
       name: "Instagram",
-      icon: <CaInstagram width={"40px"} />,
+      icon: <CaInstagram />,
       href: "#",
     },
   ],
