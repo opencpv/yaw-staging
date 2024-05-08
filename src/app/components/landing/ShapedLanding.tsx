@@ -42,11 +42,11 @@ const ShapedLanding = ({
                   : position === "right" && !disableOnSmallScreens
                     ? style.shapeRight2
                     : null
-          } relative min-h-[50rem] w-full sm:min-h-[65rem] image-overlay`,
+          } ${style.imageOverlay} relative min-h-[50rem] w-full sm:min-h-[65rem]`,
           className,
         )}
       >
-        <Image src={image}  alt={property} fill style={{ objectFit: "cover" }} />
+        <Image src={image} alt={property} fill style={{ objectFit: "cover" }} />
         {children}
         <ViewPropertyBtn href={`${href}`} />
       </section>
