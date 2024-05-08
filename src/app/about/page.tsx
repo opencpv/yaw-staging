@@ -43,7 +43,7 @@ const About = async () => {
             <div className="w-full">
               {heading1.split("#").map((heading: string, index: number) => (
                 <h1
-                  className="text-2xl font-[700] leading-normal text-[#305A61] sm:text-4xl"
+                  className="text-2xl font-[700] leading-normal text-[#305A61] sm:text-4xl 2xl:text-5xl"
                   key={index}
                 >
                   {heading}
@@ -53,7 +53,7 @@ const About = async () => {
             <div className="w-full">
               {heading2.split("#").map((heading: string, index: number) => (
                 <h2
-                  className="max-w-2xl text-lg font-[500] text-[#65969F]"
+                  className="max-w-2xl text-lg lg:text-xl 2xl:text-2xl font-[500] text-[#65969F]"
                   key={index}
                 >
                   {heading}
@@ -87,8 +87,8 @@ const About = async () => {
           <FramerWrapper {...fadeUp} className="relative w-full">
             <div className="relative flex max-w-screen-xl flex-col items-center justify-between gap-10 bg-opacity-90 bg-gradient-to-r from-[#21A19F] to-[#1EA9A6A1] p-5 text-white xs:items-start xs:p-10 lg:flex-row min-[1048px]:max-xl:w-11/12 fhd:mx-auto">
               <div className="space-y-5">
-                <h2 className="font-[700] md:text-4xl">{bannerData.title}</h2>
-                <p className="max-w-2xl text-base font-[500] md:text-lg">
+                <h2 className="font-[700]  text-2xl xl:text-4xl 2xl:text-5xl">{bannerData.title}</h2>
+                <p className="max-w-2xl text-base font-[400] md:text-xl 2xl:text-2xl">
                   {bannerData.description}
                 </p>
               </div>

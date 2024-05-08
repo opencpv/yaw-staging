@@ -58,8 +58,8 @@ const VerticalSlider = ({ data }: { data: any }) => {
           <SwiperSlide key={idx + 1} className="relative">
             <div className="relative">
               <div className="ml-5 w-10/12 space-y-5 pb-20 pl-10 pr-24 pt-28 xs:pt-40 min-[480px]:ml-10 lg:ml-auto lg:max-w-xl lg:py-20 min-[1160px]:max-w-2xl">
-                <h2 className="text-2xl font-[700]">{item.title}</h2>
-                <p className="line-clamp-[8] text-sm sm:line-clamp-[11]">
+                <h2 className="text-2xl lg:text-3xl font-[700]">{item.title}</h2>
+                <p className="line-clamp-[8] text-sm lg:text-lg sm:line-clamp-[11]">
                   {item.description}
                 </p>
               </div>

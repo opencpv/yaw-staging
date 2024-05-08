@@ -43,6 +43,7 @@ function JobDescriptionModalContent({ job }: any) {
                     url={`https://rentrightgh.com${pathname}`}
                     title={job?.title}
                     className="text-2xl text-neutral-800"
+                    
                   />
                 </div>
                 <PortableText value={job?.description} />
@@ -51,16 +52,16 @@ function JobDescriptionModalContent({ job }: any) {
             <div className="sticky bottom-0 grid  grid-cols-2 gap-3 bg-[#FAFAFA] pb-2 pt-2">
               <Button
                 onClick={() => downloadPdf("Rentright Job", "download")}
-                className="bg-secondary-500 text-[1rem] font-semibold text-shade-300 transition-all hover:scale-[1.03]"
+                className="bg-accent-50 text-[1rem] text-white font-semibold  transition-all hover:scale-[1.03]"
               >
                 Download
-                <HiOutlineDownload size="24" color="#3F3F46" />
+                <HiOutlineDownload size="24" color="white" />
               </Button>
               <Link
                 href="/join-us/open-positions/application"
                 className="w-full"
               >
-                <Button className="w-full bg-[#DDB771] text-[1rem] font-semibold text-white transition-all hover:scale-[1.03] ">
+                <Button className="w-full bg-primary-500 text-[1rem] font-semibold text-white transition-all hover:scale-[1.03] ">
                   Apply
                 </Button>
               </Link>
