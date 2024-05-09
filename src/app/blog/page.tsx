@@ -33,6 +33,8 @@ const page = async () => {
   const sortedBlogPosts = blogData.sort((a: any, b: any) => a.view - b.views);
   const popularPosts = sortedBlogPosts.slice(0, 3);
 
+  console.log(recentPosts);
+
   return (
     <div className="wrapper pb-0 sm:pb-0">
       <PostSlider posts={sliderBlogData} />
@@ -41,14 +43,28 @@ const page = async () => {
           <OtherPosts
             className="section lg:hidden"
             title="Recent posts"
-            posts={recentPosts.map((post: any) => ({
-              title: post.title,
-              author: post.author.name,
-              image: "",
-              href: `/blog/${slugify(post.category.category_title)}/${slugify(
-                post.title,
-              )}?id=${post._id}`,
-            }))}
+            posts={recentPosts
+              .slice()
+              /**
+               * Sort the recent posts array by date in descending order,
+               * i.e. newest first.
+               *
+               * @param a First post
+               * @param b Second post
+               * @returns Negative number if a is newer than b, positive number if b is newer than a, 0 if equal
+               */
+              .sort(
+                (a: { date: string }, b: { date: string }) =>
+                  new Date(b.date).getTime() - new Date(a.date).getTime(),
+              )
+              .map((post: any) => ({
+                title: post.title,
+                author: post.author.name,
+                image: "",
+                href: `/blog/${slugify(post.category.category_title)}/${slugify(
+                  post.title,
+                )}?id=${post._id}`,
+              }))}
           />
           <AdsSlider posts={sliderBlogData} />
           <FramerWrapper {...fadeIn} className="section">
@@ -92,14 +108,28 @@ const page = async () => {
           <div className="space-y-28 pt-28 lg:pt-0">
             <OtherPosts
               title="Recent posts"
-              posts={recentPosts.map((post: any, idx: any) => ({
-                title: post.title,
-                author: post.author.name,
-                image: "",
-                href: `/blog/${slugify(post.category.category_title)}/${slugify(
-                  post.title,
-                )}?id=${post._id}`,
-              }))}
+              posts={recentPosts
+                .slice()
+                /**
+                 * Sort the recent posts array by date in descending order,
+                 * i.e. newest first.
+                 *
+                 * @param a First post
+                 * @param b Second post
+                 * @returns Negative number if a is newer than b, positive number if b is newer than a, 0 if equal
+                 */
+                .sort(
+                  (a: { date: string }, b: { date: string }) =>
+                    new Date(b.date).getTime() - new Date(a.date).getTime(),
+                )
+                .map((post: any) => ({
+                  title: post.title,
+                  author: post.author.name,
+                  image: "",
+                  href: `/blog/${slugify(
+                    post.category.category_title,
+                  )}/${slugify(post.title)}?id=${post._id}`,
+                }))}
             />
             <div className="space-y-10 lg:pt-16">
               {/* Authors */}
