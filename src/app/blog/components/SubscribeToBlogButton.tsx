@@ -7,6 +7,7 @@ import React from "react";
 import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 import { fadeIn } from "@/lib/animations";
 import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import ModalCloseIcon from "@/components/__shared/ui/modals/ModalCloseIcon";
 
 type Props = {
   className?: string;

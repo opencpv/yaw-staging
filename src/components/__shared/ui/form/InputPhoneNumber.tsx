@@ -16,6 +16,7 @@ type Props = {
   onBlur?: (e: any) => void;
   className?: string;
   showError?: boolean;
+  required?: boolean;
 };
 
 const InputPhoneNumber: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
@@ -27,6 +28,7 @@ const InputPhoneNumber: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
   onCountryChange,
   placeholder,
   className,
+  required,
   showError = true,
   ...props
 }) => {
@@ -42,8 +44,15 @@ const InputPhoneNumber: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
   };
 
   return (
-    <div className="w-full space-y-4    ">
-      {props.label && <label className="text-shade-300">{props.label}</label>}
+    <div className="w-full space-y-4   text-sm ">
+      {props.label && (
+        <label className="text-shade-300">
+          {props.label}
+          {required && (
+            <span className="relative  top-[-5px] text-xs">*</span>
+          )}
+        </label>
+      )}
       <PhoneInput
         id={id}
         name={field.name || name}

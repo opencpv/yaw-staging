@@ -42,7 +42,7 @@ const ShapedLanding = ({
                   : position === "right" && !disableOnSmallScreens
                     ? style.shapeRight2
                     : null
-          } relative min-h-[50rem] w-full sm:min-h-[65rem]`,
+          } ${style.imageOverlay} relative min-h-[50rem] w-full sm:min-h-[65rem]`,
           className,
         )}
       >
