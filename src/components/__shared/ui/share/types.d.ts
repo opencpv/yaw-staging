@@ -1,8 +1,7 @@
 type ShareDataProps = {
-    url: string;
-    title?: string;
-    content?: string;
-    className?: string;
-    labelClassName? : string
-    withLabel? : boolean
-}
+  url: string;
+  title?: string;
+  content?: string;
+  className?: string;
+  label?: string;
+};

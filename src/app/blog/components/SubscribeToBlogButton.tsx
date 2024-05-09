@@ -31,7 +31,7 @@ const SubscribeToBlogButton = ({ className }: Props) => {
       <FramerWrapper {...fadeIn}>
         <Button
           color="accent"
-          className={`min-h-fit w-full py-8 text-lg uppercase ${className}`}
+          className={`min-h-fit w-full bg-gradient-to-b from-[#E5BF79] to-[#B58E48EB]/90 py-7 text-lg uppercase sm:py-10 ${className}`}
           onClick={onOpen}
         >
           Subscribe to our blog

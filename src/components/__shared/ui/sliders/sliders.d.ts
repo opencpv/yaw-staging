@@ -12,6 +12,8 @@ type SliderPaginationOnlyProps = {
 interface SliderWideProps extends SliderPaginationOnlyProps {
   navigation?: boolean;
   pagination?: boolean;
+  loop?: boolean;
+  overlay?: boolean;
   onClick?: () => void;
   onSlideChange?: (swiper: Swiper) => void;
 }

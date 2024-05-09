@@ -1,6 +1,7 @@
 type SearchInputProps = {
   placeholder?: string;
   onPressEnter: () => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 type CheckboxProps = {

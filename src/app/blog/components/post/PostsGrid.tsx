@@ -17,6 +17,7 @@ const PostsGrid: React.FunctionComponent<IPostsGridProps> = (props) => {
   const currentCategory = path?.split("/")[2];
   const [posts, setPosts] = React.useState<any[]>([]);
   const [loading, setLoading] = React.useState(true);
+
   React.useEffect(() => {
     if (currentCategory === "all") {
       setPosts(props.posts);
@@ -46,7 +47,7 @@ const PostsGrid: React.FunctionComponent<IPostsGridProps> = (props) => {
                     author={post?.author?.name}
                     image={urlForImage(post?.featured_image)?.url() as string}
                     title={post?.title}
-                    body={post?.summary}
+                    summary={post?.summary}
                     postedAt="November 7th 2023"
                     rating={post?.rating}
                     href={

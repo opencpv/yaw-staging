@@ -16,6 +16,7 @@ import HowToLink from "@/components/__shared/ui/links/HowToLink";
 import { FaEnvelope } from "react-icons/fa6";
 import { MdLocalPhone } from "react-icons/md";
 import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import { socialLinks } from "@/enum/links/socials";
 
 const Footer = () => {
   const { onOpen } = useToastDisclosure();
@@ -75,29 +76,14 @@ const Footer = () => {
       <div className="mt-10 flex flex-col items-center gap-10 pb-14 text-[32px] text-[#fff] ">
         <h2 className="font-bold">Connect with us:</h2>
 
-        <div className="flex w-4/5 items-center gap-4 md:w-2/5 md:gap-8">
-          <Link href="https://instagram.com/ca.rr" passHref>
-            <button className="w-full duration-1000 hover:rotate-[360deg]">
-              <CaInstagram width={"100%"} height={"100%"} />
-            </button>
-          </Link>
-          <Link href="https://twitter.com/ca_rr" passHref>
-            <button className="w-full duration-1000 hover:rotate-[360deg]">
-              <CaTwitter width={"100%"} height={"100%"} />
-            </button>
-          </Link>
-
-          <Link href="https://facebook.com/rr" passHref>
-            <button className="w-full duration-1000 hover:rotate-[360deg]">
-              <CaFacebook width={"100%"} height={"100%"} />
-            </button>
-          </Link>
-
-          <Link href="https://wa.me/233245678910" passHref>
-            <button className="w-full duration-1000 hover:rotate-[360deg]">
-              <CaWhatsappBusiness width={"100%"} height={"100%"} />
-            </button>
-          </Link>
+        <div className="flex items-center gap-4 md:gap-8">
+          {socialLinks.coloured.map((link) => (
+            <Link key={link.name} href={link.href} passHref>
+              <button className="w-[30px] duration-1000 hover:rotate-[360deg] xsm:w-[60px] sm:w-[120px]">
+                {link.icon}
+              </button>
+            </Link>
+          ))}
 
           {/* COMMENTED OUT FOR NOW!!! PLEASE REMOVE */}
           {/* <button className="w-full duration-1000 hover:rotate-[360deg]">
@@ -121,7 +107,10 @@ const Footer = () => {
             </span>
             <span>
               | {legal.copyrightNotice}{" "}
-              <Link href="/privacy" className="inline-block text-[#B0B0B0]">
+              <Link
+                href="/terms-of-service/data-deletion"
+                className="inline-block text-[#B0B0B0] hover:underline"
+              >
                 | Legal
               </Link>
             </span>
