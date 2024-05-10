@@ -26,6 +26,8 @@ interface DataType {
   resume_url: string;
   additional_link: string;
   created_at: string;
+  email: string;
+  phone: string;
 }
 
 const columns: TableProps<DataType>["columns"] = [
@@ -39,10 +41,21 @@ const columns: TableProps<DataType>["columns"] = [
     dataIndex: "firstname",
     key: "firstname",
   },
+
   {
     title: "Lastname",
     dataIndex: "lastname",
     key: "lastname",
+  },
+  {
+    title: "Email",
+    dataIndex: "email",
+    key: "email",
+  },
+  {
+    title: "Phone",
+    dataIndex: "phone",
+    key: "phone",
   },
   {
     title: "Cover Letter",
@@ -124,12 +137,12 @@ const PageView = () => {
   );
 
   const { isLoading, error, data } = useQuery({
-    queryKey: ["repoData", selectedValue],
+    queryKey: ["applicantsData", selectedValue],
     queryFn: () => fetch(`${route.applicantData}`).then((res) => res.json()),
   });
 
   return (
-    <div className="h-[100vh]">
+    <div className="h-[100vh] p-8">
       <h2 className="mb-8 text-3xl font-bold">Applicants</h2>
       <div className="items-cente mb-8 flex h-fit justify-between">
         <div className="flex w-full items-center justify-end gap-2">

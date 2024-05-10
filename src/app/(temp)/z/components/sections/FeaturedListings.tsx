@@ -8,7 +8,6 @@ import SliderGrid from "@/components/__shared/ui/sliders/SliderGrid";
 import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
 import { getListingProps } from "@/lib/enum";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import Link from "next/link";
 import React from "react";
 import { HiChevronRight } from "react-icons/hi";
 

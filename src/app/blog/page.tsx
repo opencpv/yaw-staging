@@ -32,8 +32,7 @@ const page = async () => {
       : blogData;
   const sortedBlogPosts = blogData.sort((a: any, b: any) => a.view - b.views);
   const popularPosts = sortedBlogPosts.slice(0, 3);
-
-  console.log(recentPosts);
+  console.log(popularPosts);
 
   return (
     <div className="wrapper pb-0 sm:pb-0">

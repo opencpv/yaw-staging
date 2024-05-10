@@ -1,8 +1,6 @@
-import Image from "next/image";
 import JoinUsButtons from "../components/JoinUsButtons";
 import styles from "../index.module.css";
 import JobCard from "./components/JobCard";
-import { JobType } from "../types";
 import JobCantFindCard from "./components/JobCantFindCard";
 import Link from "next/link";
 import Footer from "@/components/__shared/ui/footer/Footer";
@@ -10,39 +8,6 @@ import Footer from "@/components/__shared/ui/footer/Footer";
 import { loadQuery } from "@/lib/utils/sanity/sanityStore";
 import { JOBS_QUERY } from "@/lib/utils/sanity/queries";
 import { SanityDocument } from "next-sanity";
-const demoJobData = [
-  {
-    id: 1,
-    pic: "",
-    title: "Graphic Designer",
-    description:
-      "Create visually appealing designs for various digital and print media. Proficient in Adobe Creative Suite and experienced in branding, layout design, and illustration.",
-  },
-  {
-    id: 2,
-    pic: "",
-    title: "UI/UX Designer",
-    description:
-      "Design user interfaces and experiences for web and mobile applications. Conduct user research, create wireframes, and collaborate with development teams to ensure a seamless user experience.",
-  },
-  {
-    id: 3,
-
-    pic: "",
-    title: "Motion Graphics Artist",
-    description:
-      "Produce animated content for videos, websites, and social media. Strong skills in motion design, video editing, and knowledge of animation tools such as After Effects.",
-  },
-  {
-    id: 4,
-
-    pic: "",
-    title: "Brand Identity Designer",
-    description:
-      "Develop and maintain brand identities for companies. Create logos, color schemes, and visual elements that convey a consistent brand image across various platforms.",
-  },
-  // Add more jobs as needed
-];
 
 const Page = async () => {
   const jobsResponse = await loadQuery<SanityDocument[]>(JOBS_QUERY);
@@ -79,7 +44,7 @@ const Page = async () => {
             </Link>
           </div>
         </div>
-        <div className="mt-10 flex w-full  flex-col gap-3 px-5 lg:mt-20 lg:gap-6 2xl:px-0 max-w-[1728px]">
+        <div className="mt-10 flex w-full  max-w-[1728px] flex-col gap-3 px-5 lg:mt-20 lg:gap-6 2xl:px-0">
           <p className="text-20 font-semibold text-shade-300 lg:text-25">
             Available Positions
           </p>

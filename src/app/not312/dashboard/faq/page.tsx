@@ -71,13 +71,13 @@ const PageView = () => {
   );
 
   const { isLoading, error, data } = useQuery({
-    queryKey: ["repoData", selectedValue],
+    queryKey: ["faqData", selectedValue],
     queryFn: () => fetch(`${route.faqData}`).then((res) => res.json()),
   });
 
   return (
-    <div className="h-[100vh]">
-      <h2 className="mb-8 text-3xl font-bold">Feedback</h2>
+    <div className="h-[100vh] p-8">
+      <h2 className="mb-8 text-3xl font-bold">FAQs</h2>
       <div className="items-cente mb-8 flex h-fit justify-between">
         <div className="flex w-full items-center justify-end gap-2">
           <CSVLink
