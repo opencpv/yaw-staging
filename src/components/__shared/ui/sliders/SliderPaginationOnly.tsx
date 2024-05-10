@@ -33,6 +33,7 @@ const SliderPaginationOnly = ({
         }}
         modules={[Pagination, Autoplay]}
         className={`slider-pagination-only h-80 w-72 rounded-lg ${className}`}
+        key={crypto.randomUUID()}
       >
         {images?.map((image, idx) => (
           <>
@@ -52,7 +53,10 @@ const SliderPaginationOnly = ({
               </SwiperSlide>
             ) : (
               <SwiperSlide key={idx + 1}>
-                <div className="relative h-full w-full" title={image.name}>
+                <div
+                  className="relative h-full w-full before:absolute before:bottom-0 before:left-0 before:z-10 before:h-10 before:w-full before:rounded-b-lg before:bg-neutral-600/30"
+                  title={image.name}
+                >
                   <Image
                     src={image.src}
                     alt={image.name}
@@ -65,7 +69,6 @@ const SliderPaginationOnly = ({
           </>
         ))}
       </Swiper>
-      <div className="pointer-events-none relative bottom-10 z-10 h-10 rounded-b-lg bg-neutral-600 bg-opacity-30"></div>
     </div>
   );
 };
