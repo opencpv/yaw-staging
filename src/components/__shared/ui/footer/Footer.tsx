@@ -108,8 +108,8 @@ const Footer = () => {
             <span>
               | {legal.copyrightNotice}{" "}
               <Link
-                href="/terms-of-service/data-deletion"
-                className="inline-block text-[#B0B0B0] hover:underline"
+                href="/terms-of-service"
+                className="inline-block text-[#B0B0B0] hover:text-accent hover:underline"
               >
                 | Legal
               </Link>

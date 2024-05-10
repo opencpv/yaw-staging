@@ -18,6 +18,7 @@ const AdsSlider = ({ posts }: Props) => {
   return (
     <section className="relative mt-10 h-fit w-full lg:mt-0">
       <SliderWide
+        autoplay
         pagination
         images={posts.map((post) => ({
           src: urlForImage(post.featured_image)?.url() as string,

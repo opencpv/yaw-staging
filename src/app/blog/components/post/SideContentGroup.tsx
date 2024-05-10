@@ -1,5 +1,4 @@
 import React, { Suspense } from "react";
-import OtherPosts from "../OtherPosts";
 import SideContent from "./SideContent";
 import { socialLinks } from "@/enum/links/socials";
 import Link from "next/link";
@@ -35,7 +34,7 @@ const SideContentGroup = (props: Props) => {
       {/* Sponsors */}
       <SideContent title="Sponsors" className="mb-10">
         <SliderPaginationOnly
-          images={[1, 2, 3, 4, 5].map((image) => ({
+          images={[1, 2, 3].map((image) => ({
             src: "/assets/images/niceHome.png",
             name: "",
           }))}
@@ -45,7 +44,7 @@ const SideContentGroup = (props: Props) => {
       {/* Category */}
       <SideContent
         title="Category"
-        className="mb-10"
+        className="md:mb-10"
         classNames={{ body: "max-h-80 custom-scrollbar overflow-y-scroll" }}
       >
         <Suspense fallback={<Loader position="center" />}>

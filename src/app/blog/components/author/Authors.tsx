@@ -42,7 +42,7 @@ const Authors = ({ authors }: Props) => {
         </div>
       </div>
       {/* Group */}
-      <div className="flex flex-wrap -space-x-4 rtl:space-x-reverse">
+      <div className="flex cursor-pointer flex-wrap -space-x-4 rtl:space-x-reverse">
         {authors.map((author, idx) => (
           <AuthorImageCircle
             key={idx + 1}
