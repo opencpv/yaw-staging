@@ -24,7 +24,6 @@ const layout = async ({ children }: Props) => {
           <FeaturedListings />
         </div>
         <Survey />
-        <ScrollTopAndSocial threshHoldMin={300} threshHoldMax={2500} />
       </main>
       <Footer />
     </>

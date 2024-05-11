@@ -46,7 +46,7 @@ const TextFieldInput: React.FC<
                 onChange && onChange(e);
               }}
               className={cn(
-                "form-input form-field-border h-[52px] w-full rounded-[4px] px-4 text-[0.8125rem] focus:outline-accent-50",
+                "form-input form-field-border h-[52px] w-full rounded-[4px] px-4 text-base focus:outline-accent-50",
                 {
                   "pl-16": prefix,
                 },

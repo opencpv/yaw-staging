@@ -62,10 +62,6 @@ body {
     @apply max-w-3xl text-lg;
   }
 
-  div {
-    @apply text-lg;
-  }
-
   small {
     @apply block max-w-3xl text-sm;
   }

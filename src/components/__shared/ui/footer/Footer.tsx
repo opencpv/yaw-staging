@@ -106,12 +106,13 @@ const Footer = () => {
               Copyright &copy; {getCurrentYear()} {legal.companyName}
             </span>
             <span>
-              | {legal.copyrightNotice}{" "}
+              | {legal.copyrightNotice}
+              <span> | </span>
               <Link
                 href="/terms-of-service"
                 className="inline-block text-[#B0B0B0] hover:text-accent hover:underline"
               >
-                | Legal
+                Legal
               </Link>
             </span>
           </div>

@@ -23,6 +23,7 @@ const SliderWide = ({
   onSlideChange,
   onClick,
   loop,
+  classNames,
 }: SliderWideProps) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const lastIndex = images.lastIndexOf(images[images.length - 1]);
@@ -63,10 +64,11 @@ const SliderWide = ({
                 <div className="relative h-full w-full">
                   <div
                     className={cn(
-                      "absolute inset-0 z-10 size-full bg-gradient-to-b from-[#3C3C3C]/60 to-black/20",
+                      "absolute inset-0 z-10 size-full rounded-[inherit] bg-gradient-to-b from-[#3C3C3C]/60 to-black/20",
                       {
                         hidden: !overlay,
                       },
+                      classNames?.overlay,
                     )}
                   ></div>
                   <Image

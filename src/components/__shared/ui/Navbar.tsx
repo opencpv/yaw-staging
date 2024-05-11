@@ -83,7 +83,9 @@ const Navbar = (props: any) => {
                 <Share
                   url={`${location.origin}/properties/${props.propertyName}`}
                   title={props.propertyName}
-                  className="text-5xl text-white"
+                  classNames={{
+                    icon: "text-5xl text-white",
+                  }}
                 />
               </div>
             )}

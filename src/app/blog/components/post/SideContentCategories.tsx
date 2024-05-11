@@ -26,10 +26,6 @@ const SideContentCategories = async (props: Props) => {
           {category.category_title}
         </li>
       ))}
-      <li className="py-5 text-center font-bold">Something</li>
-      <li className="py-5 text-center font-bold">Something</li>
-      <li className="py-5 text-center font-bold">Something</li>
-      <li className="py-5 text-center font-bold">Something</li>
     </ul>
   );
 };

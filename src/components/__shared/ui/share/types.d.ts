@@ -3,5 +3,9 @@ type ShareDataProps = {
   title?: string;
   content?: string;
   className?: string;
+  classNames?: {
+    base?: string;
+    icon?: string;
+  };
   label?: string;
 };

@@ -6,7 +6,13 @@ import { useDisclosure } from "@nextui-org/react";
 import ShareModalBody from "./ShareModalBody";
 import { cn } from "@/lib/utils";
 
-const Share = ({ title, url, className, label = "Share" }: ShareDataProps) => {
+const Share = ({
+  title,
+  url,
+  className,
+  classNames,
+  label,
+}: ShareDataProps) => {
   const { onOpenChange, isOpen, onOpen } = useDisclosure();
 
   return (
@@ -19,21 +25,27 @@ const Share = ({ title, url, className, label = "Share" }: ShareDataProps) => {
         size="lg"
       />
       <span
-        className="flex cursor-pointer items-center gap-3 text-neutral-800"
+        className={cn(
+          "flex cursor-pointer items-center gap-3 text-neutral-800",
+          classNames?.base,
+        )}
         onClick={onOpen}
       >
-        <p
-          className={cn(
-            "text-base font-[500]",
-            {
-              hidden: !label,
-            },
-            className,
-          )}
-        >
-          {label}
-        </p>
-        <IoIosShareAlt />
+        {label && (
+          <p
+            className={cn(
+              "text-base font-[500]",
+              {
+                hidden: !label,
+              },
+              className,
+            )}
+          >
+            {label}
+          </p>
+        )}
+
+        <IoIosShareAlt className={cn(classNames?.icon)} />
       </span>
     </>
   );
