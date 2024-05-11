@@ -77,6 +77,9 @@ const PreferredContactMethod = ({
           type="email"
           placeholder="Enter your email address"
           onChange={onChangeEmail}
+          classNames={{
+            input: "text-base text-neutral-800 placeholder:text-base",
+          }}
         />
       </div>
       {/* whatsapp */}

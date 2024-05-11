@@ -81,7 +81,7 @@ const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
                   <h1 className="line-clamp-2 text-3xl font-[700] text-accent-100">
                     {promotion.title}
                   </h1>
-                  <p className="line-clamp-1 text-white">
+                  <p className="line-clamp-1 text-sm text-white">
                     {promotion.subtitle}
                   </p>
                   <Button

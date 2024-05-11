@@ -59,7 +59,7 @@ const FAQBrowser = ({
                 }}
                 className={`min-w-max px-1.5 py-1.5 text-start font-semibold transition-all duration-200 ${
                   active == index
-                    ? "border-l-4 border-[#DDB771] md:bg-[#EFEFEF]"
+                    ? "border-l-4 border-accent md:bg-[#EFEFEF]"
                     : ""
                 } text-[#45808B]`}
               >

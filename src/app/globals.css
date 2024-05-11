@@ -47,20 +47,23 @@ body {
   }
 
   h4 {
-    @apply max-w-3xl text-base font-[600];
+    @apply max-w-3xl text-lg font-[600];
   }
 
   h5 {
+    @apply max-w-3xl text-base font-[600];
+  }
+
+  h6 {
     @apply max-w-3xl text-sm font-[600];
   }
 
   p {
-    @apply max-w-3xl text-lg;
+    @apply max-w-3xl text-base sm:text-lg;
   }
 
-  div,
-  span {
-    @apply text-lg;
+  div {
+    @apply text-base sm:text-lg;
   }
 
   small {
