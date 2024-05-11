@@ -59,11 +59,11 @@ body {
   }
 
   p {
-    @apply max-w-3xl text-base sm:text-lg;
+    @apply max-w-3xl text-lg;
   }
 
   div {
-    @apply text-base sm:text-lg;
+    @apply text-lg;
   }
 
   small {
