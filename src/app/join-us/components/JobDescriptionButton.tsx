@@ -4,16 +4,17 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import Button from "@/components/__shared/ui/button/Button";
 
 type Props = {
-  description: any;
-  onClick: any;
+  onClick?: () => void;
 };
-export default function JobDescriptionButton({ description, onClick }: Props) {
+export default function JobDescriptionButton({ onClick }: Props) {
   const [animation, setAnimation] = useState(false);
 
-  const { user } = useAppStore();
-
   return (
-    <Button color="accent" onClick={onClick} className="w-fit">
+    <Button
+      color="accent"
+      onClick={onClick}
+      className="pointer-events-none w-fit"
+    >
       Job Description
     </Button>
   );

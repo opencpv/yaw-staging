@@ -47,6 +47,7 @@ function JoinUsButtons({
   return (
     <Button
       href={href}
+      variant={variant === "text-yellow-accent" ? "ghost" : undefined}
       className={`${buttonClasses[variant]} ${
         reverseIcon && "flex-row-reverse"
       }`}

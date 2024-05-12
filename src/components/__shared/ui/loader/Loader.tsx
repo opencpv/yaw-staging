@@ -11,7 +11,7 @@ const Loader = ({
   if (position === "center") {
     return (
       <div className={cn("grid h-40 place-items-center", className)}>
-        <span className="loader"></span>;
+        <span className="loader"></span>
       </div>
     );
   }

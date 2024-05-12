@@ -18,6 +18,7 @@ interface Props extends React.HTMLAttributes<HTMLButtonElement> {
   arrowIcon?: boolean;
   radius?: "sm" | "full";
   href?: string;
+  scroll?: boolean;
   type?: "button" | "submit" | "reset";
   replace?: boolean;
   title?: string;
@@ -38,6 +39,7 @@ const Button: React.FC<Props> = ({
   arrowIcon,
   radius,
   href,
+  scroll,
   padding,
   onClick,
   title,
@@ -54,6 +56,7 @@ const Button: React.FC<Props> = ({
         replace={replace}
         target={target}
         href={href}
+        scroll={scroll}
         isDisabled={disabled}
         title={title}
         isIconOnly={isIconOnly}
