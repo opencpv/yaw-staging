@@ -11,7 +11,8 @@ const Share = ({
   url,
   className,
   classNames,
-  label,
+  label = "Share",
+  hideLabel,
 }: ShareDataProps) => {
   const { onOpenChange, isOpen, onOpen } = useDisclosure();
 
@@ -31,19 +32,17 @@ const Share = ({
         )}
         onClick={onOpen}
       >
-        {label && (
-          <p
-            className={cn(
-              "text-base font-[500]",
-              {
-                hidden: !label,
-              },
-              className,
-            )}
-          >
-            {label}
-          </p>
-        )}
+        <p
+          className={cn(
+            "text-base font-[500]",
+            {
+              hidden: hideLabel,
+            },
+            className,
+          )}
+        >
+          {label}
+        </p>
 
         <IoIosShareAlt className={cn(classNames?.icon)} />
       </span>

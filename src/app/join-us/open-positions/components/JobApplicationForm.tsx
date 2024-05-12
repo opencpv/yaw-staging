@@ -3,16 +3,14 @@
 import CustomFileInput from "@/components/__shared/ui/form/CustomFileInput";
 import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
 import { InfoBubble } from "@/components/__shared/ui/application-form/components/InfoBubble";
-import JoinUsButtons from "@/app/join-us/components/JoinUsButtons";
-import PhoneNumberInputv2 from "@/components/__shared/ui/form/PhoneInputv2";
 import { Form, Formik } from "formik";
 import Link from "next/link";
 import CaJoinUsIconLeft from "./icons/CaJoinUsIconLongLeft";
-import { Button } from "@nextui-org/react";
 import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
 import { useContactForm } from "@/app/contact/components/forms/hooks/useContactForm";
 import InfoText from "@/components/__shared/ui/listing-form/components/InfoText";
 import { useJoinUsPageStore } from "../../components/useJoinUsPageStore";
+import Button from "@/components/__shared/ui/button/Button";
 
 type Props = {
   variant: "application" | "resume";
@@ -28,19 +26,15 @@ function JobApplicationForm({ variant }: Props) {
   const { isScrolling } = useJoinUsPageStore();
   return (
     <div className="flex flex-col gap-4 px-5 pt-5 lg:px-20">
-      <Link
-        href={"/join-us/open-positions"}
+      <Button
+        href="/join-us/open-positions"
         className={`absolute top-5 ${
-          isScrolling ? "z-[11]" : "z-[343]"
-        } hidden lg:flex`}
+          isScrolling ? "z-[11]" : "z-[9999]"
+        } ${"bg-transparent text-[1.125rem] text-accent"} hidden justify-start gap-2.5 lg:flex`}
       >
-        <Button
-          className={`h-[52px]  rounded-lg  py-[0.94rem] font-semibold ${"bg-transparent text-[1.125rem] text-[#DDB771]"} flex justify-start gap-2.5`}
-        >
-          <CaJoinUsIconLeft />
-          Go back
-        </Button>
-      </Link>
+        <CaJoinUsIconLeft />
+        Go back
+      </Button>
       <Formik
         initialValues={{}}
         onSubmit={() => {
@@ -143,14 +137,9 @@ function JobApplicationForm({ variant }: Props) {
               </div>
             </div>
             <div className="mt-12 flex justify-center pb-10">
-              <Link
-                href={"/join-us/open-positions/submitted"}
-                className="w-full max-w-[248px]"
-              >
-                <Button className="h-[52px] w-full max-w-[248px] rounded-lg bg-[#DDB771] font-semibold text-white">
-                  Submit
-                </Button>
-              </Link>
+              <Button color="accent" href="/join-us/open-positions/submitted">
+                Submit
+              </Button>
             </div>
           </Form>
         )}

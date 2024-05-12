@@ -86,6 +86,7 @@ const Navbar = (props: any) => {
                   classNames={{
                     icon: "text-5xl text-white",
                   }}
+                  hideLabel
                 />
               </div>
             )}

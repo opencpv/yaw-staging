@@ -18,8 +18,8 @@ function Page() {
           />
         </div>
         <Link href={"/b2b/data"} className="w-full">
-          <Button className="bg-primary flex h-[52px] w-full items-center justify-center rounded-lg font-semibold text-white">
-            Track
+          <Button className="flex h-[52px] w-full items-center justify-center rounded-lg bg-primary font-semibold text-white">
+            Continue
           </Button>
         </Link>
       </div>
