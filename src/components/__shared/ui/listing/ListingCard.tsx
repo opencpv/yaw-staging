@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
@@ -19,12 +19,35 @@ import Button from "../button/Button";
 import ListingCardButton from "./ListingCardButton";
 import { FiTrash2 } from "react-icons/fi";
 import { cn } from "@/lib/utils";
+import supabase from "@/lib/utils/supabase/supabaseClient";
 
 const ListingCard = (props: Partial<ListingCardInterface>) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const lastIndex = props.images?.lastIndexOf(
     props.images[props.images.length - 1],
   );
+
+  // useEffect(() => {
+  //   const updateViews = async () => {
+  //     try {
+  //       const { data, error } = await supabase
+  //         .from("featured_properties")
+  //         .update({ views: supabase.sql("views + 1") })
+  //         .eq("propertyId", props.propertyId)
+  //         .select();
+
+  //       if (error) {
+  //         console.error("Error updating views:", error);
+  //       } else {
+  //         console.log("Views updated successfully:", data);
+  //       }
+  //     } catch (error) {
+  //       console.error("Error updating views:", error);
+  //     }
+  //   };
+
+  //   updateViews();
+  // }, [props.propertyId]);
 
   return (
     <>

@@ -4,6 +4,7 @@ import Button from "@/components/__shared/ui/button/Button";
 import { cn } from "@/lib/utils";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import React, { useEffect, useRef, useState } from "react";
+import { useHideDocumentScrollBar } from "@/lib/custom-hooks/useWindowEvents";
 
 type Props = {};
 
@@ -25,7 +26,7 @@ const RoleSwitcherOverlay = (props: Props) => {
   }, [isSwitchingRole]);
 
   return (
-    <section className="absolute inset-0 z-50 flex h-screen max-h-screen w-screen items-center justify-center overflow-x-hidden bg-white/50 backdrop-blur-sm">
+    <section className="fixed inset-0 z-50 flex h-screen max-h-screen w-screen items-center justify-center overflow-x-hidden bg-white/50 backdrop-blur-sm">
       <div className="flex flex-col items-center justify-center gap-5">
         <Loader />
         <h4 className="text-primary-500">

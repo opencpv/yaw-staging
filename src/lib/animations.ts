@@ -180,7 +180,7 @@ export const fadeIn = {
   whileInView: { opacity: 1 },
   viewport: { once: true },
   transition: {
-    duration: 1,
+    // duration: 1,
     ease: "easeInOut",
     stiffness: 100,
     velocity: 0.5,
