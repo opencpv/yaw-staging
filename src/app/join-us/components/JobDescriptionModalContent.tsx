@@ -23,7 +23,7 @@ function JobDescriptionModalContent({ job }: any) {
         <div className={`relative z-[1001] `}>
           <div className="absolute right-[40px] top-[30px] z-[2001] hidden items-center gap-1 lg:flex ">
             <Share
-              withLabel
+              // withLabel
               url={`https://rentrightgh.com${pathname}`}
               title={job?.title}
               className="text-2xl text-neutral-800"
@@ -38,12 +38,11 @@ function JobDescriptionModalContent({ job }: any) {
               <p className="hidden-scrollbar h-[70vh]  overflow-y-scroll pb-[120px] pt-3 text-shade-300">
                 <div className="mb-2 lg:hidden">
                   <Share
-                    withLabel={true}
-                    labelClassName="text-base text-shade-300"
+                    // withLabel={true}
+                    // labelClassName="text-base text-shade-300"
                     url={`https://rentrightgh.com${pathname}`}
                     title={job?.title}
                     className="text-2xl text-neutral-800"
-                    
                   />
                 </div>
                 <PortableText value={job?.description} />
@@ -52,7 +51,7 @@ function JobDescriptionModalContent({ job }: any) {
             <div className="sticky bottom-0 grid  grid-cols-2 gap-3 bg-[#FAFAFA] pb-2 pt-2">
               <Button
                 onClick={() => downloadPdf("Rentright Job", "download")}
-                className="bg-accent-50 text-[1rem] text-white font-semibold  transition-all hover:scale-[1.03]"
+                className="bg-accent-50 text-[1rem] font-semibold text-white  transition-all hover:scale-[1.03]"
               >
                 Download
                 <HiOutlineDownload size="24" color="white" />

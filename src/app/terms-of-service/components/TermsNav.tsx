@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useMenuStore } from "@/store/navmenu/useMenuStore";
 
 const TermsNav = ({
   data,
@@ -15,6 +16,7 @@ const TermsNav = ({
   const { icons, images } = useAssets();
   const [categories, setCategories] = useState<any[]>();
   const path = usePathname();
+  const { toggle, setToggle } = useMenuStore();
 
   useEffect(() => {
     setCategories(data.termCategories);
@@ -22,16 +24,16 @@ const TermsNav = ({
 
   return (
     <nav
-      className={`flex h-[80px] w-full items-center justify-between px-4 md:px-[30px] 2xl:h-[90px] ${
-        primary ? "" : "bg-[#333333]"
+      className={`sticky top-0 flex h-[80px] w-full items-center justify-between px-4 md:px-[30px] 2xl:h-[90px]  ${
+        primary ? "" : "bg-[#333333] "
       }`}
     >
-      <Link href="/" className="flex h-full w-full items-center">
-        <div className="relative aspect-[56/46] w-full max-w-[56px] md:aspect-[72/58] lg:max-w-[72px]">
+      <Link href="/" className="flex h-full w-fit items-center ">
+        <div className="relative aspect-[56/46] w-[56px] max-w-[56px] md:aspect-[72/58] lg:max-w-[72px]">
           <Image src={images.Logo} alt="RentRightGH logo" fill quality={100} />
         </div>
       </Link>{" "}
-      <div className=" hidden md:flex md:gap-[50px]">
+      <div className=" hidden w-full justify-center md:flex md:gap-[50px]">
         <Link
           href={`/terms-of-service`}
           className={`${
@@ -40,6 +42,7 @@ const TermsNav = ({
         >
           Home
         </Link>
+
         {categories &&
           categories.map((category: any, index) => (
             <Link
@@ -54,6 +57,15 @@ const TermsNav = ({
               {category.title}
             </Link>
           ))}
+      </div>
+      <div className="hidden lg:flex">
+        <button
+          onClick={() => {
+            setToggle(true);
+          }}
+        >
+          <Image src={icons.Hamburger} alt="menu" />
+        </button>
       </div>
       <Image src={icons.Hamburger} alt="hamburger" className="md:hidden" />
     </nav>

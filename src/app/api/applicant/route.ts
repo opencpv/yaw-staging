@@ -2,6 +2,9 @@ import { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/utils/supabase/auth/server";
 import withErrorHandler from "../withErrorHandler";
+import axios from "axios";
+import routes from "@/lib/utils/route";
+import { generateString } from "@/lib/utils";
 
 export const GET = withErrorHandler(async (request: NextRequest) => {
   const supabaseClient = createClient();
@@ -12,6 +15,43 @@ export const GET = withErrorHandler(async (request: NextRequest) => {
   }
 
   return new NextResponse(JSON.stringify(data), {
+    status: 200,
+  });
+});
+
+export const POST = withErrorHandler(async (request: NextRequest) => {
+  const supabaseClient = createClient();
+
+  const formData = await request.formData();
+  const firstname = formData.get("first_name");
+  const lastname = formData.get("last_name");
+  const email = formData.get("email");
+  const phone = formData.get("phone");
+  const coverLetter = formData.get("coverLetter");
+  const resume = formData.get("resume");
+  const link = formData.get("link");
+
+  let { data, error } = await supabaseClient
+    .from("join_us")
+    .insert([
+      {
+        firstname,
+        lastname,
+        email,
+        phone,
+        cover_letter_url: coverLetter || "",
+        resume_url: resume,
+        additional_link: link || "",
+      },
+    ])
+    .select();
+
+  if (error) {
+    console.log(error);
+    throw new Error(error.message);
+  }
+
+  return new NextResponse(JSON.stringify({ message: "success" }), {
     status: 200,
   });
 });

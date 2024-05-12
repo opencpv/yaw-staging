@@ -1,10 +1,6 @@
 "use client";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import {
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownItem,
   Modal,
   ModalContent,
   useDisclosure,
@@ -12,16 +8,8 @@ import {
   ModalBody,
   ModalFooter,
 } from "@nextui-org/react";
-import { useQuery } from "@tanstack/react-query";
-import capitalizeName from "@/lib/utils/stringManipulation";
-import { route } from "@/lib/utils/routes";
-import axios from "axios";
-import Loader from "@/components/__shared/ui/loader/Loader";
 import type { TableProps } from "antd";
 import { Pagination, Space, Table, Tag } from "antd";
-import Spinner from "@/app/dashboard/components/shared/Spinner";
-const { Column, ColumnGroup } = Table;
-import { CSVDownload, CSVLink } from "react-csv";
 import { useFetchFeaturedListings } from "@/app/properties/services";
 import { Button, ButtonGroup } from "@nextui-org/react";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
@@ -31,8 +19,6 @@ import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
 import ListingCard from "@/components/__shared/ui/listing/ListingCard";
 import { getListingProps } from "@/lib/enum";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import { number } from "prop-types";
-import { client } from "@/lib/utils/sanity/client";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import Link from "next/link";
 
