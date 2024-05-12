@@ -7,7 +7,7 @@ const TermsMainView = ({ data }: { data: any }) => {
         {data && (
           <div>
             <h1 className="mt-4 text-white">{data.title}</h1>
-            <div className="mt-1 w-full max-w-[70%] border-b-[8px] border-[#DDB771] lg:mt-4"></div>
+            <div className="mt-1 w-full max-w-[70%] border-b-[8px] border-accent-50 lg:mt-4"></div>
           </div>
         )}
       </div>
