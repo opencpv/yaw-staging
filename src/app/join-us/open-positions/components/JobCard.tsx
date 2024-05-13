@@ -42,11 +42,7 @@ export default function JobCard({ job }: Props) {
       <Modal
         header={
           <div className="flex justify-end pr-10 lg:hidden">
-            <Share
-              url={`${location.href}`}
-              title={job?.title}
-              className="text-lg text-neutral-800"
-            />
+            <Share url={`${location.href}`} title={job?.title} />
           </div>
         }
         body={<JobDescriptionModalContent />}

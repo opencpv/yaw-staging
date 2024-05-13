@@ -12,8 +12,11 @@ import {
 } from "react-share";
 import ShareButtonComponent from "./ShareButtonComponent";
 import { PiClipboardText } from "react-icons/pi";
+import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import CopyButton from "./CopyButton";
 
 const ShareModalBody = (props: ShareDataProps) => {
+  const { onOpen: toastOnOpen } = useToastDisclosure();
   return (
     <div className="grid grid-cols-1 gap-5 pb-10 xs:grid-cols-2">
       <ShareButtonComponent
@@ -42,17 +45,7 @@ const ShareModalBody = (props: ShareDataProps) => {
         Icon={EmailIcon}
         {...props}
       />
-      <div
-        className="rounded-lg border hover:bg-slate-50"
-        onClick={() => {
-          navigator.clipboard.writeText(location.href);
-        }}
-      >
-        <div className="flex w-full cursor-pointer items-center gap-3 p-4">
-          <PiClipboardText size={30} />
-          <span className="text-neutral-800">Copy</span>
-        </div>
-      </div>
+      <CopyButton />
     </div>
   );
 };

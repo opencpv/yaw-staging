@@ -56,11 +56,7 @@ function JobDescriptionModalContent() {
           {job && (
             <>
               <div className="absolute right-[40px] top-[30px] z-[2001] hidden items-center gap-1 lg:flex">
-                <Share
-                  url={`${location.href}`}
-                  title={job?.title}
-                  className="text-lg text-neutral-800"
-                />
+                <Share url={`${location.href}`} title={job?.title} />
               </div>
               <div className="mt-2 flex flex-col gap-3 rounded-2xl border-[1px] border-shade-50 bg-[#FAFAFA] px-4 py-2 lg:px-8">
                 <div className="download flex flex-col gap-1">
