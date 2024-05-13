@@ -66,7 +66,7 @@ export default function JobCard({ job }: Props) {
         scroll={false}
       >
         <div className="h-full w-full cursor-pointer appearance-none rounded-xl border-[1px] border-shade-50 bg-white pb-4 transition-all hover:scale-[1.02]">
-          <div className="flex h-full flex-col items-start gap-6">
+          <div className="flex flex-col items-start gap-6 md:h-full">
             <div className="relative aspect-[398/306] h-full w-full overflow-hidden rounded-t-xl lg:aspect-[542/306]">
               <Image src={job.imgUrl} alt={job.title} fill objectFit="cover" />
             </div>{" "}

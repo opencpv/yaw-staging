@@ -59,10 +59,10 @@ const Survey = (props: Props) => {
       <motion.div
         variants={variants}
         animate={showButton ? "open" : "closed"}
-        className="fixed -right-10 top-96 z-10 rotate-90"
+        className="fixed -right-16 top-96 z-10 rotate-90"
       >
         <Button
-          className="rounded-sm rounded-b-2xl bg-gradient-to-t from-primary-500 to-primary-400 text-xl"
+          className="h-10 rounded-sm rounded-b-2xl bg-gradient-to-t from-primary-500 to-primary-400 text-xl opacity-70 hover:opacity-100"
           onClick={onOpen}
         >
           Survey

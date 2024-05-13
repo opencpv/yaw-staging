@@ -22,7 +22,7 @@ const Share = ({
         onOpenChange={onOpenChange}
         isOpen={isOpen}
         header={<ShareModalHeader title={title as string} />}
-        body={<ShareModalBody url={url} />}
+        body={<ShareModalBody url={url} title={title} />}
         size="lg"
       />
       <span

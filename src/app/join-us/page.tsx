@@ -16,10 +16,10 @@ const JoinUsPage = async () => {
             <h1 className="text-2xl font-semibold capitalize text-white lg:text-5xl">
               Work with us
             </h1>
-            <p className="max-w-[20.624rem] text-center text-xs font-semibold text-white lg:max-w-[24.9375rem] lg:text-base">
+            <h5 className="max-w-sm text-center  text-white">
               Explore exciting opportunities to join our team and make a
               meaningful impact.
-            </p>
+            </h5>
           </div>{" "}
           <div className="flex w-full flex-wrap items-center justify-center gap-4 px-2 ">
             <JoinUsButtons
