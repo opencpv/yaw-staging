@@ -1,13 +1,12 @@
 "use client";
-import React, { useEffect, useMemo } from "react";
-import { useDisclosure } from "@nextui-org/react";
+import React from "react";
 import ModalCloseIcon from "@/components/__shared/ui/modals/ModalCloseIcon";
 import Image from "next/image";
 import { JobType } from "../../types";
 import JobDescriptionButton from "../../components/JobDescriptionButton";
 import JobDescriptionModalContent from "../../components/JobDescriptionModalContent";
 import Modal from "@/components/__shared/ui/modals/Modal";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Share from "@/components/__shared/ui/share/Share";
 
@@ -17,25 +16,14 @@ type Props = {
 
 export default function JobCard({ job }: Props) {
   const router = useRouter();
-  const pathname = usePathname();
   const searchParams = useSearchParams();
-  const position = useMemo(() => searchParams?.get("p"), [searchParams]);
-  const { onOpenChange, onClose } = useDisclosure();
+  const position = searchParams?.get("p");
   const [isOpen, setIsOpen] = React.useState(false);
 
   const handleOpenChange = () => {
-    onOpenChange();
-    router.push(pathname as string, { scroll: false });
+    router.back();
     setIsOpen(!isOpen);
   };
-
-  useEffect(() => {
-    if (position) {
-      setIsOpen(true);
-    } else {
-      setIsOpen(false);
-    }
-  }, [position, setIsOpen]);
 
   return (
     <>
@@ -46,10 +34,10 @@ export default function JobCard({ job }: Props) {
           </div>
         }
         body={<JobDescriptionModalContent />}
-        isOpen={isOpen}
+        isOpen={position ? true : false}
         onOpenChange={handleOpenChange}
         scrollBehavior="inside"
-        onClose={onClose}
+        onClose={() => setIsOpen(false)}
         closeButton={<ModalCloseIcon />}
         className=" [75vh] w-[90vw] max-w-[784px]"
       />

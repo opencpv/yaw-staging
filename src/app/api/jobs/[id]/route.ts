@@ -8,6 +8,7 @@ export const GET = async (
   { params }: { params: { id: string } },
 ) => {
   const jobId = params?.id;
+  console.log(jobId);
 
   if (!jobId) {
     return NextResponse.json(
@@ -20,11 +21,9 @@ export const GET = async (
       SINGLE_JOB_QUERY(jobId as string),
     );
     const job = jobResponse.data[0];
+    console.log(job);
     return NextResponse.json(job);
   } catch (error) {
-    return NextResponse.json(
-      { message: "Something went wrong" },
-      { status: 500 },
-    );
+    return NextResponse.json({ message: error }, { status: 500 });
   }
 };

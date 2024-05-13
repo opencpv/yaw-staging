@@ -21,16 +21,20 @@ function JobDescriptionModalContent() {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["job"],
+    queryKey: ["job", jobId],
     queryFn: async () => {
-      const res = await fetch(`${location.origin}/api/jobs/${jobId}`);
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.message);
+      try {
+        const res = await fetch(`${location.origin}/api/jobs/${jobId}`);
+        const data = await res.json();
+        return data;
+      } catch (error) {
+        console.error(error);
+        return {};
       }
-      return data;
     },
   });
+
+  console.log(job);
 
   return (
     <>
@@ -52,7 +56,7 @@ function JobDescriptionModalContent() {
               />
             }
           />
-          {job && (
+          {job && job?.title && (
             <>
               <div className="absolute right-[40px] top-[30px] z-[2001] hidden items-center gap-1 lg:flex">
                 <Share url={`${location.href}`} title={job?.title} />
