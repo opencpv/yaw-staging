@@ -24,17 +24,15 @@ function JobDescriptionModalContent() {
     queryKey: ["job", jobId],
     queryFn: async () => {
       try {
-        const res = await fetch(`${location.origin}/api/jobs/${jobId}`);
+        const res = await fetch(`/api/jobs/${jobId}`);
         const data = await res.json();
         return data;
       } catch (error) {
         console.error(error);
-        return {};
+        return error;
       }
     },
   });
-
-  console.log(job);
 
   return (
     <>
