@@ -19,6 +19,7 @@ export default function JobCard({ job, jobs }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const position = searchParams?.get("p");
+  const jobId = searchParams?.get("id");
   const [isOpen, setIsOpen] = React.useState(false);
 
   const handleOpenChange = () => {
@@ -31,8 +32,13 @@ export default function JobCard({ job, jobs }: Props) {
       <Modal
         header={
           <div className="flex justify-end pr-10 lg:hidden">
-            <Share url={`${location.href}`} title={position as string} />{" "}
-            {/** NOTE: job.title returns the last position */}
+            <Share
+              url={`/join-us/open-positions?${new URLSearchParams({
+                p: position as string,
+                id: jobId as string,
+              })}`}
+              title={position as string}
+            />
           </div>
         }
         body={<JobDescriptionModalContent jobs={jobs} />}

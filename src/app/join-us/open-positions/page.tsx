@@ -39,7 +39,7 @@ const Page = async () => {
             />
           </div>
         </div>
-        <section className="wrapper flex w-full flex-col gap-3 px-5 lg:mt-10 lg:gap-6">
+        <section className="wrapper flex w-full flex-col gap-6 px-5 lg:mt-10">
           <h2 className="font-semibold text-shade-300">Available Positions</h2>
           <div
             className={cn("grid grid-cols-3 gap-x-5 gap-y-5 pb-8 lg:gap-y-10", {
