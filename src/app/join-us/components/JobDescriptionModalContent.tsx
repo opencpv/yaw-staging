@@ -10,29 +10,32 @@ import PropertiesEmptyState from "@/app/properties/components/PropertiesEmptySta
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
 import Button from "@/components/__shared/ui/button/Button";
+import { JobType } from "../types";
+import { TypedObject } from "sanity";
 
 function JobDescriptionModalContent() {
   const searchParams = useSearchParams();
   const jobId = searchParams?.get("id");
+  const [job, setJob] = React.useState<JobType>();
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [error, setError] = React.useState<Error | null>(null);
 
-  const {
-    data: job,
-    error,
-    isLoading,
-    refetch,
-  } = useQuery({
-    queryKey: ["job", jobId],
-    queryFn: async () => {
+  React.useEffect(() => {
+    const fetchJob = async () => {
       try {
         const res = await fetch(`/api/jobs/${jobId}`);
         const data = await res.json();
-        return data;
+        setJob(data);
       } catch (error) {
+        setError(error as Error);
         console.error(error);
-        return error;
+      } finally {
+        setIsLoading(false);
       }
-    },
-  });
+    };
+
+    fetchJob();
+  }, [jobId]);
 
   return (
     <>
@@ -44,15 +47,7 @@ function JobDescriptionModalContent() {
             data={job}
             error={error}
             isLoading={isLoading}
-            emptyStateComponent={<PropertiesEmptyState />}
-            errorComponent={
-              <SomethingWentWrong
-                className="mt-0 h-fit"
-                onTryAgain={() => {
-                  refetch();
-                }}
-              />
-            }
+            errorComponent={<SomethingWentWrong className="mt-0 h-fit" />}
           />
           {job && job?.title && (
             <>
@@ -66,7 +61,13 @@ function JobDescriptionModalContent() {
                   </p>
 
                   <div className="hidden-scrollbar h-[70vh] overflow-y-scroll pb-[120px] pt-3 text-shade-300">
-                    <PortableText value={job?.description} />
+                    <PortableText
+                      value={
+                        job?.description as unknown as
+                          | TypedObject
+                          | TypedObject[]
+                      }
+                    />
                   </div>
                 </div>
                 <div className="sticky bottom-0 grid  grid-cols-2 gap-3 bg-[#FAFAFA] pb-2 pt-2">

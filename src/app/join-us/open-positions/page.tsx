@@ -14,7 +14,7 @@ const Page = async () => {
 
   return (
     <div className="flex flex-col items-center justify-center gap-20">
-      <div className="flex w-full flex-col items-center  justify-center ">
+      <div className="flex w-full flex-col items-center justify-center ">
         <div
           className={`flex h-[432px] w-full shrink-0  flex-col items-center justify-center gap-6
                ${styles.open_positions_header} !bg-cover`}
