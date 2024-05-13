@@ -22,6 +22,9 @@ import axios from "axios";
 import routes from "@/lib/utils/route";
 import { useRouter } from "next/navigation";
 import Button from "@/components/__shared/ui/button/Button";
+import JoinUsButtons from "../../components/JoinUsButtons";
+import Tooltip from "@/components/__shared/ui/Tooltip";
+import { BsInfoCircle } from "react-icons/bs";
 
 type Props = {
   variant: "application" | "resume";
@@ -86,15 +89,17 @@ function JobApplicationForm({ variant }: Props) {
   };
   return (
     <div className="flex flex-col gap-4 px-5 pt-5 lg:px-20">
-      <Button
+      <JoinUsButtons
         href="/join-us/open-positions"
+        variant="text-yellow-accent"
+        content="Go back"
+        icon
+        iconType="arrow-left"
+        reverseIcon
         className={`absolute top-5 ${
           isScrolling ? "z-[11]" : "z-[9999]"
-        } ${"bg-transparent text-[1.125rem] text-accent"} hidden justify-start gap-2.5 lg:flex`}
-      >
-        <CaJoinUsIconLeft />
-        Go back
-      </Button>
+        } mt-6 hidden justify-start gap-2.5 lg:flex`}
+      />
       <Formik
         initialValues={{
           firstname: "",
@@ -194,11 +199,9 @@ function JobApplicationForm({ variant }: Props) {
                 <div className="flex flex-col gap-3">
                   <div className="flex gap-2.5">
                     <p className="text-[#6A6968]">Additional Information</p>
-                    <InfoBubble
-                      content={
-                        "Add other relevant information to highlight your skillset (e.g. personal website, work portfolio, etc)"
-                      }
-                    />
+                    <Tooltip content="Add other relevant information to highlight your skillset (e.g. personal website, work portfolio, etc)">
+                      <BsInfoCircle className="text-accent" size={20} />
+                    </Tooltip>
                   </div>
                   <input
                     placeholder="Paste your link here"

@@ -35,8 +35,7 @@ function JobDescriptionModalContent() {
   return (
     <>
       <div
-        className={`hidden-scrollbar flex h-[75vh] flex-col justify-start overflow-hidden bg-white
-       `}
+        className={`hidden-scrollbar flex h-[75vh] flex-col justify-start overflow-hidden bg-white`}
       >
         <div className={`relative z-[1001] `}>
           <FetchingStates

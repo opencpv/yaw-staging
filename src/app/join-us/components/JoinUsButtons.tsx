@@ -3,6 +3,7 @@ import { MdArrowRightAlt } from "react-icons/md";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 import CaJoinUsIconLeft from "../open-positions/components/icons/CaJoinUsIconLongLeft";
 import Button from "@/components/__shared/ui/button/Button";
+import { cn } from "@nextui-org/react";
 
 type Props = {
   variant:
@@ -18,6 +19,7 @@ type Props = {
   iconType?: "arrow-right" | "arrow-left";
   reverseIcon?: boolean;
   href?: string;
+  className?: string;
 };
 
 function JoinUsButtons({
@@ -27,6 +29,7 @@ function JoinUsButtons({
   iconType,
   reverseIcon,
   href,
+  className,
 }: Props) {
   const buttonClasses: any = {
     "filled-green": "bg-secondary-400 text-white",
@@ -48,9 +51,10 @@ function JoinUsButtons({
     <Button
       href={href}
       variant={variant === "text-yellow-accent" ? "ghost" : undefined}
-      className={`${buttonClasses[variant]} ${
-        reverseIcon && "flex-row-reverse"
-      }`}
+      className={cn(
+        `${buttonClasses[variant]} ${reverseIcon && "flex-row-reverse"}`,
+        className,
+      )}
     >
       {content}
       {icon && iconType && iconTypeOptions[iconType]}

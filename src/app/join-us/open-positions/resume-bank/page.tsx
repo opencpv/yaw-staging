@@ -1,4 +1,3 @@
-import Link from "next/link";
 import JobApplicationForm from "../components/JobApplicationForm";
 import styles from "./index.module.css";
 import JoinUsButtons from "../../components/JoinUsButtons";
@@ -10,7 +9,7 @@ function Page() {
         <div
           className={`${styles.left_pic} bottom-0 left-0 top-0 flex h-[192px] w-full shrink-0 grow-0 items-center justify-center !bg-cover lg:sticky lg:h-[100vh]  lg:basis-[40%] `}
         >
-          <div className="flex flex-col items-center justify-center gap-4 lg:hidden lg:flex-row">
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 lg:hidden">
             <JoinUsButtons
               href="/join-us/open-positions"
               variant="text-yellow-accent"

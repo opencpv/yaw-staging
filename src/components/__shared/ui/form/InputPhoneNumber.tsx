@@ -45,11 +45,11 @@ const InputPhoneNumber: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
   };
 
   return (
-    <div className="w-full space-y-4 text-sm ">
+    <div className="w-full space-y-4 text-sm">
       {props.label && (
-        <label className="text-shade-300">
+        <label className="text-base text-shade-300">
           {props.label}
-          {required && <span className="relative top-[-5px] text-xs">*</span>}
+          {required && <span className="relative top-[-5px]">*</span>}
         </label>
       )}
       <PhoneInput

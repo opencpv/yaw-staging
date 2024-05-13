@@ -4,6 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useSessionStorage } from "@uidotdev/usehooks";
 import { useSearchParams } from "next/navigation";
+import { cn } from "@nextui-org/react";
 
 const Rating = () => {
   const id = useSearchParams()?.get("id");
@@ -15,8 +16,6 @@ const Rating = () => {
   }>("blogRating", {
     ratedBlogs: [],
   });
-
-  console.log(blogRating.ratedBlogs);
 
   const handleChange = (value: number) => {
     if (!blogRating?.ratedBlogs?.find((blog) => blog.id === id)?.value) {
@@ -53,6 +52,9 @@ const Rating = () => {
             ? true
             : false
         }
+        className={cn({
+          "jello-horizontal": blogRating?.ratedBlogs?.length > 0,
+        })}
       />
       <motion.div
         variants={variants}

@@ -67,6 +67,7 @@ const FeaturedListings = ({ className, showAllButton }: Props) => {
         <div>
           <Swiper
             effect="coverflow"
+            centeredSlides
             grabCursor
             slidesPerView={"auto"}
             coverflowEffect={{
