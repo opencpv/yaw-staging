@@ -183,7 +183,7 @@ const PageView = () => {
   );
 
   return (
-    <div className="h-[100vh]">
+    <div className="h-[100vh] p-8">
       <h2 className="mb-8 text-3xl font-bold">Contact</h2>
       <div className="items-cente mb-8 flex h-fit justify-between">
         <div className="flex items-center gap-8">

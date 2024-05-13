@@ -15,6 +15,8 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Pagination } from "antd";
+import supabase from "@/lib/utils/supabase/supabaseClient";
+import { pages } from "next/dist/build/templates/app-page";
 
 const AddProperty = () => {
   const searchParams = useSearchParams();
@@ -24,15 +26,43 @@ const AddProperty = () => {
   const [currentPage, setCurrentPage] = useState(1); // Track current page
   const [pageSize] = useState(3); // Number of items per page
   const [totalPages, setTotalPages] = useState(0); // Total number of pages
-  const [featuredIdList, setfeaturedIdList] = useState<number[]>([]);
+  const [loading, setLoading] = useState(false);
   const { user } = useAppStore();
+  const [buttonIndex, setbuttonIndex] = useState<number>();
+  const [propertyIdx, setPropertyIdx] = useState<number[]>([]);
+  const removeFeatured = async (id: number) => {
+    const { data, error } = await supabase
+      .from("featured_properties")
+      .delete()
+      .eq("property_id", id);
+    if (error) {
+      // console.log("error removing listing");
+      setLoading(false);
+      return;
+    }
+    setLoading(false);
+  };
+
+  const addFeaturedItem = async (id: number) => {
+    const { data, error } = await supabase
+      .from("featured_properties")
+      .insert({ property_id: id })
+      .select();
+    if (error) {
+      console.log("error removing listing");
+      setLoading(false);
+      return;
+    }
+    setLoading(false);
+  };
+
   const {
     data: listings,
     error,
     isLoading,
-    isValidating,
     mutate,
   } = useFetchProperties({ searchString: search as string, filter: tag });
+
   const {
     data: featured,
     error: featuredError,
@@ -40,21 +70,25 @@ const AddProperty = () => {
     mutate: mutateFeatured,
   } = useFetchFeaturedListings();
 
+  const featuredListingIdArray =
+    featured?.map((listing: any) => listing.id) || [];
+
   useEffect(() => {
     if (listings) {
       const listingsNumber = listings.length;
       const pages = Math.ceil(listingsNumber / pageSize);
       setTotalPages(pages);
     }
-  }, [featured, isLoading, listings, pageSize]);
+  }, [listings, pageSize]);
 
   useEffect(() => {
     if (featured) {
-      const idList = featured.map((listing: any) => listing.id);
-      setfeaturedIdList(idList);
-      console.log(idList);
+      const featuredListingIdArray =
+        featured?.map((listing: any) => listing.id) || [];
+
+      setPropertyIdx(() => featuredListingIdArray);
     }
-  }, [featured, featuredLoading]);
+  }, [featured]);
 
   const handleViewSimilarResults = () => {
     router.replace(
@@ -83,7 +117,7 @@ const AddProperty = () => {
         <h2 className="text-3xl font-bold text-slate-800">
           Add Featured Properties
         </h2>
-        <Link href={"not312/dashboard/featured-properties"}>
+        <Link href={"/not312/dashboard/featured-properties"}>
           <Button color="danger">Back</Button>
         </Link>
       </div>
@@ -97,7 +131,7 @@ const AddProperty = () => {
             <SomethingWentWrong
               className="h-fit"
               onTryAgain={() => {
-                mutate();
+                mutateFeatured();
               }}
             />
           }
@@ -105,17 +139,31 @@ const AddProperty = () => {
             <PropertiesEmptyState onClick={handleViewSimilarResults} />
           }
         />
-        {paginatedListings?.map((listing: any) => (
+        {paginatedListings?.map((listing: any, index) => (
           <div key={listing.id}>
             <ListingCard {...getListingProps(listing, user as UserType)} />
+
             <Button
               className="w-full"
-              color={listing.id in featuredIdList ? "warning" : "primary"}
+              isLoading={loading && buttonIndex == index}
+              color={propertyIdx.includes(listing.id) ? "primary" : "default"}
               onClick={() => {
-                console.log(featuredIdList);
+                setbuttonIndex(() => index);
+                setLoading(() => true);
+                if (propertyIdx.includes(listing.id)) {
+                  removeFeatured(listing.id);
+                  mutateFeatured();
+                  mutate();
+                } else {
+                  addFeaturedItem(listing.id);
+                  mutate();
+                  mutateFeatured();
+                }
               }}
             >
-              {listing.id in featuredIdList ? "Remove Listing" : "Add Listing"}
+              {featuredListingIdArray.includes(listing.id)
+                ? "Remove Listing"
+                : "Add Listing"}
             </Button>
           </div>
         ))}
