@@ -7,6 +7,7 @@ import { loadQuery } from "@/lib/utils/sanity/sanityStore";
 import { JOBS_QUERY } from "@/lib/utils/sanity/queries";
 import { SanityDocument } from "next-sanity";
 import { cn } from "@/lib/utils";
+import { JobType } from "../types";
 
 const Page = async () => {
   const jobsResponse = await loadQuery<SanityDocument[]>(JOBS_QUERY);
@@ -16,8 +17,7 @@ const Page = async () => {
     <div className="flex flex-col items-center justify-center gap-20">
       <div className="flex w-full flex-col items-center justify-center ">
         <div
-          className={`flex h-[432px] w-full shrink-0  flex-col items-center justify-center gap-6
-               ${styles.open_positions_header} !bg-cover`}
+          className={`flex h-[432px] w-full shrink-0  flex-col items-center justify-center gap-6 ${styles.open_positions_header} !bg-cover`}
         >
           <h1 className="order-2 text-[1.5625rem] font-semibold capitalize text-white lg:order-1 lg:text-[1.9375rem]">
             Open Positions
@@ -48,7 +48,7 @@ const Page = async () => {
           >
             {jobsData.map((job: any) => (
               <div className="col-span-3 w-full md:col-span-1" key={job._id}>
-                <JobCard job={job} />
+                <JobCard job={job} jobs={jobsData as unknown as JobType[]} />
               </div>
             ))}
             <div className="col-span-3 h-full w-full md:col-span-1">

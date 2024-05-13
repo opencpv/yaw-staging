@@ -12,9 +12,10 @@ import Share from "@/components/__shared/ui/share/Share";
 
 type Props = {
   job: JobType;
+  jobs: JobType[];
 };
 
-export default function JobCard({ job }: Props) {
+export default function JobCard({ job, jobs }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const position = searchParams?.get("p");
@@ -30,10 +31,11 @@ export default function JobCard({ job }: Props) {
       <Modal
         header={
           <div className="flex justify-end pr-10 lg:hidden">
-            <Share url={`${location.href}`} title={job?.title} />
+            <Share url={`${location.href}`} title={position as string} />{" "}
+            {/** NOTE: job.title returns the last position */}
           </div>
         }
-        body={<JobDescriptionModalContent />}
+        body={<JobDescriptionModalContent jobs={jobs} />}
         isOpen={position ? true : false}
         onOpenChange={handleOpenChange}
         scrollBehavior="inside"

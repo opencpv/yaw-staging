@@ -5,51 +5,27 @@ import Share from "@/components/__shared/ui/share/Share";
 import downloadPdf from "@/lib/utils/downloadPdf";
 import { useSearchParams } from "next/navigation";
 import { PortableText } from "next-sanity";
-import { useQuery } from "@tanstack/react-query";
-import PropertiesEmptyState from "@/app/properties/components/PropertiesEmptyState";
-import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
-import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
 import Button from "@/components/__shared/ui/button/Button";
 import { JobType } from "../types";
 import { TypedObject } from "sanity";
+import EmptyState from "@/components/__shared/ui/states/EmptyState";
 
-function JobDescriptionModalContent() {
+type Props = {
+  jobs: JobType[];
+};
+
+function JobDescriptionModalContent({ jobs }: Props) {
   const searchParams = useSearchParams();
   const jobId = searchParams?.get("id");
-  const [job, setJob] = React.useState<JobType>();
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [error, setError] = React.useState<Error | null>(null);
-
-  React.useEffect(() => {
-    const fetchJob = async () => {
-      try {
-        const res = await fetch(`${location.origin}/api/jobs/${jobId}`);
-        const data = await res.json();
-        setJob(data);
-      } catch (error) {
-        setError(error as Error);
-        console.error(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchJob();
-  }, [jobId]);
+  const job = jobs.find((job) => job._id === jobId);
 
   return (
     <>
       <div
         className={`hidden-scrollbar flex h-[75vh] flex-col justify-start overflow-hidden bg-white`}
       >
-        <div className={`relative z-[1001] `}>
-          <FetchingStates
-            data={job}
-            error={error}
-            isLoading={isLoading}
-            errorComponent={<SomethingWentWrong className="mt-0 h-fit" />}
-          />
-          {job && job?.title && (
+        <div className={`relative z-[1001]`}>
+          {job ? (
             <>
               <div className="absolute right-[40px] top-[30px] z-[2001] hidden items-center gap-1 lg:flex">
                 <Share url={`${location.href}`} title={job?.title} />
@@ -89,6 +65,8 @@ function JobDescriptionModalContent() {
                 </div>
               </div>
             </>
+          ) : (
+            <EmptyState tagLine="Job Not Found" paddingBlock="md" />
           )}
         </div>
       </div>
