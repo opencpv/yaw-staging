@@ -4,7 +4,6 @@ import CustomFileInput from "@/components/__shared/ui/form/CustomFileInput";
 import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
 import { InfoBubble } from "@/components/__shared/ui/application-form/components/InfoBubble";
 import { Form, Formik } from "formik";
-import Link from "next/link";
 import CaJoinUsIconLeft from "./icons/CaJoinUsIconLongLeft";
 import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
 import { useContactForm } from "@/app/contact/components/forms/hooks/useContactForm";
@@ -212,8 +211,9 @@ function JobApplicationForm({ variant }: Props) {
             </div>
             <div className="mt-12 flex justify-center pb-10">
               <Button
+                color="accent"
                 isLoading={loading}
-                className="h-[52px] w-full max-w-[248px] rounded-lg bg-[#DDB771] font-semibold text-white"
+                className="w-full"
                 onClick={() => {
                   const errors: errorProp = validate();
                   const objKeys = Object.keys(errors);
