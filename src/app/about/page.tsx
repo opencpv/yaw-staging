@@ -14,6 +14,7 @@ import { SanityDocument } from "next-sanity";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import { fadeUp } from "@/lib/animations";
 import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
+import AboutOurTags from "./components/AboutOurTags";
 
 export const metadata: Metadata = {
   title: "About us",
@@ -53,7 +54,7 @@ const About = async () => {
             <div className="w-full">
               {heading2.split("#").map((heading: string, index: number) => (
                 <h2
-                  className="max-w-2xl text-lg lg:text-xl 2xl:text-2xl font-[500] text-[#65969F]"
+                  className="max-w-2xl text-lg font-[500] text-[#65969F] lg:text-xl 2xl:text-2xl"
                   key={index}
                 >
                   {heading}
@@ -82,12 +83,19 @@ const About = async () => {
             ))}
           </div>
         </FramerWrapper>
+
+        <FramerWrapper {...fadeUp}>
+          <AboutOurTags />
+        </FramerWrapper>
+
         <section className="section">
           {/* <AboutBanner data={bannerData} /> */}
           <FramerWrapper {...fadeUp} className="relative w-full">
             <div className="relative flex max-w-screen-xl flex-col items-center justify-between gap-10 bg-opacity-90 bg-gradient-to-r from-[#21A19F] to-[#1EA9A6A1] p-5 text-white xs:items-start xs:p-10 lg:flex-row min-[1048px]:max-xl:w-11/12 fhd:mx-auto">
               <div className="space-y-5">
-                <h2 className="font-[700]  text-2xl xl:text-4xl 2xl:text-5xl">{bannerData.title}</h2>
+                <h2 className="text-2xl  font-[700] xl:text-4xl 2xl:text-5xl">
+                  {bannerData.title}
+                </h2>
                 <p className="max-w-2xl text-base font-[400] md:text-xl 2xl:text-2xl">
                   {bannerData.description}
                 </p>
@@ -103,6 +111,7 @@ const About = async () => {
           </FramerWrapper>
           <SimpleSlider data={hSlider} />
         </section>
+
         <FramerWrapper
           {...fadeUp}
           className="mx-auto h-fit max-w-screen-2xl px-5 sm:px-10 lg:pt-28"
