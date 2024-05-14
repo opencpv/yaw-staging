@@ -44,7 +44,9 @@ const About = async () => {
             <div className="w-full">
               {heading1.split("#").map((heading: string, index: number) => (
                 <h1
-                  className="text-2xl font-[700] leading-normal text-[#305A61] sm:text-4xl 2xl:text-5xl"
+                  className={`text-2xl font-[700] leading-normal text-[#305A61] ${
+                    index != 0 && "text-[#65969F]"
+                  } sm:text-4xl 2xl:text-5xl`}
                   key={index}
                 >
                   {heading}
@@ -75,9 +77,9 @@ const About = async () => {
         </div>
         <FramerWrapper
           {...fadeUp}
-          className="wrapper flex min-h-max items-center justify-center py-0 sm:py-0"
+          className="wrapper flex min-h-max items-center justify-center mt-10 lg:mt-24 py-0"
         >
-          <div className="min-h-max">
+          <div className="min-h-max flex flex-col gap-10">
             {aboutDescription.map((data: any, index: number) => (
               <AboutItem key={index} index={index + 1} data={data} />
             ))}
@@ -88,7 +90,7 @@ const About = async () => {
           <AboutOurTags />
         </FramerWrapper>
 
-        <section className="section">
+        <section className="section pt-10 lg:pt-7">
           {/* <AboutBanner data={bannerData} /> */}
           <FramerWrapper {...fadeUp} className="relative w-full">
             <div className="relative flex max-w-screen-xl flex-col items-center justify-between gap-10 bg-opacity-90 bg-gradient-to-r from-[#21A19F] to-[#1EA9A6A1] p-5 text-white xs:items-start xs:p-10 lg:flex-row min-[1048px]:max-xl:w-11/12 fhd:mx-auto">
