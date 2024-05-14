@@ -76,19 +76,19 @@ const Survey = (props: Props) => {
 export default Survey;
 
 const ModalHeader = () => {
-  return <p className="font-[600] text-primary-200">Heading</p>;
+  return <p className="font-[600] text-primary-200"></p>;
 };
 
 const ModalBody = () => {
   return (
-    <p className="font-[600] text-primary-200">
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Et quam incidunt
-      commodi quibusdam fuga consequuntur neque. Dignissimos obcaecati omnis
-      unde, vero harum dolore? Laudantium eum rerum soluta earum maxime! Iusto?
-    </p>
+    <iframe
+      className="w-full"
+      height="800"
+      src="https://s.surveyplanet.com/662594b3b21e771a7d4bd379"
+    ></iframe>
   );
 };
 
 const ModalFooter = () => {
-  return <p className="font-[600] text-primary-200">Footer</p>;
+  return <p className="font-[600] text-primary-200"></p>;
 };
