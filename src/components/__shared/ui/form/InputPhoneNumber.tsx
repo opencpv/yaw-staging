@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { E164Number, CountryCode } from "libphonenumber-js/core";
 import { useField } from "formik";
 import ErrorMessage from "../states/ErrorMessage";
+import { cn } from "@/lib/utils";
 
 type Props = {
   name: string;
@@ -44,13 +45,11 @@ const InputPhoneNumber: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
   };
 
   return (
-    <div className="w-full space-y-4   text-sm ">
+    <div className="w-full space-y-4 text-sm">
       {props.label && (
-        <label className="text-shade-300">
+        <label className="text-base text-shade-300">
           {props.label}
-          {required && (
-            <span className="relative  top-[-5px] text-xs">*</span>
-          )}
+          {required && <span className="relative top-[-5px]">*</span>}
         </label>
       )}
       <PhoneInput
@@ -68,7 +67,7 @@ const InputPhoneNumber: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
         placeholder={placeholder}
         onFocus={handleFocus}
         onBlur={onBlur}
-        className={className}
+        className={cn("text-base", className)}
       />
       {showError && (
         <>

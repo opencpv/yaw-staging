@@ -26,7 +26,7 @@ const FeedbackBody = ({
   handleCloseAfterSubmission: () => void;
   data: any;
 }) => {
-  const feedback = data.customFeedback;
+  const feedback = data?.customFeedback;
   const { onOpen } = useToastDisclosure();
 
   const {

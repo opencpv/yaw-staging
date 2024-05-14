@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import {
   EmailShareButton,
@@ -10,9 +11,12 @@ import {
   WhatsappShareButton,
 } from "react-share";
 import ShareButtonComponent from "./ShareButtonComponent";
+import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import CopyButton from "./CopyButton";
 
 const ShareModalBody = (props: ShareDataProps) => {
-  console.log(props.title, props.content);
+  const { onOpen: toastOnOpen } = useToastDisclosure();
+
   return (
     <div className="grid grid-cols-1 gap-5 pb-10 xs:grid-cols-2">
       <ShareButtonComponent
@@ -41,6 +45,7 @@ const ShareModalBody = (props: ShareDataProps) => {
         Icon={EmailIcon}
         {...props}
       />
+      <CopyButton />
     </div>
   );
 };

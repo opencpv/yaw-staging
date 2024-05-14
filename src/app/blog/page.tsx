@@ -32,7 +32,6 @@ const page = async () => {
       : blogData;
   const sortedBlogPosts = blogData.sort((a: any, b: any) => a.view - b.views);
   const popularPosts = sortedBlogPosts.slice(0, 3);
-  console.log(popularPosts);
 
   return (
     <div className="wrapper pb-0 sm:pb-0">
@@ -59,7 +58,7 @@ const page = async () => {
               .map((post: any) => ({
                 title: post.title,
                 author: post.author.name,
-                image: "",
+                image: urlForImage(post.featured_image)?.url() as string,
                 href: `/blog/${slugify(post.category.category_title)}/${slugify(
                   post.title,
                 )}?id=${post._id}`,
@@ -72,9 +71,9 @@ const page = async () => {
                 "grid gap-x-3.5 gap-y-7 max-xs:hidden xs:grid-cols-2 md:grid-cols-3"
               }
             >
-              {categories.map((category: any, index: number) => (
+              {categories.map((category: any) => (
                 <CategoryCard
-                  key={index + 1}
+                  key={category._id}
                   href={`/blog/${slugify(category.category_title)}`}
                   category={category.category_title}
                   image={urlForImage(category.category_image)?.url() as string}
@@ -85,9 +84,9 @@ const page = async () => {
             <section className="space-y-3 xs:hidden">
               <h3>Category</h3>
               <div className="hidden-scrollbar flex w-full gap-3.5 overflow-x-auto">
-                {categories.map((category: any, index: number) => (
+                {categories.map((category: any) => (
                   <CategoryCard
-                    key={index + 1}
+                    key={category._id}
                     href={`/blog/${slugify(category.category_title)}`}
                     category={category.category_title}
                     image={
@@ -124,7 +123,7 @@ const page = async () => {
                 .map((post: any) => ({
                   title: post.title,
                   author: post.author.name,
-                  image: "",
+                  image: urlForImage(post.featured_image)?.url() as string,
                   href: `/blog/${slugify(
                     post.category.category_title,
                   )}/${slugify(post.title)}?id=${post._id}`,
@@ -138,14 +137,20 @@ const page = async () => {
             {/* Popular posts */}
             <OtherPosts
               title="Popular posts"
-              posts={popularPosts.map((post: any, idx: number) => ({
-                title: post.title,
-                author: post.author.name,
-                image: "",
-                href: `/blog/${post.category.category_title}/${slugify(
-                  post.title,
-                )}?id=${post._id}`,
-              }))}
+              posts={popularPosts
+                .slice()
+                .sort(
+                  (a: { rating: number }, b: { rating: number }) =>
+                    b.rating - a.rating,
+                )
+                .map((post: any) => ({
+                  title: post.title,
+                  author: post.author.name,
+                  image: urlForImage(post.featured_image)?.url() as string,
+                  href: `/blog/${post.category.category_title}/${slugify(
+                    post.title,
+                  )}?id=${post._id}`,
+                }))}
             />
           </div>
         </div>

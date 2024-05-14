@@ -32,11 +32,11 @@ const page = async (props: Props) => {
     <>
       {categories && posts && (
         <>
-          <div className="relative mb-10 flex h-60 w-full items-center justify-center bg-gradient-to-b from-primary-500 to-primary-500/80 text-white lg:h-[27rem]">
+          <div className="relative mb-10 flex h-60 w-full items-center justify-center bg-gradient-to-b from-primary to-primary/80 text-white lg:h-[27rem]">
             <BackgroundImage />
             <div className="relative z-10 flex flex-col items-center gap-3">
               <div className="flex items-center gap-3">
-                <Link href="/blog" className="text-shade-300">
+                <Link href="/blog" className="text-neutral-300">
                   Home
                 </Link>
                 <LuChevronRight />

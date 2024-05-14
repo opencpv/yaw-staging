@@ -1,7 +1,5 @@
 import Image from "next/image";
 import React from "react";
-import SliderPaginationOnly from "@/components/__shared/ui/sliders/SliderPaginationOnly";
-import SliderWide from "@/components/__shared/ui/sliders/SliderWide";
 import SubscribeToBlogButton from "../../components/SubscribeToBlogButton";
 import Share from "@/components/__shared/ui/share/Share";
 import Print from "@/components/__shared/ui/Print";
@@ -18,7 +16,6 @@ import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 import slugify from "@/lib/utils/slugify";
 import { headers } from "next/headers";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import { CiStar } from "react-icons/ci";
 import Rate from "@/components/__shared/ui/Rate";
 import Rating from "../../components/post/Rating";
 import SideContentGroup from "../../components/post/SideContentGroup";
@@ -73,19 +70,19 @@ const StoryPage = async ({ params, searchParams }: Props) => {
   };
 
   return (
-    <div className="wrapper overflow-x-hidden text-neutral-500">
+    <div className="wrapper overflow-x-hidden pb-0 text-neutral-500">
       <div className="flex items-center gap-3">
-        <Image
-          src={
-            (urlForImage(
-              post.author.profile_image.asset._ref,
-            )?.url() as string) || images.NoProfileOthers
-          }
-          alt={post.author.name}
-          width={48}
-          height={48}
-          className="rounded-full"
-        />
+        <div className="relative size-[48px] rounded-full">
+          <Image
+            src={
+              (urlForImage(post.author.profile_image)?.url() as string) ||
+              images.NoProfileOthers
+            }
+            alt={post.author.name}
+            fill
+            className="rounded-[inherit] object-cover"
+          />
+        </div>
         <h3 className="text-xl font-[500]">
           {post && <span className="text-primary">{post.author.name}</span>}
         </h3>
@@ -130,22 +127,6 @@ const StoryPage = async ({ params, searchParams }: Props) => {
               <Print />
             </div>
           </div>
-          <FramerWrapper {...fadeIn}>
-            <section className="no-print hidden h-fit w-full flex-col gap-8 md:flex min-[1000px]:flex-row">
-              <SliderPaginationOnly
-                images={[1, 2, 3].map((image) => ({
-                  src: "/assets/images/niceHome.png",
-                  name: "",
-                }))}
-              />
-              <SliderPaginationOnly
-                images={[1, 2, 3].map((image) => ({
-                  src: "/assets/images/niceHome.png",
-                  name: "",
-                }))}
-              />
-            </section>
-          </FramerWrapper>
           <SubscribeToBlogButton className="no-print mb-14 px-8 md:hidden" />
         </div>
         {/* Side content -- right side of Grid */}
@@ -156,18 +137,8 @@ const StoryPage = async ({ params, searchParams }: Props) => {
           <SubscribeToBlogButton />
         </div>
       </section>
-      <section className="no-print mb-10 grid-cols-2 gap-5 xs:grid md:hidden">
+      <section className="no-print grid-cols-2 gap-5 xs:grid md:hidden">
         <SideContentGroup />
-      </section>
-      <section className="no-print h-fit w-full md:hidden">
-        <SliderWide
-          pagination
-          navigation
-          images={[1, 2, 3].map((image) => ({
-            src: "/assets/images/niceHome.png",
-            name: "",
-          }))}
-        />
       </section>
     </div>
   );

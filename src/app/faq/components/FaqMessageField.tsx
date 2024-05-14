@@ -21,7 +21,7 @@ const FaqMessageField: React.FC<Props & HTMLAttributes<HTMLTextAreaElement>> = (
         className={cn(
           `${
             style.requiredPlaceholder
-          } form-field-border w-full rounded-md border p-4 shadow-sm outline-none transition-all hover:border-black/50 focus:border-2 focus:border-accent-50 focus:outline-none ${
+          } form-field-border w-full rounded-md border p-4 text-base shadow-sm outline-none transition-all hover:border-black/50 focus:border-2 focus:border-accent-50 focus:outline-none ${
             props.error && "border-neutral-500"
           }`,
           props.className,

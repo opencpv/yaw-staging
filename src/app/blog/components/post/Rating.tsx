@@ -1,9 +1,10 @@
 "use client";
 import Rate from "@/components/__shared/ui/Rate";
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useEffect } from "react";
+import { animate, delay, motion, stagger } from "framer-motion";
 import { useSessionStorage } from "@uidotdev/usehooks";
 import { useSearchParams } from "next/navigation";
+import { cn } from "@nextui-org/react";
 
 const Rating = () => {
   const id = useSearchParams()?.get("id");
@@ -15,8 +16,6 @@ const Rating = () => {
   }>("blogRating", {
     ratedBlogs: [],
   });
-
-  console.log(blogRating.ratedBlogs);
 
   const handleChange = (value: number) => {
     if (!blogRating?.ratedBlogs?.find((blog) => blog.id === id)?.value) {
@@ -34,12 +33,25 @@ const Rating = () => {
     show: {
       height: "auto",
       opacity: 1,
+      transition: { delay: 1.8 },
     },
     hide: {
       height: 0,
       opacity: 0,
     },
   };
+
+  useEffect(() => {
+    animate(
+      ".ant-rate-star",
+      blogRating?.ratedBlogs?.length > 0
+        ? { scale: [1, 1.5, 1.5, 1] }
+        : { scale: 1 },
+      {
+        delay: stagger(0.1),
+      },
+    );
+  }, [blogRating]);
 
   return (
     <div className="space-y-1">

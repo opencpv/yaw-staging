@@ -5,6 +5,9 @@ type CarouselProps = {
 type SliderPaginationOnlyProps = {
   images: SliderPaginationOnlyImage[];
   className?: string;
+  classNames?: {
+    overlay?: string;
+  };
   autoplay?: boolean;
   disabledOnInteraction?: boolean;
 };

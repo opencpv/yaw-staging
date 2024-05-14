@@ -11,7 +11,7 @@ export const LoginFooter = () => {
           <Link
             href="/terms-of-service"
             target="_blank"
-            className="text-white underline"
+            className="text-white underline hover:text-accent"
           >
             Terms and Conditions
           </Link>
@@ -19,7 +19,7 @@ export const LoginFooter = () => {
           <Link
             href="/privacy"
             target="_blank"
-            className="text-white underline"
+            className="text-white underline hover:text-accent"
           >
             Privacy Policy
           </Link>

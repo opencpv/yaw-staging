@@ -74,7 +74,7 @@ export const TableHeaderRow = (props: TableHeaderRowProps) => {
       role="rowgroup"
       aria-label="table header row"
       className={cn(
-        "grid items-center bg-primary-400 px-3 py-4 text-center font-semibold text-white",
+        "grid items-center bg-primary px-3 py-4 text-center font-semibold text-white",
         props.className,
       )}
       style={{ gap: props.gap ?? "4rem" }}
@@ -90,7 +90,7 @@ export const TableRowSm = (props: TableHeaderRowProps) => {
       role="row"
       aria-label="table row"
       className={cn(
-        `flex cursor-default flex-col gap-4 overflow-hidden rounded-lg px-5 pb-8 pt-5 hover:bg-[#fafaf9]`,
+        `flex cursor-default flex-col gap-4 overflow-hidden rounded-lg px-5 pb-8 pt-5 hover:bg-white`,
         props.className,
       )}
     >
@@ -154,7 +154,7 @@ export const TableBodyRow = (props: TableBodyRowProps) => {
       role="row"
       aria-label="table body row"
       className={cn(
-        "light-green-hover grid items-center px-1.5 py-2 text-neutral-700 first:pt-0 xl:px-4",
+        "grid items-center px-1.5 py-2 text-neutral-700 first:pt-0 hover:bg-white xl:px-4",
         props.className,
       )}
       style={{ gap: props.gap ?? "4rem" }}
@@ -182,7 +182,7 @@ export const TableBody = (props: TableBodyProps) => {
           role="row"
           aria-label="table body"
           tabIndex={0}
-          className={cn("block", props.className)}
+          className={cn("grid min-h-28 place-items-center", props.className)}
         >
           {props.children}
         </Link>
@@ -191,7 +191,10 @@ export const TableBody = (props: TableBodyProps) => {
           role="row"
           aria-label="table body"
           tabIndex={0}
-          className={cn("mx-auto", props.className)}
+          className={cn(
+            "mx-auto grid min-h-28 place-items-center",
+            props.className,
+          )}
         >
           {props.children}
         </div>

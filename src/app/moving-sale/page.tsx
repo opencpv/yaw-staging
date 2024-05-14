@@ -1,7 +1,5 @@
 "use client";
 import React from "react";
-import Category from "./components/category/Category";
-import CallOut from "@/components/__shared/ui/CallOut";
 import Select from "../dashboard/components/shared/ui/Select";
 import Button from "@/components/__shared/ui/button/Button";
 import { FaChevronDown } from "react-icons/fa";
@@ -42,36 +40,20 @@ const MovingSalesPage = () => {
               name: "",
               href: "/blog/c/p",
             }))}
+            overlay
+            classNames={{
+              overlay: "bg-gradient-to-r from-primary-500 to-transparent",
+            }}
           />
           <div className="pointer-events-none absolute inset-0 z-10 flex h-full w-full items-center rounded-l-3xl">
-            <div className="absolute h-full w-full rounded-l-[inherit] bg-opacity-20 bg-gradient-to-r from-primary-500 to-transparent"></div>
+            {/* <div className="absolute -z-10 h-full w-full rounded-l-[inherit] bg-opacity-20 bg-gradient-to-r from-primary-500 to-transparent"></div> */}
             <h1 className="relative z-20 pl-5 text-4xl font-[700] xs:pl-20 sm:text-5xl">
               Shop
             </h1>
           </div>
         </section>
-        {/* Categories */}
-        {/* <section className="mx-auto mb-10 flex justify-center">
-          <div className="mx-auto flex flex-wrap justify-center gap-5">
-            {[1, 2, 3, 4, 5, 6].map((_, idx) => (
-              <Category
-                key={idx + 1}
-                category="Category"
-                image="/assets/images/about/young-couple.webp"
-                count={20}
-                className="w-full min-[345px]:w-fit"
-              />
-            ))}
-          </div>
-        </section>
-        <div className="mb-20 flex items-center justify-center">
-          <CallOut
-            text="You may select more than one response"
-            className="w-full md:w-9/12"
-          />
-        </div> */}
         <div className="mb-5 flex flex-wrap items-center justify-between gap-3 text-sm">
-          <p className="">Showing 12 results</p>
+          <p className="text-base">Showing 12 results</p>
           <div className="flex flex-wrap items-center gap-3">
             <Select
               radius="none"
