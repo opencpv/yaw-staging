@@ -3,39 +3,38 @@ import { Tab, Tabs } from "@nextui-org/react";
 import { useState } from "react";
 import { tagsData } from "./data";
 import AboutTagsContent from "./AboutTagsContent";
-
-const tabColour = "#E7EFEF";
+import AboutTagsTitle from "./AboutTagsTitle";
 
 function AboutOurTags() {
-  const [option, setOption] = useState<any>();
+  const [option, setOption] = useState<any>(0);
   return (
-    <div className="wrapper">
-      <div className="flex ">
-        <Tabs
-          variant="light"
-          aria-label="Tabs variants"
-          // radius="full"
-          classNames={{
-            base: " w-full md:w-fit rounded-xl p-3 md:overflow-hidden border-1 border-neutral-50",
+    <div className="wrapper mt-10 flex flex-col gap-1 sm:gap-5 lg:gap-10 bg-[url('/assets/images/about/tag-bg-2.png')] bg-top bg-cover bg-no-repeat bg-[#F8F8F8] lg:bg-transparent">
+      <h2 className="text-lg md:text-3xl lg:text-3xl 2xl:text-5xl font-bold">Our Tags</h2>
 
-            tabList: "flex flex-col gap-3 divide-y-1 divide-y-neutral-50 group-data-[selected=true]:divide-y-0",
-
-            tab: " px-4 py-4 w-[378px] h-[72px] border-0",
-
-            tabContent:
-              "text-neutral-300 text-2xl group-data-[selected=true]:text-neutral-300  group-data-[selected=true]:font-semibold  capitalize",
-
-            cursor: `bg-[#E7EFEF] dark:bg-[#E7EFEF] focus:border-0`,
-          }}
-          selectedKey={option}
-          onSelectionChange={(selectedOption) => setOption(selectedOption)}
+      <div className="flex w-full flex-col items-start justify-center gap-4 lg:flex-row">
+        <div
+          className="
+              flex w-full max-w-[378px] basis-[20%] flex-row gap-2 rounded-xl sm:border-1 border-neutral-50  sm:p-3
+          lg:flex-col lg:gap-3 2xl:basis-[30%] 
+          "
         >
           {tagsData?.map((r: any, index: number) => (
-            <Tab key={index} title={r?.name}>
-              <AboutTagsContent key={index} data={r} />
-            </Tab>
+            <div className="flex  w-fit sm:w-full flex-col gap-3" key={index}>
+              <button
+                onClick={() => setOption(index)}
+                key={index}
+                title={r?.name}
+              >
+                <AboutTagsTitle key={index} data={r} active={option == index} />
+              </button>
+              {index != tagsData?.length - 1 && (
+                <div className="hidden lg:block w-full border-b-[1px] border-neutral-50"></div>
+              )}
+            </div>
           ))}
-        </Tabs>
+        </div>
+
+        <AboutTagsContent data={tagsData[option]} />
       </div>
     </div>
   );
