@@ -1,7 +1,7 @@
 "use client";
 import Rate from "@/components/__shared/ui/Rate";
 import React, { useEffect } from "react";
-import { animate, motion, stagger } from "framer-motion";
+import { animate, delay, motion, stagger } from "framer-motion";
 import { useSessionStorage } from "@uidotdev/usehooks";
 import { useSearchParams } from "next/navigation";
 import { cn } from "@nextui-org/react";
@@ -33,6 +33,7 @@ const Rating = () => {
     show: {
       height: "auto",
       opacity: 1,
+      transition: { delay: 1.8 },
     },
     hide: {
       height: 0,
@@ -44,7 +45,7 @@ const Rating = () => {
     animate(
       ".ant-rate-star",
       blogRating?.ratedBlogs?.length > 0
-        ? { scale: [1, 1.5, 1.5, 1], transitionDuration: 0.5 }
+        ? { scale: [1, 1.5, 1.5, 1] }
         : { scale: 1 },
       {
         delay: stagger(0.1),
