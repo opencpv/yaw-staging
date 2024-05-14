@@ -11,14 +11,16 @@ function Page() {
 
   return (
     <main className="wrapper bg-[#F8F8F8]">
-      <OptionFilterTabs
-        options={["invoice", "receipt"]}
-        selectedKey={activePage}
-        onSelectionChange={setActivePage}
-        radius="large"
-        padding="wide"
-        cursorAnimation
-      />
+      <div className="mb-10">
+        <OptionFilterTabs
+          options={["invoice", "receipt"]}
+          selectedKey={activePage}
+          onSelectionChange={setActivePage}
+          radius="large"
+          padding="wide"
+          cursorAnimation
+        />
+      </div>
 
       {activePage === "invoice" ? <Invoices /> : <Receipts />}
     </main>
