@@ -23,7 +23,7 @@ const ButtonMenu = ({ className }: Props) => {
       )}
       title="Menu"
     >
-      <Image src={icons.Hamburger} alt="Menu" className="size-6" />
+      <Image src={icons.Hamburger} alt="Menu" className="size-10" />
     </div>
   );
 };
