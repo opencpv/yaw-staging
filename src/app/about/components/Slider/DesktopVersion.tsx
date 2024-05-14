@@ -42,39 +42,20 @@ const DesktopVersion = () => {
           modules={[EffectCoverflow, Navigation]}
           className="mySwiper"
         >
-          <SwiperSlide>
-            <div className="relative w-[40rem] h-[30rem]">
-              <Image
-                src={images.niceHome}
-                alt=""
-                fill
-                style={{ objectFit: "cover" }}
-                className="rounded-2xl"
-              />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="relative w-[40rem] h-[30rem]">
-              <Image
-                src={images.niceHome}
-                alt=""
-                fill
-                style={{ objectFit: "cover" }}
-                className="rounded-2xl"
-              />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="relative w-[40rem] h-[30rem]">
-              <Image
-                src={images.niceHome}
-                alt=""
-                fill
-                style={{ objectFit: "cover" }}
-                className="rounded-2xl"
-              />
-            </div>
-          </SwiperSlide>
+          {[...Array(3)].map((_, i) => (
+            <SwiperSlide key={i} className="!flex justify-center">
+              <div className="relative w-[40rem] h-[30rem]">
+                <Image
+                  src={images.niceHome}
+                  alt=""
+                  fill
+                  style={{ objectFit: "cover" }}
+                  className="rounded-2xl"
+                />
+              </div>
+            </SwiperSlide>
+          ))}
+      
         </Swiper>
       </div>
       <div className="flex px-[311px] justify-between items-center md:mt-[40px] mt-[32px] md:pb-[107px] pb-[30px]">
