@@ -1,11 +1,8 @@
 import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
 import { useFaqHowToSwitchStore } from "@/store/faq/useFaqStore";
 import React, { useRef } from "react";
-import { useScrollIntoView } from "@/lib/custom-hooks/useWindowEvents";
 
-type Props = {};
-
-const FaqHowToSwitch = (props: Props) => {
+const FaqHowToSwitch = () => {
   const activePage = useFaqHowToSwitchStore((state) => state.activePage);
   const setActivePage = useFaqHowToSwitchStore((state) => state.setActivePage);
 

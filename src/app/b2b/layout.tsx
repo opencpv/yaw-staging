@@ -1,7 +1,4 @@
-"use client";
-
 import Navbar from "@/components/__shared/ui/Navbar";
-import { useEffect } from "react";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (

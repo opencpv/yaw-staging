@@ -63,11 +63,12 @@ const Button: React.FC<Props> = ({
         isLoading={isLoading}
         type={type}
         className={cn(
-          `min-h-fit max-w-sm space-x-2 whitespace-normal rounded-md bg-transparent px-10 py-3 text-base font-[600] ${
+          `h-[52px] min-h-fit max-w-sm space-x-2 whitespace-normal rounded-md bg-transparent px-10 py-3 text-base font-[600] ${
             borderColor && `border border-[${borderColor}]`
           }`,
           {
-            "bg-primary-500": color === "primary" && variant !== "outline",
+            "bg-primary-500 focus:outline-primary":
+              color === "primary" && variant !== "outline",
             "bg-accent-50": color === "accent" && variant !== "outline",
             "bg-white text-neutral-800":
               color === "white" && variant !== "outline",
@@ -112,11 +113,12 @@ const Button: React.FC<Props> = ({
         isLoading={isLoading}
         type={type}
         className={cn(
-          `min-h-fit max-w-sm space-x-2 whitespace-normal rounded-md bg-transparent p-3 px-10 text-base font-[600] ${
+          `h-[52px] min-h-fit max-w-sm space-x-2 whitespace-normal rounded-md bg-transparent p-3 px-10 text-base font-[600] ${
             borderColor && `border border-[${borderColor}]`
           }`,
           {
-            "bg-primary-500": color === "primary" && variant !== "outline",
+            "bg-primary-500 focus:outline-primary":
+              color === "primary" && variant !== "outline",
             "bg-accent-50": color === "accent" && variant !== "outline",
             "bg-white text-neutral-800":
               color === "white" && variant !== "outline",
