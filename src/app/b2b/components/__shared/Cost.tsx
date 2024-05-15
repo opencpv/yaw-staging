@@ -18,7 +18,7 @@ const CostRow = ({ label, cost }: CostRowProps) => {
       <p className="font-bold capitalize text-shade-300">{label}</p>
       <p className="text-right text-shade-300">
         <span className="font-bold ">GHS</span>{" "}
-        <span className="font-semibold">{formatPrice(cost)}</span>
+        <span className="font-semibold">{formatPrice(cost, false)}</span>
       </p>
     </div>
   );
@@ -39,7 +39,9 @@ function Cost({ subTotal, tax, total, variant }: Props) {
         </p>
         <p className="text-right">
           <span className="font-bold">GHS</span>{" "}
-          <span className="font-semibold">{formatPrice(total)}</span>
+          <span className="font-semibold">
+            {formatPrice(subTotal ? total : 0, false)}
+          </span>
         </p>
       </div>
     </div>

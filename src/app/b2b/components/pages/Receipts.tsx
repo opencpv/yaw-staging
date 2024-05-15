@@ -1,7 +1,7 @@
-import DataRow from "./DataRow";
-import DataRowSm from "./DataRowSm";
-import DownloadButton from "./DownloadButton";
-import { invoiceData } from "./content";
+import DataRow from "../invoice/DataRow";
+import DataRowSm from "../invoice/DataRowSm";
+import DownloadButton from "../__shared/DownloadButton";
+import { invoiceData } from "../content";
 
 function Receipts() {
   return (
@@ -11,7 +11,7 @@ function Receipts() {
         <p>Effortlessly handle your receipts right here</p>
       </div>
       <div className="flex flex-col gap-1 border-[1px] border-shade-50">
-        <div className="hidden lg:grid grid-cols-5 bg-white py-4 text-center text-shade-300 font-semibold">
+        <div className="hidden grid-cols-5 bg-white py-4 text-center font-semibold text-shade-300 lg:grid">
           <div>Invoice Id</div>
           <div>Service</div>
           <div>Billing Date</div>
@@ -19,10 +19,10 @@ function Receipts() {
           <div>Actions</div>
         </div>
 
-        <div className="w-full flex flex-col gap-6">
+        <div className="flex w-full flex-col gap-6">
           {invoiceData?.map((r: any, index: number) => (
             <div className="w-full" key={index}>
-              <div className="hidden lg:flex w-full">
+              <div className="hidden w-full lg:flex">
                 <DataRow data={r} variant="receipt" />
               </div>
               <div className="lg:hidden">
@@ -32,11 +32,11 @@ function Receipts() {
           ))}
         </div>
       </div>
-      <div className="w-full hidden lg:flex justify-end items-center">
+      <div className="hidden w-full items-center justify-end lg:flex">
         <DownloadButton maxWidth="fit" />
       </div>
 
-      <div className="w-full sticky bottom-0 bg-white justify-end pb-3 items-center lg:hidden gap-5">
+      <div className="sticky bottom-0 w-full items-center justify-end gap-5 bg-white pb-3 lg:hidden">
         <DownloadButton />
       </div>
     </div>

@@ -33,7 +33,7 @@ const MobileProductCard = ({ data }: { data: any }) => {
               <p className="font-semibold">{data.product}</p>
               <ProductCondition condition={data.condition} />
               <p className="text-[13px] font-bold text-[#8A8A8A]">
-                GHS {formatPrice(data.price)}
+                {formatPrice(data.price)}
               </p>
             </div>
           </div>

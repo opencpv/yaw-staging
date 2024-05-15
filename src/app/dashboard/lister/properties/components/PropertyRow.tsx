@@ -43,7 +43,7 @@ const PropertyRow = ({
               <h4 className="text-sm font-[600] capitalize">{propertyTitle}</h4>
               <p className="mt-2 text-sm text-neutral-400">{propertyTitle}</p>
               <p className="mt-auto text-sm font-[700] text-neutral-500">
-                GHS {formatPrice(price)}
+                {formatPrice(price)}
               </p>
             </div>
           </div>

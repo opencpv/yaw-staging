@@ -1,4 +1,4 @@
-import { format, getDate } from "date-fns";
+import { format, parse } from "date-fns";
 import { enUS } from "date-fns/locale";
 
 const capitalizeName = (initialName: string, delimiter?: string) => {
@@ -30,6 +30,15 @@ export const formatDate = (dateTime: string) => {
     locale: enUS,
   });
   return formattedDate;
+};
+
+export const formatDateTime = (dateTime: string) => {
+  return format(
+    parse(dateTime, "EEE, dd MMMM yyyy HH:mm:ss 'GMT'", new Date()),
+    "dd MMM. yyyy hh:mma",
+  )
+    .replace("AM", "am")
+    .replace("PM", "pm");
 };
 
 export const LowerCase = (text: string) => {

@@ -1,3 +1,4 @@
+import "./styles.css";
 import Navbar from "@/components/__shared/ui/Navbar";
 import { Metadata } from "next";
 

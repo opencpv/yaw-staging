@@ -112,7 +112,6 @@ export const TableHeader = (props: TableHeaderProps) => {
     <div
       role="columnheader"
       aria-label="table header"
-      tabIndex={0}
       className={cn(
         "gird mx-auto place-items-center text-center",
         props.className,
@@ -184,8 +183,10 @@ export const TableBody = (props: TableBodyProps) => {
           href={props.href}
           role="row"
           aria-label="table body"
-          tabIndex={0}
-          className={cn("grid min-h-28 place-items-center", props.className)}
+          className={cn(
+            "mx-auto grid min-h-28 place-items-center",
+            props.className,
+          )}
         >
           {props.children}
         </Link>
@@ -193,7 +194,6 @@ export const TableBody = (props: TableBodyProps) => {
         <div
           role="row"
           aria-label="table body"
-          tabIndex={0}
           className={cn(
             "mx-auto grid min-h-28 place-items-center",
             props.className,

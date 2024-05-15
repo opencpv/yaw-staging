@@ -3,8 +3,8 @@ import {
   TableRowSm,
 } from "@/app/dashboard/components/shared/table/Table";
 import { Data } from "./DataRow";
-import ViewDataDetailsModal from "./ViewDataDetailsModal";
-import YellowCheckBox from "./YellowCheckbox";
+import ViewDataDetailsModal from "../ViewDataDetailsModal";
+import YellowCheckBox from "../YellowCheckbox";
 
 type Props = {
   variant: "invoice" | "receipt";
