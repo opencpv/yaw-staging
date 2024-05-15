@@ -21,7 +21,7 @@ function AboutTagsContent({ data, active }: Props) {
 
           <Image
             alt={`tag - ${data?.name}`}
-            src={"/assets/images/about/tag-star2.png"}
+            src={data?.image}
             objectFit="cover"
             objectPosition="center"
             fill
@@ -34,7 +34,7 @@ function AboutTagsContent({ data, active }: Props) {
       </h3>
 
       <p
-        className={`text-sm sm:text-lg capitalize text-neutral-300 max-w-[1040px]  pb-10
+        className={`text-base sm:text-lg capitalize text-neutral-300 max-w-[1040px]  pb-10
         leading-loose tracking-[-0.2px] ${
           active && "font-semibold"
         } `}
