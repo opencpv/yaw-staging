@@ -41,6 +41,13 @@ export const formatDateTime = (dateTime: string) => {
     .replace("PM", "pm");
 };
 
+export const formatDateOnly = (dateTime: string) => {
+  return format(
+    parse(dateTime, "EEE, dd MMMM yyyy HH:mm:ss 'GMT'", new Date()),
+    "dd MMM, yyyy",
+  );
+};
+
 export const LowerCase = (text: string) => {
   return text?.toLowerCase();
 };

@@ -1,12 +1,12 @@
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { styled } from "@stitches/react";
 import Image from "next/image";
-import Cost from "../__shared/Cost";
-import CaQuote from "./CaQuote";
+import Cost from "../Cost";
+import CaQuote from "../CaQuote";
 import { HiOutlineDownload } from "react-icons/hi";
 import { Button } from "@nextui-org/react";
-import DownloadButton from "../__shared/DownloadButton";
-import CheckoutButton from "../__shared/CheckoutButton";
+import DownloadButton from "../DownloadButton";
+import CheckoutButton from "../CheckoutButton";
 import legal from "@/enum/about/legal";
 
 function Details() {

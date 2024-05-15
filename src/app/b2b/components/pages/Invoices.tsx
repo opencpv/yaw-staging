@@ -4,6 +4,7 @@ import DownloadButton from "../__shared/DownloadButton";
 import CheckoutButton from "../__shared/CheckoutButton";
 import InvoiceTable from "../invoice/InvoiceTable";
 import { invoiceStore } from "@/store/payment/invoiceStore";
+// import CheckoutItemsModal from "../invoice/CheckoutItemsModal";
 
 function Invoices() {
   const { checkoutItems } = invoiceStore();
@@ -19,7 +20,7 @@ function Invoices() {
           Effortlessly handle your invoices right here
         </h4>
       </div>
-      <div className="flex w-full justify-end lg:hidden">
+      <div className="mt-10 flex w-full justify-end lg:hidden">
         <Cost subTotal={subTotal} tax={tax} total={total} variant={"invoice"} />
       </div>
       <InvoiceTable />
@@ -34,11 +35,11 @@ function Invoices() {
             variant={"invoice"}
           />
           <div className="mt-8 max-lg:hidden">
-            <CheckoutButton affix={checkoutItems.length} />
+            {/* <CheckoutItemsModal data={checkoutItems} /> */}
           </div>
         </div>
       </section>
-      <section className="sticky bottom-0 grid w-full grid-cols-2 items-center justify-end gap-5 bg-[#F8F8F8] py-5 pb-2 max-lg:max-w-2xl xs:gap-10 lg:hidden">
+      <section className="sticky bottom-0 z-50 grid w-full grid-cols-2 items-center justify-end gap-5 bg-[#F8F8F8] py-5 pb-2 max-lg:max-w-2xl xs:gap-10 lg:hidden">
         <DownloadButton maxWidth="fit" />
         <CheckoutButton />
       </section>

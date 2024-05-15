@@ -9,7 +9,8 @@ import { PaymentData } from "../types";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import { formatDateTime } from "@/lib/utils/stringManipulation";
 import { invoiceStore } from "@/store/payment/invoiceStore";
-import ViewDataDetailsModal from "../ViewDataDetailsModal";
+import ViewDataDetailsModal from "../__shared/ViewDataDetailsModal";
+import { usePaymentData } from "../../hooks/usePaymentData";
 
 type Props = {
   variant: "invoice" | "receipt";
@@ -17,16 +18,7 @@ type Props = {
 };
 
 function DataRow({ data, variant }: Props) {
-  const { checkoutItems, setCheckoutItems } = invoiceStore();
-  const handleCheckChange = () => {
-    if (checkoutItems.some((item) => item.invoice_id === data.invoice_id)) {
-      setCheckoutItems(
-        checkoutItems.filter((item) => item.invoice_id !== data.invoice_id),
-      );
-    } else {
-      setCheckoutItems([...checkoutItems, data]);
-    }
-  };
+  const { checked, handleCheckChange } = usePaymentData({ data });
 
   return (
     <>
@@ -35,9 +27,7 @@ function DataRow({ data, variant }: Props) {
           <Checkbox
             color="primary"
             onCheckedChange={handleCheckChange}
-            checked={checkoutItems.some(
-              (item) => item.invoice_id === data.invoice_id,
-            )}
+            checked={checked}
             useWithFormik={false}
           />
         </TableBody>
@@ -57,7 +47,7 @@ function DataRow({ data, variant }: Props) {
           />
         </TableBody>
         <TableBody className="col-span-1">
-          <ViewDataDetailsModal variant={variant} />
+          <ViewDataDetailsModal variant={variant} data={data} />
         </TableBody>
       </TableBodyRow>
     </>

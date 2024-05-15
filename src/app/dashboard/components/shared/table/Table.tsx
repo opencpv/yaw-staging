@@ -184,7 +184,7 @@ export const TableBody = (props: TableBodyProps) => {
           role="row"
           aria-label="table body"
           className={cn(
-            "mx-auto grid min-h-28 place-items-center",
+            "mx-auto grid min-h-28 place-items-center text-center",
             props.className,
           )}
         >
@@ -195,7 +195,7 @@ export const TableBody = (props: TableBodyProps) => {
           role="row"
           aria-label="table body"
           className={cn(
-            "mx-auto grid min-h-28 place-items-center",
+            "mx-auto grid min-h-28 place-items-center text-center",
             props.className,
           )}
         >
@@ -215,7 +215,7 @@ export const TableBodySm = (props: TableBodyProps) => {
           aria-label="table body"
           tabIndex={0}
           className={cn(
-            "block pb-2 text-neutral-700 first:border-b first:pb-4",
+            "block flex-wrap pb-2 text-neutral-700 first:border-b first:pb-4",
             props.className,
           )}
         >
@@ -226,7 +226,7 @@ export const TableBodySm = (props: TableBodyProps) => {
           aria-label="table body"
           tabIndex={0}
           className={cn(
-            "pb-2 text-neutral-700 first:border-b first:pb-4",
+            "flex-wrap pb-2 text-neutral-700 first:border-b first:pb-4",
             props.className,
           )}
         >

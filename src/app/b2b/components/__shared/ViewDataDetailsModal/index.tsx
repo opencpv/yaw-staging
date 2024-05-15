@@ -2,31 +2,32 @@
 import React from "react";
 import { useDisclosure } from "@nextui-org/react";
 import ModalCloseIcon from "@/components/__shared/ui/modals/ModalCloseIcon";
-import Details from "./Details";
 import Modal from "@/components/__shared/ui/modals/Modal";
 import ViewButton from "@/components/__shared/ui/button/ViewButton";
 import Logo from "@/components/__shared/ui/Logo";
-import Cost from "../__shared/Cost";
-import CaQuote from "./CaQuote";
+import Cost from "../Cost";
+import CaQuote from "../CaQuote";
 import legal from "@/enum/about/legal";
-import DownloadButton from "../__shared/DownloadButton";
-import CheckoutButton from "../__shared/CheckoutButton";
-import { AiOutlineEye } from "react-icons/ai";
+import DownloadButton from "../DownloadButton";
+import CheckoutButton from "../CheckoutButton";
 import { formatPrice } from "@/lib/utils/numberManipulation";
+import { PaymentData } from "../../types";
+import { formatDateOnly } from "@/lib/utils/stringManipulation";
 
 type Variant = "invoice" | "receipt";
 
 type Props = {
   variant: Variant;
+  data: PaymentData;
 };
-export default function ViewDataDetailsModal({ variant }: Props) {
+export default function ViewDataDetailsModal({ variant, data }: Props) {
   const { onOpen, isOpen, onOpenChange } = useDisclosure();
 
   return (
     <>
       <Modal
-        header={<ModalHeader variant={variant} />}
-        body={<ModalBody variant={variant} />}
+        header={<ModalHeader variant={variant} data={data} />}
+        body={<ModalBody variant={variant} data={data} />}
         footer={<ModalFooter variant={variant} />}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
@@ -39,7 +40,13 @@ export default function ViewDataDetailsModal({ variant }: Props) {
   );
 }
 
-const ModalHeader = ({ variant }: { variant: "invoice" | "receipt" }) => {
+const ModalHeader = ({
+  variant,
+  data,
+}: {
+  variant: "invoice" | "receipt";
+  data: PaymentData;
+}) => {
   return (
     <div
       className={`mx-auto mt-10 flex w-full items-center justify-between rounded-xl px-4 py-2 sm:w-11/12 ${
@@ -51,16 +58,16 @@ const ModalHeader = ({ variant }: { variant: "invoice" | "receipt" }) => {
           variant == "invoice" ? "text-white" : "text-shade-300"
         }`}
       >
-        <p className="text-[1.5rem] font-semibold uppercase">
+        <h2 className="uppercase">
           {variant == "invoice" ? "invoice" : "receipt"}
-        </p>
-        <p
-          className={`text-[0.625rem] font-semibold text-neutral-300 ${
+        </h2>
+        <small
+          className={`font-semibold text-neutral-300 ${
             variant == "receipt" && "hidden"
           }`}
         >
-          #AD2323-1
-        </p>
+          {data.invoice_id}
+        </small>
       </div>
       <div
         className={`relative aspect-[50/37] w-full max-w-[50px] ${
@@ -73,12 +80,22 @@ const ModalHeader = ({ variant }: { variant: "invoice" | "receipt" }) => {
   );
 };
 
-const ModalBody = ({ variant }: { variant: Variant }) => {
+const ModalBody = ({
+  variant,
+  data,
+}: {
+  variant: Variant;
+  data: PaymentData;
+}) => {
+  const subTotal = data.amount;
+  const tax = 12;
+  const total = subTotal + tax;
+
   return (
     <main className="mx-auto space-y-8 sm:w-11/12">
       <section className="highlight flex gap-5 max-xs:justify-between">
         <h4>Date issued</h4>
-        <p className="highlight-body">01 Aug 2023</p>
+        <p className="highlight-body">{formatDateOnly(data.billing_date)}</p>
       </section>
 
       <section className="grid gap-5 sm:grid-cols-2">
@@ -110,19 +127,18 @@ const ModalBody = ({ variant }: { variant: Variant }) => {
         </div>
         <div className="highlight flex flex-col justify-between gap-x-20 gap-y-10 ssm:flex-row">
           <div className="space-y-2">
-            <h4>Service name</h4>
+            <h4>{data.service}</h4>
             <p className="highlight-body font-semibold">
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Accusantium ipsa, dolorum autem enim architecto pariatur
-              necessitatibus repellat! Suscipit.
+              Accusantium ipsa.
             </p>
           </div>
-          <p className="highlight-body">{formatPrice(200)}</p>
+          <p className="highlight-body">{formatPrice(data.amount)}</p>
         </div>
       </section>
 
       <section className="flex w-full justify-end">
-        <Cost subTotal={200} tax={0} total={200} variant={variant} />
+        <Cost subTotal={subTotal} tax={tax} total={total} variant={variant} />
       </section>
       <section className="flex flex-col gap-1 pt-14">
         <p className="font-bold">Thank you for doing business with us!</p>

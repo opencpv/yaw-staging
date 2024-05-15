@@ -11,16 +11,12 @@ import {
 } from "@/app/dashboard/components/shared/table/Table";
 import Checkbox from "@/app/dashboard/components/shared/ui/Checkbox";
 import { invoiceStore } from "@/store/payment/invoiceStore";
+import { usePaymentData } from "../../hooks/usePaymentData";
 
 type Props = {};
 
 const InvoiceTable = (props: Props) => {
-  const { checkoutItems, setCheckoutItems } = invoiceStore();
-
-  const handleCheckAll = () => {
-    const allSelected = checkoutItems.length === invoiceData.length;
-    setCheckoutItems(allSelected ? [] : invoiceData);
-  };
+  const { handleCheckAll, allChecked } = usePaymentData({ invoiceData });
 
   return (
     <>
@@ -33,33 +29,38 @@ const InvoiceTable = (props: Props) => {
               color="white"
               className="relative xl:left-1"
               onCheckedChange={handleCheckAll}
-              checked={checkoutItems.length === invoiceData.length}
+              checked={allChecked}
               classNames={{ checkIcon: "text-primary" }}
             />{" "}
           </TableHeader>
           <TableHeader className="col-span-1">Invoice Id</TableHeader>
           <TableHeader className="col-span-1">Service</TableHeader>
           <TableHeader className="col-span-1">Billing Date</TableHeader>
-          <TableHeader className="col-span-1">Amount</TableHeader>
+          <TableHeader className="col-span-1">Amount Due</TableHeader>
           <TableHeader className="col-span-1">Status</TableHeader>
           <TableHeader className="col-span-1">Action</TableHeader>
         </TableHeaderRow>
         <TableBodyRowGroup>
-          {invoiceData?.map((r: any) => (
-            <DataRow key={crypto.randomUUID()} data={r} variant="invoice" />
+          {invoiceData?.map((data: any) => (
+            <DataRow key={crypto.randomUUID()} data={data} variant="invoice" />
           ))}
         </TableBodyRowGroup>
       </Table>
 
       {/* Mobile */}
       <TableSm>
-        {invoiceData?.map((r: any) => (
-          <DataRowSm
-            key={crypto.randomUUID()}
-            data={r}
-            variant="invoice"
-            index={crypto.randomUUID()}
+        <div className="relative right-5 top-5 ml-auto flex items-center gap-2">
+          <p>Check All</p>
+          <Checkbox
+            useWithFormik={false}
+            color="primary"
+            className=""
+            onCheckedChange={handleCheckAll}
+            checked={allChecked}
           />
+        </div>
+        {invoiceData?.map((data: any) => (
+          <DataRowSm key={crypto.randomUUID()} data={data} variant="invoice" />
         ))}
       </TableSm>
     </>

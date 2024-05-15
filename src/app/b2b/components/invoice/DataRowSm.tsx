@@ -2,23 +2,59 @@ import {
   TableBodySm,
   TableRowSm,
 } from "@/app/dashboard/components/shared/table/Table";
-import { Data } from "./DataRow";
-import ViewDataDetailsModal from "../ViewDataDetailsModal";
-import YellowCheckBox from "../YellowCheckbox";
+import ViewDataDetailsModal from "../__shared/ViewDataDetailsModal";
+import { PaymentData } from "../types";
+import { formatPrice } from "@/lib/utils/numberManipulation";
+import { formatDateTime } from "@/lib/utils/stringManipulation";
+import InvoiceStatus from "./InvoiceStatus";
+import Checkbox from "@/app/dashboard/components/shared/ui/Checkbox";
+import { usePaymentData } from "../../hooks/usePaymentData";
 
 type Props = {
   variant: "invoice" | "receipt";
-  data: Data;
-  index?: any;
+  data: PaymentData;
 };
 
-function DataRowSm({ variant, data, index }: Props) {
+function DataRowSm({ variant, data }: Props) {
+  const { checked, handleCheckChange } = usePaymentData({ data });
+
   return (
     <TableRowSm>
-      <TableBodySm>Mobile</TableBodySm>
-      <TableBodySm>Mobile</TableBodySm>
-      <TableBodySm>Mobile</TableBodySm>
-      <TableBodySm>Mobile</TableBodySm>
+      <TableBodySm className="flex items-center justify-between gap-5">
+        <div className="space-y-5 rounded-xl border border-shade-300 p-3">
+          <h4>Invoice Id</h4>
+          <p>{data.invoice_id}</p>
+        </div>
+        <Checkbox
+          color="primary"
+          onCheckedChange={handleCheckChange}
+          checked={checked}
+          useWithFormik={false}
+        />
+      </TableBodySm>
+      <TableBodySm className="flex items-center justify-between gap-5">
+        <h4>Service</h4>
+        <p>{data.service}</p>
+      </TableBodySm>
+      <TableBodySm className="flex items-center justify-between gap-5">
+        <h4>Amount Due</h4>
+        <p>{formatPrice(data.amount)}</p>
+      </TableBodySm>
+      <TableBodySm className="flex items-center justify-between gap-5">
+        <h4>Billing Date</h4>
+        <p>{formatDateTime(data.billing_date)}</p>
+      </TableBodySm>
+      <TableBodySm className="flex items-center justify-between gap-5">
+        <h4>Status</h4>
+        <p>
+          <InvoiceStatus
+            status={data.status === "Paid" ? "paid" : "not paid"}
+          />
+        </p>
+      </TableBodySm>
+      <TableBodySm className="ml-auto flex w-20 justify-end">
+        <ViewDataDetailsModal variant={variant} data={data} />
+      </TableBodySm>
     </TableRowSm>
   );
 }
