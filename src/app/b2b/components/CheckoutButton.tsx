@@ -1,8 +1,8 @@
-import { Button } from "@nextui-org/react";
+import Button from "@/components/__shared/ui/button/Button";
 
 function CheckoutButton() {
   return (
-    <Button className="py-2.5 px-5 w-full max-w-[196px] text-white text-[0.8125rem] ronded-lg bg-[#DDB771]">
+    <Button color="accent" className="w-full">
       Checkout Now
     </Button>
   );

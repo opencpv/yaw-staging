@@ -45,13 +45,12 @@ const ContactFullNameField = ({
       name="fullname"
       value={contactFormSession.fullname || value}
       label="Full Name"
-      required
       onChange={(e) => {
         handleChange?.(e);
         handleSessionChange("fullname", e.target.value);
       }}
       onBlur={handleBlur}
-      className={`p-3 py-7`}
+      className={`p-3`}
       ref={fullNameInputRef}
     />
   );

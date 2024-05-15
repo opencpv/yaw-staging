@@ -14,6 +14,8 @@ import {
   TableRowSm,
   TableSm,
 } from "@/app/dashboard/components/shared/table/Table";
+import { Formik } from "formik";
+import Checkbox from "@/app/dashboard/components/shared/ui/Checkbox";
 
 function Invoices() {
   return (
@@ -33,52 +35,60 @@ function Invoices() {
             <YellowCheckBox />
           </div>{" "}
         </div>
-        <Table>
-          <TableHeaderRow className="grid-cols-7" gap="2rem">
-            <TableHeader className="col-span-1">ck</TableHeader>
-            <TableHeader className="col-span-1">Invoice Id</TableHeader>
-            <TableHeader className="col-span-1">Service</TableHeader>
-            <TableHeader className="col-span-1">Billing Date</TableHeader>
-            <TableHeader className="col-span-1">Amount</TableHeader>
-            <TableHeader className="col-span-1">Status</TableHeader>
-            <TableHeader className="col-span-1">Actions</TableHeader>
-          </TableHeaderRow>
-          <TableBodyRowGroup>
-            {invoiceData?.map((r: any) => (
-              <DataRow
-                key={new Date().toString()}
-                data={r}
-                variant="invoice"
-                index={new Date().toString()}
-              />
-            ))}
-          </TableBodyRowGroup>
-        </Table>
+        <Formik initialValues={{}} onSubmit={() => {}}>
+          <Table>
+            <TableHeaderRow className="grid-cols-6" gap="2rem">
+              <TableHeader className="col-span-1">
+                <Checkbox
+                  name="check-all"
+                  color="white"
+                  className="relative left-1"
+                  classNames={{ checkIcon: "text-primary" }}
+                />{" "}
+              </TableHeader>
+              <TableHeader className="col-span-1">Invoice Id</TableHeader>
+              <TableHeader className="col-span-1">Service</TableHeader>
+              <TableHeader className="col-span-1">Billing Date</TableHeader>
+              <TableHeader className="col-span-1">Amount</TableHeader>
+              <TableHeader className="col-span-1">Actions</TableHeader>
+            </TableHeaderRow>
+            <TableBodyRowGroup>
+              {invoiceData?.map((r: any) => (
+                <DataRow
+                  key={crypto.randomUUID()}
+                  data={r}
+                  variant="invoice"
+                  index={crypto.randomUUID()}
+                />
+              ))}
+            </TableBodyRowGroup>
+          </Table>
+        </Formik>
+        {/* Mobile */}
         <TableSm>
           {invoiceData?.map((r: any) => (
             <DataRowSm
-              key={new Date().toString()}
+              key={crypto.randomUUID()}
               data={r}
               variant="invoice"
-              index={new Date().toString()}
+              index={crypto.randomUUID()}
             />
           ))}
         </TableSm>
       </div>
 
-      <div className="hidden w-full items-center justify-start bg-[#F8F8F8] py-5 lg:flex">
+      <div className="hidden w-full justify-between gap-5 bg-[#F8F8F8] py-5 lg:flex">
         <DownloadButton maxWidth="fit" />
+        <div>
+          <Cost subTotal={200} tax={12} total={2000} variant={"invoice"} />
+          <div className="mt-8 max-lg:hidden">
+            <CheckoutButton />
+          </div>
+        </div>
       </div>
-      <div className="sticky bottom-0 grid w-full grid-cols-2 items-center justify-end gap-1 bg-[#F8F8F8] py-5 pb-2 lg:hidden">
+      <div className="sticky bottom-0 grid w-full grid-cols-2 items-center justify-end gap-5 bg-[#F8F8F8] py-5 pb-2 max-lg:max-w-2xl xs:gap-10 lg:hidden">
         <DownloadButton maxWidth="fit" />
         <CheckoutButton />
-      </div>
-
-      <div className="x hidden w-full flex-col items-end justify-center gap-6 py-5 lg:flex">
-        <Cost subTotal={200} tax={12} total={2000} variant={"invoice"} />
-        <div className="hidden w-full justify-end lg:flex">
-          <CheckoutButton />
-        </div>{" "}
       </div>
     </div>
   );

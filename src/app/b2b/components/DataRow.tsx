@@ -4,6 +4,8 @@ import {
 } from "@/app/dashboard/components/shared/table/Table";
 import ViewDataDetailsModal from "./ViewDataDetailsModal";
 import YellowCheckBox from "./YellowCheckbox";
+import Checkbox from "@/app/dashboard/components/shared/ui/Checkbox";
+import ViewButton from "@/components/__shared/ui/button/ViewButton";
 
 export type Data = {
   invoice_id: string | number;
@@ -26,14 +28,17 @@ function DataRow({ data, variant, index }: Props) {
   };
 
   return (
-    <TableBodyRow className="grid-cols-7">
+    <TableBodyRow className="grid-cols-6" gap="2rem">
+      <TableBody className="col-span-1">
+        <Checkbox color="primary" name={data.invoice_id + data.service} />
+      </TableBody>
+      <TableBody className="col-span-1">Be my agent</TableBody>
+      <TableBody className="col-span-1">Be the first to know</TableBody>
       <TableBody className="col-span-1">Be my agent</TableBody>
       <TableBody className="col-span-1">Be my agent</TableBody>
-      <TableBody className="col-span-1">Be my agent</TableBody>
-      <TableBody className="col-span-1">Be my agent</TableBody>
-      <TableBody className="col-span-1">Be my agent</TableBody>
-      <TableBody className="col-span-1">Be my agent</TableBody>
-      <TableBody className="col-span-1">Be my agent</TableBody>
+      <TableBody className="col-span-1">
+        <ViewButton onOpen={() => {}} className="h-11" />
+      </TableBody>
     </TableBodyRow>
   );
 }

@@ -1,4 +1,4 @@
-import { Button } from "@nextui-org/react";
+import Button from "@/components/__shared/ui/button/Button";
 import { HiOutlineDownload } from "react-icons/hi";
 
 type Props = {
@@ -13,7 +13,7 @@ function DownloadButton({ maxWidth }: Props) {
       } w-full`}
     >
       Download
-      <HiOutlineDownload size="24" colour="#3F3F46" />
+      <HiOutlineDownload size="24" color="#3F3F46" />
     </Button>
   );
 }

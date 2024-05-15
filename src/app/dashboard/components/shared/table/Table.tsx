@@ -113,7 +113,10 @@ export const TableHeader = (props: TableHeaderProps) => {
       role="columnheader"
       aria-label="table header"
       tabIndex={0}
-      className={cn("mx-auto text-center", props.className)}
+      className={cn(
+        "gird mx-auto place-items-center text-center",
+        props.className,
+      )}
     >
       {props.children}
     </div>
