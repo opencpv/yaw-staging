@@ -22,6 +22,7 @@ function AboutTagsContent({ data, active }: Props) {
           <Image
             alt={`tag - ${data?.name}`}
             src={data?.image}
+            className="transition-all"
             objectFit="cover"
             objectPosition="center"
             fill
