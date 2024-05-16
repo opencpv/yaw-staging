@@ -2,7 +2,7 @@ import {
   TableBody,
   TableBodyRow,
 } from "@/app/dashboard/components/shared/table/Table";
-import Checkbox from "@/app/dashboard/components/shared/ui/Checkbox";
+import { CheckboxNoFormik as Checkbox } from "@/app/dashboard/components/shared/ui/Checkbox";
 import { PaymentData } from "../types";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import { formatDateTime } from "@/lib/utils/stringManipulation";
@@ -25,7 +25,6 @@ function DataRow({ data, variant }: Props) {
             color="primary"
             onCheckedChange={handleCheckChange}
             checked={checked}
-            useWithFormik={false}
           />
         </TableBody>
         <TableBody className="col-span-1">{data.invoice_id}</TableBody>

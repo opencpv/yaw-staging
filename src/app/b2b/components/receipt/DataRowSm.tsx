@@ -6,7 +6,7 @@ import ViewDataDetailsModal from "../__shared/ViewDataDetailsModal";
 import { PaymentData } from "../types";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import { formatDateTime } from "@/lib/utils/stringManipulation";
-import Checkbox from "@/app/dashboard/components/shared/ui/Checkbox";
+import { CheckboxNoFormik as Checkbox } from "@/app/dashboard/components/shared/ui/Checkbox";
 import { useReceiptData } from "../../hooks/useReceiptData";
 
 type Props = {
@@ -28,7 +28,6 @@ function DataRowSm({ variant, data }: Props) {
           color="primary"
           onCheckedChange={handleCheckChange}
           checked={checked}
-          useWithFormik={false}
         />
       </TableBodySm>
       <TableBodySm className="flex items-center justify-between gap-5">

@@ -9,7 +9,7 @@ import {
   TableHeaderRow,
   TableSm,
 } from "@/app/dashboard/components/shared/table/Table";
-import Checkbox from "@/app/dashboard/components/shared/ui/Checkbox";
+import { CheckboxNoFormik as Checkbox } from "@/app/dashboard/components/shared/ui/Checkbox";
 import { useReceiptData } from "../../hooks/useReceiptData";
 
 const ReceiptTable = () => {
@@ -23,7 +23,6 @@ const ReceiptTable = () => {
         <TableHeaderRow className="grid-cols-6" gap="2rem">
           <TableHeader className="col-span-1">
             <Checkbox
-              useWithFormik={false}
               name="check-all"
               color="white"
               className="relative xl:left-1"
@@ -50,7 +49,6 @@ const ReceiptTable = () => {
         <div className="relative right-5 top-5 ml-auto flex items-center gap-2">
           <p>Check All</p>
           <Checkbox
-            useWithFormik={false}
             color="primary"
             onCheckedChange={handleCheckAll}
             checked={allChecked}
