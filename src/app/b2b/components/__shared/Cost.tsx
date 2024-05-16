@@ -35,7 +35,7 @@ function Cost({ subTotal, tax, total, variant }: Props) {
       </div>
       <div className="mt-1 grid grid-cols-2 justify-between gap-10 border-y-[1.5px] border-accent py-2.5 text-accent xs:gap-20">
         <p className="font-bold capitalize">
-          {variant == "invoice" ? "Amount Payable" : "Amount Paid"}
+          {variant == "invoice" ? "Amount Due" : "Amount Paid"}
         </p>
         <p className="text-right">
           <span className="font-bold">GHS</span>{" "}

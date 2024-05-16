@@ -28,7 +28,7 @@ export default function ViewDataDetailsModal({ variant, data }: Props) {
       <Modal
         header={<ModalHeader variant={variant} data={data} />}
         body={<ModalBody variant={variant} data={data} />}
-        footer={<ModalFooter variant={variant} />}
+        footer={<ModalFooter variant={variant} data={data} />}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         scrollBehavior="inside"
@@ -92,7 +92,7 @@ const ModalBody = ({
   const total = subTotal + tax;
 
   return (
-    <main className="mx-auto space-y-8  bg-[#F8F8F8] sm:w-11/12">
+    <main className="mx-auto space-y-8 bg-[#F8F8F8] p-1.5 sm:w-11/12">
       <section className="highlight flex gap-5 max-xs:justify-between">
         <h4>Date issued</h4>
         <p className="highlight-body">{formatDateOnly(data.billing_date)}</p>
@@ -164,20 +164,26 @@ const ModalBody = ({
   );
 };
 
-const ModalFooter = ({ variant }: { variant: Variant }) => {
+const ModalFooter = ({
+  variant,
+  data,
+}: {
+  variant: Variant;
+  data: PaymentData;
+}) => {
   return (
     <div className="mx-auto w-full sm:w-11/12">
       {variant !== "invoice" && (
         <div className="">
-          <DownloadButton />
+          <DownloadButton fileName="receipt" data={[data]} />
         </div>
       )}
 
       {variant === "invoice" && (
         <div className="">
           <div className="grid w-full grid-cols-2 items-center justify-end gap-3 bg-transparent pb-2">
-            <DownloadButton maxWidth="fit" />
-            <CheckoutButton />
+            <DownloadButton fileName="invoice" data={[data]} maxWidth="fit" />
+            <CheckoutButton affix={1} />
           </div>
         </div>
       )}

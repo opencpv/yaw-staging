@@ -12,7 +12,7 @@ function CheckoutButton({ affix }: Props) {
       Checkout Now{" "}
       <span
         className={cn(
-          "absolute right-[10%] top-3 flex size-5 items-center justify-center rounded-full bg-white text-sm text-accent max-xxs:hidden lg:right-[26%] lg:top-2.5",
+          "absolute right-[10%] top-3 flex size-5 items-center justify-center rounded-full bg-white text-sm text-accent max-xxs:hidden lg:right-[22%] lg:top-2.5",
           {
             hidden: !affix,
           },

@@ -35,9 +35,7 @@ function DataRow({ data, variant }: Props) {
         <TableBody className="col-span-1">
           {formatDateTime(data.billing_date)}
         </TableBody>
-        <TableBody className="col-span-1">
-          {data.status === "Paid" ? formatPrice(0) : formatPrice(data.amount)}
-        </TableBody>
+        <TableBody className="col-span-1">{formatPrice(data.amount)}</TableBody>
         <TableBody className="col-span-1">
           <InvoiceStatus
             status={data.status === "Paid" ? "paid" : "not paid"}

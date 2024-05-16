@@ -25,7 +25,11 @@ function Invoices() {
       <InvoiceTable />
 
       <section className="hidden w-full justify-between gap-5 bg-[#F8F8F8] py-5 lg:flex">
-        <DownloadButton maxWidth="fit" />
+        <DownloadButton
+          fileName="invoice"
+          data={checkoutItems}
+          maxWidth="fit"
+        />
         <div>
           <Cost
             subTotal={subTotal}
@@ -39,7 +43,11 @@ function Invoices() {
         </div>
       </section>
       <section className="sticky bottom-0 z-50 grid w-full grid-cols-2 items-center justify-end gap-5 bg-[#F8F8F8] py-5 pb-2 max-lg:max-w-2xl lg:hidden">
-        <DownloadButton maxWidth="fit" />
+        <DownloadButton
+          fileName="invoice"
+          data={checkoutItems}
+          maxWidth="fit"
+        />
         <CheckoutButton affix={checkoutItems.length} />
       </section>
     </section>
