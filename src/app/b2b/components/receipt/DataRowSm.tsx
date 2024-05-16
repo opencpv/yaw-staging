@@ -6,9 +6,8 @@ import ViewDataDetailsModal from "../__shared/ViewDataDetailsModal";
 import { PaymentData } from "../types";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import { formatDateTime } from "@/lib/utils/stringManipulation";
-import InvoiceStatus from "./InvoiceStatus";
 import Checkbox from "@/app/dashboard/components/shared/ui/Checkbox";
-import { useInvoiceData } from "../../hooks/useInvoiceData";
+import { useReceiptData } from "../../hooks/useReceiptData";
 
 type Props = {
   variant: "invoice" | "receipt";
@@ -16,7 +15,7 @@ type Props = {
 };
 
 function DataRowSm({ variant, data }: Props) {
-  const { checked, handleCheckChange } = useInvoiceData({ data });
+  const { checked, handleCheckChange } = useReceiptData({ data });
 
   return (
     <TableRowSm>
@@ -43,14 +42,6 @@ function DataRowSm({ variant, data }: Props) {
       <TableBodySm className="flex items-center justify-between gap-5">
         <h4>Billing Date</h4>
         <p>{formatDateTime(data.billing_date)}</p>
-      </TableBodySm>
-      <TableBodySm className="flex items-center justify-between gap-5">
-        <h4>Status</h4>
-        <p>
-          <InvoiceStatus
-            status={data.status === "Paid" ? "paid" : "not paid"}
-          />
-        </p>
       </TableBodySm>
       <TableBodySm className="ml-auto flex w-20 justify-end">
         <ViewDataDetailsModal variant={variant} data={data} />

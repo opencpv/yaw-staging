@@ -1,7 +1,7 @@
 import React from "react";
 import DataRowSm from "./DataRowSm";
 import DataRow from "./DataRow";
-import { invoiceData } from "../content";
+import { receiptData } from "../content";
 import {
   Table,
   TableBodyRowGroup,
@@ -10,19 +10,17 @@ import {
   TableSm,
 } from "@/app/dashboard/components/shared/table/Table";
 import Checkbox from "@/app/dashboard/components/shared/ui/Checkbox";
-import { useInvoiceData } from "../../hooks/useInvoiceData";
+import { useReceiptData } from "../../hooks/useReceiptData";
 
-type Props = {};
-
-const InvoiceTable = (props: Props) => {
-  const { handleCheckAll, allChecked } = useInvoiceData({
-    invoiceData,
+const ReceiptTable = () => {
+  const { handleCheckAll, allChecked } = useReceiptData({
+    receiptData,
   });
 
   return (
     <>
       <Table>
-        <TableHeaderRow className="grid-cols-7" gap="2rem">
+        <TableHeaderRow className="grid-cols-6" gap="2rem">
           <TableHeader className="col-span-1">
             <Checkbox
               useWithFormik={false}
@@ -38,12 +36,11 @@ const InvoiceTable = (props: Props) => {
           <TableHeader className="col-span-1">Service</TableHeader>
           <TableHeader className="col-span-1">Billing Date</TableHeader>
           <TableHeader className="col-span-1">Amount Due</TableHeader>
-          <TableHeader className="col-span-1">Status</TableHeader>
           <TableHeader className="col-span-1">Action</TableHeader>
         </TableHeaderRow>
         <TableBodyRowGroup>
-          {invoiceData?.map((data: any) => (
-            <DataRow key={crypto.randomUUID()} data={data} variant="invoice" />
+          {receiptData?.map((data: any) => (
+            <DataRow key={crypto.randomUUID()} data={data} variant="receipt" />
           ))}
         </TableBodyRowGroup>
       </Table>
@@ -59,12 +56,12 @@ const InvoiceTable = (props: Props) => {
             checked={allChecked}
           />
         </div>
-        {invoiceData?.map((data: any) => (
-          <DataRowSm key={crypto.randomUUID()} data={data} variant="invoice" />
+        {receiptData?.map((data: any) => (
+          <DataRowSm key={crypto.randomUUID()} data={data} variant="receipt" />
         ))}
       </TableSm>
     </>
   );
 };
 
-export default InvoiceTable;
+export default ReceiptTable;

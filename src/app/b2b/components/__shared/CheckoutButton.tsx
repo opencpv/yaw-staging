@@ -8,11 +8,11 @@ type Props = {
 
 function CheckoutButton({ affix }: Props) {
   return (
-    <Button color="accent" className="w-full">
+    <Button color="accent" className="relative w-full">
       Checkout Now{" "}
       <span
         className={cn(
-          "flex size-5 items-center justify-center rounded-full bg-white text-sm text-accent",
+          "absolute right-[10%] top-3 flex size-5 items-center justify-center rounded-full bg-white text-sm text-accent max-xxs:hidden lg:right-[26%] lg:top-2.5",
           {
             hidden: !affix,
           },

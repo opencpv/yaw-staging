@@ -1,7 +1,7 @@
 import { invoiceStore } from "@/store/payment/invoiceStore";
 import { PaymentData } from "../components/types";
 
-export const usePaymentData = ({
+export const useInvoiceData = ({
   data,
   invoiceData,
 }: {

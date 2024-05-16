@@ -2,6 +2,6 @@ export type PaymentData = {
   invoice_id: string | number;
   service: string;
   amount: number;
-  status: string;
+  status?: string;
   billing_date: string;
 };

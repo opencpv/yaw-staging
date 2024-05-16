@@ -92,7 +92,7 @@ const ModalBody = ({
   const total = subTotal + tax;
 
   return (
-    <main className="mx-auto space-y-8 sm:w-11/12">
+    <main className="mx-auto space-y-8  bg-[#F8F8F8] sm:w-11/12">
       <section className="highlight flex gap-5 max-xs:justify-between">
         <h4>Date issued</h4>
         <p className="highlight-body">{formatDateOnly(data.billing_date)}</p>
