@@ -11,6 +11,7 @@ import {
 } from "@/app/dashboard/components/shared/table/Table";
 import { CheckboxNoFormik as Checkbox } from "@/app/dashboard/components/shared/ui/Checkbox";
 import { useInvoiceData } from "../../hooks/useInvoiceData";
+import { createUUID } from "@/lib/utils/stringManipulation";
 
 type Props = {};
 
@@ -42,7 +43,7 @@ const InvoiceTable = (props: Props) => {
         </TableHeaderRow>
         <TableBodyRowGroup>
           {invoiceData?.map((data: any) => (
-            <DataRow key={crypto.randomUUID()} data={data} variant="invoice" />
+            <DataRow key={createUUID()} data={data} variant="invoice" />
           ))}
         </TableBodyRowGroup>
       </Table>
@@ -58,7 +59,7 @@ const InvoiceTable = (props: Props) => {
           />
         </div>
         {invoiceData?.map((data: any) => (
-          <DataRowSm key={crypto.randomUUID()} data={data} variant="invoice" />
+          <DataRowSm key={createUUID()} data={data} variant="invoice" />
         ))}
       </TableSm>
     </>

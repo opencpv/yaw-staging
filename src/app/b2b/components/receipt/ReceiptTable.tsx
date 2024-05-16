@@ -11,6 +11,7 @@ import {
 } from "@/app/dashboard/components/shared/table/Table";
 import { CheckboxNoFormik as Checkbox } from "@/app/dashboard/components/shared/ui/Checkbox";
 import { useReceiptData } from "../../hooks/useReceiptData";
+import { createUUID } from "@/lib/utils/stringManipulation";
 
 const ReceiptTable = () => {
   const { handleCheckAll, allChecked } = useReceiptData({
@@ -39,7 +40,7 @@ const ReceiptTable = () => {
         </TableHeaderRow>
         <TableBodyRowGroup>
           {receiptData?.map((data: any) => (
-            <DataRow key={crypto.randomUUID()} data={data} variant="receipt" />
+            <DataRow key={createUUID()} data={data} variant="receipt" />
           ))}
         </TableBodyRowGroup>
       </Table>
@@ -55,7 +56,7 @@ const ReceiptTable = () => {
           />
         </div>
         {receiptData?.map((data: any) => (
-          <DataRowSm key={crypto.randomUUID()} data={data} variant="receipt" />
+          <DataRowSm key={createUUID()} data={data} variant="receipt" />
         ))}
       </TableSm>
     </>

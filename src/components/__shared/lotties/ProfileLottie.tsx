@@ -2,17 +2,18 @@
 import React, { useEffect } from "react";
 import Lottie from "react-lottie";
 import animationData from "@/lotties/profile.json";
+import { createUUID } from "@/lib/utils/stringManipulation";
 
 type Props = {};
 
 const ProfileLottie = (props: Props) => {
-  const [key, setKey] = React.useState(crypto.randomUUID());
+  const [key, setKey] = React.useState(createUUID());
 
   console.log(key);
 
   useEffect(() => {
     setInterval(() => {
-      setKey(crypto.randomUUID());
+      setKey(createUUID());
     }, 60000);
   }, []);
 

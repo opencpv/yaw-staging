@@ -15,7 +15,7 @@ type CostRowProps = {
 const CostRow = ({ label, cost }: CostRowProps) => {
   return (
     <div className="grid grid-cols-2 justify-between gap-10 xs:gap-20">
-      <p className="font-bold capitalize text-shade-300">{label}</p>
+      <h4 className="font-bold capitalize text-shade-300">{label}</h4>
       <p className="text-right text-shade-300">
         <span className="font-bold ">GHS</span>{" "}
         <span className="font-semibold">{formatPrice(cost, false)}</span>

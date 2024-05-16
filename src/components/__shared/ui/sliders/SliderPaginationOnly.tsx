@@ -10,6 +10,7 @@ import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import "@/styles/custom-swiper.css";
 import Link from "next/link";
+import { createUUID } from "@/lib/utils/stringManipulation";
 
 const SliderPaginationOnly = ({
   images,
@@ -33,7 +34,7 @@ const SliderPaginationOnly = ({
         }}
         modules={[Pagination, Autoplay]}
         className={`slider-pagination-only h-80 w-72 rounded-lg ${className}`}
-        key={crypto.randomUUID()}
+        key={createUUID()}
       >
         {images?.map((image, idx) => (
           <>

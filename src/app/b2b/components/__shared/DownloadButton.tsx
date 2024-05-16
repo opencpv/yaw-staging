@@ -13,7 +13,7 @@ function DownloadButton({ maxWidth }: Props) {
       } w-full`}
     >
       Download
-      <HiOutlineDownload size="24" color="#3F3F46" />
+      <HiOutlineDownload size="24" color="#3F3F46" className="shrink-0" />
     </Button>
   );
 }

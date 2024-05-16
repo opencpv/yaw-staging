@@ -1,5 +1,6 @@
 import { format, parse } from "date-fns";
 import { enUS } from "date-fns/locale";
+import { v4 as uuidv4 } from "uuid";
 
 const capitalizeName = (initialName: string, delimiter?: string) => {
   let nameSplit = initialName?.split(delimiter ? delimiter : "%20");
@@ -60,4 +61,8 @@ export default capitalizeName;
 
 export const getFirstWord = (str: string, delimiter: string = " ") => {
   return str?.split(delimiter)[0];
+};
+
+export const createUUID = () => {
+  return uuidv4();
 };
