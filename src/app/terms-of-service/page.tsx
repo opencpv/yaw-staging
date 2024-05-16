@@ -5,6 +5,7 @@ import { loadQuery } from "@/lib/utils/sanity/sanityStore";
 import MainView from "./components/MainView";
 import legal from "@/enum/about/legal";
 import { Metadata } from "next";
+import TermsMenuWrapper from "./TermsMenuWrapper";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
@@ -16,19 +17,21 @@ const page = async () => {
   const data = initial.data[0];
 
   return (
-    <section className="min-h-screen bg-terms-bg bg-cover bg-no-repeat bg-center md:bg-top ">
-      <nav className="w-full">{data && <TermsNav data={data} />}</nav>
-     
-      <main className="wrapper flex w-full h-full flex-col items-center justify-center max-sm:pt-0">
-        <div className={`flex h-full w-full flex-col`}>
-          {data && (
-            <div className="flex h-full w-full items-center justify-center pb-4 pl-5 ">
-              <MainView data={data} />
-            </div>
-          )}
-        </div>
-      </main>
-    </section>
+   <TermsMenuWrapper data={data.termCategories}>
+      <section className="min-h-screen bg-terms-bg bg-cover bg-no-repeat bg-center md:bg-top ">
+        <nav className="w-full">{data && <TermsNav data={data} />}</nav>
+       
+        <main className="wrapper flex w-full h-full flex-col items-center justify-center max-sm:pt-0">
+          <div className={`flex h-full w-full flex-col`}>
+            {data && (
+              <div className="flex h-full w-full items-center justify-center pb-4 pl-5 ">
+                <MainView data={data} />
+              </div>
+            )}
+          </div>
+        </main>
+      </section>
+    </TermsMenuWrapper>
   );
 };
 

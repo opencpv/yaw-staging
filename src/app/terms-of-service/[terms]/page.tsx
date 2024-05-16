@@ -5,6 +5,7 @@ import { TERMS_QUERY } from "@/lib/utils/sanity/queries";
 import { SanityDocument } from "next-sanity";
 import { loadQuery } from "@/lib/utils/sanity/sanityStore";
 import ScrollTop from "@/components/__shared/ui/ScrollTop";
+import TermsMenuWrapper from "../TermsMenuWrapper";
 
 const Terms = async (props: any) => {
   const path = props.params.terms;
@@ -16,18 +17,20 @@ const Terms = async (props: any) => {
   const currentTerms = terms.filter((obj: any) => obj.slug == currentPath);
   return (
     <>
-      {/* {data && <TermsNav data={data} primary={false} />} */}
-      <main className="flex flex-col items-center justify-center">
-        {data && <TermsNav data={data} primary={false} />}
+      <TermsMenuWrapper data={data.termCategories}>
+        {/* {data && <TermsNav data={data} primary={false} />} */}
+        <main className="flex flex-col items-center justify-center">
+          {data && <TermsNav data={data} primary={false} />}
 
-        <div className={`wrapper w-full max-lg:pt-0`}>
-          {data && <TermsMainView data={currentTerms[0]} />}
-        </div>
-        <div style={{ display: "block" }}>
-          <ScrollTop />
-        </div>
-        <Footer />
-      </main>
+          <div className={`wrapper w-full max-lg:pt-0`}>
+            {data && <TermsMainView data={currentTerms[0]} />}
+          </div>
+          <div style={{ display: "block" }}>
+            <ScrollTop />
+          </div>
+          <Footer />
+        </main>
+      </TermsMenuWrapper>
     </>
   );
 };
