@@ -1,0 +1,136 @@
+import legal from "@/enum/about/legal";
+import { formatPrice } from "@/lib/utils/numberManipulation";
+import { formatDateOnly } from "@/lib/utils/stringManipulation";
+import React from "react";
+import Cost from "./Cost";
+import CaQuote from "./CaQuote";
+import { PaymentData } from "../types";
+import Logo from "@/components/__shared/ui/Logo";
+
+type Props = {
+  data: PaymentData;
+  variant: "invoice" | "receipt";
+};
+
+const DocumentToPrint = React.forwardRef(
+  (
+    { data, variant }: Props,
+    ref: React.LegacyRef<HTMLDivElement> | undefined,
+  ) => {
+    return (
+      <main ref={ref} className="payment-pdf">
+        {/* Header */}
+        <div
+          className={`mx-auto mt-10 flex w-full items-center justify-between rounded-xl px-4 py-2 sm:w-11/12 ${
+            variant == "invoice" ? "bg-primary" : "bg-[#]"
+          }`}
+        >
+          <div
+            className={`flex flex-col gap-1 ${
+              variant == "invoice" ? "text-white" : "text-shade-300"
+            }`}
+          >
+            <h2 className="uppercase">
+              {variant == "invoice" ? "invoice" : "receipt"}
+            </h2>
+            <small
+              className={`font-semibold text-neutral-300 ${
+                variant == "receipt" && "hidden"
+              }`}
+            >
+              {data.invoice_id}
+            </small>
+          </div>
+          <div
+            className={`relative aspect-[50/37] w-full max-w-[50px] ${
+              variant == "receipt" && "hidden"
+            }`}
+          >
+            <Logo />
+          </div>
+        </div>
+        {/* Body */}
+        <section className="mx-auto space-y-8 bg-[#F8F8F8] p-1.5 sm:w-11/12">
+          <section className="highlight flex gap-5 max-xs:justify-between">
+            <h4>Date issued</h4>
+            <p className="highlight-body">
+              {formatDateOnly(data.billing_date)}
+            </p>
+          </section>
+
+          <section className="grid gap-5 sm:grid-cols-2">
+            <div className="highlight">
+              <div className="flex flex-col gap-4">
+                <h4>To:</h4>
+                <div className="highlight-body">
+                  <p>John Doe</p>
+                  <p>Customer ID: 232332</p>
+                </div>
+              </div>
+            </div>
+            <div className="highlight">
+              <div className="flex flex-col gap-4">
+                <h4>From:</h4>
+                <div className="highlight-body">
+                  <p className="font-bold">{legal.companyName}</p>
+                  <p>Business Address</p>
+                  <p>City</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="space-y-2">
+            <div className="highlight flex items-center justify-between gap-5">
+              <h4>Service</h4>
+              <h4>Total</h4>
+            </div>
+            <div className="highlight flex flex-col justify-between gap-x-20 gap-y-10 ssm:flex-row">
+              <div className="space-y-2">
+                <h4>{data.service}</h4>
+                <p className="highlight-body font-semibold">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Accusantium ipsa.
+                </p>
+              </div>
+              <p className="highlight-body">{formatPrice(data.amount)}</p>
+            </div>
+          </section>
+
+          <section className="flex w-full justify-end">
+            <Cost
+              subTotal={data.amount}
+              tax={12}
+              total={data.amount + 12}
+              variant={variant}
+            />
+          </section>
+          <section className="flex flex-col gap-1 pt-14">
+            <p className="font-bold">Thank you for doing business with us!</p>
+            <div className="flex gap-2  ssm:items-center">
+              <div className="relative shrink-0 max-ssm:top-2">
+                <CaQuote />
+              </div>
+              <p className="highlight-body font-semibold">
+                Please pay within 15 days of receiving this invoice.
+              </p>
+            </div>
+          </section>
+
+          <section className="flex items-center justify-between gap-4 py-5 max-sm:flex-wrap">
+            <p className="w-full text-[#B0B0B0]">SBG DIGITAL LLC</p>
+            <div className="gapy-5 flex items-center gap-x-10 gap-y-5 max-ssm:flex-wrap">
+              <p className="highlight-body whitespace-nowrap">
+                +91 00000 00000
+              </p>
+              <div className="h-8 w-1 border-r max-ssm:hidden"></div>
+              <p className="highlight-body">{legal.email}</p>
+            </div>
+          </section>
+        </section>
+      </main>
+    );
+  },
+);
+
+export default DocumentToPrint;

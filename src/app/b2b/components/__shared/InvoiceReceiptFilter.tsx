@@ -4,6 +4,7 @@ import { invoiceStore } from "@/store/payment/invoiceStore";
 import React from "react";
 import Invoices from "../pages/Invoices";
 import Receipts from "../pages/Receipts";
+import Forms from "../pages/Forms";
 
 type Props = {};
 
@@ -14,7 +15,7 @@ const InvoiceReceiptFilter = (props: Props) => {
     <>
       <div className="mb-10">
         <OptionFilterTabs
-          options={["invoice", "receipt"]}
+          options={["invoice", "receipt", "forms"]}
           selectedKey={activePage}
           onSelectionChange={setActivePage}
           radius="large"
@@ -22,7 +23,13 @@ const InvoiceReceiptFilter = (props: Props) => {
           cursorAnimation
         />
       </div>
-      {activePage === "invoice" ? <Invoices /> : <Receipts />}
+      {activePage === "invoice" ? (
+        <Invoices />
+      ) : activePage === "receipt" ? (
+        <Receipts />
+      ) : (
+        <Forms />
+      )}
     </>
   );
 };

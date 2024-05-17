@@ -1,13 +1,18 @@
-"use client";
 import Navbar from "@/components/__shared/ui/Navbar";
-import React, { useMemo } from "react";
+import React from "react";
 import CartView from "./components/CartView";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Cart",
+  description: "", // tentative
+};
 
 const CartPage = () => {
   return (
     <>
-      <main>
-        <Navbar />
+      <Navbar />
+      <main className="wrapper">
         <CartView />
       </main>
     </>

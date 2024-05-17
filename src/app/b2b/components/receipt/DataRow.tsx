@@ -5,7 +5,7 @@ import {
 import { CheckboxNoFormik as Checkbox } from "@/app/dashboard/components/shared/ui/Checkbox";
 import { PaymentData } from "../types";
 import { formatPrice } from "@/lib/utils/numberManipulation";
-import { formatDateTime } from "@/lib/utils/stringManipulation";
+import { formatDateOnly, formatDateTime } from "@/lib/utils/stringManipulation";
 import ViewDataDetailsModal from "../__shared/ViewDataDetailsModal";
 import { useReceiptData } from "../../hooks/useReceiptData";
 
@@ -32,7 +32,7 @@ function DataRow({ data, variant }: Props) {
           {data.service}
         </TableBody>
         <TableBody className="col-span-1">
-          {formatDateTime(data.billing_date)}
+          {formatDateOnly(data.billing_date)}
         </TableBody>
         <TableBody className="col-span-1">
           {data.status === "Paid" ? formatPrice(0) : formatPrice(data.amount)}

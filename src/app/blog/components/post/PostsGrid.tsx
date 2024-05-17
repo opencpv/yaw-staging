@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import convertSlugToString from "@/lib/utils/convertSlugToString";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import SkeletonLong from "@/components/__shared/ui/skeleton/SkeletonLong";
-import capitalizeName from "@/lib/utils/stringManipulation";
 import slugify from "@/lib/utils/slugify";
 
 interface IPostsGridProps {
@@ -48,7 +47,6 @@ const PostsGrid: React.FunctionComponent<IPostsGridProps> = (props) => {
                     image={urlForImage(post?.featured_image)?.url() as string}
                     title={post?.title}
                     summary={post?.summary}
-                    postedAt="November 7th 2023"
                     rating={post?.rating}
                     href={
                       `/blog/${slugify(

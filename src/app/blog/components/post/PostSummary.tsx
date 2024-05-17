@@ -10,7 +10,6 @@ const PostSummary = ({
   author,
   title,
   href,
-  postedAt,
   image,
   summary,
   rating,

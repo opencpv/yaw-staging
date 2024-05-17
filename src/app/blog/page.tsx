@@ -16,6 +16,7 @@ import slugify from "@/lib/utils/slugify";
 import { fadeIn } from "@/lib/animations";
 import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 import AdsSlider from "./components/post/AdsSlider";
+import { cookies } from "next/headers";
 
 const page = async () => {
   const initialBlogData: any = await loadQuery<SanityDocument[]>(BLOG_QUERY);

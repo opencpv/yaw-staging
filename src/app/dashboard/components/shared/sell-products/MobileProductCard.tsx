@@ -20,8 +20,7 @@ const MobileProductCard = ({ data }: { data: any }) => {
         onClose={onClose}
         onOpenChange={onOpenChange}
         label="Are you sure you want to delete this application?"
-        id=""
-        table="product_category"
+        handleDestruction={() => {}}
       />
 
       <TableRowSm>
@@ -66,7 +65,7 @@ const MobileProductCard = ({ data }: { data: any }) => {
           {status === "not submitted" && (
             <>
               <EditButton onOpen={() => ""} />
-              <ButtonDelete table="product_category" id="" />
+              <ButtonDelete handleDestruction={() => {}} />
             </>
           )}
         </TableBodySm>

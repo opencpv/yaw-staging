@@ -1,9 +1,7 @@
 "use client";
 import capitalizeName, { LowerCase } from "@/lib/utils/stringManipulation";
 import { Tab, Tabs } from "@nextui-org/react";
-import React, { LegacyRef, forwardRef } from "react";
-import { ReactRef } from "@nextui-org/react-utils";
-import { MdOutlineWhatsapp } from "react-icons/md";
+import React, { forwardRef } from "react";
 
 type Option = {
   label: string;

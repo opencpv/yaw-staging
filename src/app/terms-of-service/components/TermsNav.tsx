@@ -67,7 +67,7 @@ const TermsNav = ({
           <Image src={icons.Hamburger} alt="menu" />
         </button>
       </div>
-      <Image src={icons.Hamburger} alt="hamburger" className="md:hidden" />
+      <Image src={icons.Hamburger} alt="menu" className="md:hidden" />
     </nav>
   );
 };

@@ -6,7 +6,7 @@ import { CheckboxNoFormik as Checkbox } from "@/app/dashboard/components/shared/
 import InvoiceStatus from "./InvoiceStatus";
 import { PaymentData } from "../types";
 import { formatPrice } from "@/lib/utils/numberManipulation";
-import { formatDateTime } from "@/lib/utils/stringManipulation";
+import { formatDateOnly } from "@/lib/utils/stringManipulation";
 import ViewDataDetailsModal from "../__shared/ViewDataDetailsModal";
 import { useInvoiceData } from "../../hooks/useInvoiceData";
 
@@ -29,11 +29,9 @@ function DataRow({ data, variant }: Props) {
           />
         </TableBody>
         <TableBody className="col-span-1">{data.invoice_id}</TableBody>
-        <TableBody className="col-span-1 text-center font-medium">
-          {data.service}
-        </TableBody>
+        <TableBody className="col-span-1 font-medium">{data.service}</TableBody>
         <TableBody className="col-span-1">
-          {formatDateTime(data.billing_date)}
+          {formatDateOnly(data.billing_date)}
         </TableBody>
         <TableBody className="col-span-1">{formatPrice(data.amount)}</TableBody>
         <TableBody className="col-span-1">
