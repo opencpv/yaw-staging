@@ -6,7 +6,7 @@ import { useTermsMenuStore } from "./useTermsMenuStore";
 
 const TermsMenuArea = (props: any) => {
   const { setTermsMenuToggle } = useTermsMenuStore();
-
+0
   return (
     <div className={"flex flex-col "}>
       <div className="flex flex-col lg:gap-10">
