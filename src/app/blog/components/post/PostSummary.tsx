@@ -17,9 +17,9 @@ const PostSummary = ({
   return (
     <FramerWrapper {...fadeIn}>
       <div className="grid gap-x-10 gap-y-5 lg:grid-cols-3">
-        <div className="relative aspect-video w-full md:h-full lg:col-span-1 lg:max-w-full">
+        <div className="relative aspect-video w-full md:h-full md:min-h-32 lg:col-span-1 lg:max-w-full">
           <Image
-            src={image ? image : "/assets/images/Stock.jpg"}
+            src={image ? image : "/assets/images/Stock.jpg"} // Todo
             alt={title}
             className="rounded-xl"
             fill

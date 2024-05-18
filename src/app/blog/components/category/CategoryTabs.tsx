@@ -23,7 +23,7 @@ const CategoryTabs = (props: Props) => {
     const currentCategory = convertSlugToString(url?.split("/")[2] as string);
     setOptions(["all", ...props.categories]);
     changeCategoryOption(currentCategory as string);
-  }, []);
+  }, [changeCategoryOption, props.categories, url]);
 
   return (
     <OptionFilterTabs

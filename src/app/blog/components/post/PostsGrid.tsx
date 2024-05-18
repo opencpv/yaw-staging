@@ -11,28 +11,14 @@ import SkeletonTextual from "@/components/__shared/ui/skeleton/SkeletonTextual";
 interface IPostsGridProps {
   posts: any[];
   isResultFromSearch: boolean;
+  loading: boolean;
 }
 
-const PostsGrid: React.FunctionComponent<IPostsGridProps> = (props) => {
-  const path = usePathname();
-  const currentCategory = path?.split("/")[2];
-  const [posts, setPosts] = React.useState<any[]>([]);
-  const [loading, setLoading] = React.useState(true);
-
-  React.useEffect(() => {
-    setLoading(true);
-    if (props.isResultFromSearch || currentCategory === "all") {
-      setPosts(props.posts);
-    } else {
-      const filteredPosts = props.posts.filter(
-        (post) => slugify(post.category.category_title) === currentCategory,
-      );
-      setPosts(filteredPosts);
-    }
-
-    setLoading(false);
-  }, [props.posts]);
-
+const PostsGrid: React.FunctionComponent<IPostsGridProps> = ({
+  posts,
+  loading,
+  isResultFromSearch,
+}) => {
   return (
     <>
       <section className="space-y-16">
@@ -70,7 +56,7 @@ const PostsGrid: React.FunctionComponent<IPostsGridProps> = (props) => {
               </>
             ) : (
               <>
-                {posts.length === 0 && props.isResultFromSearch ? (
+                {posts.length === 0 && isResultFromSearch ? (
                   <p className="mt-8">No post matches your search</p>
                 ) : (
                   <p className="mt-8">No posts under current category</p>
