@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
+import { useTermsMenuStore } from "./NavMenu.tsx/components/useTermsMenuStore";
 
 const TermsNav = ({
   data,
@@ -16,7 +17,8 @@ const TermsNav = ({
   const { icons, images } = useAssets();
   const [categories, setCategories] = useState<any[]>();
   const path = usePathname();
-  const { toggle, setToggle } = useMenuStore();
+  const { setTermsMenuToggle } = useTermsMenuStore();
+  const { setToggle } = useMenuStore();
 
   useEffect(() => {
     setCategories(data.termCategories);
@@ -52,13 +54,13 @@ const TermsNav = ({
                 path == `/terms-of-service/${category.slug}`
                   ? " "
                   : "opacity-50"
-              } lg:text-4 whitespace-nowrap font-semibold text-[#fff] transition-all duration-100  hover:opacity-100`}
+              } lg:text-4 whitespace-nowrap font-semibold text-[#fff] transition-all duration-100  hover:opacity-100 `}
             >
               {category.title}
             </Link>
           ))}
       </div>
-      <div className="hidden lg:flex">
+      <div className="hidden md:flex">
         <button
           onClick={() => {
             setToggle(true);
@@ -67,7 +69,15 @@ const TermsNav = ({
           <Image src={icons.Hamburger} alt="menu" />
         </button>
       </div>
-      <Image src={icons.Hamburger} alt="menu" className="md:hidden" />
+      <div className="md:hidden ">
+        <button
+          onClick={() => {
+            setTermsMenuToggle(true);
+          }}
+        >
+          <Image src={icons.Hamburger} alt="menu" />
+        </button>
+      </div>
     </nav>
   );
 };

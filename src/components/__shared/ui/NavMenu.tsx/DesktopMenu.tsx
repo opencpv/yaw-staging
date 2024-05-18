@@ -25,7 +25,7 @@ export const DesktopMenu = (props: any) => {
   return (
     <div className={`flex-row gap-12 px-8 ${props?.className} `}>
       <div
-        className={"flex w-max flex-col gap-10 border-r border-r-white pr-10"}
+        className={"flex w-max flex-col gap-10 border-r-[3px] border-r-white pr-10"}
       >
         {/* main links before login */}
         {!user &&
