@@ -10,15 +10,16 @@ type Props = {
   className?: string;
   size?: "xs" | "sm" | "md" | "lg";
   onClick?: () => void;
+  url? : string
 };
 
-const Logo = ({ className, size, onClick }: Props) => {
+const Logo = ({ className, size, onClick, url="/" }: Props) => {
   const { images } = useAssets();
   const { setToggle } = useMenuStore();
   const { setIsOpen } = useDashboardMenuStore();
 
   return (
-    <Link href="/">
+    <Link href={url}>
       <Image
         src={images.Logo}
         alt="RentRightGH logo"

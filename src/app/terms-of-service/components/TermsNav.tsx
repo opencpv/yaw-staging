@@ -35,6 +35,7 @@ const TermsNav = ({
           <Image src={images.Logo} alt="RentRightGH logo" fill quality={100} />
         </div>
       </Link>{" "}
+      
       <div className=" hidden w-full justify-center md:flex md:gap-[50px]">
         <Link
           href={`/terms-of-service`}
