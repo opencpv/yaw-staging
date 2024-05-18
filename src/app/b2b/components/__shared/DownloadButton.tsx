@@ -1,6 +1,5 @@
 import Button from "@/components/__shared/ui/button/Button";
 import { HiOutlineDownload } from "react-icons/hi";
-import DocumentToPrint from "./DocumentToPrint";
 import { PaymentData } from "../types";
 import downloadPdf from "@/lib/utils/downloadPdf";
 
