@@ -21,11 +21,9 @@ const DealCard = ({ title, body, href, icon, className }: Props) => {
       <div className="w-full space-y-4 sm:w-10/12">
         <div className="flex gap-3">
           <div className="h-7 border-4 border-[#D7D12D]"></div>
-          <h4 className="text-base leading-[-0.75rem] text-neutral-900">
-            {title}
-          </h4>
+          <h4 className="leading-[-0.75rem] text-neutral-900">{title}</h4>
         </div>
-        <p className="text-sm font-[600] text-primary-600">{body}</p>
+        <p className="text-base font-[600] text-primary-600">{body}</p>
         <ArrowLink href={`${href}`} text="Explore" color="#202457" />
       </div>
     </div>

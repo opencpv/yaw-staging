@@ -32,14 +32,8 @@ const PostSlider = ({ posts }: Props) => {
         onSlideChange={handleSlideChange}
       />
       <div className="absolute -left-10 bottom-5 z-10 space-y-2 px-20 text-white sm:bottom-20">
-        <h3 className="line-clamp-1 text-xl font-[700]">
-          {posts[activeIndex].title}
-        </h3>
-        <div className="line-clamp-1 flex flex-wrap gap-2">
-          <span className="">Category</span>
-          <span className="hidden xs:inline">|</span>
-          <span className="">by {posts[activeIndex].author.name}</span>
-        </div>
+        <p className="line-clamp-1">{posts[activeIndex].author.name}</p>
+        <h3 className="line-clamp-1 font-bold">{posts[activeIndex].title}</h3>
       </div>
     </section>
   );

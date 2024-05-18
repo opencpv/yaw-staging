@@ -6,7 +6,7 @@ const ItemCard = ({ description, title, image, price, href }: ItemProps) => {
   return (
     <Link href={`${href}`}>
       <div className="text-sm">
-        <div className="relative w-full mb-5 h-60">
+        <div className="relative mb-5 h-60 w-full">
           <Image
             src={image}
             alt=""
@@ -15,8 +15,10 @@ const ItemCard = ({ description, title, image, price, href }: ItemProps) => {
             style={{ objectFit: "cover" }}
           />
         </div>
-        <h4 className="text-primary-500 mb-2">{title}</h4>
-        <p className="max-w-sm mb-2 text-neutral-500 line-clamp-3">{description}</p>
+        <h4 className="mb-2 text-primary-500">{title}</h4>
+        <p className="mb-2 line-clamp-3 max-w-sm text-base text-neutral-500">
+          {description}
+        </p>
         <h3 className="text-lg text-primary-500">GHS {price}</h3>
       </div>
     </Link>

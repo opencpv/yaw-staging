@@ -7,9 +7,7 @@ export const MobileMenu = (props: any) => {
 
   return (
     <div className={`px-8 pt-10 ${props?.className}`}>
-      {/* Before login */}
 
-      {/* After login */}
       <div>
         {props?.data &&
           props?.data?.map((category: any, index: number) => (

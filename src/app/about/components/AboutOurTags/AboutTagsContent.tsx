@@ -13,14 +13,15 @@ type Props = {
 
 function AboutTagsContent({ data, active }: Props) {
   return (
-    <div className="transition-all flex flex-col gap-5 2xl:gap-8 rounded-xl lg:border-1 border-neutral-50 lg:p-4 w-full">
+    <div className="transition-all flex flex-col gap-5 2xl:gap-8 rounded-xl lg:border-0 border-neutral-50 lg:p-4 w-full">
 
-      <div className="flex h-[64px] sm:h-[120px] w-full max-w-[64px] sm:max-w-[192px] items-center justify-center rounded-xl border-1 border-[#E2E2E2]">
+      <div className="flex h-[64px] sm:h-[120px] w-full max-w-[64px] sm:max-w-[192px] items-center justify-center rounded-xl border-1 border-[#E2E2E2] overflow-hidden">
 
-        <div className="relative aspect-square w-full max-w-[24px] sm:max-w-[41px] hover:rotate-[180deg] !duration-1000  cursor-pointer">
+        <div className="relative aspect-square w-full max-w-[45px] sm:max-w-[90px] hover:rotate-[360deg] !duration-1000  cursor-pointer">
 
           <Image
             alt={`tag - ${data?.name}`}
+            // src={'/assets/images/Stock.jpg'}
             src={data?.image}
             className="transition-all"
             objectFit="cover"

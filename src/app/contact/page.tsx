@@ -14,8 +14,10 @@ import {
   CONTACT_US_PAGE_QUERY,
   HOME_PAGE_QUERY,
 } from "@/lib/utils/sanity/queries";
+
 export const metadata: Metadata = {
   title: "Contact",
+  description: "", // tentative
 };
 
 const Page = async () => {

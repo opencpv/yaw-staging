@@ -12,7 +12,7 @@ const useManagePropertiesStore = create<ManagePropertiesStore>((set) => ({
   filterOption: "all",
   fetchCount: null,
   changeOption: (option) => set({ filterOption: option }),
-  setFetchCount: (count) => set((state) => ({...state, fetchCount: count })),
+  setFetchCount: (count) => set((state) => ({ ...state, fetchCount: count })),
 }));
 
 export { useManagePropertiesStore };
@@ -29,9 +29,4 @@ const useManageAccountStore = create((set) => ({
   changeOption: (option: any) => set({ filterOption: option }),
 }));
 
-const useManageInvoicesStore = create((set) => ({
-  filterOption: "invoice",
-  changeOption: (option: any) => set({ filterOption: option }),
-}));
-
-export { useManageAccountStore, useManageInvoicesStore };
+export { useManageAccountStore };

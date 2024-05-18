@@ -43,7 +43,7 @@ const FAQItem = ({ title, text, isActive, onClick }: Props) => {
       <p
         className={`${
           isActive ? "pb-6" : "hidden"
-        } transition-max-height w-11/12 overflow-hidden py-8 text-base transition-all duration-500`}
+        } transition-max-height w-11/12 overflow-hidden py-8 transition-all duration-500`}
       >
         {text}
       </p>

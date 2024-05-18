@@ -41,13 +41,13 @@ const PopularCitiesCard = ({
 
         <div className="relative z-10 space-y-3">
           <div className="space-y-3">
-            <h2 className="text-base font-[700]">{location}</h2>
-            <p className="inline-block text-sm font-[700]">{description}</p>
+            <h5 className="font-[700]">{location}</h5>
+            <small className="inline-block font-[700]">{description}</small>
           </div>
           <div className="flex items-center gap-2 visited:no-underline hover:no-underline active:no-underline">
-            <div className="flex items-center gap-1 text-accent-50">
+            <div className="flex items-center gap-1 text-base text-accent-50">
               <FaHouseUser />
-              <span className="text-accent font-[700]">
+              <span className="font-[700] text-accent">
                 {propertyNumTruncated}
               </span>
             </div>

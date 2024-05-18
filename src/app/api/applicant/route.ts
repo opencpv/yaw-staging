@@ -2,9 +2,6 @@ import { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/utils/supabase/auth/server";
 import withErrorHandler from "../withErrorHandler";
-import axios from "axios";
-import routes from "@/lib/utils/route";
-import { generateString } from "@/lib/utils";
 
 export const GET = withErrorHandler(async (request: NextRequest) => {
   const supabaseClient = createClient();

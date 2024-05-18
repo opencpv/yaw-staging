@@ -1,8 +1,9 @@
 "use client";
-import { Button } from "@nextui-org/react";
 import { MdArrowRightAlt } from "react-icons/md";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 import CaJoinUsIconLeft from "../open-positions/components/icons/CaJoinUsIconLongLeft";
+import Button from "@/components/__shared/ui/button/Button";
+import { cn } from "@nextui-org/react";
 
 type Props = {
   variant:
@@ -17,6 +18,8 @@ type Props = {
   icon?: boolean;
   iconType?: "arrow-right" | "arrow-left";
   reverseIcon?: boolean;
+  href?: string;
+  className?: string;
 };
 
 function JoinUsButtons({
@@ -25,27 +28,33 @@ function JoinUsButtons({
   icon,
   iconType,
   reverseIcon,
+  href,
+  className,
 }: Props) {
   const buttonClasses: any = {
-    "filled-green":
-      "px-5 py-2.5 h-[38px] lg:h-[52px]  lg:px-[2.5rem] lg:py-[0.94rem] bg-secondary-400 text-white max-w-[197px] w-full",
+    "filled-green": "bg-secondary-400 text-white",
     "outline-green":
-      "border-[1px] border-[#99B3B2] text-[#99B3B2] bg-transparent max-w-[197px] w-full px-5 py-2.5 h-[38px] lg:h-[52px]  lg:px-[2.5rem] lg:py-[0.94rem]",
-    "filled-yellow": "bg-[#DDB771] text-white max-w-[198px]",
-    "text-yellow": "text-[#DDB771] max-w-[198px] bg-white hover:border-[#DDB771] hover:border-2",
-    "text-yellow-accent": "bg-transparent text-[#DDB771] text-[1.125rem]",
+      "border-[1px] border-[#99B3B2] text-[#99B3B2] bg-transparent",
+    "filled-yellow": "bg-accent text-white",
+    "text-yellow":
+      "text-accent bg-white w-fit hover:border-accent hover:border-2",
+    "text-yellow-accent": "bg-transparent text-accent",
     "outline-yellow-accent":
-      "border-[1px] border-[#AD842A] max-w-[186px] bg-transparent text-[#DDB771]",
+      "border-[1px] border-[#AD842A] bg-transparent text-accent",
   };
   const iconTypeOptions: any = {
     "arrow-right": <MdArrowRightAlt size="20" color="#AD842A" />,
     "arrow-left": <CaJoinUsIconLeft />,
   };
+
   return (
     <Button
-      className={`h-[52px] rounded-lg px-[2.5rem]  py-[0.94rem] font-semibold ${
-        buttonClasses[variant]
-      } gap-2.5 ${reverseIcon && "flex-row-reverse"} hover:scale-[1.03] transition-all`}
+      href={href}
+      variant={variant === "text-yellow-accent" ? "ghost" : undefined}
+      className={cn(
+        `${buttonClasses[variant]} ${reverseIcon && "flex-row-reverse"}`,
+        className,
+      )}
     >
       {content}
       {icon && iconType && iconTypeOptions[iconType]}

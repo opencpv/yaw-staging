@@ -19,7 +19,7 @@ const AboutItem = ({ data, index }: { data: any; index: number }) => {
   );
 
   const Description = () => (
-    <p className=" text-base font-[500] text-[#8A8A8A] md:text-lg 2xl:text-xl 3xl:text-2xl">
+    <p className="mt-8 text-base font-[500] leading-normal text-[#8A8A8A] md:text-lg md:leading-normal 2xl:text-2xl 2xl:leading-normal">
       {data.description}
     </p>
   );
@@ -34,7 +34,7 @@ const AboutItem = ({ data, index }: { data: any; index: number }) => {
     />
   );
 
-  if (index == 1) {
+  if (index % 2 !== 0) {
     return (
       <div className=" grid min-h-max w-full grid-cols-1 items-center gap-6 lg:grid-cols-2">
         <div className="flex flex-col gap-8 justify-center ">
@@ -58,31 +58,7 @@ const AboutItem = ({ data, index }: { data: any; index: number }) => {
         </div>
       </div>
     );
-  } else {
-    return (
-      <>
-        <div className=" grid min-h-max w-full grid-cols-1 items-center gap-5 lg:grid-cols-2">
-          <div className="flex min-h-max flex-col justify-center lg:py-[9rem]">
-            <Heading2 />
-            <Description />
-          </div>
-
-          <div className="relative h-[27rem] w-full md:h-[45rem] lg:h-full">
-            <ImageComponent />
-          </div>
-        </div>
-        <div className="mt-8 grid w-full grid-cols-1 gap-5 lg:grid-cols-2 ">
-          <div className="flex min-h-max flex-col justify-center lg:py-[9rem]">
-            <Heading2 />
-            <Description />
-          </div>
-          <div className="relative h-[27rem] w-full md:h-[45rem] lg:h-full">
-            <ImageComponent />
-          </div>
-        </div>
-      </>
-    );
-  }
+  } 
 };
 
 export default AboutItem;

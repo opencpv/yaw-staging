@@ -44,7 +44,7 @@ const PropertiesListing = (props: Props) => {
   };
 
   return (
-    <>
+    <main className="wrapper overflow-x-hidden max-sm:-mt-10">
       {/* Listing */}
       <section className="listing-grid">
         <FetchingStates
@@ -79,7 +79,7 @@ const PropertiesListing = (props: Props) => {
           loadMore={loadMore}
         />
       </div>
-    </>
+    </main>
   );
 };
 

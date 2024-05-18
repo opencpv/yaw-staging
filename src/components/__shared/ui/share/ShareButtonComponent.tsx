@@ -3,8 +3,8 @@ import React from "react";
 type Props = {
   Icon: React.ComponentType<any>;
   ShareButton: React.ComponentType<any>;
-  iconColor?: string;
   socialName: string;
+  iconColor?: string;
 };
 
 const ShareButtonComponent: React.FC<Props> = ({
@@ -15,9 +15,9 @@ const ShareButtonComponent: React.FC<Props> = ({
   ...props
 }) => {
   return (
-    <div className="border rounded-lg hover:bg-slate-50">
+    <div className="rounded-lg border hover:bg-slate-50">
       <ShareButton {...props} className="inline-block w-full">
-        <div className="flex items-center gap-3 p-4 w-full">
+        <div className="flex w-full items-center gap-3 p-4">
           <Icon
             size={30}
             round

@@ -14,7 +14,7 @@ export const LoginForm = async () => {
     return (
       <>
         <div className="relative flex w-full justify-center">
-          <ButtonMenu className="absolute left-1.5 top-0 justify-self-start" />
+          <ButtonMenu className="absolute right-1.5 top-0 justify-self-start" />
           <Logo size="md" className="mt-14 sm:mt-0" />
         </div>
         <div className="flex w-full flex-col items-center justify-center gap-6">

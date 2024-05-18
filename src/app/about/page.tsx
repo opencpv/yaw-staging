@@ -98,7 +98,7 @@ const About = async () => {
                 <h2 className="text-2xl  font-[700] xl:text-4xl 2xl:text-5xl">
                   {bannerData.title}
                 </h2>
-                <p className="max-w-2xl text-base font-[400] md:text-xl 2xl:text-2xl">
+                <p className="max-w-2xl text-base font-[400] leading-normal md:text-xl md:leading-normal 2xl:text-2xl 2xl:leading-normal">
                   {bannerData.description}
                 </p>
               </div>

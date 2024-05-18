@@ -29,14 +29,14 @@ const ListingInfo = (props: Partial<ListingCardInterface>) => {
         <div className="grid items-center justify-between gap-x-1 gap-y-3 min-[320px]:grid-cols-3">
           {/* Property name */}
           <div className="flex items-center gap-1 min-[320px]:col-span-2">
-            <p
+            <h5
               className="truncate font-bold capitalize text-black"
               title={`${props.bedrooms} Bedroom ${props.propertyType}`}
             >
               <span>{props.bedrooms} </span>
               <span>Bedroom </span>
               <span>{props.propertyType}</span>
-            </p>
+            </h5>
           </div>
           {/* rating */}
           <div className="flex min-w-max items-center gap-2 min-[320px]:ml-auto">
@@ -65,7 +65,9 @@ const ListingInfo = (props: Partial<ListingCardInterface>) => {
           </div>
         </div>
         {/* subtitle */}
-        <p className="line-clamp-1 max-w-xl text-black">{props.subtitle}</p>
+        <p className="line-clamp-1 max-w-xl text-base text-black">
+          {props.subtitle}
+        </p>
       </div>
       {/* monthly amount */}
       <div className="flex w-full flex-wrap items-center justify-between gap-2 pt-1 text-xs">
@@ -76,9 +78,9 @@ const ListingInfo = (props: Partial<ListingCardInterface>) => {
             </Tooltip>
           )}
           <div className="w-fit">
-            <p className="text-sm font-[700] text-neutral-900">
+            <p className="text-sm font-bold text-neutral-900">
               GHS&nbsp;
-              <span className="font-[500]">
+              <span className="font-medium">
                 {formatPrice(props?.monthlyAmount as number)} / Month
               </span>
             </p>
@@ -87,7 +89,7 @@ const ListingInfo = (props: Partial<ListingCardInterface>) => {
         <div
           className={cn("w-max rounded-xl px-3 py-1 text-xs ", {
             "bg-[#E7F8F2] text-indigo-950": props.advancePeriod,
-            "text-info bg-info-bg": !props.advancePeriod,
+            "bg-info-bg text-info": !props.advancePeriod,
           })}
         >
           {props.advancePeriod === 1 ? (

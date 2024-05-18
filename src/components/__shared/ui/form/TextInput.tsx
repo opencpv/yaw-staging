@@ -11,9 +11,14 @@ type Props = {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (val?: any) => void;
   className?: string;
+  classNames?: {
+    innerWrapper?: string;
+    label?: string;
+  };
   labelClassName?: string;
   type?: HTMLInputTypeAttribute;
   required?: boolean;
+  asterisk?: boolean;
 };
 
 const TextInput = (
@@ -27,7 +32,10 @@ const TextInput = (
     onChange,
     onChangeValue,
     className,
+    classNames,
     type,
+    asterisk = true,
+    required,
     ...props
   }: Props,
   ref: Ref<HTMLInputElement> | undefined,
@@ -37,14 +45,15 @@ const TextInput = (
       classNames={{
         label: cn(
           `text-base text-neutral-500 focus:outline-none mb-1.5 font-[400] ${
-            props.required && `${style.required}`
-          } ${labelClassName}`,
+            required && asterisk && style.required
+          }`,
+          classNames?.label,
         ),
         inputWrapper: cn(
-          `border-neutral-400 border hover:border-black/50 rounded-md group-data-[focus=true]:border-accent-50 group-data-[focus=true]:border-2 ${className}`,
+          `border-neutral-400 border hover:border-black/50 rounded-md group-data-[focus=true]:border-accent-50 group-data-[focus=true]:border-2 `,
+          classNames?.innerWrapper,
         ),
-        input: cn(`text-base py-8 focus:border-accent-50 ${className}`),
-        // innerWrapper: cn(`${className} text-base`)
+        input: cn(`text-base py-8 focus:border-accent-50`, className),
       }}
       variant="bordered"
       value={value as string}
@@ -56,6 +65,7 @@ const TextInput = (
       labelPlacement="outside"
       placeholder={placeholder as string}
       ref={ref}
+      isRequired={required}
       {...props}
     />
   );

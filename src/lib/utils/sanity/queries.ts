@@ -72,3 +72,7 @@ description_brief,
 description,
 image,
 "imgUrl":image.asset->url}`;
+
+export const SINGLE_JOB_QUERY = (id: string) => {
+  return groq`*[_type == 'job' && _id == "${id}"]{_id, title, description_brief, description, image, "imgUrl":image.asset->url}`;
+};

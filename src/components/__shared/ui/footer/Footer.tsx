@@ -29,7 +29,7 @@ const Footer = () => {
     <footer
       className={`gap no-print flex w-full flex-col gap-[min(10vh,10rem)] bg-[#131B1A] font-montserrat`}
     >
-      <div className="flex flex-col justify-center gap-10 bg-[#333] px-5 py-8 text-[#8A8A8A] [@media(min-width:950px)]:flex-row">
+      <div className="flex flex-col justify-center gap-10 bg-[#333] px-5 py-8 text-[#8A8A8A] hover:*:text-accent [@media(min-width:950px)]:flex-row">
         {quickLinks.map((r) =>
           LowerCase(r.label) === "report fraud" ? (
             <ReportFraud key={r?.label} className="font-[400]" />
@@ -106,12 +106,13 @@ const Footer = () => {
               Copyright &copy; {getCurrentYear()} {legal.companyName}
             </span>
             <span>
-              | {legal.copyrightNotice}{" "}
+              | {legal.copyrightNotice}
+              <span> | </span>
               <Link
-                href="/terms-of-service/data-deletion"
-                className="inline-block text-[#B0B0B0] hover:underline"
+                href="/terms-of-service"
+                className="inline-block text-[#B0B0B0] hover:text-accent hover:underline"
               >
-                | Legal
+                Legal
               </Link>
             </span>
           </div>

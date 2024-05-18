@@ -4,9 +4,7 @@ import CustomFileInput from "@/components/__shared/ui/form/CustomFileInput";
 import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
 import { InfoBubble } from "@/components/__shared/ui/application-form/components/InfoBubble";
 import { Form, Formik } from "formik";
-import Link from "next/link";
 import CaJoinUsIconLeft from "./icons/CaJoinUsIconLongLeft";
-import { Button } from "@nextui-org/react";
 import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
 import { useContactForm } from "@/app/contact/components/forms/hooks/useContactForm";
 import InfoText from "@/components/__shared/ui/listing-form/components/InfoText";
@@ -23,6 +21,10 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import routes from "@/lib/utils/route";
 import { useRouter } from "next/navigation";
+import Button from "@/components/__shared/ui/button/Button";
+import JoinUsButtons from "../../components/JoinUsButtons";
+import Tooltip from "@/components/__shared/ui/Tooltip";
+import { BsInfoCircle } from "react-icons/bs";
 
 type Props = {
   variant: "application" | "resume";
@@ -87,19 +89,17 @@ function JobApplicationForm({ variant }: Props) {
   };
   return (
     <div className="flex flex-col gap-4 px-5 pt-5 lg:px-20">
-      <Link
-        href={"/join-us/open-positions"}
+      <JoinUsButtons
+        href="/join-us/open-positions"
+        variant="text-yellow-accent"
+        content="Go back"
+        icon
+        iconType="arrow-left"
+        reverseIcon
         className={`absolute top-5 ${
-          isScrolling ? "z-[11]" : "z-[343]"
-        } hidden lg:flex`}
-      >
-        <Button
-          className={`h-[52px]  rounded-lg  py-[0.94rem] font-semibold ${"bg-transparent text-[1.125rem] text-[#DDB771]"} flex justify-start gap-2.5`}
-        >
-          <CaJoinUsIconLeft />
-          Go back
-        </Button>
-      </Link>
+          isScrolling ? "z-[11]" : "z-[9999]"
+        } mt-6 hidden justify-start gap-2.5 lg:flex`}
+      />
       <Formik
         initialValues={{
           firstname: "",
@@ -199,11 +199,9 @@ function JobApplicationForm({ variant }: Props) {
                 <div className="flex flex-col gap-3">
                   <div className="flex gap-2.5">
                     <p className="text-[#6A6968]">Additional Information</p>
-                    <InfoBubble
-                      content={
-                        "Add other relevant information to highlight your skillset (e.g. personal website, work portfolio, etc)"
-                      }
-                    />
+                    <Tooltip content="Add other relevant information to highlight your skillset (e.g. personal website, work portfolio, etc)">
+                      <BsInfoCircle className="text-accent" size={20} />
+                    </Tooltip>
                   </div>
                   <input
                     placeholder="Paste your link here"
@@ -216,8 +214,9 @@ function JobApplicationForm({ variant }: Props) {
             </div>
             <div className="mt-12 flex justify-center pb-10">
               <Button
+                color="accent"
                 isLoading={loading}
-                className="h-[52px] w-full max-w-[248px] rounded-lg bg-[#DDB771] font-semibold text-white"
+                className="w-full"
                 onClick={() => {
                   const errors: errorProp = validate();
                   const objKeys = Object.keys(errors);

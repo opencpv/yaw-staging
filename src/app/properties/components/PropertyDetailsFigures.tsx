@@ -26,7 +26,7 @@ const PropertyDetailsFigures = ({
             <BsInfoCircle size={16} className="inline" />
           </Tooltip>
         </h4>
-        <p className="text-center sm:text-start">
+        <p className="text-center text-base sm:text-start">
           <span className="mr-2 font-[600]">GHS </span>
           {(monthlyRent && formatPrice(monthlyRent)) || "-"}
         </p>

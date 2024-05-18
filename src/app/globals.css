@@ -47,15 +47,19 @@ body {
   }
 
   h4 {
-    @apply max-w-3xl text-base font-[600];
+    @apply max-w-3xl text-lg font-[600];
   }
 
   h5 {
+    @apply max-w-3xl text-base font-[600];
+  }
+
+  h6 {
     @apply max-w-3xl text-sm font-[600];
   }
 
   p {
-    @apply max-w-3xl text-base;
+    @apply max-w-3xl text-lg;
   }
 
   small {
@@ -251,4 +255,3 @@ input[type="search"]::-webkit-search-cancel-button {
     /* Firefox */
   }
 }
-

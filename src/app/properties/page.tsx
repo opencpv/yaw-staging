@@ -28,15 +28,13 @@ const page = () => {
         />
       </div>
       {/* Search */}
-      <section className="mb-20 flex w-full flex-col items-center">
+      <section className="flex w-full flex-col items-center">
         <SearchCity />
         <div className="mx-auto w-full text-neutral-500">
           <TagsSelect />
         </div>
       </section>
-      <main className="wrapper overflow-x-hidden">
-        <PropertiesListing />
-      </main>
+      <PropertiesListing />
       <FixedSocials />
       <Footer />
       <ScrollTop />

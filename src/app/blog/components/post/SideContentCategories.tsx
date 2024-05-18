@@ -1,12 +1,11 @@
 import React from "react";
-import SideContent from "./SideContent";
 import { BLOG_CATEGORY_QUERY } from "@/lib/utils/sanity/queries";
 import { SanityDocument } from "next-sanity";
 import { loadQuery } from "@sanity/react-loader";
+import Link from "next/link";
+import slugify from "@/lib/utils/slugify";
 
-type Props = {};
-
-const SideContentCategories = async (props: Props) => {
+const SideContentCategories = async () => {
   let blogCategoriesData: any, categories: any;
   try {
     blogCategoriesData = await loadQuery<SanityDocument[]>(BLOG_CATEGORY_QUERY);
@@ -17,20 +16,17 @@ const SideContentCategories = async (props: Props) => {
   }
 
   return (
-    <ul className="flex flex-col gap-2 divide-y text-neutral-800">
+    <div className="flex flex-col gap-2 divide-y text-neutral-800">
       {categories.map((category: any) => (
-        <li
+        <Link
+          href={`/blog/${slugify(category.category_title)}`}
           key={category.category_title}
           className="py-5 text-center font-bold"
         >
           {category.category_title}
-        </li>
+        </Link>
       ))}
-      <li className="py-5 text-center font-bold">Something</li>
-      <li className="py-5 text-center font-bold">Something</li>
-      <li className="py-5 text-center font-bold">Something</li>
-      <li className="py-5 text-center font-bold">Something</li>
-    </ul>
+    </div>
   );
 };
 

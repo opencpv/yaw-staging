@@ -23,7 +23,7 @@ const TermsMenuArea = (props: any) => {
           2xl:aspect-[150/122] 2xl:max-h-[122px] 2xl:max-w-[150px]
           "
             >
-              <Logo size="lg" />
+              <Logo size="lg" url="/terms-and-services" />
             </div>
             <button className="relative transition-transform duration-300 hover:rotate-[360deg] lg:right-10">
               <AiFillCloseCircle
@@ -36,11 +36,10 @@ const TermsMenuArea = (props: any) => {
         </div>
         <div className={"mt-10"}>
           <MobileMenu
-          data={props?.data}
-            className={"flex lg:hidden "}
+            data={props?.data}
+            className={"flex "}
             // toggleMenu={props?.toggleMenu}
           />
-        
         </div>
       </div>
     </div>
