@@ -26,7 +26,7 @@ const PostSummary = ({
             style={{ objectFit: "cover" }}
           />
         </div>
-        <div className=" max-w-3xl space-y-3 xs:min-w-[25rem] lg:col-span-2">
+        <div className="max-w-3xl space-y-3 xs:min-w-[25rem] lg:col-span-2">
           <h3 className="text-lg font-[500] text-shade-300">
             <span className="text-primary">by</span> {author}
           </h3>

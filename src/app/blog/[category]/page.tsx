@@ -2,13 +2,9 @@ import React from "react";
 import Link from "next/link";
 import { LuChevronRight } from "react-icons/lu";
 import BackgroundImage from "../components/category/BackgroundImage";
-import TabsAndSearch from "../components/category/TabsAndSearch";
 import { BLOG_CATEGORY_QUERY, BLOG_QUERY } from "@/lib/utils/sanity/queries";
 import { SanityDocument } from "next-sanity";
 import { loadQuery } from "@sanity/react-loader";
-import PostsGrid from "../components/post/PostsGrid";
-import { cookies } from "next/headers";
-import client from "@/lib/utils/sanity/sanity-client";
 import SummaryPostView from "../components/category/SummaryPostView";
 
 type Props = {};
