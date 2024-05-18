@@ -26,11 +26,11 @@ const PaymentStructure = (props: Props) => {
       <div className="w-fit truncate">
         <p
           className="truncate text-sm font-[700] text-neutral-800"
-          title={`GHS ${formatPrice(props.monthlyPrice)} / Month`}
+          title={`${formatPrice(props.monthlyPrice, false)} / Month`}
         >
           GHS&nbsp;
           <span className="truncate text-shade-200">
-            {formatPrice(props.monthlyPrice)} / Month
+            {formatPrice(props.monthlyPrice, false)} / Month
           </span>
         </p>
       </div>

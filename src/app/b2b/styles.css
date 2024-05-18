@@ -1,0 +1,11 @@
+.highlight {
+  @apply rounded-3xl bg-[#F2F4F7] p-2.5 px-3 font-semibold;
+}
+
+.highlight-body {
+  @apply text-shade-200;
+}
+
+h4 {
+  @apply font-bold max-sm:text-base;
+}

@@ -1,5 +1,7 @@
 // import { usePaystackPayment } from "react-paystack";
 
+import { createUUID } from "@/lib/utils/stringManipulation";
+
 interface PaymentBttonProps {
   email?: string;
   amount?: number;
@@ -9,7 +11,7 @@ const PaymentButton = ({
   amount = 2000,
 }: PaymentBttonProps) => {
   const config = {
-    reference: crypto.randomUUID(),
+    reference: createUUID(),
     email,
     currency: "GHS",
     amount, //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200

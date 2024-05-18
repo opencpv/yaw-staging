@@ -6,10 +6,6 @@ const FaqHowToSwitch = () => {
   const activePage = useFaqHowToSwitchStore((state) => state.activePage);
   const setActivePage = useFaqHowToSwitchStore((state) => state.setActivePage);
 
-  const tabRef = useRef(null);
-
-  // useScrollIntoView(tabRef, "center")
-
   return (
     <div className="my-8 w-fit rounded-xl border p-3">
       <OptionFilterTabs

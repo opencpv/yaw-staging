@@ -1,9 +1,7 @@
 "use client";
 import capitalizeName, { LowerCase } from "@/lib/utils/stringManipulation";
 import { Tab, Tabs } from "@nextui-org/react";
-import React, { LegacyRef, forwardRef } from "react";
-import { ReactRef } from "@nextui-org/react-utils";
-import { MdOutlineWhatsapp } from "react-icons/md";
+import React, { forwardRef } from "react";
 
 type Option = {
   label: string;
@@ -66,7 +64,7 @@ const OptionFilterTabs = (
               ? "data-[selected=true]:bg-gradient-to-r data-[selected=true]:from-[#21A19F] data-[selected=true]:to-[#1EA9A6A1]"
               : "data-[selected=true]:bg-primary-500",
             radius === "small" ? "rounded-lg" : "rounded-full",
-            padding === "wide" && "px-20",
+            padding === "wide" && "px-8 sm:px-20",
             padding === "medium" && "px-5 xs:px-8",
             "py-5",
             cursorAnimation && "data-[selected=true]:bg-transparent",

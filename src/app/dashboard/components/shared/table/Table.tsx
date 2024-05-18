@@ -112,8 +112,10 @@ export const TableHeader = (props: TableHeaderProps) => {
     <div
       role="columnheader"
       aria-label="table header"
-      tabIndex={0}
-      className={cn("mx-auto text-center", props.className)}
+      className={cn(
+        "gird mx-auto place-items-center text-center",
+        props.className,
+      )}
     >
       {props.children}
     </div>
@@ -181,8 +183,10 @@ export const TableBody = (props: TableBodyProps) => {
           href={props.href}
           role="row"
           aria-label="table body"
-          tabIndex={0}
-          className={cn("grid min-h-28 place-items-center", props.className)}
+          className={cn(
+            "mx-auto grid min-h-28 place-items-center text-center",
+            props.className,
+          )}
         >
           {props.children}
         </Link>
@@ -190,9 +194,8 @@ export const TableBody = (props: TableBodyProps) => {
         <div
           role="row"
           aria-label="table body"
-          tabIndex={0}
           className={cn(
-            "mx-auto grid min-h-28 place-items-center",
+            "mx-auto grid min-h-28 place-items-center text-center",
             props.className,
           )}
         >
@@ -212,7 +215,7 @@ export const TableBodySm = (props: TableBodyProps) => {
           aria-label="table body"
           tabIndex={0}
           className={cn(
-            "block pb-2 text-neutral-700 first:border-b first:pb-4",
+            "block flex-wrap pb-2 text-neutral-700 first:border-b first:pb-4",
             props.className,
           )}
         >
@@ -223,7 +226,7 @@ export const TableBodySm = (props: TableBodyProps) => {
           aria-label="table body"
           tabIndex={0}
           className={cn(
-            "pb-2 text-neutral-700 first:border-b first:pb-4",
+            "flex-wrap pb-2 text-neutral-700 first:border-b first:pb-4",
             props.className,
           )}
         >

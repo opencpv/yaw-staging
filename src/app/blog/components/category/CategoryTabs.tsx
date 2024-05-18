@@ -2,7 +2,6 @@
 import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
 import convertSlugToString from "@/lib/utils/convertSlugToString";
 import slugify from "@/lib/utils/slugify";
-import capitalizeName from "@/lib/utils/stringManipulation";
 import { useBlogCategoryStore } from "@/store/blog/blogStore";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -32,7 +31,7 @@ const CategoryTabs = (props: Props) => {
       selectedKey={categoryOption}
       onSelectionChange={(selection) => {
         changeCategoryOption(selection as string);
-        router.push(`/blog/${slugify(selection as string)}`);
+        router.push(`/blog/${slugify(selection as string)}`, { scroll: false });
       }}
       radius="small"
       tabColor="colored"

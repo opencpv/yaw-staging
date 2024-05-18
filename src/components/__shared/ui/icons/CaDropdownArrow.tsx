@@ -7,7 +7,7 @@ const CaDropdownArrow = () => {
       viewBox="0 0 20 20"
       fill="none"
     >
-      <g clip-path="url(#clip0_7902_117657)">
+      <g clipPath="url(#clip0_7902_117657)">
         <path
           d="M5.83594 8.33203L10.0026 12.4987L14.1693 8.33203H5.83594Z"
           fill="#323232"

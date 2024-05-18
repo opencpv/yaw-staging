@@ -1,10 +1,4 @@
-import { Metadata } from "next";
 import UniqueIdForm from "./components/UniqueIdForm";
-
-export const metadata: Metadata = {
-  title: "B2B",
-  description: "", // tentative
-};
 
 function Page() {
   return (

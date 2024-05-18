@@ -12,17 +12,17 @@ interface CartStore {
 
 const cartData: CartProp[] = [
   {
-    name: "Service name",
+    name: "Be The First To Know",
     cost: 49.8,
     quantity: 1,
     date: null,
     isQuantityChangable: true,
   },
   {
-    name: "Be your agent",
+    name: "Be My Agent",
     cost: 49.8,
     quantity: 1,
-    date: "15 December 2023 .1:15pm",
+    date: "Wed, 15 May 2024 11:27:55 GMT",
     isQuantityChangable: false,
   },
 ];
@@ -37,7 +37,7 @@ const useCartStore = create<CartStore>((set) => ({
       return { items: updatedItems };
     }),
   removeItem: (
-    itemIndex // Modify parameter type
+    itemIndex, // Modify parameter type
   ) =>
     set((state) => ({
       items: state.items.filter((_, index) => index !== itemIndex),

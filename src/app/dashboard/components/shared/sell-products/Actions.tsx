@@ -27,8 +27,7 @@ const Actions = ({ id, table }: Props) => {
         onClose={onClose}
         onOpenChange={onOpenChange}
         label="Are you sure you want to delete this application?"
-        id={id}
-        table={table}
+        handleDestruction={() => {}}
       />
       <Popover
         style={{ zIndex: "99999" }}
