@@ -19,7 +19,7 @@ const AboutItem = ({ data, index }: { data: any; index: number }) => {
   );
 
   const Description = () => (
-    <p className=" text-base font-[500] text-[#8A8A8A] md:text-lg 2xl:text-xl 3xl:text-2xl">
+    <p className="mt-8 text-base font-[500] leading-normal text-[#8A8A8A] md:text-lg md:leading-normal 2xl:text-2xl 2xl:leading-normal">
       {data.description}
     </p>
   );
