@@ -70,7 +70,9 @@ const PostsGrid: React.FunctionComponent<IPostsGridProps> = (props) => {
               </>
             ) : (
               <>
-                {posts.length == 0 && (
+                {posts.length === 0 && props.isResultFromSearch ? (
+                  <p className="mt-8">No post matches your search</p>
+                ) : (
                   <p className="mt-8">No posts under current category</p>
                 )}
               </>

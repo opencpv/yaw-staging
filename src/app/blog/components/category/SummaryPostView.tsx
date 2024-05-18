@@ -10,7 +10,9 @@ type Props = {
 
 const SummaryPostView = ({ categories, posts }: Props) => {
   const [searchText, setSearchText] = React.useState<string>("");
-  const [searchedBlog, setSearchedBlog] = React.useState<any[]>([]);
+  const [searchedBlog, setSearchedBlog] = React.useState<any[] | undefined>(
+    undefined,
+  );
 
   const handleSearch = async () => {
     const res = await fetch(`${location.origin}/api/blog?search=${searchText}`);
@@ -23,8 +25,8 @@ const SummaryPostView = ({ categories, posts }: Props) => {
   };
 
   useEffect(() => {
-    if (searchText === "" && searchedBlog.length > 0) {
-      handleSearch();
+    if (searchText === "" && searchedBlog) {
+      setSearchedBlog(undefined);
     }
   }, [searchText]);
 
@@ -37,8 +39,8 @@ const SummaryPostView = ({ categories, posts }: Props) => {
       />
       <div className="flex items-center justify-center pb-10 text-neutral-500">
         <PostsGrid
-          posts={searchedBlog.length > 0 ? searchedBlog : posts}
-          isResultFromSearch={searchedBlog.length > 0}
+          posts={searchedBlog ? searchedBlog : posts}
+          isResultFromSearch={searchedBlog ? true : false}
         />
       </div>
       {/* <p className="mb-20 text-center">pagination</p> */}

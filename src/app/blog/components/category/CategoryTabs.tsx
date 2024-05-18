@@ -35,6 +35,9 @@ const CategoryTabs = (props: Props) => {
       }}
       radius="small"
       tabColor="colored"
+      classNames={{
+        tabList: "flex-nowrap",
+      }}
     />
   );
 };
