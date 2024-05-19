@@ -5,10 +5,13 @@ import Link from "next/link";
 import SliderPaginationOnly from "@/components/__shared/ui/sliders/SliderPaginationOnly";
 import SideContentCategories from "./SideContentCategories";
 import Loader from "@/components/__shared/ui/loader/Loader";
+import { urlForImage } from "@/lib/utils/sanity/utils";
 
-type Props = {};
+type Props = {
+  ads?: any;
+};
 
-const SideContentGroup = (props: Props) => {
+const SideContentGroup = ({ ads }: Props) => {
   return (
     <>
       {/* Follow us */}
@@ -32,15 +35,17 @@ const SideContentGroup = (props: Props) => {
         </div>
       </SideContent>
       {/* Sponsors */}
-      <SideContent title="Sponsors" className="mb-10">
-        <SliderPaginationOnly
-          images={[1, 2, 3].map((image) => ({
-            src: "/assets/images/niceHome.png",
-            name: "",
-          }))}
-          className="w-full"
-        />
-      </SideContent>
+      {ads && (
+        <SideContent title="Sponsors" className="mb-10" link={ads.url}>
+          <SliderPaginationOnly
+            images={ads.adImages.map((adImageItem: any) => ({
+              src: urlForImage(adImageItem.customImageItem)?.url() as string,
+              name: "",
+            }))}
+            className="w-full"
+          />
+        </SideContent>
+      )}
       {/* Category */}
       <SideContent
         title="Category"

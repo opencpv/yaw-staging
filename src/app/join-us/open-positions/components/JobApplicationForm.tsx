@@ -20,11 +20,12 @@ import {
 import { toast } from "react-toastify";
 import axios from "axios";
 import routes from "@/lib/utils/route";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Button from "@/components/__shared/ui/button/Button";
 import JoinUsButtons from "../../components/JoinUsButtons";
 import Tooltip from "@/components/__shared/ui/Tooltip";
 import { BsInfoCircle } from "react-icons/bs";
+import emailjs from "@emailjs/browser";
 
 type Props = {
   variant: "application" | "resume";
@@ -40,6 +41,9 @@ type errorProp = {
   phone?: string;
 };
 function JobApplicationForm({ variant }: Props) {
+  const searchParams = useSearchParams();
+  const job = searchParams?.get("job");
+
   const { handleCountryChange, handlePhone, phone, phoneInputPlaceholder } =
     useContactForm();
   const [firstname, setFirstname] = useState<string>("");
@@ -78,7 +82,20 @@ function JobApplicationForm({ variant }: Props) {
       })
       .then((res) => {
         setLoading(false);
-        router.push("/join-us/open-positions/submitted");
+        emailjs
+          .send(
+            "service_ft1rqqu",
+            "template_pw9kxnn",
+            {
+              title: "New job application",
+              subtitle: "Job Application",
+              message: `Applicant name: ${firstname} ${lastname} `,
+            },
+            "qXvfKUtuslfUz23se",
+          )
+          .then(() => {
+            router.push("/join-us/open-positions/submitted");
+          });
       })
       .catch((err) => {
         setLoading(false);
@@ -234,6 +251,10 @@ function JobApplicationForm({ variant }: Props) {
                     formData.append("email", email);
                     formData.append("phone", phone!.toString());
                     formData.append("link", link);
+                    formData.append(
+                      "job",
+                      job ? (job as string) : "resume bank",
+                    );
                     const resumeFormData = new FormData();
                     const namePrepend = generateString(8);
                     const newResumeFilename = `${namePrepend}-${resume!.name}`;

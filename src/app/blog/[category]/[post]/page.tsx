@@ -32,9 +32,18 @@ const StoryPage = async ({ params, searchParams }: Props) => {
     SINGLE_BLOG_POST(searchParams?.id as string),
   );
   const post = initialPostData.data[0];
-
+  console.log(post);
   const { images } = useAssets();
-
+  sanityClient
+    .patch(post._id)
+    .inc({ views: 1 })
+    .commit()
+    .then((update) => {
+      console.log(`Blog ${post.title} view count updated to ${update.views}`);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   const SampleImageComponent = ({
     value,
     isInline = false,
@@ -112,7 +121,7 @@ const StoryPage = async ({ params, searchParams }: Props) => {
             Rate this story
           </h3>
           <div className="no-print mb-16 flex flex-wrap items-center justify-between gap-5">
-            <Rating />
+            <Rating rating={post.rating} rating_number={post.ratings_number} />
             <div className="flex items-center gap-3 text-2xl text-primary-200">
               <Share
                 url={
@@ -132,7 +141,7 @@ const StoryPage = async ({ params, searchParams }: Props) => {
         {/* Side content -- right side of Grid */}
         <div className="col-span-1 space-y-5 max-md:hidden">
           <div>
-            <SideContentGroup />
+            <SideContentGroup ads={post.blog_ad} />
           </div>
           <SubscribeToBlogButton />
         </div>

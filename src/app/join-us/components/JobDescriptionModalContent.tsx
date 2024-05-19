@@ -62,7 +62,7 @@ function JobDescriptionModalContent({ jobs }: Props) {
                   </Button>
                   <Button
                     color="primary"
-                    href="/join-us/open-positions/application"
+                    href={`/join-us/open-positions/application?job=${job.title}`}
                     className="w-full"
                   >
                     Apply
