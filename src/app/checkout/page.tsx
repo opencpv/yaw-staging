@@ -58,7 +58,7 @@ const Checkout = () => {
   //             onClick={() => {
   //               router.push("/cart");
   //             }}
-  //             className={`mb-8 flex items-center justify-center gap-4 py-8 text-[#DDB771] outline-none hover:scale-[1.04]
+  //             className={`mb-8 flex items-center justify-center gap-4 py-8 text-accent outline-none hover:scale-[1.04]
   //         lg:mb-[63px] lg:p-0`}
   //           >
   //             <CaBackArrow />
@@ -108,7 +108,7 @@ const Checkout = () => {
   //           onClick={() => {
   //             router.push("/cart");
   //           }}
-  //           className={`mb-8 flex items-center justify-center gap-4 px-8 py-8 text-[#DDB771] outline-none hover:scale-[1.04]
+  //           className={`mb-8 flex items-center justify-center gap-4 px-8 py-8 text-accent outline-none hover:scale-[1.04]
   //         lg:mb-[63px] lg:p-0`}
   //         >
   //           <CaBackArrow />

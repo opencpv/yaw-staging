@@ -41,7 +41,7 @@ const NotificationsPopover = () => {
           <div className="flex items-center justify-between ">
             <p className="text-20 font-semibold 2xl:text-25 ">Notifications</p>
             <p
-              className="cursor-pointer text-[10px] font-bold text-[#DDB771]"
+              className="cursor-pointer text-[10px] font-bold text-accent"
               onClick={() => {
                 router.push("/dashboard/renter/notifications");
                 setOpen(false);
