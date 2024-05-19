@@ -9,7 +9,7 @@ import {
   FaQuestionCircle,
   FaHome,
 } from "react-icons/fa";
-import { FaPeopleCarryBox } from "react-icons/fa6";
+import { FaPeopleCarryBox, FaPerson } from "react-icons/fa6";
 const Sidebar = () => {
   const path = usePathname();
   return (
@@ -21,6 +21,12 @@ const Sidebar = () => {
           icon={<FaDashcube />}
           link={"/not312/dashboard"}
           active={path === "/not312/dashboard"}
+        />
+        <NavButton
+          text="Customers"
+          icon={<FaPerson />}
+          link={"/not312/dashboard/customers"}
+          active={path === "/not312/dashboard/customers"}
         />
         <NavButton
           text="Feedback"
