@@ -1,19 +1,38 @@
+"use client";
 import Image from "next/image";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import React from "react";
 
-const Category = ({ category, count, className, image }: CategoryProps) => {
+const Category = ({ category, className, image }: CategoryProps) => {
+  const searchParams = useSearchParams();
+  const sort = searchParams?.get("sort") || "popular";
+  const categories = searchParams?.get("categories") || "";
+  const condition = searchParams?.get("condition") || "";
+  const negotiation = searchParams?.get("negotiation") || "";
+  const priceRangeFrom = searchParams?.get("priceRangeFrom") || "";
+  const priceRangeTo = searchParams?.get("priceRangeTo") || "";
+
   return (
-    <div
-      className={`relative flex items-center justify-center h-40 text-sm text-center text-white min-w-fit ${className}`}
+    <Link
+      href={`/moving-sale?${new URLSearchParams({
+        category,
+        sort,
+        categories,
+        condition,
+        negotiation,
+        priceRangeFrom,
+        priceRangeTo,
+      })}`}
+      scroll={false}
+      className={`relative flex h-40 min-w-fit items-center justify-center text-center text-sm text-white ${className}`}
     >
       <Image src={image} alt="" fill style={{ objectFit: "cover" }} />
-      <div className="absolute w-full h-full bg-opacity-20 bg-gradient-to-b from-primary-500 to-transparent">
+      <div className="absolute h-full w-full bg-opacity-20 bg-gradient-to-b from-primary-500 to-transparent"></div>
+      <div className="relative z-10 space-y-2.5 p-10">
+        <h4 className="relative z-10 font-[600] capitalize">{category}</h4>
       </div>
-      <div className="relative z-10 p-10 space-y-2.5">
-        <h4 className="font-[600] relative z-10">{category}</h4>
-        {/* <p className="relative z-10">{count} items</p> */}
-      </div>
-    </div>
+    </Link>
   );
 };
 

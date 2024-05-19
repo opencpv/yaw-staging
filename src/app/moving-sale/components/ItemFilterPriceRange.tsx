@@ -33,11 +33,6 @@ const ItemFilterPriceRange = (props: Props) => {
           onChangeValue={setPriceRangeTo}
         />
       </div>
-      <RadioChoices<"negotiable" | "non-negotiable">
-        value={negotiation as "negotiable" | "non-negotiable"}
-        choices={["Negotiable", "Non-negotiable"]}
-        onValueChange={setNegotiation}
-      />
     </>
   );
 };
