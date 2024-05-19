@@ -81,6 +81,7 @@
     "react-icons": "^4.11.0",
     "react-leaflet": "^4.2.1",
     "react-lottie": "^1.2.4",
+    "react-paginate": "^8.2.0",
     "react-paystack": "^5.0.0",
     "react-phone-number-input": "^3.3.8",
     "react-share": "^5.0.3",
@@ -93,6 +94,7 @@
     "swr": "^2.2.4",
     "tailwindcss": "^3.4.1",
     "typescript": "5.2.2",
+    "uuid": "^9.0.1",
     "yup": "^1.2.0",
     "zukeeper": "^1.0.2",
     "zustand": "^4.4.6"

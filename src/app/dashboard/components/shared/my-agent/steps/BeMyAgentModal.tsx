@@ -78,7 +78,7 @@ const BeMyAgentModal = (props: Props) => {
       ) : props.button === "Price" ? (
         <AgentButtons
           variant="price"
-          content={`GHS ${formatPrice(props.content as number)}`}
+          content={formatPrice(props.content as number)}
           className={props.buttonClassName}
           onClick={() => setOpen(true)}
         />

@@ -68,7 +68,7 @@ const MovingSalesPage = () => {
               handleSelectionChange={handleSelectionChange}
               className="mx-0"
             />
-            <Button color="accent" onClick={onOpen}>
+            <Button color="accent" onClick={onOpen} className="h-unit-10">
               Filter
             </Button>
           </div>

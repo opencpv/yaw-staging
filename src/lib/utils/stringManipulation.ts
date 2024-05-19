@@ -1,5 +1,6 @@
-import { format, getDate } from "date-fns";
+import { format, parse } from "date-fns";
 import { enUS } from "date-fns/locale";
+import { v4 as uuidv4 } from "uuid";
 
 const capitalizeName = (initialName: string, delimiter?: string) => {
   let nameSplit = initialName?.split(delimiter ? delimiter : "%20");
@@ -32,6 +33,22 @@ export const formatDate = (dateTime: string) => {
   return formattedDate;
 };
 
+export const formatDateTime = (dateTime: string) => {
+  return format(
+    parse(dateTime, "EEE, dd MMMM yyyy HH:mm:ss 'GMT'", new Date()),
+    "dd MMM. yyyy hh:mma",
+  )
+    .replace("AM", "am")
+    .replace("PM", "pm");
+};
+
+export const formatDateOnly = (dateTime: string) => {
+  return format(
+    parse(dateTime, "EEE, dd MMMM yyyy HH:mm:ss 'GMT'", new Date()),
+    "dd MMM, yyyy",
+  );
+};
+
 export const LowerCase = (text: string) => {
   return text?.toLowerCase();
 };
@@ -44,4 +61,8 @@ export default capitalizeName;
 
 export const getFirstWord = (str: string, delimiter: string = " ") => {
   return str?.split(delimiter)[0];
+};
+
+export const createUUID = () => {
+  return uuidv4();
 };

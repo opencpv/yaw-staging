@@ -23,7 +23,10 @@ const SearchInput = ({
         size="large"
         placeholder={placeholder ? placeholder : "Search"}
         prefix={
-          <CiSearch className="text-neutral-500" onClick={onPressEnter} />
+          <CiSearch
+            className="text-neutral-500 hover:cursor-pointer"
+            onClick={onPressEnter}
+          />
         }
         allowClear
         onChange={onChange}

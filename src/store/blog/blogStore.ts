@@ -11,14 +11,12 @@ type BlogPostSliderStore = {
   setActiveIndex: (idx: number) => void;
 };
 
-const useBlogCategoryStore = create<BlogCategoryStore>((set) => ({
+export const useBlogCategoryStore = create<BlogCategoryStore>((set) => ({
   filterOption: "all",
   changeCategoryOption: (option) => set({ filterOption: option }),
 }));
 
-const useBlogPostSlider = create<BlogPostSliderStore>((set) => ({
+export const useBlogPostSlider = create<BlogPostSliderStore>((set) => ({
   activeIndex: 0,
   setActiveIndex: (idx) => set({ activeIndex: idx }),
 }));
-
-export { useBlogCategoryStore, useBlogPostSlider };

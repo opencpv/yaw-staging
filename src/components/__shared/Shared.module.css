@@ -1,0 +1,3 @@
+.paginationSquare {
+  @apply grid h-10 w-10 place-items-center rounded-md border-2 focus:outline-accent;
+}

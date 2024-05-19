@@ -1,11 +1,16 @@
-"use client";
 import Navbar from "@/components/__shared/ui/Navbar";
-import { useEffect } from "react";
 import JoinUsNavbar from "./components/JoinUsNavbar";
-import { usePathname } from "next/navigation";
+import { headers } from "next/headers";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Jobs",
+  description: "", // tentative
+};
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  const pathname = usePathname();
+  const headerList = headers();
+  const pathname = headerList.get("x-pathname") || "";
 
   return (
     <div className="bg-secondary-50">

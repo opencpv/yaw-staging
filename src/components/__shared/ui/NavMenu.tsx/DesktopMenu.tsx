@@ -8,6 +8,7 @@ import { useMenuStore } from "@/store/navmenu/useMenuStore";
 import { useFaqHowToSwitchStore } from "@/store/faq/useFaqStore";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useMenuLinks } from "./content";
+import { createUUID } from "@/lib/utils/stringManipulation";
 
 export const DesktopMenu = (props: any) => {
   const { linksAfterLogin, linksBeforeLogin } = useMenuLinks();
@@ -24,7 +25,7 @@ export const DesktopMenu = (props: any) => {
   return (
     <div className={`flex-row gap-12 px-8 ${props?.className} `}>
       <div
-        className={"flex w-max flex-col gap-10 border-r border-r-white pr-10"}
+        className={"flex w-max flex-col gap-10 border-r-[3px] border-r-white pr-10"}
       >
         {/* main links before login */}
         {!user &&
@@ -139,7 +140,7 @@ export const DesktopMenu = (props: any) => {
       {user && active !== null && (
         <>
           <motion.div
-            key={crypto.randomUUID()}
+            key={createUUID()}
             className={"flex flex-col gap-8"}
             animate={"open"}
             variants={FadeInOut}
@@ -170,7 +171,7 @@ export const DesktopMenu = (props: any) => {
             className="h-full min-h-[350px]"
           />
           <motion.div
-            key={crypto.randomUUID()}
+            key={createUUID()}
             className={"flex flex-[0_0_30%] flex-col text-[#FCAB10]"}
             animate={FadeInOut.open}
             variants={FadeInOut}

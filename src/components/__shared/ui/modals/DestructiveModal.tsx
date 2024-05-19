@@ -11,17 +11,14 @@ type ModalProps = {
   isOpen: boolean;
   onOpenChange: () => void;
   onClose: () => void;
-  id: string;
-  table: TableNames;
   label?: string;
   backdropClassName?: string;
-  handleDestruction?: () => void;
+  handleDestruction: () => void;
 };
 
 type ModalFooterProps = {
   onClose: () => void;
-  id: string;
-  table: TableNames;
+  handleDestruction: () => void;
 };
 
 type ModalBodyProps = {
@@ -34,14 +31,15 @@ const DestructiveModal = ({
   onClose,
   label,
   backdropClassName,
-  id,
-  table,
+  handleDestruction,
 }: ModalProps) => {
   return (
     <Modal
       header={<ModalHeader />}
       body={<ModalBody label={label} />}
-      footer={<ModalFooter onClose={onClose} id={id} table={table} />}
+      footer={
+        <ModalFooter onClose={onClose} handleDestruction={handleDestruction} />
+      }
       isOpen={isOpen}
       onOpenChange={onOpenChange}
       size="md"
@@ -71,16 +69,16 @@ const ModalBody = ({ label }: ModalBodyProps) => {
   );
 };
 
-const ModalFooter = ({ onClose, table, id }: ModalFooterProps) => {
+const ModalFooter = ({ onClose, handleDestruction }: ModalFooterProps) => {
   const router = useRouter();
 
-  const handleDestruction = async () => {
-    const { error } = await supabase.from(table).delete().eq("id", id);
+  // const handleDestruction = async () => {
+  //   const { error } = await supabase.from(table).delete().eq("id", id);
 
-    if (!error) {
-      router.refresh();
-    }
-  };
+  //   if (!error) {
+  //     router.refresh();
+  //   }
+  // };
 
   return (
     <div className="flex w-full justify-end gap-2">

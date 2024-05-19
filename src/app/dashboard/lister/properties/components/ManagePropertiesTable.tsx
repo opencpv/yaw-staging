@@ -85,7 +85,7 @@ const ManagePropertiesTable = (props: Props) => {
       </table>
       {isValidating ? <Spinner color="default" /> : null}
       <div className="mb-20">
-        <Pagination
+        {/* <Pagination
           total={totalCount ? totalCount / pageSize : 1}
           handlePrev={() => {
             if (previousPage) previousPage();
@@ -95,7 +95,7 @@ const ManagePropertiesTable = (props: Props) => {
           }}
           nextDisabled={nextPage === null ? true : false}
           prevDisabled={previousPage === null ? true : false}
-        />
+        /> */}
       </div>
     </section>
   );

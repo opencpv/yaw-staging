@@ -3,8 +3,8 @@ import Image from "next/image";
 
 const AboutItem = ({ data, index }: { data: any; index: number }) => {
   const Heading1 = () => (
-    <div className="relative mt-8 w-fit first:mt-0">
-      <h2 className="border-l-8 border-[#DDB771] px-4 text-2xl font-bold text-[#2A4E55] md:text-4xl">
+    <div className="relative  w-fit first:mt-0">
+      <h2 className="border-l-8 border-[#DDB771] px-4 text-2xl font-bold text-[#2A4E55] md:text-4xl 2xl:text-5xl">
         {data.title}
       </h2>
     </div>
@@ -12,7 +12,7 @@ const AboutItem = ({ data, index }: { data: any; index: number }) => {
 
   const Heading2 = () => (
     <div className="relative w-fit ">
-      <h2 className="mt-8 border-l-8 border-[#DDB771] px-4 text-2xl font-bold text-[#2A4E55] md:text-4xl">
+      <h2 className=" border-l-8 border-[#DDB771] px-4 text-2xl font-bold text-[#2A4E55] md:text-4xl 2xl:text-5xl">
         {data.title}
       </h2>
     </div>
@@ -34,54 +34,31 @@ const AboutItem = ({ data, index }: { data: any; index: number }) => {
     />
   );
 
-  if (index == 1) {
+  if (index % 2 !== 0) {
     return (
-      <div className="mt-16 grid min-h-max w-full grid-cols-1 items-center gap-5 lg:grid-cols-2">
-        <div className="flex flex-col justify-center lg:py-36">
+      <div className=" grid min-h-max w-full grid-cols-1 items-center gap-6 lg:grid-cols-2">
+        <div className="flex flex-col gap-8 justify-center ">
           <Heading1 />
           <Description />
         </div>
-        <div className="relative h-[27rem] min-h-0 w-full lg:min-h-full">
+        <div className="relative w-full aspect-[403/426] max-w-[403px] sm:aspect-[775/716] sm:max-w-[775px]  lg:aspect-[824/557] lg:max-w-[824px] lg:rounded-xl overflow-hidden">
           <ImageComponent />
         </div>
       </div>
     );
   } else if (index % 2 == 0) {
     return (
-      <div className="mt-8 grid min-h-max w-full grid-cols-1 items-center gap-5 lg:grid-cols-2">
-        <div className="relative h-[27rem] min-h-0 w-full lg:min-h-full">
+      <div className="grid min-h-max w-full grid-cols-1 items-center gap-6 lg:grid-cols-2">
+        <div className="order-2 lg:order-1 relative w-full aspect-[403/426] max-w-[403px] sm:aspect-[775/716] sm:max-w-[775px]  lg:aspect-[824/557] lg:max-w-[824px] lg:rounded-xl overflow-hidden">
           <ImageComponent />
         </div>
-        <div className="flex min-h-full flex-col justify-center lg:py-36">
+        <div className="order-1 lg:order-2 flex min-h-full flex-col justify-center  gap-8">
           <Heading2 />
           <Description />
         </div>
       </div>
     );
-  } else {
-    return (
-      <>
-        <div className="mt-8 grid min-h-max w-full grid-cols-1 items-center gap-5 lg:grid-cols-2">
-          <div className="flex min-h-max flex-col justify-center lg:py-[9rem]">
-            <Heading2 />
-            <Description />
-          </div>
-          <div className="relative h-[27rem] w-full md:h-[45rem] lg:h-full">
-            <ImageComponent />
-          </div>
-        </div>
-        <div className="mt-8 grid w-full grid-cols-1 gap-5 lg:grid-cols-2 ">
-          <div className="flex min-h-max flex-col justify-center lg:py-[9rem]">
-            <Heading2 />
-            <Description />
-          </div>
-          <div className="relative h-[27rem] w-full md:h-[45rem] lg:h-full">
-            <ImageComponent />
-          </div>
-        </div>
-      </>
-    );
-  }
+  } 
 };
 
 export default AboutItem;

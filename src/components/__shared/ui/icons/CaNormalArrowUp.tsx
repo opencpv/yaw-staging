@@ -7,7 +7,7 @@ const CaNormalArrowUp = () => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g clip-path="url(#clip0_7835_108175)">
+      <g clipPath="url(#clip0_7835_108175)">
         <path
           d="M7.41 15.41L12 10.83L16.59 15.41L18 14L12 8L6 14L7.41 15.41Z"
           fill="#323232"

@@ -5,38 +5,35 @@ import { usePathname } from "next/navigation";
 import convertSlugToString from "@/lib/utils/convertSlugToString";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import SkeletonLong from "@/components/__shared/ui/skeleton/SkeletonLong";
-import capitalizeName from "@/lib/utils/stringManipulation";
 import slugify from "@/lib/utils/slugify";
+import SkeletonTextual from "@/components/__shared/ui/skeleton/SkeletonTextual";
 
 interface IPostsGridProps {
   posts: any[];
+  isResultFromSearch: boolean;
+  loading: boolean;
 }
 
-const PostsGrid: React.FunctionComponent<IPostsGridProps> = (props) => {
-  const path = usePathname();
-  const currentCategory = path?.split("/")[2];
-  const [posts, setPosts] = React.useState<any[]>([]);
-  const [loading, setLoading] = React.useState(true);
-
-  React.useEffect(() => {
-    if (currentCategory === "all") {
-      setPosts(props.posts);
-      setLoading(false);
-    } else {
-      posts.forEach((post) => {});
-      const filteredPosts = props.posts.filter(
-        (post) => slugify(post.category.category_title) === currentCategory,
-      );
-      setPosts(filteredPosts);
-      setLoading(false);
-    }
-  }, []);
-
+const PostsGrid: React.FunctionComponent<IPostsGridProps> = ({
+  posts,
+  loading,
+  isResultFromSearch,
+}) => {
   return (
     <>
       <section className="space-y-16">
         {loading ? (
-          <SkeletonLong count={3} className="w-full" />
+          <>
+            {Array.from(Array(3).keys()).map((n) => (
+              <div key={n} className="grid gap-x-10 gap-y-5 lg:grid-cols-3">
+                <SkeletonLong
+                  count={1}
+                  className="aspect-video w-full md:h-full lg:col-span-1 lg:max-w-full"
+                />
+                <SkeletonTextual className="max-w-3xl space-y-3 xs:min-w-[25rem] lg:col-span-2" />
+              </div>
+            ))}
+          </>
         ) : (
           <>
             {posts.length > 0 ? (
@@ -48,7 +45,6 @@ const PostsGrid: React.FunctionComponent<IPostsGridProps> = (props) => {
                     image={urlForImage(post?.featured_image)?.url() as string}
                     title={post?.title}
                     summary={post?.summary}
-                    postedAt="November 7th 2023"
                     rating={post?.rating}
                     href={
                       `/blog/${slugify(
@@ -60,7 +56,9 @@ const PostsGrid: React.FunctionComponent<IPostsGridProps> = (props) => {
               </>
             ) : (
               <>
-                {posts.length == 0 && (
+                {posts.length === 0 && isResultFromSearch ? (
+                  <p className="mt-8">No post matches your search</p>
+                ) : (
                   <p className="mt-8">No posts under current category</p>
                 )}
               </>

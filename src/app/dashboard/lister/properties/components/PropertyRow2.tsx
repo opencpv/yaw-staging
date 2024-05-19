@@ -43,7 +43,7 @@ const PropertyRow2 = ({
             </h4>
             <p className="mb-3 text-sm text-neutral-400">{propertyTitle}</p>
             <p className="text-sm font-[700] text-neutral-500">
-              GHS {formatPrice(price)}
+              {formatPrice(price)}
             </p>
           </div>
           {/* Status */}
