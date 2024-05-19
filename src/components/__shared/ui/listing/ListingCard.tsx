@@ -26,7 +26,7 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
   const lastIndex = props.images?.lastIndexOf(
     props.images[props.images.length - 1],
   );
-
+  const isAdmin = props.isAdmin ? true : false;
   // useEffect(() => {
   //   const updateViews = async () => {
   //     try {
@@ -47,7 +47,7 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
   //   };
 
   //   updateViews();
-  // }, [props.propertyId]);
+  // }, []);
 
   return (
     <>

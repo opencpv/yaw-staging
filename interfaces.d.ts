@@ -95,6 +95,7 @@ interface ListingInterface {
   images?: string[];
   propertyName?: string;
   href?: string;
+  isAdmin?: boolean;
 }
 
 interface MessageInterface {
