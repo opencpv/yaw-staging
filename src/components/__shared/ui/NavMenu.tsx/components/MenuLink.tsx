@@ -16,17 +16,17 @@ const MenuLink = (props: Props) => {
   return (
     <motion.button
       onClick={props.onClick}
-      className={`transition-all hover:scale-105 ${
+      className={`main-menu-link transition-all hover:scale-105 ${
         props.isSubLink && "capitalize"
       }`}
     >
       <div
         className={`w-full cursor-pointer ${
-          props.active ? "text-[#FCAB10]" : "text-[#fff]"
+          props.active ? "text-[#FCAB10]" : "text-white"
         }`}
       >
         {(props.isSubLink && props.linkObject.id) || props.linkObject?.sub ? (
-          <div className="flex item-center">
+          <div className="item-center flex">
             {props.isSubLink ? (
               <Link href={props.linkObject?.url}>
                 <h4 className="mr-10 font-normal">{props.linkObject?.name}</h4>
@@ -53,8 +53,8 @@ const MenuLink = (props: Props) => {
             href={props.linkObject?.url}
             className={`flex ${
               props.isSubLink
-                ? "font-normal text-base"
-                : "font-semibold text-2xl"
+                ? "text-base font-normal"
+                : " text-2xl font-semibold"
             }`}
             onClick={() => setToggle(false)}
           >

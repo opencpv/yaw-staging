@@ -1,10 +1,9 @@
 "use client";
 import Rate from "@/components/__shared/ui/Rate";
 import React, { useEffect } from "react";
-import { animate, delay, motion, stagger } from "framer-motion";
+import { animate, motion, stagger } from "framer-motion";
 import { useSessionStorage } from "@uidotdev/usehooks";
 import { useSearchParams } from "next/navigation";
-import { cn } from "@nextui-org/react";
 
 const Rating = () => {
   const id = useSearchParams()?.get("id");

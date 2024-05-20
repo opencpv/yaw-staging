@@ -53,7 +53,7 @@ const MenuOption = ({
   });
 
   const [open, setOpen] = useState(false);
-  const { setToggle } = useMenuStore();
+  const { setToggle, toggle } = useMenuStore();
   const setContactTabActiveKey = useContactStore((state) => state.setActiveKey);
   const setFaqActivePage = useFaqHowToSwitchStore(
     (state) => state.setActivePage,
@@ -69,7 +69,7 @@ const MenuOption = ({
               ${open ? "text-[#FCAB10]" : "text-[#fff]"}
             `}
         >
-          <p className={"text-2xl !font-semibold uppercase"}>{name}</p>
+          <h2 className={"main-menu-link uppercase"}>{name}</h2>
           <ArrowDownNav color={open ? "#ddd" : "#fff"} />
         </div>
       </Collapsible.Trigger>
@@ -77,7 +77,7 @@ const MenuOption = ({
         {/* sub links ---> View all listings, how to, etc.. */}
         {sub?.map((r, index) => (
           <Collapsible.Root key={index} className="flex flex-col text-white ">
-            <Collapsible.Trigger className="flex justify-between pr-20 text-left text-base">
+            <Collapsible.Trigger className="main-menu-link flex justify-between pr-20 text-left text-base">
               {LowerCase(r?.name) === "how to" ? (
                 <HowToLink
                   className="text-base font-normal"
@@ -142,7 +142,7 @@ export const MobileMenu = (props: any) => {
       >
         <Link
           href="/login"
-          className="text-2xl font-semibold uppercase text-white"
+          className="main-menu-link text-2xl font-semibold uppercase text-white"
           onClick={() => setToggle(false)}
         >
           Get Started
@@ -156,7 +156,7 @@ export const MobileMenu = (props: any) => {
               <Link
                 href={r?.url}
                 key={index}
-                className="mb-10 block"
+                className="main-menu-link mb-10 block"
                 onClick={() => setToggle(false)}
               >
                 <p className={"text-2xl !font-semibold uppercase text-[#fff]"}>
@@ -182,7 +182,7 @@ export const MobileMenu = (props: any) => {
               <Link
                 href={r?.url}
                 key={index}
-                className="mb-10 block"
+                className="main-menu-link mb-10 block"
                 onClick={() => setToggle(false)}
               >
                 <p className={"text-2xl !font-semibold uppercase text-[#fff]"}>

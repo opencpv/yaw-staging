@@ -15,9 +15,8 @@ export const DesktopMenu = (props: any) => {
   const [active, setActive] = useState<number | null>(null);
   const [subId, setSubId] = useState<number | null>(null);
   const router = useRouter();
-  const setToggle = useMenuStore((state) => state.setToggle);
+  const { setToggle } = useMenuStore();
   const { user } = useAppStore();
-
   const setFaqActivePage = useFaqHowToSwitchStore(
     (state) => state.setActivePage,
   );
@@ -25,7 +24,9 @@ export const DesktopMenu = (props: any) => {
   return (
     <div className={`flex-row gap-12 px-8 ${props?.className} `}>
       <div
-        className={"flex w-max flex-col gap-10 border-r-[3px] border-r-white pr-10"}
+        className={
+          "flex w-max flex-col gap-10 border-r-[3px] border-r-white pr-10"
+        }
       >
         {/* main links before login */}
         {!user &&
@@ -59,7 +60,6 @@ export const DesktopMenu = (props: any) => {
                         } else {
                           setActive(null);
                           router.push(r?.url);
-                          // props?.toggleMenu();
                         }
                       }}
                     />
