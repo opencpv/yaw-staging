@@ -60,10 +60,11 @@ const FilterModalBody = () => {
 const FilterModalFooter = ({ onClose }: FilterModalFooterProps) => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const sort = searchParams?.get("sort");
+  const sort = searchParams?.get("sort") || "popular";
   const category = searchParams?.get("category") || "";
   const { categories, condition, negotiation, priceRangeFrom, priceRangeTo } =
     useItemFilterStore();
+
   const handleSubmit = () => {
     router.replace(
       `/moving-sale?${new URLSearchParams({

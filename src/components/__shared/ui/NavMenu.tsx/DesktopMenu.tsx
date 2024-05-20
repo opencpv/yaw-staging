@@ -1,5 +1,5 @@
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Separator from "../../../Separator";
 import { FadeInOut } from "@/lib/animations";
@@ -9,17 +9,28 @@ import { useFaqHowToSwitchStore } from "@/store/faq/useFaqStore";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useMenuLinks } from "./content";
 import { createUUID } from "@/lib/utils/stringManipulation";
+import { animate, stagger } from "framer-motion";
 
 export const DesktopMenu = (props: any) => {
   const { linksAfterLogin, linksBeforeLogin } = useMenuLinks();
   const [active, setActive] = useState<number | null>(null);
   const [subId, setSubId] = useState<number | null>(null);
   const router = useRouter();
-  const { setToggle } = useMenuStore();
+  const { setToggle, toggle } = useMenuStore();
   const { user } = useAppStore();
   const setFaqActivePage = useFaqHowToSwitchStore(
     (state) => state.setActivePage,
   );
+
+  useEffect(() => {
+    animate(
+      ".main-menu-link",
+      toggle ? { opacity: [0, 1], x: [-20, 0] } : { opacity: 1, x: 0 },
+      {
+        delay: stagger(0.1),
+      },
+    );
+  }, [toggle]);
 
   return (
     <div className={`flex-row gap-12 px-8 ${props?.className} `}>

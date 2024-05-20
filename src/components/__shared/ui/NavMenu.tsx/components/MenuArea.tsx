@@ -9,16 +9,6 @@ import { animate, stagger } from "framer-motion";
 const MenuArea = (props: any) => {
   const { setToggle, toggle } = useMenuStore();
 
-  useEffect(() => {
-    animate(
-      ".main-menu-link",
-      toggle ? { opacity: [0, 1], x: [-20, 0] } : { opacity: 1, x: 0 },
-      {
-        delay: stagger(0.1),
-      },
-    );
-  }, [toggle]);
-
   return (
     <div className={"flex flex-col "}>
       <div className="flex flex-col lg:gap-10">
