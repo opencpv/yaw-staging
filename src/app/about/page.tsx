@@ -33,8 +33,6 @@ const About = async () => {
   const vSlider = data.verticalSlider;
   const hSlider = data.horizontalSlider;
 
-  const { images } = useAssets();
-
   return (
     <>
       <Navbar />
@@ -77,9 +75,9 @@ const About = async () => {
         </div>
         <FramerWrapper
           {...fadeUp}
-          className="wrapper flex min-h-max items-center justify-center mt-10 lg:mt-24 py-0"
+          className="wrapper mt-10 flex min-h-max items-center justify-center py-0 lg:mt-24"
         >
-          <div className="min-h-max flex flex-col gap-10">
+          <div className="flex min-h-max flex-col gap-10">
             {aboutDescription.map((data: any, index: number) => (
               <AboutItem key={index} index={index + 1} data={data} />
             ))}

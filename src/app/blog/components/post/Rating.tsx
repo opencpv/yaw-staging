@@ -1,7 +1,6 @@
 "use client";
 import Rate from "@/components/__shared/ui/Rate";
-import React, { useEffect } from "react";
-import { animate, motion, stagger } from "framer-motion";
+import React from "react";
 import { useSessionStorage } from "@uidotdev/usehooks";
 import { useSearchParams } from "next/navigation";
 
@@ -28,30 +27,6 @@ const Rating = () => {
     }
   };
 
-  const variants = {
-    show: {
-      height: "auto",
-      opacity: 1,
-      transition: { delay: 1.8 },
-    },
-    hide: {
-      height: 0,
-      opacity: 0,
-    },
-  };
-
-  useEffect(() => {
-    animate(
-      ".ant-rate-star",
-      blogRating?.ratedBlogs?.length > 0
-        ? { scale: [1, 1.5, 1.5, 1] }
-        : { scale: 1 },
-      {
-        delay: stagger(0.1),
-      },
-    );
-  }, [blogRating]);
-
   return (
     <div className="space-y-1">
       <Rate
@@ -64,18 +39,14 @@ const Rating = () => {
             ? true
             : false
         }
-      />
-      <motion.div
-        variants={variants}
-        animate={
+        shouldAnimateStars={blogRating?.ratedBlogs?.length > 0}
+        shouldShowMessage={
           blogRating?.ratedBlogs?.find((blog) => blog.id === id)?.value
-            ? "show"
-            : "hide"
+            ? true
+            : false
         }
-        className="bg-success-bg p-2 text-success"
-      >
-        Thank you for rating this story
-      </motion.div>
+        message="Thank you for rating this story"
+      />
     </div>
   );
 };

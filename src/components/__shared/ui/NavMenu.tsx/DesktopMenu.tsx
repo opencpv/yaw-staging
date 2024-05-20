@@ -25,9 +25,9 @@ export const DesktopMenu = (props: any) => {
   useEffect(() => {
     animate(
       ".main-menu-link",
-      toggle ? { opacity: [0, 1], x: [-20, 0] } : { opacity: 1, x: 0 },
+      toggle ? { opacity: [0, 1], x: [-5, 0] } : { opacity: 1, x: 0 },
       {
-        delay: stagger(0.1),
+        delay: stagger(0.1, { startDelay: 0.5 }),
       },
     );
   }, [toggle]);
@@ -183,7 +183,7 @@ export const DesktopMenu = (props: any) => {
           />
           <motion.div
             key={createUUID()}
-            className={"flex flex-[0_0_30%] flex-col text-[#FCAB10]"}
+            className={"flex flex-[0_0_30%] flex-col text-accent-100"}
             animate={FadeInOut.open}
             variants={FadeInOut}
             initial={FadeInOut.closed}

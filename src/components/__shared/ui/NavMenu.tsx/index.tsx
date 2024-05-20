@@ -162,7 +162,7 @@ const Root = styled(motion.aside, {
     color: "White",
     fontWeight: 600,
     "&:hover": {
-      color: "#FCAB10",
+      color: "#F1B346",
       scale: "1.15",
     },
   },

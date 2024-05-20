@@ -52,7 +52,7 @@ const VerticalSlider = ({ data }: { data: any }) => {
           clickable: true,
         }}
         modules={[Pagination, Autoplay]}
-        className={`mySwiper vertical-slider relative order-2 col-span-5 h-[28rem] lg:h-[32rem] w-full rounded-[3rem] bg-neutral-700 text-white lg:col-span-4 xl:col-span-3`}
+        className={`mySwiper vertical-slider relative order-2 col-span-5 h-[28rem] w-full rounded-[3rem] bg-neutral-700 text-white lg:col-span-4 lg:h-[32rem] xl:col-span-3`}
       >
         {/* Promotee info from database */}
         {data.slide.map((item: any) => (

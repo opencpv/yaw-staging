@@ -21,8 +21,8 @@ const MenuLink = (props: Props) => {
       }`}
     >
       <div
-        className={`w-full cursor-pointer ${
-          props.active ? "text-[#FCAB10]" : "text-white"
+        className={`w-full cursor-pointer hover:text-accent-100 ${
+          props.active ? "text-accent-100" : "text-white"
         }`}
       >
         {(props.isSubLink && props.linkObject.id) || props.linkObject?.sub ? (

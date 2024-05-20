@@ -40,7 +40,7 @@ const MenuOption = ({
     },
 
     "&[data-state=open] p:first-child": {
-      color: "#FCAB10",
+      color: "#F1B346",
       gap: "10px",
     },
     "&[data-state=closed]": {
@@ -58,7 +58,7 @@ const MenuOption = ({
           className={`
               "flex w-full cursor-pointer flex-row items-center justify-between
               font-[600]
-              ${open ? "text-[#FCAB10]" : "text-[#fff]"}
+              ${open ? "text-accent-100" : "text-[#fff]"}
             `}
         >
           <h2 className={"main-menu-link-sm uppercase"}>{name}</h2>
@@ -127,9 +127,9 @@ export const MobileMenu = (props: any) => {
   useEffect(() => {
     animate(
       ".main-menu-link-sm",
-      toggle ? { opacity: [0, 1], x: [-20, 0] } : { opacity: 1, x: 0 },
+      toggle ? { opacity: [0, 1], x: [-5, 0] } : { opacity: 1, x: 0 },
       {
-        delay: stagger(0.1),
+        delay: stagger(0.1, { startDelay: 0.5 }),
       },
     );
   }, [toggle]);
