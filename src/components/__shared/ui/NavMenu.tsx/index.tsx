@@ -125,16 +125,6 @@ export default function Menu(props: any) {
           className="absolute left-[50%]"
         />
       )}
-      {/* mobile */}
-      {/* <FaChevronDown
-        className="absolute left-[50%] bottom-5 text-3xl text-blue-600 cursor-pointer shrink-0 transition-all duration-700 lg:hidden"
-        onClick={handleScrollIntoView}
-        style={{
-          visibility: hide || isInViewport ? "hidden" : "visible",
-        }}
-      /> */}
-
-      {/* bottom links */}
       <MenuBottomLinks
         links={user ? bottomLinksAfterLogin : bottomLinksBeforeLogin}
         ref={bottomLinksRef}

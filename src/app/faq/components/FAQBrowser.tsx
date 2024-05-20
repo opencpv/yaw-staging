@@ -22,6 +22,7 @@ const FAQBrowser = ({
   const setActive = useFaqStore((state) => state.setActiveBrowser);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [filteredData, setfilteredData] = useState<any[]>([]);
+
   const handleToggle = (index: number | null) => {
     setOpenIndex((prevIndex) => (prevIndex === index ? null : index));
   };
@@ -34,7 +35,7 @@ const FAQBrowser = ({
       );
       setLoading(false);
     }
-  }, [faqCategories]);
+  }, [faqCategories, data]);
 
   return (
     <>

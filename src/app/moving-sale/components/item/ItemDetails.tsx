@@ -7,7 +7,7 @@ type Props = {};
 const ItemDetails = (props: Props) => {
   return (
     <div className="lg:col-span-2">
-      <div className="mb-16 flex flex-wrap items-center gap-x-20 gap-y-5">
+      <div className="mb-16 flex flex-wrap items-center gap-x-20 gap-y-5 max-xs:w-full max-xs:justify-between">
         <h3 className="text-xl font-[500] text-neutral-500">Product title</h3>
         <div className="rounded-md bg-accent-50 p-3 text-sm text-white">
           Category name

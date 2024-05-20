@@ -17,7 +17,7 @@ const PaginationMenuItem = ({ icon, label, href }: Props) => {
   return (
     <Button
       href={href}
-      className={`min-h-[4rem] max-w-full justify-start rounded-xl px-5 py-2 sm:min-h-[6rem] sm:justify-center sm:px-10 sm:py-5 ${
+      className={`min-h-[4rem] max-w-full justify-start pagination-menu-item rounded-xl px-5 py-2 sm:min-h-[6rem] sm:justify-center sm:px-10 sm:py-5 ${
         pathname?.includes(href)
           ? "bg-primary-400 text-white"
           : "border border-[#B0B0B0] text-[#B0B0B0]"

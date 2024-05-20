@@ -28,17 +28,15 @@ const Footer = () => {
   };
 
   const { data } = useQuery({
-    queryKey: ["footer", "feedback"],
+    queryKey: ["feedback", "global"],
     queryFn: async () => {
-      const res = await fetch("/api/footer/feedback");
+      const res = await fetch("/api/global/feedback");
 
       if (!res.ok) {
         throw new Error("Failed to fetch feedback");
       }
 
       const data = await res.json();
-
-      console.log(data);
 
       return data;
     },
