@@ -41,7 +41,7 @@ const AboutItem = ({ data, index }: { data: any; index: number }) => {
           <Heading1 />
           <Description />
         </div>
-        <div className="relative h-[26rem] w-full   overflow-hidden  lg:h-[33rem]  lg:rounded-xl">
+        <div className="relative h-[26rem] w-full   overflow-hidden md:h-[40rem]  lg:h-[31rem]  2xl:h-[34rem] lg:rounded-xl">
           <ImageComponent />
         </div>
       </div>
@@ -49,7 +49,7 @@ const AboutItem = ({ data, index }: { data: any; index: number }) => {
   } else if (index % 2 == 0) {
     return (
       <div className="grid min-h-max w-full grid-cols-1 items-center gap-6 lg:grid-cols-2">
-        <div className="relative order-2 h-[26rem] w-full overflow-hidden lg:order-1   lg:h-[33rem] max-w-[51rem] lg:rounded-xl">
+        <div className="relative order-2 h-[26rem] w-full overflow-hidden lg:order-1  md:h-[40rem] lg:h-[31rem] 2xl:h-[34rem] max-w-[51rem] lg:rounded-xl">
           <ImageComponent />
         </div>
 
