@@ -180,7 +180,7 @@ export default function ListingFormForm({ setOpen }: Props) {
         <NavigationButton
           className={` ${
             hideRight && "hidden"
-          } col-span-1 rounded-lg  bg-[#DDB771] font-semibold text-white`}
+          } col-span-1 rounded-lg  bg-accent font-semibold text-white`}
           onClick={handleForward}
         >
           {firstSlide && "Get Started"}

@@ -1,13 +1,16 @@
-import { EffectCoverflow, Navigation } from "swiper/modules";
 import { MdChevronRight, MdChevronLeft } from "react-icons/md";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useAssets } from "@/lib/custom-hooks/useAssets";
-import { useCallback, useRef } from "react";
+import { useCallback, useRef, useState } from "react";
 import SlideItem from "./SlideItem";
+import { urlForImage } from "@/lib/utils/sanity/utils";
 
-const MobileVersion = () => {
-  const { images } = useAssets();
+const MobileVersion = ({ data }: { data: any }) => {
+  const [activeIndex, setActiveIndex] = useState<number>(0);
   const sliderRef = useRef<any>(null);
+
+  const handleSlideChange = (swiper: any) => {
+    setActiveIndex(swiper.activeIndex);
+  };
 
   const handlePrev = useCallback(() => {
     if (!sliderRef.current) return;
@@ -21,25 +24,24 @@ const MobileVersion = () => {
 
   return (
     <div className="w-full lg:hidden">
+      <small className="mx-auto mb-8 flex max-w-5xl items-center justify-center text-white">
+        {data.slide[activeIndex]?.description}
+      </small>
       <Swiper
         ref={sliderRef}
         slidesPerView={1}
-        onSlideChange={() => null}
+        spaceBetween={10}
+        onSlideChange={handleSlideChange}
         onSwiper={(swiper) => null}
         centeredSlides={true}
       >
-        <SwiperSlide>
-          <SlideItem image={images.niceHome} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <SlideItem image={images.niceHome} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <SlideItem image={images.niceHome} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <SlideItem image={images.niceHome} />
-        </SwiperSlide>
+        {data.slide.map((item: any) => (
+          <SwiperSlide key={item._key}>
+            <SlideItem
+              image={urlForImage(item.featuredImage)?.url() as string}
+            />
+          </SwiperSlide>
+        ))}
       </Swiper>
       <div className="mt-[32px] flex items-center justify-between pb-[30px] md:mt-[40px] md:pb-[107px]">
         <button

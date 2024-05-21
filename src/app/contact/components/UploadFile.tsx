@@ -29,7 +29,7 @@ export const UploadFile = ({ file, handleFileUpload }: Props) => {
           </div>
           <div
             // type=""
-            className="upload-button hidden h-16 w-[128px] min-w-[128px] cursor-pointer items-center justify-center rounded-[4px] bg-[#DDB771] text-white min-[390px]:flex min-[390px]:h-full min-[390px]:-translate-x-2"
+            className="upload-button hidden h-16 w-[128px] min-w-[128px] cursor-pointer items-center justify-center rounded-[4px] bg-accent text-white min-[390px]:flex min-[390px]:h-full min-[390px]:-translate-x-2"
           >
             Upload
             <input
