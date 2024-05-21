@@ -60,7 +60,7 @@ const FilterModalBody = () => {
 const FilterModalFooter = ({ onClose }: FilterModalFooterProps) => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const sort = searchParams?.get("sort") || "popular";
+  const sort = searchParams?.get("sort") || "newest";
   const category = searchParams?.get("category") || "";
   const { categories, condition, negotiation, priceRangeFrom, priceRangeTo } =
     useItemFilterStore();

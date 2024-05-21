@@ -12,6 +12,7 @@ const ItemRelatedItems = (props: Props) => {
       <SliderMultiItems
         hasNavAndPagination={false}
         slidesPerView={1}
+        spaceBetween={25}
         breakpoints={{
           500: {
             slidesPerView: 1.5,

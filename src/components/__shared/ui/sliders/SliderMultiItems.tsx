@@ -1,8 +1,6 @@
 "use client";
 import React from "react";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import { Pagination, Navigation, Autoplay, FreeMode } from "swiper/modules";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
@@ -20,6 +18,7 @@ const SliderMultiItems = ({
   autoplay,
   swiperSlideClassName,
   centeredSlides,
+  spaceBetween,
 }: SliderMultiItemsProps) => {
   return (
     <>
@@ -36,7 +35,7 @@ const SliderMultiItems = ({
                 }
           }
           slidesPerView={slidesPerView ? slidesPerView : 1.5}
-          spaceBetween={15}
+          spaceBetween={spaceBetween || 15}
           centeredSlides={centeredSlides || true}
           breakpoints={{
             ...breakpoints,

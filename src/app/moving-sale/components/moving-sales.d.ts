@@ -1,6 +1,5 @@
 type CategoryProps = {
   category: string;
-  className?: string;
   image: string;
 };
 

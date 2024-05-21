@@ -137,6 +137,81 @@ export type Database = {
         }
         Relationships: []
       }
+      customer_product: {
+        Row: {
+          created_at: string
+          customer: number | null
+          date_added: string | null
+          id: number
+          is_paid: boolean | null
+          product: number | null
+        }
+        Insert: {
+          created_at?: string
+          customer?: number | null
+          date_added?: string | null
+          id?: number
+          is_paid?: boolean | null
+          product?: number | null
+        }
+        Update: {
+          created_at?: string
+          customer?: number | null
+          date_added?: string | null
+          id?: number
+          is_paid?: boolean | null
+          product?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "customer_product_customer_fkey"
+            columns: ["customer"]
+            isOneToOne: false
+            referencedRelation: "customers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "customer_product_product_fkey"
+            columns: ["product"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      customers: {
+        Row: {
+          company: string | null
+          created_at: string
+          customer_id: string | null
+          email: string | null
+          firstname: string | null
+          id: number
+          lastname: string | null
+          phone: string | null
+        }
+        Insert: {
+          company?: string | null
+          created_at?: string
+          customer_id?: string | null
+          email?: string | null
+          firstname?: string | null
+          id?: number
+          lastname?: string | null
+          phone?: string | null
+        }
+        Update: {
+          company?: string | null
+          created_at?: string
+          customer_id?: string | null
+          email?: string | null
+          firstname?: string | null
+          id?: number
+          lastname?: string | null
+          phone?: string | null
+        }
+        Relationships: []
+      }
       faq: {
         Row: {
           created_at: string
@@ -285,32 +360,117 @@ export type Database = {
           },
         ]
       }
+      invoice_items: {
+        Row: {
+          cost: number
+          created_at: string
+          description: string | null
+          id: number
+          invoice: number
+          name: string
+        }
+        Insert: {
+          cost: number
+          created_at?: string
+          description?: string | null
+          id?: number
+          invoice: number
+          name: string
+        }
+        Update: {
+          cost?: number
+          created_at?: string
+          description?: string | null
+          id?: number
+          invoice?: number
+          name?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "invoice_items_invoice_fkey"
+            columns: ["invoice"]
+            isOneToOne: false
+            referencedRelation: "invoices"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      invoices: {
+        Row: {
+          amount: number
+          billing_date: string
+          created_at: string
+          customer: number | null
+          id: number
+          is_paid: boolean
+          service: string
+          tax_rate: number
+        }
+        Insert: {
+          amount: number
+          billing_date: string
+          created_at?: string
+          customer?: number | null
+          id?: number
+          is_paid: boolean
+          service: string
+          tax_rate?: number
+        }
+        Update: {
+          amount?: number
+          billing_date?: string
+          created_at?: string
+          customer?: number | null
+          id?: number
+          is_paid?: boolean
+          service?: string
+          tax_rate?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "invoice_customer_fkey"
+            columns: ["customer"]
+            isOneToOne: false
+            referencedRelation: "customers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       join_us: {
         Row: {
           additional_link: string | null
           cover_letter_url: string
           created_at: string
+          email: string
           firstname: string
           id: number
+          job: string | null
           lastname: string
+          phone: string
           resume_url: string
         }
         Insert: {
           additional_link?: string | null
           cover_letter_url: string
           created_at?: string
+          email?: string
           firstname: string
           id?: number
+          job?: string | null
           lastname: string
+          phone?: string
           resume_url: string
         }
         Update: {
           additional_link?: string | null
           cover_letter_url?: string
           created_at?: string
+          email?: string
           firstname?: string
           id?: number
+          job?: string | null
           lastname?: string
+          phone?: string
           resume_url?: string
         }
         Relationships: []
@@ -509,6 +669,67 @@ export type Database = {
           id?: number
         }
         Relationships: []
+      }
+      products: {
+        Row: {
+          category: string
+          condition: string
+          created_at: string
+          description: string
+          id: number
+          images: string[] | null
+          price: number
+          seller: string
+          term: string
+          title: string
+        }
+        Insert: {
+          category: string
+          condition?: string
+          created_at?: string
+          description: string
+          id?: number
+          images?: string[] | null
+          price: number
+          seller: string
+          term?: string
+          title: string
+        }
+        Update: {
+          category?: string
+          condition?: string
+          created_at?: string
+          description?: string
+          id?: number
+          images?: string[] | null
+          price?: number
+          seller?: string
+          term?: string
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "products_category_fkey"
+            columns: ["category"]
+            isOneToOne: false
+            referencedRelation: "product_category"
+            referencedColumns: ["category"]
+          },
+          {
+            foreignKeyName: "products_seller_fkey"
+            columns: ["seller"]
+            isOneToOne: false
+            referencedRelation: "distinct_messages_view"
+            referencedColumns: ["sender_id"]
+          },
+          {
+            foreignKeyName: "products_seller_fkey"
+            columns: ["seller"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       profiles: {
         Row: {
@@ -1637,7 +1858,12 @@ export type Database = {
       }
     }
     Functions: {
-      [_ in never]: never
+      increment_property_views: {
+        Args: {
+          propertyid: number
+        }
+        Returns: undefined
+      }
     }
     Enums: {
       template: "STANDARD" | "PREMIUM"

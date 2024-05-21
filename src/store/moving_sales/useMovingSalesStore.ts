@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
-type Condition = "used" | "new";
-type Negotiation = "negotiable" | "non-negotiable";
+type Condition = "used" | "new" | "";
+type Negotiation = "negotiable" | "non-negotiable" | "";
 
 type ItemFilterStore = {
   categories: string[];
@@ -18,10 +18,10 @@ type ItemFilterStore = {
 
 const useItemFilterStore = create<ItemFilterStore>((set) => ({
   categories: [],
-  condition: "new",
+  condition: "",
   priceRangeFrom: "",
   priceRangeTo: "",
-  negotiation: "negotiable",
+  negotiation: "",
   setCategories: (categories) => set((state) => ({ ...state, categories })),
   setCondition: (condition) => set((state) => ({ ...state, condition })),
   setPriceRangeFrom: (priceRangeFrom) =>

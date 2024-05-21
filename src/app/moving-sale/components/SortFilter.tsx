@@ -4,7 +4,6 @@ import Select from "@/app/dashboard/components/shared/ui/Select";
 import Button from "@/components/__shared/ui/button/Button";
 import { FaChevronDown } from "react-icons/fa6";
 import ItemsFilterModal from "./ItemsFilterModal";
-import { useSelectDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { useDisclosure } from "@nextui-org/react";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
@@ -19,7 +18,7 @@ const SortFilter = () => {
   const router = useRouter();
   const { isOpen, onOpenChange, onOpen, onClose } = useDisclosure();
   const searchParams = useSearchParams();
-  const sort = searchParams?.get("sort") || "popular";
+  const sort = searchParams?.get("sort") || "newest";
   const categories = searchParams?.get("categories") || "";
   const condition = searchParams?.get("condition") || "";
   const negotiation = searchParams?.get("negotiation") || "";
