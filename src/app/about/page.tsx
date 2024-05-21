@@ -79,7 +79,7 @@ const About = async () => {
           {...fadeUp}
           className="wrapper flex min-h-max items-center justify-center mt-10 lg:mt-24 py-0"
         >
-          <div className="min-h-max flex flex-col gap-10">
+          <div className=" flex flex-col gap-10">
             {aboutDescription.map((data: any, index: number) => (
               <AboutItem key={index} index={index + 1} data={data} />
             ))}

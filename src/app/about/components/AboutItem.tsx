@@ -36,25 +36,25 @@ const AboutItem = ({ data, index }: { data: any; index: number }) => {
 
   if (index % 2 !== 0) {
     return (
-      <div className=" grid  w-full grid-cols-1 items-center justify-center gap-6 lg:grid-cols-2">
-        <div className="flex flex-col justify-center gap-3 ">
+      <div className=" grid  w-full grid-cols-1 items-center gap-6 lg:grid-cols-2 justify-center">
+        <div className="flex flex-col justify-center gap-3  ">
           <Heading1 />
           <Description />
         </div>
-        <div className="relative h-[26rem] w-full   overflow-hidden md:h-[40rem]  lg:h-[31rem]  2xl:h-[34rem] lg:rounded-xl">
+        <div className="relative w-full aspect-[403/426]  sm:aspect-[775/716]   lg:aspect-[824/557] max-w-[824px] lg:rounded-xl overflow-hidden">
           <ImageComponent />
         </div>
       </div>
     );
   } else if (index % 2 == 0) {
     return (
-      <div className="grid  w-full grid-cols-1 items-center gap-6 lg:grid-cols-2 justify-center ">
+      <div className="grid w-full grid-cols-1 items-center gap-6 lg:grid-cols-2 justify-center">
 
-        <div className="relative order-2 h-[26rem] w-full overflow-hidden lg:order-1  md:h-[40rem] lg:h-[31rem] 2xl:h-[34rem] max-w-[51rem] lg:rounded-xl">
+        <div className="order-2 lg:order-1 relative w-full aspect-[403/426]  sm:aspect-[775/716]   lg:aspect-[824/557] max-w-[824px] lg:rounded-xl overflow-hidden">
           <ImageComponent />
         </div>
 
-        <div className="order-1 flex min-h-full flex-col justify-center gap-3 lg:order-2">
+        <div className="order-1 flex flex-col justify-center gap-3 lg:order-2">
           <Heading2 />
           <Description />
         </div>
