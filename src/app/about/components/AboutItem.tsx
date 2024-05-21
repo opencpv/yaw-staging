@@ -19,7 +19,7 @@ const AboutItem = ({ data, index }: { data: any; index: number }) => {
   );
 
   const Description = () => (
-    <p className="lg:mt-8 text-base font-[500] leading-normal text-[#8A8A8A] md:text-lg md:leading-normal 2xl:text-2xl 2xl:leading-normal">
+    <p className="text-base font-[500] leading-normal text-[#8A8A8A] md:text-lg md:leading-normal 2xl:text-2xl 2xl:leading-normal">
       {data.description}
     </p>
   );
@@ -37,11 +37,11 @@ const AboutItem = ({ data, index }: { data: any; index: number }) => {
   if (index % 2 !== 0) {
     return (
       <div className=" grid min-h-max w-full grid-cols-1 items-center gap-6 lg:grid-cols-2">
-        <div className="flex flex-col gap-4 lg:gap-8 justify-center ">
+        <div className="flex flex-col justify-center gap-3 ">
           <Heading1 />
           <Description />
         </div>
-        <div className="relative w-full aspect-[403/426] max-w-[403px] sm:aspect-[775/716] sm:max-w-[775px]  lg:aspect-[824/557] lg:max-w-[824px] lg:rounded-xl overflow-hidden">
+        <div className="relative h-[26rem] w-full   overflow-hidden md:h-[40rem]  lg:h-[31rem]  2xl:h-[34rem] lg:rounded-xl">
           <ImageComponent />
         </div>
       </div>
@@ -49,17 +49,17 @@ const AboutItem = ({ data, index }: { data: any; index: number }) => {
   } else if (index % 2 == 0) {
     return (
       <div className="grid min-h-max w-full grid-cols-1 items-center gap-6 lg:grid-cols-2">
-
-        <div className="order-2 lg:order-1 relative w-full aspect-[403/426] max-w-[403px] sm:aspect-[775/716] sm:max-w-[775px]  lg:aspect-[824/557] lg:max-w-[824px] lg:rounded-xl overflow-hidden">
+        <div className="relative order-2 h-[26rem] w-full overflow-hidden lg:order-1  md:h-[40rem] lg:h-[31rem] 2xl:h-[34rem] max-w-[51rem] lg:rounded-xl">
           <ImageComponent />
         </div>
-        <div className="order-1 lg:order-2 flex min-h-full flex-col justify-center gap-4 lg:gap-8">
+
+        <div className="order-1 flex min-h-full flex-col justify-center gap-3 lg:order-2">
           <Heading2 />
           <Description />
         </div>
       </div>
     );
-  } 
+  }
 };
 
 export default AboutItem;
