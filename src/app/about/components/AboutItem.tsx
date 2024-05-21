@@ -29,14 +29,14 @@ const AboutItem = ({ data, index }: { data: any; index: number }) => {
       src={urlForImage(data.featuredImage)?.url() as string}
       alt=""
       fill
-      style={{ objectFit: "cover" }}
+      objectFit="cover"
       objectPosition="center"
     />
   );
 
   if (index % 2 !== 0) {
     return (
-      <div className=" grid min-h-max w-full grid-cols-1 items-center gap-6 lg:grid-cols-2">
+      <div className=" grid  w-full grid-cols-1 items-center gap-6 lg:grid-cols-2">
         <div className="flex flex-col justify-center gap-3 ">
           <Heading1 />
           <Description />
@@ -48,7 +48,8 @@ const AboutItem = ({ data, index }: { data: any; index: number }) => {
     );
   } else if (index % 2 == 0) {
     return (
-      <div className="grid min-h-max w-full grid-cols-1 items-center gap-6 lg:grid-cols-2">
+      <div className="grid  w-full grid-cols-1 items-center gap-6 lg:grid-cols-2">
+
         <div className="relative order-2 h-[26rem] w-full overflow-hidden lg:order-1  md:h-[40rem] lg:h-[31rem] 2xl:h-[34rem] max-w-[51rem] lg:rounded-xl">
           <ImageComponent />
         </div>
