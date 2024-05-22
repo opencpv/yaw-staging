@@ -8,6 +8,7 @@ import ItemFilterPriceRange from "./ItemFilterPriceRange";
 import ItemFilterTerms from "./ItemFilterTerms";
 import { useItemFilterStore } from "@/store/moving_sales/useMovingSalesStore";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useFetchItemCategories } from "../services";
 
 type Props = {
   isOpen: boolean;
@@ -37,11 +38,13 @@ const FilterModalHeader = () => {
 };
 
 const FilterModalBody = () => {
+  const { data: categories } = useFetchItemCategories();
+
   return (
     <main className="space-y-10 pb-10">
       <ItemsFilterModalOption title="Categories">
         <CategoryCheckboxes
-          options={["Electrical", "Furniture", "Art", "Urn", "Miscellaneous"]}
+          options={categories?.map(({ category }) => category) || []}
         />
       </ItemsFilterModalOption>
       <ItemsFilterModalOption title="Condition">

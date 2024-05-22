@@ -129,7 +129,7 @@ export const MobileMenu = (props: any) => {
       ".main-menu-link-sm",
       toggle ? { opacity: [0, 1], x: [-5, 0] } : { opacity: 1, x: 0 },
       {
-        delay: stagger(0.1, { startDelay: 0.5 }),
+        delay: stagger(0.1),
       },
     );
   }, [toggle]);

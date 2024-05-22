@@ -17,7 +17,7 @@ const ItemCard = ({ description, title, image, price, href }: ItemProps) => {
           />
         </div>
         <h4 className="mb-2 text-primary-500">{title}</h4>
-        <p className="mb-2 line-clamp-3 max-w-sm text-base text-neutral-500">
+        <p className="mb-2 line-clamp-3 text-base text-neutral-500 sm:max-w-sm">
           {description}
         </p>
         <h3 className="text-lg text-primary-500">{formatPrice(price)}</h3>

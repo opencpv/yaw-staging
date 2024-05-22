@@ -11,6 +11,8 @@ import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
 import slugify from "@/lib/utils/slugify";
 import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
 import SkeletonItem from "@/components/__shared/ui/skeleton/SkeletonItem";
+import { cn } from "@/lib/utils";
+import { pluralize } from "@/lib/utils/stringManipulation";
 
 type Props = {};
 
@@ -18,7 +20,6 @@ function Items({}: Props) {
   const searchParams = useSearchParams();
   const sort = searchParams?.get("sort") || "newest";
   const categories = searchParams?.get("categories") || "";
-  const category = searchParams?.get("category") || "";
   const condition = searchParams?.get("condition") || "";
   const negotiation = searchParams?.get("negotiation") || "";
   const priceRangeFrom = searchParams?.get("priceRangeFrom") || "";
@@ -32,7 +33,7 @@ function Items({}: Props) {
     loadMore,
     mutate,
   } = useFetchItems({
-    category,
+    categories,
     condition,
     negotiation,
     priceRangeFrom,
@@ -40,12 +41,12 @@ function Items({}: Props) {
     sort,
   });
 
-  console.log(items);
-
   return (
     <>
       <div className="mb-5 flex flex-wrap items-center justify-between gap-3 text-sm">
-        <p className="text-base">Showing {items?.length} results</p>
+        <p className={cn("text-base", { invisible: items?.length === 0 })}>
+          Showing {items?.length} {pluralize("result", items?.length || 0)}
+        </p>
         <SortFilter />
       </div>
       {/* Items */}
@@ -75,7 +76,7 @@ function Items({}: Props) {
               term: item.term,
               price: item.price.toString(),
               condition: item.condition,
-              seller: item.seller,
+              seller: item.profiles?.full_name as string,
               description: item.description,
             })}`}
             title={item.title}
@@ -84,15 +85,13 @@ function Items({}: Props) {
             price={item.price}
           />
         ))}
-        <div className="mt-10 flex justify-center">
-          <ButtonInfiniteLoading
-            data={items}
-            isLoading={isLoading}
-            isValidating={isValidating}
-            loadMore={loadMore}
-          />
-        </div>
       </section>
+      <ButtonInfiniteLoading
+        data={items}
+        isLoading={isLoading}
+        isValidating={isValidating}
+        loadMore={loadMore}
+      />
     </>
   );
 }

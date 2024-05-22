@@ -183,32 +183,35 @@ export type Database = {
         Row: {
           company: string | null
           created_at: string
-          customer_id: string | null
+          customer_id: string
           email: string | null
           firstname: string | null
           id: number
           lastname: string | null
           phone: string | null
+          type: string | null
         }
         Insert: {
           company?: string | null
           created_at?: string
-          customer_id?: string | null
+          customer_id: string
           email?: string | null
           firstname?: string | null
           id?: number
           lastname?: string | null
           phone?: string | null
+          type?: string | null
         }
         Update: {
           company?: string | null
           created_at?: string
-          customer_id?: string | null
+          customer_id?: string
           email?: string | null
           firstname?: string | null
           id?: number
           lastname?: string | null
           phone?: string | null
+          type?: string | null
         }
         Relationships: []
       }
@@ -400,39 +403,42 @@ export type Database = {
           amount: number
           billing_date: string
           created_at: string
-          customer: number | null
+          customer: string
           id: number
           is_paid: boolean
           service: string
+          service_description: string | null
           tax_rate: number
         }
         Insert: {
           amount: number
           billing_date: string
           created_at?: string
-          customer?: number | null
+          customer: string
           id?: number
           is_paid: boolean
           service: string
+          service_description?: string | null
           tax_rate?: number
         }
         Update: {
           amount?: number
           billing_date?: string
           created_at?: string
-          customer?: number | null
+          customer?: string
           id?: number
           is_paid?: boolean
           service?: string
+          service_description?: string | null
           tax_rate?: number
         }
         Relationships: [
           {
-            foreignKeyName: "invoice_customer_fkey"
+            foreignKeyName: "invoices_customer_fkey"
             columns: ["customer"]
-            isOneToOne: false
+            isOneToOne: true
             referencedRelation: "customers"
-            referencedColumns: ["id"]
+            referencedColumns: ["customer_id"]
           },
         ]
       }
@@ -678,10 +684,13 @@ export type Database = {
           description: string
           id: number
           images: string[] | null
+          phone: string | null
           price: number
           seller: string
           term: string
           title: string
+          views: number
+          whatsapp: string | null
         }
         Insert: {
           category: string
@@ -690,10 +699,13 @@ export type Database = {
           description: string
           id?: number
           images?: string[] | null
+          phone?: string | null
           price: number
           seller: string
           term?: string
           title: string
+          views?: number
+          whatsapp?: string | null
         }
         Update: {
           category?: string
@@ -702,10 +714,13 @@ export type Database = {
           description?: string
           id?: number
           images?: string[] | null
+          phone?: string | null
           price?: number
           seller?: string
           term?: string
           title?: string
+          views?: number
+          whatsapp?: string | null
         }
         Relationships: [
           {

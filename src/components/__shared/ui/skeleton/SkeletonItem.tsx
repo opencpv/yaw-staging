@@ -15,14 +15,14 @@ const SkeletonItem = ({ count, className }: Props) => {
       {count &&
         countArray.map((_, idx) => (
           <div key={idx + 1} className={cn("space-y-3", className)}>
-            <Skeleton className="mb-10 h-60 min-w-full" />
+            <Skeleton className="mb-10 h-60 min-w-full rounded-md" />
             <SkeletonTextual />
           </div>
         ))}
 
       {count === undefined && (
         <div className={cn("space-y-3", className)}>
-          <Skeleton className="mb-10 min-w-full" />
+          <Skeleton className="mb-10 min-w-full rounded-md" />
           <SkeletonTextual />
         </div>
       )}

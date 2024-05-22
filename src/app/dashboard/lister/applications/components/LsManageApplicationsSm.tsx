@@ -61,14 +61,12 @@ const LsManageApplicationsSm = (props: Props) => {
           Archive <IoArchiveOutline />
         </Button>
       </div>
-      <div className="grid place-items-center">
-        <ButtonInfiniteLoading
-          data={applicants}
-          isLoading={isLoading}
-          isValidating={isValidating}
-          loadMore={loadMore}
-        />
-      </div>
+      <ButtonInfiniteLoading
+        data={applicants}
+        isLoading={isLoading}
+        isValidating={isValidating}
+        loadMore={loadMore}
+      />
     </div>
   );
 };

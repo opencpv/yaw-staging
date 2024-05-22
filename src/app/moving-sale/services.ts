@@ -1,34 +1,42 @@
 import supabase from "@/lib/utils/supabase/supabaseClient";
-import { useOffsetInfiniteScrollQuery } from "@supabase-cache-helpers/postgrest-swr";
+import {
+  useOffsetInfiniteScrollQuery,
+  useQuery,
+} from "@supabase-cache-helpers/postgrest-swr";
+
+export const useFetchItemCategories = () => {
+  const query = supabase.from("product_category").select("category");
+
+  return useQuery(query);
+};
 
 export const useFetchItems = ({
-  category = "",
+  categories = "",
   sort = "newest",
   condition = "",
   negotiation = "",
   priceRangeFrom = "",
   priceRangeTo = "",
 }: {
-  category: string;
   sort: string;
   condition: string;
   negotiation: string;
   priceRangeFrom: string;
   priceRangeTo: string;
+  categories: string;
 }) => {
-  console.log(
-    category,
-    sort,
-    condition,
-    negotiation,
-    priceRangeFrom,
-    priceRangeTo,
-  );
+  const categoriesArray = categories
+    .split(",")
+    .map((item) => item.charAt(0).toUpperCase() + item.slice(1).toLowerCase());
 
-  let query = supabase.from("products").select();
+  let query = supabase
+    .from("products")
+    .select(
+      "id, title, description, price, condition, category, term, profiles!inner (id, full_name)",
+    );
 
-  if (category) {
-    query = query.eq("category", category);
+  if (categories) {
+    query = query.in("category", categoriesArray);
   }
 
   if (sort) {
@@ -39,7 +47,7 @@ export const useFetchItems = ({
     } else if (sort === "price: low to high") {
       query = query.order("price");
     } else if (sort === "popular") {
-      //
+      query = query.order("views", { ascending: false });
     }
   }
 
@@ -56,7 +64,6 @@ export const useFetchItems = ({
   }
 
   if (priceRangeTo) {
-    console.log(priceRangeTo);
     query = query.lte("price", parseFloat(priceRangeTo));
   }
 
@@ -64,4 +71,14 @@ export const useFetchItems = ({
     pageSize: 12,
     revalidateAll: true,
   });
+};
+
+export const useFetchItemDetails = ({ itemId }: { itemId: number }) => {
+  const query = supabase
+    .from("products")
+    .select("*, profiles!inner (id)")
+    .eq("id", itemId)
+    .single();
+
+  return useQuery(query);
 };
