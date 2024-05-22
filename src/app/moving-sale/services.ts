@@ -1,3 +1,4 @@
+import capitalizeName from "@/lib/utils/stringManipulation";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import {
   useOffsetInfiniteScrollQuery,
@@ -52,11 +53,11 @@ export const useFetchItems = ({
   }
 
   if (condition) {
-    query = query.eq("condition", condition);
+    query = query.eq("condition", capitalizeName(condition));
   }
 
   if (negotiation) {
-    query = query.eq("term", negotiation);
+    query = query.eq("term", capitalizeName(negotiation));
   }
 
   if (priceRangeFrom) {
