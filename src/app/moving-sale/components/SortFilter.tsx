@@ -21,7 +21,7 @@ const SortFilter = () => {
   const sort = searchParams?.get("sort") || "newest";
   const categories = searchParams?.get("categories") || "";
   const condition = searchParams?.get("condition") || "";
-  const negotiation = searchParams?.get("negotiation") || "";
+  const term = searchParams?.get("term") || "";
   const priceRangeFrom = searchParams?.get("priceRangeFrom") || "";
   const priceRangeTo = searchParams?.get("priceRangeTo") || "";
   const category = searchParams?.get("category") || "";
@@ -32,7 +32,7 @@ const SortFilter = () => {
         sort: e.target.value,
         categories,
         condition,
-        negotiation,
+        term,
         priceRangeFrom,
         priceRangeTo,
         category,

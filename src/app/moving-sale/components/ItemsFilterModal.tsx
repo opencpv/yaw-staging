@@ -9,6 +9,7 @@ import ItemFilterTerms from "./ItemFilterTerms";
 import { useItemFilterStore } from "@/store/moving_sales/useMovingSalesStore";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useFetchItemCategories } from "../services";
+import { LiaTimesSolid } from "react-icons/lia";
 
 type Props = {
   isOpen: boolean;
@@ -34,7 +35,7 @@ const ItemsFilterModal = (props: Props) => {
 };
 
 const FilterModalHeader = () => {
-  return <hr className="mt-5" />;
+  return <hr className="mt-10" />;
 };
 
 const FilterModalBody = () => {
@@ -65,8 +66,14 @@ const FilterModalFooter = ({ onClose }: FilterModalFooterProps) => {
   const searchParams = useSearchParams();
   const sort = searchParams?.get("sort") || "newest";
   const category = searchParams?.get("category") || "";
-  const { categories, condition, negotiation, priceRangeFrom, priceRangeTo } =
-    useItemFilterStore();
+  const {
+    categories,
+    condition,
+    term,
+    priceRangeFrom,
+    priceRangeTo,
+    clearAll,
+  } = useItemFilterStore();
 
   const handleSubmit = () => {
     router.replace(
@@ -74,7 +81,7 @@ const FilterModalFooter = ({ onClose }: FilterModalFooterProps) => {
         sort: sort as string,
         categories: categories.join(","),
         condition,
-        negotiation,
+        term,
         priceRangeFrom,
         priceRangeTo,
         category,
@@ -86,9 +93,18 @@ const FilterModalFooter = ({ onClose }: FilterModalFooterProps) => {
     onClose();
   };
   return (
-    <Button color="accent" className="w-48 max-w-xs" onClick={handleSubmit}>
-      Filter
-    </Button>
+    <span className="flex w-full flex-wrap items-center justify-between gap-5">
+      <Button color="accent" className="w-48 max-w-xs" onClick={handleSubmit}>
+        Filter
+      </Button>
+      <Button
+        variant="ghost"
+        className="text-sm font-normal underline"
+        onClick={clearAll}
+      >
+        Clear All <LiaTimesSolid />
+      </Button>
+    </span>
   );
 };
 

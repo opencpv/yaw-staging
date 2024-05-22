@@ -8,8 +8,8 @@ import { useItemFilterStore } from "@/store/moving_sales/useMovingSalesStore";
 type Props = {};
 
 const ItemFilterPriceRange = (props: Props) => {
-  const negotiation = useItemFilterStore((state) => state.negotiation);
-  const setNegotiation = useItemFilterStore((state) => state.setNegotiation);
+  const term = useItemFilterStore((state) => state.term);
+  const setTerm = useItemFilterStore((state) => state.setTerm);
   const priceRangeFrom = useItemFilterStore((state) => state.priceRangeFrom);
   const priceRangeTo = useItemFilterStore((state) => state.priceRangeTo);
   const setPriceRangeFrom = useItemFilterStore(

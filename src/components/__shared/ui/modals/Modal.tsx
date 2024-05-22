@@ -98,6 +98,7 @@ const Modal = ({
             },
             className,
           ),
+          closeButton: "mr-3 mt-1",
         }}
         // scrollBehavior={size === "full" ? "inside" : "inside"}
         scrollBehavior={

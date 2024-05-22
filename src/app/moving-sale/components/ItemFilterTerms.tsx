@@ -3,14 +3,14 @@ import RadioChoices from "./RadioChoices";
 import { useItemFilterStore } from "@/store/moving_sales/useMovingSalesStore";
 
 const ItemFilterTerms = () => {
-  const negotiation = useItemFilterStore((state) => state.negotiation);
-  const setNegotiation = useItemFilterStore((state) => state.setNegotiation);
+  const term = useItemFilterStore((state) => state.term);
+  const setTerm = useItemFilterStore((state) => state.setTerm);
 
   return (
-    <RadioChoices<"negotiable" | "non-negotiable">
-      value={negotiation as "negotiable" | "non-negotiable"}
-      choices={["Negotiable", "Non-negotiable"]}
-      onValueChange={setNegotiation}
+    <RadioChoices<"negotiable" | "non-negotiable" | "all">
+      value={term as "negotiable" | "non-negotiable" | "all"}
+      choices={["Negotiable", "Non-negotiable", "All"]}
+      onValueChange={setTerm}
     />
   );
 };

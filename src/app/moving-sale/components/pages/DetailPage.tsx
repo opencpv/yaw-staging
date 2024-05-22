@@ -10,12 +10,16 @@ import { useFetchItemDetails } from "../../services";
 import { Skeleton } from "@nextui-org/react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { updateItemViewCount } from "../../actions";
+import { useItemPathStore } from "@/store/moving_sales/useMovingSalesStore";
+import { useRouter } from "next/navigation";
 
 type Props = {
   id: number;
 };
 
 const DetailPage = (props: Props) => {
+  const router = useRouter();
+  const { previousPath } = useItemPathStore();
   const query = useFetchItemDetails({ itemId: props.id });
   const [itemViewCount, setItemViewCount] = useLocalStorage<{
     itemIds: number[];
@@ -34,10 +38,15 @@ const DetailPage = (props: Props) => {
   }, [itemViewCount.itemIds, props.id, setItemViewCount]);
 
   return (
-    <main className="wrapper text-neutral-400">
+    <main className="wrapper text-shade-200">
       <div className="mb-5 flex items-center gap-2">
-        <BreadCrumbPreLink href="/moving-sale" label="Shop" />
-        <FaChevronRight className="text-neutral-400" />
+        <BreadCrumbPreLink
+          label="Shop"
+          onClick={() =>
+            previousPath ? router.back() : router.push("/moving-sale")
+          }
+        />
+        <FaChevronRight className="text-shade-200" />
         {query.isLoading ? (
           <Skeleton className="h-[20px] w-[200px]" />
         ) : (

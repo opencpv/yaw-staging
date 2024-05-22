@@ -15,13 +15,13 @@ export const useFetchItems = ({
   categories = "",
   sort = "newest",
   condition = "",
-  negotiation = "",
+  term = "",
   priceRangeFrom = "",
   priceRangeTo = "",
 }: {
   sort: string;
   condition: string;
-  negotiation: string;
+  term: string;
   priceRangeFrom: string;
   priceRangeTo: string;
   categories: string;
@@ -29,6 +29,9 @@ export const useFetchItems = ({
   const categoriesArray = categories
     .split(",")
     .map((item) => item.charAt(0).toUpperCase() + item.slice(1).toLowerCase());
+
+  const cleanedPriceFrom = extractNumericValue(priceRangeFrom);
+  const cleanedPriceTo = extractNumericValue(priceRangeTo);
 
   let query = supabase
     .from("products")
@@ -52,20 +55,20 @@ export const useFetchItems = ({
     }
   }
 
-  if (condition) {
+  if (condition && condition !== "all") {
     query = query.eq("condition", capitalizeName(condition));
   }
 
-  if (negotiation) {
-    query = query.eq("term", capitalizeName(negotiation));
+  if (term && term !== "all") {
+    query = query.eq("term", capitalizeName(term));
   }
 
   if (priceRangeFrom) {
-    query = query.gte("price", parseFloat(priceRangeFrom));
+    query = query.gte("price", parseFloat(cleanedPriceFrom));
   }
 
   if (priceRangeTo) {
-    query = query.lte("price", parseFloat(priceRangeTo));
+    query = query.lte("price", parseFloat(cleanedPriceTo));
   }
 
   return useOffsetInfiniteScrollQuery(query, {
@@ -82,4 +85,9 @@ export const useFetchItemDetails = ({ itemId }: { itemId: number }) => {
     .single();
 
   return useQuery(query);
+};
+
+export const extractNumericValue = (str: string) => {
+  const cleanedString = str.replace(/[^0-9]/g, "");
+  return cleanedString;
 };
