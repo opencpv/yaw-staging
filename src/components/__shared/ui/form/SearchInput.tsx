@@ -2,11 +2,13 @@
 import React, { useState } from "react";
 import { ConfigProvider, Input } from "antd";
 import { CiSearch } from "react-icons/ci";
+import { cn } from "@/lib/utils";
 
 const SearchInput = ({
   placeholder,
   onPressEnter,
   onChange,
+  className,
 }: SearchInputProps) => {
   return (
     <ConfigProvider
@@ -28,6 +30,7 @@ const SearchInput = ({
             onClick={onPressEnter}
           />
         }
+        className={cn("max-w-2xl", className)}
         allowClear
         onChange={onChange}
         onPressEnter={onPressEnter}

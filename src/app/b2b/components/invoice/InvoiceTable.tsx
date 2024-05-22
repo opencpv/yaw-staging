@@ -12,6 +12,7 @@ import {
 import { CheckboxNoFormik as Checkbox } from "@/app/dashboard/components/shared/ui/Checkbox";
 import { useInvoiceData } from "../../hooks/useInvoiceData";
 import { createUUID } from "@/lib/utils/stringManipulation";
+import SearchInput from "@/components/__shared/ui/form/SearchInput";
 
 type Props = {};
 
@@ -22,6 +23,11 @@ const InvoiceTable = (props: Props) => {
 
   return (
     <>
+      <SearchInput
+        onPressEnter={() => {}}
+        onChange={() => {}}
+        className="-mt-2"
+      />
       <Table>
         <TableHeaderRow className="grid-cols-7" gap="2rem">
           <TableHeader className="col-span-1">

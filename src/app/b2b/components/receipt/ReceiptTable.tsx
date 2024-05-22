@@ -12,6 +12,7 @@ import {
 import { CheckboxNoFormik as Checkbox } from "@/app/dashboard/components/shared/ui/Checkbox";
 import { useReceiptData } from "../../hooks/useReceiptData";
 import { createUUID } from "@/lib/utils/stringManipulation";
+import SearchInput from "@/components/__shared/ui/form/SearchInput";
 
 const ReceiptTable = () => {
   const { handleCheckAll, allChecked } = useReceiptData({
@@ -20,6 +21,11 @@ const ReceiptTable = () => {
 
   return (
     <>
+      <SearchInput
+        onPressEnter={() => {}}
+        onChange={() => {}}
+        className="-mt-2"
+      />
       <Table>
         <TableHeaderRow className="grid-cols-6" gap="2rem">
           <TableHeader className="col-span-1">
