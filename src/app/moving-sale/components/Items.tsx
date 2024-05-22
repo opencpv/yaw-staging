@@ -13,6 +13,7 @@ import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/Button
 import SkeletonItem from "@/components/__shared/ui/skeleton/SkeletonItem";
 import { cn } from "@/lib/utils";
 import { pluralize } from "@/lib/utils/stringManipulation";
+import { Skeleton } from "@nextui-org/react";
 
 type Props = {};
 
@@ -44,9 +45,14 @@ function Items({}: Props) {
   return (
     <>
       <div className="mb-5 flex flex-wrap items-center justify-between gap-3 text-sm">
-        <p className={cn("text-base", { invisible: items?.length === 0 })}>
-          Showing {items?.length} {pluralize("result", items?.length || 0)}
-        </p>
+        {isLoading ? (
+          <Skeleton className="h-5 w-32" />
+        ) : (
+          <p className={cn("text-base", { invisible: items?.length === 0 })}>
+            Showing {items?.length} {pluralize("result", items?.length || 0)}
+          </p>
+        )}
+
         <SortFilter />
       </div>
       {/* Items */}

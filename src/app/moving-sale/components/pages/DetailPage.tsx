@@ -1,6 +1,6 @@
 "use client";
 import BreadCrumbPreLink from "@/components/__shared/ui/BreadCrumbPreLink";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { FaChevronRight } from "react-icons/fa6";
 import ItemDetails from "../item/ItemDetails";
 import ItemImages from "../item/ItemImages";
@@ -21,15 +21,15 @@ const DetailPage = (props: Props) => {
     itemIds: number[];
   }>("item_view_count", { itemIds: [] });
 
-  useEffect(() => {
-    if (!itemViewCount.itemIds.includes(props.id)) {
-      const updateView = async () => {
-        const error = await updateItemViewCount(props.id);
-        if (error) return;
-        setItemViewCount({ itemIds: [...itemViewCount.itemIds, props.id] });
-      };
+  const hasUpdatedView = useRef(false);
 
-      updateView();
+  useEffect(() => {
+    const shouldUpdateView = !itemViewCount.itemIds.includes(props.id);
+    if (shouldUpdateView && !hasUpdatedView.current) {
+      const newItemIds = [...itemViewCount.itemIds, props.id];
+      setItemViewCount({ itemIds: newItemIds });
+      updateItemViewCount(props.id);
+      hasUpdatedView.current = true;
     }
   }, [itemViewCount.itemIds, props.id, setItemViewCount]);
 

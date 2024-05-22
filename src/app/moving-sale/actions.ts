@@ -9,6 +9,8 @@ export const updateItemViewCount = async (id: number) => {
     .eq("id", id)
     .maybeSingle();
 
+  console.log(item?.views);
+
   if (item) {
     const { error } = await supabase
       .from("products")

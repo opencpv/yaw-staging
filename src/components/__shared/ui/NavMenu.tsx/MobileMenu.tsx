@@ -126,10 +126,18 @@ export const MobileMenu = (props: any) => {
 
   useEffect(() => {
     animate(
-      ".main-menu-link-sm",
+      ".main-menu-link-sm-al",
       toggle ? { opacity: [0, 1], x: [-5, 0] } : { opacity: 1, x: 0 },
       {
-        delay: stagger(0.1),
+        delay: stagger(0.1, { startDelay: 0.5 }),
+      },
+    );
+
+    animate(
+      ".main-menu-link-sm-bl",
+      toggle ? { opacity: [0, 1], x: [-5, 0] } : { opacity: 1, x: 0 },
+      {
+        delay: stagger(0.1, { startDelay: 0.5 }),
       },
     );
   }, [toggle]);
@@ -144,7 +152,7 @@ export const MobileMenu = (props: any) => {
       >
         <Link
           href="/login"
-          className="main-menu-link-sm text-2xl font-semibold uppercase text-white"
+          className="main-menu-link-sm-bl text-2xl font-semibold uppercase text-white"
           onClick={() => setToggle(false)}
         >
           Get Started
@@ -158,7 +166,7 @@ export const MobileMenu = (props: any) => {
               <Link
                 href={r?.url}
                 key={index}
-                className="main-menu-link-sm mb-10 block"
+                className="main-menu-link-sm-bl mb-10 block"
                 onClick={() => setToggle(false)}
               >
                 <p className={"text-2xl !font-semibold uppercase text-[#fff]"}>
@@ -184,7 +192,7 @@ export const MobileMenu = (props: any) => {
               <Link
                 href={r?.url}
                 key={index}
-                className="main-menu-link-sm mb-10 block"
+                className="main-menu-link-sm-al mb-10 block"
                 onClick={() => setToggle(false)}
               >
                 <p className={"text-2xl !font-semibold uppercase text-[#fff]"}>
