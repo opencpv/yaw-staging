@@ -8,7 +8,7 @@ import { useAssets } from "@/lib/custom-hooks/useAssets";
 import VerticalSlider from "./components/Slider/VerticalSlider";
 import FeaturedListings from "@/components/__shared/ui/listing/FeaturedListings";
 import { Metadata } from "next";
-import { ABOUT_PAGE_QUERY } from "@/lib/utils/sanity/queries";
+import { ABOUT_PAGE_QUERY, BLOG_QUERY } from "@/lib/utils/sanity/queries";
 import { loadQuery } from "@/lib/utils/sanity/sanityStore";
 import { SanityDocument } from "next-sanity";
 import { urlForImage } from "@/lib/utils/sanity/utils";
@@ -24,16 +24,17 @@ export const metadata: Metadata = {
 const About = async () => {
   const initial = await loadQuery<SanityDocument[]>(ABOUT_PAGE_QUERY);
   const data = initial.data[0];
-
   const heading1 = data.heading1;
   const heading2 = data.heading2;
   const featuredImage = data.featuredImage;
   const aboutDescription = data.about_descriptions;
   const bannerData = data.banner;
-  const vSlider = data.verticalSlider;
-  const hSlider = data.horizontalSlider;
-
-  const { images } = useAssets();
+  const services = data.verticalSlider;
+  const initialBlogData: any = await loadQuery<SanityDocument[]>(BLOG_QUERY);
+  const blogData = initialBlogData.data;
+  const popularPosts = blogData
+    .sort((a: { rating: number }, b: { rating: number }) => a.rating - b.rating)
+    .slice(0, 3);
 
   return (
     <>
@@ -77,9 +78,9 @@ const About = async () => {
         </div>
         <FramerWrapper
           {...fadeUp}
-          className="wrapper flex min-h-max items-center justify-center mt-10 lg:mt-24 py-0"
+          className="wrapper mt-10 flex min-h-max items-center justify-center py-0 lg:mt-24"
         >
-          <div className="min-h-max flex flex-col gap-10">
+          <div className="flex min-h-max flex-col gap-10">
             {aboutDescription.map((data: any, index: number) => (
               <AboutItem key={index} index={index + 1} data={data} />
             ))}
@@ -111,14 +112,14 @@ const About = async () => {
               />
             </div>
           </FramerWrapper>
-          <SimpleSlider data={hSlider} />
+          <SimpleSlider data={services} />
         </section>
 
         <FramerWrapper
           {...fadeUp}
           className="mx-auto h-fit max-w-screen-2xl px-5 sm:px-10 lg:pt-28"
         >
-          <VerticalSlider data={vSlider} />
+          <VerticalSlider data={popularPosts} />
         </FramerWrapper>
         <FeaturedListings className="wrapper pb-0 pt-28" />
       </main>

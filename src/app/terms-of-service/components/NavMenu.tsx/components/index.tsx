@@ -61,8 +61,6 @@ export default function TermsMenu(props: any) {
     }
   }, [toggle]);
 
-
-
   return (
     <Root
       ref={menuRef}
@@ -98,8 +96,7 @@ export default function TermsMenu(props: any) {
         },
       }}
     >
-      <TermsMenuArea data={props?.data}/>
-    
+      <TermsMenuArea data={props?.data} />
     </Root>
   );
 }
@@ -123,7 +120,7 @@ const Root = styled(motion.aside, {
     color: "White",
     fontWeight: 600,
     "&:hover": {
-      color: "#FCAB10",
+      color: "#F1B346",
       scale: "1.15",
     },
   },

@@ -5,6 +5,10 @@ import CategoryCheckboxes from "./category/CategoryCheckboxes";
 import ItemsFilterModalOption from "./ItemsFilterModalOption";
 import ItemFilterConditionOptions from "./ItemFilterConditionOptions";
 import ItemFilterPriceRange from "./ItemFilterPriceRange";
+import ItemFilterTerms from "./ItemFilterTerms";
+import { useItemFilterStore } from "@/store/moving_sales/useMovingSalesStore";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useFetchItemCategories } from "../services";
 
 type Props = {
   isOpen: boolean;
@@ -34,11 +38,13 @@ const FilterModalHeader = () => {
 };
 
 const FilterModalBody = () => {
+  const { data: categories } = useFetchItemCategories();
+
   return (
-    <main className="space-y-10">
+    <main className="space-y-10 pb-10">
       <ItemsFilterModalOption title="Categories">
         <CategoryCheckboxes
-          options={["Electrical", "Furniture", "Art", "Urn", "Miscellaneous"]}
+          options={categories?.map(({ category }) => category) || []}
         />
       </ItemsFilterModalOption>
       <ItemsFilterModalOption title="Condition">
@@ -47,13 +53,40 @@ const FilterModalBody = () => {
       <ItemsFilterModalOption title="Price Range">
         <ItemFilterPriceRange />
       </ItemsFilterModalOption>
+      <ItemsFilterModalOption title="Terms">
+        <ItemFilterTerms />
+      </ItemsFilterModalOption>
     </main>
   );
 };
 
 const FilterModalFooter = ({ onClose }: FilterModalFooterProps) => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const sort = searchParams?.get("sort") || "newest";
+  const category = searchParams?.get("category") || "";
+  const { categories, condition, negotiation, priceRangeFrom, priceRangeTo } =
+    useItemFilterStore();
+
+  const handleSubmit = () => {
+    router.replace(
+      `/moving-sale?${new URLSearchParams({
+        sort: sort as string,
+        categories: categories.join(","),
+        condition,
+        negotiation,
+        priceRangeFrom,
+        priceRangeTo,
+        category,
+      })}`,
+      {
+        scroll: false,
+      },
+    );
+    onClose();
+  };
   return (
-    <Button color="accent" className="w-48 max-w-xs" onClick={onClose}>
+    <Button color="accent" className="w-48 max-w-xs" onClick={handleSubmit}>
       Filter
     </Button>
   );

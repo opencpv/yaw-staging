@@ -66,3 +66,13 @@ export const getFirstWord = (str: string, delimiter: string = " ") => {
 export const createUUID = () => {
   return uuidv4();
 };
+
+export const pluralize = (word: string, length: number) => {
+  if (length > 1) {
+    return `${word}s`;
+  } else if (length === 1) {
+    return word;
+  } else {
+    return `${word}s`;
+  }
+};

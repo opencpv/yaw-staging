@@ -65,7 +65,7 @@ const PropertyOwnerInfo = (props: Props) => {
             className="py-7"
           />
           {props.whatsappNumber && (
-            <ButtonWhatsApp color="gradient" className="py-7" />
+            <ButtonWhatsApp phone="+233" color="gradient" className="py-7" />
           )}
         </div>
         {/* Report issue */}

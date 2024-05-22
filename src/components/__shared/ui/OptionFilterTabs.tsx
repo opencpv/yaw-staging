@@ -44,12 +44,7 @@ const OptionFilterTabs = (
         ref={ref}
         variant="light"
         aria-label="Tabs variants"
-        // radius="full"
         classNames={{
-          // base: [
-          //   variant === "gradient" && "w-full",
-          //   "bg-transparent transition-all",
-          // ],
           base: cn(
             "bg-transparent transition-all",
             {
@@ -57,13 +52,6 @@ const OptionFilterTabs = (
             },
             classNames?.base,
           ),
-          // tabList: [
-          //   variant === "gradient" ? "gap-x-8 w-full" : null,
-          //   "justify-center",
-          //   variant === "gradient"
-          //     ? "flex-col sm:flex-row sm:flex-wrap xl:flex-nowrap"
-          //     : "flex flex-wrap",
-          // ],
           tabList: cn(
             "justify-center flex flex-wrap",
             {
@@ -72,23 +60,6 @@ const OptionFilterTabs = (
             },
             classNames?.tabList,
           ),
-          // tab: [
-          //   variant === "gradient"
-          //     ? null
-          //     : tabColor === "colored"
-          //       ? "bg-slate-100"
-          //       : "bg-transparent",
-          //   variant === "gradient" ? "px-12 h-10 flex-initial" : "px-4 flex-1",
-          //   "w-auto w-full sm:max-w-[200px] sm:w-fit",
-          //   variant === "gradient"
-          //     ? "data-[selected=true]:bg-gradient-to-r data-[selected=true]:from-[#21A19F] data-[selected=true]:to-[#1EA9A6A1]"
-          //     : "data-[selected=true]:bg-primary-500",
-          //   radius === "small" ? "rounded-lg" : "rounded-full",
-          //   padding === "wide" && "px-8 sm:px-20",
-          //   padding === "medium" && "px-5 xs:px-8",
-          //   "py-5",
-          //   cursorAnimation && "data-[selected=true]:bg-transparent",
-          // ],
           tab: cn(
             "bg-transparent px-4 py-5 flex-1 w-auto w-full rounded-full data-[selected=true]:bg-primary-500 sm:max-w-[200px] sm:w-fit",
             {
@@ -101,27 +72,12 @@ const OptionFilterTabs = (
               "data-[selected=true]:bg-transparent": cursorAnimation,
             },
           ),
-          // tabContent: [
-          //   variant === "gradient" ? "text-neutral-600" : "text-primary-500",
-          //   "text-[0.6rem]",
-          //   "text-sm",
-          //   "group-data-[selected=true]:text-white",
-          // ],
           tabContent: cn(
             "text-primary-500 text-[0.6rem] text-sm group-data-[selected=true]:text-white",
             {
               "text-neutral-600": variant === "gradient",
             },
           ),
-          // cursor: [
-          //   variant == "green1" && "bg-primary-100",
-          //   variant === "gradient" &&
-          //     "bg-gradient-to-r from-[#21A19F] to-[#1EA9A6A1]",
-          //   variant == "default" &&
-          //     "bg-primary-500 dark:bg-primary-500 shadow-none",
-          //   !cursorAnimation && "bg-transparent dark:bg-transparent",
-          //   "rounded-full",
-          // ],
           cursor: cn("rounded-full", {
             "bg-primary-100": variant === "green1",
             "bg-gradient-to-r from-[#21A19F] to-[#1EA9A6A1]":

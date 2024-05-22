@@ -10,7 +10,7 @@ type Props = {
 const SwiperSlideControls = React.forwardRef<HTMLInputElement, Props>(
   (
     { setActiveIndex, buttonLabel1 = "Back", buttonLabel2 = "Continue" },
-    ref
+    ref,
   ) => {
     const swiper = useSwiper();
 
@@ -44,12 +44,12 @@ const SwiperSlideControls = React.forwardRef<HTMLInputElement, Props>(
 
     return (
       <div className="">
-        <div className="flex gap-5 flex-col lg:flex-row font-semibold">
+        <div className="flex flex-col gap-5 font-semibold lg:flex-row">
           <button
-            className="w-[224.5px]  h-max max-h-[52px] aspect-[224/52]
-          border-[1px] 
-          border-[#AD842A] flex justify-center items-center text-[#AD842A]
-          rounded-lg hover:bg-slate-100"
+            className="flex  aspect-[224/52] h-max max-h-[52px]
+          w-[224.5px] 
+          items-center justify-center rounded-lg border-[1px] border-[#AD842A]
+          text-[#AD842A] hover:bg-slate-100"
             onClick={() => {
               window.scrollTo(0, 0);
               swiper.slidePrev();
@@ -71,8 +71,8 @@ const SwiperSlideControls = React.forwardRef<HTMLInputElement, Props>(
           </button>
 
           <button
-            className="w-[224.5px] [52px] aspect-[224/52] bg-[#DDB771]
-          flex justify-center items-center text-[#ffff] rounded-lg hover:scale-[1.05]"
+            className="[52px] flex aspect-[224/52] w-[224.5px]
+          items-center justify-center rounded-lg bg-accent text-[#ffff] hover:scale-[1.05]"
             onClick={() => {
               window.scrollTo(0, 0);
 
@@ -95,7 +95,7 @@ const SwiperSlideControls = React.forwardRef<HTMLInputElement, Props>(
         </div>
       </div>
     );
-  }
+  },
 );
 
 SwiperSlideControls.displayName = "SwiperSlideControls";

@@ -36,6 +36,7 @@ type SliderMultiItemsProps = {
   /** class for a swiper slide item */
   swiperSlideClassName?: string;
   centeredSlides?: boolean;
+  spaceBetween?: number;
 };
 
 type SliderGridProps = {

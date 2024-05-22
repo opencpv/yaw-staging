@@ -98,7 +98,7 @@ export default function PropertyFormSimple({
 
   return (
     <Root className={`flex flex-col gap-8`}>
-      <div className="text-primary flex flex-col gap-6 text-[1.5625rem]">
+      <div className="flex flex-col gap-6 text-[1.5625rem] text-primary">
         <p className="border-b-[1px] border-b-[#0000000F] pb-2 font-bold">
           Application Form
         </p>
@@ -150,7 +150,7 @@ export default function PropertyFormSimple({
                     <button
                       type="submit"
                       className="[52px] flex aspect-[224/52] w-[224.5px]
-                      items-center justify-center rounded-lg bg-[#DDB771] text-[#ffff] hover:scale-[1.05]
+                      items-center justify-center rounded-lg bg-accent text-[#ffff] hover:scale-[1.05]
     
                  "
                     >

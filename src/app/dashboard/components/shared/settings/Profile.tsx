@@ -293,7 +293,7 @@ const ProfileInfo = ({
                       <button
                         type="submit"
                         className="mt-5 aspect-[160/52] max-h-[52px] w-full
-                max-w-[160px] rounded-[8px] bg-[#DDB771] text-[#ffff]"
+                max-w-[160px] rounded-[8px] bg-accent text-[#ffff]"
                       >
                         Update Profile
                       </button>

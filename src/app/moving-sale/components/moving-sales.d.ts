@@ -1,14 +1,12 @@
 type CategoryProps = {
-    category: string;
-    count: number;
-    className?: string;
-    image: string;
-}
+  category: string;
+  image: string;
+};
 
 type ItemProps = {
-    image: string;
-    price: number;
-    title: string;
-    description: string;
-    href: string;
-}
+  image: string;
+  price: number;
+  title: string;
+  description: string;
+  href: string;
+};

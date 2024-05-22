@@ -2,14 +2,12 @@
 import { useDisclosure } from "@nextui-org/react";
 import React, { KeyboardEvent } from "react";
 import Modal from "../modals/Modal";
-import { FaTimesCircle } from "react-icons/fa";
 import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import FeedbackHeader from "./FeedbackHeader";
 import FeedbackBody from "./FeedbackBody";
 import CloseModalIcon from "../icons/CloseModalIcon";
 
 type Props = {
-  // handleClick: () => void;
   className?: string;
   children: React.ReactNode;
   data: any;

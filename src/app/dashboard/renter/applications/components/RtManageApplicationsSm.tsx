@@ -78,14 +78,12 @@ const RtManageApplicationsSm = (props: Props) => {
       <div className="text-center">
         {isLoading && loadMore ? "Fetching..." : null}
       </div>
-      <div className="grid place-items-center">
-        <ButtonInfiniteLoading
-          data={applicants}
-          isLoading={isLoading}
-          isValidating={isValidating}
-          loadMore={loadMore}
-        />
-      </div>
+      <ButtonInfiniteLoading
+        data={applicants}
+        isLoading={isLoading}
+        isValidating={isValidating}
+        loadMore={loadMore}
+      />
     </div>
   );
 };

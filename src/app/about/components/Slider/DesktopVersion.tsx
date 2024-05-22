@@ -1,16 +1,19 @@
 import { EffectCoverflow, Navigation } from "swiper/modules";
 import { MdChevronRight, MdChevronLeft } from "react-icons/md";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useAssets } from "@/lib/custom-hooks/useAssets";
-import { useCallback, useRef } from "react";
-import SlideItem from "./SlideItem";
-// import "./desktop.css";
+import { useCallback, useRef, useState } from "react";
 import "swiper/css";
 import Image from "next/image";
+import { urlForImage } from "@/lib/utils/sanity/utils";
 
-const DesktopVersion = () => {
-  const { images } = useAssets();
+const DesktopVersion = ({ data }: { data: any }) => {
+  const initialSlide = 1;
+  const [activeIndex, setActiveIndex] = useState(initialSlide);
   const sliderRef = useRef<any>(null);
+
+  const handleSlideChange = useCallback((swiper: any) => {
+    setActiveIndex(swiper.activeIndex);
+  }, []);
 
   const handlePrev = useCallback(() => {
     if (!sliderRef.current) return;
@@ -23,14 +26,18 @@ const DesktopVersion = () => {
   }, []);
 
   return (
-    <div className="relative hidden mx-auto lg:block max-w-screen-2xl">
-      <div className=" md:px-[77px] h-fit">
+    <div className="relative mx-auto hidden max-w-screen-2xl lg:block">
+      <p className="mx-auto mb-8 flex max-w-5xl items-center justify-center text-sm text-white xl:text-lg 2xl:font-semibold">
+        {data.slide[activeIndex].description}
+      </p>
+      <div className=" h-fit md:px-[77px]">
         <Swiper
           ref={sliderRef}
           centeredSlides={true}
-          // spaceBetween={100}
           slidesPerView={2}
-          initialSlide={1}
+          onSwiper={(swiper) => null}
+          onSlideChange={handleSlideChange}
+          initialSlide={initialSlide}
           coverflowEffect={{
             rotate: 0,
             stretch: -240,
@@ -38,16 +45,17 @@ const DesktopVersion = () => {
             modifier: 1,
             slideShadows: false,
           }}
+          grabCursor
           effect={"coverflow"}
           modules={[EffectCoverflow, Navigation]}
           className="mySwiper"
         >
-          {[...Array(3)].map((_, i) => (
-            <SwiperSlide key={i} className="!flex justify-center">
-              <div className="relative w-[40rem] h-[30rem]">
+          {data.slide.map((item: any) => (
+            <SwiperSlide key={item._key} className="!flex justify-center">
+              <div className="relative h-[30rem] w-[40rem]">
                 <Image
-                  src={images.niceHome}
-                  alt=""
+                  src={urlForImage(item.featuredImage)?.url() as string}
+                  alt={item.featuredImage.alt}
                   fill
                   style={{ objectFit: "cover" }}
                   className="rounded-2xl"
@@ -55,19 +63,18 @@ const DesktopVersion = () => {
               </div>
             </SwiperSlide>
           ))}
-      
         </Swiper>
       </div>
-      <div className="flex px-[311px] justify-between items-center md:mt-[40px] mt-[32px] md:pb-[107px] pb-[30px]">
+      <div className="mt-[32px] flex items-center justify-between px-[311px] pb-[30px] md:mt-[40px] md:pb-[107px]">
         <button
           onClick={handlePrev}
-          className="w-[40px] h-[40px] md:w-[70px] md:h-[70px] flex items-center justify-center bg-white rounded-full"
+          className="flex h-[40px] w-[40px] items-center justify-center rounded-full bg-white md:h-[70px] md:w-[70px]"
         >
           <MdChevronLeft className="text-3xl text-neutral-800" />
         </button>
         <button
           onClick={handleNext}
-          className="w-[40px] h-[40px] md:w-[70px] md:h-[70px] flex items-center justify-center bg-white rounded-full"
+          className="flex h-[40px] w-[40px] items-center justify-center rounded-full bg-white md:h-[70px] md:w-[70px]"
         >
           <MdChevronRight className="text-3xl text-neutral-800" />
         </button>

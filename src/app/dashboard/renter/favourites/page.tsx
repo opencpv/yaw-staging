@@ -57,14 +57,12 @@ export default function FavoritePage() {
           />
         ))}
       </section>
-      <div className="mt-10 flex justify-center">
-        <ButtonInfiniteLoading
-          data={listings}
-          isLoading={isLoading}
-          isValidating={isValidating}
-          loadMore={loadMore}
-        />
-      </div>
+      <ButtonInfiniteLoading
+        data={listings}
+        isLoading={isLoading}
+        isValidating={isValidating}
+        loadMore={loadMore}
+      />
     </div>
   );
 }

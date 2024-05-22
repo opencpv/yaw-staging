@@ -30,7 +30,7 @@ function SomethingWentWrong({ className, onTryAgain, reset, error }: Props) {
             <p className="text-shade-200">
               {hasInternet
                 ? "Sorry, there seems to be an error performing this action."
-                : "It seems you are offline. Check your internet connection."}
+                : "It seems you are offline. Please check your internet connection."}
             </p>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-5">

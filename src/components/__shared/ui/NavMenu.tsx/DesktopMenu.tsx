@@ -1,5 +1,5 @@
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Separator from "../../../Separator";
 import { FadeInOut } from "@/lib/animations";
@@ -9,23 +9,35 @@ import { useFaqHowToSwitchStore } from "@/store/faq/useFaqStore";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useMenuLinks } from "./content";
 import { createUUID } from "@/lib/utils/stringManipulation";
+import { animate, stagger } from "framer-motion";
 
 export const DesktopMenu = (props: any) => {
   const { linksAfterLogin, linksBeforeLogin } = useMenuLinks();
   const [active, setActive] = useState<number | null>(null);
   const [subId, setSubId] = useState<number | null>(null);
   const router = useRouter();
-  const setToggle = useMenuStore((state) => state.setToggle);
+  const { setToggle, toggle } = useMenuStore();
   const { user } = useAppStore();
-
   const setFaqActivePage = useFaqHowToSwitchStore(
     (state) => state.setActivePage,
   );
 
+  useEffect(() => {
+    animate(
+      ".main-menu-link",
+      toggle ? { opacity: [0, 1], x: [-5, 0] } : { opacity: 1, x: 0 },
+      {
+        delay: stagger(0.1, { startDelay: 0.5 }),
+      },
+    );
+  }, [toggle]);
+
   return (
     <div className={`flex-row gap-12 px-8 ${props?.className} `}>
       <div
-        className={"flex w-max flex-col gap-10 border-r-[3px] border-r-white pr-10"}
+        className={
+          "flex w-max flex-col gap-10 border-r-[3px] border-r-white pr-10"
+        }
       >
         {/* main links before login */}
         {!user &&
@@ -59,7 +71,6 @@ export const DesktopMenu = (props: any) => {
                         } else {
                           setActive(null);
                           router.push(r?.url);
-                          // props?.toggleMenu();
                         }
                       }}
                     />
@@ -172,7 +183,7 @@ export const DesktopMenu = (props: any) => {
           />
           <motion.div
             key={createUUID()}
-            className={"flex flex-[0_0_30%] flex-col text-[#FCAB10]"}
+            className={"flex flex-[0_0_30%] flex-col text-accent-100"}
             animate={FadeInOut.open}
             variants={FadeInOut}
             initial={FadeInOut.closed}
