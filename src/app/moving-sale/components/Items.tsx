@@ -82,7 +82,7 @@ function Items({}: Props) {
               term: item.term,
               price: item.price.toString(),
               condition: item.condition,
-              seller: item.profiles?.full_name as string,
+              seller: item.profiles[0]?.full_name as string,
               description: item.description,
             })}`}
             title={item.title}
