@@ -9,6 +9,7 @@ import { formatPrice } from "@/lib/utils/numberManipulation";
 import { formatDateOnly } from "@/lib/utils/stringManipulation";
 import ViewDataDetailsModal from "../__shared/ViewDataDetailsModal";
 import { useInvoiceData } from "../../hooks/useInvoiceData";
+import { invoiceStore } from "@/store/payment/invoiceStore";
 
 type Props = {
   variant: "invoice" | "receipt";
@@ -16,8 +17,11 @@ type Props = {
 };
 
 function DataRow({ data, variant }: Props) {
-  const { checked, handleCheckChange } = useInvoiceData({ data });
+  const { checkoutItems } = invoiceStore();
 
+  const { checked, handleCheckChange } = useInvoiceData({
+    invoiceData: checkoutItems,
+  });
   return (
     <>
       <TableBodyRow className="grid-cols-7" gap="2rem">
@@ -28,16 +32,12 @@ function DataRow({ data, variant }: Props) {
             checked={checked}
           />
         </TableBody>
-        <TableBody className="col-span-1">{data.invoice_id}</TableBody>
+        <TableBody className="col-span-1">{data.id}</TableBody>
         <TableBody className="col-span-1 font-medium">{data.service}</TableBody>
-        <TableBody className="col-span-1">
-          {formatDateOnly(data.billing_date)}
-        </TableBody>
+        <TableBody className="col-span-1">{data.billing_date}</TableBody>
         <TableBody className="col-span-1">{formatPrice(data.amount)}</TableBody>
         <TableBody className="col-span-1">
-          <InvoiceStatus
-            status={data.status === "Paid" ? "paid" : "not paid"}
-          />
+          <InvoiceStatus status={data.is_paid ? "paid" : "not paid"} />
         </TableBody>
         <TableBody className="col-span-1">
           <ViewDataDetailsModal variant={variant} data={data} />

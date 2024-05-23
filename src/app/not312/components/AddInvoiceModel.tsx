@@ -8,17 +8,20 @@ import {
   Button,
   useDisclosure,
   Input,
+  Textarea,
 } from "@nextui-org/react";
 import { RefetchOptions } from "@tanstack/react-query";
-import { object, string } from "yup";
+import { date, object, string } from "yup";
 import { toast } from "react-toastify";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { generateUniqueString } from "@/lib/utils/stringManipulation";
+import { DatePicker } from "antd";
 
 interface Props {
   refetch: (options?: RefetchOptions) => void;
+  customerId: string;
 }
-export default function AddCustomerModal({ refetch }: Props) {
+export default function AddInvoiceModal({ refetch, customerId }: Props) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [firstname, setFirstname] = useState<string>();
   const [lastname, setLastname] = useState<string>();
@@ -26,36 +29,35 @@ export default function AddCustomerModal({ refetch }: Props) {
   const [email, setemail] = useState<string>();
   const [phone, setphone] = useState<string>();
   const [loading, setloading] = useState(false);
+  const [service, setService] = useState<string>();
+  const [cost, setCost] = useState<number>();
+  const [tax, setTax] = useState<number>();
+  const [description, setDescription] = useState<string>();
   const closeButtonRef = useRef<any>();
 
   let customerSchema = object({
-    firstname: string().required(),
-    lastname: string().required(),
-    company: string().required(),
-    email: string().email(),
-    phone: string().matches(/^\d{10}$/),
+    service: string().required(),
+    cost: string().required(),
   });
 
   const handleSubmit = async () => {
     setloading(true);
     try {
       const validation = await customerSchema.validate({
-        firstname,
-        lastname,
-        email,
-        phone,
-        company,
+        service,
+        cost,
       });
 
       const { data, error } = await supabase
-        .from("customers")
+        .from("invoices")
         .insert({
-          firstname,
-          lastname,
-          email,
-          phone,
-          company,
-          customer_id: generateUniqueString(8),
+          service,
+          billing_date: new Date().toISOString().split("T")[0],
+          amount: cost,
+          is_paid: false,
+          customer: customerId,
+          tax_rate: tax,
+          service_description: description,
         })
         .select();
 
@@ -73,44 +75,44 @@ export default function AddCustomerModal({ refetch }: Props) {
   };
   return (
     <>
-      <Button onPress={onOpen}>Add Customer</Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
-        <ModalContent>
+      <Button onPress={onOpen} className="w-full">
+        Add Invoice
+      </Button>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} className="w-[50vw]">
+        <ModalContent className="w-full">
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                Add new customer
+                Add Invoice
               </ModalHeader>
               <ModalBody>
                 <Input
-                  placeholder="Enter customer firstname"
-                  label="Firstname"
+                  placeholder="Enter service performed"
+                  label="Service"
                   required
-                  onChange={(e) => setFirstname(e.target.value)}
+                  onChange={(e) => setService(e.target.value)}
+                />
+
+                <Textarea
+                  placeholder="Enter service description "
+                  label="Service description"
+                  required
+                  onChange={(e) => setDescription(e.target.value)}
+                />
+
+                <Input
+                  placeholder="Enter cost of service"
+                  label="Cost"
+                  required
+                  type="number"
+                  onChange={(e) => setCost(parseFloat(e.target.value))}
                 />
                 <Input
-                  placeholder="Enter customer lastname"
-                  label="Lastname"
+                  placeholder="Enter tax rate as percentage"
+                  label="Tax rate"
                   required
-                  onChange={(e) => setLastname(e.target.value)}
-                />
-                <Input
-                  placeholder="Enter customer company name"
-                  label="Company"
-                  required
-                  onChange={(e) => setcompany(e.target.value)}
-                />
-                <Input
-                  placeholder="Enter customer email"
-                  label="Email"
-                  required
-                  onChange={(e) => setemail(e.target.value)}
-                />
-                <Input
-                  placeholder="Enter customer phone"
-                  label="Phone"
-                  required
-                  onChange={(e) => setphone(e.target.value)}
+                  type="number"
+                  onChange={(e) => setTax(parseFloat(e.target.value))}
                 />
               </ModalBody>
               <ModalFooter>

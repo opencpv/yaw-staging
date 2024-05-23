@@ -10,10 +10,8 @@ export const useInvoiceData = ({
 }) => {
   const { checkoutItems, setCheckoutItems } = invoiceStore();
   const handleCheckChange = () => {
-    if (checkoutItems.some((item) => item.invoice_id === data?.invoice_id)) {
-      setCheckoutItems(
-        checkoutItems.filter((item) => item.invoice_id !== data?.invoice_id),
-      );
+    if (checkoutItems.some((item) => item.id === data?.id)) {
+      setCheckoutItems(checkoutItems.filter((item) => item.id !== data?.id));
     } else {
       setCheckoutItems([
         ...(checkoutItems as PaymentData[]),
@@ -27,9 +25,7 @@ export const useInvoiceData = ({
     setCheckoutItems(allSelected ? [] : (invoiceData as PaymentData[]));
   };
 
-  const checked = checkoutItems.some(
-    (item) => item.invoice_id === data?.invoice_id,
-  );
+  const checked = checkoutItems.some((item) => item.id === data?.id);
 
   const allChecked = checkoutItems.length === invoiceData?.length;
 

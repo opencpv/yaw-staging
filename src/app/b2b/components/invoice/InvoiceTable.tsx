@@ -12,12 +12,15 @@ import {
 import { CheckboxNoFormik as Checkbox } from "@/app/dashboard/components/shared/ui/Checkbox";
 import { useInvoiceData } from "../../hooks/useInvoiceData";
 import { createUUID } from "@/lib/utils/stringManipulation";
+import { invoiceStore } from "@/store/payment/invoiceStore";
 
 type Props = {};
 
 const InvoiceTable = (props: Props) => {
+  const { checkoutItems } = invoiceStore();
+  console.log("checkoutItems", checkoutItems);
   const { handleCheckAll, allChecked } = useInvoiceData({
-    invoiceData,
+    invoiceData: checkoutItems,
   });
 
   return (
@@ -42,7 +45,7 @@ const InvoiceTable = (props: Props) => {
           <TableHeader className="col-span-1">Action</TableHeader>
         </TableHeaderRow>
         <TableBodyRowGroup>
-          {invoiceData?.map((data: any) => (
+          {checkoutItems?.map((data: any) => (
             <DataRow key={createUUID()} data={data} variant="invoice" />
           ))}
         </TableBodyRowGroup>
@@ -58,7 +61,7 @@ const InvoiceTable = (props: Props) => {
             checked={allChecked}
           />
         </div>
-        {invoiceData?.map((data: any) => (
+        {checkoutItems?.map((data: any) => (
           <DataRowSm key={createUUID()} data={data} variant="invoice" />
         ))}
       </TableSm>

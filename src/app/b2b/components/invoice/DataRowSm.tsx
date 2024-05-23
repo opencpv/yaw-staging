@@ -9,6 +9,7 @@ import { formatDateOnly } from "@/lib/utils/stringManipulation";
 import InvoiceStatus from "./InvoiceStatus";
 import { CheckboxNoFormik as Checkbox } from "@/app/dashboard/components/shared/ui/Checkbox";
 import { useInvoiceData } from "../../hooks/useInvoiceData";
+import { invoiceStore } from "@/store/payment/invoiceStore";
 
 type Props = {
   variant: "invoice" | "receipt";
@@ -16,14 +17,18 @@ type Props = {
 };
 
 function DataRowSm({ variant, data }: Props) {
-  const { checked, handleCheckChange } = useInvoiceData({ data });
+  const { checkoutItems } = invoiceStore();
+
+  const { checked, handleCheckChange } = useInvoiceData({
+    invoiceData: checkoutItems,
+  });
 
   return (
     <TableRowSm>
       <TableBodySm className="flex items-center justify-between gap-5">
         <div className="space-y-5 rounded-xl border border-shade-300 p-3">
           <h4>Invoice Id</h4>
-          <p>{data.invoice_id}</p>
+          <p>{data.id}</p>
         </div>
         <Checkbox
           color="primary"
@@ -41,14 +46,12 @@ function DataRowSm({ variant, data }: Props) {
       </TableBodySm>
       <TableBodySm className="flex items-center justify-between gap-5">
         <h4>Billing Date</h4>
-        <p>{formatDateOnly(data.billing_date)}</p>
+        <p>{data.billing_date}</p>
       </TableBodySm>
       <TableBodySm className="flex items-center justify-between gap-5">
         <h4>Status</h4>
         <p>
-          <InvoiceStatus
-            status={data.status === "Paid" ? "paid" : "not paid"}
-          />
+          <InvoiceStatus status={data.is_paid ? "paid" : "not paid"} />
         </p>
       </TableBodySm>
       <TableBodySm className="ml-auto flex w-20 justify-end">

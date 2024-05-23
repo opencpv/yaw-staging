@@ -1,5 +1,5 @@
 import TextInput from "@/components/__shared/ui/form/TextInput";
-import React from "react";
+import React, { useState } from "react";
 import { handleCustomerIdSubmit } from "../actions";
 import ContinueButton from "./ContinueButton";
 

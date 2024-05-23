@@ -1,7 +1,11 @@
 export type PaymentData = {
-  invoice_id: string | number;
+  id: string | number;
   service: string;
   amount: number;
-  status?: string;
+  tax_rate: number;
+  is_paid?: boolean;
   billing_date: string;
+  service_description?: string;
+  created_at?: string;
+  customer?: string;
 };

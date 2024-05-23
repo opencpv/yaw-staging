@@ -1,6 +1,5 @@
 "use client";
 import Cost from "../__shared/Cost";
-import DownloadButton from "../__shared/DownloadButton";
 import CheckoutButton from "../__shared/CheckoutButton";
 import InvoiceTable from "../invoice/InvoiceTable";
 import { invoiceStore } from "@/store/payment/invoiceStore";
@@ -25,7 +24,6 @@ function Invoices() {
       <InvoiceTable />
 
       <section className="hidden w-full justify-between gap-5 bg-[#F8F8F8] py-5 lg:flex">
-        {/* <DownloadButton maxWidth="fit"  /> */}
         <div />
         <div>
           <Cost
@@ -40,7 +38,6 @@ function Invoices() {
         </div>
       </section>
       <section className="sticky bottom-0 z-50 grid w-full grid-cols-2 items-center justify-end gap-5 bg-[#F8F8F8] py-5 pb-2 max-lg:max-w-2xl lg:hidden">
-        {/* <DownloadButton maxWidth="fit" /> */}
         <div />
         <CheckoutButton affix={checkoutItems.length} />
       </section>
