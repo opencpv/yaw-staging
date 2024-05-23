@@ -6,9 +6,11 @@ import InvoiceTable from "../invoice/InvoiceTable";
 import { invoiceStore } from "@/store/payment/invoiceStore";
 import SearchInput from "@/components/__shared/ui/form/SearchInput";
 import { useState } from "react";
-import { useFetchInvoices } from "../../services";
 
-function Invoices() {
+type Props = {
+  customerId: string;
+};
+function Invoices({ customerId }: Props) {
   const { checkoutItems } = invoiceStore();
   const [searchString, setSearchString] = useState("");
   const subTotal = checkoutItems.reduce((acc, item) => acc + item.amount, 0);
@@ -23,15 +25,15 @@ function Invoices() {
           Effortlessly handle your invoices right here
         </h4>
         <SearchInput
-          onSearch={() => {}}
           onChange={(e) => setSearchString(e.target.value)}
           className="mt-5"
+          placeholder="Search invoice ID"
         />
       </div>
       <div className="mt-10 flex w-full justify-end lg:hidden">
         <Cost subTotal={subTotal} tax={tax} total={total} variant={"invoice"} />
       </div>
-      <InvoiceTable searchString={searchString} />
+      <InvoiceTable searchString={searchString} customerId={customerId} />
 
       <section className="hidden w-full justify-between gap-5 bg-[#F8F8F8] py-5 lg:flex">
         {/* <DownloadButton maxWidth="fit"  /> */}

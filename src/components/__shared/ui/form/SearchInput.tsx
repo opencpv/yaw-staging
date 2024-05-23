@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { ConfigProvider, Input } from "antd";
 import { CiSearch } from "react-icons/ci";
 import { cn } from "@/lib/utils";
@@ -13,7 +13,7 @@ const SearchInput = ({
   const inputRef = React.useRef<any>(null);
 
   const handleSearch = () => {
-    onSearch();
+    onSearch?.();
     inputRef.current?.blur();
   };
 

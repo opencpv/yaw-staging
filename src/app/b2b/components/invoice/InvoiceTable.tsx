@@ -1,7 +1,6 @@
 import React from "react";
 import DataRowSm from "./DataRowSm";
 import DataRow from "./DataRow";
-import { invoiceData } from "../content";
 import {
   Table,
   TableBodyRowGroup,
@@ -12,27 +11,26 @@ import {
 import { CheckboxNoFormik as Checkbox } from "@/app/dashboard/components/shared/ui/Checkbox";
 import { useInvoiceData } from "../../hooks/useInvoiceData";
 import { createUUID } from "@/lib/utils/stringManipulation";
-import SearchInput from "@/components/__shared/ui/form/SearchInput";
 import { useFetchInvoices } from "../../services";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
 import TableSkeleton from "@/app/dashboard/components/shared/skeleton/TableSkeleton";
-import PropertiesEmptyState from "@/app/properties/components/PropertiesEmptyState";
 import TableSkeletonSm from "@/app/dashboard/components/shared/skeleton/TableSkeletonSm";
 import Pagination, { usePagination } from "@/components/__shared/ui/Pagination";
+import InvoiceEmptyState from "../__shared/InvoiceEmptyState";
 
 type Props = {
   searchString: string;
+  customerId: string;
 };
 
-const InvoiceTable = ({ searchString }: Props) => {
+const InvoiceTable = ({ searchString, customerId }: Props) => {
   const {
     data: invoices,
     error,
     isLoading,
-    isValidating,
     mutate,
-  } = useFetchInvoices({ searchString });
+  } = useFetchInvoices({ searchString, customerId });
 
   const { handleCheckAll, allChecked } = useInvoiceData({
     invoiceData: invoices as Invoice[],
@@ -81,7 +79,7 @@ const InvoiceTable = ({ searchString }: Props) => {
                 }}
               />
             }
-            emptyStateComponent={<PropertiesEmptyState />}
+            emptyStateComponent={<InvoiceEmptyState />}
           />
           {paginatedInvoices?.map((invoice) => (
             <DataRow key={createUUID()} data={invoice} variant="invoice" />
@@ -104,9 +102,9 @@ const InvoiceTable = ({ searchString }: Props) => {
               }}
             />
           }
-          emptyStateComponent={<PropertiesEmptyState />}
+          emptyStateComponent={<InvoiceEmptyState />}
         />
-        {invoices?.map((invoice: any) => (
+        {paginatedInvoices?.map((invoice: any) => (
           <DataRowSm key={createUUID()} data={invoice} variant="invoice" />
         ))}
       </TableSm>

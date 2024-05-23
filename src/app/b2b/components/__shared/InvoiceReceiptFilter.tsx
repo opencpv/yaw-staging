@@ -6,7 +6,9 @@ import Invoices from "../pages/Invoices";
 import Receipts from "../pages/Receipts";
 import Forms from "../pages/Forms";
 
-type Props = {};
+type Props = {
+  customerId: string;
+};
 
 const InvoiceReceiptFilter = (props: Props) => {
   const { activePage, setActivePage } = invoiceStore();
@@ -24,9 +26,9 @@ const InvoiceReceiptFilter = (props: Props) => {
         />
       </div>
       {activePage === "invoice" ? (
-        <Invoices />
+        <Invoices customerId={props.customerId} />
       ) : activePage === "receipt" ? (
-        <Receipts />
+        <Receipts customerId={props.customerId} />
       ) : (
         <Forms />
       )}

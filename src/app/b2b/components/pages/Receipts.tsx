@@ -1,8 +1,16 @@
+"use client";
 import SearchInput from "@/components/__shared/ui/form/SearchInput";
 import DownloadButton from "../__shared/DownloadButton";
 import ReceiptTable from "../receipt/ReceiptTable";
+import { useState } from "react";
 
-function Receipts() {
+type Props = {
+  customerId: string;
+};
+
+function Receipts({ customerId }: Props) {
+  const [searchString, setSearchString] = useState("");
+
   return (
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-3">
@@ -10,9 +18,13 @@ function Receipts() {
         <h4 className="font-normal">
           Effortlessly handle your receipts right here
         </h4>
-        <SearchInput onSearch={() => {}} onChange={() => {}} className="mt-5" />
+        <SearchInput
+          onChange={(e) => setSearchString(e.target.value)}
+          className="mt-5"
+          placeholder="Search invoice ID"
+        />
       </div>
-      <ReceiptTable />
+      <ReceiptTable searchString={searchString} customerId={customerId} />
       <div className="hidden w-full items-center justify-end lg:flex">
         {/* <DownloadButton maxWidth="fit" /> */}
       </div>

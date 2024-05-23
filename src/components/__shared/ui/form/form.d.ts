@@ -1,6 +1,6 @@
 type SearchInputProps = {
   placeholder?: string;
-  onSearch: () => void;
+  onSearch?: () => void;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
 };
