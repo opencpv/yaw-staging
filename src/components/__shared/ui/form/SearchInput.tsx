@@ -6,10 +6,17 @@ import { cn } from "@/lib/utils";
 
 const SearchInput = ({
   placeholder,
-  onPressEnter,
+  onSearch,
   onChange,
   className,
 }: SearchInputProps) => {
+  const inputRef = React.useRef<any>(null);
+
+  const handleSearch = () => {
+    onSearch();
+    inputRef.current?.blur();
+  };
+
   return (
     <ConfigProvider
       theme={{
@@ -27,13 +34,14 @@ const SearchInput = ({
         prefix={
           <CiSearch
             className="text-neutral-500 hover:cursor-pointer"
-            onClick={onPressEnter}
+            onClick={handleSearch}
           />
         }
         className={cn("max-w-2xl", className)}
         allowClear
         onChange={onChange}
-        onPressEnter={onPressEnter}
+        onPressEnter={handleSearch}
+        ref={inputRef}
       />
     </ConfigProvider>
   );

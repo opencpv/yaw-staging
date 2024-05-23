@@ -5,31 +5,24 @@ export const useInvoiceData = ({
   data,
   invoiceData,
 }: {
-  data?: PaymentData;
-  invoiceData?: PaymentData[];
+  data?: Invoice;
+  invoiceData?: Invoice[];
 }) => {
   const { checkoutItems, setCheckoutItems } = invoiceStore();
   const handleCheckChange = () => {
-    if (checkoutItems.some((item) => item.invoice_id === data?.invoice_id)) {
-      setCheckoutItems(
-        checkoutItems.filter((item) => item.invoice_id !== data?.invoice_id),
-      );
+    if (checkoutItems.some((item) => item.id === data?.id)) {
+      setCheckoutItems(checkoutItems.filter((item) => item.id !== data?.id));
     } else {
-      setCheckoutItems([
-        ...(checkoutItems as PaymentData[]),
-        data as PaymentData,
-      ]);
+      setCheckoutItems([...(checkoutItems as Invoice[]), data as Invoice]);
     }
   };
 
   const handleCheckAll = () => {
     const allSelected = checkoutItems.length === invoiceData?.length;
-    setCheckoutItems(allSelected ? [] : (invoiceData as PaymentData[]));
+    setCheckoutItems(allSelected ? [] : (invoiceData as Invoice[]));
   };
 
-  const checked = checkoutItems.some(
-    (item) => item.invoice_id === data?.invoice_id,
-  );
+  const checked = checkoutItems.some((item) => item.id === data?.id);
 
   const allChecked = checkoutItems.length === invoiceData?.length;
 

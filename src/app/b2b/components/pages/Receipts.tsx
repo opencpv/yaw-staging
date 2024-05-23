@@ -1,3 +1,4 @@
+import SearchInput from "@/components/__shared/ui/form/SearchInput";
 import DownloadButton from "../__shared/DownloadButton";
 import ReceiptTable from "../receipt/ReceiptTable";
 
@@ -9,6 +10,7 @@ function Receipts() {
         <h4 className="font-normal">
           Effortlessly handle your receipts right here
         </h4>
+        <SearchInput onSearch={() => {}} onChange={() => {}} className="mt-5" />
       </div>
       <ReceiptTable />
       <div className="hidden w-full items-center justify-end lg:flex">

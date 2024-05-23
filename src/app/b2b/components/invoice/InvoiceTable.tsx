@@ -13,21 +13,41 @@ import { CheckboxNoFormik as Checkbox } from "@/app/dashboard/components/shared/
 import { useInvoiceData } from "../../hooks/useInvoiceData";
 import { createUUID } from "@/lib/utils/stringManipulation";
 import SearchInput from "@/components/__shared/ui/form/SearchInput";
+import { useFetchInvoices } from "../../services";
+import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
+import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
+import TableSkeleton from "@/app/dashboard/components/shared/skeleton/TableSkeleton";
+import PropertiesEmptyState from "@/app/properties/components/PropertiesEmptyState";
+import TableSkeletonSm from "@/app/dashboard/components/shared/skeleton/TableSkeletonSm";
+import Pagination, { usePagination } from "@/components/__shared/ui/Pagination";
 
-type Props = {};
+type Props = {
+  searchString: string;
+};
 
-const InvoiceTable = (props: Props) => {
+const InvoiceTable = ({ searchString }: Props) => {
+  const {
+    data: invoices,
+    error,
+    isLoading,
+    isValidating,
+    mutate,
+  } = useFetchInvoices({ searchString });
+
   const { handleCheckAll, allChecked } = useInvoiceData({
-    invoiceData,
+    invoiceData: invoices as Invoice[],
+  });
+
+  const {
+    currentItems: paginatedInvoices,
+    handlePageClick,
+    pageCount,
+  } = usePagination({
+    items: invoices as Invoice[],
   });
 
   return (
     <>
-      <SearchInput
-        onPressEnter={() => {}}
-        onChange={() => {}}
-        className="-mt-2"
-      />
       <Table>
         <TableHeaderRow className="grid-cols-7" gap="2rem">
           <TableHeader className="col-span-1">
@@ -48,26 +68,50 @@ const InvoiceTable = (props: Props) => {
           <TableHeader className="col-span-1">Action</TableHeader>
         </TableHeaderRow>
         <TableBodyRowGroup>
-          {invoiceData?.map((data: any) => (
-            <DataRow key={createUUID()} data={data} variant="invoice" />
+          <FetchingStates
+            data={invoices}
+            error={error}
+            isLoading={isLoading}
+            isLoadingComponent={<TableSkeleton rows={3} columns={7} />}
+            errorComponent={
+              <SomethingWentWrong
+                className="h-fit"
+                onTryAgain={() => {
+                  mutate();
+                }}
+              />
+            }
+            emptyStateComponent={<PropertiesEmptyState />}
+          />
+          {paginatedInvoices?.map((invoice) => (
+            <DataRow key={createUUID()} data={invoice} variant="invoice" />
           ))}
         </TableBodyRowGroup>
       </Table>
 
       {/* Mobile */}
       <TableSm>
-        <div className="relative right-5 top-5 ml-auto flex items-center gap-2">
-          <p>Check All</p>
-          <Checkbox
-            color="primary"
-            onCheckedChange={handleCheckAll}
-            checked={allChecked}
-          />
-        </div>
-        {invoiceData?.map((data: any) => (
-          <DataRowSm key={createUUID()} data={data} variant="invoice" />
+        <FetchingStates
+          data={invoices}
+          error={error}
+          isLoading={isLoading}
+          isLoadingComponent={<TableSkeletonSm rows={3} />}
+          errorComponent={
+            <SomethingWentWrong
+              className="h-fit"
+              onTryAgain={() => {
+                mutate();
+              }}
+            />
+          }
+          emptyStateComponent={<PropertiesEmptyState />}
+        />
+        {invoices?.map((invoice: any) => (
+          <DataRowSm key={createUUID()} data={invoice} variant="invoice" />
         ))}
       </TableSm>
+
+      <Pagination handlePageClick={handlePageClick} pageCount={pageCount} />
     </>
   );
 };

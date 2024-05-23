@@ -28,6 +28,7 @@ declare global {
     DB["public"]["Tables"]["user_favorite_properties"]["Row"];
   type MergedStandardTemplateView =
     DB["public"]["Views"]["merged_standard_template_view"]["Row"];
+  type Invoice = Tables<"invoices">;
 
   type PaymentStructure =
     | "Yearly"

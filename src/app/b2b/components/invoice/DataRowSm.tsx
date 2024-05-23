@@ -12,7 +12,7 @@ import { useInvoiceData } from "../../hooks/useInvoiceData";
 
 type Props = {
   variant: "invoice" | "receipt";
-  data: PaymentData;
+  data: Invoice;
 };
 
 function DataRowSm({ variant, data }: Props) {
@@ -23,7 +23,7 @@ function DataRowSm({ variant, data }: Props) {
       <TableBodySm className="flex items-center justify-between gap-5">
         <div className="space-y-5 rounded-xl border border-shade-300 p-3">
           <h4>Invoice Id</h4>
-          <p>{data.invoice_id}</p>
+          <p>{data.id}</p>
         </div>
         <Checkbox
           color="primary"
@@ -46,9 +46,7 @@ function DataRowSm({ variant, data }: Props) {
       <TableBodySm className="flex items-center justify-between gap-5">
         <h4>Status</h4>
         <p>
-          <InvoiceStatus
-            status={data.status === "Paid" ? "paid" : "not paid"}
-          />
+          <InvoiceStatus status={data.is_paid ? "paid" : "not paid"} />
         </p>
       </TableBodySm>
       <TableBodySm className="ml-auto flex w-20 justify-end">

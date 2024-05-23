@@ -31,7 +31,7 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
   useEffect(() => {
     const updateViews = async () => {
       const { data, error } = await supabase.rpc("increment_property_views", {
-        propertyid: props.propertyId,
+        propertyid: props.propertyId as number,
       });
       if (error) {
         console.error("Error incrementing property views:", error);

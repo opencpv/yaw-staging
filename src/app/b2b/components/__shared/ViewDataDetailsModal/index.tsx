@@ -18,7 +18,7 @@ type Variant = "invoice" | "receipt";
 
 type Props = {
   variant: Variant;
-  data: PaymentData;
+  data: Invoice;
 };
 export default function ViewDataDetailsModal({ variant, data }: Props) {
   const { onOpen, isOpen, onOpenChange } = useDisclosure();
@@ -26,7 +26,7 @@ export default function ViewDataDetailsModal({ variant, data }: Props) {
   return (
     <>
       <Modal
-        header={<div className="h-5"></div>}
+        header={<div className="h-5" />}
         body={<ModalBody variant={variant} data={data} />}
         footer={<ModalFooter variant={variant} data={data} />}
         isOpen={isOpen}
@@ -45,7 +45,7 @@ const ModalHeader = ({
   data,
 }: {
   variant: "invoice" | "receipt";
-  data: PaymentData;
+  data: Invoice;
 }) => {
   return (
     <div
@@ -66,7 +66,7 @@ const ModalHeader = ({
             variant == "receipt" && "hidden"
           }`}
         >
-          {data.invoice_id}
+          {data.id}
         </small>
       </div>
       <div
@@ -80,13 +80,7 @@ const ModalHeader = ({
   );
 };
 
-const ModalBody = ({
-  variant,
-  data,
-}: {
-  variant: Variant;
-  data: PaymentData;
-}) => {
+const ModalBody = ({ variant, data }: { variant: Variant; data: Invoice }) => {
   const subTotal = data.amount;
   const tax = 12;
   const total = subTotal + tax;
@@ -172,7 +166,7 @@ const ModalFooter = ({
   data,
 }: {
   variant: Variant;
-  data: PaymentData;
+  data: Invoice;
 }) => {
   return (
     <div className="mx-auto w-full sm:w-11/12">
@@ -185,7 +179,6 @@ const ModalFooter = ({
           />
         </div>
       )}
-
       {variant === "invoice" && (
         <div className="">
           <div className="grid w-full grid-cols-2 items-center justify-end gap-3 bg-transparent pb-2">

@@ -21,11 +21,6 @@ const ReceiptTable = () => {
 
   return (
     <>
-      <SearchInput
-        onPressEnter={() => {}}
-        onChange={() => {}}
-        className="-mt-2"
-      />
       <Table>
         <TableHeaderRow className="grid-cols-6" gap="2rem">
           <TableHeader className="col-span-1">
@@ -53,14 +48,6 @@ const ReceiptTable = () => {
 
       {/* Mobile */}
       <TableSm>
-        <div className="relative right-5 top-5 ml-auto flex items-center gap-2">
-          <p>Check All</p>
-          <Checkbox
-            color="primary"
-            onCheckedChange={handleCheckAll}
-            checked={allChecked}
-          />
-        </div>
         {receiptData?.map((data: any) => (
           <DataRowSm key={createUUID()} data={data} variant="receipt" />
         ))}

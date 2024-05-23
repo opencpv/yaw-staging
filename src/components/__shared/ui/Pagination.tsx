@@ -53,12 +53,12 @@ export const usePagination = ({
   // following the API or data you're working with.
   const [itemOffset, setItemOffset] = useState(0);
   const endOffset = itemOffset + itemsPerPage;
-  const currentItems = items.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(items.length / itemsPerPage);
+  const currentItems = items?.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(items?.length / itemsPerPage);
 
   // Invoke when user click to request another page.
   const handlePageClick = (event: { selected: number }) => {
-    const newOffset = (event.selected * itemsPerPage) % items.length;
+    const newOffset = (event.selected * itemsPerPage) % items?.length;
     setItemOffset(newOffset);
   };
 

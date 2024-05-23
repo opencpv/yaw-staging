@@ -34,19 +34,13 @@ export const formatDate = (dateTime: string) => {
 };
 
 export const formatDateTime = (dateTime: string) => {
-  return format(
-    parse(dateTime, "EEE, dd MMMM yyyy HH:mm:ss 'GMT'", new Date()),
-    "dd MMM. yyyy hh:mma",
-  )
+  return format(new Date(dateTime), "dd MMM. yyyy hh:mma")
     .replace("AM", "am")
     .replace("PM", "pm");
 };
 
-export const formatDateOnly = (dateTime: string) => {
-  return format(
-    parse(dateTime, "EEE, dd MMMM yyyy HH:mm:ss 'GMT'", new Date()),
-    "dd MMM, yyyy",
-  );
+export const formatDateOnly = (date: string) => {
+  return format(new Date(date), "dd MMM, yyyy");
 };
 
 export const LowerCase = (text: string) => {

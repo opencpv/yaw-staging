@@ -4,8 +4,10 @@ import { create } from "zustand";
 type InvoiceStore = {
   activePage: React.Key;
   setActivePage: (option: React.Key) => void;
-  checkoutItems: PaymentData[];
-  setCheckoutItems: (items: PaymentData[]) => void;
+  checkoutItems: Invoice[];
+  setCheckoutItems: (items: Invoice[]) => void;
+  invoiceDownloadClassName: string;
+  setInvoiceDownloadClassName: (className: string) => void;
 };
 
 export const invoiceStore = create<InvoiceStore>((set) => ({
@@ -17,4 +19,7 @@ export const invoiceStore = create<InvoiceStore>((set) => ({
       ...state,
       checkoutItems: items,
     })),
+  invoiceDownloadClassName: "",
+  setInvoiceDownloadClassName: (className) =>
+    set((state) => ({ ...state, invoiceDownloadClassName: className })),
 }));
