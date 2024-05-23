@@ -66,7 +66,7 @@ const ModalHeader = ({
             variant == "receipt" && "hidden"
           }`}
         >
-          {data.invoice_id}
+          {data.id}
         </small>
       </div>
       <div

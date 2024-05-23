@@ -10,9 +10,9 @@ export const useReceiptData = ({
 }) => {
   const { checkedOutItems, setCheckedOutItems } = receiptStore();
   const handleCheckChange = () => {
-    if (checkedOutItems.some((item) => item.invoice_id === data?.invoice_id)) {
+    if (checkedOutItems.some((item) => item.id === data?.id)) {
       setCheckedOutItems(
-        checkedOutItems.filter((item) => item.invoice_id !== data?.invoice_id),
+        checkedOutItems.filter((item) => item.id !== data?.id),
       );
     } else {
       setCheckedOutItems([
@@ -27,9 +27,7 @@ export const useReceiptData = ({
     setCheckedOutItems(allSelected ? [] : (receiptData as PaymentData[]));
   };
 
-  const checked = checkedOutItems.some(
-    (item) => item.invoice_id === data?.invoice_id,
-  );
+  const checked = checkedOutItems.some((item) => item.id === data?.id);
 
   const allChecked = checkedOutItems.length === receiptData?.length;
 

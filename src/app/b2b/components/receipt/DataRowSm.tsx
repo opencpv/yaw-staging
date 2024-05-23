@@ -22,7 +22,7 @@ function DataRowSm({ variant, data }: Props) {
       <TableBodySm className="flex items-center justify-between gap-5">
         <div className="space-y-5 rounded-xl border border-shade-300 p-3">
           <h4>Invoice Id</h4>
-          <p>{data.invoice_id}</p>
+          <p>{data.id}</p>
         </div>
         <Checkbox
           color="primary"

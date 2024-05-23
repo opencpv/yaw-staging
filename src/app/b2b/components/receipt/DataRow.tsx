@@ -27,7 +27,7 @@ function DataRow({ data, variant }: Props) {
             checked={checked}
           />
         </TableBody>
-        <TableBody className="col-span-1">{data.invoice_id}</TableBody>
+        <TableBody className="col-span-1">{data.id}</TableBody>
         <TableBody className="col-span-1 text-center font-medium">
           {data.service}
         </TableBody>
@@ -35,7 +35,7 @@ function DataRow({ data, variant }: Props) {
           {formatDateOnly(data.billing_date)}
         </TableBody>
         <TableBody className="col-span-1">
-          {data.status === "Paid" ? formatPrice(0) : formatPrice(data.amount)}
+          {data.is_paid ? formatPrice(0) : formatPrice(data.amount)}
         </TableBody>
         <TableBody className="col-span-1">
           <ViewDataDetailsModal variant={variant} data={data} />
