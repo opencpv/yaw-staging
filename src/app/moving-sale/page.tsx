@@ -14,7 +14,7 @@ const MovingSalesPage = () => {
             autoplay
             className="absolute max-sm:aspect-video sm:h-96"
             images={[1, 2, 3].map((image) => ({
-              src: "/assets/images/about/about-slider-img.webp",
+              src: "/assets/images/moving-sale/lady-shopping.jpeg",
               name: "",
               href: "/blog/c/p",
             }))}
