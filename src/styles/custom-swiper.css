@@ -8,8 +8,12 @@
 
 .listing-card-slider .swiper-pagination-bullet-active,
 .listing-card-slider .swiper-pagination-bullet-active-main {
-  background-color: #ffffff !important;
+  background-color: #d8d8d8 !important;
   opacity: 1 !important;
+}
+
+.listing-card-slider .swiper-pagination-bullet-active {
+  background-color: #ffffff !important;
 }
 
 .slider-multi-items > .swiper-wrapper {
@@ -62,7 +66,7 @@
 
 .slider-pagination-only .swiper-pagination-bullets {
   position: relative;
-  bottom: 1.6rem !important;
+  bottom: 1.8rem !important;
   z-index: 50 !important;
 }
 
@@ -79,26 +83,29 @@
   background-color: #ffffff !important;
   opacity: 1 !important;
   z-index: 50 !important;
-  width: 12px !important;
-  height: 12px !important;
+  width: 14px !important;
+  height: 14px !important;
 }
 
 .slider-wide .swiper-pagination-bullets {
   position: relative;
-  bottom: 1.6rem !important;
+  bottom: 2.2rem !important;
 }
 
 .slider-wide .swiper-pagination-bullet {
   background-color: #d8d8d8 !important;
   opacity: 1 !important;
-  width: 10px !important;
-  height: 10px !important;
+  width: 14px !important;
+  height: 14px !important;
 }
 
 .slider-wide .swiper-pagination-bullet-active,
 .slider-wide .swiper-pagination-bullet-active-main {
   background-color: #fff !important;
   opacity: 1 !important;
+  width: 20px !important;
+  height: 20px !important;
+  bottom: 2rem !important;
 }
 
 @media (min-width: 640px) {
