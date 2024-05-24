@@ -103,7 +103,7 @@ const UserOverview = ({
                 )}
               </div>
               <div className="space-y-2">
-                <h4 className="">{name}</h4>
+                <h4>{name}</h4>
                 <div className="mb-4 flex flex-wrap items-center gap-x-5 gap-y-3 text-base">
                   {email && (
                     <div className="flex items-center gap-2 text-neutral-700">

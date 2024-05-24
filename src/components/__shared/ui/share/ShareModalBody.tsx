@@ -14,7 +14,7 @@ import ShareButtonComponent from "./ShareButtonComponent";
 import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import CopyButton from "./CopyButton";
 
-const ShareModalBody = (props: ShareDataProps) => {
+const ShareModalBody = ({ url = location.href, ...props }: ShareDataProps) => {
   const { onOpen: toastOnOpen } = useToastDisclosure();
 
   return (

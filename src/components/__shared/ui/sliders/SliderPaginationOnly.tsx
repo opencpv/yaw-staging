@@ -29,6 +29,7 @@ const SliderPaginationOnly = ({
         }}
         pagination={{
           clickable: true,
+          dynamicBullets: true,
         }}
         modules={[Pagination, Autoplay]}
         className={`slider-pagination-only h-80 w-72 rounded-lg ${className}`}

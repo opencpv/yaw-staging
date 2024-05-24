@@ -1,4 +1,5 @@
 import SkeletonTextual from "@/components/__shared/ui/skeleton/SkeletonTextual";
+import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import { Skeleton } from "@nextui-org/react";
 import React from "react";
@@ -49,9 +50,18 @@ const ItemDetails = ({ query }: Props) => {
           )}
         </span>
       </div>
-      <p className="max-w-4xl">
-        {query.isLoading ? <SkeletonTextual /> : query.data?.description}
-      </p>
+      {query.error ? (
+        <SomethingWentWrong
+          className="-mt-52 h-fit"
+          onTryAgain={() => {
+            query.mutate();
+          }}
+        />
+      ) : (
+        <p className="max-w-4xl">
+          {query.isLoading ? <SkeletonTextual /> : query.data?.description}
+        </p>
+      )}
     </div>
   );
 };

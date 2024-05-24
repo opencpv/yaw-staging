@@ -26,19 +26,21 @@ type ModalProps = {
   isOpen: boolean;
   onOpenChange: () => void;
   onClose?: () => void;
+  itemData: Item;
 };
 
-const PropertyGalleryModal = ({
+const ItemGalleryModal = ({
   isOpen,
   onOpenChange,
   onClose,
+  itemData,
 }: ModalProps) => {
   return (
     <Modal
       isDismissible={false}
-      header={<ModalHeader onClose={onClose} />}
+      header={<ModalHeader onClose={onClose} itemData={itemData} />}
       body={<ModalBody />}
-      footer={<ModalFooter />}
+      // footer={<ModalFooter />}
       isOpen={isOpen}
       onOpenChange={onOpenChange}
       hideCloseButton={true}
@@ -48,23 +50,35 @@ const PropertyGalleryModal = ({
   );
 };
 
-const ModalHeader = ({ onClose }: { onClose?: () => void }) => {
+const ModalHeader = ({
+  onClose,
+  itemData,
+}: {
+  onClose?: () => void;
+  itemData: Item;
+}) => {
   return (
-    <div className="flex justify-between gap-5 text-5xl text-neutral-100">
+    <div className="flex w-full justify-between gap-5 px-10 pt-16 text-5xl text-neutral-100 sm:px-20">
       <FaTimes
         className="shrink-0 cursor-pointer rounded-full bg-neutral-900 p-1.5"
         onClick={() => {
           onClose && onClose();
         }}
       />
-      <Share url="" />
+      <Share
+        title={itemData.title}
+        content={itemData.description}
+        classNames={{ icon: "text-white" }}
+        hideLabel
+      />
     </div>
   );
 };
 
 const ModalBody = () => {
+  const { activeIndex } = carouselStore();
   return (
-    <div className="flex h-full items-center justify-center">
+    <div className="mt-20 flex h-full flex-col items-center gap-10">
       <div className="h-fit w-full">
         <Carousel
           images={carouselDemo.map((image) => ({
@@ -73,17 +87,16 @@ const ModalBody = () => {
           }))}
         />
       </div>
+      <div className="flex w-full items-center justify-center text-center text-lg text-white">
+        {carouselDemo[activeIndex].label}
+      </div>
     </div>
   );
 };
 
-const ModalFooter = () => {
-  const { activeIndex } = carouselStore();
-  return (
-    <div className="flex w-full items-center justify-center text-center text-lg text-white">
-      {carouselDemo[activeIndex].label}
-    </div>
-  );
-};
+// const ModalFooter = () => {
+//   return (
+//   );
+// };
 
-export default PropertyGalleryModal;
+export default ItemGalleryModal;

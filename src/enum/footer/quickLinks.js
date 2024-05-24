@@ -13,7 +13,7 @@ const quickLinks = [
   },
   {
     label: "Payment",
-    href: "/b2b",
+    href: "/b2b/data",
   },
   {
     label: "Join Us",

@@ -1,7 +1,9 @@
 "use client";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Button from "../../ui/button/Button";
 import { initiatePhoneCall } from "@/lib/utils/initiatePhoneCall";
+import { MdOutlinePhone } from "react-icons/md";
+import { motion } from "framer-motion";
 
 type Props = {
   color: "primary" | "gradient" | "accent" | "white";
@@ -10,14 +12,38 @@ type Props = {
 };
 
 const ButtonCall = ({ color, phoneNumber, className }: Props) => {
+  const [text, setText] = useState("Call me");
+
+  const buttonRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    if (buttonRef?.current) {
+      buttonRef.current.addEventListener("mouseenter", () => {
+        setText(phoneNumber);
+      });
+      buttonRef.current.addEventListener("mouseleave", () => {
+        setText("Call me");
+      });
+    }
+  }, [phoneNumber]);
+
   return (
-    <Button
-      color={color}
-      className={`p-4 w-full ${className}`}
-      onClick={() => initiatePhoneCall(phoneNumber)}
-    >
-      Call me
-    </Button>
+    <span ref={buttonRef}>
+      <Button
+        color={color}
+        className={`w-full p-4 ${className}`}
+        onClick={() => initiatePhoneCall(phoneNumber)}
+      >
+        <MdOutlinePhone className="text-lg text-white" />
+        <motion.span
+          key={text}
+          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0 }}
+        >
+          {text}
+        </motion.span>
+      </Button>
+    </span>
   );
 };
 

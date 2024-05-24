@@ -6,29 +6,26 @@ declare global {
   type ApplicationAutosave = Tables<"application_autosave">;
   type ContactUs = Tables<"contact_us">;
   type DistinctMessage = DB["public"]["Views"]["distinct_messages"]["Row"];
-  type FAQ = DB["public"]["Tables"]["faq"]["Row"];
-  type ListingAutosave = DB["public"]["Tables"]["listing_autosave"]["Row"];
-  type Message = DB["public"]["Tables"]["messages"]["Row"];
-  type Notification = DB["public"]["Tables"]["notifications"]["Row"];
-  type Profile = DB["public"]["Tables"]["profiles"]["Row"];
-  type PropertyAvailable = DB["public"]["Tables"]["property_available"]["Row"];
-  type PropertyImage = DB["public"]["Tables"]["property_images"]["Row"];
-  type PropertyOwnerProfile =
-    DB["public"]["Tables"]["property_owner_profile"]["Row"];
-  type RenterProfile = DB["public"]["Tables"]["renter_profile"]["Row"];
-  type Property = DB["public"]["Tables"]["property"]["Row"];
-  type RegularApplication =
-    DB["public"]["Tables"]["regular_application"]["Row"];
-  type RenterProfile = DB["public"]["Tables"]["renter_profile"]["Row"];
-  type SearchCritieria = DB["public"]["Tables"]["search_critieria"]["Row"];
-  type StandardTemplate = DB["public"]["Tables"]["standard_template"]["Row"];
-  type Subscriber = DB["public"]["Tables"]["subscribers"]["Row"];
-  type User = DB["public"]["Tables"]["profiles"]["Row"];
-  type UserFavoriteProperty =
-    DB["public"]["Tables"]["user_favorite_properties"]["Row"];
+  type FAQ = Tables<"faq">;
+  type ListingAutosave = Tables<"listing_autosave">;
+  type Message = Tables<"messages">;
+  type Notification = Tables<"notifications">;
+  type Profile = Tables<"profiles">;
+  type PropertyAvailable = Tables<"property_available">;
+  type PropertyImage = Tables<"property_images">;
+  type PropertyOwnerProfile = Tables<"property_owner_profile">;
+  type RenterProfile = Tables<"renter_profile">;
+  type Property = Tables<"property">;
+  type RegularApplication = Tables<"regular_application">;
+  type RenterProfile = Tables<"renter_profile">;
+  type SearchCritieria = Tables<"search_critieria">;
+  type Subscriber = Tables<"subscribers">;
+  type User = Tables<"profiles">;
+  type UserFavoriteProperty = Tables<"user_favorite_properties">;
   type MergedStandardTemplateView =
     DB["public"]["Views"]["merged_standard_template_view"]["Row"];
   type Invoice = Tables<"invoices">;
+  type Item = Tables<"products">;
 
   type PaymentStructure =
     | "Yearly"

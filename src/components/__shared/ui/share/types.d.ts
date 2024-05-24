@@ -1,5 +1,5 @@
 type ShareDataProps = {
-  url: string;
+  url?: string;
   title?: string;
   content?: string;
   className?: string;

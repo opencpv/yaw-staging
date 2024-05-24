@@ -9,10 +9,10 @@ import "@/styles/custom-swiper.css";
 import { Navigation } from "swiper/modules";
 import Image from "next/image";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-import { usePropertyCarouselStore } from "@/store/properties/usePropertiesStore";
+import { carouselStore } from "@/store/properties/usePropertiesStore";
 
 const Carousel = (props: CarouselProps) => {
-  const { setActiveIndex } = usePropertyCarouselStore();
+  const { setActiveIndex } = carouselStore();
 
   return (
     <>
@@ -24,11 +24,11 @@ const Carousel = (props: CarouselProps) => {
           }}
           modules={[Navigation]}
           onActiveIndexChange={(slide) => setActiveIndex(slide.activeIndex)}
-          className={`relative w-full max-w-4xl rounded-2xl property-carousel shadow-sm h-[26rem] xl:h-[28rem]`}
+          className={`property-carousel relative h-[26rem] w-full max-w-4xl rounded-2xl shadow-sm xl:h-[28rem]`}
         >
           {props.images.map((image, index) => (
             <SwiperSlide key={index}>
-              <div className="relative w-full h-full mx-auto ">
+              <div className="relative mx-auto h-full w-full ">
                 <Image
                   src={image.src}
                   alt={image.label as string}
@@ -41,11 +41,11 @@ const Carousel = (props: CarouselProps) => {
           ))}
         </Swiper>
         {/* Pagination bullets and button */}
-        <div className="custom-l-prev absolute bottom-40 left-[5%] z-10 flex h-12 w-12 shrink-0 cursor-default items-center justify-center rounded-full bg-white">
+        <div className="custom-l-prev absolute bottom-40 left-[5%] z-10 flex h-12 w-12 shrink-0 cursor-pointer items-center justify-center rounded-full bg-white">
           <MdChevronLeft className="text-xl text-neutral-700" />
         </div>
-        <div className="w-full space-x-3 text-center custom-l-pagination bottom-40"></div>
-        <div className="custom-l-next absolute bottom-40 right-[5%] z-10 flex h-12 w-12 shrink-0 cursor-default items-center justify-center rounded-full bg-white">
+        <div className="custom-l-pagination bottom-40 w-full space-x-3 text-center"></div>
+        <div className="custom-l-next absolute bottom-40 right-[5%] z-10 flex h-12 w-12 shrink-0 cursor-pointer items-center justify-center rounded-full bg-white">
           <MdChevronRight className="text-xl text-neutral-700" />
         </div>
       </div>

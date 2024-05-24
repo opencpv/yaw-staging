@@ -25,7 +25,7 @@ export const handleCustomerIdSubmit = async (formData: FormData) => {
     name: "ycust-id",
     value: customer.customer_id,
     path: "/b2b/data",
-    maxAge: 1 * 60,
+    maxAge: 20 * 60,
   });
   redirect(`/b2b/data`);
 };

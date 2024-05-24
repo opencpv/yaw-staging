@@ -5,7 +5,7 @@ import { FaStar } from "react-icons/fa6";
 import { motion, animate, stagger } from "framer-motion";
 
 type Props = {
-  /** More like when to animate the stars */
+  /** Can also be when to animate the stars */
   shouldAnimateStars?: boolean;
   shouldShowMessage?: boolean;
   message?: string;
@@ -38,7 +38,7 @@ const Rate: React.FC<Props> = (props) => {
   }, [props.shouldAnimateStars]);
 
   return (
-    <div className="space-y-1">
+    <div className="no-print space-y-1">
       <AntRate allowHalf character={<FaStar />} {...props} />
       <motion.div
         variants={variants}

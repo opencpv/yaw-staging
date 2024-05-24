@@ -2,7 +2,7 @@
 "use client";
 import React from "react";
 import SortFilter from "./SortFilter";
-import ItemCard from "./item/ItemCard";
+import ItemCard from "./ItemCard";
 import { useFetchItems } from "../services";
 import { useSearchParams } from "next/navigation";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
@@ -65,7 +65,7 @@ function Items({}: Props) {
           isLoadingComponent={<SkeletonItem count={4} />}
           errorComponent={
             <SomethingWentWrong
-              className="h-fit"
+              className="h-fit py-0"
               onTryAgain={() => {
                 mutate();
               }}

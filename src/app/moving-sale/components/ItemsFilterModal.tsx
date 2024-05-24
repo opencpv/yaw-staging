@@ -1,7 +1,7 @@
 import Button from "@/components/__shared/ui/button/Button";
 import Modal from "@/components/__shared/ui/modals/Modal";
 import React from "react";
-import CategoryCheckboxes from "./category/CategoryCheckboxes";
+import CategoryCheckboxes from "./CategoryCheckboxes";
 import ItemsFilterModalOption from "./ItemsFilterModalOption";
 import ItemFilterConditionOptions from "./ItemFilterConditionOptions";
 import ItemFilterPriceRange from "./ItemFilterPriceRange";
@@ -10,6 +10,7 @@ import { useItemFilterStore } from "@/store/moving_sales/useMovingSalesStore";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useFetchItemCategories } from "../services";
 import { LiaTimesSolid } from "react-icons/lia";
+import Loader from "@/components/__shared/ui/loader/Loader";
 
 type Props = {
   isOpen: boolean;
@@ -39,14 +40,18 @@ const FilterModalHeader = () => {
 };
 
 const FilterModalBody = () => {
-  const { data: categories } = useFetchItemCategories();
+  const { data: categories, isLoading } = useFetchItemCategories();
 
   return (
     <main className="space-y-10 pb-10">
       <ItemsFilterModalOption title="Categories">
-        <CategoryCheckboxes
-          options={categories?.map(({ category }) => category) || []}
-        />
+        {isLoading ? (
+          <Loader position="center" />
+        ) : (
+          <CategoryCheckboxes
+            options={categories?.map(({ category }) => category) || []}
+          />
+        )}
       </ItemsFilterModalOption>
       <ItemsFilterModalOption title="Condition">
         <ItemFilterConditionOptions />

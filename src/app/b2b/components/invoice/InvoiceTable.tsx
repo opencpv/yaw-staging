@@ -18,6 +18,7 @@ import TableSkeleton from "@/app/dashboard/components/shared/skeleton/TableSkele
 import TableSkeletonSm from "@/app/dashboard/components/shared/skeleton/TableSkeletonSm";
 import Pagination, { usePagination } from "@/components/__shared/ui/Pagination";
 import InvoiceEmptyState from "../__shared/InvoiceEmptyState";
+import Archived from "@/app/dashboard/components/shared/table/Archived";
 
 type Props = {
   searchString: string;
@@ -86,7 +87,6 @@ const InvoiceTable = ({ searchString, customerId }: Props) => {
           ))}
         </TableBodyRowGroup>
       </Table>
-
       {/* Mobile */}
       <TableSm>
         <FetchingStates
@@ -108,7 +108,7 @@ const InvoiceTable = ({ searchString, customerId }: Props) => {
           <DataRowSm key={createUUID()} data={invoice} variant="invoice" />
         ))}
       </TableSm>
-
+      <Archived />
       <Pagination handlePageClick={handlePageClick} pageCount={pageCount} />
     </>
   );
