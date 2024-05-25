@@ -18,7 +18,7 @@ const PropertyDetailsFigures = ({
   squareMeter,
 }: Props) => {
   return (
-    <div className="grid grid-cols-1 justify-between divide-x-0 divide-y-1 divide-gray-400 rounded-xl border border-gray-500 bg-white px-10 py-8 text-sm text-primary-400 shadow-xl transition-all hover:scale-105 sm:grid-cols-4 sm:items-center sm:divide-x-1 sm:divide-y-0 sm:px-2">
+    <div className="grid grid-cols-1 justify-between divide-x-0 divide-y-1 divide-gray-400 rounded-xl border border-gray-500 bg-white px-10 py-8 text-sm text-primary-400 shadow-xl sm:grid-cols-4 sm:items-center sm:divide-x-1 sm:divide-y-0 sm:px-2">
       <div className="flex flex-col items-center gap-1 px-5 py-2 sm:py-0">
         <h4 className="flex items-center justify-center gap-x-4 text-center text-sm font-[400]">
           Monthly Rent{" "}

@@ -7,7 +7,6 @@ import { Rate } from "antd";
 import Navbar from "@/components/__shared/ui/Navbar";
 import ReportIssue from "@/components/__shared/ui/links/ReportIssue";
 import ShapedLanding from "@/app/components/landing/ShapedLanding";
-import ApplicationForm from "@/components/__shared/ui/application-form";
 import RecommendedListings from "@/components/__shared/ui/listing/RecommendedListings";
 import PropertyDetailsFigures from "../PropertyDetailsFigures";
 import PropertyOwnerInfo from "../PropertyOwnerInfo";
@@ -29,6 +28,11 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { cn } from "@/lib/utils";
 import { FeatureInterface } from "../../../../../interfaces";
+import dynamic from "next/dynamic";
+
+const ApplicationForm = dynamic(
+  () => import("@/components/__shared/ui/application-form"),
+);
 
 type Props = {
   params: {
@@ -115,11 +119,11 @@ const PropertyDetailsPage = ({ params }: Props) => {
           />
           <main className="wrapper pb-0 pt-28 sm:pb-0 sm:pt-28">
             <section>
-              <div className="text-2xl font-[600] text-[#305A61]">
+              <div className="text-2xl font-medium text-[#305A61]">
                 <BreadCrumbPreLink
                   label="Properties"
                   href="/properties"
-                  className="text-neutral-300"
+                  className="text-2xl font-medium text-neutral-300"
                 />{" "}
                 / <span>{propertyName2}</span>
               </div>
@@ -211,7 +215,6 @@ const PropertyDetailsPage = ({ params }: Props) => {
             <>
               <PropertyRating />
               <ReportIssue className="mt-5" />
-              {/* Recommended Listings */}
             </>
           </main>
         </>

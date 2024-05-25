@@ -49,7 +49,7 @@ const PropertyDetailsPayment = (props: Props) => {
           <div className="grid grid-cols-4">
             <p className="col-span-2 sm:col-span-1">Available from: </p>
             <p className="col-span-2 text-right text-base sm:col-span-3 sm:text-left">
-              {formatDate(props.availableFrom)}
+              {new Date(props.availableFrom).toLocaleString()}
             </p>
           </div>
         </AdditionalInfo>
