@@ -6,6 +6,9 @@ import InvoiceTable from "../invoice/InvoiceTable";
 import { invoiceStore } from "@/store/payment/invoiceStore";
 import SearchInput from "@/components/__shared/ui/form/SearchInput";
 import { useState } from "react";
+import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
+
+type Status = "all" | "paid" | "pending";
 
 type Props = {
   customerId: string;
@@ -13,6 +16,7 @@ type Props = {
 function Invoices({ customerId }: Props) {
   const { checkoutItems } = invoiceStore();
   const [searchString, setSearchString] = useState("");
+  const [filter, setFilter] = useState<Status>("all");
   const subTotal = checkoutItems.reduce((acc, item) => acc + item.amount, 0);
   const tax = 12;
   const total = subTotal + tax;
@@ -30,10 +34,19 @@ function Invoices({ customerId }: Props) {
           placeholder="Search invoice ID"
         />
       </div>
-      <div className="mt-10 flex w-full justify-end lg:hidden">
-        <Cost subTotal={subTotal} tax={tax} total={total} variant={"invoice"} />
-      </div>
-      <InvoiceTable searchString={searchString} customerId={customerId} />
+      <OptionFilterTabs
+        options={["all", "paid", "pending"]}
+        selectedKey={filter}
+        onSelectionChange={(key) => setFilter(key as Status)}
+        radius="small"
+        padding="small"
+        tabColor="colored"
+      />
+      <InvoiceTable
+        searchString={searchString}
+        customerId={customerId}
+        filter={filter}
+      />
 
       <section className="hidden w-full justify-between gap-5 bg-[#F8F8F8] py-5 lg:flex">
         {/* <DownloadButton maxWidth="fit"  /> */}
@@ -45,10 +58,13 @@ function Invoices({ customerId }: Props) {
             total={total}
             variant={"invoice"}
           />
-          <div className="mt-8 max-lg:hidden">
+          <div className="mt-8">
             <CheckoutButton affix={checkoutItems.length} />
           </div>
         </div>
+      </section>
+      <section className="mt-10 flex w-full justify-end lg:hidden">
+        <Cost subTotal={subTotal} tax={tax} total={total} variant={"invoice"} />
       </section>
       <section className="sticky bottom-0 z-50 grid w-full grid-cols-2 items-center justify-end gap-5 bg-[#F8F8F8] py-5 pb-2 max-lg:max-w-2xl lg:hidden">
         {/* <DownloadButton maxWidth="fit" /> */}

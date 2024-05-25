@@ -6,7 +6,7 @@ import Tooltip from "@/components/__shared/ui/Tooltip";
 import { HiOutlineBadgeCheck } from "react-icons/hi";
 import { MdHourglassTop } from "react-icons/md";
 
-export type RenterApplicationStatus = "paid" | "not paid";
+export type RenterApplicationStatus = "paid" | "pending";
 
 type Props = {
   status: RenterApplicationStatus;
@@ -27,20 +27,20 @@ const InvoiceStatus = ({ status }: Props) => {
             "flex min-w-40 shrink-0 items-center justify-center gap-2 rounded-full p-1.5 px-2.5 shadow-sm",
             {
               "bg-success-bg text-success": status === "paid",
-              "bg-warning-bg text-warning": status === "not paid",
+              "bg-warning-bg text-warning": status === "pending",
             },
           )}
         >
           {status === "paid" ? (
             <HiOutlineBadgeCheck />
-          ) : status === "not paid" ? (
+          ) : status === "pending" ? (
             <MdHourglassTop />
           ) : (
             <BsInfoCircle />
           )}
           <small className="text-xs">
             {status === "paid" && "Paid"}
-            {status === "not paid" && "Not Paid"}
+            {status === "pending" && "pending"}
           </small>
         </div>
       </Tooltip>

@@ -22,6 +22,7 @@ const InvoiceReceiptFilter = (props: Props) => {
           onSelectionChange={setActivePage}
           radius="large"
           padding="wide"
+          tabColor="colored"
           cursorAnimation
         />
       </div>

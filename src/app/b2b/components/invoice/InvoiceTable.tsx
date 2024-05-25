@@ -22,16 +22,17 @@ import Archived from "@/app/dashboard/components/shared/table/Archived";
 
 type Props = {
   searchString: string;
+  filter: "all" | "paid" | "pending";
   customerId: string;
 };
 
-const InvoiceTable = ({ searchString, customerId }: Props) => {
+const InvoiceTable = ({ searchString, customerId, filter }: Props) => {
   const {
     data: invoices,
     error,
     isLoading,
     mutate,
-  } = useFetchInvoices({ searchString, customerId });
+  } = useFetchInvoices({ searchString, customerId, filter });
 
   const { handleCheckAll, allChecked } = useInvoiceData({
     invoiceData: invoices as Invoice[],

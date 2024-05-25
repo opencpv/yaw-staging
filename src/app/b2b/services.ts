@@ -4,9 +4,11 @@ import { useQuery } from "@supabase-cache-helpers/postgrest-swr";
 export const useFetchInvoices = ({
   searchString = "",
   customerId = "",
+  filter = "all",
 }: {
   searchString: string;
   customerId: string;
+  filter: "all" | "paid" | "pending";
 }) => {
   let query = supabase
     .from("invoices")
@@ -16,6 +18,10 @@ export const useFetchInvoices = ({
 
   if (searchString) {
     query = query.eq("id", searchString);
+  }
+
+  if (filter !== "all") {
+    query = query.eq("is_paid", filter === "paid");
   }
 
   return useQuery(query);

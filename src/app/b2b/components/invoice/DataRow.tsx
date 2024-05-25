@@ -34,7 +34,7 @@ function DataRow({ data, variant }: Props) {
         </TableBody>
         <TableBody className="col-span-1">{formatPrice(data.amount)}</TableBody>
         <TableBody className="col-span-1">
-          <InvoiceStatus status={data.is_paid ? "paid" : "not paid"} />
+          <InvoiceStatus status={data.is_paid ? "paid" : "pending"} />
         </TableBody>
         <TableBody className="col-span-1">
           <ViewDataDetailsModal variant={variant} data={data} />

@@ -61,11 +61,11 @@ const OptionFilterTabs = (
             classNames?.tabList,
           ),
           tab: cn(
-            "bg-transparent px-4 py-5 flex-1 w-auto w-full rounded-full data-[selected=true]:bg-primary-500 sm:max-w-[200px] sm:w-fit",
+            "bg-transparent px-4 py-5 flex-1 w-auto w-full rounded-full data-[selected=true]:bg-primary sm:max-w-[200px] sm:w-fit",
             {
               "px-12 h-10 flex-initial data-[selected=true]:bg-gradient-to-r data-[selected=true]:from-[#21A19F] data-[selected=true]:to-[#1EA9A6A1]":
                 variant === "gradient",
-              "bg-slate-100": tabColor === "colored",
+              "bg-primary-50": tabColor === "colored",
               "rounded-lg": radius === "small",
               "px-8 sm:px-20": padding === "wide",
               "px-5 xs:px-8": padding === "medium",
@@ -73,7 +73,7 @@ const OptionFilterTabs = (
             },
           ),
           tabContent: cn(
-            "text-primary-500 text-[0.6rem] text-sm group-data-[selected=true]:text-white",
+            "text-primary text-[0.6rem] text-sm group-data-[selected=true]:text-white",
             {
               "text-neutral-600": variant === "gradient",
             },
@@ -82,8 +82,8 @@ const OptionFilterTabs = (
             "bg-primary-100": variant === "green1",
             "bg-gradient-to-r from-[#21A19F] to-[#1EA9A6A1]":
               variant === "gradient",
-            "bg-primary-500 dark:bg-primary-500 shadow-none":
-              variant === "default",
+            "bg-primary dark:bg-primary shadow-none": variant === "default",
+            "rounded-lg": radius === "small",
             "bg-transparent dark:bg-transparent": !cursorAnimation,
           }),
         }}
