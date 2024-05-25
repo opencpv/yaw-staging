@@ -11,12 +11,9 @@ import {
   WhatsappShareButton,
 } from "react-share";
 import ShareButtonComponent from "./ShareButtonComponent";
-import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import CopyButton from "./CopyButton";
 
-const ShareModalBody = ({ url = location.href, ...props }: ShareDataProps) => {
-  const { onOpen: toastOnOpen } = useToastDisclosure();
-
+const ShareModalBody = (props: ShareDataProps) => {
   return (
     <div className="grid grid-cols-1 gap-5 pb-10 xs:grid-cols-2">
       <ShareButtonComponent
@@ -24,6 +21,7 @@ const ShareModalBody = ({ url = location.href, ...props }: ShareDataProps) => {
         socialName="Facebook"
         Icon={FacebookIcon}
         iconColor="#3b429f"
+        url={location.href || props.url}
         {...props}
       />
       <ShareButtonComponent
@@ -31,18 +29,21 @@ const ShareModalBody = ({ url = location.href, ...props }: ShareDataProps) => {
         socialName="WhatsApp"
         Icon={WhatsappIcon}
         iconColor="#60d669"
+        url={location.href || props.url}
         {...props}
       />
       <ShareButtonComponent
         ShareButton={TwitterShareButton}
         socialName="X"
         Icon={XIcon}
+        url={location.href || props.url}
         {...props}
       />
       <ShareButtonComponent
         ShareButton={EmailShareButton}
         socialName="Email"
         Icon={EmailIcon}
+        url={location.href || props.url}
         {...props}
       />
       <CopyButton />

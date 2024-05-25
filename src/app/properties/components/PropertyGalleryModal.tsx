@@ -57,7 +57,7 @@ const ModalHeader = ({ onClose }: { onClose?: () => void }) => {
           onClose && onClose();
         }}
       />
-      <Share url="" />
+      <Share />
     </div>
   );
 };

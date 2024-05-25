@@ -28,7 +28,7 @@ const ButtonCall = ({ color, phoneNumber, className }: Props) => {
   }, [phoneNumber]);
 
   return (
-    <div ref={buttonRef}>
+    <div ref={buttonRef} className="flex w-full justify-center">
       <Button
         color={color}
         className={`w-full p-4 ${className}`}

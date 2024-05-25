@@ -32,7 +32,7 @@ const ButtonWhatsApp = ({ color, className, phone }: Props) => {
   };
 
   return (
-    <div ref={buttonRef}>
+    <div ref={buttonRef} className="flex w-full justify-center">
       <Button
         color={color}
         className={`flex w-full items-center gap-2 ${className}`}

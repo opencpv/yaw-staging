@@ -124,11 +124,6 @@ const StoryPage = async ({ params, searchParams }: Props) => {
             <Rating rating={post.rating} rating_number={post.ratings_number} />
             <div className="flex items-center gap-3 text-2xl text-primary-200">
               <Share
-                url={
-                  `${origin}/blog/${slugify(
-                    post?.category?.category_title,
-                  )}/${slugify(post?.title)}?id=${post?._id}` as string
-                }
                 title={post?.title}
                 className="text-neutral-800"
                 content={post?.summary}
