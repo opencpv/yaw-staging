@@ -13,7 +13,7 @@ type Props = {
 const ButtonWhatsApp = ({ color, className, phone }: Props) => {
   const [text, setText] = useState("WhatsApp");
 
-  const buttonRef = useRef<HTMLSpanElement>(null);
+  const buttonRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (buttonRef?.current) {
@@ -32,7 +32,7 @@ const ButtonWhatsApp = ({ color, className, phone }: Props) => {
   };
 
   return (
-    <span ref={buttonRef}>
+    <div ref={buttonRef}>
       <Button
         color={color}
         className={`flex w-full items-center gap-2 ${className}`}
@@ -47,7 +47,7 @@ const ButtonWhatsApp = ({ color, className, phone }: Props) => {
           {text}
         </motion.span>
       </Button>
-    </span>
+    </div>
   );
 };
 

@@ -1,14 +1,24 @@
 import SliderMultiItems from "@/components/__shared/ui/sliders/SliderMultiItems";
 import React from "react";
 import ItemCard from "./ItemCard";
+import { useSearchParams } from "next/navigation";
+import { useFetchRelatedItems } from "../services";
 
 type Props = {};
 
 const ItemRelatedItems = (props: Props) => {
+  const searchParams = useSearchParams();
+  const category = searchParams?.get("category") || "";
+  const id = searchParams?.get("id") || "";
+
+  const { data: items, error } = useFetchRelatedItems({
+    category,
+    id: parseInt(id as string),
+  });
+
   return (
-    <section>
-      {/* Related products */}
-      <h3 className="mb-6 text-shade-200">Related products</h3>
+    <section className={`${items?.length === 0 || error ? "hidden" : ""}`}>
+      <h3 className="mb-6 text-shade-200">Related items ({items?.length})</h3>
       <SliderMultiItems
         hasNavAndPagination={false}
         slidesPerView={1}
@@ -20,24 +30,37 @@ const ItemRelatedItems = (props: Props) => {
           768: {
             slidesPerView: 2.5,
           },
-          1200: {
-            slidesPerView: 3,
-          },
-          1300: {
+          1024: {
             slidesPerView: 3.5,
           },
-          1536: {
+          1280: {
             slidesPerView: 4,
           },
+          // 1300: {
+          //   slidesPerView: 3.5,
+          // },
+          // 1536: {
+          //   slidesPerView: 4,
+          // },
         }}
-        items={[1, 2, 3, 4, 5, 6, 7, 8].map((item, idx) => (
+        swiperSlideClassName="max-w-96"
+        items={items?.map((item) => (
           <ItemCard
-            key={idx + 1}
-            href={`/moving-sale/${1}`}
-            title="Lorem ipsum dolor sit amet"
-            description="Lorem ipsum dolor sit amet consectetur. Viverra mattis lacus mi dolor sed et leo id mus ultrices."
-            image="/assets/images/about/black-businessman.webp"
-            price={16.48}
+            key={item.id}
+            href={`/moving-sale/${item.title}?${new URLSearchParams({
+              id: item.id.toString(),
+              title: item.title,
+              category: item.category,
+              term: item.term,
+              price: item.price.toString(),
+              condition: item.condition,
+              seller: item.profiles?.full_name as string,
+              description: item.description,
+            })}`}
+            title={item.title}
+            description={item.description}
+            image="/assets/images/about/young-couple.webp"
+            price={item.price}
           />
         ))}
       />

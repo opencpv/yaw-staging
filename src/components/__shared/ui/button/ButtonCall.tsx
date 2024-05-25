@@ -14,7 +14,7 @@ type Props = {
 const ButtonCall = ({ color, phoneNumber, className }: Props) => {
   const [text, setText] = useState("Call me");
 
-  const buttonRef = useRef<HTMLSpanElement>(null);
+  const buttonRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (buttonRef?.current) {
@@ -28,7 +28,7 @@ const ButtonCall = ({ color, phoneNumber, className }: Props) => {
   }, [phoneNumber]);
 
   return (
-    <span ref={buttonRef}>
+    <div ref={buttonRef}>
       <Button
         color={color}
         className={`w-full p-4 ${className}`}
@@ -43,7 +43,7 @@ const ButtonCall = ({ color, phoneNumber, className }: Props) => {
           {text}
         </motion.span>
       </Button>
-    </span>
+    </div>
   );
 };
 

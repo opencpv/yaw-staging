@@ -2,7 +2,6 @@
 import TextInput from "@/components/__shared/ui/form/TextInput";
 import React from "react";
 import { handleCustomerIdSubmit } from "../actions";
-import ContinueButton from "./ContinueButton";
 import { cn } from "@/lib/utils";
 import Button from "@/components/__shared/ui/button/Button";
 
@@ -44,7 +43,7 @@ const UniqueIdForm = () => {
           className="h-[52px] w-full max-w-full"
           isLoading={loading}
         >
-          Proceed
+          Track
         </Button>
       </div>
     </form>

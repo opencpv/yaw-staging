@@ -8,11 +8,11 @@ const MovingSalesPage = () => {
     <>
       <main className="wrapper overflow-x-hidden text-neutral-600">
         {/* Banner */}
-        <section className="relative mb-20 w-full text-white max-sm:aspect-video sm:h-96">
+        <section className="relative mb-20 w-full text-white">
           <SliderWide
             pagination
             autoplay
-            className="absolute max-sm:aspect-video sm:h-96"
+            className="absolute max-sm:aspect-video sm:h-[26rem]"
             images={[1, 2, 3].map((image) => ({
               src: "/assets/images/moving-sale/lady-shopping.jpeg",
               name: "",
@@ -20,7 +20,7 @@ const MovingSalesPage = () => {
             }))}
             overlay
             classNames={{
-              overlay: "bg-gradient-to-r from-primary-500 to-transparent",
+              overlay: "bg-gradient-to-r from-primary-500/70 to-transparent",
             }}
           />
           <div className="pointer-events-none absolute inset-0 z-10 flex h-full w-full items-center rounded-l-3xl">

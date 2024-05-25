@@ -28,16 +28,14 @@ export const useFetchItems = ({
 }) => {
   const categoriesArray = categories
     .split(",")
-    .map((item) => item.charAt(0).toUpperCase() + item.slice(1).toLowerCase());
+    .map((item) => capitalizeName(item));
 
   const cleanedPriceFrom = extractNumericValue(priceRangeFrom);
   const cleanedPriceTo = extractNumericValue(priceRangeTo);
 
   let query = supabase
     .from("products")
-    .select(
-      "id, title, description, price, condition, category, term, profiles!inner (id, full_name)",
-    );
+    .select("*, profiles!inner (id, full_name)");
 
   if (categories) {
     query = query.in("category", categoriesArray);
@@ -78,11 +76,23 @@ export const useFetchItems = ({
 };
 
 export const useFetchItemDetails = ({ itemId }: { itemId: number }) => {
+  const query = supabase.from("products").select().eq("id", itemId).single();
+
+  return useQuery(query);
+};
+
+export const useFetchRelatedItems = ({
+  category,
+  id,
+}: {
+  category: string;
+  id: number;
+}) => {
   const query = supabase
     .from("products")
-    .select("*, profiles!inner (id)")
-    .eq("id", itemId)
-    .single();
+    .select("*, profiles!inner (id, full_name)")
+    .eq("category", capitalizeName(category))
+    .neq("id", id);
 
   return useQuery(query);
 };

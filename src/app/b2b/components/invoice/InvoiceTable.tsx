@@ -109,6 +109,7 @@ const InvoiceTable = ({ searchString, customerId }: Props) => {
         ))}
       </TableSm>
       <Archived />
+
       <Pagination handlePageClick={handlePageClick} pageCount={pageCount} />
     </>
   );
