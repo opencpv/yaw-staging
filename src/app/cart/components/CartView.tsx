@@ -8,7 +8,7 @@ import DeleteIconButton from "@/components/__shared/ui/button/DeleteIconButton";
 import Button from "@/components/__shared/ui/button/Button";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import { cn } from "@nextui-org/react";
-import ButtonDelete from "@/components/__shared/ui/button/ButtonDelete";
+import DeleteButton from "@/components/__shared/ui/button/DeleteButton";
 import { formatDateOnly } from "@/lib/utils/stringManipulation";
 
 const CartView = () => {
@@ -47,7 +47,7 @@ const CartView = () => {
                   <p>Qty</p>
                   <DropDown item={item} item_index={item_index} />
                 </div>
-                <ButtonDelete
+                <DeleteButton
                   handleDestruction={() => {
                     removeItem(item_index);
                   }}
@@ -63,7 +63,7 @@ const CartView = () => {
             {item.date ? (
               <Date className="max-md:hidden" date={item.date} />
             ) : null}
-            <ButtonDelete
+            <DeleteButton
               handleDestruction={() => {
                 removeItem(item_index);
               }}

@@ -25,7 +25,7 @@ function DataRowSm({ variant, data }: Props) {
           <RiFileListLine size={32} />
         </div>
         <div className="flex flex-col gap-3">
-          <h3 className="font-bold">{data.service}</h3>
+          <h4>{data.service}</h4>
           <p>{data.id}</p>
           <small>{formatDateOnly(data.billing_date)}</small>
         </div>

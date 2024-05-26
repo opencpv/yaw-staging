@@ -1,7 +1,7 @@
 import { useFetchListerLeads } from "@/app/dashboard/components/shared/overview/utils/services";
 import Loader from "@/components/__shared/ui/loader/Loader";
 import Button from "@/components/__shared/ui/button/Button";
-import ButtonMessage from "@/components/__shared/ui/button/ButtonMessage";
+import MessageButton from "@/components/__shared/ui/button/MessageButton";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { initiatePhoneCall } from "@/lib/utils/initiatePhoneCall";
@@ -83,12 +83,12 @@ const LeadInfo = ({ name, email, phone, id, image }: Lead) => {
         <h4>{name}</h4>
         <p>{email}</p>
         <div className="flex items-center gap-2">
-          <ButtonMessage
+          <MessageButton
             id=""
             className="h-fit max-w-xs flex-1 gap-2 rounded-xl bg-primary-100 px-4 py-1 text-white"
           >
             Message <PiChatCenteredDotsFill className="shrink-0" />
-          </ButtonMessage>
+          </MessageButton>
           <Button
             className="h-fit max-w-xs flex-1 gap-2 rounded-xl bg-primary-100 px-4 py-1 text-white"
             onClick={() => initiatePhoneCall(phone)}

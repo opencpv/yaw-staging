@@ -1,44 +1,40 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import Button from "../../ui/button/Button";
-import { FaWhatsapp } from "react-icons/fa";
+import Button from "./Button";
+import { initiatePhoneCall } from "@/lib/utils/initiatePhoneCall";
+import { MdOutlinePhone } from "react-icons/md";
 import { motion } from "framer-motion";
 
 type Props = {
   color: "primary" | "gradient" | "accent" | "white";
+  phoneNumber: string;
   className?: string;
-  phone: string;
 };
 
-const ButtonWhatsApp = ({ color, className, phone }: Props) => {
-  const [text, setText] = useState("WhatsApp");
+const ButtonCall = ({ color, phoneNumber, className }: Props) => {
+  const [text, setText] = useState("Call me");
 
   const buttonRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (buttonRef?.current) {
       buttonRef.current.addEventListener("mouseenter", () => {
-        setText(phone);
+        setText(phoneNumber);
       });
       buttonRef.current.addEventListener("mouseleave", () => {
-        setText("WhatsApp");
+        setText("Call me");
       });
     }
-  }, [phone]);
-
-  const handleSendWhatsAppMsg = () => {
-    const href = `https://wa.me/${phone}:`;
-    window.open(href, "_blank");
-  };
+  }, [phoneNumber]);
 
   return (
     <div ref={buttonRef} className="flex w-full justify-center">
       <Button
         color={color}
-        className={`flex w-full items-center gap-2 ${className}`}
-        onClick={handleSendWhatsAppMsg}
+        className={`w-full p-4 ${className}`}
+        onClick={() => initiatePhoneCall(phoneNumber)}
       >
-        <FaWhatsapp className="text-lg text-white" />
+        <MdOutlinePhone className="text-lg text-white" />
         <motion.span
           key={text}
           whileInView={{ opacity: 1 }}
@@ -51,4 +47,4 @@ const ButtonWhatsApp = ({ color, className, phone }: Props) => {
   );
 };
 
-export default ButtonWhatsApp;
+export default ButtonCall;

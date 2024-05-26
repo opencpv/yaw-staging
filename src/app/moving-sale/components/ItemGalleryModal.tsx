@@ -58,7 +58,7 @@ const ModalHeader = ({
   itemData: Item;
 }) => {
   return (
-    <div className="flex w-full justify-between gap-5 px-10 pt-16 text-5xl text-neutral-100 sm:px-20">
+    <div className="flex w-full justify-between gap-5 px-10 pt-10 text-5xl text-neutral-100 sm:px-20">
       <FaTimes
         className="shrink-0 cursor-pointer rounded-full bg-neutral-900 p-1.5"
         onClick={() => {

@@ -8,7 +8,7 @@ type Props = {
   className?: string;
 };
 
-const ButtonHireUs = ({ className }: Props) => {
+const HireUsButton = ({ className }: Props) => {
   const setToggle = useMenuStore((state) => state.setToggle);
 
   return (
@@ -26,4 +26,4 @@ const ButtonHireUs = ({ className }: Props) => {
   );
 };
 
-export default ButtonHireUs;
+export default HireUsButton;

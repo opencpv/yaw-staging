@@ -2,7 +2,6 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
-import { FaChevronLeft } from "react-icons/fa6";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 
@@ -10,7 +9,7 @@ type Props = {
   className?: string;
 };
 
-const ButtonMenu = ({ className }: Props) => {
+const MenuButton = ({ className }: Props) => {
   const setToggle = useMenuStore((state) => state.setToggle);
   const { icons } = useAssets();
 
@@ -28,4 +27,4 @@ const ButtonMenu = ({ className }: Props) => {
   );
 };
 
-export default ButtonMenu;
+export default MenuButton;

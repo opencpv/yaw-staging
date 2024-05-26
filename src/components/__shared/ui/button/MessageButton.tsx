@@ -1,6 +1,6 @@
 "use client";
 import React, { ReactNode, useState } from "react";
-import Button from "../../ui/button/Button";
+import Button from "./Button";
 // import { useMessageStore } from "@/store/dashboard/useMessageStore";
 // import { useUserDetails } from "@/lib/custom-hooks/message/useUserDetails";
 // import { useUserSession } from "@/lib/custom-hooks/database/useUserSession";
@@ -17,7 +17,7 @@ type Props = {
   type?: 1 | 2;
 };
 
-const ButtonMessage = ({ color, className, id, children, type }: Props) => {
+const MessageButton = ({ color, className, id, children, type }: Props) => {
   // const router = useRouter();
 
   // const setRecipientId = useMessageStore((state) => state.setRecipientId);
@@ -62,4 +62,4 @@ const ButtonMessage = ({ color, className, id, children, type }: Props) => {
     );
 };
 
-export default ButtonMessage;
+export default MessageButton;

@@ -1,7 +1,7 @@
 import React from "react";
-import ButtonCall from "@/components/__shared/ui/button/ButtonCall";
-import ButtonMessage from "@/components/__shared/ui/button/ButtonMessage";
-import ButtonWhatsApp from "@/components/__shared/ui/button/ButtonWhatsApp";
+import CallButton from "@/components/__shared/ui/button/CallButton";
+import MessageButton from "@/components/__shared/ui/button/MessageButton";
+import WhatsAppButton from "@/components/__shared/ui/button/WhatsAppButton";
 import SkeletonRectangle from "@/components/__shared/ui/skeleton/SkeletonRectangle";
 import { cn } from "@/lib/utils";
 
@@ -16,15 +16,15 @@ const ItemOwnerContact = ({ query }: Props) => {
         <SkeletonRectangle />
       ) : (
         <div className="w-full space-y-3 rounded-xl bg-white p-8 shadow-large lg:mt-12">
-          <ButtonCall
+          <CallButton
             color="accent"
             phoneNumber={query.data?.phone}
             className={cn({
               hidden: !query.data?.phone,
             })}
           />
-          <ButtonMessage id={query.data?.profiles?.id} color="accent" />
-          <ButtonWhatsApp
+          <MessageButton id={query.data?.profiles?.id} color="accent" />
+          <WhatsAppButton
             color="accent"
             className={cn({
               hidden: !query.data?.whatsapp,
