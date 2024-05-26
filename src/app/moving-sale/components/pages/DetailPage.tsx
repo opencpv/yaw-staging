@@ -43,7 +43,9 @@ const DetailPage = (props: Props) => {
         <BreadCrumbPreLink
           label="Shop"
           onClick={() =>
-            previousPath ? router.back() : router.push("/moving-sale")
+            previousPath
+              ? router.push(previousPath)
+              : router.push("/moving-sale")
           }
         />
         <FaChevronRight className="text-shade-200" />

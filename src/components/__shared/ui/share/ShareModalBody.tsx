@@ -21,7 +21,6 @@ const ShareModalBody = (props: ShareDataProps) => {
         socialName="Facebook"
         Icon={FacebookIcon}
         iconColor="#3b429f"
-        url={location.href || props.url}
         {...props}
       />
       <ShareButtonComponent
@@ -29,21 +28,18 @@ const ShareModalBody = (props: ShareDataProps) => {
         socialName="WhatsApp"
         Icon={WhatsappIcon}
         iconColor="#60d669"
-        url={location.href || props.url}
         {...props}
       />
       <ShareButtonComponent
         ShareButton={TwitterShareButton}
         socialName="X"
         Icon={XIcon}
-        url={location.href || props.url}
         {...props}
       />
       <ShareButtonComponent
         ShareButton={EmailShareButton}
         socialName="Email"
         Icon={EmailIcon}
-        url={location.href || props.url}
         {...props}
       />
       <CopyButton />
