@@ -9,7 +9,7 @@ import React from "react";
 import { FaStar } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { fadeUp } from "@/lib/animations";
-import Rating from "@/components/__shared/ui/listing/Rating";
+import Rating from "@/components/__shared/ui/ratings-form";
 
 type Props = {
   name: string;

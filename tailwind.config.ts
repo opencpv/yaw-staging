@@ -61,6 +61,7 @@ const config: Config = {
           200: "#8A8A8A",
           300: "#545454",
           50: "#E6E6E6",
+          900: "#6A6968",
         },
         success: {
           DEFAULT: "#287D3C",
