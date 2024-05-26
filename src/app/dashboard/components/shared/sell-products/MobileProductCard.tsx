@@ -20,8 +20,7 @@ const MobileProductCard = ({ data }: { data: any }) => {
         onClose={onClose}
         onOpenChange={onOpenChange}
         label="Are you sure you want to delete this application?"
-        id=""
-        table="product_category"
+        handleDestruction={() => {}}
       />
 
       <TableRowSm>
@@ -33,7 +32,7 @@ const MobileProductCard = ({ data }: { data: any }) => {
               <p className="font-semibold">{data.product}</p>
               <ProductCondition condition={data.condition} />
               <p className="text-[13px] font-bold text-[#8A8A8A]">
-                GHS {formatPrice(data.price)}
+                {formatPrice(data.price)}
               </p>
             </div>
           </div>
@@ -66,7 +65,7 @@ const MobileProductCard = ({ data }: { data: any }) => {
           {status === "not submitted" && (
             <>
               <EditButton onOpen={() => ""} />
-              <ButtonDelete table="product_category" id="" />
+              <ButtonDelete handleDestruction={() => {}} />
             </>
           )}
         </TableBodySm>

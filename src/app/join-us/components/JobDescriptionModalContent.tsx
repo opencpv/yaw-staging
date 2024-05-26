@@ -49,7 +49,12 @@ function JobDescriptionModalContent({ jobs }: Props) {
                 <div className="sticky bottom-0 grid  grid-cols-2 gap-3 bg-[#FAFAFA] pb-2 pt-2">
                   <Button
                     color="accent"
-                    onClick={() => downloadPdf("Rentright Job", "download")}
+                    onClick={() =>
+                      downloadPdf({
+                        title: "Rentright Job",
+                        className: "download",
+                      })
+                    }
                     className="w-full"
                   >
                     Download
@@ -57,7 +62,7 @@ function JobDescriptionModalContent({ jobs }: Props) {
                   </Button>
                   <Button
                     color="primary"
-                    href="/join-us/open-positions/application"
+                    href={`/join-us/open-positions/application?job=${job.title}`}
                     className="w-full"
                   >
                     Apply

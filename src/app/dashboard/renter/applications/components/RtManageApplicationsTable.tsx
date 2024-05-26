@@ -102,7 +102,7 @@ const RtManageApplicationsTable = (props: Props) => {
         </Button>
       </div>
       <div className="mt-5 grid place-items-center">
-        <Pagination
+        {/* <Pagination
           total={totalCount ? totalCount / pageSize : 1}
           handlePrev={() => {
             if (previousPage) previousPage();
@@ -112,7 +112,7 @@ const RtManageApplicationsTable = (props: Props) => {
           }}
           nextDisabled={nextPage === null ? true : false}
           prevDisabled={previousPage === null ? true : false}
-        />
+        /> */}
       </div>
     </section>
   );

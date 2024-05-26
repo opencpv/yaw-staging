@@ -7,11 +7,13 @@ import { useDisclosure } from "@nextui-org/react";
 
 type Props = {
   className?: string;
-  table: TableNames;
-  id: string;
+  classNames?: {
+    icon?: string;
+  };
+  handleDestruction: () => void;
 };
 
-const ButtonDelete = ({ className, table, id }: Props) => {
+const ButtonDelete = ({ className, handleDestruction, classNames }: Props) => {
   const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
 
   return (
@@ -21,8 +23,7 @@ const ButtonDelete = ({ className, table, id }: Props) => {
         onClose={onClose}
         onOpenChange={onOpenChange}
         label="Are you sure you want to delete this application?"
-        id=""
-        table={table}
+        handleDestruction={handleDestruction}
       />
       <Button
         isIconOnly
@@ -30,7 +31,10 @@ const ButtonDelete = ({ className, table, id }: Props) => {
         className={cn("", className)}
         onClick={onOpen}
       >
-        <FiTrash2 size={24} className="text-neutral-700" />
+        <FiTrash2
+          size={24}
+          className={cn("text-neutral-700", classNames?.icon)}
+        />
       </Button>
     </>
   );

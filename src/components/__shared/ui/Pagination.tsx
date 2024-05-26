@@ -1,75 +1,72 @@
 "use client";
-import React from "react";
-import { Pagination as NextUIPagination } from "@nextui-org/react";
-import Button from "./button/Button";
-import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import React, { useState } from "react";
+import ReactPaginate from "react-paginate";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
+import style from "../Shared.module.css";
+import { cn } from "@/lib/utils";
 
 type Props = {
-  total: number;
-  nextDisabled: boolean;
-  prevDisabled: boolean;
-  handlePrev: () => void;
-  handleNext: () => void;
+  handlePageClick: (event: { selected: number }) => void;
+  pageCount: number;
+  className?: string;
 };
 
-const Pagination = ({
-  total,
-  handlePrev,
-  handleNext,
-  nextDisabled,
-  prevDisabled,
-}: Props) => {
-  const [page, setPage] = React.useState(1);
-
+const Pagination = ({ className, handlePageClick, pageCount }: Props) => {
   return (
-    <div className="flex justify-center">
-      <div className="flex items-center gap-1">
-        <Button
-          isIconOnly
-          disabled={prevDisabled}
-          className={`${
-            prevDisabled === true
-              ? "cursor-not-allowed bg-neutral-300"
-              : "border bg-transparent"
-          } h-full p-1`}
-          onClick={() => {
-            setPage((prev) => (prev > 1 ? prev - 1 : prev));
-            handlePrev && handlePrev();
-          }}
-        >
-          <MdChevronLeft className="text-neutral-800" />
-        </Button>
-        <NextUIPagination
-          classNames={{
-            item: "rounded-md border bg-transparent data-[active=true]:border-accent-50 data-[active=true]:text-accent-50 border-neutral-400 text-neutral-800 h-10 font-[500]",
-            cursor:
-              "border-accent-50 bg-transparent outline-accent-50 text-accent-50",
-            ellipsis: "text-neutral-899",
-          }}
-          total={Math.ceil(total)}
-          variant="bordered"
-          page={page}
-          onChange={setPage}
-        />
-        <Button
-          isIconOnly
-          disabled={nextDisabled}
-          className={`${
-            nextDisabled === true
-              ? "cursor-not-allowed bg-neutral-300"
-              : "border bg-transparent"
-          } h-full p-1`}
-          onClick={() => {
-            setPage((prev) => (prev < 10 ? prev + 1 : prev));
-            handleNext && handleNext();
-          }}
-        >
-          <MdChevronRight className="text-neutral-800" />
-        </Button>
-      </div>
-      <div className="flex gap-2"></div>
-    </div>
+    <ReactPaginate
+      breakLabel={<span className={`${style.paginationSquare}`}>...</span>}
+      nextLabel={<FaChevronRight />}
+      previousLabel={<FaChevronLeft />}
+      onPageChange={handlePageClick}
+      pageRangeDisplayed={5}
+      pageCount={pageCount}
+      renderOnZeroPageCount={null}
+      className={cn(
+        "mt-14 flex w-full items-center justify-center gap-2 font-semibold",
+        className,
+      )}
+      previousLinkClassName={`${style.paginationSquare} text-neutral-200`}
+      previousClassName="rounded-md"
+      nextLinkClassName={`${style.paginationSquare} text-neutral-200`}
+      nextClassName="rounded-md"
+      pageLinkClassName={`${style.paginationSquare}`}
+      pageClassName="rounded-md"
+      breakClassName={`${style.paginationSquare}`}
+      disabledClassName="bg-neutral-300"
+      disabledLinkClassName="text-white pointer-events-none cursor-not-allowed"
+      activeLinkClassName="border-accent-100 text-accent-100 pointer-events-none"
+      hrefBuilder={() => null}
+    />
   );
 };
 
 export default Pagination;
+
+export const usePagination = ({
+  items,
+  itemsPerPage = 4,
+}: {
+  items: any[];
+  itemsPerPage?: number;
+}) => {
+  // Here we use item offsets; we could also use page offsets
+  // following the API or data you're working with.
+  const [itemOffset, setItemOffset] = useState(0);
+  const endOffset = itemOffset + itemsPerPage;
+  const currentItems = items.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(items.length / itemsPerPage);
+
+  // Invoke when user click to request another page.
+  const handlePageClick = (event: { selected: number }) => {
+    const newOffset = (event.selected * itemsPerPage) % items.length;
+    setItemOffset(newOffset);
+  };
+
+  return {
+    currentItems,
+    itemsPerPage,
+    pageCount,
+    setItemOffset,
+    handlePageClick,
+  };
+};

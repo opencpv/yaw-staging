@@ -2,6 +2,7 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const SideContent = ({
@@ -9,9 +10,18 @@ const SideContent = ({
   className,
   children,
   classNames,
+  link,
 }: SideContentProps) => {
+  const router = useRouter();
   return (
-    <div className={cn("no-print max-w-lg", className)}>
+    <div
+      className={cn(
+        "no-print max-w-lg",
+        className,
+        `${link ? "cursor-pointer" : ""}`,
+      )}
+      onClick={() => link && router.push(link)}
+    >
       <div
         className={
           "rounded-md bg-primary px-2 py-3 text-center text-xl font-[600] text-white"

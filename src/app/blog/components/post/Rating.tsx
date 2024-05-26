@@ -1,12 +1,17 @@
 "use client";
 import Rate from "@/components/__shared/ui/Rate";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { animate, delay, motion, stagger } from "framer-motion";
 import { useSessionStorage } from "@uidotdev/usehooks";
 import { useSearchParams } from "next/navigation";
 import { cn } from "@nextui-org/react";
+import { client } from "@/lib/utils/sanity/client";
 
-const Rating = () => {
+interface IProps {
+  rating: number;
+  rating_number: number;
+}
+const Rating = ({ rating = 0, rating_number = 0 }: IProps) => {
   const id = useSearchParams()?.get("id");
   const [blogRating, setBlogRating] = useSessionStorage<{
     ratedBlogs: {
@@ -16,7 +21,7 @@ const Rating = () => {
   }>("blogRating", {
     ratedBlogs: [],
   });
-
+  const [selectedRating, setSelectedRating] = useState(0);
   const handleChange = (value: number) => {
     if (!blogRating?.ratedBlogs?.find((blog) => blog.id === id)?.value) {
       setBlogRating({
@@ -27,6 +32,22 @@ const Rating = () => {
         ],
       });
     }
+    setSelectedRating(value);
+    const sanityClient = client;
+    sanityClient
+      .patch(id as string)
+      .setIfMissing({ ratings_number: 0, rating: 0 })
+      .set({
+        rating: (rating * rating_number + value) / (rating_number + 1),
+        ratings_number: rating_number + 1,
+      })
+      .commit()
+      .then((update) => {
+        console.log(`Blog id ${id} rated to ${value}`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const variants = {
@@ -57,9 +78,9 @@ const Rating = () => {
     <div className="space-y-1">
       <Rate
         allowClear
-        defaultValue={0}
+        defaultValue={rating}
         onChange={handleChange}
-        value={blogRating?.ratedBlogs?.find((blog) => blog.id === id)?.value}
+        value={rating == 0 ? selectedRating : rating}
         disabled={
           blogRating?.ratedBlogs?.find((blog) => blog.id === id)?.value
             ? true

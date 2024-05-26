@@ -26,6 +26,7 @@ type SideContentProps = {
   classNames?: {
     body?: string;
   };
+  link?: string;
 };
 
 type PostProps = {

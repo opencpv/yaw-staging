@@ -34,7 +34,7 @@ export const useFetchListerLeads = ({ listerId }: { listerId: string }) => {
   standardTemplate?.map(
     (st) =>
       st.favorite_user_ids?.map(
-        (id) =>
+        (id: any) =>
           preferredIds?.includes(id) &&
           !ids?.includes(id) &&
           setIds((ids) => [...ids, id]),

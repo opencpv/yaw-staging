@@ -26,28 +26,24 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
   const lastIndex = props.images?.lastIndexOf(
     props.images[props.images.length - 1],
   );
+  const isAdmin = props.isAdmin ? true : false;
 
-  // useEffect(() => {
-  //   const updateViews = async () => {
-  //     try {
-  //       const { data, error } = await supabase
-  //         .from("featured_properties")
-  //         .update({ views: supabase.sql("views + 1") })
-  //         .eq("propertyId", props.propertyId)
-  //         .select();
+  useEffect(() => {
+    const updateViews = async () => {
+      const { data, error } = await supabase.rpc("increment_property_views", {
+        propertyid: props.propertyId,
+      });
+      if (error) {
+        console.error("Error incrementing property views:", error);
+      } else {
+        console.log("Property views incremented successfully:", data);
+      }
+    };
 
-  //       if (error) {
-  //         console.error("Error updating views:", error);
-  //       } else {
-  //         console.log("Views updated successfully:", data);
-  //       }
-  //     } catch (error) {
-  //       console.error("Error updating views:", error);
-  //     }
-  //   };
-
-  //   updateViews();
-  // }, [props.propertyId]);
+    if (!isAdmin) {
+      updateViews();
+    }
+  }, []);
 
   return (
     <>

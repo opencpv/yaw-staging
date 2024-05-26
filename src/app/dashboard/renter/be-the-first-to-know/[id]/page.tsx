@@ -57,32 +57,6 @@ const BeTheFirstToKnow = () => {
 
   return (
     <>
-      {/* <div className="flex items-center gap-5">
-            <RxTarget size={50} />
-            <h3 className="my-10 font-normal">All Targeted Search</h3>
-          </div> */}
-      {/* <div className="flex items-center justify-center">
-            <LargeButton
-              icon={<MdOutlineLibraryAdd />}
-              label="Add Targeted Search"
-              className="mt-10"
-            />
-          </div> */}
-      {/* results found */}
-      {/* <div className="mb-2 grid sm:grid-cols-1 lg:grid-cols-3">
-            <div className="flex justify-between rounded-[12px] border-[1px] px-6 py-3">
-              <p className="mt-1 font-semibold text-[#00763A]">
-                {data.length} {data.length > 1 ? "results" : "result"} found
-              </p>
-              <div className="relative">
-                <CaDashEyeOff />
-                <div className="absolute right-[-14px] top-[2px] flex h-7 w-7 items-center justify-center rounded-full bg-[#B71851] text-[10px] text-white">
-                  20+
-                </div>
-              </div>
-            </div>
-          </div> */}
-      {/* properties grid */}
       <FetchingStates
         data={listings}
         error={error}
@@ -120,6 +94,7 @@ const BeTheFirstToKnow = () => {
           hint={"Best Value" as HintTag} // TODO: check database
           showNotViewed
           isViewed={idx === 5 || idx === 3 || idx === 7 ? false : true}
+          isAdmin={true}
         />
       ))}
     </>

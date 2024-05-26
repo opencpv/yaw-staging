@@ -12,7 +12,7 @@ const ViewButton = ({ onOpen, className }: Props) => {
   return (
     <Button
       isIconOnly
-      title="Edit"
+      title="View"
       className={cn(
         "flex w-full items-center justify-center rounded-md bg-secondary-50 px-4 text-neutral-800",
         className,

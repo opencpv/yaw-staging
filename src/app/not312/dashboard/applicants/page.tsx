@@ -28,6 +28,7 @@ interface DataType {
   created_at: string;
   email: string;
   phone: string;
+  job: string;
 }
 
 const columns: TableProps<DataType>["columns"] = [
@@ -56,6 +57,11 @@ const columns: TableProps<DataType>["columns"] = [
     title: "Phone",
     dataIndex: "phone",
     key: "phone",
+  },
+  {
+    title: "Job",
+    dataIndex: "job",
+    render: (text, record, index) => (record.job ? record.job : "Resume Bank"),
   },
   {
     title: "Cover Letter",

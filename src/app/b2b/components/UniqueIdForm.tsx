@@ -1,5 +1,5 @@
 import TextInput from "@/components/__shared/ui/form/TextInput";
-import React from "react";
+import React, { useState } from "react";
 import { handleCustomerIdSubmit } from "../actions";
 import ContinueButton from "./ContinueButton";
 
@@ -12,11 +12,11 @@ const UniqueIdForm = () => {
       <div className="flex w-full flex-col gap-3">
         <TextInput
           name="customer-id"
-          label="Enter unique id no."
+          label="Enter customer ID no."
           required
           classNames={{
             innerWrapper: "border-shade-200 h-[52px]",
-            label: "text-lg",
+            label: "text-lg group-data-[filled-within=true]:pb-2",
           }}
           asterisk={false}
         />

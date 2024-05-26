@@ -12,10 +12,10 @@ const ContinueButton = (props: Props) => {
     <Button
       type="submit"
       color="primary"
-      className="w-full max-w-full"
+      className="h-[52px] w-full max-w-full"
       isLoading={pending}
     >
-      Continue
+      Proceed
     </Button>
   );
 };

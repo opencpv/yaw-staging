@@ -27,6 +27,7 @@ export const POST = withErrorHandler(async (request: NextRequest) => {
   const coverLetter = formData.get("coverLetter");
   const resume = formData.get("resume");
   const link = formData.get("link");
+  const job = formData.get("job");
 
   let { data, error } = await supabaseClient
     .from("join_us")
@@ -39,6 +40,7 @@ export const POST = withErrorHandler(async (request: NextRequest) => {
         cover_letter_url: coverLetter || "",
         resume_url: resume,
         additional_link: link || "",
+        job: job ? job : "resume bank",
       },
     ])
     .select();

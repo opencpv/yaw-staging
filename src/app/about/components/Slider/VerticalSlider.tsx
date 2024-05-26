@@ -10,6 +10,7 @@ import { Pagination, Autoplay } from "swiper/modules";
 import Image from "next/image";
 import VerticalSliderScrollFixOverlay from "@/components/__shared/ui/sliders/VerticalSliderScrollFixOverlay";
 import { urlForImage } from "@/lib/utils/sanity/utils";
+import { createUUID } from "@/lib/utils/stringManipulation";
 
 const demoPost = [
   {
@@ -55,7 +56,7 @@ const VerticalSlider = ({ data }: { data: any }) => {
       >
         {/* Promotee info from database */}
         {data.slide.map((item: any) => (
-          <SwiperSlide key={crypto.randomUUID()} className="relative">
+          <SwiperSlide key={createUUID()} className="relative">
             <div className="relative">
               <div className="ml-5 w-10/12 space-y-5 pb-20 pl-10 pr-24 pt-28 xs:pt-40 min-[480px]:ml-10 lg:ml-auto lg:max-w-xl lg:py-20 min-[1160px]:max-w-2xl">
                 <h2 className="text-2xl font-[700] lg:text-3xl">

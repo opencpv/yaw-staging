@@ -1,9 +1,15 @@
+"use client";
 import useCartStore from "@/store/cart/useCartStore";
 import { CartProp } from "../../../../interfaces";
 import CaCartItem from "@/components/__shared/ui/icons/CaCartItem";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import CaDropdownArrow from "@/components/__shared/ui/icons/CaDropdownArrow";
 import DeleteIconButton from "@/components/__shared/ui/button/DeleteIconButton";
+import Button from "@/components/__shared/ui/button/Button";
+import { formatPrice } from "@/lib/utils/numberManipulation";
+import { cn } from "@nextui-org/react";
+import ButtonDelete from "@/components/__shared/ui/button/ButtonDelete";
+import { formatDateOnly } from "@/lib/utils/stringManipulation";
 
 const CartView = () => {
   const {
@@ -23,40 +29,54 @@ const CartView = () => {
     item_index: number;
   }) => {
     return (
-      <div className="mb-6 w-full rounded-md border-[1px] px-3 py-5">
+      <div className="mb-6 w-full rounded-md border-[1px] border-neutral-100 px-3 py-5">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="flex h-20 w-20 items-center justify-center rounded-md bg-[#027F7C]">
+          <div className="flex flex-col gap-4 max-sm:w-full xsm:flex-row">
+            <div className="flex aspect-square max-h-24 w-20 items-center justify-center rounded-md bg-[#027F7C] xs:w-28">
               <CaCartItem />
             </div>
-            <div>
-              <p className="mb-2 font-semibold">{item.name}</p>
-              <p className="mb-2 text-[#8A8A8A]">GHS {item.cost}</p>
-              {item.isQuantityChangable ? (
-                <div className="flex items-center gap-4">
-                  <p className="">Qty</p>
+            <div className="flex-1">
+              <h4 className="mb-2">{item.name}</h4>
+              <p className="mb-2 text-shade-200">{formatPrice(item.cost)}</p>
+              <div className="flex flex-wrap items-center justify-between gap-5">
+                <div
+                  className={cn("flex items-center gap-4", {
+                    invisible: !item.isQuantityChangable,
+                  })}
+                >
+                  <p>Qty</p>
                   <DropDown item={item} item_index={item_index} />
                 </div>
-              ) : null}
+                <ButtonDelete
+                  handleDestruction={() => {
+                    removeItem(item_index);
+                  }}
+                  className="rounded-md bg-secondary-50 p-4 ssm:hidden"
+                  classNames={{
+                    icon: "text-red-500",
+                  }}
+                />
+              </div>
             </div>
           </div>
-          <div className="flex items-center ">
+          <div className="flex items-center">
             {item.date ? (
-              <p className="mx-4 hidden rounded-xl  bg-[#FBE9C8] px-6 py-2  text-center font-semibold lg:block">
-                {item.date}
-              </p>
+              <Date className="max-md:hidden" date={item.date} />
             ) : null}
-            <DeleteIconButton
-              onclick={() => {
+            <ButtonDelete
+              handleDestruction={() => {
                 removeItem(item_index);
+              }}
+              className="rounded-md bg-secondary-50 p-4 max-ssm:hidden"
+              classNames={{
+                icon: "text-red-500",
               }}
             />
           </div>
         </div>
+        {/* mobile */}
         {item.date ? (
-          <p className="mx-8 mt-6 rounded-xl bg-[#FBE9C8] py-2 text-center font-semibold lg:hidden">
-            {item.date}
-          </p>
+          <Date className="mt-6 md:hidden" date={item.date} />
         ) : null}
       </div>
     );
@@ -72,7 +92,7 @@ const CartView = () => {
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
         <button
-          className="flex items-center gap-2 rounded-full  bg-secondary-50 px-4 py-2"
+          className="flex items-center gap-2 rounded-full bg-secondary-50  px-4 py-2 focus:outline-accent"
           aria-label="modify item quantity"
         >
           <p className="text-[10px]">{item.quantity}</p>
@@ -104,52 +124,51 @@ const CartView = () => {
 
   return (
     <section className={`mx-auto max-w-[1024px] px-4 py-6 lg:px-0`}>
-      <h1 className={`mb-8 text-[20px]`}>My Cart</h1>
+      <h2 className="mb-8">My Cart</h2>
       <div className="flex justify-end">
         {/* clear cart button */}
-        <button
-          className="mb-8 text-right text-[#E32636]"
+        <Button
+          variant="ghost"
+          className="mb-8 text-right font-normal text-[#E32636] underline"
           onClick={() => {
             clearCart();
           }}
         >
           Remove all
-        </button>
+        </Button>
       </div>
-      <div className=" mb-16">
+      <div className="mb-16">
         {items.map((item, index) => (
           <CartItem item={item} key={index} item_index={index} />
         ))}
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-3 ">
-        <div></div>
-        <div></div>
-
+      <div className="ml-auto max-w-sm">
         <div className="w-full">
-          <p className="mb-4">Discount</p>
-          <div className="mb-16 flex gap-2">
+          <h4 className="mb-4 font-normal text-shade-200">Discount Code</h4>
+          <div className="mb-16 flex flex-wrap gap-2">
             <input
               type="text"
-              className="flex-auto rounded-sm border-[1px] px-4 uppercase text-[#AD842A]  outline-none"
+              className="min-h-[40px] flex-1 rounded-sm border-[1px] px-4 uppercase text-[#AD842A] outline-none"
             />
-            <button className="w-fit rounded-md border-2 border-[#AD842A] px-10 py-4 text-[#AD842A]">
+            <Button
+              variant="outline"
+              className="border border-[#AD842A] text-[#AD842A]"
+            >
               Apply
-            </button>
+            </Button>
           </div>
           <div className="mb-4 flex items-center justify-between bg-[#F5F5F5] px-8 py-3">
-            <p className="font-semibold">Subtotal</p>
-            <p className="text-[20px] font-semibold">
-              GHS {getTotalPrice(items)}
-            </p>
+            <h5>Subtotal</h5>
+            <p className="font-semibold">{formatPrice(getTotalPrice(items))}</p>
           </div>
           <div className="mb-4 flex items-center justify-between px-8 py-3 text-[13px] text-[#545454]">
-            <p className="">Items</p>
-            <p className="">{items.length}</p>
+            <p>Items</p>
+            <p>{items.length}</p>
           </div>
 
-          <button className="w-full rounded-md bg-[#DDB771] py-4 font-semibold text-white">
+          <Button href="/checkout" color="accent" className="w-full">
             Checkout
-          </button>
+          </Button>
         </div>
       </div>
     </section>
@@ -157,3 +176,16 @@ const CartView = () => {
 };
 
 export default CartView;
+
+const Date = ({ className, date }: { className?: string; date: string }) => {
+  return (
+    <p
+      className={cn(
+        "mx-4 rounded-3xl bg-[#FBE9C8] px-2 py-2 text-center max-lg:mx-8 max-lg:ml-4 xsm:px-12 xs:max-w-fit lg:rounded-xl lg:px-6",
+        className,
+      )}
+    >
+      {formatDateOnly(date)}
+    </p>
+  );
+};

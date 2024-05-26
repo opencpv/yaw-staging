@@ -50,7 +50,7 @@ const TextInput = (
           classNames?.label,
         ),
         inputWrapper: cn(
-          `border-neutral-400 border hover:border-black/50 rounded-md group-data-[focus=true]:border-accent-50 group-data-[focus=true]:border-2 `,
+          `border-neutral-400 border h-[52px] hover:border-black/50 rounded-md group-data-[focus=true]:border-accent-50 group-data-[focus=true]:border-2 `,
           classNames?.innerWrapper,
         ),
         input: cn(`text-base py-8 focus:border-accent-50`, className),
