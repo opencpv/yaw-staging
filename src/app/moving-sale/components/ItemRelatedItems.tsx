@@ -36,12 +36,6 @@ const ItemRelatedItems = (props: Props) => {
           1280: {
             slidesPerView: 4,
           },
-          // 1300: {
-          //   slidesPerView: 3.5,
-          // },
-          // 1536: {
-          //   slidesPerView: 4,
-          // },
         }}
         swiperSlideClassName="max-w-96"
         items={items?.map((item) => (

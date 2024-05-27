@@ -3,15 +3,19 @@ import { formatPrice } from "@/lib/utils/numberManipulation";
 import { useItemPathStore } from "@/store/moving_sales/useMovingSalesStore";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 const ItemCard = ({ description, title, image, price, href }: ItemProps) => {
   const { setPreviousPath } = useItemPathStore();
+  const pathname = usePathname();
 
   return (
     <Link
       href={`${href}`}
-      onClick={() => setPreviousPath(window.location.href)}
+      onClick={() =>
+        pathname === "/moving-sale" && setPreviousPath(window.location.href)
+      }
     >
       <div className="text-sm">
         <div className="relative mb-5 h-60 w-full">

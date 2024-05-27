@@ -15,7 +15,7 @@ const ItemOwnerContact = ({ query }: Props) => {
       {query.isLoading ? (
         <SkeletonRectangle />
       ) : (
-        <div className="w-full space-y-3 rounded-xl bg-white p-8 shadow-large lg:mt-12">
+        <div className="flex w-full flex-col items-center gap-3 rounded-xl bg-white p-8 shadow-large lg:mt-12">
           <CallButton
             color="accent"
             phoneNumber={query.data?.phone}

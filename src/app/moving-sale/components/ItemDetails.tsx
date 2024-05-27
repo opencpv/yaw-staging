@@ -1,6 +1,7 @@
 import SkeletonTextual from "@/components/__shared/ui/skeleton/SkeletonTextual";
 import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
 import { formatPrice } from "@/lib/utils/numberManipulation";
+import { LowerCase } from "@/lib/utils/stringManipulation";
 import { Skeleton } from "@nextui-org/react";
 import React from "react";
 
@@ -44,8 +45,18 @@ const ItemDetails = ({ query }: Props) => {
             </>
           ) : (
             <>
-              <Term variant="negotiable" />
-              <Condition variant="used" />
+              <Term
+                variant={
+                  LowerCase(query.data?.term) === "negotiable"
+                    ? "negotiable"
+                    : "non-negotiable"
+                }
+              />
+              <Condition
+                variant={
+                  LowerCase(query.data?.condition) === "new" ? "new" : "used"
+                }
+              />
             </>
           )}
         </span>

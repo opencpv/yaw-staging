@@ -1,5 +1,5 @@
 "use client";
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import Button from "./Button";
 // import { useMessageStore } from "@/store/dashboard/useMessageStore";
 // import { useUserDetails } from "@/lib/custom-hooks/message/useUserDetails";
@@ -8,6 +8,12 @@ import LoaderDots from "../loader/LoaderDots";
 // import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { PiChatCenteredDots } from "react-icons/pi";
+import { useAppStore } from "@/store/dashboard/AppStore";
+import dynamic from "next/dynamic";
+
+const SignInRequiredModal = dynamic(
+  () => import("../modals/SignInRequiredModal"),
+);
 
 type Props = {
   id?: string;
@@ -19,9 +25,10 @@ type Props = {
 
 const MessageButton = ({ color, className, id, children, type }: Props) => {
   // const router = useRouter();
-
+  const { user } = useAppStore();
   // const setRecipientId = useMessageStore((state) => state.setRecipientId);
   const [loadingMessage, setLoadingMessage] = useState<boolean>(false);
+  const [signInModalOpen, setSignInModalOpen] = useState(false);
 
   // const { userName } = useUserDetails(id);
   // const userSession = useUserSession();
@@ -37,29 +44,45 @@ const MessageButton = ({ color, className, id, children, type }: Props) => {
   //   }
   // };
 
-  if (type === 2)
-    return (
-      <Button
-        isIconOnly
-        title="Send message"
-        className={cn("", className)}
-        // onClick={onOpen}
-      >
-        <PiChatCenteredDots size={24} className="text-neutral-700" />
-      </Button>
-    );
-  else
-    return (
-      <Button
-        variant="outline"
-        color={color}
-        title={"Send message"}
-        className={cn("w-full p-4", className)}
-        onClick={() => ""}
-      >
-        {loadingMessage ? <LoaderDots /> : children ?? "Send Message"}
-      </Button>
-    );
+  const handleClick = () => {
+    if (user) {
+      //
+    } else {
+      setSignInModalOpen(true);
+    }
+  };
+
+  useEffect(() => {}, []);
+
+  return (
+    <>
+      <SignInRequiredModal
+        open={signInModalOpen}
+        onOpenChange={setSignInModalOpen}
+        onClose={() => setSignInModalOpen(false)}
+      />
+      {type === 2 ? (
+        <Button
+          isIconOnly
+          title="Send message"
+          className={cn("", className)}
+          onClick={handleClick}
+        >
+          <PiChatCenteredDots size={24} className="text-neutral-700" />
+        </Button>
+      ) : (
+        <Button
+          variant="outline"
+          color={color}
+          title={"Send message"}
+          className={cn("w-full", className)}
+          onClick={handleClick}
+        >
+          {loadingMessage ? <LoaderDots /> : children ?? "Send Message"}
+        </Button>
+      )}
+    </>
+  );
 };
 
 export default MessageButton;
