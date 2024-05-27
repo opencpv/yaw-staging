@@ -35,7 +35,10 @@ export default function ViewDataDetailsModal({ variant, data }: Props) {
         closeButton={<ModalCloseIcon />}
         size="3xl"
       />
-      <ViewButton onOpen={onOpen} className="h-11" />
+      <ViewButton
+        onOpen={onOpen}
+        className="max-sm:w-fit max-sm:bg-transparent max-sm:p-0 sm:h-11"
+      />
     </>
   );
 }
@@ -50,20 +53,20 @@ const ModalHeader = ({
   return (
     <div
       className={`sticky -top-2 mx-auto -mt-2 flex w-full items-center justify-between rounded-xl px-4 py-2 ${
-        variant == "invoice" ? "bg-primary" : "rounded-t-xl bg-[#F8F8F8]"
+        variant === "invoice" ? "bg-primary" : "rounded-t-xl bg-[#F8F8F8]"
       }`}
     >
       <div
         className={`flex flex-col gap-1 ${
-          variant == "invoice" ? "text-white" : "text-shade-300"
+          variant === "invoice" ? "text-white" : "text-shade-300"
         }`}
       >
         <h2 className="uppercase">
-          {variant == "invoice" ? "invoice" : "receipt"}
+          {variant === "invoice" ? "invoice" : "receipt"}
         </h2>
         <small
           className={`font-semibold text-neutral-300 ${
-            variant == "receipt" && "hidden"
+            variant === "receipt" && "hidden"
           }`}
         >
           {data.id}
@@ -71,7 +74,7 @@ const ModalHeader = ({
       </div>
       <div
         className={`relative aspect-[50/37] w-full max-w-[50px] ${
-          variant == "receipt" && "hidden"
+          variant === "receipt" && "hidden"
         }`}
       >
         <Logo />

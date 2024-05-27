@@ -43,7 +43,7 @@ const UniqueIdForm = () => {
           className="h-[52px] w-full max-w-full"
           isLoading={loading}
         >
-          Track
+          Proceed
         </Button>
       </div>
     </form>
