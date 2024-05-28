@@ -29,8 +29,9 @@ const FeaturedListings = (props: Props) => {
           <h2 className="uppercase">Featured Listings</h2>
           <Button
             variant="ghost"
+            color="primary"
             href={`/properties?${new URLSearchParams({ tag: "featured" })}`}
-            className="text-xl font-medium text-accent"
+            className="text-xl font-medium"
           >
             View all <HiChevronRight size={24} />
           </Button>

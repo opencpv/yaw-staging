@@ -29,6 +29,8 @@ import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { cn } from "@/lib/utils";
 import { FeatureInterface } from "../../../../../interfaces";
 import dynamic from "next/dynamic";
+import { useItemPathStore } from "@/store/moving_sales/useMovingSalesStore";
+import { useRouter } from "next/navigation";
 
 const ApplicationForm = dynamic(
   () => import("@/components/__shared/ui/application-form"),
@@ -41,9 +43,10 @@ type Props = {
 };
 
 const PropertyDetailsPage = ({ params }: Props) => {
+  const router = useRouter();
+  const { previousPath } = useItemPathStore();
   const { id: propertyId } = params;
   const { user } = useAppStore();
-  const { images } = useAssets();
 
   const {
     data: listing,
@@ -124,6 +127,11 @@ const PropertyDetailsPage = ({ params }: Props) => {
                   label="Properties"
                   href="/properties"
                   className="text-2xl font-medium text-neutral-300"
+                  onClick={() =>
+                    previousPath
+                      ? router.push(previousPath)
+                      : router.push("/properties")
+                  }
                 />{" "}
                 / <span>{propertyName2}</span>
               </div>

@@ -11,10 +11,10 @@
   background-color: yellow; */
   /* clip-path: ; */
   margin-top: 2rem;
-  height: 500px;
+  max-height: 500px;
+  @apply rounded-3xl max-lg:aspect-video max-ssm:aspect-square ssm:rounded-[3rem] lg:h-[500px];
   position: relative;
   color: #fff;
-  border-radius: 3rem;
 }
 
 .rect::before {

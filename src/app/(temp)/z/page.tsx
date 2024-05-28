@@ -5,6 +5,9 @@ import Landing from "./components/Landing";
 import Promotions from "./components/sections/Promotions";
 import FeaturedListings from "./components/sections/FeaturedListings";
 import RentalDeals from "./components/sections/RentalDeals";
+import ManagePropertiesSection from "./components/sections/ManagePropertiesSection";
+import PopularCities from "./components/sections/PopularCities";
+import Ad from "./components/sections/Ad";
 
 type Props = {};
 
@@ -15,7 +18,10 @@ const page = (props: Props) => {
       <Landing />
       <Promotions />
       <FeaturedListings />
+      <Ad />
       <RentalDeals />
+      <ManagePropertiesSection />
+      <PopularCities />
       <Footer />
     </>
   );

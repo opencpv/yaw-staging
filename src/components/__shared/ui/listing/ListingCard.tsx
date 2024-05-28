@@ -20,8 +20,12 @@ import ListingCardButton from "./ListingCardButton";
 import { FiTrash2 } from "react-icons/fi";
 import { cn } from "@/lib/utils";
 import supabase from "@/lib/utils/supabase/supabaseClient";
+import { usePathname } from "next/navigation";
+import { propertiesPathStore } from "@/store/properties/usePropertiesStore";
 
 const ListingCard = (props: Partial<ListingCardInterface>) => {
+  const pathname = usePathname();
+  const { setPreviousPath } = propertiesPathStore();
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const lastIndex = props.images?.lastIndexOf(
     props.images[props.images.length - 1],
@@ -43,7 +47,7 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
     if (!isAdmin) {
       updateViews();
     }
-  }, []);
+  }, [isAdmin, props.propertyId]);
 
   return (
     <>
@@ -53,8 +57,11 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
         } ${
           props.cardType === "2"
             ? null
-            : "rounded-b-lg rounded-t-lg shadow-[1px_3px_13px_rgba(0,_0,_0,_0.10)]"
+            : "rounded-xl shadow-[1px_3px_13px_rgba(0,_0,_0,_0.10)]"
         }`}
+        onClick={() =>
+          pathname === "/properties" && setPreviousPath(window.location.href)
+        }
       >
         <Swiper
           allowTouchMove
@@ -81,7 +88,7 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
               ? "h-[26rem] rounded-2xl"
               : props.cardType === "2"
                 ? "h-80 rounded-2xl"
-                : "h-72 rounded-t-md"
+                : "h-80 rounded-xl"
           } `}
           onSlideChange={(swiper) => {
             setActiveIndex(swiper.activeIndex);
