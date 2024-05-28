@@ -3,12 +3,36 @@ import Cost from "../__shared/Cost";
 import CheckoutButton from "../__shared/CheckoutButton";
 import InvoiceTable from "../invoice/InvoiceTable";
 import { invoiceStore } from "@/store/payment/invoiceStore";
+import { Button } from "@nextui-org/react";
+import { pdf } from "@react-pdf/renderer";
+import PdfTemplate from "../__shared/InvoiceTemplate";
+import { saveAs } from "file-saver";
+import { customerStore } from "@/store/payment/customerStore";
 
 function Invoices() {
-  const { checkoutItems } = invoiceStore();
-  const subTotal = checkoutItems.reduce((acc, item) => acc + item.amount, 0);
-  const tax = 12;
+  const { checkoutItems, invoiceItems } = invoiceStore();
+  const subTotal =
+    checkoutItems.length > 0
+      ? checkoutItems.reduce((acc, item) => acc + item.amount, 0)
+      : 0;
+  const tax =
+    checkoutItems.length > 0
+      ? checkoutItems.reduce(
+          (acc, item) => acc + (item.tax_rate / 100) * item.amount,
+          0,
+        )
+      : 0;
   const total = subTotal + tax;
+  const { customer } = customerStore();
+  const downloadInvoices = async () => {
+    for (const item of checkoutItems) {
+      const filename = item.service + ".pdf";
+      const blob = await pdf(
+        <PdfTemplate variant="invoice" data={item} customer={customer} />,
+      ).toBlob();
+      saveAs(blob, filename);
+    }
+  };
 
   return (
     <section className="relative flex flex-col gap-8">
@@ -22,7 +46,11 @@ function Invoices() {
         <Cost subTotal={subTotal} tax={tax} total={total} variant={"invoice"} />
       </div>
       <InvoiceTable />
-
+      {checkoutItems.length == invoiceItems.length && (
+        <Button className="w-fit" onClick={downloadInvoices}>
+          Download
+        </Button>
+      )}
       <section className="hidden w-full justify-between gap-5 bg-[#F8F8F8] py-5 lg:flex">
         <div />
         <div>

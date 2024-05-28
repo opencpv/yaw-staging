@@ -17,10 +17,9 @@ import { invoiceStore } from "@/store/payment/invoiceStore";
 type Props = {};
 
 const InvoiceTable = (props: Props) => {
-  const { checkoutItems } = invoiceStore();
-  console.log("checkoutItems", checkoutItems);
+  const { invoiceItems } = invoiceStore();
   const { handleCheckAll, allChecked } = useInvoiceData({
-    invoiceData: checkoutItems,
+    invoiceData: invoiceItems,
   });
 
   return (
@@ -45,7 +44,7 @@ const InvoiceTable = (props: Props) => {
           <TableHeader className="col-span-1">Action</TableHeader>
         </TableHeaderRow>
         <TableBodyRowGroup>
-          {checkoutItems?.map((data: any) => (
+          {invoiceItems?.map((data: any) => (
             <DataRow key={createUUID()} data={data} variant="invoice" />
           ))}
         </TableBodyRowGroup>
@@ -61,7 +60,7 @@ const InvoiceTable = (props: Props) => {
             checked={allChecked}
           />
         </div>
-        {checkoutItems?.map((data: any) => (
+        {invoiceItems?.map((data: any) => (
           <DataRowSm key={createUUID()} data={data} variant="invoice" />
         ))}
       </TableSm>

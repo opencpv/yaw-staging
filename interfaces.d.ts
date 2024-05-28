@@ -126,6 +126,9 @@ export interface CartProp {
   quantity: number;
   date: null | string;
   isQuantityChangable: boolean;
+  isInvoice: boolean;
+  invoiceId?: number;
+  tax_rate: number;
 }
 
 export interface SentimentSpan {

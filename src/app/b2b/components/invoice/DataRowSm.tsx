@@ -46,7 +46,7 @@ function DataRowSm({ variant, data }: Props) {
       </TableBodySm>
       <TableBodySm className="flex items-center justify-between gap-5">
         <h4>Billing Date</h4>
-        <p>{data.billing_date}</p>
+        <p>{formatPrice(data.amount)}</p>
       </TableBodySm>
       <TableBodySm className="flex items-center justify-between gap-5">
         <h4>Status</h4>

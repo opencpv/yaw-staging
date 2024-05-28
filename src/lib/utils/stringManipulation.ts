@@ -49,6 +49,36 @@ export const formatDateOnly = (dateTime: string) => {
   );
 };
 
+export const formatDateDMY = (dateString: string) => {
+  // Split the date string into components
+  const dateParts = dateString.split("-");
+
+  // Extract the year, month, and day
+  const year = dateParts[0];
+  const month = dateParts[1];
+  const day = dateParts[2];
+
+  // Convert the numerical month to its name
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const monthName = monthNames[parseInt(month) - 1];
+
+  // Combine the components into the desired format
+  return `${day} ${monthName} ${year}`;
+};
+
 export const LowerCase = (text: string) => {
   return text?.toLowerCase();
 };

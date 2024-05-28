@@ -1,35 +1,30 @@
 import { create } from "zustand";
 import { CartProp } from "../../../interfaces";
 
+interface DiscountType {
+  code: string | null;
+  rate: number;
+}
 interface CartStore {
   items: CartProp[];
+  discountCode: DiscountType;
+  setDiscountCode: (discount: DiscountType) => void;
   addItem: (item: CartProp) => void;
+  setCart: (items: CartProp[]) => void;
   updateQuantity: (itemIndex: number, newQuantity: number) => void;
   removeItem: (itemIndex: number) => void; // Modify parameter type
   clearCart: () => void;
-  getTotalPrice: (items: CartProp[]) => number;
+  getTotalPrice: (items: CartProp[], discount?: DiscountType) => number;
 }
 
-const cartData: CartProp[] = [
-  {
-    name: "Be The First To Know",
-    cost: 49.8,
-    quantity: 1,
-    date: null,
-    isQuantityChangable: true,
-  },
-  {
-    name: "Be My Agent",
-    cost: 49.8,
-    quantity: 1,
-    date: "Wed, 15 May 2024 11:27:55 GMT",
-    isQuantityChangable: false,
-  },
-];
+const cartData: CartProp[] = [];
 
 const useCartStore = create<CartStore>((set) => ({
   items: cartData,
+  discountCode: { code: null, rate: 0 },
+  setDiscountCode: (item) => set((state) => ({ discountCode: item })),
   addItem: (item) => set((state) => ({ items: [...state.items, item] })),
+  setCart: (items) => set((state) => ({ items: items })),
   updateQuantity: (itemIndex, newQuantity) =>
     set((state) => {
       const updatedItems = [...state.items];
@@ -43,8 +38,16 @@ const useCartStore = create<CartStore>((set) => ({
       items: state.items.filter((_, index) => index !== itemIndex),
     })),
   clearCart: () => set({ items: [] }),
-  getTotalPrice: (items) => {
-    return items.reduce((total, item) => total + item.cost * item.quantity, 0);
+  getTotalPrice: (items, discount) => {
+    const total = items.reduce(
+      (total, item) => total + item.cost * item.quantity,
+      0,
+    );
+    if (discount) {
+      return total * (1 - discount.rate);
+    } else {
+      return total;
+    }
   },
 }));
 

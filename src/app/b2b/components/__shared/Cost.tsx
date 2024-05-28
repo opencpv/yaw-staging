@@ -5,6 +5,7 @@ type Props = {
   tax: number;
   total: number;
   variant: "invoice" | "receipt";
+  taxRate?: number;
 };
 
 type CostRowProps = {
@@ -23,13 +24,13 @@ const CostRow = ({ label, cost }: CostRowProps) => {
     </div>
   );
 };
-function Cost({ subTotal, tax, total, variant }: Props) {
+function Cost({ subTotal, tax, total, variant, taxRate }: Props) {
   return (
     <div className="flex w-fit flex-col gap-2.5">
       <div className="flex flex-col gap-5">
         <CostRow label="subtotal" cost={subTotal} />
         <hr />
-        <CostRow label="tax (0%)" cost={tax} />
+        <CostRow label={`Tax`} cost={tax} />
         <hr />
         <CostRow label="total" cost={total} />
       </div>

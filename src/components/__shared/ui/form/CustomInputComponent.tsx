@@ -30,14 +30,11 @@ const CustomInputComponent = ({
         name={name}
         onChange={handleChange}
         onBlur={handleBlur}
-        value={values[name] as string}
+        value={values}
         placeholder={placeholder ? placeholder : ""}
-        className="mt-4 w-full p-4 text-[13px] border-[1px] rounded-md outline-none text-[#B4B2AF]  "
+        className="mt-4 w-full rounded-md border-[1px] p-4 text-[13px] text-[#B4B2AF] outline-none  "
       />
-      <p className="text-[10px] text-green-700">
-        {" "}
-        {errors[name] && touched[name] && errors[name]}
-      </p>
+      <p className="text-[10px] text-green-700">{errors && touched}</p>
     </fieldset>
   );
 };

@@ -8,6 +8,8 @@ import Forms from "../pages/Forms";
 import { createClient } from "@/lib/utils/supabase/auth/client";
 import { useSearchParams } from "next/navigation";
 import { PaymentData } from "../types";
+import { customerStore } from "@/store/payment/customerStore";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 type Props = {};
 
@@ -16,9 +18,10 @@ const InvoiceReceiptFilter = (props: Props) => {
   const id = searchParams?.get("id");
 
   const { activePage, setActivePage } = invoiceStore();
+  const { setCustomer } = customerStore();
   const [loading, setloading] = useState(false);
   const supabaseClient = createClient();
-  const { setCheckoutItems } = invoiceStore();
+  const { setInvoiceItems } = invoiceStore();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,7 +30,15 @@ const InvoiceReceiptFilter = (props: Props) => {
         .from("invoices")
         .select("*")
         .eq("customer", id);
-
+      let { data: customer, error: customerError } = await supabaseClient
+        .from("customers")
+        .select("*")
+        .eq("customer_id", id);
+      if (customerError) {
+        setloading(false);
+        console.log(customerError.message);
+        return;
+      }
       if (error) {
         setloading(false);
         console.log(error.message);
@@ -40,8 +51,10 @@ const InvoiceReceiptFilter = (props: Props) => {
       const receiptsOnly = invoices?.filter(
         (invoice: any) => invoice.is_paid == true,
       );
-
-      setCheckoutItems(invoices as PaymentData[]);
+      if (customer) {
+        setCustomer(customer[0]);
+      }
+      setInvoiceItems(invoices as PaymentData[]);
     };
 
     fetchData();

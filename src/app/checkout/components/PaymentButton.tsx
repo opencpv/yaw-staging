@@ -22,7 +22,7 @@ const PaymentButton = ({
 
   const onClose = () => {};
 
-  //   const initializePayment = usePaystackPayment(config);
+    // const initializePayment = usePaystackPayment(config);
 
   const handleButtonClick = () => {
     // initializePayment({ onSuccess, onClose });

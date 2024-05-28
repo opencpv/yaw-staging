@@ -1,101 +1,27 @@
-"use client";
-import React from "react";
-import { useDisclosure } from "@nextui-org/react";
-import ModalCloseIcon from "@/components/__shared/ui/modals/ModalCloseIcon";
-import Modal from "@/components/__shared/ui/modals/Modal";
-import ViewButton from "@/components/__shared/ui/button/ViewButton";
-import Logo from "@/components/__shared/ui/Logo";
-import Cost from "../Cost";
-import CaQuote from "../CaQuote";
+import { Variant } from "framer-motion";
+import { PaymentData } from "../types";
+import { formatDateDMY } from "@/lib/utils/stringManipulation";
 import legal from "@/enum/about/legal";
-import DownloadButton from "../DownloadButton";
-import CheckoutButton from "../CheckoutButton";
 import { formatPrice } from "@/lib/utils/numberManipulation";
-import { PaymentData } from "../../types";
-import { formatDateDMY, formatDateOnly } from "@/lib/utils/stringManipulation";
 import { customerStore } from "@/store/payment/customerStore";
+import Cost from "./Cost";
+import CaQuote from "./CaQuote";
 
-type Variant = "invoice" | "receipt";
-
-type Props = {
-  variant: Variant;
-  data: PaymentData;
-};
-export default function ViewDataDetailsModal({ variant, data }: Props) {
-  const { onOpen, isOpen, onOpenChange } = useDisclosure();
-
-  return (
-    <>
-      <Modal
-        header={<div className="h-5"></div>}
-        body={<ModalBody variant={variant} data={data} />}
-        footer={<ModalFooter variant={variant} data={data} />}
-        isOpen={isOpen}
-        onOpenChange={onOpenChange}
-        scrollBehavior="inside"
-        closeButton={<ModalCloseIcon />}
-        size="3xl"
-      />
-      <ViewButton onOpen={onOpen} className="h-11" />
-    </>
-  );
-}
-
-const ModalHeader = ({
+const PdfTemplate = ({
   variant,
   data,
+  customer,
 }: {
+  data: PaymentData;
   variant: "invoice" | "receipt";
-  data: PaymentData;
-}) => {
-  return (
-    <div
-      className={`sticky -top-2 mx-auto -mt-2 flex w-full items-center justify-between rounded-xl px-4 py-2 ${
-        variant == "invoice" ? "bg-primary" : "rounded-t-xl bg-[#F8F8F8]"
-      }`}
-    >
-      <div
-        className={`flex flex-col gap-1 ${
-          variant == "invoice" ? "text-white" : "text-shade-300"
-        }`}
-      >
-        <h2 className="uppercase">
-          {variant == "invoice" ? "invoice" : "receipt"}
-        </h2>
-        <small
-          className={`font-semibold text-neutral-300 ${
-            variant == "receipt" && "hidden"
-          }`}
-        >
-          {data.id}
-        </small>
-      </div>
-      <div
-        className={`relative aspect-[50/37] w-full max-w-[50px] ${
-          variant == "receipt" && "hidden"
-        }`}
-      >
-        <Logo />
-      </div>
-    </div>
-  );
-};
-
-const ModalBody = ({
-  variant,
-  data,
-}: {
-  variant: Variant;
-  data: PaymentData;
+  customer: any;
 }) => {
   const subTotal = data.amount;
   const tax = (data.tax_rate / 100) * subTotal;
   const total = subTotal + tax;
-  const { customer } = customerStore();
 
   return (
     <main className="payment-pdf mx-auto rounded-t-xl bg-[#F8F8F8] p-2 pt-0 sm:w-11/12">
-      <ModalHeader variant={variant} data={data} />
       <section className=" space-y-8">
         <section className="highlight flex gap-5 max-xs:justify-between">
           <h4>Date issued</h4>
@@ -175,38 +101,4 @@ const ModalBody = ({
   );
 };
 
-const ModalFooter = ({
-  variant,
-  data,
-}: {
-  variant: Variant;
-  data: PaymentData;
-}) => {
-  return (
-    <div className="mx-auto w-full sm:w-11/12">
-      {variant !== "invoice" && (
-        <div className="">
-          <DownloadButton
-            data={data}
-            variant={variant}
-            content={{ title: `${new Date().toLocaleDateString()}-receipt` }}
-          />
-        </div>
-      )}
-
-      {variant === "invoice" && (
-        <div className="">
-          <div className="grid w-full grid-cols-2 items-center justify-end gap-3 bg-transparent pb-2">
-            <DownloadButton
-              maxWidth="fit"
-              data={data}
-              variant={variant}
-              content={{ title: `${new Date().toLocaleDateString()}-invoice` }}
-            />
-            <CheckoutButton affix={1} items={[data]} />
-          </div>
-        </div>
-      )}
-    </div>
-  );
-};
+export default PdfTemplate;
