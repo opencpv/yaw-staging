@@ -5,7 +5,7 @@ import Image from "next/image";
 import React from "react";
 import DealCard from "../ui/DealCard";
 import Button from "@/components/__shared/ui/button/Button";
-import { HiChevronRight } from "react-icons/hi2";
+import { HiChevronRight } from "react-icons/hi";
 
 type Props = {};
 

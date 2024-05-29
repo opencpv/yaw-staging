@@ -1,9 +1,7 @@
 "use client";
 import Image from "next/image";
-import { fadeInLeft, fadeInRight } from "@/lib/animations";
-import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 import Button from "@/components/__shared/ui/button/Button";
-import { HiChevronRight } from "react-icons/hi2";
+import { HiChevronRight } from "react-icons/hi";
 
 type Props = {
   activity: string;
