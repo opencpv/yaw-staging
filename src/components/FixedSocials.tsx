@@ -2,8 +2,6 @@
 import { socialLinks } from "@/enum/links/socials";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { BsChevronCompactRight } from "react-icons/bs";
-import { FaChevronRight } from "react-icons/fa";
 import { TbChevronCompactRight } from "react-icons/tb";
 
 type Props = {
@@ -46,7 +44,9 @@ const FixedSocials = ({ threshHoldMax, threshHoldMin }: Props) => {
     <div className={`fixed left-0 top-[50%] z-20`}>
       <section
         className={`${
-          shouldShowSocials ? "translate-x-0 opacity-90" : "-translate-x-[100%]"
+          shouldShowSocials
+            ? "translate-x-0 opacity-90"
+            : "pointer-events-none -translate-x-[100%] touch-none"
         } relative  w-10 rounded-r-lg border border-primary-800 bg-white py-4 transition-transform`}
       >
         <ul className="flex flex-col gap-2">

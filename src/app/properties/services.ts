@@ -59,12 +59,12 @@ export const useFetchFeaturedListings = ({
       .select(
         "id, is_best_value, is_realtors_choice, is_featured, is_verified, profiles!inner(id, is_certified), property_type, description, city, bedrooms, monthly_amount, favorite_user_ids, subtitle, neighbourhood, advance_period, viewing_fee",
       )
+      .limit(limit)
       .order("is_verified", { ascending: false })
       .order("is_realtors_choice", { ascending: false })
       .order("is_best_value", { ascending: false })
       .order("profiles (is_certified)", { ascending: false })
-      .order("created_at", { ascending: false })
-      .limit(limit);
+      .order("created_at", { ascending: false });
   } else {
     query = supabase
       .from("random_featured_properties_view")

@@ -8,6 +8,7 @@ import RentalDeals from "./components/sections/RentalDeals";
 import ManagePropertiesSection from "./components/sections/ManagePropertiesSection";
 import PopularCities from "./components/sections/PopularCities";
 import Ad from "./components/sections/Ad";
+import ScrollTopAndSocial from "@/components/__shared/ui/ScrollTopAndSocial";
 
 type Props = {};
 
@@ -22,6 +23,7 @@ const page = (props: Props) => {
       <RentalDeals />
       <ManagePropertiesSection />
       <PopularCities />
+      <ScrollTopAndSocial threshHoldMin={820} threshHoldMax={5206} />
       <Footer />
     </>
   );

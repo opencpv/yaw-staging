@@ -20,7 +20,7 @@ const FeaturedListings = (props: Props) => {
     error,
     isLoading,
     mutate,
-  } = useFetchFeaturedListings();
+  } = useFetchFeaturedListings({ limit: 9 });
 
   return (
     <section className="wrapper section">
@@ -31,7 +31,7 @@ const FeaturedListings = (props: Props) => {
             variant="ghost"
             color="primary"
             href={`/properties?${new URLSearchParams({ tag: "featured" })}`}
-            className="text-xl font-medium"
+            className="text-xl font-medium max-ssm:hidden"
           >
             View all <HiChevronRight size={24} />
           </Button>
@@ -64,6 +64,14 @@ const FeaturedListings = (props: Props) => {
             }
           />
         </div>
+        <Button
+          variant="ghost"
+          color="primary"
+          href={`/properties?${new URLSearchParams({ tag: "featured" })}`}
+          className="text-xl font-medium ssm:hidden"
+        >
+          View all <HiChevronRight size={24} />
+        </Button>
       </div>
     </section>
   );

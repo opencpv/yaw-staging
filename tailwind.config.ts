@@ -98,6 +98,7 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-open-sans)"],
         montserrat: ["var(--font-montserrat)"],
+        pacifico: ["var(--font-pacifico)"],
       },
       screens: {
         xxs: "280px",

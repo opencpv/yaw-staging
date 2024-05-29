@@ -4,13 +4,15 @@ import { fadeUp } from "@/lib/animations";
 import Image from "next/image";
 import React from "react";
 import DealCard from "../ui/DealCard";
+import Button from "@/components/__shared/ui/button/Button";
+import { HiChevronRight } from "react-icons/hi2";
 
 type Props = {};
 
 const RentalDeals = (props: Props) => {
   return (
     <section className="bg-neutral-800 py-10">
-      <div className="section wrapper">
+      <div className="section wrapper flex flex-col">
         <div className="flex flex-col items-center gap-5 text-center font-medium text-white">
           <div className="flex gap-5 xs:items-center">
             <h2 className="uppercase">Our apartment rental deals</h2>
@@ -34,7 +36,6 @@ const RentalDeals = (props: Props) => {
               <FramerWrapper {...fadeUp} key={idx}>
                 <DealCard
                   key={idx}
-                  href={"/about"}
                   title={"Lorem ipsum dolor sit amet. Lorem ipsum"}
                   body={
                     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum"
@@ -45,6 +46,14 @@ const RentalDeals = (props: Props) => {
             );
           })}
         </div>
+        <Button
+          variant="ghost"
+          color="accent"
+          href="/about/#t73yjgClfDUknQ=="
+          className="mt-10 self-end text-xl font-medium"
+        >
+          Explore <HiChevronRight size={24} />
+        </Button>
       </div>
     </section>
   );

@@ -79,6 +79,7 @@ const About = async () => {
         <FramerWrapper
           {...fadeUp}
           className="wrapper mt-10 flex min-h-max items-center justify-center py-0 lg:mt-24"
+          id="QePYkSphjGkugQ=="
         >
           <div className="flex min-h-max flex-col gap-10">
             {aboutDescription.map((data: any, index: number) => (

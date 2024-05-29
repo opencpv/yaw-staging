@@ -36,7 +36,7 @@ const ManagePropertiesInfo = ({
         <Button
           variant="ghost"
           color="accent"
-          href="/about"
+          href="/about#QePYkSphjGkugQ=="
           className="font-medium sm:text-lg"
         >
           List your property <HiChevronRight size={24} />
