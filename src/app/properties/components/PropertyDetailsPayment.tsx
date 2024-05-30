@@ -26,7 +26,7 @@ type Props = {
 const PropertyDetailsPayment = (props: Props) => {
   return (
     <>
-      <motion.section {...fadeUp} className="mb-12">
+      <motion.section className="mb-12">
         <AdditionalInfoTitle title="Advance Payment Options" />
         <AdditionalInfo hidden={!props.advancePeriod}>
           <ul className="properties-li">
@@ -51,7 +51,7 @@ const PropertyDetailsPayment = (props: Props) => {
           </div>
         </AdditionalInfo>
       </motion.section>
-      <motion.div {...fadeUp} className="mt-12">
+      <motion.div className="mt-12">
         <h2 className="mt-6 text-2xl font-[600] text-neutral-800">
           Additional Information
         </h2>

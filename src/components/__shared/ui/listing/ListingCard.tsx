@@ -78,7 +78,6 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
                   prevEl: ".custom-l-prev",
                 }
           }
-          cssMode
           modules={[Pagination, Navigation]}
           className={`listing-card-slider relative w-full ${
             props.cardType === "2" && !props.showOnlyImage

@@ -54,7 +54,6 @@ const PromotionSlider = (props: Props) => {
           clickable: true,
           el: ".slider-promotions-pagination",
         }}
-        cssMode
         ref={sliderRef}
       >
         {tempPromos.map((item) => (

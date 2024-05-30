@@ -1,4 +1,5 @@
 "use client";
+import { fadeIn } from "@/lib/animations";
 import {
   AnimationProps,
   TargetAndTransition,

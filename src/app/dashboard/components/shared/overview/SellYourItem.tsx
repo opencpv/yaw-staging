@@ -17,7 +17,7 @@ const SellYourItem = (props: Props) => {
   return (
     <div className="flex w-full items-center justify-center rounded-xl py-24 shadow-large">
       <div className="flex flex-wrap justify-center gap-y-3 px-8 xs:px-16">
-        <FramerWrapper {...fadeIn}>
+        <FramerWrapper>
           <Image
             src={icons.PeopleSell}
             alt="Two people handshaking"

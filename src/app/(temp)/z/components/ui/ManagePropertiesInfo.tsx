@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Button from "@/components/__shared/ui/button/Button";
 import { HiChevronRight } from "react-icons/hi";
+import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 
 type Props = {
   activity: string;
@@ -20,14 +21,14 @@ const ManagePropertiesInfo = ({
 }: Props) => {
   return (
     <li className="group grid items-center gap-10 sm:grid-cols-2">
-      <div className="relative aspect-video group-even:sm:order-2">
+      <FramerWrapper className="relative aspect-video group-even:sm:order-2">
         <Image
           src={image}
           alt={activity}
           fill
           className="rounded-xl object-cover"
         />
-      </div>
+      </FramerWrapper>
       <div className="flex max-w-xl flex-col gap-4 text-primary group-even:sm:order-1">
         <h3 className="font-bold">{title}</h3>
         <p>{body}</p>

@@ -77,7 +77,6 @@ const About = async () => {
           </div>
         </div>
         <FramerWrapper
-          {...fadeIn}
           className="wrapper mt-10 flex min-h-max items-center justify-center py-0 lg:mt-24"
           id="QePYkSphjGkugQ=="
         >
@@ -88,13 +87,13 @@ const About = async () => {
           </div>
         </FramerWrapper>
 
-        <FramerWrapper {...fadeIn}>
+        <FramerWrapper>
           <AboutOurTags />
         </FramerWrapper>
 
         <section className="section pt-10 lg:pt-7">
           {/* <AboutBanner data={bannerData} /> */}
-          <FramerWrapper {...fadeIn} className="relative w-full">
+          <FramerWrapper className="relative w-full">
             <div className="relative flex max-w-screen-xl flex-col items-center justify-between gap-10 bg-opacity-90 bg-gradient-to-r from-[#21A19F] to-[#1EA9A6A1] p-5 text-white xs:items-start xs:p-10 lg:flex-row min-[1048px]:max-xl:w-11/12 fhd:mx-auto">
               <div className="space-y-5">
                 <h2 className="text-2xl  font-[700] xl:text-4xl 2xl:text-5xl">
@@ -116,10 +115,7 @@ const About = async () => {
           <SimpleSlider data={services} />
         </section>
 
-        <FramerWrapper
-          {...fadeIn}
-          className="mx-auto h-fit max-w-screen-2xl px-5 sm:px-10 lg:pt-28"
-        >
+        <FramerWrapper className="mx-auto h-fit max-w-screen-2xl px-5 sm:px-10 lg:pt-28">
           <VerticalSlider data={popularPosts} />
         </FramerWrapper>
         <FeaturedListings className="wrapper pb-0 pt-28" />
