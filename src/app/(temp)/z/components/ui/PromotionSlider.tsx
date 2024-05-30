@@ -54,6 +54,7 @@ const PromotionSlider = (props: Props) => {
           clickable: true,
           el: ".slider-promotions-pagination",
         }}
+        cssMode
         ref={sliderRef}
       >
         {tempPromos.map((item) => (
@@ -80,7 +81,6 @@ const PromotionSlider = (props: Props) => {
                 <NavButton placement="right" onClick={handleNext} />
               </div>
             </div>
-            {/* <div className="promotions-pagination relative top-20 flex justify-center" /> */}
           </SwiperSlide>
         ))}
       </Swiper>

@@ -30,7 +30,7 @@ const RentalDeals = (props: Props) => {
             approach that includes various steps.
           </p>
         </div>
-        <div className="mt-12 grid items-center gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid items-center gap-10 md:grid-cols-2 lg:grid-cols-3 lg:gap-5">
           {[1, 2, 3].map((tag: any, idx: number) => {
             return (
               <FramerWrapper {...fadeUp} key={idx}>

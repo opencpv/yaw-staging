@@ -40,6 +40,7 @@ const SliderGrid = ({ items }: SliderGridProps) => {
           rows: 1,
         }}
         spaceBetween={20}
+        cssMode
         // grabCursor
         pagination={{
           clickable: true,
@@ -91,13 +92,13 @@ const SliderGrid = ({ items }: SliderGridProps) => {
       >
         {/* Mapping through Featured listings from database */}
         {items?.map((item, idx) => (
-          <SwiperSlide key={idx + 1} className="">
+          <SwiperSlide key={idx + 1} className="pb-5 max-[460px]:px-1.5">
             {item}
           </SwiperSlide>
         ))}
       </Swiper>
       {/* Pagination bullets and button */}
-      <div className="relative top-10 z-20 mx-auto -mt-4 flex w-11/12 items-center justify-center 2xl:w-9/12">
+      <div className="relative top-10 z-20 mx-auto -mt-9 flex w-11/12 items-center justify-center 2xl:w-9/12">
         {/* Prev Button */}
         <div className="inline-flex w-full items-center justify-between gap-5">
           <div className="listing-grid-prev grid h-12 w-12 shrink-0 cursor-pointer place-items-center rounded-full bg-accent-50 md:h-16 md:w-16">
