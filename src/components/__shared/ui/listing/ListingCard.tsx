@@ -1,13 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
 import "@/styles/custom-swiper.css";
-
+import React, { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
 import Link from "next/link";
 import Image from "next/image";
@@ -43,7 +40,6 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
         console.log("Property views incremented successfully:", data);
       }
     };
-
     if (!isAdmin) {
       updateViews();
     }
@@ -158,7 +154,7 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
                   </SwiperSlide>
                 )}
               </>
-            ) : props.isMyFavoritePage || props.isRecommendationsPage ? ( // when page is my favourites or recommendations
+            ) : props.isMyFavoritePage || props.isRecommendationsPage ? ( // when page is "my favourites" or "recommendations" on dash
               <>
                 {index === 0 && (
                   <SwiperSlide key={index}>
@@ -232,7 +228,6 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
             <MdChevronRight className="text-lg text-neutral-700" />
           </div>
         </Swiper>
-        {/* Listing info */}
         <ListingInfo {...props} />
       </div>
     </>
