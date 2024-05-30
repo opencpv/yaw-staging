@@ -40,7 +40,7 @@ const About = async () => {
     <>
       <Navbar />
       <main className="overflow-x-hidden pb-8 sm:pb-14">
-        <div className="wrapper flex items-center justify-center pb-0 sm:pb-0">
+        <section className="wrapper flex items-center justify-center pb-0 sm:pb-0">
           <div className="grid items-center gap-x-36 gap-y-5 lg:grid-cols-2">
             <div className="w-full">
               {heading1.split("#").map((heading: string, index: number) => (
@@ -65,8 +65,8 @@ const About = async () => {
               ))}
             </div>
           </div>
-        </div>
-        <div className="mt-14 flex items-center justify-center">
+        </section>
+        <section className="mt-14 flex items-center justify-center">
           <div className="relative h-60 w-full md:h-[30rem]">
             <Image
               src={urlForImage(featuredImage)?.url() as string}
@@ -75,9 +75,9 @@ const About = async () => {
               style={{ objectFit: "cover" }}
             />
           </div>
-        </div>
-        <FramerWrapper
-          {...fadeUp}
+        </section>
+        <section
+          // {...fadeUp}
           className="wrapper mt-10 flex min-h-max items-center justify-center py-0 lg:mt-24"
           id="QePYkSphjGkugQ=="
         >
@@ -86,42 +86,42 @@ const About = async () => {
               <AboutItem key={index} index={index + 1} data={data} />
             ))}
           </div>
-        </FramerWrapper>
+        </section>
 
-        <FramerWrapper {...fadeUp}>
-          <AboutOurTags />
-        </FramerWrapper>
+        {/* <FramerWrapper {...fadeUp}> */}
+        <AboutOurTags />
+        {/* </FramerWrapper> */}
 
         <section className="section pt-10 lg:pt-7">
           {/* <AboutBanner data={bannerData} /> */}
-          <FramerWrapper {...fadeUp} className="relative w-full">
-            <div className="relative flex max-w-screen-xl flex-col items-center justify-between gap-10 bg-opacity-90 bg-gradient-to-r from-[#21A19F] to-[#1EA9A6A1] p-5 text-white xs:items-start xs:p-10 lg:flex-row min-[1048px]:max-xl:w-11/12 fhd:mx-auto">
-              <div className="space-y-5">
-                <h2 className="text-2xl  font-[700] xl:text-4xl 2xl:text-5xl">
-                  {bannerData.title}
-                </h2>
-                <p className="max-w-2xl text-base font-[400] leading-normal md:text-xl md:leading-normal 2xl:text-2xl 2xl:leading-normal">
-                  {bannerData.description}
-                </p>
-              </div>
-              <Image
-                src={urlForImage(bannerData.featuredImage)?.url() as string}
-                height={400}
-                width={400}
-                alt="House searching cuate"
-                className="xs:self-end lg:mt-14"
-              />
+          {/* <FramerWrapper {...fadeUp} className="relative w-full"> */}
+          <div className="relative flex max-w-screen-xl flex-col items-center justify-between gap-10 bg-opacity-90 bg-gradient-to-r from-[#21A19F] to-[#1EA9A6A1] p-5 text-white xs:items-start xs:p-10 lg:flex-row min-[1048px]:max-xl:w-11/12 fhd:mx-auto">
+            <div className="space-y-5">
+              <h2 className="text-2xl  font-[700] xl:text-4xl 2xl:text-5xl">
+                {bannerData.title}
+              </h2>
+              <p className="max-w-2xl text-base font-[400] leading-normal md:text-xl md:leading-normal 2xl:text-2xl 2xl:leading-normal">
+                {bannerData.description}
+              </p>
             </div>
-          </FramerWrapper>
+            <Image
+              src={urlForImage(bannerData.featuredImage)?.url() as string}
+              height={400}
+              width={400}
+              alt="House searching cuate"
+              className="xs:self-end lg:mt-14"
+            />
+          </div>
+          {/* </FramerWrapper> */}
           <SimpleSlider data={services} />
         </section>
 
-        <FramerWrapper
-          {...fadeUp}
+        <section
+          // {...fadeUp}
           className="mx-auto h-fit max-w-screen-2xl px-5 sm:px-10 lg:pt-28"
         >
           <VerticalSlider data={popularPosts} />
-        </FramerWrapper>
+        </section>
         <FeaturedListings className="wrapper pb-0 pt-28" />
       </main>
       <Footer />

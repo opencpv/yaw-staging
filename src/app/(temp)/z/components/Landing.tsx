@@ -2,9 +2,9 @@
 import Image from "next/image";
 import React, { useEffect } from "react";
 import styles from "../style.module.css";
-import { Button } from "@/components/__shared/ui/button";
 import CitySearchForm from "./CitySearchForm";
 import { animate, motion, stagger } from "framer-motion";
+import Link from "next/link";
 
 type Props = {};
 
@@ -37,38 +37,21 @@ const Landing = (props: Props) => {
           fill
           className="rounded-[inherit] object-cover"
         />
+        <svg
+          width="360"
+          height="153"
+          viewBox="0 0 360 153"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="absolute right-[-1.5px] top-[-46px] z-10 max-sm:w-[150px] sm:top-[-1.7px]"
+        >
+          <path
+            d="M0.5 1.00015C1.25281 0.968782 2.0556 0.967325 2.89984 1.00015H359V149.379C359.015 150.405 359.015 151.445 359 152.5V149.379C358.223 96.7143 317.935 81.8174 297.5 81L76 80.5C65.1667 80.5 42.8 72.4001 40 40.0001C37.3757 9.63274 15.5129 1.49055 2.89984 1.00015H0.5Z"
+            fill="white"
+          />
+        </svg>
 
-        <svg
-          width="87.04mm"
-          height="37.593mm"
-          version="1.1"
-          viewBox="0 0 87.04 37.593"
-          xmlns="http://www.w3.org/2000/svg"
-          className="absolute -right-[2.5px] -top-1 z-10 -rotate-1 max-sm:hidden"
-        >
-          <g transform="translate(-44.294 -106.98)">
-            <path
-              d="m44.294 106.98s10.162 4.0199 9.6649 13.58c-0.49675 9.56 10.014 8.6117 10.014 8.6117h51.782s14.796 3.0672 14.7 15.401l0.8796-37.524z"
-              fill="#fff"
-            />
-          </g>
-        </svg>
-        <svg
-          width="47.04mm"
-          height="27.593mm"
-          version="1.1"
-          viewBox="0 0 87.04 37.593"
-          xmlns="http://www.w3.org/2000/svg"
-          className="absolute -right-[2.5px] -top-5 z-10 -rotate-1 sm:hidden"
-        >
-          <g transform="translate(-44.294 -106.98)">
-            <path
-              d="m44.294 106.98s10.162 4.0199 9.6649 13.58c-0.49675 9.56 10.014 8.6117 10.014 8.6117h51.782s14.796 3.0672 14.7 15.401l0.8796-37.524z"
-              fill="#fff"
-            />
-          </g>
-        </svg>
-        <div className="absolute right-5 top-3 z-10 flex max-w-[250px] items-center gap-3 max-sm:hidden">
+        <div className="absolute right-14 top-3 z-10 flex max-w-[250px] items-center gap-3 max-sm:hidden">
           <Image
             src="/assets/svgs/diamond-boxes.svg"
             alt=""
@@ -84,7 +67,7 @@ const Landing = (props: Props) => {
           initial={{ opacity: 0 }}
           transition={{ delay: 0.5 }}
           animate={{ opacity: 1 }}
-          className="featured-info absolute bottom-10 left-10 z-10 space-y-2"
+          className="featured-info absolute bottom-20 left-10 z-10 space-y-2"
         >
           <motion.h3 initial={{ y: 50 }}>
             Get this amazing 3 bedroom flat
@@ -92,10 +75,20 @@ const Landing = (props: Props) => {
           <motion.p initial={{ y: 50 }}>
             Get this amazing 3 bedroom flat
           </motion.p>
-          <motion.div initial={{ y: 50 }} className="w-fit">
-            <Button className="bg-primary-200 text-white">View property</Button>
-          </motion.div>
         </motion.div>
+        <Link
+          href="/properties/59"
+          className="group absolute bottom-0 right-0 z-10 grid size-24 place-items-center rounded-full border border-white transition-transform hover:-translate-y-2 max-sm:scale-50 sm:bottom-10 sm:right-20"
+        >
+          <div
+            className="grid size-16 animate-pulse place-items-center rounded-full bg-primary-200 text-white"
+            style={{ animationDuration: "6s" }}
+          >
+            <span className="text-sm opacity-0 transition-opacity group-hover:opacity-100">
+              View
+            </span>
+          </div>
+        </Link>
       </div>
       <div className="space-y-2">
         <CitySearchForm placeholder={"Madina, Accra"} />
