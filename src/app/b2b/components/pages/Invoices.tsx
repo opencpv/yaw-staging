@@ -4,7 +4,6 @@ import CheckoutButton from "../__shared/CheckoutButton";
 import InvoiceTable from "../invoice/InvoiceTable";
 import { invoiceStore } from "@/store/payment/invoiceStore";
 import { Button } from "@nextui-org/react";
-import { pdf } from "@react-pdf/renderer";
 import PdfTemplate from "../__shared/InvoiceTemplate";
 import { saveAs } from "file-saver";
 import { customerStore } from "@/store/payment/customerStore";
@@ -27,10 +26,6 @@ function Invoices() {
   const downloadInvoices = async () => {
     for (const item of checkoutItems) {
       const filename = item.service + ".pdf";
-      const blob = await pdf(
-        <PdfTemplate variant="invoice" data={item} customer={customer} />,
-      ).toBlob();
-      saveAs(blob, filename);
     }
   };
 
