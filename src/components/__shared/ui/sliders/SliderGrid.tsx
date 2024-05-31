@@ -71,18 +71,6 @@ const SliderGrid = ({ items }: SliderGridProps) => {
               rows: 3,
             },
           },
-          1024: {
-            slidesPerView: 2,
-            grid: {
-              rows: 3,
-            },
-          },
-          1280: {
-            slidesPerView: 3,
-            grid: {
-              rows: 3,
-            },
-          },
         }}
         observer
         observeParents

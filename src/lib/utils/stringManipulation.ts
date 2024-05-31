@@ -3,11 +3,14 @@ import { enUS } from "date-fns/locale";
 import { v4 as uuidv4 } from "uuid";
 
 const capitalizeName = (initialName: string, delimiter?: string) => {
-  let nameSplit = initialName?.split(delimiter ? delimiter : "%20");
-  let nameSplitCapitalized = nameSplit?.map(
-    (name) => name.slice(0, 1).toUpperCase() + name.slice(1),
+  const nameParts = initialName?.split(delimiter || " ");
+  const capitalizedNameParts = nameParts?.map((part) =>
+    part
+      .split(/(?=[A-Z])/)
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" "),
   );
-  return nameSplitCapitalized?.join(" ");
+  return capitalizedNameParts?.join(" ");
 };
 
 export const formatTime = (dateTime: string) => {

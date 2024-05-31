@@ -83,7 +83,7 @@ const PromotionSlider = (props: Props) => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="flex items-center justify-center sm:mt-10">
+      <div className="flex items-center justify-center sm:mt-16">
         <div className="slider-promotions-pagination" />
       </div>
     </div>
