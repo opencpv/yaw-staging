@@ -1,3 +1,4 @@
+"use client";
 import { cn } from "@/lib/utils";
 import { BsInfoCircle } from "react-icons/bs";
 import { LiaTimesSolid } from "react-icons/lia";
