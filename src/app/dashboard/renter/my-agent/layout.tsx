@@ -6,7 +6,7 @@ import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
 import BeMyAgentModal from "@/app/dashboard/components/shared/my-agent/steps/BeMyAgentModal";
 import styles from "@/app/dashboard/components/shared/my-agent/index.module.css";
 import { usePathname } from "next/navigation";
-import InfoText from "@/components/__shared/ui/listing-form/components/InfoText";
+import CallOut from "@/components/__shared/ui/CallOut";
 
 const MyAgentLayout = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
@@ -19,7 +19,7 @@ const MyAgentLayout = ({ children }: { children: React.ReactNode }) => {
       >
         <div className="flex w-full max-w-screen-3xl flex-col items-start justify-center gap-4 overflow-x-hidden p-7 pt-0">
           <h2>Be My Agent</h2>
-          <InfoText content="Pay absolutely nothing if you rent one of the searches we find for you." />
+          <CallOut content="Pay absolutely nothing if you rent one of the searches we find for you." />
           <div className="flex w-full flex-col gap-6 lg:w-fit lg:flex-row lg:items-center">
             <div className="flex flex-wrap items-center justify-between gap-6 xs:justify-start">
               <h4 className="whitespace-nowrap text-lg font-normal">

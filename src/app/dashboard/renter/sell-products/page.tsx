@@ -19,6 +19,8 @@ import {
 } from "../../components/shared/table/Table";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { cn } from "@/lib/utils";
+import Archived from "../../components/shared/table/Archived";
+import CallOut from "@/components/__shared/ui/CallOut";
 
 const Sell = () => {
   // const [products, setproducts] = useState<any[]>([]);
@@ -36,7 +38,7 @@ const Sell = () => {
       img_url: "/assets/images/about/young-couple.webp",
       price: 10000,
       is_available: true,
-      item_publication_status: "suspended",
+      status: "suspended",
     },
     {
       id: "2",
@@ -46,7 +48,7 @@ const Sell = () => {
       img_url: "/assets/images/about/young-couple.webp",
       price: 10000,
       is_available: true,
-      item_publication_status: "active",
+      status: "active",
     },
     {
       id: "3",
@@ -56,7 +58,7 @@ const Sell = () => {
       img_url: "/assets/images/about/young-couple.webp",
       price: 10000,
       is_available: false,
-      item_publication_status: "archived",
+      status: "archived",
     },
     {
       id: "4",
@@ -66,7 +68,7 @@ const Sell = () => {
       img_url: "/assets/images/about/young-couple.webp",
       price: 10000,
       is_available: false,
-      item_publication_status: "inactive",
+      status: "inactive",
     },
   ];
 
@@ -103,77 +105,80 @@ const Sell = () => {
   // }, [id, supabase]);
 
   return (
-    <>
-      <main>
-        <section className="mb-6 space-y-5">
+    <div className="wrapper pb-40">
+      <section className="mb-6 flex flex-col gap-5">
+        <div className="order-2 flex items-center justify-between gap-5 lg:order-1">
           <h2>Items</h2>
-          {/* product count */}
-          {items?.length > 0 ? (
-            <small className="inline-block text-sm capitalize">
-              Showing {items.length} {items.length > 1 ? "Items" : "Item"}
-            </small>
-          ) : null}
-        </section>
-
-        {/* table display in desktop view */}
-        <div className="flex flex-col gap-8">
-          <Table
-            className={cn("mb-8", {
-              "min-h-[35rem]": items?.length > 3,
-            })}
-          >
-            <TableHeaderRow className="grid-cols-6" gap="2rem">
-              <TableHeader className="col-span-2">Item</TableHeader>
-              <TableHeader className="col-span-1">Date created</TableHeader>
-              <TableHeader className="col-span-1">Status</TableHeader>
-              <TableHeader className="col-span-1">Publication</TableHeader>
-              <TableHeader className="col-span-1">Actions</TableHeader>
-            </TableHeaderRow>
-            <TableBodyRowGroup>
-              {/* if product count is zero display this */}
-              {items.length === 0 ? (
-                <TableBodyRow className="grid-cols-6">
-                  <TableBody className="col-span-6">
-                    <AddItem />
-                  </TableBody>
-                </TableBodyRow>
-              ) : null}
-
-              {items?.map((product, index) => (
-                <>
-                  <DesktopProductCard
-                    // status={
-                    //   index === 1
-                    //     ? ""
-                    //     : index === 3
-                    //       ? "inactive"
-                    //       : index === 0
-                    //         ? "suspended"
-                    //         : "archived"
-                    // }
-                    data={product}
-                    key={index}
-                  />
-                </>
-              ))}
-            </TableBodyRowGroup>
-          </Table>
-          {/* table display in mobile and tablet view */}
-          <TableSm>
-            {items?.map((product, index) => (
-              <MobileProductCard data={product} key={`mobile-${index}`} />
-            ))}
-          </TableSm>
           <Button
             href={`/dashboard/${currentRole}/sell-products/add-new-product`}
-            color="accent"
-            className="bottom-10 right-5 z-30 max-lg:fixed max-lg:shadow-lg lg:self-end"
+            color="primary"
+            className="max-lg:hidden"
           >
-            Add New Item
+            Add Item
           </Button>
         </div>
-      </main>
-    </>
+        <CallOut
+          title="Important Notice !!"
+          content="You will receive messages in your inbox on the platform whenever there is an interested buyer for your product"
+          className="order-1 lg:order-2"
+        />
+        {items?.length > 0 ? (
+          <small className="order-3 inline-block capitalize">
+            Showing {items.length} {items.length > 1 ? "Items" : "Item"}
+          </small>
+        ) : null}
+        <div className="order-4 flex justify-between gap-5 lg:hidden">
+          <Button
+            href={`/dashboard/${currentRole}/sell-products/add-new-product`}
+            color="primary"
+          >
+            Add Item
+          </Button>
+          filters
+        </div>
+      </section>
+
+      {/* table display in desktop view */}
+      <div className="flex flex-col gap-8">
+        <Table
+          className={cn({
+            "min-h-[35rem]": items?.length > 3,
+          })}
+        >
+          <TableHeaderRow className="grid-cols-7" gap="2rem">
+            <TableHeader className="col-span-2">Item</TableHeader>
+            <TableHeader className="col-span-1">Category</TableHeader>
+            <TableHeader className="col-span-1">Created on</TableHeader>
+            <TableHeader className="col-span-1">Available</TableHeader>
+            <TableHeader className="col-span-1">Status</TableHeader>
+            <TableHeader className="col-span-1">Actions</TableHeader>
+          </TableHeaderRow>
+          <TableBodyRowGroup>
+            {/* if product count is zero display this */}
+            {items.length === 0 ? (
+              <TableBodyRow className="grid-cols-6">
+                <TableBody className="col-span-6">
+                  <AddItem />
+                </TableBody>
+              </TableBodyRow>
+            ) : null}
+
+            {items?.map((item) => (
+              <>
+                <DesktopProductCard data={item} key={item.id} />
+              </>
+            ))}
+          </TableBodyRowGroup>
+        </Table>
+        {/* table display in mobile and tablet view */}
+        <TableSm>
+          {items?.map((item) => (
+            <MobileProductCard data={item} key={`mobile-${item.id}`} />
+          ))}
+        </TableSm>
+      </div>
+      <Archived />
+    </div>
   );
 };
 

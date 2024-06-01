@@ -1,17 +1,15 @@
 "use client";
 import Button from "@/components/__shared/ui/button/Button";
-import React, { useMemo, useState } from "react";
-import { FaPlusCircle, FaStar, FaWhatsapp } from "react-icons/fa";
+import React from "react";
+import { FaPlusCircle } from "react-icons/fa";
 import AdditionalInfo from "./AdditionalInfo";
 import AdditionalInfoTitle from "./AdditionalInfoTitle";
-import CallOut from "@/components/__shared/ui/CallOut";
 import { formatPrice } from "@/lib/utils/numberManipulation";
-import capitalizeName, { formatDate } from "@/lib/utils/stringManipulation";
-import { contentAccordionVariants, fadeUp } from "@/lib/animations";
+import capitalizeName from "@/lib/utils/stringManipulation";
 import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import ShowMore from "react-show-more-text";
+import CallOut from "@/components/__shared/ui/CallOut";
 
 type Props = {
   availableFrom: string;
@@ -57,7 +55,7 @@ const PropertyDetailsPayment = (props: Props) => {
         </h2>
         <AdditionalInfoTitle title="Agency Fees" />
         <CallOut
-          text="Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+          content="Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                   Atque illo dolore voluptatum."
           className="mt-2"
         />

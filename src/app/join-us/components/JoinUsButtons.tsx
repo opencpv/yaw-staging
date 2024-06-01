@@ -38,7 +38,7 @@ function JoinUsButtons({
     "filled-yellow": "bg-accent text-white",
     "text-yellow":
       "text-accent bg-white w-fit hover:border-accent hover:border-2",
-    "text-yellow-accent": "bg-transparent text-accent",
+    "text-yellow-accent": "bg-transparent w-fit text-accent",
     "outline-yellow-accent":
       "border-[1px] border-[#AD842A] bg-transparent text-accent",
   };

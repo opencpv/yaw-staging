@@ -30,7 +30,7 @@ const Wrapper = ({ children }: LayoutProps) => {
   );
   const [excludeWrapper, setExcludeWrapper] = useState(false);
 
-  const { setCurrentRole, isSwitchingRole } = useDashboardStore();
+  const { setCurrentRole, isSwitchingRole, currentRole } = useDashboardStore();
 
   useEffect(() => {
     if (!isSwitchingRole) {
@@ -44,8 +44,8 @@ const Wrapper = ({ children }: LayoutProps) => {
 
   useEffect(() => {
     const wrapperExclusionList = [
-      "/dashboard/lister/my-agent",
-      "/dashboard/renter/my-agent",
+      `/dashboard/${currentRole}/my-agent`,
+      `/dashboard/${currentRole}/sell-products`,
     ];
 
     wrapperExclusionList.forEach((path) => {
@@ -55,7 +55,7 @@ const Wrapper = ({ children }: LayoutProps) => {
         setExcludeWrapper(false);
       }
     });
-  }, [pathname]);
+  }, [pathname, currentRole]);
 
   useEffect(() => {
     const supabase = createClient();

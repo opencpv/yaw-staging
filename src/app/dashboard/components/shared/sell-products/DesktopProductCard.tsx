@@ -1,5 +1,5 @@
 import calculateDaysSinceCreation from "@/lib/utils/calculateDaysSinceCreation";
-import { formatDate } from "@/lib/utils/stringManipulation";
+import { formatDate, formatDateOnly } from "@/lib/utils/stringManipulation";
 import Image from "next/image";
 import CaDashEdit from "../../../../../components/__shared/ui/icons/CaDashEdit";
 import CaDashDelete from "../../../../../components/__shared/ui/icons/CaDashDelete";
@@ -18,43 +18,42 @@ type Props = {
 
 const DesktopProductCard = ({ data }: Props) => {
   return (
-    <TableBodyRow className="grid-cols-6">
+    <TableBodyRow className="grid-cols-7">
       {/* Product */}
       <TableBody className="col-span-2 flex w-full gap-[0.62rem] truncate p-2.5">
         <TbPropertyImage title={data.product} image={data.img_url} />
         <div className="flex flex-col gap-2">
-          <p className="font-semibold">{data.product}</p>
-          <ProductCondition condition={data.condition} />
-          <p className="text-[13px] font-bold text-[#8A8A8A]">
+          <p className="text-base font-semibold">{data.product}</p>
+          <small className="font-bold text-shade-200">
             {formatPrice(data.price)}
-          </p>
+          </small>
+          <ProductCondition condition={data.condition} />
         </div>
       </TableBody>
-      {/* Date Created */}
-      <TableBody className="col-span-1 text-center">
-        <h4>{"October 29, 2024"}</h4>
-        <small className="inline-block text-[0.6rem] text-neutral-400">
-          3 days ago
-        </small>
+      {/* Category */}
+      <TableBody className="col-span-1">Category name</TableBody>
+      {/* Created on */}
+      <TableBody className="col-span-1">
+        {formatDateOnly("October 29, 2024")}
       </TableBody>
-      {/* Status */}
+      {/* Available */}
       <TableBody className="col-span-1">
         <ProductStatus
-          publicationStatus={data.item_publication_status}
+          status={data.status}
           isAvailable={data.is_available}
-          id={data.id}
+          data={data}
         />
       </TableBody>
       {/* Publication */}
-      <TableBody className="col-span-1 font-semibold">
+      <TableBody className="col-span-1">
         <PublicationStatus
-          status={data.item_publication_status}
-          productStatus={data.is_available ? "available" : "sold"}
+          status={data.status}
+          isAvailable={data.is_available}
         />
       </TableBody>
       {/* Actions */}
       <TableBody className="col-span-1 mx-auto">
-        <Actions id={data.id} table="sell_items" />
+        <Actions data={data} />
       </TableBody>
     </TableBodyRow>
   );

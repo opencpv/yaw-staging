@@ -9,13 +9,15 @@ import { BiDotsVerticalRounded } from "react-icons/bi";
 import { FiTrash2 } from "react-icons/fi";
 import { MdOutlineEdit } from "react-icons/md";
 import DestructiveModal from "@/components/__shared/ui/modals/DestructiveModal";
+import { ItemPublicationStatus } from "./PublicationStatus";
+import ProductStatus from "./ProductStatus";
 import { cn } from "@/lib/utils";
 
 type Props = {
   data: any;
 };
 
-const Actions = ({ data }: Props) => {
+const ActionsSm = ({ data }: Props) => {
   const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
   const [popoverIsOpen, setPopoverIsOpen] = useState(false);
 
@@ -44,6 +46,18 @@ const Actions = ({ data }: Props) => {
         </PopoverTrigger>
         <PopoverContent className="rounded-md bg-[#fefefe] px-0 py-0">
           <div className="flex flex-col divide-y rounded-md">
+            <div className="flex items-center justify-between gap-5 px-4 py-2 lg:hidden">
+              {data.is_available
+                ? "Available"
+                : data.status === "suspended"
+                  ? "Suspended"
+                  : "Unavailable"}
+              <ProductStatus
+                status={data.status}
+                isAvailable={data.is_available}
+                data={data}
+              />
+            </div>
             <button
               className={cn(
                 "deep-green-hover flex w-full items-center gap-2 px-4 py-2",
@@ -78,4 +92,4 @@ const Actions = ({ data }: Props) => {
   );
 };
 
-export default Actions;
+export default ActionsSm;

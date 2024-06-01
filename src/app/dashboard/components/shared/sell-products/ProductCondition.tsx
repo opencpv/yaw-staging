@@ -1,3 +1,5 @@
+import { cn } from "@/lib/utils";
+
 const ProductCondition = ({
   condition,
 }: {
@@ -5,15 +7,18 @@ const ProductCondition = ({
 }) => {
   return (
     <>
-      {condition === "new" || condition === "used-like new" ? (
-        <p className="w-full rounded-xl bg-[#54C38A] px-8 py-1 text-center text-xs capitalize text-white">
-          {condition}
-        </p>
-      ) : (
-        <p className="rounded-xl bg-[#FFE3B0] px-8 py-1 text-xs capitalize text-primary-500">
-          {condition}
-        </p>
-      )}
+      <p
+        className={cn(
+          "w-full rounded-xl px-8 py-1 text-center text-xs font-semibold capitalize ",
+          {
+            "bg-success-bg text-success":
+              condition === "new" || condition === "used-like new",
+            "bg-warning-bg text-warning/50": condition === "used",
+          },
+        )}
+      >
+        {condition}
+      </p>
     </>
   );
 };

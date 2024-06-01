@@ -9,8 +9,15 @@ import ProductCondition from "./ProductCondition";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import EditButton from "@/components/__shared/ui/button/EditButton";
 import DeleteButton from "@/components/__shared/ui/button/DeleteButton";
+import PublicationStatus from "./PublicationStatus";
+import Actions from "./Actions";
+import ActionsSm from "./ActionsSm";
 
-const MobileProductCard = ({ data }: { data: any }) => {
+type Props = {
+  data: any;
+};
+
+const MobileProductCard = ({ data }: Props) => {
   const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
 
   return (
@@ -23,58 +30,33 @@ const MobileProductCard = ({ data }: { data: any }) => {
         handleDestruction={() => {}}
       />
 
-      <TableRowSm>
-        {/* Product */}
-        <TableBodySm href="/properties/2">
-          <div className="flex flex-wrap gap-5 truncate xsm:flex-nowrap">
+      <TableRowSm className="pb-0">
+        <TableBodySm className="flex flex-nowrap gap-5">
+          <div className="flex flex-col gap-3 max-xxs:hidden">
+            {/* Image */}
             <TbPropertyImageSm title={data.product} image={data.img_url} />
-            <div className="flex flex-col gap-2">
-              <p className="font-semibold">{data.product}</p>
-              <ProductCondition condition={data.condition} />
-              <p className="text-[13px] font-bold text-[#8A8A8A]">
-                {formatPrice(data.price)}
-              </p>
+            {/* Date */}
+            <small className="text-shade-200">3 days ago</small>
+          </div>
+          <div className="grid flex-1 justify-between gap-x-10 gap-y-3 xsm:grid-cols-2">
+            <div className="flex flex-1 flex-col  items-start gap-3">
+              {/* Product */}
+              <p className="truncate font-semibold">{data.product}</p>
+              {/* Status */}
+              <PublicationStatus
+                status={data.status}
+                isAvailable={data.is_available}
+              />
             </div>
+            {/* Price */}
+            <p className="ml-auto font-bold text-shade-200">
+              <span className="text-neutral-800">GHS</span>{" "}
+              {formatPrice(data.price, false)}
+            </p>
           </div>
-        </TableBodySm>
-
-        {/* Status */}
-        <TableBodySm className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 pt-3.5">
-          <ProductStatus
-            publicationStatus={data.item_publication_status}
-            isAvailable={data.isAvailable}
-            id={data.id}
-          />
-        </TableBodySm>
-        {/* Date */}
-        <TableBodySm className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 pt-3.5">
-          <h4>Date</h4>
-          <div className="text-center">
-            <h4 className="text-sm font-[600]">{"October 29, 2024"}</h4>
-            <small className="inline-block text-[0.6rem] text-neutral-400">
-              3 days ago
-            </small>
-          </div>
-        </TableBodySm>
-        <TableBodySm className="flex  flex-wrap items-center justify-between gap-x-5 gap-y-3 pt-3">
-          <h4>Category</h4>
-          <p className="text-center text-[13px]">{data.category}</p>
+          <ActionsSm data={data} />
         </TableBodySm>
         {/* Actions */}
-        <TableBodySm className="flex justify-center gap-1.5 pt-3">
-          {status === "not submitted" && (
-            <>
-              <EditButton onOpen={() => ""} />
-              <DeleteButton handleDestruction={() => {}} />
-            </>
-          )}
-        </TableBodySm>
-        {/* <div className="col-span-2 grid grid-cols-2 gap-2  py-4 align-middle ">
-          <button className="flex w-full cursor-pointer justify-center rounded-[8px] bg-secondary-50 p-4">
-            <CaDashEdit />
-          </button>
-          <DeleteProductButton id={data.id} table="sell_items" />
-        </div> */}
       </TableRowSm>
     </>
   );
