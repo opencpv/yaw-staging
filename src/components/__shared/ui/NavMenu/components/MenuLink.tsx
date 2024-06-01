@@ -21,16 +21,16 @@ const MenuLink = (props: Props) => {
       }`}
     >
       <div
-        className={`w-full cursor-pointer ${
+        className={`w-full cursor-pointer whitespace-nowrap ${
           props.active ? "text-[#FCAB10]" : "text-[#fff]"
         }`}
       >
         {(props.isSubLink && props.linkObject.id) || props.linkObject?.sub ? (
-          <div className="flex item-center">
+          <div className="flex items-center">
             {props.isSubLink ? (
-              <Link href={props.linkObject?.url}>
+              // <Link href={props.linkObject?.url}>
                 <h4 className="mr-10 font-normal">{props.linkObject?.name}</h4>
-              </Link>
+              // </Link>
             ) : (
               <h2 className="mr-10">{props.linkObject?.name}</h2>
             )}

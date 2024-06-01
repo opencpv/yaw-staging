@@ -9,6 +9,7 @@ import { useFaqHowToSwitchStore } from "@/store/faq/useFaqStore";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useMenuLinks } from "./content";
 import { createUUID } from "@/lib/utils/stringManipulation";
+import SubLinkResults from "./components/SubLinkResults";
 
 export const DesktopMenu = (props: any) => {
   const { linksAfterLogin, linksBeforeLogin } = useMenuLinks();
@@ -16,6 +17,7 @@ export const DesktopMenu = (props: any) => {
   const [subId, setSubId] = useState<number | null>(null);
   const router = useRouter();
   const setToggle = useMenuStore((state) => state.setToggle);
+  const { activeSubLink, setActiveSubLink } = useMenuStore();
   const { user } = useAppStore();
 
   const setFaqActivePage = useFaqHowToSwitchStore(
@@ -25,7 +27,9 @@ export const DesktopMenu = (props: any) => {
   return (
     <div className={`flex-row gap-12 px-8 ${props?.className} `}>
       <div
-        className={"flex w-max flex-col gap-10 border-r-[3px] border-r-white pr-10"}
+        className={
+          "flex w-max flex-col gap-10 border-r-[3px] border-r-white pr-10"
+        }
       >
         {/* main links before login */}
         {!user &&
@@ -58,7 +62,7 @@ export const DesktopMenu = (props: any) => {
                           setSubId(null);
                         } else {
                           setActive(null);
-                          router.push(r?.url);
+                          // router.push(r?.url);
                           // props?.toggleMenu();
                         }
                       }}
@@ -82,8 +86,10 @@ export const DesktopMenu = (props: any) => {
                         setFaqActivePage("faq");
                         if (r?.sub) {
                           setActive(idx as number);
+                          setActiveSubLink("");
                           setSubId(null);
                         } else {
+                          setActiveSubLink("");
                           setActive(null);
                           router.push(r?.url);
                         }
@@ -97,8 +103,11 @@ export const DesktopMenu = (props: any) => {
                         if (r?.sub) {
                           setActive(idx as number);
                           setSubId(null);
+                          setActiveSubLink("");
                         } else {
                           setActive(null);
+                          setActiveSubLink("");
+
                           router.push(r?.url);
                           // props?.toggleMenu();
                         }
@@ -109,7 +118,6 @@ export const DesktopMenu = (props: any) => {
               ),
           )}
       </div>
-
       {/* sub links before login */}
       {!user && active !== null && (
         <>
@@ -121,21 +129,20 @@ export const DesktopMenu = (props: any) => {
             exit={"closed"}
           >
             {/* sub links --> view all listings, etc... */}
-            {linksBeforeLogin[active]?.sub?.map((l, ldx) => (
+            {linksBeforeLogin[active]?.sub?.map((l : any, ldx) => (
               <MenuLink
                 key={ldx}
                 active={ldx === subId}
                 linkObject={l}
                 isSubLink
                 onClick={() => {
-                  setToggle(false);
+                  setActiveSubLink(l?.label);
                 }}
               />
             ))}
           </motion.div>
         </>
       )}
-
       {/* sub links after login */}
       {user && active !== null && (
         <>
@@ -148,21 +155,20 @@ export const DesktopMenu = (props: any) => {
             exit={"closed"}
           >
             {/* sub links --> view all listings, etc... */}
-            {linksAfterLogin[active]?.sub?.map((l, ldx) => (
+            {linksAfterLogin[active]?.sub?.map((l : any, ldx) => (
               <MenuLink
                 key={ldx}
                 active={ldx === subId}
                 linkObject={l}
                 isSubLink
                 onClick={() => {
-                  setToggle(false);
+                  setActiveSubLink(l?.label);
                 }}
               />
             ))}
           </motion.div>
         </>
       )}
-
       {subId !== null && ( // REVISIT. IS IT STILL APPLICABLE?
         <>
           <Separator
@@ -182,6 +188,7 @@ export const DesktopMenu = (props: any) => {
           </motion.div>
         </>
       )}
+      {active && activeSubLink && <SubLinkResults />}{" "}
     </div>
   );
 };

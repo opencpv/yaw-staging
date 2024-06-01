@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Menu from "../ui/NavMenu.tsx";
+import Menu from "../ui/NavMenu";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
 
 type Props = {
