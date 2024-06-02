@@ -151,7 +151,7 @@ export const MobileMenu = (props: any) => {
         >
           Get Started
         </Link>
-        <hr className="h-[1px] w-full bg-white" />
+        <hr className="h-[3px] w-full bg-white" />
         {linksBeforeLogin.map((r, index) =>
           r?.sub ? (
             <MenuOption key={index} name={r.name} sub={r?.sub} sub2={r?.sub2} /> // sub links ---> View all listings, how to, etc...
