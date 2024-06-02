@@ -14,15 +14,15 @@ type Props = {
 
 function CheckoutButton({ affix, items }: Props) {
   const { addItem } = useCartStore();
-  const { invoiceItems } = invoiceStore();
+  const { invoiceItems, checkoutItems } = invoiceStore();
   const router = useRouter();
   return (
     <Button
       color="accent"
       className="relative w-full"
       onClick={() => {
-        if (invoiceItems) {
-          invoiceItems?.forEach((item) => {
+        if (checkoutItems) {
+          checkoutItems?.forEach((item) => {
             addItem({
               name: item.service,
               cost: item.amount,

@@ -141,7 +141,7 @@ const CartView = () => {
 
   useEffect(() => {
     const storedCartItems: any = localStorage.getItem("cart");
-    if (JSON.parse(storedCartItems as string).length > 0) {
+    if (JSON.parse(storedCartItems as string)?.length > 0) {
       setCart(JSON.parse(storedCartItems as string));
       console.log("hit", storedCartItems);
     }
@@ -151,7 +151,6 @@ const CartView = () => {
     <section className={`mx-auto max-w-[1024px] px-4 py-6 lg:px-0`}>
       <h2 className="mb-8">My Cart</h2>
       <div className="flex justify-end">
-        {/* clear cart button */}
         <Button
           variant="ghost"
           className="mb-8 text-right font-normal text-[#E32636] underline"
