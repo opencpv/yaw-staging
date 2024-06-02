@@ -19,6 +19,7 @@ function SubLinkResults() {
   } = useFetchFeaturedListings({ limit: 6 });
 
   const options: any = {
+    "all-listings": listings,
     "self-contained": listings,
     apartments: listings,
     flats: listings,
@@ -48,7 +49,7 @@ function SubLinkResults() {
             </div>
           ))}
         </div>
-        <Link href={"/properties"} className="flex items-center gap-2 pt-2 hover:scale-[1.01] transition-all">
+        <Link href={"/properties"} className="flex items-center gap-2 pt-2  transition-all">
           <p>Show all</p>
           <svg
             xmlns="http://www.w3.org/2000/svg"

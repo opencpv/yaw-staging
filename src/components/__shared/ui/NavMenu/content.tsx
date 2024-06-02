@@ -14,6 +14,11 @@ export const useMenuLinks = () => {
       url: "#",
       name: "HOMES FOR RENT",
       sub: [
+        {
+          name: "View All Listings",
+          id: "#",
+          label: "all-listings",
+        },
         { name: "Self Contained ", id: "#", label: "self-contained" },
         { name: "Apartments", id: "#", label: "apartments" },
         { name: "Flats", id: "#", label: "flats" },
@@ -128,7 +133,7 @@ export const useMenuLinks = () => {
           url: "/properties",
           name: "View All Listings",
           id: "#",
-          label: "listings",
+          label: "all-listings",
         },
 
         { name: "Self Contained ", id: "#", label: "self-contained" },

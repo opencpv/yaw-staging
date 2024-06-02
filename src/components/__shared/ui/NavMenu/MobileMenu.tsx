@@ -104,21 +104,8 @@ const MenuOption = ({
                 </Link>
               )}
 
-              {/* <ArrowDownNav /> */}
             </Collapsible.Trigger>
-            <Collapsible.Content>
-              {" "}
-              {/* sub2 is possibly not required anymore. Likely to remove it */}
-              {sub2?.map((r2, index) => (
-                <Link
-                  href={r2?.url}
-                  key={index}
-                  onClick={() => setToggle(false)}
-                >
-                  {r2?.name}
-                </Link>
-              ))}
-            </Collapsible.Content>
+         
           </Collapsible.Root>
         ))}
       </Collapsible.Content>
