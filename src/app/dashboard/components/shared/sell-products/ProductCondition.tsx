@@ -1,10 +1,7 @@
 import { cn } from "@/lib/utils";
 
-const ProductCondition = ({
-  condition,
-}: {
-  condition: "new" | "used" | "used-like new";
-}) => {
+export type ItemCondition = "New" | "Used" | "Used-like New";
+const ProductCondition = ({ condition }: { condition: ItemCondition }) => {
   return (
     <>
       <p
@@ -12,8 +9,8 @@ const ProductCondition = ({
           "w-full rounded-xl px-8 py-1 text-center text-xs font-semibold capitalize ",
           {
             "bg-success-bg text-success":
-              condition === "new" || condition === "used-like new",
-            "bg-warning-bg text-warning/50": condition === "used",
+              condition === "New" || condition === "Used-like New",
+            "bg-warning-bg text-warning/50": condition === "Used",
           },
         )}
       >

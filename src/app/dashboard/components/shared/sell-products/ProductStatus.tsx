@@ -23,8 +23,8 @@ const ProductStatus = ({ isAvailable, data, status }: Props) => {
     <Toggle
       color="primary"
       isSelected={value}
-      disabled={status === "suspended"}
-      title={status === "suspended" ? "Suspended" : undefined}
+      disabled={status === "Suspended"}
+      title={status === "Suspended" ? "Suspended" : undefined}
       onValueChange={handleSelectionChange}
     />
   );

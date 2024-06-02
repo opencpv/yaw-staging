@@ -44,18 +44,17 @@ const Wrapper = ({ children }: LayoutProps) => {
 
   useEffect(() => {
     const wrapperExclusionList = [
-      `/dashboard/${currentRole}/my-agent`,
-      `/dashboard/${currentRole}/sell-products`,
+      "/dashboard/renter/my-agent",
+      "/dashboard/lister/my-agent",
+      "/dashboard/renter/sell-products",
+      "/dashboard/lister/sell-products",
     ];
 
-    wrapperExclusionList.forEach((path) => {
-      if (pathname?.includes(path)) {
-        setExcludeWrapper(true);
-      } else {
-        setExcludeWrapper(false);
-      }
-    });
-  }, [pathname, currentRole]);
+    const shouldExcludeWrapper = wrapperExclusionList.some(
+      (path) => pathname?.includes(path),
+    );
+    setExcludeWrapper(shouldExcludeWrapper);
+  }, [pathname]);
 
   useEffect(() => {
     const supabase = createClient();

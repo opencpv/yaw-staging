@@ -33,6 +33,7 @@ const Toggle = ({
               color === "accent",
             "border bg-white group-data-[selected=true]:bg-primary group-data-[selected=true]:border-none":
               color === "primary",
+            "group-data-[disabled=true]:cursor-not-allowed": disabled,
           },
         ),
         label: cn("text-neutral-500"),

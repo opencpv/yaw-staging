@@ -27,7 +27,7 @@ const ActionsSm = ({ data }: Props) => {
         isOpen={isOpen}
         onClose={onClose}
         onOpenChange={onOpenChange}
-        label="Are you sure you want to delete this application?"
+        label="Are you sure you want to delete this item?"
         handleDestruction={() => {}}
       />
       <Popover
@@ -49,7 +49,7 @@ const ActionsSm = ({ data }: Props) => {
             <div className="flex items-center justify-between gap-5 px-4 py-2 lg:hidden">
               {data.is_available
                 ? "Available"
-                : data.status === "suspended"
+                : data.status === "Suspended"
                   ? "Suspended"
                   : "Unavailable"}
               <ProductStatus
@@ -62,8 +62,8 @@ const ActionsSm = ({ data }: Props) => {
               className={cn(
                 "deep-green-hover flex w-full items-center gap-2 px-4 py-2",
                 {
-                  "pointer-events-none text-shade-200":
-                    data.status === "suspended",
+                  "pointer-events-none cursor-not-allowed text-shade-200":
+                    data.status === "Suspended",
                 },
               )}
               onClick={() => ""}
@@ -75,8 +75,8 @@ const ActionsSm = ({ data }: Props) => {
               className={cn(
                 "deep-green-hover flex w-full items-center gap-2 px-4 py-2",
                 {
-                  "pointer-events-none text-shade-200":
-                    data.status === "suspended",
+                  "pointer-events-none cursor-not-allowed text-shade-200":
+                    data.status === "Suspended",
                 },
               )}
               onClick={onOpen}

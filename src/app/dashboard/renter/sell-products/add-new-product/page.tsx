@@ -57,85 +57,83 @@ const AddNewProduct = () => {
   }, []);
 
   return (
-    <section>
-      <main className="w-full">
-        <div className="mb-14">
-          <h2>Add item for sale</h2>
-        </div>
-        <Formik
-          initialValues={{
-            itemName: "",
-            description: "",
-            price: "",
-            phone: "",
-            images: [],
-            category: "Furniture",
-            condition: "New",
-            negotiable: "no",
-          }}
-          validationSchema={validationSchema}
-          onSubmit={async (values) => {}}
-        >
-          <Form className="grid grid-cols-1 gap-x-5 gap-y-8 lg:grid-cols-3">
-            <div className="space-y-8">
-              <TextFieldInput
-                name="itemName"
-                label="Item name"
-                placeholder="e.g. Dining table"
-              />
-              <CustomSelect
-                name="category"
-                label="Category"
-                options={[
-                  { name: "furniture", value: "Furniture" },
-                  { name: "tools", value: "Tools" },
-                  { name: "electronics", value: "Electronics" },
-                  { name: "vehicles", value: "Vehicles" },
-                ]}
-              />
-              <TextFieldInput name="price" label="Price" prefix="GHS" />
-              <CustomTextAreaInput
-                name="description"
-                label="Description"
-                placeholder="Describe your item"
-                classes="h-[167px]"
-              />
+    <main className="wrapper">
+      <div className="mb-14">
+        <h2>Add item for sale</h2>
+      </div>
+      <Formik
+        initialValues={{
+          itemName: "",
+          description: "",
+          price: "",
+          phone: "",
+          images: [],
+          category: "Furniture",
+          condition: "New",
+          negotiable: "no",
+        }}
+        validationSchema={validationSchema}
+        onSubmit={async (values) => {}}
+      >
+        <Form className="grid grid-cols-1 gap-x-5 gap-y-8 lg:grid-cols-3">
+          <div className="space-y-8">
+            <TextFieldInput
+              name="itemName"
+              label="Item name"
+              placeholder="e.g. Dining table"
+            />
+            <CustomSelect
+              name="category"
+              label="Category"
+              options={[
+                { name: "furniture", value: "Furniture" },
+                { name: "tools", value: "Tools" },
+                { name: "electronics", value: "Electronics" },
+                { name: "vehicles", value: "Vehicles" },
+              ]}
+            />
+            <TextFieldInput name="price" label="Price" prefix="GHS" />
+            <CustomTextAreaInput
+              name="description"
+              label="Description"
+              placeholder="Describe your item"
+              classes="h-[167px]"
+            />
+          </div>
+          <div className="space-y-8">
+            <CustomSelect
+              name="condition"
+              label="Condition"
+              options={[
+                { name: "new", value: "New" },
+                { name: "used", value: "Used" },
+              ]}
+            />
+            <CustomRadioInput
+              options={["yes", "no"]}
+              label="Negotiable"
+              name="negotiable"
+            />
+            <InputPhoneNumber
+              id=""
+              label="Phone"
+              name="phone"
+              value={phone}
+              onChange={handlePhone}
+              onCountryChange={handleCountryChange}
+            />
+          </div>
+          <div className="flex h-[100%] w-full flex-col">
+            <FileUploader />
+            <div className="mt-auto flex justify-end">
+              <Button type="submit" color="accent" className="mt-8">
+                Publish
+              </Button>
             </div>
-            <div className="space-y-8">
-              <CustomSelect
-                name="condition"
-                label="Condition"
-                options={[
-                  { name: "new", value: "New" },
-                  { name: "used", value: "Used" },
-                ]}
-              />
-              <CustomRadioInput
-                options={["yes", "no"]}
-                label="Negotiable"
-                name="negotiable"
-              />
-              <InputPhoneNumber
-                id=""
-                label="Phone"
-                name="phone"
-                value={phone}
-                onChange={handlePhone}
-                onCountryChange={handleCountryChange}
-              />
-            </div>
-            <div className="flex h-[100%] w-full flex-col">
-              <FileUploader />
-              <div className="mt-auto flex justify-end">
-                <Button type="submit" color="accent" className="mt-8">
-                  Publish
-                </Button>
-              </div>
-            </div>
-          </Form>
-        </Formik>
-      </main>
-    </section>
+          </div>
+        </Form>
+      </Formik>
+    </main>
   );
 };
 

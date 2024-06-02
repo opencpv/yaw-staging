@@ -1,50 +1,44 @@
-import ProductStatus from "./ProductStatus";
-import { formatDate } from "@/lib/utils/stringManipulation";
-import calculateDaysSinceCreation from "@/lib/utils/calculateDaysSinceCreation";
-import DestructiveModal from "@/components/__shared/ui/modals/DestructiveModal";
-import { useDisclosure } from "@nextui-org/react";
 import { TableBodySm, TableRowSm } from "../table/Table";
 import TbPropertyImageSm from "../TbPropertyImageSm";
-import ProductCondition from "./ProductCondition";
 import { formatPrice } from "@/lib/utils/numberManipulation";
-import EditButton from "@/components/__shared/ui/button/EditButton";
-import DeleteButton from "@/components/__shared/ui/button/DeleteButton";
-import PublicationStatus from "./PublicationStatus";
-import Actions from "./Actions";
+import PublicationStatus, { ItemPublicationStatus } from "./PublicationStatus";
 import ActionsSm from "./ActionsSm";
 
 type Props = {
-  data: any;
+  data: Item;
 };
 
 const MobileProductCard = ({ data }: Props) => {
-  const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
-
   return (
     <>
-      <DestructiveModal
-        isOpen={isOpen}
-        onClose={onClose}
-        onOpenChange={onOpenChange}
-        label="Are you sure you want to delete this application?"
-        handleDestruction={() => {}}
-      />
-
       <TableRowSm className="pb-0">
         <TableBodySm className="flex flex-nowrap gap-5">
           <div className="flex flex-col gap-3 max-xxs:hidden">
             {/* Image */}
-            <TbPropertyImageSm title={data.product} image={data.img_url} />
+            <TbPropertyImageSm
+              title={data.title}
+              image={data.images?.[0] as string}
+              href={`/moving-sale/${data.title}?${new URLSearchParams({
+                id: data.id.toString(),
+                title: data.title,
+                category: data.category,
+                term: data.term,
+                price: data.price.toString(),
+                condition: data.condition,
+                // seller: item.profiles?.full_name as string,
+                description: data.description,
+              })}`}
+            />
             {/* Date */}
             <small className="text-shade-200">3 days ago</small>
           </div>
-          <div className="grid flex-1 justify-between gap-x-10 gap-y-3 xsm:grid-cols-2">
+          <div className="grid flex-1 justify-between gap-x-10 gap-y-3 [@media(min-width:400px)]:grid-cols-2">
             <div className="flex flex-1 flex-col  items-start gap-3">
               {/* Product */}
-              <p className="truncate font-semibold">{data.product}</p>
+              <p className="truncate font-semibold">{data.title}</p>
               {/* Status */}
               <PublicationStatus
-                status={data.status}
+                status={data.status as ItemPublicationStatus}
                 isAvailable={data.is_available}
               />
             </div>
