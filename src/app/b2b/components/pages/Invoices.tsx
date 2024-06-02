@@ -25,7 +25,10 @@ function Invoices({ customerId }: Props) {
   const [searchString, setSearchString] = useState("");
   const [filter, setFilter] = useState<Status>("all");
   const subTotal = checkoutItems.reduce((acc, item) => acc + item.amount, 0);
-  const tax = 12;
+  const tax = checkoutItems.reduce(
+    (acc, item) => acc + (item.tax_rate / 100) * item.amount,
+    0,
+  );
   const total = subTotal + tax;
   const { customer } = customerStore();
 

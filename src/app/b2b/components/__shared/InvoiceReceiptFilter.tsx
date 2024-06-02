@@ -19,11 +19,16 @@ const InvoiceReceiptFilter = (props: Props) => {
   const searchParams = useSearchParams();
   const id = searchParams?.get("id");
 
-  const { activePage, setActivePage } = invoiceStore();
+  const {
+    activePage,
+    setActivePage,
+    setCheckoutItems,
+    setInvoiceItems,
+    setReceiptItems,
+  } = invoiceStore();
   const { setCustomer, customer } = customerStore();
   const [loading, setloading] = useState(false);
   const supabaseClient = createClient();
-  const { setInvoiceItems } = invoiceStore();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,6 +58,9 @@ const InvoiceReceiptFilter = (props: Props) => {
       }
       setInvoiceItems(invoices as Invoice[]);
     };
+
+    setCheckoutItems([]);
+    setReceiptItems([]);
 
     fetchData();
   }, []);
