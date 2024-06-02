@@ -61,21 +61,20 @@ function Receipts({ customerId }: Props) {
         />
       </div>
       <ReceiptTable searchString={searchString} customerId={customerId} />
-      {receiptItem.length > 0 && (
-        <Button
-          color="primary"
-          className={`text group w-fit gap-2  bg-opacity-20 px-8 font-bold text-[#545454] hover:text-white`}
-          onClick={() => {
-            downloadAll();
-          }}
-        >
-          Download
-          <HiOutlineDownload
-            size="24"
-            className="shrink-0 group-hover:text-white"
-          />
-        </Button>
-      )}
+      <Button
+        color="primary"
+        disabled={receiptItem.length == 0}
+        className={`text group w-fit gap-2  bg-opacity-20 px-8 font-bold text-[#545454] hover:text-white`}
+        onClick={() => {
+          downloadAll();
+        }}
+      >
+        Download
+        <HiOutlineDownload
+          size="24"
+          className="shrink-0 group-hover:text-white"
+        />
+      </Button>
       <div className="hidden w-full items-center justify-end lg:flex">
         {/* <DownloadButton maxWidth="fit" /> */}
       </div>

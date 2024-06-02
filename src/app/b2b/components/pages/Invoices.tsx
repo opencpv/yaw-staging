@@ -86,21 +86,20 @@ function Invoices({ customerId }: Props) {
         customerId={customerId}
         filter={filter}
       />
-      {checkoutItems.length > 0 && (
-        <Button
-          color="primary"
-          className={`text group w-fit gap-2  bg-opacity-20 px-8 font-bold text-[#545454] hover:text-white`}
-          onClick={() => {
-            downloadAll();
-          }}
-        >
-          Download
-          <HiOutlineDownload
-            size="24"
-            className="shrink-0 group-hover:text-white"
-          />
-        </Button>
-      )}
+      <Button
+        disabled={checkoutItems.length == 0}
+        color="primary"
+        className={`text group w-fit gap-2  bg-opacity-20 px-8 font-bold text-[#545454] hover:text-white`}
+        onClick={() => {
+          downloadAll();
+        }}
+      >
+        Download
+        <HiOutlineDownload
+          size="24"
+          className="shrink-0 group-hover:text-white"
+        />
+      </Button>
       <section className="hidden w-full justify-between gap-5 bg-[#F8F8F8] py-5  lg:flex">
         <div />
         <div>
