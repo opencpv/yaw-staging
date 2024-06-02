@@ -1,17 +1,28 @@
 import Link from "next/link";
 import React from "react";
+import Button from "./button/Button";
+import { cn } from "@/lib/utils";
 
 type Props = {
   label: React.ReactNode;
-  href: string;
+  href?: string;
   className?: string;
+  onClick?: () => void;
 };
 
-const BreadCrumbPreLink = ({ className, label, href }: Props) => {
+const BreadCrumbPreLink = ({ className, label, href, onClick }: Props) => {
   return (
-    <Link href={`${href}`} className={`border-b border-warning-400 ${className}`}>
+    <Button
+      variant="ghost"
+      href={href}
+      onClick={onClick}
+      className={cn(
+        "border-b border-warning-400 font-normal text-shade-200",
+        className,
+      )}
+    >
       {label}
-    </Link>
+    </Button>
   );
 };
 

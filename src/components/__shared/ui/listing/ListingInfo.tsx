@@ -61,14 +61,14 @@ const ListingInfo = (props: Partial<ListingCardInterface>) => {
         <div className="flex items-center gap-2">
           {!props.ViewingFee && (
             <Tooltip content="No Viewing Fee">
-              <Image src={icons.NoViewingFee} alt="" />
+              <Image src={icons.NoViewingFee} alt="nvf" />
             </Tooltip>
           )}
           <div className="w-fit">
             <p className="text-sm font-bold text-neutral-900">
               GHS&nbsp;
               <span className="font-medium">
-                {formatPrice(props?.monthlyAmount as number)} / Month
+                {formatPrice(props?.monthlyAmount as number, false)} / Month
               </span>
             </p>
           </div>

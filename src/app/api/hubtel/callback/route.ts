@@ -18,7 +18,6 @@ export const POST = withErrorHandler(async (request: Request) => {
   // const requestBody = await request.json(); // To read request data
 
   const res: PostProps = await request.json(); // res now contains body
-
   return NextResponse.json({
     data: res,
   });

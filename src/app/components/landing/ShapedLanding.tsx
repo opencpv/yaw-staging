@@ -1,11 +1,15 @@
 "use client";
-import ViewPropertyBtn from "@/app/properties/components/ViewPropertyBtn";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import React from "react";
 import style from "./Shape.module.css";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import dynamic from "next/dynamic";
+
+const ViewPropertyBtn = dynamic(
+  () => import("@/app/properties/components/ViewPropertyBtn"),
+);
 
 type Props = {
   position: "left" | "right";
@@ -42,7 +46,9 @@ const ShapedLanding = ({
                   : position === "right" && !disableOnSmallScreens
                     ? style.shapeRight2
                     : null
-          } ${style.imageOverlay} relative min-h-[50rem] w-full sm:min-h-[65rem]`,
+          } ${
+            style.imageOverlay
+          } relative min-h-[50rem] w-full sm:min-h-[65rem]`,
           className,
         )}
       >

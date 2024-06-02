@@ -8,8 +8,13 @@ import AboutTagsTitle from "./AboutTagsTitle";
 function AboutOurTags() {
   const [option, setOption] = useState<any>(0);
   return (
-    <div className="wrapper mt-10 2xl:mt-14 flex flex-col gap-1 sm:gap-5 lg:gap-10 bg-[url('/assets/images/about/tag-bg-2.png')] bg-center bg-cover bg-no-repeat bg-[#F8F8F8]  border-0 border-[#8A8A8A] border-x-0" >
-      <h2 className="text-lg md:text-3xl lg:text-3xl 2xl:text-5xl font-bold">Our Tags</h2>
+    <div
+      className="wrapper mt-10 flex flex-col gap-1 border-0 border-x-0 border-[#8A8A8A] bg-[#F8F8F8] bg-[url('/assets/images/about/tag-bg-2.png')] bg-cover bg-center bg-no-repeat  sm:gap-5 lg:gap-10 2xl:mt-14"
+      id="t73yjgClfDUknQ=="
+    >
+      <h2 className="text-lg font-bold md:text-3xl lg:text-3xl 2xl:text-5xl">
+        Our Tags
+      </h2>
 
       <div className="flex w-full flex-col items-start justify-center gap-4 lg:flex-row">
         <div
@@ -19,7 +24,7 @@ function AboutOurTags() {
           "
         >
           {tagsData?.map((r: any, index: number) => (
-            <div className="flex  w-fit sm:w-full flex-col gap-3" key={index}>
+            <div className="flex  w-fit flex-col gap-3 sm:w-full" key={index}>
               <button
                 onClick={() => setOption(index)}
                 key={index}

@@ -5,7 +5,7 @@ import downloadPdf from "@/lib/utils/downloadPdf";
 
 type Props = {
   maxWidth?: "fit";
-  data: PaymentData;
+  data: Invoice;
   variant: "invoice" | "receipt";
   content: {
     title: string;

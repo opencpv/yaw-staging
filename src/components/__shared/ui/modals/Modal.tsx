@@ -11,7 +11,6 @@ import {
 } from "@nextui-org/react";
 import { useModalFullscreenStore } from "@/store/modal/useModalStore";
 import { useEffect } from "react";
-import { useLockBodyScroll } from "@uidotdev/usehooks";
 
 type Props = {
   onOpenChange: (open: boolean) => void;
@@ -99,6 +98,7 @@ const Modal = ({
             },
             className,
           ),
+          closeButton: "mr-3 mt-1",
         }}
         // scrollBehavior={size === "full" ? "inside" : "inside"}
         scrollBehavior={
@@ -122,7 +122,7 @@ const Modal = ({
         onOpenChange={onOpenChange}
         closeButton={
           closeButton ? (
-            <div onClick={() => setHideWindowScrollbar(false)} >
+            <div onClick={() => setHideWindowScrollbar(false)}>
               {closeButton}
             </div>
           ) : (

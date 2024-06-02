@@ -1,12 +1,6 @@
 "use client";
-import React, { useState } from "react";
-import Select from "../../../components/shared/ui/Select";
-import { useSelectDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
-import { cn } from "@nextui-org/react";
-import { BsInfoCircle } from "react-icons/bs";
-import Tooltip from "@/components/__shared/ui/Tooltip";
-import { HiOutlineBadgeCheck } from "react-icons/hi";
-import { MdHourglassTop } from "react-icons/md";
+import React from "react";
+import Status from "@/components/__shared/ui/states/Status";
 
 export type RenterApplicationStatus =
   | "accepted"
@@ -20,45 +14,35 @@ type Props = {
 
 const RtApplicationStatus = ({ status }: Props) => {
   return (
-    <>
-      <Tooltip
-        content={
-          status === "accepted"
-            ? "The lister has reviewed your application and should be in touch with you shortly. Check your messages or contact them directly if a response is delayed."
-            : status === "declined"
-              ? "The lister has declined your application. Continue your search or contact them directly with more questions."
-              : status === "under review"
-                ? "The lister has received your application and should respond shortly. Contact them directly if a response is delayed."
-                : "Please submit form for review."
-        }
-      >
-        <div
-          className={cn(
-            "flex w-fit shrink-0 items-center justify-center gap-2 rounded-full p-1.5 px-2.5 shadow-sm",
-            {
-              "bg-error-bg text-error": status === "declined",
-              "text-success bg-success-bg": status === "accepted",
-              "text-warning bg-warning-bg": status === "under review",
-              "bg-error-bg text-error ": status === "incomplete",
-            },
-          )}
-        >
-          {status === "accepted" ? (
-            <HiOutlineBadgeCheck />
-          ) : status === "under review" ? (
-            <MdHourglassTop />
-          ) : (
-            <BsInfoCircle />
-          )}
-          <small className="text-xs">
-            {status === "accepted" && "Accepted"}
-            {status === "declined" && "Declined"}
-            {status === "under review" && "Under review"}
-            {status === "incomplete" && "Incomplete"}
-          </small>
-        </div>
-      </Tooltip>
-    </>
+    <Status
+      tooltipContent={
+        status === "accepted"
+          ? "The lister has reviewed your application and should be in touch with you shortly. Check your messages or contact them directly if a response is delayed."
+          : status === "declined"
+            ? "The lister has declined your application. Continue your search or contact them directly with more questions."
+            : status === "under review"
+              ? "The lister has received your application and should respond shortly. Contact them directly if a response is delayed."
+              : "Please submit form for review."
+      }
+      text={
+        status === "accepted"
+          ? "Accepted"
+          : status === "declined"
+            ? "Declined"
+            : status === "under review"
+              ? "Under review"
+              : "Incomplete"
+      }
+      variant={
+        status === "accepted"
+          ? "success"
+          : status === "declined"
+            ? "danger"
+            : status === "under review"
+              ? "warning"
+              : "danger"
+      }
+    />
   );
 };
 

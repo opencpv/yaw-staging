@@ -29,7 +29,7 @@ const GradientBanner = (props: Props) => {
       <div className="min-w-full max-w-sm space-y-4 xs:min-w-[100px]">
         <h2>{props.heading}</h2>
         <p>{props.description}</p>
-        <Button href={props.href} className="bg-[#DDB771]">
+        <Button href={props.href} className="bg-accent">
           {props.buttonLabel}
         </Button>
       </div>

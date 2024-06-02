@@ -10,7 +10,7 @@ import { useDaysDifference } from "@/lib/custom-hooks/useDaysDifference";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import DestructiveModal from "@/components/__shared/ui/modals/DestructiveModal";
 import { useDisclosure } from "@nextui-org/react";
-import ButtonDelete from "@/components/__shared/ui/button/ButtonDelete";
+import DeleteButton from "@/components/__shared/ui/button/DeleteButton";
 import {
   ApplicationsInterface,
   ListerApplicationsInterface,
@@ -99,7 +99,7 @@ const LsApplicationRow = ({
         {/* Actions */}
         {/* <TableBody className="col-span-1 flex items-center justify-center">
           <div className="flex gap-1.5">
-            <ButtonDelete onOpen={onOpen} className="w-fit" />
+            <DeleteButton onOpen={onOpen} className="w-fit" />
           </div>
         </TableBody> */}
       </TableBodyRow>

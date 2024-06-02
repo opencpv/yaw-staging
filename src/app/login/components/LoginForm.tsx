@@ -1,7 +1,7 @@
 import { LoginButton } from "./LoginButton";
 import { redirect } from "next/navigation";
 import Logo from "@/components/__shared/ui/Logo";
-import ButtonMenu from "@/components/__shared/ui/button/ButtonMenu";
+import MenuButton from "@/components/__shared/ui/button/MenuButton";
 import { createClient } from "@/lib/utils/supabase/auth/server";
 
 export const LoginForm = async () => {
@@ -14,7 +14,7 @@ export const LoginForm = async () => {
     return (
       <>
         <div className="relative flex w-full justify-center">
-          <ButtonMenu className="absolute right-1.5 top-0 justify-self-start" />
+          <MenuButton className="absolute right-1.5 top-0 justify-self-start" />
           <Logo size="md" className="mt-14 sm:mt-0" />
         </div>
         <div className="flex w-full flex-col items-center justify-center gap-6">

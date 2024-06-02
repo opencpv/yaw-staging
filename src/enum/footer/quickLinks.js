@@ -12,8 +12,8 @@ const quickLinks = [
     href: "/contact",
   },
   {
-    label: "Invoices",
-    href: "/",
+    label: "Payments",
+    href: "/b2b",
   },
   {
     label: "Join Us",

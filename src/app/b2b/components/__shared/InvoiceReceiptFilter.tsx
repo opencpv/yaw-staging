@@ -8,17 +8,27 @@ import Forms from "../pages/Forms";
 import { createClient } from "@/lib/utils/supabase/auth/client";
 import { useSearchParams } from "next/navigation";
 import { PaymentData } from "../types";
+import { customerStore } from "@/store/payment/customerStore";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
-type Props = {};
+type Props = {
+  customerId: string;
+};
 
 const InvoiceReceiptFilter = (props: Props) => {
   const searchParams = useSearchParams();
   const id = searchParams?.get("id");
 
-  const { activePage, setActivePage } = invoiceStore();
+  const {
+    activePage,
+    setActivePage,
+    setCheckoutItems,
+    setInvoiceItems,
+    setReceiptItems,
+  } = invoiceStore();
+  const { setCustomer, customer } = customerStore();
   const [loading, setloading] = useState(false);
   const supabaseClient = createClient();
-  const { setCheckoutItems } = invoiceStore();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,26 +37,37 @@ const InvoiceReceiptFilter = (props: Props) => {
         .from("invoices")
         .select("*")
         .eq("customer", id);
-
+      let { data: customerData, error: customerError } = await supabaseClient
+        .from("customers")
+        .select("*")
+        .eq("customer_id", props.customerId);
+      if (customerError) {
+        setloading(false);
+        console.log(customerError.message);
+        return;
+      }
+      console.log(id);
       if (error) {
         setloading(false);
         console.log(error.message);
 
         return;
       }
-      const invoicesOnly = invoices?.filter(
-        (invoice: any) => invoice.type === "INVOICE",
-      );
-      const receiptsOnly = invoices?.filter(
-        (invoice: any) => invoice.is_paid == true,
-      );
-
-      setCheckoutItems(invoices as PaymentData[]);
+      if (customerData) {
+        setCustomer(customerData[0]);
+      }
+      setInvoiceItems(invoices as Invoice[]);
     };
+
+    setCheckoutItems([]);
+    setReceiptItems([]);
 
     fetchData();
   }, []);
 
+  useEffect(() => {
+    console.log(customer);
+  }, [customer]);
   return (
     <>
       <div className="mb-10">
@@ -56,13 +77,14 @@ const InvoiceReceiptFilter = (props: Props) => {
           onSelectionChange={setActivePage}
           radius="large"
           padding="wide"
+          tabColor="colored"
           cursorAnimation
         />
       </div>
       {activePage === "invoice" ? (
-        <Invoices />
+        <Invoices customerId={props.customerId} />
       ) : activePage === "receipt" ? (
-        <Receipts />
+        <Receipts customerId={props.customerId} />
       ) : (
         <Forms />
       )}

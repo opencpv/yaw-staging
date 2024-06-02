@@ -12,13 +12,14 @@ import DownloadButton from "../DownloadButton";
 import CheckoutButton from "../CheckoutButton";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import { PaymentData } from "../../types";
-import { formatDateOnly } from "@/lib/utils/stringManipulation";
+import { formatDateDMY, formatDateOnly } from "@/lib/utils/stringManipulation";
+import { customerStore } from "@/store/payment/customerStore";
 
 type Variant = "invoice" | "receipt";
 
 type Props = {
   variant: Variant;
-  data: PaymentData;
+  data: Invoice;
 };
 export default function ViewDataDetailsModal({ variant, data }: Props) {
   const { onOpen, isOpen, onOpenChange } = useDisclosure();
@@ -26,7 +27,7 @@ export default function ViewDataDetailsModal({ variant, data }: Props) {
   return (
     <>
       <Modal
-        header={<div className="h-5"></div>}
+        header={<div className="h-5" />}
         body={<ModalBody variant={variant} data={data} />}
         footer={<ModalFooter variant={variant} data={data} />}
         isOpen={isOpen}
@@ -35,7 +36,10 @@ export default function ViewDataDetailsModal({ variant, data }: Props) {
         closeButton={<ModalCloseIcon />}
         size="3xl"
       />
-      <ViewButton onOpen={onOpen} className="h-11" />
+      <ViewButton
+        onOpen={onOpen}
+        className="max-sm:w-fit max-sm:bg-transparent max-sm:p-0 sm:h-11"
+      />
     </>
   );
 }
@@ -45,25 +49,25 @@ const ModalHeader = ({
   data,
 }: {
   variant: "invoice" | "receipt";
-  data: PaymentData;
+  data: Invoice;
 }) => {
   return (
     <div
       className={`sticky -top-2 mx-auto -mt-2 flex w-full items-center justify-between rounded-xl px-4 py-2 ${
-        variant == "invoice" ? "bg-primary" : "rounded-t-xl bg-[#F8F8F8]"
+        variant === "invoice" ? "bg-primary" : "rounded-t-xl bg-[#F8F8F8]"
       }`}
     >
       <div
         className={`flex flex-col gap-1 ${
-          variant == "invoice" ? "text-white" : "text-shade-300"
+          variant === "invoice" ? "text-white" : "text-shade-300"
         }`}
       >
         <h2 className="uppercase">
-          {variant == "invoice" ? "invoice" : "receipt"}
+          {variant === "invoice" ? "invoice" : "receipt"}
         </h2>
         <small
           className={`font-semibold text-neutral-300 ${
-            variant == "receipt" && "hidden"
+            variant === "receipt" && "hidden"
           }`}
         >
           {data.id}
@@ -71,7 +75,7 @@ const ModalHeader = ({
       </div>
       <div
         className={`relative aspect-[50/37] w-full max-w-[50px] ${
-          variant == "receipt" && "hidden"
+          variant === "receipt" && "hidden"
         }`}
       >
         <Logo />
@@ -80,24 +84,19 @@ const ModalHeader = ({
   );
 };
 
-const ModalBody = ({
-  variant,
-  data,
-}: {
-  variant: Variant;
-  data: PaymentData;
-}) => {
+const ModalBody = ({ variant, data }: { variant: Variant; data: Invoice }) => {
   const subTotal = data.amount;
-  const tax = 12;
+  const tax = (data.tax_rate / 100) * subTotal;
   const total = subTotal + tax;
+  const { customer } = customerStore();
 
   return (
-    <main className="payment-pdf mx-auto rounded-t-xl bg-[#F8F8F8] p-2 pt-0 sm:w-11/12">
+    <main className=" mx-auto rounded-t-xl bg-[#F8F8F8] p-2 pt-0 sm:w-11/12">
       <ModalHeader variant={variant} data={data} />
       <section className=" space-y-8">
         <section className="highlight flex gap-5 max-xs:justify-between">
           <h4>Date issued</h4>
-          <p className="highlight-body">{formatDateOnly(data.billing_date)}</p>
+          <p className="highlight-body">{formatDateDMY(data.billing_date)}</p>
         </section>
 
         <section className="grid gap-5 sm:grid-cols-2">
@@ -105,8 +104,8 @@ const ModalBody = ({
             <div className="flex flex-col gap-4">
               <h4>To:</h4>
               <div className="highlight-body">
-                <p>John Doe</p>
-                <p>Customer ID: 232332</p>
+                <p>{customer.company}</p>
+                <p>Customer ID: {customer.customer_id}</p>
               </div>
             </div>
           </div>
@@ -115,8 +114,8 @@ const ModalBody = ({
               <h4>From:</h4>
               <div className="highlight-body">
                 <p className="font-bold">{legal.companyName}</p>
-                <p>Business Address</p>
-                <p>City</p>
+                <p>{legal.address}</p>
+                <p>{legal.city}</p>
               </div>
             </div>
           </div>
@@ -140,7 +139,13 @@ const ModalBody = ({
         </section>
 
         <section className="flex w-full justify-end">
-          <Cost subTotal={subTotal} tax={tax} total={total} variant={variant} />
+          <Cost
+            subTotal={subTotal}
+            taxRate={data.tax_rate}
+            tax={tax}
+            total={total}
+            variant={variant}
+          />
         </section>
         <section className="flex flex-col gap-1 pt-14">
           <p className="font-bold">Thank you for doing business with us!</p>
@@ -172,20 +177,20 @@ const ModalFooter = ({
   data,
 }: {
   variant: Variant;
-  data: PaymentData;
+  data: Invoice;
 }) => {
   return (
     <div className="mx-auto w-full sm:w-11/12">
       {variant !== "invoice" && (
-        <div className="">
+        <div className="w-full">
           <DownloadButton
             data={data}
+            maxWidth="fit"
             variant={variant}
             content={{ title: `${new Date().toLocaleDateString()}-receipt` }}
           />
         </div>
       )}
-
       {variant === "invoice" && (
         <div className="">
           <div className="grid w-full grid-cols-2 items-center justify-end gap-3 bg-transparent pb-2">
@@ -195,7 +200,7 @@ const ModalFooter = ({
               variant={variant}
               content={{ title: `${new Date().toLocaleDateString()}-invoice` }}
             />
-            <CheckoutButton affix={1} />
+            <CheckoutButton affix={1} items={[data]} />
           </div>
         </div>
       )}

@@ -8,7 +8,7 @@ import PropertyStatus from "./PropertyStatus";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import { formatDate, formatTime } from "@/lib/utils/stringManipulation";
 import { useDaysDifference } from "@/lib/custom-hooks/useDaysDifference";
-import ButtonDelete from "@/components/__shared/ui/button/ButtonDelete";
+import DeleteButton from "@/components/__shared/ui/button/DeleteButton";
 import DestructiveModal from "@/components/__shared/ui/modals/DestructiveModal";
 import { useDisclosure } from "@nextui-org/react";
 import { ManagePropertiesInterface } from "../../../../../../interfaces";
@@ -72,7 +72,7 @@ const PropertyRow = ({
             >
               <BiPencil className="text-xl" />
             </Button>
-            <ButtonDelete handleDestruction={() => {}} />
+            <DeleteButton handleDestruction={() => {}} />
           </div>
         </td>
       </tr>

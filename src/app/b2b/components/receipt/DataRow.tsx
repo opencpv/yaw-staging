@@ -1,3 +1,4 @@
+//@ts-nocheck
 import {
   TableBody,
   TableBodyRow,
@@ -5,26 +6,39 @@ import {
 import { CheckboxNoFormik as Checkbox } from "@/app/dashboard/components/shared/ui/Checkbox";
 import { PaymentData } from "../types";
 import { formatPrice } from "@/lib/utils/numberManipulation";
-import { formatDateOnly, formatDateTime } from "@/lib/utils/stringManipulation";
+import { formatDateOnly } from "@/lib/utils/stringManipulation";
 import ViewDataDetailsModal from "../__shared/ViewDataDetailsModal";
 import { useReceiptData } from "../../hooks/useReceiptData";
+import { invoiceStore } from "@/store/payment/invoiceStore";
+import { useEffect, useState } from "react";
 
 type Props = {
   variant: "invoice" | "receipt";
-  data: PaymentData;
+  data: Invoice;
 };
 
 function DataRow({ data, variant }: Props) {
-  const { checked, handleCheckChange } = useReceiptData({ data });
+  const { receiptItem, addRecieptItem, removeReceiptItemById } = invoiceStore();
+  const [checkStatus, setCheckStatus] = useState(false);
 
+  useEffect(() => {
+    receiptItem.map((item) => {
+      item.id == data.id ? setCheckStatus(true) : null;
+      return item;
+    });
+  }, [receiptItem, data.id]);
   return (
     <>
       <TableBodyRow className="grid-cols-6" gap="2rem">
         <TableBody className="col-span-1">
           <Checkbox
             color="primary"
-            onCheckedChange={handleCheckChange}
-            checked={checked}
+            onCheckedChange={() => {
+              checkStatus
+                ? removeReceiptItemById(data.id as number)
+                : addRecieptItem(data);
+            }}
+            checked={checkStatus}
           />
         </TableBody>
         <TableBody className="col-span-1">{data.id}</TableBody>
@@ -35,7 +49,7 @@ function DataRow({ data, variant }: Props) {
           {formatDateOnly(data.billing_date)}
         </TableBody>
         <TableBody className="col-span-1">
-          {data.is_paid ? formatPrice(0) : formatPrice(data.amount)}
+          {formatPrice((1 + data.tax_rate / 100) * data.amount)}
         </TableBody>
         <TableBody className="col-span-1">
           <ViewDataDetailsModal variant={variant} data={data} />

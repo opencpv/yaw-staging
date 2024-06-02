@@ -1,14 +1,43 @@
 import Button from "@/components/__shared/ui/button/Button";
 import { cn } from "@nextui-org/react";
 import { motion } from "framer-motion";
+import Link from "next/link";
+import { PaymentData } from "../types";
+import useCartStore from "@/store/cart/useCartStore";
+import { useRouter } from "next/navigation";
+import { invoiceStore } from "@/store/payment/invoiceStore";
 
 type Props = {
   affix?: number;
+  items?: Invoice[];
 };
 
-function CheckoutButton({ affix }: Props) {
+function CheckoutButton({ affix, items }: Props) {
+  const { addItem } = useCartStore();
+  const { invoiceItems } = invoiceStore();
+  const router = useRouter();
   return (
-    <Button color="accent" className="relative w-full">
+    <Button
+      color="accent"
+      className="relative w-full"
+      onClick={() => {
+        if (invoiceItems) {
+          invoiceItems?.forEach((item) => {
+            addItem({
+              name: item.service,
+              cost: item.amount,
+              quantity: 1,
+              date: item.billing_date,
+              isQuantityChangable: false,
+              isInvoice: true,
+              invoiceId: item.id as number,
+              tax_rate: item.tax_rate,
+            });
+          });
+          router.push("/cart");
+        }
+      }}
+    >
       Checkout Now{" "}
       <span
         className={cn(

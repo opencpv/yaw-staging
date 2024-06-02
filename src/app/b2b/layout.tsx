@@ -3,7 +3,7 @@ import Navbar from "@/components/__shared/ui/Navbar";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Payment",
+  title: "Payments",
   description: "", // tentative
 };
 

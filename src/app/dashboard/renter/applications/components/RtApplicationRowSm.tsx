@@ -16,9 +16,9 @@ import {
 import TbPropertyImageSm from "../../../components/shared/TbPropertyImageSm";
 import PaymentStructure from "../../../components/shared/PaymentStructure";
 import Rating from "../../../components/shared/Rating";
-import ButtonDelete from "@/components/__shared/ui/button/ButtonDelete";
+import DeleteButton from "@/components/__shared/ui/button/DeleteButton";
 import EditButton from "@/components/__shared/ui/button/EditButton";
-import ButtonMessage from "@/components/__shared/ui/button/ButtonMessage";
+import MessageButton from "@/components/__shared/ui/button/MessageButton";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import Avatar from "@/components/__shared/ui/avatar/Avatar";
 import { cn } from "@/lib/utils";
@@ -100,10 +100,10 @@ const RtApplicationRowSm = ({
           {status === "incomplete" ? (
             <>
               <EditButton onOpen={() => ""} />
-              <ButtonDelete handleDestruction={() => {}} />
+              <DeleteButton handleDestruction={() => {}} />
             </>
           ) : (
-            <ButtonMessage type={2} />
+            <MessageButton type={2} />
           )}
         </TableBodySm>
       </TableRowSm>

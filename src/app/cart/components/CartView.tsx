@@ -5,11 +5,15 @@ import CaCartItem from "@/components/__shared/ui/icons/CaCartItem";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import CaDropdownArrow from "@/components/__shared/ui/icons/CaDropdownArrow";
 import DeleteIconButton from "@/components/__shared/ui/button/DeleteIconButton";
-import Button from "@/components/__shared/ui/button/Button";
 import { formatPrice } from "@/lib/utils/numberManipulation";
-import { cn } from "@nextui-org/react";
-import ButtonDelete from "@/components/__shared/ui/button/ButtonDelete";
+import { Button, cn } from "@nextui-org/react";
 import { formatDateOnly } from "@/lib/utils/stringManipulation";
+import { useEffect, useState } from "react";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { useRouter } from "next/navigation";
+import { invoiceStore } from "@/store/payment/invoiceStore";
+import { customerStore } from "@/store/payment/customerStore";
+import DeleteButton from "@/components/__shared/ui/button/DeleteButton";
 
 const CartView = () => {
   const {
@@ -19,8 +23,21 @@ const CartView = () => {
     getTotalPrice,
     clearCart,
     updateQuantity,
+    discountCode,
+    setCart,
+    setDiscountCode,
   } = useCartStore();
-
+  const { checkoutItems } = invoiceStore();
+  const [discount, setDiscount] = useState<string>();
+  const [loading, setloading] = useState(false);
+  const [usedDiscount, setusedDiscount] = useState(false);
+  const supabaseClient = createClientComponentClient();
+  const { customer } = customerStore();
+  const router = useRouter();
+  const tax = items.reduce(
+    (acc, item) => acc + (item.tax_rate / 100) * item.cost,
+    0,
+  );
   const CartItem = ({
     item,
     item_index,
@@ -47,7 +64,7 @@ const CartView = () => {
                   <p>Qty</p>
                   <DropDown item={item} item_index={item_index} />
                 </div>
-                <ButtonDelete
+                <DeleteButton
                   handleDestruction={() => {
                     removeItem(item_index);
                   }}
@@ -63,7 +80,7 @@ const CartView = () => {
             {item.date ? (
               <Date className="max-md:hidden" date={item.date} />
             ) : null}
-            <ButtonDelete
+            <DeleteButton
               handleDestruction={() => {
                 removeItem(item_index);
               }}
@@ -122,6 +139,14 @@ const CartView = () => {
     </DropdownMenu.Root>
   );
 
+  useEffect(() => {
+    const storedCartItems: any = localStorage.getItem("cart");
+    if (JSON.parse(storedCartItems as string).length > 0) {
+      setCart(JSON.parse(storedCartItems as string));
+      console.log("hit", storedCartItems);
+    }
+  }, []);
+
   return (
     <section className={`mx-auto max-w-[1024px] px-4 py-6 lg:px-0`}>
       <h2 className="mb-8">My Cart</h2>
@@ -148,25 +173,94 @@ const CartView = () => {
           <div className="mb-16 flex flex-wrap gap-2">
             <input
               type="text"
-              className="min-h-[40px] flex-1 rounded-sm border-[1px] px-4 uppercase text-[#AD842A] outline-none"
+              className="min-h-[40px] flex-1 rounded-sm border-[1px] px-4  text-[#AD842A] outline-none"
+              onChange={(e) => setDiscount(e.target.value)}
             />
             <Button
-              variant="outline"
-              className="border border-[#AD842A] text-[#AD842A]"
+              variant="bordered"
+              isLoading={loading}
+              className="rounded-lg border border-[#AD842A] text-[#AD842A]"
+              onClick={async () => {
+                setloading(true);
+                try {
+                  // Fetch discount details from discounts table
+                  const { data: discountData, error: discountError } =
+                    await supabaseClient
+                      .from("discounts")
+                      .select("*")
+                      .eq("code", discount);
+
+                  if (discountError) throw discountError;
+                  if (discountData.length === 0)
+                    throw new Error("Discount code not found");
+
+                  // Fetch customer discounts from customer_discounts table
+                  const {
+                    data: customerDiscountData,
+                    error: customerDiscountError,
+                  } = await supabaseClient
+                    .from("customer_discounts")
+                    .select("*")
+                    .eq("code", discount)
+                    .eq("email", customer.email);
+                  if (customerDiscountError) throw customerDiscountError;
+
+                  // Check if customer has the discount code
+                  const hasCustomerDiscount = customerDiscountData.length > 0;
+                  if (!hasCustomerDiscount) {
+                    setDiscountCode(discountData[0]);
+                  } else {
+                    setDiscountCode({ code: null, rate: 0 });
+                  }
+                  setusedDiscount(hasCustomerDiscount);
+                  console.log(customer.email);
+                  setloading(false);
+                } catch (error: any) {
+                  console.error("Error fetching data:", error.message);
+                  setloading(false);
+                  return { error: error.message };
+                }
+              }}
             >
               Apply
             </Button>
+            {usedDiscount ? (
+              <p className="text-shade-200">Code already used</p>
+            ) : (
+              <>
+                {discountCode.code && (
+                  <p className="text-shade-200">
+                    {discountCode.rate * 100}% off on transaction
+                  </p>
+                )}
+              </>
+            )}
           </div>
           <div className="mb-4 flex items-center justify-between bg-[#F5F5F5] px-8 py-3">
             <h5>Subtotal</h5>
-            <p className="font-semibold">{formatPrice(getTotalPrice(items))}</p>
+            <p className="font-semibold">
+              {formatPrice(getTotalPrice(items, discountCode))}
+            </p>
           </div>
           <div className="mb-4 flex items-center justify-between px-8 py-3 text-[13px] text-[#545454]">
-            <p>Items</p>
-            <p>{items.length}</p>
+            <p>Tax</p>
+            <p>GHS {discountCode.rate ? (1 - discountCode.rate) * tax : tax}</p>
           </div>
-
-          <Button href="/checkout" color="accent" className="w-full">
+          <div className="mb-4 flex items-center justify-between bg-[#F5F5F5] px-8 py-3">
+            <h5>Total</h5>
+            <p className="font-semibold">
+              GHS{" "}
+              {getTotalPrice(items, discountCode) +
+                (discountCode.rate ? (1 - discountCode.rate) * tax : tax)}
+            </p>
+          </div>
+          <Button
+            className="w-full rounded-lg bg-[#AD842A] font-bold"
+            onClick={() => {
+              localStorage.setItem("cart", JSON.stringify(items));
+              router.push("/checkout");
+            }}
+          >
             Checkout
           </Button>
         </div>
@@ -185,7 +279,7 @@ const Date = ({ className, date }: { className?: string; date: string }) => {
         className,
       )}
     >
-      {formatDateOnly(date)}
+      {date}
     </p>
   );
 };

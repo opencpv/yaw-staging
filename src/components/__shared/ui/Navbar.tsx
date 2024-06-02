@@ -8,7 +8,7 @@ import Logo from "@/components/__shared/ui/Logo";
 import LikeHeart from "./LikeHeart";
 import Share from "./share/Share";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
-import ButtonHireUs from "./button/ButtonHireUs";
+import HireUsButton from "./button/HireUsButton";
 import { useHideDocumentScrollBar } from "@/lib/custom-hooks/useWindowEvents";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import AvatarMenu from "./avatar/AvatarMenu";
@@ -67,7 +67,7 @@ const Navbar = (props: any) => {
           <Logo />
           <div className="flex w-full items-center justify-end md:gap-[31px] lg:gap-[73px]">
             {!pathname?.includes("/properties/") ? (
-              <ButtonHireUs
+              <HireUsButton
                 className={cn("w-fit px-[4.5rem] text-xl", {
                   invisible: user,
                 })}
@@ -81,8 +81,8 @@ const Navbar = (props: any) => {
                   className="text-3xl text-white sm:text-4xl"
                 />
                 <Share
-                  url={`${location.origin}/properties/${props.propertyName}`}
                   title={props.propertyName}
+                  content={props.propertyDescription}
                   classNames={{
                     icon: "text-5xl text-white",
                   }}

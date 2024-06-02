@@ -3,11 +3,15 @@ import { useDisclosure } from "@nextui-org/react";
 import React, { useEffect, useState } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import FavoriteModal from "./listing/FavoriteModal";
-import SignInRequiredModal from "./modals/SignInRequiredModal";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { updateLikedProperty } from "@/app/properties/_actions";
 import { getUserFavorite } from "@/components/services";
 import { useLocalStorage } from "@uidotdev/usehooks";
+import dynamic from "next/dynamic";
+
+const SignInRequiredModal = dynamic(
+  () => import("./modals/SignInRequiredModal"),
+);
 
 type Props = {
   userId: string | number;
