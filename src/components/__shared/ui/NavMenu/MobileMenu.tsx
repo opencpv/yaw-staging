@@ -100,7 +100,7 @@ const MenuOption = ({
                   className="flex justify-between items-center gap-10 w-full"
                 >
                   {r?.name}
-                  <CaArrowRight />
+                  {/* <CaArrowRight /> */}
                 </Link>
               )}
 

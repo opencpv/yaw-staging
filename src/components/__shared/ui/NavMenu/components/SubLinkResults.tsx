@@ -40,7 +40,7 @@ function SubLinkResults() {
         />
       </div>
       <div className="flex flex-col gap-2">
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2 max-w-[700px]">
           {options[activeSubLink]?.map((listing: any) => (
             <div className="" key={listing?.id}>
               <SubLinkResultsCard
