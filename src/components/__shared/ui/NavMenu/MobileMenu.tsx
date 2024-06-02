@@ -57,7 +57,7 @@ const MenuOption = ({
       <Collapsible.Trigger asChild>
         <div
           className={`
-              "flex w-full cursor-pointer flex-row items-center justify-between
+              " flex w-full cursor-pointer flex-row items-center justify-between
               font-[600]
               ${open ? "text-accent-100" : "text-[#fff]"}
             `}
@@ -97,15 +97,13 @@ const MenuOption = ({
                 <Link
                   href={`/properties`}
                   onClick={() => setToggle(false)}
-                  className="flex justify-between items-center gap-10 w-full"
+                  className="flex w-full items-center justify-between gap-10"
                 >
                   {r?.name}
                   {/* <CaArrowRight /> */}
                 </Link>
               )}
-
             </Collapsible.Trigger>
-         
           </Collapsible.Root>
         ))}
       </Collapsible.Content>
@@ -152,9 +150,12 @@ export const MobileMenu = (props: any) => {
           Get Started
         </Link>
         <hr className="h-[3px] w-full bg-white" />
+
         {linksBeforeLogin.map((r, index) =>
           r?.sub ? (
-            <MenuOption key={index} name={r.name} sub={r?.sub} sub2={r?.sub2} /> // sub links ---> View all listings, how to, etc...
+            <div className="main-menu-link-sm-bl" key={index}>
+              <MenuOption name={r.name} sub={r?.sub} sub2={r?.sub2} />
+            </div> // sub links ---> View all listings, how to, etc...
           ) : (
             r?.name.toLowerCase() !== "area vibes" && ( // main links ---> Home for rent, Login, Moving sale, etc...
               <Link
@@ -180,8 +181,16 @@ export const MobileMenu = (props: any) => {
       >
         {linksAfterLogin.map((r, index) =>
           r?.sub ? (
-            <MenuOption key={index} name={r.name} sub={r?.sub} sub2={r?.sub2} /> // sub links ---> View all listings, how to, etc...
+            <div className="main-menu-link-sm-al" key={index}>
+              <MenuOption
+                key={index}
+                name={r.name}
+                sub={r?.sub}
+                sub2={r?.sub2}
+              />
+            </div>
           ) : (
+            // sub links ---> View all listings, how to, etc...
             r?.name.toLowerCase() !== "faq" && ( // main links ---> Home for rent, Login, Moving sale, etc...
               <Link
                 href={r?.url}

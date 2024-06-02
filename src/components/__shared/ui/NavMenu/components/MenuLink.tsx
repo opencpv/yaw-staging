@@ -13,6 +13,8 @@ type Props = {
 
 const MenuLink = (props: Props) => {
   const { setToggle } = useMenuStore();
+  const { activeSubLink } = useMenuStore();
+
 
   return (
     <motion.button
@@ -27,15 +29,15 @@ const MenuLink = (props: Props) => {
         }`}
       >
         {(props.isSubLink && props.linkObject.id) || props.linkObject?.sub ? (
-          <div className="flex items-center">
+          <div className={`w-full flex items-center ${activeSubLink == props.linkObject?.label && "text-accent-100"} `}>
             {props.isSubLink ? (
               // <Link href={props.linkObject?.url}>
-                <h4 className="mr-10 font-normal">{props.linkObject?.name}</h4>
+                <h4 className={`mr-10 font-normal`}>{props.linkObject?.name}</h4>
               // </Link>
             ) : (
               <h2 className="mr-10">{props.linkObject?.name}</h2>
             )}
-          <CaArrowRight/>
+          <CaArrowRight />
           </div>
         ) : (
           <Link
