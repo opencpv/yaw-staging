@@ -17,6 +17,9 @@ import { FaEnvelope } from "react-icons/fa6";
 import { MdLocalPhone } from "react-icons/md";
 import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { socialLinks } from "@/enum/links/socials";
+import { useQuery } from "@tanstack/react-query";
+import { v4 as uuid } from "uuid";
+import { pacifico } from "@/lib/utils/fonts";
 
 const Footer = () => {
   const { onOpen } = useToastDisclosure();
@@ -25,9 +28,25 @@ const Footer = () => {
     onOpen("Congratulations, you are in the loop!", "success");
   };
 
+  const { data } = useQuery({
+    queryKey: ["feedback", "global"],
+    queryFn: async () => {
+      const res = await fetch("/api/global/feedback");
+
+      if (!res.ok) {
+        throw new Error("Failed to fetch feedback");
+      }
+
+      const data = await res.json();
+
+      return data;
+    },
+  });
+
   return (
     <footer
       className={`gap no-print flex w-full flex-col gap-[min(10vh,10rem)] bg-[#131B1A] font-montserrat`}
+      key={uuid()}
     >
       <div className="flex flex-col justify-center gap-10 bg-[#333] px-5 py-8 text-[#8A8A8A] hover:*:text-accent [@media(min-width:950px)]:flex-row">
         {quickLinks.map((r) =>
@@ -36,7 +55,7 @@ const Footer = () => {
           ) : LowerCase(r.label) === "how to" ? (
             <HowToLink key={r?.label} className="font-[400]" />
           ) : LowerCase(r?.label) === "feedback" ? (
-            <Feedback data={{}}>
+            <Feedback data={data}>
               <button key={r?.label} className="text-2xl">
                 Feedback
               </button>
@@ -59,22 +78,24 @@ const Footer = () => {
           }
         >
           Sign up to get the{" "}
-          <strong className={"font-medium text-[#DDB771]"}>latest</strong>&nbsp;
+          <strong className={"font-medium text-accent"}>latest</strong>&nbsp;
           deals, info and insights on{" "}
-          <strong className={"font-medium text-[#DDB771]"}>
+          <strong className={"font-medium text-accent"}>
             renting in Ghana
           </strong>
           . We don&apos;t spam. We simply share quality{" "}
-          <strong className={"font-medium text-[#DDB771]"}>
-            advice for free
-          </strong>
+          <strong className={"font-medium text-accent"}>advice for free</strong>
           .
         </p>
         <SubscribeForm onSubmit={handleSubmit} />
       </div>
 
       <div className="mt-10 flex flex-col items-center gap-10 pb-14 text-[32px] text-[#fff] ">
-        <h2 className="font-bold">Connect with us:</h2>
+        <h2 className="font-bold">
+          Get{" "}
+          <span className={`font-pacifico ${pacifico.className}`}>social</span>{" "}
+          with us:
+        </h2>
 
         <div className="flex items-center gap-4 md:gap-8">
           {socialLinks.coloured.map((link) => (
@@ -85,7 +106,7 @@ const Footer = () => {
             </Link>
           ))}
 
-          {/* COMMENTED OUT FOR NOW!!! PLEASE REMOVE */}
+          {/* COMMENTED OUT FOR NOW!!! PLEASE DO NOT REMOVE */}
           {/* <button className="w-full duration-1000 hover:rotate-[360deg]">
             <CaStarRainbow width={"100%"} height={"100%"} />
           </button> */}

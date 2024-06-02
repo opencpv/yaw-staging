@@ -37,4 +37,7 @@ export const invoiceStore = create<InvoiceStore>((set) => ({
     set((state) => ({
       checkoutItems: [...state.checkoutItems, item],
     })),
+  invoiceDownloadClassName: "",
+  setInvoiceDownloadClassName: (className:string) =>
+    set((state) => ({ ...state, invoiceDownloadClassName: className })),
 }));

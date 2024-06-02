@@ -2,15 +2,10 @@
 
 import * as Collapsible from "@radix-ui/react-collapsible";
 import { styled } from "@stitches/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import ArrowDownNav from "@/components/__shared/ui/icons/CaArrowDownNav.";
-import { BsArrowDownCircleFill } from "react-icons/bs";
-import { useRouter } from "next/navigation";
-import ButtonHireUs from "../button/ButtonHireUs";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
-import { useContactStore } from "@/store/contact/useContactStore";
-import { useFaqHowToSwitchStore } from "@/store/faq/useFaqStore";
 import { LowerCase } from "@/lib/utils/stringManipulation";
 import ReportFraud from "@/components/__shared/ui/links/ReportFraud";
 import HowToLink from "@/components/__shared/ui/links/HowToLink";
@@ -18,6 +13,7 @@ import FaqLink from "@/components/__shared/ui/links/FaqLink";
 import { cn } from "@/lib/utils";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useMenuLinks } from "./content";
+import { animate, stagger } from "framer-motion";
 
 const MenuOption = ({
   name,
@@ -44,7 +40,7 @@ const MenuOption = ({
     },
 
     "&[data-state=open] p:first-child": {
-      color: "#FCAB10",
+      color: "#F1B346",
       gap: "10px",
     },
     "&[data-state=closed]": {
@@ -54,10 +50,6 @@ const MenuOption = ({
 
   const [open, setOpen] = useState(false);
   const { setToggle } = useMenuStore();
-  const setContactTabActiveKey = useContactStore((state) => state.setActiveKey);
-  const setFaqActivePage = useFaqHowToSwitchStore(
-    (state) => state.setActivePage,
-  );
 
   return (
     <CollapsibleRoot open={open} onOpenChange={setOpen}>
@@ -66,10 +58,10 @@ const MenuOption = ({
           className={`
               "flex w-full cursor-pointer flex-row items-center justify-between
               font-[600]
-              ${open ? "text-[#FCAB10]" : "text-[#fff]"}
+              ${open ? "text-accent-100" : "text-[#fff]"}
             `}
         >
-          <p className={"text-2xl !font-semibold uppercase"}>{name}</p>
+          <h2 className={"main-menu-link-sm uppercase"}>{name}</h2>
           <ArrowDownNav color={open ? "#ddd" : "#fff"} />
         </div>
       </Collapsible.Trigger>
@@ -77,7 +69,7 @@ const MenuOption = ({
         {/* sub links ---> View all listings, how to, etc.. */}
         {sub?.map((r, index) => (
           <Collapsible.Root key={index} className="flex flex-col text-white ">
-            <Collapsible.Trigger className="flex justify-between pr-20 text-left text-base">
+            <Collapsible.Trigger className="main-menu-link-sm flex justify-between pr-20 text-left text-base">
               {LowerCase(r?.name) === "how to" ? (
                 <HowToLink
                   className="text-base font-normal"
@@ -128,9 +120,27 @@ const MenuOption = ({
 };
 
 export const MobileMenu = (props: any) => {
-  const { setToggle } = useMenuStore();
+  const { setToggle, toggle } = useMenuStore();
   const { user } = useAppStore();
   const { linksAfterLogin, linksBeforeLogin } = useMenuLinks();
+
+  useEffect(() => {
+    animate(
+      ".main-menu-link-sm-al",
+      toggle ? { opacity: [0, 1], x: [-5, 0] } : { opacity: 1, x: 0 },
+      {
+        delay: stagger(0.1, { startDelay: 0.5 }),
+      },
+    );
+
+    animate(
+      ".main-menu-link-sm-bl",
+      toggle ? { opacity: [0, 1], x: [-5, 0] } : { opacity: 1, x: 0 },
+      {
+        delay: stagger(0.1, { startDelay: 0.5 }),
+      },
+    );
+  }, [toggle]);
 
   return (
     <div className={`px-8 pt-10 ${props?.className}`}>
@@ -142,7 +152,7 @@ export const MobileMenu = (props: any) => {
       >
         <Link
           href="/login"
-          className="text-2xl font-semibold uppercase text-white"
+          className="main-menu-link-sm-bl text-2xl font-semibold uppercase text-white"
           onClick={() => setToggle(false)}
         >
           Get Started
@@ -156,7 +166,7 @@ export const MobileMenu = (props: any) => {
               <Link
                 href={r?.url}
                 key={index}
-                className="mb-10 block"
+                className="main-menu-link-sm-bl mb-10 block"
                 onClick={() => setToggle(false)}
               >
                 <p className={"text-2xl !font-semibold uppercase text-[#fff]"}>
@@ -182,7 +192,7 @@ export const MobileMenu = (props: any) => {
               <Link
                 href={r?.url}
                 key={index}
-                className="mb-10 block"
+                className="main-menu-link-sm-al mb-10 block"
                 onClick={() => setToggle(false)}
               >
                 <p className={"text-2xl !font-semibold uppercase text-[#fff]"}>

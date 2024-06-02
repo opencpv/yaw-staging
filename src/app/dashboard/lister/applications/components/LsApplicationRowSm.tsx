@@ -11,7 +11,7 @@ import { useDaysDifference } from "@/lib/custom-hooks/useDaysDifference";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import { useDisclosure } from "@nextui-org/react";
 import DestructiveModal from "@/components/__shared/ui/modals/DestructiveModal";
-import ButtonDelete from "@/components/__shared/ui/button/ButtonDelete";
+import DeleteButton from "@/components/__shared/ui/button/DeleteButton";
 import {
   ApplicationsInterface,
   ListerApplicationsInterface,
@@ -104,7 +104,7 @@ const LsApplicationRowSm = ({
         </TableBodySm>
         {/* Actions */}
         {/* <TableBodySm className="flex justify-center gap-1.5 pt-3">
-          <ButtonDelete onOpen={onOpen} />
+          <DeleteButton onOpen={onOpen} />
         </TableBodySm> */}
       </TableRowSm>
     </>

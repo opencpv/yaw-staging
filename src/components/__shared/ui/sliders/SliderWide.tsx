@@ -40,8 +40,6 @@ const SliderWide = ({
         pagination={
           pagination && {
             clickable: true,
-            dynamicBullets: true,
-            dynamicMainBullets: 3,
           }
         }
         autoplay={

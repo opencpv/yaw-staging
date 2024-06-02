@@ -59,12 +59,12 @@ const RtApplicationRow = ({
                 {capitalizeName(listerName, " ")}
               </p>
               <div className="flex items-center w-full gap-2">
-                <ButtonMessage
+                <MessageButton
                   id=""
                   className="rounded-full bg-secondary-400 text-white"
                 >
                   Message <PiChatCenteredDots />
-                </ButtonMessage>
+                </MessageButton>
                 <Rating
                   rate={3.5}
                   count={5}

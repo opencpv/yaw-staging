@@ -11,7 +11,9 @@ import { PaymentData } from "../types";
 import { customerStore } from "@/store/payment/customerStore";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
-type Props = {};
+type Props = {
+  customerId: string;
+};
 
 const InvoiceReceiptFilter = (props: Props) => {
   const searchParams = useSearchParams();
@@ -69,13 +71,14 @@ const InvoiceReceiptFilter = (props: Props) => {
           onSelectionChange={setActivePage}
           radius="large"
           padding="wide"
+          tabColor="colored"
           cursorAnimation
         />
       </div>
       {activePage === "invoice" ? (
-        <Invoices />
+        <Invoices customerId={props.customerId} />
       ) : activePage === "receipt" ? (
-        <Receipts />
+        <Receipts customerId={props.customerId} />
       ) : (
         <Forms />
       )}

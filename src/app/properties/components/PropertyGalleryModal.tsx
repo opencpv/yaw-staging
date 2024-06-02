@@ -3,7 +3,7 @@
 import Modal from "@/components/__shared/ui/modals/Modal";
 import Carousel from "@/components/__shared/ui/sliders/Carousel";
 import Share from "@/components/__shared/ui/share/Share";
-import { usePropertyCarouselStore } from "@/store/properties/usePropertiesStore";
+import { carouselStore } from "@/store/properties/usePropertiesStore";
 import React from "react";
 import { FaTimes } from "react-icons/fa";
 
@@ -57,7 +57,7 @@ const ModalHeader = ({ onClose }: { onClose?: () => void }) => {
           onClose && onClose();
         }}
       />
-      <Share url="" />
+      <Share />
     </div>
   );
 };
@@ -78,7 +78,7 @@ const ModalBody = () => {
 };
 
 const ModalFooter = () => {
-  const { activeIndex } = usePropertyCarouselStore();
+  const { activeIndex } = carouselStore();
   return (
     <div className="flex w-full items-center justify-center text-center text-lg text-white">
       {carouselDemo[activeIndex].label}

@@ -19,7 +19,7 @@ type Variant = "invoice" | "receipt";
 
 type Props = {
   variant: Variant;
-  data: PaymentData;
+  data: Invoice;
 };
 export default function ViewDataDetailsModal({ variant, data }: Props) {
   const { onOpen, isOpen, onOpenChange } = useDisclosure();
@@ -27,7 +27,7 @@ export default function ViewDataDetailsModal({ variant, data }: Props) {
   return (
     <>
       <Modal
-        header={<div className="h-5"></div>}
+        header={<div className="h-5" />}
         body={<ModalBody variant={variant} data={data} />}
         footer={<ModalFooter variant={variant} data={data} />}
         isOpen={isOpen}
@@ -36,7 +36,10 @@ export default function ViewDataDetailsModal({ variant, data }: Props) {
         closeButton={<ModalCloseIcon />}
         size="3xl"
       />
-      <ViewButton onOpen={onOpen} className="h-11" />
+      <ViewButton
+        onOpen={onOpen}
+        className="max-sm:w-fit max-sm:bg-transparent max-sm:p-0 sm:h-11"
+      />
     </>
   );
 }
@@ -46,25 +49,25 @@ const ModalHeader = ({
   data,
 }: {
   variant: "invoice" | "receipt";
-  data: PaymentData;
+  data: Invoice;
 }) => {
   return (
     <div
       className={`sticky -top-2 mx-auto -mt-2 flex w-full items-center justify-between rounded-xl px-4 py-2 ${
-        variant == "invoice" ? "bg-primary" : "rounded-t-xl bg-[#F8F8F8]"
+        variant === "invoice" ? "bg-primary" : "rounded-t-xl bg-[#F8F8F8]"
       }`}
     >
       <div
         className={`flex flex-col gap-1 ${
-          variant == "invoice" ? "text-white" : "text-shade-300"
+          variant === "invoice" ? "text-white" : "text-shade-300"
         }`}
       >
         <h2 className="uppercase">
-          {variant == "invoice" ? "invoice" : "receipt"}
+          {variant === "invoice" ? "invoice" : "receipt"}
         </h2>
         <small
           className={`font-semibold text-neutral-300 ${
-            variant == "receipt" && "hidden"
+            variant === "receipt" && "hidden"
           }`}
         >
           {data.id}
@@ -72,7 +75,7 @@ const ModalHeader = ({
       </div>
       <div
         className={`relative aspect-[50/37] w-full max-w-[50px] ${
-          variant == "receipt" && "hidden"
+          variant === "receipt" && "hidden"
         }`}
       >
         <Logo />
@@ -81,13 +84,7 @@ const ModalHeader = ({
   );
 };
 
-const ModalBody = ({
-  variant,
-  data,
-}: {
-  variant: Variant;
-  data: PaymentData;
-}) => {
+const ModalBody = ({ variant, data }: { variant: Variant; data: Invoice }) => {
   const subTotal = data.amount;
   const tax = (data.tax_rate / 100) * subTotal;
   const total = subTotal + tax;
@@ -180,7 +177,7 @@ const ModalFooter = ({
   data,
 }: {
   variant: Variant;
-  data: PaymentData;
+  data: Invoice;
 }) => {
   return (
     <div className="mx-auto w-full sm:w-11/12">
@@ -193,7 +190,6 @@ const ModalFooter = ({
           />
         </div>
       )}
-
       {variant === "invoice" && (
         <div className="">
           <div className="grid w-full grid-cols-2 items-center justify-end gap-3 bg-transparent pb-2">

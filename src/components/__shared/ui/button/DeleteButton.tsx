@@ -13,7 +13,7 @@ type Props = {
   handleDestruction: () => void;
 };
 
-const ButtonDelete = ({ className, handleDestruction, classNames }: Props) => {
+const DeleteButton = ({ className, handleDestruction, classNames }: Props) => {
   const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
 
   return (
@@ -40,4 +40,4 @@ const ButtonDelete = ({ className, handleDestruction, classNames }: Props) => {
   );
 };
 
-export default ButtonDelete;
+export default DeleteButton;

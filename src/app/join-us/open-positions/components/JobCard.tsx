@@ -32,13 +32,7 @@ export default function JobCard({ job, jobs }: Props) {
       <Modal
         header={
           <div className="flex justify-end pr-10 lg:hidden">
-            <Share
-              url={`/join-us/open-positions?${new URLSearchParams({
-                p: position as string,
-                id: jobId as string,
-              })}`}
-              title={position as string}
-            />
+            <Share title={position as string} content={job.description_brief} />
           </div>
         }
         body={<JobDescriptionModalContent jobs={jobs} />}

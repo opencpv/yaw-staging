@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 import AvatarMenu from "@/components/__shared/ui/avatar/AvatarMenu";
 import Share from "@/components/__shared/ui/share/Share";
 import LikeHeart from "@/components/__shared/ui/LikeHeart";
-import ButtonHireUs from "@/components/__shared/ui/button/ButtonHireUs";
+import HireUsButton from "@/components/__shared/ui/button/HireUsButton";
 import { useJoinUsPageStore } from "./useJoinUsPageStore";
 
 const JoinUsNavbar = (props: any) => {
@@ -32,10 +32,10 @@ const JoinUsNavbar = (props: any) => {
     const handleScroll = () => {
       if (window.scrollY > 1) {
         setIsScrolling(true);
-        setIsNavScrolling(true)
+        setIsNavScrolling(true);
       } else {
         setIsScrolling(false);
-        setIsNavScrolling(false)
+        setIsNavScrolling(false);
       }
     };
 
@@ -63,7 +63,7 @@ const JoinUsNavbar = (props: any) => {
               !isScrolling && "invisible"
             } flex w-full items-center justify-end transition-all md:gap-[31px] lg:gap-[73px]`}
           >
-            <ButtonHireUs
+            <HireUsButton
               className={cn("w-fit px-[4.5rem] text-xl", {
                 invisible: user,
               })}

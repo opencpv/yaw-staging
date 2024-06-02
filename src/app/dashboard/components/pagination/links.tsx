@@ -54,10 +54,10 @@ export const PgRoutesRenter = [
     link: "/dashboard/renter/sell-products",
   },
   {
-    name: "subscriptions",
+    name: "Payments",
     url: "",
     icon: <BsEnvelope />,
-    link: "/dashboard/renter/subscriptions",
+    link: "/b2b",
   },
   {
     name: "notifications",
@@ -117,10 +117,10 @@ export const PgRoutesLister = [
     link: "/dashboard/lister/sell-products",
   },
   {
-    name: "subscriptions",
+    name: "Payments",
     url: "",
     icon: <BsEnvelope />,
-    link: "/dashboard/lister/subscriptions",
+    link: "/b2b",
   },
   {
     name: "notifications",

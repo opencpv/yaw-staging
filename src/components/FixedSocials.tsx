@@ -1,9 +1,8 @@
 "use client";
+import { socialLinks } from "@/enum/links/socials";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { FaChevronRight, FaFacebookF } from "react-icons/fa";
-import { IoLogoWhatsapp } from "react-icons/io";
-import { RiInstagramFill, RiTwitterXFill } from "react-icons/ri";
+import { TbChevronCompactRight } from "react-icons/tb";
 
 type Props = {
   threshHoldMin?: number;
@@ -45,41 +44,36 @@ const FixedSocials = ({ threshHoldMax, threshHoldMin }: Props) => {
     <div className={`fixed left-0 top-[50%] z-20`}>
       <section
         className={`${
-          shouldShowSocials ? "translate-x-0 opacity-90" : "-translate-x-[100%]"
+          shouldShowSocials
+            ? "translate-x-0 opacity-90"
+            : "pointer-events-none -translate-x-[100%] touch-none"
         } relative  w-10 rounded-r-lg border border-primary-800 bg-white py-4 transition-transform`}
       >
         <ul className="flex flex-col gap-2">
-          <li className="grid h-8 w-8 place-items-center rounded-full bg-neutral-200">
-            <Link href="#" target="_blank">
-              <RiInstagramFill className="text-primary-800" title="instagram" />
-            </Link>
-          </li>
-          <li className="grid h-8 w-8 place-items-center rounded-full bg-neutral-200">
-            <Link href="#" target="_blank">
-              <RiTwitterXFill className="text-primary-800" title="x" />
-            </Link>
-          </li>
-          <li className="grid h-8 w-8 place-items-center rounded-full bg-neutral-200">
-            <Link href="#" target="_blank">
-              <FaFacebookF className="text-primary-800" title="facebook" />
-            </Link>
-          </li>
-          <li className="grid h-8 w-8 place-items-center rounded-full bg-neutral-200">
-            <Link href="#" target="_blank">
-              <IoLogoWhatsapp className="text-primary-800" title="whatsapp" />
-            </Link>
-          </li>
+          {socialLinks.monochrome.map((link) => (
+            <li
+              key={link.name}
+              className="grid h-8 w-8 place-items-center rounded-full bg-neutral-200 text-primary-800"
+            >
+              <Link href={link.href} target="_blank" title={link.name}>
+                {link.icon}
+              </Link>
+            </li>
+          ))}
         </ul>
       </section>
       <section
-        className={`from-primary relative -z-10 grid h-7 w-6 cursor-pointer place-items-center bg-gradient-to-b to-primary-400 ${
+        className={`relative -z-10 grid h-16 w-6 cursor-pointer place-items-center rounded-r-md bg-gradient-to-b from-primary to-primary-400 ${
           shouldShowArrow && !shouldShowSocials
             ? "translate-x-0 opacity-70"
             : "-translate-x-[100%]"
-        } -translate-y-[660%]`}
+        } -translate-y-[290%]`}
         onClick={toggleShowSocials}
       >
-        <FaChevronRight className="text-white" />
+        <TbChevronCompactRight
+          className="relative right-1 text-white"
+          size={32}
+        />
       </section>
     </div>
   );

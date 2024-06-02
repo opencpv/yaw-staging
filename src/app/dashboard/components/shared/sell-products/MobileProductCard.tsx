@@ -8,7 +8,7 @@ import TbPropertyImageSm from "../TbPropertyImageSm";
 import ProductCondition from "./ProductCondition";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import EditButton from "@/components/__shared/ui/button/EditButton";
-import ButtonDelete from "@/components/__shared/ui/button/ButtonDelete";
+import DeleteButton from "@/components/__shared/ui/button/DeleteButton";
 
 const MobileProductCard = ({ data }: { data: any }) => {
   const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
@@ -65,7 +65,7 @@ const MobileProductCard = ({ data }: { data: any }) => {
           {status === "not submitted" && (
             <>
               <EditButton onOpen={() => ""} />
-              <ButtonDelete handleDestruction={() => {}} />
+              <DeleteButton handleDestruction={() => {}} />
             </>
           )}
         </TableBodySm>

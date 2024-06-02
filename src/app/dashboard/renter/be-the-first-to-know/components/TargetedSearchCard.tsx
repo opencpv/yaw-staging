@@ -5,7 +5,7 @@ import MatchLabel from "./MatchLabel";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import MatchCount from "./MatchCount";
 import EditButton from "@/components/__shared/ui/button/EditButton";
-import ButtonDelete from "@/components/__shared/ui/button/ButtonDelete";
+import DeleteButton from "@/components/__shared/ui/button/DeleteButton";
 import { IoEyeOutline } from "react-icons/io5";
 import Button from "@/components/__shared/ui/button/Button";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
@@ -85,7 +85,7 @@ const TargetedSearchCard = ({ href, property, state, count }: Props) => {
         </div>
         <div className="flex items-center gap-2">
           <EditButton onOpen={() => ""} />
-          <ButtonDelete handleDestruction={() => {}} />
+          <DeleteButton handleDestruction={() => {}} />
         </div>
       </div>
     </div>

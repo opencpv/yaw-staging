@@ -16,7 +16,6 @@ import slugify from "@/lib/utils/slugify";
 import { fadeIn } from "@/lib/animations";
 import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 import AdsSlider from "./components/post/AdsSlider";
-import { cookies } from "next/headers";
 
 const page = async () => {
   const initialBlogData: any = await loadQuery<SanityDocument[]>(BLOG_QUERY);
@@ -31,7 +30,7 @@ const page = async () => {
     blogData.length > 3
       ? blogData.slice(postsCount - 3, postsCount + 1)
       : blogData;
-  const sortedBlogPosts = blogData.sort((a: any, b: any) => a.view - b.views);
+  const sortedBlogPosts = blogData.sort((a: any, b: any) => a.views - b.views);
   const popularPosts = sortedBlogPosts.slice(0, 3);
 
   return (

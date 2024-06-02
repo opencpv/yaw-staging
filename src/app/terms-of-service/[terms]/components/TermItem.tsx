@@ -2,14 +2,14 @@ import RichTextRenderer from "@/components/__shared/RichTextRenderer";
 
 const TermItem = ({ data, index }: { data: any; index: number }) => {
   const Bullet = () => (
-    <div className="flex h-[50px] w-[50px] shrink-0 items-center justify-center rounded-full bg-[#DDB771] text-base font-bold text-[#fff] lg:h-[100px] lg:w-[100px] lg:text-3xl 2xl:h-[120px] 2xl:w-[120px]">
+    <div className="flex h-[50px] w-[50px] shrink-0 items-center justify-center rounded-full bg-accent text-base font-bold text-[#fff] lg:h-[100px] lg:w-[100px] lg:text-3xl 2xl:h-[120px] 2xl:w-[120px]">
       {index + 1 < 0 ? "" : <span>0</span>}
       {index + 1}
     </div>
   );
 
   const Title = () => (
-    <h2 className="text-primary flex w-fit items-center justify-center font-bold lg:text-4xl">
+    <h2 className="flex w-fit items-center justify-center font-bold text-primary lg:text-4xl">
       {data.termsArray.title}
     </h2>
   );

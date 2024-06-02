@@ -16,7 +16,7 @@ const ButtonInfiniteLoading = ({
   data,
 }: Props) => {
   return (
-    <>
+    <div className="mt-10 flex items-center justify-center">
       {isLoading ? null : (
         <Button
           onClick={() => loadMore && loadMore()}
@@ -30,7 +30,7 @@ const ButtonInfiniteLoading = ({
           Load More
         </Button>
       )}
-    </>
+    </div>
   );
 };
 

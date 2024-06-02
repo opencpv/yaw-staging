@@ -4,7 +4,7 @@ const FAQTab = (props: any) => {
     <button
       onClick={onClick()}
       className={`w-fit px-[5px] font-montserrat  font-semibold ${
-        activeIndex == index ? "border-l-4 border-[#DDB771]" : ""
+        activeIndex == index ? "border-l-4 border-accent" : ""
       } text-[#45808B]`}
     >
       {props.text}

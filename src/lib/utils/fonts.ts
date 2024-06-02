@@ -1,6 +1,7 @@
 // import { Open_Sans } from "next/font/google";
 import Open_Sans_Local from "next/font/local";
 import Montserrat_Local from "next/font/local";
+import { Pacifico } from "next/font/google";
 
 // export const openSans = Open_Sans({
 //   subsets: ["latin"],
@@ -33,4 +34,10 @@ export const montserratLocal = Montserrat_Local({
   ],
   variable: "--font-montserrat",
   display: "swap",
+});
+
+export const pacifico = Pacifico({
+  variable: "--font-pacifico",
+  weight: "400",
+  preload: false,
 });
