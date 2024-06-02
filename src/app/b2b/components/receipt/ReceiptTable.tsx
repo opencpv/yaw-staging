@@ -18,6 +18,12 @@ import TableSkeleton from "@/app/dashboard/components/shared/skeleton/TableSkele
 import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
 import TableSkeletonSm from "@/app/dashboard/components/shared/skeleton/TableSkeletonSm";
 import InvoiceEmptyState from "../__shared/InvoiceEmptyState";
+import { Button } from "@/components/__shared/ui/button";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import { PDFTemplateObject } from "../__shared/InvoiceTemplate";
+import { customerStore } from "@/store/payment/customerStore";
+import { HiOutlineDownload } from "react-icons/hi";
+import { invoiceStore } from "@/store/payment/invoiceStore";
 
 type Props = {
   searchString: string;
@@ -36,6 +42,8 @@ const ReceiptTable = ({ searchString, customerId }: Props) => {
     receiptData: receipts as Invoice[],
   });
 
+  const { receiptItem } = invoiceStore();
+
   const {
     currentItems: paginatedReceipts,
     handlePageClick,
@@ -43,9 +51,20 @@ const ReceiptTable = ({ searchString, customerId }: Props) => {
   } = usePagination({
     items: receipts as Invoice[],
   });
+  const { customer } = customerStore();
+
+  const downloadAll = () => {
+    receipts?.forEach((item) => {
+      const button = document.getElementById(`${item.service}-receipt`);
+      if (button) {
+        button.click();
+      }
+    });
+  };
 
   return (
     <>
+      <div className="absolute left-[-9999px] top-[-9999px]"></div>
       <Table>
         <TableHeaderRow className="grid-cols-6" gap="2rem">
           <TableHeader className="col-span-1">
@@ -107,7 +126,6 @@ const ReceiptTable = ({ searchString, customerId }: Props) => {
           <DataRowSm key={createUUID()} data={data} variant="receipt" />
         ))}
       </TableSm>
-
       <Pagination handlePageClick={handlePageClick} pageCount={pageCount} />
     </>
   );
