@@ -20,7 +20,7 @@ const PdfTemplate = ({
 }) => {
   const pdfContainerRef = useRef<any>([]);
 
-  const generatePdf = async (data, index) => {
+  const generatePdf = async (data: any, index: number) => {
     const input = pdfContainerRef.current[index];
     const canvas = await html2canvas(input);
     const imgData = canvas.toDataURL("image/png");

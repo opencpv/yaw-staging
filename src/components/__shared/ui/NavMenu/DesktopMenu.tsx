@@ -37,37 +37,25 @@ export const DesktopMenu = (props: any) => {
             (r, idx) =>
               r.name.toLowerCase() !== "more" && (
                 <React.Fragment key={idx}>
-                  {r.name.toLowerCase() === "faq" ? (
-                    <MenuLink
-                      active={active === idx}
-                      linkObject={r}
-                      onClick={() => {
+                  <MenuLink
+                    active={active === idx}
+                    linkObject={r}
+                    onClick={() => {
+                      if (r.name.toLowerCase() === "faq") {
                         setFaqActivePage("faq");
-                        if (r?.sub) {
-                          setActive(idx as number);
-                          setSubId(null);
-                        } else {
-                          setActive(null);
-                          router.push(r?.url);
-                        }
-                      }}
-                    />
-                  ) : (
-                    <MenuLink
-                      active={active === idx}
-                      linkObject={r}
-                      onClick={() => {
-                        if (r?.sub) {
-                          setActive(idx as number);
-                          setSubId(null);
-                        } else {
-                          setActive(null);
-                          // router.push(r?.url);
-                          // props?.toggleMenu();
-                        }
-                      }}
-                    />
-                  )}
+                      }
+
+                      if (r?.sub) {
+                        setActive(idx);
+                        setActiveSubLink("");
+                        setSubId(null);
+                      } else {
+                        setActiveSubLink("");
+                        setActive(null);
+                        router.push(r?.url);
+                      }
+                    }}
+                  />
                 </React.Fragment>
               ),
           )}
@@ -78,42 +66,25 @@ export const DesktopMenu = (props: any) => {
             (r, idx) =>
               r.name.toLowerCase() !== "more" && (
                 <React.Fragment key={idx}>
-                  {r.name.toLowerCase() === "faq" ? (
-                    <MenuLink
-                      active={active === idx}
-                      linkObject={r}
-                      onClick={() => {
+                  <MenuLink
+                    active={active === idx}
+                    linkObject={r}
+                    onClick={() => {
+                      if (r.name.toLowerCase() === "faq") {
                         setFaqActivePage("faq");
-                        if (r?.sub) {
-                          setActive(idx as number);
-                          setActiveSubLink("");
-                          setSubId(null);
-                        } else {
-                          setActiveSubLink("");
-                          setActive(null);
-                          router.push(r?.url);
-                        }
-                      }}
-                    />
-                  ) : (
-                    <MenuLink
-                      active={active === idx}
-                      linkObject={r}
-                      onClick={() => {
-                        if (r?.sub) {
-                          setActive(idx as number);
-                          setSubId(null);
-                          setActiveSubLink("");
-                        } else {
-                          setActive(null);
-                          setActiveSubLink("");
+                      }
 
-                          router.push(r?.url);
-                          // props?.toggleMenu();
-                        }
-                      }}
-                    />
-                  )}
+                      if (r?.sub) {
+                        setActive(idx);
+                        setActiveSubLink("");
+                        setSubId(null);
+                      } else {
+                        setActiveSubLink("");
+                        setActive(null);
+                        router.push(r?.url);
+                      }
+                    }}
+                  />
                 </React.Fragment>
               ),
           )}
@@ -129,7 +100,7 @@ export const DesktopMenu = (props: any) => {
             exit={"closed"}
           >
             {/* sub links --> view all listings, etc... */}
-            {linksBeforeLogin[active]?.sub?.map((l : any, ldx) => (
+            {linksBeforeLogin[active]?.sub?.map((l: any, ldx) => (
               <MenuLink
                 key={ldx}
                 active={ldx === subId}
@@ -155,7 +126,7 @@ export const DesktopMenu = (props: any) => {
             exit={"closed"}
           >
             {/* sub links --> view all listings, etc... */}
-            {linksAfterLogin[active]?.sub?.map((l : any, ldx) => (
+            {linksAfterLogin[active]?.sub?.map((l: any, ldx) => (
               <MenuLink
                 key={ldx}
                 active={ldx === subId}
@@ -166,25 +137,6 @@ export const DesktopMenu = (props: any) => {
                 }}
               />
             ))}
-          </motion.div>
-        </>
-      )}
-      {subId !== null && ( // REVISIT. IS IT STILL APPLICABLE?
-        <>
-          <Separator
-            color={"primary"}
-            orientation={"vertical"}
-            className="h-full min-h-[350px]"
-          />
-          <motion.div
-            key={createUUID()}
-            className={"flex flex-[0_0_30%] flex-col text-[#FCAB10]"}
-            animate={FadeInOut.open}
-            variants={FadeInOut}
-            initial={FadeInOut.closed}
-            exit={FadeInOut.closed}
-          >
-            Stuff here
           </motion.div>
         </>
       )}

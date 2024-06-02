@@ -9,7 +9,7 @@ type Props = {
 function SubLinkResultsCard({ listing }: Props) {
   return (
     <>
-      {!listing ? (
+      {listing ? (
         <Link
           href={`/properties`}
           className="relative flex aspect-[242/212]  w-full min-w-[212px]  max-w-[212px]  cursor-pointer  flex-col justify-start overflow-hidden rounded-lg bg-cover bg-no-repeat text-white transition-all hover:scale-[1.02]"

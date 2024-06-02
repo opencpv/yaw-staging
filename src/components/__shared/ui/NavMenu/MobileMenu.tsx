@@ -18,6 +18,7 @@ import FaqLink from "@/components/__shared/ui/links/FaqLink";
 import { cn } from "@/lib/utils";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useMenuLinks } from "./content";
+import CaArrowRight from "./components/icons/CaArrowRight";
 
 const MenuOption = ({
   name,
@@ -100,8 +101,14 @@ const MenuOption = ({
                   }}
                 />
               ) : (
-                <Link href={r?.url} onClick={() => setToggle(false)}>
+                // please make it properties and add r?.label to the get to the corresponding url
+                <Link
+                  href={`/properties`}
+                  onClick={() => setToggle(false)}
+                  className="flex justify-between items-center gap-10 w-full"
+                >
                   {r?.name}
+                  <CaArrowRight />
                 </Link>
               )}
 
