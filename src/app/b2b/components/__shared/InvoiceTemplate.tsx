@@ -1,144 +1,48 @@
-import { useRef } from "react";
-import { jsPDF } from "jspdf";
-import html2canvas from "html2canvas";
-import { saveAs } from "file-saver";
-import { formatDateDMY } from "@/lib/utils/stringManipulation";
-import legal from "@/enum/about/legal";
-import { formatPrice } from "@/lib/utils/numberManipulation";
-import Cost from "./Cost";
-import CaQuote from "./CaQuote";
-import { PaymentData } from "../types";
-
 const PdfTemplate = ({
   variant,
   data,
   customer,
 }: {
   variant: string;
-  data: PaymentData[];
+  data: Invoice;
   customer: any;
 }) => {
-  const pdfContainerRef = useRef<any>([]);
-
-  const generatePdf = async (data, index) => {
-    const input = pdfContainerRef.current[index];
-    const canvas = await html2canvas(input);
-    const imgData = canvas.toDataURL("image/png");
-    const pdf = new jsPDF();
-    pdf.addImage(imgData, "PNG", 0, 0);
-    const pdfBlob = pdf.output("blob");
-    return pdfBlob;
-  };
-
-  const downloadPdfs = async () => {
-    for (let i = 0; i < data.length; i++) {
-      const pdfBlob = await generatePdf(data[i], i);
-      saveAs(pdfBlob, `${data[i].name || `Document${i + 1}`}.pdf`);
+  return `<html>
+  <style>
+    .main{
+      width:full;
+      padding: 16px;
     }
-  };
-
-  return (
-    <div className="w-full">
-      <button onClick={downloadPdfs}>Download PDFs</button>
-
-      <div style={{ display: "none" }}>
-        {data.map((item, index) => {
-          const subTotal = item.amount;
-          const tax = (item.tax_rate / 100) * subTotal;
-          const total = subTotal + tax;
-          return (
-            <div
-              key={index}
-              className="payment-pdf mx-auto rounded-t-xl bg-[#F8F8F8] p-2 pt-0 sm:w-11/12"
-              ref={(el) => (pdfContainerRef.current[index] = el)}
-            >
-              <section className="space-y-8">
-                <section className="highlight flex gap-5 max-xs:justify-between">
-                  <h4>Date issued</h4>
-                  <p className="highlight-body">
-                    {formatDateDMY(item.billing_date)}
-                  </p>
-                </section>
-
-                <section className="grid gap-5 sm:grid-cols-2">
-                  <div className="highlight">
-                    <div className="flex flex-col gap-4">
-                      <h4>To:</h4>
-                      <div className="highlight-body">
-                        <p>{customer.company}</p>
-                        <p>Customer ID: {customer.customer_id}</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="highlight">
-                    <div className="flex flex-col gap-4">
-                      <h4>From:</h4>
-                      <div className="highlight-body">
-                        <p className="font-bold">{legal.companyName}</p>
-                        <p>{legal.address}</p>
-                        <p>{legal.city}</p>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-
-                <section className="space-y-2">
-                  <div className="highlight flex items-center justify-between gap-5">
-                    <h4>Service</h4>
-                    <h4>Total</h4>
-                  </div>
-                  <div className="highlight flex flex-col justify-between gap-x-20 gap-y-10 ssm:flex-row">
-                    <div className="space-y-2">
-                      <h4>{item.service}</h4>
-                      <p className="highlight-body font-semibold">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Accusantium ipsa.
-                      </p>
-                    </div>
-                    <p className="highlight-body">{formatPrice(item.amount)}</p>
-                  </div>
-                </section>
-
-                <section className="flex w-full justify-end">
-                  <Cost
-                    subTotal={subTotal}
-                    taxRate={item.tax_rate}
-                    tax={tax}
-                    total={total}
-                    variant={variant}
-                  />
-                </section>
-                <section className="flex flex-col gap-1 pt-14">
-                  <p className="font-bold">
-                    Thank you for doing business with us!
-                  </p>
-                  <div className="flex gap-2 ssm:items-center">
-                    <div className="relative shrink-0 max-ssm:top-2">
-                      <CaQuote />
-                    </div>
-                    <p className="highlight-body font-semibold">
-                      Please pay within 15 days of receiving this invoice.
-                    </p>
-                  </div>
-                </section>
-
-                <section className="flex items-center justify-between gap-4 py-5 max-sm:flex-wrap">
-                  <p className="w-full text-[#B0B0B0]">SBG DIGITAL LLC</p>
-                  <div className="gapy-5 flex items-center gap-x-10 gap-y-5 max-ssm:flex-wrap">
-                    <p className="highlight-body whitespace-nowrap">
-                      +91 00000 00000
-                    </p>
-                    <div className="h-8 w-1 border-r max-ssm:hidden"></div>
-                    <p className="highlight-body">{legal.email}</p>
-                  </div>
-                </section>
-              </section>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
+    h1,h2,h3,h4,h5,p{
+      margin: 0px;
+    }
+    .header{
+      width: full;
+      padding: 16px;
+      background: #11605E;
+      border-radius: 8px;
+      color: #fff;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .invoiceHeader{
+      text-transform: uppercase;
+     
+      
+    }
+  </style>
+  <body class="main">
+     <div class="header">
+       <div class="invoiceHeader">
+         <h2 >Invoice</h2>
+         <p>#1002</p>
+       </div>
+       <img src="https://dev.staging.rentrightgh.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FLogo.73b03ab3.png&w=96&q=100" width="50px" height="41px"/>
+     </div>
+  </body>
+</html>`;
 };
 
 export default PdfTemplate;

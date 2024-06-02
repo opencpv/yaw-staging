@@ -20,7 +20,7 @@ const InvoiceReceiptFilter = (props: Props) => {
   const id = searchParams?.get("id");
 
   const { activePage, setActivePage } = invoiceStore();
-  const { setCustomer } = customerStore();
+  const { setCustomer, customer } = customerStore();
   const [loading, setloading] = useState(false);
   const supabaseClient = createClient();
   const { setInvoiceItems } = invoiceStore();
@@ -32,36 +32,34 @@ const InvoiceReceiptFilter = (props: Props) => {
         .from("invoices")
         .select("*")
         .eq("customer", id);
-      let { data: customer, error: customerError } = await supabaseClient
+      let { data: customerData, error: customerError } = await supabaseClient
         .from("customers")
         .select("*")
-        .eq("customer_id", id);
+        .eq("customer_id", props.customerId);
       if (customerError) {
         setloading(false);
         console.log(customerError.message);
         return;
       }
+      console.log(id);
       if (error) {
         setloading(false);
         console.log(error.message);
 
         return;
       }
-      const invoicesOnly = invoices?.filter(
-        (invoice: any) => invoice.type === "INVOICE",
-      );
-      const receiptsOnly = invoices?.filter(
-        (invoice: any) => invoice.is_paid == true,
-      );
-      if (customer) {
-        setCustomer(customer[0]);
+      if (customerData) {
+        setCustomer(customerData[0]);
       }
-      setInvoiceItems(invoices as PaymentData[]);
+      setInvoiceItems(invoices as Invoice[]);
     };
 
     fetchData();
   }, []);
 
+  useEffect(() => {
+    console.log(customer);
+  }, [customer]);
   return (
     <>
       <div className="mb-10">

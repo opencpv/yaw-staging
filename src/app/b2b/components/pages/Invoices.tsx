@@ -1,11 +1,18 @@
 "use client";
 import Cost from "../__shared/Cost";
-import CheckoutButton from "../__shared/CheckoutButton";
 import InvoiceTable from "../invoice/InvoiceTable";
 import { invoiceStore } from "@/store/payment/invoiceStore";
 import SearchInput from "@/components/__shared/ui/form/SearchInput";
 import { useState } from "react";
 import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
+import { customerStore } from "@/store/payment/customerStore";
+import CheckoutButton from "../__shared/CheckoutButton";
+import DownloadButton from "../__shared/DownloadButton";
+import { HiOutlineDownload } from "react-icons/hi";
+import { Button } from "@/components/__shared/ui/button";
+import axios from "axios";
+import { title } from "process";
+import PdfTemplate from "../__shared/InvoiceTemplate";
 
 type Status = "all" | "paid" | "pending";
 
@@ -23,6 +30,42 @@ function Invoices({ customerId }: Props) {
   const downloadInvoices = async () => {
     for (const item of checkoutItems) {
       const filename = item.service + ".pdf";
+    }
+  };
+
+  const generatePDF = async () => {
+    console.log(
+      PdfTemplate({
+        variant: "invoice",
+        data: checkoutItems[0],
+        customer,
+      }),
+    );
+    const response = await fetch("/api/generate-pdf", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        htmlContent: PdfTemplate({
+          variant: "invoice",
+          data: checkoutItems[0],
+          customer,
+        }),
+      }),
+    });
+
+    if (response.ok) {
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "generated.pdf";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    } else {
+      console.error("Failed to generate PDF");
     }
   };
 
@@ -52,8 +95,22 @@ function Invoices({ customerId }: Props) {
         customerId={customerId}
         filter={filter}
       />
-
-      <section className="hidden w-full justify-between gap-5 bg-[#F8F8F8] py-5 lg:flex">
+      {checkoutItems.length > 0 && (
+        <Button
+          color="primary"
+          className={`text group w-fit gap-2  bg-opacity-20 px-8 font-bold text-[#545454] hover:text-white`}
+          onClick={async () => {
+            await generatePDF();
+          }}
+        >
+          Download
+          <HiOutlineDownload
+            size="24"
+            className="shrink-0 group-hover:text-white"
+          />
+        </Button>
+      )}
+      <section className="hidden w-full justify-between gap-5 bg-[#F8F8F8] py-5  lg:flex">
         <div />
         <div>
           <Cost

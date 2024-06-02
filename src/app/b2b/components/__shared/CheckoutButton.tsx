@@ -9,7 +9,7 @@ import { invoiceStore } from "@/store/payment/invoiceStore";
 
 type Props = {
   affix?: number;
-  items?: PaymentData[];
+  items?: Invoice[];
 };
 
 function CheckoutButton({ affix, items }: Props) {

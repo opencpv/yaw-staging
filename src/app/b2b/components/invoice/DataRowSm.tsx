@@ -10,6 +10,7 @@ import { CheckboxNoFormik as Checkbox } from "@/app/dashboard/components/shared/
 import { useInvoiceData } from "../../hooks/useInvoiceData";
 import { RiFileListLine } from "react-icons/ri";
 import { cn } from "@/lib/utils";
+import { invoiceStore } from "@/store/payment/invoiceStore";
 
 type Props = {
   variant: "invoice" | "receipt";

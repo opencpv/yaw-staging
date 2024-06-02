@@ -36,7 +36,7 @@ function DataRow({ data, variant }: Props) {
           {formatDateOnly(data.billing_date)}
         </TableBody>
         <TableBody className="col-span-1">
-          {data.is_paid ? formatPrice(0) : formatPrice(data.amount)}
+          {formatPrice((1 + data.tax_rate / 100) * data.amount)}
         </TableBody>
         <TableBody className="col-span-1">
           <ViewDataDetailsModal variant={variant} data={data} />

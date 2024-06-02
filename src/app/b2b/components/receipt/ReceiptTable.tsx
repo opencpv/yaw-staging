@@ -61,7 +61,7 @@ const ReceiptTable = ({ searchString, customerId }: Props) => {
           <TableHeader className="col-span-1">Invoice Id</TableHeader>
           <TableHeader className="col-span-1">Service</TableHeader>
           <TableHeader className="col-span-1">Billing Date</TableHeader>
-          <TableHeader className="col-span-1">Amount Due</TableHeader>
+          <TableHeader className="col-span-1">Amount Paid</TableHeader>
           <TableHeader className="col-span-1">Action</TableHeader>
         </TableHeaderRow>
         <TableBodyRowGroup>

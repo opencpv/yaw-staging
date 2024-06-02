@@ -4,12 +4,12 @@ import { create } from "zustand";
 type InvoiceStore = {
   activePage: React.Key;
   setActivePage: (option: React.Key) => void;
-  checkoutItems: PaymentData[];
-  invoiceItems: PaymentData[];
-  setCheckoutItems: (items: PaymentData[]) => void;
-  setInvoiceItems: (items: PaymentData[]) => void;
+  checkoutItems: Invoice[];
+  invoiceItems: Invoice[];
+  setCheckoutItems: (items: Invoice[]) => void;
+  setInvoiceItems: (items: Invoice[]) => void;
   removeCheckoutItemById: (id: number) => void;
-  addCheckoutItem: (item: PaymentData) => void; // Add this line
+  addCheckoutItem: (item: Invoice) => void; // Add this line
 };
 
 export const invoiceStore = create<InvoiceStore>((set) => ({
@@ -38,6 +38,6 @@ export const invoiceStore = create<InvoiceStore>((set) => ({
       checkoutItems: [...state.checkoutItems, item],
     })),
   invoiceDownloadClassName: "",
-  setInvoiceDownloadClassName: (className:string) =>
+  setInvoiceDownloadClassName: (className: string) =>
     set((state) => ({ ...state, invoiceDownloadClassName: className })),
 }));

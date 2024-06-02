@@ -91,7 +91,7 @@ const ModalBody = ({ variant, data }: { variant: Variant; data: Invoice }) => {
   const { customer } = customerStore();
 
   return (
-    <main className="payment-pdf mx-auto rounded-t-xl bg-[#F8F8F8] p-2 pt-0 sm:w-11/12">
+    <main className=" mx-auto rounded-t-xl bg-[#F8F8F8] p-2 pt-0 sm:w-11/12">
       <ModalHeader variant={variant} data={data} />
       <section className=" space-y-8">
         <section className="highlight flex gap-5 max-xs:justify-between">
@@ -182,9 +182,10 @@ const ModalFooter = ({
   return (
     <div className="mx-auto w-full sm:w-11/12">
       {variant !== "invoice" && (
-        <div className="">
+        <div className="w-full">
           <DownloadButton
             data={data}
+            maxWidth="fit"
             variant={variant}
             content={{ title: `${new Date().toLocaleDateString()}-receipt` }}
           />
