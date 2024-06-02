@@ -85,8 +85,12 @@ const Button: React.FC<Props> = ({
               variant === "outline" && color === "black",
             "border border-[#21A19F] bg-transparent text-[#21A19F]":
               variant === "outline" && color === "gradient",
-            "h-unit-4 w-fit min-w-unit-5 max-w-none justify-normal rounded-none bg-transparent p-0 text-neutral-800 hover:scale-100":
+            "h-fit w-fit min-w-unit-5 max-w-none justify-normal rounded-none bg-transparent p-0 text-neutral-800 hover:scale-100":
               variant === "ghost",
+            "h-fit w-fit min-w-unit-5 max-w-none justify-normal rounded-none bg-transparent p-0 text-primary hover:scale-100":
+              variant === "ghost" && color === "primary",
+            "h-fit w-fit min-w-unit-5 max-w-none justify-normal rounded-none bg-transparent p-0 text-accent hover:scale-100":
+              variant === "ghost" && color === "accent",
             "rounded-full": radius === "full",
             "h-unit-6 min-w-unit-5 px-2.5 py-1.5": padding === "sm",
             "cursor-not-allowed bg-gray-300 text-neutral-600": disabled,
@@ -135,8 +139,12 @@ const Button: React.FC<Props> = ({
               variant === "outline" && color === "black",
             "border border-[#21A19F] bg-transparent text-[#21A19F]":
               variant === "outline" && color === "gradient",
-            "h-unit-4 w-fit min-w-unit-5 max-w-none justify-normal rounded-none bg-transparent p-0 text-neutral-800 hover:scale-100":
+            "h-fit w-fit min-w-unit-5 max-w-none justify-normal rounded-none bg-transparent p-0 text-neutral-800 hover:scale-100":
               variant === "ghost",
+            "h-fit w-fit min-w-unit-5 max-w-none justify-normal rounded-none bg-transparent p-0 text-primary hover:scale-100":
+              variant === "ghost" && color === "primary",
+            "h-fit w-fit min-w-unit-5 max-w-none justify-normal rounded-none bg-transparent p-0 text-accent hover:scale-100":
+              variant === "ghost" && color === "accent",
             "rounded-full": radius === "full",
             "h-unit-6 min-w-unit-5 px-2.5 py-1.5": padding === "sm",
             "cursor-not-allowed bg-gray-300 text-neutral-600": disabled,

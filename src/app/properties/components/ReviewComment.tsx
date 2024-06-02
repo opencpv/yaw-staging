@@ -8,23 +8,23 @@ const ReviewComment = (props: Props) => {
   const { images } = useAssets();
   return (
     <>
-      <div className="flex gap-x-5 gap-y-3 flex-wrap">
-        <div className="relative w-20 h-20 rounded-full shrink-0">
+      <div className="flex flex-wrap gap-x-5 gap-y-3">
+        <div className="relative h-20 w-20 shrink-0 rounded-full">
           <Image
             src={images.StockImage}
-            className="rounded-full shrink-0"
+            className="shrink-0 rounded-full"
             alt=""
             fill
             style={{ objectFit: "cover" }}
           />
         </div>
         <div className="text-neutral-800">
-          <h3 className="font-[700] text-xl">Amina Frimpong</h3>
+          <h3 className="text-xl font-[700]">Amina Frimpong</h3>
           <p className="text-neutral-700">April, 2023</p>
         </div>
       </div>
       <div className="lg:ml-24">
-        <p className="max-w-2xl mt-10 text-neutral-700">
+        <p className="mt-10 max-w-4xl text-neutral-700">
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente
           dolores soluta accusamus culpa praesentium optio sed architecto, a
           voluptatem aliquam. Tempora dicta consectetur ea facilis reiciendis

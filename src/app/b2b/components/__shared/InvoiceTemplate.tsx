@@ -1,144 +1,312 @@
-import { useRef } from "react";
-import { jsPDF } from "jspdf";
-import html2canvas from "html2canvas";
-import { saveAs } from "file-saver";
+import React from "react";
+import {
+  Page,
+  Text,
+  View,
+  Document,
+  StyleSheet,
+  Image,
+  Font,
+  PDFDownloadLink,
+  Svg,
+  Path,
+} from "@react-pdf/renderer";
 import { formatDateDMY } from "@/lib/utils/stringManipulation";
-import legal from "@/enum/about/legal";
+import { customerStore } from "@/store/payment/customerStore";
 import { formatPrice } from "@/lib/utils/numberManipulation";
-import Cost from "./Cost";
-import CaQuote from "./CaQuote";
-import { PaymentData } from "../types";
+import legal from "@/enum/about/legal";
 
-const PdfTemplate = ({
+Font.register({
+  family: "Open Sans",
+  fonts: [
+    {
+      src: "https://fonts.gstatic.com/s/opensans/v40/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0C4nY1M2xLER.ttf",
+    },
+    {
+      src: "https://fonts.gstatic.com/s/opensans/v40/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsg-1y4nY1M2xLER.ttf",
+      fontWeight: 600,
+    },
+  ],
+});
+
+const styles = StyleSheet.create({
+  page: {
+    fontSize: 12,
+    padding: 20,
+    lineHeight: 1.5,
+    flexDirection: "column",
+    width: "100vw",
+    fontFamily: "Open Sans",
+  },
+  header: {
+    padding: 16,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    borderRadius: 8,
+    marginBottom: 16,
+  },
+  image: {
+    height: 41,
+    width: 50,
+  },
+  title: {
+    fontSize: 20,
+    textAlign: "center",
+    textTransform: "uppercase",
+    fontWeight: 600,
+  },
+  subtitle: {
+    fontWeight: 600,
+    color: "#262626",
+  },
+  highlightBody: {
+    color: "rgb(138 138 138/1)",
+  },
+  section: {
+    marginBottom: 10,
+  },
+  flexRow: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  bold: {
+    fontWeight: 600,
+  },
+  costTitle: { color: "#545454", fontWeight: 600 },
+  higlightedSection: {
+    backgroundColor: "#F2F4F7",
+    padding: 16,
+    borderRadius: 8,
+  },
+  rowContainer: {
+    display: "flex",
+    flexDirection: "row",
+    gap: 2,
+  },
+  itemContainer: {
+    width: "50%",
+  },
+  marginBotttom: {
+    marginBottom: 8,
+  },
+  textRight: {
+    textAlign: "right",
+  },
+  grayBorder: {
+    borderBottom: "1pt solid #F2F4F7",
+    paddingBottom: 8,
+    marginBottom: 8,
+  },
+  primaryBorder: {
+    borderBottom: "1pt solid #DDB771",
+    paddingBottom: 8,
+    marginBottom: 8,
+    color: "$#DDB771",
+  },
+  primaryColor: {
+    color: "$#DDB771",
+  },
+  lightText: {
+    color: "#8A8A8A",
+  },
+});
+
+export const PDFTemplateObject = ({
   variant,
   data,
   customer,
 }: {
-  variant: string;
-  data: PaymentData[];
+  variant: "invoice" | "receipt";
+  data: Invoice;
   customer: any;
 }) => {
-  const pdfContainerRef = useRef<any>([]);
-
-  const generatePdf = async (data: any, index: number) => {
-    const input = pdfContainerRef.current[index];
-    const canvas = await html2canvas(input);
-    const imgData = canvas.toDataURL("image/png");
-    const pdf = new jsPDF();
-    pdf.addImage(imgData, "PNG", 0, 0);
-    const pdfBlob = pdf.output("blob");
-    return pdfBlob;
-  };
-
-  const downloadPdfs = async () => {
-    for (let i = 0; i < data.length; i++) {
-      const pdfBlob = await generatePdf(data[i], i);
-      saveAs(pdfBlob, `${data[i].name || `Document${i + 1}`}.pdf`);
-    }
-  };
+  const subTotal = data.amount;
+  const tax = (data.tax_rate / 100) * subTotal;
+  const total = subTotal + tax;
 
   return (
-    <div className="w-full">
-      <button onClick={downloadPdfs}>Download PDFs</button>
+    <Document>
+      <Page style={styles.page}>
+        <View
+          style={[
+            styles.header,
+            variant === "invoice"
+              ? { backgroundColor: "#11605E", color: "white" }
+              : { backgroundColor: "#F8F8F8" },
+          ]}
+        >
+          <View style={styles.flexRow}>
+            <View>
+              <Text style={styles.title}>{variant}</Text>
+              {variant === "invoice" && (
+                <Text style={styles.bold}>{data.id}</Text>
+              )}
+            </View>
+          </View>
+          {/* eslint-disable-next-line jsx-a11y/alt-text */}
+          {variant == "invoice" && (
+            <Image
+              style={styles.image}
+              src="http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FLogo.73b03ab3.png&w=96&q=100"
+            />
+          )}
+        </View>
 
-      <div style={{ display: "none" }}>
-        {data.map((item, index) => {
-          const subTotal = item.amount;
-          const tax = (item.tax_rate / 100) * subTotal;
-          const total = subTotal + tax;
-          return (
-            <div
-              key={index}
-              className="payment-pdf mx-auto rounded-t-xl bg-[#F8F8F8] p-2 pt-0 sm:w-11/12"
-              ref={(el) => (pdfContainerRef.current[index] = el)}
+        <View
+          style={[
+            styles.section,
+            styles.rowContainer,
+            styles.higlightedSection,
+          ]}
+        >
+          <Text style={styles.subtitle}>Date issued:</Text>
+          <Text style={styles.highlightBody}>
+            {formatDateDMY(data.billing_date)}
+          </Text>
+        </View>
+
+        <View
+          style={[
+            styles.higlightedSection,
+            styles.rowContainer,
+            styles.marginBotttom,
+          ]}
+        >
+          <View style={styles.itemContainer}>
+            <Text style={[styles.subtitle, styles.marginBotttom]}>To:</Text>
+            <Text style={styles.highlightBody}>{customer.company}</Text>
+            <Text style={styles.highlightBody}>
+              Customer ID: {customer.customer_id}
+            </Text>
+          </View>
+          <View style={[styles.itemContainer, styles.marginBotttom]}>
+            <Text style={[styles.subtitle, styles.marginBotttom]}>From:</Text>
+            <Text style={[styles.highlightBody, styles.bold]}>
+              {legal.companyName}
+            </Text>
+            <Text style={styles.highlightBody}>{legal.address}</Text>
+            <Text style={styles.highlightBody}>{legal.city}</Text>
+          </View>
+        </View>
+
+        <View
+          style={[
+            styles.higlightedSection,
+            styles.rowContainer,
+            styles.marginBotttom,
+          ]}
+        >
+          <Text style={[styles.bold, styles.itemContainer]}>Service</Text>
+          <Text style={[styles.bold, styles.itemContainer, styles.textRight]}>
+            Total
+          </Text>
+        </View>
+        <View style={[styles.higlightedSection, styles.marginBotttom]}>
+          <View style={[styles.rowContainer, styles.marginBotttom]}>
+            <Text style={[styles.itemContainer]}>{data.service}</Text>
+            <Text
+              style={[styles.itemContainer, styles.textRight, styles.lightText]}
             >
-              <section className="space-y-8">
-                <section className="highlight flex gap-5 max-xs:justify-between">
-                  <h4>Date issued</h4>
-                  <p className="highlight-body">
-                    {formatDateDMY(item.billing_date)}
-                  </p>
-                </section>
+              {formatPrice(data.amount)}
+            </Text>
+          </View>
+          <Text style={styles.lightText}>{data.service_description}</Text>
+        </View>
 
-                <section className="grid gap-5 sm:grid-cols-2">
-                  <div className="highlight">
-                    <div className="flex flex-col gap-4">
-                      <h4>To:</h4>
-                      <div className="highlight-body">
-                        <p>{customer.company}</p>
-                        <p>Customer ID: {customer.customer_id}</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="highlight">
-                    <div className="flex flex-col gap-4">
-                      <h4>From:</h4>
-                      <div className="highlight-body">
-                        <p className="font-bold">{legal.companyName}</p>
-                        <p>{legal.address}</p>
-                        <p>{legal.city}</p>
-                      </div>
-                    </div>
-                  </div>
-                </section>
+        <View
+          style={[styles.marginBotttom, styles.rowContainer, { marginTop: 24 }]}
+        >
+          <View style={styles.itemContainer}></View>
+          <View style={styles.itemContainer}>
+            <View style={[styles.flexRow, styles.grayBorder]}>
+              <Text style={[styles.bold, styles.costTitle]}>SubTotal</Text>
+              <View style={styles.rowContainer}>
+                <Text style={styles.costTitle}>GHS</Text>
+                <Text>{formatPrice(subTotal, false)}</Text>
+              </View>
+            </View>
+            <View style={[styles.flexRow, styles.grayBorder]}>
+              <Text style={[styles.bold, styles.costTitle]}>Tax</Text>
+              <View style={styles.rowContainer}>
+                <Text style={styles.costTitle}>GHS </Text>
+                <Text>{formatPrice(tax, false)}</Text>
+              </View>
+            </View>
+            <View style={[styles.flexRow, styles.primaryBorder]}>
+              <Text style={[styles.bold, styles.costTitle]}>Total</Text>
+              <View style={styles.rowContainer}>
+                <Text style={styles.costTitle}>GHS</Text>
+                <Text>{formatPrice(total, false)}</Text>
+              </View>
+            </View>
+            <View style={[styles.flexRow, styles.marginBotttom]}>
+              <Text
+                style={[styles.bold, styles.costTitle, { color: "#DDB771" }]}
+              >
+                Amount Due
+              </Text>
+              <View style={[styles.rowContainer, { color: "#DDB771" }]}>
+                <Text style={{ fontWeight: 600 }}>GHS</Text>
+                <Text>{formatPrice(total, false)}</Text>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View style={[styles.section, { fontSize: 12 }]}>
+          <Text style={styles.costTitle}>
+            Thank you for doing business with us!
+          </Text>
+          {variant == "invoice" && (
+            <View style={[styles.rowContainer, { alignItems: "center" }]}>
+              <Svg width="10" height="10" fill="none" viewBox="0 0 10 10">
+                <Path
+                  fill="#8B919E"
+                  fillRule="evenodd"
+                  d="M2 0a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2V2a2 2 0 00-2-2H2zm2.722 2.955c0-.172-.14-.315-.311-.29-1.08.16-1.911 1.143-1.911 2.33v2.023c0 .172.14.312.313.312H4.41c.172 0 .312-.14.312-.312V5.602a.313.313 0 00-.312-.312H3.61v-.337c0-.536.34-.989.803-1.13.165-.05.308-.186.308-.358v-.51zm2.778 0c0-.172-.14-.315-.312-.29-1.08.16-1.91 1.143-1.91 2.33v2.023c0 .172.14.312.312.312h1.598c.172 0 .312-.14.312-.312V5.602a.313.313 0 00-.313-.312H6.39v-.337c0-.536.34-.989.803-1.13.165-.05.308-.186.308-.358v-.51z"
+                  clip-rule="evenodd"
+                ></Path>
+              </Svg>
+              <Text style={styles.highlightBody}>
+                Please pay within 15 days of receiving this invoice.
+              </Text>
+            </View>
+          )}
+        </View>
 
-                <section className="space-y-2">
-                  <div className="highlight flex items-center justify-between gap-5">
-                    <h4>Service</h4>
-                    <h4>Total</h4>
-                  </div>
-                  <div className="highlight flex flex-col justify-between gap-x-20 gap-y-10 ssm:flex-row">
-                    <div className="space-y-2">
-                      <h4>{item.service}</h4>
-                      <p className="highlight-body font-semibold">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Accusantium ipsa.
-                      </p>
-                    </div>
-                    <p className="highlight-body">{formatPrice(item.amount)}</p>
-                  </div>
-                </section>
-
-                <section className="flex w-full justify-end">
-                  <Cost
-                    subTotal={subTotal}
-                    taxRate={item.tax_rate}
-                    tax={tax}
-                    total={total}
-                    variant={variant}
-                  />
-                </section>
-                <section className="flex flex-col gap-1 pt-14">
-                  <p className="font-bold">
-                    Thank you for doing business with us!
-                  </p>
-                  <div className="flex gap-2 ssm:items-center">
-                    <div className="relative shrink-0 max-ssm:top-2">
-                      <CaQuote />
-                    </div>
-                    <p className="highlight-body font-semibold">
-                      Please pay within 15 days of receiving this invoice.
-                    </p>
-                  </div>
-                </section>
-
-                <section className="flex items-center justify-between gap-4 py-5 max-sm:flex-wrap">
-                  <p className="w-full text-[#B0B0B0]">SBG DIGITAL LLC</p>
-                  <div className="gapy-5 flex items-center gap-x-10 gap-y-5 max-ssm:flex-wrap">
-                    <p className="highlight-body whitespace-nowrap">
-                      +91 00000 00000
-                    </p>
-                    <div className="h-8 w-1 border-r max-ssm:hidden"></div>
-                    <p className="highlight-body">{legal.email}</p>
-                  </div>
-                </section>
-              </section>
-            </div>
-          );
-        })}
-      </div>
-    </div>
+        <View
+          style={[
+            styles.section,
+            styles.flexRow,
+            styles.highlightBody,
+            { marginTop: 24 },
+          ]}
+        >
+          <Text>ESODO LLC</Text>
+          <Text>{`(+233) 54 686 3012`}</Text>
+          <Text>{legal.email}</Text>
+        </View>
+      </Page>
+    </Document>
   );
 };
 
-export default PdfTemplate;
+export const PDFDownload = ({
+  variant,
+  data,
+  customer,
+}: {
+  variant: "invoice" | "receipt";
+  data: Invoice;
+  customer: any;
+}) => (
+  <PDFDownloadLink
+    document={
+      <PDFTemplateObject variant={variant} data={data} customer={customer} />
+    }
+    fileName={`${variant}-${data.id}.pdf`}
+  >
+    {({ loading }) => (loading ? "Loading document..." : "Download PDF")}
+  </PDFDownloadLink>
+);

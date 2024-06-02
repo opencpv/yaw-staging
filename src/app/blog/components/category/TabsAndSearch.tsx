@@ -13,7 +13,7 @@ const TabsAndSearch = ({ handleSearch, categories, onChange }: Props) => {
   return (
     <div className="mb-10 flex flex-col gap-5">
       <div className="w-full max-w-2xl flex-1">
-        <SearchInput onPressEnter={handleSearch} onChange={onChange} />
+        <SearchInput onSearch={handleSearch} onChange={onChange} />
       </div>
       <div className="flex-1 overflow-x-auto">
         <CategoryTabs categories={categories} />

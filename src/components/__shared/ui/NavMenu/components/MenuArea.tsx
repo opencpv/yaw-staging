@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { MobileMenu } from "../MobileMenu";
 import { DesktopMenu } from "../DesktopMenu";
 import { AiFillCloseCircle } from "react-icons/ai";
 import Logo from "@/components/__shared/ui/Logo";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
+import { animate, stagger } from "framer-motion";
 
 const MenuArea = (props: any) => {
-  const { setToggle } = useMenuStore();
+  const { setToggle, toggle } = useMenuStore();
 
   return (
     <div className={"flex flex-col "}>
@@ -36,14 +37,8 @@ const MenuArea = (props: any) => {
           </div>
         </div>
         <div className={"mt-10"}>
-          <MobileMenu
-            className={"flex lg:hidden "}
-            // toggleMenu={props?.toggleMenu}
-          />
-          <DesktopMenu
-            className={"hidden lg:flex"}
-            // toggleMenu={props?.toggleMenu}
-          />
+          <MobileMenu className={"flex lg:hidden "} />
+          <DesktopMenu className={"hidden lg:flex"} />
         </div>
       </div>
     </div>

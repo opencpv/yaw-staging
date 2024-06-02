@@ -38,10 +38,7 @@ const FetchingStates = ({
                 className="flex w-full justify-center"
               />
             ))}
-      {(!isValidating || !isLoading) &&
-        !error &&
-        data?.length === 0 &&
-        emptyStateComponent}
+      {!isLoading && !error && data?.length === 0 && emptyStateComponent}
     </>
   );
 };

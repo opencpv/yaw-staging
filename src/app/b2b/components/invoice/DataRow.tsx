@@ -4,7 +4,6 @@ import {
 } from "@/app/dashboard/components/shared/table/Table";
 import { CheckboxNoFormik as Checkbox } from "@/app/dashboard/components/shared/ui/Checkbox";
 import InvoiceStatus from "./InvoiceStatus";
-import { PaymentData } from "../types";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import { formatDateDMY, formatDateOnly } from "@/lib/utils/stringManipulation";
 import ViewDataDetailsModal from "../__shared/ViewDataDetailsModal";
@@ -14,7 +13,7 @@ import { useEffect, useState } from "react";
 
 type Props = {
   variant: "invoice" | "receipt";
-  data: PaymentData;
+  data: Invoice;
 };
 
 function DataRow({ data, variant }: Props) {
@@ -52,7 +51,7 @@ function DataRow({ data, variant }: Props) {
         </TableBody>
         <TableBody className="col-span-1">{formatPrice(data.amount)}</TableBody>
         <TableBody className="col-span-1">
-          <InvoiceStatus status={data.is_paid ? "paid" : "not paid"} />
+          <InvoiceStatus status={data.is_paid ? "paid" : "pending"} />
         </TableBody>
         <TableBody className="col-span-1">
           <ViewDataDetailsModal variant={variant} data={data} />

@@ -1,7 +1,5 @@
 "use client";
 import React from "react";
-import * as Dialog from "@radix-ui/react-dialog";
-import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { LoginButton } from "@/app/login/components/LoginButton";

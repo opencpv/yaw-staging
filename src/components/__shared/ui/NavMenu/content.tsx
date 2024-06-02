@@ -59,7 +59,7 @@ export const useMenuLinks = () => {
         },
         {
           url: "/b2b",
-          name: "Payment",
+          name: "Payments",
         },
         {
           url: "/join-us",
@@ -89,7 +89,7 @@ export const useMenuLinks = () => {
     },
     {
       url: "/b2b",
-      name: "Payment",
+      name: "Payments",
     },
     {
       url: "/join-us",
@@ -162,7 +162,7 @@ export const useMenuLinks = () => {
         },
         {
           url: "/b2b",
-          name: "Payment",
+          name: "Payments",
         },
         {
           url: "/join-us",
@@ -183,7 +183,7 @@ export const useMenuLinks = () => {
     },
     {
       url: "/b2b",
-      name: "Payment",
+      name: "Payments",
     },
     // {
     //   url: "/faq",

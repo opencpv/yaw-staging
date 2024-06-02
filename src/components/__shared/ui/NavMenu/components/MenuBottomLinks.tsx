@@ -5,6 +5,7 @@ import Link from "next/link";
 import React, { LegacyRef, forwardRef } from "react";
 import ReportFraud from "@/components/__shared/ui/links/ReportFraud";
 import HowToLink from "@/components/__shared/ui/links/HowToLink";
+import { useQuery } from "@tanstack/react-query";
 
 type Props = {
   links: any[];
@@ -12,6 +13,21 @@ type Props = {
 
 const MenuBottomLinks = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
   const { setToggle } = useMenuStore();
+
+  const { data } = useQuery({
+    queryKey: ["feedback", "global"],
+    queryFn: async () => {
+      const res = await fetch("/api/global/feedback");
+
+      if (!res.ok) {
+        throw new Error("Failed to fetch feedback");
+      }
+
+      const data = await res.json();
+
+      return data;
+    },
+  });
 
   return (
     <div
@@ -35,13 +51,8 @@ const MenuBottomLinks = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
               }}
             />
           ) : LowerCase(r?.name) === "feedback" ? (
-            <Feedback data={{}}>
-              <button
-                className="bottomLink text-2xl transition-all"
-                onClick={() => {
-                  setToggle(false);
-                }}
-              >
+            <Feedback data={data}>
+              <button className="bottomLink text-2xl transition-all">
                 Feedback
               </button>
             </Feedback>

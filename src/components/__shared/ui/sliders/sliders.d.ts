@@ -29,13 +29,14 @@ type SliderPaginationOnlyImage = {
 
 type SliderMultiItemsProps = {
   items: React.ReactNode[] | undefined;
-  slidesPerView?: number;
+  slidesPerView?: number | "auto";
   breakpoints?: { [key: number]: { [key: any]: any } };
   hasNavAndPagination?: boolean;
   autoplay?: boolean;
   /** class for a swiper slide item */
   swiperSlideClassName?: string;
   centeredSlides?: boolean;
+  spaceBetween?: number;
 };
 
 type SliderGridProps = {

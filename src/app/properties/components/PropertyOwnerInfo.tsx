@@ -1,8 +1,8 @@
 "use client";
 import ReportIssue from "@/components/__shared/ui/links/ReportIssue";
-import ButtonCall from "@/components/__shared/ui/button/ButtonCall";
-import ButtonMessage from "@/components/__shared/ui/button/ButtonMessage";
-import ButtonWhatsApp from "@/components/__shared/ui/button/ButtonWhatsApp";
+import CallButton from "@/components/__shared/ui/button/CallButton";
+import MessageButton from "@/components/__shared/ui/button/MessageButton";
+import WhatsAppButton from "@/components/__shared/ui/button/WhatsAppButton";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image, { StaticImageData } from "next/image";
 import React from "react";
@@ -53,19 +53,23 @@ const PropertyOwnerInfo = (props: Props) => {
           </h2>
 
           {props.telephone && (
-            <ButtonCall
+            <CallButton
               color="gradient"
-              phoneNumber="0023434331"
+              phoneNumber={props.telephone}
               className="py-7"
             />
           )}
-          <ButtonMessage
+          <MessageButton
             id={props.id as string}
             color="gradient"
             className="py-7"
           />
           {props.whatsappNumber && (
-            <ButtonWhatsApp color="gradient" className="py-7" />
+            <WhatsAppButton
+              phone={props.whatsappNumber}
+              color="gradient"
+              className="py-7"
+            />
           )}
         </div>
         {/* Report issue */}

@@ -7,13 +7,13 @@ import CaDropdownArrow from "@/components/__shared/ui/icons/CaDropdownArrow";
 import DeleteIconButton from "@/components/__shared/ui/button/DeleteIconButton";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import { Button, cn } from "@nextui-org/react";
-import ButtonDelete from "@/components/__shared/ui/button/ButtonDelete";
 import { formatDateOnly } from "@/lib/utils/stringManipulation";
 import { useEffect, useState } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
 import { invoiceStore } from "@/store/payment/invoiceStore";
 import { customerStore } from "@/store/payment/customerStore";
+import DeleteButton from "@/components/__shared/ui/button/DeleteButton";
 
 const CartView = () => {
   const {
@@ -64,7 +64,7 @@ const CartView = () => {
                   <p>Qty</p>
                   <DropDown item={item} item_index={item_index} />
                 </div>
-                <ButtonDelete
+                <DeleteButton
                   handleDestruction={() => {
                     removeItem(item_index);
                   }}
@@ -80,7 +80,7 @@ const CartView = () => {
             {item.date ? (
               <Date className="max-md:hidden" date={item.date} />
             ) : null}
-            <ButtonDelete
+            <DeleteButton
               handleDestruction={() => {
                 removeItem(item_index);
               }}

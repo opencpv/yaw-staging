@@ -30,7 +30,7 @@ const PaymentButton = ({
   return (
     <button
       type="submit"
-      className="w-full rounded-md bg-[#DDB771] py-4 font-semibold text-white"
+      className="w-full rounded-md bg-accent py-4 font-semibold text-white"
       onClick={handleButtonClick}
     >
       Proceed to Payment

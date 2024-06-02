@@ -5,8 +5,7 @@
 
 .paginationMenuHidden {
   clip-path: circle(0 at 100% 0);
-  transition: clip-path 0.4s;
-  opacity: 0;
+  animation: fadeOut 1s;
 }
 
 .paginationMenuVisible {
@@ -25,3 +24,11 @@
   opacity: 0;
 }
 
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

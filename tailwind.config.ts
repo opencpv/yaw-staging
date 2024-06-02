@@ -31,13 +31,12 @@ const config: Config = {
         modalOverlay: "#02020275",
         primary: {
           DEFAULT: "#11605E",
-          50: "#B0E3C9",
+          50: "#E7EFEF",
           100: "#21A19F",
           200: "#45808B",
           300: "#E6F6EE",
           400: "#396261",
           500: "#11605E",
-          // 500: "#073B3A",
           600: "#063635",
           800: "#0B6E4F",
           900: "#273A2F",
@@ -48,10 +47,10 @@ const config: Config = {
           400: "#99B3B2",
           500: "#ECF2F3",
         },
-        neutral: {
-          50: "#EEE",
-          300: "#545454"
-        },
+        // neutral: {
+        //   50: "#EEE",
+        //   300: "#545454"
+        // },
         accent: {
           DEFAULT: "#DDB771",
           50: "#DDB771",
@@ -99,6 +98,7 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-open-sans)"],
         montserrat: ["var(--font-montserrat)"],
+        pacifico: ["var(--font-pacifico)"],
       },
       screens: {
         xxs: "280px",

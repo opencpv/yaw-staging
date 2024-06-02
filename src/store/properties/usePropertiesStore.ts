@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-type PropertyCarouselStore = {
+type CarouselStore = {
   activeIndex: number;
   setActiveIndex: (idx: number) => void;
 };
@@ -21,16 +21,24 @@ type PropertyFilterStore = {
   setFilter: (filter: FilterOption) => void;
 };
 
-export const usePropertyCarouselStore = create<PropertyCarouselStore>(
-  (set) => ({
-    activeIndex: 0,
-    setActiveIndex: (idx) => set({ activeIndex: idx }),
-  }),
-);
+type PropertiesPathStore = {
+  previousPath: string | undefined;
+  setPreviousPath: (path: string) => void;
+};
+
+export const carouselStore = create<CarouselStore>((set) => ({
+  activeIndex: 0,
+  setActiveIndex: (idx) => set({ activeIndex: idx }),
+}));
 
 export const propertyFilterStore = create<PropertyFilterStore>((set) => ({
   searchString: "",
   setSearchString: (str) => set((state) => ({ ...state, searchString: str })),
   filter: "all",
   setFilter: (filter) => set((state) => ({ ...state, filter })),
+}));
+
+export const propertiesPathStore = create<PropertiesPathStore>((set) => ({
+  previousPath: undefined,
+  setPreviousPath: (path) => set((state) => ({ ...state, previousPath: path })),
 }));

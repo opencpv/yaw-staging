@@ -14,7 +14,6 @@ function downloadPdf({ title, className, format = "letter" }: Params) {
     margin: 1,
     filename: `${title}.pdf`,
     image: { type: "jpeg", quality: 0.98 },
-    html2canvas: { scale: 2 },
     jsPDF: { unit: "in", format, orientation: "portrait" },
   };
 

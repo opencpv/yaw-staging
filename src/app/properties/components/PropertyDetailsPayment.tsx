@@ -10,6 +10,8 @@ import capitalizeName, { formatDate } from "@/lib/utils/stringManipulation";
 import { contentAccordionVariants, fadeUp } from "@/lib/animations";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { format } from "date-fns";
+import ShowMore from "react-show-more-text";
 
 type Props = {
   availableFrom: string;
@@ -22,14 +24,6 @@ type Props = {
 };
 
 const PropertyDetailsPayment = (props: Props) => {
-  const [showingMore, setShowingMore] = useState(false);
-  const thingsToKnowLength = useMemo(() => {
-    return props.thingsToKnow?.length;
-  }, []);
-  const thingsToKnowMaxLength = 238;
-
-  console.log(showingMore);
-
   return (
     <>
       <motion.section {...fadeUp} className="mb-12">
@@ -48,8 +42,11 @@ const PropertyDetailsPayment = (props: Props) => {
         <AdditionalInfo hidden={!props.availableFrom}>
           <div className="grid grid-cols-4">
             <p className="col-span-2 sm:col-span-1">Available from: </p>
-            <p className="col-span-2 text-right text-base sm:col-span-3 sm:text-left">
-              {formatDate(props.availableFrom)}
+            <p
+              className="col-span-2 text-right text-base sm:col-span-3 sm:text-left"
+              title={format(new Date(props.availableFrom), "dd MMMM, yyyy")}
+            >
+              {format(new Date(props.availableFrom), "dd-MM-yyyy")}
             </p>
           </div>
         </AdditionalInfo>
@@ -114,35 +111,16 @@ const PropertyDetailsPayment = (props: Props) => {
           <>
             <AdditionalInfoTitle title="Things to know" />
             <AdditionalInfo>
-              <p
-                className="max-w-2xl overflow-hidden leading-normal transition-height"
-                // initial="collapsed"
-                // variants={contentAccordionVariants()}
-                // animate={showingMore ? "expanded" : "collapsed"}
-                // transition={{ duration: 0.8, ease: "easeInOut" }}
-                // exit="collapsed"
-                style={{ height: showingMore ? "auto" : "5rem" }}
+              <ShowMore
+                lines={4}
+                more={<MoreButton text="Show more" />}
+                less={<MoreButton text="Show less" />}
+                truncatedEndingComponent={"... "}
               >
-                {props.thingsToKnow}
-              </p>
-              <Button
-                variant="outline"
-                className={cn(
-                  "mt-3 rounded-md border-[#65969F] px-4 py-2 text-xs text-[#65969F]",
-                  {
-                    hidden:
-                      thingsToKnowLength &&
-                      thingsToKnowLength <= thingsToKnowMaxLength,
-                    flex:
-                      thingsToKnowLength &&
-                      thingsToKnowLength > thingsToKnowMaxLength,
-                  },
-                )}
-                borderColor="#65969F"
-                onClick={() => setShowingMore((current) => !current)}
-              >
-                {showingMore ? "Show Less" : "Show More"}
-              </Button>
+                <p className="max-w-2xl overflow-hidden leading-normal transition-height">
+                  {props.thingsToKnow}
+                </p>
+              </ShowMore>
             </AdditionalInfo>
           </>
         )}
@@ -152,3 +130,11 @@ const PropertyDetailsPayment = (props: Props) => {
 };
 
 export default PropertyDetailsPayment;
+
+const MoreButton = ({ text }: { text: string }) => {
+  return (
+    <button className="mt-3 rounded-md border border-[#65969F] px-4 py-2 text-xs text-[#65969F]">
+      {text}
+    </button>
+  );
+};

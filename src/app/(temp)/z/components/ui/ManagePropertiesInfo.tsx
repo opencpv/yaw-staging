@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
-import { fadeInLeft, fadeInRight } from "@/lib/animations";
-import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
+import Button from "@/components/__shared/ui/button/Button";
+import { HiChevronRight } from "react-icons/hi";
 
 type Props = {
   activity: string;
@@ -9,7 +9,6 @@ type Props = {
   title: string;
   body: string;
   href: string;
-  position?: "left" | "right";
 };
 
 const ManagePropertiesInfo = ({
@@ -18,58 +17,32 @@ const ManagePropertiesInfo = ({
   title,
   body,
   href,
-  position,
 }: Props) => {
-  // if (position === "right")
-  //   return (
-  //     <li className="relative min-h-fit max-w-[60rem] space-y-5 sm:ml-auto sm:h-[20rem] sm:space-y-0 md:h-[30rem]">
-  //       <div className="relative h-[15rem] w-full rounded-xl sm:h-4/5 sm:w-9/12 sm:translate-x-[33%] md:h-[inherit]">
-  //         <Image
-  //           src={image}
-  //           alt={activity.toLowerCase()}
-  //           fill
-  //           style={{ objectFit: "cover" }}
-  //           className="rounded-xl"
-  //         />
-  //       </div>
-  //       <FramerWrapper
-  //         {...fadeInRight}
-  //         className="bottom-[-10%] left-0 -ml-3 flex w-[95vw] items-center justify-center rounded-lg bg-primary-400 p-10 text-white sm:absolute sm:max-w-[30rem] sm:translate-x-[9%] md:bottom-[20%]"
-  //       >
-  //         <div className="space-y-10">
-  //           <div className="space-y-3">
-  //             <h2 className="text-2xl font-[700] text-white">{title}</h2>
-  //             <p className="line-clamp-3">{body}</p>
-  //           </div>
-  //         </div>
-  //       </FramerWrapper>
-  //     </li>
-  //   );
-  // else
-  //   return (
-  //     <li className="relative min-h-fit max-w-[60rem] space-y-5 sm:h-[20rem] sm:space-y-0 md:h-[30rem]">
-  //       <div className="relative h-[15rem] w-full rounded-xl sm:h-4/5 sm:w-9/12 md:h-[inherit]">
-  //         <Image
-  //           src={image}
-  //           alt={activity.toLowerCase()}
-  //           fill
-  //           style={{ objectFit: "cover" }}
-  //           className="rounded-xl"
-  //         />
-  //       </div>
-  //       <FramerWrapper
-  //         {...fadeInLeft}
-  //         className="bottom-[-10%] right-0 -ml-3 flex w-[95vw] items-center justify-center rounded-lg bg-primary-400 p-10 text-white sm:absolute sm:max-w-[30rem] sm:translate-x-0 md:bottom-[20%]"
-  //       >
-  //         <div className="space-y-10">
-  //           <div className="space-y-3">
-  //             <h2 className="text-2xl font-[700] text-white">{title}</h2>
-  //             <p className="line-clamp-3">{body}</p>
-  //           </div>
-  //         </div>
-  //       </FramerWrapper>
-  //     </li>
-  //   );
+  return (
+    <li className="group grid items-center gap-10 sm:grid-cols-2">
+      <div className="relative aspect-video group-even:sm:order-2">
+        <Image
+          src={image}
+          alt={activity}
+          fill
+          className="rounded-xl object-cover"
+        />
+      </div>
+      <div className="flex max-w-xl flex-col gap-4 text-primary group-even:sm:order-1">
+        <h3 className="font-bold">{title}</h3>
+        <p>{body}</p>
+        <Button
+          variant="ghost"
+          color="accent"
+          href="/about#QePYkSphjGkugQ=="
+          className="font-medium sm:text-lg"
+        >
+          List your property <HiChevronRight size={24} />
+        </Button>
+      </div>
+    </li>
+  );
+
   return <></>;
 };
 

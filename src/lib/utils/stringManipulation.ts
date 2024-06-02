@@ -34,19 +34,13 @@ export const formatDate = (dateTime: string) => {
 };
 
 export const formatDateTime = (dateTime: string) => {
-  return format(
-    parse(dateTime, "EEE, dd MMMM yyyy HH:mm:ss 'GMT'", new Date()),
-    "dd MMM. yyyy hh:mma",
-  )
+  return format(new Date(dateTime), "dd MMM. yyyy hh:mma")
     .replace("AM", "am")
     .replace("PM", "pm");
 };
 
-export const formatDateOnly = (dateTime: string) => {
-  return format(
-    parse(dateTime, "EEE, dd MMMM yyyy HH:mm:ss 'GMT'", new Date()),
-    "dd MMM, yyyy",
-  );
+export const formatDateOnly = (date: string) => {
+  return format(new Date(date), "dd MMM, yyyy");
 };
 
 export const formatDateDMY = (dateString: string) => {
@@ -79,6 +73,8 @@ export const formatDateDMY = (dateString: string) => {
   return `${day} ${monthName} ${year}`;
 };
 
+
+
 export const LowerCase = (text: string) => {
   return text?.toLowerCase();
 };
@@ -95,6 +91,16 @@ export const getFirstWord = (str: string, delimiter: string = " ") => {
 
 export const createUUID = () => {
   return uuidv4();
+};
+
+export const pluralize = (word: string, length: number) => {
+  if (length > 1) {
+    return `${word}s`;
+  } else if (length === 1) {
+    return word;
+  } else {
+    return `${word}s`;
+  }
 };
 
 export const generateUniqueString = (length: number) => {

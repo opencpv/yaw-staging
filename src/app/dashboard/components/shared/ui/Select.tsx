@@ -41,6 +41,7 @@ const Select = ({
       isDisabled={disabled}
       labelPlacement="outside"
       selectedKeys={[value]}
+      disallowEmptySelection
       classNames={{
         // mainWrapper: [variant === "ghost" && "hover:bg-transparent"],
         base: cn(

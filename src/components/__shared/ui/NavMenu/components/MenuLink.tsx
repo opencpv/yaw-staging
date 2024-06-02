@@ -17,13 +17,13 @@ const MenuLink = (props: Props) => {
   return (
     <motion.button
       onClick={props.onClick}
-      className={`transition-all hover:scale-105 ${
+      className={`main-menu-link transition-all hover:scale-105 ${
         props.isSubLink && "capitalize"
       }`}
     >
       <div
         className={`w-full cursor-pointer whitespace-nowrap ${
-          props.active ? "text-[#FCAB10]" : "text-[#fff]"
+          props.active ? "text-accent-100" : "text-white"
         }`}
       >
         {(props.isSubLink && props.linkObject.id) || props.linkObject?.sub ? (
@@ -42,8 +42,8 @@ const MenuLink = (props: Props) => {
             href={props.linkObject?.url}
             className={`flex ${
               props.isSubLink
-                ? "font-normal text-base"
-                : "font-semibold text-2xl"
+                ? "text-base font-normal"
+                : " text-2xl font-semibold"
             }`}
             onClick={() => setToggle(false)}
           >
