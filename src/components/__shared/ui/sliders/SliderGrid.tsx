@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation, Grid } from "swiper/modules";
+import { Pagination, Navigation, Grid, FreeMode } from "swiper/modules";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "@/styles/custom-swiper.css";
 import "swiper/css/bundle";
@@ -9,6 +9,7 @@ import "swiper/css";
 import "swiper/css/grid";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import "swiper/css/free-mode";
 
 const SliderGrid = ({ items }: SliderGridProps) => {
   const [shouldRefresh, setShouldRefresh] = useState(false);
@@ -41,7 +42,7 @@ const SliderGrid = ({ items }: SliderGridProps) => {
         }}
         spaceBetween={20}
         cssMode
-        // grabCursor
+        freeMode
         pagination={{
           clickable: true,
           dynamicBullets: true,
@@ -52,7 +53,7 @@ const SliderGrid = ({ items }: SliderGridProps) => {
           nextEl: ".listing-grid-next",
           prevEl: ".listing-grid-prev",
         }}
-        modules={[Grid, Pagination, Navigation]}
+        modules={[Grid, Pagination, Navigation, FreeMode]}
         breakpoints={{
           460: {
             centeredSlides: true,
@@ -75,7 +76,6 @@ const SliderGrid = ({ items }: SliderGridProps) => {
         observer
         observeParents
         observeSlideChildren
-        resizeObserver
         className="slider-grid h-full w-full"
       >
         {/* Mapping through Featured listings from database */}

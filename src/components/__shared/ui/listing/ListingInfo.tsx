@@ -18,7 +18,7 @@ const ListingInfo = (props: Partial<ListingCardInterface>) => {
   return (
     <div
       className={cn(
-        "flex h-max w-full flex-1 flex-col gap-6 rounded-b-lg bg-white px-5 py-4",
+        "flex h-max w-full flex-1 flex-col gap-6 rounded-b-lg bg-white px-5 py-4 pr-[1.3rem]",
         {
           hidden: props.showOnlyImage,
         },

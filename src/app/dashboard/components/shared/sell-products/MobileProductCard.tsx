@@ -2,7 +2,8 @@ import { TableBodySm, TableRowSm } from "../table/Table";
 import TbPropertyImageSm from "../TbPropertyImageSm";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import PublicationStatus, { ItemPublicationStatus } from "./PublicationStatus";
-import ActionsSm from "./ActionsSm";
+import ActionsMobile from "./ActionsMobile";
+import { ItemContext } from "@/app/dashboard/contexts/ItemContext";
 
 type Props = {
   data: Item;
@@ -10,7 +11,7 @@ type Props = {
 
 const MobileProductCard = ({ data }: Props) => {
   return (
-    <>
+    <ItemContext.Provider value={{ item: data }}>
       <TableRowSm className="pb-0">
         <TableBodySm className="flex flex-nowrap gap-5">
           <div className="flex flex-col gap-3 max-xxs:hidden">
@@ -48,11 +49,11 @@ const MobileProductCard = ({ data }: Props) => {
               {formatPrice(data.price, false)}
             </p>
           </div>
-          <ActionsSm data={data} />
+          {/* Actions */}
+          <ActionsMobile />
         </TableBodySm>
-        {/* Actions */}
       </TableRowSm>
-    </>
+    </ItemContext.Provider>
   );
 };
 

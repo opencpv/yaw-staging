@@ -1,15 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { ItemPublicationStatus } from "./PublicationStatus";
 import Toggle from "@/components/__shared/ui/Toggle";
+import { ItemContext } from "@/app/dashboard/contexts/ItemContext";
 
 interface Props {
   isAvailable: boolean;
   status: ItemPublicationStatus;
-  data: any;
 }
-const ProductStatus = ({ isAvailable, data, status }: Props) => {
+const ProductStatus = ({ isAvailable, status }: Props) => {
   const [value, setValue] = useState(isAvailable);
+
+  const item = useContext(ItemContext)?.item;
 
   const handleSelectionChange = async (value: boolean) => {
     setValue(value);
