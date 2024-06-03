@@ -43,7 +43,7 @@ const Landing = (props: Props) => {
           viewBox="0 0 360 153"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="absolute right-[-1.5px] top-[-46px] z-10 max-sm:w-[150px] sm:top-[-1.7px]"
+          className="absolute right-0 top-[-45.5px] z-10 max-sm:w-[150px] sm:right-[-1.1px] sm:top-[-1.6px]"
         >
           <path
             d="M0.5 1.00015C1.25281 0.968782 2.0556 0.967325 2.89984 1.00015H359V149.379C359.015 150.405 359.015 151.445 359 152.5V149.379C358.223 96.7143 317.935 81.8174 297.5 81L76 80.5C65.1667 80.5 42.8 72.4001 40 40.0001C37.3757 9.63274 15.5129 1.49055 2.89984 1.00015H0.5Z"
@@ -67,7 +67,7 @@ const Landing = (props: Props) => {
           initial={{ opacity: 0 }}
           transition={{ delay: 0.5 }}
           animate={{ opacity: 1 }}
-          className="featured-info absolute bottom-20 left-10 z-10 space-y-2"
+          className="featured-info absolute bottom-10 left-10 z-10 space-y-2 *:line-clamp-1"
         >
           <motion.h3 initial={{ y: 50 }}>
             Get this amazing 3 bedroom flat
@@ -78,15 +78,13 @@ const Landing = (props: Props) => {
         </motion.div>
         <Link
           href="/properties/59"
-          className="group absolute bottom-0 right-0 z-10 grid size-24 place-items-center rounded-full border border-white transition-transform hover:-translate-y-2 max-sm:scale-50 sm:bottom-10 sm:right-20"
+          className="absolute bottom-0 right-0 z-10 grid size-20 place-items-center rounded-full border border-white transition-transform hover:-translate-y-2 max-sm:scale-[0.6] sm:bottom-10 sm:right-20"
         >
           <div
-            className="grid size-16 animate-pulse place-items-center rounded-full bg-primary-200 text-white"
+            className="grid size-12 animate-pulse place-items-center rounded-full bg-primary-200 text-white"
             style={{ animationDuration: "6s" }}
           >
-            <span className="text-sm opacity-0 transition-opacity group-hover:opacity-100">
-              View
-            </span>
+            <span className={`text-sm ${styles.pulse}`}>View</span>
           </div>
         </Link>
       </div>

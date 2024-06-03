@@ -39,7 +39,7 @@ const CustomTextAreaInput = ({
         defaultValue={initialValues}
       />
       {meta.touched && meta.error ? (
-        <ErrorMessage>{meta.error}</ErrorMessage>
+        <ErrorMessage error={meta.error}>{meta.error}</ErrorMessage>
       ) : null}
     </Root>
   );

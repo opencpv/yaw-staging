@@ -18,7 +18,7 @@ const page = (props: Props) => {
       <Navbar />
       <Landing />
       <Promotions />
-      {/* <FeaturedListings /> */}
+      <FeaturedListings />
       <Ad />
       <RentalDeals />
       <ManagePropertiesSection />

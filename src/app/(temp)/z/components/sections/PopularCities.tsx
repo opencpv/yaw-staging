@@ -81,9 +81,9 @@ const PopularCities = () => {
                     count={1}
                   />
                 ))
-              : Array.from({ length: 2 }, (_) => (
+              : cities?.map((city) => (
                   <PopularCitiesCard
-                    key={createUUID()}
+                    key={city.id}
                     location="Kumasi"
                     description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, doloribus!"
                     propertyNumber={232}

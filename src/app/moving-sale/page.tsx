@@ -1,7 +1,7 @@
 import React from "react";
 import SliderWide from "@/components/__shared/ui/sliders/SliderWide";
-import CallOut from "@/components/__shared/ui/CallOut";
 import Items from "./components/Items";
+import CallOut from "@/components/__shared/ui/CallOut";
 
 const MovingSalesPage = () => {
   return (
@@ -31,7 +31,7 @@ const MovingSalesPage = () => {
         </section>
         <div className="mb-20 flex items-center justify-center">
           <CallOut
-            text="You may select more than one response"
+            content="You may select more than one response"
             className="w-full md:w-9/12"
           />
         </div>

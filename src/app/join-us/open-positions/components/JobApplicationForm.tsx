@@ -7,7 +7,7 @@ import { Form, Formik } from "formik";
 import CaJoinUsIconLeft from "./icons/CaJoinUsIconLongLeft";
 import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
 import { useContactForm } from "@/app/contact/components/forms/hooks/useContactForm";
-import InfoText from "@/components/__shared/ui/listing-form/components/InfoText";
+import CallOut from "@/components/__shared/ui/CallOut";
 import { useJoinUsPageStore } from "../../components/useJoinUsPageStore";
 import { string } from "prop-types";
 import { useState } from "react";
@@ -142,7 +142,7 @@ function JobApplicationForm({ variant }: Props) {
 
               {variant == "resume" && (
                 <div className="lg:pt-5">
-                  <InfoText content="Unlock your potential and join our dynamic team where innovation meets opportunity!" />
+                  <CallOut content="Unlock your potential and join our dynamic team where innovation meets opportunity!" />
                 </div>
               )}
 

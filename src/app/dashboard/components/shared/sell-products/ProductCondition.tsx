@@ -1,15 +1,21 @@
-const ProductCondition = ({ condition }: { condition: "new" | "used" }) => {
+import { cn } from "@/lib/utils";
+
+export type ItemCondition = "New" | "Used" | "Used-like New";
+const ProductCondition = ({ condition }: { condition: ItemCondition }) => {
   return (
     <>
-      {condition === "new" ? (
-        <p className="w-full rounded-xl bg-[#54C38A] px-8 py-1 text-center text-xs capitalize text-white">
-          {condition}
-        </p>
-      ) : (
-        <p className="rounded-xl bg-[#FFE3B0] px-8 py-1 text-xs capitalize text-primary-500">
-          {condition}
-        </p>
-      )}
+      <p
+        className={cn(
+          "w-full rounded-xl px-8 py-1 text-center text-xs font-semibold capitalize ",
+          {
+            "bg-success-bg text-success":
+              condition === "New" || condition === "Used-like New",
+            "bg-warning-bg text-warning/50": condition === "Used",
+          },
+        )}
+      >
+        {condition}
+      </p>
     </>
   );
 };

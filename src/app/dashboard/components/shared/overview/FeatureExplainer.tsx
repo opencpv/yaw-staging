@@ -1,12 +1,11 @@
 "use client";
 import React from "react";
-import Callout from "@/app/dashboard/components/shared/ui/Callout";
-import { BsPatchExclamation } from "react-icons/bs";
 import { CiLock } from "react-icons/ci";
 import Button from "@/components/__shared/ui/button/Button";
 import { useRouter } from "next/navigation";
 import { RenterPaidFeatureInterface } from "../../../../../../interfaces";
 import PaidFeature from "./PaidFeature";
+import CallOut from "@/components/__shared/ui/CallOut";
 
 const FeatureExplainer = ({
   title,
@@ -42,19 +41,16 @@ const FeatureExplainer = ({
       </div>
       {locked ? (
         // callout info
-        <Callout className="flex gap-2">
-          <BsPatchExclamation className="shrink-0 text-lg text-accent-50" />
-          <div className="text-base">
+        <CallOut>
+          <div>
             {title === "Get Notified" && (
-              <p className="leading-normal">
+              <small>
                 Upgrade now to unlock this exclusive feature and supercharge
                 your renting experience
-              </p>
+              </small>
             )}
             {title === "Be My Agent" && (
-              <p className="leading-normal">
-                You have no record for this service
-              </p>
+              <small>You have no record for this service</small>
             )}
             {title === "Get Notified" && (
               <Button
@@ -75,7 +71,7 @@ const FeatureExplainer = ({
               </Button>
             )}
           </div>
-        </Callout>
+        </CallOut>
       ) : (
         // user paid features
         <>

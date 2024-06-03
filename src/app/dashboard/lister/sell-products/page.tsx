@@ -1,9 +1,8 @@
 import React from "react";
+import ItemsPage from "../../components/shared/sell-products/pages/ItemsPage";
 
-type Props = {};
-
-const page = (props: Props) => {
-  return <div>page</div>;
+const page = () => {
+  return <ItemsPage />;
 };
 
 export default page;

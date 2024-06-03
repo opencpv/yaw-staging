@@ -1,4 +1,5 @@
 "use client";
+import { fadeIn } from "@/lib/animations";
 import {
   AnimationProps,
   TargetAndTransition,
@@ -16,7 +17,7 @@ type Props = {
 
 const FramerWrapper = ({ children, className, ...props }: Props) => {
   return (
-    <motion.div {...props} className={className} id={props.id}>
+    <motion.div {...fadeIn} {...props} className={className} id={props.id}>
       {children}
     </motion.div>
   );

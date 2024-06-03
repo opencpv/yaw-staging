@@ -80,11 +80,10 @@ const PromotionSlider = (props: Props) => {
                 <NavButton placement="right" onClick={handleNext} />
               </div>
             </div>
-            {/* <div className="promotions-pagination relative top-20 flex justify-center" /> */}
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="flex items-center justify-center sm:mt-10">
+      <div className="flex items-center justify-center sm:mt-16">
         <div className="slider-promotions-pagination" />
       </div>
     </div>

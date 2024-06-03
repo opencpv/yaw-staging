@@ -15,7 +15,7 @@ const PostSummary = ({
   rating,
 }: PostProps) => {
   return (
-    <FramerWrapper {...fadeIn}>
+    <FramerWrapper>
       <div className="grid gap-x-10 gap-y-5 lg:grid-cols-3">
         <div className="relative aspect-video w-full md:h-full md:min-h-32 lg:col-span-1 lg:max-w-full">
           <Image

@@ -65,7 +65,7 @@ const page = async () => {
               }))}
           />
           <AdsSlider posts={sliderBlogData} />
-          <FramerWrapper {...fadeIn} className="section">
+          <FramerWrapper className="section">
             <section
               className={
                 "grid gap-x-3.5 gap-y-7 max-xs:hidden xs:grid-cols-2 md:grid-cols-3"
