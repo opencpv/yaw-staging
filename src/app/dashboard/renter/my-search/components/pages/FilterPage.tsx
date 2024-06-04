@@ -1,24 +1,24 @@
 "use client";
+import React from "react";
 import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
-import Select from "../../components/shared/ui/Select";
+import Select from "../../../../components/shared/ui/Select";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import ListingCard from "@/components/__shared/ui/listing/ListingCard";
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
-import ContactPreferenceToggle from "../favourites/components/ContactPreferenceToggle";
+import ContactPreferenceToggle from "../../../favourites/components/ContactPreferenceToggle";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useFetchRenterBookmarks } from "../services";
+import { useFetchRenterBookmarks } from "../../../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
 import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
 import EmptyState from "@/components/__shared/ui/states/EmptyState";
 import { getListingProps } from "@/lib/enum";
+import slugify from "@/lib/utils/slugify";
 
-const MySearch = () => {
+const FilterPage = ({ filter }: { filter: string }) => {
   const { user } = useAppStore();
   const pathname = usePathname();
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const filter = searchParams?.get("filter") || "favourites";
 
   const {
     data: listings,
@@ -30,35 +30,30 @@ const MySearch = () => {
   } = useFetchRenterBookmarks({ filter, userId: user?.id as string });
 
   return (
-    <main className="w-full bg-white">
-      <h2>My Bookmarks</h2>
+    <main className="w-full space-y-8 bg-white">
+      <h2>My Search</h2>
       {/* xl and above */}
-      <div className="my-8 hidden w-fit rounded-xl border p-3 md:block">
-        <OptionFilterTabs
-          options={[
-            "Favourites",
-            "Be the first to know",
-            "Recommendations",
-            "All",
-          ]}
-          selectedKey={filter}
-          onSelectionChange={(key) =>
-            router.replace(
-              `${pathname}?${new URLSearchParams({
-                filter: key as string,
-              })}`,
-              {
-                scroll: false,
-              },
-            )
-          }
-          radius="large"
-          padding="wide"
-          cursorAnimation
-        />
-      </div>
+      <OptionFilterTabs
+        options={[
+          "Favourites",
+          "Be the first to know",
+          "Recommendations",
+          "All",
+        ]}
+        selectedKey={filter.replaceAll("-", " ")}
+        onSelectionChange={(key) => {
+          const slug = slugify(key.toString());
+          router.replace(`/dashboard/renter/my-search/search/${slug}`, {
+            scroll: false,
+          });
+        }}
+        radius="small"
+        tabColor="colored"
+        cursorAnimation
+        classNames={{ base: "max-md:hidden" }}
+      />
       {/* xl and below */}
-      <div className="my-8 md:hidden">
+      <div className="md:hidden">
         <Select
           options={[
             "Favourites",
@@ -66,29 +61,25 @@ const MySearch = () => {
             "Recommendations",
             "All",
           ]}
-          value={filter as string}
+          value={filter.replaceAll("-", " ")}
           className="mx-0 w-60 font-bold"
           valueClassName="font-bold"
-          variant="ghost"
+          variant="default"
           color="primary"
-          handleSelectionChange={(e) =>
-            router.replace(
-              `${pathname}?${new URLSearchParams({
-                filter: e.target.value,
-              })}`,
-              {
-                scroll: false,
-              },
-            )
-          }
+          handleSelectionChange={(e) => {
+            const slug = slugify(e.target.value);
+            router.replace(`/dashboard/renter/my-search/search/${slug}`, {
+              scroll: false,
+            });
+          }}
         />
       </div>
 
       <h4 className="hidden capitalize md:block">
-        {filter as React.ReactNode}
+        {filter.replaceAll("-", " ")}
       </h4>
 
-      <div className="mt-4">
+      <div className="relative bottom-4">
         <ContactPreferenceToggle />
       </div>
 
@@ -125,4 +116,4 @@ const MySearch = () => {
   );
 };
 
-export default MySearch;
+export default FilterPage;

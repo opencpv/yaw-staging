@@ -7,7 +7,7 @@ import ServiceProsReviews from "./components/ServiceProsReviews";
 import { useManageReviewsStore } from "@/store/dashboard/propertiesStore";
 import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
 import { useReviewsStore } from "@/store/dashboard/reviewsStore";
-import SimpleSwitch from "../my-bookmarks/bookmarks/components/SimpleSwitch";
+import SimpleSwitch from "../my-search/bookmarks/components/SimpleSwitch";
 import FormSwitch from "@/app/contact/components/FormSwitch";
 import Toggle from "@/components/__shared/ui/Toggle";
 import AllReviewsReceived from "./components/AllReviewsReceived";

@@ -76,8 +76,8 @@ const ItemsPage = () => {
   // const [id, setid] = useState<string>("");
 
   const { currentRole } = useDashboardStore();
-  const [status, setStatus] = useState("Active");
-  const [date, setDate] = useState("Last 7 days");
+  const [status, setStatus] = useState<string | undefined>(undefined);
+  const [date, setDate] = useState<string | undefined>(undefined);
 
   // useEffect(() => {
   // if (!supabase) {
@@ -140,14 +140,14 @@ const ItemsPage = () => {
                 name="Status"
                 options={["Active", "Archived", "Inactive", "Suspended"]}
                 placeholder="Status"
-                value={status}
+                value={status as string}
                 onValueChange={(value) => setStatus(value)}
               />
               <SelectMobile
                 name="Date"
                 options={["Last 30 days", "Last 7 days", "Last 24 hours"]}
                 placeholder="Date"
-                value={date}
+                value={date as string}
                 onValueChange={(value) => setDate(value)}
               />
             </div>

@@ -37,6 +37,7 @@ const ContactPreferenceToggle = (props: Props) => {
       label="Allow property owners to contact you"
       isSelected={selected}
       onValueChange={handleToggle}
+      color="primary"
     />
   );
 };
