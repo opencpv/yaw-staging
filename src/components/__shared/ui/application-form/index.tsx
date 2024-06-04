@@ -90,7 +90,7 @@ const ApplicationForm = ({
           <Dialog.Close asChild>
             <button
               className="absolute right-[25px] top-[15px] z-[1000] appearance-none items-center justify-center rounded-full focus:shadow-[0_0_0_2px] 
-              focus:shadow-violet7 focus:outline-none"
+              focus:shadow-accent focus:outline-none"
               aria-label="Close"
             >
               <SaveAndExit />

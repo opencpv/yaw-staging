@@ -6,6 +6,7 @@ import { NextUIProvider } from "@nextui-org/system";
 import { ThemeProviderProps } from "next-themes/dist/types";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { SWRConfig } from "swr";
+import { Theme } from "@radix-ui/themes";
 
 type Props = {
   children: React.ReactNode;

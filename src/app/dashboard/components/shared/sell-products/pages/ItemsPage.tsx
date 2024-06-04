@@ -21,6 +21,54 @@ import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { cn } from "@/lib/utils";
 import Archived from "../../table/Archived";
 import CallOut from "@/components/__shared/ui/CallOut";
+import { IoIosArrowDown } from "react-icons/io";
+import Select from "../../ui/Select";
+import SelectMobile from "../../ui/SelectMobile";
+import { FaPlus } from "react-icons/fa6";
+import AddItemButton from "../AddItemButton";
+
+let items = [
+  {
+    id: 1,
+    title: "Dining Table",
+    category: "Furniture",
+    condition: "Used",
+    images: ["/assets/images/about/young-couple.webp"],
+    price: 10000,
+    is_available: false,
+    status: "Suspended",
+  },
+  {
+    id: 2,
+    title: "Couch",
+    category: "Furniture",
+    condition: "Used",
+    images: ["/assets/images/about/young-couple.webp"],
+    price: 10000,
+    is_available: true,
+    status: "Active",
+  },
+  {
+    id: 3,
+    title: "Wardrobe",
+    category: "Furniture",
+    condition: "New",
+    images: ["/assets/images/about/young-couple.webp"],
+    price: 10000,
+    is_available: false,
+    status: "Archived",
+  },
+  {
+    id: 4,
+    title: "Mifi",
+    category: "Electronics",
+    condition: "Used-like New",
+    images: ["/assets/images/about/young-couple.webp"],
+    price: 10000,
+    is_available: false,
+    status: "Inactive",
+  },
+];
 
 const ItemsPage = () => {
   // const [products, setproducts] = useState<any[]>([]);
@@ -28,51 +76,8 @@ const ItemsPage = () => {
   // const [id, setid] = useState<string>("");
 
   const { currentRole } = useDashboardStore();
-
-  let items = [
-    {
-      id: 1,
-      title: "Dining Table",
-      category: "Furniture",
-      condition: "Used",
-      images: ["/assets/images/about/young-couple.webp"],
-      price: 10000,
-      is_available: false,
-      status: "Suspended",
-    },
-    {
-      id: 2,
-      title: "Couch",
-      category: "Furniture",
-      condition: "Used",
-      images: ["/assets/images/about/young-couple.webp"],
-      price: 10000,
-      is_available: true,
-      status: "Active",
-    },
-    {
-      id: 3,
-      title: "Wardrobe",
-      category: "Furniture",
-      condition: "New",
-      images: ["/assets/images/about/young-couple.webp"],
-      price: 10000,
-      is_available: false,
-      status: "Archived",
-    },
-    {
-      id: 4,
-      title: "Mifi",
-      category: "Electronics",
-      condition: "Used-like New",
-      images: ["/assets/images/about/young-couple.webp"],
-      price: 10000,
-      is_available: false,
-      status: "Inactive",
-    },
-  ];
-
-  // !!! Temporarily commented out
+  const [status, setStatus] = useState("Active");
+  const [date, setDate] = useState("Last 7 days");
 
   // useEffect(() => {
   // if (!supabase) {
@@ -128,14 +133,24 @@ const ItemsPage = () => {
               Showing {items.length} {items.length > 1 ? "Items" : "Item"}
             </small>
           ) : null}
-          <div className="order-4 flex justify-between gap-5 lg:hidden">
-            <Button
-              href={`/dashboard/${currentRole}/sell-products/add-new-product`}
-              color="primary"
-            >
-              Add Item
-            </Button>
-            filters
+          <div className="order-4 flex justify-end gap-5 xs:justify-between lg:hidden">
+            <AddItemButton />
+            <div className="flex flex-wrap items-center justify-end gap-5">
+              <SelectMobile
+                name="Status"
+                options={["Active", "Archived", "Inactive", "Suspended"]}
+                placeholder="Status"
+                value={status}
+                onValueChange={(value) => setStatus(value)}
+              />
+              <SelectMobile
+                name="Date"
+                options={["Last 30 days", "Last 7 days", "Last 24 hours"]}
+                placeholder="Date"
+                value={date}
+                onValueChange={(value) => setDate(value)}
+              />
+            </div>
           </div>
         </section>
 
@@ -165,9 +180,7 @@ const ItemsPage = () => {
               ) : null}
 
               {items?.map((item) => (
-                <>
-                  <DesktopProductCard data={item as Item} key={item.id} />
-                </>
+                <DesktopProductCard data={item as Item} key={item.id} />
               ))}
             </TableBodyRowGroup>
           </Table>

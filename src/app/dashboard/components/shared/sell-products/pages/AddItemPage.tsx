@@ -15,13 +15,14 @@ import { useFetchItemCategories } from "@/app/moving-sale/services";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import Loader from "@/components/__shared/ui/loader/Loader";
 import supabase from "@/lib/utils/supabase/supabaseClient";
+import { CheckboxNoFormik as Checkbox } from "@/app/dashboard/components/shared/ui/Checkbox";
 
 interface CategoryProp {
   label: string;
   key: string;
 }
 const AddItemPage = () => {
-  // const [categories, setCategories] = useState<CategoryProp[]>([]);
+  const [sameAsPhone, setSameAsPhone] = useState(false);
 
   const validationSchema = Yup.object().shape({
     category: Yup.string().required("This field is requiredRequired"),
@@ -93,7 +94,7 @@ const AddItemPage = () => {
           validationSchema={validationSchema}
           onSubmit={async (values) => console.log(values)}
         >
-          {({ values, handleSubmit }) => (
+          {({ handleSubmit }) => (
             <Form
               className="grid grid-cols-1 gap-x-5 gap-y-8 lg:grid-cols-3"
               onSubmit={(e) => {
@@ -155,13 +156,32 @@ const AddItemPage = () => {
                   onChange={handlePhone}
                   onCountryChange={handleCountryChange}
                 />
-                <InputPhoneNumber
-                  id=""
-                  label="WhatsApp No."
-                  name="whatsapp"
-                  value={whatsApp}
-                  onChange={handleWhatsApp}
-                  onCountryChange={handleCountryChangeWhatsApp}
+                {sameAsPhone ? (
+                  <InputPhoneNumber
+                    id=""
+                    label="WhatsApp No."
+                    name="phone"
+                    value={phone}
+                    onChange={handlePhone}
+                    onCountryChange={handleCountryChange}
+                  />
+                ) : (
+                  <InputPhoneNumber
+                    id=""
+                    label="WhatsApp No."
+                    name="whatsapp"
+                    value={whatsApp}
+                    onChange={handleWhatsApp}
+                    onCountryChange={handleCountryChangeWhatsApp}
+                  />
+                )}
+
+                <Checkbox
+                  color="primary"
+                  label="Same as phone"
+                  onCheckedChange={(checked) =>
+                    setSameAsPhone(checked as boolean)
+                  }
                 />
               </div>
               <div className="flex h-[100%] w-full flex-col">

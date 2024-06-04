@@ -210,7 +210,7 @@ const Preview = ({ file, isPrimary }: any) => {
   };
 
   return (
-    <li className="relative aspect-video w-24 rounded-md sm:w-40">
+    <li className="relative aspect-video w-40 rounded-md">
       <div className="absolute inset-0 z-10 h-full w-full rounded-[inherit] bg-black bg-opacity-20" />
       <div className="absolute inset-2 z-10 flex flex-wrap gap-8 shadow-md">
         <ActionPopover
@@ -246,7 +246,7 @@ const Preview = ({ file, isPrimary }: any) => {
           <motion.small
             initial={{ x: -5 }}
             whileInView={{ x: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.5 }}
             className="h-fit rounded-md bg-white p-0.5 px-3 text-center text-[0.6rem] leading-4"
           >
             Primary image
