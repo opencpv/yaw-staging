@@ -5,8 +5,11 @@ import styles from "../style.module.css";
 import CitySearchForm from "./CitySearchForm";
 import { animate, motion, stagger } from "framer-motion";
 import Link from "next/link";
+import { urlForImage } from "@/lib/utils/sanity/utils";
 
-type Props = {};
+type Props = {
+  data: any;
+};
 
 const Landing = (props: Props) => {
   useEffect(() => {
@@ -21,19 +24,21 @@ const Landing = (props: Props) => {
     );
   }, []);
 
+  const title = props.data.title.split(" ").slice(0, -1).join(" ");
+  const titleHighlight = props.data.title.split(" ").slice(-1)[0];
+
   return (
     <section className="section wrapper space-y-8 pb-20 pt-10 text-shade-200">
       <div className="space-y-1">
         <h1 className="text-2xl capitalize text-neutral-600 min-[300px]:text-3xl">
-          Find your new home with{" "}
-          <span className="text-accent-100">RentRightGH</span>
+          {title} <span className="text-accent-100">{titleHighlight}</span>
         </h1>
-        <h4>Genuine listings without stress</h4>
+        <h4>{props.data.description}</h4>
       </div>
       <div className={`${styles.rect}`}>
         <Image
-          src="/assets/images/home/temp/nice-interior.png"
-          alt="2 Bedroom Apartment at Tema"
+          src={urlForImage(props.data.bgImage)?.url() as string}
+          alt="Main banner" // TODO: change
           fill
           className="rounded-[inherit] object-cover"
         />
@@ -77,7 +82,7 @@ const Landing = (props: Props) => {
           </motion.p>
         </motion.div>
         <Link
-          href="/properties/59"
+          href={"/"}
           className="absolute bottom-0 right-0 z-10 grid size-20 place-items-center rounded-full border border-white transition-transform hover:-translate-y-2 max-sm:scale-[0.6] sm:bottom-10 sm:right-20"
         >
           <div
@@ -89,7 +94,7 @@ const Landing = (props: Props) => {
         </Link>
       </div>
       <div className="space-y-2">
-        <CitySearchForm placeholder={"Madina, Accra"} />
+        <CitySearchForm placeholder={props.data.searchDefault} />
         <small className="font-semibold">
           Start searching for your next dream home.
         </small>

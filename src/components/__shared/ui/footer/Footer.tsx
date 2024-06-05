@@ -45,8 +45,9 @@ const Footer = () => {
 
   return (
     <footer
-      className={`gap no-print flex w-full flex-col gap-[min(10vh,10rem)] bg-[#131B1A] font-montserrat`}
+      className={`gap no-print mt-16 flex w-full flex-col gap-[min(10vh,10rem)] bg-[#131B1A] font-montserrat sm:mt-20`}
       key={uuid()}
+      id="footer"
     >
       <div className="flex flex-col justify-center gap-10 bg-[#333] px-5 py-8 text-[#8A8A8A] hover:*:text-accent [@media(min-width:950px)]:flex-row">
         {quickLinks.map((r) =>
@@ -55,10 +56,8 @@ const Footer = () => {
           ) : LowerCase(r.label) === "how to" ? (
             <HowToLink key={r?.label} className="font-[400]" />
           ) : LowerCase(r?.label) === "feedback" ? (
-            <Feedback data={data}>
-              <button key={r?.label} className="text-2xl">
-                Feedback
-              </button>
+            <Feedback data={data} key={r?.label}>
+              <button className="text-2xl">Feedback</button>
             </Feedback>
           ) : (
             <Link key={r?.label} href={r?.href}>

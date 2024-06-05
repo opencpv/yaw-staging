@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import ArrowLink from "../../components/__shared/ui/links/ArrowLink";
+// import ArrowLink from "../../components/__shared/ui/links/ArrowLink";
 import Image from "next/image";
 type Props = {
   title: string;
@@ -24,7 +24,7 @@ const DealCard = ({ title, body, href, icon, className }: Props) => {
           <h4 className="leading-[-0.75rem] text-neutral-900">{title}</h4>
         </div>
         <p className="text-base font-[600] text-primary-600">{body}</p>
-        <ArrowLink href={`${href}`} text="Explore" color="#202457" />
+        {/* <ArrowLink href={`${href}`} text="Explore" color="#202457" /> */}
       </div>
     </div>
   );

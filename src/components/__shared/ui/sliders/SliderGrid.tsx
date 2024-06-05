@@ -12,24 +12,24 @@ import "swiper/css/navigation";
 import "swiper/css/free-mode";
 
 const SliderGrid = ({ items }: SliderGridProps) => {
-  const [shouldRefresh, setShouldRefresh] = useState(false);
+  // const [shouldRefresh, setShouldRefresh] = useState(false);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 900) {
-        setShouldRefresh(true);
-      } else if (shouldRefresh && window.innerWidth >= 900) {
-        window.location.reload();
-        setShouldRefresh(false);
-      }
-    };
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     if (window.innerWidth < 900) {
+  //       setShouldRefresh(true);
+  //     } else if (shouldRefresh && window.innerWidth >= 900) {
+  //       window.location.reload();
+  //       setShouldRefresh(false);
+  //     }
+  //   };
 
-    window.addEventListener("resize", handleResize);
+  //   window.addEventListener("resize", handleResize);
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [shouldRefresh]);
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, [shouldRefresh]);
 
   return (
     <div className="mb-10 h-full w-full">

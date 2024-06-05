@@ -8,28 +8,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Image from "next/image";
 import { Navigation, Pagination, EffectFade, Autoplay } from "swiper/modules";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
+import { cn } from "@/lib/utils";
+import { urlForImage } from "@/lib/utils/sanity/utils";
+import Link from "next/link";
 
-type Props = {};
-
-let tempPromos = [
-  {
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid officia a voluptatum dolores obcaecati eos suscipit culpa possimus fugiat blanditiis.",
-    image: "/assets/images/dashboard/person-holding-house.jpeg",
-  },
-  {
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid officia a voluptatum dolores obcaecati eos suscipit. ",
-    image: "/assets/images/dashboard/lady-stirring-at-phone.jpg",
-  },
-  {
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid officia a voluptatum dolores obcaecati eos suscipit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid officia a voluptatum dolores obcaecati eos suscipit.",
-    image: "/assets/images/dashboard/feeling-refreshed.jpg",
-  },
-];
-
-const PromotionSlider = (props: Props) => {
+const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
   const sliderRef = useRef<any>(null);
 
   const handlePrev = useCallback(() => {
@@ -41,7 +24,7 @@ const PromotionSlider = (props: Props) => {
   }, []);
 
   return (
-    <div className="relative">
+    <div className={cn("relative")}>
       <Swiper
         autoplay={{ delay: 6000 }}
         slidesPerView={1}
@@ -56,29 +39,48 @@ const PromotionSlider = (props: Props) => {
         }}
         ref={sliderRef}
       >
-        {tempPromos.map((item) => (
-          <SwiperSlide key={item.image}>
+        {promotions.map((promotion: any) => (
+          <SwiperSlide key={promotion._key}>
             <div className="grid-cols-7 justify-between gap-10 sm:grid">
               <div className="col-span-3 space-y-3">
-                <h2 className="uppercase text-primary">Promotions</h2>
-                <p className="text-shade-200">{item.description}</p>
-                <div className="hidden flex-wrap items-center gap-5 pt-4 sm:flex">
+                <h2 className="uppercase text-primary">{promotion.title}</h2>
+                <p className="line-clamp-4 text-shade-200">
+                  {promotion.description}
+                </p>
+                {promotions.length > 1 && (
+                  <div className="hidden flex-wrap items-center gap-5 pt-4 sm:flex">
+                    <NavButton placement="left" onClick={handlePrev} />
+                    <NavButton placement="right" onClick={handleNext} />
+                  </div>
+                )}
+              </div>
+              <div className="relative col-span-4 aspect-video w-full max-sm:mt-5 ">
+                {promotion.fileType === "image" ? (
+                  <Link href="/">
+                    <Image
+                      src={urlForImage(promotion?.image)?.url() as string}
+                      alt={"MTN"}
+                      fill
+                      className="rounded-2xl object-cover"
+                    />
+                  </Link>
+                ) : promotion.fileType === "video" ? (
+                  <iframe
+                    src={
+                      promotion.url // rel=0 is important to suggest only RentRightGH related videos
+                    }
+                    title={promotion?.title || ""}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+                    className="absolute inset-0 h-full w-full rounded-2xl"
+                  ></iframe>
+                ) : null}
+              </div>
+              {promotions.length > 1 && (
+                <div className="flex flex-wrap items-center justify-between gap-5 pt-4 sm:hidden">
                   <NavButton placement="left" onClick={handlePrev} />
                   <NavButton placement="right" onClick={handleNext} />
                 </div>
-              </div>
-              <div className="relative col-span-4 aspect-video w-full max-sm:mt-5 ">
-                <Image
-                  src={item.image}
-                  alt={"MTN"}
-                  fill
-                  className="rounded-2xl object-cover"
-                />
-              </div>
-              <div className="flex flex-wrap items-center justify-between gap-5 pt-4 sm:hidden">
-                <NavButton placement="left" onClick={handlePrev} />
-                <NavButton placement="right" onClick={handleNext} />
-              </div>
+              )}
             </div>
           </SwiperSlide>
         ))}

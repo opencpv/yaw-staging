@@ -20,21 +20,7 @@ const UserOverview = ({
   className,
   type,
 }: UserOverviewProps) => {
-  const [hidden, setHidden] = useState(false);
-  const [hiddenCompletely, setHiddenCompletely] = useState(false);
   const { user } = useAppStore();
-
-  useEffect(() => {
-    window.addEventListener("scroll", () => {
-      if (window.scrollY >= 245) {
-        setHidden(true);
-
-        setTimeout(() => {
-          setHiddenCompletely(true);
-        }, 4000);
-      }
-    });
-  }, []);
 
   return (
     <div className={className}>
@@ -42,12 +28,8 @@ const UserOverview = ({
       <h3 className="mb-6 text-neutral-700 md:hidden">
         Welcome, {user?.full_name}
       </h3>
-      <CallOut
-        className={`w-full transition-all sm:w-10/12 ${
-          hidden ? "mb-0 h-0 p-0" : "mb-6 h-fit"
-        } ${hiddenCompletely && "hidden"}`}
-      >
-        <div className={`flex items-center gap-5 ${hidden && "invisible"}`}>
+      <CallOut className="mb-6 h-fit w-full transition-all sm:w-10/12">
+        <div className="flex items-center gap-5">
           <div className="space-y-1">
             {type === "renter" ? (
               <small>

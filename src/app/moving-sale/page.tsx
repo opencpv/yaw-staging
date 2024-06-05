@@ -29,13 +29,10 @@ const MovingSalesPage = () => {
             </h1>
           </div>
         </section>
-        <div className="mb-20 flex items-center justify-center">
-          <CallOut
-            content="You may select more than one response"
-            className="w-full md:w-9/12"
-          />
-        </div>
-
+        <CallOut
+          content="You may select more than one response"
+          className="mx-auto mb-20"
+        />
         <Items />
       </main>
     </>

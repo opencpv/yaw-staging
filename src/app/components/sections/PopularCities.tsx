@@ -30,7 +30,7 @@ const PopularCities = () => {
     <section
       className={`${
         cities && cities?.length < 1 && "hidden"
-      } wrapper section space-y-5 bg-white py-24`}
+      } wrapper section space-y-5 bg-white pb-0 pt-24`}
     >
       <div className="w-full space-y-5 min-[810px]:w-7/12">
         <div className="flex items-start gap-5">

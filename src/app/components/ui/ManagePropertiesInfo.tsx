@@ -9,16 +9,9 @@ type Props = {
   image: string;
   title: string;
   body: string;
-  href: string;
 };
 
-const ManagePropertiesInfo = ({
-  activity,
-  image,
-  title,
-  body,
-  href,
-}: Props) => {
+const ManagePropertiesInfo = ({ activity, image, title, body }: Props) => {
   return (
     <li className="group grid items-center gap-10 sm:grid-cols-2">
       <FramerWrapper className="relative aspect-video group-even:sm:order-2">

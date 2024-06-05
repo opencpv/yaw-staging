@@ -15,11 +15,11 @@ const DealCard = ({ title, body, icon, className }: Props) => {
     <Link href="/about#t73yjgClfDUknQ==">
       <div
         className={cn(
-          "flex w-full flex-col items-center gap-10 rounded-2xl border-t-5 border-shade-200/50 bg-shade-50 p-10 pb-12 pt-5 shadow-[0px_32px_64px_-12px_#00000024] transition-transform hover:translate-y-5",
+          "flex w-full flex-col items-center gap-10 rounded-2xl border-y-5 border-shade-200/50 bg-shade-50 p-10 pb-12 pt-5 shadow-[0px_32px_64px_-12px_#00000024] transition-transform hover:translate-y-5",
           className,
         )}
       >
-        <div className="group grid h-20 w-20 place-items-center rounded-md border border-shade-200/50">
+        <div className="group grid h-20 w-20 place-items-center rounded-full border border-accent">
           <Image
             src={icon}
             width={32}

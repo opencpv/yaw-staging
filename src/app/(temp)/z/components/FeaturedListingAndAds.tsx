@@ -5,14 +5,15 @@ import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingState
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
 import React from "react";
 import AdsSliderColumn from "./AdsSliderColumn";
-import ArrowLink from "../../components/__shared/ui/links/ArrowLink";
+// import ArrowLink from "../../components/__shared/ui/links/ArrowLink";
 import SliderWide from "@/components/__shared/ui/sliders/SliderWide";
 import { cn } from "@/lib/utils";
-import { useFetchFeaturedListings } from "../properties/services";
+// import { useFetchFeaturedListings } from "../properties/services";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import SomethingWentWrong from "../../components/__shared/ui/states/SomethingWentWrong";
+// import SomethingWentWrong from "../../components/__shared/ui/states/SomethingWentWrong";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import { getListingProps } from "@/lib/enum";
+import { useFetchFeaturedListings } from "@/app/properties/services";
 
 type Props = { data: any };
 
@@ -43,12 +44,12 @@ const FeaturedListingAndAds = (props: Props) => {
             <FetchingStates
               data={listings}
               error={error}
-              errorComponent={
-                <SomethingWentWrong
-                  className="col-span-full h-fit"
-                  onTryAgain={() => mutate()}
-                />
-              }
+              // errorComponent={
+              //   <SomethingWentWrong
+              //     className="col-span-full h-fit"
+              //     onTryAgain={() => mutate()}
+              //   />
+              // }
             />
             <SliderGrid
               items={
@@ -70,9 +71,9 @@ const FeaturedListingAndAds = (props: Props) => {
         {/* Ads */}
         <AdsSliderColumn ads={props.data} />
       </div>
-      {listings && (
+      {/* {listings && (
         <ArrowLink href="/properties" text="Show all" color="#202457" />
-      )}
+      )} */}
       {/* Ads mobile*/}
       {props.data.map((ad: any, idx: number) => (
         <div className="mt-4 w-full max-lg:mt-20 lg:hidden" key={idx}>

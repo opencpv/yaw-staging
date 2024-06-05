@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import ArrowLink from "../../components/__shared/ui/links/ArrowLink";
+// import ArrowLink from "../../components/__shared/ui/links/ArrowLink";
 import { fadeInLeft, fadeInRight } from "@/lib/animations";
 import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 
@@ -42,11 +42,11 @@ const ManagePropertiesInfo = ({
               <h2 className="text-2xl font-[700] text-white">{title}</h2>
               <p className="line-clamp-3">{body}</p>
             </div>
-            <ArrowLink
+            {/* <ArrowLink
               href={`${href}`}
               text="Manage your property"
               color="#D7D12D"
-            />
+            /> */}
           </div>
         </FramerWrapper>
       </li>
@@ -72,11 +72,11 @@ const ManagePropertiesInfo = ({
               <h2 className="text-2xl font-[700] text-white">{title}</h2>
               <p className="line-clamp-3">{body}</p>
             </div>
-            <ArrowLink
+            {/* <ArrowLink
               href={`${href}`}
               text="List your property"
               color="#D7D12D"
-            />
+            /> */}
           </div>
         </FramerWrapper>
       </li>

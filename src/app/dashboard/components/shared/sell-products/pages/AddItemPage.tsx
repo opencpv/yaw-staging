@@ -132,8 +132,8 @@ const AddItemPage = () => {
                   label="Condition"
                   options={[
                     { name: "new", value: "New" },
-                    { name: "used", value: "Used" },
                     { name: "used-like new", value: "Used-like New" },
+                    { name: "used", value: "Used" },
                   ]}
                 />
                 <CustomRadioInput

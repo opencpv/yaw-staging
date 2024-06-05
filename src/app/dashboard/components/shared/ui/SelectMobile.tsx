@@ -7,13 +7,14 @@ import {
   ChevronUpIcon,
 } from "@radix-ui/react-icons";
 import capitalizeName from "@/lib/utils/stringManipulation";
+import { cn } from "@/lib/utils";
 
 type Props = {
   /** Use as aria-label */
   name: string;
   value: string;
   options: string[];
-  className?: string;
+  classNames?: { content?: string };
   onOpenChange?: (open: boolean) => void;
   onValueChange?: (value: string) => void;
   placeholder?: string;
@@ -26,7 +27,7 @@ const SelectMobile = ({
   onOpenChange,
   onValueChange,
   placeholder,
-  className,
+  classNames,
 }: Props) => (
   <Select.Root
     onOpenChange={onOpenChange}
@@ -43,7 +44,12 @@ const SelectMobile = ({
       </Select.Icon>
     </Select.Trigger>
     <Select.Portal>
-      <Select.Content className="overflow-hidden rounded-md bg-white shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)]">
+      <Select.Content
+        className={cn(
+          "z-50 overflow-hidden rounded-md bg-white shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)]",
+          classNames?.content,
+        )}
+      >
         <Select.Viewport className="p-[5px]">
           <Select.Group>
             {options.map((option) => (

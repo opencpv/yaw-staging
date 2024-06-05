@@ -11,7 +11,9 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import React from "react";
 import { HiChevronRight } from "react-icons/hi";
 
-type Props = {};
+type Props = {
+  data: any;
+};
 
 const FeaturedListings = (props: Props) => {
   const { user } = useAppStore();
@@ -23,7 +25,7 @@ const FeaturedListings = (props: Props) => {
   } = useFetchFeaturedListings({ limit: 9 });
 
   return (
-    <section className="wrapper section">
+    <section className="wrapper section sm:pb-0">
       <div className="space-y-10">
         <div className="flex items-center justify-between gap-5">
           <h2 className="uppercase">Featured Listings</h2>
