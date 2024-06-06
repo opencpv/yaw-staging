@@ -17,7 +17,7 @@ function AboutOurTags() {
       <div className="flex w-full flex-col items-start justify-center gap-4 lg:flex-row">
         <div
           className="
-              flex w-full max-w-[378px] basis-[20%] flex-row gap-2 rounded-xl border-neutral-50 sm:border-1  sm:p-3
+              flex w-full max-w-[378px] basis-[20%] flex-row gap-2 rounded-xl sm:border-1 border-[#EEE]  sm:p-3
           lg:flex-col lg:gap-3 2xl:basis-[30%] 
           "
         >
@@ -31,7 +31,7 @@ function AboutOurTags() {
                 <AboutTagsTitle key={index} data={r} active={option == index} />
               </button>
               {index != tagsData?.length - 1 && (
-                <div className="hidden w-full border-b-[1px] border-neutral-50 lg:block"></div>
+                <div className="hidden lg:block w-full border-b-[1px] border-[#EEE]"></div>
               )}
             </div>
           ))}

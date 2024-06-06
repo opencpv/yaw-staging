@@ -6,7 +6,7 @@ import { useTermsMenuStore } from "./useTermsMenuStore";
 
 const TermsMenuArea = (props: any) => {
   const { setTermsMenuToggle } = useTermsMenuStore();
-
+0
   return (
     <div className={"flex flex-col "}>
       <div className="flex flex-col lg:gap-10">
@@ -23,7 +23,7 @@ const TermsMenuArea = (props: any) => {
           2xl:aspect-[150/122] 2xl:max-h-[122px] 2xl:max-w-[150px]
           "
             >
-              <Logo size="lg" url="/terms-and-services" />
+              <Logo size="lg" url="/terms-of-service" />
             </div>
             <button className="relative transition-transform duration-300 hover:rotate-[360deg] lg:right-10">
               <AiFillCloseCircle

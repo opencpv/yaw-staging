@@ -20,6 +20,7 @@ import {
 import FeedbackButton from "@/components/__shared/ui/feedback/FeedbackButton";
 
 type Props = {};
+import RatingsAndAllRatings from "@/components/RatingsAndAllRatings";
 
 const page = async (props: Props) => {
   const initial = await loadQuery<SanityDocument[]>(HOME_PAGE_QUERY);
