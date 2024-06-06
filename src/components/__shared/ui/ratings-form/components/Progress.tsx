@@ -55,65 +55,29 @@ export const Progress = ({
     }
   }, [activeNumber, number]);
   return (
-    <div className={` flex  gap-6 w-full ${classes}`} onClick={handleSwipe}>
-      <div className={`flex flex-col gap-4 items-center `}>
-        <ProgressCount
-          type={active ? "active" : "inactive"}
-          className={`hover:bg-gray-300 
-          cursor-pointer ${
-            active ? styles.review_pagination : "border-[1px] border-[#E6E6E6]"
-          }`}>
+    <div className={` flex  w-full gap-6 ${classes}`} onClick={handleSwipe}>
+      <div className={`flex flex-col items-center gap-4 `}>
+        <div
+          className={`cursor-pointer 
+          hover:bg-gray-300 ${
+            active
+              ? `${styles.review_pagination} font-bold text-white`
+              : "border-[1px] border-[#E6E6E6]"
+          } flex aspect-square w-[40px] max-w-[80px] items-center justify-center rounded-full text-base font-semibold text-[#B0B0B0]  md:w-[80px] md:text-[1.9375rem] `}
+        >
           {number}
-        </ProgressCount>
+        </div>
         <p
           className={`text-[13px] font-semibold capitalize  ${
             active ? " text-black " : "text-shade-200"
-          } `}>
+          } `}
+        >
           {label}
         </p>
       </div>
-      <div className="mt-[15%]">{!third && <ProgressLine />} </div>{" "}
+      <div className="mt-[8%] md:mt-[14%]">
+        {!third && <div className="h-[1px] w-[100px] md:w-[200px] bg-[#CFCFCF]"></div>}{" "}
+      </div>{" "}
     </div>
   );
 };
-
-const ProgressCount = styled("div", {
-  fontSize: "1.9375rem",
-  fontWeight: "600",
-  width: "80px",
-  maxWidth: "80px",
-  minWidth: "80px",
-  aspectRatio: "80/80",
-  color: "#B0B0B0",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  "@media screen and (max-width:1024px": {
-    width: "30px",
-  },
-
-  borderRadius: "50%",
-
-  variants: {
-    type: {
-      active: {
-        fontWeight: "700",
-        color: "white",
-      },
-      inactive: {},
-    },
-  },
-
-});
-
-const ProgressLine = styled("div", {
-  height: "1px",
-  width: "100%",
-  maxWidth: "200px",
-  minWidth: "200px",
-
-  "@media screen and (max-width: 1024px)": {
-    maxWidth: "5px",
-  },
-  backgroundColor: "#CFCFCF",
-});

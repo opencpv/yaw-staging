@@ -16,6 +16,7 @@ import {
   HOME_BANNER_QUERY,
   HOME_PAGE_QUERY,
 } from "@/lib/utils/sanity/queries";
+import RatingsAndAllRatings from "@/components/RatingsAndAllRatings";
 
 export default async function Home() {
   const initial = await loadQuery<SanityDocument[]>(HOME_PAGE_QUERY);
@@ -53,6 +54,8 @@ export default async function Home() {
             <FeedbackButton data={data} />
           </div>
         </main>
+        <RatingsAndAllRatings />
+
         <ScrollTopAndSocial threshHoldMin={820} threshHoldMax={5206} />
         <Footer />
       </>

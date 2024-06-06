@@ -8,7 +8,7 @@ import MenuScrollDownButton from "./components/MenuScrollDownButton";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import TermsMenuArea from "./TermsMenuArea";
-import { useIsElementInViewport } from "@/components/__shared/ui/NavMenu.tsx/hooks/useIsElementInViewport";
+import { useIsElementInViewport } from "@/components/__shared/ui/NavMenu/hooks/useIsElementInViewport";
 
 export default function TermsMenu(props: any) {
   const [hide, setHide] = useState(false);
