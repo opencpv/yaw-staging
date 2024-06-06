@@ -20,7 +20,7 @@ import SkeletonTextual from "@/components/__shared/ui/skeleton/SkeletonTextual";
 import SkeletonLong from "@/components/__shared/ui/skeleton/SkeletonLong";
 import SkeletonRectangle from "@/components/__shared/ui/skeleton/SkeletonRectangle";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
-import style from "@/components/__shared/Shape.module.css";
+import style from "@/components/__shared/Shared.module.css";
 import ViewPropertyBtn from "../ViewPropertyBtn";
 import { useFetchPropertyDetails } from "../../services";
 import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
