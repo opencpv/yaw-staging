@@ -45,8 +45,8 @@ const page = async (props: Props) => {
       <RentalDeals data={data} />
       <ManagePropertiesSection data={data} />
       <PopularCities />
-      <FeedbackButton data={data} />
-      <ScrollTopAndSocial threshHoldMin={820} threshHoldMax={5206} />
+      <FeedbackButton data={data} threshHoldMin={820} />
+      <ScrollTopAndSocial threshHoldMin={820} />
       <Footer />
     </ClientPageWrapper>
   );

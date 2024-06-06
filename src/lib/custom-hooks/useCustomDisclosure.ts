@@ -27,7 +27,7 @@ export const useToastDisclosure = () => {
         position: "top-right",
         autoClose: autoClose,
         hideProgressBar: false,
-        closeOnClick: false,
+        closeOnClick: true,
         pauseOnHover: true,
         draggable: false,
         progress: undefined,

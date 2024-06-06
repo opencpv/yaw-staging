@@ -1,6 +1,6 @@
 import React from "react";
 import CitySearchForm from "../landing/CitySearchForm";
-import ShapedLanding from "../landing/ShapedLanding";
+import ShapedLanding from "../../../../../components/__shared/ui/ShapedLanding";
 import ScrollDownBtn from "../landing/ScrollDownBtn";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 
@@ -23,9 +23,7 @@ const HomeLandingPage = (props: Props) => {
           <h1 className="fade-in-left max-w-2xl text-2xl font-[900] leading-tight min-[300px]:text-3xl xl:text-[2.5rem] xl:leading-snug">
             {props.data.title}
           </h1>
-          <h4 className="fade-in-right font-[500]">
-            {props.data.description}
-          </h4>
+          <h4 className="fade-in-right font-[500]">{props.data.description}</h4>
         </div>
         <CitySearchForm
           className="col-span-5 md:order-1 md:col-span-3"

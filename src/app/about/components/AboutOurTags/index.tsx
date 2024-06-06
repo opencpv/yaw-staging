@@ -7,11 +7,9 @@ import AboutTagsTitle from "./AboutTagsTitle";
 
 function AboutOurTags() {
   const [option, setOption] = useState<any>(0);
+
   return (
-    <div
-      className="wrapper mt-10 flex flex-col gap-1 border-0 border-x-0 border-[#8A8A8A] bg-[#F8F8F8] bg-[url('/assets/images/about/tag-bg-2.png')] bg-cover bg-center bg-no-repeat  sm:gap-5 lg:gap-10 2xl:mt-14"
-      id="t73yjgClfDUknQ=="
-    >
+    <div className="wrapper mt-10 flex flex-col gap-1 border-0 border-x-0 border-[#8A8A8A] bg-[#F8F8F8] bg-[url('/assets/images/about/tag-bg-2.png')] bg-cover bg-center bg-no-repeat  sm:gap-5 lg:gap-10 2xl:mt-14">
       <h2 className="text-lg font-bold md:text-3xl lg:text-3xl 2xl:text-5xl">
         Our Tags
       </h2>

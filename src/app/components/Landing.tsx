@@ -6,6 +6,7 @@ import CitySearchForm from "./CitySearchForm";
 import { animate, motion, stagger } from "framer-motion";
 import Link from "next/link";
 import { urlForImage } from "@/lib/utils/sanity/utils";
+import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 
 type Props = {
   data: any;
@@ -35,7 +36,7 @@ const Landing = (props: Props) => {
         </h1>
         <h4>{props.data.description}</h4>
       </div>
-      <div className={`${styles.rect}`}>
+      <FramerWrapper className={`${styles.rect}`}>
         <Image
           src={urlForImage(props.data.bgImage)?.url() as string}
           alt="Main banner" // TODO: change
@@ -83,7 +84,7 @@ const Landing = (props: Props) => {
         </motion.div>
         <Link
           href={"/"}
-          className="absolute bottom-0 right-0 z-10 grid size-20 place-items-center rounded-full border border-white transition-transform hover:-translate-y-2 max-sm:scale-[0.6] sm:bottom-10 sm:right-20"
+          className="absolute bottom-0 right-0 z-10 grid size-20 place-items-center rounded-full border-2 border-white transition-transform hover:-translate-y-2 max-sm:scale-[0.6] sm:bottom-10 sm:right-20"
         >
           <div
             className="grid size-12 animate-pulse place-items-center rounded-full bg-primary-200 text-white"
@@ -92,7 +93,7 @@ const Landing = (props: Props) => {
             <span className={`text-sm ${styles.pulse}`}>View</span>
           </div>
         </Link>
-      </div>
+      </FramerWrapper>
       <div className="space-y-2">
         <CitySearchForm placeholder={props.data.searchDefault} />
         <small className="font-semibold">

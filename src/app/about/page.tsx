@@ -76,16 +76,24 @@ const About = async () => {
             />
           </div>
         </div>
-        <FramerWrapper
-          className="wrapper mt-10 flex min-h-max items-center justify-center py-0 lg:mt-24"
+
+        <div
           id="QePYkSphjGkugQ=="
-        >
+          className="pointer-events-none relative bottom-20 opacity-0"
+        />
+
+        <FramerWrapper className="wrapper mt-10 flex min-h-max items-center justify-center py-0 lg:mt-24">
           <div className="flex min-h-max flex-col gap-10">
             {aboutDescription.map((data: any, index: number) => (
               <AboutItem key={index} index={index + 1} data={data} />
             ))}
           </div>
         </FramerWrapper>
+
+        <div
+          id="t73yjgClfDUknQ=="
+          className="pointer-events-none relative bottom-20 opacity-0"
+        />
 
         <FramerWrapper>
           <AboutOurTags />

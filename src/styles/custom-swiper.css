@@ -100,8 +100,8 @@
 .slider-promotions-pagination .swiper-pagination-bullet {
   background-color: rgba(17, 96, 94, 0.4) !important;
   opacity: 1 !important;
-  width: 12px !important;
-  height: 12px !important;
+  width: 14px !important;
+  height: 14px !important;
   z-index: 50 !important;
 }
 
@@ -109,8 +109,6 @@
   background-color: #11605e !important;
   opacity: 1 !important;
   z-index: 50 !important;
-  width: 20px !important;
-  height: 20px !important;
 }
 
 .slider-wide .swiper-pagination-bullets {

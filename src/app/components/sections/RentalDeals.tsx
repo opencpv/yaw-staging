@@ -14,7 +14,7 @@ type Props = {
 
 const RentalDeals = (props: Props) => {
   return (
-    <section className="bg-neutral-800 py-10">
+    <section className="bg-neutral-800 py-10" id="test-deal">
       <div className="section wrapper flex flex-col">
         <div className="flex flex-col items-center gap-5 text-center font-medium text-white">
           <div className="flex gap-5 xs:items-center">

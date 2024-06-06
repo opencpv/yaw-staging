@@ -1,57 +1,75 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HiOutlineChatBubbleOvalLeftEllipsis } from "react-icons/hi2";
 import Feedback from "./Feedback";
-import { fadeInRight } from "@/lib/animations";
-import FramerWrapper from "../../hoc/FramerWrapper";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
+import { floatItemsIntersectionStore } from "@/store/footer/footerStore";
+import { usePathname } from "next/navigation";
 
 type Props = {
   data: any;
+  threshHoldMin?: number;
 };
 
 const FeedbackButton = (props: Props) => {
-  const collapsedRef = useRef<HTMLDivElement>(null);
-  const expandedRef = useRef<HTMLDivElement>(null);
-  const [showFull, setShowFull] = useState(false);
+  const [showButton, setShowButton] = useState(false);
+  const [timedOut, setTimedOut] = useState(false);
+  const { hasIntersected } = floatItemsIntersectionStore();
+  const pathname = usePathname();
 
   useEffect(() => {
-    const footer = document.querySelector("#footer");
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setShowFull(true);
-          }
-        });
-      },
-      {
-        threshold: 1,
-      },
-    );
-
-    if (collapsedRef.current && footer) {
-      observer.observe(collapsedRef.current);
-      observer.observe(footer as HTMLElement);
-    }
-
-    return () => {
-      observer.disconnect();
+      if (scrollPosition < (props.threshHoldMin ?? 100)) {
+        setShowButton(false);
+      } else if (scrollPosition > (props.threshHoldMin ?? 100)) {
+        setShowButton(true);
+      }
     };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [props.threshHoldMin]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setTimedOut(true);
+    }, 30000);
   }, []);
+
+  const variants = {
+    show: {
+      x: 0,
+      opacity: 1,
+    },
+    hide: {
+      x: "-100%",
+      opacity: 0,
+    },
+  };
 
   return (
     <>
-      <div ref={collapsedRef} className={cn("w-fit", { invisible: showFull })}>
+      <div
+        className={cn("w-fit opacity-100 transition-opacity", {
+          "pointer-events-none opacity-0":
+            hasIntersected || !showButton || pathname !== "/" || timedOut,
+        })}
+      >
         <Feedback data={props.data}>
-          <FeedbackIcon className="fixed -left-2 top-[38rem] z-50 scale-80" />
+          <FeedbackIcon className="fixed -left-2 top-[33rem] z-50 scale-80" />
         </Feedback>
       </div>
-      <FramerWrapper
-        {...fadeInRight}
-        className={cn("invisible w-fit", { visible: showFull })}
-        ref={expandedRef}
+      <motion.div
+        variants={variants}
+        initial="hide"
+        animate={hasIntersected ? "show" : "hide"}
+        transition={{ duration: 1 }}
+        className="mt-20 w-fit"
       >
         <Feedback data={props.data}>
           <div className="ml-5 inline-flex w-fit items-center">
@@ -61,7 +79,7 @@ const FeedbackButton = (props: Props) => {
             </div>
           </div>
         </Feedback>
-      </FramerWrapper>
+      </motion.div>
     </>
   );
 };

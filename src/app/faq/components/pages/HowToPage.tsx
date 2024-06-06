@@ -32,7 +32,7 @@ const HowToPage = (props: Props) => {
     } else {
       setcontent(filterByTag(data, value));
     }
-  }, [value]);
+  }, [value, props.howtos]);
 
   return (
     <div className="pt-16">
@@ -46,7 +46,6 @@ const HowToPage = (props: Props) => {
           ]}
           value={value}
           className="mx-0"
-          variant="ghost"
           color="primary"
           handleSelectionChange={handleSelectionChange}
         />
