@@ -18,9 +18,8 @@ import { MdLocalPhone } from "react-icons/md";
 import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { socialLinks } from "@/enum/links/socials";
 import { useQuery } from "@tanstack/react-query";
-import { v4 as uuid } from "uuid";
 import { pacifico } from "@/lib/utils/fonts";
-import FloatItemsHack from "@/app/components/sections/FloatItemsHack";
+import FloatItemsHack from "@/components/FloatItemsHack";
 import { useIntersectionObserver } from "@/lib/utils/intersectionObserver";
 import { useEffect } from "react";
 import { floatItemsIntersectionStore } from "@/store/footer/footerStore";
@@ -50,8 +49,6 @@ const Footer = () => {
   const { ref, isIntersecting: isObIntersecting } = useIntersectionObserver();
   const { setHasIntersected, setIsIntersecting } =
     floatItemsIntersectionStore();
-
-  console.log(isObIntersecting);
 
   useEffect(() => {
     if (isObIntersecting) {
