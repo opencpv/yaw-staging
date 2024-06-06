@@ -2,7 +2,7 @@
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import React from "react";
-import style from "./Shape.module.css";
+import style from "../Shared.module.css";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
