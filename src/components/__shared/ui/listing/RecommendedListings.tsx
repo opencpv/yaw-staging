@@ -22,7 +22,7 @@ type Props = {
 };
 
 const RecommendedListings = ({ className, showAllButton }: Props) => {
-  const { ref, isIntersecting } = useIntersectionObserver();
+  const { ref, hasIntersected } = useIntersectionObserver();
 
   const { user } = useAppStore();
   const {
@@ -58,7 +58,7 @@ const RecommendedListings = ({ className, showAllButton }: Props) => {
             Show all
           </Button>
         </div>
-        {isIntersecting && (
+        {hasIntersected && (
           <>
             <FetchingStates
               data={listings}
