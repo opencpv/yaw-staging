@@ -2,11 +2,8 @@
 
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
-import { redirect } from "next/navigation";
-import { useEffect, useState } from "react";
 import DesktopProductCard from "../../components/shared/sell-products/DesktopProductCard";
 import MobileProductCard from "../../components/shared/sell-products/MobileProductCard";
-import Link from "next/link";
 import Button from "@/components/__shared/ui/button/Button";
 import {
   Table,
@@ -19,88 +16,33 @@ import {
 } from "../../components/shared/table/Table";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { cn } from "@/lib/utils";
+import { createClient } from "@/lib/utils/supabase/auth/client";
+import { useQuery } from "@tanstack/react-query";
+import { useCurrentUserId } from "@/lib/custom-hooks/useCurrentUserId";
+import LoadingIndicator from "@/components/LoadingIndicator";
+import { useState } from "react";
+import { Product } from "@/lib/typings";
 
 const Sell = () => {
-  // const [products, setproducts] = useState<any[]>([]);
-  // const [supabase, setsupabase] = useState<any>();
-  // const [id, setid] = useState<string>("");
-
+  const supabaseClient = createClient();
+  const id = useCurrentUserId();
   const { currentRole } = useDashboardStore();
 
-  let items: any[] = [
-    {
-      id: "1",
-      product: "Dining Table",
-      category: "Furniture",
-      condition: "used",
-      img_url: "/assets/images/about/young-couple.webp",
-      price: 10000,
-      is_available: true,
-      item_publication_status: "suspended",
+  const [products, setProducts] = useState<Product[]>([]);
+  const { isLoading, isFetching, refetch } = useQuery({
+    queryKey: ["products"],
+    queryFn: async () => {
+      if (!id) return;
+      const { data: listings } = await supabaseClient
+        .from("products")
+        .select("*")
+        .eq("seller", id)
+        .eq("is_deleted", false);
+
+      setProducts(listings as Product[]);
     },
-    {
-      id: "2",
-      product: "Couch",
-      category: "Furniture",
-      condition: "used",
-      img_url: "/assets/images/about/young-couple.webp",
-      price: 10000,
-      is_available: true,
-      item_publication_status: "active",
-    },
-    {
-      id: "3",
-      product: "Wardrobe",
-      category: "Furniture",
-      condition: "new",
-      img_url: "/assets/images/about/young-couple.webp",
-      price: 10000,
-      is_available: false,
-      item_publication_status: "archived",
-    },
-    {
-      id: "4",
-      product: "Mifi",
-      category: "Electronics",
-      condition: "used",
-      img_url: "/assets/images/about/young-couple.webp",
-      price: 10000,
-      is_available: false,
-      item_publication_status: "inactive",
-    },
-  ];
-
-  // !!! Temporarily commented out
-
-  // useEffect(() => {
-  // if (!supabase) {
-  //     redirect("/");
-  //   } else {
-  //     setsupabase(supabase);
-  //     supabase.auth
-  //       .getUser(
-  //         JSON.parse(localStorage.getItem("session") as string).access_token,
-  //       )
-  //       .then((data) => setid(data.data.user?.id as string))
-  //       .catch((err) => {
-  //       });
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   const getProducts = async () => {
-  //     let { data: sell_items, error } = await supabase
-  //       .from("sell_items")
-  //       .select("*")
-  //       .eq("user_id", id);
-
-  //     if (!error) {
-  //       setproducts(sell_items as any[]);
-  //     }
-  //   };
-
-  //   getProducts();
-  // }, [id, supabase]);
+    enabled: !!id,
+  });
 
   return (
     <>
@@ -108,9 +50,10 @@ const Sell = () => {
         <section className="mb-6 space-y-5">
           <h2>Items</h2>
           {/* product count */}
-          {items?.length > 0 ? (
+          {products!.length > 0 ? (
             <small className="inline-block text-sm capitalize">
-              Showing {items.length} {items.length > 1 ? "Items" : "Item"}
+              Showing {products!.length}{" "}
+              {products!.length > 1 ? "Items" : "Item"}
             </small>
           ) : null}
         </section>
@@ -119,7 +62,7 @@ const Sell = () => {
         <div className="flex flex-col gap-8">
           <Table
             className={cn("mb-8", {
-              "min-h-[35rem]": items?.length > 3,
+              "min-h-[35rem]": products!.length > 3,
             })}
           >
             <TableHeaderRow className="grid-cols-6" gap="2rem">
@@ -130,38 +73,50 @@ const Sell = () => {
               <TableHeader className="col-span-1">Actions</TableHeader>
             </TableHeaderRow>
             <TableBodyRowGroup>
-              {/* if product count is zero display this */}
-              {items.length === 0 ? (
-                <TableBodyRow className="grid-cols-6">
-                  <TableBody className="col-span-6">
-                    <AddItem />
-                  </TableBody>
-                </TableBodyRow>
-              ) : null}
+              <>
+                {isLoading ? (
+                  <div className="w-full">
+                    <LoadingIndicator />
+                  </div>
+                ) : (
+                  <>
+                    {products!.length === 0 ? (
+                      <TableBodyRow className="grid-cols-6">
+                        <TableBody className="col-span-6">
+                          <AddItem />
+                        </TableBody>
+                      </TableBodyRow>
+                    ) : null}
+                  </>
+                )}
+              </>
 
-              {items?.map((product, index) => (
+              {products?.map((product, index) => (
                 <>
-                  <DesktopProductCard
-                    // status={
-                    //   index === 1
-                    //     ? ""
-                    //     : index === 3
-                    //       ? "inactive"
-                    //       : index === 0
-                    //         ? "suspended"
-                    //         : "archived"
-                    // }
-                    data={product}
-                    key={index}
-                  />
+                  {!product.is_deleted && product.status !== "archived" && (
+                    <DesktopProductCard
+                      data={product}
+                      key={index}
+                      refetch={refetch}
+                    />
+                  )}
                 </>
               ))}
             </TableBodyRowGroup>
           </Table>
+
           {/* table display in mobile and tablet view */}
           <TableSm>
-            {items?.map((product, index) => (
-              <MobileProductCard data={product} key={`mobile-${index}`} />
+            {products?.map((product, index) => (
+              <>
+                {!product.is_deleted && product.status !== "archived" && (
+                  <MobileProductCard
+                    data={product}
+                    key={`mobile-${index}`}
+                    refetch={refetch}
+                  />
+                )}
+              </>
             ))}
           </TableSm>
           <Button

@@ -19,13 +19,26 @@ interface Props {
   /** maximum file size in bytes */
   maxSize?: { byte: number; kb?: string; mb?: string };
   onFileSelect?: (file: File) => void;
+  defaultFiles?: File[];
 }
 
-const FileUploader = ({ onFileSelect }: Props) => {
+const FileUploader = ({ onFileSelect, defaultFiles = [] }: Props) => {
   const [field, meta, helpers] = useField("images");
 
   const [files, setFiles] = React.useState<any[]>([]);
   const { onOpen } = useToastDisclosure();
+
+  useEffect(() => {
+    if (defaultFiles.length > 0) {
+      const initialFiles = defaultFiles.map((file) =>
+        Object.assign(file, {
+          preview: URL.createObjectURL(file),
+        }),
+      );
+      setFiles(initialFiles);
+      helpers.setValue(initialFiles);
+    }
+  }, [defaultFiles, helpers]);
 
   const onDropRejected = (
     fileRejections: FileRejection[],
@@ -49,41 +62,28 @@ const FileUploader = ({ onFileSelect }: Props) => {
   const onDrop = useCallback(
     (acceptedFiles: any) => {
       if (files.length + acceptedFiles.length > 10) {
-        // max 5 files
+        // max 10 files
         onOpen("You can only upload up to 10 files", "error");
         return;
       }
 
-      const newFiles = acceptedFiles.map(
-        (
-          file: any, // create new files
-        ) =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file),
-          }),
+      const newFiles = acceptedFiles.map((file: any) =>
+        Object.assign(file, {
+          preview: URL.createObjectURL(file),
+        }),
       );
 
-      const newFilesArray = [...files, ...newFiles]; // combine old and new files
+      const newFilesArray = [...files, ...newFiles];
 
-      setFiles(
-        newFilesArray.map((file: any) =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file),
-          }),
-        ),
-      );
-
-      helpers.setValue(
-        newFilesArray.map((file: any) =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file),
-          }),
-        ),
-      );
+      setFiles(newFilesArray);
+      helpers.setValue(newFilesArray);
     },
     [files, onOpen, helpers],
   );
 
+  useEffect(() => {
+    helpers.setValue(files);
+  }, [files]);
   useEffect(() => {
     // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
     return () =>
@@ -93,7 +93,6 @@ const FileUploader = ({ onFileSelect }: Props) => {
   return (
     <>
       <Dropzone
-        // maxFiles={5}
         minSize={100000}
         maxSize={2097152}
         onDrop={onDrop}
@@ -104,7 +103,6 @@ const FileUploader = ({ onFileSelect }: Props) => {
           "image/png": [],
         }}
       >
-        {/* minSize= 100kb, MaxSize is 2mb */}
         {({
           getRootProps,
           getInputProps,
@@ -175,12 +173,11 @@ const Preview = ({ file, setFiles, files }: any) => {
         <LiaTimesSolid className="text-primary-500" />
       </div>
       <Image
-        src={URL.createObjectURL(file)}
+        src={file.preview}
         alt="preview"
         fill
         style={{ objectFit: "cover" }}
         className="rounded-[inherit]"
-        // Revoke data uri after image is loaded
         onLoad={() => URL.revokeObjectURL(file.preview)}
       />
     </li>

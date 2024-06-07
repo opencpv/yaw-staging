@@ -56,6 +56,12 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "rentright.nyc3.cdn.digitaloceanspaces.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
         hostname: "avatar.iran.liara.run",
         port: "",
         pathname: "/**",

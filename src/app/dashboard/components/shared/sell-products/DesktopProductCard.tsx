@@ -11,19 +11,21 @@ import { formatPrice } from "@/lib/utils/numberManipulation";
 import Actions from "./Actions";
 import ProductCondition from "./ProductCondition";
 import PublicationStatus, { ItemPublicationStatus } from "./PublicationStatus";
+import { Product } from "@/lib/typings";
 
 type Props = {
-  data: any;
+  data: Product;
+  refetch: () => void;
 };
 
-const DesktopProductCard = ({ data }: Props) => {
+const DesktopProductCard = ({ data, refetch }: Props) => {
   return (
     <TableBodyRow className="grid-cols-6">
       {/* Product */}
       <TableBody className="col-span-2 flex w-full gap-[0.62rem] truncate p-2.5">
-        <TbPropertyImage title={data.product} image={data.img_url} />
+        <TbPropertyImage title={data.title} image={data.images[0]} />
         <div className="flex flex-col gap-2">
-          <p className="font-semibold">{data.product}</p>
+          <p className="font-semibold">{data.title}</p>
           <ProductCondition condition={data.condition} />
           <p className="text-[13px] font-bold text-[#8A8A8A]">
             {formatPrice(data.price)}
@@ -40,21 +42,22 @@ const DesktopProductCard = ({ data }: Props) => {
       {/* Status */}
       <TableBody className="col-span-1">
         <ProductStatus
-          publicationStatus={data.item_publication_status}
+          publicationStatus={data.status}
           isAvailable={data.is_available}
           id={data.id}
+          refetch={refetch}
         />
       </TableBody>
       {/* Publication */}
       <TableBody className="col-span-1 font-semibold">
         <PublicationStatus
-          status={data.item_publication_status}
-          productStatus={data.is_available ? "available" : "sold"}
+          status={data.status}
+          productStatus={data.is_available ? "available" : "unavailable"}
         />
       </TableBody>
       {/* Actions */}
       <TableBody className="col-span-1 mx-auto">
-        <Actions id={data.id} table="sell_items" />
+        <Actions id={data.id} table="sell_items" refetch={refetch} />
       </TableBody>
     </TableBodyRow>
   );
