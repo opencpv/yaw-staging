@@ -4,6 +4,7 @@ import { useSelectDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { cn } from "@nextui-org/react";
 import { BsInfoCircle } from "react-icons/bs";
 import Tooltip from "@/components/__shared/ui/Tooltip";
+import capitalizeName from "@/lib/utils/stringManipulation";
 
 export type ItemPublicationStatus =
   | "active"
@@ -13,7 +14,7 @@ export type ItemPublicationStatus =
 
 type Props = {
   status: ItemPublicationStatus;
-  productStatus: "available" | "sold";
+  productStatus: "available" | "unavailable";
 };
 
 const PublicationStatus = ({ status, productStatus }: Props) => {
@@ -34,7 +35,8 @@ const PublicationStatus = ({ status, productStatus }: Props) => {
           className={cn(
             "flex w-44 items-center justify-center rounded-full p-2 py-2.5 text-neutral-800 shadow-sm",
             {
-              "bg-red-300": status === "inactive" && productStatus === "sold",
+              "bg-red-300":
+                status === "inactive" && productStatus === "unavailable",
               "bg-primary-50":
                 status === "active" && productStatus === "available",
               "bg-accent-500": status === "suspended",
@@ -43,12 +45,7 @@ const PublicationStatus = ({ status, productStatus }: Props) => {
           )}
         >
           <div className="flex items-center gap-5">
-            <small className="text-xs">
-              {status === "active" && productStatus === "available" && "Active"}
-              {status === "inactive" && productStatus === "sold" && "Inactive"}
-              {status === "suspended" && "Suspended"}
-              {status === "archived" && "Archived"}
-            </small>
+            <small className="text-xs">{capitalizeName(status)}</small>
             <BsInfoCircle />
           </div>
         </div>

@@ -9,9 +9,18 @@ import ProductCondition from "./ProductCondition";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import EditButton from "@/components/__shared/ui/button/EditButton";
 import DeleteButton from "@/components/__shared/ui/button/DeleteButton";
+import { Product } from "@/lib/typings";
+import CaDashEdit from "@/components/__shared/ui/icons/CaDashEdit";
+import DeleteProductButton from "./DeleteProductButton";
+import { createClient } from "@/lib/utils/supabase/auth/client";
 
-const MobileProductCard = ({ data }: { data: any }) => {
+interface Props {
+  data: Product;
+  refetch: () => void;
+}
+const MobileProductCard = ({ data, refetch }: Props) => {
   const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
+  const supabase = createClient();
 
   return (
     <>
@@ -27,9 +36,9 @@ const MobileProductCard = ({ data }: { data: any }) => {
         {/* Product */}
         <TableBodySm href="/properties/2">
           <div className="flex flex-wrap gap-5 truncate xsm:flex-nowrap">
-            <TbPropertyImageSm title={data.product} image={data.img_url} />
+            <TbPropertyImageSm title={data.title} image={data.images[0]} />
             <div className="flex flex-col gap-2">
-              <p className="font-semibold">{data.product}</p>
+              <p className="font-semibold">{data.title}</p>
               <ProductCondition condition={data.condition} />
               <p className="text-[13px] font-bold text-[#8A8A8A]">
                 {formatPrice(data.price)}
@@ -41,9 +50,10 @@ const MobileProductCard = ({ data }: { data: any }) => {
         {/* Status */}
         <TableBodySm className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 pt-3.5">
           <ProductStatus
-            publicationStatus={data.item_publication_status}
-            isAvailable={data.isAvailable}
+            publicationStatus={data.status}
+            isAvailable={data.is_available}
             id={data.id}
+            refetch={refetch}
           />
         </TableBodySm>
         {/* Date */}
@@ -62,19 +72,26 @@ const MobileProductCard = ({ data }: { data: any }) => {
         </TableBodySm>
         {/* Actions */}
         <TableBodySm className="flex justify-center gap-1.5 pt-3">
-          {status === "not submitted" && (
+          {
             <>
               <EditButton onOpen={() => ""} />
-              <DeleteButton handleDestruction={() => {}} />
+              <DeleteButton
+                handleDestruction={async () => {
+                  const { data: product, error } = await supabase
+                    .from("products")
+                    .update({
+                      is_deleted: true,
+                      deletion_date: new Date().toDateString(),
+                    })
+                    .eq("id", data.id);
+                  if (!error) {
+                    refetch();
+                  }
+                }}
+              />
             </>
-          )}
+          }
         </TableBodySm>
-        {/* <div className="col-span-2 grid grid-cols-2 gap-2  py-4 align-middle ">
-          <button className="flex w-full cursor-pointer justify-center rounded-[8px] bg-secondary-50 p-4">
-            <CaDashEdit />
-          </button>
-          <DeleteProductButton id={data.id} table="sell_items" />
-        </div> */}
       </TableRowSm>
     </>
   );
