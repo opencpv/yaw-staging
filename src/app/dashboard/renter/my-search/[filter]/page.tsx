@@ -1,5 +1,5 @@
 import React from "react";
-import FilterPage from "../components/pages/FilterPage";
+import MySearch from "../components/pages/MySearch";
 import { Metadata } from "next";
 import capitalizeName from "@/lib/utils/stringManipulation";
 
@@ -11,13 +11,13 @@ export function generateMetadata({ params }: Props): Metadata {
   const filter = capitalizeName(params.filter.replaceAll("-", " "));
 
   return {
-    title: filter === "All" ? "My Search" : "filter",
+    title: filter === "All" ? "My Search" : filter,
     description: "", // tentative
   };
 }
 
 const page = ({ params }: Props) => {
-  return <FilterPage filter={params.filter} />;
+  return <MySearch filter={params.filter} />;
 };
 
 export default page;

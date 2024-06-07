@@ -15,7 +15,7 @@ import EmptyState from "@/components/__shared/ui/states/EmptyState";
 import { getListingProps } from "@/lib/enum";
 import slugify from "@/lib/utils/slugify";
 
-const FilterPage = ({ filter }: { filter: string }) => {
+const MySearch = ({ filter }: { filter: string }) => {
   const { user } = useAppStore();
   const router = useRouter();
 
@@ -115,4 +115,4 @@ const FilterPage = ({ filter }: { filter: string }) => {
   );
 };
 
-export default FilterPage;
+export default MySearch;

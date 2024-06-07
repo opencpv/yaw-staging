@@ -26,7 +26,7 @@ const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
   return (
     <div className={cn("relative")}>
       <Swiper
-        autoplay={{ delay: 6000 }}
+        autoplay={{ delay: 6000, disableOnInteraction: true }}
         slidesPerView={1}
         spaceBetween={20}
         className="slider-promotions h-full w-full"
@@ -37,6 +37,8 @@ const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
           clickable: true,
           el: ".slider-promotions-pagination",
         }}
+        onNavigationNext={(swiper) => swiper.autoplay.pause()}
+        onNavigationPrev={(swiper) => swiper.autoplay.pause()}
         ref={sliderRef}
       >
         {promotions.map((promotion: any) => (
