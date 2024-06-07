@@ -7,11 +7,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { TbChevronCompactRight } from "react-icons/tb";
 
 type Props = {
-  threshHoldMin?: number;
-  threshHoldMax?: number;
+  thresholdMin?: number;
 };
 
-const FixedSocials = ({ threshHoldMin }: Props) => {
+const FixedSocials = ({ thresholdMin }: Props) => {
   const [showSocials, setShowSocials] = useState<boolean>(false);
   const [showArrow, setShowArrow] = useState<boolean>(false);
   const { isIntersecting } = floatItemsIntersectionStore();
@@ -26,13 +25,13 @@ const FixedSocials = ({ threshHoldMin }: Props) => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
 
-      if (scrollPosition < (threshHoldMin ?? 100)) {
+      if (scrollPosition < (thresholdMin ?? 100)) {
         setShowSocials(false);
         setShowArrow(false);
-      } else if (scrollPosition > (threshHoldMin ?? 100) && !isIntersecting) {
+      } else if (scrollPosition > (thresholdMin ?? 100) && !isIntersecting) {
         setShowArrow(true);
         setShowSocials(false);
-      } else if (scrollPosition > (threshHoldMin ?? 100) && isIntersecting) {
+      } else if (scrollPosition > (thresholdMin ?? 100) && isIntersecting) {
         setShowArrow(false);
       }
     };
@@ -41,7 +40,7 @@ const FixedSocials = ({ threshHoldMin }: Props) => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [threshHoldMin, isIntersecting]);
+  }, [thresholdMin, isIntersecting]);
 
   const variants = {
     show: {

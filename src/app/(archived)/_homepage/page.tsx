@@ -53,7 +53,7 @@ export default async function Home() {
             <FeedbackButton data={data} />
           </div>
         </main> */}
-        <ScrollTopAndSocial threshHoldMin={820} threshHoldMax={5206} />
+        <ScrollTopAndSocial thresholdMin={820} />
         <Footer />
       </>
     </ClientPageWrapper>

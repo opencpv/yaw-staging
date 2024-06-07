@@ -1,15 +1,19 @@
-"use client";
-
 import React from "react";
-import AgentButtons from "../../components/shared/my-agent/Button";
 import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
 import BeMyAgentModal from "@/app/dashboard/components/shared/my-agent/steps/BeMyAgentModal";
 import styles from "@/app/dashboard/components/shared/my-agent/index.module.css";
-import { usePathname } from "next/navigation";
 import CallOut from "@/components/__shared/ui/CallOut";
+import { headers } from "next/headers";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "My Agent",
+  description: "", // tentative
+};
 
 const MyAgentLayout = ({ children }: { children: React.ReactNode }) => {
-  const pathname = usePathname();
+  const headerList = headers();
+  const pathname = headerList.get("x-pathname") || "";
 
   return (
     <>

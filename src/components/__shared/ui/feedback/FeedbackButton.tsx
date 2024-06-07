@@ -1,15 +1,16 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { HiOutlineChatBubbleOvalLeftEllipsis } from "react-icons/hi2";
 import Feedback from "./Feedback";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { floatItemsIntersectionStore } from "@/store/footer/footerStore";
 import { usePathname } from "next/navigation";
+import { getLocalStorageWithExpiry } from "@/lib/utils/localStorage";
 
 type Props = {
   data: any;
-  threshHoldMin?: number;
+  thresholdMin?: number;
 };
 
 const FeedbackButton = (props: Props) => {
@@ -18,13 +19,18 @@ const FeedbackButton = (props: Props) => {
   const { hasIntersected } = floatItemsIntersectionStore();
   const pathname = usePathname();
 
+  const shouldFloat = useMemo(() => {
+    const float = getLocalStorageWithExpiry("floating-feedback-behavior");
+    return float;
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
 
-      if (scrollPosition < (props.threshHoldMin ?? 100)) {
+      if (scrollPosition < (props.thresholdMin ?? 100)) {
         setShowButton(false);
-      } else if (scrollPosition > (props.threshHoldMin ?? 100)) {
+      } else if (scrollPosition > (props.thresholdMin ?? 100)) {
         setShowButton(true);
       }
     };
@@ -33,7 +39,7 @@ const FeedbackButton = (props: Props) => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [props.threshHoldMin]);
+  }, [props.thresholdMin]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -57,7 +63,11 @@ const FeedbackButton = (props: Props) => {
       <div
         className={cn("w-fit opacity-100 transition-opacity", {
           "pointer-events-none opacity-0":
-            hasIntersected || !showButton || pathname !== "/" || timedOut,
+            shouldFloat === false ||
+            hasIntersected ||
+            !showButton ||
+            pathname !== "/" ||
+            timedOut,
         })}
       >
         <Feedback data={props.data}>

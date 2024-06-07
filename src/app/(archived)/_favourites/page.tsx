@@ -1,6 +1,4 @@
 "use client";
-import { useState } from "react";
-import SavedSearchCard from "./components/SavedSearchCard";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
 import ListingCard from "@/components/__shared/ui/listing/ListingCard";
@@ -13,7 +11,6 @@ import EmptyState from "@/components/__shared/ui/states/EmptyState";
 import { getListingProps } from "@/lib/enum";
 
 export default function FavoritePage() {
-  const [savedSearches, setSavedSearches] = useState(true);
   const { user } = useAppStore();
 
   const {

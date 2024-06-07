@@ -45,7 +45,7 @@ const Page = async () => {
             </div>
           </div>
         </Root>
-        <ScrollTopAndSocial threshHoldMin={450} threshHoldMax={1400} />
+        <ScrollTopAndSocial thresholdMin={450} />
         <div className="mt-20 lg:mt-0">
           <FeedbackButton data={data} />
         </div>

@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { useAssets } from "@/lib/custom-hooks/useAssets";
 import RtManageApplicationsTable from "./components/RtManageApplicationsTable";
 import RtManageApplicationsSmallScreen from "./components/RtManageApplicationsSm";
 import { useApplicationsStore } from "@/store/dashboard/applicationsStore";
@@ -8,7 +7,6 @@ import { useApplicationsStore } from "@/store/dashboard/applicationsStore";
 const ApplicationsPage = () => {
   const fetchCount = useApplicationsStore((state) => state.fetchCount);
 
-  const { images } = useAssets();
   return (
     <main className="text-neutral-800">
       <section className="mb-6 space-y-5">

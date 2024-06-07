@@ -12,7 +12,7 @@ const JoinUsPage = async () => {
           className={`flex h-[405px] w-full shrink-0 flex-col items-center justify-center  gap-6 px-5  lg:h-[656px]
                ${styles.header} !bg-cover !bg-no-repeat `}
         >
-          <div className="flex flex-col items-center justify-center gap-4">
+          <div className="flex flex-col items-center justify-center gap-4 max-sm:mt-10">
             <h1 className="text-2xl font-semibold capitalize text-white lg:text-5xl">
               Work with us
             </h1>

@@ -22,7 +22,7 @@ export const PgRoutesRenter = [
     name: "be the first to know",
     url: "",
     icon: <VscWorkspaceUnknown />,
-    link: "/dashboard/renter/my-search/search/be-the-first-to-know",
+    link: "/dashboard/renter/my-search/be-the-first-to-know",
   },
   {
     name: "my agent",
@@ -34,7 +34,7 @@ export const PgRoutesRenter = [
     name: "my search",
     url: "",
     icon: <TbHomeSearch />,
-    link: "/dashboard/renter/my-search/search/all",
+    link: "/dashboard/renter/my-search/all",
   },
   {
     name: "messages",
@@ -70,13 +70,13 @@ export const PgRoutesRenter = [
     name: "favourites",
     url: "",
     icon: <FaRegHeart />,
-    link: "/dashboard/renter/my-search/search/favourites",
+    link: "/dashboard/renter/my-search/favourites",
   },
   {
     name: "recommendations",
     url: "",
     icon: <MdOutlineRecommend />,
-    link: "/dashboard/renter/my-search/search/recommendations",
+    link: "/dashboard/renter/my-search/recommendations",
   },
   {
     name: "settings",

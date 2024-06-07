@@ -5,8 +5,8 @@ import Select from "../../../../components/shared/ui/Select";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import ListingCard from "@/components/__shared/ui/listing/ListingCard";
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
-import ContactPreferenceToggle from "../../../favourites/components/ContactPreferenceToggle";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import ContactPreferenceToggle from "../../../../../(archived)/_favourites/components/ContactPreferenceToggle";
+import { useRouter } from "next/navigation";
 import { useFetchRenterBookmarks } from "../../../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
@@ -17,7 +17,6 @@ import slugify from "@/lib/utils/slugify";
 
 const FilterPage = ({ filter }: { filter: string }) => {
   const { user } = useAppStore();
-  const pathname = usePathname();
   const router = useRouter();
 
   const {
@@ -43,7 +42,7 @@ const FilterPage = ({ filter }: { filter: string }) => {
         selectedKey={filter.replaceAll("-", " ")}
         onSelectionChange={(key) => {
           const slug = slugify(key.toString());
-          router.replace(`/dashboard/renter/my-search/search/${slug}`, {
+          router.replace(`/dashboard/renter/my-search/${slug}`, {
             scroll: false,
           });
         }}
@@ -68,7 +67,7 @@ const FilterPage = ({ filter }: { filter: string }) => {
           color="primary"
           handleSelectionChange={(e) => {
             const slug = slugify(e.target.value);
-            router.replace(`/dashboard/renter/my-search/search/${slug}`, {
+            router.replace(`/dashboard/renter/my-search/${slug}`, {
               scroll: false,
             });
           }}

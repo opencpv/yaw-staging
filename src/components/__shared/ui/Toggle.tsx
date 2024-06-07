@@ -37,6 +37,7 @@ const Toggle = ({
           },
         ),
         label: cn("text-neutral-500"),
+        base: "shadow-md",
       }}
       size="sm"
       isSelected={isSelected}
