@@ -1,5 +1,5 @@
-import "./about.css";
 import "swiper/css";
+import style from "./About.module.css";
 import Image from "next/image";
 import AboutItem from "./components/AboutItem";
 import Navbar from "@/components/__shared/ui/Navbar";
@@ -38,7 +38,7 @@ const About = async () => {
   return (
     <>
       <Navbar />
-      <main className="overflow-x-hidden pb-8 sm:pb-14">
+      <main className={`${style.about} overflow-x-hidden`}>
         <div className="wrapper flex items-center justify-center pb-0 sm:pb-0">
           <div className="grid items-center gap-x-36 gap-y-5 lg:grid-cols-2">
             <div className="w-full">
@@ -55,12 +55,12 @@ const About = async () => {
             </div>
             <div className="w-full">
               {heading2.split("#").map((heading: string, index: number) => (
-                <h2
+                <h4
                   className="max-w-2xl text-2xl font-[500] text-[#65969F]"
                   key={index}
                 >
                   {heading}
-                </h2>
+                </h4>
               ))}
             </div>
           </div>
@@ -121,8 +121,8 @@ const About = async () => {
         <FramerWrapper className="mx-auto h-fit max-w-screen-2xl px-5 sm:px-10 lg:pt-28">
           <VerticalSlider data={popularPosts} />
         </FramerWrapper>
-        <FeaturedListings className="wrapper pb-0 pt-28" />
       </main>
+      <FeaturedListings className="wrapper pb-0 pt-28" />
       <Footer />
     </>
   );

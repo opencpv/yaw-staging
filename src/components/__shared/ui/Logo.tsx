@@ -10,18 +10,18 @@ type Props = {
   className?: string;
   size?: "xs" | "sm" | "md" | "lg";
   onClick?: () => void;
-  url? : string
+  url?: string;
 };
 
-const Logo = ({ className, size, onClick, url="/" }: Props) => {
-  const { images } = useAssets();
+const Logo = ({ className, size, onClick, url = "/" }: Props) => {
+  const { images, icons } = useAssets();
   const { setToggle } = useMenuStore();
   const { setIsOpen } = useDashboardMenuStore();
 
   return (
     <Link href={url}>
       <Image
-        src={images.Logo}
+        src={icons.Logo}
         alt="RentRightGH logo"
         width={
           size === "md" ? 112 : size === "lg" ? 128 : size === "xs" ? 60 : 96

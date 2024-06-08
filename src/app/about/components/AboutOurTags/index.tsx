@@ -1,5 +1,4 @@
 "use client";
-import { Tab, Tabs } from "@nextui-org/react";
 import { useState } from "react";
 import { tagsData } from "./data";
 import AboutTagsContent from "./AboutTagsContent";
@@ -14,7 +13,7 @@ function AboutOurTags() {
 
       <div className="flex w-full flex-col items-start justify-center gap-4 lg:flex-row">
         <div
-          className="flex w-full max-w-[378px] basis-[20%] flex-row gap-2 rounded-xl border-[#EEE] sm:border-1  sm:p-3
+          className="custom-scrollbar flex max-h-80 w-full max-w-[378px] basis-[20%] flex-row gap-2 overflow-y-auto rounded-xl border-[#EEE] sm:border-1  sm:p-3
           lg:flex-col lg:gap-3 2xl:basis-[30%] 
           "
         >

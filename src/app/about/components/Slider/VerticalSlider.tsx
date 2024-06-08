@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/autoplay";
 import { Pagination, Autoplay } from "swiper/modules";
 import Image from "next/image";
 import VerticalSliderScrollFixOverlay from "@/components/__shared/ui/sliders/VerticalSliderScrollFixOverlay";
@@ -24,6 +25,7 @@ const VerticalSlider = ({ data }: { data: any }) => {
         pagination={{
           clickable: true,
         }}
+        autoplay={{ delay: 6000 }}
         modules={[Pagination, Autoplay]}
         className={`mySwiper vertical-slider relative order-2 col-span-5 h-[28rem] w-full rounded-[3rem] bg-neutral-700 text-white lg:col-span-4 lg:h-[32rem] xl:col-span-3`}
       >

@@ -45,6 +45,7 @@ const ContactFullNameField = ({
       name="fullname"
       value={contactFormSession.fullname || value}
       label="Full Name"
+      required
       onChange={(e) => {
         handleChange?.(e);
         handleSessionChange("fullname", e.target.value);
