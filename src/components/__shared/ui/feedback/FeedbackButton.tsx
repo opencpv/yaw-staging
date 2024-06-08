@@ -11,6 +11,7 @@ import { getLocalStorageWithExpiry } from "@/lib/utils/localStorage";
 type Props = {
   data: any;
   thresholdMin?: number;
+  className?: string;
 };
 
 const FeedbackButton = (props: Props) => {
@@ -59,7 +60,7 @@ const FeedbackButton = (props: Props) => {
   };
 
   return (
-    <>
+    <div className={cn(props.className)}>
       <div
         className={cn("w-fit opacity-100 transition-opacity", {
           "pointer-events-none opacity-0":
@@ -90,7 +91,7 @@ const FeedbackButton = (props: Props) => {
           </div>
         </Feedback>
       </motion.div>
-    </>
+    </div>
   );
 };
 

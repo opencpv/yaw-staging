@@ -1,0 +1,1 @@
+export const SLIDER_AUTOPLAY_DELAY = 6000;

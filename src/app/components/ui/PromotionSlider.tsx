@@ -11,6 +11,7 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { cn } from "@/lib/utils";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import Link from "next/link";
+import { SLIDER_AUTOPLAY_DELAY } from "@/constants";
 
 const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
   const sliderRef = useRef<any>(null);
@@ -26,7 +27,7 @@ const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
   return (
     <div className={cn("relative")}>
       <Swiper
-        autoplay={{ delay: 6000, disableOnInteraction: true }}
+        autoplay={{ delay: SLIDER_AUTOPLAY_DELAY, disableOnInteraction: true }}
         slidesPerView={1}
         spaceBetween={20}
         className="slider-promotions h-full w-full"
@@ -37,6 +38,7 @@ const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
           clickable: true,
           el: ".slider-promotions-pagination",
         }}
+        onClick={(swiper) => swiper.autoplay.pause()}
         onNavigationNext={(swiper) => swiper.autoplay.pause()}
         onNavigationPrev={(swiper) => swiper.autoplay.pause()}
         ref={sliderRef}

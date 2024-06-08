@@ -45,10 +45,8 @@ const Page = async () => {
             </div>
           </div>
         </Root>
-        <ScrollTopAndSocial thresholdMin={450} />
-        <div className="mt-20 lg:mt-0">
-          <FeedbackButton data={data} />
-        </div>
+        <ScrollTopAndSocial hideScrollTop />
+        <FeedbackButton data={data} className="mt-20 lg:mt-0" />
       </main>
       <Footer />
     </>

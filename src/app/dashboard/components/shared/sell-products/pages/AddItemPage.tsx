@@ -107,6 +107,7 @@ const AddItemPage = () => {
                   name="itemName"
                   label="Item name"
                   placeholder="e.g. Dining table"
+                  required
                 />
                 <CustomSelect
                   name="category"
@@ -118,12 +119,18 @@ const AddItemPage = () => {
                     })) || []
                   }
                 />
-                <TextFieldInput name="price" label="Price" prefix="GHS" />
+                <TextFieldInput
+                  name="price"
+                  label="Price"
+                  prefix="GHS"
+                  required
+                />
                 <CustomTextAreaInput
                   name="description"
                   label="Description"
                   placeholder="Describe your item"
                   classes="h-[167px]"
+                  required
                 />
               </div>
               <div className="flex flex-col gap-8">
@@ -147,6 +154,7 @@ const AddItemPage = () => {
                   label="Email Address"
                   placeholder="Enter email address"
                   type="email"
+                  required
                 />
                 <InputPhoneNumber
                   id=""
