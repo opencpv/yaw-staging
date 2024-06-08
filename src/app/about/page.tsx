@@ -1,10 +1,10 @@
+import "./about.css";
+import "swiper/css";
 import Image from "next/image";
 import AboutItem from "./components/AboutItem";
 import Navbar from "@/components/__shared/ui/Navbar";
 import Footer from "@/components/__shared/ui/footer/Footer";
 import SimpleSlider from "./components/Slider/SimpleSlider";
-import "swiper/css";
-import { useAssets } from "@/lib/custom-hooks/useAssets";
 import VerticalSlider from "./components/Slider/VerticalSlider";
 import FeaturedListings from "@/components/__shared/ui/listing/FeaturedListings";
 import { Metadata } from "next";
@@ -12,7 +12,6 @@ import { ABOUT_PAGE_QUERY, BLOG_QUERY } from "@/lib/utils/sanity/queries";
 import { loadQuery } from "@/lib/utils/sanity/sanityStore";
 import { SanityDocument } from "next-sanity";
 import { urlForImage } from "@/lib/utils/sanity/utils";
-import { fadeIn } from "@/lib/animations";
 import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 import AboutOurTags from "./components/AboutOurTags";
 
@@ -45,9 +44,9 @@ const About = async () => {
             <div className="w-full">
               {heading1.split("#").map((heading: string, index: number) => (
                 <h1
-                  className={`text-2xl font-[700] leading-normal text-[#305A61] ${
+                  className={`leading-tight text-[#305A61] ${
                     index != 0 && "text-[#65969F]"
-                  } sm:text-4xl 2xl:text-5xl`}
+                  }`}
                   key={index}
                 >
                   {heading}
@@ -57,7 +56,7 @@ const About = async () => {
             <div className="w-full">
               {heading2.split("#").map((heading: string, index: number) => (
                 <h2
-                  className="max-w-2xl text-lg font-[500] text-[#65969F] lg:text-xl 2xl:text-2xl"
+                  className="max-w-2xl text-2xl font-[500] text-[#65969F]"
                   key={index}
                 >
                   {heading}
@@ -104,12 +103,8 @@ const About = async () => {
           <FramerWrapper className="relative w-full">
             <div className="relative flex max-w-screen-xl flex-col items-center justify-between gap-10 bg-opacity-90 bg-gradient-to-r from-[#21A19F] to-[#1EA9A6A1] p-5 text-white xs:items-start xs:p-10 lg:flex-row min-[1048px]:max-xl:w-11/12 fhd:mx-auto">
               <div className="space-y-5">
-                <h2 className="text-2xl  font-[700] xl:text-4xl 2xl:text-5xl">
-                  {bannerData.title}
-                </h2>
-                <p className="max-w-2xl text-base font-[400] leading-normal md:text-xl md:leading-normal 2xl:text-2xl 2xl:leading-normal">
-                  {bannerData.description}
-                </p>
+                <h2 className="font-[700]">{bannerData.title}</h2>
+                <p className="font-[400]">{bannerData.description}</p>
               </div>
               <Image
                 src={urlForImage(bannerData.featuredImage)?.url() as string}

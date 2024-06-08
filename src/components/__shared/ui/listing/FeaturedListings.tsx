@@ -25,7 +25,7 @@ type Props = {
 const FeaturedListings = ({ className, showAllButton }: Props) => {
   const { user } = useAppStore();
 
-  const { ref, isIntersecting } = useIntersectionObserver({ threshold: 0.2 });
+  const { ref, hasIntersected } = useIntersectionObserver();
 
   const {
     data: listings,
@@ -72,7 +72,7 @@ const FeaturedListings = ({ className, showAllButton }: Props) => {
             />
           }
         />
-        {isIntersecting && (
+        {hasIntersected && (
           <FramerWrapper>
             <Swiper
               effect="coverflow"

@@ -16,7 +16,7 @@ function AboutTagsTitle({ data, active }: Props) {
         ${active && "bg-[#E7EFEF] focus:border-0 dark:bg-[#E7EFEF]"} `}
     >
       <p
-        className={`text-base capitalize text-shade-300 transition-all md:text-lg 2xl:text-2xl ${
+        className={`capitalize text-shade-300 transition-all ${
           active && "font-semibold"
         } `}
       >

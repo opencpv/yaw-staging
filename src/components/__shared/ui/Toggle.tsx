@@ -27,7 +27,7 @@ const Toggle = ({
             color === "accent" || color === "primary",
         }),
         wrapper: cn(
-          "bg-neutral-200 group-data-[selected=true]:bg-primary-300/80",
+          "bg-neutral-200 shadow-sm group-data-[selected=true]:bg-primary-300/80",
           {
             "border bg-white group-data-[selected=true]:bg-accent group-data-[selected=true]:border-none":
               color === "accent",
@@ -37,7 +37,6 @@ const Toggle = ({
           },
         ),
         label: cn("text-neutral-500"),
-        base: "shadow-md",
       }}
       size="sm"
       isSelected={isSelected}
