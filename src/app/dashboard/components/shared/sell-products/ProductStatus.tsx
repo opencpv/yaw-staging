@@ -30,10 +30,14 @@ const ProductStatus = ({
     setValue(e.target.value as "available" | "unavailable");
 
     const value: boolean = e.target.value == "available" ? true : false;
-    const updateObject: { is_available?: boolean; status?: ProductStatusProp } =
-      {};
+    const updateObject: {
+      is_available?: boolean;
+      status?: ProductStatusProp;
+      inactive_date?: string | null;
+    } = {};
     updateObject.is_available = value;
     updateObject.status = value ? "active" : "inactive";
+    updateObject.inactive_date = value ? null : new Date().toISOString();
     const { data, error } = await supabase
       .from("products")
       .update({ ...updateObject })
