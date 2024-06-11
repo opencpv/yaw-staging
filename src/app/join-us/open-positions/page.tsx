@@ -8,13 +8,19 @@ import { JOBS_QUERY } from "@/lib/utils/sanity/queries";
 import { SanityDocument } from "next-sanity";
 import { cn } from "@/lib/utils";
 import { JobType } from "../types";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Open Positions",
+  description: "", // tentative
+};
 
 const Page = async () => {
   const jobsResponse = await loadQuery<SanityDocument[]>(JOBS_QUERY);
   const jobsData = jobsResponse.data || [];
 
   return (
-    <div className="flex flex-col items-center justify-center gap-20">
+    <div className="flex flex-col items-center justify-center">
       <div className="flex w-full flex-col items-center justify-center ">
         <div
           className={`flex h-[432px] w-full shrink-0  flex-col items-center justify-center gap-6 ${styles.open_positions_header} !bg-cover`}
@@ -42,7 +48,7 @@ const Page = async () => {
         <section className="wrapper flex w-full flex-col gap-6 px-5 lg:mt-10">
           <h2 className="font-semibold text-shade-300">Available Positions</h2>
           <div
-            className={cn("grid grid-cols-3 gap-x-5 gap-y-5 pb-8 lg:gap-y-10", {
+            className={cn("grid grid-cols-3 gap-x-5 gap-y-5 lg:gap-y-10", {
               hidden: jobsData.length === 0,
             })}
           >

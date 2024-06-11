@@ -1,6 +1,5 @@
 import Image from "next/image";
 import React from "react";
-import SubscribeToBlogButton from "../../components/SubscribeToBlogButton";
 import Share from "@/components/__shared/ui/share/Share";
 import Print from "@/components/__shared/ui/Print";
 import { loadQuery } from "@sanity/react-loader";
@@ -17,11 +16,35 @@ import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Rate from "@/components/__shared/ui/Rate";
 import Rating from "../../components/post/Rating";
 import SideContentGroup from "../../components/post/SideContentGroup";
+import Survey from "@/components/__shared/ui/survey";
+import { Metadata, ResolvingMetadata } from "next";
 
 type Props = {
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  // fetch data
+  const res = await loadQuery<SanityDocument>(
+    SINGLE_BLOG_POST(searchParams?.id as string),
+  );
+  const post = res.data[0];
+
+  // optionally access and extend (rather than replace) parent metadata
+  const previousImages = (await parent).openGraph?.images || [];
+  const categoryImage = urlForImage(post?.featured_image)?.url() || "";
+
+  return {
+    title: post?.title || "",
+    openGraph: {
+      images: [categoryImage, ...previousImages],
+    },
+  };
+}
 
 const StoryPage = async ({ params, searchParams }: Props) => {
   const origin = headers().get("x-origin") || "https://www.rentrightgh.com";
@@ -30,7 +53,6 @@ const StoryPage = async ({ params, searchParams }: Props) => {
     SINGLE_BLOG_POST(searchParams?.id as string),
   );
   const post = initialPostData.data[0];
-  console.log(post);
   const { images } = useAssets();
   sanityClient
     .patch(post._id)
@@ -94,21 +116,21 @@ const StoryPage = async ({ params, searchParams }: Props) => {
           {post && <span className="text-primary">{post.author.name}</span>}
         </h3>
       </div>
-      <h1 className="mt-5 text-2xl font-[700] text-primary md:text-3xl">
+      <h1 className="mb-3 mt-5 text-2xl font-[700] text-primary md:text-3xl">
         {post.title}
       </h1>
-      <Rate disabled value={post.rating} className="mb-10 mt-3" />
-      <FramerWrapper>
+      <Rate disabled value={post.rating} />
+      <FramerWrapper className="mt-10">
         <div className="shape-polygon relative mb-16 h-60 w-full lg:h-[30rem]">
           <Image
             src={urlForImage(post.featured_image)?.url() as string}
-            alt="" // TODO: fix alt
+            alt="" // FIXME: fix alt
             fill
             style={{ objectFit: "cover" }}
           />
         </div>
       </FramerWrapper>
-      <section className="print-content mb-20 grid-cols-4 gap-5 md:grid">
+      <section className="print-content grid-cols-4 gap-5 md:grid">
         <div className="col-span-3">
           {/* Blog content --- CMS */}
           <div className="blog mb-20">
@@ -129,19 +151,16 @@ const StoryPage = async ({ params, searchParams }: Props) => {
               <Print />
             </div>
           </div>
-          <SubscribeToBlogButton className="no-print mb-14 px-8 md:hidden" />
         </div>
         {/* Side content -- right side of Grid */}
-        <div className="col-span-1 space-y-5 max-md:hidden">
-          <div>
-            <SideContentGroup ads={post.blog_ad} />
-          </div>
-          <SubscribeToBlogButton />
-        </div>
+        <aside className="col-span-1 max-md:hidden">
+          <SideContentGroup ads={post.blog_ad} />
+        </aside>
       </section>
       <section className="no-print grid-cols-2 gap-5 xs:grid md:hidden">
         <SideContentGroup />
       </section>
+      <Survey />
     </div>
   );
 };

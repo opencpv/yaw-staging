@@ -45,7 +45,6 @@ const Page = async () => {
             </div>
           </div>
         </Root>
-        <ScrollTopAndSocial hideScrollTop />
         <FeedbackButton data={data} className="mt-20 lg:mt-0" />
       </main>
       <Footer />

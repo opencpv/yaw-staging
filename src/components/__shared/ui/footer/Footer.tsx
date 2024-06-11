@@ -23,8 +23,13 @@ import FloatItemsHack from "@/components/FloatItemsHack";
 import { useIntersectionObserver } from "@/lib/utils/intersectionObserver";
 import { useEffect } from "react";
 import { floatItemsIntersectionStore } from "@/store/footer/footerStore";
+import { cn } from "@/lib/utils";
 
-const Footer = () => {
+type Props = {
+  className?: string;
+};
+
+const Footer = (props: Props) => {
   const { onOpen } = useToastDisclosure();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     // TODO: handle logic
@@ -63,7 +68,10 @@ const Footer = () => {
     <>
       <FloatItemsHack />
       <footer
-        className={`gap no-print mt-16 flex w-full flex-col gap-[min(10vh,10rem)] bg-[#131B1A] font-montserrat sm:mt-20`}
+        className={cn(
+          "gap no-print mt-16 flex w-full flex-col gap-[min(10vh,10rem)] bg-[#131B1A] font-montserrat sm:mt-20",
+          props.className,
+        )}
         id="footer"
         ref={ref as any}
       >

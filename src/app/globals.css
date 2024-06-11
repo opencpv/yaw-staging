@@ -172,7 +172,7 @@ body {
   }
 
   .section {
-    @apply pt-28;
+    @apply pt-20;
   }
 
   .skeleton-wrapper-swiper {

@@ -127,8 +127,6 @@
 .slider-wide .swiper-pagination-bullet-active-main {
   background-color: #fff !important;
   opacity: 1 !important;
-  width: 20px !important;
-  height: 20px !important;
   bottom: 2rem !important;
 }
 

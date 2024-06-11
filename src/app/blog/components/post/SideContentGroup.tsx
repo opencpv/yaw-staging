@@ -6,6 +6,7 @@ import SliderPaginationOnly from "@/components/__shared/ui/sliders/SliderPaginat
 import SideContentCategories from "./SideContentCategories";
 import Loader from "@/components/__shared/ui/loader/Loader";
 import { urlForImage } from "@/lib/utils/sanity/utils";
+import RelatedPosts from "./RelatedPosts";
 
 type Props = {
   ads?: any;
@@ -49,13 +50,16 @@ const SideContentGroup = ({ ads }: Props) => {
       {/* Category */}
       <SideContent
         title="Category"
-        className="md:mb-10"
+        className="mb-10"
         classNames={{ body: "max-h-80 custom-scrollbar overflow-y-scroll" }}
       >
         <Suspense fallback={<Loader position="center" />}>
           <SideContentCategories />
         </Suspense>
       </SideContent>
+
+      {/* Related posts */}
+      <RelatedPosts />
     </>
   );
 };

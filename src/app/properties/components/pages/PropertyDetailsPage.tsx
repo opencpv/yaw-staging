@@ -119,7 +119,7 @@ const PropertyDetailsPage = ({ params }: Props) => {
             image="/assets/images/home/landing.jpg"
             position="left"
           />
-          <main className="wrapper pb-0 pt-28 sm:pb-0 sm:pt-28">
+          <main className="wrapper pb-0 pt-20 sm:pb-0 sm:pt-20">
             <section>
               <div className="text-2xl font-medium text-[#305A61]">
                 <BreadCrumbPreLink

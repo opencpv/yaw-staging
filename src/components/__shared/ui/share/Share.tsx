@@ -13,6 +13,7 @@ const Share = ({
   classNames,
   label = "Share",
   hideLabel,
+  children,
 }: ShareDataProps) => {
   const { onOpenChange, isOpen, onOpen } = useDisclosure();
 
@@ -25,27 +26,31 @@ const Share = ({
         body={<ShareModalBody url={location.href || url} title={title} />}
         size="lg"
       />
-      <span
+      <button
         className={cn(
-          "flex cursor-pointer items-center gap-3 text-neutral-800",
+          "flex items-center gap-3 text-neutral-800",
           classNames?.base,
         )}
         onClick={onOpen}
       >
-        <p
-          className={cn(
-            "text-base font-[500]",
-            {
-              hidden: hideLabel,
-            },
-            className,
-          )}
-        >
-          {label}
-        </p>
+        {children || (
+          <>
+            <p
+              className={cn(
+                "text-base font-[500]",
+                {
+                  hidden: hideLabel,
+                },
+                className,
+              )}
+            >
+              {label}
+            </p>
 
-        <IoIosShareAlt className={cn(classNames?.icon)} />
-      </span>
+            <IoIosShareAlt className={cn(classNames?.icon)} />
+          </>
+        )}
+      </button>
     </>
   );
 };

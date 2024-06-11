@@ -2,14 +2,22 @@ import styles from "./index.module.css";
 import JobApplicationForm from "../components/JobApplicationForm";
 import JoinUsButtons from "../../components/JoinUsButtons";
 import Link from "next/link";
+import Footer from "@/components/__shared/ui/footer/Footer";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Application Form",
+  description: "", // tentative
+};
 
 function Page() {
   return (
-    <div>
-      <div className="flex flex-col lg:flex-row relative bg-white">
+    <>
+      <div className="relative flex flex-col bg-white lg:flex-row">
         <div
-          className={`${styles.left_pic} w-full h-[192px] lg:h-[100vh] lg:sticky top-0 left-0 bottom-0 lg:basis-[40%] shrink-0 grow-0 !bg-cover flex justify-center  items-center `}>
-          <div className="lg:hidden flex flex-col lg:flex-row items-center justify-center gap-4">
+          className={`${styles.left_pic} bottom-0 left-0 top-0 flex h-[192px] w-full shrink-0 grow-0 items-center justify-center !bg-cover lg:sticky lg:h-[100vh]  lg:basis-[40%] `}
+        >
+          <div className="flex flex-col items-center justify-center gap-4 lg:hidden lg:flex-row">
             <Link href={"/join-us/open-positions"}>
               <JoinUsButtons
                 variant="text-yellow-accent"
@@ -20,16 +28,17 @@ function Page() {
               />
             </Link>
 
-            <p className="capitalize text-25 text-white font-semibold ">
+            <p className="text-25 font-semibold capitalize text-white ">
               Application
             </p>
           </div>
         </div>
-        <div className="flex flex-col gap-4 w-full">
+        <div className="flex w-full flex-col gap-4">
           <JobApplicationForm variant="application" />
         </div>
       </div>
-    </div>
+      <Footer className="mt-0 sm:mt-0" />
+    </>
   );
 }
 

@@ -118,11 +118,11 @@ const About = async () => {
           <SimpleSlider data={services} />
         </section>
 
-        <FramerWrapper className="mx-auto h-fit max-w-screen-2xl px-5 sm:px-10 lg:pt-28">
+        <FramerWrapper className="mx-auto h-fit max-w-screen-2xl px-5 sm:px-10 lg:pt-20">
           <VerticalSlider data={popularPosts} />
         </FramerWrapper>
       </main>
-      <FeaturedListings className="wrapper pb-0 pt-28" />
+      <FeaturedListings className="wrapper pb-0 pt-20" />
       <Footer />
     </>
   );
