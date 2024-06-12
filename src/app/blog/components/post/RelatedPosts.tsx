@@ -5,18 +5,32 @@ import { SanityDocument } from "next-sanity";
 import { BLOG_QUERY } from "@/lib/utils/sanity/queries";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import slugify from "@/lib/utils/slugify";
+import { cn } from "@/lib/utils";
 
-const RelatedPosts = async ({ className }: { className?: string }) => {
+const RelatedPosts = async ({
+  className,
+  currentPost,
+}: {
+  className?: string;
+  currentPost: any;
+}) => {
   const initialBlogData: any = await loadQuery<SanityDocument[]>(BLOG_QUERY);
   const blogData = initialBlogData.data;
-  const sortedBlogPosts = blogData.sort((a: any, b: any) => a.views - b.views);
-  const popularPosts = sortedBlogPosts.slice(0, 3);
+  const relatedPosts = blogData
+    .filter(
+      (post: any) =>
+        post.category.category_title === currentPost.category.category_title &&
+        post._id !== currentPost._id,
+    )
+    .slice(0, 3);
+
+  console.log(relatedPosts);
 
   return (
     <OtherPosts
-      className={className}
-      title="Popular posts"
-      posts={popularPosts
+      className={cn(className, { hidden: relatedPosts?.length === 0 })}
+      title="Related posts"
+      posts={relatedPosts
         .slice()
         /**
          * Sort the recent posts array by date in descending order,

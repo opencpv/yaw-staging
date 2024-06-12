@@ -154,11 +154,11 @@ const StoryPage = async ({ params, searchParams }: Props) => {
         </div>
         {/* Side content -- right side of Grid */}
         <aside className="col-span-1 max-md:hidden">
-          <SideContentGroup ads={post.blog_ad} />
+          <SideContentGroup ads={post.blog_ad} blogPost={post} />
         </aside>
       </section>
       <section className="no-print grid-cols-2 gap-5 xs:grid md:hidden">
-        <SideContentGroup />
+        <SideContentGroup blogPost={post} />
       </section>
       <Survey />
     </div>

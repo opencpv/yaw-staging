@@ -74,27 +74,32 @@ const ModalHeader = () => {
   const images = React.useContext(Context)?.images || [];
 
   return (
-    <div className="flex items-center justify-between gap-5 pl-10 pt-10 text-white max-xs:pr-10 xs:w-6/12 sm:pl-20">
-      <div className="flex w-full gap-5 text-2xl">
-        <button>
+    <div className="ml-auto flex items-center justify-between gap-5 pr-10 pt-10 text-white max-xs:pl-10 xs:w-6/12 sm:pr-20">
+      <p className="w-full">
+        {activeIndex + 1}/{images.length}
+      </p>
+      <div className="flex gap-5 text-2xl">
+        <Share
+          title={shareTitle}
+          content={shareDescription}
+          classNames={{
+            base: "group grid size-8 place-items-center hover:bg-shade-50 rounded-full transition-colors",
+          }}
+        >
+          <PiShareFat
+            title="Share"
+            className="text-white group-hover:text-shade-300"
+          />
+        </Share>
+        <button className="grid size-8 place-items-center rounded-full transition-colors hover:bg-shade-50 hover:text-shade-300">
           <LiaTimesSolid
-            className="shrink-0 transition-transform hover:scale-125"
+            className="shrink-0"
             onClick={() => {
               onClose?.();
             }}
           />
         </button>
-        <Share
-          title={shareTitle}
-          content={shareDescription}
-          className="transition-transform hover:scale-125"
-        >
-          <PiShareFat className="text-white" />
-        </Share>
       </div>
-      <p>
-        {activeIndex + 1}/{images.length}
-      </p>
     </div>
   );
 };

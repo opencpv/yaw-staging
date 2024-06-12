@@ -110,7 +110,7 @@ const ItemsPage = () => {
   // }, [id, supabase]);
 
   return (
-    <main className="bg-[#F8F8F8]">
+    <main className="bg-shade">
       <div className="wrapper pb-40">
         <section className="mb-6 flex flex-col gap-5">
           <div className="order-2 flex items-center justify-between gap-5 lg:order-1">

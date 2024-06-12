@@ -6,7 +6,7 @@ import SideHeader from "./SideHeader";
 
 const OtherPosts = ({ title, posts, className }: OtherPostsProps) => {
   return (
-    <div className={`no-print max-w-lg ${className}`}>
+    <div className={`no-print space-y-5 max-w-lg ${className}`}>
       <SideHeader
       >
         {title}

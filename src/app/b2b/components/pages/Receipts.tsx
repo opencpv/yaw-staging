@@ -79,7 +79,7 @@ function Receipts({ customerId }: Props) {
         {/* <DownloadButton maxWidth="fit" /> */}
       </div>
 
-      <div className="sticky bottom-0 w-full items-center justify-end gap-5 bg-[#F8F8F8] pb-3 lg:hidden">
+      <div className="bg-shade sticky bottom-0 w-full items-center justify-end gap-5 pb-3 lg:hidden">
         {/* <DownloadButton /> */}
       </div>
     </div>

@@ -28,8 +28,8 @@ const ItemGalleryModal = ({
       onOpenChange={onOpenChange}
       onClose={onClose}
       images={carouselDemo || []}
-      shareTitle={itemData.title}
-      shareDescription={itemData.description}
+      shareTitle={itemData?.title}
+      shareDescription={itemData?.description}
     />
   );
 };

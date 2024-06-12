@@ -10,9 +10,10 @@ import RelatedPosts from "./RelatedPosts";
 
 type Props = {
   ads?: any;
+  blogPost?: any;
 };
 
-const SideContentGroup = ({ ads }: Props) => {
+const SideContentGroup = ({ ads, blogPost }: Props) => {
   return (
     <>
       {/* Follow us */}
@@ -59,7 +60,7 @@ const SideContentGroup = ({ ads }: Props) => {
       </SideContent>
 
       {/* Related posts */}
-      <RelatedPosts />
+      <RelatedPosts currentPost={blogPost} />
     </>
   );
 };

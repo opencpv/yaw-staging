@@ -68,7 +68,11 @@ function CustomFileInput({
         >
           <CaAttachment />
           {!fileUploaded && <p>{placeholder || "upload"}</p>}
-          {fileUploaded && <p>{fileUploaded.name}</p>}
+          {fileUploaded && (
+            <p className="w-9/12 overflow-x-hidden text-left">
+              {fileUploaded.name}
+            </p>
+          )}
         </button>
 
         <div className="flex items-center justify-center gap-5">

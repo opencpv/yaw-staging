@@ -7,7 +7,7 @@ type Props = { data: any };
 
 const ManagePropertiesSection = (props: Props) => {
   return (
-    <section className="bg-[#F8F8F8]">
+    <section className="bg-shade">
       <div className="section wrapper space-y-14 py-24">
         <div className="w-full space-y-3.5">
           <div className="flex items-start gap-5">

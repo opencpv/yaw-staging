@@ -39,11 +39,11 @@ const Carousel = (props: CarouselProps) => {
           ))}
         </Swiper>
         {/* Pagination bullets and button */}
-        <button className="custom-l-prev absolute bottom-40 left-[5%] z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-white text-white hover:bg-shade-50 hover:text-shade-300 max-lg:bg-white max-lg:text-shade-300">
+        <button className="custom-l-prev border-shade text-shade max-lg:bg-shade absolute bottom-40 left-[5%] z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 hover:bg-shade-50 hover:text-shade-300 max-lg:text-shade-300">
           <MdChevronLeft className="text-xl" />
         </button>
         <div className="custom-l-pagination bottom-40 w-full space-x-3 text-center"></div>
-        <button className="custom-l-next absolute bottom-40 right-[5%] z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-white text-white hover:bg-shade-50 hover:text-shade-300 max-lg:bg-white max-lg:text-shade-300">
+        <button className="custom-l-next border-shade text-shade max-lg:bg-shade absolute bottom-40 right-[5%] z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 hover:bg-shade-50 hover:text-shade-300 max-lg:text-shade-300">
           <MdChevronRight className="text-xl" />
         </button>
       </div>

@@ -47,10 +47,6 @@ const config: Config = {
           400: "#99B3B2",
           500: "#ECF2F3",
         },
-        // neutral: {
-        //   50: "#EEE",
-        //   300: "#545454"
-        // },
         accent: {
           DEFAULT: "#DDB771",
           50: "#DDB771",
@@ -60,9 +56,10 @@ const config: Config = {
           500: "#FEF8ED",
         },
         shade: {
+          DEFAULT: "#F8F8F8",
+          50: "#E6E6E6",
           200: "#8A8A8A",
           300: "#545454",
-          50: "#E6E6E6",
           900: "#6A6968",
         },
         success: {

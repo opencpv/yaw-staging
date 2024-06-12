@@ -22,7 +22,7 @@ const ItemRelatedItems = (props: Props) => {
 
   if (relatedItems?.length! > 0)
     return (
-      <section>
+      <section className="mt-20">
         <h3 className="mb-6 text-shade-200">
           Related items ({relatedItems?.length})
         </h3>
