@@ -74,7 +74,7 @@ const ModalHeader = () => {
   const images = React.useContext(Context)?.images || [];
 
   return (
-    <div className="ml-auto flex items-center justify-between gap-5 pr-10 pt-10 text-white max-xs:pl-10 xs:w-6/12 sm:pr-20">
+    <div className="ml-auto flex items-center justify-between gap-5 pr-5 pt-5 text-white max-xs:pl-5 w-full xs:w-6/12 sm:pr-20">
       <p className="w-full">
         {activeIndex + 1}/{images.length}
       </p>

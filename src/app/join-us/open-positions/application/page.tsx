@@ -15,18 +15,18 @@ function Page() {
     <>
       <div className="relative flex flex-col bg-white lg:flex-row">
         <div
-          className={`${styles.left_pic} bottom-0 left-0 top-0 flex h-[192px] w-full shrink-0 grow-0 items-center justify-center !bg-cover lg:sticky lg:h-[100vh]  lg:basis-[40%] `}
+          className={`${styles.left_pic} bottom-0 left-0 top-0 flex h-[332px] w-full shrink-0 grow-0 items-center justify-center !bg-cover lg:sticky lg:h-[100vh]  lg:basis-[40%] `}
         >
           <div className="flex flex-col items-center justify-center gap-4 lg:hidden lg:flex-row">
-            <Link href={"/join-us/open-positions"}>
-              <JoinUsButtons
+            <JoinUsButtons
                 variant="text-yellow-accent"
                 content="Go back"
                 icon
+		href="/join-us/open-positions"
                 iconType="arrow-left"
                 reverseIcon
               />
-            </Link>
+
 
             <p className="text-25 font-semibold capitalize text-white ">
               Application

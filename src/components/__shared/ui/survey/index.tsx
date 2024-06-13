@@ -47,8 +47,6 @@ const Survey = (props: Props) => {
       opacity: 0,
       transition: {
         y: { stiffness: 1000 },
-      },
-      transitionEnd: {
         pointerEvents: "none",
       },
     },
@@ -66,7 +64,7 @@ const Survey = (props: Props) => {
         size="5xl"
       />
       <motion.div
-        variants={variants as any}
+        variants={variants}
         animate={showButton && !timedOut ? "open" : "closed"}
         className="fixed -right-16 top-96 z-10 rotate-90"
       >

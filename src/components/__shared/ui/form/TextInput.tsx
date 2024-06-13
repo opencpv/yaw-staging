@@ -1,4 +1,4 @@
-import { Input, cn } from "@nextui-org/react";
+  import { Input, cn } from "@nextui-org/react";
 import React, { HTMLInputTypeAttribute, Ref, forwardRef } from "react";
 import style from "./Form.module.css";
 
@@ -50,10 +50,10 @@ const TextInput = (
           classNames?.label,
         ),
         inputWrapper: cn(
-          `border-neutral-400 border h-[52px] hover:border-black/50 rounded-md group-data-[focus=true]:border-accent-50 group-data-[focus=true]:border-2 `,
+          `border-neutral-400 border h-[52px] hover:border-black/50 px-0 rounded-md group-data-[focus=true]:border-accent-50 group-data-[focus=true]:border-2 `,
           classNames?.innerWrapper,
         ),
-        input: cn(`text-base py-8 focus:border-accent-50`, className),
+        input: cn(`text-base py-4 px-3 focus:border-accent-50`, className),
       }}
       variant="bordered"
       value={value as string}

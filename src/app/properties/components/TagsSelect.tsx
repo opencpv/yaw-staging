@@ -37,12 +37,10 @@ const TagsSelect = () => {
   }, []);
 
   return (
-    <div className="w-full justify-center px-5 sm:flex sm:px-0" ref={tabsRef}>
+    <div className="w-full justify-center overflow-x-auto hidden-scrollbar px-5 sm:flex sm:px-0" ref={tabsRef}>
       <div className="w-full">
-        <section className="flex w-full flex-col flex-wrap items-center justify-center gap-8 sm:w-[initial] sm:flex-row">
-          <div className="w-full">
+        <section className="flex w-full flex-col flex-wrap items-center justify-center gap-8">
             <OptionFilterTabs
-              variant="gradient"
               options={filterOptionArray}
               selectedKey={tag}
               onSelectionChange={(key) =>
@@ -57,8 +55,11 @@ const TagsSelect = () => {
                 )
               }
               radius="small"
+              tabColor="colored"
+              classNames={{
+                tabList: "flex-nowrap",
+              }}
             />
-          </div>
           {/* !!! COMMENTED OUT FOR NOW */}
 
           {/* <div>

@@ -69,7 +69,7 @@ function CustomFileInput({
           <CaAttachment />
           {!fileUploaded && <p>{placeholder || "upload"}</p>}
           {fileUploaded && (
-            <p className="w-9/12 overflow-x-hidden text-left">
+            <p className="w-8/12 overflow-x-hidden text-left">
               {fileUploaded.name}
             </p>
           )}
@@ -78,7 +78,7 @@ function CustomFileInput({
         <div className="flex items-center justify-center gap-5">
           {fileUploaded && (
             <button
-              className="absolute right-40 rounded-2xl bg-warning-bg px-3 py-1 text-xs hover:scale-[1.03] hover:bg-warning-400"
+              className="absolute right-40 rounded-2xl border-l-4 border-white bg-warning-bg px-3 py-1 text-xs hover:scale-[1.03] hover:bg-warning-400"
               onClick={handleFileRemove}
               type="button"
             >

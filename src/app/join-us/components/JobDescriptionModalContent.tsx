@@ -20,7 +20,6 @@ function JobDescriptionModalContent({ jobs }: Props) {
   const job = jobs.find((job) => job._id === jobId);
 
   return (
-    <>
       <div
         className={`hidden-scrollbar flex h-[75vh] flex-col justify-start overflow-hidden bg-white`}
       >
@@ -31,10 +30,12 @@ function JobDescriptionModalContent({ jobs }: Props) {
                 <Share title={job?.title} />
               </div>
               <div className="mt-2 flex flex-col gap-3 rounded-2xl border-[1px] border-shade-50 bg-[#FAFAFA] px-4 py-2 lg:px-8">
-                <div className="download flex flex-col gap-1">
-                  <p className="border-b-[1px] border-shade-50 py-3 text-[1.5rem] font-semibold text-shade-300">
-                    <span className="capitalize">{job?.title}</span>
-                  </p>
+                <div className="job-download flex flex-col gap-1">
+                  <h2 className="capitalize py-3 font-semibold text-shade-300">
+                    {job?.title}
+                  </h2>
+
+                  <hr className="w-full border border-shade-50 " />
 
                   <div className="hidden-scrollbar h-[70vh] overflow-y-scroll pb-[120px] pt-3 text-shade-300">
                     <PortableText
@@ -51,8 +52,8 @@ function JobDescriptionModalContent({ jobs }: Props) {
                     color="accent"
                     onClick={() =>
                       downloadPdf({
-                        title: "Rentright Job",
-                        className: "download",
+                        title: `Rentright_Job_${job?.title}_${new Date().toLocaleDateString()}`,
+                        className: "job-download",
                       })
                     }
                     className="w-full"
@@ -75,7 +76,6 @@ function JobDescriptionModalContent({ jobs }: Props) {
           )}
         </div>
       </div>
-    </>
   );
 }
 

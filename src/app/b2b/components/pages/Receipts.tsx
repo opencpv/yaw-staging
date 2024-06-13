@@ -57,7 +57,7 @@ function Receipts({ customerId }: Props) {
         <SearchInput
           onChange={(e) => setSearchString(e.target.value)}
           className="mt-5"
-          placeholder="Search invoice ID"
+          placeholder="Search receipt ID"
         />
       </div>
       <ReceiptTable searchString={searchString} customerId={customerId} />
@@ -79,7 +79,7 @@ function Receipts({ customerId }: Props) {
         {/* <DownloadButton maxWidth="fit" /> */}
       </div>
 
-      <div className="bg-shade sticky bottom-0 w-full items-center justify-end gap-5 pb-3 lg:hidden">
+      <div className="sticky bottom-0 w-full items-center justify-end gap-5 bg-shade pb-3 lg:hidden">
         {/* <DownloadButton /> */}
       </div>
     </div>

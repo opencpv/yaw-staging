@@ -13,6 +13,7 @@ import FeedbackTextArea from "./FeedbackTextArea";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { setLocalStorageWithExpiry } from "@/lib/utils/localStorage";
+import { FEEDBACK_FLOATING_BUTTON_TTL } from "@/constants";
 
 const FeedbackBody = ({
   handleCloseAfterSubmission,
@@ -60,7 +61,7 @@ const FeedbackBody = ({
           const value_b_rounded = Math.round(values.value_b / 5) * 5;
           const key = "floating-feedback-behavior";
           const value = false;
-          const ttl = 24; // hours
+          const ttl = FEEDBACK_FLOATING_BUTTON_TTL; // hours
 
           const { error } = await supabase.from("feedback").insert({
             ...values,

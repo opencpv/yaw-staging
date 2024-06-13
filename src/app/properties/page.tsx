@@ -7,19 +7,13 @@ import FixedSocials from "@/components/FixedSocials";
 import ScrollTop from "@/components/__shared/ui/ScrollTop";
 import PropertiesListing from "./components/PropertiesListing";
 import SearchCity from "./components/SearchCity";
-import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Properties",
-  description:
-    "Find your dream home in Ghana. Browse through a wide variety of properties for rent. Compare properties and get notified when new listings match your preferences.", // tentative
-};
 
 const page = () => {
   return (
     <>
       <Navbar />
-      <div className="relative h-72 w-full">
+      <div className="relative h-40 sm:h-60 aspect-video w-full">
         <Image
           src="/assets/images/Stock.jpg"
           alt=""
@@ -35,7 +29,7 @@ const page = () => {
         </div>
       </section>
       <PropertiesListing />
-      <FixedSocials />
+      <FixedSocials thresholdMin={300} />
       <Footer />
       <ScrollTop />
     </>

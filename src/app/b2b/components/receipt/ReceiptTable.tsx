@@ -77,7 +77,7 @@ const ReceiptTable = ({ searchString, customerId }: Props) => {
               classNames={{ checkIcon: "text-primary" }}
             />{" "}
           </TableHeader>
-          <TableHeader className="col-span-1">Invoice Id</TableHeader>
+          <TableHeader className="col-span-1">Receipt Id</TableHeader>
           <TableHeader className="col-span-1">Service</TableHeader>
           <TableHeader className="col-span-1">Billing Date</TableHeader>
           <TableHeader className="col-span-1">Amount Paid</TableHeader>
