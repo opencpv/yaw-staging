@@ -56,7 +56,7 @@ const About = async () => {
             <div className="w-full">
               {heading2.split("#").map((heading: string, index: number) => (
                 <h4
-                  className="max-w-2xl text-2xl font-[500] text-[#65969F]"
+                  className="max-w-2xl sm:text-2xl font-[500] text-[#65969F]"
                   key={index}
                 >
                   {heading}
