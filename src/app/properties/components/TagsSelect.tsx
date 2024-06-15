@@ -37,8 +37,8 @@ const TagsSelect = () => {
   }, []);
 
   return (
-    <div className="w-full justify-center overflow-x-auto hidden-scrollbar px-5 sm:flex sm:px-0" ref={tabsRef}>
-      <div className="w-full">
+    <div className="w-full justify-center px-5 sm:flex sm:px-0" ref={tabsRef}>
+      <div className="w-full overflow-x-auto hidden-scrollbar">
         <section className="flex w-full flex-col flex-wrap items-center justify-center gap-8">
             <OptionFilterTabs
               options={filterOptionArray}
