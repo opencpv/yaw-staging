@@ -1,14 +1,13 @@
 "use client";
 import React from "react";
-import { HiOutlineDownload } from "react-icons/hi";
 import Share from "@/components/__shared/ui/share/Share";
-import downloadPdf from "@/lib/utils/downloadPdf";
 import { useSearchParams } from "next/navigation";
 import { PortableText } from "next-sanity";
 import Button from "@/components/__shared/ui/button/Button";
 import { JobType } from "../types";
 import { TypedObject } from "sanity";
 import EmptyState from "@/components/__shared/ui/states/EmptyState";
+import DownloadJobDescriptionBtn from "./ui/DownloadJobDescriptionBtn";
 
 type Props = {
   jobs: JobType[];
@@ -48,19 +47,7 @@ function JobDescriptionModalContent({ jobs }: Props) {
                   </div>
                 </div>
                 <div className="sticky bottom-0 grid  grid-cols-2 gap-3 bg-[#FAFAFA] pb-2 pt-2">
-                  <Button
-                    color="accent"
-                    onClick={() =>
-                      downloadPdf({
-                        title: `Rentright_Job_${job?.title}_${new Date().toLocaleDateString()}`,
-                        className: "job-download",
-                      })
-                    }
-                    className="w-full"
-                  >
-                    Download
-                    <HiOutlineDownload size="24" color="white" />
-                  </Button>
+                <DownloadJobDescriptionBtn job={job as JobType} />
                   <Button
                     color="primary"
                     href={`/join-us/open-positions/application?job=${job.title}`}
