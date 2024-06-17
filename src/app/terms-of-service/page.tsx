@@ -18,13 +18,17 @@ const page = async () => {
 
   return (
    <TermsMenuWrapper data={data.termCategories}>
-      <section className="min-h-screen bg-terms-bg bg-cover bg-no-repeat bg-center md:bg-top ">
+      <section className="min-h-screen md:bg-[url('/assets/images/terms/t1.png')]
+      bg-[url('/assets/images/terms/t1-mobile.png')]
+      bg-cover bg-no-repeat bg-center md:bg-top "
+      
+      >
         <nav className="w-full">{data && <TermsNav data={data} />}</nav>
        
-        <main className="wrapper flex w-full h-full flex-col items-center justify-center max-sm:pt-0">
+        <main className="wrapper flex w-full min-h-[80vh] lg:min-h-[65vh] h-full flex-col items-center justify-center max-sm:pt-0">
           <div className={`flex h-full w-full flex-col`}>
             {data && (
-              <div className="flex h-full w-full items-center justify-center pb-4 pl-5 ">
+              <div className={`flex h-full w-full items-center justify-center pb-4  `}>
                 <MainView data={data} />
               </div>
             )}
