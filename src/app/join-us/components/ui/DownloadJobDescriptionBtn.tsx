@@ -1,23 +1,27 @@
-import Button from '@/components/__shared/ui/button/Button'
-import React from 'react'
-import { HiOutlineDownload } from 'react-icons/hi'
+import React from "react";
+import { HiOutlineDownload } from "react-icons/hi";
 import {
   Page,
   Text,
   View,
   Document,
   StyleSheet,
-  Image,
   Font,
   PDFDownloadLink,
-  Svg,
-  Path,
+  Image,
+  Link,
 } from "@react-pdf/renderer";
-import { JobType } from '../../types';
+import { JobType } from "../../types";
+import { PortableText } from "next-sanity";
+import { TypedObject } from "sanity";
+import { useAssets } from "@/lib/custom-hooks/useAssets";
+import { portableTextToText } from "@/lib/utils/sanity/portableTextToText";
+import legal from "@/enum/about/legal";
+import PDFRichTextRenderer from "@/components/__shared/rich-text/PDFRichTextRenderer";
 
 type Props = {
-  job: JobType | undefined
-}
+  job: JobType | undefined;
+};
 
 Font.register({
   family: "Open Sans",
@@ -30,131 +34,100 @@ Font.register({
       fontWeight: 600,
     },
   ],
-})
-
+});
 
 const styles = StyleSheet.create({
   page: {
     fontSize: 12,
+    color: "#545454",
     padding: 20,
     lineHeight: 1.5,
     flexDirection: "column",
     width: "100vw",
     fontFamily: "Open Sans",
+    gap: 8,
   },
-  header: {
-    padding: 16,
+  heading: {
     display: "flex",
     flexDirection: "row",
+    alignItems: "flex-end",
     justifyContent: "space-between",
-    borderRadius: 8,
-    marginBottom: 16,
-  },
-  image: {
-    height: 41,
-    width: 50,
   },
   title: {
-    fontSize: 20,
-    textAlign: "center",
-    textTransform: "uppercase",
+    fontSize: 14,
+    textTransform: "capitalize",
     fontWeight: 600,
   },
-  subtitle: {
-    fontWeight: 600,
-    color: "#262626",
+  description: {
+    marginTop: 10,
   },
-  highlightBody: {
-    color: "rgb(138 138 138/1)",
+  description_brief: {
+    fontWeight: "medium",
   },
-  section: {
-    marginBottom: 10,
+  border: {
+    border: "1px solid #eee",
   },
-  flexRow: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  bold: {
-    fontWeight: 600,
-  },
-  costTitle: { color: "#545454", fontWeight: 600 },
-  higlightedSection: {
-    backgroundColor: "#F2F4F7",
-    padding: 16,
-    borderRadius: 8,
-  },
-  rowContainer: {
-    display: "flex",
-    flexDirection: "row",
-    gap: 2,
-  },
-  itemContainer: {
-    width: "50%",
-  },
-  marginBotttom: {
-    marginBottom: 8,
-  },
-  textRight: {
-    textAlign: "right",
-  },
-  grayBorder: {
-    borderBottom: "1pt solid #F2F4F7",
-    paddingBottom: 8,
-    marginBottom: 8,
-  },
-  primaryBorder: {
-    borderBottom: "1pt solid #DDB771",
-    paddingBottom: 8,
-    marginBottom: 8,
-    color: "$#DDB771",
-  },
-  primaryColor: {
-    color: "$#DDB771",
-  },
-  lightText: {
-    color: "#8A8A8A",
+  image: {
+    width: 32,
+    height: 32,
   },
 });
 
-const downloadPdf = () => {
-<PDFDownloadLink
-    document={
-      <JoinUsTemplate />
-    }
-    fileName={`test-jobs.pdf`}
-  >
-    {({ loading }) => (loading ? "Loading document..." : "Download PDF")}
-  </PDFDownloadLink>
-}
-
-const JoinUsTemplate = ({job}: Props) => {
+const JoinUsTemplate = ({ job }: Props) => {
+  console.log(job);
   return (
-<Document>
-      <Page>
-        <View>
-          <Text>Hi this is the test file to be downloaded {job?.title}</Text>
+    <Document>
+      <Page style={styles.page}>
+        <View style={styles.heading}>
+          <Text style={styles.title}>{job?.title}</Text>
+          <Link src={`${legal.websiteUrl}`}>
+            <Image
+              src={`https://cdn.sanity.io/images/jmb2nd2r/production/fb888167abb7d253eddca9e8914d951e33c57621-1780x2000.webp`}
+              style={styles.image}
+              debug
+            />
+          </Link>
+        </View>
+        <View style={styles.border}></View>
+        <Text style={styles.description_brief}>{job?.description_brief}</Text>
+        <View style={styles.description}>
+          {
+            <PDFRichTextRenderer
+              value={job?.description as unknown as TypedObject | TypedObject[]}
+            />
+          }
         </View>
       </Page>
-
     </Document>
-  )
-}
+  );
+};
 
-
-const DownloadJobDescriptionBtn = ({job}: Props) => {
-  console.log(job)
+const DownloadJobDescriptionBtn = ({ job }: Props) => {
   return (
-<PDFDownloadLink
-      style={{backgroundColor: "#DDB771", color: "white", borderRadius: "0.5rem", display: "grid", placeItems: "center"}}
-    document={
-      <JoinUsTemplate job={job} />
-    }
-    fileName={`test-jobs.pdf`}
-  >
-      {({ loading }) => loading ? (<div className="flex gap-2">Downloading... <HiOutlineDownload size="24" color="white" /></div>) : (<div className="flex gap-2">Download <HiOutlineDownload size="24" color="white" /></div>)}
+    <PDFDownloadLink
+      style={{
+        backgroundColor: "#DDB771",
+        color: "white",
+        borderRadius: "0.5rem",
+        display: "grid",
+        placeItems: "center",
+      }}
+      document={<JoinUsTemplate job={job} />}
+      fileName={`${job?.title}-${legal.websiteName}.pdf`}
+    >
+      {({ loading }) =>
+        loading ? (
+          <div className="flex gap-2">
+            Loading... <HiOutlineDownload size="24" color="white" />
+          </div>
+        ) : (
+          <div className="flex gap-2">
+            Download <HiOutlineDownload size="24" color="white" />
+          </div>
+        )
+      }
     </PDFDownloadLink>
-  ) 
-}
+  );
+};
 
-export default DownloadJobDescriptionBtn
+export default DownloadJobDescriptionBtn;
