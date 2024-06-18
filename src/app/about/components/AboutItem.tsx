@@ -19,7 +19,7 @@ const AboutItem = ({ data, index }: { data: any; index: number }) => {
   );
 
   const Description = () => (
-    <p className="mt-8 text-base font-[500] leading-normal text-shade-200 md:text-lg md:leading-normal 2xl:text-2xl 2xl:leading-normal">
+    <p className="text-base font-[500] leading-normal text-shade-200 md:text-lg md:leading-normal 2xl:text-2xl 2xl:leading-normal">
       {data.description}
     </p>
   );
@@ -29,7 +29,7 @@ const AboutItem = ({ data, index }: { data: any; index: number }) => {
       src={urlForImage(data.featuredImage)?.url() as string}
       alt=""
       fill
-      style={{ objectFit: "cover" }}
+      objectFit="cover"
       objectPosition="center"
     />
   );
@@ -48,11 +48,13 @@ const AboutItem = ({ data, index }: { data: any; index: number }) => {
     );
   } else if (index % 2 == 0) {
     return (
-      <div className="grid min-h-max w-full grid-cols-1 items-center gap-6 lg:grid-cols-2">
-        <div className="relative order-2 aspect-square w-full overflow-hidden xs:aspect-[775/716] sm:max-w-[775px]  lg:order-1 lg:aspect-[824/557] lg:max-w-[824px] lg:rounded-xl">
+      <div className="grid w-full grid-cols-1 items-center gap-6 lg:grid-cols-2 justify-center">
+
+        <div className="order-2 lg:order-1 relative w-full aspect-[403/426]  sm:aspect-[775/716]   lg:aspect-[824/557] max-w-[824px] lg:rounded-xl overflow-hidden">
           <ImageComponent />
         </div>
-        <div className="order-1 flex min-h-full flex-col justify-center gap-8  lg:order-2">
+
+        <div className="order-1 flex flex-col justify-center gap-3 lg:order-2">
           <Heading2 />
           <Description />
         </div>

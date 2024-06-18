@@ -13,6 +13,7 @@ import FaqLink from "@/components/__shared/ui/links/FaqLink";
 import { cn } from "@/lib/utils";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useMenuLinks } from "./content";
+import CaArrowRight from "./components/icons/CaArrowRight";
 import { animate, stagger } from "framer-motion";
 
 const MenuOption = ({
@@ -56,7 +57,7 @@ const MenuOption = ({
       <Collapsible.Trigger asChild>
         <div
           className={`
-              "flex w-full cursor-pointer flex-row items-center justify-between
+              " flex w-full cursor-pointer flex-row items-center justify-between
               font-[600]
               ${open ? "text-accent-100" : "text-[#fff]"}
             `}
@@ -92,26 +93,17 @@ const MenuOption = ({
                   }}
                 />
               ) : (
-                <Link href={r?.url} onClick={() => setToggle(false)}>
+                // please make it properties and add r?.label to the get to the corresponding url
+                <Link
+                  href={`/properties`}
+                  onClick={() => setToggle(false)}
+                  className="flex w-full items-center justify-between gap-10"
+                >
                   {r?.name}
+                  {/* <CaArrowRight /> */}
                 </Link>
               )}
-
-              {/* <ArrowDownNav /> */}
             </Collapsible.Trigger>
-            <Collapsible.Content>
-              {" "}
-              {/* sub2 is possibly not required anymore. Likely to remove it */}
-              {sub2?.map((r2, index) => (
-                <Link
-                  href={r2?.url}
-                  key={index}
-                  onClick={() => setToggle(false)}
-                >
-                  {r2?.name}
-                </Link>
-              ))}
-            </Collapsible.Content>
           </Collapsible.Root>
         ))}
       </Collapsible.Content>
@@ -157,10 +149,13 @@ export const MobileMenu = (props: any) => {
         >
           Get Started
         </Link>
-        <hr className="h-[1px] w-full bg-white" />
+        <hr className="h-[3px] w-full bg-white" />
+
         {linksBeforeLogin.map((r, index) =>
           r?.sub ? (
-            <MenuOption key={index} name={r.name} sub={r?.sub} sub2={r?.sub2} /> // sub links ---> View all listings, how to, etc...
+            <div className="main-menu-link-sm-bl" key={index}>
+              <MenuOption name={r.name} sub={r?.sub} sub2={r?.sub2} />
+            </div> // sub links ---> View all listings, how to, etc...
           ) : (
             r?.name.toLowerCase() !== "area vibes" && ( // main links ---> Home for rent, Login, Moving sale, etc...
               <Link
@@ -186,8 +181,16 @@ export const MobileMenu = (props: any) => {
       >
         {linksAfterLogin.map((r, index) =>
           r?.sub ? (
-            <MenuOption key={index} name={r.name} sub={r?.sub} sub2={r?.sub2} /> // sub links ---> View all listings, how to, etc...
+            <div className="main-menu-link-sm-al" key={index}>
+              <MenuOption
+                key={index}
+                name={r.name}
+                sub={r?.sub}
+                sub2={r?.sub2}
+              />
+            </div>
           ) : (
+            // sub links ---> View all listings, how to, etc...
             r?.name.toLowerCase() !== "faq" && ( // main links ---> Home for rent, Login, Moving sale, etc...
               <Link
                 href={r?.url}

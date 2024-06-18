@@ -14,12 +14,15 @@ export const useMenuLinks = () => {
       url: "#",
       name: "HOMES FOR RENT",
       sub: [
-        { url: "/properties", name: "View All Listings", id: "#" },
-
-        { url: "#", name: "Single Unit  Houses", id: "#" },
-        { url: "#", name: "Duplex Houses", id: "#" },
-        { url: "#", name: "Apartments", id: "#" },
-        { url: "#", name: "Self Contained Rooms", id: "#" },
+        {
+          name: "View All Listings",
+          id: "#",
+          label: "all-listings",
+        },
+        { name: "Self Contained ", id: "#", label: "self-contained" },
+        { name: "Apartments", id: "#", label: "apartments" },
+        { name: "Flats", id: "#", label: "flats" },
+        { name: "Compound Houses", id: "#", label: "compound-houses" },
       ],
       //sub2 is only used for mobile view
       sub2: [
@@ -41,10 +44,7 @@ export const useMenuLinks = () => {
     //     { url: "#", name: "Artisan" },
     //   ],
     // },
-    { id: "#", url: "/moving-sale", name: "MOVING SALE" },
-    { id: "#", url: "/blog", name: "AREA VIBES" },
-    { id: "#", url: "/about", name: "OUR SERVICES" },
-    { id: "#", url: "/faq", name: "FAQ" },
+
     {
       id: "#",
       url: "",
@@ -129,12 +129,17 @@ export const useMenuLinks = () => {
       url: "#",
       name: "HOMES FOR RENT",
       sub: [
-        { url: "/properties", name: "View All Listings", id: "#" },
+        {
+          url: "/properties",
+          name: "View All Listings",
+          id: "#",
+          label: "all-listings",
+        },
 
-        { url: "#", name: "Single Unit  Houses", id: "#" },
-        { url: "#", name: "Duplex Houses", id: "#" },
-        { url: "#", name: "Apartments", id: "#" },
-        { url: "#", name: "Self Contained Rooms", id: "#" },
+        { name: "Self Contained ", id: "#", label: "self-contained" },
+        { name: "Apartments", id: "#", label: "apartments" },
+        { name: "Flats", id: "#", label: "flats" },
+        { name: "Compound Houses", id: "#", label: "compound-houses" },
       ],
       //sub2 is only used for mobile view
       sub2: [
