@@ -16,7 +16,7 @@ type Props = {
   tabColor?: "transparent" | "colored";
   onSelectionChange: (key: React.Key) => void;
   variant?: "default" | "gradient" | "green1";
-  selectedKey?: React.Key;
+  selectedKey?:any;
   cursorAnimation?: boolean;
   classNames?: {
     base?: string;
