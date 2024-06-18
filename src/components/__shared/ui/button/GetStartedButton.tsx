@@ -1,5 +1,4 @@
 import { cn } from "@/lib/utils";
-import Link from "next/link";
 import React from "react";
 import Button from "./Button";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
@@ -8,7 +7,7 @@ type Props = {
   className?: string;
 };
 
-const HireUsButton = ({ className }: Props) => {
+const GetStartedButton = ({ className }: Props) => {
   const setToggle = useMenuStore((state) => state.setToggle);
 
   return (
@@ -26,4 +25,4 @@ const HireUsButton = ({ className }: Props) => {
   );
 };
 
-export default HireUsButton;
+export default GetStartedButton;

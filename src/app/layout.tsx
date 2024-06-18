@@ -7,12 +7,10 @@ import Script from "next/script";
 import { openSansLocal } from "@/lib/utils/fonts";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import MenuWrapper from "@/components/__shared/MenuWrapper";
 import MenuWrapperNoSSR from "@/components/__shared/hoc/MenuWrapperNoSSR";
 import { Metadata, Viewport } from "next";
 import TemporayLandingPage from "@/components/TemporaryLandingPage";
-
-const uniquePages = ["login", "terms-of-service"];
+import NoticeModal from "@/components/__shared/ui/modals/NoticeModal";
 
 export const metadata: Metadata = {
   title: {
@@ -76,6 +74,7 @@ export default async function RootLayout({
           <MenuWrapperNoSSR>
             <LoadingIndicator />
             <ToastContainer />
+            <NoticeModal />
             {showTemporaryLandingPage ? ( // Render temporary landing page if showTemporaryLandingPage is true
               <TemporayLandingPage />
             ) : (

@@ -101,17 +101,16 @@ body {
 
 .shape-polygon {
   clip-path: polygon(10% 0, 0 20%, 0 100%, 90% 100%, 100% 80%, 100% 0);
-  @apply rounded-md
+  @apply rounded-md;
 }
 .flt_svg {
-    visibility: hidden;
-    position: absolute;
-    width: 0px;
-    height: 0px;
+  visibility: hidden;
+  position: absolute;
+  width: 0px;
+  height: 0px;
 }
-.shape-polygon-parent
-{
-    filter: url('#flt_tag');
+.shape-polygon-parent {
+  filter: url("#flt_tag");
 }
 
 .Toastify__toast-container {
@@ -158,6 +157,9 @@ body {
     @apply bg-gradient-to-b from-primary-500 to-primary-400/80;
   }
 
+  .circle-hover {
+    @apply grid size-8 place-items-center rounded-full hover:bg-shade-50 focus:outline-accent;
+  }
   .light-green-hover {
     @apply hover:bg-primary-300/20;
   }

@@ -1,9 +1,5 @@
 "use client";
-import CaInstagram from "@/components/__shared/ui/icons/CaInstagram";
-import CaTwitter from "@/components/__shared/ui/icons/CaTwitter";
-import CaWhatsappBusiness from "@/components/__shared/ui/icons/CaWhatsappBusiness";
 import Link from "next/link";
-import CaFacebook from "@/components/__shared/ui/icons/CaFacebook";
 import quickLinks from "@/enum/footer/quickLinks";
 import { getCurrentYear } from "@/lib/utils/numberManipulation";
 import Logo from "@/components/__shared/ui/Logo";
@@ -120,7 +116,7 @@ const Footer = (props: Props) => {
         <div className="mt-10 flex flex-col items-center gap-10 pb-14 text-[32px] text-[#fff] ">
           <h2 className="font-bold">
             Get{" "}
-            <span className={`font-pacifico ${pacifico.className}`}>
+            <span className={`${pacifico.className}`}>
               social
             </span>{" "}
             with us:

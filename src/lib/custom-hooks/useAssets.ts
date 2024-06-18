@@ -9,8 +9,8 @@ import PhoneIcon from "../../../public/assets/icons/phone-icon.svg";
 import MailIcon from "../../../public/assets/icons/mail-icon.svg";
 import ArrowIcon from "../../../public/assets/icons/arrow-icon.svg";
 import NoViewingFee from "../../../public/assets/icons/no-viewing-fee.svg";
-// import Logo from "../../../public/assets/images/Logo.png";
 import Logo from "../../../public/assets/images/Logo.svg";
+import LogoNoText from "/public/assets/icons/logo-no-text.svg"
 import Hamburger from "../../../public/assets/icons/nav-icon.svg";
 import FaqImage from "../../../public/assets/images/faq/faq-image.png";
 import FaqArrowIcon from "../../../public/assets/icons/arrow-circle-right.svg";
@@ -38,7 +38,6 @@ import HouseSearch from "/public/assets/icons/overview/house-search.svg";
 import PeopleSell from "/public/assets/icons/overview/people-sell.svg";
 import Rafiki from "/public/assets/icons/overview/rafiki.svg";
 import ProfileImage from "/public/assets/images/profile-image.jpg";
-import HomeLanding from "/public/assets/images/home/landing.jpg";
 import BusinessPersonWithHouseKeys from "/public/assets/images/dashboard/businessman-house-keys.png";
 import LaptopDisplayingHome from "/public/assets/images/dashboard/laptop-displaying-homepage.png";
 import CoupleBlurred from "/public/assets/images/about/about-slider-img.webp";
@@ -62,6 +61,7 @@ import LadyOnCouchLaptop from "/public/assets/images/dashboard/lady-on-couch-lap
 import CoupleStirringIntoSpace from "/public/assets/images/dashboard/couple-stirring-into-space.jpg";
 import CoupleSittingOnFloor from "/public/assets/images/dashboard/couple-sitting-on-floor.jpg";
 import LadyShopping from "/public/assets/images/moving-sale/lady-shopping.jpeg";
+import CoupleHoldingBoxes from "/public/assets/images/couple-holding-boxes.png"
 
 export const useAssets = () => {
   return {
@@ -94,12 +94,12 @@ export const useAssets = () => {
       NoViewingFee,
       Cloud,
       Logo,
+      LogoNoText,
     },
     gifs: {
       GreenCheckGif,
     },
     images: {
-      // Logo,
       StockImage,
       FaqImage,
       ContactImage,
@@ -133,6 +133,7 @@ export const useAssets = () => {
       CoupleStirringIntoSpace,
       CoupleSittingOnFloor,
       LadyShopping,
+      CoupleHoldingBoxes,
     },
   };
 };

@@ -100,7 +100,6 @@ const Modal = ({
           ),
           closeButton: "mr-3 mt-1",
         }}
-        // scrollBehavior={size === "full" ? "inside" : "inside"}
         scrollBehavior={
           scrollBehavior
             ? scrollBehavior
@@ -126,9 +125,9 @@ const Modal = ({
               {closeButton}
             </div>
           ) : (
-            <div onClick={() => setHideWindowScrollbar(false)}>
+            <button onClick={() => setHideWindowScrollbar(false)}>
               <LiaTimesSolid />
-            </div>
+            </button>
           )
         }
       >
