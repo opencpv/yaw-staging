@@ -54,7 +54,7 @@ const MobileProductCard = ({ data, id, refetch }: Props) => {
             </p>
           </div>
           {/* Actions */}
-          <ActionsMobile />
+          <ActionsMobile id={id} refetch={refetch} />
         </TableBodySm>
       </TableRowSm>
     </ItemContext.Provider>
