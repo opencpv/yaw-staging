@@ -13,14 +13,21 @@ import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure"
 import FileUploader from "@/app/dashboard/components/shared/sell-products/FileUploader";
 import Button from "@/components/__shared/ui/button/Button";
 import { createClient } from "@/lib/utils/supabase/auth/client";
+import axios from "axios";
+import { generateString } from "@/lib/utils";
+import slugify from "@/lib/utils/slugify";
+import supabase from "@/lib/utils/supabase/supabaseClient";
+import { toast } from "react-toastify";
+import { useCurrentUserId } from "@/lib/custom-hooks/useCurrentUserId";
 
 interface CategoryProp {
-  label: string;
-  key: string;
+  name: string;
+  value: string;
 }
 const AddNewProduct = () => {
   const [categories, setCategories] = useState<CategoryProp[]>([]);
-
+  const [loading, setLoading] = useState(false);
+  const id = useCurrentUserId();
   const validationSchema = Yup.object().shape({
     category: Yup.string().required("This field is requiredRequired"),
     condition: Yup.string().required("This field is required"),
@@ -37,7 +44,7 @@ const AddNewProduct = () => {
   const { handlePhone, handleCountryChange, phone } = usePhoneInputDisclosure();
 
   useEffect(() => {
-    const supabase = createClient();
+    const supabase = createClientComponentClient();
     if (!supabase) {
       redirect("/");
     } else {
@@ -48,7 +55,10 @@ const AddNewProduct = () => {
           if (!error) {
             const catArray: CategoryProp[] = [];
             data.forEach((element) => {
-              catArray.push({ key: element.category, label: element.category });
+              catArray.push({
+                value: element.category,
+                name: element.category,
+              });
             });
             setCategories(catArray);
           }
@@ -68,13 +78,84 @@ const AddNewProduct = () => {
             description: "",
             price: "",
             phone: "",
-            images: [],
+            images: [new File([], "default")],
             category: "Furniture",
             condition: "New",
             negotiable: "no",
           }}
           validationSchema={validationSchema}
-          onSubmit={async (values) => {}}
+          onSubmit={async (values) => {
+            setLoading(true);
+
+            const imageUrls: string[] = [];
+            const imageUploadPromises: Promise<any>[] = []; // Array to store upload promises
+
+            values.images.forEach((imageFile) => {
+              const newFilename =
+                generateString(8) + "-" + slugify(imageFile.name || "");
+              const newFile = new File([imageFile as File], newFilename, {
+                type: imageFile?.type,
+              });
+              const fileForm = new FormData();
+              fileForm.append("file", newFile);
+              const fileUrl = `${process.env.NEXT_PUBLIC_DO_CDN_URL}${newFilename}`;
+
+              imageUploadPromises.push(
+                axios
+                  .post(`${location.origin}/api/file-upload`, fileForm, {
+                    headers: {
+                      "Content-Type": "multipart/form-data",
+                    },
+                  })
+                  .then(() => {
+                    imageUrls.push(fileUrl);
+                  })
+                  .catch(() => {
+                    toast.error(`Image upload unavailable`, {
+                      toastId: "taost",
+                    });
+                  }),
+              );
+            });
+
+            // Wait for all image uploads to finish before inserting into Supabase
+            Promise.all(imageUploadPromises)
+              .then(() => {
+                supabase
+                  .from("products")
+                  .insert([
+                    {
+                      title: values.itemName,
+                      price: values.price,
+                      description: values.description,
+                      condition: values.condition.toUpperCase(),
+                      term:
+                        values.negotiable === "yes"
+                          ? "Negotiable"
+                          : "Non-Negotiable",
+                      images: imageUrls,
+                      seller: id,
+                      category: values.category,
+                      phone: values.phone,
+                    },
+                  ])
+                  .then(({ data, error }) => {
+                    if (!error) {
+                      setLoading(false);
+                      window.history.back();
+                    } else {
+                      console.log(error);
+                      setLoading(false);
+                      toast.error("A problem occured", { toastId: "toast" });
+                    }
+                  });
+              })
+              .catch((error) => {
+                console.error("Error during image uploads:", error);
+                setLoading(false);
+                toast.error("Image upload failed", { toastId: "toast" });
+              });
+          }}
         >
           <Form className="grid grid-cols-1 gap-x-5 gap-y-8 lg:grid-cols-3">
             <div className="space-y-8">
@@ -86,12 +167,7 @@ const AddNewProduct = () => {
               <CustomSelect
                 name="category"
                 label="Category"
-                options={[
-                  { name: "furniture", value: "Furniture" },
-                  { name: "tools", value: "Tools" },
-                  { name: "electronics", value: "Electronics" },
-                  { name: "vehicles", value: "Vehicles" },
-                ]}
+                options={categories}
               />
               <TextFieldInput name="price" label="Price" prefix="GHS" />
               <CustomTextAreaInput
@@ -106,8 +182,8 @@ const AddNewProduct = () => {
                 name="condition"
                 label="Condition"
                 options={[
-                  { name: "new", value: "New" },
-                  { name: "used", value: "Used" },
+                  { name: "new", value: "NEW" },
+                  { name: "used", value: "USED" },
                 ]}
               />
               <CustomRadioInput
@@ -127,7 +203,12 @@ const AddNewProduct = () => {
             <div className="flex h-[100%] w-full flex-col">
               <FileUploader />
               <div className="mt-auto flex justify-end">
-                <Button type="submit" color="accent" className="mt-8">
+                <Button
+                  type="submit"
+                  color="accent"
+                  className="mt-8"
+                  isLoading={loading}
+                >
                   Publish
                 </Button>
               </div>
@@ -140,41 +221,3 @@ const AddNewProduct = () => {
 };
 
 export default AddNewProduct;
-
-// const Root = styled("div", {
-//   " .form-div": {
-//     display: "flex",
-//     flexDirection: "column",
-//     gap: "0.875rem",
-//     color: "#6A6968",
-//   },
-//   " .form-input": {
-//     maxHeight: "52px",
-//     padding: "0.9375rem",
-//     border: "1px solid #E6E6E6",
-//     borderRadius: "4px",
-//     color: "#737373",
-//     backgroundColor: "white",
-//   },
-
-//   ".form-input option": {
-//     backgroundColor: "white",
-//   },
-//   ".form-input option:hover": {
-//     backgroundColor: "green",
-//   },
-//   "form-input-textarea": {
-//     padding: "0.9375rem",
-//     maxWidth: "541px",
-//     width: "100%",
-//     aspectRatio: "541/368",
-//     border: "1px solid #E6E6E6",
-//     borderRadius: "4px",
-//     color: "#737373",
-//   },
-//   "& .link-icon": {
-//     top: "75%",
-//     transform: "translateY(-75%)",
-//     left: "1rem",
-//   },
-// });

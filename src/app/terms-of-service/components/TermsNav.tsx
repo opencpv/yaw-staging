@@ -54,7 +54,7 @@ const TermsNav = ({
                 path == `/terms-of-service/${category.slug}`
                   ? " "
                   : "opacity-50"
-              } lg:text-4 whitespace-nowrap font-semibold text-[#fff] transition-all duration-100  hover:opacity-100 `}
+              } lg:text-4 whitespace-nowrap font-semibold text-[#fff] transition-all duration-100  hover:opacity-100 capitalize `}
             >
               {category.title}
             </Link>

@@ -8,6 +8,7 @@ import {
   FaPeopleArrows,
   FaQuestionCircle,
   FaHome,
+  FaStamp,
 } from "react-icons/fa";
 import { FaPeopleCarryBox, FaPerson } from "react-icons/fa6";
 const Sidebar = () => {
@@ -63,6 +64,12 @@ const Sidebar = () => {
           icon={<FaHome />}
           link={"/not312/dashboard/featured-properties"}
           active={path === "/not312/dashboard/featured-properties"}
+        />
+        <NavButton
+          text="Products"
+          icon={<FaStamp />}
+          link={"/not312/dashboard/products"}
+          active={path === "/not312/dashboard/products"}
         />
       </div>
     </aside>

@@ -16,7 +16,8 @@ const TermsMenuArea = (props: any) => {
               "flex w-full flex-row items-center justify-between pt-8 "
             }
           >
-            <div
+            <button
+              onClick={() => setTermsMenuToggle(false)}
               className="relative aspect-[106/86]
             h-full max-h-[86px] w-full
             max-w-[106px]
@@ -24,7 +25,8 @@ const TermsMenuArea = (props: any) => {
           "
             >
               <Logo size="lg" url="/terms-of-service" />
-            </div>
+            </button>
+
             <button className="relative transition-transform duration-300 hover:rotate-[360deg] lg:right-10">
               <AiFillCloseCircle
                 onClick={() => setTermsMenuToggle(false)}
