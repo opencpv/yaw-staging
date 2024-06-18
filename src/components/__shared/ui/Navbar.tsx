@@ -91,6 +91,7 @@ const Navbar = (props: any) => {
                 onClick={() => {
                   setToggle(true);
                 }}
+                className="group grid size-14 place-items-center rounded-full transition-all hover:bg-shade-50/80"
               >
                 <Image src={icons.Hamburger} alt="menu" />
               </button>

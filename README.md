@@ -20,7 +20,7 @@
 | **Recommended**     | // a hacky solution to ensure that the button works on mobile |
 | **Not Recommended** | // useState to hold the first name of the user                |
 
-- **Assets**: Ensure static assets are not over 300kb.https://www.google.com/search?q=site%3Ayahoo.com&oq=site%3Ayahoo.com&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIGCAEQRRg60gEINjU3MWowajmoAgCwAgE&sourceid=chrome&ie=UTF-8
+- **Assets**: Ensure static assets are not over 300kb.
 
 - **Keys**: Whenever possible, use id/uuid for keys other than index.
 

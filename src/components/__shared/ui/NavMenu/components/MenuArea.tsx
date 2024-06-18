@@ -27,12 +27,11 @@ const MenuArea = (props: any) => {
             >
               <Logo size="lg" />
             </div>
-            <button className="relative transition-transform duration-300 hover:rotate-[360deg] lg:right-10">
-              <AiFillCloseCircle
-                onClick={() => setToggle(false)}
-                color="white"
-                size={40}
-              />
+            <button
+              className="relative transition-transform duration-300 hover:rotate-[360deg] lg:right-10"
+              onClick={() => setToggle(false)}
+            >
+              <AiFillCloseCircle color="white" size={40} />
             </button>
           </div>
         </div>

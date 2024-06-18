@@ -52,7 +52,7 @@ const Modal = ({
   body,
   footer,
   size,
-  isDismissible,
+  isDismissible = true,
   closeButton,
   footerAlignment,
   hideCloseButton,
@@ -108,8 +108,8 @@ const Modal = ({
               : "inside"
         }
         size={size ? size : "sm"}
-        isDismissable={isDismissible === false ? isDismissible : true}
-        isKeyboardDismissDisabled={!isDismissible ? true : false}
+        isDismissable={isDismissible ? true : false}
+        isKeyboardDismissDisabled={isDismissible ? false : true}
         placement={"center"}
         isOpen={isOpen}
         hideCloseButton={hideCloseButton ? true : false}
