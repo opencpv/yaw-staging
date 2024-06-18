@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation, Grid } from "swiper/modules";
+import { Pagination, Navigation, Grid, FreeMode } from "swiper/modules";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "@/styles/custom-swiper.css";
 import "swiper/css/bundle";
@@ -9,26 +9,27 @@ import "swiper/css";
 import "swiper/css/grid";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import "swiper/css/free-mode";
 
 const SliderGrid = ({ items }: SliderGridProps) => {
-  const [shouldRefresh, setShouldRefresh] = useState(false);
+  // const [shouldRefresh, setShouldRefresh] = useState(false);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 900) {
-        setShouldRefresh(true);
-      } else if (shouldRefresh && window.innerWidth >= 900) {
-        window.location.reload();
-        setShouldRefresh(false);
-      }
-    };
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     if (window.innerWidth < 900) {
+  //       setShouldRefresh(true);
+  //     } else if (shouldRefresh && window.innerWidth >= 900) {
+  //       window.location.reload();
+  //       setShouldRefresh(false);
+  //     }
+  //   };
 
-    window.addEventListener("resize", handleResize);
+  //   window.addEventListener("resize", handleResize);
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [shouldRefresh]);
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, [shouldRefresh]);
 
   return (
     <div className="mb-10 h-full w-full">
@@ -40,7 +41,8 @@ const SliderGrid = ({ items }: SliderGridProps) => {
           rows: 1,
         }}
         spaceBetween={20}
-        // grabCursor
+        cssMode
+        freeMode
         pagination={{
           clickable: true,
           dynamicBullets: true,
@@ -51,7 +53,7 @@ const SliderGrid = ({ items }: SliderGridProps) => {
           nextEl: ".listing-grid-next",
           prevEl: ".listing-grid-prev",
         }}
-        modules={[Grid, Pagination, Navigation]}
+        modules={[Grid, Pagination, Navigation, FreeMode]}
         breakpoints={{
           460: {
             centeredSlides: true,
@@ -70,34 +72,21 @@ const SliderGrid = ({ items }: SliderGridProps) => {
               rows: 3,
             },
           },
-          1024: {
-            slidesPerView: 2,
-            grid: {
-              rows: 3,
-            },
-          },
-          1280: {
-            slidesPerView: 3,
-            grid: {
-              rows: 3,
-            },
-          },
         }}
         observer
         observeParents
         observeSlideChildren
-        resizeObserver
         className="slider-grid h-full w-full"
       >
         {/* Mapping through Featured listings from database */}
         {items?.map((item, idx) => (
-          <SwiperSlide key={idx + 1} className="">
+          <SwiperSlide key={idx + 1} className="pb-5 max-[460px]:px-1.5">
             {item}
           </SwiperSlide>
         ))}
       </Swiper>
       {/* Pagination bullets and button */}
-      <div className="relative top-10 z-20 mx-auto -mt-4 flex w-11/12 items-center justify-center 2xl:w-9/12">
+      <div className="relative top-10 z-20 mx-auto -mt-9 flex w-11/12 items-center justify-center 2xl:w-9/12">
         {/* Prev Button */}
         <div className="inline-flex w-full items-center justify-between gap-5">
           <div className="listing-grid-prev grid h-12 w-12 shrink-0 cursor-pointer place-items-center rounded-full bg-accent-50 md:h-16 md:w-16">

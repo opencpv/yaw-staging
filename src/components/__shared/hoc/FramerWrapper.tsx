@@ -1,10 +1,12 @@
 "use client";
+import { fadeIn } from "@/lib/animations";
 import {
   AnimationProps,
   TargetAndTransition,
   VariantLabels,
   motion,
 } from "framer-motion";
+import React from "react";
 
 type Props = {
   children: React.ReactNode;
@@ -14,12 +16,21 @@ type Props = {
   // viewport: ViewportOptions
 };
 
-const FramerWrapper = ({ children, className, ...props }: Props) => {
+const FramerWrapper = (
+  { children, className, ...props }: Props,
+  ref: React.Ref<HTMLDivElement>,
+) => {
   return (
-    <motion.div {...props} className={className} id={props.id}>
+    <motion.div
+      {...fadeIn}
+      {...props}
+      className={className}
+      id={props.id}
+      ref={ref}
+    >
       {children}
     </motion.div>
   );
 };
 
-export default FramerWrapper;
+export default React.forwardRef(FramerWrapper);

@@ -11,6 +11,7 @@ type Props = {
   label?: string;
   name?: string;
   initialValues?: string;
+  required?: boolean;
 };
 
 const CustomTextAreaInput = ({
@@ -20,12 +21,20 @@ const CustomTextAreaInput = ({
   placeholder,
   name,
   initialValues,
+  required,
 }: Props) => {
   const [field, meta, helpers] = useField(name as string);
 
   return (
     <Root className="text-[#6A6968]">
-      {label && <label htmlFor="">{label}</label>}
+      {label && (
+        <label htmlFor="" className="flex gap-x-1.5">
+          {label}{" "}
+          {required && (
+            <span className="relative text-sm text-shade-300">*</span>
+          )}
+        </label>
+      )}
 
       <textarea
         className={`form-input hidden-scrollbar pb-5 hover:border-black/50 focus:outline-accent-50 ${classes}`}
@@ -39,7 +48,7 @@ const CustomTextAreaInput = ({
         defaultValue={initialValues}
       />
       {meta.touched && meta.error ? (
-        <ErrorMessage>{meta.error}</ErrorMessage>
+        <ErrorMessage error={meta.error}>{meta.error}</ErrorMessage>
       ) : null}
     </Root>
   );

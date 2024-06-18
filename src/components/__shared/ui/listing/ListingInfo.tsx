@@ -1,7 +1,5 @@
 import React from "react";
 import LikeHeart from "../LikeHeart";
-import { FaRegStar, FaStar } from "react-icons/fa";
-import Link from "next/link";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import { ListingCardInterface } from "../../../../../interfaces";
 import { useAppStore } from "@/store/dashboard/AppStore";
@@ -9,16 +7,17 @@ import Image from "next/image";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { cn } from "@/lib/utils";
 import Tooltip from "@/components/__shared/ui/Tooltip";
-import Rating from "./Rating";
+import RatingsForm from "../ratings-form";
+import AllReviewsModal from "../modals/all-reviews-modal";
+import { useRatingsModalStore } from "@/store/modal/useRatingsModalStore";
 
 const ListingInfo = (props: Partial<ListingCardInterface>) => {
   const { user } = useAppStore();
   const { icons } = useAssets();
-
   return (
     <div
       className={cn(
-        "flex h-max w-full flex-1 flex-col gap-6 rounded-b-lg bg-white px-5 py-4",
+        "flex h-max w-full flex-1 flex-col gap-6 rounded-b-lg bg-white px-5 py-4 pr-[1.3rem]",
         {
           hidden: props.showOnlyImage,
         },
@@ -40,27 +39,15 @@ const ListingInfo = (props: Partial<ListingCardInterface>) => {
           </div>
           {/* rating */}
           <div className="flex min-w-max items-center gap-2 min-[320px]:ml-auto">
-            {props.ratingCount === 0 ? (
-              <FaRegStar className="text-yellow-400" />
-            ) : (
-              <FaStar className="text-yellow-400" />
-            )}
 
-            {(props.ratingCount as number) > 0 && <Rating value={4.1} />}
-            <small>
-              ({" "}
-              {(props.ratingCount as number) > 0
-                ? `${props.ratingCount}+`
-                : `${props.ratingCount}`}{" "}
-              )
-            </small>
-            {(props.ratingCount === 0 || props.rating === 0) && (
-              <Link
-                href="#"
-                className="text-neutral-900 underline hover:text-neutral-900 active:text-neutral-900"
-              >
-                <small>Rate</small>
-              </Link>
+            <RatingsForm property={props} value={props.ratingCount} />
+
+            {props?.ratingCount !== undefined && props.ratingCount > 0 && (
+              <AllReviewsModal
+                property={props}
+                value={props.ratingCount}
+                
+              />
             )}
           </div>
         </div>

@@ -8,7 +8,9 @@ type Props = {
 };
 
 const ReportFraud = ({ className, onClick }: Props) => {
-  const setContactTabActiveKey = useContactStore((state) => state.setActiveKey);
+  const href = location.href;
+  const { setActiveKey: setContactTabActiveKey, setReportIssueHref } =
+    useContactStore();
 
   return (
     <Link
@@ -16,6 +18,7 @@ const ReportFraud = ({ className, onClick }: Props) => {
       onClick={() => {
         onClick && onClick();
         setContactTabActiveKey("report");
+        setReportIssueHref(href);
       }}
     >
       <h2 className={`${className}`}>Report Fraud</h2>

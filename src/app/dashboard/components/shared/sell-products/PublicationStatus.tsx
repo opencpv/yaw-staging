@@ -1,55 +1,52 @@
 "use client";
 import React from "react";
-import { useSelectDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
-import { cn } from "@nextui-org/react";
-import { BsInfoCircle } from "react-icons/bs";
-import Tooltip from "@/components/__shared/ui/Tooltip";
-import capitalizeName from "@/lib/utils/stringManipulation";
+import Status from "@/components/__shared/ui/states/Status";
+import { ProductStatusProp } from "@/lib/typings";
 
 export type ItemPublicationStatus =
-  | "active"
-  | "inactive"
-  | "suspended"
-  | "archived";
+  | "Active"
+  | "Inactive"
+  | "Suspended"
+  | "Archived";
 
 type Props = {
-  status: ItemPublicationStatus;
-  productStatus: "available" | "unavailable";
+  status: ProductStatusProp;
+  isAvailable: boolean;
+  id: number;
 };
 
-const PublicationStatus = ({ status, productStatus }: Props) => {
+const PublicationStatus = ({ status, isAvailable, id }: Props) => {
   return (
     <>
-      <Tooltip
-        content={
-          status === "active"
-            ? "The lister has reviewed your application and should be in touch with you shortly. Check your messages or contact them directly if a response is delayed."
-            : status === "inactive"
-              ? "The lister has declined your application. Continue your search or contact them directly with more questions."
-              : status === "suspended"
-                ? "The lister has received your application and should respond shortly. Contact them directly if a response is delayed."
-                : "Please submit form for review."
+      <Status
+        variant={
+          status === "active" && isAvailable
+            ? "success"
+            : status === "suspended"
+              ? "warning"
+              : status === "archived"
+                ? "neutral-light"
+                : status === "inactive" && !isAvailable
+                  ? "neutral"
+                  : undefined
         }
-      >
-        <div
-          className={cn(
-            "flex w-44 items-center justify-center rounded-full p-2 py-2.5 text-neutral-800 shadow-sm",
-            {
-              "bg-red-300":
-                status === "inactive" && productStatus === "unavailable",
-              "bg-primary-50":
-                status === "active" && productStatus === "available",
-              "bg-accent-500": status === "suspended",
-              "bg-primary-200/20": status === "archived",
-            },
-          )}
-        >
-          <div className="flex items-center gap-5">
-            <small className="text-xs">{capitalizeName(status)}</small>
-            <BsInfoCircle />
-          </div>
-        </div>
-      </Tooltip>
+        tooltipContent={
+          status === "suspended"
+            ? "The lister has reviewed your application and should be in touch with you shortly. Check your messages or contact them directly if a response is delayed."
+            : ""
+        }
+        text={
+          status === "active" && isAvailable
+            ? "Active"
+            : status === "suspended"
+              ? "Suspended"
+              : status === "archived"
+                ? "Archived"
+                : status === "inactive" && !isAvailable
+                  ? "Inactive"
+                  : ""
+        }
+      />
     </>
   );
 };

@@ -3,7 +3,7 @@ import { CustomDatePicker } from "@/components/__shared/ui/form/CustomDatePicker
 import { useLocalStorage } from "@uidotdev/usehooks";
 import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
 import { BeMyAgentFormType } from "../types";
-import InfoText from "@/components/__shared/ui/listing-form/components/InfoText";
+import CallOut from "@/components/__shared/ui/CallOut";
 
 export default function PropertyRequirements() {
   const [agentFormData, setAgentFormData] =
@@ -149,7 +149,7 @@ export default function PropertyRequirements() {
           </div>
         </div>
         {/* Lease Terms */}
-        <InfoText
+        <CallOut
           content="1-2 year lease with rent paid in advance are most common"
           className="mt-5"
         />

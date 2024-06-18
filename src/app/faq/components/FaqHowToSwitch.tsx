@@ -15,7 +15,6 @@ const FaqHowToSwitch = () => {
         radius="large"
         padding="wide"
         cursorAnimation
-        // ref={tabRef}
       />
     </div>
   );

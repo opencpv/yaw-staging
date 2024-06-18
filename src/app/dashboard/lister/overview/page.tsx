@@ -1,9 +1,13 @@
 import React from "react";
 import ListerOverviewPage from "./components/ListerOverviewPage";
+import { Metadata } from "next";
 
-type Props = {};
+export const metadata: Metadata = {
+  title: "Overview",
+  description: "", // tentative
+};
 
-const page = (props: Props) => {
+const page = () => {
   return <ListerOverviewPage />;
 };
 

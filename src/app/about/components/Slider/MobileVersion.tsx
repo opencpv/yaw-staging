@@ -24,9 +24,9 @@ const MobileVersion = ({ data }: { data: any }) => {
 
   return (
     <div className="w-full lg:hidden">
-      <small className="mx-auto mb-8 flex max-w-5xl items-center justify-center text-white">
+      <p className="mx-auto mb-8 flex items-center justify-center text-white">
         {data.slide[activeIndex]?.description}
-      </small>
+      </p>
       <Swiper
         ref={sliderRef}
         slidesPerView={1}

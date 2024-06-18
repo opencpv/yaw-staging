@@ -9,6 +9,7 @@ import {
 } from "react-icons/hi2";
 import { FaRegStar, FaRegHeart } from "react-icons/fa";
 import { BsEnvelope } from "react-icons/bs";
+import { VscWorkspaceUnknown } from "react-icons/vsc";
 
 export const PgRoutesRenter = [
   {
@@ -18,16 +19,22 @@ export const PgRoutesRenter = [
     link: "/dashboard/renter/overview",
   },
   {
-    name: "my bookmarks",
+    name: "be the first to know",
     url: "",
-    icon: <TbHomeSearch />,
-    link: "/dashboard/renter/my-bookmarks",
+    icon: <VscWorkspaceUnknown />,
+    link: "/dashboard/renter/my-search/be-the-first-to-know",
   },
   {
     name: "my agent",
     url: "",
     icon: <MdOutlineRealEstateAgent />,
     link: "/dashboard/renter/my-agent/agent",
+  },
+  {
+    name: "my search",
+    url: "",
+    icon: <TbHomeSearch />,
+    link: "/dashboard/renter/my-search/all",
   },
   {
     name: "messages",
@@ -42,10 +49,10 @@ export const PgRoutesRenter = [
     link: "/dashboard/renter/applications",
   },
   {
-    name: "my reviews",
+    name: "Payments",
     url: "",
-    icon: <FaRegStar />,
-    link: "/dashboard/renter/my-reviews",
+    icon: <BsEnvelope />,
+    link: "/b2b",
   },
   {
     name: "moving sale",
@@ -54,28 +61,22 @@ export const PgRoutesRenter = [
     link: "/dashboard/renter/sell-products",
   },
   {
-    name: "Payments",
+    name: "my reviews",
     url: "",
-    icon: <BsEnvelope />,
-    link: "/b2b",
-  },
-  {
-    name: "notifications",
-    url: "",
-    icon: <IoMdNotificationsOutline />,
-    link: "/dashboard/renter/notifications",
+    icon: <FaRegStar />,
+    link: "/dashboard/renter/my-reviews",
   },
   {
     name: "favourites",
     url: "",
     icon: <FaRegHeart />,
-    link: "/dashboard/renter/favourites",
+    link: "/dashboard/renter/my-search/favourites",
   },
   {
     name: "recommendations",
     url: "",
     icon: <MdOutlineRecommend />,
-    link: "/dashboard/renter/recommendations",
+    link: "/dashboard/renter/my-search/recommendations",
   },
   {
     name: "settings",
@@ -111,16 +112,16 @@ export const PgRoutesLister = [
     link: "/dashboard/lister/messages",
   },
   {
-    name: "moving sale",
-    url: "",
-    icon: <HiOutlineShoppingBag />,
-    link: "/dashboard/lister/sell-products",
-  },
-  {
     name: "Payments",
     url: "",
     icon: <BsEnvelope />,
     link: "/b2b",
+  },
+  {
+    name: "moving sale",
+    url: "",
+    icon: <HiOutlineShoppingBag />,
+    link: "/dashboard/lister/sell-products",
   },
   {
     name: "notifications",

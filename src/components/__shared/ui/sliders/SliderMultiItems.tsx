@@ -43,6 +43,7 @@ const SliderMultiItems = ({
               spaceBetween: 20,
             },
           }}
+          cssMode
           freeMode={{
             enabled:
               autoplay === false || autoplay === undefined ? false : true,
@@ -52,7 +53,7 @@ const SliderMultiItems = ({
           speed={autoplay ? 30000 : undefined}
           pagination={{
             clickable: true,
-            el: ".slider-multi-items-pagination",
+            el: ".slider-multi-items-pagination-lg",
             dynamicBullets: true,
             dynamicMainBullets: 3,
           }}
@@ -61,7 +62,7 @@ const SliderMultiItems = ({
             prevEl: ".slider-multi-items-prev",
           }}
           modules={[Pagination, Navigation, Autoplay, FreeMode]}
-          className="mySwiper slider-multi-items h-fit w-full"
+          className="mySwiper slider-multi-items-lg h-fit w-full"
         >
           {items?.map((item, idx) => (
             <SwiperSlide key={idx + 1} className={swiperSlideClassName}>
@@ -78,7 +79,7 @@ const SliderMultiItems = ({
               <div className="slider-multi-items-prev grid h-12 w-12 shrink-0 place-items-center rounded-full bg-accent-50 md:h-16 md:w-16">
                 <FaChevronLeft className="text-white" />
               </div>
-              <div className="slider-multi-items-pagination absolute left-10 hidden w-full min-[250px]:block"></div>
+              <div className="slider-multi-items-pagination-lg absolute left-20 hidden w-full min-[250px]:block" />
               {/* Next button */}
               <div className="slider-multi-items-next grid h-12 w-12 shrink-0 place-items-center rounded-full bg-accent-50 md:h-16 md:w-16">
                 <FaChevronRight className="text-white" />
@@ -129,7 +130,7 @@ const SliderMultiItems = ({
               <div className="slider-multi-items-prev grid h-12 w-12 shrink-0 place-items-center rounded-full bg-accent-50 md:h-16 md:w-16">
                 <FaChevronLeft className="text-white" />
               </div>
-              <div className="slider-multi-items-pagination absolute left-10 hidden w-full min-[250px]:block"></div>
+              <div className="slider-multi-items-pagination absolute left-20 hidden w-full min-[250px]:block" />
               {/* Next button */}
               <div className="slider-multi-items-next grid h-12 w-12 shrink-0 place-items-center rounded-full bg-accent-50 md:h-16 md:w-16">
                 <FaChevronRight className="text-white" />

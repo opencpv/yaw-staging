@@ -30,7 +30,7 @@ const Wrapper = ({ children }: LayoutProps) => {
   );
   const [excludeWrapper, setExcludeWrapper] = useState(false);
 
-  const { setCurrentRole, isSwitchingRole } = useDashboardStore();
+  const { setCurrentRole, isSwitchingRole, currentRole } = useDashboardStore();
 
   useEffect(() => {
     if (!isSwitchingRole) {
@@ -44,17 +44,16 @@ const Wrapper = ({ children }: LayoutProps) => {
 
   useEffect(() => {
     const wrapperExclusionList = [
-      "/dashboard/lister/my-agent",
       "/dashboard/renter/my-agent",
+      "/dashboard/lister/my-agent",
+      "/dashboard/renter/sell-products",
+      "/dashboard/lister/sell-products",
     ];
 
-    wrapperExclusionList.forEach((path) => {
-      if (pathname?.includes(path)) {
-        setExcludeWrapper(true);
-      } else {
-        setExcludeWrapper(false);
-      }
-    });
+    const shouldExcludeWrapper = wrapperExclusionList.some(
+      (path) => pathname?.includes(path),
+    );
+    setExcludeWrapper(shouldExcludeWrapper);
   }, [pathname]);
 
   useEffect(() => {

@@ -5,6 +5,7 @@ import { useDisclosure } from "@nextui-org/react";
 import Image from "next/image";
 import PropertyGalleryModal from "./PropertyGalleryModal";
 import { ListingInterface } from "../../../../interfaces";
+import { useIntersectionObserver } from "@/lib/utils/intersectionObserver";
 
 type Props = {
   images: ListingInterface;
@@ -13,6 +14,7 @@ type Props = {
 const PropertyDetailsImages = (props: Props) => {
   const { images } = useAssets();
   const { isOpen, onClose, onOpen, onOpenChange } = useDisclosure();
+  const { ref, hasIntersected } = useIntersectionObserver();
 
   return (
     <>
@@ -22,41 +24,46 @@ const PropertyDetailsImages = (props: Props) => {
         isOpen={isOpen}
       />
       <section className="fade-in-bottom mb-10 h-full max-h-[150rem]">
-        <div
-          className="hidden h-full cursor-pointer grid-cols-2 gap-3 lg:grid"
-          onClick={onOpen}
-        >
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((_, idx) => (
+        <div ref={ref as any} />
+        {hasIntersected && (
+          <>
             <div
-              key={idx + 1}
-              className={`property-details-img-group relative ${
-                idx === 4 || idx === 5 ? "row-span-2" : "row-span-1"
-              }`}
+              className="hidden h-full cursor-pointer grid-cols-2 gap-3 lg:grid"
+              onClick={onOpen}
             >
-              <Image
-                src={images.StockImage}
-                alt={props.images.propertyName as string}
-                fill
-                className="transition-all hover:scale-[1.02]"
-                style={{ objectFit: "cover" }}
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((_, idx) => (
+                <div
+                  key={idx + 1}
+                  className={`property-details-img-group relative ${
+                    idx === 4 || idx === 5 ? "row-span-2" : "row-span-1"
+                  }`}
+                >
+                  <Image
+                    src={images.StockImage}
+                    alt={props.images.propertyName as string}
+                    fill
+                    className="transition-all hover:scale-[1.02]"
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+              ))}
+            </div>
+            {/* Slider */}
+            <div className="h-fit w-full cursor-pointer lg:hidden">
+              <SliderWide
+                pagination
+                navigation
+                onClick={onOpen}
+                images={[1, 2, 3, 4, 5].map((image) => ({
+                  src: "/assets/images/Stock.jpg",
+                  name: "",
+                  href: "",
+                }))}
               />
             </div>
-          ))}
-        </div>
-        {/* Slider */}
-        <div className="h-fit w-full cursor-pointer lg:hidden">
-          <SliderWide
-            pagination
-            navigation
-            onClick={onOpen}
-            images={[1, 2, 3, 4, 5].map((image) => ({
-              src: "/assets/images/Stock.jpg",
-              name: "",
-              href: "",
-            }))}
-          />
-        </div>
-        <ReportIssue className="mt-5" />
+            <ReportIssue className="mt-5" />
+          </>
+        )}
       </section>
     </>
   );

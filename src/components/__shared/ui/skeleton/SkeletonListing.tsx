@@ -15,9 +15,9 @@ const SkeletonListing = ({
         countArray.map((_, idx) => (
           <div key={idx + 1} className={cn("space-y-3", className)}>
             <Skeleton
-              className={cn("min-w-full", {
-                "h-80 rounded-xl": cardType === 1,
-                "h-[26rem] rounded-3xl": cardType === 2,
+              className={cn("min-w-full rounded-2xl", {
+                "h-80": cardType === 1,
+                "h-[26rem]": cardType === 2,
               })}
             />
             <div className="flex justify-between">
@@ -35,9 +35,9 @@ const SkeletonListing = ({
       {count === undefined && (
         <div className={cn("space-y-3", className)}>
           <Skeleton
-            className={cn("min-w-full", {
-              "h-52 rounded-xl": cardType === 1,
-              "h-80 rounded-3xl": cardType === 2,
+            className={cn("min-w-full rounded-2xl", {
+              "h-80": cardType === 1,
+              "h-[26rem]": cardType === 2,
             })}
           />
           <div className="flex justify-between">

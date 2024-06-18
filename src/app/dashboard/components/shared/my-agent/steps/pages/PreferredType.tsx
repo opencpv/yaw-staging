@@ -5,7 +5,7 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import Amenity from "../../../../../../../components/__shared/ui/listing-form/components/Amenity";
 import styles from "../../index.module.css";
 
-import InfoText from "../../../../../../../components/__shared/ui/listing-form/components/InfoText";
+import CallOut from "../../../../../../../components/__shared/ui/CallOut";
 import { BeMyAgentFormType } from "../types";
 import { HiOutlineBuildingOffice, HiOutlineHome } from "react-icons/hi2";
 import { IoHomeOutline } from "react-icons/io5";
@@ -54,7 +54,7 @@ export default function PreferredType({ infoText }: Props) {
         <div className="mb-10 flex w-full flex-col gap-8">
           <h2 className={`${styles.titleNoMargin}`}>Preferred Type</h2>
           {infoText && (
-            <InfoText content="You may select more than one response" />
+            <CallOut content="You may select more than one response" />
           )}
         </div>
         <div className="space-y-4">

@@ -73,12 +73,8 @@ let items = [
     status: "Inactive",
   },
 ];
-pro;
-const ItemsPage = () => {
-  // const [products, setproducts] = useState<any[]>([]);
-  // const [supabase, setsupabase] = useState<any>();
-  // const [id, setid] = useState<string>("");
 
+const ItemsPage = () => {
   const { currentRole } = useDashboardStore();
   const [status, setStatus] = useState<string | undefined>(undefined);
   const [date, setDate] = useState<string | undefined>(undefined);
@@ -120,9 +116,9 @@ const ItemsPage = () => {
             content="You will receive messages in your inbox on the platform whenever there is an interested buyer for your product"
             className="order-1 lg:order-2"
           />
-          {items?.length > 0 ? (
+          {products?.length > 0 ? (
             <small className="order-3 inline-block capitalize">
-              Showing {items.length} {items.length > 1 ? "Items" : "Item"}
+              Showing {products.length} {products.length > 1 ? "Items" : "Item"}
             </small>
           ) : null}
           <div className="order-4 flex justify-end gap-5 xs:justify-between lg:hidden">

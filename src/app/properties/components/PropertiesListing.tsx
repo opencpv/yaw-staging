@@ -11,6 +11,8 @@ import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWro
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { getListingProps } from "@/lib/enum";
+import { useIntersectionObserver } from "@/lib/utils/intersectionObserver";
+import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 
 type Props = {};
 
@@ -19,6 +21,7 @@ const PropertiesListing = (props: Props) => {
   const search = searchParams?.get("search") || "";
   const tag = searchParams?.get("tag") || "all";
   const router = useRouter();
+  const { ref, hasIntersected } = useIntersectionObserver();
 
   const { user } = useAppStore();
   const {
@@ -45,38 +48,43 @@ const PropertiesListing = (props: Props) => {
 
   return (
     <main className="wrapper overflow-x-hidden max-sm:-mt-10">
+      <div ref={ref as any} />
       {/* Listing */}
-      <section className="listing-grid">
-        <FetchingStates
-          data={listings}
-          error={error}
-          isLoading={isLoading}
-          isLoadingComponent={<SkeletonListing count={3} />}
-          errorComponent={
-            <SomethingWentWrong
-              className="h-fit"
-              onTryAgain={() => {
-                mutate();
-              }}
+      {hasIntersected && (
+        <FramerWrapper>
+          <section className="listing-grid">
+            <FetchingStates
+              data={listings}
+              error={error}
+              isLoading={isLoading}
+              isLoadingComponent={<SkeletonListing count={3} />}
+              errorComponent={
+                <SomethingWentWrong
+                  className="h-fit"
+                  onTryAgain={() => {
+                    mutate();
+                  }}
+                />
+              }
+              emptyStateComponent={
+                <PropertiesEmptyState onClick={handleViewSimilarResults} />
+              }
             />
-          }
-          emptyStateComponent={
-            <PropertiesEmptyState onClick={handleViewSimilarResults} />
-          }
-        />
-        {listings?.map((listing) => (
-          <ListingCard
-            key={listing.id}
-            {...getListingProps(listing, user as UserType)}
+            {listings?.map((listing) => (
+              <ListingCard
+                key={listing.id}
+                {...getListingProps(listing, user as UserType)}
+              />
+            ))}
+          </section>
+          <ButtonInfiniteLoading
+            data={listings}
+            isLoading={isLoading}
+            isValidating={isValidating}
+            loadMore={loadMore}
           />
-        ))}
-      </section>
-      <ButtonInfiniteLoading
-        data={listings}
-        isLoading={isLoading}
-        isValidating={isValidating}
-        loadMore={loadMore}
-      />
+        </FramerWrapper>
+      )}
     </main>
   );
 };
