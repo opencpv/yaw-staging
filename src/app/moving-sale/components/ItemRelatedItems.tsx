@@ -69,7 +69,9 @@ const ItemRelatedItems = (props: Props) => {
     );
   else
     return (
-      <section className={`${popularItems?.length === 0 ? "hidden" : ""}`}>
+      <section
+        className={`mt-20 ${popularItems?.length === 0 ? "hidden" : ""}`}
+      >
         <h3 className="mb-6 text-shade-200">
           Popular items ({popularItems?.length})
         </h3>
