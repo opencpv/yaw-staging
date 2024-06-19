@@ -9,21 +9,40 @@ import Button from "../../button/Button";
 import { FaThumbsUp } from "react-icons/fa6";
 import styles from "./NoticeModal.module.css";
 import legal from "@/enum/about/legal";
+import {
+  getLocalStorageWithExpiry,
+  setLocalStorageWithExpiry,
+} from "@/lib/utils/localStorage";
+import { NOTICE_MODAL_TTL } from "@/constants";
 
 const NoticeModal = () => {
-  const [open, setOpen] = useState(true);
+  const show = getLocalStorageWithExpiry("notice-modal-behavior") as boolean;
+  const [open, setOpen] = useState<boolean | null>(show);
 
-  useEffect(() => {
-    return () => {};
-  }, []);
+  console.log(show);
+
+  const checkVisibility = () => {
+    if (show !== false) {
+      const key = "notice-modal-behavior";
+      const value = false;
+      const ttl = NOTICE_MODAL_TTL;
+      setLocalStorageWithExpiry(key, value, ttl);
+    }
+  };
 
   return (
     <>
       <Modal
-        body={<ModalBody setOpen={setOpen} />}
-        isOpen={open}
-        onOpenChange={(open) => setOpen(open)}
-        //size="5xl"
+        body={
+          <ModalBody
+            setOpen={setOpen as React.Dispatch<React.SetStateAction<boolean>>}
+          />
+        }
+        isOpen={open ?? true}
+        onOpenChange={(open) => {
+          setOpen(open);
+          checkVisibility();
+        }}
         scrollBehavior="normal"
         bodyClassName="p-0"
         hideCloseButton
@@ -66,15 +85,15 @@ const ModalBody = ({
         </h4>
         <h2 className="font-bold sm:text-3xl">Rent The Right Way</h2>
         <p className={styles.body}>
-          <span className={styles.em}>p.s:</span> Our platform is open to
+          <span className={styles.em}>P.S.</span> Our platform is open to
           everyone to use for <span className={styles.emOutline}>Free</span>. We
           rely on <span className={styles.emOutline}>You</span> to ensure
           genuine listings and honest transactions. Please report any issues or
           suspicious postings. We will take action{" "}
           <span className={styles.emOutline}>immediately</span> !<br />{" "}
-          <span className={styles.emCallout}>No Wahala No Azan.</span>
+          <span className={styles.emCallout}>No Wahala No Azaa.</span>
         </p>
-        <div className="flex flex-col self-start xs:items-center">
+        <div className="flex flex-col items-start self-start">
           <small className={`${pacifico.className}`}>Sincerely,</small>
           <small>Rentright Team</small>
         </div>
@@ -83,7 +102,7 @@ const ModalBody = ({
           color="primary"
           className="h-12 items-center gap-2 border border-white px-24 capitalize hover:bg-neutral-300 hover:text-neutral-600 max-xs:max-w-full"
         >
-          Got it <FaThumbsUp size={24} />
+          Got it <FaThumbsUp size={24} className="scale-x-[-1]" />
         </Button>
       </section>
       <div className="relative w-full max-md:hidden">

@@ -21,7 +21,9 @@ const FeedbackButton = (props: Props) => {
   const pathname = usePathname();
 
   const shouldFloat = useMemo(() => {
-    const float = getLocalStorageWithExpiry("floating-feedback-behavior");
+    const float = getLocalStorageWithExpiry(
+      "floating-feedback-behavior",
+    ) as boolean;
     return float;
   }, []);
 

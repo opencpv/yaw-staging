@@ -93,7 +93,11 @@ const Navbar = (props: any) => {
                 }}
                 className="group grid size-14 place-items-center rounded-full transition-all hover:bg-shade-50/80"
               >
-                <Image src={icons.Hamburger} alt="menu" />
+                <Image
+                  src={icons.Hamburger}
+                  alt="menu"
+                  className="group-hover:scale-80"
+                />
               </button>
             </div>
           </div>

@@ -61,7 +61,7 @@ const FeedbackBody = ({
           const value_b_rounded = Math.round(values.value_b / 5) * 5;
           const key = "floating-feedback-behavior";
           const value = false;
-          const ttl = FEEDBACK_FLOATING_BUTTON_TTL; // hours
+          const ttl = FEEDBACK_FLOATING_BUTTON_TTL;
 
           const { error } = await supabase.from("feedback").insert({
             ...values,
