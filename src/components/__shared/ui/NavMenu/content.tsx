@@ -45,10 +45,7 @@ export const useMenuLinks = () => {
     //     { url: "#", name: "Artisan" },
     //   ],
     // },
-    { id: "#", url: "/moving-sale", name: "MOVING SALE" },
-    { id: "#", url: "/blog", name: "AREA VIBES" },
-    { id: "#", url: "/about", name: "OUR SERVICES" },
-    { id: "#", url: "/faq", name: "FAQ" },
+
     {
       id: "#",
       url: "#",

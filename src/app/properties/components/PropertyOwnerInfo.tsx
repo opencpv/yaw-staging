@@ -24,10 +24,7 @@ type Props = {
 const PropertyOwnerInfo = (props: Props) => {
   const { images } = useAssets();
   return (
-    <motion.section
-      {...fadeUp}
-      className="mx-auto flex w-full items-center justify-center"
-    >
+    <motion.section className="mx-auto flex w-full items-center justify-center">
       <div className="mt-12 flex w-full flex-col items-center gap-10 sm:w-11/12">
         <div className="flex items-center gap-10 font-[600]">
           <div className="relative h-24 w-24 rounded-full">

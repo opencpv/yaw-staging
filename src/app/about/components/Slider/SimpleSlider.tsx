@@ -9,7 +9,7 @@ const SimpleSlider = ({ data }: { data: any }) => {
       id="q5y40WLNHa7Htg=="
     >
       <div className="flex lg:justify-center">
-        <h2 className="mb-14 mt-8 text-center font-bold text-white lg:mt-20 lg:text-4xl">
+        <h2 className="mb-14 mt-8 text-center font-bold text-white lg:mt-20">
           Lorem ipsum dolor
         </h2>
       </div>

@@ -6,23 +6,18 @@ import ScrollTop from "./ScrollTop";
 type Props = {
   socialHidden?: boolean;
   scrollTopHidden?: boolean;
-  threshHoldMin?: number;
-  threshHoldMax?: number;
+  thresholdMin?: number;
 };
 
 const ScrollTopAndSocial = ({
   scrollTopHidden,
   socialHidden,
-  threshHoldMin,
-  threshHoldMax,
+  thresholdMin,
 }: Props) => {
   return (
     <>
       <div style={{ display: socialHidden ? "none" : "block" }}>
-        <FixedSocials
-          threshHoldMin={threshHoldMin}
-          threshHoldMax={threshHoldMax}
-        />
+        <FixedSocials thresholdMin={thresholdMin} />
       </div>
       <div style={{ display: scrollTopHidden ? "none" : "block" }}>
         <ScrollTop />

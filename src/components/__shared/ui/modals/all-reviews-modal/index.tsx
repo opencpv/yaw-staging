@@ -27,7 +27,6 @@ export default function AllReviewsModal({
 
   return (
     <>
-    
       <button
         className=""
         onClick={() => {

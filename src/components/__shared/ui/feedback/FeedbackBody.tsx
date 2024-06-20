@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import Thumbs from "./Thumbs";
 import FeedbackSlider from "./FeedbackSlider";
 import Image from "next/image";
@@ -11,13 +11,8 @@ import { cn } from "@/lib/utils";
 import { Form, Formik } from "formik";
 import FeedbackTextArea from "./FeedbackTextArea";
 import supabase from "@/lib/utils/supabase/supabaseClient";
-
-const initialValues = {
-  value_a: 50,
-  value_b: 50,
-  value_c: true,
-  value_d: "",
-};
+import { useLocalStorage } from "@uidotdev/usehooks";
+import { setLocalStorageWithExpiry } from "@/lib/utils/localStorage";
 
 const FeedbackBody = ({
   handleCloseAfterSubmission,
@@ -28,6 +23,13 @@ const FeedbackBody = ({
 }) => {
   const feedback = data?.customFeedback;
   const { onOpen } = useToastDisclosure();
+
+  const initialValues = {
+    value_a: 50,
+    value_b: 50,
+    value_c: true,
+    value_d: "",
+  };
 
   const {
     value1,
@@ -54,8 +56,16 @@ const FeedbackBody = ({
       <Formik
         initialValues={initialValues}
         onSubmit={async (values, {}) => {
+          const value_a_rounded = Math.round(values.value_a / 5) * 5;
+          const value_b_rounded = Math.round(values.value_b / 5) * 5;
+          const key = "floating-feedback-behavior";
+          const value = false;
+          const ttl = 24; // hours
+
           const { error } = await supabase.from("feedback").insert({
             ...values,
+            value_a: value_a_rounded,
+            value_b: value_b_rounded,
             feedback_title: "Website feedback", // From feedback.title ?
           });
           if (error) {
@@ -63,6 +73,8 @@ const FeedbackBody = ({
             return;
           }
           handleCloseAfterSubmission();
+          // sets the floating feedback button behavior on homepage
+          setLocalStorageWithExpiry(key, value, ttl);
         }}
       >
         {({ isSubmitting }) => (

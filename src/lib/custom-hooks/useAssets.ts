@@ -9,7 +9,8 @@ import PhoneIcon from "../../../public/assets/icons/phone-icon.svg";
 import MailIcon from "../../../public/assets/icons/mail-icon.svg";
 import ArrowIcon from "../../../public/assets/icons/arrow-icon.svg";
 import NoViewingFee from "../../../public/assets/icons/no-viewing-fee.svg";
-import Logo from "../../../public/assets/images/Logo.png";
+// import Logo from "../../../public/assets/images/Logo.png";
+import Logo from "../../../public/assets/images/Logo.svg";
 import Hamburger from "../../../public/assets/icons/nav-icon.svg";
 import FaqImage from "../../../public/assets/images/faq/faq-image.png";
 import FaqArrowIcon from "../../../public/assets/icons/arrow-circle-right.svg";
@@ -92,12 +93,13 @@ export const useAssets = () => {
       GreenCheck,
       NoViewingFee,
       Cloud,
+      Logo,
     },
     gifs: {
       GreenCheckGif,
     },
     images: {
-      Logo,
+      // Logo,
       StockImage,
       FaqImage,
       ContactImage,

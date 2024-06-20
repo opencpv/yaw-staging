@@ -1,7 +1,7 @@
 import { LoginButton } from "./LoginButton";
 import { redirect } from "next/navigation";
 import Logo from "@/components/__shared/ui/Logo";
-import MenuButton from "@/components/__shared/ui/button/MenuButton";
+import MenuButton from "@/app/login/components/MenuButton";
 import { createClient } from "@/lib/utils/supabase/auth/server";
 
 export const LoginForm = async () => {

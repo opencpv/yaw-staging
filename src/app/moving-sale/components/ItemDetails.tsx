@@ -91,7 +91,11 @@ export const Term = ({
   );
 };
 
-export const Condition = ({ variant }: { variant?: "new" | "used" }) => {
+export const Condition = ({
+  variant,
+}: {
+  variant?: "new" | "used" | "used-like new";
+}) => {
   return (
     <div className="w-fit rounded-xl bg-[#FFE3B0] p-2 text-center capitalize text-primary">
       {variant}

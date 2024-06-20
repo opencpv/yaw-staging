@@ -28,10 +28,7 @@ const Navbar = (props: any) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (
-        (pathname?.includes("/properties/") || pathname === "/") &&
-        window.scrollY > 1
-      ) {
+      if (pathname?.includes("/properties/") && window.scrollY > 1) {
         setIsScrolling(true);
       } else {
         setIsScrolling(false);
@@ -44,11 +41,8 @@ const Navbar = (props: any) => {
     };
   }, [pathname]);
 
-  const shouldChangeColor =
-    (isScrolling && pathname?.includes("/properties/")) ||
-    (isScrolling && pathname === "/");
-  const isNotTargetPage =
-    !pathname?.includes("/properties/") && pathname !== "/";
+  const shouldChangeColor = isScrolling && pathname?.includes("/properties/");
+  const isNotTargetPage = !pathname?.includes("/properties/");
 
   return (
     <>

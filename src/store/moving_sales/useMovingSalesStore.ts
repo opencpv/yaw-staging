@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-type Condition = "used" | "new" | "all";
+type Condition = "used" | "new" | "all" | "used-like new";
 type Term = "negotiable" | "non-negotiable" | "all";
 
 type ItemFilterStore = {

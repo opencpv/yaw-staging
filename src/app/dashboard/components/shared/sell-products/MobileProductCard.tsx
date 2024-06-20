@@ -1,99 +1,63 @@
-import ProductStatus from "./ProductStatus";
-import { formatDate } from "@/lib/utils/stringManipulation";
-import calculateDaysSinceCreation from "@/lib/utils/calculateDaysSinceCreation";
-import DestructiveModal from "@/components/__shared/ui/modals/DestructiveModal";
-import { useDisclosure } from "@nextui-org/react";
 import { TableBodySm, TableRowSm } from "../table/Table";
 import TbPropertyImageSm from "../TbPropertyImageSm";
-import ProductCondition from "./ProductCondition";
 import { formatPrice } from "@/lib/utils/numberManipulation";
-import EditButton from "@/components/__shared/ui/button/EditButton";
-import DeleteButton from "@/components/__shared/ui/button/DeleteButton";
-import { Product } from "@/lib/typings";
-import CaDashEdit from "@/components/__shared/ui/icons/CaDashEdit";
-import DeleteProductButton from "./DeleteProductButton";
-import { createClient } from "@/lib/utils/supabase/auth/client";
+import PublicationStatus, { ItemPublicationStatus } from "./PublicationStatus";
+import ActionsMobile from "./ActionsMobile";
+import { ItemContext } from "@/app/dashboard/contexts/ItemContext";
+import { ProductStatusProp } from "@/lib/typings";
 
-interface Props {
-  data: Product;
+type Props = {
+  data: Item;
   refetch: () => void;
-}
-const MobileProductCard = ({ data, refetch }: Props) => {
-  const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
-  const supabase = createClient();
+  id: number;
+};
 
+const MobileProductCard = ({ data, id, refetch }: Props) => {
   return (
-    <>
-      <DestructiveModal
-        isOpen={isOpen}
-        onClose={onClose}
-        onOpenChange={onOpenChange}
-        label="Are you sure you want to delete this application?"
-        handleDestruction={() => {}}
-      />
-
-      <TableRowSm>
-        {/* Product */}
-        <TableBodySm href="/properties/2">
-          <div className="flex flex-wrap gap-5 truncate xsm:flex-nowrap">
-            <TbPropertyImageSm title={data.title} image={data.images[0]} />
-            <div className="flex flex-col gap-2">
-              <p className="font-semibold">{data.title}</p>
-              <ProductCondition condition={data.condition} />
-              <p className="text-[13px] font-bold text-[#8A8A8A]">
-                {formatPrice(data.price)}
-              </p>
-            </div>
+    <ItemContext.Provider value={{ item: data }}>
+      <TableRowSm className="pb-0">
+        <TableBodySm className="flex flex-nowrap gap-5">
+          <div className="flex flex-col gap-3 max-xxs:hidden">
+            {/* Image */}
+            <TbPropertyImageSm
+              title={data.title}
+              image={data.images?.[0] as string}
+              href={`/moving-sale/${data.title}?${new URLSearchParams({
+                id: data.id.toString(),
+                title: data.title,
+                category: data.category,
+                term: data.term,
+                price: data.price.toString(),
+                condition: data.condition,
+                // seller: item.profiles?.full_name as string,
+                description: data.description,
+              })}`}
+            />
+            {/* Date */}
+            <small className="text-shade-200">3 days ago</small>
           </div>
-        </TableBodySm>
-
-        {/* Status */}
-        <TableBodySm className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 pt-3.5">
-          <ProductStatus
-            publicationStatus={data.status}
-            isAvailable={data.is_available}
-            id={data.id}
-            refetch={refetch}
-          />
-        </TableBodySm>
-        {/* Date */}
-        <TableBodySm className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 pt-3.5">
-          <h4>Date</h4>
-          <div className="text-center">
-            <h4 className="text-sm font-[600]">{"October 29, 2024"}</h4>
-            <small className="inline-block text-[0.6rem] text-neutral-400">
-              3 days ago
-            </small>
-          </div>
-        </TableBodySm>
-        <TableBodySm className="flex  flex-wrap items-center justify-between gap-x-5 gap-y-3 pt-3">
-          <h4>Category</h4>
-          <p className="text-center text-[13px]">{data.category}</p>
-        </TableBodySm>
-        {/* Actions */}
-        <TableBodySm className="flex justify-center gap-1.5 pt-3">
-          {
-            <>
-              <EditButton onOpen={() => ""} />
-              <DeleteButton
-                handleDestruction={async () => {
-                  const { data: product, error } = await supabase
-                    .from("products")
-                    .update({
-                      is_deleted: true,
-                      deletion_date: new Date().toDateString(),
-                    })
-                    .eq("id", data.id);
-                  if (!error) {
-                    refetch();
-                  }
-                }}
+          <div className="grid flex-1 justify-between gap-x-10 gap-y-3 [@media(min-width:400px)]:grid-cols-2">
+            <div className="flex flex-1 flex-col  items-start gap-3">
+              {/* Product */}
+              <p className="truncate font-semibold">{data.title}</p>
+              {/* Status */}
+              <PublicationStatus
+                status={data.status as ProductStatusProp}
+                isAvailable={data.is_available}
+                id={id}
               />
-            </>
-          }
+            </div>
+            {/* Price */}
+            <p className="ml-auto font-bold text-shade-200">
+              <span className="text-neutral-800">GHS</span>{" "}
+              {formatPrice(data.price, false)}
+            </p>
+          </div>
+          {/* Actions */}
+          <ActionsMobile id={id} refetch={refetch} />
         </TableBodySm>
       </TableRowSm>
-    </>
+    </ItemContext.Provider>
   );
 };
 

@@ -23,7 +23,7 @@ const Caption = () => (
             <input className="form-input" placeholder="Add your caption here" />
           </TFormDiv>
           <div className="flex w-full justify-end">
-            <div className="bg-primary flex aspect-[116/52] h-[52px] w-full max-w-[116px] items-center justify-center rounded-lg font-semibold text-white">
+            <div className="flex aspect-[116/52] h-[52px] w-full max-w-[116px] items-center justify-center rounded-lg bg-primary font-semibold text-white">
               Save
             </div>
           </div>
@@ -31,7 +31,7 @@ const Caption = () => (
 
         <Dialog.Close asChild>
           <button
-            className="absolute right-[10px] top-[10px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full text-violet11 hover:bg-violet4 focus:shadow-[0_0_0_2px] focus:shadow-violet7 focus:outline-none"
+            className="absolute right-[10px] top-[10px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full text-neutral-800 hover:bg-violet4 focus:shadow-[0_0_0_2px] focus:shadow-accent focus:outline-none"
             aria-label="Close"
           >
             <Cross2Icon />

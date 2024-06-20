@@ -61,7 +61,7 @@ const CustomCheckBoxes = ({ data, onChange, color }: Props) => {
             id={r?.name}
           >
             <Checkbox.Indicator
-              className={cn("text-violet11", {
+              className={cn("text-neutral-800", {
                 "text-white": color === "primary" || color === "accent",
               })}
             >

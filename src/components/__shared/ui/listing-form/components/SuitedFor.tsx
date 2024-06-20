@@ -7,7 +7,7 @@ import { FaPersonWalkingLuggage } from "react-icons/fa6";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { useEffect, useState } from "react";
 import Amenity from "./Amenity";
-import InfoText from "./InfoText";
+import CallOut from "../../CallOut";
 import styles from "./index.module.css";
 
 const data = [
@@ -22,7 +22,7 @@ export default function SuitedFor() {
     "listing-form",
     {
       suitedFor: [],
-    }
+    },
   );
 
   const handleOptionsClick = (r: any) => {
@@ -48,17 +48,17 @@ export default function SuitedFor() {
 
   return (
     <>
-      <Root className="flex flex-col w-full items-center justify-center h-full ">
-        <div className="w-full lg:w-[75%] flex flex-col items-center justify-center gap-6">
-          <div className="w-full flex flex-col gap-2">
+      <Root className="flex h-full w-full flex-col items-center justify-center ">
+        <div className="flex w-full flex-col items-center justify-center gap-6 lg:w-[75%]">
+          <div className="flex w-full flex-col gap-2">
             <p className={`${styles.title} font-semibold`}>
               What type of renter is your property best suited for?{" "}
             </p>
           </div>
-          <InfoText content="You may select more than one response" />
+          <CallOut content="You may select more than one response" />
           <div
-            className="grid grid-cols-4 w-full
-            gap-y-5 gap-x-5"
+            className="grid w-full grid-cols-4
+            gap-x-5 gap-y-5"
           >
             {data.map((r: any, index: number) => (
               <div

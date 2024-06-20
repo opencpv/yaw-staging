@@ -11,9 +11,7 @@ import { PortableText } from "@portabletext/react";
 import "../../style.css";
 import urlBuilder from "@sanity/image-url";
 import { client } from "@/lib/utils/sanity/client";
-import { fadeIn } from "@/lib/animations";
 import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
-import slugify from "@/lib/utils/slugify";
 import { headers } from "next/headers";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Rate from "@/components/__shared/ui/Rate";
@@ -100,7 +98,7 @@ const StoryPage = async ({ params, searchParams }: Props) => {
         {post.title}
       </h1>
       <Rate disabled value={post.rating} className="mb-10 mt-3" />
-      <FramerWrapper {...fadeIn}>
+      <FramerWrapper>
         <div className="shape-polygon relative mb-16 h-60 w-full lg:h-[30rem]">
           <Image
             src={urlForImage(post.featured_image)?.url() as string}

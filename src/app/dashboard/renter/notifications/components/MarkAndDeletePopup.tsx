@@ -8,7 +8,6 @@ import DeleteModal from "./DeleteModal";
 type Props = {
   read: boolean;
   containerRef?: React.RefObject<HTMLElement>; // Reference to the container
-
 };
 
 const MarkAndDeletePopup = ({ read, containerRef }: Props) => {
@@ -36,7 +35,7 @@ const MarkAndDeletePopup = ({ read, containerRef }: Props) => {
     <Popover.Root onOpenChange={setOpen} open={open}>
       <Popover.Trigger asChild>
         <button
-          className="utline-none inline-flex cursor-pointer items-center justify-center focus:shadow-black"
+          className="utline-none inline-flex cursor-pointer items-center justify-center focus:shadow-accent"
           aria-label="Update dimensions"
         >
           <BiDotsVerticalRounded size={24} color="black" />

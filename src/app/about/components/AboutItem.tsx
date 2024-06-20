@@ -3,23 +3,23 @@ import Image from "next/image";
 
 const AboutItem = ({ data, index }: { data: any; index: number }) => {
   const Heading1 = () => (
-    <div className="relative  w-fit first:mt-0">
-      <h2 className="border-l-8 border-accent px-4 text-2xl font-bold text-[#2A4E55] md:text-4xl 2xl:text-5xl">
+    <div className="relative w-fit first:mt-0">
+      <h2 className="border-l-8 border-accent px-4 font-bold text-[#2A4E55]">
         {data.title}
       </h2>
     </div>
   );
 
   const Heading2 = () => (
-    <div className="relative w-fit ">
-      <h2 className=" border-l-8 border-accent px-4 text-2xl font-bold text-[#2A4E55] md:text-4xl 2xl:text-5xl">
+    <div className="relative w-fit">
+      <h2 className=" border-l-8 border-accent px-4 font-bold text-[#2A4E55]">
         {data.title}
       </h2>
     </div>
   );
 
   const Description = () => (
-    <p className="text-base font-[500] leading-normal text-shade-200 md:text-lg md:leading-normal 2xl:text-2xl 2xl:leading-normal">
+    <p className="text-base font-[500] leading-normal text-shade-200 md:text-lg 2xl:text-2xl ">
       {data.description}
     </p>
   );
@@ -36,7 +36,7 @@ const AboutItem = ({ data, index }: { data: any; index: number }) => {
 
   if (index % 2 !== 0) {
     return (
-      <div className=" grid min-h-max w-full grid-cols-1 items-center gap-6 lg:grid-cols-2">
+      <div className="grid min-h-max w-full grid-cols-1 items-center gap-6 lg:grid-cols-2">
         <div className="flex flex-col justify-center gap-8 ">
           <Heading1 />
           <Description />
@@ -48,13 +48,12 @@ const AboutItem = ({ data, index }: { data: any; index: number }) => {
     );
   } else if (index % 2 == 0) {
     return (
-      <div className="grid w-full grid-cols-1 items-center gap-6 lg:grid-cols-2 justify-center">
-
-        <div className="order-2 lg:order-1 relative w-full aspect-[403/426]  sm:aspect-[775/716]   lg:aspect-[824/557] max-w-[824px] lg:rounded-xl overflow-hidden">
+      <div className="grid w-full grid-cols-1 items-center justify-center gap-6 lg:grid-cols-2">
+        <div className="relative order-2 aspect-[403/426] w-full max-w-[824px]  overflow-hidden   sm:aspect-[775/716] lg:order-1 lg:aspect-[824/557] lg:rounded-xl">
           <ImageComponent />
         </div>
 
-        <div className="order-1 flex flex-col justify-center gap-3 lg:order-2">
+        <div className="order-1 flex flex-col justify-center gap-8 lg:order-2">
           <Heading2 />
           <Description />
         </div>

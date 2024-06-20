@@ -18,6 +18,8 @@ export interface Product {
   created_at: string;
   title: string;
   price: number;
+  email: string;
+  phone: string;
   description: string;
   condition: "new" | "used";
   term: string;
@@ -25,6 +27,7 @@ export interface Product {
   seller: string;
   category: string;
   views: number;
+  primary_image: string;
   phone?: null;
   whatsapp: string;
   is_available: boolean;
@@ -32,3 +35,9 @@ export interface Product {
   deletion_date: null | string;
   status: ProductStatusProp;
 }
+
+export type ProductStatusProp =
+  | "active"
+  | "inactive"
+  | "suspended"
+  | "archived";

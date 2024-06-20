@@ -8,7 +8,7 @@ const Archived = (props: Props) => {
   return (
     <Button
       variant="ghost"
-      className="ml-auto mt-5"
+      className="float-right ml-auto mt-5"
       title="Click to view all archived data"
     >
       Archived <IoArchiveOutline />

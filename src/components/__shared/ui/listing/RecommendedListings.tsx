@@ -14,6 +14,7 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import { getListingProps } from "@/lib/enum";
 import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
 import { cn } from "@/lib/utils";
+import { useIntersectionObserver } from "@/lib/utils/intersectionObserver";
 
 type Props = {
   className?: string;
@@ -21,6 +22,8 @@ type Props = {
 };
 
 const RecommendedListings = ({ className, showAllButton }: Props) => {
+  const { ref, hasIntersected } = useIntersectionObserver();
+
   const { user } = useAppStore();
   const {
     data: listings,
@@ -40,7 +43,10 @@ const RecommendedListings = ({ className, showAllButton }: Props) => {
           className,
         )}
       >
-        <div className="mb-8 flex flex-wrap items-center justify-between gap-5">
+        <div
+          className="mb-8 flex flex-wrap items-center justify-between gap-5"
+          ref={ref as unknown as React.LegacyRef<HTMLDivElement>}
+        >
           <h2>Recommended Listings</h2>
           <Button
             href="/properties"
@@ -52,51 +58,62 @@ const RecommendedListings = ({ className, showAllButton }: Props) => {
             Show all
           </Button>
         </div>
-        <FetchingStates
-          data={listings}
-          error={error}
-          errorComponent={
-            <SomethingWentWrong
-              className="h-fit"
-              onTryAgain={() => {
-                mutate();
-              }}
+        {hasIntersected && (
+          <>
+            <FetchingStates
+              data={listings}
+              error={error}
+              errorComponent={
+                <SomethingWentWrong
+                  className="h-fit"
+                  onTryAgain={() => {
+                    mutate();
+                  }}
+                />
+              }
             />
-          }
-        />
-        <div>
-          <Swiper
-            effect="coverflow"
-            grabCursor
-            centeredSlides
-            slidesPerView={"auto"}
-            coverflowEffect={{
-              rotate: 50,
-              slideShadows: false,
-            }}
-            modules={[EffectCoverflow]}
-            className="mySwiper h-fit w-full"
-          >
-            {isLoading
-              ? Array.from({ length: 5 }, (_, idx) => (
-                  <SwiperSlide
-                    key={idx + 1}
-                    className={`h-full w-full max-w-96`}
-                  >
-                    <SkeletonListing key={idx} cardType={2} className="h-80" />
-                  </SwiperSlide>
-                ))
-              : listings?.map((listing, idx) => (
-                  <SwiperSlide key={idx} className={`h-full w-full max-w-96`}>
-                    <ListingCard
-                      key={listing.id}
-                      {...getListingProps(listing, user as UserType)}
-                      showOnlyImage
-                    />
-                  </SwiperSlide>
-                ))}
-          </Swiper>
-        </div>
+            <div>
+              <Swiper
+                effect="coverflow"
+                grabCursor
+                centeredSlides
+                slidesPerView={"auto"}
+                coverflowEffect={{
+                  rotate: 50,
+                  slideShadows: false,
+                }}
+                modules={[EffectCoverflow]}
+                className="mySwiper h-fit w-full"
+              >
+                {isLoading
+                  ? Array.from({ length: 5 }, (_, idx) => (
+                      <SwiperSlide
+                        key={idx + 1}
+                        className={`h-full w-full max-w-96`}
+                      >
+                        <SkeletonListing
+                          key={idx}
+                          cardType={2}
+                          className="h-80"
+                        />
+                      </SwiperSlide>
+                    ))
+                  : listings?.map((listing, idx) => (
+                      <SwiperSlide
+                        key={idx}
+                        className={`h-full w-full max-w-96`}
+                      >
+                        <ListingCard
+                          key={listing.id}
+                          {...getListingProps(listing, user as UserType)}
+                          showOnlyImage
+                        />
+                      </SwiperSlide>
+                    ))}
+              </Swiper>
+            </div>
+          </>
+        )}
       </section>
     </>
   );

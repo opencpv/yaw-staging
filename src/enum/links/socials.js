@@ -1,10 +1,14 @@
 import { FaFacebookF } from "react-icons/fa";
-import { RiInstagramFill, RiTwitterXLine } from "react-icons/ri";
+import {
+  RiInstagramFill,
+  RiTwitterXFill,
+  RiTwitterXLine,
+} from "react-icons/ri";
 import CaInstagram from "@/components/__shared/ui/icons/CaInstagram";
 import CaTwitter from "@/components/__shared/ui/icons/CaTwitter";
 import CaWhatsappBusiness from "@/components/__shared/ui/icons/CaWhatsappBusiness";
 import CaFacebook from "@/components/__shared/ui/icons/CaFacebook";
-import { IoLogoWhatsapp } from "react-icons/io5";
+import { IoLogoWhatsapp } from "react-icons/io";
 
 export const socialLinks = {
   monochrome: [
@@ -15,7 +19,7 @@ export const socialLinks = {
     },
     {
       name: "X",
-      icon: <RiTwitterXLine />,
+      icon: <RiTwitterXFill />,
       href: "#",
     },
     {

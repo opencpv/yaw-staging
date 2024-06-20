@@ -30,9 +30,9 @@ export const metadata: Metadata = {
       "de-DE": "/de-DE",
     },
   },
-  // openGraph: {
-  //   images: '/opengraph-image.png',
-  // },
+  openGraph: {
+    images: "/opengraph-image.png",
+  },
 };
 
 export const viewport: Viewport = {
