@@ -78,7 +78,7 @@ const BeTheFirstToKnowLayout = ({
         >
           Search Title One
         </h3>
-        <FramerWrapper {...fadeUp}>
+        <FramerWrapper>
           <div className="listing-grid">{children}</div>
         </FramerWrapper>
       </section>

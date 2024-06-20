@@ -33,10 +33,7 @@ const ItemImages = ({ query }: Props) => {
             style={{ objectFit: "cover" }}
           />
         </div>
-        <div
-          className="col-span-1 hidden w-full flex-wrap gap-2 xs:flex"
-          // style={{ gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))" }}
-        >
+        <div className="col-span-1 hidden w-full flex-wrap gap-2 xs:flex">
           {[1, 2, 3].map((_, idx) => (
             <div
               key={idx + 1}
@@ -54,11 +51,11 @@ const ItemImages = ({ query }: Props) => {
         </div>
         <Button
           color="white"
-          className={`absolute bottom-2 right-2 flex h-14 w-fit gap-3 px-3 text-neutral-600 md:bottom-8 md:right-10`}
+          className="absolute bottom-2 right-2 flex h-fit w-fit gap-3 rounded-md px-3 py-1 text-neutral-600 shadow-md md:bottom-5 md:right-10"
           onClick={onOpen}
         >
           View all
-          <MdWindow className="shrink-0 rounded-sm border p-2 text-4xl" />
+          <MdWindow className="shrink-0" size={18} />
         </Button>
       </section>
     </>

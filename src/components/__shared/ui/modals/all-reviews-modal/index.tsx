@@ -11,10 +11,7 @@ type Props = {
   value?: number;
   property?: Partial<ListingCardInterface>;
 };
-export default function AllReviewsModal({
-  property,
-  value,
-}: Props) {
+export default function AllReviewsModal({ property, value }: Props) {
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const {
     openRatingsForm,
@@ -27,7 +24,6 @@ export default function AllReviewsModal({
 
   return (
     <>
-    
       <button
         className=""
         onClick={() => {

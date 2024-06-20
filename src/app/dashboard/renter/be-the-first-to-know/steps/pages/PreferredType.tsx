@@ -2,7 +2,7 @@ import { styled } from "@stitches/react";
 import { useState } from "react";
 import Amenity from "@/components/__shared/ui/listing-form/components/Amenity";
 import styles from "../../index.module.css";
-import InfoText from "@/components/__shared/ui/listing-form/components/InfoText";
+import CallOut from "@/components/__shared/ui/CallOut";
 import { useField } from "formik";
 import { properties } from "@/app/dashboard/components/shared/content";
 
@@ -39,7 +39,7 @@ export default function PreferredType() {
       <section>
         <div className="mb-10 flex w-full flex-col gap-8">
           <h2 className={`${styles.titleNoMargin}`}>Preferred Type</h2>
-          <InfoText content="You may select more than one response" />
+          <CallOut content="You may select more than one response" />
         </div>
         <div className="space-y-4">
           <h3 className="font-normal">Types of Place</h3>

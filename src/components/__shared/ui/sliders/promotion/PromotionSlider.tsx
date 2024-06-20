@@ -18,6 +18,7 @@ import { cn } from "@/lib/utils";
 import PromotionModal from "./PromotionModal";
 import { useDisclosure } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
+import { IFRAME_ALLOW } from "@/constants";
 
 const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -62,7 +63,7 @@ const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
                       promotion.url // rel=0 is important to suggest only RentRightGH related videos
                     }
                     title={promotion?.title || ""}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+                    allow={IFRAME_ALLOW}
                     className="absolute inset-0 h-full w-full rounded-3xl"
                   ></iframe>
                 </>

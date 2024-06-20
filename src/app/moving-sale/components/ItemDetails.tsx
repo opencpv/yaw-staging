@@ -12,7 +12,7 @@ type Props = {
 const ItemDetails = ({ query }: Props) => {
   return (
     <div className="lg:col-span-2">
-      <div className="mb-16 flex flex-wrap items-center gap-x-20 gap-y-5 max-xs:w-full max-xs:justify-between">
+      <div className="mb-16 flex flex-wrap items-center gap-x-20 gap-y-5">
         {query.isLoading ? (
           <>
             <Skeleton className="h-10 w-32" />
@@ -91,7 +91,11 @@ export const Term = ({
   );
 };
 
-export const Condition = ({ variant }: { variant?: "new" | "used" }) => {
+export const Condition = ({
+  variant,
+}: {
+  variant?: "new" | "used" | "used-like new";
+}) => {
   return (
     <div className="w-fit rounded-xl bg-[#FFE3B0] p-2 text-center capitalize text-primary">
       {variant}

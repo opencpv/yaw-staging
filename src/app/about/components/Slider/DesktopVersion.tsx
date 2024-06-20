@@ -27,7 +27,7 @@ const DesktopVersion = ({ data }: { data: any }) => {
 
   return (
     <div className="relative mx-auto hidden max-w-screen-2xl lg:block">
-      <p className="mx-auto mb-8 flex max-w-5xl items-center justify-center text-sm text-white xl:text-lg 2xl:font-semibold">
+      <p className="mx-auto mb-8 flex items-center justify-center text-white">
         {data.slide[activeIndex].description}
       </p>
       <div className=" h-fit md:px-[77px]">

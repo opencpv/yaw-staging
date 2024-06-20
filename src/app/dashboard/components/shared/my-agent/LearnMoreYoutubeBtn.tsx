@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
 import AgentButtons from "./Button";
+import { IFRAME_ALLOW } from "@/constants";
 
 const LearnMoreYoutubeBtn = () => {
   const [isShowing, setIsShowing] = React.useState(false);
@@ -38,7 +39,7 @@ const LearnMoreYoutubeBtn = () => {
           <div className="relative aspect-video w-full cursor-pointer rounded-2xl">
             <iframe
               src="https://www.youtube.com/embed/OHgK_G11lDM?si=tguupkc01EJ5BJGa"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allow={IFRAME_ALLOW}
               allowFullScreen
               className="absolute inset-0 h-full w-full rounded-3xl"
             ></iframe>

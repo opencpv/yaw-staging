@@ -1,14 +1,15 @@
 "use client";
 import SliderWide from "@/components/__shared/ui/sliders/SliderWide";
+import { cn } from "@/lib/utils";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import slugify from "@/lib/utils/slugify";
 import { useBlogPostSlider } from "@/store/blog/blogStore";
 import React from "react";
 import { Swiper } from "swiper/types";
 
-type Props = { posts: any[] };
+type Props = { posts: any[]; className?: string };
 
-const AdsSlider = ({ posts }: Props) => {
+const AdsSlider = ({ posts, className }: Props) => {
   const setActiveIndex = useBlogPostSlider((state) => state.setActiveIndex);
 
   const handleSlideChange = (swiper: Swiper) => {
@@ -16,7 +17,7 @@ const AdsSlider = ({ posts }: Props) => {
   };
 
   return (
-    <section className="relative mt-10 h-fit w-full lg:mt-0">
+    <section className={cn("relative mt-10 h-fit w-full lg:mt-0", className)}>
       <SliderWide
         autoplay
         pagination

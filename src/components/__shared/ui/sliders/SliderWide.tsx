@@ -1,17 +1,17 @@
 "use client";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/autoplay";
+import "@/styles/custom-swiper.css";
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Image from "next/image";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import Link from "next/link";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/autoplay";
-import "@/styles/custom-swiper.css";
 import { cn } from "@/lib/utils";
+import { SLIDER_AUTOPLAY_DELAY } from "@/constants";
 
 const SliderWide = ({
   images,
@@ -44,7 +44,7 @@ const SliderWide = ({
         }
         autoplay={
           autoplay && {
-            delay: 6000,
+            delay: SLIDER_AUTOPLAY_DELAY,
           }
         }
         loop={loop}

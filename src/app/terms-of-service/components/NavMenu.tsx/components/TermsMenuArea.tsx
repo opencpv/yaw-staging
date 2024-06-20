@@ -27,6 +27,7 @@ const TermsMenuArea = (props: any) => {
               <Logo size="lg" url="/terms-of-service" />
             </button>
 
+
             <button className="relative transition-transform duration-300 hover:rotate-[360deg] lg:right-10">
               <AiFillCloseCircle
                 onClick={() => setTermsMenuToggle(false)}

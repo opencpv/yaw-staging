@@ -15,7 +15,7 @@ export default function Menu(props: any) {
   const { bottomLinksAfterLogin, bottomLinksBeforeLogin } = useMenuLinks();
   const [hide, setHide] = useState(false);
   const [windowLimit, setWindowLimit] = useState(false);
-  const toggle = useMenuStore((state) => state.toggle);
+  const { toggle, setToggle } = useMenuStore();
 
   const bottomLinksRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLElement>(null);
@@ -63,6 +63,19 @@ export default function Menu(props: any) {
     }
   }, [toggle]);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (toggle && e.code === "Escape") {
+        setToggle(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [setToggle, toggle]);
+
   const handleScrollIntoView = () => {
     if (bottomLinksRef.current) {
       bottomLinksRef.current.scrollIntoView({
@@ -77,8 +90,8 @@ export default function Menu(props: any) {
   return (
     <Root
       ref={menuRef}
-      tabIndex="0"
-      className="hidden-scrollbar menu-bg fixed top-0 z-50 min-h-dvh w-full gap-20 overflow-y-scroll pb-20 lg:pb-0"
+      tabIndex={0}
+      className="hidden-scrollbar menu-bg fixed top-0 z-50 min-h-dvh w-full gap-20 overflow-y-scroll pb-20 focus:outline-none lg:pb-0"
       variants={ExpandCircle}
       exit={{
         ...ExpandCircle.closed,

@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 import AvatarMenu from "@/components/__shared/ui/avatar/AvatarMenu";
 import Share from "@/components/__shared/ui/share/Share";
 import LikeHeart from "@/components/__shared/ui/LikeHeart";
-import HireUsButton from "@/components/__shared/ui/button/HireUsButton";
+import GetStartedButton from "@/components/__shared/ui/button/GetStartedButton";
 import { useJoinUsPageStore } from "./useJoinUsPageStore";
 
 const JoinUsNavbar = (props: any) => {
@@ -63,7 +63,7 @@ const JoinUsNavbar = (props: any) => {
               !isScrolling && "invisible"
             } flex w-full items-center justify-end transition-all md:gap-[31px] lg:gap-[73px]`}
           >
-            <HireUsButton
+            <GetStartedButton
               className={cn("w-fit px-[4.5rem] text-xl", {
                 invisible: user,
               })}

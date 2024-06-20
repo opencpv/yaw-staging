@@ -31,6 +31,7 @@ const Tooltip = ({ children, content, className, onClick }: Props) => {
             base: [
               cn(
                 "z-[30] bg-[#fefefe] focus:outline-none cursor-pointer p-5 max-w-2xl",
+                { hidden: !content },
                 className,
               ),
             ],
@@ -51,7 +52,9 @@ const Tooltip = ({ children, content, className, onClick }: Props) => {
           isOpen={isOpen}
           onOpenChange={setIsOpen}
           classNames={{
-            base: "focus:outline-none",
+            base: cn("focus:outline-none", {
+              hidden: !content,
+            }),
           }}
         >
           <PopoverTrigger className="h-fit w-fit">

@@ -18,7 +18,8 @@ const HowToPage = (props: Props) => {
 
   const setActiveTab = useHowToTabsStore((state) => state.setActiveTab);
   const [content, setcontent] = useState<any>(props.howtos);
-  const { value, handleSelectionChange } = useSelectDisclosure<string>("all");
+  // const { value, handleSelectionChange } = useSelectDisclosure<string>("all");
+  const [value, setValue] = useState("all");
 
   function filterByTag(array: HowTo[], tag: string) {
     return array.filter((item) =>
@@ -32,24 +33,33 @@ const HowToPage = (props: Props) => {
     } else {
       setcontent(filterByTag(data, value));
     }
-  }, [value]);
+  }, [value, props.howtos]);
 
   return (
-    <div className="pt-16">
-      <div className="mb-8">
-        <Select
+    <div className="pt-12">
+      <div className="hidden-scrollbar mb-8 overflow-x-auto">
+        <OptionFilterTabs
           options={[
             "All",
             ...props.tags.map((item: any, index: number) =>
               capitalizeName(item.tag),
             ),
           ]}
+          selectedKey={value}
+          onSelectionChange={(key) => setValue(key as string)}
+          radius="small"
+          tabColor="colored"
+          classNames={{
+            tabList: "flex-nowrap",
+          }}
+        />
+        {/* <Select
+          options={}
           value={value}
           className="mx-0"
-          variant="ghost"
           color="primary"
           handleSelectionChange={handleSelectionChange}
-        />
+        /> */}
       </div>
       <HowToVideosSection content={content} />
     </div>

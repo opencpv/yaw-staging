@@ -52,7 +52,7 @@ const Modal = ({
   body,
   footer,
   size,
-  isDismissible,
+  isDismissible = true,
   closeButton,
   footerAlignment,
   hideCloseButton,
@@ -100,7 +100,6 @@ const Modal = ({
           ),
           closeButton: "mr-3 mt-1",
         }}
-        // scrollBehavior={size === "full" ? "inside" : "inside"}
         scrollBehavior={
           scrollBehavior
             ? scrollBehavior
@@ -109,8 +108,8 @@ const Modal = ({
               : "inside"
         }
         size={size ? size : "sm"}
-        isDismissable={isDismissible === false ? isDismissible : true}
-        isKeyboardDismissDisabled={!isDismissible ? true : false}
+        isDismissable={isDismissible ? true : false}
+        isKeyboardDismissDisabled={isDismissible ? false : true}
         placement={"center"}
         isOpen={isOpen}
         hideCloseButton={hideCloseButton ? true : false}
@@ -126,9 +125,9 @@ const Modal = ({
               {closeButton}
             </div>
           ) : (
-            <div onClick={() => setHideWindowScrollbar(false)}>
+            <button onClick={() => setHideWindowScrollbar(false)}>
               <LiaTimesSolid />
-            </div>
+            </button>
           )
         }
       >

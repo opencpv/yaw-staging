@@ -1,8 +1,7 @@
 "use client";
 import { useContactStore } from "@/store/contact/useContactStore";
-import { useLocalStorage } from "@uidotdev/usehooks";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React from "react";
 
 type Props = {
   className?: string;

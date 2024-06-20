@@ -36,19 +36,14 @@ const Page = async () => {
           <div
             className={`form-root relative z-[20] h-full min-h-[500px] w-full max-w-full rounded-2xl bg-white pt-5 sm:p-3 lg:-top-16 lg:max-w-[90%] lg:p-8 lg:pt-2 lg:shadow-[0px_24px_48px_-12px_rgba(0,_0,_0,_0.18)]`}
           >
-            <div className="">
-              <ContactTabs />
-              <div className="flex h-full grid-cols-2 flex-col gap-10 md:grid">
-                <ContactForm />
-                <ContactFormSideContent data={contactUsData.data[0]} />
-              </div>
+            <ContactTabs />
+            <div className="flex h-full grid-cols-2 flex-col gap-10 md:grid">
+              <ContactForm />
+              <ContactFormSideContent data={contactUsData.data[0]} />
             </div>
           </div>
         </Root>
-        <ScrollTopAndSocial threshHoldMin={450} threshHoldMax={1400} />
-        <div className="mt-20 lg:mt-0">
-          <FeedbackButton data={data} />
-        </div>
+        <FeedbackButton data={data} className="mt-20 lg:mt-0" />
       </main>
       <Footer />
     </>

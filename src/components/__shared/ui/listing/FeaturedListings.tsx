@@ -2,7 +2,7 @@
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/effect-coverflow";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ListingCard from "./ListingCard";
 import SkeletonListing from "../skeleton/SkeletonListing";
 import FetchingStates from "../data_fetching/FetchingStates";
@@ -14,6 +14,8 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import { getListingProps } from "@/lib/enum";
 import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
 import { cn } from "@/lib/utils";
+import FramerWrapper from "../../hoc/FramerWrapper";
+import { useIntersectionObserver } from "@/lib/utils/intersectionObserver";
 
 type Props = {
   className?: string;
@@ -22,6 +24,9 @@ type Props = {
 
 const FeaturedListings = ({ className, showAllButton }: Props) => {
   const { user } = useAppStore();
+
+  const { ref, hasIntersected } = useIntersectionObserver();
+
   const {
     data: listings,
     error,
@@ -30,41 +35,44 @@ const FeaturedListings = ({ className, showAllButton }: Props) => {
   } = useFetchFeaturedListings();
 
   return (
-    <>
-      <section
-        className={cn(
-          "no-print h-fit w-full",
-          {
-            hidden: (error || (listings && listings?.length < 1)) && !isLoading,
-          },
-          className,
-        )}
+    <section
+      className={cn(
+        "no-print h-fit w-full",
+        {
+          hidden: (error || (listings && listings?.length < 1)) && !isLoading,
+        },
+        className,
+      )}
+    >
+      <div
+        className="mb-8 flex flex-wrap items-center justify-between gap-5"
+        ref={ref as unknown as React.LegacyRef<HTMLDivElement>}
       >
-        <div className="mb-8 flex flex-wrap items-center justify-between gap-5">
-          <h2>Featured Listings</h2>
-          <Button
-            href="/properties"
-            variant="ghost"
-            className={`text-sm text-neutral-800 ${
-              showAllButton ? "block" : "hidden"
-            } ${isLoading && "hidden"}`}
-          >
-            Show all
-          </Button>
-        </div>
-        <FetchingStates
-          data={listings}
-          error={error}
-          errorComponent={
-            <SomethingWentWrong
-              className="h-fit"
-              onTryAgain={() => {
-                mutate();
-              }}
-            />
-          }
-        />
-        <div>
+        <h2>Featured Listings</h2>
+        <Button
+          href="/properties"
+          variant="ghost"
+          className={`text-sm text-neutral-800 ${
+            showAllButton ? "block" : "hidden"
+          } ${isLoading && "hidden"}`}
+        >
+          Show all
+        </Button>
+      </div>
+      <FetchingStates
+        data={listings}
+        error={error}
+        errorComponent={
+          <SomethingWentWrong
+            className="h-fit"
+            onTryAgain={() => {
+              mutate();
+            }}
+          />
+        }
+      />
+      {hasIntersected && (
+        <FramerWrapper>
           <Swiper
             effect="coverflow"
             centeredSlides
@@ -96,9 +104,9 @@ const FeaturedListings = ({ className, showAllButton }: Props) => {
                   </SwiperSlide>
                 ))}
           </Swiper>
-        </div>
-      </section>
-    </>
+        </FramerWrapper>
+      )}
+    </section>
   );
 };
 

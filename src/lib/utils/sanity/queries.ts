@@ -9,6 +9,9 @@ export const FAQ_CATEGORIES_QUERY = groq`*[_type == 'faqCategory']{...}`;
 export const TERMS_QUERY = groq`*[_type == 'terms']{...}`;
 export const BLOG_QUERY = groq`*[_type == 'blog']{_id,author->,category->,title,featured_image,date,summary,rating}`;
 export const BLOG_CATEGORY_QUERY = groq`*[_type == 'category']{...}`;
+export const SINGLE_BLOG_CATEGORY = (text: string) => {
+  return groq`*[_type == 'category' && category_title match "${text}"]{category_title, category_image}`;
+};
 export const AUTHORS = groq`*[_type == 'author']{...}`;
 export const SINGLE_BLOG_POST = (id: string) => {
   return groq`*[_type == 'blog' && _id == "${id}"]{...,author->,category->}`;

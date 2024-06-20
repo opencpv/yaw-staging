@@ -98,7 +98,7 @@ const FeedBack = () => {
 
             <Dialog.Close asChild>
               <button
-                className="absolute right-[10px] top-[10px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full text-violet11 hover:bg-violet4 focus:shadow-[0_0_0_2px] focus:shadow-violet7 focus:outline-none"
+                className="absolute right-[10px] top-[10px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full text-neutral-800 hover:bg-violet4 focus:shadow-[0_0_0_2px] focus:shadow-accent focus:outline-none"
                 aria-label="Close"
               >
                 <Cross2Icon />

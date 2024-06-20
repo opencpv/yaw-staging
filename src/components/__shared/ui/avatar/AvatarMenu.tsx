@@ -82,7 +82,7 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
       {/* Avatar Menu */}
       <PopoverContent
         className={cn(
-          "z-50 w-fit rounded-lg border-none bg-white text-neutral-600 shadow-lg outline-none transition-all focus:border-none focus:outline-none xs:min-w-[18rem]",
+          "z-50 w-fit max-w-[18rem] rounded-lg border-none bg-white text-neutral-600 shadow-lg outline-none transition-all focus:border-none focus:outline-none xs:min-w-[18rem]",
           popoverClassName,
         )}
       >

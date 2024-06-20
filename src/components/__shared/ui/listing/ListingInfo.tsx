@@ -14,10 +14,11 @@ import { useRatingsModalStore } from "@/store/modal/useRatingsModalStore";
 const ListingInfo = (props: Partial<ListingCardInterface>) => {
   const { user } = useAppStore();
   const { icons } = useAssets();
+
   return (
     <div
       className={cn(
-        "flex h-max w-full flex-1 flex-col gap-6 rounded-b-lg bg-white px-5 py-4",
+        "flex h-max w-full flex-1 flex-col gap-6 rounded-b-lg bg-white px-5 py-4 pr-[1.3rem]",
         {
           hidden: props.showOnlyImage,
         },
@@ -130,12 +131,7 @@ const ListingInfo = (props: Partial<ListingCardInterface>) => {
           <span>{props.neighbourhood}, </span>
           <span>{props.city}</span>
         </div>
-        <LikeHeart
-          liked={props.liked}
-          propertyId={props.propertyId as string}
-          userId={user?.id as string}
-          className="inline-block text-lg text-primary-800"
-        />
+       {/* Spotline -- RELEASE 2 */} 
       </div>
     </div>
   );

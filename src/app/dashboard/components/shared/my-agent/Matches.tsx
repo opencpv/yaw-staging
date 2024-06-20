@@ -6,7 +6,7 @@ import ApplicationForm from "@/components/__shared/ui/application-form";
 import styles from "./index.module.css";
 import ViewModal from "./ViewModal";
 import DeleteModal from "./DeleteModal";
-import InfoText from "@/components/__shared/ui/listing-form/components/InfoText";
+import CallOut from "@/components/__shared/ui/CallOut";
 import React, { useEffect, useState } from "react";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import {
@@ -34,13 +34,13 @@ export default function MatchesYet() {
   }, []);
 
   return (
-    <section className="flex w-full flex-col gap-8 pt-28" ref={matchesRef}>
+    <section className="flex w-full flex-col gap-8 pt-20" ref={matchesRef}>
       <p className="text-[1.25rem] font-semibold lg:text-[1.5625rem]">
         Your Matches
       </p>
 
       <div>
-        <InfoText content="Lorem ipsum dolor sit amet consectetur. Consequat elementum consequat interdum integer imperdiet nisl. Ipsum eu eu tortor enim est mauris in sem. Eget dignissim risus diam consectetur magna. Non." />
+        <CallOut content="Lorem ipsum dolor sit amet consectetur. Consequat elementum consequat interdum integer imperdiet nisl. Ipsum eu eu tortor enim est mauris in sem. Eget dignissim risus diam consectetur magna. Non." />
       </div>
       {/* table */}
       <Table>

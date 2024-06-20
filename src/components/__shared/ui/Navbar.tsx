@@ -8,7 +8,7 @@ import Logo from "@/components/__shared/ui/Logo";
 import LikeHeart from "./LikeHeart";
 import Share from "./share/Share";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
-import HireUsButton from "./button/HireUsButton";
+import GetStartedButton from "./button/GetStartedButton";
 import { useHideDocumentScrollBar } from "@/lib/custom-hooks/useWindowEvents";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import AvatarMenu from "./avatar/AvatarMenu";
@@ -28,10 +28,7 @@ const Navbar = (props: any) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (
-        (pathname?.includes("/properties/") || pathname === "/") &&
-        window.scrollY > 1
-      ) {
+      if (pathname?.includes("/properties/") && window.scrollY > 1) {
         setIsScrolling(true);
       } else {
         setIsScrolling(false);
@@ -44,11 +41,8 @@ const Navbar = (props: any) => {
     };
   }, [pathname]);
 
-  const shouldChangeColor =
-    (isScrolling && pathname?.includes("/properties/")) ||
-    (isScrolling && pathname === "/");
-  const isNotTargetPage =
-    !pathname?.includes("/properties/") && pathname !== "/";
+  const shouldChangeColor = isScrolling && pathname?.includes("/properties/");
+  const isNotTargetPage = !pathname?.includes("/properties/");
 
   return (
     <>
@@ -67,7 +61,7 @@ const Navbar = (props: any) => {
           <Logo />
           <div className="flex w-full items-center justify-end md:gap-[31px] lg:gap-[73px]">
             {!pathname?.includes("/properties/") ? (
-              <HireUsButton
+              <GetStartedButton
                 className={cn("w-fit px-[4.5rem] text-xl", {
                   invisible: user,
                 })}
@@ -97,8 +91,13 @@ const Navbar = (props: any) => {
                 onClick={() => {
                   setToggle(true);
                 }}
+                className="group grid size-14 place-items-center rounded-full transition-all hover:bg-shade-50/80"
               >
-                <Image src={icons.Hamburger} alt="menu" />
+                <Image
+                  src={icons.Hamburger}
+                  alt="menu"
+                  className="group-hover:scale-80"
+                />
               </button>
             </div>
           </div>

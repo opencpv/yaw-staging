@@ -1,5 +1,6 @@
 type CarouselProps = {
-  images: { src: string; label?: string }[];
+  images: string[];
+  setActiveIndex: React.Dispatch<React.SetStateAction<number>>;
 };
 
 type SliderPaginationOnlyProps = {

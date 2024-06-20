@@ -20,10 +20,10 @@ const FAQBrowser = ({
   const [newData, setnewData] = useState<any[]>([]);
   const active = useFaqStore((state) => state.activeBrowser);
   const setActive = useFaqStore((state) => state.setActiveBrowser);
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
   const [filteredData, setfilteredData] = useState<any[]>([]);
 
-  const handleToggle = (index: number | null) => {
+  const handleToggle = (index: number) => {
     setOpenIndex((prevIndex) => (prevIndex === index ? null : index));
   };
 
@@ -45,7 +45,7 @@ const FAQBrowser = ({
         </div>
       ) : (
         <div className="flex flex-wrap items-start gap-10 pt-10 md:divide-x">
-          <div className="flex flex-1 flex-wrap gap-12 sm:max-w-[180px]">
+          <div className="hidden-scrollbar flex flex-1 gap-12 overflow-x-scroll sm:max-w-[180px] sm:flex-wrap">
             {faqCategories.map((category: any, index: number) => (
               <button
                 key={index}

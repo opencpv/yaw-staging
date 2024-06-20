@@ -4,13 +4,29 @@ import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { cn } from "@/lib/utils";
 import { useField } from "formik";
 import Image from "next/image";
-import React, { useCallback, useEffect } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import Dropzone, {
   DropEvent,
   FileRejection,
   useDropzone,
 } from "react-dropzone";
+import { HiBars3BottomRight } from "react-icons/hi2";
 import { LiaTimesSolid } from "react-icons/lia";
+import {
+  ActionContent,
+  ActionItem,
+  ActionItemTrigger,
+  ActionPopover,
+} from "../ui/ActionPopover";
+import { useDisclosure } from "@nextui-org/react";
+import { createUUID } from "@/lib/utils/stringManipulation";
+import { motion } from "framer-motion";
 
 interface Props {
   name?: string;
@@ -19,26 +35,27 @@ interface Props {
   /** maximum file size in bytes */
   maxSize?: { byte: number; kb?: string; mb?: string };
   onFileSelect?: (file: File) => void;
-  defaultFiles?: File[];
+  defaultImages?: File[];
+  defaultPrimaryImage?: string | null;
 }
 
-const FileUploader = ({ onFileSelect, defaultFiles = [] }: Props) => {
+type ContextType = {
+  files: any[];
+  setFiles: React.Dispatch<React.SetStateAction<any[]>>;
+  primaryImage: string | undefined;
+  setPrimaryImage: React.Dispatch<React.SetStateAction<string | undefined>>;
+};
+
+const FileContext = createContext<ContextType | null>(null);
+
+const FileUploader = ({ onFileSelect, defaultImages }: Props) => {
   const [field, meta, helpers] = useField("images");
 
+  const [primaryImage, setPrimaryImage] = React.useState<string | undefined>(
+    undefined,
+  );
   const [files, setFiles] = React.useState<any[]>([]);
   const { onOpen } = useToastDisclosure();
-
-  useEffect(() => {
-    if (defaultFiles.length > 0) {
-      const initialFiles = defaultFiles.map((file) =>
-        Object.assign(file, {
-          preview: URL.createObjectURL(file),
-        }),
-      );
-      setFiles(initialFiles);
-      helpers.setValue(initialFiles);
-    }
-  }, [defaultFiles, helpers]);
 
   const onDropRejected = (
     fileRejections: FileRejection[],
@@ -61,29 +78,48 @@ const FileUploader = ({ onFileSelect, defaultFiles = [] }: Props) => {
 
   const onDrop = useCallback(
     (acceptedFiles: any) => {
-      if (files.length + acceptedFiles.length > 10) {
-        // max 10 files
-        onOpen("You can only upload up to 10 files", "error");
+      if (files.length + acceptedFiles.length > 5) {
+        onOpen("You can only upload up to 5 files", "error");
         return;
       }
 
-      const newFiles = acceptedFiles.map((file: any) =>
-        Object.assign(file, {
-          preview: URL.createObjectURL(file),
-        }),
+      const newFiles = acceptedFiles.map(
+        (
+          file: any, // create new files
+        ) =>
+          Object.assign(file, {
+            preview: URL.createObjectURL(file),
+          }),
       );
 
-      const newFilesArray = [...files, ...newFiles];
+      const newFilesArray = [...files, ...newFiles]; // combine old and new files
 
-      setFiles(newFilesArray);
-      helpers.setValue(newFilesArray);
+      setFiles(
+        newFilesArray.map((file: any) =>
+          Object.assign(file, {
+            preview: URL.createObjectURL(file),
+          }),
+        ),
+      );
+
+      helpers.setValue(
+        newFilesArray.map((file: any) =>
+          Object.assign(file, {
+            preview: URL.createObjectURL(file),
+          }),
+        ),
+      );
     },
     [files, onOpen, helpers],
   );
 
   useEffect(() => {
-    helpers.setValue(files);
-  }, [files]);
+    if (defaultImages) {
+      setFiles(defaultImages);
+      // setPrimaryImage(defaultPrimaryImage as string);
+    }
+  }, []);
+
   useEffect(() => {
     // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
     return () =>
@@ -91,8 +127,11 @@ const FileUploader = ({ onFileSelect, defaultFiles = [] }: Props) => {
   }, [files]);
 
   return (
-    <>
+    <FileContext.Provider
+      value={{ files, setFiles, primaryImage, setPrimaryImage }}
+    >
       <Dropzone
+        // maxFiles={5}
         minSize={100000}
         maxSize={2097152}
         onDrop={onDrop}
@@ -103,6 +142,7 @@ const FileUploader = ({ onFileSelect, defaultFiles = [] }: Props) => {
           "image/png": [],
         }}
       >
+        {/* minSize= 100kb, MaxSize is 2mb */}
         {({
           getRootProps,
           getInputProps,
@@ -126,7 +166,7 @@ const FileUploader = ({ onFileSelect, defaultFiles = [] }: Props) => {
               >
                 <CaUploadIcon />
                 <p className="mt-4 text-center text-[13px]">
-                  Select or drag and drop images here <br></br>( Minimum 3 )
+                  Select or drag and drop images here <br></br>( Maximum 5 )
                 </p>
                 <p className="mt-2 text-center text-[8px] opacity-[0.4]">
                   JPG, PNG file size no more than 2MB and no less than 100KB
@@ -145,39 +185,90 @@ const FileUploader = ({ onFileSelect, defaultFiles = [] }: Props) => {
       <ul className="mt-5 flex flex-wrap gap-5">
         {files?.map((file: any) => (
           <Preview
-            key={file.name}
+            key={createUUID()}
             file={file}
-            setFiles={setFiles}
-            files={files}
+            isPrimary={file.name === primaryImage}
           />
         ))}
       </ul>
-      {meta.touched && meta.error && <ErrorMessage>{meta.error}</ErrorMessage>}
-    </>
+      {meta.touched && meta.error && (
+        <ErrorMessage error={meta.error}>{meta.error}</ErrorMessage>
+      )}
+    </FileContext.Provider>
   );
 };
 
 export default FileUploader;
 
-const Preview = ({ file, setFiles, files }: any) => {
+const Preview = ({ file, isPrimary }: any) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const files = useContext(FileContext)?.files;
+  const setFiles = useContext(FileContext)?.setFiles;
+  const primaryImage = useContext(FileContext)?.primaryImage;
+  const setPrimaryImage = useContext(FileContext)?.setPrimaryImage;
+  const [field, meta, helpers] = useField("primaryImage");
+
+  const handlePrimaryImage = () => {
+    if (file.name === primaryImage) {
+      setPrimaryImage?.(undefined);
+      helpers.setValue("");
+    } else {
+      setPrimaryImage?.(file.name);
+      helpers.setValue(file.name);
+    }
+  };
+
   return (
-    <li className="relative aspect-square w-24 rounded-md sm:w-28">
-      <div className="absolute inset-0 z-10 h-full w-full rounded-[inherit] bg-black bg-opacity-20"></div>
-      <div
-        className="absolute right-2 top-1 z-20 shrink-0 cursor-pointer rounded-full bg-neutral-100 p-2.5"
-        onClick={() => {
-          const newFiles = files?.filter((f: any) => f.name !== file.name);
-          setFiles(newFiles);
-        }}
-      >
-        <LiaTimesSolid className="text-primary-500" />
+    <li className="relative aspect-video w-40 rounded-md">
+      <div className="absolute inset-0 z-10 h-full w-full rounded-[inherit] bg-black bg-opacity-20" />
+      <div className="absolute inset-2 z-10 flex flex-wrap gap-8 shadow-md">
+        <ActionPopover
+          isOpen={isOpen}
+          onOpenChange={setIsOpen}
+          placement="bottom-start"
+        >
+          <ActionItemTrigger
+            onClick={() => setIsOpen(true)}
+            className="w-5.5 grid h-6 place-items-center rounded-sm bg-white p-0.5"
+          >
+            <HiBars3BottomRight />
+          </ActionItemTrigger>
+          <ActionContent>
+            <ActionItem onClick={handlePrimaryImage}>
+              {file.name === primaryImage
+                ? "Remove Primary Image"
+                : "Make Primary Image"}
+            </ActionItem>
+            <ActionItem
+              onClick={() => {
+                const newFiles = files?.filter(
+                  (f: any) => f.name !== file.name,
+                );
+                setFiles?.(newFiles as any);
+              }}
+            >
+              Remove
+            </ActionItem>
+          </ActionContent>
+        </ActionPopover>
+        {isPrimary && (
+          <motion.small
+            initial={{ x: -5 }}
+            whileInView={{ x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="h-fit rounded-md bg-white p-0.5 px-3 text-center text-[0.6rem] leading-4"
+          >
+            Primary image
+          </motion.small>
+        )}
       </div>
       <Image
-        src={file.preview}
+        src={URL.createObjectURL(file)}
         alt="preview"
         fill
         style={{ objectFit: "cover" }}
         className="rounded-[inherit]"
+        // Revoke data uri after image is loaded
         onLoad={() => URL.revokeObjectURL(file.preview)}
       />
     </li>

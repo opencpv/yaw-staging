@@ -1,5 +1,4 @@
 "use client";
-import Callout from "@/app/dashboard/components/shared/ui/Callout";
 import Button from "@/components/__shared/ui/button/Button";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
@@ -9,9 +8,9 @@ import { HiOutlinePencil } from "react-icons/hi";
 import UserOverviewMV from "./UserOverviewMV";
 import LargeButton from "@/app/dashboard/lister/properties/components/LargeButton";
 import { TbBuildingCommunity } from "react-icons/tb";
-import { BiInfoCircle } from "react-icons/bi";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { AiOutlineUser } from "react-icons/ai";
+import CallOut from "@/components/__shared/ui/CallOut";
 
 const UserOverview = ({
   name,
@@ -21,21 +20,7 @@ const UserOverview = ({
   className,
   type,
 }: UserOverviewProps) => {
-  const [hidden, setHidden] = useState(false);
-  const [hiddenCompletely, setHiddenCompletely] = useState(false);
   const { user } = useAppStore();
-
-  useEffect(() => {
-    window.addEventListener("scroll", () => {
-      if (window.scrollY >= 245) {
-        setHidden(true);
-
-        setTimeout(() => {
-          setHiddenCompletely(true);
-        }, 4000);
-      }
-    });
-  }, []);
 
   return (
     <div className={className}>
@@ -43,36 +28,31 @@ const UserOverview = ({
       <h3 className="mb-6 text-neutral-700 md:hidden">
         Welcome, {user?.full_name}
       </h3>
-      <Callout
-        className={`w-full transition-all sm:w-10/12 ${
-          hidden ? "mb-0 h-0 p-0" : "mb-6 h-fit"
-        } ${hiddenCompletely && "hidden"}`}
-      >
-        <div className={`flex items-center gap-5 ${hidden && "invisible"}`}>
-          <BiInfoCircle size={40} className="text-accent-50 xsm:shrink-0" />
+      <CallOut className="mb-6 h-fit w-full transition-all sm:w-10/12">
+        <div className="flex items-center gap-5">
           <div className="space-y-1">
             {type === "renter" ? (
-              <p className="text-base">
+              <small>
                 Get started by effortlessly{" "}
-                <span className="font-[600]">renting</span> and publishing{" "}
-                <span className="font-[600]">products</span> with ease.
-              </p>
+                <span className="font-bold">renting</span> and publishing{" "}
+                <span className="font-bold">products</span> with ease.
+              </small>
             ) : type === "lister" ? (
-              <p className="text-base">
+              <small>
                 Get started by effortlessly{" "}
-                <span className="font-[600]">listing</span> and{" "}
-                <span className="font-[600]">managing</span> your properties and{" "}
-                <span className="font-[600]">products</span> with ease.
-              </p>
+                <span className="font-bold">listing</span> and{" "}
+                <span className="font-bold">managing</span> your properties and{" "}
+                <span className="font-bold">products</span> with ease.
+              </small>
             ) : null}
 
-            <p className="text-base">
+            <small>
               Navigate through the menu on the top to discover more features and
               tools.
-            </p>
+            </small>
           </div>
         </div>
-      </Callout>
+      </CallOut>
       <div className="fade-in-bottom">
         {type === "lister" && (
           <LargeButton

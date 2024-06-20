@@ -137,6 +137,27 @@ export type Database = {
         }
         Relationships: []
       }
+      customer_discounts: {
+        Row: {
+          code: string
+          created_at: string
+          email: string
+          id: number
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          email: string
+          id?: number
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          email?: string
+          id?: number
+        }
+        Relationships: []
+      }
       customer_product: {
         Row: {
           created_at: string
@@ -181,37 +202,58 @@ export type Database = {
       }
       customers: {
         Row: {
+          address: string | null
           company: string | null
           created_at: string
           customer_id: string
-          email: string | null
+          email: string
           firstname: string | null
           id: number
           lastname: string | null
           phone: string | null
-          type: string | null
         }
         Insert: {
+          address?: string | null
           company?: string | null
           created_at?: string
           customer_id: string
-          email?: string | null
+          email: string
           firstname?: string | null
           id?: number
           lastname?: string | null
           phone?: string | null
-          type?: string | null
         }
         Update: {
+          address?: string | null
           company?: string | null
           created_at?: string
           customer_id?: string
-          email?: string | null
+          email?: string
           firstname?: string | null
           id?: number
           lastname?: string | null
           phone?: string | null
-          type?: string | null
+        }
+        Relationships: []
+      }
+      discounts: {
+        Row: {
+          code: string
+          created_at: string
+          id: number
+          rate: number
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          id?: number
+          rate: number
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          id?: number
+          rate?: number
         }
         Relationships: []
       }
@@ -406,6 +448,7 @@ export type Database = {
           customer: string
           id: number
           is_paid: boolean
+          payment_ref: string | null
           service: string
           service_description: string | null
           tax_rate: number
@@ -417,6 +460,7 @@ export type Database = {
           customer: string
           id?: number
           is_paid: boolean
+          payment_ref?: string | null
           service: string
           service_description?: string | null
           tax_rate?: number
@@ -428,6 +472,7 @@ export type Database = {
           customer?: string
           id?: number
           is_paid?: boolean
+          payment_ref?: string | null
           service?: string
           service_description?: string | null
           tax_rate?: number
@@ -436,7 +481,7 @@ export type Database = {
           {
             foreignKeyName: "invoices_customer_fkey"
             columns: ["customer"]
-            isOneToOne: true
+            isOneToOne: false
             referencedRelation: "customers"
             referencedColumns: ["customer_id"]
           },
@@ -658,6 +703,51 @@ export type Database = {
           },
         ]
       }
+      payments: {
+        Row: {
+          address: string | null
+          address2: string | null
+          amount: number
+          cart_items: Json | null
+          created_at: string
+          email: string
+          firstname: string
+          id: number
+          lastname: string
+          phone: string
+          reference: string
+          status: string | null
+        }
+        Insert: {
+          address?: string | null
+          address2?: string | null
+          amount: number
+          cart_items?: Json | null
+          created_at?: string
+          email: string
+          firstname: string
+          id?: never
+          lastname: string
+          phone: string
+          reference?: string
+          status?: string | null
+        }
+        Update: {
+          address?: string | null
+          address2?: string | null
+          amount?: number
+          cart_items?: Json | null
+          created_at?: string
+          email?: string
+          firstname?: string
+          id?: never
+          lastname?: string
+          phone?: string
+          reference?: string
+          status?: string | null
+        }
+        Relationships: []
+      }
       product_category: {
         Row: {
           category: string
@@ -681,12 +771,18 @@ export type Database = {
           category: string
           condition: string
           created_at: string
+          deletion_date: string | null
           description: string
           id: number
           images: string[] | null
+          inactive_date: string | null
+          is_available: boolean
+          is_deleted: boolean
           phone: string | null
           price: number
           seller: string
+          status: string
+          suspension_date: string | null
           term: string
           title: string
           views: number
@@ -696,12 +792,18 @@ export type Database = {
           category: string
           condition?: string
           created_at?: string
+          deletion_date?: string | null
           description: string
           id?: number
           images?: string[] | null
+          inactive_date?: string | null
+          is_available?: boolean
+          is_deleted?: boolean
           phone?: string | null
           price: number
           seller: string
+          status?: string
+          suspension_date?: string | null
           term?: string
           title: string
           views?: number
@@ -711,12 +813,18 @@ export type Database = {
           category?: string
           condition?: string
           created_at?: string
+          deletion_date?: string | null
           description?: string
           id?: number
           images?: string[] | null
+          inactive_date?: string | null
+          is_available?: boolean
+          is_deleted?: boolean
           phone?: string | null
           price?: number
           seller?: string
+          status?: string
+          suspension_date?: string | null
           term?: string
           title?: string
           views?: number
@@ -1326,66 +1434,6 @@ export type Database = {
           },
         ]
       }
-      sell_items: {
-        Row: {
-          avaliable: boolean
-          category: string
-          condition: string
-          created_at: string
-          description: string
-          id: number
-          img_url: string
-          negotiable: boolean | null
-          phone: string
-          price: number | null
-          product_name: string
-          user_id: string
-        }
-        Insert: {
-          avaliable?: boolean
-          category: string
-          condition?: string
-          created_at?: string
-          description: string
-          id?: number
-          img_url: string
-          negotiable?: boolean | null
-          phone: string
-          price?: number | null
-          product_name: string
-          user_id: string
-        }
-        Update: {
-          avaliable?: boolean
-          category?: string
-          condition?: string
-          created_at?: string
-          description?: string
-          id?: number
-          img_url?: string
-          negotiable?: boolean | null
-          phone?: string
-          price?: number | null
-          product_name?: string
-          user_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "sell_items_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "distinct_messages_view"
-            referencedColumns: ["sender_id"]
-          },
-          {
-            foreignKeyName: "sell_items_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       subscribers: {
         Row: {
           campaign: string | null
@@ -1873,9 +1921,47 @@ export type Database = {
       }
     }
     Functions: {
+      archive_old_products: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
+      }
+      generate_random_alphanumeric: {
+        Args: {
+          length: number
+        }
+        Returns: string
+      }
       increment_property_views: {
         Args: {
           propertyid: number
+        }
+        Returns: undefined
+      }
+      insert_customer: {
+        Args: {
+          p_full_name: string
+          p_email: string
+          p_phone: string
+          p_customer_id: string
+          p_firstname: string
+          p_lastname: string
+          p_company: string
+          p_address: string
+        }
+        Returns: undefined
+      }
+      update_invoices_is_paid: {
+        Args: {
+          invoice_ids: number[]
+          new_is_paid: boolean
+        }
+        Returns: undefined
+      }
+      update_invoices_is_paid_and_reference: {
+        Args: {
+          invoice_ids: number[]
+          new_is_paid: boolean
+          new_payment_reference: string
         }
         Returns: undefined
       }
