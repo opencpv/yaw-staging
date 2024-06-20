@@ -65,7 +65,7 @@ const Footer = (props: Props) => {
       <FloatItemsHack />
       <footer
         className={cn(
-          "gap no-print mt-16 flex w-full flex-col gap-[min(10vh,10rem)] bg-[#131B1A] font-montserrat sm:mt-20",
+          "gap no-print fixed bottom-0 left-0 mt-16 flex w-full flex-col gap-[min(10vh,10rem)] bg-[#131B1A] font-montserrat sm:mt-20",
           props.className,
         )}
         id="footer"

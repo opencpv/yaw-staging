@@ -20,18 +20,18 @@ type Props = {
   job: JobType | undefined;
 };
 
-Font.register({
-  family: "Open Sans",
-  fonts: [
-    {
-      src: "https://fonts.gstatic.com/s/opensans/v40/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0C4nY1M2xLER.ttf",
-    },
-    {
-      src: "https://fonts.gstatic.com/s/opensans/v40/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsg-1y4nY1M2xLER.ttf",
-      fontWeight: 600,
-    },
-  ],
-});
+//Font.register({
+//  family: "Open Sans",
+//  fonts: [
+//    {
+//      src: "https://fonts.gstatic.com/s/opensans/v40/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0C4nY1M2xLER.ttf",
+//    },
+//    {
+//      src: "https://fonts.gstatic.com/s/opensans/v40/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsg-1y4nY1M2xLER.ttf",
+//      fontWeight: 600,
+//    },
+//  ],
+//});
 
 const styles = StyleSheet.create({
   page: {
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     lineHeight: 1.5,
     flexDirection: "column",
     width: "100vw",
-    fontFamily: "Open Sans",
+    //fontFamily: "Open Sans",
     gap: 8,
   },
   heading: {
@@ -79,7 +79,11 @@ const styles = StyleSheet.create({
 const JoinUsTemplate = ({ job }: Props) => {
   console.log(job);
   return (
-    <Document>
+    <Document
+      title={job?.title}
+      subject={job?.description_brief}
+      keywords={`${job?.title}, ${legal.websiteName}`}
+    >
       <Page style={styles.page}>
         <View style={styles.heading}>
           <Text style={styles.title}>{job?.title}</Text>
@@ -91,7 +95,7 @@ const JoinUsTemplate = ({ job }: Props) => {
           </Link>
         </View>
         <View style={styles.border}></View>
-        <Text style={[styles.bold]}>
+        <Text style={styles.bold}>
           Brief:{" "}
           <Text style={styles.description_brief}>{job?.description_brief}</Text>
         </Text>
