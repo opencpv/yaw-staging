@@ -33,7 +33,6 @@ const FormGeneral = (props: Props) => {
     loading,
     setLoading,
     tableName,
-    handleFileUpload,
     validate,
     contactFormSession,
   } = useContactForm();
@@ -95,7 +94,7 @@ const FormGeneral = (props: Props) => {
             if (error) {
               onOpen("Something went wrong", "error");
             } else {
-              toast.success("Your message has been sent");
+              // toast.success("Your message has been sent");
               resetForm();
               sessionStorage.removeItem("contactFormSession");
               setPhone(undefined);

@@ -4,13 +4,14 @@ import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 import "swiper/css/autoplay";
 import React, { useCallback, useRef } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import Image from "next/image";
 import { Navigation, Pagination, EffectFade, Autoplay } from "swiper/modules";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { cn } from "@/lib/utils";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import Link from "next/link";
+import { IFRAME_ALLOW, SLIDER_AUTOPLAY_DELAY } from "@/constants";
 
 const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
   const sliderRef = useRef<any>(null);
@@ -26,7 +27,7 @@ const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
   return (
     <div className={cn("relative")}>
       <Swiper
-        autoplay={{ delay: 6000, disableOnInteraction: true }}
+        autoplay={{ delay: SLIDER_AUTOPLAY_DELAY, disableOnInteraction: true }}
         slidesPerView={1}
         spaceBetween={20}
         className="slider-promotions h-full w-full"
@@ -37,6 +38,7 @@ const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
           clickable: true,
           el: ".slider-promotions-pagination",
         }}
+        onClick={(swiper) => swiper.autoplay.pause()}
         onNavigationNext={(swiper) => swiper.autoplay.pause()}
         onNavigationPrev={(swiper) => swiper.autoplay.pause()}
         ref={sliderRef}
@@ -67,14 +69,7 @@ const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
                     />
                   </Link>
                 ) : promotion.fileType === "video" ? (
-                  <iframe
-                    src={
-                      promotion.url // rel=0 is important to suggest only RentRightGH related videos
-                    }
-                    title={promotion?.title || ""}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
-                    className="absolute inset-0 h-full w-full rounded-2xl"
-                  ></iframe>
+                  <VideoMedia promotion={promotion} />
                 ) : null}
               </div>
               {promotions.length > 1 && (
@@ -93,8 +88,6 @@ const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
     </div>
   );
 };
-
-export default PromotionSlider;
 
 const NavButton = ({
   placement,
@@ -116,3 +109,21 @@ const NavButton = ({
     </button>
   );
 };
+
+const VideoMedia = ({ promotion }: { promotion: any }) => {
+  const { autoplay } = useSwiper();
+
+  return (
+    <iframe
+      onMouseOver={() => autoplay.pause()}
+      src={
+        promotion.url // rel=0 is important to suggest only RentRightGH related videos
+      }
+      title={promotion?.title || ""}
+      allow={IFRAME_ALLOW}
+      className="absolute inset-0 h-full w-full rounded-2xl"
+    />
+  );
+};
+
+export default PromotionSlider;

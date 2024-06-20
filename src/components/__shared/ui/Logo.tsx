@@ -14,7 +14,7 @@ type Props = {
 };
 
 const Logo = ({ className, size, onClick, url = "/" }: Props) => {
-  const { images, icons } = useAssets();
+  const { icons } = useAssets();
   const { setToggle } = useMenuStore();
   const { setIsOpen } = useDashboardMenuStore();
 

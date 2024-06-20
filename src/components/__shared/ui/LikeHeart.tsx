@@ -104,15 +104,13 @@ const LikeHeart = ({ liked, className, userId, propertyId }: Props) => {
         onClose={onClose}
       />
       {isLiked ? (
-        <FaHeart
-          className={`cursor-pointer ${isLiked && "ping"} ${className}`}
-          onClick={handleDislike}
-        />
+        <button onClick={handleDislike}>
+          <FaHeart className={` ${isLiked && "ping"} ${className}`} />
+        </button>
       ) : (
-        <FaRegHeart
-          className={`cursor-pointer ${className}`}
-          onClick={handleLike}
-        />
+        <button onClick={handleLike}>
+          <FaRegHeart className={`${className}`} />
+        </button>
       )}
     </>
   );

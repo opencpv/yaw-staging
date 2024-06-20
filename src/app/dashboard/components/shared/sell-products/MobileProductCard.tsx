@@ -4,15 +4,12 @@ import { formatPrice } from "@/lib/utils/numberManipulation";
 import PublicationStatus, { ItemPublicationStatus } from "./PublicationStatus";
 import ActionsMobile from "./ActionsMobile";
 import { ItemContext } from "@/app/dashboard/contexts/ItemContext";
-import { ProductStatusProp } from "@/lib/typings";
 
 type Props = {
   data: Item;
-  refetch: () => void;
-  id: number;
 };
 
-const MobileProductCard = ({ data, id, refetch }: Props) => {
+const MobileProductCard = ({ data }: Props) => {
   return (
     <ItemContext.Provider value={{ item: data }}>
       <TableRowSm className="pb-0">
@@ -42,9 +39,8 @@ const MobileProductCard = ({ data, id, refetch }: Props) => {
               <p className="truncate font-semibold">{data.title}</p>
               {/* Status */}
               <PublicationStatus
-                status={data.status as ProductStatusProp}
+                status={data.status as ItemPublicationStatus}
                 isAvailable={data.is_available}
-                id={id}
               />
             </div>
             {/* Price */}
@@ -54,7 +50,7 @@ const MobileProductCard = ({ data, id, refetch }: Props) => {
             </p>
           </div>
           {/* Actions */}
-          <ActionsMobile id={id} refetch={refetch} />
+          <ActionsMobile />
         </TableBodySm>
       </TableRowSm>
     </ItemContext.Provider>

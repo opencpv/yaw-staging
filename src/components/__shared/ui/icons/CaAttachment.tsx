@@ -8,6 +8,7 @@ function CaAttachment() {
       height="16"
       fill="none"
       viewBox="0 0 16 16"
+      className="shrink-0"
     >
       <path
         fill="#737373"

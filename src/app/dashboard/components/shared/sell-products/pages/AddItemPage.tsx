@@ -16,33 +16,14 @@ import capitalizeName from "@/lib/utils/stringManipulation";
 import Loader from "@/components/__shared/ui/loader/Loader";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { CheckboxNoFormik as Checkbox } from "@/app/dashboard/components/shared/ui/Checkbox";
-import axios from "axios";
-import { generateString } from "@/lib/utils";
-import slugify from "@/lib/utils/slugify";
-import { toast } from "react-toastify";
-import { useCurrentUserId } from "@/lib/custom-hooks/useCurrentUserId";
 
 interface CategoryProp {
   label: string;
   key: string;
 }
-
-interface FormValues {
-  itemName: string;
-  description: string;
-  price: string;
-  phone: string;
-  whatsApp: string;
-  email: string;
-  images: File[];
-  primaryImage: string;
-  category: string;
-  condition: string;
-  term: string;
-}
 const AddItemPage = () => {
   const [sameAsPhone, setSameAsPhone] = useState(false);
-  const id = useCurrentUserId();
+
   const validationSchema = Yup.object().shape({
     category: Yup.string().required("This field is requiredRequired"),
     condition: Yup.string().required("This field is required"),
@@ -66,21 +47,28 @@ const AddItemPage = () => {
     handleCountryChange: handleCountryChangeWhatsApp,
     phone: whatsApp,
   } = usePhoneInputDisclosure();
-  const [loading, setloading] = useState(false);
+
   const { data: categories, isLoading } = useFetchItemCategories();
-  const initialValues: FormValues = {
-    itemName: "",
-    description: "",
-    price: "",
-    phone: "",
-    whatsApp: "",
-    email: "",
-    images: [],
-    primaryImage: "",
-    category: categories?.[0]?.category || "",
-    condition: "New",
-    term: "no",
-  };
+
+  // useEffect(() => {
+  // if (!supabase) {
+  //     redirect("/");
+  //   } else {
+  //     supabase
+  //       .from("product_category")
+  //       .select("*")
+  //       .then(({ data, error }) => {
+  //         if (!error) {
+  //           const catArray: CategoryProp[] = [];
+  //           data.forEach((element) => {
+  //             catArray.push({ key: element.category, label: element.category });
+  //           });
+  //           setCategories(catArray);
+  //         }
+  //       });
+  //   }
+  // }, []);
+
   return (
     <main className="wrapper">
       <div className="mb-10">
@@ -90,88 +78,23 @@ const AddItemPage = () => {
         <Loader position="center" />
       ) : (
         <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={async (values) => {
-            setloading(true);
-            const imageUrls: string[] = [];
-            const imageUploadPromises: Promise<any>[] = [];
-            let primaryImageUrl = "";
-            const newFileSelections = values.images;
-            newFileSelections.forEach((imageFile) => {
-              const newFilename =
-                generateString(8) + "-" + slugify(imageFile.name || "");
-              const newFile = new File([imageFile as File], newFilename, {
-                type: imageFile?.type,
-              });
-              const fileForm = new FormData();
-              fileForm.append("file", newFile);
-              const fileUrl = `${process.env.NEXT_PUBLIC_DO_CDN_URL}${newFilename}`;
-              imageUploadPromises.push(
-                axios
-                  .post(`${location.origin}/api/file-upload`, fileForm, {
-                    headers: {
-                      "Content-Type": "multipart/form-data",
-                    },
-                  })
-                  .then(() => {
-                    const file: File = fileForm.get("file") as File;
-                    if (file.name.split(".")[0] == values.primaryImage) {
-                      primaryImageUrl = fileUrl;
-                    } else {
-                      imageUrls.push(fileUrl);
-                    }
-                  })
-                  .catch(() => {
-                    toast.error(`Image upload unavailable`, {
-                      toastId: "toast",
-                    });
-                  }),
-              );
-            });
-            Promise.all(imageUploadPromises)
-              .then(() => {
-                supabase
-                  .from("products")
-                  .insert({
-                    title: values.itemName,
-                    description: values.description,
-                    price: values.price,
-                    images: imageUrls,
-                    primary_image: primaryImageUrl,
-                    category: values.category,
-                    condition: values.condition,
-                    term: values.term,
-                    whatsapp: values.whatsApp,
-                    phone: values.phone,
-                    email: values.email,
-                    seller: id,
-                  })
-                  .then(({ data, error }) => {
-                    console.log(error?.message);
-                    if (error) {
-                      toast.error(`Something went wrong`, {
-                        toastId: "toast",
-                      });
-                      setloading(false);
-                    } else {
-                      toast.success(`Item added successfully`, {
-                        toastId: "toast",
-                      });
-                      setloading(false);
-                      window.history.back();
-                    }
-                  });
-              })
-              .catch(() => {
-                toast.error(`Something went wrong`, {
-                  toastId: "toast",
-                });
-                setloading(false);
-              });
+          initialValues={{
+            itemName: "",
+            description: "",
+            price: "",
+            phone: "",
+            whatsApp: "",
+            email: "",
+            images: [],
+            primaryImage: "",
+            category: categories?.[0].category || "",
+            condition: "New",
+            term: "no",
           }}
+          validationSchema={validationSchema}
+          onSubmit={async (values) => console.log(values)}
         >
-          {({ values, handleChange, handleBlur, handleSubmit }) => (
+          {({ handleSubmit }) => (
             <Form
               className="grid grid-cols-1 gap-x-5 gap-y-8 lg:grid-cols-3"
               onSubmit={(e) => {
@@ -272,12 +195,7 @@ const AddItemPage = () => {
               <div className="flex h-[100%] w-full flex-col">
                 <FileUploader />
                 <div className="mt-auto flex justify-end">
-                  <Button
-                    type="submit"
-                    color="primary"
-                    className="mt-8"
-                    isLoading={loading}
-                  >
+                  <Button type="submit" color="primary" className="mt-8">
                     Publish
                   </Button>
                 </div>

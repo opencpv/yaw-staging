@@ -2,6 +2,7 @@ import JobApplicationForm from "../components/JobApplicationForm";
 import styles from "./index.module.css";
 import JoinUsButtons from "../../components/JoinUsButtons";
 import { Metadata } from "next";
+import Footer from "@/components/__shared/ui/footer/Footer";
 
 export const metadata: Metadata = {
   title: "Resume Bank",
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 
 function Page() {
   return (
-    <div>
+    <>
       <div className="relative flex flex-col bg-white lg:flex-row">
         <div
           className={`${styles.left_pic} bottom-0 left-0 top-0 flex h-[230px] w-full shrink-0 grow-0 items-center justify-center !bg-cover lg:sticky lg:h-[100vh]  lg:basis-[40%] `}
@@ -33,7 +34,8 @@ function Page() {
           <JobApplicationForm variant="resume" />
         </div>
       </div>
-    </div>
+      <Footer className="mt-0 sm:mt-0" />
+    </>
   );
 }
 

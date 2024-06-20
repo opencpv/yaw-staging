@@ -18,7 +18,7 @@ const PostSlider = ({ posts }: Props) => {
   };
 
   return (
-    <section className="relative h-fit w-full">
+    <section className="shape-polygon-parent relative h-fit w-full">
       <SliderWide
         navigation
         images={posts.map((post) => ({
@@ -28,9 +28,23 @@ const PostSlider = ({ posts }: Props) => {
             post.title,
           )}?id=${post._id}`,
         }))}
-        className="shape-polygon rounded-none sm:h-[27rem]"
+        className="shape-polygon sm:h-[27rem]"
         onSlideChange={handleSlideChange}
       />
+      <svg className="flt_svg" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="flt_tag">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur" />
+            <feColorMatrix
+              in="blur"
+              mode="matrix"
+              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
+              result="flt_tag"
+            />
+            <feComposite in="SourceGraphic" in2="flt_tag" operator="atop" />
+          </filter>
+        </defs>
+      </svg>
       <div className="absolute -left-10 bottom-5 z-10 space-y-2 px-20 text-white sm:bottom-20">
         <p className="line-clamp-1">{posts[activeIndex].author.name}</p>
         <h3 className="line-clamp-1 font-bold">{posts[activeIndex].title}</h3>

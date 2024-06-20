@@ -34,7 +34,6 @@ const FormReport = (props: Props) => {
     loading,
     setLoading,
     tableName,
-    handleFileUpload,
     validate,
     contactFormSession,
     handleSessionChange,
@@ -52,7 +51,7 @@ const FormReport = (props: Props) => {
     return () => {
       setReportIssueHref("");
     };
-  }, []);
+  }, [setReportIssueHref]);
 
   return (
     <Formik

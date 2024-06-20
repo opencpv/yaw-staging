@@ -5,20 +5,21 @@ import { PiClipboardText } from "react-icons/pi";
 const CopyButton = () => {
   const { onOpen: toastOnOpen } = useToastDisclosure();
   const [text, setText] = React.useState("Copy");
+
   return (
-    <div
-      className="rounded-lg border hover:bg-slate-50"
+    <button
+      className="rounded-lg border grid place-items-center col-span-full text-white bg-primary hover:bg-primary/90"
       onClick={() => {
         navigator.clipboard.writeText(location.href);
         setText("Copied!");
         toastOnOpen("Copied to clipboard", "success");
       }}
     >
-      <div className="flex w-full cursor-pointer items-center gap-3 p-4">
+      <div className="flex items-center gap-3 p-4">
         <PiClipboardText size={30} />
-        <span className="text-neutral-800">{text}</span>
+        <span>{text}</span>
       </div>
-    </div>
+    </button>
   );
 };
 

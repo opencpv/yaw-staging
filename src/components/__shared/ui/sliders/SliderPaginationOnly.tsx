@@ -11,6 +11,7 @@ import "swiper/css/autoplay";
 import "@/styles/custom-swiper.css";
 import Link from "next/link";
 import { createUUID } from "@/lib/utils/stringManipulation";
+import { SLIDER_AUTOPLAY_DELAY } from "@/constants";
 
 const SliderPaginationOnly = ({
   images,
@@ -21,7 +22,7 @@ const SliderPaginationOnly = ({
     <div className={`relative h-80 w-72 ${className}`}>
       <Swiper
         autoplay={{
-          delay: 6000,
+          delay: SLIDER_AUTOPLAY_DELAY,
           disableOnInteraction: disabledOnInteraction
             ? disabledOnInteraction
             : false,

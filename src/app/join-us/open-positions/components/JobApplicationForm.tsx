@@ -203,12 +203,12 @@ function JobApplicationForm({ variant }: Props) {
               </p>
               <div className="flex flex-col gap-5">
                 <CustomFileInput
-                  label="Upload Cover Letter"
+                  label="Upload Cover Letter as PDF"
                   variant="green"
                   handleFile={setCoverLetter}
                 />
                 <CustomFileInput
-                  label="Upload Resume"
+                  label="Upload Resume as PDF"
                   required
                   variant="green"
                   handleFile={setResume}
@@ -224,12 +224,12 @@ function JobApplicationForm({ variant }: Props) {
                     placeholder="Paste your link here"
                     type="text"
                     onChange={(e) => setLink(e.target.value)}
-                    className="h-[52px] w-full rounded-[4px] border-[1px] border-[#E6E6E6] px-4 focus:outline-accent-50"
+                    className="form-field-border h-[52px] w-full rounded-[4px] px-4 focus:outline-accent-50"
                   />
                 </div>
               </div>
             </div>
-            <div className="mt-12 flex justify-center pb-10">
+            <div className="mt-12 flex justify-center pb-10 lg:pb-16">
               <Button
                 color="accent"
                 isLoading={loading}

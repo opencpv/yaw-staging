@@ -97,6 +97,17 @@ export const useFetchRelatedItems = ({
   return useQuery(query);
 };
 
+export const useFetchPopularItems = ({ id }: { id: number }) => {
+  const query = supabase
+    .from("products")
+    .select("*, profiles!inner (id, full_name)")
+    .neq("id", id)
+    .order("views", { ascending: false })
+    .limit(12);
+
+  return useQuery(query);
+};
+
 export const extractNumericValue = (str: string) => {
   const cleanedString = str.replace(/[^0-9]/g, "");
   return cleanedString;

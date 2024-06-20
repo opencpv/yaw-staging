@@ -3,6 +3,12 @@ import JoinUsButtons from "./components/JoinUsButtons";
 import styles from "./index.module.css";
 import Footer from "@/components/__shared/ui/footer/Footer";
 import ScrollTopAndSocial from "@/components/__shared/ui/ScrollTopAndSocial";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Join Us",
+  description: "", // tentative
+};
 
 const JoinUsPage = async () => {
   return (
@@ -83,9 +89,7 @@ const JoinUsPage = async () => {
           </div>
         </div>
         <ScrollTopAndSocial />
-        <div className="mt-24 w-full  pt-10">
-          <Footer />
-        </div>{" "}
+        <Footer />
       </div>
     </div>
   );

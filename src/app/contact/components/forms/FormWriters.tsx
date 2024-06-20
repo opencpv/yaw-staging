@@ -33,7 +33,6 @@ const FormWriters = (props: Props) => {
     loading,
     setLoading,
     tableName,
-    handleFileUpload,
     validate,
     contactFormSession,
   } = useContactForm();
