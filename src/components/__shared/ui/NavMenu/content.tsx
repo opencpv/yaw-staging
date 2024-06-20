@@ -9,6 +9,7 @@ export const useMenuLinks = () => {
       url: `/dashboard/${currentRole}/my-agent/agent-explore`,
       name: "HIRE US",
     },
+
     {
       id: "#",
       url: "#",
@@ -44,10 +45,13 @@ export const useMenuLinks = () => {
     //     { url: "#", name: "Artisan" },
     //   ],
     // },
-
+    { id: "#", url: "/moving-sale", name: "MOVING SALE" },
+    { id: "#", url: "/blog", name: "AREA VIBES" },
+    { id: "#", url: "/about", name: "OUR SERVICES" },
+    { id: "#", url: "/faq", name: "FAQ" },
     {
       id: "#",
-      url: "",
+      url: "#",
       name: "MORE",
       sub: [
         {
