@@ -115,19 +115,17 @@ const Footer = (props: Props) => {
 
         <div className="mt-10 flex flex-col items-center gap-10 pb-14 text-[32px] text-[#fff] ">
           <h2 className="font-bold">
-            Get{" "}
-            <span className={`${pacifico.className}`}>
-              social
-            </span>{" "}
-            with us:
+            Get <span className={`${pacifico.className}`}>social</span> with us:
           </h2>
 
           <div className="flex items-center gap-4 md:gap-8">
             {socialLinks.coloured.map((link) => (
-              <Link key={link.name} href={link.href} passHref>
-                <button className="w-[30px] duration-1000 hover:rotate-[360deg] xsm:w-[60px] sm:w-[120px]">
-                  {link.icon}
-                </button>
+              <Link
+                key={link.name}
+                href={link.href}
+                className="w-[30px] duration-1000 hover:rotate-[360deg] xsm:w-[60px] sm:w-[120px]"
+              >
+                {link.icon}
               </Link>
             ))}
 

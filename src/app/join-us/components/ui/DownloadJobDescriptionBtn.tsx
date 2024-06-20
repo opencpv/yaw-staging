@@ -12,10 +12,7 @@ import {
   Link,
 } from "@react-pdf/renderer";
 import { JobType } from "../../types";
-import { PortableText } from "next-sanity";
 import { TypedObject } from "sanity";
-import { useAssets } from "@/lib/custom-hooks/useAssets";
-import { portableTextToText } from "@/lib/utils/sanity/portableTextToText";
 import legal from "@/enum/about/legal";
 import PDFRichTextRenderer from "@/components/__shared/rich-text/PDFRichTextRenderer";
 
@@ -71,6 +68,12 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
   },
+  bold: {
+    fontWeight: "bold",
+  },
+  normal: {
+    fontWeight: "normal",
+  },
 });
 
 const JoinUsTemplate = ({ job }: Props) => {
@@ -84,18 +87,18 @@ const JoinUsTemplate = ({ job }: Props) => {
             <Image
               src={`https://cdn.sanity.io/images/jmb2nd2r/production/fb888167abb7d253eddca9e8914d951e33c57621-1780x2000.webp`}
               style={styles.image}
-              debug
             />
           </Link>
         </View>
         <View style={styles.border}></View>
-        <Text style={styles.description_brief}>{job?.description_brief}</Text>
+        <Text style={[styles.bold]}>
+          Brief:{" "}
+          <Text style={styles.description_brief}>{job?.description_brief}</Text>
+        </Text>
         <View style={styles.description}>
-          {
-            <PDFRichTextRenderer
-              value={job?.description as unknown as TypedObject | TypedObject[]}
-            />
-          }
+          <PDFRichTextRenderer
+            value={job?.description as unknown as TypedObject | TypedObject[]}
+          />
         </View>
       </Page>
     </Document>
@@ -117,13 +120,13 @@ const DownloadJobDescriptionBtn = ({ job }: Props) => {
     >
       {({ loading }) =>
         loading ? (
-          <div className="flex gap-2">
+          <span className="flex gap-2">
             Loading... <HiOutlineDownload size="24" color="white" />
-          </div>
+          </span>
         ) : (
-          <div className="flex gap-2">
+          <span className="flex gap-2">
             Download <HiOutlineDownload size="24" color="white" />
-          </div>
+          </span>
         )
       }
     </PDFDownloadLink>

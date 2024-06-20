@@ -11,7 +11,6 @@ import {
   WhatsappShareButton,
 } from "react-share";
 import ShareButtonComponent from "./ShareButtonComponent";
-import CopyButton from "./CopyButton";
 
 const ShareModalBody = (props: ShareDataProps) => {
   return (
@@ -42,7 +41,6 @@ const ShareModalBody = (props: ShareDataProps) => {
         Icon={EmailIcon}
         {...props}
       />
-      <CopyButton />
     </div>
   );
 };

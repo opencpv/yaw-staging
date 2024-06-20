@@ -14,6 +14,7 @@ export default function JobDescriptionButton({ onClick }: Props) {
       color="accent"
       onClick={onClick}
       className="pointer-events-none w-fit"
+      tabIndex={-1}
     >
       Job Description
     </Button>

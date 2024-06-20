@@ -1,24 +1,23 @@
-import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import React from "react";
-import { PiClipboardText } from "react-icons/pi";
+import { IoIosLink } from "react-icons/io";
 
 const CopyButton = () => {
-  const { onOpen: toastOnOpen } = useToastDisclosure();
-  const [text, setText] = React.useState("Copy");
+  const [text, setText] = React.useState("Copy link");
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(location.href);
+    setTimeout(() => {
+      setText("Copy link");
+    }, 4000);
+    setText("Copied!");
+  };
 
   return (
-    <button
-      className="rounded-lg border grid place-items-center col-span-full text-white bg-primary hover:bg-primary/90"
-      onClick={() => {
-        navigator.clipboard.writeText(location.href);
-        setText("Copied!");
-        toastOnOpen("Copied to clipboard", "success");
-      }}
-    >
-      <div className="flex items-center gap-3 p-4">
-        <PiClipboardText size={30} />
-        <span>{text}</span>
-      </div>
+    <button className="w-fit text-info" onClick={handleCopy}>
+      <span className="flex items-center gap-1 text-sm">
+        <IoIosLink size={18} className="shrink-0" />
+        <span className="whitespace-nowrap">{text}</span>
+      </span>
     </button>
   );
 };

@@ -6,6 +6,7 @@ import { useDisclosure } from "@nextui-org/react";
 import CloseModalIcon from "../icons/CloseModalIcon";
 import { motion } from "framer-motion";
 import { RiSurveyLine } from "react-icons/ri";
+import { cn } from "@/lib/utils";
 
 type Props = {};
 
@@ -66,7 +67,9 @@ const Survey = (props: Props) => {
       <motion.div
         variants={variants}
         animate={showButton && !timedOut ? "open" : "closed"}
-        className="fixed -right-16 top-96 z-10 rotate-90"
+        className={cn("fixed -right-16 top-96 z-10 rotate-90", {
+          "pointer-events-none": !showButton || timedOut,
+        })}
       >
         <Button
           className="h-10 gap-2 rounded-sm rounded-b-2xl bg-gradient-to-t from-primary-500 to-primary-400 text-xl opacity-70 hover:opacity-100"

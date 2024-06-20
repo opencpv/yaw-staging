@@ -7,10 +7,12 @@ type Props = {
 
 const CloseModalIcon = ({ onClick }: Props) => {
   return (
-    <IoIosCloseCircle
-      className="cursor-pointer text-4xl text-red-500 xs:text-5xl"
-      onClick={onClick}
-    />
+    <button type="button">
+      <IoIosCloseCircle
+        className="cursor-pointer text-4xl text-red-500 xs:text-5xl"
+        onClick={onClick}
+      />
+    </button>
   );
 };
 

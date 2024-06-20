@@ -6,8 +6,6 @@ import { FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
 
 interface Props extends React.HTMLAttributes<HTMLButtonElement> {
-  className?: string;
-  children?: React.ReactNode;
   variant?: "default" | "outline" | "ghost";
   padding?: "sm" | "default";
   color?: "primary" | "accent" | "white" | "gradient" | "black";
@@ -21,7 +19,6 @@ interface Props extends React.HTMLAttributes<HTMLButtonElement> {
   scroll?: boolean;
   type?: "button" | "submit" | "reset";
   replace?: boolean;
-  title?: string;
   greenHover?: boolean;
   target?: HTMLAttributeAnchorTarget;
   onClick?: (e?: any) => void;
@@ -47,6 +44,7 @@ const Button: React.FC<Props> = ({
   greenHover,
   type,
   target,
+  tabIndex,
   ...props
 }: Props) => {
   if (href)
@@ -62,8 +60,9 @@ const Button: React.FC<Props> = ({
         isIconOnly={isIconOnly}
         isLoading={isLoading}
         type={type}
+        tabIndex={tabIndex}
         className={cn(
-          `min-h-fit max-w-sm space-x-2 no-print whitespace-normal rounded-md bg-transparent px-10 py-3 text-base font-[600] ${
+          `no-print min-h-fit max-w-sm space-x-2 whitespace-normal rounded-md bg-transparent px-10 py-3 text-base font-[600] ${
             borderColor && `border border-[${borderColor}]`
           }`,
           {
@@ -116,8 +115,9 @@ const Button: React.FC<Props> = ({
         isIconOnly={isIconOnly}
         isLoading={isLoading}
         type={type}
+        tabIndex={tabIndex}
         className={cn(
-          `min-h-fit max-w-sm space-x-2 no-print whitespace-normal rounded-md bg-transparent p-3 px-10 text-base font-[600] ${
+          `no-print min-h-fit max-w-sm space-x-2 whitespace-normal rounded-md bg-transparent p-3 px-10 text-base font-[600] ${
             borderColor && `border border-[${borderColor}]`
           }`,
           {

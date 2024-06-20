@@ -120,7 +120,7 @@ const StoryPage = async ({ params, searchParams }: Props) => {
         {post.title}
       </h1>
       <Rate disabled value={post.rating} />
-      <FramerWrapper className="mt-10">
+      <FramerWrapper className="shape-polygon-parent mt-10">
         <div className="shape-polygon relative mb-16 h-60 w-full lg:h-[30rem]">
           <Image
             src={urlForImage(post.featured_image)?.url() as string}
@@ -129,6 +129,24 @@ const StoryPage = async ({ params, searchParams }: Props) => {
             style={{ objectFit: "cover" }}
           />
         </div>
+        <svg className="flt_svg" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="flt_tag">
+              <feGaussianBlur
+                in="SourceGraphic"
+                stdDeviation="8"
+                result="blur"
+              />
+              <feColorMatrix
+                in="blur"
+                mode="matrix"
+                values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
+                result="flt_tag"
+              />
+              <feComposite in="SourceGraphic" in2="flt_tag" operator="atop" />
+            </filter>
+          </defs>
+        </svg>
       </FramerWrapper>
       <section className="print-content grid-cols-4 gap-5 md:grid">
         <div className="col-span-3">

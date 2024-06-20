@@ -5,6 +5,7 @@ import Modal from "../modals/Modal";
 import { useDisclosure } from "@nextui-org/react";
 import ShareModalBody from "./ShareModalBody";
 import { cn } from "@/lib/utils";
+import CopyButton from "./CopyButton";
 
 const Share = ({
   title,
@@ -57,9 +58,14 @@ const Share = ({
 
 const ShareModalHeader = ({ title }: { title: string }) => {
   return (
-    <div className="space-y-3">
+    <div className="space-y-3 border-b pb-2">
       <h1 className="text-2xl font-[700]">Share</h1>
-      <h2 className="text-base font-semibold">{title}</h2>
+      <section className="mt-5 flex items-center gap-x-10 gap-y-5 max-xxs:flex-wrap">
+        <h2 className="truncate text-base font-semibold" title={title}>
+          {title}
+        </h2>
+        <CopyButton />
+      </section>
     </div>
   );
 };

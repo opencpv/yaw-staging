@@ -50,8 +50,6 @@ const Feedback = ({ children, data }: Props) => {
       <div
         className="cursor-pointer focus:outline-none"
         onClick={onOpen}
-        tabIndex={0}
-        // role="button"
         onKeyDown={handleKeyDown}
       >
         {children}

@@ -30,7 +30,7 @@ const MovingSalesPage = () => {
       </section>
       <CallOut
         content="You may select more than one response"
-        className="mx-auto mb-20"
+        className="mb-20"
       />
       <Items />
     </main>

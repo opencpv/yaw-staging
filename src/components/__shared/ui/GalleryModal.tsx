@@ -91,13 +91,13 @@ const ModalHeader = () => {
             className="text-white group-hover:text-shade-300"
           />
         </Share>
-        <button className="circle-hover hover:text-shade-300">
-          <LiaTimesSolid
-            className="shrink-0"
-            onClick={() => {
-              onClose?.();
-            }}
-          />
+        <button
+          className="hover:text-shade-300"
+          onClick={() => {
+            onClose?.();
+          }}
+        >
+          <LiaTimesSolid className="shrink-0" />
         </button>
       </div>
     </div>

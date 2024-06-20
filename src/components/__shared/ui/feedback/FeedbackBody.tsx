@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Thumbs from "./Thumbs";
 import FeedbackSlider from "./FeedbackSlider";
 import Image from "next/image";
@@ -11,7 +11,6 @@ import { cn } from "@/lib/utils";
 import { Form, Formik } from "formik";
 import FeedbackTextArea from "./FeedbackTextArea";
 import supabase from "@/lib/utils/supabase/supabaseClient";
-import { useLocalStorage } from "@uidotdev/usehooks";
 import { setLocalStorageWithExpiry } from "@/lib/utils/localStorage";
 import { FEEDBACK_FLOATING_BUTTON_TTL } from "@/constants";
 

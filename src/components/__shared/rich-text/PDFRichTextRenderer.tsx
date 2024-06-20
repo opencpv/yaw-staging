@@ -9,14 +9,12 @@ const styles = StyleSheet.create({
   paragraph: {
     marginBottom: 10,
     fontSize: 12,
-    fontWeight: "normal",
   },
   normal: {
     fontSize: 12,
   },
   bold: {
     fontWeight: "bold",
-    color: "#0000ee",
   },
   italics: {
     fontStyle: "italic",

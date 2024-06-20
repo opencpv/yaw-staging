@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import Image from "next/image";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Modal from "../Modal";
@@ -15,55 +15,55 @@ import {
 } from "@/lib/utils/localStorage";
 import { NOTICE_MODAL_TTL } from "@/constants";
 
+const Context = createContext<{
+  handleVisibility: () => void;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+} | null>(null);
+
 const NoticeModal = () => {
-  const show = getLocalStorageWithExpiry("notice-modal-behavior") as boolean;
-  const [open, setOpen] = useState<boolean | null>(show);
+  const show = getLocalStorageWithExpiry("notice-modal-behavior");
+  const [open, setOpen] = useState(show === "0" ? false : true);
 
-  console.log(show);
-
-  const checkVisibility = () => {
-    if (show !== false) {
+  const handleVisibility = () => {
+    if (show !== "0") {
       const key = "notice-modal-behavior";
-      const value = false;
+      const value = "0";
       const ttl = NOTICE_MODAL_TTL;
       setLocalStorageWithExpiry(key, value, ttl);
     }
   };
 
   return (
-    <>
+    <Context.Provider value={{ handleVisibility, setOpen }}>
       <Modal
-        body={
-          <ModalBody
-            setOpen={setOpen as React.Dispatch<React.SetStateAction<boolean>>}
-          />
-        }
+        body={<ModalBody />}
         isOpen={open ?? true}
         onOpenChange={(open) => {
+          handleVisibility();
           setOpen(open);
-          checkVisibility();
         }}
         scrollBehavior="normal"
         bodyClassName="p-0"
         hideCloseButton
         className="max-w-[88rem]"
       />
-    </>
+    </Context.Provider>
   );
 };
 
-const ModalBody = ({
-  setOpen,
-}: {
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+const ModalBody = () => {
   const { images, icons } = useAssets();
+  const setOpen = useContext(Context)?.setOpen;
+  const handleVisibility = useContext(Context)?.handleVisibility;
 
   return (
     <main className="relative size-full text-white md:flex md:bg-primary">
       <button
         className="circle-hover absolute right-10 top-5 z-30 text-white max-md:hover:text-shade-500 md:text-shade-500"
-        onClick={() => setOpen(false)}
+        onClick={() => {
+          setOpen?.(false);
+          handleVisibility?.();
+        }}
       >
         <LiaTimesSolid size={24} />
       </button>{" "}
@@ -98,7 +98,10 @@ const ModalBody = ({
           <small>Rentright Team</small>
         </div>
         <Button
-          onClick={() => setOpen(false)}
+          onClick={() => {
+            setOpen?.(false);
+            handleVisibility?.();
+          }}
           color="primary"
           className="h-12 items-center gap-2 border border-white px-24 capitalize hover:bg-neutral-300 hover:text-neutral-600 max-xs:max-w-full"
         >

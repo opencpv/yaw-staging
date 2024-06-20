@@ -1,5 +1,4 @@
 import React from "react";
-import OtherPosts from "./components/OtherPosts";
 import CategoryCard from "./components/CategoryCard";
 import Authors from "./components/author/Authors";
 import SubscribeToBlogButton from "./components/SubscribeToBlogButton";
