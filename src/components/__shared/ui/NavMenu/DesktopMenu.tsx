@@ -1,7 +1,6 @@
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import Separator from "../../../Separator";
 import { FadeInOut } from "@/lib/animations";
 import MenuLink from "./components/MenuLink";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
@@ -17,7 +16,7 @@ export const DesktopMenu = (props: any) => {
   const [active, setActive] = useState<number | null>(null);
   const [subId, setSubId] = useState<number | null>(null);
   const router = useRouter();
-  const { setToggle, toggle } = useMenuStore();
+  const { toggle } = useMenuStore();
   const { activeSubLink, setActiveSubLink } = useMenuStore();
   const { user } = useAppStore();
 

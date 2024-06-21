@@ -33,7 +33,6 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
   }, [isAdmin, props.propertyId]);
 
   return (
-    <>
       <div
         className={`group/parent relative flex cursor-default flex-col ${
           props.className
@@ -49,7 +48,6 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
         <SliderArea {...props} />
         <ListingInfo {...props} />
       </div>
-    </>
   );
 };
 

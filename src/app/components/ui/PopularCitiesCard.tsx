@@ -26,6 +26,7 @@ const PopularCitiesCard = ({
       href={`/properties?${new URLSearchParams({
         search: location as string,
       })}`}
+      className="group"
     >
       <div
         className={`relative flex min-h-[10rem] w-full items-center justify-center rounded-lg p-5 text-white transition-all hover:scale-105 sm:p-20 ${className}`}
@@ -37,7 +38,7 @@ const PopularCitiesCard = ({
           style={{ objectFit: "cover" }}
           className="rounded-lg"
         />
-        <div className="absolute left-0 top-0 h-full w-full rounded-lg bg-gradient-to-tl from-[#21A19F] to-[#131B1A] opacity-60"></div>
+        <div className="absolute left-0 top-0 h-full w-full rounded-lg bg-gradient-to-tl from-[#21A19F] to-[#131B1A] opacity-60 group-focus:z-30 group-focus:bg-accent/10"></div>
 
         <div className="relative z-10 space-y-3">
           <div className="space-y-3">

@@ -1,11 +1,9 @@
 "use client";
 import React from "react";
-import styles from "./Shape.module.css";
 import { FaSearch } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 
 const CitySearchForm = ({
-  className,
   placeholder = "Madina, Accra",
 }: {
   className?: string;
@@ -28,7 +26,7 @@ const CitySearchForm = ({
   return (
     <form className="flex h-[4.6rem] max-w-lg" onSubmit={handleSearch}>
       <input
-        className="h-full w-full rounded-l-xl rounded-r-none bg-secondary-300 px-6 py-3 text-lg font-semibold text-neutral-900 placeholder:text-neutral-400 focus:outline-none xs:text-2xl"
+        className="h-full w-full rounded-l-xl rounded-r-none bg-secondary-300 px-6 py-3 text-lg font-semibold text-neutral-900 placeholder:text-neutral-400 focus:outline-accent xs:text-2xl"
         name="search"
         placeholder={placeholder}
       />

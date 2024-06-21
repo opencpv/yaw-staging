@@ -50,6 +50,7 @@ const SliderArea = (props: Partial<ListingCardInterface>) => {
       onSlideChange={(swiper) => {
         setActiveIndex(swiper.activeIndex);
       }}
+      tabIndex={-1}
     >
       <ListingTags guarantee={props.guarantee} hint={props.hint} />
       {/* For be the first to know detail listings only */}
@@ -135,7 +136,11 @@ const SliderArea = (props: Partial<ListingCardInterface>) => {
           <SwiperSlide key={index}>
             {" "}
             {/* listing images with pagination and controls */}
-            <Link href={`${props.href}`}>
+            <Link
+              href={`${props.href}`}
+              tabIndex={index === 0 ? 0 : -1}
+              className="relative focus:after:absolute focus:after:inset-0 focus:outline-accent focus:after:z-50 focus:after:size-full focus:after:bg-neutral-300/50"
+            >
               <div className="relative h-full w-full">
                 <Image
                   src={image}
@@ -169,7 +174,7 @@ const SliderArea = (props: Partial<ListingCardInterface>) => {
         {...props}
       />
       {/* Like button */}
-      <span className="z-10 absolute bottom-5 right-[5%] grid size-11 place-items-center rounded-md bg-shade-500/40">
+      <span className="absolute bottom-5 right-[5%] z-10 grid size-11 place-items-center rounded-md bg-shade-500/40">
         <LikeHeart
           liked={props.liked}
           propertyId={props.propertyId as string}

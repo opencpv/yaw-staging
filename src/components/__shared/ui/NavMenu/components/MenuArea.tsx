@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { MobileMenu } from "../MobileMenu";
 import { DesktopMenu } from "../DesktopMenu";
 import { AiFillCloseCircle } from "react-icons/ai";
 import Logo from "@/components/__shared/ui/Logo";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
-import { animate, stagger } from "framer-motion";
 
 const MenuArea = (props: any) => {
   const { setToggle, toggle } = useMenuStore();

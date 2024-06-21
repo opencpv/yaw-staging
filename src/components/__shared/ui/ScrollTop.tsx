@@ -3,12 +3,8 @@ import React, { useEffect, useState } from "react";
 import { FaChevronUp } from "react-icons/fa";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
 
-type Props = {
-  scrollTo: string;
-};
 
 const ScrollTop = () => {
-  // STATE
   const [shouldShowScrollBtn, setShouldShowScrollBtn] =
     useState<boolean>(false);
   const [isScrollingUp, setIsScrollingUp] = useState<boolean>(true);
@@ -37,10 +33,8 @@ const ScrollTop = () => {
       const currentScrollTop =
         window.scrollY || document.documentElement.scrollTop; // fallback;
       if (currentScrollTop > lastScrollTop) {
-        // Scrolling down
         setIsScrollingUp(false);
       } else {
-        // Scrolling up
         setIsScrollingUp(true);
       }
 
@@ -49,7 +43,6 @@ const ScrollTop = () => {
 
     window.addEventListener("scroll", () => {
       handleScroll();
-      // handleScrollPosition()
     });
     return () => {
       window.removeEventListener("scroll", handleScroll);

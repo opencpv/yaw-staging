@@ -95,31 +95,18 @@ export default function Menu(props: any) {
       variants={ExpandCircle}
       exit={{
         ...ExpandCircle.closed,
-        transitionEnd: {
-          // display: 'none',
-          opacity: 0,
-        },
       }}
       animate={
         props?.isOpen
           ? {
               ...ExpandCircle.open(),
-              opacity: 1,
             }
           : {
               ...ExpandCircle.closed,
-              transitionEnd: {
-                // display: 'none',
-                opacity: 0,
-              },
             }
       }
       initial={{
         ...ExpandCircle.closed,
-        transitionEnd: {
-          // display: 'none',
-          opacity: 0,
-        },
       }}
     >
       <MenuArea />

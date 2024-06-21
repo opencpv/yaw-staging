@@ -14,7 +14,7 @@ type Props = {
 const MenuLink = (props: Props) => {
   const { setToggle } = useMenuStore();
   const { activeSubLink } = useMenuStore();
-
+const hasSubMenu = (props.isSubLink && props.linkObject.id) || props.linkObject?.sub
 
   return (
     <motion.button
@@ -22,13 +22,15 @@ const MenuLink = (props: Props) => {
       className={`main-menu-link transition-all hover:scale-105 ${
         props.isSubLink && "capitalize"
       }`}
+      tabIndex={hasSubMenu ? 0 : -1}
     >
       <div
         className={`w-full cursor-pointer whitespace-nowrap ${
           props.active ? "text-accent-100" : "text-white"
         }`}
       >
-        {(props.isSubLink && props.linkObject.id) || props.linkObject?.sub ? (
+        {hasSubMenu
+          ? (
           <div className={`w-full flex items-center ${activeSubLink == props.linkObject?.label && "text-accent-100"} `}>
             {props.isSubLink ? (
               // <Link href={props.linkObject?.url}>

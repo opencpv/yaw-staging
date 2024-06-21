@@ -11,9 +11,9 @@ type Props = {
 
 const MenuScrollDownButton = (props: Props) => {
   return (
-    <div
+    <button
       className={cn(
-        "hidden bottom-5 text-accent-100 cursor-pointer transition-all duration-700 hover:scale-[1.02] hover:-translate-y-1 lg:block",
+        "hidden bottom-5 text-accent-100 transition-all duration-700 hover:scale-[1.02] hover:-translate-y-1 lg:block",
         props.className
       )}
       onClick={props.onClick}
@@ -22,7 +22,7 @@ const MenuScrollDownButton = (props: Props) => {
       }}
     >
       <FaChevronDown className="text-3xl shrink-0" />
-    </div>
+    </button>
   );
 };
 

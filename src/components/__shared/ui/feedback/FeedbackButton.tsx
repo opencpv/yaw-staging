@@ -99,14 +99,14 @@ const FeedbackButton = (props: Props) => {
 
 const FeedbackIcon = ({ className }: { className?: string }) => {
   return (
-    <div
+    <button
       className={cn(
         "flex size-14 items-center justify-center rounded-full bg-gradient-to-t from-primary-500 to-primary-400 shadow-lg",
         className,
       )}
     >
       <HiOutlineChatBubbleOvalLeftEllipsis className="text-3xl text-white" />
-    </div>
+    </button>
   );
 };
 

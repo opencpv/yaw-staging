@@ -43,6 +43,9 @@ export const ExpandCircle = {
       restDelta: 2,
       duration: 0.2,
     },
+    opacity: 1,
+    display: "flex",
+    pointerEvent: "auto",
   }),
   closed: {
     clipPath: "circle(0px at right top)",
@@ -51,6 +54,11 @@ export const ExpandCircle = {
       stiffness: 100,
       damping: 40,
       duration: 0,
+    },
+    opacity: 0,
+    pointerEvent: "none",
+    transitionEnd: {
+      display: "none",
     },
   },
 };

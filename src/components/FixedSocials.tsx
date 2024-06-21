@@ -47,11 +47,15 @@ const FixedSocials = ({ thresholdMin }: Props) => {
       x: 0,
       opacity: 0.9,
       pointerEvents: "auto" as any,
+      display: 'block'
     },
     hide: {
       x: "-100%",
       opacity: 0,
       pointerEvents: "none" as any,
+      transitionEnd: {
+        display: 'none'
+      }
     },
   };
 
@@ -76,12 +80,12 @@ const FixedSocials = ({ thresholdMin }: Props) => {
           ))}
         </ul>
       </motion.section>
-      <motion.section
+      <motion.button
         variants={variants}
         animate={showArrow ? "show" : "hide"}
         transition={{ duration: 0.2 }}
         className={
-          "relative -z-10 grid h-16 w-6 cursor-pointer place-items-center rounded-r-md bg-gradient-to-b from-primary to-primary-400"
+          "relative -z-10 grid h-16 w-6 place-items-center rounded-r-md bg-gradient-to-b from-primary to-primary-400"
         }
         onClick={toggleShowSocials}
       >
@@ -89,7 +93,7 @@ const FixedSocials = ({ thresholdMin }: Props) => {
           className="relative right-1 text-white"
           size={32}
         />
-      </motion.section>
+      </motion.button>
     </div>
   );
 };
