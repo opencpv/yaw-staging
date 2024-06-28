@@ -1,6 +1,6 @@
 // @ts-nocheck
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import SortFilter from "./SortFilter";
 import ItemCard from "./ItemCard";
 import { useFetchItems } from "../services";
@@ -15,10 +15,14 @@ import SkeletonItem from "@/components/__shared/ui/skeleton/SkeletonItem";
 import { cn } from "@/lib/utils";
 import { pluralize } from "@/lib/utils/stringManipulation";
 import { Skeleton } from "@nextui-org/react";
+import { SanityDocument } from "next-sanity";
+import Ad from "@/app/components/sections/Ad";
 
-type Props = {};
+type Props = {
+  ads: SanityDocument[];
+};
 
-function Items({}: Props) {
+function Items(props) {
   const searchParams = useSearchParams();
   const sort = searchParams?.get("sort") || "newest";
   const categories = searchParams?.get("categories") || "";
@@ -26,6 +30,7 @@ function Items({}: Props) {
   const term = searchParams?.get("term") || "";
   const priceRangeFrom = searchParams?.get("priceRangeFrom") || "";
   const priceRangeTo = searchParams?.get("priceRangeTo") || "";
+  const [showAd, setShowAd] = useState(false);
 
   const {
     data: items,
@@ -42,6 +47,10 @@ function Items({}: Props) {
     priceRangeTo,
     sort,
   });
+  const handleLoadMore = () => {
+    setShowAd(true);
+    loadMore ? loadMore() : null;
+  };
 
   return (
     <>
@@ -73,7 +82,31 @@ function Items({}: Props) {
           }
           emptyStateComponent={<EmptyState />}
         />
-        {items?.map((item) => (
+        {items?.slice(0, 8).map((item) => (
+          <ItemCard
+            key={item.id}
+            href={`/moving-sale/${item.title}?${new URLSearchParams({
+              id: item.id.toString(),
+              title: item.title,
+              category: item.category,
+              term: item.term,
+              price: item.price.toString(),
+              condition: item.condition,
+              seller: item.profiles?.full_name as string,
+              description: item.description,
+            })}`}
+            title={item.title}
+            description={item.description}
+            image="/assets/images/about/young-couple.webp"
+            price={item.price}
+          />
+        ))}
+        {showAd && (
+          <div className="col-span-2 w-full md:col-span-3 lg:col-span-4">
+            <Ad data={props.ads} />
+          </div>
+        )}
+        {items?.slice(8).map((item) => (
           <ItemCard
             key={item.id}
             href={`/moving-sale/${item.title}?${new URLSearchParams({
@@ -97,7 +130,7 @@ function Items({}: Props) {
         data={items}
         isLoading={isLoading}
         isValidating={isValidating}
-        loadMore={loadMore}
+        loadMore={handleLoadMore}
       />
     </>
   );

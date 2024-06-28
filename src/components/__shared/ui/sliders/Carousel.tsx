@@ -10,6 +10,7 @@ import { Navigation } from "swiper/modules";
 import Image from "next/image";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { carouselStore } from "@/store/properties/usePropertiesStore";
+import { CarouselProps } from "./sliders";
 
 const Carousel = (props: CarouselProps) => {
   const { setActiveIndex } = carouselStore();
@@ -28,13 +29,13 @@ const Carousel = (props: CarouselProps) => {
         >
           {props.images.map((image, index) => (
             <SwiperSlide key={index}>
-              <div className="relative mx-auto h-full w-full ">
+              <div className="relative mx-auto h-full w-full rounded-lg ">
                 <Image
                   src={image.src}
                   alt={image.label as string}
                   fill
-                  className="brightness-[0.8]"
-                  style={{ objectFit: "cover" }}
+                  className="rounded-lg brightness-[0.8]"
+                  style={{ objectFit: props.isCover ? "cover" : "contain" }}
                 />
               </div>
             </SwiperSlide>

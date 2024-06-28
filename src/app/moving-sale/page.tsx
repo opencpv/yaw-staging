@@ -2,8 +2,18 @@ import React from "react";
 import SliderWide from "@/components/__shared/ui/sliders/SliderWide";
 import Items from "./components/Items";
 import CallOut from "@/components/__shared/ui/CallOut";
+import { SanityDocument } from "next-sanity";
+import { loadQuery } from "@sanity/react-loader";
+import { ADS_QUERY } from "@/lib/utils/sanity/queries";
 
 const MovingSalesPage = () => {
+  let adsData: SanityDocument[] = [];
+  let filteredAdsData: SanityDocument[] = [];
+  loadQuery<SanityDocument[]>(ADS_QUERY).then((ads) => {
+    adsData = ads.data;
+    filteredAdsData = adsData.filter((item: any) => item.isPublished == true);
+  });
+
   return (
     <>
       <main className="wrapper overflow-x-hidden text-neutral-600">
@@ -33,7 +43,7 @@ const MovingSalesPage = () => {
           content="You may select more than one response"
           className="mx-auto mb-20"
         />
-        <Items />
+        <Items ads={filteredAdsData} />
       </main>
     </>
   );

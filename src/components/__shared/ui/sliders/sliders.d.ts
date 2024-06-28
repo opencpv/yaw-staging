@@ -1,5 +1,7 @@
-type CarouselProps = {
+import { boolean } from "yup";
+export type CarouselProps = {
   images: { src: string; label?: string }[];
+  isCover?: boolean;
 };
 
 type SliderPaginationOnlyProps = {

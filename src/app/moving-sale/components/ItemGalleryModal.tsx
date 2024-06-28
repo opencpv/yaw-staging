@@ -39,7 +39,7 @@ const ItemGalleryModal = ({
     <Modal
       isDismissible={false}
       header={<ModalHeader onClose={onClose} itemData={itemData} />}
-      body={<ModalBody />}
+      body={<ModalBody itemData={itemData} />}
       // footer={<ModalFooter />}
       isOpen={isOpen}
       onOpenChange={onOpenChange}
@@ -75,21 +75,32 @@ const ModalHeader = ({
   );
 };
 
-const ModalBody = () => {
+const ModalBody = ({
+  onClose,
+  itemData,
+}: {
+  onClose?: () => void;
+  itemData: Item;
+}) => {
   const { activeIndex } = carouselStore();
   return (
     <div className="mt-20 flex h-full flex-col items-center gap-10">
       <div className="h-fit w-full">
         <Carousel
-          images={carouselDemo.map((image) => ({
-            src: image.src,
-            label: image.label,
-          }))}
+          isCover={false}
+          images={
+            itemData?.images
+              ? itemData?.images.map((image) => ({
+                  src: image,
+                  label: "",
+                }))
+              : []
+          }
         />
       </div>
-      <div className="flex w-full items-center justify-center text-center text-lg text-white">
+      {/* <div className="flex w-full items-center justify-center text-center text-lg text-white">
         {carouselDemo[activeIndex].label}
-      </div>
+      </div> */}
     </div>
   );
 };

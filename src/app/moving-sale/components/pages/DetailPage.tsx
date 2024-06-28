@@ -26,7 +26,6 @@ const DetailPage = (props: Props) => {
   }>("item_view_count", { itemIds: [] });
 
   const hasUpdatedView = useRef(false);
-
   useEffect(() => {
     const shouldUpdateView = !itemViewCount.itemIds.includes(props.id);
     if (shouldUpdateView && !hasUpdatedView.current) {
@@ -55,7 +54,7 @@ const DetailPage = (props: Props) => {
           <p className="font-[600] text-neutral-800">{query.data?.title}</p>
         )}
       </div>
-      <ItemImages query={query} />
+      {query?.data && <ItemImages query={query} />}
       <section className="mb-20 grid gap-x-20 gap-y-10 lg:grid-cols-3">
         {/* Grid col */}
         <ItemDetails query={query} />

@@ -13,7 +13,6 @@ type Props = {
 
 const ItemImages = ({ query }: Props) => {
   const { isOpen, onClose, onOpen, onOpenChange } = useDisclosure();
-
   return (
     <>
       <ItemGalleryModal
@@ -26,7 +25,10 @@ const ItemImages = ({ query }: Props) => {
         {/* Main image */}
         <div className="relative col-span-2 xs:col-span-1">
           <Image
-            src="/assets/images/about/young-couple.webp"
+            src={
+              query.data.primary_image ||
+              "/assets/images/about/young-couple.webp"
+            }
             alt=""
             className="rounded-lg"
             fill
@@ -34,13 +36,13 @@ const ItemImages = ({ query }: Props) => {
           />
         </div>
         <div className="col-span-1 hidden w-full flex-wrap gap-2 xs:flex">
-          {[1, 2, 3].map((_, idx) => (
+          {query.data.images.map((imageUrl: string, idx: number) => (
             <div
               key={idx + 1}
               className="relative min-w-full flex-1 even:hidden max-xl:min-w-[160px] md:even:block xl:min-w-[300px]"
             >
               <Image
-                src="/assets/images/about/young-couple.webp"
+                src={imageUrl}
                 alt=""
                 className="rounded-lg"
                 fill
