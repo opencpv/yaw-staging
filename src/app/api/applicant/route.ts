@@ -24,8 +24,8 @@ export const POST = withErrorHandler(async (request: NextRequest) => {
   const lastname = formData.get("last_name");
   const email = formData.get("email");
   const phone = formData.get("phone");
-  const coverLetter = formData.get("coverLetter");
-  const resume = formData.get("resume");
+  const coverLetter = formData.get("cover_letter_url");
+  const resume = formData.get("resume_url");
   const link = formData.get("link");
   const job = formData.get("job");
 
