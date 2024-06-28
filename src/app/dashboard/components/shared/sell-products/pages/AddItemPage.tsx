@@ -226,6 +226,9 @@ const AddItemPage = () => {
                   name="term"
                   color="primary"
                 />
+                <div>
+                  <p></p>
+                </div>
                 <TextFieldInput
                   name="email"
                   label="Email Address"

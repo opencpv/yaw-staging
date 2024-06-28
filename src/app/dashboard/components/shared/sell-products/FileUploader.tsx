@@ -97,7 +97,7 @@ const FileUploader = ({
       );
 
       const newFilesArray = [...files, ...newFiles]; // combine old and new files
-
+      setPrimaryImage(newFilesArray[0].name);
       setFiles(
         newFilesArray.map((file: any) =>
           Object.assign(file, {
