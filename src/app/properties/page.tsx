@@ -8,6 +8,9 @@ import ScrollTop from "@/components/__shared/ui/ScrollTop";
 import PropertiesListing from "./components/PropertiesListing";
 import SearchCity from "./components/SearchCity";
 import { Metadata } from "next";
+import { loadQuery } from "@sanity/react-loader";
+import { SanityDocument } from "next-sanity";
+import { ADS_QUERY } from "@/lib/utils/sanity/queries";
 
 export const metadata: Metadata = {
   title: "Properties",
@@ -16,6 +19,13 @@ export const metadata: Metadata = {
 };
 
 const page = () => {
+  let adsData: SanityDocument[] = [];
+  let filteredAdsData: SanityDocument[] = [];
+  loadQuery<SanityDocument[]>(ADS_QUERY).then((ads) => {
+    adsData = ads.data;
+    filteredAdsData = adsData.filter((item: any) => item.isPublished == true);
+  });
+
   return (
     <>
       <Navbar />
@@ -34,7 +44,7 @@ const page = () => {
           <TagsSelect />
         </div>
       </section>
-      <PropertiesListing />
+      <PropertiesListing ads={filteredAdsData} />
       <FixedSocials />
       <Footer />
       <ScrollTop />
