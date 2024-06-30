@@ -11,6 +11,7 @@ import { useInvoiceData } from "../../hooks/useInvoiceData";
 import { RiFileListLine } from "react-icons/ri";
 import { cn } from "@/lib/utils";
 import { invoiceStore } from "@/store/payment/invoiceStore";
+import { useEffect, useState } from "react";
 
 type Props = {
   variant: "invoice" | "receipt";
@@ -18,19 +19,31 @@ type Props = {
 };
 
 function DataRowSm({ variant, data }: Props) {
-  const { checkoutItems } = invoiceStore();
-
-  const { checked, handleCheckChange } = useInvoiceData({
+  const { checkoutItems, addCheckoutItem, removeCheckoutItemById } =
+    invoiceStore();
+  const [checkStatus, setCheckStatus] = useState(false);
+  const { checked, handleCheckChange, allChecked } = useInvoiceData({
     invoiceData: checkoutItems,
   });
+
+  useEffect(() => {
+    checkoutItems.map((item) => {
+      item.id == data.id ? setCheckStatus(true) : null;
+      return item;
+    });
+  }, [checkoutItems, data.id]);
 
   return (
     <>
       <div className="-mb-6 flex items-center justify-between gap-5">
         <Checkbox
           color="primary"
-          onCheckedChange={handleCheckChange}
-          checked={checked}
+          onCheckedChange={() => {
+            checkStatus
+              ? removeCheckoutItemById(data.id as number)
+              : addCheckoutItem(data);
+          }}
+          checked={checkStatus}
         />
         <ViewDataDetailsModal variant={variant} data={data} />
       </div>

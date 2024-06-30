@@ -43,6 +43,10 @@ interface FormValues {
 const AddItemPage = () => {
   const [sameAsPhone, setSameAsPhone] = useState(false);
   const id = useCurrentUserId();
+  const [useEmail, setUseEmail] = useState(true);
+  const [usePhone, setUsePhone] = useState(false);
+  const [useWhatsapp, setUseWhatsapp] = useState(false);
+
   const validationSchema = Yup.object().shape({
     category: Yup.string().required("This field is requiredRequired"),
     condition: Yup.string().required("This field is required"),
@@ -226,51 +230,65 @@ const AddItemPage = () => {
                   name="term"
                   color="primary"
                 />
-                <div>
-                  <p></p>
+                <div className="flex flex-col gap-y-2">
+                  <p className="  text-grayText">Preffered Method of contact</p>
+                  <Checkbox
+                    defaultChecked
+                    label="In app messaging ( Default)"
+                    disabled={true}
+                    color="disabled"
+                  />
+                  <Checkbox
+                    label="Email"
+                    color="primary"
+                    defaultChecked
+                    onCheckedChange={(checked) =>
+                      setUseEmail(checked as boolean)
+                    }
+                  />
+                  {useEmail && (
+                    <TextFieldInput
+                      name="email"
+                      label="Email Address"
+                      placeholder="Enter email address"
+                      type="email"
+                    />
+                  )}
+                  <Checkbox
+                    label="Phone call"
+                    color="primary"
+                    onCheckedChange={(checked) =>
+                      setUsePhone(checked as boolean)
+                    }
+                  />
+                  {usePhone && (
+                    <InputPhoneNumber
+                      id=""
+                      label="Phone"
+                      name="phone"
+                      value={phone}
+                      onChange={handlePhone}
+                      onCountryChange={handleCountryChange}
+                    />
+                  )}
+                  <Checkbox
+                    label="WhatsApp"
+                    color="primary"
+                    onCheckedChange={(checked) =>
+                      setUseWhatsapp(checked as boolean)
+                    }
+                  />
+                  {useWhatsapp && (
+                    <InputPhoneNumber
+                      id=""
+                      label="WhatsApp No."
+                      name="whatsapp"
+                      value={whatsApp}
+                      onChange={handleWhatsApp}
+                      onCountryChange={handleCountryChangeWhatsApp}
+                    />
+                  )}
                 </div>
-                <TextFieldInput
-                  name="email"
-                  label="Email Address"
-                  placeholder="Enter email address"
-                  type="email"
-                  required
-                />
-                <InputPhoneNumber
-                  id=""
-                  label="Phone"
-                  name="phone"
-                  value={phone}
-                  onChange={handlePhone}
-                  onCountryChange={handleCountryChange}
-                />
-                {sameAsPhone ? (
-                  <InputPhoneNumber
-                    id=""
-                    label="WhatsApp No."
-                    name="phone"
-                    value={phone}
-                    onChange={handlePhone}
-                    onCountryChange={handleCountryChange}
-                  />
-                ) : (
-                  <InputPhoneNumber
-                    id=""
-                    label="WhatsApp No."
-                    name="whatsapp"
-                    value={whatsApp}
-                    onChange={handleWhatsApp}
-                    onCountryChange={handleCountryChangeWhatsApp}
-                  />
-                )}
-
-                <Checkbox
-                  color="primary"
-                  label="Same as phone"
-                  onCheckedChange={(checked) =>
-                    setSameAsPhone(checked as boolean)
-                  }
-                />
               </div>
               <div className="flex h-[100%] w-full flex-col">
                 <FileUploader />
@@ -278,7 +296,7 @@ const AddItemPage = () => {
                   <Button
                     type="submit"
                     color="primary"
-                    className="mt-8"
+                    className="mt-8 text-white"
                     isLoading={loading}
                   >
                     Publish

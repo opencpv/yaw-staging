@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { useField } from "formik";
 
 interface Props extends React.ComponentProps<typeof RadixUICheckbox.Root> {
-  color?: "accent" | "primary" | "white";
+  color?: "accent" | "primary" | "white"|"disabled";
   label?: string;
   classNames?: {
     checkIcon?: string;
@@ -32,6 +32,8 @@ export default function Checkbox({
                 color === "primary",
               "border-accent-500 focus:outline-accent-500 data-[state=checked]:bg-accent-500":
                 color === "white",
+                "border-grayText data-[state=checked]:bg-grayText":color==="disabled",
+
             },
           )}
           checked={field.value}
@@ -81,6 +83,7 @@ export const CheckboxNoFormik = ({
                 color === "primary",
               "border-accent-500 focus:outline-accent-500 data-[state=checked]:bg-accent-500":
                 color === "white",
+                "border-grayText data-[state=checked]:bg-grayText":color==="disabled",
             },
           )}
           {...props}

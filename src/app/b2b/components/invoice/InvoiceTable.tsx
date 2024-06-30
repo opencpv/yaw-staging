@@ -109,7 +109,6 @@ const InvoiceTable = ({ searchString, customerId, filter }: Props) => {
           <DataRowSm key={createUUID()} data={invoice} variant="invoice" />
         ))}
       </TableSm>
-      <Archived />
 
       <Pagination handlePageClick={handlePageClick} pageCount={pageCount} />
     </>

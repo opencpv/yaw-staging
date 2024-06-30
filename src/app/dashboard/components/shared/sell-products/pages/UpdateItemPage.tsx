@@ -47,6 +47,9 @@ const UpdateItemPage = () => {
   const [sameAsPhone, setSameAsPhone] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
   const [files, setFiles] = useState<File[]>([]);
+  const [useEmail, setUseEmail] = useState(true);
+  const [usePhone, setUsePhone] = useState(false);
+  const [useWhatsapp, setUseWhatsapp] = useState(false);
   const id = useCurrentUserId();
   const supabaseClient = createClient();
   const validationSchema = Yup.object().shape({
@@ -313,13 +316,39 @@ const UpdateItemPage = () => {
                       name="term"
                       color="primary"
                     />
+                   
+                   <div className="flex flex-col gap-y-2">
+                  <p className="  text-grayText">Preffered Method of contact</p>
+                  <Checkbox
+                    defaultChecked
+                    label="In app messaging ( Default)"
+                    disabled={true}
+                    color="disabled"
+                  />
+                  <Checkbox
+                    label="Email"
+                    color="primary"
+                    defaultChecked
+                    onCheckedChange={(checked) =>
+                      setUseEmail(checked as boolean)
+                    }
+                  />
+                  {useEmail && (
                     <TextFieldInput
                       name="email"
                       label="Email Address"
                       placeholder="Enter email address"
                       type="email"
-                      required
                     />
+                  )}
+                  <Checkbox
+                    label="Phone call"
+                    color="primary"
+                    onCheckedChange={(checked) =>
+                      setUsePhone(checked as boolean)
+                    }
+                  />
+                  {usePhone && (
                     <InputPhoneNumber
                       id=""
                       label="Phone"
@@ -328,33 +357,26 @@ const UpdateItemPage = () => {
                       onChange={handlePhone}
                       onCountryChange={handleCountryChange}
                     />
-                    {sameAsPhone ? (
-                      <InputPhoneNumber
-                        id=""
-                        label="WhatsApp No."
-                        name="phone"
-                        value={phone}
-                        onChange={handlePhone}
-                        onCountryChange={handleCountryChange}
-                      />
-                    ) : (
-                      <InputPhoneNumber
-                        id=""
-                        label="WhatsApp No."
-                        name="whatsapp"
-                        value={whatsApp}
-                        onChange={handleWhatsApp}
-                        onCountryChange={handleCountryChangeWhatsApp}
-                      />
-                    )}
-
-                    <Checkbox
-                      color="primary"
-                      label="Same as phone"
-                      onCheckedChange={(checked) =>
-                        setSameAsPhone(checked as boolean)
-                      }
+                  )}
+                  <Checkbox
+                    label="WhatsApp"
+                    color="primary"
+                    onCheckedChange={(checked) =>
+                      setUseWhatsapp(checked as boolean)
+                    }
+                  />
+                  {useWhatsapp && (
+                    <InputPhoneNumber
+                      id=""
+                      label="WhatsApp No."
+                      name="whatsapp"
+                      value={whatsApp}
+                      onChange={handleWhatsApp}
+                      onCountryChange={handleCountryChangeWhatsApp}
                     />
+                  )}
+                </div>
+                
                   </div>
                   <div className="flex h-[100%] w-full flex-col">
                     <FileUploader defaultImages={files} />
