@@ -26,6 +26,7 @@ declare global {
     DB["public"]["Views"]["merged_standard_template_view"]["Row"];
   type Invoice = Tables<"invoices">;
   type Item = Tables<"products">;
+  type SearchCriteria = Tables<"search_critieria">;
 
   type PaymentStructure =
     | "Yearly"

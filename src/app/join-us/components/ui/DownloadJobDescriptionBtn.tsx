@@ -20,18 +20,19 @@ type Props = {
   job: JobType | undefined;
 };
 
-//Font.register({
-//  family: "Open Sans",
-//  fonts: [
-//    {
-//      src: "https://fonts.gstatic.com/s/opensans/v40/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0C4nY1M2xLER.ttf",
-//    },
-//    {
-//      src: "https://fonts.gstatic.com/s/opensans/v40/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsg-1y4nY1M2xLER.ttf",
-//      fontWeight: 600,
-//    },
-//  ],
-//});
+Font.register({
+  family: "Open Sans",
+  fonts: [
+    {
+      src: "https://fonts.gstatic.com/s/opensans/v40/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0C4nY1M2xLER.ttf",
+      fontWeight: "normal",
+    },
+    {
+      src: "https://fonts.gstatic.com/s/opensans/v40/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsg-1y4nY1M2xLER.ttf",
+      fontWeight: "bold",
+    },
+  ],
+});
 
 const styles = StyleSheet.create({
   page: {
@@ -41,8 +42,9 @@ const styles = StyleSheet.create({
     lineHeight: 1.5,
     flexDirection: "column",
     width: "100vw",
-    //fontFamily: "Open Sans",
+    fontFamily: "Open Sans",
     gap: 8,
+    fontWeight: "normal",
   },
   heading: {
     display: "flex",
@@ -53,13 +55,13 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 14,
     textTransform: "capitalize",
-    fontWeight: 600,
+    fontWeight: "bold",
   },
   description: {
     marginTop: 10,
   },
   description_brief: {
-    fontWeight: "medium",
+    fontWeight: "normal",
   },
   border: {
     border: "1px solid #eee",
@@ -99,11 +101,11 @@ const JoinUsTemplate = ({ job }: Props) => {
           Brief:{" "}
           <Text style={styles.description_brief}>{job?.description_brief}</Text>
         </Text>
-        <View style={styles.description}>
-          <PDFRichTextRenderer
-            value={job?.description as unknown as TypedObject | TypedObject[]}
-          />
-        </View>
+
+        <PDFRichTextRenderer
+          value={job?.description as unknown as TypedObject | TypedObject[]}
+        />
+
       </Page>
     </Document>
   );
@@ -119,6 +121,7 @@ const DownloadJobDescriptionBtn = ({ job }: Props) => {
         display: "grid",
         placeItems: "center",
       }}
+      className="transition-all hover:scale-[1.02]"
       document={<JoinUsTemplate job={job} />}
       fileName={`${job?.title}-${legal.websiteName}.pdf`}
     >

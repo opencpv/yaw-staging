@@ -9,8 +9,6 @@ type Props = {};
 const ProfileLottie = (props: Props) => {
   const [key, setKey] = React.useState(createUUID());
 
-  console.log(key);
-
   useEffect(() => {
     setInterval(() => {
       setKey(createUUID());

@@ -1,13 +1,10 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { cn } from "@/lib/utils";
-import { firstToKnowStepsStore } from "@/store/dashboard/firstToKnowStepsStore";
+import { BTFTKStepsStore as BTFTKStepsStore } from "@/store/dashboard/BTFTKStepsStore";
 import StepsModalSideImg from "@/components/__shared/ui/modals/steps/StepsModalSideImg";
-import { format } from "date-fns";
-import { enUS } from "date-fns/locale";
 import Intro from "./pages/Intro";
 import SearchTitle from "./pages/SearchTitle";
 import Location from "./pages/location";
@@ -29,8 +26,12 @@ export const views = [
   <Success key={"success"} />,
 ];
 
-export const firstToKnowDefaultValues = {
+export const BTFTKDefaultValues = {
+  searchTitle: "",
+  specialKeywords: "",
   location: "Accra",
+  email: "",
+  whatsApp: "",
   priceRangeMinimum: "100",
   priceRangeMaximum: "100",
   bedMinimum: "1",
@@ -42,21 +43,27 @@ export const firstToKnowDefaultValues = {
   preferredMethodOfContact: "email",
 };
 
-export default function FirstToKnowForm() {
+export default function BTFTKForm() {
   const { images } = useAssets();
 
   const {
     activeSlide,
+    setActiveSlide,
     setProgressValue,
     firstSlide,
     lastSlide,
     setFirstSlide,
     setLastSlide,
-  } = firstToKnowStepsStore();
+  } = BTFTKStepsStore();
 
-  const firstToKnowStepsRef = useRef<HTMLDivElement>(null);
+  const BTFTKStepsRef = useRef<HTMLDivElement>(null);
 
-  useScrollToTop(firstToKnowStepsRef, [activeSlide], "instant");
+  useScrollToTop(BTFTKStepsRef, [activeSlide], "instant");
+
+
+  useEffect(() => {
+
+  }, []);
 
   useEffect(() => {
     if (activeSlide < 1) {
@@ -78,34 +85,32 @@ export default function FirstToKnowForm() {
   const sideImageCriteria = firstSlide || lastSlide || activeSlide === 2;
 
   return (
-    <ClientOnly>
-      <div ref={firstToKnowStepsRef}>
-        {/* Main area */}
-        <section
-          className={cn(
-            "mx-auto mb-10 mt-5 grid w-full max-w-screen-sm grid-cols-1 gap-10 lg:mt-10 lg:max-w-screen-3xl lg:grid-cols-5 lg:gap-28",
-            {
-              "block max-w-full px-0 lg:max-hd:max-w-screen-lg hd:max-w-screen-xl":
-                sideImageCriteria,
-            },
-          )}
+    <div ref={BTFTKStepsRef}>
+      {/* Main area */}
+      <section
+        className={cn(
+          "mx-auto mb-10 mt-5 grid w-full max-w-screen-sm grid-cols-1 gap-10 lg:mt-10 lg:max-w-screen-3xl lg:grid-cols-5 lg:gap-28",
+          {
+            "block max-w-full px-0 lg:max-hd:max-w-screen-lg hd:max-w-screen-xl":
+              sideImageCriteria,
+          },
+        )}
+      >
+        {/* Side image or side bar */}
+        <div
+          className={cn("top-10 w-full lg:sticky lg:col-span-2 lg:h-32", {
+            hidden: sideImageCriteria,
+          })}
         >
-          {/* Side image or side bar */}
-          <div
-            className={cn("top-10 w-full lg:sticky lg:col-span-2 lg:h-32", {
-              hidden: sideImageCriteria,
-            })}
-          >
-            <StepsModalSideImg
-              image={images.CoupleSittingOnFloor}
-              sideImageClassName="object-center lg:object-center"
-            />
-          </div>
-          <div className="lg:col-span-3">
-            <div>{views[activeSlide]}</div>
-          </div>
-        </section>
-      </div>
-    </ClientOnly>
+          <StepsModalSideImg
+            image={images.CoupleSittingOnFloor}
+            sideImageClassName="object-center lg:object-center"
+          />
+        </div>
+        <div className="lg:col-span-3">
+          <div>{views[activeSlide]}</div>
+        </div>
+      </section>
+    </div>
   );
 }

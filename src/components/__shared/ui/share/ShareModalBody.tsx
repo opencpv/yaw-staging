@@ -14,7 +14,7 @@ import ShareButtonComponent from "./ShareButtonComponent";
 
 const ShareModalBody = (props: ShareDataProps) => {
   return (
-    <div className="grid grid-cols-1 gap-5 pb-10 xs:grid-cols-2">
+    <div className="grid grid-cols-1 gap-5 pb-3 xs:grid-cols-2">
       <ShareButtonComponent
         ShareButton={FacebookShareButton}
         socialName="Facebook"

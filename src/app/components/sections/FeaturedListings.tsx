@@ -28,6 +28,8 @@ const FeaturedListings = (props: Props) => {
     mutate,
   } = useFetchFeaturedListings({ limit: 9 });
 
+  console.log(listings, error)
+
   return (
     <section className="wrapper section sm:pb-0">
       <div className="space-y-10">

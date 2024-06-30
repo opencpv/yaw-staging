@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
 import Select from "../../../../components/shared/ui/Select";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
@@ -14,10 +14,23 @@ import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWro
 import EmptyState from "@/components/__shared/ui/states/EmptyState";
 import { getListingProps } from "@/lib/enum";
 import slugify from "@/lib/utils/slugify";
+import { create } from "zustand";
+
+const filterStore = create<{ page: string; setPage: (page: string) => void }>(
+  (set) => ({
+    page: "all",
+    setPage: (page) => set({ page }),
+  }),
+);
 
 const MySearch = ({ filter }: { filter: string }) => {
   const { user } = useAppStore();
   const router = useRouter();
+  const { page, setPage } = filterStore();
+
+  useEffect(() => {
+    setPage(filter);
+  }, [filter, setPage]);
 
   const {
     data: listings,
@@ -33,15 +46,11 @@ const MySearch = ({ filter }: { filter: string }) => {
       <h2>My Search</h2>
       {/* xl and above */}
       <OptionFilterTabs
-        options={[
-          "Favourites",
-          "Be the first to know",
-          "Recommendations",
-          "All",
-        ]}
-        selectedKey={filter.replaceAll("-", " ")}
+        options={["Favourites", "Recommendations", "All"]}
+        selectedKey={page.replaceAll("-", " ")}
         onSelectionChange={(key) => {
           const slug = slugify(key.toString());
+          setPage(key.toString());
           router.replace(`/dashboard/renter/my-search/${slug}`, {
             scroll: false,
           });
@@ -54,19 +63,15 @@ const MySearch = ({ filter }: { filter: string }) => {
       {/* xl and below */}
       <div className="md:hidden">
         <Select
-          options={[
-            "Favourites",
-            "Be the first to know",
-            "Recommendations",
-            "All",
-          ]}
-          value={filter.replaceAll("-", " ")}
+          options={["Favourites", "Recommendations", "All"]}
+          value={page.replaceAll("-", " ")}
           className="mx-0 w-60 font-bold"
           valueClassName="font-bold"
           variant="default"
           color="primary"
           handleSelectionChange={(e) => {
             const slug = slugify(e.target.value);
+            setPage(e.target.value);
             router.replace(`/dashboard/renter/my-search/${slug}`, {
               scroll: false,
             });

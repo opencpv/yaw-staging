@@ -105,7 +105,7 @@ const StoryPage = async ({ params, searchParams }: Props) => {
           <Image
             src={
               (urlForImage(post.author.profile_image)?.url() as string) ||
-              images.NoProfileOthers
+              images.NoProfilePH
             }
             alt={post.author.name}
             fill

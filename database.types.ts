@@ -773,6 +773,7 @@ export type Database = {
           created_at: string
           deletion_date: string | null
           description: string
+          email: string | null
           id: number
           images: string[] | null
           inactive_date: string | null
@@ -780,6 +781,7 @@ export type Database = {
           is_deleted: boolean
           phone: string | null
           price: number
+          primary_image: string | null
           seller: string
           status: string
           suspension_date: string | null
@@ -794,6 +796,7 @@ export type Database = {
           created_at?: string
           deletion_date?: string | null
           description: string
+          email?: string | null
           id?: number
           images?: string[] | null
           inactive_date?: string | null
@@ -801,6 +804,7 @@ export type Database = {
           is_deleted?: boolean
           phone?: string | null
           price: number
+          primary_image?: string | null
           seller: string
           status?: string
           suspension_date?: string | null
@@ -815,6 +819,7 @@ export type Database = {
           created_at?: string
           deletion_date?: string | null
           description?: string
+          email?: string | null
           id?: number
           images?: string[] | null
           inactive_date?: string | null
@@ -822,6 +827,7 @@ export type Database = {
           is_deleted?: boolean
           phone?: string | null
           price?: number
+          primary_image?: string | null
           seller?: string
           status?: string
           suspension_date?: string | null
@@ -1383,45 +1389,63 @@ export type Database = {
       }
       search_critieria: {
         Row: {
-          bathrooms: number | null
-          car_spaces: number | null
           created_at: string
+          email: string | null
+          features: string[] | null
           id: number
+          is_active: boolean
+          keywords: string | null
           location: string | null
+          max_bathrooms: number | null
           max_beds: number | null
           max_price: number | null
-          "min beds": number | null
+          min_bathrooms: number | null
+          min_beds: number | null
           min_price: number | null
-          property_type: string | null
-          renter_id: number | null
+          phone: string | null
+          preferred_contact_method: string | null
+          property_type: string[] | null
+          renter_id: string
           title: string | null
         }
         Insert: {
-          bathrooms?: number | null
-          car_spaces?: number | null
           created_at?: string
+          email?: string | null
+          features?: string[] | null
           id?: number
+          is_active?: boolean
+          keywords?: string | null
           location?: string | null
+          max_bathrooms?: number | null
           max_beds?: number | null
           max_price?: number | null
-          "min beds"?: number | null
+          min_bathrooms?: number | null
+          min_beds?: number | null
           min_price?: number | null
-          property_type?: string | null
-          renter_id?: number | null
+          phone?: string | null
+          preferred_contact_method?: string | null
+          property_type?: string[] | null
+          renter_id: string
           title?: string | null
         }
         Update: {
-          bathrooms?: number | null
-          car_spaces?: number | null
           created_at?: string
+          email?: string | null
+          features?: string[] | null
           id?: number
+          is_active?: boolean
+          keywords?: string | null
           location?: string | null
+          max_bathrooms?: number | null
           max_beds?: number | null
           max_price?: number | null
-          "min beds"?: number | null
+          min_bathrooms?: number | null
+          min_beds?: number | null
           min_price?: number | null
-          property_type?: string | null
-          renter_id?: number | null
+          phone?: string | null
+          preferred_contact_method?: string | null
+          property_type?: string[] | null
+          renter_id?: string
           title?: string | null
         }
         Relationships: [
@@ -1429,7 +1453,14 @@ export type Database = {
             foreignKeyName: "search_critieria_renter_id_fkey"
             columns: ["renter_id"]
             isOneToOne: false
-            referencedRelation: "renter_profile"
+            referencedRelation: "distinct_messages_view"
+            referencedColumns: ["sender_id"]
+          },
+          {
+            foreignKeyName: "search_critieria_renter_id_fkey"
+            columns: ["renter_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
         ]
@@ -1930,6 +1961,66 @@ export type Database = {
           length: number
         }
         Returns: string
+      }
+      get_random_featured_properties: {
+        Args: {
+          limit_value?: number
+        }
+        Returns: {
+          id: number
+          created_at: string
+          is_verified: boolean
+          status: string
+          is_paid_for: boolean
+          is_available: boolean
+          is_published: boolean
+          owner_uid: string
+          is_best_value: boolean
+          is_realtors_choice: boolean
+          is_featured: boolean
+          property_type: string
+          property_name: string
+          property_size: string
+          description: string
+          bedrooms: number
+          bathrooms: number
+          renter_knowledge: string
+          address: string
+          digital_address: string
+          available_date: string
+          city: string
+          lease_type: string
+          lease_start_date: string
+          lease_end_date: string
+          lease_length: number
+          lease_details: string
+          features_and_amenities: string[]
+          total_amount: number
+          agent_fee: number
+          monthly_amount: number
+          utilities: string[]
+          advance_period: number
+          require_refundable_security_deposit: boolean
+          refundable_security_deposit: number
+          require_agent_fee: boolean
+          require_application_form: boolean
+          require_viewing_fee: boolean
+          viewing_fee: number
+          require_additional_fees: boolean
+          require_advance_payment: boolean
+          additional_fees: Json[]
+          furnish_level: string
+          neighbourhood: string
+          is_complete: boolean
+          suited_for: string[]
+          price_drop: boolean
+          subtitle: string
+          query_string: string
+          favorite_user_ids: string[]
+          vr_tour_url: string
+          template_type: Database["public"]["Enums"]["template"]
+          is_lister_certified: boolean
+        }[]
       }
       increment_property_views: {
         Args: {

@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-type FirstToKnowStepsStore = {
+type BTFTKStepsStore = {
   activeSlide: number;
   firstSlide: boolean;
   lastSlide: boolean;
@@ -19,7 +19,7 @@ type FirstToKnowStepsStore = {
   setSelectedSummaryPage: (page: string) => void;
 };
 
-export const firstToKnowStepsStore = create<FirstToKnowStepsStore>((set) => ({
+export const BTFTKStepsStore = create<BTFTKStepsStore>((set) => ({
   activeSlide: 0,
   firstSlide: true,
   lastSlide: false,

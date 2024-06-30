@@ -3,6 +3,8 @@ import React from "react";
 import { cn } from "@nextui-org/react";
 import { BsInfoCircle } from "react-icons/bs";
 import Tooltip from "@/components/__shared/ui/Tooltip";
+import { MdHourglassTop } from "react-icons/md";
+import { HiOutlineBadgeCheck } from "react-icons/hi";
 
 type Props = {
   variant:
@@ -33,7 +35,13 @@ const Status = ({ variant, tooltipContent, text }: Props) => {
             },
           )}
         >
-          <BsInfoCircle className={cn({ hidden: !tooltipContent })} />
+          {variant === "success" ? (
+            <HiOutlineBadgeCheck />
+          ) : variant === "warning" ? (
+            <MdHourglassTop />
+          ) : (
+            <BsInfoCircle />
+          )}
           <small className="text-xs">{text}</small>
         </div>
       </Tooltip>

@@ -3,9 +3,6 @@ import Modal from "@/components/__shared/ui/modals/Modal";
 import React from "react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { useRouter } from "next/navigation";
-import supabase from "@/lib/utils/supabase/supabaseClient";
-
-type TableNames = keyof Database["public"]["Tables"];
 
 type ModalProps = {
   isOpen: boolean;
@@ -14,11 +11,13 @@ type ModalProps = {
   label?: string;
   backdropClassName?: string;
   handleDestruction: () => void;
+  loading?: boolean;
 };
 
 type ModalFooterProps = {
   onClose: () => void;
   handleDestruction: () => void;
+  loading: boolean;
 };
 
 type ModalBodyProps = {
@@ -32,13 +31,18 @@ const DestructiveModal = ({
   label,
   backdropClassName,
   handleDestruction,
+  loading,
 }: ModalProps) => {
   return (
     <Modal
       header={<ModalHeader />}
       body={<ModalBody label={label} />}
       footer={
-        <ModalFooter onClose={onClose} handleDestruction={handleDestruction} />
+        <ModalFooter
+          onClose={onClose}
+          handleDestruction={handleDestruction}
+          loading={loading || false}
+        />
       }
       isOpen={isOpen}
       onOpenChange={onOpenChange}
@@ -69,7 +73,11 @@ const ModalBody = ({ label }: ModalBodyProps) => {
   );
 };
 
-const ModalFooter = ({ onClose, handleDestruction }: ModalFooterProps) => {
+const ModalFooter = ({
+  onClose,
+  handleDestruction,
+  loading,
+}: ModalFooterProps) => {
   const router = useRouter();
 
   // const handleDestruction = async () => {
@@ -86,7 +94,7 @@ const ModalFooter = ({ onClose, handleDestruction }: ModalFooterProps) => {
         className="w-32 max-w-[8rem] rounded-lg bg-red-500 py-1 font-[500] text-white"
         onClick={handleDestruction}
       >
-        Yes
+        {loading ? "Deleting..." : "Yes"}
       </Button>
       <Button
         className="w-32 max-w-[8rem] rounded-lg bg-neutral-200 py-1 font-[500] text-neutral-500"

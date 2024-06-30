@@ -10,7 +10,7 @@ import MailIcon from "../../../public/assets/icons/mail-icon.svg";
 import ArrowIcon from "../../../public/assets/icons/arrow-icon.svg";
 import NoViewingFee from "../../../public/assets/icons/no-viewing-fee.svg";
 import Logo from "../../../public/assets/images/Logo.svg";
-import LogoNoText from "/public/assets/icons/logo-no-text.svg"
+import LogoNoText from "/public/assets/icons/logo-no-text.svg";
 import Hamburger from "../../../public/assets/icons/nav-icon.svg";
 import FaqImage from "../../../public/assets/images/faq/faq-image.png";
 import FaqArrowIcon from "../../../public/assets/icons/arrow-circle-right.svg";
@@ -47,9 +47,7 @@ import GetFeaturedImage from "/public/assets/images/dashboard/overview/p-manager
 import VerifyListing from "/public/assets/images/dashboard/overview/p-manager/verify-listings-image.jpeg";
 import SearchIcon from "/public/svgs/SearchHomeIcon.svg";
 import Clipboard from "/public/assets/images/dashboard/clipboard.png";
-import UserNoImage from "/public/assets/images/placeholder/user-no-image.jpeg";
-import NoProfileUser from "/public/assets/images/placeholder/no-profile-user.png";
-import NoProfileOthers from "/public/assets/images/placeholder/no-profile-others.png";
+import NoProfilePH from "/public/assets/images/placeholder/no-profile-placeholder.png";
 import Brochure from "/public/assets/images/contact/brochure.png";
 import SavedSearches from "/public/assets/images/dashboard/saved-searches.png";
 import FeelingRefreshed from "/public/assets/images/dashboard/feeling-refreshed.jpg";
@@ -61,7 +59,7 @@ import LadyOnCouchLaptop from "/public/assets/images/dashboard/lady-on-couch-lap
 import CoupleStirringIntoSpace from "/public/assets/images/dashboard/couple-stirring-into-space.jpg";
 import CoupleSittingOnFloor from "/public/assets/images/dashboard/couple-sitting-on-floor.jpg";
 import LadyShopping from "/public/assets/images/moving-sale/lady-shopping.jpeg";
-import CoupleHoldingBoxes from "/public/assets/images/couple-holding-boxes.png"
+import CoupleHoldingBoxes from "/public/assets/images/couple-holding-boxes.png";
 
 export const useAssets = () => {
   return {
@@ -119,9 +117,7 @@ export const useAssets = () => {
       _3DImage,
       GetFeaturedImage,
       VerifyListing,
-      UserNoImage,
-      NoProfileUser,
-      NoProfileOthers,
+      NoProfilePH,
       Brochure,
       SavedSearches,
       FeelingRefreshed,

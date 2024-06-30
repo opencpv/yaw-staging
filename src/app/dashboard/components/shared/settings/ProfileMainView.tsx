@@ -43,9 +43,9 @@ const ProfileMainView = () => {
           </div>
         </Tab>
         {/* !!! COMMENTED OUT FOR NOW */}
-        {/* <Tab key="account-setting" title="Account Setting">
-          <div>Account Setting</div>
-        </Tab> */}
+         <Tab key="account" title="Account">
+          <div>Account</div>
+        </Tab> 
       </Tabs>
     </main>
   );

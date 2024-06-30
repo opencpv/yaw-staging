@@ -5,7 +5,7 @@ import React from "react";
 export const useFetchListerLeads = ({ listerId }: { listerId: string }) => {
   const [preferredIds, setPreferredIds] = React.useState<string[]>([]);
 
-  // Get from the preference table, the users who want to contacted.
+  // Get from the preference table, the users who want to be contacted.
   const { data: preference } = useQuery(
     supabase
       .from("contact_owner_preference")

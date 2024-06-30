@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { FaChevronUp } from "react-icons/fa";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
 
-
 const ScrollTop = () => {
   const [shouldShowScrollBtn, setShouldShowScrollBtn] =
     useState<boolean>(false);
@@ -50,14 +49,14 @@ const ScrollTop = () => {
   }, []);
 
   return (
-    <div
-      className={`from-primary fixed right-1 top-[90%] z-50 grid h-10 w-10 cursor-pointer place-items-center rounded-full bg-gradient-to-t to-primary-400 shadow-lg sm:h-14 sm:w-14  ${
+    <button
+      className={`fixed right-1 top-[90%] z-50 grid h-10 w-10 place-items-center rounded-full bg-gradient-to-t from-primary to-primary-400 shadow-lg sm:h-14 sm:w-14  ${
         isScrollingUp && shouldShowScrollBtn ? "opacity-70" : "opacity-0"
       } ${isMenuOpen && "hidden"} transition-opacity sm:right-10`}
       onClick={scrollUpwards}
     >
       <FaChevronUp className="text-2xl font-[900] text-white" />
-    </div>
+    </button>
   );
 };
 

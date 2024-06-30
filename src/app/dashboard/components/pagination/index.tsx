@@ -18,8 +18,6 @@ import PaginationMenu from "./PaginationMenu";
 import { useDashboardMenuStore } from "@/store/navmenu/useDashboardMenuStore";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import Avatar from "@/components/__shared/ui/avatar/Avatar";
-import AvatarMenu from "@/components/__shared/ui/avatar/AvatarMenu";
 import { useUserSession } from "@/lib/custom-hooks/database/useUserSession";
 import Switch from "../navbar/switch";
 
@@ -153,7 +151,7 @@ const Pagination = () => {
           )}
       </Swiper>
       <Button
-        className="hidden h-full w-16 items-center justify-center rounded-xl bg-primary-200 px-4 py-3 text-white ssm:order-2 md:flex lg:h-24 lg:min-w-unit-16 lg:px-2"
+        className="hidden h-full w-16 items-center justify-center rounded-xl bg-primary px-4 py-3 text-white ssm:order-2 md:flex lg:h-24 lg:min-w-unit-16 lg:px-2"
         onClick={() => setIsOpen(true)}
       >
         <div className="flex items-center justify-center">
@@ -194,7 +192,7 @@ const PgItem = styled("button", {
   variants: {
     type: {
       active: {
-        backgroundColor: "#396261",
+        backgroundColor: "#11605E",
         color: "white",
       },
     },

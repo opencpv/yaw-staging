@@ -1,9 +1,9 @@
 import { styled } from "@stitches/react";
 import Image from "next/image";
-import { Formik, Form, Field, ErrorMessage, useField } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { AiFillInstagram, AiOutlineLink } from "react-icons/ai";
 import { FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Loader from "@/components/__shared/ui/loader/Loader";
 import { useAppStore } from "@/store/dashboard/AppStore";
@@ -16,8 +16,9 @@ import { useRouter } from "next/navigation";
 import Button from "@/components/__shared/ui/button/Button";
 import { createClient } from "@/lib/utils/supabase/auth/client";
 import { cn } from "@/lib/utils";
-import { PiUserLight } from "react-icons/pi";
 import NoProfileUpload from "./NoProfileUpload";
+import { RiWhatsappFill } from "react-icons/ri";
+import { CheckboxNoFormik as Checkbox } from "@/app/dashboard/components/shared/ui/Checkbox";
 
 interface Props {
   icon: any;
@@ -42,7 +43,7 @@ const IconField = ({
     <div className="form-div relative">
       <div className="relative flex items-center">
         <div className="absolute left-0 top-0">{icon}</div>
-        <label className="pl-8">{label}:</label>
+        <label className="pl-8">{label}</label>
       </div>
       <AiOutlineLink className="link-icon absolute" size={16} color="#737373" />
       <Field
@@ -65,6 +66,12 @@ const ProfileInfo = () => {
   const [loading, setLoading] = useState(true);
   const { onOpen } = useToastDisclosure();
   const { phone, handlePhone, handleCountryChange } = usePhoneInputDisclosure();
+  const {
+    phone: whatsApp,
+    handlePhone: handleWhatsApp,
+    handleCountryChange: handleWhatsAppCountryChange,
+  } = usePhoneInputDisclosure();
+  const [sameAsPhone, setSameAsPhone] = useState(false);
   const router = useRouter();
   const supabase = createClient();
 
@@ -140,6 +147,9 @@ const ProfileInfo = () => {
                   key={JSON.stringify(user)}
                   initialValues={initialValues}
                   onSubmit={async (values) => {
+                    const whatsApp = sameAsPhone
+                      ? values.phone
+                      : values.whatsapp;
                     setSubmitLoading(true);
                     try {
                       const { data, error } = await supabase
@@ -151,7 +161,7 @@ const ProfileInfo = () => {
                           twitter: values.twitter,
                           facebook: values.facebook,
                           linkedin: values.linkedIn,
-                          whatsapp: values.whatsapp,
+                          whatsapp: whatsApp,
                           phone: values.phone,
                           bio: values.bio,
                           full_name: `${values.firstName} ${values.lastName}`,
@@ -172,9 +182,9 @@ const ProfileInfo = () => {
                   }}
                   enableReinitialize={true}
                 >
-                  {({ handleChange, handleBlur, values }) => (
+                  {({ handleChange, handleBlur, values, isSubmitting }) => (
                     <Form className="border-t-2 pt-8">
-                      <div className="grid grid-cols-1 gap-x-5 gap-y-16 sm:grid-cols-2 xl:grid-cols-3">
+                      <div className="grid grid-cols-1 gap-x-20 gap-y-8 sm:grid-cols-2 xl:grid-cols-3">
                         {/* My Profile Summary */}
                         <div className="col-span-1">
                           <h3 className="mb-5 text-shade-300">
@@ -182,7 +192,7 @@ const ProfileInfo = () => {
                           </h3>
                           <div className="flex flex-col gap-x-5 gap-y-8">
                             <div className="form-div">
-                              <label>First Name:</label>
+                              <label>First Name</label>
                               <Field
                                 name="firstName"
                                 placeholder="Jane"
@@ -191,7 +201,7 @@ const ProfileInfo = () => {
                               <ErrorMessage name="firstName" />
                             </div>
                             <div className="form-div">
-                              <label>Last Name:</label>
+                              <label>Last Name</label>
                               <Field
                                 name="lastName"
                                 placeholder="Doe"
@@ -200,7 +210,7 @@ const ProfileInfo = () => {
                               <ErrorMessage name="lastName" />
                             </div>
                             <div className="form-div">
-                              <label>Email Address:</label>
+                              <label>Email Address</label>
                               <Field
                                 type="email"
                                 name="email"
@@ -210,8 +220,8 @@ const ProfileInfo = () => {
                               />
                               <ErrorMessage name="email" />
                             </div>
-                            {/* <div className="form-div">
-                              <label>Country:</label>
+                            <div className="form-div">
+                              <label>I Live In</label>
                               <Field
                                 as="select"
                                 id="country"
@@ -234,9 +244,9 @@ const ProfileInfo = () => {
                                 component="div"
                                 className="error"
                               />
-                            </div> */}
+                            </div>
                             <div className="form-div">
-                              <label>WhatsApp:</label>
+                              <label>Phone</label>
                               <InputPhoneNumber
                                 name="phone"
                                 value={values.phone as string}
@@ -284,47 +294,84 @@ const ProfileInfo = () => {
                             />
                             <IconField
                               icon={<AiFillInstagram size={26} color="black" />}
-                              name={"whatsapp"}
+                              name={"instagram"}
                               className={"form-input"}
                               label={"Instagram"}
                               type={"text"}
                               placeholder="https://instagram.com/username"
                             />
+                            <div className="form-div">
+                              <div className="flex items-center justify-between gap-5">
+                                <div className="relative flex items-center">
+                                  <RiWhatsappFill
+                                    className="absolute left-0 top-0"
+                                    size={24}
+                                    color="black"
+                                  />
+                                  <label className="pl-8">Whatsapp</label>
+                                </div>
+                                <Checkbox
+                                  color="accent"
+                                  label="Same as phone"
+                                  onCheckedChange={(checked) =>
+                                    setSameAsPhone(checked as boolean)
+                                  }
+                                />
+                              </div>
+                              {sameAsPhone ? (
+                                <InputPhoneNumber
+                                  name="phone"
+                                  value={values.phone as string}
+                                  onChange={(val) => {
+                                    handlePhone(val);
+                                    handleChange({
+                                      target: { name: "phone", value: val },
+                                    });
+                                  }}
+                                  onBlur={handleBlur}
+                                  onCountryChange={handleCountryChange}
+                                />
+                              ) : (
+                                <InputPhoneNumber
+                                  name="whatsapp"
+                                  value={values.whatsapp as string}
+                                  onChange={(val) => {
+                                    handleWhatsApp(val);
+                                    handleChange({
+                                      target: { name: "whatsapp", value: val },
+                                    });
+                                  }}
+                                  onBlur={handleBlur}
+                                  onCountryChange={handleWhatsAppCountryChange}
+                                />
+                              )}
+                            </div>
                           </div>
                         </div>
                         {/* Bio */}
                         <div className="col-span-full md:col-span-1">
-                          <h3 className="mb-5 text-shade-300">Bio</h3>
+                          <h3 className="invisible mb-5 text-shade-300 max-2xl:hidden">Bio</h3>
                           <div className="form-div">
-                            <label className="hidden xl:invisible xl:block">
-                              Bio
-                            </label>
+                            <label>About me</label>
                             <Field
                               as="textarea"
                               id="bio"
                               name="bio"
-                              placeholder="Share a little bit about yourself"
+                              placeholder="Share a little about yourself. Where do you live? What are your hobbies? What is important to you etc. Other users will able to read this information."
                               className="form-textarea text-[#737373]"
                               rows="10"
                               cols="50"
                             />
                           </div>
                           <>
-                            {submitLoading ? (
-                              <div className="mt-8 flex justify-center">
-                                <div className="relative py-4">
-                                  <Loader />
-                                </div>
-                              </div>
-                            ) : (
-                              <Button
-                                color="accent"
-                                type="submit"
-                                className="mt-8"
-                              >
-                                Update Profile
-                              </Button>
-                            )}
+                            <Button
+                              color="accent"
+                              type="submit"
+                              className="mt-8"
+                              isLoading={isSubmitting}
+                            >
+                              Update Profile
+                            </Button>
                           </>
                         </div>
                       </div>

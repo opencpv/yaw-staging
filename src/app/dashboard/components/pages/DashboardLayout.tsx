@@ -48,6 +48,7 @@ const Wrapper = ({ children }: LayoutProps) => {
       "/dashboard/lister/my-agent",
       "/dashboard/renter/sell-products",
       "/dashboard/lister/sell-products",
+      "/dashboard/renter/be-the-first-to-know",
     ];
 
     const shouldExcludeWrapper = wrapperExclusionList.some(

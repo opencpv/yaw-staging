@@ -39,7 +39,7 @@ function DataRowSm({ variant, data }: Props) {
           "bg-white": checked,
         })}
       >
-        <TableBodySm className="flex gap-5 rounded-lg border border-b-0 border-neutral-300 p-5 pt-8 first:pb-8">
+        <TableBodySm className="flex gap-5 rounded-lg border border-neutral-300 p-5 pt-8 first:pb-8">
           <div className="grid aspect-square w-20 place-items-center rounded-md bg-primary-50 text-primary">
             <RiFileListLine size={32} />
           </div>

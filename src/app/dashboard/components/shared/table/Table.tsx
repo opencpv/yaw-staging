@@ -215,7 +215,7 @@ export const TableBodySm = (props: TableBodyProps) => {
           aria-label="table body"
           tabIndex={0}
           className={cn(
-            "block flex-wrap pb-2 font-semibold text-neutral-700 first:border-b first:pb-4",
+            "block pb-2 font-semibold text-neutral-700 first:pb-4",
             props.className,
           )}
         >
@@ -226,7 +226,7 @@ export const TableBodySm = (props: TableBodyProps) => {
           aria-label="table body"
           tabIndex={0}
           className={cn(
-            "flex-wrap pb-2 font-semibold text-neutral-700 first:border-b first:pb-4",
+            "pb-2 font-semibold text-neutral-700 first:pb-4",
             props.className,
           )}
         >

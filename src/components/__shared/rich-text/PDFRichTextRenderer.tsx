@@ -14,7 +14,8 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   bold: {
-    fontWeight: "bold",
+    fontWeight: "black",
+    color: "#ee0000",
   },
   italics: {
     fontStyle: "italic",

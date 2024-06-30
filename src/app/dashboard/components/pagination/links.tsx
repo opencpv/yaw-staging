@@ -1,5 +1,5 @@
 import { IoMdNotificationsOutline } from "react-icons/io";
-import { IoSettingsOutline, IoFolderOutline } from "react-icons/io5";
+import { IoSettingsOutline, IoFolderOutline, IoEyeOutline } from "react-icons/io5";
 import { TbHomeDot, TbHomeSearch } from "react-icons/tb";
 import { MdOutlineRealEstateAgent, MdOutlineRecommend } from "react-icons/md";
 import { PiCirclesFour } from "react-icons/pi";
@@ -9,7 +9,6 @@ import {
 } from "react-icons/hi2";
 import { FaRegStar, FaRegHeart } from "react-icons/fa";
 import { BsEnvelope } from "react-icons/bs";
-import { VscWorkspaceUnknown } from "react-icons/vsc";
 
 export const PgRoutesRenter = [
   {
@@ -21,8 +20,8 @@ export const PgRoutesRenter = [
   {
     name: "be the first to know",
     url: "",
-    icon: <VscWorkspaceUnknown />,
-    link: "/dashboard/renter/my-search/be-the-first-to-know",
+    icon: <IoEyeOutline />,
+    link: "/dashboard/renter/be-the-first-to-know",
   },
   {
     name: "my agent",

@@ -20,7 +20,7 @@ const PaginationMenu = () => {
   useEffect(() => {
     animate(
       ".pagination-menu-item",
-      isOpen ? { scale: [0, 1] } : { scale: 0 },
+      isOpen ? { opacity: [0, 1] } : { opacity: 0 },
       {
         delay: stagger(0.1),
       },

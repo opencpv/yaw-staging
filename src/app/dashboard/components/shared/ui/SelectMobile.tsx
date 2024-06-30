@@ -14,7 +14,7 @@ type Props = {
   name: string;
   value: string;
   options: string[];
-  classNames?: { content?: string };
+  classNames?: { content?: string; trigger?: string };
   onOpenChange?: (open: boolean) => void;
   onValueChange?: (value: string) => void;
   placeholder?: string;
@@ -35,7 +35,10 @@ const SelectMobile = ({
     value={value}
   >
     <Select.Trigger
-      className="inline-flex h-[35px] items-center justify-center gap-[5px] rounded-full bg-gray-200 px-[15px] text-[13px] leading-none text-neutral-800 outline-none hover:bg-gray-300 focus:shadow-[0_0_0_2px] focus:shadow-accent data-[placeholder]:text-neutral-800"
+      className={cn(
+        "inline-flex h-[35px] items-center justify-center gap-[5px] rounded-full bg-gray-200 px-[15px] text-[13px] leading-none text-neutral-800 outline-none hover:bg-gray-300 focus:shadow-[0_0_0_2px] focus:shadow-accent data-[placeholder]:text-neutral-800",
+        classNames?.trigger,
+      )}
       aria-label={name}
     >
       <Select.Value placeholder={placeholder} />

@@ -6,6 +6,7 @@ import {
 } from "@nextui-org/react";
 import React from "react";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 type Props = {
   placement?: TooltipPlacement;
@@ -52,13 +53,31 @@ export const ActionContent = ({ children }: { children: React.ReactNode }) => {
 };
 
 type ItemProps = {
+  children: React.ReactNode;
   className?: string;
   onClick?: () => void;
   disabled?: boolean;
-  children: React.ReactNode;
+  href?: string;
 };
 
 export const ActionItem = (props: ItemProps) => {
+  if (props.href)
+  return (
+    <Link href={props.href}
+      className={cn(
+        "deep-green-hover flex w-full items-center gap-2 px-4 py-2",
+        {
+          "pointer-events-none cursor-not-allowed text-shade-200":
+            props.disabled,
+        },
+        props.className,
+      )}
+      onClick={props.onClick}
+    >
+      {props.children}
+    </Link>
+  );
+  else
   return (
     <button
       className={cn(

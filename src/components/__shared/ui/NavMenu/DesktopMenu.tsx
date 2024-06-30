@@ -27,7 +27,7 @@ export const DesktopMenu = (props: any) => {
   useEffect(() => {
     animate(
       ".main-menu-link",
-      toggle ? { opacity: [0, 1], x: [-5, 0] } : { opacity: 1, x: 0 },
+      toggle ? { opacity: [0, 1] } : { opacity: 1 },
       {
         delay: stagger(0.1, { startDelay: 0.5 }),
       },

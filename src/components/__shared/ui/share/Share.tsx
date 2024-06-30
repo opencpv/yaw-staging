@@ -26,6 +26,7 @@ const Share = ({
         header={<ShareModalHeader title={title as string} />}
         body={<ShareModalBody url={location.href || url} title={title} />}
         size="lg"
+        className="max-w-md"
       />
       <button
         className={cn(
@@ -60,7 +61,7 @@ const ShareModalHeader = ({ title }: { title: string }) => {
   return (
     <div className="space-y-3 border-b pb-2">
       <h1 className="text-2xl font-[700]">Share</h1>
-      <section className="mt-5 flex items-center gap-x-10 gap-y-5 max-xxs:flex-wrap">
+      <section className="flex items-center justify-between gap-5 pt-3">
         <h2 className="truncate text-base font-semibold" title={title}>
           {title}
         </h2>

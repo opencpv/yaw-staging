@@ -3,8 +3,6 @@ import styles from "../../index.module.css";
 import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
-import Toggle from "@/components/__shared/ui/Toggle";
-import Checkbox from "@/app/dashboard/components/shared/ui/Checkbox";
 import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
 import { MdOutlineMailOutline, MdOutlineWhatsapp } from "react-icons/md";
 import { useField } from "formik";
@@ -26,13 +24,14 @@ const SpecialKeyword = () => {
       <div className="">
         <CustomTextAreaInput
           placeholder="e.g. Tema, Community 1, 2 bedroom, private bathroom"
-          name="specialKeyword"
+          name="specialKeywords"
           classes="h-40"
         />
       </div>
       <div className="max-w-sm space-y-4">
         <label className="text-shade-300">
-          How would you like to be notified?
+          How would you like to be notified?{" "}
+          <span className="text-sm text-shade-300">*</span>
         </label>
         <div className="w-fit rounded-full bg-primary-600/5 p-2">
           <OptionFilterTabs
@@ -66,7 +65,7 @@ const SpecialKeyword = () => {
         {/* whatsapp */}
         <div className={field.value === "whatsapp" ? "block" : "hidden"}>
           <InputPhoneNumber
-            name="phone"
+            name="whatsApp"
             value={phone}
             onChange={handlePhone}
             onCountryChange={handleCountryChange}

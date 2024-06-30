@@ -69,7 +69,7 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
           <div className="p-1">
             {/* <Tooltip content="Please upload your profile image"> */}
             <Avatar
-              image={images.NoProfileUser}
+              image={images.NoProfilePH}
               name={user?.full_name || ""}
               email={user?.email}
               className={cn("object-contain", className)}
@@ -95,9 +95,7 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
           >
             <Avatar
               display={user ? true : false}
-              image={
-                user?.profile_img ? user.profile_img : images.NoProfileUser
-              }
+              image={user?.profile_img ? user.profile_img : images.NoProfilePH}
               name={user?.full_name as string}
               email={user?.email}
               title={
@@ -136,7 +134,7 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
               className="flex items-center gap-2 pb-4 pt-2.5"
             >
               <FaRegUser size={20} />
-              <p>My Account</p>
+              <p>My Settings</p>
             </Link>
           </li>
           <hr className="mx-5" />
@@ -145,13 +143,13 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
             className="deep-green-hover cursor-pointer space-y-5 py-4 pb-5 pl-8 pr-4 pt-5"
             onClick={handleSignOut}
           >
-            <div className="flex items-center gap-2 pt-5">
+            <button className="flex items-center gap-2 pt-5 focus:w-full">
               <TbLogout
                 size={20}
                 className={loading ? "animate-drip-expand" : ""}
               />
               <p>{loading ? "Logging Out..." : "Log Out"}</p>
-            </div>
+            </button>
           </li>
         </ul>
       </PopoverContent>

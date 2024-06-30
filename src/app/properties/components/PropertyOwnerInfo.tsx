@@ -29,7 +29,7 @@ const PropertyOwnerInfo = (props: Props) => {
         <div className="flex items-center gap-10 font-[600]">
           <div className="relative h-24 w-24 rounded-full">
             <Image
-              src={props.picture || images.NoProfileOthers}
+              src={props.picture || images.NoProfilePH}
               className="rounded-full transition-all hover:scale-105"
               alt={props.name}
               fill

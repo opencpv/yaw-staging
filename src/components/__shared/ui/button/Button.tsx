@@ -62,7 +62,7 @@ const Button: React.FC<Props> = ({
         type={type}
         tabIndex={tabIndex}
         className={cn(
-          `no-print min-h-fit max-w-sm space-x-2 whitespace-normal rounded-md bg-transparent px-10 py-3 text-base font-[600] ${
+          `no-print min-h-fit max-w-sm gap-2 space-x-2 whitespace-normal rounded-md bg-transparent px-10 py-3 text-base font-[600] ${
             borderColor && `border border-[${borderColor}]`
           }`,
           {
@@ -117,7 +117,7 @@ const Button: React.FC<Props> = ({
         type={type}
         tabIndex={tabIndex}
         className={cn(
-          `no-print min-h-fit max-w-sm space-x-2 whitespace-normal rounded-md bg-transparent p-3 px-10 text-base font-[600] ${
+          `no-print min-h-fit max-w-sm gap-2 space-x-2 whitespace-normal rounded-md bg-transparent p-3 px-10 text-base font-[600] ${
             borderColor && `border border-[${borderColor}]`
           }`,
           {

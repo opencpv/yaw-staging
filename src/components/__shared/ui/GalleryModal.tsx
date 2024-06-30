@@ -60,7 +60,7 @@ const GalleryModal = ({
         onOpenChange={onOpenChange}
         hideCloseButton={true}
         size="full"
-        backgroundColor="bg-[#111]"
+        backgroundColor="bg-[#010E19]"
       />
     </Context.Provider>
   );
@@ -92,7 +92,7 @@ const ModalHeader = () => {
           />
         </Share>
         <button
-          className="hover:text-shade-300"
+          className="hover:text-shade-300 circle-hover"
           onClick={() => {
             onClose?.();
           }}
