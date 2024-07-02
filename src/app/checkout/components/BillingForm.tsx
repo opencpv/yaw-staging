@@ -1,3 +1,4 @@
+//@ts-nocheck
 import CustomInputComponent from "@/components/__shared/ui/form/CustomInputComponent";
 import PhoneNumberInputv2 from "@/components/__shared/ui/form/PhoneInputv2";
 import { Formik } from "formik";

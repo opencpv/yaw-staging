@@ -21,9 +21,9 @@ const data = [
   { name: "wifi", icon: <IoIosWifi size="44" /> },
   { name: "self meter", icon: <MdOutlineGasMeter size="44" /> },
   { name: "walled & gated", icon: <GiGate size="44" /> },
-  { name: "parking", icon: <ParkingSpace  /> },
+  { name: "parking", icon: <ParkingSpace /> },
   { name: "landlord on site", icon: <BsPerson size="44" /> },
-  { name: "tiled space", icon: <Tiles  /> },
+  { name: "tiled space", icon: <Tiles /> },
   { name: "sliding windows", icon: <TbDoorExit size="44" /> },
   { name: "pets allowed", icon: <PiPawPrintLight size="44" /> },
   { name: "near road", icon: <GiRoad size="44" /> },
@@ -33,16 +33,18 @@ const data = [
   { name: "pool table", icon: <GiPoolTableCorner size="44" /> },
   { name: "hot tub", icon: <MdHotTub size="44" /> },
   { name: "kitchen", icon: <TbToolsKitchen2 size="44" /> },
-  { name: "smoke alarm", icon: <SmokeAlarm  /> },
-  { name: "air conditioning", icon: <AirConditioner  /> },
+  { name: "smoke alarm", icon: <SmokeAlarm /> },
+  { name: "air conditioning", icon: <AirConditioner /> },
 ];
 
 export default function FeaturesAndAmenities() {
   const [selected, setSelected] = useState<any>([]);
-  const [listingFormData, setlistingFormData] = useLocalStorage("listing-form", {
-    featuresAndAmenties: [],
-  });
-
+  const [listingFormData, setlistingFormData] = useLocalStorage(
+    "listing-form",
+    {
+      featuresAndAmenties: [],
+    },
+  );
 
   const handleAmenityClick = (r: any) => {
     if (selected.includes(r?.name)) {
@@ -62,31 +64,34 @@ export default function FeaturesAndAmenities() {
   useEffect(() => {
     if (listingFormData?.featuresAndAmenties) {
       setSelected(listingFormData?.featuresAndAmenties);
-    }  }, []);
+    }
+  }, []);
 
   return (
     <>
-      <Root className="flex flex-col w-full items-center justify-center ">
-        <div className="w-full lg:w-[75%] flex flex-col items-center justify-center gap-6">
-          <div className="w-full flex flex-col gap-2">
-            <p className="text-[1.25rem] lg:text-[1.9375rem] font-semibold">
+      <Root className="flex w-full flex-col items-center justify-center ">
+        <div className="flex w-full flex-col items-center justify-center gap-6 lg:w-[75%]">
+          <div className="flex w-full flex-col gap-2">
+            <p className="text-[1.25rem] font-semibold lg:text-[1.9375rem]">
               Features & Amenities
             </p>
             <p className="text-[1rem] font-[400]">
               You can add more amenities after you publish your listing
             </p>
           </div>
-          <div className="grid grid-cols-4 gap-2 w-full">
+          <div className="grid w-full grid-cols-4 gap-2">
             {data.map((r: any, index: number) => (
               <div
                 key={index}
                 className="col-span-2 lg:col-span-1"
-                onClick={() => handleAmenityClick(r)}>
+                onClick={() => handleAmenityClick(r)}
+              >
                 <Amenity
                   n={index}
                   name={r?.name}
                   icon={r?.icon}
                   selected={selected?.includes(r?.name)}
+                  onClick={() => ""}
                 />
               </div>
             ))}

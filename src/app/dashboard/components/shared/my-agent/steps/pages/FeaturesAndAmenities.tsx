@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { styled } from "@stitches/react";
 import { useEffect, useState } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";

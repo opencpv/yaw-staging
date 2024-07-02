@@ -1,3 +1,4 @@
+//@ts-check
 import { styled } from "@stitches/react";
 import { FaWifi } from "react-icons/fa";
 import SlideEnter from "./SlideEnter";
@@ -25,7 +26,7 @@ export default function Utilities() {
     "listing-form",
     {
       utilities: [],
-    }
+    },
   );
 
   const handleAmenityClick = (r: any) => {
@@ -50,17 +51,17 @@ export default function Utilities() {
   }, []);
   return (
     <>
-      <Root className="flex flex-col w-full items-center justify-center ">
-        <div className="w-full lg:w-[75%] flex flex-col items-center justify-center gap-6">
-          <div className="w-full flex flex-col gap-2">
-            <p className="text-[1.25rem] lg:text-[1.93755rem] font-semibold">
+      <Root className="flex w-full flex-col items-center justify-center ">
+        <div className="flex w-full flex-col items-center justify-center gap-6 lg:w-[75%]">
+          <div className="flex w-full flex-col gap-2">
+            <p className="text-[1.25rem] font-semibold lg:text-[1.93755rem]">
               Utilities
             </p>
             <p className="text-[1rem] font-[400]">
               You can add more utilities after you publish your listing
             </p>
           </div>
-          <div className="grid grid-cols-4 w-full gap-2  lg:gap-y-0">
+          <div className="grid w-full grid-cols-4 gap-2  lg:gap-y-0">
             {data.map((r: any, index: number) => (
               <div
                 key={index}
@@ -72,6 +73,7 @@ export default function Utilities() {
                   name={r?.name}
                   icon={r?.icon}
                   selected={selected?.includes(r?.name)}
+                  onClick={() => ""}
                 />
               </div>
             ))}

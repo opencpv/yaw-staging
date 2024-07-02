@@ -71,6 +71,7 @@ export default function PreferredType({ infoText }: Props) {
                   name={r?.name}
                   icon={r?.icon}
                   selected={selected?.includes(r?.name)}
+                  onClick={() => ""}
                 />
               </div>
             ))}

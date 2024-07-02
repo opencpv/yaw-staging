@@ -1,3 +1,4 @@
+//@ts-check
 import { FaWifi } from "react-icons/fa";
 import { styled } from "@stitches/react";
 import SlideEnter from "./SlideEnter";
@@ -71,6 +72,7 @@ export default function SuitedFor() {
                   name={r?.name}
                   icon={r?.icon}
                   selected={selected?.includes(r?.name)}
+                  onClick={() => ""}
                 />
               </div>
             ))}
