@@ -5,15 +5,14 @@ import Button from "@/components/__shared/ui/button/Button";
 import { useFormikContext } from "formik";
 import { useDisclosure } from "@nextui-org/react";
 import Modal from "@/components/__shared/ui/modals/Modal";
+import { useRouter } from "next/navigation";
 
-type Props = {
-  onClose: () => void;
-};
-
-const BTFTKFooter = ({ onClose }: Props) => {
+const BTFTKFooter = () => {
+  const router = useRouter();
   const { submitForm, resetForm, validateForm, errors, isSubmitting } =
     useFormikContext();
-  const { activeSlide, setActiveSlide, firstSlide } = BTFTKStepsStore();
+  const { activeSlide, setActiveSlide, firstSlide, onClose, setCriterion, onCloseEditPage } =
+    BTFTKStepsStore();
   const lastButOneSlide = activeSlide === BTFTKViews.length - 2;
   const { onOpenChange, isOpen, onOpen } = useDisclosure();
 
@@ -31,6 +30,9 @@ const BTFTKFooter = ({ onClose }: Props) => {
     } else {
       resetForm({});
       onClose();
+      onCloseEditPage();
+      setCriterion(null);
+      router.push("/dashboard/renter/be-the-first-to-know/manage-criteria");
     }
   };
 

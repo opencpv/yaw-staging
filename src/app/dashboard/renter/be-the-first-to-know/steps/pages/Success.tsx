@@ -10,11 +10,11 @@ import { useEffect, useRef } from "react";
 import GreenCheckLottie from "@/components/__shared/lotties/GreenCheckLottie";
 import CloseModalIcon from "@/components/__shared/ui/icons/CloseModalIcon";
 import { useRouter } from "next/navigation";
-import { useLocalStorage } from "@uidotdev/usehooks";
 
 const Success = () => {
   const { images } = useAssets();
-  const { onClose, setActiveSlide, lastSlide } = BTFTKStepsStore();
+  const { onClose, onCloseEditPage, setCriterion, setActiveSlide, lastSlide } =
+    BTFTKStepsStore();
   const { resetForm } = useFormikContext();
   const router = useRouter();
   const successPageRef = useRef<HTMLDivElement>(null);
@@ -24,8 +24,9 @@ const Success = () => {
       resetForm({});
       setActiveSlide(0);
       onClose();
+      onCloseEditPage();
+      setCriterion(null);
       localStorage.removeItem("BTFTKSteps");
-      router.push("/dashboard/renter/be-the-first-to-know");
     }, 300);
   };
 
@@ -49,12 +50,15 @@ const Success = () => {
     >
       <CloseModalIcon
         className="relative ml-auto flex justify-end 2xl:left-60"
-        onClick={handleClose}
+        onClick={() => {
+          handleClose();
+          router.push("/dashboard/renter/be-the-first-to-know");
+        }}
       />
       <GreenCheckLottie />
       <div className="space-y-1 text-center">
-        <h3>Search criteria created successfully</h3>
-        <p className="max-w-md text-shade-200">
+        <h3>Search criteria created successfully.</h3>
+        <p className="max-w-md text-base text-shade-200">
           You will be notified if a listing that matches your dream place gets
           posted to the site
         </p>
@@ -64,14 +68,20 @@ const Success = () => {
         className={cn(
           "h-[58px] rounded-lg bg-[#0B7371] font-semibold focus:outline-none xs:text-base sm:min-w-[22rem]",
         )}
-        onClick={handleClose}
+        onClick={() => {
+          handleClose();
+          router.push("/dashboard/renter/overview");
+        }}
       >
         Go to my Dashboard
       </Button>
       <Link
         href="/dashboard/renter/be-the-first-to-know/manage-criteria"
         className="text-[#0B7371]"
-        onClick={handleClose}
+        onClick={() => {
+          handleClose();
+          router.push("/dashboard/renter/be-the-first-to-know/manage-criteria");
+        }}
       >
         I want to create another search criteria
       </Link>
@@ -79,16 +89,16 @@ const Success = () => {
         href="/dashboard/renter/my-agent/agent-explore"
         onClick={handleClose}
       >
-        <div className="flex flex-col items-center gap-10 rounded-xl bg-[#ECEEEC] p-6 pb-0 ssm:flex-row ssm:items-start ssm:pr-0">
-          <div className="flex flex-col gap-5 pb-10 pt-8 max-ssm:items-center ssm:pt-14">
+        <div className="flex flex-col gap-10 rounded-xl bg-gradient-to-r from-[#0B7371] to-[#A5CACD] p-6 pb-0 text-white max-ssm:items-center ssm:flex-row ssm:items-start ssm:pr-0">
+          <div className="flex flex-col gap-5 pb-10 pt-8  max-ssm:items-center">
             <h3 className="max-ssm:text-center">
               Not finding what you&apos;re looking for?
             </h3>
-            <p className="max-w-xs text-shade-300 max-ssm:text-center">
+            <p className="max-w-xs text-base max-ssm:text-center">
               Let the professionals at RentRight help you find an ideal home
             </p>
             <Button
-              variant="outline"
+              color="white"
               className="w-fit border border-[#0B7371] text-[#0B7371]"
             >
               Explore Now

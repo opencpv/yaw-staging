@@ -6,10 +6,7 @@ import NoCriteriaEmptyState from "./components/NoCriteriaEmptyState";
 import NoMatchEmptyState from "./components/NoMatchEmptyState";
 import BTFTKModal from "./steps/BTFTKModal";
 import ContactPreferenceToggle from "@/app/(archived)/_favourites/components/ContactPreferenceToggle";
-import {
-  useFetchCriteriaMatches,
-  useFetchUserSearchCriteria,
-} from "./services";
+import { useFetchCriteriaMatches, useFetchSearchCriteria } from "./services";
 import { getListingProps } from "@/lib/enum";
 import { Skeleton } from "@nextui-org/react";
 import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
@@ -17,7 +14,7 @@ import ManageButton from "./components/ManageButton";
 
 const BeTheFirstToKnow = () => {
   const { user } = useAppStore();
-  const { data: searchCriteria } = useFetchUserSearchCriteria({
+  const { data: searchCriteria } = useFetchSearchCriteria({
     userId: user?.id as string,
   });
 

@@ -62,6 +62,59 @@ export type Database = {
           },
         ]
       }
+      blocked_users: {
+        Row: {
+          block_reason: string | null
+          blocked_id: string
+          blocker_id: string
+          created_at: string
+          id: number
+        }
+        Insert: {
+          block_reason?: string | null
+          blocked_id?: string
+          blocker_id?: string
+          created_at?: string
+          id?: number
+        }
+        Update: {
+          block_reason?: string | null
+          blocked_id?: string
+          blocker_id?: string
+          created_at?: string
+          id?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "blocked_users_blocked_id_fkey"
+            columns: ["blocked_id"]
+            isOneToOne: false
+            referencedRelation: "distinct_messages_view"
+            referencedColumns: ["sender_id"]
+          },
+          {
+            foreignKeyName: "blocked_users_blocked_id_fkey"
+            columns: ["blocked_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "blocked_users_blocker_id_fkey"
+            columns: ["blocker_id"]
+            isOneToOne: false
+            referencedRelation: "distinct_messages_view"
+            referencedColumns: ["sender_id"]
+          },
+          {
+            foreignKeyName: "blocked_users_blocker_id_fkey"
+            columns: ["blocker_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       contact_owner_preference: {
         Row: {
           created_at: string
@@ -1396,6 +1449,7 @@ export type Database = {
           is_active: boolean
           keywords: string | null
           location: string | null
+          matched_properties: number[] | null
           max_bathrooms: number | null
           max_beds: number | null
           max_price: number | null
@@ -1416,6 +1470,7 @@ export type Database = {
           is_active?: boolean
           keywords?: string | null
           location?: string | null
+          matched_properties?: number[] | null
           max_bathrooms?: number | null
           max_beds?: number | null
           max_price?: number | null
@@ -1436,6 +1491,7 @@ export type Database = {
           is_active?: boolean
           keywords?: string | null
           location?: string | null
+          matched_properties?: number[] | null
           max_bathrooms?: number | null
           max_beds?: number | null
           max_price?: number | null
@@ -2020,6 +2076,33 @@ export type Database = {
           vr_tour_url: string
           template_type: Database["public"]["Enums"]["template"]
           is_lister_certified: boolean
+        }[]
+      }
+      get_search_criteria: {
+        Args: {
+          user_id?: string
+          status?: string
+        }
+        Returns: {
+          id: number
+          title: string
+          property_type: string[]
+          location: string
+          min_price: number
+          max_price: number
+          min_beds: number
+          max_beds: number
+          min_bathrooms: number
+          created_at: string
+          is_active: boolean
+          renter_id: string
+          max_bathrooms: number
+          email: string
+          phone: string
+          preferred_contact_method: string
+          keywords: string
+          features: string[]
+          matched_properties: number[]
         }[]
       }
       increment_property_views: {

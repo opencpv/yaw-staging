@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import {
   Table,
   TableBody,
@@ -14,7 +14,7 @@ import {
 import SelectMobile from "@/app/dashboard/components/shared/ui/SelectMobile";
 import BTFTKModal from "../../steps/BTFTKModal";
 import Actions from "../Actions";
-import { useFetchUserSearchCriteria } from "../../services";
+import { useFetchSearchCriteria } from "../../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import TableSkeleton from "@/app/dashboard/components/shared/skeleton/TableSkeleton";
 import CriteriaStatus from "../Status";
@@ -23,14 +23,14 @@ import ResultsState from "../ResultState";
 import NoCriteriaEmptyState from "../NoCriteriaEmptyState";
 import Pagination, { usePagination } from "@/components/__shared/ui/Pagination";
 import { cn } from "@/lib/utils";
+import TableSkeletonSm from "@/app/dashboard/components/shared/skeleton/TableSkeletonSm";
 
-type Props = {};
-
-const SearchTarget = (props: Props) => {
+const ManageSearchCriteria = () => {
   const { user } = useAppStore();
-  const { data: searchCriteria, isLoading } = useFetchUserSearchCriteria({
+  const [status, setStatus] = useState<string | undefined>(undefined);
+  const { data: searchCriteria, isLoading } = useFetchSearchCriteria({
     userId: user?.id as string,
-    onlyActive: false,
+    status,
   });
 
   const {
@@ -41,7 +41,7 @@ const SearchTarget = (props: Props) => {
     items: searchCriteria as SearchCriteria[],
   });
 
-  return searchCriteria?.length === 0 ? (
+  return searchCriteria?.length === 0 && status === undefined ? (
     <NoCriteriaEmptyState />
   ) : (
     <section className="space-y-8">
@@ -50,10 +50,10 @@ const SearchTarget = (props: Props) => {
         <h3 className="text-shade-300">Your Targeted Search</h3>
         <SelectMobile
           name="Status"
-          options={["Active", "Archived", "Inactive", "Suspended"]}
+          options={["Match", "No Match", "Pending", "Not Started", "All"]}
           placeholder="Status"
-          value={"Active"}
-          onValueChange={(value) => ""}
+          value={status as string}
+          onValueChange={setStatus}
           classNames={{ trigger: "self-end" }}
         />
       </div>
@@ -106,7 +106,7 @@ const SearchTarget = (props: Props) => {
       </Table>
       {/* Mobile table */}
       <TableSm>
-        {isLoading && <TableSkeleton rows={3} columns={6} />}
+        {isLoading && <TableSkeletonSm rows={3}/>}
         {paginatedCriteria?.map((criterion) => (
           <TableRowSm key={criterion.id}>
             <TableBodySm className="flex items-center justify-between gap-5">
@@ -127,4 +127,4 @@ const SearchTarget = (props: Props) => {
   );
 };
 
-export default SearchTarget;
+export default ManageSearchCriteria;

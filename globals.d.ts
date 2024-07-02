@@ -27,6 +27,7 @@ declare global {
   type Invoice = Tables<"invoices">;
   type Item = Tables<"products">;
   type SearchCriteria = Tables<"search_critieria">;
+  type BlockedUser = Tables<"blocked_users">;
 
   type PaymentStructure =
     | "Yearly"

@@ -12,9 +12,9 @@ import {
 } from "@/app/dashboard/components/shared/ui/ActionPopover";
 import CriteriaStatus from "./Status";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import { useDeleteSearchCriteria, useFetchCriteriaMatches } from "../services";
+import { useDeleteSearchCriteria } from "../services";
 import slugify from "@/lib/utils/slugify";
-import BTFTKModal from "../steps/BTFTKModal";
+import { BTFTKStepsStore } from "@/store/dashboard/BTFTKStepsStore";
 
 type Props = {
   criterion: SearchCriteria;
@@ -22,13 +22,9 @@ type Props = {
 
 const Actions = ({ criterion }: Props) => {
   const { user } = useAppStore();
+  const { setCriterion } = BTFTKStepsStore();
   const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
   const [popoverIsOpen, setPopoverIsOpen] = useState(false);
-
-  const { data: matchedListings } = useFetchCriteriaMatches({
-    userId: user?.id as string,
-    criterion: criterion,
-  });
 
   const {
     mutate: deleteCriteria,
@@ -50,7 +46,7 @@ const Actions = ({ criterion }: Props) => {
         isOpen={isOpen}
         onClose={onClose}
         onOpenChange={onOpenChange}
-        label="Are you sure you want to delete this search criterion?"
+        label={`Are you sure you want to delete "${criterion.title}" ?`}
         handleDestruction={handleDestruction}
         loading={isMutating}
       />
@@ -67,21 +63,27 @@ const Actions = ({ criterion }: Props) => {
             <CriteriaStatus criterion={criterion} />
           </ActionItem>
           <ActionItem
-            disabled={matchedListings?.length! <= 0}
-            href={`/dashboard/renter/be-the-first-to-know/qkMM9hHt7qKpgw==-${
-              criterion.id
-            }/${slugify(criterion?.title?.toLowerCase() as string)}`}
+            disabled={
+              (criterion.matched_properties &&
+                criterion.matched_properties.length <= 0) ||
+              criterion.matched_properties === null
+            }
+            href={`/dashboard/renter/be-the-first-to-know/${slugify(
+              criterion?.title?.toLowerCase() as string,
+            )}/qkMM9hHt7-${criterion.id}-qKpgw==`}
           >
             <MdOutlineRemoveRedEye />
             View
           </ActionItem>
 
-          <BTFTKModal disabled={criterion.is_active}>
-            <ActionItem disabled={criterion.is_active}>
-              <MdOutlineEdit />
-              Edit
-            </ActionItem>
-          </BTFTKModal>
+          <ActionItem
+            href={`/dashboard/renter/be-the-first-to-know/manage-criteria/edit/LS6pI-${criterion.id}-LWIKyOgnw==`}
+            onClick={() => setCriterion(criterion)}
+            disabled={criterion.is_active}
+          >
+            <MdOutlineEdit />
+            Edit
+          </ActionItem>
           <ActionItem onClick={onOpen}>
             <FiTrash2 />
             Delete

@@ -5,8 +5,8 @@ type BTFTKStepsStore = {
   firstSlide: boolean;
   lastSlide: boolean;
   progressValue: number;
-  /** The state of the modal */
   isOpen: boolean;
+  isOpenEditPage: boolean;
   shouldShowMotivationMessage: boolean;
   selectedSummaryPage: string;
   setProgressValue: (val: number) => void;
@@ -15,8 +15,12 @@ type BTFTKStepsStore = {
   setLastSlide: (val: boolean) => void;
   onOpen: () => void;
   onClose: () => void;
+  onOpenEditPage: () => void;
+  onCloseEditPage: () => void;
   setShouldShowMotivationMessage: (val: boolean) => void;
   setSelectedSummaryPage: (page: string) => void;
+  criterion: SearchCriteria | null;
+  setCriterion: (criterion: SearchCriteria | null) => void;
 };
 
 export const BTFTKStepsStore = create<BTFTKStepsStore>((set) => ({
@@ -25,14 +29,19 @@ export const BTFTKStepsStore = create<BTFTKStepsStore>((set) => ({
   lastSlide: false,
   progressValue: 1,
   isOpen: false,
+  isOpenEditPage: false,
   shouldShowMotivationMessage: true,
   selectedSummaryPage: "",
+  criterion: null,
   setProgressValue: (val) => set((state) => ({ ...state, progressValue: val })),
   setActiveSlide: (val) => set((state) => ({ ...state, activeSlide: val })),
   setFirstSlide: (val) => set((state) => ({ ...state, firstSlide: val })),
   setLastSlide: (val) => set((state) => ({ ...state, lastSlide: val })),
-  onOpen: () => set((state) => ({ ...state, isOpen: !state.isOpen })),
+  onOpen: () => set((state) => ({ ...state, isOpen: true })),
   onClose: () => set((state) => ({ ...state, isOpen: false })),
+  onOpenEditPage: () => set((state) => ({ ...state, isOpenEditPage: true })),
+  onCloseEditPage: () => set((state) => ({ ...state, isOpenEditPage: false })),
+  setCriterion: (criterion) => set((state) => ({ ...state, criterion })),
   setShouldShowMotivationMessage: (val) =>
     set((state) => ({
       ...state,

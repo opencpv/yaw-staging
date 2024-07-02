@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "@/components/__shared/ui/button/Button";
 import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
 import StepsModal from "@/components/__shared/ui/modals/steps/StepsModal";
@@ -13,12 +13,12 @@ import { FaPlus } from "react-icons/fa";
 import { cn } from "@/lib/utils";
 import { useAddSearchCriteria } from "../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
+import { usePathname } from "next/navigation";
 
 type Props = {
   button?: "Hire Us Now" | "Get Started" | "Ghost" | "Edit" | "Price";
   buttonClassName?: string;
   content?: React.ReactNode | string | number;
-  children?: React.ReactNode;
   float?: boolean;
   disabled?: boolean;
 };
@@ -39,10 +39,24 @@ const BTFTKValidationSchema = Yup.object({
 });
 
 const BTFTKModal = (props: Props) => {
+  const pathname = usePathname();
   const { user } = useAppStore();
-  const { lastSlide, isOpen, onOpen } = BTFTKStepsStore();
+  const {
+    lastSlide,
+    isOpen,
+    onOpen,
+    criterion,
+    onOpenEditPage,
+    isOpenEditPage,
+    onCloseEditPage,
+    setCriterion,
+  } = BTFTKStepsStore();
 
   const { mutate: addSearchCriteria } = useAddSearchCriteria();
+
+  useEffect(() => {
+    pathname?.includes("edit") ? onOpenEditPage() : onCloseEditPage();
+  }, [onOpen, pathname, onOpenEditPage, onCloseEditPage]);
 
   return (
     <div
@@ -50,32 +64,52 @@ const BTFTKModal = (props: Props) => {
         "max-xs:fixed max-xs:bottom-10 max-xs:right-5 max-xs:z-30": props.float,
       })}
     >
-      {props.children ? (
-        <span
-          onClick={() => {
-            !props.disabled && onOpen();
-          }}
-        >
-          {props.children}
-        </span>
-      ) : (
-        <Button
-          color="primary"
-          className={cn("w-fit px-5 ", {
-            "max-xs:rounded-xl max-xs:shadow-md": props.float,
-          })}
-          onClick={onOpen}
-        >
-          <FaPlus /> Create a search
-        </Button>
-      )}
+      <Button
+        color="primary"
+        className={cn("w-fit px-5 ", {
+          "max-xs:rounded-xl max-xs:shadow-md": props.float,
+        })}
+        onClick={() => {
+          onOpen();
+          setCriterion(null);
+        }}
+      >
+        <FaPlus /> Create a search
+      </Button>
       <Formik
         initialValues={{
-          ...BTFTKDefaultValues,
+          searchTitle: criterion?.title || BTFTKDefaultValues.searchTitle,
+          location: criterion?.location || BTFTKDefaultValues.location,
+          bedMaximum:
+            criterion?.max_beds?.toString() || BTFTKDefaultValues.bedMaximum,
+          bedMinimum:
+            criterion?.min_beds?.toString() || BTFTKDefaultValues.bedMinimum,
+          priceRangeMaximum:
+            criterion?.max_price?.toString() ||
+            BTFTKDefaultValues.priceRangeMaximum,
+          priceRangeMinimum:
+            criterion?.min_price?.toString() ||
+            BTFTKDefaultValues.priceRangeMinimum,
+          bathroomMaximum:
+            criterion?.max_bathrooms?.toString() ||
+            BTFTKDefaultValues.bathroomMaximum,
+          bathroomMinimum:
+            criterion?.min_bathrooms?.toString() ||
+            BTFTKDefaultValues.bathroomMinimum,
+          preferredType:
+            criterion?.property_type || BTFTKDefaultValues.preferredType,
+          requiredFeatures:
+            criterion?.features || BTFTKDefaultValues.requiredFeatures,
+          specialKeywords:
+            criterion?.keywords || BTFTKDefaultValues.specialKeywords,
+          preferredMethodOfContact:
+            criterion?.preferred_contact_method ||
+            BTFTKDefaultValues.preferredMethodOfContact,
+          email: criterion?.email || BTFTKDefaultValues.email,
+          whatsApp: criterion?.phone || BTFTKDefaultValues.whatsApp,
         }}
         validationSchema={BTFTKValidationSchema}
         onSubmit={(values) => {
-          console.log(values);
           addSearchCriteria({
             title: values.searchTitle,
             location: values.location,
@@ -92,16 +126,19 @@ const BTFTKModal = (props: Props) => {
             features: values.requiredFeatures,
             keywords: values.specialKeywords,
             renter_id: user?.id,
+            id: criterion?.id,
+            is_active: true,
+            matched_properties: criterion?.matched_properties || [],
           });
         }}
       >
         <Form>
           <StepsModal
-            header={!lastSlide && <Header onClose={onOpen} />}
+            header={!lastSlide && <Header />}
             body={<Body />}
-            footer={!lastSlide && <Footer onClose={onOpen} />}
-            open={isOpen}
-            onOpenChange={onOpen}
+            footer={!lastSlide && <Footer />}
+            open={isOpenEditPage || isOpen}
+            //onOpenChange={onOpen}
             footerClassName={lastSlide ? "border-t-0" : "border-t"}
           />
         </Form>
@@ -112,8 +149,8 @@ const BTFTKModal = (props: Props) => {
 
 export default BTFTKModal;
 
-const Header = ({ onClose }: { onClose: () => void }) => {
-  return <BTFTKHeader onClose={onClose} />;
+const Header = () => {
+  return <BTFTKHeader />;
 };
 
 const Body = () => {
@@ -124,10 +161,10 @@ const Body = () => {
   );
 };
 
-const Footer = ({ onClose }: { onClose: () => void }) => {
+const Footer = () => {
   return (
     <>
-      <BTFTKFooter onClose={onClose} />
+      <BTFTKFooter />
     </>
   );
 };

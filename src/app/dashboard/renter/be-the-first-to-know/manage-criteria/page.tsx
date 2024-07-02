@@ -1,10 +1,10 @@
 import React from "react";
-import SearchTarget from "../components/pages/ManageSearchTarget";
+import ManageSearchCriteria from "../components/pages/ManageSearchCriteria";
 
 type Props = {};
 
 const page = (props: Props) => {
-  return <SearchTarget />;
+  return <ManageSearchCriteria />;
 };
 
 export default page;

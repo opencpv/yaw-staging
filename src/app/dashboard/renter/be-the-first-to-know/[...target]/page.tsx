@@ -8,9 +8,7 @@ type Props = {
 };
 
 const page = (props: Props) => {
-  const firstParam = props.params.target[0];
-  const id = firstParam.split("-")[1];
-  return <CriterionMatches id={id} />;
+  return <CriterionMatches params={props.params} />;
 };
 
 export default page;

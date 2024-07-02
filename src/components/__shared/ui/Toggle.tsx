@@ -9,6 +9,7 @@ type Props = {
   disabled?: boolean;
   color?: "primary" | "accent";
   title?: string;
+  classNames?: SwitchProps["classNames"];
 };
 
 const Toggle = ({
@@ -18,6 +19,7 @@ const Toggle = ({
   disabled,
   color,
   title,
+  classNames,
 }: Props) => {
   return (
     <Switch
@@ -36,7 +38,7 @@ const Toggle = ({
             "group-data-[disabled=true]:cursor-not-allowed": disabled,
           },
         ),
-        label: cn("text-neutral-500"),
+        label: cn("text-neutral-500", classNames?.label),
       }}
       size="sm"
       isSelected={isSelected}

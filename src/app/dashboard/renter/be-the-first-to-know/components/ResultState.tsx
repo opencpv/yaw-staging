@@ -1,9 +1,7 @@
 "use client";
 import React from "react";
 import Status from "@/components/__shared/ui/states/Status";
-import { useFetchCriteriaMatches } from "../services";
-import { useAppStore } from "@/store/dashboard/AppStore";
-import { Skeleton } from "@nextui-org/react";
+import slugify from "@/lib/utils/slugify";
 
 export type CriteriaStatus = "Match" | "No Matches" | "Pending" | "Not Started";
 
@@ -12,58 +10,57 @@ type Props = {
 };
 
 const ResultState = ({ criterion }: Props) => {
-  const { user } = useAppStore();
-  const { data: matchedListings, isLoading } = useFetchCriteriaMatches({
-    userId: user?.id as string,
-    criterion: criterion,
-  });
-
-  const matchesFound = criterion.is_active && matchedListings?.length! > 0;
-  const pendingMatches = matchedListings?.length! <= 0 && criterion.is_active;
+  const matchesFound =
+    criterion.matched_properties && criterion.matched_properties?.length > 0;
+  const pendingMatches =
+    criterion.matched_properties &&
+    criterion.matched_properties.length === 0 &&
+    criterion.is_active;
   const noMatches =
-    matchedListings?.length! <= 0 && criterion.is_active === false;
-  const notStarted = criterion.is_active === false;
+    criterion.matched_properties &&
+    criterion.matched_properties.length === 0 &&
+    criterion.is_active === false;
+  const notStarted =
+    criterion.is_active === false && criterion.matched_properties === null;
 
-  if (isLoading)
-    return (
-      <span>
-        <Skeleton className="h-5 w-14 rounded-md" />
-      </span>
-    );
-  else
-    return (
-      <>
-        <Status
-          variant={
-            pendingMatches
-              ? "warning"
-              : notStarted
-                ? "neutral-light"
-                : matchesFound
-                  ? "success"
-                  : noMatches
-                    ? "danger"
-                    : undefined
-          }
-          tooltipContent={
-            noMatches
-              ? "The lister has reviewed your application and should be in touch with you shortly. Check your messages or contact them directly if a response is delayed."
-              : ""
-          }
-          text={
-            pendingMatches
-              ? "Pending"
-              : notStarted
-                ? "Not started"
-                : matchesFound
-                  ? "Match"
-                  : noMatches
-                    ? "No Matches"
-                    : ""
-          }
-        />
-      </>
-    );
+  return (
+    <>
+      <Status
+        href={
+          matchesFound
+            ? `/dashboard/renter/be-the-first-to-know/${slugify(
+                criterion?.title?.toLowerCase() as string,
+              )}/qkMM9hHt7-${criterion.id}-qKpgw==`
+            : undefined
+        }
+        variant={
+          pendingMatches
+            ? "warning"
+            : notStarted
+              ? "neutral-light"
+              : matchesFound
+                ? "success"
+                : noMatches
+                  ? "danger"
+                  : undefined
+        }
+        tooltipContent={
+          notStarted ? "Please complete forms to begin target search" : ""
+        }
+        text={
+          pendingMatches
+            ? "Pending"
+            : notStarted
+              ? "Not started"
+              : matchesFound
+                ? "Match"
+                : noMatches
+                  ? "No Matches"
+                  : ""
+        }
+      />
+    </>
+  );
 };
 
 export default ResultState;

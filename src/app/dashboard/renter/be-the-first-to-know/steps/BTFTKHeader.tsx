@@ -6,20 +6,24 @@ import { useFormikContext } from "formik";
 import { BTFTKDefaultValues, views as BTFTKviews } from "./BTFTKForm";
 import { useAddSearchCriteria } from "../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
+import { usePathname, useRouter } from "next/navigation";
 
-type Props = {
-  onClose: () => void;
-};
-
-const FirstToKnowHeader = ({ onClose }: Props) => {
+const FirstToKnowHeader = () => {
+  const router = useRouter();
+  const pathname = usePathname();
   const { user } = useAppStore();
   const { values } = useFormikContext<typeof BTFTKDefaultValues>();
 
   const {
     progressValue,
+    setActiveSlide,
     activeSlide,
     shouldShowMotivationMessage,
     setShouldShowMotivationMessage,
+    onClose,
+    onCloseEditPage,
+    setCriterion,
+    criterion,
   } = BTFTKStepsStore();
 
   // Save to DB
@@ -33,8 +37,24 @@ const FirstToKnowHeader = ({ onClose }: Props) => {
   useEffect(() => {
     if (isSuccess) {
       onClose();
+      onCloseEditPage();
+      setCriterion(null);
+      router.push("/dashboard/renter/be-the-first-to-know/manage-criteria");
     }
-  }, [isSuccess, onClose]);
+    if (pathname?.includes("edit")) {
+      setActiveSlide(1);
+    } else {
+      setActiveSlide(0);
+    }
+  }, [
+    isSuccess,
+    onClose,
+    onCloseEditPage,
+    pathname,
+    setActiveSlide,
+    setCriterion,
+    router,
+  ]);
 
   return (
     <section className="flex flex-col gap-4">
@@ -63,9 +83,15 @@ const FirstToKnowHeader = ({ onClose }: Props) => {
               preferred_contact_method: values.preferredMethodOfContact,
               features: values.requiredFeatures,
               keywords: values.specialKeywords,
+              id: criterion?.id,
               renter_id: user?.id,
               is_active: false,
+              matched_properties: null,
             });
+
+            router.push(
+              "/dashboard/renter/be-the-first-to-know/manage-criteria",
+            );
           }}
         >
           Save & Exit

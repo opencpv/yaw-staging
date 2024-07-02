@@ -2,54 +2,46 @@ import Toggle from "@/components/__shared/ui/Toggle";
 import { getDaysRemaining } from "../utils";
 import { useUpdateCriteriaStatus } from "../services";
 import { useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
 
 interface Props {
   criterion: SearchCriteria;
 }
 
 const CriteriaStatus = ({ criterion }: Props) => {
-  const daysRemaining = getDaysRemaining(
-    criterion.is_active ? criterion.created_at : "0",
-  );
-  const [active, setActive] = useState(criterion.is_active);
+  const daysRemaining = getDaysRemaining(criterion.created_at);
 
-  const { mutate: updateStatus, isError } = useUpdateCriteriaStatus();
+  const { mutate: updateStatus, variables } = useUpdateCriteriaStatus();
 
   const handleSelectionChange = async (value: boolean) => {
-    setActive(value);
     updateStatus({
       id: criterion.id,
       renter_id: criterion.renter_id,
       is_active: value,
     });
-
-    if (isError) {
-      setActive(!value);
-    }
   };
 
+  // Set the status to inactive if the days remaining is less than or equal to 0
   useEffect(() => {
     if (daysRemaining <= 0) {
-      setActive(false);
       updateStatus({
         id: criterion.id,
         renter_id: criterion.renter_id,
         is_active: false,
       });
-
-      if (isError) {
-        setActive((prev) => prev);
-      }
     }
-  }, [daysRemaining, isError, criterion.id, criterion.renter_id, updateStatus]);
+  }, [daysRemaining, criterion.id, criterion.renter_id, updateStatus]);
 
   return (
     <Toggle
-      label={active ? `${daysRemaining} days remaining` : ""}
+      label={`${daysRemaining} ${daysRemaining === 1 ? "day" : "days"} remaining`}
       color="primary"
-      isSelected={active}
+      isSelected={variables ? variables.is_active : criterion.is_active}
       onValueChange={handleSelectionChange}
-      disabled={criterion.is_active === false}
+      disabled={
+        criterion.is_active === false && criterion.matched_properties === null
+      }
+      classNames={{ label: cn({ invisible: criterion.is_active === false }) }}
     />
   );
 };

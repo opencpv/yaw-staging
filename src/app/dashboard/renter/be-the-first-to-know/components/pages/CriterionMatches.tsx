@@ -2,32 +2,31 @@
 import Button from "@/components/__shared/ui/button/Button";
 import React from "react";
 import { FaChevronLeft } from "react-icons/fa";
-import {
-  useFetchCriteriaMatches,
-  useFetchSearchCriteriaById,
-} from "../../services";
+import { useFetchCriteriaMatches } from "../../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
 import { Skeleton } from "@nextui-org/react";
 import NoMatchEmptyState from "../NoMatchEmptyState";
 import ListingCard from "@/components/__shared/ui/listing/ListingCard";
 import { getListingProps } from "@/lib/enum";
+import capitalizeName from "@/lib/utils/stringManipulation";
 
 type Props = {
-  id: string;
+  params: {
+    target: string[];
+  };
 };
 
-const CriterionMatches = ({ id }: Props) => {
+const CriterionMatches = ({ params }: Props) => {
   const { user } = useAppStore();
-
-  const { data: criterion } = useFetchSearchCriteriaById({
-    id,
-    userId: user?.id as string,
-  });
+  const secondParam = params.target[1];
+  const firstparams = params.target[0];
+  const id = secondParam.split("-")[1];
+  const criterionTitle = capitalizeName(firstparams.replaceAll("-", " "));
 
   const { data: matchedListings, isLoading } = useFetchCriteriaMatches({
     userId: user?.id as string,
-    criterion: criterion as SearchCriteria,
+    criterionId: Number(id),
   });
 
   return (
@@ -55,7 +54,7 @@ const CriterionMatches = ({ id }: Props) => {
         <NoMatchEmptyState />
       ) : (
         <section className="space-y-5">
-          <h3 className="text-shade-300">{criterion?.title}</h3>
+          <h3 className="text-shade-300">{criterionTitle}</h3>
 
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
             {matchedListings?.map((listing) => (

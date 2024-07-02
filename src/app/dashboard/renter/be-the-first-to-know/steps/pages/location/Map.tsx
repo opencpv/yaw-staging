@@ -10,14 +10,25 @@ type Props = {};
 // Function to change the map view
 const ChangeView = ({ center }: { center: any }) => {
   const map = useMap();
-  map.setView(center, map.getZoom());
+  map.setView(center, map.getZoom(), { animate: true });
   return null;
 };
+
+// Map placeholder
+function MapPlaceholder() {
+  return (
+    <p>
+      Map of Ghana.{" "}
+      <noscript>You need to enable JavaScript to see this map.</noscript>
+    </p>
+  );
+}
 
 const Map = (props: Props) => {
   const [center, setCenter] = useState([5.614818, -0.205874]); // Initial center set to Accra
   const [markerPosition, setMarkerPosition] = useState([5.614818, -0.205874]); // Initial marker position set to Accra
   const [suggestions, setSuggestions] = useState([]);
+  const [tooltip, setTooltip] = useState("Accra");
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleInputChange = async () => {
@@ -38,10 +49,11 @@ const Map = (props: Props) => {
     }
   };
 
-  const handleSuggestionClick = (lat: any, lon: any) => {
+  const handleSuggestionClick = (lat: any, lon: any, display_name: any) => {
     const newCenter = [parseFloat(lat), parseFloat(lon)];
     setCenter(newCenter);
     setMarkerPosition(newCenter);
+    setTooltip(display_name.split(",").slice(0, 2).join("") + "...");
     setSuggestions([]);
     inputRef.current!.value = "";
   };
@@ -54,7 +66,11 @@ const Map = (props: Props) => {
             <div
               key={suggestion.place_id}
               onClick={() =>
-                handleSuggestionClick(suggestion.lat, suggestion.lon)
+                handleSuggestionClick(
+                  suggestion.lat,
+                  suggestion.lon,
+                  suggestion.display_name,
+                )
               }
               className="cursor-pointer p-4 hover:bg-gray-50"
             >
@@ -83,22 +99,21 @@ const Map = (props: Props) => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={markerPosition as any}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
+        <Marker position={markerPosition as any} icon={customIcon}>
+          <Popup>{tooltip}</Popup>
         </Marker>
       </MapContainer>
+      <MapPlaceholder />
     </>
   );
 };
 
-//const customIcon = L.icon({
-//  iconUrl: 'path/to/your/custom-icon.png', // URL to your custom icon image
-//  iconSize: [38, 38], // size of the icon
-//  iconAnchor: [19, 38], // point of the icon which will correspond to marker's location
-//  popupAnchor: [0, -38] // point from which the popup should open relative to the iconAnchor
-//});
+const customIcon = L.icon({
+  iconUrl: "/assets/images/map-pin-icon.png",
+  iconSize: [38, 48],
+  iconAnchor: [19, 38], // point of the icon which will correspond to marker's location
+  popupAnchor: [0, -38], // point from which the popup should open relative to the iconAnchor
+});
 
 export default Map;
 
