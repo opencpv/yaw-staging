@@ -2,7 +2,7 @@
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
 import ListingCard from "@/components/__shared/ui/listing/ListingCard";
-import ContactPreferenceToggle from "./components/ContactPreferenceToggle";
+import ContactPreferenceToggle from "../../dashboard/components/shared/ContactPreferenceToggle";
 import { useFetchUserFavorites } from "./services";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
