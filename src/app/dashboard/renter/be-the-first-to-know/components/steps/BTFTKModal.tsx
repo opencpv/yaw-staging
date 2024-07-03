@@ -11,7 +11,7 @@ import BTFTKHeader from "./BTFTKHeader";
 import { BTFTKStepsStore } from "@/store/dashboard/BTFTKStepsStore";
 import { FaPlus } from "react-icons/fa";
 import { cn } from "@/lib/utils";
-import { useAddSearchCriteria } from "../services";
+import { useAddSearchCriteria } from "../../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { usePathname } from "next/navigation";
 

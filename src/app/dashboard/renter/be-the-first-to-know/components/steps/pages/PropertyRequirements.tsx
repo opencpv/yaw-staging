@@ -1,4 +1,4 @@
-import styles from "../../index.module.css";
+import styles from "../../../index.module.css";
 import { CustomDatePicker } from "@/components/__shared/ui/form/CustomDatePicker";
 import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
 import CallOut from "@/components/__shared/ui/CallOut";

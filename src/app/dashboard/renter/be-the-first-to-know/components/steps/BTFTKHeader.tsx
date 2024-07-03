@@ -4,7 +4,7 @@ import Button from "@/components/__shared/ui/button/Button";
 import { BTFTKStepsStore } from "@/store/dashboard/BTFTKStepsStore";
 import { useFormikContext } from "formik";
 import { BTFTKDefaultValues, views as BTFTKviews } from "./BTFTKForm";
-import { useAddSearchCriteria } from "../services";
+import { useAddSearchCriteria } from "../../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { usePathname, useRouter } from "next/navigation";
 

@@ -1,3 +1,4 @@
+import React from "react";
 import BTFTKLayout from "./components/pages/BTFTKLayout";
 
 const BeTheFirstToKnowLayout = ({

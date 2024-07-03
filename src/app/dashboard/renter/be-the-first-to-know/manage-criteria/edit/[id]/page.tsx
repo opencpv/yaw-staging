@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import BTFTKModal from "../../../steps/BTFTKModal";
+import BTFTKModal from "../../../components/steps/BTFTKModal";
 
 type Props = {
   params: {

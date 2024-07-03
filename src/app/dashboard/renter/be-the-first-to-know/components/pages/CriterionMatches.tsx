@@ -20,9 +20,9 @@ type Props = {
 const CriterionMatches = ({ params }: Props) => {
   const { user } = useAppStore();
   const secondParam = params.target[1];
-  const firstparams = params.target[0];
+  const firstParams = params.target[0];
   const id = secondParam.split("-")[1];
-  const criterionTitle = capitalizeName(firstparams.replaceAll("-", " "));
+  const criterionTitle = capitalizeName(firstParams.replaceAll("-", " "));
 
   const { data: matchedListings, isLoading } = useFetchCriteriaMatches({
     userId: user?.id as string,
@@ -50,7 +50,7 @@ const CriterionMatches = ({ params }: Props) => {
         </section>
       )}
 
-      {matchedListings?.length! <= 0 ? (
+      {matchedListings && matchedListings?.length <= 0 ? (
         <NoMatchEmptyState />
       ) : (
         <section className="space-y-5">

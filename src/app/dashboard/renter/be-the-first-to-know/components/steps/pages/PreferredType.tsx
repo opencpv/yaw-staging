@@ -1,7 +1,6 @@
-import { styled } from "@stitches/react";
 import { useState } from "react";
 import Amenity from "@/components/__shared/ui/listing-form/components/Amenity";
-import styles from "../../index.module.css";
+import styles from "../../../index.module.css";
 import CallOut from "@/components/__shared/ui/CallOut";
 import { useField } from "formik";
 import { properties } from "@/app/dashboard/components/shared/content";
