@@ -2,15 +2,20 @@
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
 import ListingCard from "@/components/__shared/ui/listing/ListingCard";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import NoCriteriaEmptyState from "./components/NoCriteriaEmptyState";
-import NoMatchEmptyState from "./components/NoMatchEmptyState";
-import BTFTKModal from "./components/steps/BTFTKModal";
-import ContactPreferenceToggle from "@/app/(archived)/_favourites/components/ContactPreferenceToggle";
+import ContactPreferenceToggle from "../../components/shared/ContactPreferenceToggle";
 import { useFetchCriteriaMatches, useFetchSearchCriteria } from "./services";
 import { getListingProps } from "@/lib/enum";
 import { Skeleton } from "@nextui-org/react";
 import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
 import ManageButton from "./components/ManageButton";
+import dynamic from "next/dynamic";
+const BTFTKModal = dynamic(() => import("./components/steps/BTFTKModal"));
+const NoCriteriaEmptyState = dynamic(
+  () => import("./components/NoCriteriaEmptyState"),
+);
+const NoMatchEmptyState = dynamic(
+  () => import("./components/NoMatchEmptyState"),
+);
 
 const BeTheFirstToKnow = () => {
   const { user } = useAppStore();
