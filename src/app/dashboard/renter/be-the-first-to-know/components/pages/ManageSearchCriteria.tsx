@@ -12,7 +12,7 @@ import {
   TableSm,
 } from "@/app/dashboard/components/shared/table/Table";
 import SelectMobile from "@/app/dashboard/components/shared/ui/SelectMobile";
-import BTFTKModal from "../../steps/BTFTKModal";
+import BTFTKModal from "../steps/BTFTKModal";
 import Actions from "../Actions";
 import { useFetchSearchCriteria } from "../../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
@@ -106,7 +106,7 @@ const ManageSearchCriteria = () => {
       </Table>
       {/* Mobile table */}
       <TableSm>
-        {isLoading && <TableSkeletonSm rows={3}/>}
+        {isLoading && <TableSkeletonSm rows={3} />}
         {paginatedCriteria?.map((criterion) => (
           <TableRowSm key={criterion.id}>
             <TableBodySm className="flex items-center justify-between gap-5">

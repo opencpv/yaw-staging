@@ -1,4 +1,4 @@
-import styles from "../../index.module.css";
+import styles from "../../../index.module.css";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";

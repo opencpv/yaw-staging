@@ -1,5 +1,5 @@
 import React from "react";
-import BTFTKModal from "../steps/BTFTKModal";
+import BTFTKModal from "./steps/BTFTKModal";
 
 type Props = {};
 

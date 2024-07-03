@@ -4,7 +4,7 @@ import ListingCard from "@/components/__shared/ui/listing/ListingCard";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import NoCriteriaEmptyState from "./components/NoCriteriaEmptyState";
 import NoMatchEmptyState from "./components/NoMatchEmptyState";
-import BTFTKModal from "./steps/BTFTKModal";
+import BTFTKModal from "./components/steps/BTFTKModal";
 import ContactPreferenceToggle from "@/app/(archived)/_favourites/components/ContactPreferenceToggle";
 import { useFetchCriteriaMatches, useFetchSearchCriteria } from "./services";
 import { getListingProps } from "@/lib/enum";
@@ -26,55 +26,53 @@ const BeTheFirstToKnow = () => {
     loadMore,
   } = useFetchCriteriaMatches({ userId: user?.id as string });
 
-  if (isLoading) {
-    return (
-      <div className="flex flex-col gap-8">
-        <BTFTKModal />
-        <Skeleton className="h-5 w-80 rounded-md" />
-        <section className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
-          <SkeletonListing />
-        </section>
-      </div>
-    );
-  }
-  if (matchedListings?.length! > 0 && !error) {
-    return (
-      <>
+  return (
+    <>
+      {isLoading ? (
         <div className="flex flex-col gap-8">
-          <div className="flex gap-5">
-            <BTFTKModal float />
-            <ManageButton />
-          </div>
-          <ContactPreferenceToggle />
+          <BTFTKModal />
+          <Skeleton className="h-5 w-80 rounded-md" />
           <section className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
-            {matchedListings?.map((listing) => (
-              <ListingCard
-                key={listing.id}
-                {...getListingProps(listing, user as UserType)}
-              />
-            ))}
+            <SkeletonListing />
           </section>
         </div>
-        <ButtonInfiniteLoading
-          data={matchedListings}
-          isLoading={isLoading}
-          isValidating={isValidating}
-          loadMore={loadMore}
-        />
-      </>
-    );
-  } else
-    return (
-      <section>
-        <div className="flex flex-col gap-8">
-          {searchCriteria?.length === 0 ? (
-            <NoCriteriaEmptyState />
-          ) : matchedListings?.length === 0 ? (
-            <NoMatchEmptyState />
-          ) : null}
-        </div>
-      </section>
-    );
+      ) : matchedListings && matchedListings?.length > 0 && !error ? (
+        <>
+          <div className="flex flex-col gap-8">
+            <div className="flex gap-5">
+              <BTFTKModal float />
+              <ManageButton />
+            </div>
+            <ContactPreferenceToggle />
+            <section className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+              {matchedListings?.map((listing) => (
+                <ListingCard
+                  key={listing.id}
+                  {...getListingProps(listing, user as UserType)}
+                />
+              ))}
+            </section>
+          </div>
+          <ButtonInfiniteLoading
+            data={matchedListings}
+            isLoading={isLoading}
+            isValidating={isValidating}
+            loadMore={loadMore}
+          />
+        </>
+      ) : (
+        <section>
+          <div className="flex flex-col gap-8">
+            {searchCriteria?.length === 0 ? (
+              <NoCriteriaEmptyState />
+            ) : matchedListings?.length === 0 ? (
+              <NoMatchEmptyState />
+            ) : null}
+          </div>
+        </section>
+      )}
+    </>
+  );
 };
 
 export default BeTheFirstToKnow;

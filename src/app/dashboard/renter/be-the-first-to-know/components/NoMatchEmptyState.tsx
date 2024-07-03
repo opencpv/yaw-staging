@@ -2,7 +2,7 @@ import React from "react";
 import MatchLabel from "./MatchLabel";
 import Image from "next/image";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import BTFTKModal from "../steps/BTFTKModal";
+import BTFTKModal from "./steps/BTFTKModal";
 import ManageButton from "./ManageButton";
 
 const NoMatchEmptyState = () => {
