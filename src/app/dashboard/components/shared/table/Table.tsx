@@ -51,7 +51,7 @@ export const TableSm = (props: TableProps) => {
       role="table"
       aria-label="table"
       className={cn(
-        "mx-auto flex w-full max-w-xl flex-col gap-10 lg:hidden",
+        "mx-auto flex w-full max-w-xl flex-col gap-8 lg:hidden",
         props.className,
       )}
     >
@@ -90,7 +90,7 @@ export const TableRowSm = (props: TableHeaderRowProps) => {
       role="row"
       aria-label="table row"
       className={cn(
-        `flex cursor-default flex-col gap-4 overflow-hidden rounded-lg px-5 pb-8 pt-5 hover:bg-white`,
+        `flex cursor-default flex-col gap-4 overflow-hidden rounded-lg px-5 py-5 hover:bg-white`,
         props.className,
       )}
     >

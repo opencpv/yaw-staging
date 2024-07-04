@@ -21,7 +21,7 @@ const PaidFeaturesSection = (props: Props) => {
         <FeatureExplainer
           href="be-the-first-to-know"
           title="Get Notified"
-          locked={false}
+          locked={true}
         />
       )}
     </div>

@@ -1,7 +1,13 @@
+import { useLocalStorage } from "@uidotdev/usehooks";
 import styles from "../../../index.module.css";
 import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
+import { BTFTKDefaultValues } from "@/store/dashboard/BTFTKStepsStore";
 
 const SearchTitle = () => {
+  const [BTFTKCreationSteps, setBTFTKCreationSteps] = useLocalStorage<
+    typeof BTFTKDefaultValues
+  >("btftk-creation-steps");
+
   return (
     <div className="relative lg:top-32">
       <h2 className={`${styles.title}`}>
@@ -12,7 +18,13 @@ const SearchTitle = () => {
           type="text"
           name="searchTitle"
           label="Provide a title for your search criteria"
-          placeholder="Search title"
+          placeholder="e.g. My Accra Home"
+          onChange={(e) =>
+            setBTFTKCreationSteps({
+              ...BTFTKCreationSteps,
+              searchTitle: e.target.value,
+            })
+          }
         />
       </div>
     </div>

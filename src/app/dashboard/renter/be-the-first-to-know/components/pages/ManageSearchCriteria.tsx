@@ -24,6 +24,7 @@ import NoCriteriaEmptyState from "../NoCriteriaEmptyState";
 import Pagination, { usePagination } from "@/components/__shared/ui/Pagination";
 import { cn } from "@/lib/utils";
 import TableSkeletonSm from "@/app/dashboard/components/shared/skeleton/TableSkeletonSm";
+import { CiLocationOn } from "react-icons/ci";
 
 const ManageSearchCriteria = () => {
   const { user } = useAppStore();
@@ -32,6 +33,7 @@ const ManageSearchCriteria = () => {
     userId: user?.id as string,
     status,
   });
+
 
   const {
     currentItems: paginatedCriteria,
@@ -79,8 +81,26 @@ const ManageSearchCriteria = () => {
                   </h4>
                 </div>
               </TableBody>
+              {/* Location */}
               <TableBody className="col-span-1 text-center">
-                {criterion.location || "-"}
+                {criterion.location ? (
+                  <ul className="flex list-disc flex-col gap-3">
+                    {criterion.location.map((location: string) => (
+                      <li
+                        className="flex items-center gap-2"
+                        title={location}
+                        key={location}
+                      >
+                        {criterion.location.length > 1 && (
+                          <CiLocationOn className="shrink-0" />
+                        )}
+                        <span className="line-clamp-1 ">{location}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  "-"
+                )}
               </TableBody>
               {/* Status */}
               <TableBody
@@ -110,7 +130,7 @@ const ManageSearchCriteria = () => {
         {paginatedCriteria?.map((criterion) => (
           <TableRowSm key={criterion.id}>
             <TableBodySm className="flex items-center justify-between gap-5">
-              <h4 className="truncate">{criterion.title}</h4>
+              <h4 className="truncate">{criterion.title || "-"}</h4>
               <ResultsState criterion={criterion} />
             </TableBodySm>
             <TableBodySm className="flex items-center justify-between gap-5">

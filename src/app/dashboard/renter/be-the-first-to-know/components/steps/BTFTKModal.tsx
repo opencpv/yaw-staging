@@ -4,16 +4,20 @@ import Button from "@/components/__shared/ui/button/Button";
 import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
 import StepsModal from "@/components/__shared/ui/modals/steps/StepsModal";
 import { Form, Formik } from "formik";
-import BTFTKForm, { BTFTKDefaultValues } from "./BTFTKForm";
+import BTFTKForm from "./BTFTKForm";
 import * as Yup from "yup";
 import BTFTKFooter from "./BTFTKFooter";
 import BTFTKHeader from "./BTFTKHeader";
-import { BTFTKStepsStore } from "@/store/dashboard/BTFTKStepsStore";
+import {
+  BTFTKDefaultValues,
+  BTFTKStepsStore,
+} from "@/store/dashboard/BTFTKStepsStore";
 import { FaPlus } from "react-icons/fa";
 import { cn } from "@/lib/utils";
 import { useAddSearchCriteria } from "../../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { usePathname } from "next/navigation";
+import { useLocalStorage } from "@uidotdev/usehooks";
 
 type Props = {
   button?: "Hire Us Now" | "Get Started" | "Ghost" | "Edit" | "Price";
@@ -27,20 +31,26 @@ const BTFTKValidationSchema = Yup.object({
   searchTitle: Yup.string().required("Search title is required"),
   preferredType: Yup.array().min(1, "Preferred type of place is required"),
   requiredFeatures: Yup.array().min(1, "Features is required"),
-  location: Yup.string().required("Location is required"),
-  email: Yup.string().email("Invalid email address"),
+  location: Yup.array().min(1, "Location is required"),
   preferredMethodOfContact: Yup.string(),
-  whatsApp: Yup.string().when("email", (email, schema) => {
-    if (!email) {
-      return schema.required("WhatsApp or Email is required");
-    }
-    return schema;
+  whatsApp: Yup.string().when("preferredMethodOfContact", {
+    is: "whatsapp",
+    then: (schema) => schema.required("WhatsApp number is required"),
+  }),
+  email: Yup.string().when("preferredMethodOfContact", {
+    is: "email",
+    then: (schema) => schema.email().required("Email must be a valid email"),
   }),
 });
 
 const BTFTKModal = (props: Props) => {
   const pathname = usePathname();
   const { user } = useAppStore();
+
+  const [BTFTKCreationSteps] = useLocalStorage<
+    typeof BTFTKDefaultValues | null
+  >("btftk-creation-steps");
+
   const {
     lastSlide,
     isOpen,
@@ -62,6 +72,7 @@ const BTFTKModal = (props: Props) => {
     <div
       className={cn({
         "max-xs:fixed max-xs:bottom-10 max-xs:right-5 max-xs:z-30": props.float,
+        invisible: pathname?.includes("edit"),
       })}
     >
       <Button
@@ -78,35 +89,62 @@ const BTFTKModal = (props: Props) => {
       </Button>
       <Formik
         initialValues={{
-          searchTitle: criterion?.title || BTFTKDefaultValues.searchTitle,
-          location: criterion?.location || BTFTKDefaultValues.location,
+          searchTitle:
+            criterion?.title ||
+            BTFTKCreationSteps?.searchTitle ||
+            BTFTKDefaultValues.searchTitle,
+          location:
+            criterion?.location ||
+            BTFTKCreationSteps?.location ||
+            BTFTKDefaultValues.location,
           bedMaximum:
-            criterion?.max_beds?.toString() || BTFTKDefaultValues.bedMaximum,
+            criterion?.max_beds?.toString() ||
+            BTFTKCreationSteps?.bedMaximum ||
+            BTFTKDefaultValues.bedMaximum,
           bedMinimum:
-            criterion?.min_beds?.toString() || BTFTKDefaultValues.bedMinimum,
+            criterion?.min_beds?.toString() ||
+            BTFTKCreationSteps?.bedMinimum ||
+            BTFTKDefaultValues.bedMinimum,
           priceRangeMaximum:
             criterion?.max_price?.toString() ||
+            BTFTKCreationSteps?.priceRangeMaximum ||
             BTFTKDefaultValues.priceRangeMaximum,
           priceRangeMinimum:
             criterion?.min_price?.toString() ||
+            BTFTKCreationSteps?.priceRangeMinimum ||
             BTFTKDefaultValues.priceRangeMinimum,
           bathroomMaximum:
             criterion?.max_bathrooms?.toString() ||
+            BTFTKCreationSteps?.bathroomMaximum ||
             BTFTKDefaultValues.bathroomMaximum,
           bathroomMinimum:
             criterion?.min_bathrooms?.toString() ||
+            BTFTKCreationSteps?.bathroomMinimum ||
             BTFTKDefaultValues.bathroomMinimum,
           preferredType:
-            criterion?.property_type || BTFTKDefaultValues.preferredType,
+            criterion?.property_type ||
+            BTFTKCreationSteps?.preferredType ||
+            BTFTKDefaultValues.preferredType,
           requiredFeatures:
-            criterion?.features || BTFTKDefaultValues.requiredFeatures,
+            criterion?.features ||
+            BTFTKCreationSteps?.requiredFeatures ||
+            BTFTKDefaultValues.requiredFeatures,
           specialKeywords:
-            criterion?.keywords || BTFTKDefaultValues.specialKeywords,
+            criterion?.keywords ||
+            BTFTKCreationSteps?.specialKeywords ||
+            BTFTKDefaultValues.specialKeywords,
           preferredMethodOfContact:
             criterion?.preferred_contact_method ||
+            BTFTKCreationSteps?.preferredMethodOfContact ||
             BTFTKDefaultValues.preferredMethodOfContact,
-          email: criterion?.email || BTFTKDefaultValues.email,
-          whatsApp: criterion?.phone || BTFTKDefaultValues.whatsApp,
+          email:
+            criterion?.email ||
+            BTFTKCreationSteps?.email ||
+            BTFTKDefaultValues.email,
+          whatsApp:
+            criterion?.phone ||
+            BTFTKCreationSteps?.whatsApp ||
+            BTFTKDefaultValues.whatsApp,
         }}
         validationSchema={BTFTKValidationSchema}
         onSubmit={(values) => {
@@ -129,6 +167,7 @@ const BTFTKModal = (props: Props) => {
             id: criterion?.id,
             is_active: true,
             matched_properties: criterion?.matched_properties || [],
+            created_at: new Date().toISOString(),
           });
         }}
       >

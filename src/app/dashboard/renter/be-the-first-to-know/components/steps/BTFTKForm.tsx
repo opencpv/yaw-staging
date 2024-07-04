@@ -20,35 +20,17 @@ export const views = [
   <SearchTitle key={"search-title"} />,
   <Location key={"location"} />,
   <PreferredType key={"preferred-type"} />,
-  <PropertyRequirements key={"property-requirements"} />,
   <RequiredFeatures key={"required-features"} />,
+  <PropertyRequirements key={"property-requirements"} />,
   <SpecialKeyword key={"special-keyword"} />,
   <Success key={"success"} />,
 ];
-
-export const BTFTKDefaultValues = {
-  searchTitle: "",
-  specialKeywords: "",
-  location: "Accra",
-  email: "",
-  whatsApp: "",
-  priceRangeMinimum: "100",
-  priceRangeMaximum: "100",
-  bedMinimum: "1",
-  bedMaximum: "1",
-  bathroomMinimum: "1",
-  bathroomMaximum: "1",
-  preferredType: [],
-  requiredFeatures: [],
-  preferredMethodOfContact: "email",
-};
 
 export default function BTFTKForm() {
   const { images } = useAssets();
 
   const {
     activeSlide,
-    setActiveSlide,
     setProgressValue,
     firstSlide,
     lastSlide,
@@ -60,10 +42,7 @@ export default function BTFTKForm() {
 
   useScrollToTop(BTFTKStepsRef, [activeSlide], "instant");
 
-
-  useEffect(() => {
-
-  }, []);
+  useEffect(() => {}, []);
 
   useEffect(() => {
     if (activeSlide < 1) {

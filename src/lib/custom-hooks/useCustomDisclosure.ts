@@ -15,7 +15,7 @@ export const useToastDisclosure = () => {
   const onOpen = (
     message: string,
     state?: "success" | "error",
-    autoClose = 5000,
+    autoClose = 3000,
   ) => {
     const toastId = toast(
       state === "success"

@@ -1,37 +1,33 @@
-import { useState } from "react";
 import Amenity from "@/components/__shared/ui/listing-form/components/Amenity";
 import styles from "../../../index.module.css";
 import { useField } from "formik";
 import { requiredFeatures } from "@/app/dashboard/components/shared/content";
 import CallOut from "@/components/__shared/ui/CallOut";
 import { createUUID } from "@/lib/utils/stringManipulation";
+import { BTFTKDefaultValues } from "@/store/dashboard/BTFTKStepsStore";
+import { useLocalStorage } from "@uidotdev/usehooks";
 
 const RequiredFeatures = () => {
-  const [selected, setSelected] = useState<any>([]);
   const [field, meta, helpers] = useField("requiredFeatures");
+  const [BTFTKCreationSteps, setBTFTKCreationSteps] = useLocalStorage<
+    typeof BTFTKDefaultValues
+  >("btftk-creation-steps");
 
   const handleAmenityClick = (r: any) => {
     if (field.value?.includes(r?.name)) {
-      // setSelected(selected?.filter((item: any) => item !== r?.name));
       helpers.setValue(field.value?.filter((item: any) => item !== r?.name));
+      setBTFTKCreationSteps({
+        ...BTFTKCreationSteps,
+        requiredFeatures: field.value?.filter((item: any) => item !== r?.name),
+      });
     } else {
-      // setSelected([...selected, r?.name]);
       helpers.setValue([...field.value, r?.name]);
+      setBTFTKCreationSteps({
+        ...BTFTKCreationSteps,
+        requiredFeatures: [...field.value, r?.name] as any,
+      });
     }
   };
-
-  // useEffect(() => {
-  //   setAgentFormData((prevData: any) => ({
-  //     ...prevData,
-  //     featuresAndAmenities: selected,
-  //   }));
-  // }, [selected, setAgentFormData]);
-
-  // useEffect(() => {
-  //   if (agentFormData?.featuresAndAmenities) {
-  //     setSelected(agentFormData?.featuresAndAmenities);
-  //   }
-  // }, []);
 
   return (
     <>

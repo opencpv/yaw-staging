@@ -6,11 +6,18 @@ import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
 import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
 import { MdOutlineMailOutline, MdOutlineWhatsapp } from "react-icons/md";
 import { useField } from "formik";
+import { BTFTKDefaultValues } from "@/store/dashboard/BTFTKStepsStore";
+import { useLocalStorage } from "@uidotdev/usehooks";
+import { E164Number } from "libphonenumber-js/core";
 
 const SpecialKeyword = () => {
   const { handlePhone, handleCountryChange, phone } = usePhoneInputDisclosure();
 
   const [field, meta, helpers] = useField("preferredMethodOfContact");
+
+  const [BTFTKCreationSteps, setBTFTKCreationSteps] = useLocalStorage<
+    typeof BTFTKDefaultValues
+  >("btftk-creation-steps");
 
   return (
     <div className="space-y-10">
@@ -26,6 +33,12 @@ const SpecialKeyword = () => {
           placeholder="e.g. Tema, Community 1, 2 bedroom, private bathroom"
           name="specialKeywords"
           classes="h-40"
+          onChange={(e) =>
+            setBTFTKCreationSteps({
+              ...BTFTKCreationSteps,
+              specialKeywords: e.target.value,
+            })
+          }
         />
       </div>
       <div className="max-w-sm space-y-4">
@@ -48,6 +61,10 @@ const SpecialKeyword = () => {
             selectedKey={field.value}
             onSelectionChange={(key) => {
               helpers.setValue(key as any);
+              setBTFTKCreationSteps({
+                ...BTFTKCreationSteps,
+                preferredMethodOfContact: key as any,
+              });
             }}
             radius="large"
             padding="medium"
@@ -60,6 +77,12 @@ const SpecialKeyword = () => {
             name="email"
             type="email"
             placeholder="Enter your email address"
+            onChange={(e) =>
+              setBTFTKCreationSteps({
+                ...BTFTKCreationSteps,
+                email: e.target.value,
+              })
+            }
           />
         </div>
         {/* whatsapp */}
@@ -67,7 +90,14 @@ const SpecialKeyword = () => {
           <InputPhoneNumber
             name="whatsApp"
             value={phone}
-            onChange={handlePhone}
+            onChange={(value) => {
+              handlePhone(value);
+
+              setBTFTKCreationSteps({
+                ...BTFTKCreationSteps,
+                whatsApp: value as E164Number,
+              });
+            }}
             onCountryChange={handleCountryChange}
           />
         </div>

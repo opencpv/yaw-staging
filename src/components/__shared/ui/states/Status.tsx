@@ -18,12 +18,13 @@ type Props = {
   tooltipContent: string;
   text: string;
   href?: string;
+  onClick?: () => void;
 };
 
-const Status = ({ variant, tooltipContent, text, href }: Props) => {
+const Status = ({ variant, tooltipContent, text, href, onClick }: Props) => {
   if (href)
     return (
-      <Tooltip content={tooltipContent}>
+      <Tooltip content={tooltipContent} >
         <Link
           href={href}
           className={cn(
@@ -37,6 +38,7 @@ const Status = ({ variant, tooltipContent, text, href }: Props) => {
               "pointer-event-none": !tooltipContent,
             },
           )}
+          onClick={onClick}
         >
           {variant === "success" ? (
             <HiOutlineBadgeCheck />
@@ -52,7 +54,7 @@ const Status = ({ variant, tooltipContent, text, href }: Props) => {
   else
     return (
       <>
-        <Tooltip content={tooltipContent}>
+        <Tooltip content={tooltipContent} >
           <div
             className={cn(
               "flex shrink-0 items-center justify-center gap-2 rounded-full p-1.5 px-2.5 shadow-sm sm:min-w-40",
@@ -65,6 +67,7 @@ const Status = ({ variant, tooltipContent, text, href }: Props) => {
                 "pointer-event-none": !tooltipContent,
               },
             )}
+          onClick={onClick}
           >
             {variant === "success" ? (
               <HiOutlineBadgeCheck />

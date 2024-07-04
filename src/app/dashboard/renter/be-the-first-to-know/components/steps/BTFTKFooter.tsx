@@ -1,38 +1,51 @@
 import { cn } from "@/lib/utils";
 import { views as BTFTKViews } from "./BTFTKForm";
-import { BTFTKStepsStore } from "@/store/dashboard/BTFTKStepsStore";
+import {
+  BTFTKDefaultValues,
+  BTFTKStepsStore,
+} from "@/store/dashboard/BTFTKStepsStore";
 import Button from "@/components/__shared/ui/button/Button";
 import { useFormikContext } from "formik";
 import { useDisclosure } from "@nextui-org/react";
 import Modal from "@/components/__shared/ui/modals/Modal";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useLocalStorage } from "@uidotdev/usehooks";
 
 const BTFTKFooter = () => {
   const router = useRouter();
+  const pathname = usePathname();
+
   const { submitForm, resetForm, validateForm, errors, isSubmitting } =
     useFormikContext();
-  const { activeSlide, setActiveSlide, firstSlide, onClose, setCriterion, onCloseEditPage } =
-    BTFTKStepsStore();
+  const {
+    activeSlide,
+    setActiveSlide,
+    firstSlide,
+    onClose,
+    setCriterion,
+    onCloseEditPage,
+  } = BTFTKStepsStore();
   const lastButOneSlide = activeSlide === BTFTKViews.length - 2;
   const { onOpenChange, isOpen, onOpen } = useDisclosure();
 
-  //useEffect(() => {
-  //  if (lastSlide) {
-  //    setFirstToKnowFormData({
-  //      ...(values as any), // set the values of the form to localStorage (which itself is a copy of initial values + local storage values)
-  //    });
-  //  }
-  //}, [lastSlide, setFirstToKnowFormData, values, firstToKnowFormData]);
+  const [BTFTKCreationSteps, setBTFTKCreationSteps] = useLocalStorage<Partial<
+    typeof BTFTKDefaultValues & { activeSlide: number }
+  > | null>("btftk-creation-steps");
 
   const handleBack = () => {
     if (activeSlide > 0) {
       setActiveSlide(activeSlide - 1);
+      setBTFTKCreationSteps({
+        ...BTFTKCreationSteps,
+        activeSlide: activeSlide - 1,
+      });
     } else {
       resetForm({});
       onClose();
       onCloseEditPage();
       setCriterion(null);
-      router.push("/dashboard/renter/be-the-first-to-know/manage-criteria");
+      localStorage.removeItem("btftk-creation-steps");
+      pathname?.includes("edit") && router.replace("/dashboard/renter/be-the-first-to-know/manage-criteria"); 
     }
   };
 
@@ -47,6 +60,10 @@ const BTFTKFooter = () => {
       }
     } else {
       setActiveSlide(activeSlide + 1);
+      setBTFTKCreationSteps({
+        ...BTFTKCreationSteps,
+        activeSlide: activeSlide + 1,
+      });
     }
   };
 

@@ -23,6 +23,23 @@ type BTFTKStepsStore = {
   setCriterion: (criterion: SearchCriteria | null) => void;
 };
 
+export const BTFTKDefaultValues = {
+  searchTitle: "",
+  specialKeywords: "",
+  location: [],
+  email: "",
+  whatsApp: "",
+  priceRangeMinimum: "100",
+  priceRangeMaximum: "100",
+  bedMinimum: "1",
+  bedMaximum: "1",
+  bathroomMinimum: "1",
+  bathroomMaximum: "1",
+  preferredType: [],
+  requiredFeatures: [],
+  preferredMethodOfContact: "email",
+};
+
 export const BTFTKStepsStore = create<BTFTKStepsStore>((set) => ({
   activeSlide: 0,
   firstSlide: true,
