@@ -79,7 +79,11 @@ const Actions = ({ criterion }: Props) => {
           <ActionItem
             href={`/dashboard/renter/be-the-first-to-know/manage-criteria/edit/LS6pI-${criterion.id}-LWIKyOgnw==`}
             onClick={() => setCriterion(criterion)}
-            disabled={criterion.is_active}
+            disabled={
+              criterion.is_active ||
+              (criterion.matched_properties !== null &&
+                criterion.matched_properties.length > 0)
+            }
           >
             <MdOutlineEdit />
             Edit

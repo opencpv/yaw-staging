@@ -2,6 +2,7 @@
 import React from "react";
 import Status from "@/components/__shared/ui/states/Status";
 import slugify from "@/lib/utils/slugify";
+import { BTFTKStepsStore } from "@/store/dashboard/BTFTKStepsStore";
 
 export type CriteriaStatus = "Match" | "No Matches" | "Pending" | "Not Started";
 
@@ -10,6 +11,8 @@ type Props = {
 };
 
 const ResultState = ({ criterion }: Props) => {
+  const { setCriterion } = BTFTKStepsStore();
+
   const matchesFound =
     criterion.matched_properties && criterion.matched_properties?.length > 0;
   const pendingMatches =
@@ -31,8 +34,11 @@ const ResultState = ({ criterion }: Props) => {
             ? `/dashboard/renter/be-the-first-to-know/${slugify(
                 criterion?.title?.toLowerCase() as string,
               )}/qkMM9hHt7-${criterion.id}-qKpgw==`
-            : undefined
+            : notStarted
+              ? `/dashboard/renter/be-the-first-to-know/manage-criteria/edit/LS6pI-${criterion.id}-LWIKyOgnw==`
+              : undefined
         }
+        onClick={() => setCriterion(criterion)}
         variant={
           pendingMatches
             ? "warning"
@@ -45,7 +51,11 @@ const ResultState = ({ criterion }: Props) => {
                   : undefined
         }
         tooltipContent={
-          notStarted ? "Please complete forms to begin target search" : ""
+          notStarted
+            ? "Please complete forms to begin target search"
+            : noMatches
+              ? "No matches in 180 days deactivates your search. Reactivate by toggling on."
+              : ""
         }
         text={
           pendingMatches

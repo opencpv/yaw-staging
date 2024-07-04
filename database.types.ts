@@ -1448,7 +1448,7 @@ export type Database = {
           id: number
           is_active: boolean
           keywords: string | null
-          location: string | null
+          location: string[] | null
           matched_properties: number[] | null
           max_bathrooms: number | null
           max_beds: number | null
@@ -1469,7 +1469,7 @@ export type Database = {
           id?: number
           is_active?: boolean
           keywords?: string | null
-          location?: string | null
+          location?: string[] | null
           matched_properties?: number[] | null
           max_bathrooms?: number | null
           max_beds?: number | null
@@ -1490,7 +1490,7 @@ export type Database = {
           id?: number
           is_active?: boolean
           keywords?: string | null
-          location?: string | null
+          location?: string[] | null
           matched_properties?: number[] | null
           max_bathrooms?: number | null
           max_beds?: number | null
@@ -2087,7 +2087,7 @@ export type Database = {
           id: number
           title: string
           property_type: string[]
-          location: string
+          location: string[]
           min_price: number
           max_price: number
           min_beds: number

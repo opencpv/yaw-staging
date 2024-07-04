@@ -1,18 +1,29 @@
 import React, { useEffect } from "react";
 import Progress from "@/app/dashboard/components/shared/Progress";
 import Button from "@/components/__shared/ui/button/Button";
-import { BTFTKStepsStore } from "@/store/dashboard/BTFTKStepsStore";
+import {
+  BTFTKDefaultValues,
+  BTFTKStepsStore,
+} from "@/store/dashboard/BTFTKStepsStore";
 import { useFormikContext } from "formik";
-import { BTFTKDefaultValues, views as BTFTKviews } from "./BTFTKForm";
+import { views as BTFTKviews } from "./BTFTKForm";
 import { useAddSearchCriteria } from "../../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { usePathname, useRouter } from "next/navigation";
+import { useLocalStorage } from "@uidotdev/usehooks";
 
 const FirstToKnowHeader = () => {
   const router = useRouter();
   const pathname = usePathname();
   const { user } = useAppStore();
-  const { values } = useFormikContext<typeof BTFTKDefaultValues>();
+  const { values, resetForm } = useFormikContext<typeof BTFTKDefaultValues>();
+
+  const [BTFTKCreationSteps, setBTFTKCreationSteps] = useLocalStorage<{
+    activeSlide: number;
+  }>("btftk-creation-steps");
+  const [BTFTKEditSteps, setBTFTKEditSteps] = useLocalStorage<
+    { criterion: number; activeSlide: number }[]
+  >("btftk-edit-steps", []);
 
   const {
     progressValue,
@@ -36,14 +47,21 @@ const FirstToKnowHeader = () => {
 
   useEffect(() => {
     if (isSuccess) {
+      resetForm({});
       onClose();
       onCloseEditPage();
       setCriterion(null);
+      localStorage.removeItem("btftk-creation-steps");
       router.push("/dashboard/renter/be-the-first-to-know/manage-criteria");
     }
     if (pathname?.includes("edit")) {
-      setActiveSlide(1);
-    } else {
+      setActiveSlide(
+        BTFTKEditSteps?.find((step) => step.criterion === criterion?.id)
+          ?.activeSlide ?? 1,
+      );
+    } else if (!pathname?.includes("edit"))
+      setActiveSlide(BTFTKCreationSteps?.activeSlide ?? 0);
+    else {
       setActiveSlide(0);
     }
   }, [
@@ -54,7 +72,50 @@ const FirstToKnowHeader = () => {
     setActiveSlide,
     setCriterion,
     router,
-  ]);
+    resetForm,
+    criterion?.id,
+    //BTFTKEditSteps,
+    //BTFTKCreationSteps?.activeSlide,
+  ]); // commented out to prevent infinite loop
+
+  const handleBTFTKEditStepsStorage = () => {
+    setBTFTKEditSteps((prevSteps) => {
+      const updatedSteps = prevSteps.filter(
+        (step) => step.criterion !== criterion?.id,
+      );
+      return [
+        { criterion: criterion?.id as number, activeSlide: activeSlide },
+        ...updatedSteps,
+      ];
+    });
+    setBTFTKCreationSteps({ activeSlide: 0 });
+  };
+
+  const handleSaveAndExit = () => {
+    handleBTFTKEditStepsStorage();
+    addSearchCriteria({
+      title: values.searchTitle,
+      location: values.location.length > 0 ? values.location : null,
+      max_beds: Number(values.bedMaximum),
+      min_beds: Number(values.bedMinimum),
+      max_price: Number(values.priceRangeMaximum),
+      min_price: Number(values.priceRangeMinimum),
+      property_type: values.preferredType,
+      max_bathrooms: Number(values.bathroomMaximum),
+      min_bathrooms: Number(values.bathroomMinimum),
+      email: values.email,
+      phone: values.whatsApp,
+      preferred_contact_method: values.preferredMethodOfContact,
+      features: values.requiredFeatures,
+      keywords: values.specialKeywords,
+      id: criterion?.id,
+      renter_id: user?.id,
+      is_active: false,
+      matched_properties: null,
+    });
+
+    router.replace("/dashboard/renter/be-the-first-to-know/manage-criteria");
+  };
 
   return (
     <section className="flex flex-col gap-4">
@@ -67,32 +128,7 @@ const FirstToKnowHeader = () => {
           className="border px-5"
           isLoading={isPending}
           disabled={isError}
-          onClick={() => {
-            addSearchCriteria({
-              title: values.searchTitle,
-              location: values.location,
-              max_beds: Number(values.bedMaximum),
-              min_beds: Number(values.bedMinimum),
-              max_price: Number(values.priceRangeMaximum),
-              min_price: Number(values.priceRangeMinimum),
-              property_type: values.preferredType,
-              max_bathrooms: Number(values.bathroomMaximum),
-              min_bathrooms: Number(values.bathroomMinimum),
-              email: values.email,
-              phone: values.whatsApp,
-              preferred_contact_method: values.preferredMethodOfContact,
-              features: values.requiredFeatures,
-              keywords: values.specialKeywords,
-              id: criterion?.id,
-              renter_id: user?.id,
-              is_active: false,
-              matched_properties: null,
-            });
-
-            router.push(
-              "/dashboard/renter/be-the-first-to-know/manage-criteria",
-            );
-          }}
+          onClick={handleSaveAndExit}
         >
           Save & Exit
         </Button>

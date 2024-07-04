@@ -72,7 +72,6 @@ export const useFetchCriteriaMatches = ({
     userId,
   });
 
-
   if (criterionId) {
     searchCriterion?.matched_properties?.map((property) => {
       if (!propertyIds.includes(property)) {
@@ -169,6 +168,7 @@ export const useUpdateCriteriaStatus = () => {
     is_active: boolean;
   }) => {
     let query;
+    // reset created_at when the status is set to active
     if (data.is_active === true) {
       query = await supabase
         .from("search_critieria")
@@ -201,10 +201,4 @@ export const useUpdateCriteriaStatus = () => {
   });
 
   return mutation;
-};
-
-const useFetchProperties = () => {
-  const query = supabase.from("merged_property_view").select();
-
-  return useQuery(query);
 };

@@ -25,7 +25,7 @@ const Tooltip = ({ children, content, className, onClick }: Props) => {
 
   return (
     <>
-      <div className="hidden place-items-center md:grid" onClick={onClick}>
+      <div className="hidden place-items-center md:grid" >
         <NextUITooltip
           classNames={{
             base: [
@@ -39,13 +39,14 @@ const Tooltip = ({ children, content, className, onClick }: Props) => {
           content={content}
           delay={300}
           closeDelay={200}
+          onClick={onClick}
         >
           <button>{children}</button>
         </NextUITooltip>
       </div>
 
       {/* Popover used as Tooltip on mobile since tooltip works only on hover */}
-      <div className="grid place-items-center md:hidden" onClick={onClick}>
+      <div className="grid place-items-center md:hidden" >
         <Popover
           style={{ zIndex: "30" }}
           placement="top"
@@ -56,6 +57,7 @@ const Tooltip = ({ children, content, className, onClick }: Props) => {
               hidden: !content,
             }),
           }}
+          onClick={onClick}
         >
           <PopoverTrigger className="h-fit w-fit">
             <button className="h-fit w-fit">{children}</button>

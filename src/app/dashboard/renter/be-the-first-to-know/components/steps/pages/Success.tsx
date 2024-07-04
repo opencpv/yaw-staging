@@ -26,7 +26,7 @@ const Success = () => {
       onClose();
       onCloseEditPage();
       setCriterion(null);
-      localStorage.removeItem("BTFTKSteps");
+      localStorage.removeItem("btftk-creation-steps");
     }, 300);
   };
 
@@ -52,7 +52,7 @@ const Success = () => {
         className="relative ml-auto flex justify-end 2xl:left-60"
         onClick={() => {
           handleClose();
-          router.push("/dashboard/renter/be-the-first-to-know");
+          router.replace("/dashboard/renter/be-the-first-to-know");
         }}
       />
       <GreenCheckLottie />
@@ -70,7 +70,7 @@ const Success = () => {
         )}
         onClick={() => {
           handleClose();
-          router.push("/dashboard/renter/overview");
+          router.replace("/dashboard/renter/overview");
         }}
       >
         Go to my Dashboard
@@ -80,7 +80,7 @@ const Success = () => {
         className="text-[#0B7371]"
         onClick={() => {
           handleClose();
-          router.push("/dashboard/renter/be-the-first-to-know/manage-criteria");
+          router.replace("/dashboard/renter/be-the-first-to-know/manage-criteria");
         }}
       >
         I want to create another search criteria

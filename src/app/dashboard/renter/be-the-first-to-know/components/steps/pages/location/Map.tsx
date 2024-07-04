@@ -4,13 +4,30 @@ import React, { useRef, useState } from "react";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import axios from "axios";
+import { LiaTimesSolid } from "react-icons/lia";
+import { motion } from "framer-motion";
+import { useField } from "formik";
+import { BTFTKDefaultValues } from "@/store/dashboard/BTFTKStepsStore";
+import { useLocalStorage } from "@uidotdev/usehooks";
 
 type Props = {};
+
+const debounce = (func: any, delay: number) => {
+  let timeoutId: any;
+  return (...args: any) => {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+    timeoutId = setTimeout(() => {
+      func(...args);
+    }, delay);
+  };
+};
 
 // Function to change the map view
 const ChangeView = ({ center }: { center: any }) => {
   const map = useMap();
-  map.setView(center, map.getZoom(), { animate: true });
+  map.flyTo(center, map.getZoom(), { animate: true });
   return null;
 };
 
@@ -18,7 +35,6 @@ const ChangeView = ({ center }: { center: any }) => {
 function MapPlaceholder() {
   return (
     <p>
-      Map of Ghana.{" "}
       <noscript>You need to enable JavaScript to see this map.</noscript>
     </p>
   );
@@ -30,6 +46,12 @@ const Map = (props: Props) => {
   const [suggestions, setSuggestions] = useState([]);
   const [tooltip, setTooltip] = useState("Accra");
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const [field, meta, helpers] = useField("location");
+
+  const [BTFTKCreationSteps, setBTFTKCreationSteps] = useLocalStorage<
+    typeof BTFTKDefaultValues
+  >("btftk-creation-steps");
 
   const handleInputChange = async () => {
     const location = inputRef?.current?.value;
@@ -49,21 +71,40 @@ const Map = (props: Props) => {
     }
   };
 
+  const debouncedHandleInputChange = debounce(handleInputChange, 300); // 300 milliseconds debounce delay
+
   const handleSuggestionClick = (lat: any, lon: any, display_name: any) => {
+    const truncatedName = display_name.split(",").slice(0, 2).join("");
     const newCenter = [parseFloat(lat), parseFloat(lon)];
     setCenter(newCenter);
     setMarkerPosition(newCenter);
-    setTooltip(display_name.split(",").slice(0, 2).join("") + "...");
+    setTooltip(truncatedName + "...");
     setSuggestions([]);
+    if (!field.value.includes(truncatedName)) {
+      helpers.setValue([...field.value, truncatedName]);
+      setBTFTKCreationSteps({
+        ...BTFTKCreationSteps,
+        location: [...field.value, truncatedName] as any,
+      });
+    }
     inputRef.current!.value = "";
+  };
+
+  const handleRemoveLocation = (location: string) => {
+    helpers.setValue(field.value.filter((s: string) => s !== location));
+    setBTFTKCreationSteps({
+      ...BTFTKCreationSteps,
+      location: field.value.filter((s: string) => s !== location) as any,
+    });
   };
 
   return (
     <>
-      <div className="absolute bottom-40 left-1/2 z-[99999] mx-auto grid w-full max-w-md -translate-x-1/2 place-items-center rounded-xl bg-white p-5 px-14 shadow-lg ">
-        <div className="absolute bottom-full left-0 right-0 z-10 overflow-y-auto border bg-white">
+      <div className="absolute bottom-40 left-1/2 z-[99999] mx-auto flex w-full max-w-md -translate-x-1/2 flex-col gap-3 rounded-3xl bg-white p-5 px-14 shadow-lg ">
+        {/* Suggestions */}
+        <ul className="absolute bottom-full left-0 right-0 z-10 overflow-y-auto rounded-t-md border bg-white">
           {suggestions.map((suggestion: any) => (
-            <div
+            <li
               key={suggestion.place_id}
               onClick={() =>
                 handleSuggestionClick(
@@ -75,16 +116,42 @@ const Map = (props: Props) => {
               className="cursor-pointer p-4 hover:bg-gray-50"
             >
               {suggestion.display_name}
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
         <input
           type="text"
           placeholder="Search location"
           ref={inputRef}
-          onChange={handleInputChange}
-          className="w-full rounded-md border bg-gray-100 p-2 placeholder:text-shade-200 focus:outline-none"
+          onChange={debouncedHandleInputChange}
+          className="w-full rounded-md border bg-gray-100 p-2 placeholder:text-xs placeholder:text-shade-200 focus:outline-none"
         />
+
+        {/* Selected locations */}
+        <ul className="flex flex-wrap gap-x-3 gap-y-1.5">
+          {field.value.length > 0 &&
+            field.value.map((location: string) => (
+              <motion.li
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                className="flex max-w-[95px] items-center gap-1  rounded-full border px-2 py-1 text-xs text-shade-300"
+                key={location}
+              >
+                <span
+                  className="truncate"
+                  title={location.split(",").slice(0, 2).join("")}
+                >
+                  {location.split(",").slice(0, 2).join("")}
+                </span>
+                <button onClick={() => handleRemoveLocation(location)}>
+                  <LiaTimesSolid
+                    size={10}
+                    className="shrink-0 text-shade-500"
+                  />
+                </button>
+              </motion.li>
+            ))}
+        </ul>
       </div>
 
       <MapContainer
