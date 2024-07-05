@@ -34,7 +34,6 @@ const ManageSearchCriteria = () => {
     status,
   });
 
-
   const {
     currentItems: paginatedCriteria,
     handlePageClick,
@@ -55,7 +54,10 @@ const ManageSearchCriteria = () => {
           options={["Match", "No Match", "Pending", "Not Started", "All"]}
           placeholder="Status"
           value={status as string}
-          onValueChange={setStatus}
+          onValueChange={(value) => {
+            setStatus(value);
+            handlePageClick({ selected: 0 });
+          }}
           classNames={{ trigger: "self-end" }}
         />
       </div>

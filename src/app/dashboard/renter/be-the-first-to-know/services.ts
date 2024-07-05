@@ -98,6 +98,59 @@ export const useFetchCriteriaMatches = ({
   return useOffsetInfiniteScrollQuery(query);
 };
 
+export const useFetchCriteriaOverview = ({ userId }: { userId: string }) => {
+  const propertiesIds: number[] = [];
+  const images: string[] = [];
+
+  const getSummary = async () => {
+    const { data: criteria } = await supabase
+      .from("search_critieria")
+      .select("id, matched_properties, title")
+      .eq("renter_id", userId)
+      .not("match_modified_at", "is", null)
+      .order("match_modified_at", { ascending: false })
+      .limit(2);
+
+    if (criteria) {
+      criteria.forEach((criterion) => {
+        propertiesIds.push(
+          criterion.matched_properties! &&
+            criterion.matched_properties[
+              criterion.matched_properties &&
+                criterion.matched_properties?.length - 1
+            ],
+        );
+      });
+    }
+
+    const { data: properties } = await supabase
+      .from("property")
+      .select("id, images")
+      .in("id", propertiesIds);
+
+    if (properties) {
+      properties.forEach((property) => {
+        images.push(property.images?.[0] || "/images/placeholder.png"); // TODO: Look into default image
+      });
+    }
+
+    const final_output = criteria?.map((criterion, index) => {
+      return {
+        criterion,
+        associated_image: images[index],
+      };
+    });
+    return final_output;
+  };
+
+  const query = useReactQuery({
+    queryFn: getSummary,
+    queryKey: ["search_criteria_summary", userId],
+  });
+
+  return query;
+};
+
 export const useDeleteSearchCriteria = () => {
   const { onOpen: onToastOpen } = useToastDisclosure();
 

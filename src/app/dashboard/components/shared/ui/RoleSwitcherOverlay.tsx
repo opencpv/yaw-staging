@@ -30,7 +30,7 @@ const RoleSwitcherOverlay = (props: Props) => {
       <div className="flex flex-col items-center justify-center gap-5">
         <Loader />
         <h4 className="text-primary-500">
-          Getting {currentRole}&apos;s dashboard ready{" "}
+          Getting {currentRole}&apos;s dashboard{" "}
           <span className="animate-pulse">...</span>{" "}
         </h4>
         {/* <Button

@@ -76,8 +76,6 @@ export const formatDateDMY = (dateString: string) => {
   return `${day} ${monthName} ${year}`;
 };
 
-
-
 export const LowerCase = (text: string) => {
   return text?.toLowerCase();
 };
@@ -96,13 +94,16 @@ export const createUUID = () => {
   return uuidv4();
 };
 
-export const pluralize = (word: string, length: number) => {
-  if (length > 1) {
-    return `${word}s`;
-  } else if (length === 1) {
+export const pluralize = (
+  // Singular form of the word
+  word: string,
+  length: number | undefined,
+  suffix: "s" | "es" = "s",
+) => {
+  if (length && length === 1) {
     return word;
   } else {
-    return `${word}s`;
+    return `${word}${suffix}`;
   }
 };
 

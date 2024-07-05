@@ -33,9 +33,7 @@ const ResultState = ({ criterion }: Props) => {
           matchesFound
             ? `/dashboard/renter/be-the-first-to-know/${slugify(
                 criterion?.title?.toLowerCase() as string,
-              )}/qkMM9hHt7-${criterion.id}-qKpgw==`
-            : notStarted
-              ? `/dashboard/renter/be-the-first-to-know/manage-criteria/edit/LS6pI-${criterion.id}-LWIKyOgnw==`
+              )}/uUT60Lgh-${criterion.id}-BDJ7Q`
               : undefined
         }
         onClick={() => setCriterion(criterion)}
