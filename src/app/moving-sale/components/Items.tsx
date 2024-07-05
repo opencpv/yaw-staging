@@ -50,7 +50,7 @@ function Items({}: Props) {
           <Skeleton className="h-5 w-32" />
         ) : (
           <p className={cn("text-base", { invisible: items?.length === 0 })}>
-            Showing {items?.length} {pluralize("result", items?.length || 0)}
+            Showing {items?.length} {pluralize("result", items?.length)}
           </p>
         )}
 

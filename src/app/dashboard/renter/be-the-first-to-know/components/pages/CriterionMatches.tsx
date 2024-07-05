@@ -50,9 +50,7 @@ const CriterionMatches = ({ params }: Props) => {
         </section>
       )}
 
-      {matchedListings && matchedListings?.length <= 0 ? (
-        <NoMatchEmptyState />
-      ) : (
+      {matchedListings && matchedListings?.length > 0 && (
         <section className="space-y-5">
           <h3 className="text-shade-300">{criterionTitle}</h3>
 

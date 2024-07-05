@@ -3,4 +3,4 @@ export const NOTICE_MODAL_TTL = 24 * 7; // 1 week
 export const IFRAME_ALLOW =
   "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen";
 export const SLIDER_AUTOPLAY_DELAY = 6000;
-export const BE_THE_FIRST_TO_KNOW_LAPSE_DAYS = 1; // days
+export const BE_THE_FIRST_TO_KNOW_LAPSE_DAYS = 180; // days

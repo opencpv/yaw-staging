@@ -3,6 +3,7 @@ import { getDaysRemaining } from "../utils";
 import { useUpdateCriteriaStatus } from "../services";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import { pluralize } from "@/lib/utils/stringManipulation";
 
 interface Props {
   criterion: SearchCriteria;
@@ -34,7 +35,7 @@ const CriteriaStatus = ({ criterion }: Props) => {
 
   return (
     <Toggle
-      label={`${daysRemaining} ${daysRemaining === 1 ? "day" : "days"} remaining`}
+      label={`${daysRemaining} ${pluralize("day", daysRemaining)} remaining`}
       color="primary"
       isSelected={variables ? variables.is_active : criterion.is_active}
       onValueChange={handleSelectionChange}

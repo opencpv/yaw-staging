@@ -190,6 +190,27 @@ export type Database = {
         }
         Relationships: []
       }
+      cron_jobs: {
+        Row: {
+          created_at: string
+          id: number
+          name: string | null
+          status: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          name?: string | null
+          status?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          name?: string | null
+          status?: string | null
+        }
+        Relationships: []
+      }
       customer_discounts: {
         Row: {
           code: string
@@ -922,6 +943,7 @@ export type Database = {
           firstname: string | null
           full_name: string | null
           id: string
+          is_banned: boolean
           is_certified: boolean
           is_first_time: boolean
           lastname: string | null
@@ -940,6 +962,7 @@ export type Database = {
           firstname?: string | null
           full_name?: string | null
           id: string
+          is_banned?: boolean
           is_certified?: boolean
           is_first_time?: boolean
           lastname?: string | null
@@ -958,6 +981,7 @@ export type Database = {
           firstname?: string | null
           full_name?: string | null
           id?: string
+          is_banned?: boolean
           is_certified?: boolean
           is_first_time?: boolean
           lastname?: string | null
@@ -995,6 +1019,7 @@ export type Database = {
           features_and_amenities: string[] | null
           furnish_level: string
           id: number
+          images: string[] | null
           is_available: boolean
           is_best_value: boolean
           is_complete: boolean
@@ -1050,6 +1075,7 @@ export type Database = {
           features_and_amenities?: string[] | null
           furnish_level: string
           id?: number
+          images?: string[] | null
           is_available?: boolean
           is_best_value?: boolean
           is_complete?: boolean
@@ -1105,6 +1131,7 @@ export type Database = {
           features_and_amenities?: string[] | null
           furnish_level?: string
           id?: number
+          images?: string[] | null
           is_available?: boolean
           is_best_value?: boolean
           is_complete?: boolean
@@ -1449,6 +1476,7 @@ export type Database = {
           is_active: boolean
           keywords: string | null
           location: string[] | null
+          match_modified_at: string | null
           matched_properties: number[] | null
           max_bathrooms: number | null
           max_beds: number | null
@@ -1470,6 +1498,7 @@ export type Database = {
           is_active?: boolean
           keywords?: string | null
           location?: string[] | null
+          match_modified_at?: string | null
           matched_properties?: number[] | null
           max_bathrooms?: number | null
           max_beds?: number | null
@@ -1491,6 +1520,7 @@ export type Database = {
           is_active?: boolean
           keywords?: string | null
           location?: string[] | null
+          match_modified_at?: string | null
           matched_properties?: number[] | null
           max_bathrooms?: number | null
           max_beds?: number | null
@@ -1657,6 +1687,7 @@ export type Database = {
           features_and_amenities: string[] | null
           furnish_level: string | null
           id: number | null
+          images: string[] | null
           is_available: boolean | null
           is_best_value: boolean | null
           is_complete: boolean | null
@@ -1712,6 +1743,7 @@ export type Database = {
           features_and_amenities?: string[] | null
           furnish_level?: string | null
           id?: number | null
+          images?: string[] | null
           is_available?: boolean | null
           is_best_value?: boolean | null
           is_complete?: boolean | null
@@ -1767,6 +1799,7 @@ export type Database = {
           features_and_amenities?: string[] | null
           furnish_level?: string | null
           id?: number | null
+          images?: string[] | null
           is_available?: boolean | null
           is_best_value?: boolean | null
           is_complete?: boolean | null
@@ -2103,6 +2136,7 @@ export type Database = {
           keywords: string
           features: string[]
           matched_properties: number[]
+          match_modified_at: string
         }[]
       }
       increment_property_views: {

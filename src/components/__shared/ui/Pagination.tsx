@@ -18,7 +18,7 @@ const Pagination = ({ className, handlePageClick, pageCount }: Props) => {
       nextLabel={<FaChevronRight />}
       previousLabel={<FaChevronLeft />}
       onPageChange={handlePageClick}
-      pageRangeDisplayed={5}
+      //pageRangeDisplayed={4}
       pageCount={pageCount}
       renderOnZeroPageCount={null}
       className={cn(

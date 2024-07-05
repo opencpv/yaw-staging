@@ -12,6 +12,7 @@ import ListingTags from "./ListingTags";
 import { ListingCardInterface } from "../../../../../interfaces";
 import LikeHeart from "../LikeHeart";
 import { useAppStore } from "@/store/dashboard/AppStore";
+import { createUUID } from "@/lib/utils/stringManipulation";
 
 const SliderArea = (props: Partial<ListingCardInterface>) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
@@ -98,9 +99,9 @@ const SliderArea = (props: Partial<ListingCardInterface>) => {
       </div>
       {props.images?.map((image, index) =>
         props.showOnlyImage ? ( // when only images show without pagination or controls
-          <>
+          <React.Fragment key={createUUID()}>
             {index === 0 && (
-              <SwiperSlide key={index}>
+              <SwiperSlide key={createUUID()}>
                 <Link href={`${props.href}`}>
                   <div className="relative h-full w-full">
                     <Image
@@ -115,11 +116,11 @@ const SliderArea = (props: Partial<ListingCardInterface>) => {
                 </Link>
               </SwiperSlide>
             )}
-          </>
+          </React.Fragment>
         ) : props.isMyFavoritePage || props.isRecommendationsPage ? ( // when page is "my favourites" or "recommendations" on dash
-          <>
+          <React.Fragment key={createUUID()}>
             {index === 0 && (
-              <SwiperSlide key={index}>
+              <SwiperSlide key={createUUID()}>
                 <div className="relative h-full w-full">
                   <Image
                     src={image}
@@ -131,15 +132,15 @@ const SliderArea = (props: Partial<ListingCardInterface>) => {
                 </div>
               </SwiperSlide>
             )}
-          </>
+          </React.Fragment>
         ) : (
-          <SwiperSlide key={index}>
+          <SwiperSlide key={createUUID()}>
             {" "}
             {/* listing images with pagination and controls */}
             <Link
               href={`${props.href}`}
               tabIndex={index === 0 ? 0 : -1}
-              className="relative focus:after:absolute focus:after:inset-0 focus:outline-accent focus:after:z-50 focus:after:size-full focus:after:bg-neutral-300/50"
+              className="relative focus:outline-accent focus:after:absolute focus:after:inset-0 focus:after:z-50 focus:after:size-full focus:after:bg-neutral-300/50"
             >
               <div className="relative h-full w-full">
                 <Image
