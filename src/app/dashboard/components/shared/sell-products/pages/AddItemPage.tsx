@@ -231,7 +231,10 @@ const AddItemPage = () => {
                   color="primary"
                 />
                 <div className="flex flex-col gap-y-2">
-                  <p className="  text-grayText">Preffered Method of contact</p>
+                  <p className="  text-grayText">Preffered Method of contact</p>{" "}
+                  {/* EC: Please check spelling of Preferred.
+                   * Also heading elements are preferable for headers. i.e h3, h4 instead of <p>
+                   * Please address similar instances */}
                   <Checkbox
                     defaultChecked
                     label="In app messaging ( Default)"
