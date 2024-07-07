@@ -1,10 +1,13 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
 import Review from "./Review";
 import Recommend from "./Recommend";
-import { Progress } from "./Progress";
+import {
+  Progress,
+  ProgressLabel,
+  ProgressLine,
+} from "./Progress";
 import { styled } from "@stitches/react";
 import Rate from "./Rate";
 
@@ -36,7 +39,7 @@ function RatingsFormForm() {
   }, [setActiveTab]);
 
   return (
-    <Root className="flex h-[726px] min-h-[726px] flex-col justify-between gap-4 px-0 lg:px-5 py-2">
+    <Root className="flex h-[726px] min-h-[726px] flex-col justify-between gap-4 px-0 py-2 lg:px-5">
       <div className="flex h-full flex-col gap-4 ">
         <p className="text-base font-bold text-[#373737] 2xl:text-2xl">
           Write a review
@@ -65,11 +68,21 @@ function RatingsFormForm() {
           </div>
         </div>
 
-        <div className="my-8 flex h-full w-full flex-col justify-center px-1">
-          <div className="mb-16 flex items-center gap-5  pl-1">
-            <Progress number={1} label="Rate" classes="sc1" />
-            <Progress number={2} label="review" classes="sc2" />
-            <Progress number={3} label="recommend" classes="sc3" />
+        <div className="my-8 mb-16 flex h-full w-full flex-col justify-center  gap-8">
+          <div className=" grid grid-cols-5 items-center gap-2 sm:gap-5  pl-1 w-full">
+            <Progress number={1} />
+            <ProgressLine />
+            <Progress number={2}  />
+            <ProgressLine />
+
+            <Progress number={3} />
+          </div>
+          <div className="grid w-full grid-cols-5 items-center justify-center gap-2 sm:gap-5 text-center">
+            <ProgressLabel number={1} label="Rate" />
+            <p></p>
+            <ProgressLabel number={2} label="Recommend" />
+            <p></p>
+            <ProgressLabel number={7} label="Review" />
           </div>
           <div className="flex h-full flex-col justify-center">
             {pages[activeTab]}
