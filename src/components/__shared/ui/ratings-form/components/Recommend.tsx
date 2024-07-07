@@ -1,8 +1,5 @@
 import { useState } from "react";
-import CaThumbsDown from "./icons/CaThumbsDown";
-import CaThumbsUp from "./icons/CaThumbsUp";
-import SwiperSlideControls from "./SwiperSliderControls";
-import Image from "next/image";
+
 import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 import { fadeIn } from "@/lib/animations";
 import Thumbs from "../../feedback/Thumbs";
@@ -44,7 +41,7 @@ function Recommend() {
       <div className="flex h-full w-full flex-col items-center justify-center gap-4 ">
         <p className="text-lg font-semibold text-shade-300 2xl:text-xl">
           Would you recommend{" "}
-          <span className="">
+          <span className="font-bold">
             {" "}
             {currentProperty?.bedrooms} Bedroom {currentProperty?.propertyType}
           </span>{" "}

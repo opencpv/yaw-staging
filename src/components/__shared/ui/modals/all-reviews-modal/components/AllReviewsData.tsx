@@ -21,7 +21,7 @@ function AllReviewsData() {
   } = useRatingsModalStore();
 
   return (
-    <div className="pt-10">
+    <div className="pt-10 px-0 md:px-5 2xl:px-6">
       <SlideEnter>
         <div className="flex w-full flex-col items-start justify-center gap-8">
           <div className="flex w-full items-center gap-4 rounded-2xl bg-[#E9ECEF] px-8 py-4">
