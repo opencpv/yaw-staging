@@ -110,7 +110,7 @@ export const useMenuLinks = () => {
       name: "Report Fraud",
     },
     {
-      url: "",
+      url: "/contact",
       name: "Feedback",
     },
   ];

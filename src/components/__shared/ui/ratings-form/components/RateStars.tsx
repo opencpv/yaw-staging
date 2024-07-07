@@ -9,18 +9,18 @@ function RateStars({ label }: Props) {
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
   return (
-    <div>
-      <p className="text-[#545454] flex flex-col gap-2.5 text-[1.25rem] font-semibold text-center">
+    <div className="flex flex-col gap-2.5">
+      <p className="text-[#545454]  text-lg 2xl:text-xl font-semibold text-center">
         {label}
       </p>{" "}
-      <div className="flex ">
+      <div className="flex gap-6 ">
         {[...Array(5)].map((star, index) => {
           index += 1;
           return (
             <button
               type="button"
               key={index}
-              className="pr-6"
+              className=""
               onClick={() => setRating(index)}
               onMouseEnter={() => setHover(index)}
               onMouseLeave={() => setHover(rating)}>

@@ -11,6 +11,7 @@ import MenuWrapperNoSSR from "@/components/__shared/hoc/MenuWrapperNoSSR";
 import { Metadata, Viewport } from "next";
 import TemporayLandingPage from "@/components/TemporaryLandingPage";
 import NoticeModal from "@/components/__shared/ui/modals/NoticeModal";
+import RatingsAndAllRatings from "@/components/RatingsAndAllRatings";
 
 export const metadata: Metadata = {
   title: {
@@ -82,6 +83,7 @@ export default async function RootLayout({
             )}
           </MenuWrapperNoSSR>
         </Providers>
+        <RatingsAndAllRatings/>
       </body>
     </html>
   );
