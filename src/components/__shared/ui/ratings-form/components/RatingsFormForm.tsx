@@ -36,7 +36,7 @@ function RatingsFormForm() {
   }, [setActiveTab]);
 
   return (
-    <Root className="flex h-[726px] min-h-[726px] flex-col justify-between gap-4 px-5 py-2">
+    <Root className="flex h-[726px] min-h-[726px] flex-col justify-between gap-4 px-0 lg:px-5 py-2">
       <div className="flex h-full flex-col gap-4 ">
         <p className="text-base font-bold text-[#373737] 2xl:text-2xl">
           Write a review

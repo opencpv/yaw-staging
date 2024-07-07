@@ -61,7 +61,7 @@ export const Progress = ({ number, label, classes, third }: Props) => {
       </div>
       <div className="mt-[18%] md:mt-[14%]">
         {number !== 3 && (
-          <div className="relative h-[1px] w-[30px] lg:w-[143px] mx-0 lg:mx-5">
+          <div className="relative h-[1px] w-[40px] lg:w-[143px] mx-0 lg:mx-5">
             <Image
               src={"/assets/images/reviews-line.png"}
               alt="Reviews line"

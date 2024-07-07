@@ -79,7 +79,7 @@ const Page = () => {
                   setCurrentNotification(r);
                 }}
               >
-                <NotificationsSmItem currentNotification={r} />
+                <NotificationsSmItem notification={r} />
               </div>
             ),
           )}
