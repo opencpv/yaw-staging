@@ -210,46 +210,52 @@ const UpdateItemPage = () => {
                   );
                 });
                 console.log(oldFilesRemovedFromNewSelections);
-                Promise.all([...imageUploadPromises, ...imageDeletePromises])
-                  .then(() => {
-                    const images = imageUrls.map((file) => `${file}`);
-                    supabase
-                      .from("products")
-                      .update({
-                        title: values.itemName,
-                        price: values.price,
-                        description: values.description,
-                        condition: values.condition.toUpperCase(),
-                        primary_image: `${process.env.NEXT_PUBLIC_DO_CDN_URL}${values.primaryImage}`,
-                        term:
-                          values.term === "yes"
-                            ? "Negotiable"
-                            : "Non-Negotiable",
-                        images: images,
-                        category: values.category,
-                        phone: values.phone,
-                        email: values.email,
-                      })
-                      .eq("id", products[0].id)
-                      .then(({ data, error }) => {
-                        setLoading(false);
-                        if (!error) {
-                          toast.success("Item updated successfully", {
-                            toastId: "toast",
-                          });
-                        } else {
-                          console.log(error);
-                          toast.error("A problem occurred", {
-                            toastId: "toast",
-                          });
-                        }
-                      });
-                  })
-                  .catch((error) => {
-                    console.error("Error during image uploads:", error);
-                    setLoading(false);
-                    toast.error("Image upload failed", { toastId: "toast" });
+                if (values.primaryImage) {
+                  Promise.all([...imageUploadPromises, ...imageDeletePromises])
+                    .then(() => {
+                      const images = imageUrls.map((file) => `${file}`);
+                      supabase
+                        .from("products")
+                        .update({
+                          title: values.itemName,
+                          price: values.price,
+                          description: values.description,
+                          condition: values.condition.toUpperCase(),
+                          primary_image: `${process.env.NEXT_PUBLIC_DO_CDN_URL}${values.primaryImage}`,
+                          term:
+                            values.term === "yes"
+                              ? "Negotiable"
+                              : "Non-Negotiable",
+                          images: images,
+                          category: values.category,
+                          phone: values.phone,
+                          email: values.email,
+                        })
+                        .eq("id", products[0].id)
+                        .then(({ data, error }) => {
+                          setLoading(false);
+                          if (!error) {
+                            toast.success("Item updated successfully", {
+                              toastId: "toast",
+                            });
+                          } else {
+                            console.log(error);
+                            toast.error("A problem occurred", {
+                              toastId: "toast",
+                            });
+                          }
+                        });
+                    })
+                    .catch((error) => {
+                      console.error("Error during image uploads:", error);
+                      setLoading(false);
+                      toast.error("Image upload failed", { toastId: "toast" });
+                    });
+                } else {
+                  toast.warning("Please select a primary image", {
+                    toastId: "toast",
                   });
+                }
               }}
             >
               {({ values, handleChange, handleBlur, handleSubmit }) => (
