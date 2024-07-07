@@ -17,16 +17,16 @@ const NotificationDetailsFull: React.FC<Props> = ({ currentNotification }) => {
         <Root className=" flex h-full flex-col justify-start gap-4 pr-1  2xl:gap-8  ">
           <div className="flex flex-col gap-2 2xl:gap-4">
             <div className=" font-bold capitalize text-black ">
-              <h2 className="font-bold">{currentNotification?.subject}</h2>
+              <h2 className="font-bold ">{currentNotification?.subject}</h2>
             </div>
             <div className="flex  gap-2 text-[10px] uppercase text-[#0000008F] 2xl:leading-[14px]">
-              <p className="font-bold">Date</p>
-              <p className="font-semibold">
+              <span className="font-bold">Date</span>
+              <span className="font-semibold">
                 {moment(currentNotification?.sent).format("DD MMMM, YYYY")}{" "}
-              </p>
-              <p className="font-bold">
+              </span>
+              <span className="font-bold">
                 {moment(currentNotification?.created_at).fromNow()}
-              </p>
+              </span>
             </div>
           </div>
           <div className="text-[16px] font-[400] text-[#00000066] 2xl:leading-[22.4px]">

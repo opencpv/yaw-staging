@@ -54,7 +54,7 @@ const Page = () => {
           )}
         </div>
         <CustomScroll className="hidden max-h-[70vh] flex-col gap-6 overflow-y-scroll lg:flex ">
-          {user?.notifications?.map(
+          {notifications?.map(
             // notifications exist on user?
             (r: any, index: number) => (
               <div
@@ -64,19 +64,13 @@ const Page = () => {
                   setCurrentNotification(r);
                 }}
               >
-                <NotificationItem
-                  type={r?.type}
-                  sender={r?.sender_name}
-                  subject={r?.subject}
-                  time={r?.sent}
-                  content={r?.content}
-                />
+                <NotificationItem notification={r} />
               </div>
             ),
           )}
         </CustomScroll>
         <div className="lex-col flex w-full flex-col gap-8  overflow-y-scroll lg:hidden ">
-          {user?.notifications?.map(
+          {notifications?.map(
             // notifications exists on user ?
             (r: any, index: number) => (
               <div

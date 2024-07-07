@@ -1,25 +1,24 @@
+import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 import RateStars from "./RateStars";
 import SwiperSlideControls from "./SwiperSliderControls";
+import { fadeIn } from "@/lib/animations";
 
-type Props = {
-  setActiveIndex: any
-}
-function Rate({setActiveIndex} : Props) {
+
+function Rate() {
 
   return (
-    <div className="w-full flex flex-col items-center justify-between min-h-[320px]">
-      <div className="flex flex-col gap-4  w-full ">
-        <div className="w-full justify-between items-center flex flex-col md:flex-row">
-          <RateStars label="Lorem ipsum" />
-          <RateStars label="Lorem ipsum" />
+    <FramerWrapper {...fadeIn} className="w-full  flex flex-col items-center justify-between  ">
+      <div className="flex flex-col gap-14  w-full ">
+        <div className="w-full justify-between items-center flex flex-col md:flex-row  ">
+          <RateStars label="Cleanliness" />
+          <RateStars label="Comfort & Amenities" />
         </div>
         <div className="w-full justify-between items-center flex flex-col md:flex-row">
-          <RateStars label="Lorem ipsum" />
-          <RateStars label="Lorem ipsum" />
+          <RateStars label="Noise Levels" />
+          <RateStars label="Safety & Security" />
         </div>
       </div>
-      <SwiperSlideControls buttonLabel2="Next" setActiveIndex={setActiveIndex}/>
-    </div>
+    </FramerWrapper>
   );
 }
 
