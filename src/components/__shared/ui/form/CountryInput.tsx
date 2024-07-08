@@ -20,6 +20,8 @@ import { styled } from "@stitches/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import capitalizeName from "@/lib/utils/stringManipulation";
+import { cn } from "@/lib/utils";
 
 type DataItem = {
   label: string;
@@ -30,7 +32,7 @@ type DataItem = {
 type Props = {
   placeholder?: string;
   label: string;
-  onChange: (value: any) => void;
+  onChange?: (value: any) => void;
   initialValue?: string;
   name?: string;
   value?: string;
@@ -60,8 +62,8 @@ const CountryInput = ({
       .then((res) => {
         const resData = res.data;
         const newCountryData = resData.map((element: any) => ({
-          label: element?.name?.official,
-          value: element?.name?.official,
+          label: element?.name?.common,
+          value: element?.name?.common,
           flags: element?.flags?.png,
         }));
 
@@ -86,9 +88,12 @@ const CountryInput = ({
               variant="outline"
               role="combobox"
               aria-expanded={open}
-              className={`w-full justify-between border-[#a3a3a3] placeholder:text-neutral-500 hover:border-black/50 focus:border-2 focus:border-accent-50 focus:outline-none focus-visible:ring-0  ${
-                field.value ? "capitalize text-[#6A6968]" : "text-[#B4B2AF] "
-              } h-[52px] whitespace-nowrap`}
+              className={cn(
+                `h-[52px] w-full justify-between whitespace-nowrap border-[#a3a3a3] text-[#B4B2AF] placeholder:text-neutral-500 hover:border-black/50 hover:bg-transparent focus:border-2 focus:border-accent focus-visible:outline-0 focus-visible:ring-0`,
+                {
+                  "capitalize text-[#6A6968]": field.value,
+                },
+              )}
               name={field.name}
               value={value || field.value}
             >
@@ -96,10 +101,10 @@ const CountryInput = ({
               <IoChevronDown className="ml-2 h-4 w-4 shrink-0 text-neutral-500 opacity-50" />
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="z-[200] max-h-[400px] w-fit overflow-y-scroll bg-[#fefefe] p-0 focus:outline-none">
+          <PopoverContent className="z-[200] max-h-[200px] w-fit overflow-y-scroll bg-[#fefefe] p-0 focus:outline-none">
             <Command
               onValueChange={(value) => {
-                onChange(value);
+                onChange?.(value);
                 helpers.setValue(value);
               }}
             >
@@ -111,12 +116,12 @@ const CountryInput = ({
               <CommandGroup>
                 {countryData?.map((data) => (
                   <CommandItem
-                    className="flex cursor-pointer gap-3 hover:bg-accent-50"
+                    className="flex cursor-pointer gap-3 hover:bg-accent-50 focus:bg-accent-50 focus:text-white"
                     key={data.value}
                     onSelect={(currentValue) => {
-                      onChange(currentValue);
+                      onChange?.(capitalizeName(currentValue));
                       // setValue(currentValue === value ? "" : currentValue);
-                      helpers.setValue(currentValue);
+                      helpers.setValue(capitalizeName(currentValue));
                       setOpen(false);
                     }}
                   >
@@ -127,7 +132,7 @@ const CountryInput = ({
                       )}
                     /> */}
                     <div className="relative aspect-square w-[20px]">
-                      <Image src={data.flags} alt="flag" fill />
+                      <Image src={data.flags} alt={data.label + " flag"} fill />
                     </div>
                     {data.label}
                   </CommandItem>

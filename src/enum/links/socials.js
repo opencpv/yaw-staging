@@ -35,8 +35,8 @@ export const socialLinks = {
   ],
   coloured: [
     {
-      name: "Facebook",
-      icon: <CaFacebook />,
+      name: "Instagram",
+      icon: <CaInstagram />,
       href: "#",
     },
     {
@@ -45,14 +45,16 @@ export const socialLinks = {
       href: "#",
     },
     {
+      name: "Facebook",
+      icon: <CaFacebook />,
+      href: "#",
+    },
+
+    {
       name: "Whatsapp",
       icon: <CaWhatsappBusiness />,
       href: "#",
     },
-    {
-      name: "Instagram",
-      icon: <CaInstagram />,
-      href: "#",
-    },
+    ,
   ],
 };

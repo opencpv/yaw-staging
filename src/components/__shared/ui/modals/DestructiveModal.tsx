@@ -1,8 +1,6 @@
 import Button from "@/components/__shared/ui/button/Button";
 import Modal from "@/components/__shared/ui/modals/Modal";
 import React from "react";
-import { HiOutlineExclamationCircle } from "react-icons/hi";
-import { useRouter } from "next/navigation";
 
 type ModalProps = {
   isOpen: boolean;
@@ -35,7 +33,6 @@ const DestructiveModal = ({
 }: ModalProps) => {
   return (
     <Modal
-      header={<ModalHeader />}
       body={<ModalBody label={label} />}
       footer={
         <ModalFooter
@@ -52,21 +49,11 @@ const DestructiveModal = ({
   );
 };
 
-const ModalHeader = () => {
-  return (
-    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#FEF3F2]">
-      <div className="flex h-11 w-11 items-center justify-center rounded-full bg-neutral-200">
-        <HiOutlineExclamationCircle className="rotate-180 text-xl text-neutral-800" />
-      </div>
-    </div>
-  );
-};
-
 const ModalBody = ({ label }: ModalBodyProps) => {
   return (
     <>
       <h2 className="font-[700] text-neutral-900">Notice</h2>
-      <p className="text-sm text-neutral-500">
+      <p className="text-base text-neutral-500">
         {label ? label : "Are you sure you want to delete this item?"}
       </p>
     </>
@@ -78,16 +65,6 @@ const ModalFooter = ({
   handleDestruction,
   loading,
 }: ModalFooterProps) => {
-  const router = useRouter();
-
-  // const handleDestruction = async () => {
-  //   const { error } = await supabase.from(table).delete().eq("id", id);
-
-  //   if (!error) {
-  //     router.refresh();
-  //   }
-  // };
-
   return (
     <div className="flex w-full justify-end gap-2">
       <Button

@@ -4,7 +4,7 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import React from "react";
 import NoProfileUpload from "./NoProfileUpload";
 import Loader from "@/components/__shared/ui/loader/Loader";
-
+import Tooltip from "@/components/__shared/ui/Tooltip";
 
 const ProfilePicture = () => {
   const { user } = useAppStore();
@@ -17,10 +17,11 @@ const ProfilePicture = () => {
     >
       {!user?.profile_img ? (
         <>
-          <div
-            className="absolute right-2 top-2 z-10 size-5 animate-pulse rounded-full bg-primary"
-            title="Please upload your profile"
-          />
+          <Tooltip content="Please upload your photo">
+            <div className="pulse absolute right-2 top-2 z-10 grid size-4 animate-pulse place-items-center rounded-full border border-error ">
+              <div className="size-2 rounded-full bg-error" />
+            </div>
+          </Tooltip>
           <NoProfileUpload />
         </>
       ) : user?.profile_img ? (

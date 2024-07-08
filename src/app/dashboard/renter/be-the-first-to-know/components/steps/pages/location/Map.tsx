@@ -62,7 +62,7 @@ const Map = (props: Props) => {
 
     try {
       const response = await axios.get(
-        `https://nominatim.openstreetmap.org/search?format=json&q=${location}&countrycodes=GH&limit=5`,
+        `https://nominatim.openstreetmap.org/search?format=json&q=${location}&countrycodes=GH`,
       );
 
       setSuggestions(response.data);
@@ -102,23 +102,25 @@ const Map = (props: Props) => {
     <>
       <div className="absolute bottom-40 left-1/2 z-[99999] mx-auto flex w-full max-w-md -translate-x-1/2 flex-col gap-3 rounded-3xl bg-white p-5 px-14 shadow-lg ">
         {/* Suggestions */}
-        <ul className="absolute bottom-full left-0 right-0 z-10 overflow-y-auto rounded-t-md border bg-white">
-          {suggestions.map((suggestion: any) => (
-            <li
-              key={suggestion.place_id}
-              onClick={() =>
-                handleSuggestionClick(
-                  suggestion.lat,
-                  suggestion.lon,
-                  suggestion.display_name,
-                )
-              }
-              className="cursor-pointer p-4 hover:bg-gray-50"
-            >
-              {suggestion.display_name}
-            </li>
-          ))}
-        </ul>
+        {suggestions.length > 0 && (
+          <ul className="absolute bottom-full left-0 right-0 z-10 overflow-y-auto rounded-t-md border bg-white">
+            {suggestions.map((suggestion: any) => (
+              <li
+                key={suggestion.place_id}
+                onClick={() =>
+                  handleSuggestionClick(
+                    suggestion.lat,
+                    suggestion.lon,
+                    suggestion.display_name,
+                  )
+                }
+                className="cursor-pointer p-4 hover:bg-gray-50"
+              >
+                {suggestion.display_name}
+              </li>
+            ))}
+          </ul>
+        )}
         <input
           type="text"
           placeholder="Search location"
@@ -155,7 +157,7 @@ const Map = (props: Props) => {
       </div>
 
       <MapContainer
-        className="h-[60vh] w-full rounded-3xl border-x-2"
+        className="h-[300px] w-full rounded-3xl border-x-2"
         center={[5.614818, -0.205874]}
         zoom={13}
         scrollWheelZoom={false}
@@ -166,7 +168,12 @@ const Map = (props: Props) => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={markerPosition as any} icon={customIcon}>
+        <Marker
+          riseOnHover
+          draggable
+          position={markerPosition as any}
+          icon={customIcon}
+        >
           <Popup>{tooltip}</Popup>
         </Marker>
       </MapContainer>

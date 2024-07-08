@@ -14,9 +14,10 @@ import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
 import { useRouter } from "next/navigation";
 import Button from "@/components/__shared/ui/button/Button";
 import { createClient } from "@/lib/utils/supabase/auth/client";
-import { RiWhatsappFill } from "react-icons/ri";
+import { RiPhoneFill, RiTwitterXFill, RiWhatsappFill } from "react-icons/ri";
 import { CheckboxNoFormik as Checkbox } from "@/app/dashboard/components/shared/ui/Checkbox";
 import ProfilePicture from "./ProfilePicture";
+import CountryInput from "@/components/__shared/ui/form/CountryInput";
 
 interface Props {
   icon: any;
@@ -61,7 +62,6 @@ const ProfileInfo = () => {
   const [countries, setCountries] = useState([]);
   const [submitLoading, setSubmitLoading] = useState(false);
   const user = useAppStore((state) => state.user);
-  const [loading, setLoading] = useState(true);
   const { onOpen } = useToastDisclosure();
   const { phone, handlePhone, handleCountryChange } = usePhoneInputDisclosure();
   const {
@@ -72,12 +72,6 @@ const ProfileInfo = () => {
   const [sameAsPhone, setSameAsPhone] = useState(false);
   const router = useRouter();
   const supabase = createClient();
-
-  useEffect(() => {
-    if (user) {
-      setLoading(false);
-    }
-  }, [user]);
 
   useEffect(() => {
     axios
@@ -95,7 +89,7 @@ const ProfileInfo = () => {
     lastName: user?.lastname,
     email: user?.email,
     user,
-    country: user?.country,
+    country: user?.country || "Ghana",
     twitter: user?.twitter,
     facebook: user?.facebook,
     linkedIn: user?.linkedin,
@@ -106,258 +100,246 @@ const ProfileInfo = () => {
 
   return (
     <Root>
-      {loading ? (
-        <Loader />
-      ) : (
+      {user && (
         <>
-          {user && (
-            <>
-              <div className="py-8 pt-6">
-                <h3 className="text-shade-300">Update Profile Picture</h3>
-                <ProfilePicture />
-              </div>
-              {user?.id == undefined ? (
-                <Loader />
-              ) : (
-                <Formik
-                  key={JSON.stringify(user)}
-                  initialValues={initialValues}
-                  onSubmit={async (values) => {
-                    const whatsApp = sameAsPhone
-                      ? values.phone
-                      : values.whatsapp;
-                    setSubmitLoading(true);
-                    try {
-                      const { data, error } = await supabase
-                        .from("profiles")
-                        .update({
-                          firstname: values.firstName,
-                          lastname: values.lastName,
-                          country: values.country,
-                          twitter: values.twitter,
-                          facebook: values.facebook,
-                          linkedin: values.linkedIn,
-                          whatsapp: whatsApp,
-                          phone: values.phone,
-                          bio: values.bio,
-                          full_name: `${values.firstName} ${values.lastName}`,
-                        })
-                        .eq("id", user.id)
-                        .select();
+          <div className="py-8 pt-6">
+            <h3 className="text-shade-300">Update Profile Picture</h3>
+            <ProfilePicture />
+          </div>
+          {user?.id == undefined ? (
+            <Loader />
+          ) : (
+            <Formik
+              key={JSON.stringify(user)}
+              initialValues={initialValues}
+              onSubmit={async (values) => {
+                const whatsApp = sameAsPhone ? values.phone : values.whatsapp;
+                setSubmitLoading(true);
+                try {
+                  const { data, error } = await supabase
+                    .from("profiles")
+                    .update({
+                      firstname: values.firstName,
+                      lastname: values.lastName,
+                      country: values.country,
+                      twitter: values.twitter,
+                      facebook: values.facebook,
+                      linkedin: values.linkedIn,
+                      whatsapp: whatsApp,
+                      phone: values.phone,
+                      bio: values.bio,
+                      full_name: `${values.firstName} ${values.lastName}`,
+                    })
+                    .eq("id", user.id)
+                    .select();
 
-                      if (data) {
-                        onOpen("Profile updated successfully", "success");
-                        router.refresh();
-                      }
-                      if (error) throw error;
-                    } catch (error) {
-                      onOpen("Error updating profile", "error");
-                    } finally {
-                      setSubmitLoading(false);
-                    }
-                  }}
-                  enableReinitialize={true}
-                >
-                  {({ handleChange, handleBlur, values, isSubmitting }) => (
-                    <Form className="border-t-2 pt-8">
-                      <div className="grid grid-cols-1 gap-x-20 gap-y-8 sm:grid-cols-2 xl:grid-cols-3">
-                        {/* My Profile Summary */}
-                        <div className="col-span-1">
-                          <h3 className="mb-5 text-shade-300">
-                            My Profile Summary
-                          </h3>
-                          <div className="flex flex-col gap-x-5 gap-y-8">
-                            <div className="form-div">
-                              <label>First Name</label>
-                              <Field
-                                name="firstName"
-                                placeholder="Jane"
-                                className="form-input"
-                              />
-                              <ErrorMessage name="firstName" />
-                            </div>
-                            <div className="form-div">
-                              <label>Last Name</label>
-                              <Field
-                                name="lastName"
-                                placeholder="Doe"
-                                className="form-input"
-                              />
-                              <ErrorMessage name="lastName" />
-                            </div>
-                            <div className="form-div">
-                              <label>Email Address</label>
-                              <Field
-                                type="email"
-                                name="email"
-                                placeholder="johndoe@gmail.com"
-                                disabled
-                                className="form-input"
-                              />
-                              <ErrorMessage name="email" />
-                            </div>
-                            <div className="form-div">
-                              <label>I Live In</label>
-                              <Field
-                                as="select"
-                                id="country"
-                                name="country"
-                                className="form-input bg-white"
-                              >
-                                {countries.map((country: any, index) => (
-                                  <option
-                                    key={index}
-                                    value={country.name.common}
-                                    className="py-5"
-                                  >
-                                    {country.name.common}
-                                  </option>
-                                ))}
-                              </Field>
-
-                              <ErrorMessage
-                                name="country"
-                                component="div"
-                                className="error"
-                              />
-                            </div>
-                            <div className="form-div">
-                              <label>Phone</label>
-                              <InputPhoneNumber
-                                name="phone"
-                                value={values.phone as string}
-                                onChange={(val) => {
-                                  handlePhone(val);
-                                  handleChange({
-                                    target: { name: "phone", value: val },
-                                  });
-                                }}
-                                onBlur={handleBlur}
-                                onCountryChange={handleCountryChange}
-                              />
-                            </div>
-                          </div>
+                  if (data) {
+                    onOpen("Profile updated successfully", "success");
+                    router.refresh();
+                  }
+                  if (error) throw error;
+                } catch (error) {
+                  onOpen("Error updating profile", "error");
+                } finally {
+                  setSubmitLoading(false);
+                }
+              }}
+              enableReinitialize={true}
+            >
+              {({ handleChange, handleBlur, values, isSubmitting }) => (
+                <Form className="border-t-2 pt-8">
+                  <div className="grid grid-cols-1 gap-x-20 gap-y-8 sm:grid-cols-2 xl:grid-cols-3">
+                    {/* My Profile Summary */}
+                    <div className="col-span-1">
+                      <h3 className="mb-5 text-shade-300">
+                        My Profile Summary
+                      </h3>
+                      <div className="flex flex-col gap-x-5 gap-y-8">
+                        <div className="form-div">
+                          <label>First Name</label>
+                          <Field
+                            name="firstName"
+                            placeholder="Jane"
+                            className="form-input"
+                          />
+                          <ErrorMessage name="firstName" />
                         </div>
-                        {/* My Social Media Accounts */}
-                        <div className="col-span-1">
-                          <h3 className="mb-5 text-shade-300">
-                            My Social Media Accounts
-                          </h3>
-                          <div className="flex flex-col gap-x-5 gap-y-8">
-                            <IconField
-                              icon={<FaTwitter size={24} color="black" />}
-                              name={"twitter"}
-                              className={"form-input"}
-                              label={"Twitter"}
-                              type={"text"}
-                              placeholder="https://twitter.com/abcd"
-                            />
-                            <IconField
-                              icon={<FaLinkedin size={24} color="black" />}
-                              name={"linkedIn"}
-                              className={"form-input"}
-                              label={"LinkedIn"}
-                              type={"text"}
-                              placeholder="https://linkedin.com/abcd"
-                            />
-                            <IconField
-                              icon={<FaFacebook size={24} color="black" />}
-                              name={"facebook"}
-                              className={"form-input"}
-                              label={"Facebook"}
-                              type={"text"}
-                              placeholder="https://facebook.com/abcd"
-                            />
-                            <IconField
-                              icon={<AiFillInstagram size={26} color="black" />}
-                              name={"instagram"}
-                              className={"form-input"}
-                              label={"Instagram"}
-                              type={"text"}
-                              placeholder="https://instagram.com/username"
-                            />
-                            <div className="form-div">
-                              <div className="flex items-center justify-between gap-5">
-                                <div className="relative flex items-center">
-                                  <RiWhatsappFill
-                                    className="absolute left-0 top-0"
-                                    size={24}
-                                    color="black"
-                                  />
-                                  <label className="pl-8">Whatsapp</label>
-                                </div>
-                                <Checkbox
-                                  color="accent"
-                                  label="Same as phone"
-                                  onCheckedChange={(checked) =>
-                                    setSameAsPhone(checked as boolean)
-                                  }
-                                />
-                              </div>
-                              {sameAsPhone ? (
-                                <InputPhoneNumber
-                                  name="phone"
-                                  value={values.phone as string}
-                                  onChange={(val) => {
-                                    handlePhone(val);
-                                    handleChange({
-                                      target: { name: "phone", value: val },
-                                    });
-                                  }}
-                                  onBlur={handleBlur}
-                                  onCountryChange={handleCountryChange}
-                                />
-                              ) : (
-                                <InputPhoneNumber
-                                  name="whatsapp"
-                                  value={values.whatsapp as string}
-                                  onChange={(val) => {
-                                    handleWhatsApp(val);
-                                    handleChange({
-                                      target: { name: "whatsapp", value: val },
-                                    });
-                                  }}
-                                  onBlur={handleBlur}
-                                  onCountryChange={handleWhatsAppCountryChange}
-                                />
-                              )}
-                            </div>
-                          </div>
+                        <div className="form-div">
+                          <label>Last Name</label>
+                          <Field
+                            name="lastName"
+                            placeholder="Doe"
+                            className="form-input"
+                          />
+                          <ErrorMessage name="lastName" />
                         </div>
-                        {/* Bio */}
-                        <div className="col-span-full md:col-span-1">
-                          <h3 className="invisible mb-5 text-shade-300 max-2xl:hidden">
-                            Bio
-                          </h3>
-                          <div className="form-div">
-                            <label>About me</label>
-                            <Field
-                              as="textarea"
-                              id="bio"
-                              name="bio"
-                              placeholder="Share a little about yourself. Where do you live? What are your hobbies? What is important to you etc. Other users will able to read this information."
-                              className="form-textarea text-[#737373]"
-                              rows="10"
-                              cols="50"
+                        <div className="form-div">
+                          <label>Email Address</label>
+                          <Field
+                            type="email"
+                            name="email"
+                            placeholder="johndoe@gmail.com"
+                            disabled
+                            className="form-input"
+                          />
+                          <ErrorMessage name="email" />
+                        </div>
+                        <div className="form-div">
+                          <CountryInput
+                            name="country"
+                            value={values.country}
+                            label="I Live In"
+                          />
+                          <ErrorMessage
+                            name="country"
+                            component="div"
+                            className="error"
+                          />
+                        </div>
+                        <div className="form-div">
+                          <div className="relative flex items-center">
+                            <RiPhoneFill
+                              className="absolute left-0 top-0"
+                              size={24}
+                              color="black"
                             />
+                            <label className="pl-8">Phone</label>
                           </div>
-                          <>
-                            <Button
-                              color="accent"
-                              type="submit"
-                              className="mt-8"
-                              isLoading={isSubmitting}
-                            >
-                              Update Profile
-                            </Button>
-                          </>
+                          <InputPhoneNumber
+                            name="phone"
+                            value={values.phone as string}
+                            onChange={(val) => {
+                              handlePhone(val);
+                              handleChange({
+                                target: { name: "phone", value: val },
+                              });
+                            }}
+                            onBlur={handleBlur}
+                            onCountryChange={handleCountryChange}
+                          />
                         </div>
                       </div>
-                    </Form>
-                  )}
-                </Formik>
+                    </div>
+                    {/* My Social Media Accounts */}
+                    <div className="col-span-1">
+                      <h3 className="mb-5 text-shade-300">
+                        My Social Media Accounts
+                      </h3>
+                      <div className="flex flex-col gap-x-5 gap-y-8">
+                        <IconField
+                          icon={<AiFillInstagram size={26} color="black" />}
+                          name={"instagram"}
+                          className={"form-input"}
+                          label={"Instagram"}
+                          type={"text"}
+                          placeholder="https://instagram.com/username"
+                        />
+
+                        <IconField
+                          icon={<RiTwitterXFill size={24} color="black" />}
+                          name={"twitter"}
+                          className={"form-input"}
+                          label={"X"}
+                          type={"text"}
+                          placeholder="https://twitter.com/abcd"
+                        />
+                        <IconField
+                          icon={<FaFacebook size={24} color="black" />}
+                          name={"facebook"}
+                          className={"form-input"}
+                          label={"Facebook"}
+                          type={"text"}
+                          placeholder="https://facebook.com/abcd"
+                        />
+                        <IconField
+                          icon={<FaLinkedin size={24} color="black" />}
+                          name={"linkedIn"}
+                          className={"form-input"}
+                          label={"LinkedIn"}
+                          type={"text"}
+                          placeholder="https://linkedin.com/abcd"
+                        />
+
+                        <div className="form-div">
+                          <div className="flex items-center justify-between gap-5">
+                            <div className="relative flex items-center">
+                              <RiWhatsappFill
+                                className="absolute left-0 top-0"
+                                size={24}
+                                color="black"
+                              />
+                              <label className="pl-8">Whatsapp</label>
+                            </div>
+                            <Checkbox
+                              color="accent"
+                              label="Same as phone"
+                              onCheckedChange={(checked) =>
+                                setSameAsPhone(checked as boolean)
+                              }
+                            />
+                          </div>
+                          {sameAsPhone ? (
+                            <InputPhoneNumber
+                              name="phone"
+                              value={values.phone as string}
+                              onChange={(val) => {
+                                handlePhone(val);
+                                handleChange({
+                                  target: { name: "phone", value: val },
+                                });
+                              }}
+                              onBlur={handleBlur}
+                              onCountryChange={handleCountryChange}
+                            />
+                          ) : (
+                            <InputPhoneNumber
+                              name="whatsapp"
+                              value={values.whatsapp as string}
+                              onChange={(val) => {
+                                handleWhatsApp(val);
+                                handleChange({
+                                  target: { name: "whatsapp", value: val },
+                                });
+                              }}
+                              onBlur={handleBlur}
+                              onCountryChange={handleWhatsAppCountryChange}
+                            />
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                    {/* Bio */}
+                    <div className="col-span-full md:col-span-1">
+                      <h3 className="invisible mb-5 text-shade-300 max-2xl:hidden">
+                        Bio
+                      </h3>
+                      <div className="form-div">
+                        <label>About me</label>
+                        <Field
+                          as="textarea"
+                          id="bio"
+                          name="bio"
+                          placeholder="Share a little about yourself. Where do you live? What are your hobbies? What is important to you? What do you do? Visitors to youe profile page will be able to read this information."
+                          className="form-textarea text-[#737373]"
+                          rows="10"
+                          cols="50"
+                        />
+                      </div>
+                      <>
+                        <Button
+                          color="accent"
+                          type="submit"
+                          className="mt-8"
+                          isLoading={isSubmitting}
+                        >
+                          Update Profile
+                        </Button>
+                      </>
+                    </div>
+                  </div>
+                </Form>
               )}
-            </>
+            </Formik>
           )}
         </>
       )}

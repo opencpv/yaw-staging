@@ -82,12 +82,14 @@ export default function Progress({
     value,
     setShouldShowMotivationMessage,
     middleSlide,
+    hideDopeMessage,
+    hideGotThisMessage,
   ]);
 
   return (
-    <div className="h-[16px] w-full rounded-2xl bg-[#FEF8ED]">
+    <div className="h-[16px] w-full rounded-2xl bg-primary/5">
       <div
-        className="duration-3000 relative h-[16px] justify-end rounded-2xl bg-accent-400 transition-width"
+        className="duration-3000 relative h-[16px] justify-end rounded-2xl bg-primary transition-width"
         style={{ width: `${value}%` }}
       >
         <div

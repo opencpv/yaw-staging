@@ -114,7 +114,8 @@ const FirstToKnowHeader = () => {
       matched_properties: null,
     });
 
-    router.replace("/dashboard/renter/be-the-first-to-know/manage-criteria");
+    pathname?.includes("edit") && router.replace("/dashboard/renter/be-the-first-to-know/manage-criteria"); 
+    pathname?.includes("create") && router.back();
   };
 
   return (

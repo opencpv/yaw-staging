@@ -60,28 +60,30 @@ const BTFTKModal = (props: Props) => {
     isOpenEditPage,
     onCloseEditPage,
     setCriterion,
+    onClose,
   } = BTFTKStepsStore();
 
   const { mutate: addSearchCriteria } = useAddSearchCriteria();
 
   useEffect(() => {
     pathname?.includes("edit") ? onOpenEditPage() : onCloseEditPage();
-  }, [onOpen, pathname, onOpenEditPage, onCloseEditPage]);
+    pathname?.includes("create") ? onOpen() : onClose();
+  }, [onOpen, onClose, pathname, onOpenEditPage, onCloseEditPage]);
 
   return (
     <div
       className={cn({
         "max-xs:fixed max-xs:bottom-10 max-xs:right-5 max-xs:z-30": props.float,
-        invisible: pathname?.includes("edit"),
+        invisible: pathname?.includes("edit") || pathname?.includes("create"),
       })}
     >
       <Button
+        href="/dashboard/renter/be-the-first-to-know/create"
         color="primary"
         className={cn("w-fit px-5 ", {
           "max-xs:rounded-xl max-xs:shadow-md": props.float,
         })}
         onClick={() => {
-          onOpen();
           setCriterion(null);
         }}
       >
