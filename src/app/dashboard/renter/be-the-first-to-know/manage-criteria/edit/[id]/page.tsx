@@ -1,6 +1,9 @@
 "use client";
+import dynamic from "next/dynamic";
 import React from "react";
-import BTFTKModal from "../../../components/steps/BTFTKModal";
+const BTFTKModal = dynamic(
+  () => import("../../../components/steps/BTFTKModal"),
+);
 
 const CriteriaEditPage = () => {
   return <BTFTKModal />;
