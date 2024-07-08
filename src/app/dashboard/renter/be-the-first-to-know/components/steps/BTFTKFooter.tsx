@@ -45,7 +45,11 @@ const BTFTKFooter = () => {
       onCloseEditPage();
       setCriterion(null);
       localStorage.removeItem("btftk-creation-steps");
-      pathname?.includes("edit") && router.replace("/dashboard/renter/be-the-first-to-know/manage-criteria"); 
+      pathname?.includes("edit") &&
+        router.replace(
+          "/dashboard/renter/be-the-first-to-know/manage-criteria",
+        );
+      pathname?.includes("create") && router.back();
     }
   };
 
@@ -90,12 +94,12 @@ const BTFTKFooter = () => {
         )}
       >
         <Button
-          color={!firstSlide ? "accent" : undefined}
+          color={!firstSlide ? "primary" : undefined}
           variant={!firstSlide ? "outline" : "default"}
           className={cn(
             "col-span-1 h-[58px] rounded-lg font-semibold focus:outline-none xs:text-base sm:min-w-[16rem]",
             {
-              "bg-primary-200/80 text-white hover:bg-primary-200": firstSlide,
+              "bg-primary/5 text-primary hover:bg-primary/20": firstSlide,
             },
           )}
           onClick={handleBack}
@@ -103,7 +107,7 @@ const BTFTKFooter = () => {
           {firstSlide ? "Cancel" : "Back"}
         </Button>
         <Button
-          color="accent"
+          color="primary"
           className={cn(
             "col-span-1 h-[58px] rounded-lg font-semibold focus:outline-none xs:text-base sm:min-w-[16rem]",
           )}

@@ -37,15 +37,10 @@ const ListingInfo = (props: Partial<ListingCardInterface>) => {
           </div>
           {/* rating */}
           <div className="flex min-w-max items-center gap-2 min-[320px]:ml-auto">
-
             <RatingsForm property={props} value={props.ratingCount} />
 
             {props?.ratingCount !== undefined && props.ratingCount > 0 && (
-              <AllReviewsModal
-                property={props}
-                value={props.ratingCount}
-                
-              />
+              <AllReviewsModal property={props} value={props.ratingCount} />
             )}
           </div>
         </div>
@@ -57,11 +52,6 @@ const ListingInfo = (props: Partial<ListingCardInterface>) => {
       {/* monthly amount */}
       <div className="flex w-full flex-wrap items-center justify-between gap-2 pt-1 text-xs">
         <div className="flex items-center gap-2">
-          {!props.ViewingFee && (
-            <Tooltip content="No Viewing Fee">
-              <Image src={icons.NoViewingFee} alt="nvf" />
-            </Tooltip>
-          )}
           <div className="w-fit">
             <p className="text-sm font-bold text-neutral-900">
               GHS&nbsp;
@@ -128,7 +118,7 @@ const ListingInfo = (props: Partial<ListingCardInterface>) => {
           <span>{props.neighbourhood}, </span>
           <span>{props.city}</span>
         </div>
-       {/* Spotline -- RELEASE 2 */} 
+        {/* Spotline -- RELEASE 2 */}
       </div>
     </div>
   );

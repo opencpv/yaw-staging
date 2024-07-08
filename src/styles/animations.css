@@ -50,6 +50,11 @@
   animation: ping 0.4s linear reverse backwards;
 }
 
+.pulse {
+  -webkit-animation: ping 2s linear both infinite;
+  animation: ping 2s linear both infinite;
+}
+
 .shake-bl {
   -webkit-animation: shake-bl 10s cubic-bezier(0.455, 0.03, 0.515, 0.955) 0.5
     both;

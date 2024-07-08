@@ -2,7 +2,7 @@
 "use client";
 import ProfileInfo from "./ProfileIInfo";
 import { useManageAccountStore } from "@/store/dashboard/propertiesStore";
-import { Tabs, Tab } from "@nextui-org/react";
+import { Tabs, Tab, cn } from "@nextui-org/react";
 import Blocking from "./Blocking";
 
 const ProfileMainView = () => {
@@ -22,7 +22,9 @@ const ProfileMainView = () => {
         // radius="full"
         classNames={{
           tabList: "gap-10 max-xxs:flex-wrap w-full",
-          tab: "bg-transparent w-full bg-transparent px-0",
+          tab: cn(
+            "bg-transparent w-full bg-transparent px-0 focus:outline-0 focus:text-primary-800",
+          ),
           tabContent:
             "text-shade-200 group-data-[selected=true]:text-primary-800",
           cursor:
@@ -34,18 +36,18 @@ const ProfileMainView = () => {
           handleOptionChange(selectedOption)
         }
       >
-        <Tab key="profile" title="Profile">
+        <Tab key="profile" title="Profile" tabIndex={0}>
           <ProfileInfo />
         </Tab>
-        <Tab key="blocking" title="Blocking">
+        <Tab key="blocked" title="Blocked" tabIndex={0}>
           <div>
             <Blocking />
           </div>
         </Tab>
         {/* !!! COMMENTED OUT FOR NOW */}
-         <Tab key="account" title="Account">
+        <Tab key="account" title="Account" tabIndex={0}>
           <div>Account</div>
-        </Tab> 
+        </Tab>
       </Tabs>
     </main>
   );

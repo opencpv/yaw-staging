@@ -85,6 +85,7 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
           "z-50 w-fit max-w-[18rem] rounded-lg border-none bg-white text-neutral-600 shadow-lg outline-none transition-all focus:border-none focus:outline-none xs:min-w-[18rem]",
           popoverClassName,
         )}
+        onOpenAutoFocus={(e) => e.preventDefault()}
       >
         <ul>
           <li
@@ -143,7 +144,7 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
             className="deep-green-hover cursor-pointer space-y-5 py-4 pb-5 pl-8 pr-4 pt-5"
             onClick={handleSignOut}
           >
-            <button className="flex items-center gap-2 pt-5 focus:w-full">
+            <button className="flex w-full items-center gap-2 pt-5 focus:outline-red-400">
               <TbLogout
                 size={20}
                 className={loading ? "animate-drip-expand" : ""}

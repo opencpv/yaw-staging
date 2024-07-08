@@ -4,6 +4,7 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
+  type TooltipPlacement,
   cn,
 } from "@nextui-org/react";
 
@@ -12,9 +13,10 @@ type Props = {
   children: React.ReactNode;
   className?: string;
   onClick?: (e?: any) => void;
+  placement?: TooltipPlacement
 };
 
-const Tooltip = ({ children, content, className, onClick }: Props) => {
+const Tooltip = ({ children, content, className, onClick, placement }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -40,6 +42,7 @@ const Tooltip = ({ children, content, className, onClick }: Props) => {
           delay={300}
           closeDelay={200}
           onClick={onClick}
+          placement={placement || "top"}
         >
           <button>{children}</button>
         </NextUITooltip>
@@ -49,7 +52,7 @@ const Tooltip = ({ children, content, className, onClick }: Props) => {
       <div className="grid place-items-center md:hidden" >
         <Popover
           style={{ zIndex: "30" }}
-          placement="top"
+          placement={placement || "top"}
           isOpen={isOpen}
           onOpenChange={setIsOpen}
           classNames={{

@@ -84,22 +84,14 @@ const ManageSearchCriteria = () => {
                 </div>
               </TableBody>
               {/* Location */}
-              <TableBody className="col-span-1 text-center">
+              <TableBody className="col-span-1 line-clamp-1 text-center">
                 {criterion.location ? (
-                  <ul className="flex list-disc flex-col gap-3">
-                    {criterion.location.map((location: string) => (
-                      <li
-                        className="flex items-center gap-2"
-                        title={location}
-                        key={location}
-                      >
-                        {criterion.location.length > 1 && (
-                          <CiLocationOn className="shrink-0" />
-                        )}
-                        <span className="line-clamp-1 ">{location}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <span
+                    className="line-clamp-1"
+                    title={criterion.location.join(" • ")}
+                  >
+                    {criterion.location[0]}
+                  </span>
                 ) : (
                   "-"
                 )}
