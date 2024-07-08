@@ -31,6 +31,8 @@ function SubLinkResults() {
   /* 
   self contained 
   */
+
+  // EC: Response -> Sure. It will be taken care of.
   return (
     <div className="main-menu-link flex w-full items-center gap-12 text-white">
       <div className="hidden h-full min-w-[3px] lg:flex">
@@ -43,7 +45,7 @@ function SubLinkResults() {
       <div className="flex flex-col gap-2">
         <div className="flex max-w-[700px] flex-wrap items-center gap-2">
           {options[activeSubLink]?.length > 0
-            ? options[activeSubLink].map((listing : any) => (
+            ? options[activeSubLink].map((listing: any) => (
                 <div key={listing?.id}>
                   <SubLinkResultsCard
                     listing={getListingProps(listing, user as UserType)}
@@ -53,10 +55,11 @@ function SubLinkResults() {
             : Array.from({ length: 6 }).map((_, index) => (
                 <div
                   key={index}
-                  className="animate flex aspect-[242/212] w-full min-w-[212px] max-w-[212px] rounded-lg bg-shade-900 animate-pulse"
+                  className="animate flex aspect-[242/212] w-full min-w-[212px] max-w-[212px] animate-pulse rounded-lg bg-shade-900"
                 />
               ))}
         </div>
+        {/* EC: Please there is a component called ArrowLink. You may want to use that. */}
         <Link
           href={"/properties"}
           className="flex items-center gap-2 pt-2  transition-all"
