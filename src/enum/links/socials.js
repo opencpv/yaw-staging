@@ -55,6 +55,5 @@ export const socialLinks = {
       icon: <CaWhatsappBusiness />,
       href: "#",
     },
-    ,
   ],
 };
