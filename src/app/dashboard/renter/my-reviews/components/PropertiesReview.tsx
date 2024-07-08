@@ -19,6 +19,7 @@ export default function PropertiesReview() {
           <div className="flex flex-col gap-6">
             <p className="text-base font-semibold 2xl:text-[1.25rem]">
               {" "}
+              {/* EC: Please use a heading tag. Please address similar instances. */}{" "}
               ( 3 ) Reviews
             </p>
 

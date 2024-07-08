@@ -56,6 +56,9 @@ export default function ReviewsGivenCard({
       }
     };
   }, [edit, data?.review]);
+  {
+    /* EC: Missing dependency index). Please leave a comment if intentional */
+  }
 
   return (
     <div className="flex w-full  max-w-[1103px] flex-col  items-start  gap-4  border-b-1 py-3 ">
@@ -114,7 +117,7 @@ export default function ReviewsGivenCard({
       {data.replies && (
         <div className="flex flex-col items-start justify-center gap-[1.3125rem] pb-4 pl-1 pt-2">
           <div className="flex items-center gap-1">
-            <p className="text-primary font-semibold">Response </p>
+            <p className="font-semibold text-primary">Response </p>
             <CaREviewsReply2 />
           </div>
 
