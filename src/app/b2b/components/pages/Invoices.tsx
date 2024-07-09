@@ -90,18 +90,12 @@ function Invoices({ customerId }: Props) {
           tabColor="colored"
         />
         <div className="flex gap-2">
-          {/**
-           * EC:
-           * Please use button from "__shared/ui/button/Button"
-           * The button has been configured to be "display: flex" and has a gap
-           * So you may not need to specify display: flex and a gap
-           */}
-          <Button color="primary" className="flex items-center gap-2">
+          <Button color="primary" className=" gap-2">
             Checkout <CaCard />
           </Button>
           <Button
             color=""
-            className="flex items-center gap-2 bg-[#E7EFEF] text-[#11605E] hover:text-white"
+            className="gap-2 bg-[#E7EFEF] text-[#11605E] hover:text-white"
             onClick={() => {
               downloadAll();
             }}
@@ -114,7 +108,7 @@ function Invoices({ customerId }: Props) {
           </Button>
           <Button
             color=""
-            className="flex items-center gap-2 bg-[#E7EFEF] text-[#11605E] hover:text-white"
+            className="gap-2 bg-[#E7EFEF] text-[#11605E] hover:text-white"
           >
             Archive <IoArchiveOutline />
           </Button>

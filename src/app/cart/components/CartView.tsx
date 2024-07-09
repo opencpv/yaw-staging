@@ -140,18 +140,16 @@ const CartView = () => {
     </DropdownMenu.Root>
   );
 
+  // run useEffect on mount
   useEffect(() => {
     const storedCartItems: any = localStorage.getItem("cart");
     if (JSON.parse(storedCartItems as string)?.length > 0) {
       setCart(JSON.parse(storedCartItems as string));
       console.log("hit", storedCartItems);
     }
-  }, []);
-  {
-    /** EC: "setCart" dependency missing. Please address missing deps or leave a comment if is intentional.
-     * Please address similar instances.
-     */
-  }
+  }, []); 
+
+  
   const isItemsEmpty = items.length == 0;
   return (
     <section className={`mx-auto max-w-[1024px] px-4 py-6 lg:px-0`}>
@@ -160,7 +158,7 @@ const CartView = () => {
         {!isItemsEmpty && (
           <Button
             variant="ghost"
-            className="mb-8 text-right font-normal text-[#E32636] underline" // EC: Please use text-error" instead. Unless the color doesn't exist in the scheme
+            className="mb-8 text-right font-normal text-error underline" // EC: Please use text-error" instead. Unless the color doesn't exist in the scheme
             //or if its's a one-off color. Please address similar instances.
             onClick={() => {
               clearCart();
@@ -174,13 +172,13 @@ const CartView = () => {
         <div className="flex items-center justify-center border-[1px] p-8 md:p-32">
           <div className="flex flex-col items-center justify-center gap-4">
             <CaCartEmptyItem />
-            <p className="text-[20px] font-semibold">No Cart</p>{" "}
+            <h2 >No Cart</h2>{" "}
             {/* EC: Please either use <h3> or <h4> or a heading element that you see fit since it's a heading
                                                                   Also you may not need to specify "font-size" or "font-semibold" unless for specific use case 
                                                                   * e.g: <h3>No Cart</h3>
                                                                   * Please address similar instances.
                                                                   */}
-            <p className="There are no items in your cart">
+            <p >
               {/** EC: Please are the className values correct? */}
               There are no items in your cart
             </p>
