@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import AgentButtons from "@/app/dashboard/components/shared/my-agent/Button";
+import AgentButtons from "../Button";
 import BeMyAgentForm from "./BeMyAgentForm";
 import Button from "@/components/__shared/ui/button/Button";
 import { MdOutlineEdit } from "react-icons/md";

@@ -80,15 +80,14 @@ const Success = () => {
         className="text-[#0B7371]"
         onClick={() => {
           handleClose();
-          router.replace("/dashboard/renter/be-the-first-to-know/manage-criteria");
+          router.replace(
+            "/dashboard/renter/be-the-first-to-know/manage-criteria",
+          );
         }}
       >
         I want to create another search criteria
       </Link>
-      <Link
-        href="/dashboard/renter/my-agent/agent-explore"
-        onClick={handleClose}
-      >
+      <Link href="/dashboard/renter/my-agent/explore" onClick={handleClose}>
         <div className="flex flex-col gap-10 rounded-xl bg-gradient-to-r from-[#0B7371] to-[#A5CACD] p-6 pb-0 text-white max-ssm:items-center ssm:flex-row ssm:items-start ssm:pr-0">
           <div className="flex flex-col gap-5 pb-10 pt-8  max-ssm:items-center">
             <h3 className="max-ssm:text-center">

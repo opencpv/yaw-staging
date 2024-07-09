@@ -7,7 +7,7 @@ import CustomRadioInput from "@/components/__shared/ui/form/CustomRadioInput";
 import { BeMyAgentFormType } from "../types";
 import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
 import CustomSelect from "../../../../../../../components/__shared/ui/form/CustomSelect";
-import styles from "../../index.module.css";
+import styles from "../../../index.module.css";
 import TextFieldInput from "../../../../../../../components/__shared/ui/form/TextFieldInput";
 import { useField } from "formik";
 

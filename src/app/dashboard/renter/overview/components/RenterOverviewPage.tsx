@@ -64,7 +64,7 @@ const RenterOverviewPage = (props: Props) => {
               heading="Hire Us !"
               description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, officiis."
               buttonLabel="Explore"
-              href="my-agent/agent-explore"
+              href="my-agent/explore"
             />
             <RenterPaidFeatures
               type="renter"

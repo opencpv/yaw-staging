@@ -3,10 +3,10 @@ import { styled } from "@stitches/react";
 import { useEffect, useState } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import Amenity from "../../../../../../../components/__shared/ui/listing-form/components/Amenity";
-import styles from "../../index.module.css";
+import styles from "../../../index.module.css";
 import { BeMyAgentFormType } from "../types";
 import { useField } from "formik";
-import { requiredFeatures } from "../../../content";
+import { requiredFeatures } from "../../../../../components/shared/content";
 import CallOut from "@/components/__shared/ui/CallOut";
 
 export default function FeaturesAndAmenities() {

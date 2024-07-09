@@ -1,5 +1,5 @@
 import React from "react";
-import Progress from "../../Progress";
+import Progress from "../../../../components/shared/Progress";
 import Button from "@/components/__shared/ui/button/Button";
 import { beMyAgentStepsStore } from "@/store/dashboard/beMyAgentStepsStore";
 import { useFormikContext } from "formik";

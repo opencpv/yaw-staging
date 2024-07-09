@@ -9,6 +9,7 @@ import {
 } from "react-icons/hi2";
 import { FaRegStar, FaRegHeart } from "react-icons/fa";
 import { BsEnvelope } from "react-icons/bs";
+import { LiaMedalSolid } from "react-icons/lia";
 
 export const PgRoutesRenter = [
   {
@@ -20,7 +21,7 @@ export const PgRoutesRenter = [
   {
     name: "be the first to know",
     url: "",
-    icon: <IoEyeOutline />,
+    icon: <LiaMedalSolid />,
     link: "/dashboard/renter/be-the-first-to-know",
   },
   {

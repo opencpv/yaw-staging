@@ -1,7 +1,7 @@
 import Image from "next/image";
 import CaAgentNoMatches from "./icons/CaAgentNoMatches";
 import ScheduleVirtualTourModal from "./ScheduleVirtualTourModal";
-import SchedulePhysicalTourModal from "./SchedulePhysicalTourModal";
+import SchedulePhysicalTourModal from "./SchedulePhysicalTourModal"; 
 import ApplicationForm from "@/components/__shared/ui/application-form";
 import styles from "./index.module.css";
 import ViewModal from "./ViewModal";
@@ -19,10 +19,10 @@ import {
   TableHeaderRow,
   TableRowSm,
   TableSm,
-} from "../table/Table";
-import TbPropertyImageSm from "../TbPropertyImageSm";
-import TbPropertyImage from "../TbPropertyImage";
-import PaymentStructure from "../PaymentStructure";
+} from "../../../components/shared/table/Table";
+import TbPropertyImageSm from "../../../components/shared/TbPropertyImageSm";
+import TbPropertyImage from "../../../components/shared/TbPropertyImage";
+import PaymentStructure from "../../../components/shared/PaymentStructure";
 import { formatDate } from "@/lib/utils/stringManipulation";
 
 export default function MatchesYet() {

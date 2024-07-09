@@ -7,7 +7,7 @@ import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { MostRecentEmployment } from "../../../../../../../components/__shared/ui/application-form/components/content";
 import { BeMyAgentFormType } from "../types";
-import styles from "../../index.module.css";
+import styles from "../../../index.module.css";
 
 type Props = {};
 

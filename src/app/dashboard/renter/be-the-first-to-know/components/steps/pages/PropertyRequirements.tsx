@@ -3,12 +3,17 @@ import styles from "../../../index.module.css";
 import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
 import { useLocalStorage } from "@uidotdev/usehooks";
 
-
 export default function PropertyRequirements() {
-
   const [BTFTKCreationSteps, setBTFTKCreationSteps] = useLocalStorage<
     typeof BTFTKDefaultValues
   >("btftk-creation-steps");
+
+  const handleOnChange = (name: string, value: any) => {
+    setBTFTKCreationSteps({
+      ...BTFTKCreationSteps,
+      [name]: value,
+    });
+  };
 
   return (
     <>
@@ -34,13 +39,7 @@ export default function PropertyRequirements() {
                 { name: "9000", value: "9000" },
                 { name: "10000", value: "10000" },
               ]}
-              onChange={(value) => {
-
-            setBTFTKCreationSteps({
-              ...BTFTKCreationSteps,
-              priceRangeMinimum: value,
-            })
-              }}
+              onChange={(value) => handleOnChange("priceRangeMinimum", value)}
             />
             <CustomSelect
               name="priceRangeMaximum"
@@ -58,12 +57,7 @@ export default function PropertyRequirements() {
                 { name: "9000", value: "9000" },
                 { name: "10000+", value: "10000+" },
               ]}
-              onChange={(value) => {
-                setBTFTKCreationSteps({
-                  ...BTFTKCreationSteps,
-                  priceRangeMaximum: value,
-                })
-              }}
+              onChange={(value) => handleOnChange("priceRangeMaximum", value)}
             />
           </div>
         </div>
@@ -86,12 +80,7 @@ export default function PropertyRequirements() {
                 { name: "9", value: "9" },
                 { name: "10", value: "10" },
               ]}
-              onChange={(value) => {
-                setBTFTKCreationSteps({
-                  ...BTFTKCreationSteps,
-                  bedMinimum: value,
-                })
-              }}
+              onChange={(value) => handleOnChange("bedMinimum", value)}
             />
             <CustomSelect
               name="bedMaximum"
@@ -108,12 +97,7 @@ export default function PropertyRequirements() {
                 { name: "9", value: "9" },
                 { name: "10+", value: "10+" },
               ]}
-              onChange={(value) => {
-                setBTFTKCreationSteps({
-                  ...BTFTKCreationSteps,
-                  bedMaximum: value,
-                })
-              }}
+              onChange={(value) => handleOnChange("bedMaximum", value)}
             />
           </div>
         </div>
@@ -136,12 +120,7 @@ export default function PropertyRequirements() {
                 { name: "9", value: "9" },
                 { name: "10", value: "10" },
               ]}
-              onChange={(value) => {
-                setBTFTKCreationSteps({
-                  ...BTFTKCreationSteps,
-                  bathroomMinimum: value,
-                })
-              }}
+              onChange={(value) => handleOnChange("bathroomMinimum", value)}
             />
             <CustomSelect
               name="bathroomMaximum"
@@ -158,12 +137,7 @@ export default function PropertyRequirements() {
                 { name: "9", value: "9" },
                 { name: "10+", value: "10+" },
               ]}
-              onChange={(value) => {
-                setBTFTKCreationSteps({
-                  ...BTFTKCreationSteps,
-                  bathroomMaximum: value,
-                })
-              }}
+              onChange={(value) => handleOnChange("bathroomMaximum", value)}
             />
           </div>
         </div>

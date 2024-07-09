@@ -3,7 +3,7 @@ import { BsBuilding, BsHouses } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import Amenity from "../../../../../../../components/__shared/ui/listing-form/components/Amenity";
-import styles from "../../index.module.css";
+import styles from "../../../index.module.css";
 
 import CallOut from "../../../../../../../components/__shared/ui/CallOut";
 import { BeMyAgentFormType } from "../types";
@@ -12,7 +12,7 @@ import { IoHomeOutline } from "react-icons/io5";
 import { GoHome } from "react-icons/go";
 import { PiBuildings, PiHouseLine, PiWarehouse } from "react-icons/pi";
 import { useField } from "formik";
-import { properties } from "../../../content";
+import { properties } from "../../../../../components/shared/content";
 
 type Props = {
   infoText?: boolean;

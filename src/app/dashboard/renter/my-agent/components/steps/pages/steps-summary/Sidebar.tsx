@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import useStepsSummaryContent from "././hooks/useStepsSummaryContent";
+import useStepsSummaryContent from "./hooks/useStepsSummaryContent";
 import { cn } from "@/lib/utils";
 import { beMyAgentStepsStore } from "@/store/dashboard/beMyAgentStepsStore";
 

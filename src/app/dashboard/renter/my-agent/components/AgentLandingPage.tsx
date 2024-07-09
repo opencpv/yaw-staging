@@ -3,27 +3,27 @@ import Image from "next/image";
 import AgentButtons from "./Button";
 import CaRelume from "./icons/CaRelume";
 import CaAgentTick from "./icons/CaAgentTick";
-import BeMyAgentModal from "@/app/dashboard/components/shared/my-agent/steps/BeMyAgentModal";
+import BeMyAgentModal from "@/app/dashboard/renter/my-agent/components/steps/BeMyAgentModal";
 import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import style from "./index.module.css";
+import style from "../index.module.css";
 import React from "react";
 import LearnMoreYoutubeBtn from "./LearnMoreYoutubeBtn";
-import { fadeUp } from "@/lib/animations";
+import { fadeIn } from "@/lib/animations";
 import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 
 export default function AgentLandingPage() {
   const { images } = useAssets();
 
   return (
-    <div>
+    <main>
       <div className="relative mx-auto max-w-screen-3xl px-5 sm:px-10">
-        <div className="fade-in-bottom relative flex h-fit w-full items-center justify-center rounded-3xl bg-transparent bg-[length:600px_400px] bg-right bg-no-repeat pt-5 lg:bg-[#E6F6EE] lg:bg-[url('/assets/images/dashboard/my-agent-shapes.png')] lg:p-10">
+        <section className="fade-in-bottom relative flex h-fit w-full items-center justify-center rounded-3xl bg-transparent bg-[length:600px_400px] bg-right bg-no-repeat pt-5 max-lg:pb-0 lg:bg-[#E6F6EE] lg:bg-[url('/assets/images/dashboard/my-agent-shapes.png')] lg:p-10">
           <div className="flex w-full flex-col items-center justify-between gap-10 lg:flex-row">
             <div className="space-y-8">
               <AgentButtons variant={"agent"} content="Agent Services" />
               <div className="max-w-xl space-y-7">
-                <h2 className="text-2xl leading-tight text-[#333333] sm:text-4xl">
+                <h2 className="text-2xl font-bold text-shade-300 sm:text-3xl">
                   Let RentRightGh take it from here
                 </h2>
                 <p className="text-shade-200">
@@ -32,7 +32,7 @@ export default function AgentLandingPage() {
                   convallis dolor ante quisque porta eget leo hendrerit purus.
                   Diam lorem faucibus tortor arcu at.
                 </p>
-                <div className="flex w-full flex-wrap items-center gap-5">
+                <div className="flex w-full flex-wrap items-center gap-3">
                   <ClientOnly>
                     <BeMyAgentModal button="Hire Us Now" />
                   </ClientOnly>
@@ -47,10 +47,10 @@ export default function AgentLandingPage() {
               className="bg-[url('/assets/images/dashboard/my-agent-shapes.png')] bg-cover bg-right bg-no-repeat lg:bg-none"
             />
           </div>
-        </div>
+        </section>
         {/* How it works */}
-        <div className="mt-20 grid grid-cols-2 gap-x-12 gap-y-20 px-4 lg:mt-40">
-          <div className="col-span-2 hidden h-full items-center justify-center border lg:col-span-1 lg:flex">
+        <section className="section grid grid-cols-2 gap-x-12 gap-y-16 px-4">
+          <div className="col-span-2 hidden h-full items-center justify-center lg:col-span-1 lg:flex">
             <Image
               src={"/assets/images/agent-process1.png"}
               width={550}
@@ -58,10 +58,10 @@ export default function AgentLandingPage() {
               alt="No saved search"
             />
           </div>
-          <div className="col-span-2 mt-20 flex max-w-2xl flex-col items-center justify-center gap-[3rem] lg:col-span-1 lg:mt-0">
+          <div className="col-span-2 mt-12 flex max-w-2xl flex-col items-center justify-center gap-[3rem] lg:col-span-1 lg:mt-0">
             <div className="flex flex-col">
               <AgentButtons variant={"how-it-works"} content="How it works" />
-              <h2 className="mt-6 text-2xl leading-tight sm:text-4xl">
+              <h2 className="mt-6 text-2xl font-bold sm:text-3xl">
                 Lorem ipsum dolor sit amet consectetur. Egestas tempor eget quam
                 justo neque.
               </h2>
@@ -78,15 +78,15 @@ export default function AgentLandingPage() {
               <Subheading />
             </div>
           </div>
-        </div>
+        </section>
       </div>
 
       {/* Footer */}
-      <div
-        className={`relative mt-28 flex w-full items-start justify-center gap-5 py-10 lg:mt-52 lg:py-0 xl:px-14 2xl:px-24 ${style.myAgentExploreFooter}`}
+      <footer
+        className={`relative mt-28 flex w-full items-start justify-center gap-5 xl:px-14 2xl:px-24 ${style.myAgentExploreFooter}`}
       >
         <div className="gap relative z-10 flex w-full flex-col justify-center gap-x-24 gap-y-8 px-5 sm:px-10 lg:flex-row lg:items-center lg:pb-24">
-          <FramerWrapper {...fadeUp}>
+          <FramerWrapper {...fadeIn}>
             <Image
               src={"/assets/images/agent-footer2.png"}
               alt="house with a lot of plant"
@@ -96,7 +96,7 @@ export default function AgentLandingPage() {
             />
           </FramerWrapper>
           <div className="flex flex-col gap-6 py-10 text-[#eee] lg:mt-20">
-            <h2 className="text-2xl leading-tight sm:text-4xl">
+            <h2 className="text-2xl font-bold sm:text-3xl">
               Get started by letting us be your No 1 Agent
             </h2>
             <p>Get your dream home now !!</p>
@@ -107,8 +107,8 @@ export default function AgentLandingPage() {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </footer>
+    </main>
   );
 }
 

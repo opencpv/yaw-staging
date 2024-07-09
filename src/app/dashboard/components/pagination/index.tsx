@@ -2,24 +2,20 @@
 
 import { styled } from "@stitches/react";
 import Link from "next/link";
-import useViewport from "@/lib/custom-hooks/useViewport";
-import { useEffect, useRef, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { PgRoutesLister, PgRoutesRenter } from "./links";
 import { HiBars3BottomRight } from "react-icons/hi2";
 import Button from "@/components/__shared/ui/button/Button";
 import { LowerCase } from "@/lib/utils/stringManipulation";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Mousewheel, Scrollbar } from "swiper/modules";
-
+import { SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
 import PaginationMenu from "./PaginationMenu";
 import { useDashboardMenuStore } from "@/store/navmenu/useDashboardMenuStore";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
-import { useAppStore } from "@/store/dashboard/AppStore";
-import { useUserSession } from "@/lib/custom-hooks/database/useUserSession";
 import Switch from "../navbar/switch";
+import { ScrollShadow } from "@nextui-org/react";
 
 type PaginationTabProps = {
   active: string;
@@ -55,15 +51,8 @@ const PaginationTab = ({ active, icon, name, link }: PaginationTabProps) => {
 };
 
 const Pagination = () => {
-  const { user } = useAppStore();
-  const userSession = useUserSession();
-  const vw = useViewport();
   const [active, setActive] = useState("");
-  const router = useRouter();
   const pathname = usePathname();
-  const [atEnd, setAtEnd] = useState(false);
-  const scrollableRef = useRef<any>();
-  // const scrollableRef = useRef<HTMLDivElement>(null);
 
   const { setIsOpen } = useDashboardMenuStore();
   const { currentRole } = useDashboardStore();
@@ -88,37 +77,13 @@ const Pagination = () => {
     }
   }, [pathname, currentRole]);
 
-  const swiperRef = useRef<any>();
-
-  useEffect(() => {
-    if (window.innerWidth < 640) {
-      swiperRef.current.classList.remove("swiper");
-    }
-    if (swiperRef.current && vw?.width) {
-      if (vw?.width < 640) {
-        swiperRef.current.classList.remove("swiper");
-      } else {
-        swiperRef.current.classList.add("swiper");
-      }
-    }
-  }, [vw.width]);
-
   return (
-    <Root
-      className="flex items-start gap-7 px-5 py-1 pb-4 md:items-center"
-      ref={scrollableRef}
-    >
-      <Swiper
-        direction={"horizontal"}
-        slidesPerView={"auto"}
-        spaceBetween={32}
-        freeMode={true}
-        scrollbar={false}
-        mousewheel={true}
-        modules={[FreeMode, Scrollbar, Mousewheel]}
-        className="mySwiper invisible order-2 hidden h-fit w-full ssm:order-1 md:visible"
-        wrapperClass="justify-between"
-        ref={swiperRef}
+    <Root className="flex items-start gap-7 px-5 py-1 pb-4 md:items-center">
+      <ScrollShadow
+        orientation="horizontal"
+        isEnabled={true}
+        hideScrollBar
+        className="invisible order-2 hidden h-fit w-full justify-between gap-5 ssm:order-1 md:visible md:flex"
       >
         {currentRole === "renter" &&
           PgRoutesRenter.map(
@@ -134,7 +99,6 @@ const Pagination = () => {
                 </SwiperSlide>
               ),
           )}
-
         {currentRole === "lister" &&
           PgRoutesLister.map(
             (r, index) =>
@@ -149,9 +113,11 @@ const Pagination = () => {
                 </SwiperSlide>
               ),
           )}
-      </Swiper>
+      </ScrollShadow>
+
+      {/* Desktop */}
       <Button
-        className="hidden h-full w-16 items-center justify-center rounded-xl bg-primary px-4 py-3 text-white ssm:order-2 md:flex lg:h-24 lg:min-w-unit-16 lg:px-2"
+        className="hidden h-14 w-12 shrink-0 items-center justify-center rounded-lg bg-primary p-0 text-white ssm:order-2 md:flex"
         onClick={() => setIsOpen(true)}
       >
         <div className="flex items-center justify-center">
@@ -160,6 +126,8 @@ const Pagination = () => {
       </Button>
 
       <Switch className="relative order-1 my-auto mr-auto flex w-full flex-1 items-center gap-5 ssm:order-3 ssm:hidden" />
+
+      {/* Mobile */}
       <button
         className="order-4 my-auto ml-auto h-max w-fit items-center justify-center rounded-xl border border-primary-800 px-3 py-2 text-primary-800 ssm:order-4 md:hidden"
         onClick={() => setIsOpen(true)}

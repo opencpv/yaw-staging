@@ -4,7 +4,7 @@ import CaAgentTickGreenBg from "./icons/CaAgentTickGreenBg";
 import AgentButtons from "./Button";
 import Link from "next/link";
 import Button from "@/components/__shared/ui/button/Button";
-import BeMyAgentModal from "@/app/dashboard/components/shared/my-agent/steps/BeMyAgentModal";
+import BeMyAgentModal from "./steps/BeMyAgentModal";
 import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
 
 type Props = {

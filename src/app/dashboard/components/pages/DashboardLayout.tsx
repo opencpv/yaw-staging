@@ -99,7 +99,7 @@ const Wrapper = ({ children }: LayoutProps) => {
         </div>
         {isSwitchingRole ? <RoleSwitcherOverlay /> : null}
         {excludeWrapper ? (
-          <div className={`text-neutral-800`}>{children}</div>
+          <div className={`text-shade-500`}>{children}</div>
         ) : (
           <div className={`wrapper text-neutral-800`}>{children}</div>
         )}

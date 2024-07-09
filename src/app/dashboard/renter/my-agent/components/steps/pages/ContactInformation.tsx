@@ -4,7 +4,7 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
 import CountryInput from "@/components/__shared/ui/form/CountryInput";
 import CustomTextAreaInput from "@/components/__shared/ui/form/CustomTextAreaInput";
-import styles from "../../index.module.css";
+import styles from "../../../index.module.css";
 import { BeMyAgentFormType } from "../types";
 import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
 import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import useStepsSummaryContent from "././hooks/useStepsSummaryContent";
+import useStepsSummaryContent from "./hooks/useStepsSummaryContent";
 import { BiPencil } from "react-icons/bi";
 import styles from "../index.module.css";
 import { beMyAgentStepsStore } from "@/store/dashboard/beMyAgentStepsStore";

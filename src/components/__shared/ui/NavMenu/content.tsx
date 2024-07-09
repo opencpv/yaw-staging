@@ -6,7 +6,7 @@ export const useMenuLinks = () => {
   const linksAfterLogin = [
     {
       id: "#",
-      url: `/dashboard/${currentRole}/my-agent/agent-explore`,
+      url: `/dashboard/${currentRole}/my-agent/explore`,
       name: "HIRE US",
     },
     {

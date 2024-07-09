@@ -4,7 +4,7 @@ import CustomRadioInput from "@/components/__shared/ui/form/CustomRadioInput";
 import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
 import React from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import styles from "../../index.module.css";
+import styles from "../../../index.module.css";
 import { BeMyAgentFormType } from "../types";
 import CustomTextAreaInput from "@/components/__shared/ui/form/CustomTextAreaInput";
 

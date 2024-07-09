@@ -1,10 +1,10 @@
 "use client";
-import AgentButtons from "../../../components/shared/my-agent/Button";
+import AgentButtons from "../components/Button";
 import { useState } from "react";
-import NoMatchesYet from "../../../components/shared/my-agent/NoMatches";
-import MatchesYet from "../../../components/shared/my-agent/Matches";
-import Agent from "../../../components/shared/my-agent/Agent";
-import NoAgentCard from "../../../components/shared/my-agent/NoAgentCard";
+import NoMatchesYet from "../components/NoMatches";
+import MatchesYet from "../components/Matches";
+import Agent from "../components/Agent";
+import NoAgentCard from "../components/NoAgentCard";
 
 export default function Page() {
   const [beAgent, setBeAgent] = useState(false);
