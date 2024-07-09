@@ -1,6 +1,6 @@
 import AllReviewCard from "./AllReviewsCard";
 import SlideEnter from "../../../listing-form/components/SlideEnter";
-import { mockReviewData2 } from "../../../ratings-form/components/content2";
+import { mockReviewData2 } from "../../../ratings-form/components/content2"; // EC: Please remove unused imports. Address similar instances
 import { mockReviewData } from "@/app/dashboard/components/shared/my-reviews/content";
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
@@ -11,7 +11,7 @@ import { CustomScroll } from "@/app/dashboard/renter/notifications/components/Cu
 
 function AllReviewsData() {
   const {
-    openRatingsForm,
+    openRatingsForm, // EC: Please remove unused constants/variables. Address similar instances
     setOpenRatingsForm,
     openAllRatings,
     setOpenAllRatings,
