@@ -24,16 +24,16 @@ export default function AllReviewCard({ data }: Props) {
             />
           </div>
           <div className="flex w-full flex-col gap-1 2xl:gap-2">
-            <p className=" font-semibold 2xl:text-2xl">
+            <h3 className=" font-semibold 2xl:text-2xl">
               {data?.name}
-            </p>
+            </h3>
             <p className="text-sm 2xl:text-base">{data?.date}</p>
             {<ReviewStarsFixed rating={data?.ratings} />}
           </div>
         </div>
 
         <div className="flex w-full gap-1">
-          <p className="text-base text-[#333] max-w-full">
+          <p className="text-base text-shade-300 max-w-full">
           
             {data?.review}
           </p>

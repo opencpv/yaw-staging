@@ -106,9 +106,9 @@ export const DesktopMenu = (props: any) => {
           <motion.div
             className={"flex flex-col gap-8"}
             animate={"open"}
-            variants={FadeInOut}
-            initial={"closed"}
-            exit={"closed"}
+            // variants={FadeInOut}
+            // initial={"closed"}
+            // exit={"closed"}
           >
             {/* sub links --> view all listings, etc... */}
             {linksBeforeLogin[active]?.sub?.map((l: any, ldx) => (
@@ -132,9 +132,9 @@ export const DesktopMenu = (props: any) => {
             key={createUUID()}
             className={"flex flex-col gap-8"}
             animate={"open"}
-            variants={FadeInOut}
-            initial={"closed"}
-            exit={"closed"}
+            // variants={FadeInOut}
+            // initial={"closed"}
+            // exit={"closed"}
           >
             {/* sub links --> view all listings, etc... */}
             {linksAfterLogin[active]?.sub?.map((l: any, ldx) => (

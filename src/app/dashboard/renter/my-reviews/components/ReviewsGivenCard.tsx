@@ -55,7 +55,7 @@ export default function ReviewsGivenCard({
         textareaEle.removeEventListener("input", handleInput);
       }
     };
-  }, [edit, data?.review]);
+  }, [edit, data?.review, index]);
 
   return (
     <div className="flex w-full  max-w-[1103px] flex-col  items-start  gap-4  border-b-1 py-3 ">

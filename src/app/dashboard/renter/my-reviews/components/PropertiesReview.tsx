@@ -17,10 +17,10 @@ export default function PropertiesReview() {
       {reviews && (
         <div className="w-full">
           <div className="flex flex-col gap-6">
-            <p className="text-base font-semibold 2xl:text-[1.25rem]">
+            <h3 className="text-base font-semibold 2xl:text-xl">
               {" "}
               ( 3 ) Reviews
-            </p>
+            </h3>
 
             <div className="flex flex-col gap-8">
               {mockReviewData2.map((r, index) => (

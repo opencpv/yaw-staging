@@ -25,7 +25,7 @@ const TermsNav = ({
   }, [data, path]);
 
   return (
-    <nav
+    <div
       className={`sticky top-0 flex h-[80px] w-full items-center justify-between px-4 md:px-[30px] 2xl:h-[90px]  ${
         primary ? "" : "bg-[#333333]"
       }`}
@@ -78,7 +78,7 @@ const TermsNav = ({
           <Image src={icons.Hamburger} alt="menu" />
         </button>
       </div>
-    </nav>
+    </div>
   );
 };
 
