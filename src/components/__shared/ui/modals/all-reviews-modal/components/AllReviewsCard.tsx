@@ -23,26 +23,14 @@ export default function AllReviewCard({ data }: Props) {
             />
           </div>
           <div className="flex w-full flex-col gap-1 2xl:gap-2">
-            <h3 className=" font-semibold 2xl:text-2xl">
-              {" "}
-              {/* EC: Please it should be <h3> or <h3>. Address similar instances */}
-              {data?.name}
-            </h3>
+            <h3 className=" font-semibold 2xl:text-2xl">{data?.name}</h3>
             <p className="text-sm 2xl:text-base">{data?.date}</p>
             {<ReviewStarsFixed rating={data?.ratings} />}
           </div>
         </div>
 
         <div className="flex w-full gap-1">
-          <p className="max-w-full text-base text-shade-300">
-            {" "}
-            {/* EC: Reduce usage of arbitrary colors
-             * Unless it's a one-off color
-             * e.g. text-shade-300 (in color scheme) instead of text-[#333]
-             *
-             */}
-            {data?.review}
-          </p>
+          <p className="max-w-full text-base text-shade-300">{data?.review}</p>
         </div>
       </div>
 

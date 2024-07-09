@@ -32,7 +32,6 @@ function SubLinkResults() {
   self contained 
   */
 
-  // EC: Response -> Sure. It will be taken care of.
   return (
     <div className="main-menu-link flex w-full items-center gap-12 text-white">
       <div className="hidden h-full min-w-[3px] lg:flex">

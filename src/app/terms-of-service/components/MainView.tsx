@@ -3,14 +3,11 @@ import RichTextRenderer from "@/components/__shared/RichTextRenderer";
 import styles from "../index.module.css";
 
 const MainView = ({ data }: { data: any }) => {
-
   return (
     <div className="flex  w-full flex-col items-center justify-center text-white">
       <div className="flex flex-col items-center gap-6 lg:max-w-[60vw] 2xl:gap-12">
         {/* Please i think the vw is okay for this scenario */}
-        {" "}
-        {/* EC: Please avoid viewport width (vw)
-         * unless there is a specific use case. */}
+        {/* EC: That's fine then. */}
         <div className="mb-4 flex w-full flex-col items-center ">
           <h1 className="leading-tight">{data.title}</h1>
           <h1 className="leading-tight text-white">{data.subtitle}</h1>{" "}

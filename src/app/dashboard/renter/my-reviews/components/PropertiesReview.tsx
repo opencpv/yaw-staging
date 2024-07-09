@@ -19,7 +19,7 @@ export default function PropertiesReview() {
           <div className="flex flex-col gap-6">
             <h3 className="text-base font-semibold 2xl:text-xl">
               {" "}
-              {/* EC: Please use a heading tag. Please address similar instances. */}{" "}
+              {/* EC: RatingsFormForm comments should apply here also, and similar instances. */}{" "}
               ( 3 ) Reviews
             </h3>
 

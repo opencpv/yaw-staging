@@ -19,9 +19,7 @@ const TermsMainView = ({ data }: { data: any }) => {
           </div>
         )}
       </div>
-      <div className="my-8 lg:ml-5 w-fit border-l-[8px] border-accent bg-secondary-50  px-4 py-2 text-shade-200 lg:my-10 capitalize text-xl 2xl:text-2xl">
-         {/* EC: Please use border-accent instead of border-[rgb(221,183,113)]
-       * Please address similar instances */}
+      <div className="my-8 w-fit border-l-[8px] border-accent bg-secondary-50 px-4  py-2 text-xl capitalize text-shade-200 lg:my-10 lg:ml-5 2xl:text-2xl">
         {data && <h3 className="inline">{data.title}</h3>}
       </div>
       {data && (

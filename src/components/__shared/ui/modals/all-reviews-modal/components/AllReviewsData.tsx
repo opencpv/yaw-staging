@@ -39,6 +39,11 @@ function AllReviewsData() {
                * Address similar instances
                */}
               {/* Please i think the responsiveness i okay or? */}
+              {/* Sorry I should have been specific
+               * On the "Read Reviews" section, right from 280px,
+               * I thought the image and property name should displayed a column direction
+               * But never mind, it's perfect overall.
+               */}
               <h5 className="text-base font-semibold 2xl:text-2xl">
                 {variant == "person"
                   ? "Jane Doe"

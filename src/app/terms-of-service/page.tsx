@@ -22,13 +22,13 @@ const page = async () => {
         className="min-h-screen bg-[url('/assets/images/terms/t1-mobile.png')]
       bg-cover
       bg-center bg-no-repeat md:bg-[url('/assets/images/terms/t1.png')] md:bg-top "
-        // EC: t1.png and t2.png file sizes are too large.
-        // Please don't exceed 300kb.
-        // Address all similar instances.
       >
         <nav className="w-full">{data && <TermsNav data={data} />}</nav>{" "}
-        {/* EC: Please TermsNav is already a <nav> element
-         * You may want to render <TermsNav> without a surrounding <nav> */}
+        {/* EC: Good, however preferably make the TermsNav a "nav" element,
+         * and remove the surrounding nav from here.
+         * It seems it doesn't have an effect. TermsNav already has "w-full"
+         * e.g {data && <TermsNav data={data} />}
+         */}
         <main className="wrapper flex h-full min-h-[80vh] w-full flex-col items-center justify-center max-sm:pt-0 lg:min-h-[65vh]">
           <div className={`flex h-full w-full flex-col`}>
             {data && (

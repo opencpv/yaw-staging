@@ -56,8 +56,6 @@ export default function ReviewsGivenCard({
       }
     };
   }, [edit, data?.review, index]);
-      /* EC: Missing dependency index). Please leave a comment if intentional */
-
 
   return (
     <div className="flex w-full  max-w-[1103px] flex-col  items-start  gap-4  border-b-1 py-3 ">

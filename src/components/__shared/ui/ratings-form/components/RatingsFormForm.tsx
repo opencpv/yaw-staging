@@ -37,13 +37,11 @@ function RatingsFormForm() {
     <Root className="flex h-[726px] min-h-[726px] flex-col justify-between gap-4 px-0 py-2 lg:px-5">
       <div className="flex h-full flex-col gap-4 ">
         <h3 className="text-base font-bold text-shade-300 2xl:text-2xl">
-            {/* EC: Please use a heading element. e.g h2, h3
-          * By using a heading element you may not need to use "text-base font-bold 2xl:text-[1.5625rem]"
-          e.g <h2>Write a review</h2>
-          * Please make sure any color is in the scheme unless it's a one-off color.
-          * e.g text-shade-300 instead of text-[#373737]
-          * Please address all similar instances.
-        */}
+          {/* EC: Good, however you don't need to specify a breakpoint, unless in a specific use case.
+           * I think <h2> will do here
+           * So we need to modify the h2 style globally to be smaller on mobile
+           * Please update the h2 in globals.css on line 41 to "text-xl sm:text-[1.563rem]"
+           */}
           Write a review
         </h3>
 
@@ -55,8 +53,9 @@ function RatingsFormForm() {
               alt={`Image of ${currentProperty?.bedrooms} Bedroom
               ${currentProperty?.propertyType}`}
             />
-                        {/* Please an appropriate alt text is recommended */}
-
+            {/* EC: Good you can do away with the phrase "Image of"
+             * eg. 2 Bedroom Apartment
+             */}
           </div>
           <div className="flex flex-wrap items-center gap-1 xs:gap-4">
             <p className="text-base font-semibold md:text-[1.25rem]">
