@@ -37,6 +37,13 @@ function RatingsFormForm() {
     <Root className="flex h-[726px] min-h-[726px] flex-col justify-between gap-4 px-0 py-2 lg:px-5">
       <div className="flex h-full flex-col gap-4 ">
         <h3 className="text-base font-bold text-shade-300 2xl:text-2xl">
+            {/* EC: Please use a heading element. e.g h2, h3
+          * By using a heading element you may not need to use "text-base font-bold 2xl:text-[1.5625rem]"
+          e.g <h2>Write a review</h2>
+          * Please make sure any color is in the scheme unless it's a one-off color.
+          * e.g text-shade-300 instead of text-[#373737]
+          * Please address all similar instances.
+        */}
           Write a review
         </h3>
 
@@ -48,10 +55,11 @@ function RatingsFormForm() {
               alt={`Image of ${currentProperty?.bedrooms} Bedroom
               ${currentProperty?.propertyType}`}
             />
-          </div>
+                        {/* Please an appropriate alt text is recommended */}
 
-          <div className="flex flex-wrap items-center gap-1 xs:gap-2 xl:gap-4">
-            <p className="text-base md:text-xl">
+          </div>
+          <div className="flex flex-wrap items-center gap-1 xs:gap-4">
+            <p className="text-base font-semibold md:text-[1.25rem]">
               {currentProperty?.bedrooms} Bedroom{" "}
               {currentProperty?.propertyType}
             </p>
@@ -61,7 +69,7 @@ function RatingsFormForm() {
                 setOpenRatingsForm(false);
                 setOpenAllRatings(true);
               }}
-              className="cursor-pointer border-primary bg-white text-primary lg:text-xl"
+              className="cursor-pointer border-b-[1px] border-primary bg-white text-primary lg:text-[1.25rem]"
             >
               <p className="leading-5 underline"> Read Reviews </p>
             </button>

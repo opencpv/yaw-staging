@@ -17,18 +17,24 @@ const page = async () => {
   const data = initial.data[0];
 
   return (
-   <TermsMenuWrapper data={data.termCategories}>
-      <section className="min-h-screen md:bg-[url('/assets/images/terms/t1.png')]
-      bg-[url('/assets/images/terms/t1-mobile.png')]
-      bg-cover bg-no-repeat bg-center md:bg-top "
-      
+    <TermsMenuWrapper data={data.termCategories}>
+      <section
+        className="min-h-screen bg-[url('/assets/images/terms/t1-mobile.png')]
+      bg-cover
+      bg-center bg-no-repeat md:bg-[url('/assets/images/terms/t1.png')] md:bg-top "
+        // EC: t1.png and t2.png file sizes are too large.
+        // Please don't exceed 300kb.
+        // Address all similar instances.
       >
-        <nav className="w-full">{data && <TermsNav data={data} />}</nav>
-       
-        <main className="wrapper flex w-full min-h-[80vh] lg:min-h-[65vh] h-full flex-col items-center justify-center max-sm:pt-0">
+        <nav className="w-full">{data && <TermsNav data={data} />}</nav>{" "}
+        {/* EC: Please TermsNav is already a <nav> element
+         * You may want to render <TermsNav> without a surrounding <nav> */}
+        <main className="wrapper flex h-full min-h-[80vh] w-full flex-col items-center justify-center max-sm:pt-0 lg:min-h-[65vh]">
           <div className={`flex h-full w-full flex-col`}>
             {data && (
-              <div className={`flex h-full w-full items-center justify-center pb-4  `}>
+              <div
+                className={`flex h-full w-full items-center justify-center pb-4  `}
+              >
                 <MainView data={data} />
               </div>
             )}

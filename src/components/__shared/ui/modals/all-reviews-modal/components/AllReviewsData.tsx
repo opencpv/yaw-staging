@@ -21,10 +21,10 @@ function AllReviewsData() {
   } = useRatingsModalStore();
 
   return (
-    <div className="pt-10 px-0 md:px-5 2xl:px-6">
+    <div className="px-0 pt-10 md:px-5 2xl:px-6">
       <SlideEnter>
         <div className="flex w-full flex-col items-start justify-center gap-8">
-          <div className="flex w-full items-center gap-4 rounded-2xl bg-[#E9ECEF] px-5 md:px-8 py-4">
+          <div className="flex w-full items-center gap-4 rounded-2xl bg-[#E9ECEF] px-5 py-4 md:px-8">
             <div className="relative aspect-[120/100] w-full max-w-[120px] overflow-hidden rounded-lg">
               <Image
                 src={currentProperty?.images?.[0] ?? ""}
@@ -33,8 +33,12 @@ function AllReviewsData() {
               />
             </div>
 
-            <div className="flex w-full flex-col items-start justify-center gap-1"> 
-            {/* Please i think the responsiveness i okay or? */}
+            <div className="flex w-full flex-col items-start justify-center gap-1">
+              {" "}
+              {/* EC: Please address responsiveness from 280px up
+               * Address similar instances
+               */}
+              {/* Please i think the responsiveness i okay or? */}
               <h5 className="text-base font-semibold 2xl:text-2xl">
                 {variant == "person"
                   ? "Jane Doe"
@@ -42,7 +46,6 @@ function AllReviewsData() {
                     " Bedroom " +
                     currentProperty?.propertyType}
               </h5>
-
               <div className="flex items-center justify-start gap-1 rounded-xl bg-secondary-50 px-2 py-1 text-[1rem] font-semibold lg:text-[1.5625rem]">
                 <FaStar color="#FFB800" size="24" />
 
@@ -68,7 +71,7 @@ function AllReviewsData() {
               ( {currentProperty?.ratingCount} ) Reviews
             </p>
 
-            <ReviewSummary className="border-secondary-50"/>
+            <ReviewSummary className="border-secondary-50" />
 
             <CustomScroll className="flex flex-col gap-14">
               {mockReviewData.map((r, index) => (
