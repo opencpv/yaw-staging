@@ -37,10 +37,10 @@ function RatingsFormForm() {
     <Root className="flex h-[726px] min-h-[726px] flex-col justify-between gap-4 px-0 py-2 lg:px-5">
       <div className="flex h-full flex-col gap-4 ">
         <h3 className="text-base font-bold text-shade-300 2xl:text-2xl">
-          {/* EC: Good, however you don't need to specify a breakpoint, unless in a specific use case.
-           * I think <h2> will do here
-           * So we need to modify the h2 style globally to be smaller on mobile
-           * Please update the h2 in globals.css on line 41 to "text-xl sm:text-[1.563rem]"
+          {/* EC: Good, however you may want to use <h5> since you are using "text-base 2xl:text-2xl"
+           *  e.g. <h5 className="2xl:text-2xl">, which is by default text-base
+           *  If you haven't already checked the font sizes for h1 - p in 'globals.css', please do
+           *  That will help you to know which one to use and at what point.
            */}
           Write a review
         </h3>
