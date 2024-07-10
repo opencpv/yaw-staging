@@ -147,9 +147,12 @@ const CartView = () => {
       setCart(JSON.parse(storedCartItems as string));
       console.log("hit", storedCartItems);
     }
-  }, []); 
-
-  
+  }, []);
+  {
+    /** EC: "setCart" dependency missing. Please address missing deps or leave a comment if is intentional.
+     * Please address similar instances.
+     */
+  }
   const isItemsEmpty = items.length == 0;
   return (
     <section className={`mx-auto max-w-[1024px] px-4 py-6 lg:px-0`}>
