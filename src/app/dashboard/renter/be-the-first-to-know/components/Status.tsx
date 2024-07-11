@@ -1,16 +1,17 @@
 import Toggle from "@/components/__shared/ui/Toggle";
-import { getDaysRemaining } from "../utils";
 import { useUpdateCriteriaStatus } from "../services";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import { pluralize } from "@/lib/utils/stringManipulation";
+import { getDaysRemaining, pluralize } from "@/lib/utils/stringManipulation";
+import { BE_THE_FIRST_TO_KNOW_LAPSE_DAYS } from "@/constants";
 
 interface Props {
   criterion: SearchCriteria;
 }
 
 const CriteriaStatus = ({ criterion }: Props) => {
-  const daysRemaining = getDaysRemaining(criterion.created_at);
+  const days = BE_THE_FIRST_TO_KNOW_LAPSE_DAYS
+  const daysRemaining = getDaysRemaining(criterion.created_at, days);
 
   const { mutate: updateStatus, variables } = useUpdateCriteriaStatus();
 

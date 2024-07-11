@@ -20,9 +20,7 @@ const AgentLayout = ({ children }: { children: React.ReactNode }) => {
           <CallOut content="Fee waived when you rent with us." />
           <div className="flex w-full flex-col gap-3 gap-y-6 lg:w-fit lg:flex-row lg:items-center">
             <div className="flex flex-wrap items-center gap-5">
-              <h4 className="whitespace-nowrap text-lg font-normal">
-                Finders Fee
-              </h4>
+              <h4 className="whitespace-nowrap font-normal">Finders Fee</h4>
               <ClientOnly>
                 <BeMyAgentModal
                   button="Price"

@@ -319,7 +319,7 @@ const ProfileInfo = () => {
                           as="textarea"
                           id="bio"
                           name="bio"
-                          placeholder="Share a little about yourself. Where do you live? What are your hobbies? What is important to you? What do you do? Visitors to youe profile page will be able to read this information."
+                          placeholder="Share a little about yourself. Where do you live? What are your hobbies? What is important to you? What do you do? Visitors to your profile page will be able to read this information."
                           className="form-textarea text-[#737373]"
                           rows="10"
                           cols="50"

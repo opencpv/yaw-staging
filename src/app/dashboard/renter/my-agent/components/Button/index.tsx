@@ -88,7 +88,7 @@ export default function AgentButtons({
         <Button
           href={href}
           className={cn(
-            "lg:min-w-[8rem max-w-fit rounded-lg border border-primary bg-transparent p-6 px-10 font-semibold text-primary",
+            "max-w-fit rounded-lg border border-primary bg-transparent p-6 px-10 font-semibold text-primary lg:min-w-[8rem]",
             className,
           )}
           onClick={onClick}

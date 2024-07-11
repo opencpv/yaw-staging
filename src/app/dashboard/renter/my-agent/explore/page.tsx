@@ -1,14 +1,10 @@
 import React from "react";
-import AgentLandingPage from "../components/AgentLandingPage";
+import AgentExplorePage from "../components/pages/AgentExplorePage";
 
 type Props = {};
 
 const page = (props: Props) => {
-  return (
-    <div className="mt-8">
-      <AgentLandingPage />
-    </div>
-  );
+  return <AgentExplorePage />;
 };
 
 export default page;

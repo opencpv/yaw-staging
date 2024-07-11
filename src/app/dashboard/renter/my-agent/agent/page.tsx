@@ -1,45 +1,57 @@
 "use client";
-import AgentButtons from "../components/Button";
-import { useState } from "react";
-import NoMatchesYet from "../components/NoMatches";
-import MatchesYet from "../components/Matches";
+import { useEffect, useState } from "react";
+import NoMatchState from "../components/NoMatchState";
+import MatchTable from "../components/MatchTable";
 import Agent from "../components/Agent";
 import NoAgentCard from "../components/NoAgentCard";
+import { useRouter } from "next/navigation";
+import BeMyAgentModal from "../components/steps/BeMyAgentModal";
 
 export default function Page() {
+  const router = useRouter();
   const [beAgent, setBeAgent] = useState(false);
-  const [matches, setMatches] = useState(true);
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    router.push("?a=1", { scroll: false });
+  }, [router]);
+
   return (
-    <div className="mx-auto mt-16 flex max-w-screen-3xl flex-col items-center justify-center gap-8 px-5 sm:px-10">
+    <div className="mx-auto my-16 flex max-w-screen-3xl flex-col items-center justify-center gap-8 px-5 sm:px-10">
       {!beAgent && (
         <div className="flex w-full flex-col">
           <div className="fade-in-bottom flex flex-col gap-5">
-            <div className="w-full max-w-[542px] space-y-8">
-              <h3 className="">My Agent</h3>
-              <NoAgentCard />
-            </div>
-            <div
-              className="gap-5 space-y-5 sm:grid sm:space-y-0"
-              style={{
-                gridTemplateColumns: "repeat(auto-fit, minmax(450px, 1fr))",
-              }}
-            >
+            <h3 className="mb-5">My Agent</h3>
+            <NoAgentCard />
+            <BeMyAgentModal button="Hire Us Now" content="Get Started" />{" "}
+            <section className="grid gap-5 md:grid-cols-2 llg:grid-cols-3">
               <Agent
-                name="My Agent One"
-                state="completed"
-                dateCreated="5 Aug. 2023 13:55pm"
-                dateCompleted="15 Aug. 2023 13:55pm"
+                title="My Agent One"
+                hasMatch
+                isSelected
+                isActive
+                createdAt="Wed Jul 10 2024 15:45:39"
+                id={1}
               />
               <Agent
-                name="My Agent Two"
-                state="started"
-                dateCreated="5 Aug. 2023 13:55pm"
+                title="My Agent Two"
+                hasMatch={false}
+                isSelected={false}
+                isActive
+                createdAt="Wed Jul 10 2024 15:45:39"
+                id={2}
               />
-              <Agent name="My Agent Search" state="default" />
-            </div>
+              <Agent
+                title="My Agent Three"
+                hasMatch={false}
+                isSelected={false}
+                isActive={false}
+                createdAt="Wed Jul 10 2024 15:45:39"
+                id={3}
+              />
+            </section>
           </div>
-          {!matches && <NoMatchesYet />}
-          {matches && <MatchesYet />}
+          <MatchTable />
         </div>
       )}
     </div>
