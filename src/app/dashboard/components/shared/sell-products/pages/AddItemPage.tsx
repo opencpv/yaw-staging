@@ -138,7 +138,7 @@ const AddItemPage = () => {
                 supabase
                   .from("products")
                   .insert({
-                    price: values.price,
+                    price: Number(values.price),
                     title: values.itemName,
                     description: values.description,
                     images: imageUrls,
@@ -149,7 +149,7 @@ const AddItemPage = () => {
                     whatsapp: values.whatsApp,
                     phone: values.phone,
                     email: values.email,
-                    seller: id,
+                    seller: id as string,
                   })
                   .then(({ data, error }) => {
                     console.log(error?.message);

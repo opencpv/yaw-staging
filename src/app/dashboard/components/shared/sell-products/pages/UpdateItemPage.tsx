@@ -221,7 +221,7 @@ const UpdateItemPage = () => {
                         .from("products")
                         .update({
                           title: values.itemName,
-                          price: values.price,
+                          price: Number(values.price),
                           description: values.description,
                           condition: values.condition.toUpperCase(),
                           primary_image: `${process.env.NEXT_PUBLIC_DO_CDN_URL}${values.primaryImage}`,
@@ -316,67 +316,68 @@ const UpdateItemPage = () => {
                       name="term"
                       color="primary"
                     />
-                   
-                   <div className="flex flex-col gap-y-2">
-                  <p className="  text-grayText">Preffered Method of contact</p>
-                  <Checkbox
-                    defaultChecked
-                    label="In app messaging ( Default)"
-                    disabled={true}
-                    color="disabled"
-                  />
-                  <Checkbox
-                    label="Email"
-                    color="primary"
-                    defaultChecked
-                    onCheckedChange={(checked) =>
-                      setUseEmail(checked as boolean)
-                    }
-                  />
-                  {useEmail && (
-                    <TextFieldInput
-                      name="email"
-                      label="Email Address"
-                      placeholder="Enter email address"
-                      type="email"
-                    />
-                  )}
-                  <Checkbox
-                    label="Phone call"
-                    color="primary"
-                    onCheckedChange={(checked) =>
-                      setUsePhone(checked as boolean)
-                    }
-                  />
-                  {usePhone && (
-                    <InputPhoneNumber
-                      id=""
-                      label="Phone"
-                      name="phone"
-                      value={phone}
-                      onChange={handlePhone}
-                      onCountryChange={handleCountryChange}
-                    />
-                  )}
-                  <Checkbox
-                    label="WhatsApp"
-                    color="primary"
-                    onCheckedChange={(checked) =>
-                      setUseWhatsapp(checked as boolean)
-                    }
-                  />
-                  {useWhatsapp && (
-                    <InputPhoneNumber
-                      id=""
-                      label="WhatsApp No."
-                      name="whatsapp"
-                      value={whatsApp}
-                      onChange={handleWhatsApp}
-                      onCountryChange={handleCountryChangeWhatsApp}
-                    />
-                  )}
-                </div>
-                
+
+                    <div className="flex flex-col gap-y-2">
+                      <p className="  text-grayText">
+                        Preffered Method of contact
+                      </p>
+                      <Checkbox
+                        defaultChecked
+                        label="In app messaging ( Default)"
+                        disabled={true}
+                        color="disabled"
+                      />
+                      <Checkbox
+                        label="Email"
+                        color="primary"
+                        defaultChecked
+                        onCheckedChange={(checked) =>
+                          setUseEmail(checked as boolean)
+                        }
+                      />
+                      {useEmail && (
+                        <TextFieldInput
+                          name="email"
+                          label="Email Address"
+                          placeholder="Enter email address"
+                          type="email"
+                        />
+                      )}
+                      <Checkbox
+                        label="Phone call"
+                        color="primary"
+                        onCheckedChange={(checked) =>
+                          setUsePhone(checked as boolean)
+                        }
+                      />
+                      {usePhone && (
+                        <InputPhoneNumber
+                          id=""
+                          label="Phone"
+                          name="phone"
+                          value={phone}
+                          onChange={handlePhone}
+                          onCountryChange={handleCountryChange}
+                        />
+                      )}
+                      <Checkbox
+                        label="WhatsApp"
+                        color="primary"
+                        onCheckedChange={(checked) =>
+                          setUseWhatsapp(checked as boolean)
+                        }
+                      />
+                      {useWhatsapp && (
+                        <InputPhoneNumber
+                          id=""
+                          label="WhatsApp No."
+                          name="whatsapp"
+                          value={whatsApp}
+                          onChange={handleWhatsApp}
+                          onCountryChange={handleCountryChangeWhatsApp}
+                        />
+                      )}
+                    </div>
                   </div>
                   <div className="flex h-[100%] w-full flex-col">
                     <FileUploader defaultImages={files} />
