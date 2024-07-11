@@ -13,7 +13,6 @@ import FaqLink from "@/components/__shared/ui/links/FaqLink";
 import { cn } from "@/lib/utils";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useMenuLinks } from "./content";
-import CaArrowRight from "./components/icons/CaArrowRight";
 import { animate, stagger } from "framer-motion";
 
 const MenuOption = ({

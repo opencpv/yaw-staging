@@ -12,6 +12,7 @@ import { useRatingsModalStore } from "@/store/modal/useRatingsModalStore";
 
 const ListingInfo = (props: Partial<ListingCardInterface>) => {
   const { icons } = useAssets();
+
   return (
     <div
       className={cn(

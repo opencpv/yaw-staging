@@ -3,14 +3,19 @@ import { styled } from "@stitches/react";
 import CaReviewHead from "./icons/CaReviewHead";
 import CaReviewSummary from "./icons/CaReviewSummary";
 
-export default function ReviewSummary() {
+type Props = {
+  className?: string;
+};
+export default function ReviewSummary({ className }: Props) {
   return (
     <Root className="mb-8 flex w-full max-w-[1103px] flex-col items-start gap-3">
       <div className="flex items-center justify-start gap-5 ">
         <CaReviewSummary />
         <p className="text-[#DCA847]">Review Summary</p>
       </div>
-      <div className="flex flex-col gap-2.5 rounded-2xl border-[1px] border-[#E6E6E6] px-8 py-6">
+      <div
+        className={`flex flex-col gap-2.5 rounded-2xl border-[1px] border-[#E6E6E6] ${className} px-8 py-6`}
+      >
         <div className="head w-fit rounded-2xl bg-secondary-50 p-4">
           <CaReviewHead />
         </div>
