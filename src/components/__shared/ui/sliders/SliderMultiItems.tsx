@@ -9,6 +9,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
 import "swiper/css/free-mode";
+import { SliderMultiItemsProps } from "./sliders";
 
 const SliderMultiItems = ({
   items,

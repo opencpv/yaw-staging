@@ -29,7 +29,7 @@ const Carousel = (props: CarouselProps) => {
         >
           {props.images.map((image) => (
             <SwiperSlide key={createUUID()}>
-              <div className="w-fullrounded-lg relative mx-auto aspect-square h-[40rem] max-h-[40rem] ">
+              <div className="relative mx-auto aspect-square h-[40rem] max-h-[40rem] w-full rounded-lg ">
                 <Image
                   src={image}
                   alt={"#"} // Fixme:

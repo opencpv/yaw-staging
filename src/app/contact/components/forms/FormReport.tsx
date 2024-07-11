@@ -36,6 +36,8 @@ const FormReport = (props: Props) => {
     loading,
     setLoading,
     tableName,
+    handleFileUpload,
+    handleFileRemove,
     validate,
     contactFormSession,
     handleSessionChange,
@@ -175,6 +177,7 @@ const FormReport = (props: Props) => {
             <UploadFile
               file={file as File}
               handleFileUpload={handleFileUpload}
+              handleFileRemove={handleFileRemove}
             />
 
             <div className="form-div" title="Paste URL link here (optional)">

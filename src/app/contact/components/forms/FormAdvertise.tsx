@@ -36,6 +36,8 @@ const FormAdvertise = (props: Props) => {
     loading,
     setLoading,
     tableName,
+    handleFileUpload,
+    handleFileRemove,
     validate,
     contactFormSession,
     handleSessionChange,
@@ -180,6 +182,7 @@ const FormAdvertise = (props: Props) => {
                 <UploadFile
                   file={file as File}
                   handleFileUpload={handleFileUpload}
+                  handleFileRemove={handleFileRemove}
                 />
                 <Button
                   className="max-w-full xs:max-w-fit"

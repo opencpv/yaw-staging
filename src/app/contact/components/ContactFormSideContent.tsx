@@ -12,6 +12,7 @@ import { getListingProps } from "@/lib/enum";
 import { writer } from "repl";
 import { useFetchFeaturedListings } from "@/app/properties/services";
 import { IFRAME_ALLOW } from "@/constants";
+import { SliderPaginationOnlyImage } from "@/components/__shared/ui/sliders/sliders";
 
 type Props = {
   data: any;

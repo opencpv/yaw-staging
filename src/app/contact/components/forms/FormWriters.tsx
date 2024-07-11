@@ -35,6 +35,8 @@ const FormWriters = (props: Props) => {
     loading,
     setLoading,
     tableName,
+    handleFileUpload,
+    handleFileRemove,
     validate,
     contactFormSession,
   } = useContactForm();
@@ -159,6 +161,7 @@ const FormWriters = (props: Props) => {
             <UploadFile
               file={file as File}
               handleFileUpload={handleFileUpload}
+              handleFileRemove={handleFileRemove}
             />
 
             <Button
