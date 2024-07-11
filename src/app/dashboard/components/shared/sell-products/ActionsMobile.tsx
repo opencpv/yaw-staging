@@ -14,7 +14,11 @@ import {
 import { ItemPublicationStatus } from "./PublicationStatus";
 import { ItemContext } from "@/app/dashboard/contexts/ItemContext";
 
-const ActionsMobile = () => {
+interface Props {
+  refetch: () => void;
+  id: number;
+}
+const ActionsMobile = ({ refetch, id }: Props) => {
   const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
   const [popoverIsOpen, setPopoverIsOpen] = useState(false);
 
@@ -47,7 +51,8 @@ const ActionsMobile = () => {
             <ProductStatus
               status={item?.status as ItemPublicationStatus}
               isAvailable={item?.is_available as boolean}
-              // data={data}
+              id={id}
+              refetch={refetch}
             />
           </ActionItem>
           <ActionItem disabled={item?.status === "Suspended"}>

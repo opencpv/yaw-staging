@@ -35,6 +35,8 @@ interface Props {
   /** maximum file size in bytes */
   maxSize?: { byte: number; kb?: string; mb?: string };
   onFileSelect?: (file: File) => void;
+  defaultImages?: File[];
+  defaultPrimaryImage?: string | null;
 }
 
 type ContextType = {
@@ -46,7 +48,11 @@ type ContextType = {
 
 const FileContext = createContext<ContextType | null>(null);
 
-const FileUploader = ({ onFileSelect }: Props) => {
+const FileUploader = ({
+  onFileSelect,
+  defaultImages = [],
+  defaultPrimaryImage = null,
+}: Props) => {
   const [field, meta, helpers] = useField("images");
 
   const [primaryImage, setPrimaryImage] = React.useState<string | undefined>(
@@ -91,7 +97,7 @@ const FileUploader = ({ onFileSelect }: Props) => {
       );
 
       const newFilesArray = [...files, ...newFiles]; // combine old and new files
-
+      setPrimaryImage(newFilesArray[0].name);
       setFiles(
         newFilesArray.map((file: any) =>
           Object.assign(file, {
@@ -110,6 +116,13 @@ const FileUploader = ({ onFileSelect }: Props) => {
     },
     [files, onOpen, helpers],
   );
+
+  useEffect(() => {
+    if (defaultImages) {
+      setFiles(defaultImages);
+      // setPrimaryImage(defaultPrimaryImage as string);
+    }
+  }, []);
 
   useEffect(() => {
     // Make sure to revoke the data uris to avoid memory leaks, will run on unmount

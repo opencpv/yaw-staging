@@ -22,6 +22,7 @@ import { generateString } from "@/lib/utils";
 import slugify from "@/lib/utils/slugify";
 import { toast } from "react-toastify";
 import ContactUploadField from "./ContactUploadField";
+import Button from "@/components/__shared/ui/button/Button";
 
 type Props = {};
 
@@ -58,49 +59,62 @@ const FormGeneral = (props: Props) => {
       onSubmit={async (values, { resetForm }) => {
         values.contactType = capitalizeName(activeTab);
         const newFilename: string =
-          generateString(8) + "-" + slugify(file?.name || "");
+          generateString(4) + "-" + slugify(file?.name || "");
         var newFile = new File([file as File], newFilename, {
           type: file?.type,
         });
+        let fileUrl = "";
         setLoading(true);
         const fileForm = new FormData();
         fileForm.append("file", newFile);
-        const fileUrl = `https://rentright.nyc3.cdn.digitaloceanspaces.com/${newFilename}`;
-        const uploadRes = await axios.post(
-          `${location.origin}/api/file-upload`,
-          fileForm,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          },
+        const fileUploadPromise: Promise<any>[] = [];
+        fileUploadPromise.push(
+          axios
+            .post(`${location.origin}/api/file-upload`, fileForm, {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            })
+            .then(() => {
+              fileUrl = `${process.env.NEXT_PUBLIC_DO_CDN_URL}${newFilename}`;
+            })
+            .catch(() => {
+              toast.error(`Image upload unavailable`, {
+                toastId: "toast",
+              });
+            }),
         );
-        sendContactUsEmail(formRef.current);
-        supabase
-          .from(tableName)
-          .insert([
-            {
-              contact_type: values.contactType,
-              fullname: values.fullname,
-              email: values.email,
-              phone: values.phone,
-              message: values.message,
-              file_url: fileUrl,
-            },
-          ])
-          .select()
-          .then(({ error }) => {
-            setLoading(false);
-            if (error) {
-              onOpen("Something went wrong", "error");
-            } else {
-              // toast.success("Your message has been sent");
-              resetForm();
-              sessionStorage.removeItem("contactFormSession");
-              setPhone(undefined);
-              onOpen("Successfully sent", "success");
-              router.refresh();
-            }
+        Promise.all([...fileUploadPromise])
+          .then(() => {
+            sendContactUsEmail(formRef.current);
+            supabase
+              .from(tableName)
+              .insert([
+                {
+                  contact_type: values.contactType,
+                  fullname: values.fullname,
+                  email: values.email,
+                  phone: values.phone,
+                  message: values.message,
+                  file_url: fileUrl,
+                },
+              ])
+              .select()
+              .then(({ error }) => {
+                setLoading(false);
+                if (error) {
+                  onOpen("Something went wrong", "error");
+                } else {
+                  resetForm();
+                  sessionStorage.removeItem("contactFormSession");
+                  setPhone(undefined);
+                  onOpen("Successfully sent", "success");
+                  router.refresh();
+                }
+              });
+          })
+          .catch(() => {
+            onOpen("Something went wrong", "error");
           });
       }}
       className=""
@@ -140,15 +154,19 @@ const FormGeneral = (props: Props) => {
                 <ErrorMessage name="message" error={errors.message} />
               </CustomErrorMessage>
             </div>
-            <ContactUploadField />
+            <UploadFile
+              file={file as File}
+              handleFileUpload={handleFileUpload}
+            />
+            <Button
+              className="max-w-full xs:max-w-fit"
+              color="accent"
+              isLoading={loading}
+              type="submit"
+            >
+              Submit
+            </Button>
           </div>
-          {loading ? (
-            <div className="mt-2">
-              <Loader />
-            </div>
-          ) : (
-            <ContactSubmitButton />
-          )}
         </Form>
       )}
     </Formik>

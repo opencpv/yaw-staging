@@ -62,35 +62,36 @@ type ItemProps = {
 
 export const ActionItem = (props: ItemProps) => {
   if (props.href)
-  return (
-    <Link href={props.href}
-      className={cn(
-        "deep-green-hover flex w-full items-center gap-2 px-4 py-2",
-        {
-          "pointer-events-none cursor-not-allowed text-shade-200":
-            props.disabled,
-        },
-        props.className,
-      )}
-      onClick={props.onClick}
-    >
-      {props.children}
-    </Link>
-  );
+    return (
+      <Link
+        href={props.href}
+        className={cn(
+          "deep-green-hover flex w-full items-center gap-2 px-4 py-2",
+          {
+            "pointer-events-none cursor-not-allowed text-shade-200":
+              props.disabled,
+          },
+          props.className,
+        )}
+        onClick={props.onClick}
+      >
+        {props.children}
+      </Link>
+    );
   else
-  return (
-    <button
-      className={cn(
-        "deep-green-hover flex w-full items-center gap-2 px-4 py-2",
-        {
-          "pointer-events-none cursor-not-allowed text-shade-200":
-            props.disabled,
-        },
-        props.className,
-      )}
-      onClick={props.onClick}
-    >
-      {props.children}
-    </button>
-  );
+    return (
+      <button
+        className={cn(
+          "deep-green-hover flex w-full items-center gap-2 px-4 py-2",
+          {
+            "pointer-events-none cursor-not-allowed text-shade-200":
+              props.disabled,
+          },
+          props.className,
+        )}
+        onClick={props.onClick}
+      >
+        {props.children}
+      </button>
+    );
 };

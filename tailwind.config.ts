@@ -29,6 +29,7 @@ const config: Config = {
         ...green,
         ...blackA,
         modalOverlay: "#02020275",
+        grayText: "#6A6968",
         primary: {
           DEFAULT: "#11605E",
           50: "#E7EFEF",

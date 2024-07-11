@@ -84,7 +84,7 @@ const Landing = (props: Props) => {
         </motion.div>
         <Link
           href={"/"}
-          className="border-shade absolute bottom-0 right-0 z-10 grid size-20 place-items-center rounded-full border-2 transition-transform hover:-translate-y-2 max-sm:scale-[0.6] sm:bottom-10 sm:right-20"
+          className="absolute bottom-0 right-0 z-10 grid size-20 place-items-center rounded-full border-2 border-shade transition-transform hover:-translate-y-2 max-sm:scale-[0.6] sm:bottom-10 sm:right-20"
         >
           <div
             className="grid size-12 animate-pulse place-items-center rounded-full bg-primary-200 text-white"

@@ -1,6 +1,8 @@
-type CarouselProps = {
+import { boolean } from "yup";
+export type CarouselProps = {
   images: string[];
   setActiveIndex: React.Dispatch<React.SetStateAction<number>>;
+  isCover?: boolean;
 };
 
 type SliderPaginationOnlyProps = {

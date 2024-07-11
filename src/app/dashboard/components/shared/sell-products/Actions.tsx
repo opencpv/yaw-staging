@@ -11,13 +11,35 @@ import {
   ActionPopover,
 } from "../ui/ActionPopover";
 import { ItemContext } from "@/app/dashboard/contexts/ItemContext";
+import { createClient } from "@/lib/utils/supabase/auth/client";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
-const Actions = () => {
+interface Props {
+  refetch: () => void;
+  id: number;
+}
+const Actions = ({ refetch, id }: Props) => {
   const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
   const [popoverIsOpen, setPopoverIsOpen] = useState(false);
   const item = useContext(ItemContext)?.item;
+  const supabase = createClient();
+  const router = useRouter();
+  const handleDestruction = async () => {
+    const { data, error } = await supabase
+      .from("products")
+      .update({
+        is_deleted: true,
+        deletion_date: new Date().toDateString(),
+      })
+      .eq("id", id);
 
-  const handleDestruction = () => {};
+    if (!error) {
+      refetch();
+    } else {
+      toast.error(error.message);
+    }
+  };
 
   return (
     <>
@@ -37,7 +59,9 @@ const Actions = () => {
           <BiDotsVerticalRounded />
         </ActionItemTrigger>
         <ActionContent>
-          <ActionItem>
+          <ActionItem
+            onClick={() => router.push(`sell-products/update-product/${id}`)}
+          >
             <MdOutlineEdit />
             Edit
           </ActionItem>

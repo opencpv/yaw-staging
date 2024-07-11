@@ -33,21 +33,21 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
   }, [isAdmin, props.propertyId]);
 
   return (
-      <div
-        className={`group/parent relative flex cursor-default flex-col ${
-          props.className
-        } ${
-          props.cardType === "2"
-            ? null
-            : "rounded-xl shadow-[1px_3px_13px_rgba(0,_0,_0,_0.10)]"
-        }`}
-        onClick={() =>
-          pathname === "/properties" && setPreviousPath(window.location.href)
-        }
-      >
-        <SliderArea {...props} />
-        <ListingInfo {...props} />
-      </div>
+    <div
+      className={`group/parent relative flex cursor-default flex-col ${
+        props.className
+      } ${
+        props.cardType === "2"
+          ? null
+          : "rounded-xl shadow-[1px_3px_13px_rgba(0,_0,_0,_0.10)]"
+      }`}
+      onClick={() =>
+        pathname === "/properties" && setPreviousPath(window.location.href)
+      }
+    >
+      <SliderArea {...props} />
+      <ListingInfo {...props} />
+    </div>
   );
 };
 

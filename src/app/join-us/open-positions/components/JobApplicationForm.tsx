@@ -26,9 +26,11 @@ import JoinUsButtons from "../../components/JoinUsButtons";
 import Tooltip from "@/components/__shared/ui/Tooltip";
 import { BsInfoCircle } from "react-icons/bs";
 import emailjs from "@emailjs/browser";
+import slugify from "@/lib/utils/slugify";
 
 type Props = {
   variant: "application" | "resume";
+  position?: string;
 };
 
 type errorProp = {
@@ -40,7 +42,7 @@ type errorProp = {
   email?: string;
   phone?: string;
 };
-function JobApplicationForm({ variant }: Props) {
+function JobApplicationForm({ variant, position }: Props) {
   const searchParams = useSearchParams();
   const job = searchParams?.get("job");
 
@@ -234,6 +236,7 @@ function JobApplicationForm({ variant }: Props) {
                 color="accent"
                 isLoading={loading}
                 className="w-full"
+                type="submit"
                 onClick={() => {
                   const errors: errorProp = validate();
                   const objKeys = Object.keys(errors);
@@ -255,67 +258,80 @@ function JobApplicationForm({ variant }: Props) {
                       "job",
                       job ? (job as string) : "resume bank",
                     );
-                    const resumeFormData = new FormData();
-                    const namePrepend = generateString(8);
-                    const newResumeFilename = `${namePrepend}-${resume!.name}`;
-
-                    resumeFormData.append(
-                      "file",
-                      updateFilename(resume as File, newResumeFilename),
+                    const newFilename: string =
+                      generateString(4) + "-" + slugify(resume?.name || "");
+                    var renamedResumeFile = new File(
+                      [resume as File],
+                      newFilename,
+                      {
+                        type: resume?.type,
+                      },
                     );
-                    axios
-                      .post(routes.fileUpload, resumeFormData, {
-                        headers: { "Content-Type": "multipart/form-data" },
-                      })
-                      .then((res) => {
-                        formData.append(
-                          "resume",
-                          `https://rentright.nyc3.cdn.digitaloceanspaces.com/${newResumeFilename}`,
-                        );
-                      })
-                      .catch((err) => {
-                        setLoading(false);
-                        toast.error("Error uploading resume", {
-                          toastId: "error",
-                        });
-                      })
-                      .finally(() => {
-                        if (coverLetter) {
-                          const coverLetterFormData = new FormData();
-                          const coverLetterNamePrepend = generateString(8);
-                          const newCoverLetterFilename = `${coverLetterNamePrepend}-${
-                            coverLetter!.name
-                          }`;
-                          coverLetterFormData.append(
-                            "file",
-                            updateFilename(
-                              coverLetter as File,
-                              newCoverLetterFilename,
-                            ),
+                    const fileUploadPromise: Promise<any>[] = [];
+                    const fileFormData = new FormData();
+                    fileFormData.append("file", renamedResumeFile as File);
+                    fileUploadPromise.push(
+                      axios
+                        .post(
+                          `${location.origin}/api/file-upload`,
+                          fileFormData,
+                          {
+                            headers: {
+                              "Content-Type": "multipart/form-data",
+                            },
+                          },
+                        )
+                        .then(() => {
+                          formData.append(
+                            "resume_url",
+                            `${process.env.NEXT_PUBLIC_DO_CDN_URL}${newFilename}`,
                           );
-                          axios
-                            .post(routes.fileUpload, coverLetterFormData, {
+                        })
+                        .catch(() => {
+                          toast.error(`resume  upload unavailable`, {
+                            toastId: "toast",
+                          });
+                        }),
+                    );
+                    if (coverLetter) {
+                      const coverLetterFormData = new FormData();
+                      const coverLetterNamePrepend = generateString(4);
+                      const newCoverLetterFilename = `${coverLetterNamePrepend}-${
+                        coverLetter!.name
+                      }`;
+                      coverLetterFormData.append(
+                        "file",
+                        updateFilename(
+                          coverLetter as File,
+                          newCoverLetterFilename,
+                        ),
+                      );
+                      fileUploadPromise.push(
+                        axios
+                          .post(
+                            `${location.origin}/api/file-upload`,
+                            coverLetterFormData,
+                            {
                               headers: {
                                 "Content-Type": "multipart/form-data",
                               },
-                            })
-                            .then((res) => {
-                              formData.append(
-                                "coverLetter",
-                                `https://rentright.nyc3.cdn.digitaloceanspaces.com/${newCoverLetterFilename}`,
-                              );
-                              addApplicant(formData);
-                            })
-                            .catch((err) => {
-                              setLoading(false);
-                              toast.error("Error uploading cover letter", {
-                                toastId: "error",
-                              });
-                            });
-                        } else {
-                          addApplicant(formData);
-                        }
-                      });
+                            },
+                          )
+                          .then(() => {
+                            formData.append(
+                              "cover_letter_url",
+                              `${process.env.NEXT_PUBLIC_DO_CDN_URL}${newCoverLetterFilename}`,
+                            );
+                          })
+                          .catch(() => {
+                            toast.error(`cover letter upload unavailable`, {});
+                          }),
+                      );
+                    }
+                    Promise.all(fileUploadPromise).then(() => {
+                      // setLoading(false);
+                      addApplicant(formData);
+                    });
                   }
                 }}
               >

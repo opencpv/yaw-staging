@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import ListingCard from "@/components/__shared/ui/listing/ListingCard";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
@@ -13,8 +13,12 @@ import { useRouter } from "next/navigation";
 import { getListingProps } from "@/lib/enum";
 import { useIntersectionObserver } from "@/lib/utils/intersectionObserver";
 import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
+import { SanityDocument } from "next-sanity";
+import Ad from "@/app/components/sections/Ad";
 
-type Props = {};
+type Props = {
+  ads: SanityDocument[];
+};
 
 const PropertiesListing = (props: Props) => {
   const searchParams = useSearchParams();
@@ -22,7 +26,7 @@ const PropertiesListing = (props: Props) => {
   const tag = searchParams?.get("tag") || "all";
   const router = useRouter();
   const { ref, hasIntersected } = useIntersectionObserver();
-
+  const [showAd, setShowAd] = useState(false);
   const { user } = useAppStore();
   const {
     data: listings,
@@ -45,7 +49,10 @@ const PropertiesListing = (props: Props) => {
       },
     );
   };
-
+  const handleLoadMore = () => {
+    setShowAd(true);
+    loadMore ? loadMore() : null;
+  };
   return (
     <main className="wrapper overflow-x-hidden max-sm:-mt-10">
       <div ref={ref as any} />
@@ -70,18 +77,34 @@ const PropertiesListing = (props: Props) => {
                 <PropertiesEmptyState onClick={handleViewSimilarResults} />
               }
             />
-            {listings?.map((listing) => (
-              <ListingCard
-                key={listing.id}
-                {...getListingProps(listing, user as UserType)}
-              />
-            ))}
+            {listings
+              ?.slice(0, 9)
+              ?.map((listing) => (
+                <ListingCard
+                  key={listing.id}
+                  {...getListingProps(listing, user as UserType)}
+                />
+              ))}
+            {showAd && (
+              <div className="col-span-1 w-full md:col-span-2 lg:col-span-3">
+                {" "}
+                <Ad data={props.ads} />
+              </div>
+            )}
+            {listings
+              ?.slice(9)
+              ?.map((listing) => (
+                <ListingCard
+                  key={listing.id}
+                  {...getListingProps(listing, user as UserType)}
+                />
+              ))}
           </section>
           <ButtonInfiniteLoading
             data={listings}
             isLoading={isLoading}
             isValidating={isValidating}
-            loadMore={loadMore}
+            loadMore={handleLoadMore}
           />
         </FramerWrapper>
       )}

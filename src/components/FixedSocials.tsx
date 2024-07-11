@@ -47,15 +47,15 @@ const FixedSocials = ({ thresholdMin }: Props) => {
       x: 0,
       opacity: 0.9,
       pointerEvents: "auto" as any,
-      display: 'block'
+      display: "block",
     },
     hide: {
       x: "-100%",
       opacity: 0,
       pointerEvents: "none" as any,
       transitionEnd: {
-        display: 'none'
-      }
+        display: "none",
+      },
     },
   };
 

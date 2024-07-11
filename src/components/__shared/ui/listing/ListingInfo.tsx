@@ -8,10 +8,10 @@ import { cn } from "@/lib/utils";
 import Tooltip from "@/components/__shared/ui/Tooltip";
 import RatingsForm from "../ratings-form";
 import AllReviewsModal from "../modals/all-reviews-modal";
+import { useRatingsModalStore } from "@/store/modal/useRatingsModalStore";
 
 const ListingInfo = (props: Partial<ListingCardInterface>) => {
   const { icons } = useAssets();
-
   return (
     <div
       className={cn(

@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation";
 import { invoiceStore } from "@/store/payment/invoiceStore";
 import { customerStore } from "@/store/payment/customerStore";
 import DeleteButton from "@/components/__shared/ui/button/DeleteButton";
+import CaCartEmptyItem from "@/components/__shared/ui/icons/CaCartEmptyIcon";
 
 const CartView = () => {
   const {
@@ -139,6 +140,7 @@ const CartView = () => {
     </DropdownMenu.Root>
   );
 
+  // run useEffect on mount
   useEffect(() => {
     const storedCartItems: any = localStorage.getItem("cart");
     if (JSON.parse(storedCartItems as string)?.length > 0) {
@@ -146,124 +148,144 @@ const CartView = () => {
       console.log("hit", storedCartItems);
     }
   }, []);
-
+  {
+    /** EC: "setCart" dependency missing. Please address missing deps or leave a comment if is intentional.
+     * Please address similar instances.
+     */
+  }
+  const isItemsEmpty = items.length == 0;
   return (
     <section className={`mx-auto max-w-[1024px] px-4 py-6 lg:px-0`}>
       <h2 className="mb-8">My Cart</h2>
       <div className="flex justify-end">
-        <Button
-          variant="ghost"
-          className="mb-8 text-right font-normal text-[#E32636] underline"
-          onClick={() => {
-            clearCart();
-          }}
-        >
-          Remove all
-        </Button>
+        {!isItemsEmpty && (
+          <Button
+            variant="ghost"
+            className="mb-8 text-right font-normal text-error underline"
+            onClick={() => {
+              clearCart();
+            }}
+          >
+            Remove all
+          </Button>
+        )}
       </div>
+      {isItemsEmpty && (
+        <div className="flex items-center justify-center border-[1px] p-8 md:p-32">
+          <div className="flex flex-col items-center justify-center gap-4">
+            <CaCartEmptyItem />
+            <h2>No Cart</h2>
+            <p>There are no items in your cart</p>
+          </div>
+        </div>
+      )}
       <div className="mb-16">
         {items.map((item, index) => (
           <CartItem item={item} key={index} item_index={index} />
         ))}
       </div>
-      <div className="ml-auto max-w-sm">
-        <div className="w-full">
-          <h4 className="mb-4 font-normal text-shade-200">Discount Code</h4>
-          <div className="mb-16 flex flex-wrap gap-2">
-            <input
-              type="text"
-              className="min-h-[40px] flex-1 rounded-sm border-[1px] px-4  text-[#AD842A] outline-none"
-              onChange={(e) => setDiscount(e.target.value)}
-            />
-            <Button
-              variant="bordered"
-              isLoading={loading}
-              className="rounded-lg border border-[#AD842A] text-[#AD842A]"
-              onClick={async () => {
-                setloading(true);
-                try {
-                  // Fetch discount details from discounts table
-                  const { data: discountData, error: discountError } =
-                    await supabaseClient
-                      .from("discounts")
+      {!isItemsEmpty && (
+        <div className="ml-auto max-w-sm">
+          <div className="w-full">
+            <h4 className="mb-4 font-normal text-shade-200">Discount Code</h4>
+            <div className="mb-16 flex flex-wrap gap-2">
+              <input
+                type="text"
+                className="min-h-[40px] flex-1 rounded-sm border-[1px] px-4  text-[#AD842A] outline-none"
+                onChange={(e) => setDiscount(e.target.value)}
+              />
+              <Button
+                variant="bordered"
+                isLoading={loading}
+                className="rounded-lg border border-[#AD842A] text-[#AD842A]"
+                onClick={async () => {
+                  setloading(true);
+                  try {
+                    // Fetch discount details from discounts table
+                    const { data: discountData, error: discountError } =
+                      await supabaseClient
+                        .from("discounts")
+                        .select("*")
+                        .eq("code", discount);
+
+                    if (discountError) throw discountError;
+                    if (discountData.length === 0)
+                      throw new Error("Discount code not found");
+
+                    // Fetch customer discounts from customer_discounts table
+                    const {
+                      data: customerDiscountData,
+                      error: customerDiscountError,
+                    } = await supabaseClient
+                      .from("customer_discounts")
                       .select("*")
-                      .eq("code", discount);
+                      .eq("code", discount)
+                      .eq("email", customer.email);
+                    if (customerDiscountError) throw customerDiscountError;
 
-                  if (discountError) throw discountError;
-                  if (discountData.length === 0)
-                    throw new Error("Discount code not found");
-
-                  // Fetch customer discounts from customer_discounts table
-                  const {
-                    data: customerDiscountData,
-                    error: customerDiscountError,
-                  } = await supabaseClient
-                    .from("customer_discounts")
-                    .select("*")
-                    .eq("code", discount)
-                    .eq("email", customer.email);
-                  if (customerDiscountError) throw customerDiscountError;
-
-                  // Check if customer has the discount code
-                  const hasCustomerDiscount = customerDiscountData.length > 0;
-                  if (!hasCustomerDiscount) {
-                    setDiscountCode(discountData[0]);
-                  } else {
-                    setDiscountCode({ code: null, rate: 0 });
+                    // Check if customer has the discount code
+                    const hasCustomerDiscount = customerDiscountData.length > 0;
+                    if (!hasCustomerDiscount) {
+                      setDiscountCode(discountData[0]);
+                    } else {
+                      setDiscountCode({ code: null, rate: 0 });
+                    }
+                    setusedDiscount(hasCustomerDiscount);
+                    console.log(customer.email);
+                    setloading(false);
+                  } catch (error: any) {
+                    console.error("Error fetching data:", error.message);
+                    setloading(false);
+                    return { error: error.message };
                   }
-                  setusedDiscount(hasCustomerDiscount);
-                  console.log(customer.email);
-                  setloading(false);
-                } catch (error: any) {
-                  console.error("Error fetching data:", error.message);
-                  setloading(false);
-                  return { error: error.message };
-                }
+                }}
+              >
+                Apply
+              </Button>
+              {usedDiscount ? (
+                <p className="text-shade-200">Code already used</p>
+              ) : (
+                <>
+                  {discountCode.code && (
+                    <p className="text-shade-200">
+                      {discountCode.rate * 100}% off on transaction
+                    </p>
+                  )}
+                </>
+              )}
+            </div>
+            <div className="mb-4 flex items-center justify-between bg-[#F5F5F5] px-8 py-3">
+              <h5>Subtotal</h5>
+              <p className="font-semibold">
+                {formatPrice(getTotalPrice(items, discountCode))}
+              </p>
+            </div>
+            <div className="mb-4 flex items-center justify-between px-8 py-3 text-[13px] text-[#545454]">
+              <p>Tax</p>
+              <p>
+                GHS {discountCode.rate ? (1 - discountCode.rate) * tax : tax}
+              </p>
+            </div>
+            <div className="mb-4 flex items-center justify-between bg-[#F5F5F5] px-8 py-3">
+              <h5>Total</h5>
+              <p className="font-semibold">
+                GHS{" "}
+                {getTotalPrice(items, discountCode) +
+                  (discountCode.rate ? (1 - discountCode.rate) * tax : tax)}
+              </p>
+            </div>
+            <Button
+              className="w-full rounded-lg bg-[#AD842A] font-bold"
+              onClick={() => {
+                localStorage.setItem("cart", JSON.stringify(items));
+                router.push("/checkout");
               }}
             >
-              Apply
+              Checkout
             </Button>
-            {usedDiscount ? (
-              <p className="text-shade-200">Code already used</p>
-            ) : (
-              <>
-                {discountCode.code && (
-                  <p className="text-shade-200">
-                    {discountCode.rate * 100}% off on transaction
-                  </p>
-                )}
-              </>
-            )}
           </div>
-          <div className="mb-4 flex items-center justify-between bg-[#F5F5F5] px-8 py-3">
-            <h5>Subtotal</h5>
-            <p className="font-semibold">
-              {formatPrice(getTotalPrice(items, discountCode))}
-            </p>
-          </div>
-          <div className="mb-4 flex items-center justify-between px-8 py-3 text-[13px] text-[#545454]">
-            <p>Tax</p>
-            <p>GHS {discountCode.rate ? (1 - discountCode.rate) * tax : tax}</p>
-          </div>
-          <div className="mb-4 flex items-center justify-between bg-[#F5F5F5] px-8 py-3">
-            <h5>Total</h5>
-            <p className="font-semibold">
-              GHS{" "}
-              {getTotalPrice(items, discountCode) +
-                (discountCode.rate ? (1 - discountCode.rate) * tax : tax)}
-            </p>
-          </div>
-          <Button
-            className="w-full rounded-lg bg-[#AD842A] font-bold"
-            onClick={() => {
-              localStorage.setItem("cart", JSON.stringify(items));
-              router.push("/checkout");
-            }}
-          >
-            Checkout
-          </Button>
         </div>
-      </div>
+      )}
     </section>
   );
 };

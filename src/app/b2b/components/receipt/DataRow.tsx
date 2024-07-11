@@ -41,7 +41,7 @@ function DataRow({ data, variant }: Props) {
             checked={checkStatus}
           />
         </TableBody>
-        <TableBody className="col-span-1">{data.id}</TableBody>
+        <TableBody className="col-span-1">#{data.id}</TableBody>
         <TableBody className="col-span-1 text-center font-medium">
           {data.service}
         </TableBody>

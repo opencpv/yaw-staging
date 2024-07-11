@@ -14,6 +14,9 @@ import { title } from "process";
 import downloadPdf from "@/lib/utils/downloadPdf";
 import ReactPDF, { PDFDownloadLink } from "@react-pdf/renderer";
 import { PDFDownload, PDFTemplateObject } from "../__shared/InvoiceTemplate";
+import CaCard from "@/components/__shared/ui/icons/CaCard";
+import theme from "tailwindcss/defaultTheme";
+import { IoArchiveOutline } from "react-icons/io5";
 
 type Status = "all" | "paid" | "pending";
 
@@ -24,9 +27,13 @@ function Invoices({ customerId }: Props) {
   const { checkoutItems } = invoiceStore();
   const [searchString, setSearchString] = useState("");
   const [filter, setFilter] = useState<Status>("all");
-  const subTotal = checkoutItems.reduce((acc, item) => acc + item.amount, 0);
+  const subTotal = checkoutItems.reduce(
+    (acc, item) => (item.is_paid ? 0 : acc + item.amount),
+    0,
+  );
   const tax = checkoutItems.reduce(
-    (acc, item) => acc + (item.tax_rate / 100) * item.amount,
+    (acc, item) =>
+      item.is_paid ? 0 : acc + (item.tax_rate / 100) * item.amount,
     0,
   );
   const total = subTotal + tax;
@@ -73,34 +80,47 @@ function Invoices({ customerId }: Props) {
           placeholder="Search invoice ID"
         />
       </div>
-      <OptionFilterTabs
-        options={["all", "paid", "pending"]}
-        selectedKey={filter}
-        onSelectionChange={(key) => setFilter(key as Status)}
-        radius="small"
-        padding="small"
-        tabColor="colored"
-      />
+      <div className="flex flex-wrap items-center justify-between">
+        <OptionFilterTabs
+          options={["all", "paid", "pending"]}
+          selectedKey={filter}
+          onSelectionChange={(key) => setFilter(key as Status)}
+          radius="small"
+          padding="small"
+          tabColor="colored"
+        />
+        <div className="flex gap-2">
+          <Button color="primary" className=" gap-2">
+            Checkout <CaCard />
+          </Button>
+          <Button
+            color=""
+            className="gap-2 bg-[#E7EFEF] text-[#11605E] hover:text-white"
+            onClick={() => {
+              downloadAll();
+            }}
+          >
+            Download{" "}
+            <HiOutlineDownload
+              size="24"
+              className="shrink-0 group-hover:text-white"
+            />
+          </Button>
+          <Button
+            color=""
+            className="gap-2 bg-[#E7EFEF] text-[#11605E] hover:text-white"
+          >
+            Archive <IoArchiveOutline />
+          </Button>
+        </div>
+      </div>
       <InvoiceTable
         searchString={searchString}
         customerId={customerId}
         filter={filter}
       />
-      <Button
-        disabled={checkoutItems.length == 0}
-        color="primary"
-        className={`text group w-fit gap-2  bg-opacity-20 px-8 font-bold text-[#545454] hover:text-white`}
-        onClick={() => {
-          downloadAll();
-        }}
-      >
-        Download
-        <HiOutlineDownload
-          size="24"
-          className="shrink-0 group-hover:text-white"
-        />
-      </Button>
-      <section className="bg-shade hidden w-full justify-between gap-5 py-5  lg:flex">
+
+      <section className="hidden w-full justify-between gap-5 bg-[#F8F8F8] py-5  lg:flex">
         <div />
         <div>
           <Cost
@@ -110,16 +130,22 @@ function Invoices({ customerId }: Props) {
             variant={"invoice"}
           />
           <div className="mt-8">
-            <CheckoutButton affix={checkoutItems.length} />
+            <CheckoutButton
+              affix={
+                checkoutItems.filter((items) => items.is_paid == false).length
+              }
+            />
           </div>
         </div>
       </section>
       <section className="mt-10 flex w-full justify-end lg:hidden">
         <Cost subTotal={subTotal} tax={tax} total={total} variant={"invoice"} />
       </section>
-      <section className="bg-shade sticky bottom-0 z-50 grid w-full grid-cols-2 items-center justify-end gap-5 py-5 pb-2 max-lg:max-w-2xl lg:hidden">
+      <section className="sticky bottom-0 z-50 grid w-full grid-cols-2 items-center justify-end gap-5 bg-shade py-5 pb-2 max-lg:max-w-2xl lg:hidden">
         <div />
-        <CheckoutButton affix={checkoutItems.length} />
+        <CheckoutButton
+          affix={checkoutItems.filter((items) => items.is_paid == false).length}
+        />
       </section>
     </section>
   );

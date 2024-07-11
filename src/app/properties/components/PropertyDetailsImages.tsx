@@ -5,6 +5,7 @@ import { useDisclosure } from "@nextui-org/react";
 import Image from "next/image";
 import PropertyGalleryModal from "./PropertyGalleryModal";
 import { ListingInterface } from "../../../../interfaces";
+import { useIntersectionObserver } from "@/lib/utils/intersectionObserver";
 
 type Props = {
   images: ListingInterface;
@@ -13,6 +14,7 @@ type Props = {
 const PropertyDetailsImages = (props: Props) => {
   const { images } = useAssets();
   const { isOpen, onClose, onOpen, onOpenChange } = useDisclosure();
+  const { ref, hasIntersected } = useIntersectionObserver();
 
   return (
     <>

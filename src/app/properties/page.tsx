@@ -7,13 +7,23 @@ import FixedSocials from "@/components/FixedSocials";
 import ScrollTop from "@/components/__shared/ui/ScrollTop";
 import PropertiesListing from "./components/PropertiesListing";
 import SearchCity from "./components/SearchCity";
-
+import { Metadata } from "next";
+import { loadQuery } from "@sanity/react-loader";
+import { SanityDocument } from "next-sanity";
+import { ADS_QUERY } from "@/lib/utils/sanity/queries";
 
 const page = () => {
+  let adsData: SanityDocument[] = [];
+  let filteredAdsData: SanityDocument[] = [];
+  loadQuery<SanityDocument[]>(ADS_QUERY).then((ads) => {
+    adsData = ads.data;
+    filteredAdsData = adsData.filter((item: any) => item.isPublished == true);
+  });
+
   return (
     <>
       <Navbar />
-      <div className="relative h-40 sm:h-60 aspect-video w-full">
+      <div className="relative aspect-video h-40 w-full sm:h-60">
         <Image
           src="/assets/images/Stock.jpg"
           alt=""
@@ -28,7 +38,7 @@ const page = () => {
           <TagsSelect />
         </div>
       </section>
-      <PropertiesListing />
+      <PropertiesListing ads={filteredAdsData} />
       <FixedSocials thresholdMin={300} />
       <Footer />
       <ScrollTop />

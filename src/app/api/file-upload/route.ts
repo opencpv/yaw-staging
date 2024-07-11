@@ -50,3 +50,22 @@ export const POST = withErrorHandler(async (request: any) => {
     throw new Error(error.messaage);
   }
 });
+
+export const DELETE = withErrorHandler(async (request: any) => {
+  const { searchParams } = new URL(request.url);
+  const fileName = searchParams.get("file");
+  // const fileName = query.file as string;
+  // console.log(fileName);
+  try {
+    await s3Client.deleteObject({
+      Bucket: process.env.DO_SPACES_NAME as string,
+      Key: fileName as string,
+    });
+    return NextResponse.json({
+      message: "uploaded successfully",
+    });
+  } catch (error: any) {
+    console.error(error);
+    throw new Error(error.messaage);
+  }
+});

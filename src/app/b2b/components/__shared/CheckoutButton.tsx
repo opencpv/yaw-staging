@@ -23,16 +23,18 @@ function CheckoutButton({ affix, items }: Props) {
       onClick={() => {
         if (checkoutItems) {
           checkoutItems?.forEach((item) => {
-            addItem({
-              name: item.service,
-              cost: item.amount,
-              quantity: 1,
-              date: item.billing_date,
-              isQuantityChangable: false,
-              isInvoice: true,
-              invoiceId: item.id as number,
-              tax_rate: item.tax_rate,
-            });
+            item.is_paid
+              ? null
+              : addItem({
+                  name: item.service,
+                  cost: item.amount,
+                  quantity: 1,
+                  date: item.billing_date,
+                  isQuantityChangable: false,
+                  isInvoice: true,
+                  invoiceId: item.id as number,
+                  tax_rate: item.tax_rate,
+                });
           });
           router.push("/cart");
         }

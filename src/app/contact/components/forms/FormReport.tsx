@@ -23,6 +23,8 @@ import { generateString } from "@/lib/utils";
 import slugify from "@/lib/utils/slugify";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Button from "@/components/__shared/ui/button/Button";
+import { UploadFile } from "../UploadFile";
 
 type Props = {};
 
@@ -67,6 +69,7 @@ const FormReport = (props: Props) => {
       validationSchema={ContactSchema}
       validate={(values) => validate(values, contactFormSession.phone)}
       onSubmit={async (values, { resetForm }) => {
+        setLoading(true);
         values.contactType = capitalizeName(activeTab);
         values.fileUrl = file?.name as string;
         const newFilename: string =
@@ -74,48 +77,62 @@ const FormReport = (props: Props) => {
         var newFile = new File([file as File], newFilename, {
           type: file?.type,
         });
+        let fileUrl = "";
         const fileForm = new FormData();
         fileForm.append("file", newFile);
-        const fileUrl = `https://rentright.nyc3.cdn.digitaloceanspaces.com/${newFilename}`;
-        const uploadRes = await axios.post(
-          `${location.origin}/api/file-upload`,
-          fileForm,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          },
+        const fileUploadPromise: Promise<any>[] = [];
+        fileUploadPromise.push(
+          axios
+            .post(`${location.origin}/api/file-upload`, fileForm, {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            })
+            .then(() => {
+              fileUrl = `${process.env.NEXT_PUBLIC_DO_CDN_URL}${newFilename}`;
+            })
+            .catch(() => {
+              toast.error(`Image upload unavailable`, {
+                toastId: "toast",
+              });
+            }),
         );
-        sendContactUsEmail(formRef.current);
-        setLoading(true);
-        supabase
-          .from(tableName)
-          .insert([
-            {
-              contact_type: values.contactType,
-              fullname: values.fullname,
-              email: values.email,
-              phone: values.phone,
-              message: values.message,
-              file_url: fileUrl,
-              report_link: values.reportLink,
-            },
-          ])
-          .select()
-          .then(({ error }) => {
-            setLoading(false);
-            if (error) {
-              console.log(error);
-              onOpen("Something went wrong", "error");
-            } else {
-              toast.success("Your message has been sent");
-              resetForm();
-              sessionStorage.removeItem("contactFormSession");
-              setReportIssueHref("");
-              setPhone(undefined);
-              onOpen("Successfully sent", "success");
-              router.refresh();
-            }
+        Promise.all([...fileUploadPromise])
+          .then(() => {
+            sendContactUsEmail(formRef.current);
+            supabase
+              .from(tableName)
+              .insert([
+                {
+                  contact_type: values.contactType,
+                  fullname: values.fullname,
+                  email: values.email,
+                  phone: values.phone,
+                  message: values.message,
+                  file_url: fileUrl,
+                  report_link: values.reportLink,
+                },
+              ])
+              .select()
+              .then(({ error }) => {
+                setLoading(false);
+                if (error) {
+                  setLoading(false);
+
+                  onOpen("Something went wrong", "error");
+                } else {
+                  resetForm();
+                  sessionStorage.removeItem("contactFormSession");
+                  setReportIssueHref("");
+                  setPhone(undefined);
+                  onOpen("Successfully sent", "success");
+                  router.refresh();
+                  setLoading(false);
+                }
+              });
+          })
+          .catch(() => {
+            onOpen("Something went wrong", "error");
           });
       }}
       className=""
@@ -155,7 +172,10 @@ const FormReport = (props: Props) => {
                 <ErrorMessage name="message" error={errors.message} />
               </CustomErrorMessage>
             </div>
-            <ContactUploadField />
+            <UploadFile
+              file={file as File}
+              handleFileUpload={handleFileUpload}
+            />
 
             <div className="form-div" title="Paste URL link here (optional)">
               <TextInput
@@ -169,8 +189,15 @@ const FormReport = (props: Props) => {
                 className="p-3 py-7 placeholder:text-neutral-400"
               />
             </div>
+            <Button
+              className="max-w-full xs:max-w-fit"
+              color="accent"
+              isLoading={loading}
+              type="submit"
+            >
+              Submit
+            </Button>
           </div>
-          {loading ? <Loader /> : <ContactSubmitButton />}
         </Form>
       )}
     </Formik>
