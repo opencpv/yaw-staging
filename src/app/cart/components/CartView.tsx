@@ -161,8 +161,7 @@ const CartView = () => {
         {!isItemsEmpty && (
           <Button
             variant="ghost"
-            className="mb-8 text-right font-normal text-error underline" // EC: Please use text-error" instead. Unless the color doesn't exist in the scheme
-            //or if its's a one-off color. Please address similar instances.
+            className="mb-8 text-right font-normal text-error underline"
             onClick={() => {
               clearCart();
             }}
@@ -175,16 +174,8 @@ const CartView = () => {
         <div className="flex items-center justify-center border-[1px] p-8 md:p-32">
           <div className="flex flex-col items-center justify-center gap-4">
             <CaCartEmptyItem />
-            <h2 >No Cart</h2>{" "}
-            {/* EC: Please either use <h3> or <h4> or a heading element that you see fit since it's a heading
-                                                                  Also you may not need to specify "font-size" or "font-semibold" unless for specific use case 
-                                                                  * e.g: <h3>No Cart</h3>
-                                                                  * Please address similar instances.
-                                                                  */}
-            <p >
-              {/** EC: Please are the className values correct? */}
-              There are no items in your cart
-            </p>
+            <h2>No Cart</h2>
+            <p>There are no items in your cart</p>
           </div>
         </div>
       )}
