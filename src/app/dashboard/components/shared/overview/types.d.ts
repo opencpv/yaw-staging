@@ -5,4 +5,6 @@ type UserOverviewProps = {
   picture?: string;
   telephone?: string;
   type: "renter" | "lister";
+  renterMessage?:string,
+  listerMessage?:string
 };

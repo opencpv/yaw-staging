@@ -77,3 +77,8 @@ image,
 export const SINGLE_JOB_QUERY = (id: string) => {
   return groq`*[_type == 'job' && _id == "${id}"]{_id, title, description_brief, description, image, "imgUrl":image.asset->url}`;
 };
+
+export const BUBBLES_QUERY= groq`*[_type=='bubbles']{...}`
+
+export const FEES_QUERY= groq`*[_type=='fees']{...}`
+

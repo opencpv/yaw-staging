@@ -1,9 +1,11 @@
 import React from "react";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import ExploreFeatureCard from "./ExploreFeatureCard";
+import { SanityDocument } from "next-sanity";
 
 type Props = {
   className?: string;
+  data:SanityDocument
 };
 
 const RenterExplore = (props: Props) => {
@@ -15,19 +17,19 @@ const RenterExplore = (props: Props) => {
           <FeatureUpgradeCard title="Be My Agent" /> */}
         <ExploreFeatureCard
           title="My Favourites"
-          description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis mollitia eius recusandae sed, quis, vitae sequi praesentium natus id dolores atque omnis facilis tempore exercitationem perferendis sit alias consequuntur nemo."
+          description={props.data.overview_favorites_summary}
           href="favourites"
         />
         <ExploreFeatureCard
           tag="Free"
           title="Be The First To Know"
-          description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis mollitia eius recusandae sed, quis, vitae sequi praesentium natus id dolores atque omnis facilis tempore exercitationem perferendis sit alias consequuntur nemo."
+          description={props.data.overview_be_the_first_summary}
           href="be-the-first-to-know"
         />
         <ExploreFeatureCard
           tag="Premium"
           title="Be My Agent"
-          description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis mollitia eius recusandae sed, quis, vitae sequi praesentium natus id dolores atque omnis facilis tempore exercitationem perferendis sit alias consequuntur nemo."
+          description={props.data.overview_be_my_agent_summary}
           href="my-agent/agent"
         />
       </div>
