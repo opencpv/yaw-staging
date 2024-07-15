@@ -66,6 +66,7 @@ const CartView = () => {
                   <DropDown item={item} item_index={item_index} />
                 </div>
                 <DeleteButton
+                  loading={false}
                   handleDestruction={() => {
                     removeItem(item_index);
                   }}
@@ -82,6 +83,7 @@ const CartView = () => {
               <Date className="max-md:hidden" date={item.date} />
             ) : null}
             <DeleteButton
+              loading={false}
               handleDestruction={() => {
                 removeItem(item_index);
               }}

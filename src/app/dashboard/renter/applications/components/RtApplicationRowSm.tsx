@@ -100,7 +100,7 @@ const RtApplicationRowSm = ({
           {status === "incomplete" ? (
             <>
               <EditButton onOpen={() => ""} />
-              <DeleteButton handleDestruction={() => {}} />
+              <DeleteButton handleDestruction={() => {}} loading={false} />
             </>
           ) : (
             <MessageButton type={2} />

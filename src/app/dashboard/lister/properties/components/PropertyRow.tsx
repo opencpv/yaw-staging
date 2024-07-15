@@ -72,7 +72,7 @@ const PropertyRow = ({
             >
               <BiPencil className="text-xl" />
             </Button>
-            <DeleteButton handleDestruction={() => {}} />
+            <DeleteButton handleDestruction={() => {}} loading={false} />
           </div>
         </td>
       </tr>
