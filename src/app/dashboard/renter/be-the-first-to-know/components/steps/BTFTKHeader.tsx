@@ -39,7 +39,7 @@ const FirstToKnowHeader = () => {
 
   // Save to DB
   const {
-    mutateAsync: addSearchCriteria,
+    mutate: addSearchCriteria,
     isError,
     isPending,
     isSuccess,
@@ -52,7 +52,11 @@ const FirstToKnowHeader = () => {
       onCloseEditPage();
       setCriterion(null);
       localStorage.removeItem("btftk-creation-steps");
-      router.push("/dashboard/renter/be-the-first-to-know/manage-criteria");
+      pathname?.includes("edit") &&
+        router.replace(
+          "/dashboard/renter/be-the-first-to-know/manage-criteria",
+        );
+      pathname?.includes("create") && router.back();
     }
     if (pathname?.includes("edit")) {
       setActiveSlide(
@@ -114,14 +118,15 @@ const FirstToKnowHeader = () => {
       matched_properties: null,
     });
 
-    pathname?.includes("edit") && router.replace("/dashboard/renter/be-the-first-to-know/manage-criteria"); 
+    pathname?.includes("edit") &&
+      router.replace("/dashboard/renter/be-the-first-to-know/manage-criteria");
     pathname?.includes("create") && router.back();
   };
 
   return (
     <section className="flex flex-col gap-4">
       <div className="flex items-center justify-between gap-5">
-        <h4 className="font-semibold">Be The First to Know</h4>
+        <h4>Be The First to Know</h4>
         <Button
           color="white"
           greenHover

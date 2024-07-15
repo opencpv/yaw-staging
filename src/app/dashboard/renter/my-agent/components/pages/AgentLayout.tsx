@@ -5,6 +5,7 @@ import BeMyAgentModal from "../../components/steps/BeMyAgentModal";
 import styles from "../../index.module.css";
 import CallOut from "@/components/__shared/ui/CallOut";
 import { usePathname } from "next/navigation";
+import ScrollTop from "@/components/__shared/ui/ScrollTop";
 
 const AgentLayout = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
@@ -48,6 +49,7 @@ const AgentLayout = ({ children }: { children: React.ReactNode }) => {
         </div>
       </header>
       {children}
+      <ScrollTop />
     </>
   );
 };

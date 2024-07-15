@@ -1,27 +1,37 @@
-import { useLocalStorage } from "@uidotdev/usehooks";
-import { BeMyAgentFormType } from "../../../types";
-import capitalizeName, { formatDate } from "@/lib/utils/stringManipulation";
+import capitalizeName, {
+  formatDate,
+  formatDateDMY,
+  formatDateOnly,
+} from "@/lib/utils/stringManipulation";
+import { BeMyAgentDefaultValues } from "@/store/dashboard/BeMyAgentStepsStore";
+import { useFormikContext } from "formik";
 
 const useStepsSummaryContent = () => {
-  const [agentFormData] = useLocalStorage<BeMyAgentFormType>("agent-form");
+  const { values } = useFormikContext<typeof BeMyAgentDefaultValues>();
 
   const stepsPages = [
     {
       title: "Location",
       content: {
-        City: agentFormData?.locationArray
-          ?.map((location) => location.locationCity)
-          .join(", "),
-        Neighbourhood: agentFormData?.locationArray
-          ?.map((location) => location.locationNeighbourhood)
+        City: values?.location?.map((location) => location.city).join(", "),
+        Neighbourhood: values?.location
+          ?.map((location) => location.neighbourhood)
           .join(", "),
       },
     },
     {
       title: "Preferred Type",
       content: {
-        Property_Type: agentFormData?.propertyType?.map(
+        Property_Type: values?.preferredType?.map(
           (property) => capitalizeName(property) + ", ",
+        ),
+      },
+    },
+    {
+      title: "Required Features",
+      content: {
+        Required_Features: values?.requiredFeatures?.map(
+          (feature) => capitalizeName(feature) + ", ",
         ),
       },
     },
@@ -29,90 +39,79 @@ const useStepsSummaryContent = () => {
       title: "Property Requirements",
       content: {
         Price_Range:
-          agentFormData?.priceRangeMinimum === agentFormData?.priceRangeMaximum
-            ? `GHS ${agentFormData?.priceRangeMaximum || ""}`
-            : `GHS ${agentFormData?.priceRangeMinimum || ""} - GHS ${
-                agentFormData?.priceRangeMaximum || ""
+          values?.priceRangeMinimum === values?.priceRangeMaximum
+            ? `GHS ${values?.priceRangeMaximum || ""}`
+            : `GHS ${values?.priceRangeMinimum || ""} - GHS ${
+                values?.priceRangeMaximum || ""
               }`,
         Beds:
-          agentFormData?.bedMinimum === agentFormData?.bedMaximum
-            ? agentFormData?.bedMaximum
-            : `${agentFormData?.bedMinimum || ""} - ${
-                agentFormData?.bedMaximum || ""
-              }`,
+          values?.bedMinimum === values?.bedMaximum
+            ? values?.bedMaximum
+            : `${values?.bedMinimum || ""} - ${values?.bedMaximum || ""}`,
         Bathroom:
-          agentFormData?.bathroomMinimum === agentFormData?.bathroomMaximum
-            ? agentFormData?.bathroomMaximum
-            : `${agentFormData?.bathroomMinimum || ""} - ${
-                agentFormData?.bathroomMaximum || ""
+          values?.bathroomMinimum === values?.bathroomMaximum
+            ? values?.bathroomMaximum
+            : `${values?.bathroomMinimum || ""} - ${
+                values?.bathroomMaximum || ""
               }`,
         Lease_Terms:
-          agentFormData?.leaseTermMinimum === agentFormData?.leaseTermMaximum
-            ? agentFormData?.leaseTermMaximum
-            : `${agentFormData?.leaseTermMinimum || ""} - ${
-                agentFormData?.leaseTermMaximum || ""
+          values?.leaseTermMinimum === values?.leaseTermMaximum
+            ? values?.leaseTermMaximum
+            : `${values?.leaseTermMinimum || ""} - ${
+                values?.leaseTermMaximum || ""
               }`,
-        Preferred_Payment_Option: agentFormData?.paymentOption || "-",
-        Desired_Move_in_Date: agentFormData?.moveInDate || "-",
+        Preferred_Payment_Option: values?.paymentOption || "-",
+        Desired_Move_in_Date: formatDateOnly(values?.moveInDate) || "-",
       },
     },
-    {
-      title: "Required Features",
-      content: {
-        Required_Features: agentFormData?.featuresAndAmenities?.map(
-          (feature) => capitalizeName(feature) + ", ",
-        ),
-      },
-    },
+
     {
       title: "Lease Holder Information",
       content: {
-        Title: agentFormData?.title || "-",
-        Age: agentFormData?.dateOfBirth || "-",
-        First_Name: agentFormData?.firstName || "-",
-        Last_Name: agentFormData?.lastName || "-",
-        Marital_Status: agentFormData?.maritalStatus || "-",
-        Number_of_Tenants: agentFormData?.tenants || "-",
+        Title: values?.title || "-",
+        Age: values?.age || "-",
+        First_Name: values?.firstName || "-",
+        Last_Name: values?.lastName || "-",
+        Marital_Status: values?.maritalStatus || "-",
+        Number_of_Tenants: values?.tenants || "-",
       },
     },
     {
       title: "Screening & Other Details",
       content: {
         Have_you_ever_been_evicted:
-          capitalizeName(agentFormData?.evictedBefore as string) || "-",
+          capitalizeName(values?.evicted as string) || "-",
         Have_you_ever_been_convicted:
-          capitalizeName(agentFormData?.convictedBefore as string) || "-",
-        Do_you_have_any_pets:
-          capitalizeName(agentFormData?.pets as string) || "-",
+          capitalizeName(values?.convicted as string) || "-",
+        Do_you_have_any_pets: capitalizeName(values?.hasPets as string) || "-",
         Do_you_have_any_vehicles:
-          capitalizeName(agentFormData?.vehicles as string) || "-",
+          capitalizeName(values?.hasVehicles as string) || "-",
       },
     },
     {
       title: "Contact Information",
       content: {
-        Current_Address_1: agentFormData?.currentAddress1 || "-",
-        Current_Address_2_Optional: agentFormData?.currentAddress2 || "-",
-        City: agentFormData?.city || "-",
-        Country: agentFormData?.country || "-",
+        Current_Address_1: values?.currentAddress1 || "-",
+        Current_Address_2_Optional: values?.currentAddress2 || "-",
+        City: values?.city || "-",
+        Country: values?.country || "-",
         Preferred_Method_of_Contact:
-          capitalizeName(agentFormData?.preferredMethodOfContact as string) ||
-          "-",
-        Email: agentFormData?.email || "-",
-        Phone: agentFormData?.phone || "-",
+          values?.preferredMethodOfContact as string || "-",
+        Email: values?.email || "-",
+        Phone: values?.whatsApp || "-",
       },
     },
     {
       title: "Employment Information",
       content: {
-        Employment_Status: agentFormData?.mostRecentEmployment || "-",
-        Employer_or_Income_Source: agentFormData?.employer || "-",
+        Employment_Status: values?.employmentStatus || "-",
+        Employer_or_Income_Source: values?.employer || "-",
         Employer_Country:
-          capitalizeName(agentFormData?.employersCountry as string) || "-",
-        Job_Title: agentFormData?.jobTitle || "-",
+          capitalizeName(values?.employerCountry as string) || "-",
+        Job_Title: values?.jobTitle || "-",
         Monthly_Income:
-          `${agentFormData?.monthlyIncomeCurrency?.toUpperCase() || ""} ${
-            agentFormData?.monthlyIncome || ""
+          `${values?.monthlyIncomeCurrency?.toUpperCase() || ""} ${
+            values?.monthlyIncome || ""
           }` || "-",
       },
     },

@@ -20,7 +20,6 @@ import { usePathname } from "next/navigation";
 import { useLocalStorage } from "@uidotdev/usehooks";
 
 type Props = {
-  button?: "Hire Us Now" | "Get Started" | "Ghost" | "Edit" | "Price";
   buttonClassName?: string;
   content?: React.ReactNode | string | number;
   float?: boolean;
@@ -28,8 +27,8 @@ type Props = {
 };
 
 const BTFTKValidationSchema = Yup.object({
-  searchTitle: Yup.string().required("Search title is required"),
-  preferredType: Yup.array().min(1, "Preferred type of place is required"),
+  searchTitle: Yup.string().required("Search Title is required"),
+  preferredType: Yup.array().min(1, "Preferred Type of Place is required"),
   requiredFeatures: Yup.array().min(1, "Features is required"),
   location: Yup.array().min(1, "Location is required"),
   preferredMethodOfContact: Yup.string(),
@@ -63,12 +62,16 @@ const BTFTKModal = (props: Props) => {
     onClose,
   } = BTFTKStepsStore();
 
-  const { mutate: addSearchCriteria } = useAddSearchCriteria();
+  const { mutate: addSearchCriteria, isSuccess } = useAddSearchCriteria();
 
   useEffect(() => {
     pathname?.includes("edit") ? onOpenEditPage() : onCloseEditPage();
     pathname?.includes("create") ? onOpen() : onClose();
-  }, [onOpen, onClose, pathname, onOpenEditPage, onCloseEditPage]);
+    if (isSuccess){
+      localStorage.removeItem("btftk-creation-steps");
+      localStorage.removeItem("btftk-edit-steps");
+    }
+  }, [onOpen, onClose, pathname, onOpenEditPage, onCloseEditPage, isSuccess]);
 
   return (
     <div

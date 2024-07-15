@@ -42,8 +42,6 @@ export default function BTFTKForm() {
 
   useScrollToTop(BTFTKStepsRef, [activeSlide], "instant");
 
-  useEffect(() => {}, []);
-
   useEffect(() => {
     if (activeSlide < 1) {
       setFirstSlide(true);

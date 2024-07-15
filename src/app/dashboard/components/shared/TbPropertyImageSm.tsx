@@ -19,8 +19,7 @@ const TbPropertyImageSm = (props: Props) => {
           src={props.image}
           fill
           alt={props.title}
-          objectFit="cover"
-          className="rounded-[inherit]"
+          className="object-cover rounded-[inherit]"
         />
       </Link>
     );
@@ -32,7 +31,7 @@ const TbPropertyImageSm = (props: Props) => {
         fill
         alt={props.title}
         objectFit="cover"
-        className="rounded-[inherit]"
+        className="object-cover rounded-[inherit]"
       />
     </div>
   );

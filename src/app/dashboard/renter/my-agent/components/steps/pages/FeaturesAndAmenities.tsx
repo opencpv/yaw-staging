@@ -1,48 +1,42 @@
-//@ts-nocheck
 import { styled } from "@stitches/react";
-import { useEffect, useState } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import Amenity from "../../../../../../../components/__shared/ui/listing-form/components/Amenity";
 import styles from "../../../index.module.css";
-import { BeMyAgentFormType } from "../types";
 import { useField } from "formik";
 import { requiredFeatures } from "../../../../../components/shared/content";
 import CallOut from "@/components/__shared/ui/CallOut";
+import { BeMyAgentDefaultValues } from "@/store/dashboard/BeMyAgentStepsStore";
+import { createUUID } from "@/lib/utils/stringManipulation";
 
 export default function FeaturesAndAmenities() {
-  const [agentFormData, setAgentFormData] =
-    useLocalStorage<BeMyAgentFormType>("agent-form");
-  const [selected, setSelected] = useState<any>([]);
-  const [field, meta, helpers] = useField("featuresAndAmenities");
+  const [field, meta, helpers] = useField("requiredFeatures");
+  const [BeMyAgentCreationSteps, setBeMyAgentCreationSteps] = useLocalStorage<
+    typeof BeMyAgentDefaultValues
+  >("bma-creation-steps");
 
   const handleAmenityClick = (r: any) => {
-    if (selected?.includes(r?.name)) {
-      setSelected(selected?.filter((item: any) => item !== r?.name));
-      helpers.setValue(selected?.filter((item: any) => item !== r?.name));
+    if (field.value?.includes(r?.name)) {
+      helpers.setValue(field.value?.filter((item: any) => item !== r?.name));
+      setBeMyAgentCreationSteps({
+        ...BeMyAgentCreationSteps,
+        requiredFeatures: field.value?.filter((item: any) => item !== r?.name),
+      });
     } else {
-      setSelected([...selected, r?.name]);
-      helpers.setValue([...selected, r?.name]);
+      helpers.setValue([...field.value, r?.name]);
+      setBeMyAgentCreationSteps({
+        ...BeMyAgentCreationSteps,
+        requiredFeatures: [...field.value, r?.name] as any,
+      });
     }
   };
-
-  useEffect(() => {
-    setAgentFormData((prevData: any) => ({
-      ...prevData,
-      featuresAndAmenities: selected,
-    }));
-  }, [selected, setAgentFormData]);
-
-  useEffect(() => {
-    if (agentFormData?.featuresAndAmenities) {
-      setSelected(agentFormData?.featuresAndAmenities);
-    }
-  }, []);
-
+  
   return (
     <>
       <Root>
         <div className="mb-10 flex w-full flex-col gap-8">
-          <h2 className={`${styles.titleNoMargin}`}>Required Features</h2>
+          <h2 className={`${styles.titleNoMargin}`}>
+            Required Features <span className="text-sm text-shade-300">*</span>
+          </h2>
           <CallOut content="You may select more than one response" />
         </div>
         <div className="grid w-full grid-cols-4 gap-5 lg:grid-cols-3">
@@ -52,12 +46,15 @@ export default function FeaturesAndAmenities() {
               className="col-span-2 lg:col-span-1"
               onClick={() => handleAmenityClick(r)}
             >
-              <Amenity
-                n={index}
-                name={r?.name}
-                icon={r?.icon}
-                selected={selected?.includes(r?.name)}
-              />
+            <Amenity
+              key={createUUID()}
+              n={index}
+              name={r?.name}
+              icon={r?.icon}
+              selected={field.value?.includes(r?.name)}
+              onClick={() => handleAmenityClick(r)}
+              className="col-span-2 lg:col-span-1"
+            />
             </div>
           ))}
         </div>

@@ -16,6 +16,7 @@ declare global {
   type PropertyOwnerProfile = Tables<"property_owner_profile">;
   type RenterProfile = Tables<"renter_profile">;
   type Property = Tables<"property">;
+  type MergedPropertyView = DB["public"]["Views"]["merged_property_view"]["Row"];
   type RegularApplication = Tables<"regular_application">;
   type RenterProfile = Tables<"renter_profile">;
   type SearchCritieria = Tables<"search_critieria">;
@@ -27,6 +28,7 @@ declare global {
   type Invoice = Tables<"invoices">;
   type Item = Tables<"products">;
   type SearchCriteria = Tables<"search_critieria">;
+  type AgentRequest = Tables<"agent_request">;
   type BlockedUser = Tables<"blocked_users">;
 
   type PaymentStructure =

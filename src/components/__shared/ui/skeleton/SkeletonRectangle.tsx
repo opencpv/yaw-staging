@@ -11,7 +11,7 @@ const SkeletonRectangle = ({ className, count }: SkeletonProps) => {
         countArray.map((_, idx) => (
           <Skeleton
             classNames={{
-              base: cn("rounded-xl h-full", className),
+              base: cn("rounded-xl h-72 w-full", className),
             }}
             key={idx + 1}
           />
@@ -20,7 +20,7 @@ const SkeletonRectangle = ({ className, count }: SkeletonProps) => {
       {count === undefined && (
         <Skeleton
           classNames={{
-            base: cn("rounded-xl h-full", className),
+            base: cn("rounded-xl h-72 w-full", className),
           }}
         />
       )}

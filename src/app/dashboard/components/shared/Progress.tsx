@@ -3,7 +3,7 @@ import { FaRegThumbsUp } from "react-icons/fa6";
 import { GiBiceps } from "react-icons/gi";
 import { IoMdHappy } from "react-icons/io";
 import { PiConfetti } from "react-icons/pi";
-import { beMyAgentStepsStore } from "@/store/dashboard/beMyAgentStepsStore";
+import { BeMyAgentStepsStore } from "@/store/dashboard/BeMyAgentStepsStore";
 import { cn } from "@/lib/utils";
 
 type Props = {

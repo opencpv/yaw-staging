@@ -120,17 +120,10 @@ const CountryInput = ({
                     key={data.value}
                     onSelect={(currentValue) => {
                       onChange?.(capitalizeName(currentValue));
-                      // setValue(currentValue === value ? "" : currentValue);
                       helpers.setValue(capitalizeName(currentValue));
                       setOpen(false);
                     }}
                   >
-                    {/* <Check
-                      className={cn(
-                        "mr-2 h-4 w-4",
-                        value === data.value ? "opacity-100" : "opacity-0"
-                      )}
-                    /> */}
                     <div className="relative aspect-square w-[20px]">
                       <Image src={data.flags} alt={data.label + " flag"} fill />
                     </div>

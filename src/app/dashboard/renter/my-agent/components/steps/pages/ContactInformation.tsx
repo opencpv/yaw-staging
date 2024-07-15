@@ -5,23 +5,20 @@ import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
 import CountryInput from "@/components/__shared/ui/form/CountryInput";
 import CustomTextAreaInput from "@/components/__shared/ui/form/CustomTextAreaInput";
 import styles from "../../../index.module.css";
-import { BeMyAgentFormType } from "../types";
 import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
 import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { MdOutlineMailOutline, MdOutlineWhatsapp } from "react-icons/md";
 import { E164Number } from "libphonenumber-js/core";
 import { useField } from "formik";
+import { BeMyAgentDefaultValues } from "@/store/dashboard/BeMyAgentStepsStore";
 
 type Props = {};
 
 const ContactInformation = React.forwardRef<HTMLInputElement, Props>(
   ({}, ref) => {
-    const [agentFormData, setAgentFormData] =
-      useLocalStorage<BeMyAgentFormType>("agent-form");
-
-    const [phoneNumberSelectedCountry, setPhoneNumberSelectedCountry] =
-      useLocalStorage<any>("phoneNumberSelectedCountry");
+    const [BeMyAgentCreationSteps, setBeMyAgentCreationSteps] =
+      useLocalStorage<typeof BeMyAgentDefaultValues>("bma-creation-steps");
 
     const { handlePhone, handleCountryChange, phone } =
       usePhoneInputDisclosure();
@@ -39,8 +36,8 @@ const ContactInformation = React.forwardRef<HTMLInputElement, Props>(
               label="Current Address 1"
               placeholder="Please provide your street address"
               onChange={(e) =>
-                setAgentFormData({
-                  ...agentFormData,
+                setBeMyAgentCreationSteps({
+                  ...BeMyAgentCreationSteps,
                   currentAddress1: e.target.value,
                 })
               }
@@ -51,8 +48,8 @@ const ContactInformation = React.forwardRef<HTMLInputElement, Props>(
               label="Current Address 2 ( optional )"
               placeholder="Eg: Apartment No."
               onChange={(e) =>
-                setAgentFormData({
-                  ...agentFormData,
+                setBeMyAgentCreationSteps({
+                  ...BeMyAgentCreationSteps,
                   currentAddress2: e.target.value,
                 })
               }
@@ -63,8 +60,8 @@ const ContactInformation = React.forwardRef<HTMLInputElement, Props>(
               label="City"
               placeholder="Enter your city"
               onChange={(e) =>
-                setAgentFormData({
-                  ...agentFormData,
+                setBeMyAgentCreationSteps({
+                  ...BeMyAgentCreationSteps,
                   city: e.target.value,
                 })
               }
@@ -72,10 +69,9 @@ const ContactInformation = React.forwardRef<HTMLInputElement, Props>(
             <CountryInput
               name="country"
               label="Country"
-              value={agentFormData?.country}
               onChange={(value) =>
-                setAgentFormData({
-                  ...agentFormData,
+                setBeMyAgentCreationSteps({
+                  ...BeMyAgentCreationSteps,
                   country: value,
                 })
               }
@@ -96,11 +92,11 @@ const ContactInformation = React.forwardRef<HTMLInputElement, Props>(
                       icon: <MdOutlineWhatsapp />,
                     },
                   ]}
-                  selectedKey={agentFormData?.preferredMethodOfContact}
+                  selectedKey={field.value}
                   onSelectionChange={(key) => {
                     helpers.setValue(key as any);
-                    setAgentFormData({
-                      ...agentFormData,
+                    setBeMyAgentCreationSteps({
+                      ...BeMyAgentCreationSteps,
                       preferredMethodOfContact: key as any,
                     });
                   }}
@@ -110,20 +106,14 @@ const ContactInformation = React.forwardRef<HTMLInputElement, Props>(
                 />
               </div>
               {/* email */}
-              <div
-                className={
-                  agentFormData?.preferredMethodOfContact === "whatsapp"
-                    ? "hidden"
-                    : "block"
-                }
-              >
+              <div className={field.value === "whatsapp" ? "hidden" : "block"}>
                 <TextFieldInput
                   name="email"
                   type="email"
                   placeholder="Enter your email address"
                   onChange={(e) =>
-                    setAgentFormData({
-                      ...agentFormData,
+                    setBeMyAgentCreationSteps({
+                      ...BeMyAgentCreationSteps,
                       email: e.target.value,
                     })
                   }
@@ -131,21 +121,17 @@ const ContactInformation = React.forwardRef<HTMLInputElement, Props>(
               </div>
               {/* whatsapp */}
               <div
-                className={
-                  agentFormData?.preferredMethodOfContact === "whatsapp"
-                    ? "block pt-2"
-                    : "hidden"
-                }
+                className={field.value === "whatsapp" ? "block pt-2" : "hidden"}
               >
                 <InputPhoneNumber
                   id=""
-                  name="phone"
-                  value={agentFormData?.phone}
+                  name="whatsApp"
+                  value={phone}
                   onChange={(val) => {
                     handlePhone(val);
-                    setAgentFormData({
-                      ...agentFormData,
-                      phone: val as E164Number,
+                    setBeMyAgentCreationSteps({
+                      ...BeMyAgentCreationSteps,
+                      whatsApp: val as E164Number,
                     });
                   }}
                   onCountryChange={handleCountryChange}
@@ -158,11 +144,11 @@ const ContactInformation = React.forwardRef<HTMLInputElement, Props>(
                 "Why are you moving and what are you looking for in your new place?"
               }
               classes="h-[167px]"
-              name="reasonForMoving"
+              name="purposeForMoving"
               onChange={(e) =>
-                setAgentFormData({
-                  ...agentFormData,
-                  reasonsForMoving: e.target.value,
+                setBeMyAgentCreationSteps({
+                  ...BeMyAgentCreationSteps,
+                  purposeForMoving: e.target.value,
                 })
               }
             />

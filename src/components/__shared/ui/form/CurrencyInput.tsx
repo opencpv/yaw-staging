@@ -16,7 +16,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/__shared/ui/popover";
-import { ErrorMessage, Field } from "formik";
+import { ErrorMessage, Field, useField } from "formik";
 import { styled } from "@stitches/react";
 import { SelectSearchInput } from "@/components/__shared/ui/form/SelectSearchInput";
 import axios from "axios";
@@ -27,6 +27,7 @@ import { InfoBubble } from "@/components/__shared/ui/application-form/components
 import CustomSelect, {
   OptionTypes,
 } from "@/components/__shared/ui/form/CustomSelect";
+import capitalizeName from "@/lib/utils/stringManipulation";
 
 type DataItem = {
   label: string;
@@ -36,13 +37,13 @@ type DataItem = {
 
 type Props = {
   initialCurrency?: any;
-
   initialValue?: any;
   value2?: string;
-
   placeholder?: string;
   label: string;
+  /** For first element */
   onChange: (value: any) => void;
+  /** For second element */
   onChange2?: (value: any) => void;
   placeholderMonthlyIncomeCurrency?: string;
   placeholderMonthlyIncome?: string;
@@ -50,7 +51,10 @@ type Props = {
   isSelectElement?: boolean;
   /** options to use when isSelectElement is true */
   options?: OptionTypes[];
+  /** For first element */
   name?: string;
+  /** For second element */
+  name2?: string;
 };
 
 const CurrencyInput = ({
@@ -67,6 +71,7 @@ const CurrencyInput = ({
   isSelectElement,
   options,
   name,
+  name2,
 }: Props) => {
   const [currencyData, setCurrencyData] = useState<DataItem[]>();
   const [selectedCurrency, setSelectedCurrency] = useState<any>({});
@@ -78,29 +83,25 @@ const CurrencyInput = ({
 
   const [totalValue, setTotalValue] = useState<string>();
 
-  useEffect(() => {
-    if (initialValue) {
-      setValue(initialValue.slice(0, 4));
-      // setValue2(initialValue.slice(4));
-    } else {
-      setValue("GHS");
-    }
-  }, [initialValue]);
+  //useEffect(() => {
+  //  if (initialValue) {
+  //    setValue(initialValue.slice(0, 4));
+  //    // setValue2(initialValue.slice(4));
+  //  } else {
+  //    setValue("GHS");
+  //  }
+  //}, [initialValue]);
 
-  useEffect(() => {
-    if (initialCurrency) {
-      setSelectedCurrency(initialCurrency);
-    }
-  }, [initialCurrency]);
+  //useEffect(() => {
+  //  if (initialCurrency) {
+  //    setSelectedCurrency(initialCurrency);
+  //  }
+  //}, [initialCurrency]);
 
   useEffect(() => {
     setTotalValue(value);
   }, [value]);
 
-  useEffect(() => {
-    // onChange2 && onChange2(selectedCurrency);
-    // onChange(totalValue);
-  }, [totalValue, onChange, selectedCurrency]);
 
   useEffect(() => {
     axios
@@ -128,6 +129,8 @@ const CurrencyInput = ({
       });
   }, []);
 
+  const [field, meta, helpers] = useField(name as string);
+
   return (
     <div>
       <Root className="flex ">
@@ -143,13 +146,20 @@ const CurrencyInput = ({
                 role="combobox"
                 aria-expanded={open}
                 className="form-field-border h-[52px] w-full max-w-[100px] justify-between whitespace-nowrap uppercase text-[#6A6968] focus:border-2 focus:border-accent-50 focus:outline-none focus-visible:ring-0"
+              name={field.name}
+              value={field.value || value}
               >
-                {value ? value : placeholder}
+              {field.value ? field.value : value || placeholder}
                 <IoChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
               </Button>
             </PopoverTrigger>
             <PopoverContent className="z-[200] max-h-[400px] w-fit overflow-y-scroll bg-[#fefefe] p-0 focus:outline-none">
-              <Command onValueChange={onChange}>
+              <Command 
+                onValueChange={(value) => {
+                onChange?.(value);
+                helpers.setValue(value);
+              }}
+                >
                 <CommandInput placeholder="Search data..." />
                 <CommandEmpty>No data found.</CommandEmpty>
                 <CommandGroup>
@@ -158,9 +168,10 @@ const CurrencyInput = ({
                       className="flex cursor-pointer gap-3 hover:bg-slate-100"
                       key={idx}
                       onSelect={(currentValue) => {
-                        setValue(currentValue === value ? "" : currentValue);
-                        setOpen(false);
-                      }}
+                      onChange?.(capitalizeName(currentValue));
+                      helpers.setValue(capitalizeName(currentValue));
+                      setOpen(false);
+                    }}
                     >
                       {data.label}
                     </CommandItem>
@@ -172,7 +183,7 @@ const CurrencyInput = ({
 
           {isSelectElement ? (
             <CustomSelect
-              name={name}
+              name={name2}
               value={value2}
               options={options as OptionTypes[]}
               onChange={(value) => onChange2 && onChange2(value)}

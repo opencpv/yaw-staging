@@ -11,9 +11,19 @@ type Props = {
     icon?: string;
   };
   handleDestruction: () => void;
+  loading: boolean;
+  label?: string;
+  variant?: "background" | "ghost"
 };
 
-const DeleteButton = ({ className, handleDestruction, classNames }: Props) => {
+const DeleteButton = ({
+  className,
+  loading,
+  label,
+  handleDestruction,
+  classNames,
+  variant = "ghost"
+}: Props) => {
   const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
 
   return (
@@ -22,17 +32,20 @@ const DeleteButton = ({ className, handleDestruction, classNames }: Props) => {
         isOpen={isOpen}
         onClose={onClose}
         onOpenChange={onOpenChange}
-        label="Are you sure you want to delete this application?"
+        label={label ?? "Are you sure you want to delete this item?"}
         handleDestruction={handleDestruction}
+        loading={loading}
       />
       <Button
         isIconOnly
         title="Delete"
-        className={cn("", className)}
+        className={cn("", {
+          "bg-secondary-50 p-4 rounded-md": variant === "background",
+        }, className)}
         onClick={onOpen}
       >
         <FiTrash2
-          size={24}
+          size={variant === "background" ? 16 : 24}
           className={cn("text-neutral-700", classNames?.icon)}
         />
       </Button>

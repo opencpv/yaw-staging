@@ -1,17 +1,19 @@
-import React, { useEffect } from "react";
+import React from "react";
 import useStepsSummaryContent from "./hooks/useStepsSummaryContent";
 import { BiPencil } from "react-icons/bi";
-import styles from "../index.module.css";
-import { beMyAgentStepsStore } from "@/store/dashboard/beMyAgentStepsStore";
+import { BeMyAgentStepsStore } from "@/store/dashboard/BeMyAgentStepsStore";
 import { LowerCase } from "@/lib/utils/stringManipulation";
+import { useRouter } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 type Props = {
   processPagesRefs: React.MutableRefObject<any[]>;
 };
 
 const SummaryArea = ({ processPagesRefs }: Props) => {
+  const router = useRouter();
   const processSummaryContent = useStepsSummaryContent();
-  const { setActiveSlide } = beMyAgentStepsStore();
+  const { setActiveSlide, agentRequest } = BeMyAgentStepsStore();
 
   return (
     <section>
@@ -32,13 +34,19 @@ const SummaryArea = ({ processPagesRefs }: Props) => {
                 </h2>
                 <button
                   type="button"
-                  className="ml-auto flex max-h-8 items-center gap-1 rounded-md bg-[#E6EBEB] p-1.5 px-4 text-primary-400 hover:bg-[#ad832a20] hover:text-[#AD842A]"
+                  className={ cn( "ml-auto flex max-h-8 items-center gap-1 rounded-md bg-[#E6EBEB] p-1.5 px-4 text-primary-400 hover:bg-[#ad832a20] hover:text-[#AD842A]", {
+                      "cursor-not-allowed": agentRequest?.is_paid,
+                    }) }
                   onClick={() => {
                     const title = "Screening & Other Details";
                     const titleIndex = processSummaryContent.findIndex(
                       (processPage) => processPage.title === title,
                     );
-                    setActiveSlide(idx >= titleIndex ? idx - 1 : idx);
+
+                    //router.replace(
+                    //  `/dashboard/renter/my-agent/agent/edit/28719${agentRequest?.id}`,
+                    //);
+                    agentRequest?.is_paid !== true && setActiveSlide(idx >= titleIndex ? idx - 1 : idx);
                   }}
                 >
                   <BiPencil />

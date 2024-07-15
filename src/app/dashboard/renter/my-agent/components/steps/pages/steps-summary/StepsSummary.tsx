@@ -2,13 +2,13 @@ import React, { createRef, useEffect, useRef } from "react";
 import Sidebar from "./Sidebar";
 import SummaryArea from "./SummaryArea";
 import useStepsSummaryContent from "./hooks/useStepsSummaryContent";
-import { beMyAgentStepsStore } from "@/store/dashboard/beMyAgentStepsStore";
+import { BeMyAgentStepsStore } from "@/store/dashboard/BeMyAgentStepsStore";
 
 type Props = {};
 
 const StepsSummary = React.forwardRef<HTMLInputElement, Props>(({}, ref) => {
   const processSummaryContent = useStepsSummaryContent();
-  const { selectedSummaryPage, setSelectedSummaryPage } = beMyAgentStepsStore();
+  const { selectedSummaryPage, setSelectedSummaryPage } = BeMyAgentStepsStore();
 
   const processPagesRefs = useRef<React.MutableRefObject<HTMLLIElement>[]>([]); // array of refs to each process page
 

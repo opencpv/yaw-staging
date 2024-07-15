@@ -6,38 +6,35 @@ import CurrencyInput from "@/components/__shared/ui/form/CurrencyInput";
 import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { MostRecentEmployment } from "../../../../../../../components/__shared/ui/application-form/components/content";
-import { BeMyAgentFormType } from "../types";
 import styles from "../../../index.module.css";
+import { BeMyAgentDefaultValues } from "@/store/dashboard/BeMyAgentStepsStore";
+import CallOut from "@/components/__shared/ui/CallOut";
 
 type Props = {};
 
 const EmploymentInformation = React.forwardRef<HTMLInputElement, Props>(
   ({}, ref) => {
-    const [agentFormData, setAgentFormData] =
-      useLocalStorage<BeMyAgentFormType>("agent-form");
-    const [selectedCurrency, setSelectedCurrency] =
-      useLocalStorage<any>("selectedCurrency");
-
-    const [
-      employersPhoneNumberSelectedCountry,
-      setEmployersPhoneNumberSelectedCountry,
-    ] = useLocalStorage<any>("employersPhoneNumberSelectedCountry");
-
-    const [isChecked, setIsChecked] = useState(true); // State to store the checkbox state
+    const [BeMyAgentCreationSteps, setBeMyAgentCreationSteps] =
+      useLocalStorage<typeof BeMyAgentDefaultValues>("bma-creation-steps");
 
     return (
       <Root>
-        <h2 className={`${styles.title}`}>Employment Information</h2>
+        <div className="mb-10 flex w-full flex-col gap-8">
+          <h2 className={`${styles.titleNoMargin}`}>
+            Employment Information{" "}
+            <span className="text-sm text-shade-300">*</span>
+          </h2>
+          <CallOut content="You may select more than one response" />
+        </div>
         <div className="grid grid-cols-1 gap-x-5 gap-y-8 lg:grid-cols-2">
           <CustomSelect
-            name="mostRecentEmployment"
+            name="employmentStatus"
             options={MostRecentEmployment}
-            value={agentFormData?.mostRecentEmployment || "Employed"}
             label="Employment Status"
             onChange={(value) =>
-              setAgentFormData({
-                ...agentFormData,
-                mostRecentEmployment: value,
+              setBeMyAgentCreationSteps({
+                ...BeMyAgentCreationSteps,
+                employmentStatus: value,
               })
             }
           />
@@ -45,25 +42,22 @@ const EmploymentInformation = React.forwardRef<HTMLInputElement, Props>(
             name="employer"
             type="text"
             label="Employer or Income Source"
-            placeholder={
-              agentFormData?.employer || "Enter employer or sponsor name"
-            }
+            placeholder={"Enter employer or sponsor name"}
             onChange={(e) =>
-              setAgentFormData({
-                ...agentFormData,
+              setBeMyAgentCreationSteps({
+                ...BeMyAgentCreationSteps,
                 employer: e.target.value,
               })
             }
           />
           <CountryInput
-            name="employersCountry"
-            value={agentFormData?.employersCountry}
+            name="employerCountry"
             label="Employer's Country"
             placeholder="Select employer's or sponsor's country"
             onChange={(value) =>
-              setAgentFormData({
-                ...agentFormData,
-                employersCountry: value,
+              setBeMyAgentCreationSteps({
+                ...BeMyAgentCreationSteps,
+                employerCountry: value,
               })
             }
           />
@@ -71,23 +65,21 @@ const EmploymentInformation = React.forwardRef<HTMLInputElement, Props>(
             name="jobTitle"
             type="text"
             label="Job Title"
-            placeholder={agentFormData?.jobTitle || "Enter your job title"}
+            placeholder={"Enter your job title"}
             onChange={(e) =>
-              setAgentFormData({
-                ...agentFormData,
+              setBeMyAgentCreationSteps({
+                ...BeMyAgentCreationSteps,
                 jobTitle: e.target.value,
               })
             }
           />
           <CurrencyInput
-            name="monthlyIncome"
-            initialCurrency={selectedCurrency}
-            initialValue={agentFormData?.monthlyIncomeCurrency}
-            infoBubble
-            placeholder="Select"
+            name="monthlyIncomeCurrency"
+            name2="monthlyIncome"
+            //placeholder="Select"
             label="Monthly Income"
             isSelectElement
-            value2={agentFormData?.monthlyIncome || "1000 - 2000"}
+            //value2={BeMyAgentCreationSteps?.monthlyIncome || "1000 - 2000"}
             options={[
               { name: "1000 - 2000", value: "1000 - 2000" },
               { name: "3000 - 5000", value: "3000 - 5000" },
@@ -95,14 +87,14 @@ const EmploymentInformation = React.forwardRef<HTMLInputElement, Props>(
               { name: "10000+", value: "10000+" },
             ]}
             onChange={(value) =>
-              setAgentFormData({
-                ...agentFormData,
+              setBeMyAgentCreationSteps({
+                ...BeMyAgentCreationSteps,
                 monthlyIncomeCurrency: value,
               })
             }
             onChange2={(value) =>
-              setAgentFormData({
-                ...agentFormData,
+              setBeMyAgentCreationSteps({
+                ...BeMyAgentCreationSteps,
                 monthlyIncome: value,
               })
             }

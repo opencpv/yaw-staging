@@ -9,7 +9,7 @@ const NoAgentCard = (props: Props) => {
     <div className="flex max-w-md flex-col gap-3 rounded-2xl border bg-shade px-8 py-6">
       <h3 className="leading-none">You have no agent</h3>
       <p className="text-shade-200">Click the button below to get started</p>
-      <div className="flex flex-col gap-3 xs:flex-row">
+      <div className="flex flex-col gap-2 xs:flex-row">
         <BeMyAgentModal
           button="Hire Us Now"
           content="Get Started"

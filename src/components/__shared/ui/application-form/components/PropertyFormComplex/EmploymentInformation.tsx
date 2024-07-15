@@ -14,6 +14,7 @@ import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import PhoneNumberInputv2 from "@/components/__shared/ui/form/PhoneInputv2";
 import { PropertyDataType } from "../propertyDataType";
+import CallOut from "../../../CallOut";
 
 type Props = {
   setActiveIndex: Dispatch<SetStateAction<number>>;
@@ -50,9 +51,10 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
 
     return (
       <Root className="p3 px-2">
-        <p className="text-primary text-[1.5625rem] font-semibold ">
+        <p className="text-[1.5625rem] font-semibold text-primary ">
           Employment Information
         </p>
+        <CallOut content="You may select more than one response" />
         <div className="pt-7">
           <div className="grid grid-cols-3 gap-x-5 gap-y-5">
             <div className="form-col col-span-3 lg:col-span-1">
@@ -196,7 +198,6 @@ const EmploymentInformationForm = React.forwardRef<HTMLInputElement, Props>(
               <CurrencyInput
                 initialCurrency={selectedCurrency}
                 initialValue={propertyData?.monthlyIncome}
-                infoBubble
                 placeholder="Select"
                 label="Monthly Income"
                 onChange={(value) =>

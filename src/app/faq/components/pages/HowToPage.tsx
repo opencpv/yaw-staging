@@ -2,9 +2,6 @@
 import React, { useEffect, useState } from "react";
 import HowToVideosSection from "../how_to/HowToVideosSection";
 import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
-import { useHowToTabsStore } from "@/store/faq/useFaqStore";
-import Select from "@/app/dashboard/components/shared/ui/Select";
-import { useSelectDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import { HowTo } from "../../../../../interfaces";
 
@@ -14,11 +11,7 @@ type Props = {
 };
 
 const HowToPage = (props: Props) => {
-  const activeTab = useHowToTabsStore((state) => state.activeTab);
-
-  const setActiveTab = useHowToTabsStore((state) => state.setActiveTab);
   const [content, setcontent] = useState<any>(props.howtos);
-  // const { value, handleSelectionChange } = useSelectDisclosure<string>("all");
   const [value, setValue] = useState("all");
 
   function filterByTag(array: HowTo[], tag: string) {
@@ -41,7 +34,7 @@ const HowToPage = (props: Props) => {
         <OptionFilterTabs
           options={[
             "All",
-            ...props.tags.map((item: any, index: number) =>
+            ...props.tags.map((item: any) =>
               capitalizeName(item.tag),
             ),
           ]}
@@ -53,13 +46,6 @@ const HowToPage = (props: Props) => {
             tabList: "flex-nowrap",
           }}
         />
-        {/* <Select
-          options={}
-          value={value}
-          className="mx-0"
-          color="primary"
-          handleSelectionChange={handleSelectionChange}
-        /> */}
       </div>
       <HowToVideosSection content={content} />
     </div>

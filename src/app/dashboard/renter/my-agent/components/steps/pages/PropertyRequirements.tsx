@@ -2,16 +2,16 @@ import styles from "../../../index.module.css";
 import { CustomDatePicker } from "@/components/__shared/ui/form/CustomDatePicker";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
-import { BeMyAgentFormType } from "../types";
 import CallOut from "@/components/__shared/ui/CallOut";
+import { BeMyAgentDefaultValues } from "@/store/dashboard/BeMyAgentStepsStore";
 
 export default function PropertyRequirements() {
-  const [agentFormData, setAgentFormData] =
-    useLocalStorage<BeMyAgentFormType>("agent-form");
+  const [BeMyAgentCreationSteps, setBeMyAgentCreationSteps] =
+    useLocalStorage<typeof BeMyAgentDefaultValues>("bma-creation-steps");
 
   const handleOnChange = (name: any, value: any) => {
-    setAgentFormData({
-      ...agentFormData,
+    setBeMyAgentCreationSteps({
+      ...BeMyAgentCreationSteps,
       [name]: value,
     });
   };
@@ -27,7 +27,6 @@ export default function PropertyRequirements() {
             <CustomSelect
               name="priceRangeMinimum"
               label="Minimum"
-              value={agentFormData?.priceRangeMinimum || "100"}
               prefix="GHS"
               options={[
                 { name: "100", value: "100" },
@@ -46,7 +45,6 @@ export default function PropertyRequirements() {
             <CustomSelect
               name="priceRangeMaximum"
               label="Maximum"
-              value={agentFormData?.priceRangeMaximum || "100"}
               prefix="GHS"
               options={[
                 { name: "100", value: "100" },
@@ -71,7 +69,6 @@ export default function PropertyRequirements() {
             <CustomSelect
               name="bedMinimum"
               label="Minimum"
-              value={agentFormData?.bedMinimum || "1"}
               options={[
                 { name: "1", value: "1" },
                 { name: "2", value: "2" },
@@ -89,7 +86,6 @@ export default function PropertyRequirements() {
             <CustomSelect
               name="bedMaximum"
               label="Maximum"
-              value={agentFormData?.bedMaximum || "1"}
               options={[
                 { name: "1", value: "1" },
                 { name: "2", value: "2" },
@@ -113,7 +109,6 @@ export default function PropertyRequirements() {
             <CustomSelect
               name="bathroomMinimum"
               label="Minimum"
-              value={agentFormData?.bathroomMinimum || "1"}
               options={[
                 { name: "1", value: "1" },
                 { name: "2", value: "2" },
@@ -131,7 +126,6 @@ export default function PropertyRequirements() {
             <CustomSelect
               name="bathroomMaximum"
               label="Maximum"
-              value={agentFormData?.bathroomMaximum || "1"}
               options={[
                 { name: "1", value: "1" },
                 { name: "2", value: "2" },
@@ -159,7 +153,6 @@ export default function PropertyRequirements() {
             <CustomSelect
               name="leaseTermMinimum"
               label="Minimum"
-              value={agentFormData?.leaseTermMinimum}
               options={[
                 { name: "1", value: "1" },
                 { name: "2", value: "2" },
@@ -172,7 +165,6 @@ export default function PropertyRequirements() {
             <CustomSelect
               name="leaseTermMaximum"
               label="Maximum"
-              value={agentFormData?.leaseTermMaximum}
               options={[
                 { name: "1", value: "1" },
                 { name: "2", value: "2" },
@@ -191,12 +183,11 @@ export default function PropertyRequirements() {
             <CustomSelect
               name="paymentOption"
               label="Preferred Payment Option"
-              value={agentFormData?.paymentOption}
               options={[
                 { name: "rent advance", value: "Rent Advance" },
                 {
-                  name: "monthly payments + interests",
-                  value: "Monthly Payments + Interests",
+                  name: "monthly payments",
+                  value: "Monthly Payments",
                 },
                 { name: "any", value: "Any" },
               ]}
@@ -205,7 +196,6 @@ export default function PropertyRequirements() {
             <CustomDatePicker
               name="moveInDate"
               label="Desired Move In Date"
-              value={agentFormData?.moveInDate as string}
               onChange={(value) => handleOnChange("moveInDate", value)}
             />
           </div>

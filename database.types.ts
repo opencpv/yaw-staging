@@ -9,6 +9,175 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      agent_request: {
+        Row: {
+          age: string | null
+          city: string | null
+          convicted: boolean | null
+          country: string | null
+          created_at: string
+          current_address_1: string | null
+          current_address_2: string | null
+          email: string | null
+          employer: string | null
+          employer_country: string | null
+          employment_status: string | null
+          evicted: boolean | null
+          features: string[] | null
+          first_name: string | null
+          has_pets: boolean | null
+          has_vehicles: boolean | null
+          id: number
+          is_active: boolean
+          is_paid: boolean
+          job_title: string | null
+          last_name: string | null
+          location: Json[] | null
+          marital_status: string | null
+          match_modified_at: string | null
+          matched_properties: number[] | null
+          max_bathrooms: number | null
+          max_beds: number | null
+          max_lease: number | null
+          max_price: number | null
+          min_bathrooms: number | null
+          min_beds: number | null
+          min_lease: number | null
+          min_price: number | null
+          monthly_income: string | null
+          monthly_income_currency: string | null
+          move_in_date: string | null
+          moving_reason: string | null
+          payment_ref: number | null
+          phone: string | null
+          preferred_contact_method: string | null
+          preferred_payment_option: string | null
+          property_type: string[] | null
+          renter_id: string
+          search_title: string | null
+          tenants: string | null
+          title: string | null
+        }
+        Insert: {
+          age?: string | null
+          city?: string | null
+          convicted?: boolean | null
+          country?: string | null
+          created_at?: string
+          current_address_1?: string | null
+          current_address_2?: string | null
+          email?: string | null
+          employer?: string | null
+          employer_country?: string | null
+          employment_status?: string | null
+          evicted?: boolean | null
+          features?: string[] | null
+          first_name?: string | null
+          has_pets?: boolean | null
+          has_vehicles?: boolean | null
+          id?: number
+          is_active?: boolean
+          is_paid?: boolean
+          job_title?: string | null
+          last_name?: string | null
+          location?: Json[] | null
+          marital_status?: string | null
+          match_modified_at?: string | null
+          matched_properties?: number[] | null
+          max_bathrooms?: number | null
+          max_beds?: number | null
+          max_lease?: number | null
+          max_price?: number | null
+          min_bathrooms?: number | null
+          min_beds?: number | null
+          min_lease?: number | null
+          min_price?: number | null
+          monthly_income?: string | null
+          monthly_income_currency?: string | null
+          move_in_date?: string | null
+          moving_reason?: string | null
+          payment_ref?: number | null
+          phone?: string | null
+          preferred_contact_method?: string | null
+          preferred_payment_option?: string | null
+          property_type?: string[] | null
+          renter_id?: string
+          search_title?: string | null
+          tenants?: string | null
+          title?: string | null
+        }
+        Update: {
+          age?: string | null
+          city?: string | null
+          convicted?: boolean | null
+          country?: string | null
+          created_at?: string
+          current_address_1?: string | null
+          current_address_2?: string | null
+          email?: string | null
+          employer?: string | null
+          employer_country?: string | null
+          employment_status?: string | null
+          evicted?: boolean | null
+          features?: string[] | null
+          first_name?: string | null
+          has_pets?: boolean | null
+          has_vehicles?: boolean | null
+          id?: number
+          is_active?: boolean
+          is_paid?: boolean
+          job_title?: string | null
+          last_name?: string | null
+          location?: Json[] | null
+          marital_status?: string | null
+          match_modified_at?: string | null
+          matched_properties?: number[] | null
+          max_bathrooms?: number | null
+          max_beds?: number | null
+          max_lease?: number | null
+          max_price?: number | null
+          min_bathrooms?: number | null
+          min_beds?: number | null
+          min_lease?: number | null
+          min_price?: number | null
+          monthly_income?: string | null
+          monthly_income_currency?: string | null
+          move_in_date?: string | null
+          moving_reason?: string | null
+          payment_ref?: number | null
+          phone?: string | null
+          preferred_contact_method?: string | null
+          preferred_payment_option?: string | null
+          property_type?: string[] | null
+          renter_id?: string
+          search_title?: string | null
+          tenants?: string | null
+          title?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "agent_criteria_renter_id_fkey"
+            columns: ["renter_id"]
+            isOneToOne: false
+            referencedRelation: "distinct_messages_view"
+            referencedColumns: ["sender_id"]
+          },
+          {
+            foreignKeyName: "agent_criteria_renter_id_fkey"
+            columns: ["renter_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "agent_request_payment_ref_fkey"
+            columns: ["payment_ref"]
+            isOneToOne: false
+            referencedRelation: "payments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       application_autosave: {
         Row: {
           created_at: string
@@ -1020,6 +1189,7 @@ export type Database = {
           furnish_level: string
           id: number
           images: string[] | null
+          is_admin_property: boolean
           is_available: boolean
           is_best_value: boolean
           is_complete: boolean
@@ -1076,6 +1246,7 @@ export type Database = {
           furnish_level: string
           id?: number
           images?: string[] | null
+          is_admin_property?: boolean
           is_available?: boolean
           is_best_value?: boolean
           is_complete?: boolean
@@ -1132,6 +1303,7 @@ export type Database = {
           furnish_level?: string
           id?: number
           images?: string[] | null
+          is_admin_property?: boolean
           is_available?: boolean
           is_best_value?: boolean
           is_complete?: boolean

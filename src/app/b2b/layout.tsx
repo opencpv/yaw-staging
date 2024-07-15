@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="bg-shade min-h-screen">
+    <div className="min-h-screen">
       <Navbar />
       {children}
     </div>

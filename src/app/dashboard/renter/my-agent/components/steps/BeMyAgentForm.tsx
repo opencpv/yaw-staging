@@ -13,23 +13,20 @@ import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { cn } from "@/lib/utils";
 import StepsSummary from "./pages/steps-summary/StepsSummary";
-import { beMyAgentStepsStore } from "@/store/dashboard/beMyAgentStepsStore";
+import { BeMyAgentStepsStore } from "@/store/dashboard/BeMyAgentStepsStore";
 import StepsModalSideImg from "../../../../../../components/__shared/ui/modals/steps/StepsModalSideImg";
 import { useScrollToTop } from "@/lib/custom-hooks/useWindowEvents";
-import { format } from "date-fns";
-import { enUS } from "date-fns/locale";
-import { formatDate } from "@/lib/utils/stringManipulation";
 
 export const views = [
   <Location key={"location"} />,
   <ClientOnly key={"preferred-type"}>
-    <PreferredType infoText key={"preferred-type"} />
-  </ClientOnly>,
-  <ClientOnly key={"property-requirements"}>
-    <PropertyRequirements key={"property-requirements"} />
+    <PreferredType key={"preferred-type"} />
   </ClientOnly>,
   <ClientOnly key={"features"}>
     <FeaturesAndAmenities key={"features"} />
+  </ClientOnly>,
+  <ClientOnly key={"property-requirements"}>
+    <PropertyRequirements key={"property-requirements"} />
   </ClientOnly>,
   <ClientOnly key={"lease-holder-information"}>
     <LeaseHolderInformation key={"lease-holder-information"} />
@@ -45,36 +42,6 @@ export const views = [
   </ClientOnly>,
 ];
 
-export const beMyAgentDefaultValues = {
-  locationCity: "Accra",
-  locationNeighbourhood: "Dansoman",
-  locationArray: [
-    {
-      locationCity: "Accra",
-      locationNeighbourhood: "Dansoman",
-    },
-  ],
-  priceRangeMinimum: "100",
-  priceRangeMaximum: "100",
-  bedMinimum: "1",
-  bedMaximum: "1",
-  bathroomMinimum: "1",
-  bathroomMaximum: "1",
-  leaseTermMinimum: "1",
-  leaseTermMaximum: "1",
-  paymentOption: "Rent Advance",
-  title: "Mrs.",
-  dateOfBirth: "18 - 44",
-  maritalStatus: "Single",
-  tenants: "1 - 5",
-  country: "Republic of Ghana",
-  preferredMethodOfContact: "email",
-  mostRecentEmployment: "Employed",
-  employersCountry: "Republic of Ghana",
-  monthlyIncome: "1000 - 2000",
-  moveInDate: formatDate(new Date().toISOString()),
-};
-
 export default function BeMyAgentForm() {
   const { images } = useAssets();
 
@@ -84,12 +51,11 @@ export default function BeMyAgentForm() {
     lastSlide,
     setFirstSlide,
     setLastSlide,
-  } = beMyAgentStepsStore();
+  } = BeMyAgentStepsStore();
 
-  const beMyAgentFormRef = useRef<HTMLDivElement>(null);
-  // const [otp, setOtp] = useState(false);
+  const BeMyAgentFormRef = useRef<HTMLDivElement>(null);
 
-  useScrollToTop(beMyAgentFormRef, [activeSlide], "instant");
+  useScrollToTop(BeMyAgentFormRef, [activeSlide], "instant");
 
   useEffect(() => {
     if (activeSlide < 1) {
@@ -129,7 +95,7 @@ export default function BeMyAgentForm() {
           >
             <StepsModalSideImg image={images.FeelingRefreshed} />
           </div>
-          <div className="lg:col-span-3" ref={beMyAgentFormRef}>
+          <div className="lg:col-span-3" ref={BeMyAgentFormRef}>
             <div>{views[activeSlide]}</div>
           </div>
         </section>
@@ -137,12 +103,6 @@ export default function BeMyAgentForm() {
     </ClientOnly>
   );
 }
-
-const Root = styled("div", {
-  ".progress-emoji": {
-    boxShadow: "0px 24px 48px -12px rgba(0, 0, 0, 0.18)",
-  },
-});
 
 export const NavigationButton = styled("button", {
   width: "fit-content",

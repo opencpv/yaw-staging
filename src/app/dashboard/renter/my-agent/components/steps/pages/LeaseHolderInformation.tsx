@@ -5,22 +5,21 @@ import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
 import React from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import styles from "../../../index.module.css";
-import { BeMyAgentFormType } from "../types";
-import CustomTextAreaInput from "@/components/__shared/ui/form/CustomTextAreaInput";
+import { BeMyAgentDefaultValues } from "@/store/dashboard/BeMyAgentStepsStore";
 
 type Props = {};
 
 const LeaseHolderInformation = React.forwardRef<HTMLInputElement, Props>(
   ({}, ref) => {
-    const [agentFormData, setAgentFormData] =
-      useLocalStorage<BeMyAgentFormType>("agent-form");
+  const [BeMyAgentCreationSteps, setBeMyAgentCreationSteps] =
+    useLocalStorage<typeof BeMyAgentDefaultValues>("bma-creation-steps");
 
-    const handleOnChange = (name: any, value: any) => {
-      setAgentFormData({
-        ...agentFormData,
-        [name]: value,
-      });
-    };
+  const handleOnChange = (name: any, value: any) => {
+    setBeMyAgentCreationSteps({
+      ...BeMyAgentCreationSteps,
+      [name]: value,
+    });
+  };
 
     return (
       <Root className="space-y-10">
@@ -31,7 +30,6 @@ const LeaseHolderInformation = React.forwardRef<HTMLInputElement, Props>(
             <CustomSelect
               name="title"
               label="Title"
-              value={agentFormData?.title}
               options={[
                 { name: "mr.", value: "Mr." },
                 { name: "mrs.", value: "Mrs." },
@@ -40,15 +38,14 @@ const LeaseHolderInformation = React.forwardRef<HTMLInputElement, Props>(
               onChange={(value) => handleOnChange("title", value)}
             />
             <CustomSelect
-              name="dateOfBirth"
+              name="age"
               label="Age"
-              value={agentFormData?.dateOfBirth}
               options={[
                 { name: "12 - 17", value: "12 - 17" },
                 { name: "18 - 44", value: "18 - 44" },
                 { name: "45 - 74", value: "45 - 74" },
               ]}
-              onChange={(value) => handleOnChange("dateOfBirth", value)}
+              onChange={(value) => handleOnChange("age", value)}
             />
             <TextFieldInput
               type="text"
@@ -56,8 +53,8 @@ const LeaseHolderInformation = React.forwardRef<HTMLInputElement, Props>(
               label="First Name"
               placeholder="Enter your first name"
               onChange={(e) =>
-                setAgentFormData({
-                  ...agentFormData,
+                setBeMyAgentCreationSteps({
+                  ...BeMyAgentCreationSteps,
                   firstName: e.target.value,
                 })
               }
@@ -68,8 +65,8 @@ const LeaseHolderInformation = React.forwardRef<HTMLInputElement, Props>(
               label="Last Name"
               placeholder="Enter your last name"
               onChange={(e) =>
-                setAgentFormData({
-                  ...agentFormData,
+                setBeMyAgentCreationSteps({
+                  ...BeMyAgentCreationSteps,
                   lastName: e.target.value,
                 })
               }
@@ -77,7 +74,6 @@ const LeaseHolderInformation = React.forwardRef<HTMLInputElement, Props>(
             <CustomSelect
               name="maritalStatus"
               label="Marital Status"
-              value={agentFormData?.maritalStatus}
               options={[
                 { name: "single", value: "Single" },
                 { name: "married", value: "Married" },
@@ -87,7 +83,6 @@ const LeaseHolderInformation = React.forwardRef<HTMLInputElement, Props>(
             <CustomSelect
               name="tenants"
               label="Number of Tenants"
-              value={agentFormData?.tenants}
               options={[
                 { name: "1 - 5", value: "1 - 5" },
                 { name: "6 - 10", value: "6 - 10" },
@@ -103,84 +98,79 @@ const LeaseHolderInformation = React.forwardRef<HTMLInputElement, Props>(
           <div className="grid grid-cols-1 gap-x-5 gap-y-8 lg:grid-cols-2">
             <div className="form-col">
               <CustomRadioInput
-                name="evictedBefore"
+                name="evicted"
                 options={["Yes", "No"]}
-                infoBubble={true}
                 infoBubbleContent="data"
-                defaultValue={agentFormData?.evictedBefore}
                 label={"Have you ever been evicted?"}
                 onChange={(value) =>
-                  setAgentFormData({
-                    ...agentFormData,
-                    evictedBefore: value,
+                  setBeMyAgentCreationSteps({
+                    ...BeMyAgentCreationSteps,
+                    evicted: value
                   })
                 }
               />
-              {agentFormData?.evictedBefore === "yes" && (
+              {/* {BeMyAgentCreationSteps?.evicted === true && (
                 <CustomTextAreaInput
                   label="State Your Reasons"
                   placeholder={"State your reasons here"}
                   classes="h-[52px]"
                   name="reasonForEviction"
                   onChange={(e) =>
-                    setAgentFormData({
-                      ...agentFormData,
+                    setBeMyAgentCreationSteps({
+                      ...BeMyAgentCreationSteps,
                       reasonForEviction: e.target.value,
                     })
                   }
                 />
-              )}
+              )}*/ }
               <CustomRadioInput
-                name="convictedBefore"
+                name="convicted"
                 options={["Yes", "No"]}
                 infoBubble={true}
                 infoBubbleContent="data"
-                defaultValue={agentFormData?.convictedBefore}
                 label={"Have you ever been convicted?"}
                 onChange={(value) =>
-                  setAgentFormData({
-                    ...agentFormData,
-                    convictedBefore: value,
+                  setBeMyAgentCreationSteps({
+                    ...BeMyAgentCreationSteps,
+                    convicted: value
                   })
                 }
               />
-              {agentFormData?.convictedBefore === "yes" && (
+              {/* {BeMyAgentCreationSteps?.convicted === true && (
                 <CustomTextAreaInput
                   label="State Your Reasons"
                   placeholder={"State your reasons here"}
                   classes="h-[52px]"
                   name="reasonForConviction"
                   onChange={(e) =>
-                    setAgentFormData({
-                      ...agentFormData,
+                    setBeMyAgentCreationSteps({
+                      ...BeMyAgentCreationSteps,
                       reasonForConviction: e.target.value,
                     })
                   }
                 />
-              )}
+              )} */}
             </div>
             <div className="form-col">
               <CustomRadioInput
-                name="pets"
+                name="hasPets"
                 options={["Yes", "No"]}
-                defaultValue={agentFormData?.pets}
                 label={"Do you have any pets?"}
                 onChange={(value) =>
-                  setAgentFormData({
-                    ...agentFormData,
-                    pets: value,
+                  setBeMyAgentCreationSteps({
+                    ...BeMyAgentCreationSteps,
+                    hasPets: value
                   })
                 }
               />
               <CustomRadioInput
-                name="vehicles"
+                name="hasVehicles"
                 options={["Yes", "No"]}
-                defaultValue={agentFormData?.vehicles}
                 label={"Do you have any vehicles?"}
                 onChange={(value) =>
-                  setAgentFormData({
-                    ...agentFormData,
-                    vehicles: value,
+                  setBeMyAgentCreationSteps({
+                    ...BeMyAgentCreationSteps,
+                    hasVehicles: value
                   })
                 }
               />

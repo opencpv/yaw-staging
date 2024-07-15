@@ -45,6 +45,7 @@ const DestructiveModal = ({
       onOpenChange={onOpenChange}
       size="md"
       backdropClassName={backdropClassName}
+      className="pt-10 pb-5"
     />
   );
 };

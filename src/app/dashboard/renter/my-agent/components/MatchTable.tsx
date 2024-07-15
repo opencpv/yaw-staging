@@ -16,27 +16,49 @@ import {
 } from "../../../components/shared/table/Table";
 import TbPropertyImageSm from "../../../components/shared/TbPropertyImageSm";
 import TbPropertyImage from "../../../components/shared/TbPropertyImage";
-import PaymentStructure from "../../../components/shared/PaymentStructure";
 import { formatDate } from "@/lib/utils/stringManipulation";
 import { useSearchParams } from "next/navigation";
 import SchedulePhysicalTour from "./SchedulePhysicalTour";
 import NoMatchState from "./NoMatchState";
+import {
+  useFetchAgentRequestById,
+  useFetchAgentRequestMatches,
+} from "../services";
+import { useAppStore } from "@/store/dashboard/AppStore";
+import { Skeleton } from "@nextui-org/react";
 
 export default function MatchTable() {
+  const { user } = useAppStore();
   const searchParams = useSearchParams();
-  const agentId = searchParams?.get("a");
+  const agentId = searchParams?.get("a")?.slice(6);
   const matchesRef = React.useRef<HTMLElement>(null);
 
   useEffect(() => {
-    if (matchesRef.current && (location.href.includes("sk=true") || agentId)) {
+    if (matchesRef.current && location.href.includes("sk=true")) {
       matchesRef?.current?.scrollIntoView({ behavior: "smooth" });
     }
-  }, [agentId]);
+  }, []);
+
+  const { data: agentRequest, isLoading } = useFetchAgentRequestById({
+    userId: user?.id as string,
+    id: Number(agentId),
+  });
+  const { data: matches } = useFetchAgentRequestMatches({
+    userId: user?.id as string,
+    agentRequestId: Number(agentId),
+  });
 
   return (
-    <section className="flex w-full flex-col gap-8 pt-20" ref={matchesRef}>
-      <h3>Agent One Matches</h3>
-
+    <section
+      className="flex w-full flex-col gap-8 pt-20"
+      ref={matchesRef}
+      id="agent-request-matches"
+    >
+      {isLoading ? (
+        <Skeleton className="h-5 w-60 rounded-md" />
+      ) : (
+        <h3>{agentRequest?.search_title} Matches</h3>
+      )}
       <div>
         <CallOut content="Lorem ipsum dolor sit amet consectetur. Consequat elementum consequat interdum integer imperdiet nisl. Ipsum eu eu tortor enim est mauris in sem. Eget dignissim risus diam consectetur magna. Non." />
       </div>
@@ -51,46 +73,72 @@ export default function MatchTable() {
           <TableHeader className="col-span-4">Actions</TableHeader>
         </TableHeaderRow>
         <TableBodyRowGroup>
-          {/* <TableBodyRow className="grid-cols-7">
-            <TableBody className="w-full col-span-full">
-               <NoMatchState />
-            </TableBody>
-          </TableBodyRow> */}
-          {Array.from({ length: 4 }).map((r, index) => (
-            <MatchRow key={index} />
-          ))}
+          {matches?.length === 0 && (
+            <TableBodyRow className="grid-cols-7">
+              <TableBody className="col-span-full w-full">
+                <NoMatchState />
+              </TableBody>
+            </TableBodyRow>
+          )}
+          {matches &&
+            matches?.length > 0 &&
+            matches?.map((match: MergedPropertyView) => (
+              <MatchRow
+                key={match.id as number}
+                id={match.id as number}
+                image={""}
+                title={match.property_type + " at " + match.city}
+                completedDate=""
+                price={match.monthly_amount as number}
+              />
+            ))}
         </TableBodyRowGroup>
       </Table>
 
       <TableSm className="mx-auto">
-        {/*
+        {matches?.length === 0 && (
           <TableRowSm>
             <TableBodySm>
               <NoMatchState />
             </TableBodySm>
           </TableRowSm>
-        */}
-        {Array.from({ length: 4 }).map((r, index) => (
-          <MatchRowMobile key={index} />
-        ))}
+        )}
+        {matches &&
+          matches?.length > 0 &&
+          matches?.map((match: MergedPropertyView) => (
+            <MatchRowMobile
+              key={match.id}
+              id={match.id as number}
+              image={""}
+              title={match.property_type + " at " + match.city}
+              completedDate=""
+              price={match.monthly_amount as number}
+            />
+          ))}
       </TableSm>
     </section>
   );
 }
 
-const MatchRowMobile = () => {
+const MatchRowMobile = (data: {
+  id: number;
+  image: string;
+  title: string;
+  price: number;
+  completedDate: string;
+}) => {
   return (
     <TableRowSm>
       {/* Property */}
       <TableBodySm href="/properties/2">
         <div className="flex flex-wrap justify-between gap-5 truncate xsm:flex-nowrap">
           <TbPropertyImageSm
-            title="Single Room at Assin Fosu"
+            title={data.title}
             image="/assets/images/niceHome.png"
           />
           <div className="flex flex-col justify-between gap-2">
-            <h4 className="truncate">Single Room</h4>
-            <span className="text-shade-200">{formatPrice(30000)}</span>
+            <h4 className="truncate">{data.title}</h4>
+            <span className="text-shade-200">{formatPrice(data.price)}</span>
           </div>
         </div>
       </TableBodySm>
@@ -122,7 +170,13 @@ const MatchRowMobile = () => {
   );
 };
 
-const MatchRow = () => {
+const MatchRow = (data: {
+  id: number;
+  image: string;
+  title: string;
+  price: number;
+  completedDate: string;
+}) => {
   return (
     <TableBodyRow className="grid-cols-7 gap-16 lg:max-llg:gap-8" gap="2rem">
       {/* Property */}
@@ -131,16 +185,16 @@ const MatchRow = () => {
         className="col-span-2 mx-0 flex gap-2 truncate"
       >
         <TbPropertyImage
-          title="Single Room at Assin Fosu"
+          title={data.title}
           image="/assets/images/niceHome.png"
         />
         <div className="flex h-full flex-col justify-between gap-5">
-          <h4 className="line-clamp-1 font-bold">Single Room</h4>
+          <h4 className="line-clamp-1 font-bold">{data.title}</h4>
           {/* <p className="-mt-2 truncate text-[0.8125rem] text-[#B0B0B0]">
             Assin Fosu
           </p> */}
           {/* <PaymentStructure monthlyPrice={3000} advancePayment="one year" /> */}
-          <span className="text-shade-200">{formatPrice(30000)}</span>
+          <span className="text-shade-200">{formatPrice(data.price)}</span>
         </div>
       </TableBody>
       {/* Completed */}

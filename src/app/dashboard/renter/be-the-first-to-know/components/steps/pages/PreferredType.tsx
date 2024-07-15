@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Amenity from "@/components/__shared/ui/listing-form/components/Amenity";
 import styles from "../../../index.module.css";
 import CallOut from "@/components/__shared/ui/CallOut";
