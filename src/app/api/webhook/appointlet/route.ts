@@ -6,7 +6,7 @@ export const POST = async (req: NextRequest) => {
     const body = await req.json();
     await supabase.from("agent_request_matches").insert({
       request_id: 2,
-      property_id: 6,
+      property_id: 50,
       id: body.entity.id,
     });
     return new NextResponse(
