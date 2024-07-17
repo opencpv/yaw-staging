@@ -71,8 +71,9 @@ const ModalFooter = ({
       <Button
         className="w-32 max-w-[8rem] rounded-lg bg-red-500 py-1 font-[500] text-white"
         onClick={handleDestruction}
+        isLoading={loading}
       >
-        {loading ? "Deleting..." : "Yes"}
+        Yes
       </Button>
       <Button
         className="w-32 max-w-[8rem] rounded-lg bg-neutral-200 py-1 font-[500] text-neutral-500"

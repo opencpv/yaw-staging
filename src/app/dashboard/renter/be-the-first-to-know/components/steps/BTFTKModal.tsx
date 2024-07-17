@@ -18,6 +18,7 @@ import { useAddSearchCriteria } from "../../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { usePathname } from "next/navigation";
 import { useLocalStorage } from "@uidotdev/usehooks";
+import capitalizeName from "@/lib/utils/stringManipulation";
 
 type Props = {
   buttonClassName?: string;
@@ -67,7 +68,7 @@ const BTFTKModal = (props: Props) => {
   useEffect(() => {
     pathname?.includes("edit") ? onOpenEditPage() : onCloseEditPage();
     pathname?.includes("create") ? onOpen() : onClose();
-    if (isSuccess){
+    if (isSuccess) {
       localStorage.removeItem("btftk-creation-steps");
       localStorage.removeItem("btftk-edit-steps");
     }
@@ -155,17 +156,19 @@ const BTFTKModal = (props: Props) => {
         onSubmit={(values) => {
           addSearchCriteria({
             title: values.searchTitle,
-            location: values.location,
-            max_beds: Number(values.bedMaximum),
-            min_beds: Number(values.bedMinimum),
-            max_price: Number(values.priceRangeMaximum),
-            min_price: Number(values.priceRangeMinimum),
+            location: values.location.length > 0 ? values.location : null,
+            min_beds: values.bedMinimum,
+            max_beds: values.bedMaximum,
+            min_price: values.priceRangeMinimum,
+            max_price: values.priceRangeMaximum,
+            min_bathrooms: values.bathroomMinimum,
+            max_bathrooms: values.bathroomMaximum,
             property_type: values.preferredType,
-            max_bathrooms: Number(values.bathroomMaximum),
-            min_bathrooms: Number(values.bathroomMinimum),
             email: values.email,
             phone: values.whatsApp,
-            preferred_contact_method: values.preferredMethodOfContact,
+            preferred_contact_method: capitalizeName(
+              values.preferredMethodOfContact,
+            ),
             features: values.requiredFeatures,
             keywords: values.specialKeywords,
             renter_id: user?.id,
@@ -178,11 +181,10 @@ const BTFTKModal = (props: Props) => {
       >
         <Form>
           <StepsModal
-            header={!lastSlide && <Header />}
+            header={!lastSlide && <BTFTKHeader />}
             body={<Body />}
-            footer={!lastSlide && <Footer />}
+            footer={!lastSlide &&  <BTFTKFooter />}
             open={isOpenEditPage || isOpen}
-            //onOpenChange={onOpen}
             footerClassName={lastSlide ? "border-t-0" : "border-t"}
           />
         </Form>
@@ -193,22 +195,10 @@ const BTFTKModal = (props: Props) => {
 
 export default BTFTKModal;
 
-const Header = () => {
-  return <BTFTKHeader />;
-};
-
 const Body = () => {
   return (
     <ClientOnly>
       <BTFTKForm />
     </ClientOnly>
-  );
-};
-
-const Footer = () => {
-  return (
-    <>
-      <BTFTKFooter />
-    </>
   );
 };

@@ -28,7 +28,10 @@ const ContactInformation = React.forwardRef<HTMLInputElement, Props>(
     return (
       <Root>
         <div className="h-full">
-          <h2 className={`${styles.title}`}>Contact Information</h2>
+          <h2 className={`${styles.title}`}>
+            Contact Information{" "}
+            <span className="text-sm text-shade-300">*</span>
+          </h2>
           <div className="grid grid-cols-1 gap-x-5 gap-y-8 lg:grid-cols-2">
             <TextFieldInput
               name="currentAddress1"

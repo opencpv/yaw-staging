@@ -18,7 +18,13 @@ type Props = {
   isLoading?: boolean;
 };
 
-const MatchSummary = ({ isLoading, href, matches, title, callOut }: Props) => {
+const BTFTKMatchSummary = ({
+  isLoading,
+  href,
+  matches,
+  title,
+  callOut,
+}: Props) => {
   return (
     <section className={`w-full space-y-4 xs:max-lg:max-w-md lg:max-w-full`}>
       <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl bg-primary-400 p-2 px-4 capitalize text-white">
@@ -45,8 +51,8 @@ const MatchSummary = ({ isLoading, href, matches, title, callOut }: Props) => {
       </div>
       {isLoading ? (
         <div className="flex flex-col gap-2 border-b-2 pb-5 pt-2 last:border-b-0 last:pb-2 last:pt-0 min-[320px]:flex-row">
-          <Skeleton className="relative aspect-square max-h-28 w-32 rounded-xl min-[320px]:flex-1" />
-          <SkeletonTextual />{" "}
+          <Skeleton className="relative aspect-square size-32 rounded-xl min-[320px]:flex-1" />
+          <Skeleton className="flex-2 h-8 w-full rounded-md" />
         </div>
       ) : (
         <>
@@ -91,13 +97,16 @@ const MatchSummary = ({ isLoading, href, matches, title, callOut }: Props) => {
                 <div>
                   {callOut?.content}
                   {callOut?.href && (
-                    <Button
-                      href={callOut.href}
-                      variant="ghost"
-                      className="text-sm font-[700] capitalize text-[#45808B] underline"
-                    >
-                      Learn more
-                    </Button>
+                    <>
+                      <br />
+                      <Button
+                        href={callOut.href}
+                        variant="ghost"
+                        className="mt-1 text-sm font-[700] capitalize text-[#45808B] underline"
+                      >
+                        Learn more
+                      </Button>
+                    </>
                   )}
                 </div>
               </CallOut>
@@ -109,4 +118,4 @@ const MatchSummary = ({ isLoading, href, matches, title, callOut }: Props) => {
   );
 };
 
-export default MatchSummary;
+export default BTFTKMatchSummary;

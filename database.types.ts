@@ -28,7 +28,6 @@ export type Database = {
           has_pets: boolean | null
           has_vehicles: boolean | null
           id: number
-          is_active: boolean
           is_paid: boolean
           job_title: string | null
           last_name: string | null
@@ -36,14 +35,14 @@ export type Database = {
           marital_status: string | null
           match_modified_at: string | null
           matched_properties: number[] | null
-          max_bathrooms: number | null
-          max_beds: number | null
-          max_lease: number | null
-          max_price: number | null
-          min_bathrooms: number | null
-          min_beds: number | null
-          min_lease: number | null
-          min_price: number | null
+          max_bathrooms: string | null
+          max_beds: string | null
+          max_lease: string | null
+          max_price: string | null
+          min_bathrooms: string | null
+          min_beds: string | null
+          min_lease: string | null
+          min_price: string | null
           monthly_income: string | null
           monthly_income_currency: string | null
           move_in_date: string | null
@@ -76,7 +75,6 @@ export type Database = {
           has_pets?: boolean | null
           has_vehicles?: boolean | null
           id?: number
-          is_active?: boolean
           is_paid?: boolean
           job_title?: string | null
           last_name?: string | null
@@ -84,14 +82,14 @@ export type Database = {
           marital_status?: string | null
           match_modified_at?: string | null
           matched_properties?: number[] | null
-          max_bathrooms?: number | null
-          max_beds?: number | null
-          max_lease?: number | null
-          max_price?: number | null
-          min_bathrooms?: number | null
-          min_beds?: number | null
-          min_lease?: number | null
-          min_price?: number | null
+          max_bathrooms?: string | null
+          max_beds?: string | null
+          max_lease?: string | null
+          max_price?: string | null
+          min_bathrooms?: string | null
+          min_beds?: string | null
+          min_lease?: string | null
+          min_price?: string | null
           monthly_income?: string | null
           monthly_income_currency?: string | null
           move_in_date?: string | null
@@ -124,7 +122,6 @@ export type Database = {
           has_pets?: boolean | null
           has_vehicles?: boolean | null
           id?: number
-          is_active?: boolean
           is_paid?: boolean
           job_title?: string | null
           last_name?: string | null
@@ -132,14 +129,14 @@ export type Database = {
           marital_status?: string | null
           match_modified_at?: string | null
           matched_properties?: number[] | null
-          max_bathrooms?: number | null
-          max_beds?: number | null
-          max_lease?: number | null
-          max_price?: number | null
-          min_bathrooms?: number | null
-          min_beds?: number | null
-          min_lease?: number | null
-          min_price?: number | null
+          max_bathrooms?: string | null
+          max_beds?: string | null
+          max_lease?: string | null
+          max_price?: string | null
+          min_bathrooms?: string | null
+          min_beds?: string | null
+          min_lease?: string | null
+          min_price?: string | null
           monthly_income?: string | null
           monthly_income_currency?: string | null
           move_in_date?: string | null
@@ -174,6 +171,56 @@ export type Database = {
             columns: ["payment_ref"]
             isOneToOne: false
             referencedRelation: "payments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      agent_request_matches: {
+        Row: {
+          created_at: string
+          id: number
+          property_id: number
+          request_id: number
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          property_id: number
+          request_id: number
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          property_id?: number
+          request_id?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "agent_request_matches_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "merged_property_view"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "agent_request_matches_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "property"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "agent_request_matches_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "random_featured_properties_view"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "agent_request_matches_request_id_fkey"
+            columns: ["request_id"]
+            isOneToOne: false
+            referencedRelation: "agent_request"
             referencedColumns: ["id"]
           },
         ]
@@ -1650,12 +1697,12 @@ export type Database = {
           location: string[] | null
           match_modified_at: string | null
           matched_properties: number[] | null
-          max_bathrooms: number | null
-          max_beds: number | null
-          max_price: number | null
-          min_bathrooms: number | null
-          min_beds: number | null
-          min_price: number | null
+          max_bathrooms: string | null
+          max_beds: string | null
+          max_price: string | null
+          min_bathrooms: string | null
+          min_beds: string | null
+          min_price: string | null
           phone: string | null
           preferred_contact_method: string | null
           property_type: string[] | null
@@ -1672,12 +1719,12 @@ export type Database = {
           location?: string[] | null
           match_modified_at?: string | null
           matched_properties?: number[] | null
-          max_bathrooms?: number | null
-          max_beds?: number | null
-          max_price?: number | null
-          min_bathrooms?: number | null
-          min_beds?: number | null
-          min_price?: number | null
+          max_bathrooms?: string | null
+          max_beds?: string | null
+          max_price?: string | null
+          min_bathrooms?: string | null
+          min_beds?: string | null
+          min_price?: string | null
           phone?: string | null
           preferred_contact_method?: string | null
           property_type?: string[] | null
@@ -1694,12 +1741,12 @@ export type Database = {
           location?: string[] | null
           match_modified_at?: string | null
           matched_properties?: number[] | null
-          max_bathrooms?: number | null
-          max_beds?: number | null
-          max_price?: number | null
-          min_bathrooms?: number | null
-          min_beds?: number | null
-          min_price?: number | null
+          max_bathrooms?: string | null
+          max_beds?: string | null
+          max_price?: string | null
+          min_bathrooms?: string | null
+          min_beds?: string | null
+          min_price?: string | null
           phone?: string | null
           preferred_contact_method?: string | null
           property_type?: string[] | null
@@ -2293,15 +2340,15 @@ export type Database = {
           title: string
           property_type: string[]
           location: string[]
-          min_price: number
-          max_price: number
-          min_beds: number
-          max_beds: number
-          min_bathrooms: number
+          min_price: string
+          max_price: string
+          min_beds: string
+          max_beds: string
+          min_bathrooms: string
           created_at: string
           is_active: boolean
           renter_id: string
-          max_bathrooms: number
+          max_bathrooms: string
           email: string
           phone: string
           preferred_contact_method: string

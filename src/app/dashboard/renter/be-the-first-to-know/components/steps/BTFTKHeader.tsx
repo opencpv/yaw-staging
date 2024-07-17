@@ -11,6 +11,7 @@ import { useAddSearchCriteria } from "../../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { usePathname, useRouter } from "next/navigation";
 import { useLocalStorage } from "@uidotdev/usehooks";
+import capitalizeName from "@/lib/utils/stringManipulation";
 
 const FirstToKnowHeader = () => {
   const router = useRouter();
@@ -29,8 +30,6 @@ const FirstToKnowHeader = () => {
     progressValue,
     setActiveSlide,
     activeSlide,
-    shouldShowMotivationMessage,
-    setShouldShowMotivationMessage,
     onClose,
     onCloseEditPage,
     setCriterion,
@@ -52,6 +51,7 @@ const FirstToKnowHeader = () => {
       onCloseEditPage();
       setCriterion(null);
       localStorage.removeItem("btftk-creation-steps");
+      localStorage.removeItem("btftk-edit-steps");
       pathname?.includes("edit") &&
         router.replace(
           "/dashboard/renter/be-the-first-to-know/manage-criteria",
@@ -64,7 +64,7 @@ const FirstToKnowHeader = () => {
           ?.activeSlide ?? 1,
       );
     } else if (!pathname?.includes("edit"))
-      setActiveSlide(BTFTKCreationSteps?.activeSlide ?? 0);
+      setActiveSlide(BTFTKCreationSteps?.activeSlide ?? activeSlide);
     else {
       setActiveSlide(0);
     }
@@ -78,6 +78,7 @@ const FirstToKnowHeader = () => {
     router,
     resetForm,
     criterion?.id,
+    activeSlide,
     //BTFTKEditSteps,
     //BTFTKCreationSteps?.activeSlide,
   ]); // commented out to prevent infinite loop
@@ -100,16 +101,16 @@ const FirstToKnowHeader = () => {
     addSearchCriteria({
       title: values.searchTitle,
       location: values.location.length > 0 ? values.location : null,
-      max_beds: Number(values.bedMaximum),
-      min_beds: Number(values.bedMinimum),
-      max_price: Number(values.priceRangeMaximum),
-      min_price: Number(values.priceRangeMinimum),
+      min_beds: values.bedMinimum,
+      max_beds: values.bedMaximum,
+      min_price: values.priceRangeMinimum,
+      max_price: values.priceRangeMaximum,
+      min_bathrooms: values.bathroomMinimum,
+      max_bathrooms: values.bathroomMaximum,
       property_type: values.preferredType,
-      max_bathrooms: Number(values.bathroomMaximum),
-      min_bathrooms: Number(values.bathroomMinimum),
       email: values.email,
       phone: values.whatsApp,
-      preferred_contact_method: values.preferredMethodOfContact,
+      preferred_contact_method: capitalizeName(values.preferredMethodOfContact),
       features: values.requiredFeatures,
       keywords: values.specialKeywords,
       id: criterion?.id,
@@ -148,8 +149,9 @@ const FirstToKnowHeader = () => {
           hideDopeMessage
           hideGotThisMessage
           middleSlide={progressValue >= 40 && progressValue <= 50}
-          shouldShowMotivationMessage={shouldShowMotivationMessage}
-          setShouldShowMotivationMessage={setShouldShowMotivationMessage}
+          shouldShowMotivationMessage={
+            pathname?.includes("edit") ? false : true
+          }
         />
       </div>
     </section>

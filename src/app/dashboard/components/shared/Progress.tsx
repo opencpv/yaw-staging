@@ -3,7 +3,6 @@ import { FaRegThumbsUp } from "react-icons/fa6";
 import { GiBiceps } from "react-icons/gi";
 import { IoMdHappy } from "react-icons/io";
 import { PiConfetti } from "react-icons/pi";
-import { BeMyAgentStepsStore } from "@/store/dashboard/BeMyAgentStepsStore";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -11,7 +10,6 @@ type Props = {
   firstSlide: boolean;
   lastSlide: boolean;
   shouldShowMotivationMessage: boolean;
-  setShouldShowMotivationMessage: (value: boolean) => void;
   value: number;
   middleSlide?: boolean;
   hideDopeMessage?: boolean;
@@ -24,10 +22,12 @@ export default function Progress({
   lastSlide,
   middleSlide,
   shouldShowMotivationMessage,
-  setShouldShowMotivationMessage,
   hideDopeMessage,
   hideGotThisMessage,
 }: Props) {
+  const [showMotivationMessage, setShowMotivationMessage] = useState(
+  shouldShowMotivationMessage  
+  )
   const [message, setMessage] = useState("");
   const [messageIcon, setMessageIcon] = useState<React.ReactElement | null>(
     null,
@@ -52,7 +52,7 @@ export default function Progress({
     } else if (lastSlide) {
       !hideDopeMessage && showMessageFor3Seconds("You're dope", <PiConfetti />);
       setTimeout(() => {
-        setShouldShowMotivationMessage(false);
+        setShowMotivationMessage(false);
       }, 3000);
     } else if (
       (middleSlide ?? (value >= 30 && value <= 40)) &&
@@ -80,22 +80,21 @@ export default function Progress({
     firstSlide,
     lastSlide,
     value,
-    setShouldShowMotivationMessage,
     middleSlide,
     hideDopeMessage,
     hideGotThisMessage,
   ]);
 
   return (
-    <div className="h-[16px] w-full rounded-2xl bg-primary/5">
+    <div className="h-[8px] sm:h-[16px] w-full rounded-2xl bg-primary/5">
       <div
-        className="duration-3000 relative h-[16px] justify-end rounded-2xl bg-primary transition-width"
+        className="duration-3000 relative h-[8px] sm:h-[16px] justify-end rounded-2xl bg-primary transition-width"
         style={{ width: `${value}%` }}
       >
         <div
           className={cn(
             `${
-              message && messageIcon && shouldShowMotivationMessage
+              message && messageIcon && showMotivationMessage
                 ? "flex"
                 : "hidden"
             } progress-emoji absolute right-0 top-8 z-50 w-fit items-center justify-center gap-3 whitespace-nowrap rounded-2xl bg-primary-300 px-3 py-4 text-[13px] text-shade-300 lg:text-base`,

@@ -145,7 +145,7 @@ export const useFetchCriteriaOverview = ({ userId }: { userId: string }) => {
 
   const query = useReactQuery({
     queryFn: getSummary,
-    queryKey: ["search_criteria_summary", userId],
+    queryKey: ["search_criteria_overview", userId],
   });
 
   return query;

@@ -13,7 +13,7 @@ import { useEffect } from "react";
 export default function Page() {
   const { user } = useAppStore();
   const searchParams = useSearchParams();
-  const agentRequestId = searchParams?.get("a")?.slice(6);
+  const agentRequestId = searchParams?.get("a")?.slice(3);
   const router = useRouter();
 
   const { data: agentRequests, isLoading } = useFetchAgentRequests({
@@ -22,12 +22,12 @@ export default function Page() {
 
   useEffect(() => {
     const activeCard = agentRequests?.find(
-      (request) => request.is_active === true,
+      (request) => request.is_paid === true,
     );
 
     if (activeCard && agentRequestId === undefined)
-      router.replace(`?a=199217${activeCard.id}`, { scroll: false });
-  }, [agentRequests, router, agentRequestId]); 
+      router.replace(`?a=461${activeCard.id}`, { scroll: false });
+  }, [agentRequests, router, agentRequestId]);
 
   return (
     <div className="mx-auto my-16 flex max-w-screen-3xl flex-col items-center justify-center gap-8 px-5 sm:px-10">
@@ -59,7 +59,7 @@ export default function Page() {
                       false
                     }
                     isSelected={request.id === Number(agentRequestId)}
-                    isActive={request.is_active}
+                    isActive={request.is_paid}
                   />
                 ))}
               </section>

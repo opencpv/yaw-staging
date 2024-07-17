@@ -6,26 +6,33 @@ import React from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import styles from "../../../index.module.css";
 import { BeMyAgentDefaultValues } from "@/store/dashboard/BeMyAgentStepsStore";
+import CallOut from "@/components/__shared/ui/CallOut";
 
 type Props = {};
 
 const LeaseHolderInformation = React.forwardRef<HTMLInputElement, Props>(
   ({}, ref) => {
-  const [BeMyAgentCreationSteps, setBeMyAgentCreationSteps] =
-    useLocalStorage<typeof BeMyAgentDefaultValues>("bma-creation-steps");
+    const [BeMyAgentCreationSteps, setBeMyAgentCreationSteps] =
+      useLocalStorage<typeof BeMyAgentDefaultValues>("bma-creation-steps");
 
-  const handleOnChange = (name: any, value: any) => {
-    setBeMyAgentCreationSteps({
-      ...BeMyAgentCreationSteps,
-      [name]: value,
-    });
-  };
+    const handleOnChange = (name: any, value: any) => {
+      setBeMyAgentCreationSteps({
+        ...BeMyAgentCreationSteps,
+        [name]: value,
+      });
+    };
 
     return (
       <Root className="space-y-10">
         {/* Lease Holder Information */}
         <div>
-          <h2 className={styles.title}>Lease Holder Information</h2>
+          <div className="mb-10 flex w-full flex-col gap-8">
+            <h2 className={`${styles.titleNoMargin}`}>
+              Lease Holder Information{" "}
+              <span className="text-sm text-shade-300">*</span>
+            </h2>
+            <CallOut content="You may select more than one response" />
+          </div>
           <div className="grid grid-cols-1 gap-x-5 gap-y-8 lg:grid-cols-2">
             <CustomSelect
               name="title"
@@ -100,12 +107,11 @@ const LeaseHolderInformation = React.forwardRef<HTMLInputElement, Props>(
               <CustomRadioInput
                 name="evicted"
                 options={["Yes", "No"]}
-                infoBubbleContent="data"
                 label={"Have you ever been evicted?"}
                 onChange={(value) =>
                   setBeMyAgentCreationSteps({
                     ...BeMyAgentCreationSteps,
-                    evicted: value
+                    evicted: value,
                   })
                 }
               />
@@ -122,17 +128,15 @@ const LeaseHolderInformation = React.forwardRef<HTMLInputElement, Props>(
                     })
                   }
                 />
-              )}*/ }
+              )}*/}
               <CustomRadioInput
                 name="convicted"
                 options={["Yes", "No"]}
-                infoBubble={true}
-                infoBubbleContent="data"
                 label={"Have you ever been convicted?"}
                 onChange={(value) =>
                   setBeMyAgentCreationSteps({
                     ...BeMyAgentCreationSteps,
-                    convicted: value
+                    convicted: value,
                   })
                 }
               />
@@ -159,7 +163,7 @@ const LeaseHolderInformation = React.forwardRef<HTMLInputElement, Props>(
                 onChange={(value) =>
                   setBeMyAgentCreationSteps({
                     ...BeMyAgentCreationSteps,
-                    hasPets: value
+                    hasPets: value,
                   })
                 }
               />
@@ -170,7 +174,7 @@ const LeaseHolderInformation = React.forwardRef<HTMLInputElement, Props>(
                 onChange={(value) =>
                   setBeMyAgentCreationSteps({
                     ...BeMyAgentCreationSteps,
-                    hasVehicles: value
+                    hasVehicles: value,
                   })
                 }
               />

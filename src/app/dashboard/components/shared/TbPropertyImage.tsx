@@ -19,8 +19,7 @@ const TbPropertyImage = (props: Props) => {
           src={props.image}
           fill
           alt={props.title}
-          objectFit="cover"
-          className="rounded-[inherit]"
+          className="object-cover rounded-[inherit]"
         />
       </Link>
     );

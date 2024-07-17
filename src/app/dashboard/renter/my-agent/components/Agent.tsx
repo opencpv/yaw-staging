@@ -1,6 +1,5 @@
 import Image from "next/image";
 import CaAgentTickGreenBg from "./icons/CaAgentTickGreenBg";
-import Link from "next/link";
 import Button from "@/components/__shared/ui/button/Button";
 import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
 import { cn } from "@/lib/utils";
@@ -45,7 +44,7 @@ export default function Agent({
       const agentRequestMatches = document.getElementById(
         "agent-request-matches",
       );
-      router.replace(`?a=199217${agentRequest.id}`, { scroll: false });
+      router.replace(`?a=217${agentRequest.id}`, { scroll: false });
 
       if (agentRequestMatches) {
         agentRequestMatches.scrollIntoView({ behavior: "smooth" });
@@ -55,7 +54,7 @@ export default function Agent({
 
   const handleEdit = () => {
     router.push(
-      `/dashboard/renter/my-agent/agent/edit/87181${agentRequest.id}`,
+      `/dashboard/renter/my-agent/agent/edit/181${agentRequest.id}`,
     );
     setAgentRequest(agentRequest);
   };
@@ -68,6 +67,7 @@ export default function Agent({
   }, [agentRequest.id, agentRequest.renter_id, deleteAgentRequest]);
 
   useEffect(() => {
+    // delete agent when time elapses
     if (daysRemaining === 0) {
       handleDelete();
     }
@@ -150,7 +150,9 @@ export default function Agent({
             },
           )}
         >
-          <div className="flex items-center gap-2 rounded-full bg-secondary-50 px-2 py-1">
+          <div className={cn( "flex items-center gap-2 rounded-full bg-secondary-50 px-2 py-1", {
+            "bg-warning-bg *:text-warning": !hasMatch && isActive,
+          } ) }>
             {hasMatch && isActive && (
               <>
                 <CaAgentTickGreenBg />

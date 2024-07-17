@@ -1,8 +1,4 @@
-import capitalizeName, {
-  formatDate,
-  formatDateDMY,
-  formatDateOnly,
-} from "@/lib/utils/stringManipulation";
+import capitalizeName, { formatDateOnly } from "@/lib/utils/stringManipulation";
 import { BeMyAgentDefaultValues } from "@/store/dashboard/BeMyAgentStepsStore";
 import { useFormikContext } from "formik";
 
@@ -96,7 +92,7 @@ const useStepsSummaryContent = () => {
         City: values?.city || "-",
         Country: values?.country || "-",
         Preferred_Method_of_Contact:
-          values?.preferredMethodOfContact as string || "-",
+          (capitalizeName(values?.preferredMethodOfContact) as string) || "-",
         Email: values?.email || "-",
         Phone: values?.whatsApp || "-",
       },
@@ -106,8 +102,7 @@ const useStepsSummaryContent = () => {
       content: {
         Employment_Status: values?.employmentStatus || "-",
         Employer_or_Income_Source: values?.employer || "-",
-        Employer_Country:
-          capitalizeName(values?.employerCountry as string) || "-",
+        Employer_Country: (values?.employerCountry as string) || "-",
         Job_Title: values?.jobTitle || "-",
         Monthly_Income:
           `${values?.monthlyIncomeCurrency?.toUpperCase() || ""} ${

@@ -7,7 +7,7 @@ export const useFetchAgentRequests = ({ userId }: { userId: string }) => {
     .from("agent_request")
     .select()
     .eq("renter_id", userId)
-    .order("is_active", { ascending: false });
+    .order("is_paid", { ascending: false });
 
   const result = useQuery({
     queryKey: ["agent_requests", userId],
@@ -85,6 +85,63 @@ export const useFetchAgentRequestMatches = ({
   });
 
   return result;
+};
+
+export const useFetchAgentRequestOverview = ({
+  userId,
+}: {
+  userId: string;
+}) => {
+  const propertiesIds: number[] = [];
+  const images: string[] = [];
+
+  const getSummary = async () => {
+    const { data: requests } = await supabase
+      .from("agent_request")
+      .select("id, matched_properties, search_title")
+      .eq("renter_id", userId)
+      .not("match_modified_at", "is", null)
+      .order("match_modified_at", { ascending: false })
+      .limit(2);
+
+    if (requests) {
+      requests.forEach((request) => {
+        propertiesIds.push(
+          request.matched_properties! &&
+            request.matched_properties[
+              request.matched_properties &&
+                request.matched_properties?.length - 1
+            ],
+        );
+      });
+    }
+
+    const { data: properties } = await supabase
+      .from("property")
+      .select("id, images")
+      .in("id", propertiesIds);
+
+    if (properties) {
+      properties.forEach((property) => {
+        images.push(property.images?.[0] || "/images/placeholder.png"); // TODO: Look into default image
+      });
+    }
+
+    const final_output = requests?.map((request, index) => {
+      return {
+        request: request,
+        associated_image: images[index],
+      };
+    });
+    return final_output;
+  };
+
+  const query = useQuery({
+    queryFn: getSummary,
+    queryKey: ["agent_request_overview", userId],
+  });
+
+  return query;
 };
 
 export const useDeleteAgentRequest = () => {

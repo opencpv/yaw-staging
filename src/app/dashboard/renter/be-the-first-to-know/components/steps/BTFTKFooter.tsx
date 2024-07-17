@@ -21,6 +21,7 @@ const BTFTKFooter = () => {
     activeSlide,
     setActiveSlide,
     firstSlide,
+    lastSlide,
     onClose,
     setCriterion,
     onCloseEditPage,
@@ -94,22 +95,22 @@ const BTFTKFooter = () => {
         )}
       >
         <Button
-          color={!firstSlide ? "primary" : undefined}
-          variant={!firstSlide ? "outline" : "default"}
+          color="primary"
+          variant="outline"
           className={cn(
-            "col-span-1 h-[58px] rounded-lg font-semibold focus:outline-none xs:text-base sm:min-w-[16rem]",
+            "col-span-1 sm:h-[58px] rounded-lg font-semibold focus:outline-none xs:text-base sm:min-w-[16rem]",
             {
-              "bg-primary/5 text-primary hover:bg-primary/20": firstSlide,
+              invisible: firstSlide || lastSlide,
             },
           )}
           onClick={handleBack}
         >
-          {firstSlide ? "Cancel" : "Back"}
+          Back
         </Button>
         <Button
           color="primary"
           className={cn(
-            "col-span-1 h-[58px] rounded-lg font-semibold focus:outline-none xs:text-base sm:min-w-[16rem]",
+            "col-span-1 sm:h-[58px] rounded-lg font-semibold focus:outline-none xs:text-base sm:min-w-[16rem]",
           )}
           onClick={() => {
             handleForward();

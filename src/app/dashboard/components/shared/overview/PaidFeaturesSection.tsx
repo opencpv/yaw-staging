@@ -1,9 +1,11 @@
 import React from "react";
 import FeatureExplainer from "./FeatureExplainer";
 import { UserRole } from "../../../types";
-import MatchSummary from "./MatchSummary";
+import BTFTKMatchSummary from "./BTFTKMatchSummary";
 import { useFetchCriteriaOverview } from "@/app/dashboard/renter/be-the-first-to-know/services";
 import { useAppStore } from "@/store/dashboard/AppStore";
+import BeMyAgentMatchSummary from "./BeMyAgentMatchSummary";
+import { useFetchAgentRequestOverview } from "@/app/dashboard/renter/my-agent/services";
 
 type Props = {
   className?: string;
@@ -12,28 +14,36 @@ type Props = {
 
 const PaidFeaturesSection = (props: Props) => {
   const { user } = useAppStore();
-  const {data: criteria, isLoading } = useFetchCriteriaOverview({userId: user?.id as string})
+  const { data: criteria, isLoading } = useFetchCriteriaOverview({
+    userId: user?.id as string,
+  });
+
+  const { data: requests, isLoading: requestLoading } =
+    useFetchAgentRequestOverview({
+      userId: user?.id as string,
+    });
 
   return (
     <div
       className={`flex flex-wrap justify-between gap-x-40 gap-y-10 lg:space-y-10 ${props.className}`}
     >
-      <MatchSummary
+      <BeMyAgentMatchSummary
         href={"/dashboard/renter/my-agent/agent?sk=true"}
-        matches={[]}
+        matches={requests as any}
         title="Be My Agent"
         callOut={{
           content: "You have no record for this service",
+          href: "/dashboard/renter/my-agent/explore",
         }}
+        isLoading={requestLoading}
       />{" "}
-      <MatchSummary
-        href={"/dashboard/renter/be-the-first-to-know"}
+      <BTFTKMatchSummary
+        href={"/dashboard/renter/be-the-first-to-know/manage-criteria"}
         matches={criteria as any}
         title="Get Notified"
         callOut={{
           content:
             "Upgrade now to unlock this exclusive feature and supercharge your renting experience",
-          href: "/dashboard/renter/be-the-first-to-know/manage-criteria"
         }}
         isLoading={isLoading}
       />

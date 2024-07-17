@@ -149,6 +149,6 @@ const PopoverClose = styled(Popover.Close, {
   right: 5,
 });
 
-const IconButton = styled("button", {});
+const IconButton = styled("div", {});
 
 export default NotificationsPopover;

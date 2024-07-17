@@ -20,6 +20,7 @@ import * as Yup from "yup";
 import { usePathname } from "next/navigation";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useAddAgentRequest } from "../../services";
+import capitalizeName from "@/lib/utils/stringManipulation";
 
 type Props = {
   button?: "Hire Us Now" | "Get Started" | "Ghost" | "Edit" | "Price";
@@ -89,7 +90,6 @@ const BeMyAgentModal = (props: Props) => {
     if (isSuccess) {
       setAgentRequest(agentRequestData);
       localStorage.removeItem("bma-creation-steps");
-      localStorage.removeItem("bma-edit-steps");
     }
   }, [
     onOpen,
@@ -105,7 +105,7 @@ const BeMyAgentModal = (props: Props) => {
   return (
     <div
       className={cn({
-        invisible: pathname?.includes("edit") || pathname?.includes("create"),
+        invisible: pathname?.includes("edit") || pathname?.includes("create"), // hide button to avoid double click
       })}
     >
       {props.button === "Get Started" ? (
@@ -324,16 +324,18 @@ const BeMyAgentModal = (props: Props) => {
           addAgentRequest({
             search_title: values.searchTitle,
             location: values.location,
-            max_beds: Number(values.bedMaximum),
-            min_beds: Number(values.bedMinimum),
-            max_price: Number(values.priceRangeMaximum),
-            min_price: Number(values.priceRangeMinimum),
+            min_beds: values.bedMinimum,
+            max_beds: values.bedMaximum,
+            min_price: values.priceRangeMinimum,
+            max_price: values.priceRangeMaximum,
+            min_bathrooms: values.bathroomMinimum,
+            max_bathrooms: values.bathroomMaximum,
             property_type: values.preferredType,
-            max_bathrooms: Number(values.bathroomMaximum),
-            min_bathrooms: Number(values.bathroomMinimum),
             email: values.email,
             phone: values.whatsApp,
-            preferred_contact_method: values.preferredMethodOfContact,
+            preferred_contact_method: capitalizeName(
+              values.preferredMethodOfContact,
+            ),
             features: values.requiredFeatures,
             move_in_date: values.moveInDate,
             moving_reason: values.purposeForMoving,
@@ -342,8 +344,8 @@ const BeMyAgentModal = (props: Props) => {
             employer: values.employer,
             employment_status: values.employmentStatus,
             employer_country: values.employerCountry,
-            min_lease: Number(values.leaseTermMinimum),
-            max_lease: Number(values.leaseTermMaximum),
+            min_lease: values.leaseTermMinimum,
+            max_lease: values.leaseTermMaximum,
             preferred_payment_option: values.paymentOption,
             title: values.title,
             first_name: values.firstName,
@@ -362,7 +364,6 @@ const BeMyAgentModal = (props: Props) => {
             age: values.age,
             renter_id: user?.id,
             id: agentRequest?.id,
-            is_active: false,
             matched_properties: null,
           });
         }}

@@ -1,12 +1,12 @@
 "use client";
+import { cn } from "@/lib/utils";
 import { useContactStore } from "@/store/contact/useContactStore";
 import { styled } from "@stitches/react";
 import React, { useEffect, useRef, useState } from "react";
 import { BiRightArrowCircle } from "react-icons/bi";
 
-type Props = {};
 
-const ContactTabs = (props: Props) => {
+const ContactTabs = () => {
   const active = useContactStore((state) => state.activeKey);
   const setActive = useContactStore((state) => state.setActiveKey);
   const [isEndOfContainer, setIsEndOfContainer] = useState<boolean>(false);
@@ -73,13 +73,10 @@ const ContactTabs = (props: Props) => {
         </Tab>
       </div>
       <div
-        className={`sc-button absolute right-0 bg-white p-1 px-2 pl-5 transition-all md:hidden ${
-          isEndOfContainer && "pointer-events-none touch-none"
-        }`}
+        className={cn( `sc-button absolute opacity-50 right-0 bg-white p-1 px-2 pl-5 transition-all md:hidden`, {
+          "pointer-events-none opacity-0": isEndOfContainer,
+        } )}
         onClick={scrollToRight}
-        style={{
-          opacity: isEndOfContainer ? "0" : "1",
-        }}
       >
         <BiRightArrowCircle color="#71C9C7" size="24" />
       </div>

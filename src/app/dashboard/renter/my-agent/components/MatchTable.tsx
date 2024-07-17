@@ -26,11 +26,14 @@ import {
 } from "../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { Skeleton } from "@nextui-org/react";
+import TableSkeleton from "@/app/dashboard/components/shared/skeleton/TableSkeleton";
+import { getListingProps } from "@/lib/enum";
+import { cn } from "@/lib/utils";
 
 export default function MatchTable() {
   const { user } = useAppStore();
   const searchParams = useSearchParams();
-  const agentId = searchParams?.get("a")?.slice(6);
+  const agentId = searchParams?.get("a")?.slice(3);
   const matchesRef = React.useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -43,10 +46,11 @@ export default function MatchTable() {
     userId: user?.id as string,
     id: Number(agentId),
   });
-  const { data: matches } = useFetchAgentRequestMatches({
-    userId: user?.id as string,
-    agentRequestId: Number(agentId),
-  });
+  const { data: matches, isLoading: isLoadingMatches } =
+    useFetchAgentRequestMatches({
+      userId: user?.id as string,
+      agentRequestId: Number(agentId),
+    });
 
   return (
     <section
@@ -57,13 +61,15 @@ export default function MatchTable() {
       {isLoading ? (
         <Skeleton className="h-5 w-60 rounded-md" />
       ) : (
-        <h3>{agentRequest?.search_title} Matches</h3>
+        <h3 className={cn({ hidden: !matches })}>
+          {agentRequest?.search_title} Matches
+        </h3>
       )}
-      <div>
+      <div className={cn({ hidden: !matches })}>
         <CallOut content="Lorem ipsum dolor sit amet consectetur. Consequat elementum consequat interdum integer imperdiet nisl. Ipsum eu eu tortor enim est mauris in sem. Eget dignissim risus diam consectetur magna. Non." />
       </div>
       {/* table */}
-      <Table>
+      <Table className={cn({ "lg:hidden": !matches })}>
         <TableHeaderRow
           className="grid-cols-7 gap-16 lg:max-llg:gap-8"
           gap="2rem"
@@ -73,6 +79,7 @@ export default function MatchTable() {
           <TableHeader className="col-span-4">Actions</TableHeader>
         </TableHeaderRow>
         <TableBodyRowGroup>
+          {isLoadingMatches && <TableSkeleton rows={3} columns={7} />}
           {matches?.length === 0 && (
             <TableBodyRow className="grid-cols-7">
               <TableBody className="col-span-full w-full">
@@ -85,17 +92,14 @@ export default function MatchTable() {
             matches?.map((match: MergedPropertyView) => (
               <MatchRow
                 key={match.id as number}
-                id={match.id as number}
-                image={""}
-                title={match.property_type + " at " + match.city}
                 completedDate=""
-                price={match.monthly_amount as number}
+                listing={match}
               />
             ))}
         </TableBodyRowGroup>
       </Table>
 
-      <TableSm className="mx-auto">
+      <TableSm className={cn("mx-auto", { hidden: !matches })}>
         {matches?.length === 0 && (
           <TableRowSm>
             <TableBodySm>
@@ -106,14 +110,7 @@ export default function MatchTable() {
         {matches &&
           matches?.length > 0 &&
           matches?.map((match: MergedPropertyView) => (
-            <MatchRowMobile
-              key={match.id}
-              id={match.id as number}
-              image={""}
-              title={match.property_type + " at " + match.city}
-              completedDate=""
-              price={match.monthly_amount as number}
-            />
+            <MatchRowMobile key={match.id} completedDate="" listing={match} />
           ))}
       </TableSm>
     </section>
@@ -121,24 +118,26 @@ export default function MatchTable() {
 }
 
 const MatchRowMobile = (data: {
-  id: number;
-  image: string;
-  title: string;
-  price: number;
   completedDate: string;
+  listing: MergedPropertyView;
 }) => {
+  const { user } = useAppStore();
   return (
     <TableRowSm>
       {/* Property */}
-      <TableBodySm href="/properties/2">
+      <TableBodySm href={getListingProps(data.listing, user as UserType)?.href}>
         <div className="flex flex-wrap justify-between gap-5 truncate xsm:flex-nowrap">
           <TbPropertyImageSm
-            title={data.title}
+            title={data.listing.property_type + " at " + data.listing.city}
             image="/assets/images/niceHome.png"
           />
           <div className="flex flex-col justify-between gap-2">
-            <h4 className="truncate">{data.title}</h4>
-            <span className="text-shade-200">{formatPrice(data.price)}</span>
+            <h4 className="truncate">
+              {data.listing.property_type + " at " + data.listing.city}
+            </h4>
+            <span className="text-shade-200">
+              {formatPrice(data.listing.monthly_amount as number)}
+            </span>
           </div>
         </div>
       </TableBodySm>
@@ -171,30 +170,33 @@ const MatchRowMobile = (data: {
 };
 
 const MatchRow = (data: {
-  id: number;
-  image: string;
-  title: string;
-  price: number;
   completedDate: string;
+  listing: MergedPropertyView;
 }) => {
+  const { user } = useAppStore();
+
   return (
     <TableBodyRow className="grid-cols-7 gap-16 lg:max-llg:gap-8" gap="2rem">
       {/* Property */}
       <TableBody
-        href="/properties/2"
+        href={getListingProps(data.listing, user as UserType)?.href}
         className="col-span-2 mx-0 flex gap-2 truncate"
       >
         <TbPropertyImage
-          title={data.title}
+          title={data.listing.property_type + " at " + data.listing.city}
           image="/assets/images/niceHome.png"
         />
         <div className="flex h-full flex-col justify-between gap-5">
-          <h4 className="line-clamp-1 font-bold">{data.title}</h4>
+          <h4 className="line-clamp-1 font-bold">
+            {data.listing.property_type + " at " + data.listing.city}
+          </h4>
           {/* <p className="-mt-2 truncate text-[0.8125rem] text-[#B0B0B0]">
             Assin Fosu
           </p> */}
           {/* <PaymentStructure monthlyPrice={3000} advancePayment="one year" /> */}
-          <span className="text-shade-200">{formatPrice(data.price)}</span>
+          <span className="text-shade-200">
+            {formatPrice(data.listing.monthly_amount as number)}
+          </span>
         </div>
       </TableBody>
       {/* Completed */}

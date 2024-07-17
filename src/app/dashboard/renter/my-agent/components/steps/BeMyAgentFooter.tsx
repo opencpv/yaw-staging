@@ -56,6 +56,7 @@ const BeMyAgentFooter = () => {
 
   const handleForward = () => {
     validateForm();
+    // validate the form on last but one slide
     if (lastButOneSlide) {
       if (Object.keys(errors).length > 0) {
         onOpen();
@@ -73,9 +74,9 @@ const BeMyAgentFooter = () => {
   };
 
   const handlePayment = () => {
-    // is_active needs to be set is true.
     // Id can be gotten from agentRequest in BeMyAgentStepsStore
     // matched_properties needs to be set to []
+    // maybe created_at needs to be set to now. I am not sure about that.
   };
 
   return (
@@ -88,7 +89,7 @@ const BeMyAgentFooter = () => {
           <ul className="list-disc pl-10">
             {errors &&
               Object.values(errors).map((value: any) => (
-                <li key={value}>{value.split("is")[0]}</li>
+                <li key={value}>{value.split("is")[0]}</li> // Try to get actual field name
               ))}
           </ul>
         }
@@ -102,23 +103,25 @@ const BeMyAgentFooter = () => {
         )}
       >
         <Button
-          color={!firstSlide ? "primary" : undefined}
-          variant={!firstSlide ? "outline" : "default"}
+          color="primary"
+          variant="outline"
           className={cn(
-            "col-span-1 h-[58px] rounded-lg font-semibold focus:outline-none xs:text-base sm:min-w-[16rem]",
+            "col-span-1 rounded-lg font-semibold focus:outline-none xs:text-base sm:h-[58px] sm:min-w-[16rem]",
             {
-              "bg-primary/5 text-primary hover:bg-primary/20": firstSlide,
-              invisible: lastSlide,
+              invisible: firstSlide || lastSlide,
             },
           )}
           onClick={handleBack}
         >
-          {firstSlide ? "Cancel" : "Back"}
+          Back
         </Button>
         <Button
           color="primary"
           className={cn(
-            "col-span-1 h-[58px] rounded-lg font-semibold focus:outline-none xs:text-base sm:min-w-[16rem]",
+            "col-span-1 whitespace-nowrap rounded-lg font-semibold focus:outline-none xs:text-base sm:h-[58px] sm:min-w-[16rem]",
+            {
+              hidden: agentRequest?.is_paid,
+            },
           )}
           onClick={() => {
             lastSlide ? handlePayment() : handleForward();

@@ -22,7 +22,7 @@ const RenterExplore = (props: Props) => {
           tag="Free"
           title="Be The First To Know"
           description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis mollitia eius recusandae sed, quis, vitae sequi praesentium natus id dolores atque omnis facilis tempore exercitationem perferendis sit alias consequuntur nemo."
-          href="/dashboard/renter/be-the-first-to-know"
+          href="/dashboard/renter/be-the-first-to-know/manage-criteria"
         />
         <ExploreFeatureCard
           tag="Premium"
