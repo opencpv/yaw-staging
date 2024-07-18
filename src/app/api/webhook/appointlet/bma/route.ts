@@ -12,7 +12,9 @@ export const POST = async (req: NextRequest) => {
     if (body.action === "Meeting.scheduled") {
       await supabase
         .from("agent_request_matches")
-        .update({
+        .insert({
+          property_id: 61,
+          request_id: 8,
           meeting_id: body.entity.id,
           start_date: body.entity.start,
           end_date: body.entity.end,
