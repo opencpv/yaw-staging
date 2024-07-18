@@ -177,22 +177,43 @@ export type Database = {
       }
       agent_request_matches: {
         Row: {
+          cancel_url: string | null
+          completed_at: string | null
           created_at: string
+          end_date: string | null
           id: number
-          property_id: number
-          request_id: number
+          meeting_id: number | null
+          property_id: number | null
+          request_id: number | null
+          reschedule_url: string | null
+          start_date: string | null
+          type: string | null
         }
         Insert: {
+          cancel_url?: string | null
+          completed_at?: string | null
           created_at?: string
+          end_date?: string | null
           id?: number
-          property_id: number
-          request_id: number
+          meeting_id?: number | null
+          property_id?: number | null
+          request_id?: number | null
+          reschedule_url?: string | null
+          start_date?: string | null
+          type?: string | null
         }
         Update: {
+          cancel_url?: string | null
+          completed_at?: string | null
           created_at?: string
+          end_date?: string | null
           id?: number
-          property_id?: number
-          request_id?: number
+          meeting_id?: number | null
+          property_id?: number | null
+          request_id?: number | null
+          reschedule_url?: string | null
+          start_date?: string | null
+          type?: string | null
         }
         Relationships: [
           {

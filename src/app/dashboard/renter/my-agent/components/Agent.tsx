@@ -47,15 +47,15 @@ export default function Agent({
       router.replace(`?a=217${agentRequest.id}`, { scroll: false });
 
       if (agentRequestMatches) {
-        agentRequestMatches.scrollIntoView({ behavior: "smooth" });
+        setTimeout(() => {
+          agentRequestMatches.scrollIntoView({ behavior: "smooth" });
+        }, 500);
       }
     }
   };
 
   const handleEdit = () => {
-    router.push(
-      `/dashboard/renter/my-agent/agent/edit/181${agentRequest.id}`,
-    );
+    router.push(`/dashboard/renter/my-agent/agent/edit/181${agentRequest.id}`);
     setAgentRequest(agentRequest);
   };
 
@@ -150,9 +150,14 @@ export default function Agent({
             },
           )}
         >
-          <div className={cn( "flex items-center gap-2 rounded-full bg-secondary-50 px-2 py-1", {
-            "bg-warning-bg *:text-warning": !hasMatch && isActive,
-          } ) }>
+          <div
+            className={cn(
+              "flex items-center gap-2 rounded-full bg-secondary-50 px-2 py-1",
+              {
+                "bg-warning-bg *:text-warning": !hasMatch && isActive,
+              },
+            )}
+          >
             {hasMatch && isActive && (
               <>
                 <CaAgentTickGreenBg />

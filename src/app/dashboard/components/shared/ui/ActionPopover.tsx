@@ -33,12 +33,17 @@ export const ActionPopover = (props: Props) => {
 type TriggerProps = {
   className?: string;
   children: React.ReactNode;
-  onClick: () => void;
+  onClick?: () => void;
+  onMouseOver?: () => void;
 };
 
 export const ActionItemTrigger = (props: TriggerProps) => {
   return (
-    <PopoverTrigger className="h-fit w-fit" onClick={props.onClick}>
+    <PopoverTrigger
+      className="h-fit w-fit"
+      onClick={props.onClick}
+      onMouseOver={props.onMouseOver}
+    >
       <button className={cn(props.className)}>{props.children}</button>
     </PopoverTrigger>
   );

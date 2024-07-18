@@ -4,12 +4,12 @@ import React, { useEffect, useRef, useState } from "react";
 import Appointlet from "@appointlet/appointlet.js";
 import "@appointlet/appointlet.js/dist/appointlet.min.css";
 
-const SchedulingPage = () => {
+const NewMeetingPage = () => {
   const [appointlet, setAppointlet] = useState(null);
   const embedContainerRef = useRef<HTMLElement>(null);
-  const [meetingData, setMeetingData] = useState(null);
 
   useEffect(() => {
+    const containerRef = embedContainerRef.current;
     // Create an instance of the Appointlet object, passing in your scheduling page URL
     const appointletInstance = new Appointlet(
       "https://appt.link/meet-with-rentrightGH/be-my-agent-renter",
@@ -18,9 +18,9 @@ const SchedulingPage = () => {
 
     // Clean up on unmount
     return () => {
-      if (embedContainerRef.current) {
+      if (containerRef) {
         //@ts-ignore
-        embedContainerRef.current.innerHTML = ""; // Clear the container
+        containerRef.innerHTML = ""; // Clear the container
       }
     };
   }, []);
@@ -29,10 +29,7 @@ const SchedulingPage = () => {
     if (appointlet && embedContainerRef.current) {
       const embedSchedulingPage = async () => {
         //@ts-ignore
-        const meetingData = await appointlet.inlineEmbed(
-          embedContainerRef.current,
-        );
-        setMeetingData(meetingData);
+        await appointlet.inlineEmbed(embedContainerRef.current);
       };
       embedSchedulingPage();
     }
@@ -41,4 +38,4 @@ const SchedulingPage = () => {
   return <main ref={embedContainerRef} />;
 };
 
-export default SchedulingPage;
+export default NewMeetingPage;

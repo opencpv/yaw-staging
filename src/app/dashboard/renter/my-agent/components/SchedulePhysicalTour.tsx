@@ -1,13 +1,9 @@
 import React from "react";
 import ActionButton from "./ActionButton";
 
-type Props = {
-  active?: boolean;
-};
-
 export default function SchedulePhysicalTour() {
   return (
-    <ActionButton href={"/dashboard/renter/my-agent/agent/4324/schedule"} title="Schedule physical tour">
+    <ActionButton actionType="Physical Tour" title="Schedule physical tour">
       <span className="lg:max-xl:hidden">Schedule physical tour</span>
       <span className="hidden lg:max-xl:inline">Physical tour</span>
     </ActionButton>

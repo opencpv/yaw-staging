@@ -68,9 +68,14 @@ export const useFetchAgentRequestMatches = ({
 
   if (agentRequest)
     query = supabase
-      .from("merged_property_view")
-      .select("*, profiles!inner(id, is_certified)")
-      .in("id", (agentRequest?.matched_properties as number[]) || []);
+      //.from("merged_property_view")
+      //.select("*, profiles!inner(id, is_certified)")
+      //.in("id", (agentRequest?.matched_properties as number[]) || []);
+      .from("agent_request_matches")
+      .select(
+        "*, property!inner(id, images, property_type, city, monthly_amount)",
+      )
+      .eq("request_id", agentRequestId);
 
   const result = useQuery({
     queryKey: ["agent_request_matches", userId, agentRequestId],

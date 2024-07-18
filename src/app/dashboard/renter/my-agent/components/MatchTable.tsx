@@ -1,7 +1,6 @@
 import ScheduleVirtualTour from "./ScheduleVirtualTour";
-import ApplicationForm from "@/components/__shared/ui/application-form";
 import CallOut from "@/components/__shared/ui/CallOut";
-import React, { useEffect } from "react";
+import React, { createContext, useEffect } from "react";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import {
   Table,
@@ -16,7 +15,7 @@ import {
 } from "../../../components/shared/table/Table";
 import TbPropertyImageSm from "../../../components/shared/TbPropertyImageSm";
 import TbPropertyImage from "../../../components/shared/TbPropertyImage";
-import { formatDate } from "@/lib/utils/stringManipulation";
+import { formatDateOnly } from "@/lib/utils/stringManipulation";
 import { useSearchParams } from "next/navigation";
 import SchedulePhysicalTour from "./SchedulePhysicalTour";
 import NoMatchState from "./NoMatchState";
@@ -27,8 +26,21 @@ import {
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { Skeleton } from "@nextui-org/react";
 import TableSkeleton from "@/app/dashboard/components/shared/skeleton/TableSkeleton";
-import { getListingProps } from "@/lib/enum";
 import { cn } from "@/lib/utils";
+import RentIt from "./RentIt";
+
+type Match = AgentRequestMatch & {
+  property: {
+    id: number;
+    city: string;
+    monthly_amount: number;
+    property_type: string;
+  };
+};
+
+export const BeMyAgentScheduleContext = createContext<{
+  match: Match;
+} | null>(null);
 
 export default function MatchTable() {
   const { user } = useAppStore();
@@ -89,12 +101,8 @@ export default function MatchTable() {
           )}
           {matches &&
             matches?.length > 0 &&
-            matches?.map((match: MergedPropertyView) => (
-              <MatchRow
-                key={match.id as number}
-                completedDate=""
-                listing={match}
-              />
+            matches?.map((match: Match) => (
+              <MatchRow key={match.id as number} match={match} />
             ))}
         </TableBodyRowGroup>
       </Table>
@@ -109,119 +117,112 @@ export default function MatchTable() {
         )}
         {matches &&
           matches?.length > 0 &&
-          matches?.map((match: MergedPropertyView) => (
-            <MatchRowMobile key={match.id} completedDate="" listing={match} />
+          matches?.map((match: Match) => (
+            <MatchRowMobile key={match.id} match={match} />
           ))}
       </TableSm>
     </section>
   );
 }
 
-const MatchRowMobile = (data: {
-  completedDate: string;
-  listing: MergedPropertyView;
-}) => {
-  const { user } = useAppStore();
+const MatchRowMobile = ({ match }: { match: Match }) => {
   return (
-    <TableRowSm>
-      {/* Property */}
-      <TableBodySm href={getListingProps(data.listing, user as UserType)?.href}>
-        <div className="flex flex-wrap justify-between gap-5 truncate xsm:flex-nowrap">
-          <TbPropertyImageSm
-            title={data.listing.property_type + " at " + data.listing.city}
-            image="/assets/images/niceHome.png"
-          />
-          <div className="flex flex-col justify-between gap-2">
-            <h4 className="truncate">
-              {data.listing.property_type + " at " + data.listing.city}
-            </h4>
-            <span className="text-shade-200">
-              {formatPrice(data.listing.monthly_amount as number)}
-            </span>
+    <BeMyAgentScheduleContext.Provider
+      value={{
+        match,
+      }}
+    >
+      <TableRowSm>
+        {/* Property */}
+        <TableBodySm href={`/properties/${match.property.id}`}>
+          <div className="flex flex-wrap justify-between gap-5 truncate xsm:flex-nowrap">
+            <TbPropertyImageSm
+              title={
+                match.property.property_type + " at " + match.property.city
+              }
+              image="/assets/images/niceHome.png"
+            />
+            <div className="flex flex-col justify-between gap-2">
+              <h4 className="truncate">
+                {match.property.property_type + " at " + match.property.city}
+              </h4>
+              <span className="text-shade-200">
+                {formatPrice(match.property.monthly_amount as number)}
+              </span>
+            </div>
           </div>
-        </div>
-      </TableBodySm>
-      {/* Completed */}
-      <TableBodySm className="flex items-center justify-between gap-5 pt-3">
-        <h4 className="font-bold">Completed</h4>
-        <div className="flex flex-col items-center justify-center text-center">
-          <p className="font-semibold">{formatDate("15 Aug 2023")}</p>
-        </div>
-      </TableBodySm>
-      {/* Actions */}
-      <TableBodySm className="space-y-4 py-3">
-        <h4 className="font-bold">Actions</h4>
-        <div className="mx-auto flex w-full max-w-sm flex-col items-center justify-center gap-2">
-          <div className="flex w-full items-center justify-center">
-            {" "}
-            <ApplicationForm type="simple" variant="agent-form" />
+        </TableBodySm>
+        {/* Completed */}
+        <TableBodySm className="flex items-center justify-between gap-5 pt-3">
+          <h4 className="font-bold">Completed</h4>
+          <div className="flex flex-col items-center justify-center text-center">
+            <p className="font-semibold">
+              {formatDateOnly(match.completed_at as string)}
+            </p>
           </div>
-          <div className="w-full">
+        </TableBodySm>
+        {/* Actions */}
+        <TableBodySm className="space-y-4 py-3">
+          <h4 className="font-bold">Actions</h4>
+          <div className="mx-auto flex w-full max-w-sm flex-col items-center justify-center gap-2">
+            <RentIt />
             <ScheduleVirtualTour />
-          </div>{" "}
-          <div className="w-full">
-            {" "}
             <SchedulePhysicalTour />
-          </div>{" "}
-        </div>
-      </TableBodySm>
-    </TableRowSm>
+          </div>
+        </TableBodySm>
+      </TableRowSm>
+    </BeMyAgentScheduleContext.Provider>
   );
 };
 
-const MatchRow = (data: {
-  completedDate: string;
-  listing: MergedPropertyView;
-}) => {
-  const { user } = useAppStore();
-
+const MatchRow = ({ match }: { match: Match }) => {
   return (
-    <TableBodyRow className="grid-cols-7 gap-16 lg:max-llg:gap-8" gap="2rem">
-      {/* Property */}
-      <TableBody
-        href={getListingProps(data.listing, user as UserType)?.href}
-        className="col-span-2 mx-0 flex gap-2 truncate"
-      >
-        <TbPropertyImage
-          title={data.listing.property_type + " at " + data.listing.city}
-          image="/assets/images/niceHome.png"
-        />
-        <div className="flex h-full flex-col justify-between gap-5">
-          <h4 className="line-clamp-1 font-bold">
-            {data.listing.property_type + " at " + data.listing.city}
-          </h4>
-          {/* <p className="-mt-2 truncate text-[0.8125rem] text-[#B0B0B0]">
+    <BeMyAgentScheduleContext.Provider
+      value={{
+        match,
+      }}
+    >
+      <TableBodyRow className="grid-cols-7 gap-16 lg:max-llg:gap-8" gap="2rem">
+        {/* Property */}
+        <TableBody
+          href={`/properties/${match.property.id}`}
+          className="col-span-2 mx-0 flex gap-2 truncate"
+        >
+          <TbPropertyImage
+            title={match.property.property_type + " at " + match.property.city}
+            image="/assets/images/niceHome.png"
+          />
+          <div className="flex h-full flex-col justify-between gap-5">
+            <h4 className="line-clamp-1 font-bold">
+              {match.property.property_type + " at " + match.property.city}
+            </h4>
+            {/* <p className="-mt-2 truncate text-[0.8125rem] text-[#B0B0B0]">
             Assin Fosu
           </p> */}
-          {/* <PaymentStructure monthlyPrice={3000} advancePayment="one year" /> */}
-          <span className="text-shade-200">
-            {formatPrice(data.listing.monthly_amount as number)}
-          </span>
-        </div>
-      </TableBody>
-      {/* Completed */}
-      <TableBody className="col-span-1 text-center">
-        <p className="font-semibold">{formatDate("15 Aug 2022")}</p>
-        {/* <p className="text-[0.625rem] text-shade-200">20 days ago</p> */}
-      </TableBody>
-      {/* Actions */}
-      <TableBody className="col-span-4">
-        <div className="grid w-full grid-cols-3 items-center justify-center lg:gap-x-5">
-          <div>
-            {" "}
-            <ApplicationForm type="simple" variant="agent-form" />
+            {/* <PaymentStructure monthlyPrice={3000} advancePayment="one year" /> */}
+            <span className="text-shade-200">
+              {formatPrice(match.property.monthly_amount as number)}
+            </span>
           </div>
-          <div>
-            <ScheduleVirtualTour />
-          </div>{" "}
-          <div>
-            {" "}
-            <SchedulePhysicalTour />
-          </div>{" "}
-        </div>
+        </TableBody>
+        {/* Completed */}
+        <TableBody className="col-span-1 text-center">
+          <p className="font-semibold">
+            {formatDateOnly(match.completed_at as string)}
+          </p>
+          {/* <p className="text-[0.625rem] text-shade-200">20 days ago</p> */}
+        </TableBody>
+        {/* Actions */}
+        <TableBody className="col-span-4">
+          <div className="grid w-full grid-cols-3 items-center justify-center lg:gap-x-5">
+            <RentIt />
 
-        {/* i have not done the component that shows that that a live tour has been scheduled and displays the time */}
-      </TableBody>
-    </TableBodyRow>
+            <ScheduleVirtualTour />
+
+            <SchedulePhysicalTour />
+          </div>
+        </TableBody>
+      </TableBodyRow>
+    </BeMyAgentScheduleContext.Provider>
   );
 };

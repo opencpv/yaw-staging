@@ -30,6 +30,7 @@ declare global {
   type SearchCriteria = Tables<"search_critieria">;
   type AgentRequest = Tables<"agent_request">;
   type BlockedUser = Tables<"blocked_users">;
+  type AgentRequestMatch = Tables<"agent_request_matches">
 
   type PaymentStructure =
     | "Yearly"
