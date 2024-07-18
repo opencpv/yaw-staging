@@ -9,43 +9,53 @@ export const POST = async (req: NextRequest) => {
 
   try {
     const body = await req.json();
-    if (body.action === "Meeting.scheduled") {
-      await supabase
-        .from("agent_request_matches")
-        .insert({
-          property_id: 61,
-          request_id: 8,
-          meeting_id: body.entity.id,
-          start_date: body.entity.start,
-          end_date: body.entity.end,
-          cancel_url: body.attendees[0].cancel_url,
-          reschedule_url: body.attendees[0].reschedule_url,
-          type: "Physical Tour",
-        })
-        .eq("id", 3);
-    } else if (body.action === "Meeting.rescheduled") {
-      await supabase
-        .from("agent_request_matches")
-        .update({
-          start_date: body.entity.start,
-          end_date: body.entity.end,
-          cancel_url: body.attendees[0].cancel_url,
-          reschedule_url: body.attendees[0].reschedule_url,
-        })
-        .match({ id: 3, meeting_id: body.entity.id });
-    } else if (body.action === "Meeting.cancelled") {
-      await supabase
-        .from("agent_request_matches")
-        .update({
-          start_date: null,
-          end_date: null,
-          meeting_id: null,
-          cancel_url: null,
-          reschedule_url: null,
-          type: null,
-        })
-        .match({ id: 3, meeting_id: body.entity.id });
-    }
+    await supabase.from("agent_request_matches").insert({
+      property_id: 61,
+      request_id: 8,
+      meeting_id: body.entity.id,
+      start_date: body.entity.start,
+      end_date: body.entity.end,
+      cancel_url: body.attendees[0].cancel_url,
+      reschedule_url: body.attendees[0].reschedule_url,
+      type: "Physical Tour",
+    });
+    // if (body.action === "Meeting.scheduled") {
+    //   await supabase
+    //     .from("agent_request_matches")
+    //     .insert({
+    //       property_id: 61,
+    //       request_id: 8,
+    //       meeting_id: body.entity.id,
+    //       start_date: body.entity.start,
+    //       end_date: body.entity.end,
+    //       cancel_url: body.attendees[0].cancel_url,
+    //       reschedule_url: body.attendees[0].reschedule_url,
+    //       type: "Physical Tour",
+    //     })
+    //     .eq("id", 3);
+    // } else if (body.action === "Meeting.rescheduled") {
+    //   await supabase
+    //     .from("agent_request_matches")
+    //     .update({
+    //       start_date: body.entity.start,
+    //       end_date: body.entity.end,
+    //       cancel_url: body.attendees[0].cancel_url,
+    //       reschedule_url: body.attendees[0].reschedule_url,
+    //     })
+    //     .match({ id: 3, meeting_id: body.entity.id });
+    // } else if (body.action === "Meeting.cancelled") {
+    //   await supabase
+    //     .from("agent_request_matches")
+    //     .update({
+    //       start_date: null,
+    //       end_date: null,
+    //       meeting_id: null,
+    //       cancel_url: null,
+    //       reschedule_url: null,
+    //       type: null,
+    //     })
+    //     .match({ id: 3, meeting_id: body.entity.id });
+    // }
     return new NextResponse(
       JSON.stringify({ message: "Processed successfully" }),
       { status: 200 },
