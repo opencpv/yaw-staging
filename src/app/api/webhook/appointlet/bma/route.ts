@@ -18,9 +18,9 @@ export const POST = async (req: NextRequest) => {
           end_date: body.entity.end,
           cancel_url: body.attendees[0].cancel_url,
           reschedule_url: body.attendees[0].reschedule_url,
-          type: actionType,
+          type: "Physical Tour",
         })
-        .eq("id", Number(matchId));
+        .eq("id", 3);
     } else if (body.action === "Meeting.rescheduled") {
       await supabase
         .from("agent_request_matches")
@@ -30,7 +30,7 @@ export const POST = async (req: NextRequest) => {
           cancel_url: body.attendees[0].cancel_url,
           reschedule_url: body.attendees[0].reschedule_url,
         })
-        .match({ id: Number(matchId), meeting_id: body.entity.id });
+        .match({ id: 3, meeting_id: body.entity.id });
     } else if (body.action === "Meeting.cancelled") {
       await supabase
         .from("agent_request_matches")
@@ -42,7 +42,7 @@ export const POST = async (req: NextRequest) => {
           reschedule_url: null,
           type: null,
         })
-        .match({ id: Number(matchId), meeting_id: body.entity.id });
+        .match({ id: 3, meeting_id: body.entity.id });
     }
     return new NextResponse(
       JSON.stringify({ message: "Processed successfully" }),
