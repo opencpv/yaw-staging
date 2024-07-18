@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 //@ts-ignore
-import Appointlet from "@appointlet/appointlet.js";
+// import Appointlet from "@appointlet/appointlet.js";
 import "@appointlet/appointlet.js/dist/appointlet.min.css";
 
 const NewMeetingPage = () => {
@@ -11,10 +11,15 @@ const NewMeetingPage = () => {
   useEffect(() => {
     const containerRef = embedContainerRef.current;
     // Create an instance of the Appointlet object, passing in your scheduling page URL
-    const appointletInstance = new Appointlet(
-      "https://appt.link/meet-with-rentrightGH/be-my-agent-renter",
-    );
-    setAppointlet(appointletInstance);
+    const getInstance = async () => {
+      //@ts-ignore
+      const Appointlet = (await import("@appointlet/appointlet.js")).default;
+      const appointletInstance = new Appointlet(
+        "https://appt.link/meet-with-rentrightGH/be-my-agent-renter",
+      );
+      setAppointlet(appointletInstance);
+    };
+    getInstance();
 
     // Clean up on unmount
     return () => {
