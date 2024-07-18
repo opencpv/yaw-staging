@@ -22,13 +22,10 @@ export default function ActionButton(props: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const match = useContext(BeMyAgentScheduleContext)?.match;
 
-  console.log("ActionButton", match?.request_id, match?.property_id);
-
   const handleNewMeeting = () => {
     setLoading(true);
     getMeetingPage({
-      requestId: match?.request_id as number,
-      propertyId: match?.property_id as number,
+      matchId: match?.id as number,
       actionType: props.actionType,
     });
   };
