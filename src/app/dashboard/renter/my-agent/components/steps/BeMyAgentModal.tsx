@@ -21,6 +21,7 @@ import { usePathname } from "next/navigation";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useAddAgentRequest } from "../../services";
 import capitalizeName from "@/lib/utils/stringManipulation";
+import {views as BeMyAgentViews} from "./BeMyAgentForm";
 
 type Props = {
   button?: "Hire Us Now" | "Get Started" | "Ghost" | "Edit" | "Price";
@@ -75,6 +76,8 @@ const BeMyAgentModal = (props: Props) => {
     isOpenEditPage,
     onCloseEditPage,
     onClose,
+    setActiveSlide,
+    activeSlide,
     setAgentRequest,
   } = BeMyAgentStepsStore();
 
@@ -89,6 +92,7 @@ const BeMyAgentModal = (props: Props) => {
     pathname?.includes("create") ? onOpen() : onClose();
     if (isSuccess) {
       setAgentRequest(agentRequestData);
+      setActiveSlide(BeMyAgentViews.length - 1);
       localStorage.removeItem("bma-creation-steps");
     }
   }, [
@@ -100,6 +104,7 @@ const BeMyAgentModal = (props: Props) => {
     setAgentRequest,
     isSuccess,
     agentRequestData,
+    setActiveSlide,
   ]);
 
   return (
@@ -115,6 +120,7 @@ const BeMyAgentModal = (props: Props) => {
           variant={"green-fade-light"}
           className={props.buttonClassName}
           onClick={() => {
+            setActiveSlide(0);
             setAgentRequest(null);
           }}
         />
@@ -122,7 +128,10 @@ const BeMyAgentModal = (props: Props) => {
         <Button
           variant="ghost"
           className={props.buttonClassName}
-          onClick={props.onClick}
+          onClick={() => {
+              setActiveSlide(BeMyAgentViews.length - 1);
+              props.onClick?.()
+            }}
         >
           {props.content}
         </Button>
@@ -134,7 +143,10 @@ const BeMyAgentModal = (props: Props) => {
             "flex w-fit items-center justify-center rounded-md bg-secondary-50 p-4 text-neutral-800",
             props.buttonClassName,
           )}
-          onClick={props.onClick}
+          onClick={() => {
+              setActiveSlide(BeMyAgentViews.length - 1);
+              props.onClick?.()
+            }}
         >
           <MdOutlineEdit size={16} />
         </Button>
@@ -145,6 +157,7 @@ const BeMyAgentModal = (props: Props) => {
           variant={"green-dark"}
           className={props.buttonClassName}
           onClick={() => {
+            setActiveSlide(0);
             setAgentRequest(null);
           }}
         />
@@ -155,6 +168,7 @@ const BeMyAgentModal = (props: Props) => {
           content={formatPrice(props.content as number)}
           className={props.buttonClassName}
           onClick={() => {
+            setActiveSlide(0);
             setAgentRequest(null);
           }}
         />
@@ -316,11 +330,6 @@ const BeMyAgentModal = (props: Props) => {
         }}
         validationSchema={BeMyAgentValidationSchema}
         onSubmit={(values) => {
-          const evicted = values.evicted === "Yes" ? true : false;
-          const convicted = values.convicted === "Yes" ? true : false;
-          const hasPets = values.hasPets === "Yes" ? true : false;
-          const hasVehicles = values.hasVehicles === "Yes" ? true : false;
-
           addAgentRequest({
             search_title: values.searchTitle,
             location: values.location,
@@ -350,10 +359,10 @@ const BeMyAgentModal = (props: Props) => {
             title: values.title,
             first_name: values.firstName,
             last_name: values.lastName,
-            evicted: evicted,
-            convicted: convicted,
-            has_pets: hasPets,
-            has_vehicles: hasVehicles,
+            evicted: values.evicted,
+            convicted: values.convicted,
+            has_pets: values.hasPets,
+            has_vehicles: values.hasVehicles,
             current_address_1: values.currentAddress1,
             current_address_2: values.currentAddress2,
             job_title: values.jobTitle,

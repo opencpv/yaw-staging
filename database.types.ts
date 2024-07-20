@@ -13,7 +13,7 @@ export type Database = {
         Row: {
           age: string | null
           city: string | null
-          convicted: boolean | null
+          convicted: string | null
           country: string | null
           created_at: string
           current_address_1: string | null
@@ -22,11 +22,11 @@ export type Database = {
           employer: string | null
           employer_country: string | null
           employment_status: string | null
-          evicted: boolean | null
+          evicted: string | null
           features: string[] | null
           first_name: string | null
-          has_pets: boolean | null
-          has_vehicles: boolean | null
+          has_pets: string | null
+          has_vehicles: string | null
           id: number
           is_paid: boolean
           job_title: string | null
@@ -60,7 +60,7 @@ export type Database = {
         Insert: {
           age?: string | null
           city?: string | null
-          convicted?: boolean | null
+          convicted?: string | null
           country?: string | null
           created_at?: string
           current_address_1?: string | null
@@ -69,11 +69,11 @@ export type Database = {
           employer?: string | null
           employer_country?: string | null
           employment_status?: string | null
-          evicted?: boolean | null
+          evicted?: string | null
           features?: string[] | null
           first_name?: string | null
-          has_pets?: boolean | null
-          has_vehicles?: boolean | null
+          has_pets?: string | null
+          has_vehicles?: string | null
           id?: number
           is_paid?: boolean
           job_title?: string | null
@@ -107,7 +107,7 @@ export type Database = {
         Update: {
           age?: string | null
           city?: string | null
-          convicted?: boolean | null
+          convicted?: string | null
           country?: string | null
           created_at?: string
           current_address_1?: string | null
@@ -116,11 +116,11 @@ export type Database = {
           employer?: string | null
           employer_country?: string | null
           employment_status?: string | null
-          evicted?: boolean | null
+          evicted?: string | null
           features?: string[] | null
           first_name?: string | null
-          has_pets?: boolean | null
-          has_vehicles?: boolean | null
+          has_pets?: string | null
+          has_vehicles?: string | null
           id?: number
           is_paid?: boolean
           job_title?: string | null

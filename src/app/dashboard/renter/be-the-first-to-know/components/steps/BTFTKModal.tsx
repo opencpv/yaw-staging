@@ -19,6 +19,7 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import { usePathname } from "next/navigation";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import capitalizeName from "@/lib/utils/stringManipulation";
+import { views as BTFTKViews } from "./BTFTKForm";
 
 type Props = {
   buttonClassName?: string;
@@ -58,6 +59,7 @@ const BTFTKModal = (props: Props) => {
     criterion,
     onOpenEditPage,
     isOpenEditPage,
+    setActiveSlide,
     onCloseEditPage,
     setCriterion,
     onClose,
@@ -69,10 +71,19 @@ const BTFTKModal = (props: Props) => {
     pathname?.includes("edit") ? onOpenEditPage() : onCloseEditPage();
     pathname?.includes("create") ? onOpen() : onClose();
     if (isSuccess) {
+      setActiveSlide(BTFTKViews.length - 1);
       localStorage.removeItem("btftk-creation-steps");
       localStorage.removeItem("btftk-edit-steps");
     }
-  }, [onOpen, onClose, pathname, onOpenEditPage, onCloseEditPage, isSuccess]);
+  }, [
+    onOpen,
+    onClose,
+    setActiveSlide,
+    pathname,
+    onOpenEditPage,
+    onCloseEditPage,
+    isSuccess,
+  ]);
 
   return (
     <div
@@ -88,6 +99,7 @@ const BTFTKModal = (props: Props) => {
           "max-xs:rounded-xl max-xs:shadow-md": props.float,
         })}
         onClick={() => {
+          setActiveSlide(0);
           setCriterion(null);
         }}
       >
@@ -183,7 +195,7 @@ const BTFTKModal = (props: Props) => {
           <StepsModal
             header={!lastSlide && <BTFTKHeader />}
             body={<Body />}
-            footer={!lastSlide &&  <BTFTKFooter />}
+            footer={!lastSlide && <BTFTKFooter />}
             open={isOpenEditPage || isOpen}
             footerClassName={lastSlide ? "border-t-0" : "border-t"}
           />

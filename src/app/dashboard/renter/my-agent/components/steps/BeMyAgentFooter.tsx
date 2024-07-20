@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { views as BeMyAgentViews } from "./BeMyAgentForm";
 import {
@@ -8,24 +8,13 @@ import {
 import Button from "@/components/__shared/ui/button/Button";
 import { useFormikContext } from "formik";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import { usePathname, useRouter } from "next/navigation";
 import { useDisclosure } from "@nextui-org/react";
 import Modal from "@/components/__shared/ui/modals/Modal";
 
 const BeMyAgentFooter = () => {
-  const router = useRouter();
-  const pathname = usePathname();
-  const { submitForm, resetForm, validateForm, errors } = useFormikContext();
-  const {
-    activeSlide,
-    setActiveSlide,
-    firstSlide,
-    lastSlide,
-    onClose,
-    setAgentRequest,
-    agentRequest,
-    onCloseEditPage,
-  } = BeMyAgentStepsStore();
+  const { submitForm, validateForm, errors, isSubmitting, setSubmitting } = useFormikContext();
+  const { activeSlide, setActiveSlide, firstSlide, lastSlide, agentRequest } =
+    BeMyAgentStepsStore();
 
   const [BeMyAgentCreationSteps, setBeMyAgentCreationSteps] =
     useLocalStorage<Partial<
@@ -35,23 +24,13 @@ const BeMyAgentFooter = () => {
   const lastButOneSlide = activeSlide === BeMyAgentViews.length - 2;
   const { onOpenChange, isOpen, onOpen } = useDisclosure();
 
+
   const handleBack = () => {
-    if (activeSlide > 0) {
-      setActiveSlide(activeSlide - 1);
-      setBeMyAgentCreationSteps({
-        ...BeMyAgentCreationSteps,
-        activeSlide: activeSlide - 1,
-      });
-    } else {
-      resetForm({});
-      onClose();
-      onCloseEditPage();
-      setAgentRequest(null);
-      localStorage.removeItem("bma-creation-steps");
-      pathname?.includes("edit") &&
-        router.replace("/dashboard/renter/my-agent/agent");
-      pathname?.includes("create") && router.back();
-    }
+    setActiveSlide(activeSlide - 1);
+    setBeMyAgentCreationSteps({
+      ...BeMyAgentCreationSteps,
+      activeSlide: activeSlide - 1,
+    });
   };
 
   const handleForward = () => {
@@ -61,7 +40,6 @@ const BeMyAgentFooter = () => {
       if (Object.keys(errors).length > 0) {
         onOpen();
       } else {
-        setActiveSlide(activeSlide + 1);
         submitForm();
       }
     } else {
@@ -78,6 +56,12 @@ const BeMyAgentFooter = () => {
     // matched_properties needs to be set to []
     // maybe created_at needs to be set to now. I am not sure about that.
   };
+
+  useEffect(() => {
+    if (lastSlide){
+      setSubmitting(false)
+    }
+  },[lastSlide, setSubmitting])
 
   return (
     <>
@@ -127,6 +111,7 @@ const BeMyAgentFooter = () => {
             lastSlide ? handlePayment() : handleForward();
           }}
           type={lastSlide ? "button" : "submit"}
+          isLoading={isSubmitting}
         >
           {lastSlide
             ? "Proceed to pay"

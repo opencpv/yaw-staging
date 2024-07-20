@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import Progress from "../../../../components/shared/Progress";
 import Button from "@/components/__shared/ui/button/Button";
 import {
@@ -9,15 +9,16 @@ import { useFormikContext } from "formik";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { usePathname, useRouter } from "next/navigation";
 import { useAddAgentRequest } from "../../services";
-import { views as BeMyAgentViews } from "./BeMyAgentForm";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import { useAppStore } from "@/store/dashboard/AppStore";
+import { LiaTimesSolid } from "react-icons/lia";
+import { cn } from "@/lib/utils";
 
 const BeMyAgentHeader = () => {
   const { user } = useAppStore();
   const router = useRouter();
   const pathname = usePathname();
-  const { values, resetForm } =
+  const { values, resetForm, setSubmitting } =
     useFormikContext<typeof BeMyAgentDefaultValues>();
 
   const [BeMyAgentCreationSteps] = useLocalStorage<{
@@ -43,6 +44,13 @@ const BeMyAgentHeader = () => {
     isSuccess,
   } = useAddAgentRequest();
 
+  const handleActiveSlide = useCallback(() => {
+    setActiveSlide(BeMyAgentCreationSteps?.activeSlide ?? activeSlide);
+  }, [
+    setActiveSlide,
+    activeSlide,
+    BeMyAgentCreationSteps?.activeSlide,])
+
   useEffect(() => {
     if (isSuccess) {
       resetForm({});
@@ -54,13 +62,8 @@ const BeMyAgentHeader = () => {
         router.replace("/dashboard/renter/my-agent/agent");
       pathname?.includes("create") && router.back();
     }
-    if (pathname?.includes("edit")) {
-      setActiveSlide(BeMyAgentViews.length - 1);
-    } else if (pathname?.includes("edit") !== true)
-      setActiveSlide(BeMyAgentCreationSteps?.activeSlide ?? activeSlide);
-    else {
-      setActiveSlide(0);
-    }
+    if (pathname?.includes("create"))
+    handleActiveSlide();
   }, [
     isSuccess,
     onClose,
@@ -71,15 +74,23 @@ const BeMyAgentHeader = () => {
     router,
     resetForm,
     agentRequest?.id,
-    //BTFTKEditSteps,
-    //BTFTKCreationSteps?.activeSlide,
-  ]); // commented out to prevent maxiumum depth
+    lastSlide,
+    setSubmitting,
+    handleActiveSlide,
+  ]);
+
+  const handleCancel = () => {
+    resetForm({});
+      onClose();
+      onCloseEditPage();
+      setAgentRequest(null);
+      localStorage.removeItem("bma-creation-steps");
+      pathname?.includes("edit") &&
+        router.replace("/dashboard/renter/my-agent/agent");
+      pathname?.includes("create") && router.back();
+  }
 
   const handleSaveAndExit = () => {
-    const evicted = values.evicted === "Yes" ? true : false;
-    const convicted = values.convicted === "Yes" ? true : false;
-    const hasPets = values.hasPets === "Yes" ? true : false;
-    const hasVehicles = values.hasVehicles === "Yes" ? true : false;
 
     addAgentRequest({
       search_title: values.searchTitle,
@@ -108,10 +119,10 @@ const BeMyAgentHeader = () => {
       title: values.title,
       first_name: values.firstName,
       last_name: values.lastName,
-      evicted: evicted,
-      convicted: convicted,
-      has_pets: hasPets,
-      has_vehicles: hasVehicles,
+      evicted: values.evicted,
+      convicted: values.convicted,
+      has_pets: values.hasPets,
+      has_vehicles: values.hasVehicles,
       current_address_1: values.currentAddress1,
       current_address_2: values.currentAddress2,
       job_title: values.jobTitle,
@@ -130,17 +141,39 @@ const BeMyAgentHeader = () => {
     <section className="flex flex-col gap-4">
       <div className="flex items-center justify-between gap-5">
         <h4>Be My Agent</h4>
+        <span className="flex gap-3 items-center">
+          {/* For very small screens */}
+        <Button
+          isIconOnly
+          color="white"
+          greenHover
+          radius="full"
+          className="border px-3 py-3 rounded-full xsm:hidden"
+          onClick={handleCancel}
+        >
+            <LiaTimesSolid />
+        </Button>
         <Button
           color="white"
           greenHover
           radius="full"
-          className="border px-5"
+          className="border px-5 max-xsm:hidden"
+          onClick={handleCancel}
+        >
+            {lastSlide ? "Exit" : "Cancel"}
+        </Button>
+          <Button
+          color="white"
+          greenHover
+          radius="full"
+          className={cn("border px-5", { hidden: lastSlide})}
           isLoading={isPending}
           disabled={isError}
           onClick={handleSaveAndExit}
         >
           Save & Exit
         </Button>
+        </span>
       </div>
 
       <div className="mt-0 w-full">
