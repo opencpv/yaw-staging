@@ -46,7 +46,7 @@ const MySearch = ({ filter }: { filter: string }) => {
       <h2>My Search</h2>
       {/* xl and above */}
       <OptionFilterTabs
-        options={["Favourites", "Recommendations", "All"]}
+        options={["All", "Recommendations", "Recently Viewed"]}
         selectedKey={page.replaceAll("-", " ")}
         onSelectionChange={(key) => {
           const slug = slugify(key.toString());
@@ -63,7 +63,7 @@ const MySearch = ({ filter }: { filter: string }) => {
       {/* xl and below */}
       <div className="md:hidden">
         <Select
-          options={["Favourites", "Recommendations", "All"]}
+          options={["All", "Recommendations", "Recently Viewed"]}
           value={page.replaceAll("-", " ")}
           className="mx-0 w-60 font-bold"
           valueClassName="font-bold"

@@ -16,6 +16,7 @@ const ItemCard = ({ description, title, image, price, href }: ItemProps) => {
       onClick={() =>
         pathname === "/moving-sale" && setPreviousPath(window.location.href)
       }
+      className="block min-w-[400px]"
     >
       <div className="text-sm">
         <div className="relative mb-5 h-60 w-full">

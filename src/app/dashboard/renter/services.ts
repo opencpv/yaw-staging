@@ -3,7 +3,7 @@ import supabase from "@/lib/utils/supabase/supabaseClient";
 import { useOffsetInfiniteScrollQuery } from "@supabase-cache-helpers/postgrest-swr";
 
 export const useFetchRenterBookmarks = ({
-  filter = "favourites",
+  filter = "all",
   userId,
 }: {
   filter: string;
@@ -20,10 +20,10 @@ export const useFetchRenterBookmarks = ({
   if (formattedFilter === "favourites") {
     query = query.contains("favorite_user_ids", [userId]);
   }
-  if (formattedFilter === "be-the-first-to-know") {
+  if (formattedFilter === "recommendations") {
     query = query;
   }
-  if (formattedFilter === "recommendations") {
+  if (formattedFilter === "recently-viewed") {
     query = query;
   }
   if (formattedFilter === "all") {

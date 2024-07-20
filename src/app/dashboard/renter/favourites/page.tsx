@@ -1,16 +1,16 @@
 "use client";
+import React from "react";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
-import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
 import ListingCard from "@/components/__shared/ui/listing/ListingCard";
-import ContactPreferenceToggle from "../../dashboard/components/shared/ContactPreferenceToggle";
-import { useFetchUserFavorites } from "../../dashboard/renter/favourites/services";
+import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
 import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
 import EmptyState from "@/components/__shared/ui/states/EmptyState";
 import { getListingProps } from "@/lib/enum";
+import { useFetchUserFavorites } from "./services";
+import ContactPreferenceToggle from "../../components/shared/ContactPreferenceToggle";
 
-export default function FavoritePage() {
+const FavourtiesPage = () => {
   const { user } = useAppStore();
 
   const {
@@ -23,29 +23,20 @@ export default function FavoritePage() {
   } = useFetchUserFavorites({ userId: user?.id as string });
 
   return (
-    <div>
-      <h2>My Favourites</h2>
-      <div className="mt-4">
+    <main className="w-full space-y-8 bg-white">
+      <h2>Favourites</h2>
+
+      <div className="relative bottom-4">
         <ContactPreferenceToggle />
       </div>
+
       <section className="listing-grid">
         <FetchingStates
           data={listings}
           error={error}
           isLoading={isLoading}
           isLoadingComponent={<SkeletonListing count={3} />}
-          errorComponent={
-            <SomethingWentWrong
-              className="mt-20 h-fit"
-              onTryAgain={() => mutate()}
-            />
-          }
-          emptyStateComponent={
-            <EmptyState
-              buttonLabel="Search for properties"
-              href="/properties"
-            />
-          }
+          emptyStateComponent={<EmptyState />}
         />
         {listings?.map((listing) => (
           <ListingCard
@@ -60,6 +51,8 @@ export default function FavoritePage() {
         isValidating={isValidating}
         loadMore={loadMore}
       />
-    </div>
+    </main>
   );
-}
+};
+
+export default FavourtiesPage;

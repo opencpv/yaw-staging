@@ -1,17 +1,22 @@
 "use client";
 import { useFetchFeaturedListings } from "@/app/properties/services";
-import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
+//import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 import Button from "@/components/__shared/ui/button/Button";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
-import ListingCard from "@/components/__shared/ui/listing/ListingCard";
+//import ListingCard from "@/components/__shared/ui/listing/ListingCard";
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
-import SliderGrid from "@/components/__shared/ui/sliders/SliderGrid";
+//import SliderGrid from "@/components/__shared/ui/sliders/SliderGrid";
 import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
 import { getListingProps } from "@/lib/enum";
 import { useIntersectionObserver } from "@/lib/utils/intersectionObserver";
 import { useAppStore } from "@/store/dashboard/AppStore";
+import dynamic from "next/dynamic";
 import React from "react";
 import { HiChevronRight } from "react-icons/hi";
+
+const FramerWrapper = dynamic(() => import("@/components/__shared/hoc/FramerWrapper"))
+const ListingCard = dynamic(() => import("@/components/__shared/ui/listing/ListingCard")) 
+const SliderGrid = dynamic(() => import("@/components/__shared/ui/sliders/SliderGrid"))
 
 type Props = {
   data: any;
@@ -19,7 +24,7 @@ type Props = {
 
 const FeaturedListings = (props: Props) => {
   const { user } = useAppStore();
-  const { ref, hasIntersected } = useIntersectionObserver();
+  //const { ref, hasIntersected } = useIntersectionObserver();
 
   const {
     data: listings,
@@ -28,14 +33,13 @@ const FeaturedListings = (props: Props) => {
     mutate,
   } = useFetchFeaturedListings({ limit: 9 });
 
-  console.log(listings, error)
 
   return (
     <section className="wrapper section sm:pb-0">
       <div className="space-y-10">
         <div
           className="flex items-center justify-between gap-5"
-          ref={ref as unknown as React.LegacyRef<HTMLDivElement>}
+          //ref={ref as unknown as React.LegacyRef<HTMLDivElement>}
         >
           <h2 className="uppercase">Featured Listings</h2>
           <Button
@@ -48,7 +52,6 @@ const FeaturedListings = (props: Props) => {
           </Button>
         </div>
         {/* Listing Slider */}
-        {hasIntersected && (
           <FramerWrapper className="relative mx-auto h-fit max-w-screen-xl">
             <FetchingStates
               data={listings}
@@ -76,7 +79,6 @@ const FeaturedListings = (props: Props) => {
               }
             />
           </FramerWrapper>
-        )}
         <Button
           variant="ghost"
           color="primary"

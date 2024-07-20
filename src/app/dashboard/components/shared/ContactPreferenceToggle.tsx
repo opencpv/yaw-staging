@@ -5,9 +5,8 @@ import supabase from "@/lib/utils/supabase/supabaseClient";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import React, { useState } from "react";
 
-type Props = {};
 
-const ContactPreferenceToggle = (props: Props) => {
+const ContactPreferenceToggle = () => {
   const { user, setUser } = useAppStore();
   const [selected, setSelected] = useState(user?.should_be_contacted || false);
   const { onOpen } = useToastDisclosure();
@@ -20,7 +19,6 @@ const ContactPreferenceToggle = (props: Props) => {
         { user_id: user?.id, should_be_contacted: isSelected },
         { onConflict: "user_id" },
       )
-      .eq("user_id", user?.id as string)
       .select("id, should_be_contacted")
       .maybeSingle();
 
