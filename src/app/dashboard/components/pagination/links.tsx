@@ -1,9 +1,5 @@
 import { IoMdNotificationsOutline } from "react-icons/io";
-import {
-  IoSettingsOutline,
-  IoFolderOutline,
-  IoEyeOutline,
-} from "react-icons/io5";
+import { IoSettingsOutline, IoFolderOutline } from "react-icons/io5";
 import { TbHomeDot, TbHomeSearch } from "react-icons/tb";
 import { MdOutlineRealEstateAgent, MdOutlineRecommend } from "react-icons/md";
 import { PiCirclesFour } from "react-icons/pi";
@@ -74,13 +70,13 @@ export const PgRoutesRenter = [
     name: "favourites",
     url: "",
     icon: <FaRegHeart />,
-    link: "/dashboard/renter/my-search/favourites",
+    link: "/dashboard/renter/favourites",
   },
   {
-    name: "recommendations",
+    name: "notifications",
     url: "",
-    icon: <MdOutlineRecommend />,
-    link: "/dashboard/renter/my-search/recommendations",
+    icon: <IoMdNotificationsOutline />,
+    link: "/dashboard/renter/notifications",
   },
   {
     name: "settings",

@@ -1,6 +1,7 @@
 "use server";
 
 import supabase from "@/lib/utils/supabase/supabaseClient";
+import { revalidatePath } from "next/cache";
 
 export const updateLikedProperty = async (
   userId: number | string,
@@ -11,7 +12,7 @@ export const updateLikedProperty = async (
   const { data } = await supabase
     .from("user_favorite_properties")
     .select("id")
-    .eq("property_id", propertyId)
+    .match({ user_id: userId, property_id: propertyId })
     .single();
 
   if (data) {
@@ -19,8 +20,7 @@ export const updateLikedProperty = async (
     query = await supabase
       .from("user_favorite_properties")
       .delete()
-      .eq("user_id", userId)
-      .eq("property_id", propertyId)
+      .match({ user_id: userId, property_id: propertyId })
       .select();
   } else {
     query = await supabase
@@ -31,6 +31,8 @@ export const updateLikedProperty = async (
       })
       .select();
   }
+  
+  revalidatePath("/dashboard/renter/favourites");
 
   return query;
 };
