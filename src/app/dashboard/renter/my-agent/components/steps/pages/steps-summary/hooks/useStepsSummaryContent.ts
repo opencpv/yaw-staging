@@ -75,13 +75,10 @@ const useStepsSummaryContent = () => {
     {
       title: "Screening & Other Details",
       content: {
-        Have_you_ever_been_evicted:
-          capitalizeName(values?.evicted as string) || "-",
-        Have_you_ever_been_convicted:
-          capitalizeName(values?.convicted as string) || "-",
-        Do_you_have_any_pets: capitalizeName(values?.hasPets as string) || "-",
-        Do_you_have_any_vehicles:
-          capitalizeName(values?.hasVehicles as string) || "-",
+        Have_you_ever_been_evicted: (values?.evicted as string) || "-",
+        Have_you_ever_been_convicted: (values?.convicted as string) || "-",
+        Do_you_have_any_pets: (values?.hasPets as string) || "-",
+        Do_you_have_any_vehicles: (values?.hasVehicles as string) || "-",
       },
     },
     {
@@ -92,7 +89,7 @@ const useStepsSummaryContent = () => {
         City: values?.city || "-",
         Country: values?.country || "-",
         Preferred_Method_of_Contact:
-          (capitalizeName(values?.preferredMethodOfContact) as string) || "-",
+          (values?.preferredMethodOfContact as string) || "-",
         Email: values?.email || "-",
         Phone: values?.whatsApp || "-",
       },

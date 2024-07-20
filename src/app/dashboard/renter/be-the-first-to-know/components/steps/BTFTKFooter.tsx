@@ -8,24 +8,14 @@ import Button from "@/components/__shared/ui/button/Button";
 import { useFormikContext } from "formik";
 import { useDisclosure } from "@nextui-org/react";
 import Modal from "@/components/__shared/ui/modals/Modal";
-import { usePathname, useRouter } from "next/navigation";
 import { useLocalStorage } from "@uidotdev/usehooks";
+import { useEffect } from "react";
 
 const BTFTKFooter = () => {
-  const router = useRouter();
-  const pathname = usePathname();
-
-  const { submitForm, resetForm, validateForm, errors, isSubmitting } =
+  const { submitForm, validateForm, errors, isSubmitting, setSubmitting } =
     useFormikContext();
-  const {
-    activeSlide,
-    setActiveSlide,
-    firstSlide,
-    lastSlide,
-    onClose,
-    setCriterion,
-    onCloseEditPage,
-  } = BTFTKStepsStore();
+  const { activeSlide, setActiveSlide, firstSlide, lastSlide } =
+    BTFTKStepsStore();
   const lastButOneSlide = activeSlide === BTFTKViews.length - 2;
   const { onOpenChange, isOpen, onOpen } = useDisclosure();
 
@@ -34,24 +24,11 @@ const BTFTKFooter = () => {
   > | null>("btftk-creation-steps");
 
   const handleBack = () => {
-    if (activeSlide > 0) {
-      setActiveSlide(activeSlide - 1);
-      setBTFTKCreationSteps({
-        ...BTFTKCreationSteps,
-        activeSlide: activeSlide - 1,
-      });
-    } else {
-      resetForm({});
-      onClose();
-      onCloseEditPage();
-      setCriterion(null);
-      localStorage.removeItem("btftk-creation-steps");
-      pathname?.includes("edit") &&
-        router.replace(
-          "/dashboard/renter/be-the-first-to-know/manage-criteria",
-        );
-      pathname?.includes("create") && router.back();
-    }
+    setActiveSlide(activeSlide - 1);
+    setBTFTKCreationSteps({
+      ...BTFTKCreationSteps,
+      activeSlide: activeSlide - 1,
+    });
   };
 
   const handleForward = () => {
@@ -60,7 +37,6 @@ const BTFTKFooter = () => {
       if (Object.keys(errors).length > 0) {
         onOpen();
       } else {
-        setActiveSlide(activeSlide + 1);
         submitForm();
       }
     } else {
@@ -71,6 +47,12 @@ const BTFTKFooter = () => {
       });
     }
   };
+
+  useEffect(() => {
+    if (lastSlide) {
+      setSubmitting(false);
+    }
+  }, [lastSlide, setSubmitting]);
 
   return (
     <>
@@ -98,7 +80,7 @@ const BTFTKFooter = () => {
           color="primary"
           variant="outline"
           className={cn(
-            "col-span-1 sm:h-[58px] rounded-lg font-semibold focus:outline-none xs:text-base sm:min-w-[16rem]",
+            "col-span-1 rounded-lg font-semibold focus:outline-none xs:text-base sm:h-[58px] sm:min-w-[16rem]",
             {
               invisible: firstSlide || lastSlide,
             },
@@ -110,7 +92,7 @@ const BTFTKFooter = () => {
         <Button
           color="primary"
           className={cn(
-            "col-span-1 sm:h-[58px] rounded-lg font-semibold focus:outline-none xs:text-base sm:min-w-[16rem]",
+            "col-span-1 rounded-lg font-semibold focus:outline-none xs:text-base sm:h-[58px] sm:min-w-[16rem]",
           )}
           onClick={() => {
             handleForward();

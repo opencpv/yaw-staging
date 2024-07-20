@@ -1,11 +1,12 @@
 import supabase from "@/lib/utils/supabase/supabaseClient";
-import { cookies } from "next/headers";
+//import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
 export const POST = async (req: NextRequest) => {
-  const scheduleInfo = cookies().get("bma-schedule-info")?.value;
-  const matchId = scheduleInfo?.split(";")[0];
-  const actionType = scheduleInfo?.split(";")[1];
+  //const cookieStore = cookies();
+  //const scheduleInfo = cookieStore.get("bma-schedule-info")?.value;
+  //const matchId = scheduleInfo?.split(";")[0];
+  //const actionType = scheduleInfo?.split(";")[1];
 
   try {
     const body = await req.json();
@@ -53,11 +54,13 @@ export const POST = async (req: NextRequest) => {
     //    })
     //    .match({ id: 3, meeting_id: body.entity.id });
     //}
+
     return new NextResponse(
       JSON.stringify({ message: "Processed successfully" }),
       { status: 200 },
     );
   } catch (error: any) {
+    console.log(error);
     return new NextResponse(JSON.stringify({ error: error.message }), {
       status: 400,
     });

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import Progress from "@/app/dashboard/components/shared/Progress";
 import Button from "@/components/__shared/ui/button/Button";
 import {
@@ -12,6 +12,8 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import { usePathname, useRouter } from "next/navigation";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import capitalizeName from "@/lib/utils/stringManipulation";
+import { LiaTimesSolid } from "react-icons/lia";
+import { cn } from "@/lib/utils";
 
 const FirstToKnowHeader = () => {
   const router = useRouter();
@@ -22,6 +24,7 @@ const FirstToKnowHeader = () => {
   const [BTFTKCreationSteps, setBTFTKCreationSteps] = useLocalStorage<{
     activeSlide: number;
   }>("btftk-creation-steps");
+
   const [BTFTKEditSteps, setBTFTKEditSteps] = useLocalStorage<
     { criterion: number; activeSlide: number }[]
   >("btftk-edit-steps", []);
@@ -29,6 +32,7 @@ const FirstToKnowHeader = () => {
   const {
     progressValue,
     setActiveSlide,
+    lastSlide,
     activeSlide,
     onClose,
     onCloseEditPage,
@@ -44,6 +48,12 @@ const FirstToKnowHeader = () => {
     isSuccess,
   } = useAddSearchCriteria();
 
+  const handleActiveSlide = useCallback(() => {
+    setActiveSlide(BTFTKCreationSteps?.activeSlide ?? activeSlide);
+  }, [setActiveSlide, activeSlide, BTFTKCreationSteps?.activeSlide]);
+
+  
+
   useEffect(() => {
     if (isSuccess) {
       resetForm({});
@@ -58,16 +68,10 @@ const FirstToKnowHeader = () => {
         );
       pathname?.includes("create") && router.back();
     }
-    if (pathname?.includes("edit")) {
-      setActiveSlide(
-        BTFTKEditSteps?.find((step) => step.criterion === criterion?.id)
-          ?.activeSlide ?? 1,
-      );
-    } else if (!pathname?.includes("edit"))
-      setActiveSlide(BTFTKCreationSteps?.activeSlide ?? activeSlide);
-    else {
-      setActiveSlide(0);
-    }
+    //if (pathname?.includes("edit")) {
+    //  handleActiveSlideEdit();
+    //}
+    if (pathname?.includes("create")) handleActiveSlide();
   }, [
     isSuccess,
     onClose,
@@ -78,10 +82,9 @@ const FirstToKnowHeader = () => {
     router,
     resetForm,
     criterion?.id,
-    activeSlide,
-    //BTFTKEditSteps,
-    //BTFTKCreationSteps?.activeSlide,
-  ]); // commented out to prevent infinite loop
+    handleActiveSlide,
+    //handleActiveSlideEdit,
+  ]);
 
   const handleBTFTKEditStepsStorage = () => {
     setBTFTKEditSteps((prevSteps) => {
@@ -94,6 +97,17 @@ const FirstToKnowHeader = () => {
       ];
     });
     setBTFTKCreationSteps({ activeSlide: 0 });
+  };
+
+  const handleCancel = () => {
+    resetForm({});
+    onClose();
+    onCloseEditPage();
+    setCriterion(null);
+    localStorage.removeItem("btftk-creation-steps");
+    pathname?.includes("edit") &&
+      router.replace("/dashboard/renter/be-the-first-to-know/manage-criteria");
+    pathname?.includes("create") && router.back();
   };
 
   const handleSaveAndExit = () => {
@@ -128,17 +142,39 @@ const FirstToKnowHeader = () => {
     <section className="flex flex-col gap-4">
       <div className="flex items-center justify-between gap-5">
         <h4>Be The First to Know</h4>
-        <Button
-          color="white"
-          greenHover
-          radius="full"
-          className="border px-5"
-          isLoading={isPending}
-          disabled={isError}
-          onClick={handleSaveAndExit}
-        >
-          Save & Exit
-        </Button>
+        <span className="flex items-center gap-3">
+          {/* For very small screens */}
+          <Button
+            isIconOnly
+            color="white"
+            greenHover
+            radius="full"
+            className="rounded-full border px-3 py-3 ssm:hidden"
+            onClick={handleCancel}
+          >
+            <LiaTimesSolid />
+          </Button>
+          <Button
+            color="white"
+            greenHover
+            radius="full"
+            className="border px-5 max-ssm:hidden"
+            onClick={handleCancel}
+          >
+            {lastSlide ? "Exit" : "Cancel"}
+          </Button>
+          <Button
+            color="white"
+            greenHover
+            radius="full"
+            className={cn("border px-5", { hidden: lastSlide })}
+            isLoading={isPending}
+            disabled={isError}
+            onClick={handleSaveAndExit}
+          >
+            Save & Exit
+          </Button>
+        </span>
       </div>
 
       <div className="mt-0 w-full">
