@@ -9,4 +9,5 @@ type ItemProps = {
   title: string;
   description: string;
   href: string;
+  className?: stringl
 };
