@@ -31,7 +31,7 @@ const ItemRelatedItems = (props: Props) => {
           isEnabled={false}
           hideScrollBar
           className="flex gap-5"
-      >
+        >
           {relatedItems?.map((item) => (
             <ItemCard
               key={item.id}
@@ -49,9 +49,10 @@ const ItemRelatedItems = (props: Props) => {
               description={item.description}
               image="/assets/images/about/young-couple.webp"
               price={item.price}
+              className="min-w-[350px]" 
             />
           ))}
-          </ScrollShadow>
+        </ScrollShadow>
       </section>
     );
   else
@@ -67,7 +68,7 @@ const ItemRelatedItems = (props: Props) => {
           hideScrollBar
           isEnabled={false}
           className="flex gap-5"
-      >
+        >
           {popularItems?.map((item) => (
             <ItemCard
               key={item.id}
@@ -85,6 +86,7 @@ const ItemRelatedItems = (props: Props) => {
               description={item.description}
               image="/assets/images/about/young-couple.webp"
               price={item.price}
+              className="min-w-[350px]"
             />
           ))}
         </ScrollShadow>

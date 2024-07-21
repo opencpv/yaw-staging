@@ -8,8 +8,6 @@ import { useSearchParams } from "next/navigation";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
 import EmptyState from "@/components/__shared/ui/states/EmptyState";
-import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
-import slugify from "@/lib/utils/slugify";
 import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
 import SkeletonItem from "@/components/__shared/ui/skeleton/SkeletonItem";
 import { cn } from "@/lib/utils";
@@ -66,20 +64,12 @@ function Items(props) {
         <SortFilter />
       </div>
       {/* Items */}
-      <section className="grid gap-x-4 gap-y-20 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <section className="grid gap-x-4 gap-y-20 justify-center sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
         <FetchingStates
           data={items}
           error={error}
           isLoading={isLoading}
           isLoadingComponent={<SkeletonItem count={4} />}
-          errorComponent={
-            <SomethingWentWrong
-              className="h-fit py-0"
-              onTryAgain={() => {
-                mutate();
-              }}
-            />
-          }
           emptyStateComponent={<EmptyState />}
         />
         {items?.slice(0, 8).map((item) => (
@@ -99,6 +89,7 @@ function Items(props) {
             description={item.description}
             image="/assets/images/about/young-couple.webp"
             price={item.price}
+            className="w-full max-sm:max-w-[350px]"
           />
         ))}
         {showAd && (

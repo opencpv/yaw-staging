@@ -1,4 +1,5 @@
 "use client";
+import { cn } from "@/lib/utils";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import { useItemPathStore } from "@/store/moving_sales/useMovingSalesStore";
 import Image from "next/image";
@@ -6,7 +7,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 
-const ItemCard = ({ description, title, image, price, href }: ItemProps) => {
+const ItemCard = ({ description, title, image, price, href, className }: ItemProps) => {
   const { setPreviousPath } = useItemPathStore();
   const pathname = usePathname();
 
@@ -16,7 +17,7 @@ const ItemCard = ({ description, title, image, price, href }: ItemProps) => {
       onClick={() =>
         pathname === "/moving-sale" && setPreviousPath(window.location.href)
       }
-      className="block min-w-[400px]"
+      className={ cn( "block", className ) }
     >
       <div className="text-sm">
         <div className="relative mb-5 h-60 w-full">
