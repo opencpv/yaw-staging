@@ -91,13 +91,17 @@ export const POST = async (req: NextRequest) => {
 
   try {
     const body = await req.json();
-    await supabase.from("agent_request_matches").insert({
-      request_id: 2,
-      property_id: Number(matchId),
-      action_type: actionType,
-      start_date: body.entity.start,
-      id: body.entity.id,
-    });
+    if (body.action === "Meeting.scheduled")
+      await supabase.from("agent_request_matches").insert({
+        request_id: 2,
+        property_id: Number(matchId),
+        type: actionType,
+        start_date: body.entity.start,
+        end_date: body.entity.end,
+        cancel_url: body.attendees[0].cancel_url,
+        reschedule_url: body.attendees[0].reschedule_url,
+        meeting_id: body.entity.id,
+      });
     return new NextResponse(
       JSON.stringify({ message: "Processed successfully" }),
       { status: 200 },
