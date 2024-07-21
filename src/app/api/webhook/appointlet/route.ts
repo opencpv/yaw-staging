@@ -100,8 +100,8 @@ export const POST = async (req: NextRequest) => {
         //type: actionType || "Diff Tour",
         start_date: body.entity.start,
         end_date: body.entity.end,
-        cancel_url: body.attendees[0].cancel_url,
-        reschedule_url: body.attendees[0].reschedule_url,
+        cancel_url: body.entity.attendees[0].cancel_url,
+        reschedule_url: body.entity.attendees[0].reschedule_url,
         //meeting_id: body.entity.id,
       });
     return new NextResponse(
