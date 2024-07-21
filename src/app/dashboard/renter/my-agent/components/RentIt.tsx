@@ -1,11 +1,10 @@
 import React from "react";
 import ActionButton from "./ActionButton";
 
-export default function RentIt() {
+export default function RentIt({match}: {match: AgentRequestMatch}) {
   return (
-    <ActionButton actionType="Rent it" title="Rent it">
-      <span className="lg:max-xl:hidden">Rent it</span>
-      <span className="hidden lg:max-xl:inline">Rent it</span>
+    <ActionButton match={match} actionType="Rent it" title="Rent it">
+      Rent it
     </ActionButton>
   );
 }
