@@ -95,13 +95,14 @@ export const POST = async (req: NextRequest) => {
       await supabase.from("agent_request_matches").insert({
         id: body.entity.id,
         request_id: 2,
-        property_id: Number(matchId) || 50,
-        type: actionType || "Diff Tour",
+        property_id: 50,
+        //property_id: Number(matchId) || 50,
+        //type: actionType || "Diff Tour",
         start_date: body.entity.start,
         end_date: body.entity.end,
         cancel_url: body.attendees[0].cancel_url,
         reschedule_url: body.attendees[0].reschedule_url,
-        meeting_id: body.entity.id,
+        //meeting_id: body.entity.id,
       });
     return new NextResponse(
       JSON.stringify({ message: "Processed successfully" }),
