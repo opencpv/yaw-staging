@@ -1,5 +1,5 @@
 //import supabase from "@/lib/utils/supabase/supabaseClient";
-////import { cookies } from "next/headers";
+import { cookies } from "next/headers";
 //import { NextRequest, NextResponse } from "next/server";
 //
 //export const POST = async (req: NextRequest) => {
@@ -84,11 +84,18 @@ import supabase from "@/lib/utils/supabase/supabaseClient";
 import { NextRequest, NextResponse } from "next/server";
 
 export const POST = async (req: NextRequest) => {
+  const cookieStore = cookies();
+  const scheduleInfo = cookieStore.get("bma-schedule-info")?.value;
+  const matchId = scheduleInfo?.split(";")[0];
+  const actionType = scheduleInfo?.split(";")[1];
+
   try {
     const body = await req.json();
     await supabase.from("agent_request_matches").insert({
       request_id: 2,
-      property_id: 50,
+      property_id: Number(matchId),
+      action_type: actionType,
+      start_date: body.entity.start,
       id: body.entity.id,
     });
     return new NextResponse(
