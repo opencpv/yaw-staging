@@ -93,6 +93,7 @@ export const POST = async (req: NextRequest) => {
     const body = await req.json();
     if (body.action === "Meeting.scheduled")
       await supabase.from("agent_request_matches").insert({
+        id: body.entity.id,
         request_id: 2,
         property_id: Number(matchId),
         type: actionType,

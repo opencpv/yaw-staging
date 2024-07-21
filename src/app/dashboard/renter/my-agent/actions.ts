@@ -9,9 +9,10 @@ export const getMeetingPage = (data: {
 }) => {
   cookies().set({
     name: "bma-schedule-info",
-    value: `${data.matchId};${data.actionType}`,
-    //path: "/b2b/data",
+    value: `${data.matchId},${data.actionType}`,
+    path: "/",
     maxAge: 20 * 60,
+    httpOnly: true,
   });
 
   redirect(`/dashboard/renter/my-agent/schedule`);
