@@ -15,5 +15,7 @@ export const getMeetingPage = (data: {
     httpOnly: true,
   });
 
+  console.log(cookies().get("bma-schedule-info")?.value);
+
   redirect(`/dashboard/renter/my-agent/schedule`);
 };

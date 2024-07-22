@@ -215,3 +215,16 @@ export const useAddAgentRequest = () => {
 
   return mutation;
 };
+
+
+export const sendDataToWebhook = async (data: {matchId: number, actionType: string}) => {
+  await fetch('/api/webhook/appointlet', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Custom-Source': 'rr-app', // Custom header to distinguish the source
+    },
+    body: JSON.stringify(data),
+  });
+
+};
