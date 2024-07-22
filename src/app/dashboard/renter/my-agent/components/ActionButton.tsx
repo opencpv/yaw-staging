@@ -27,16 +27,16 @@ export default function ActionButton(props: Props) {
   const handleNewMeeting = async () => {
     setLoading(true);
 
-    await sendDataToWebhook({
-      matchId: props.match?.id as number,
-      actionType: props.actionType,
-    });
-
-    router.push("/dashboard/renter/my-agent/schedule");
-    //getMeetingPage({
+    //await sendDataToWebhook({
     //  matchId: props.match?.id as number,
     //  actionType: props.actionType,
     //});
+    //
+    //router.push("/dashboard/renter/my-agent/schedule");
+    getMeetingPage({
+      matchId: props.match?.id as number,
+      actionType: props.actionType,
+    });
   };
 
   return (
