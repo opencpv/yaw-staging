@@ -15,7 +15,7 @@ const NewMeetingPage = () => {
       //@ts-ignore
       const Appointlet = (await import("@appointlet/appointlet.js")).default;
       const appointletInstance = new Appointlet(
-        "https://appt.link/meet-with-rentrightGH/be-my-agent-renter",
+        `https://appt.link/meet-with-rentrightGH/be-my-agent-renter?match_id=3`,
       );
       setAppointlet(appointletInstance);
     };
