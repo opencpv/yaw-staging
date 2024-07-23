@@ -6,7 +6,6 @@ export const middleware = async (req: NextRequest) => {
   const requestHeaders = new Headers(req.headers);
   requestHeaders.set("x-origin", origin);
   requestHeaders.set("x-pathname", pathname);
-  requestHeaders.set("X-Custom-Source", "rr-app");
 
   const res = NextResponse.next({
     request: {
