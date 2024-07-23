@@ -13,7 +13,7 @@ import {
 } from "@nextui-org/react";
 import { RefetchOptions } from "@tanstack/react-query";
 import { date, object, string } from "yup";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { generateUniqueString } from "@/lib/utils/stringManipulation";
 import { DatePicker } from "antd";
@@ -71,7 +71,7 @@ export default function AddInvoiceModal({ refetch, customerId }: Props) {
       closeButtonRef.current.click();
     } catch (error: any) {
       setloading(false);
-      toast.error(error.message, { toastId: "toast" });
+      toast.error(error.message);
     }
   };
   return (

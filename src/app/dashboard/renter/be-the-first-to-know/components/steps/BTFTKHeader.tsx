@@ -167,7 +167,7 @@ const FirstToKnowHeader = () => {
             color="white"
             greenHover
             radius="full"
-            className={cn("border px-5", { hidden: lastSlide })}
+            className={cn("border px-2 sm:px-5", { hidden: lastSlide })}
             isLoading={isPending}
             disabled={isError}
             onClick={handleSaveAndExit}

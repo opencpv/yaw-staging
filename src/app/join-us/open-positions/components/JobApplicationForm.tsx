@@ -17,7 +17,7 @@ import {
   isValidMobileNumber,
   updateFilename,
 } from "@/lib/utils";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import axios from "axios";
 import routes from "@/lib/utils/route";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -101,9 +101,7 @@ function JobApplicationForm({ variant, position }: Props) {
       })
       .catch((err) => {
         setLoading(false);
-        toast.error(err.message, {
-          toastId: "error",
-        });
+        toast.error(err.message);
       });
   };
   return (
@@ -242,9 +240,7 @@ function JobApplicationForm({ variant, position }: Props) {
                   const objKeys = Object.keys(errors);
                   if (objKeys.length > 0) {
                     objKeys.forEach((element: any) => {
-                      toast.error(`${errors[element as keyof typeof errors]}`, {
-                        toastId: element,
-                      });
+                      toast.error(`${errors[element as keyof typeof errors]}`);
                     });
                   } else {
                     setLoading(true);
@@ -288,9 +284,7 @@ function JobApplicationForm({ variant, position }: Props) {
                           );
                         })
                         .catch(() => {
-                          toast.error(`resume  upload unavailable`, {
-                            toastId: "toast",
-                          });
+                          toast.error(`resume  upload unavailable`);
                         }),
                     );
                     if (coverLetter) {

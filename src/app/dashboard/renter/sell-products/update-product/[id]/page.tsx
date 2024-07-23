@@ -17,7 +17,6 @@ import axios from "axios";
 import { generateString } from "@/lib/utils";
 import slugify from "@/lib/utils/slugify";
 import supabase from "@/lib/utils/supabase/supabaseClient";
-import { toast } from "react-toastify";
 import { useCurrentUserId } from "@/lib/custom-hooks/useCurrentUserId";
 import { useQuery } from "@tanstack/react-query";
 import { Product } from "@/lib/typings";

@@ -77,7 +77,7 @@ export default function MatchTable() {
         <CallOut content="Lorem ipsum dolor sit amet consectetur. Consequat elementum consequat interdum integer imperdiet nisl. Ipsum eu eu tortor enim est mauris in sem. Eget dignissim risus diam consectetur magna. Non." />
       </div>
       {/* table */}
-      <Table className={cn({ "lg:hidden": !matches })}>
+      <Table className={cn({ "min-h-80 lg:hidden": !matches })}>
         <TableHeaderRow
           className="grid-cols-7 gap-16 lg:max-llg:gap-8"
           gap="2rem"
@@ -103,7 +103,7 @@ export default function MatchTable() {
         </TableBodyRowGroup>
       </Table>
 
-      <TableSm className={cn("mx-auto", { hidden: !matches })}>
+      <TableSm className={cn("mx-auto min-h-80", { hidden: !matches })}>
         {matches?.length === 0 && (
           <TableRowSm>
             <TableBodySm>

@@ -12,7 +12,7 @@ import {
 } from "../ui/ActionPopover";
 import { ItemContext } from "@/app/dashboard/contexts/ItemContext";
 import { createClient } from "@/lib/utils/supabase/auth/client";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
 interface Props {

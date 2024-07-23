@@ -3,16 +3,14 @@ import Thumbs from "./Thumbs";
 import FeedbackSlider from "./FeedbackSlider";
 import Image from "next/image";
 import Button from "../button/Button";
-import {
-  useFeedbackDisclosure,
-  useToastDisclosure,
-} from "@/lib/custom-hooks/useCustomDisclosure";
+import { useFeedbackDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { cn } from "@/lib/utils";
 import { Form, Formik } from "formik";
 import FeedbackTextArea from "./FeedbackTextArea";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { setLocalStorageWithExpiry } from "@/lib/utils/localStorage";
 import { FEEDBACK_FLOATING_BUTTON_TTL } from "@/constants";
+import toast from "react-hot-toast";
 
 const FeedbackBody = ({
   handleCloseAfterSubmission,
@@ -22,8 +20,6 @@ const FeedbackBody = ({
   data: any;
 }) => {
   const feedback = data?.customFeedback;
-  const { onOpen } = useToastDisclosure();
-
   const initialValues = {
     value_a: 50,
     value_b: 50,
@@ -69,7 +65,7 @@ const FeedbackBody = ({
             feedback_title: "Website feedback", // From feedback.title ?
           });
           if (error) {
-            onOpen("Something went wrong. Please try again.", "error");
+            toast.error("Something went wrong. Please try again.");
             return;
           }
           handleCloseAfterSubmission();

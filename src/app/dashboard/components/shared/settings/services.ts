@@ -1,6 +1,6 @@
-import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 export const useFetchBlockedUsers = ({ userId }: { userId: string }) => {
   const query = useQuery({
@@ -25,7 +25,6 @@ export const useFetchBlockedUsers = ({ userId }: { userId: string }) => {
 
 export const useUnblockUser = () => {
   const queryClient = useQueryClient();
-  const { onOpen } = useToastDisclosure();
 
   const mutation = useMutation({
     mutationFn: async ({
@@ -48,7 +47,7 @@ export const useUnblockUser = () => {
       queryClient.invalidateQueries({ queryKey: ["blocked_users"] });
     },
     onError: () => {
-      onOpen("An error occurred. Please try again.", "error");
+     toast.error("An error occurred. Please try again.");
     },
   });
 
@@ -57,7 +56,6 @@ export const useUnblockUser = () => {
 
 export const useUnblockAllUsers = () => {
   const queryClient = useQueryClient();
-  const { onOpen } = useToastDisclosure();
 
   const mutation = useMutation({
     mutationFn: async ({ blockerId }: { blockerId: string }) => {
@@ -74,7 +72,7 @@ export const useUnblockAllUsers = () => {
       queryClient.invalidateQueries({ queryKey: ["blocked_users"] });
     },
     onError: () => {
-      onOpen("An error occurred. Please try again.", "error");
+     toast.error("An error occurred. Please try again.");
     },
   });
 

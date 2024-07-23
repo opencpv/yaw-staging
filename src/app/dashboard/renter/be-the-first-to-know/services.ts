@@ -1,4 +1,4 @@
-import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import { PROPERTY_DETAILS_SELECT_QUERY } from "@/constants";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import {
   useOffsetInfiniteScrollQuery,
@@ -10,6 +10,7 @@ import {
   useQuery as useReactQuery,
 } from "@tanstack/react-query";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export const useFetchSearchCriteria = ({
   userId,
@@ -90,9 +91,7 @@ export const useFetchCriteriaMatches = ({
 
   let query = supabase
     .from("merged_property_view")
-    .select(
-      "id, is_best_value, is_realtors_choice, is_featured, is_verified, is_lister_certified, profiles!inner(id, is_certified), property_type, description, city, bedrooms, monthly_amount, favorite_user_ids, subtitle, neighbourhood, advance_period, viewing_fee",
-    )
+    .select(PROPERTY_DETAILS_SELECT_QUERY)
     .in("id", propertyIds);
 
   return useOffsetInfiniteScrollQuery(query);
@@ -152,8 +151,6 @@ export const useFetchCriteriaOverview = ({ userId }: { userId: string }) => {
 };
 
 export const useDeleteSearchCriteria = () => {
-  const { onOpen: onToastOpen } = useToastDisclosure();
-
   const queryClient = useQueryClient();
   const deleteCriteria = async (data: { id: number; renter_id: string }) => {
     const { error } = await supabase
@@ -170,10 +167,10 @@ export const useDeleteSearchCriteria = () => {
     mutationFn: deleteCriteria,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["search_criteria"] });
-      onToastOpen("Criterion deleted successfully.", "success");
+      toast.success("Criterion deleted successfully.");
     },
     onError: () => {
-      onToastOpen("An error occurred. Please try again.", "error");
+      toast.error("An error occurred. Please try again.");
     },
   });
 
@@ -181,8 +178,6 @@ export const useDeleteSearchCriteria = () => {
 };
 
 export const useAddSearchCriteria = () => {
-  const { onOpen: onToastOpen } = useToastDisclosure();
-
   const queryClient = useQueryClient();
   const addCriteria = async (data: Partial<SearchCriteria>) => {
     const { error } = await supabase
@@ -197,11 +192,15 @@ export const useAddSearchCriteria = () => {
 
   const mutation = useMutation({
     mutationFn: addCriteria,
-    onSuccess: () => {
-      onToastOpen("Success!", "success");
+    onSuccess: (data, variables) => {
+      toast.success(
+        variables?.id
+          ? "Criterion updated successfully."
+          : "Criterion created successfully.",
+      );
     },
     onError: () => {
-      onToastOpen("An error occurred. Please try again.", "error");
+      toast.error("An error occurred. Please try again.");
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ["search_criteria"] });
@@ -212,8 +211,6 @@ export const useAddSearchCriteria = () => {
 };
 
 export const useUpdateCriteriaStatus = () => {
-  const { onOpen: onToastOpen } = useToastDisclosure();
-
   const queryClient = useQueryClient();
   const updateCriteria = async (data: {
     id: number;
@@ -249,7 +246,7 @@ export const useUpdateCriteriaStatus = () => {
       queryClient.invalidateQueries({ queryKey: ["search_criteria"] });
     },
     onError: () => {
-      onToastOpen("An error occurred. Please try again.", "error");
+      toast.error("An error occurred. Please try again.");
     },
   });
 

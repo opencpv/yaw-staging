@@ -19,7 +19,7 @@ import { CheckboxNoFormik as Checkbox } from "@/app/dashboard/components/shared/
 import axios from "axios";
 import { generateString } from "@/lib/utils";
 import slugify from "@/lib/utils/slugify";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import { useCurrentUserId } from "@/lib/custom-hooks/useCurrentUserId";
 
 interface CategoryProp {
@@ -127,9 +127,7 @@ const AddItemPage = () => {
                     }
                   })
                   .catch(() => {
-                    toast.error(`Image upload unavailable`, {
-                      toastId: "toast",
-                    });
+                    toast.error(`Image upload unavailable`);
                   }),
               );
             });
@@ -154,23 +152,17 @@ const AddItemPage = () => {
                   .then(({ data, error }) => {
                     console.log(error?.message);
                     if (error) {
-                      toast.error(`Something went wrong`, {
-                        toastId: "toast",
-                      });
+                      toast.error(`Something went wrong`);
                       setloading(false);
                     } else {
-                      toast.success(`Item added successfully`, {
-                        toastId: "toast",
-                      });
+                      toast.success(`Item added successfully`);
                       setloading(false);
                       window.history.back();
                     }
                   });
               })
               .catch(() => {
-                toast.error(`Something went wrong`, {
-                  toastId: "toast",
-                });
+                toast.error(`Something went wrong`);
                 setloading(false);
               });
           }}

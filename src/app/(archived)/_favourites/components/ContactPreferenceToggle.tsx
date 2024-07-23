@@ -1,17 +1,15 @@
 "use client";
 import Toggle from "@/components/__shared/ui/Toggle";
-import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 type Props = {};
 
 const ContactPreferenceToggle = (props: Props) => {
   const { user, setUser } = useAppStore();
   const [selected, setSelected] = useState(user?.should_be_contacted || false);
-  const { onOpen } = useToastDisclosure();
-
   const handleToggle = async (isSelected: boolean) => {
     setSelected(isSelected);
     const { error, data: preference } = await supabase
@@ -25,7 +23,7 @@ const ContactPreferenceToggle = (props: Props) => {
       .maybeSingle();
 
     if (error) {
-      onOpen("Something went wrong", "error");
+      toast.error("Something went wrong!");
       setSelected(!isSelected);
       return;
     }

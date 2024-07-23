@@ -5,9 +5,7 @@ import SubscribeForm from "@/components/__shared/ui/SubscribeForm";
 import { useDisclosure } from "@nextui-org/react";
 import React from "react";
 import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
-import { fadeIn } from "@/lib/animations";
-import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
-import ModalCloseIcon from "@/components/__shared/ui/modals/ModalCloseIcon";
+import toast from "react-hot-toast";
 
 type Props = {
   className?: string;
@@ -42,11 +40,10 @@ const SubscribeToBlogButton = ({ className }: Props) => {
 };
 
 export const SubscribeModalBody = ({ onClose }: { onClose: () => void }) => {
-  const { onOpen } = useToastDisclosure();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     // TODO: handle logic
     onClose();
-    onOpen("Congratulations, you are in the loop!", "success");
+    toast.success("Congratulations, you are in the loop!");
   };
 
   return (

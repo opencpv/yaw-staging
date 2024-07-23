@@ -2,10 +2,10 @@
 import { useDisclosure } from "@nextui-org/react";
 import React, { KeyboardEvent } from "react";
 import Modal from "../modals/Modal";
-import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import FeedbackHeader from "./FeedbackHeader";
 import FeedbackBody from "./FeedbackBody";
 import CloseModalIcon from "../icons/CloseModalIcon";
+import toast from "react-hot-toast";
 
 type Props = {
   className?: string;
@@ -15,13 +15,11 @@ type Props = {
 
 const Feedback = ({ children, data }: Props) => {
   const { onOpen, isOpen, onOpenChange, onClose } = useDisclosure();
-  const { onOpen: toastOnOpen } = useToastDisclosure();
 
   const handleCloseAfterSubmission = () => {
     onClose();
-    toastOnOpen(
+    toast.success(
       "Thank you! Your feedback is invaluable and will contribute to improving our services.",
-      "success",
     );
   };
 

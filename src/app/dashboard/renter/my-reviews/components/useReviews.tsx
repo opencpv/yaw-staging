@@ -1,26 +1,33 @@
-import { useToastDisclosureVariant1 } from "@/lib/custom-hooks/useCustomDisclosure";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 function useReviews() {
   const [reply, setReply] = useState(false);
-  const { onOpen: toastOpen } = useToastDisclosureVariant1();
 
-  const [filter, setFilter] = useState<any>('all')
+  const [filter, setFilter] = useState<any>("all");
 
   const replyReview = () => {
     setReply(false);
-    toastOpen('Your reply has been sent succesfully', 'success')
+    toast.success("Your reply has been sent succesfully.");
   };
 
   const updateReview = () => {
     setReply(false);
-    toastOpen('Your review has been updated succesfully', 'success')
+    toast.success("Your review has been updated succesfully.");
   };
 
   const deleteReview = () => {
-    toastOpen('Your review has been deleted', 'success')
+    toast.success("Your review has been deleted.");
   };
-  return { replyReview, setReply, reply, filter, setFilter, updateReview, deleteReview };
+  return {
+    replyReview,
+    setReply,
+    reply,
+    filter,
+    setFilter,
+    updateReview,
+    deleteReview,
+  };
 }
 
 export default useReviews;

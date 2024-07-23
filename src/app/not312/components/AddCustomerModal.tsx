@@ -12,7 +12,7 @@ import {
 } from "@nextui-org/react";
 import { RefetchOptions } from "@tanstack/react-query";
 import { object, string } from "yup";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { generateUniqueString } from "@/lib/utils/stringManipulation";
 
@@ -69,7 +69,7 @@ export default function AddCustomerModal({ refetch }: Props) {
       closeButtonRef.current.click();
     } catch (error: any) {
       setloading(false);
-      toast.error(error.message, { toastId: "toast" });
+      toast.error(error.message);
     }
   };
   return (

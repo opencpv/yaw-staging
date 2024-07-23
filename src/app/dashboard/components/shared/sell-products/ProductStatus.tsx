@@ -4,7 +4,7 @@ import { ItemPublicationStatus } from "./PublicationStatus";
 import Toggle from "@/components/__shared/ui/Toggle";
 import { ItemContext } from "@/app/dashboard/contexts/ItemContext";
 import { ProductStatusProp } from "@/lib/typings";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 
 interface Props {
   isAvailable: boolean;
@@ -35,10 +35,7 @@ const ProductStatus = ({ isAvailable, status, id, refetch }: Props) => {
       .select();
     refetch();
     if (!error) {
-      toast.success("Status updated successfully", {
-        toastId: "toast",
-        autoClose: 2000,
-      });
+      toast.success("Status updated successfully");
     }
   };
   return (

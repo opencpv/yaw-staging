@@ -12,17 +12,14 @@ import ContactUploadField from "./ContactUploadField";
 import ContactSubmitButton from "./ContactSubmitButton";
 import ContactFullNameField from "./ContactFullNameField";
 import ContactPhoneField from "./ContactPhoneField";
-import {
-  usePhoneInputDisclosure,
-  useToastDisclosure,
-} from "@/lib/custom-hooks/useCustomDisclosure";
+import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import CustomErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import { useRouter } from "next/navigation";
 import { generateString } from "@/lib/utils";
 import slugify from "@/lib/utils/slugify";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import Button from "@/components/__shared/ui/button/Button";
 import { UploadFile } from "../UploadFile";
 
@@ -46,7 +43,6 @@ const FormAdvertise = (props: Props) => {
   const { phone, setPhone, handleCountryChange, handlePhone } =
     usePhoneInputDisclosure();
 
-  const { onOpen } = useToastDisclosure();
   const router = useRouter();
 
   return (
@@ -87,9 +83,7 @@ const FormAdvertise = (props: Props) => {
               fileUrl = `${process.env.NEXT_PUBLIC_DO_CDN_URL}${newFilename}`;
             })
             .catch(() => {
-              toast.error(`Image upload unavailable`, {
-                toastId: "toast",
-              });
+              toast.error(`Image upload unavailable.`);
             }),
         );
         Promise.all([...fileUploadPromise])
@@ -111,20 +105,20 @@ const FormAdvertise = (props: Props) => {
               .select()
               .then(({ data, error }) => {
                 if (error) {
-                  onOpen("Something went wrong", "error");
+                  toast.error("Something went wrong.");
                   setLoading(false);
                 } else {
                   resetForm();
                   sessionStorage.removeItem("contactFormSession");
                   setPhone(undefined);
-                  onOpen("Your message has been sent", "success");
+                  toast.success("Successfully submitted.");
                   router.refresh();
                   setLoading(false);
                 }
               });
           })
           .catch(() => {
-            onOpen("Something went wrong", "error");
+            toast.error("Something went wrong.");
           });
       }}
       className=""

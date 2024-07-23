@@ -1,14 +1,13 @@
 import { styled } from "@stitches/react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { AiFillInstagram, AiOutlineLink } from "react-icons/ai";
-import { FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaFacebook, FaLinkedin } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Loader from "@/components/__shared/ui/loader/Loader";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import {
   usePhoneInputDisclosure,
-  useToastDisclosure,
 } from "@/lib/custom-hooks/useCustomDisclosure";
 import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
 import { useRouter } from "next/navigation";
@@ -18,6 +17,7 @@ import { RiPhoneFill, RiTwitterXFill, RiWhatsappFill } from "react-icons/ri";
 import { CheckboxNoFormik as Checkbox } from "@/app/dashboard/components/shared/ui/Checkbox";
 import ProfilePicture from "./ProfilePicture";
 import CountryInput from "@/components/__shared/ui/form/CountryInput";
+import toast from "react-hot-toast";
 
 interface Props {
   icon: any;
@@ -62,7 +62,6 @@ const ProfileInfo = () => {
   const [countries, setCountries] = useState([]);
   const [submitLoading, setSubmitLoading] = useState(false);
   const user = useAppStore((state) => state.user);
-  const { onOpen } = useToastDisclosure();
   const { phone, handlePhone, handleCountryChange } = usePhoneInputDisclosure();
   const {
     phone: whatsApp,
@@ -134,12 +133,12 @@ const ProfileInfo = () => {
                     .select();
 
                   if (data) {
-                    onOpen("Profile updated successfully", "success");
+                    toast.success("Profile updated successfully");
                     router.refresh();
                   }
                   if (error) throw error;
                 } catch (error) {
-                  onOpen("Error updating profile", "error");
+                  toast.error("Error updating profile");
                 } finally {
                   setSubmitLoading(false);
                 }
