@@ -9,8 +9,6 @@ import {
   ActionItemTrigger,
   ActionPopover,
 } from "@/app/dashboard/components/shared/ui/ActionPopover";
-import { sendDataToWebhook } from "../services";
-import { useRouter } from "next/navigation";
 
 type Props = {
   children: React.ReactNode;
@@ -20,22 +18,16 @@ type Props = {
 };
 
 export default function ActionButton(props: Props) {
-  const router = useRouter();
   const [loading, setLoading] = React.useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleNewMeeting = async () => {
     setLoading(true);
 
-    //await sendDataToWebhook({
-    //  matchId: props.match?.id as number,
-    //  actionType: props.actionType,
-    //});
-    //
-    //router.push("/dashboard/renter/my-agent/schedule");
     getMeetingPage({
       matchId: props.match?.id as number,
       actionType: props.actionType,
+      currentPath: window.location.href,
     });
   };
 
@@ -77,6 +69,12 @@ export default function ActionButton(props: Props) {
           )}
           title={props.title}
           isLoading={loading}
+          disabled={
+            (props.match?.meeting_id &&
+              props.match?.type?.toLowerCase() !==
+                props.actionType.toLowerCase()) ||
+            false
+          }
           onClick={handleNewMeeting}
         >
           {props.children}
