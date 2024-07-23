@@ -1,6 +1,5 @@
 import CaUploadIcon from "@/components/__shared/ui/icons/CaUploadIcon";
 import ErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
-import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { cn } from "@/lib/utils";
 import { useField } from "formik";
 import Image from "next/image";
@@ -27,6 +26,7 @@ import {
 import { useDisclosure } from "@nextui-org/react";
 import { createUUID } from "@/lib/utils/stringManipulation";
 import { motion } from "framer-motion";
+import toast from "react-hot-toast";
 
 interface Props {
   name?: string;
@@ -59,7 +59,6 @@ const FileUploader = ({
     undefined,
   );
   const [files, setFiles] = React.useState<any[]>([]);
-  const { onOpen } = useToastDisclosure();
 
   const onDropRejected = (
     fileRejections: FileRejection[],
@@ -67,15 +66,14 @@ const FileUploader = ({
   ) => {
     fileRejections.forEach((file) => {
       const { file: fileObj, errors } = file;
-      onOpen(
+     toast.error(
         `${errors[0].code.replaceAll("-", " ")} - ${fileObj.name} | ${
           errors[0].code === "file-too-large"
             ? "Maximum file size is 2MB"
             : errors[0].code === "file-too-small"
               ? "Minimum file size is 100KB"
               : null
-        }`,
-        "error",
+        }`
       );
     });
   };
@@ -83,7 +81,7 @@ const FileUploader = ({
   const onDrop = useCallback(
     (acceptedFiles: any) => {
       if (files.length + acceptedFiles.length > 5) {
-        onOpen("You can only upload up to 5 files", "error");
+       toast.error("You can only upload up to 5 files");
         return;
       }
 
@@ -114,7 +112,7 @@ const FileUploader = ({
         ),
       );
     },
-    [files, onOpen, helpers],
+    [files, helpers],
   );
 
   useEffect(() => {

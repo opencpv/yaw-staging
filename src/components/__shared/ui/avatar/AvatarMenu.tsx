@@ -14,11 +14,9 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@radix-ui/react-popover";
-import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
-import { useUserSession } from "@/lib/custom-hooks/database/useUserSession";
 import { createClient } from "@/lib/utils/supabase/auth/client";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import Tooltip from "@/components/__shared/ui/Tooltip";
+import toast from "react-hot-toast";
 
 type Props = {
   /** ClassName for the avatar  */
@@ -33,7 +31,6 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
   const { user, setUser } = useAppStore();
   const { images } = useAssets();
   const router = useRouter();
-  const { onOpen } = useToastDisclosure();
   const supabase = createClient();
   const [loading, setLoading] = React.useState(false);
 
@@ -42,7 +39,7 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
     const { error } = await supabase.auth.signOut();
     setLoading(false);
     if (error) {
-      onOpen("Something went wrong", "error");
+      toast.error("Something went wrong. Please try again.");
     } else {
       setTimeout(() => {
         setUser(null);

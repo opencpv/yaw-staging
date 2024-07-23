@@ -9,10 +9,7 @@ import ContactMessageField from "./ContactMessageField";
 import ContactSubmitButton from "./ContactSubmitButton";
 import ContactFullNameField from "./ContactFullNameField";
 import ContactPhoneField from "./ContactPhoneField";
-import {
-  usePhoneInputDisclosure,
-  useToastDisclosure,
-} from "@/lib/custom-hooks/useCustomDisclosure";
+import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import CustomErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import { useRouter } from "next/navigation";
@@ -20,7 +17,7 @@ import { UploadFile } from "../UploadFile";
 import axios from "axios";
 import { generateString } from "@/lib/utils";
 import slugify from "@/lib/utils/slugify";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import ContactUploadField from "./ContactUploadField";
 import Button from "@/components/__shared/ui/button/Button";
 
@@ -43,7 +40,6 @@ const FormGeneral = (props: Props) => {
   const { phone, setPhone, handleCountryChange, handlePhone } =
     usePhoneInputDisclosure();
 
-  const { onOpen } = useToastDisclosure();
   const router = useRouter();
 
   return (
@@ -81,9 +77,7 @@ const FormGeneral = (props: Props) => {
               fileUrl = `${process.env.NEXT_PUBLIC_DO_CDN_URL}${newFilename}`;
             })
             .catch(() => {
-              toast.error(`Image upload unavailable`, {
-                toastId: "toast",
-              });
+              toast.error(`Image upload unavailable.`);
             }),
         );
         Promise.all([...fileUploadPromise])
@@ -105,18 +99,18 @@ const FormGeneral = (props: Props) => {
               .then(({ error }) => {
                 setLoading(false);
                 if (error) {
-                  onOpen("Something went wrong", "error");
+                  toast.error("Something went wrong.");
                 } else {
                   resetForm();
                   sessionStorage.removeItem("contactFormSession");
                   setPhone(undefined);
-                  onOpen("Successfully sent", "success");
+                  toast.success("Successfully submitted.");
                   router.refresh();
                 }
               });
           })
           .catch(() => {
-            onOpen("Something went wrong", "error");
+            toast.error("Something went wrong.");
           });
       }}
       className=""

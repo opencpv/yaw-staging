@@ -7,7 +7,6 @@ import CustomErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
 import ContactSchema from "@/app/contact/components/forms/lib/contactSchema";
 import {
   usePhoneInputDisclosure,
-  useToastDisclosure,
 } from "@/lib/custom-hooks/useCustomDisclosure";
 import { E164Number } from "libphonenumber-js/core";
 import ContactSubmitButton from "@/app/contact/components/forms/ContactSubmitButton";
@@ -17,12 +16,12 @@ import { useContactForm } from "@/app/contact/components/forms/hooks/useContactF
 import FaqMessageField from "./FaqMessageField";
 import { useSessionStorage } from "@uidotdev/usehooks";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const ContactForm = () => {
   const [loading, setLoading] = useState(false);
   const { phone, setPhone, handleCountryChange, handlePhone } =
     usePhoneInputDisclosure();
-  const { onOpen } = useToastDisclosure();
   const { validate, contactFormSession } = useContactForm();
   const [faqFormSession, setFaqFormSession] = useSessionStorage(
     "faqFormSession",
@@ -59,13 +58,13 @@ const ContactForm = () => {
           .then(({ error }) => {
             setLoading(false);
             if (error) {
-              onOpen("Something went wrong", "error");
+             toast.error("Something went wrong")
             } else {
               resetForm();
               sessionStorage.removeItem("contactFormSession");
               sessionStorage.removeItem("faqFormSession");
               setPhone(undefined);
-              onOpen("Successfully sent", "success");
+              toast.success("Successfully sent");
               router.refresh();
             }
           });

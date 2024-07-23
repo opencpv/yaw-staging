@@ -1,6 +1,6 @@
-import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 export const useFetchAgentRequests = ({ userId }: { userId: string }) => {
   let query = supabase
@@ -150,8 +150,6 @@ export const useFetchAgentRequestOverview = ({
 };
 
 export const useDeleteAgentRequest = () => {
-  const { onOpen: onToastOpen } = useToastDisclosure();
-
   const queryClient = useQueryClient();
   const deleteAgentRequest = async (data: {
     id: number;
@@ -170,11 +168,13 @@ export const useDeleteAgentRequest = () => {
   const mutation = useMutation({
     mutationFn: deleteAgentRequest,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["agent_requests"] });
-      onToastOpen("Agent Request deleted successfully.", "success");
+      toast.success("Agent Request deleted successfully");
     },
     onError: () => {
-      onToastOpen("An error occurred. Please try again.", "error");
+      toast.error("An error occurred. Please try again.");
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ["agent_requests"] });
     },
   });
 
@@ -182,14 +182,12 @@ export const useDeleteAgentRequest = () => {
 };
 
 export const useAddAgentRequest = () => {
-  const { onOpen: onToastOpen } = useToastDisclosure();
-
   const queryClient = useQueryClient();
   const addAgentRequest = async (data: Partial<AgentRequest>) => {
     const { error, data: agentRequest } = await supabase
       .from("agent_request")
       .upsert(data as AgentRequest)
-      .match({ id: data.id, renter_id: data.renter_id })
+      .eq("renter_id", data.renter_id as string)
       .select()
       .maybeSingle();
 
@@ -202,11 +200,15 @@ export const useAddAgentRequest = () => {
 
   const mutation = useMutation({
     mutationFn: addAgentRequest,
-    onSuccess: () => {
-      onToastOpen("Success!", "success");
+    onSuccess: (data, variables) => {
+      toast.success(
+        variables?.id
+          ? "Agent Request updated successfully."
+          : "Agent Request created successfully.",
+      );
     },
     onError: () => {
-      onToastOpen("An error occurred. Please try again.", "error");
+      toast.error("An error occurred. Please try again.");
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ["agent_requests"] });
@@ -216,15 +218,16 @@ export const useAddAgentRequest = () => {
   return mutation;
 };
 
-
-export const sendDataToWebhook = async (data: {matchId: number, actionType: string}) => {
-  await fetch('/api/webhook/appointlet', {
-    method: 'POST',
+export const sendDataToWebhook = async (data: {
+  matchId: number;
+  actionType: string;
+}) => {
+  await fetch("/api/webhook/appointlet", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
-      'X-Custom-Source': 'rr-app', // Custom header to distinguish the source
+      "Content-Type": "application/json",
+      "X-Custom-Source": "rr-app", // Custom header to distinguish the source
     },
     body: JSON.stringify(data),
   });
-
 };

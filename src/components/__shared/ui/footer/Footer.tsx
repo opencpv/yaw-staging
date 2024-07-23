@@ -11,7 +11,6 @@ import ReportFraud from "@/components/__shared/ui/links/ReportFraud";
 import HowToLink from "@/components/__shared/ui/links/HowToLink";
 import { FaEnvelope } from "react-icons/fa6";
 import { MdLocalPhone } from "react-icons/md";
-import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { socialLinks } from "@/enum/links/socials";
 import { useQuery } from "@tanstack/react-query";
 import { pacifico } from "@/lib/utils/fonts";
@@ -20,16 +19,16 @@ import { useIntersectionObserver } from "@/lib/utils/intersectionObserver";
 import { useEffect } from "react";
 import { floatItemsIntersectionStore } from "@/store/footer/footerStore";
 import { cn } from "@/lib/utils";
+import toast from "react-hot-toast";
 
 type Props = {
   className?: string;
 };
 
 const Footer = (props: Props) => {
-  const { onOpen } = useToastDisclosure();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     // TODO: handle logic
-    onOpen("Congratulations, you are in the loop!", "success");
+    toast.success("Congratulations, you are in the loop!");
   };
 
   const { data } = useQuery({

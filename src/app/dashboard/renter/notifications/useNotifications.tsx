@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useUserSession } from "@/lib/custom-hooks/database/useUserSession";
 import { NotificationType } from "./components/types";
-import { useToastDisclosureVariant1 } from "@/lib/custom-hooks/useCustomDisclosure";
+import toast from "react-hot-toast";
 
 const useNotifications = () => {
   const supabase = createClientComponentClient();
@@ -16,8 +16,6 @@ const useNotifications = () => {
     currentNotification,
     setUnReadNotifications,
   } = useNotificationStore();
-
-  const { onOpen: toastOnOpen } = useToastDisclosureVariant1();
 
   const urlParams: any = new URLSearchParams();
 
@@ -77,7 +75,7 @@ const useNotifications = () => {
   }, [data]);
 
   const deleteNotification = (id: number) => {
-    toastOnOpen("Notification has been deleted successfully", "success");
+    toast.success("Notification has been deleted successfully.");
   };
 
   return {

@@ -19,7 +19,7 @@ import { CheckboxNoFormik as Checkbox } from "@/app/dashboard/components/shared/
 import axios from "axios";
 import { generateString } from "@/lib/utils";
 import slugify from "@/lib/utils/slugify";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import { useCurrentUserId } from "@/lib/custom-hooks/useCurrentUserId";
 import { useQuery } from "@tanstack/react-query";
 import { createClient } from "@/lib/utils/supabase/auth/client";
@@ -189,9 +189,7 @@ const UpdateItemPage = () => {
                         imageUrls.push(fileUrl);
                       })
                       .catch(() => {
-                        toast.error(`Image upload unavailable`, {
-                          toastId: "toast",
-                        });
+                        toast.error(`Image upload unavailable`);
                       }),
                   );
                 });
@@ -238,26 +236,20 @@ const UpdateItemPage = () => {
                         .then(({ data, error }) => {
                           setLoading(false);
                           if (!error) {
-                            toast.success("Item updated successfully", {
-                              toastId: "toast",
-                            });
+                            toast.success("Item updated successfully");
                           } else {
                             console.log(error);
-                            toast.error("A problem occurred", {
-                              toastId: "toast",
-                            });
+                            toast.error("A problem occurred");
                           }
                         });
                     })
                     .catch((error) => {
                       console.error("Error during image uploads:", error);
                       setLoading(false);
-                      toast.error("Image upload failed", { toastId: "toast" });
+                      toast.error("Image upload failed");
                     });
                 } else {
-                  toast.warning("Please select a primary image", {
-                    toastId: "toast",
-                  });
+                  toast.error("Please select a primary image");
                 }
               }}
             >

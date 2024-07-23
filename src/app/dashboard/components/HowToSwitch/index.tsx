@@ -1,16 +1,14 @@
 "use client";
-import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
 import { Button } from "@nextui-org/react";
-import { useLocalStorage } from "@uidotdev/usehooks";
 import * as Dialog from "@radix-ui/react-dialog";
 import { useEffect, useState } from "react";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import Image from "next/image";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useRouter } from "next/navigation";
-import { Role, useDashboardStore } from "@/store/dashboard/dashboardStore";
-import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { createClient } from "@/lib/utils/supabase/auth/client";
+import toast from "react-hot-toast";
 
 type Props = {
   open: boolean;
@@ -21,7 +19,6 @@ function HowToSwitch({ open }: Props) {
   const { user, setUser } = useAppStore();
   const router = useRouter();
   const { firstTimeRole, setFirstTimeRole } = useDashboardStore();
-  const { onOpen } = useToastDisclosure();
   const supabase = createClient();
 
   useEffect(() => {
@@ -47,7 +44,7 @@ function HowToSwitch({ open }: Props) {
   const handleRoleIfFirstTime = () => {
     if (firstTimeRole) {
       router.push(`/dashboard/${firstTimeRole}/settings`);
-      onOpen("Please complete your profile");
+      toast("Please complete your profile");
       setTimeout(() => {
         setFirstTimeRole(undefined);
       }, 300);

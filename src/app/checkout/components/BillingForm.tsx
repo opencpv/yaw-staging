@@ -11,7 +11,7 @@ import useCartStore from "@/store/cart/useCartStore";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { usePaystackPayment } from "react-paystack";
 import { object, string } from "yup";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import { error } from "console";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 
@@ -94,7 +94,7 @@ const BillingForm = ({ amount }: Props) => {
       })
       .then(({ error }) => {
         if (error) {
-          toast.error(error.message, { toastId: "toast" });
+          toast.error(error.message);
           setloading(false);
           return;
         } else {
@@ -107,7 +107,7 @@ const BillingForm = ({ amount }: Props) => {
             })
             .then(({ error: invoiceError }) => {
               if (invoiceError) {
-                toast.error(invoiceError.message, { toastId: "toast" });
+                toast.error(invoiceError.message);
                 setloading(false);
               } else {
                 setloading(false);

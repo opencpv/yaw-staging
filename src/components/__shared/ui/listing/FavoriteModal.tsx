@@ -5,8 +5,8 @@ import { MdOutlineChat } from "react-icons/md";
 import Button from "../button/Button";
 import { handleFavoriteDialogSave } from "@/components/actions";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { useLocalStorage, useSessionStorage } from "@uidotdev/usehooks";
+import toast from "react-hot-toast";
 
 type ModalProps = {
   isOpen: boolean;
@@ -38,7 +38,6 @@ const FavoriteModal = ({ isOpen, onOpenChange, onClose }: ModalProps) => {
 const ModalHeader = ({ onClose }: { onClose: () => void }) => {
   const [isLoading, setIsLoading] = useState(false);
   const { user } = useAppStore();
-  const { onOpen: onToastOpen } = useToastDisclosure();
   const [shouldOpenModal, setShouldOpenModal] =
     useLocalStorage<boolean>("shouldOpenModal");
 
@@ -47,12 +46,10 @@ const ModalHeader = ({ onClose }: { onClose: () => void }) => {
 
   const handleSaveFavoriteOption = () => {
     onClose();
-    onToastOpen(
+    toast(
       contactUponFavorite
         ? "👍 Great choice! We've noted that you're open to being contacted by your property owners. Expect to hear from them soon!"
-        : "Noted! Your preference for privacy is important to us. Your property owners will not contact you unless necessary.",
-      undefined,
-      8000,
+        : "Noted! Your preference for privacy is important to us. Your property owners will not contact you unless necessary."
     );
   };
 
@@ -72,7 +69,7 @@ const ModalHeader = ({ onClose }: { onClose: () => void }) => {
               shouldBeContacted,
             );
             if (error) {
-              onToastOpen(error.message, "error");
+              toast.error(error.message);
               onClose();
               setIsLoading(false);
               return;

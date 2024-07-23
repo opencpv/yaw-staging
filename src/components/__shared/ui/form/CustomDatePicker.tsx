@@ -2,8 +2,6 @@
 
 import * as React from "react";
 import { CalendarIcon } from "@radix-ui/react-icons";
-import { format } from "date-fns";
-
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/__shared/ui/button";
 import { Calendar } from "@/components/__shared/ui/calendar";
@@ -14,7 +12,7 @@ import {
 } from "@/components/__shared/ui/popover";
 import { useField } from "formik";
 import { formatDate } from "@/lib/utils/stringManipulation";
-import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import toast from "react-hot-toast";
 
 type Props = {
   label: string;
@@ -37,7 +35,6 @@ export function CustomDatePicker({
   const [date, setDate] = React.useState<Date>();
   const [open, setOpen] = React.useState(false);
   const [field, meta, helpers] = useField(name as string);
-  const { onOpen } = useToastDisclosure();
 
   React.useEffect(() => {
     if (placeholderDate) {
@@ -86,7 +83,7 @@ export function CustomDatePicker({
             selected={field.value}
             onSelect={(value) => {
               if (isBefore(value as Date)) {
-                onOpen("Please select a future date", "error");
+                toast.error("Please select a future date");
                 return;
               }
               helpers.setValue(value);

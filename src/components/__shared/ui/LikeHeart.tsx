@@ -1,4 +1,3 @@
-import { useToastDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { useDisclosure } from "@nextui-org/react";
 import React, { useEffect, useState } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
@@ -8,6 +7,7 @@ import { updateLikedProperty } from "@/app/properties/_actions";
 import { getUserFavorite } from "@/components/services";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import dynamic from "next/dynamic";
+import toast from "react-hot-toast";
 
 const SignInRequiredModal = dynamic(
   () => import("./modals/SignInRequiredModal"),
@@ -23,7 +23,6 @@ type Props = {
 const LikeHeart = ({ liked, className, userId, propertyId }: Props) => {
   const [isLiked, setIsLiked] = useState<boolean>(liked as boolean);
   const { onOpen, isOpen, onOpenChange, onClose } = useDisclosure();
-  const { onOpen: toastOnOpen } = useToastDisclosure();
   const [signInModalOpen, setSignInModalOpen] = useState(false);
   const [shouldOpenModal, setShouldOpenModal] = useLocalStorage(
     "shouldOpenModal",
@@ -41,7 +40,7 @@ const LikeHeart = ({ liked, className, userId, propertyId }: Props) => {
     setIsLiked(!isLiked);
     const { error } = await updateLikedProperty(userId, propertyId);
     if (error) {
-      toastOnOpen("Something went wrong", "error");
+            toast.error("Something went wrong. Please try again.");
       setIsLiked(!isLiked);
     }
   };
@@ -51,7 +50,7 @@ const LikeHeart = ({ liked, className, userId, propertyId }: Props) => {
       setIsLiked(!isLiked);
       const { error } = await updateLikedProperty(userId, propertyId);
       if (error) {
-        toastOnOpen("Something went wrong", "error");
+            toast.error("Something went wrong. Please try again.");
         setIsLiked(!isLiked);
       }
       handleContactPreference();
