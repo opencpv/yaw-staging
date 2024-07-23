@@ -3,10 +3,11 @@ import { cn } from "@/lib/utils";
 import React from "react";
 import { toast, Toaster, ToastBar } from "react-hot-toast";
 import { LiaTimesSolid } from "react-icons/lia";
-import style from "./Shared.module.css";
 import { BsInfoCircleFill } from "react-icons/bs";
 
+
 const ToastConfig = () => {
+
   return (
     <Toaster
       position="top-right"
@@ -16,12 +17,14 @@ const ToastConfig = () => {
             primary: "#287D3C",
             secondary: "#fff",
           },
+          duration: 2000,
         },
         error: {
           iconTheme: {
             primary: "#DA1414",
             secondary: "#fff",
           },
+          duration: 4000,
         },
         blank: {
           iconTheme: {
@@ -32,14 +35,13 @@ const ToastConfig = () => {
           duration: 4000,
         },
       }}
-      containerClassName={style.toastContainer}
     >
       {(t) => (
         <ToastBar
+          key={t.id}
           toast={t}
           style={{
-            //...t.style,
-            display: "block",
+            ...t.style,
             minWidth: "300px",
             animation: t.visible ? "fade-in-bottom 0.5s ease" : "",
           }}
@@ -72,10 +74,11 @@ const ToastConfig = () => {
               </div>
               {t.type !== "loading" && (
                 <button
+                  type="button"
                   className="circle-hover ml-auto"
-                  onClick={() => toast.dismiss(t.id)}
+                  onClick={() => toast.remove(t.id)}
                 >
-                  <LiaTimesSolid classsName="text-shade-300" />
+                  <LiaTimesSolid className="text-shade-300" />
                 </button>
               )}
             </div>
