@@ -17,4 +17,5 @@ export const route = {
   applicantsCount: "/api/applicant/count",
   featuredPropertiesCount: "/api/featured-properties/count",
   customerData:"/api/customers",
+  agentRequest:"/api/agent"
 };

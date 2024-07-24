@@ -19,6 +19,8 @@ const UserOverview = ({
   telephone,
   className,
   type,
+  renterMessage,
+  listerMessage
 }: UserOverviewProps) => {
   const { user } = useAppStore();
 
@@ -32,24 +34,12 @@ const UserOverview = ({
         <div className="flex items-center gap-5">
           <div className="space-y-1">
             {type === "renter" ? (
-              <small>
-                Get started by effortlessly{" "}
-                <span className="font-bold">renting</span> and publishing{" "}
-                <span className="font-bold">products</span> with ease.
-              </small>
+              <small style={{whiteSpace:"pre-line"}}>
+               {renterMessage}   </small>
             ) : type === "lister" ? (
               <small>
-                Get started by effortlessly{" "}
-                <span className="font-bold">listing</span> and{" "}
-                <span className="font-bold">managing</span> your properties and{" "}
-                <span className="font-bold">products</span> with ease.
-              </small>
+              {listerMessage} </small>
             ) : null}
-
-            <small>
-              Navigate through the menu on the top to discover more features and
-              tools.
-            </small>
           </div>
         </div>
       </CallOut>

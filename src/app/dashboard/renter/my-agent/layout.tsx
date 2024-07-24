@@ -5,16 +5,27 @@ import styles from "@/app/dashboard/components/shared/my-agent/index.module.css"
 import CallOut from "@/components/__shared/ui/CallOut";
 import { headers } from "next/headers";
 import { Metadata } from "next";
+import { loadQuery } from "@sanity/react-loader";
+import { SanityDocument } from "next-sanity";
+import { FEES_QUERY } from "@/lib/utils/sanity/queries";
 
 export const metadata: Metadata = {
   title: "My Agent",
   description: "", // tentative
 };
 
-const MyAgentLayout = ({ children }: { children: React.ReactNode }) => {
+const MyAgentLayout = async({ children }: { children: React.ReactNode }) => {
   const headerList = headers();
   const pathname = headerList.get("x-pathname") || "";
-
+  let data :any;
+  try {
+  const data = await loadQuery<SanityDocument[]>(FEES_QUERY);
+    
+  } catch (error) {
+    data=null
+    console.log(error)
+  }
+  // const feesData = feesInitialData?.data[0]
   return (
     <>
       <div
@@ -32,7 +43,7 @@ const MyAgentLayout = ({ children }: { children: React.ReactNode }) => {
               <ClientOnly>
                 <BeMyAgentModal
                   button="Price"
-                  content={250}
+                  content={data?data.be_my_agent_fee:250}
                   buttonClassName="justify-end text-lg xs:justify-center"
                 />
               </ClientOnly>
