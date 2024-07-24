@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavigationButton } from "./BeMyAgentForm";
 import { cn } from "@/lib/utils";
 import { views as BeMyAgentViews } from "./BeMyAgentForm";
@@ -7,16 +7,20 @@ import Button from "@/components/__shared/ui/button/Button";
 import { useFormikContext } from "formik";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { BeMyAgentFormType } from "./types";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { toast } from "react-toastify";
+import { useCurrentUserId } from "@/lib/custom-hooks/useCurrentUserId";
 
 type Props = {
   onClose: () => void;
 };
 
 const BeMyAgentFooter = ({ onClose }: Props) => {
-  const { submitForm, values, resetForm } = useFormikContext();
+  const { submitForm, values, resetForm } = useFormikContext<any>();
+  const id = useCurrentUserId()
   const { activeSlide, setActiveSlide, lastSlide, firstSlide } =
     beMyAgentStepsStore();
-
+  const [loading,setLoading] = useState(false)
   const [agentFormData, setAgentFormData] =
     useLocalStorage<BeMyAgentFormType>("agent-form");
 
@@ -67,10 +71,69 @@ const BeMyAgentFooter = ({ onClose }: Props) => {
         {firstSlide ? "Cancel" : "Back"}
       </Button>
       <Button
+      isLoading={loading}
         color="accent"
         className="col-span-1 h-[58px] rounded-lg font-semibold focus:outline-none xs:text-base sm:min-w-[16rem]"
         onClick={() => {
-          handleForward();
+         if(lastSlide){
+          setLoading(true)
+          const supabase = createClientComponentClient()
+          supabase.from("agent_request").insert({
+            "renter_id":id,
+            "property_type": values["propertyType"],
+            "location": [
+                {
+                    "locationCity": values["locationCity"],
+                    "locationNeighbourhood": values["locationNeighbourhood"]
+                }
+            ],
+            "min_price": parseFloat(values["priceRangeMinimum"]),
+            "max_price": parseFloat(values["priceRangeMaximum"]),
+            "min_beds": parseInt(values["bedMinimum"]),
+            "max_beds": parseInt(values["bedMaximum"]),
+            "min_bathrooms": parseInt(values["bathroomMinimum"]),
+            "max_bathrooms": parseInt(values["bathroomMaximum"]),
+            "is_active": false,
+            "email": values["email"],
+            "preferred_contact_method": values["preferredMethodOfContact"],
+            "search_title": values["searchName"],
+            "features": values["featuresAndAmenities"],
+            "min_lease": parseInt(values["leaseTermMinimum"]),
+            "max_lease": parseInt(values["leaseTermMaximum"]),
+            "preferred_payment_option": values["paymentOption"],
+            "move_in_date": values["moveInDate"].split('T')[0],
+            "title": values["title"],
+            "age": values["dateOfBirth"],
+            "tenants": values["tenants"],
+            "first_name": values["firstName"],
+            "last_name": values["lastName"],
+            "marital_status": values["maritalStatus"],
+            "current_address_1": values["currentAddress1"],
+            "city": values["city"],
+            "country": values["country"],
+            "moving_reason": values["reasonForMoving"],
+            "employment_status": values["mostRecentEmployment"],
+            "employer": values["employer"],
+            "employer_country": values["employersCountry"],
+            "job_title": values["jobTitle"],
+            "monthly_income": values["monthlyIncome"],
+            "evicted": values["evictedBefore"] === "No" ? false : true,
+            "convicted": values["convictedBefore"] === "No" ? false : true,
+            "has_pets": values["pets"] === "Yes" ? true : false,
+            "has_vehicles": values["vehicles"] === "Yes" ? true : false
+        }).then(({data,error})=>{
+          setLoading(false)
+          if(error){
+            toast.error(error.message)
+          }
+          else{
+            console.log(data)
+          }
+        })
+          console.log(values)
+          return
+         }
+         handleForward();
         }}
         type="submit"
       >

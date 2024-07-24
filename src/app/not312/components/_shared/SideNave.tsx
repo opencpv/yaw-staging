@@ -10,7 +10,7 @@ import {
   FaHome,
   FaStamp,
 } from "react-icons/fa";
-import { FaPeopleCarryBox, FaPerson } from "react-icons/fa6";
+import { FaHouseChimney, FaMoneyBillTransfer, FaPeopleCarryBox, FaPerson } from "react-icons/fa6";
 const Sidebar = () => {
   const path = usePathname();
   return (
@@ -70,6 +70,12 @@ const Sidebar = () => {
           icon={<FaStamp />}
           link={"/not312/dashboard/products"}
           active={path === "/not312/dashboard/products"}
+        />
+          <NavButton
+          text="Agent"
+          icon={<FaMoneyBillTransfer />}
+          link={"/not312/dashboard/agent"}
+          active={path === "/not312/dashboard/agent"}
         />
       </div>
     </aside>
