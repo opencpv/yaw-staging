@@ -22,11 +22,13 @@ const page = async ({ searchParams }: Props) => {
   if (searchParams?.["meeting_type[id]"]) {
     const { data } = await supabase
       .from("agent_request_matches")
-      .upsert({
-        id: Number(matchId) || 0,
-        meeting_id: Number(searchParams?.["meeting_type[id]"]),
+      .update({
+        attendee_first_name: searchParams?.["attendee[first_name]"] as string,
+        attendee_last_name: searchParams?.["attendee[last_name]"] as string,
+        attendee_email: searchParams?.["attendee[email]"] as string,
         type: actionType,
       })
+      .eq("id", Number(matchId))
       .select("id")
       .maybeSingle();
 

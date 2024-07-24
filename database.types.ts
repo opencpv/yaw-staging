@@ -177,6 +177,9 @@ export type Database = {
       }
       agent_request_matches: {
         Row: {
+          attendee_email: string | null
+          attendee_first_name: string | null
+          attendee_last_name: string | null
           cancel_url: string | null
           completed_at: string | null
           created_at: string
@@ -190,6 +193,9 @@ export type Database = {
           type: string | null
         }
         Insert: {
+          attendee_email?: string | null
+          attendee_first_name?: string | null
+          attendee_last_name?: string | null
           cancel_url?: string | null
           completed_at?: string | null
           created_at?: string
@@ -203,6 +209,9 @@ export type Database = {
           type?: string | null
         }
         Update: {
+          attendee_email?: string | null
+          attendee_first_name?: string | null
+          attendee_last_name?: string | null
           cancel_url?: string | null
           completed_at?: string | null
           created_at?: string
