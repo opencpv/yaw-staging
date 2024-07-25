@@ -28,7 +28,7 @@ const BannedUserPage = () => {
                 <p className="truncate">(233) 555-0127-484</p>
               </Button>
             </a>
-
+            <a href="mailto:support@rentrightgh.com?subject=Account Ban"></a>
             <Button className="flex w-fit gap-2 text-xs font-semibold md:text-sm ">
               <CaEnvelope />
               <p className="truncate">support@rentrightgh.com</p>
