@@ -4,6 +4,12 @@ import { NextRequest, NextResponse } from "next/server";
 export const POST = async (req: NextRequest) => {
   try {
     const body = await req.json();
+    const matchId = body.entity.attendees[0].field_submissions.find(
+      (submission: any) => submission.name.toLowerCase() === "match",
+    ).value;
+    const actionType = body.entity.attendees[0].field_submissions.find(
+      (submission: any) => submission.name.toLowerCase() === "type",
+    ).value;
 
     if (body.action === "Meeting.scheduled") {
       await supabase
@@ -14,12 +20,9 @@ export const POST = async (req: NextRequest) => {
           end_date: body.entity.end,
           cancel_url: body.entity.attendees[0].cancel_url,
           reschedule_url: body.entity.attendees[0].reschedule_url,
+          type: actionType,
         })
-        .match({
-          attendee_first_name: body.entity.attendees[0].first_name,
-          attendee_last_name: body.entity.attendees[0].last_name,
-          attendee_email: body.entity.attendees[0].email,
-        });
+        .eq("id", matchId);
     } else if (body.action === "Meeting.rescheduled") {
       await supabase
         .from("agent_request_matches")

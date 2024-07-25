@@ -15,27 +15,29 @@ const page = async ({ searchParams }: Props) => {
   const actionType = scheduleInfo?.split(",")[1];
   const previousPath = scheduleInfo?.split(",")[2];
 
-  if (!matchId || !actionType || !previousPath) {
-    redirect("/dashboard/renter/my-agent/agent");
-  }
+  console.log(searchParams);
 
-  if (searchParams?.["meeting_type[id]"]) {
-    const { data } = await supabase
-      .from("agent_request_matches")
-      .update({
-        attendee_first_name: searchParams?.["attendee[first_name]"] as string,
-        attendee_last_name: searchParams?.["attendee[last_name]"] as string,
-        attendee_email: searchParams?.["attendee[email]"] as string,
-        type: actionType,
-      })
-      .eq("id", Number(matchId))
-      .select("id")
-      .maybeSingle();
-
-    if (data?.id) {
-      redirect(previousPath || "/dashboard/renter/my-agent/agent");
-    }
-  }
+  //if (!matchId || !actionType || !previousPath) {
+  //  redirect("/dashboard/renter/my-agent/agent");
+  //}
+  //
+  //if (searchParams?.["meeting_type[id]"]) {
+  //  const { data } = await supabase
+  //    .from("agent_request_matches")
+  //    .update({
+  //      attendee_first_name: searchParams?.["attendee[first_name]"] as string,
+  //      attendee_last_name: searchParams?.["attendee[last_name]"] as string,
+  //      attendee_email: searchParams?.["attendee[email]"] as string,
+  //      type: actionType,
+  //    })
+  //    .eq("id", Number(matchId))
+  //    .select("id")
+  //    .maybeSingle();
+  //
+  //  if (data?.id) {
+  //    redirect(previousPath || "/dashboard/renter/my-agent/agent");
+  //  }
+  //}
 
   return (
     <main className="grid min-h-screen place-items-center">

@@ -177,9 +177,6 @@ export type Database = {
       }
       agent_request_matches: {
         Row: {
-          attendee_email: string | null
-          attendee_first_name: string | null
-          attendee_last_name: string | null
           cancel_url: string | null
           completed_at: string | null
           created_at: string
@@ -193,9 +190,6 @@ export type Database = {
           type: string | null
         }
         Insert: {
-          attendee_email?: string | null
-          attendee_first_name?: string | null
-          attendee_last_name?: string | null
           cancel_url?: string | null
           completed_at?: string | null
           created_at?: string
@@ -209,9 +203,6 @@ export type Database = {
           type?: string | null
         }
         Update: {
-          attendee_email?: string | null
-          attendee_first_name?: string | null
-          attendee_last_name?: string | null
           cancel_url?: string | null
           completed_at?: string | null
           created_at?: string
@@ -1613,6 +1604,66 @@ export type Database = {
             columns: ["property"]
             isOneToOne: false
             referencedRelation: "random_featured_properties_view"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      recently_viewed_properties: {
+        Row: {
+          created_at: string
+          id: number
+          property_id: number
+          user_id: string
+          viewed_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          property_id: number
+          user_id: string
+          viewed_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          property_id?: number
+          user_id?: string
+          viewed_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "recently_viewed_properties_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "merged_property_view"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "recently_viewed_properties_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "property"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "recently_viewed_properties_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "random_featured_properties_view"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "recently_viewed_properties_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "distinct_messages_view"
+            referencedColumns: ["sender_id"]
+          },
+          {
+            foreignKeyName: "recently_viewed_properties_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
         ]

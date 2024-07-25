@@ -3,10 +3,14 @@ import React, { useEffect, useRef, useState } from "react";
 //@ts-ignore
 // import Appointlet from "@appointlet/appointlet.js";
 import "@appointlet/appointlet.js/dist/appointlet.min.css";
+import { useSearchParams } from "next/navigation";
 
 const NewMeetingPage = () => {
   const [appointlet, setAppointlet] = useState(null);
   const embedContainerRef = useRef<HTMLElement>(null);
+  const searchParams = useSearchParams();
+  const matchId = searchParams?.get("m")?.slice(3);
+  const actionType = searchParams?.get("t");
 
   useEffect(() => {
     const containerRef = embedContainerRef.current;
@@ -15,7 +19,7 @@ const NewMeetingPage = () => {
       //@ts-ignore
       const Appointlet = (await import("@appointlet/appointlet.js")).default;
       const appointletInstance = new Appointlet(
-        `https://appt.link/meet-with-rentrightGH/be-my-agent-renter?match_id=3`,
+        `https://appt.link/meet-with-rentrightGH/be-my-agent-renter?field__match=${matchId}&action=${actionType}`,
       );
       setAppointlet(appointletInstance);
     };

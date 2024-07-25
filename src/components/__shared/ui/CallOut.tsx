@@ -40,7 +40,7 @@ export default function CallOut({
       variants={variants}
       animate={show ? "show" : "hide"}
       className={cn(
-        "flex w-full max-w-3xl justify-between gap-10 rounded-2xl bg-info-bg p-4 font-[400] text-info shadow-sm",
+        "flex w-full max-w-xl justify-between gap-10 rounded-2xl bg-info-bg p-4 font-[400] text-info shadow-sm",
         className,
       )}
     >

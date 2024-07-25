@@ -113,6 +113,9 @@ const config: Config = {
         "2k": "2040px",
         "4k": "3840px",
       },
+      boxShadow: {
+        card: "6px 4px 36px 10px #2F2B2B0D, -6px 4px 200px 10px #2F2B2B0D",
+      },
     },
   },
   plugins: [
