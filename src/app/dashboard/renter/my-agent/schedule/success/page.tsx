@@ -1,49 +1,42 @@
-import Loader from "@/components/__shared/ui/loader/Loader";
-import supabase from "@/lib/utils/supabase/supabaseClient";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import React from "react";
+import Button from "@/components/__shared/ui/button/Button";
+import { redirect } from "next/navigation";
+import Image from "next/image";
 
-type Props = {
-  searchParams: { [key: string]: string | string[] | undefined };
-};
-
-const page = async ({ searchParams }: Props) => {
+const page = async () => {
   const cookieStore = cookies();
   const scheduleInfo = cookieStore.get("bma-schedule-info")?.value;
   const matchId = scheduleInfo?.split(",")[0];
   const actionType = scheduleInfo?.split(",")[1];
   const previousPath = scheduleInfo?.split(",")[2];
 
-  console.log(searchParams);
-
-  //if (!matchId || !actionType || !previousPath) {
-  //  redirect("/dashboard/renter/my-agent/agent");
-  //}
-  //
-  //if (searchParams?.["meeting_type[id]"]) {
-  //  const { data } = await supabase
-  //    .from("agent_request_matches")
-  //    .update({
-  //      attendee_first_name: searchParams?.["attendee[first_name]"] as string,
-  //      attendee_last_name: searchParams?.["attendee[last_name]"] as string,
-  //      attendee_email: searchParams?.["attendee[email]"] as string,
-  //      type: actionType,
-  //    })
-  //    .eq("id", Number(matchId))
-  //    .select("id")
-  //    .maybeSingle();
-  //
-  //  if (data?.id) {
-  //    redirect(previousPath || "/dashboard/renter/my-agent/agent");
-  //  }
-  //}
+  if (!matchId || !actionType || !previousPath) {
+    redirect("/dashboard/renter/my-agent/agent");
+  }
 
   return (
-    <main className="grid min-h-screen place-items-center">
-      <section className="flex flex-col items-center gap-5">
-        <Loader />
-        <p>Saving your meeting...</p>
+    <main className="grid min-h-[calc(100vh-10rem)] place-items-center px-5">
+      <section className="flex max-w-xl flex-col items-center gap-8 text-center">
+        <Image
+          src="/assets/images/confetti.png"
+          alt="confetti"
+          width={50}
+          height={50}
+        />
+        <div className="flex flex-col items-center gap-4">
+          <h2>Success</h2>
+          <p className="text-shade-300">
+            Your meeting and rental request has been successfully processed. You
+            will be contacted when the schedule is due. Thank you.
+          </p>
+        </div>
+        <Button
+          color="primary"
+          href={previousPath || "/dashboard/renter/my-agent/agent"}
+        >
+          Go home
+        </Button>
       </section>
     </main>
   );

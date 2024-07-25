@@ -1,9 +1,8 @@
 "use server";
 
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 
-export const getMeetingPage = (data: {
+export const saveInfoToCookie = (data: {
   matchId: number;
   actionType: string;
   currentPath: string;
@@ -16,5 +15,4 @@ export const getMeetingPage = (data: {
     httpOnly: true,
   });
 
-  redirect(`/dashboard/renter/my-agent/schedule`);
 };

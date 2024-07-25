@@ -41,16 +41,15 @@ export default function Agent({
 
   const handleClick = () => {
     if (isActive) {
-      const agentRequestMatches = document.getElementById(
-        "agent-request-matches",
-      );
       router.replace(`?a=217${agentRequest.id}`, { scroll: false });
 
-      if (agentRequestMatches) {
-        setTimeout(() => {
-          agentRequestMatches.scrollIntoView({ behavior: "smooth" });
-        }, 500);
-      }
+      setTimeout(() => {
+        // scroll to bottom of page
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: "smooth",
+        });
+      }, 500);
     }
   };
 

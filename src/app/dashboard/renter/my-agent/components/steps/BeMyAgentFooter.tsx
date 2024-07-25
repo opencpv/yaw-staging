@@ -53,8 +53,6 @@ const BeMyAgentFooter = () => {
 
   const handlePayment = () => {
     // Id can be gotten from agentRequest in BeMyAgentStepsStore
-    // matched_properties needs to be set to []
-    // maybe created_at needs to be set to now. I am not sure about that.
   };
 
   useEffect(() => {

@@ -28,7 +28,7 @@ const Button: React.FC<Props> = ({
   className,
   children,
   borderColor,
-  variant,
+  variant = "default",
   color,
   isIconOnly,
   isLoading,

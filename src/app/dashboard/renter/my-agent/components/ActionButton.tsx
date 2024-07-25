@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Button from "@/components/__shared/ui/button/Button";
-import { getMeetingPage } from "../actions";
+import { saveInfoToCookie } from "../actions";
 import { formatDateTime } from "@/lib/utils/stringManipulation";
 import { cn } from "@/lib/utils";
 import {
@@ -26,16 +26,17 @@ export default function ActionButton(props: Props) {
   const handleNewMeeting = async () => {
     setLoading(true);
 
+    saveInfoToCookie({
+      matchId: props.match?.id as number,
+      actionType: props.actionType,
+      currentPath: window.location.href,
+    });
+
     router.push(
       `/dashboard/renter/my-agent/schedule?m=814${props.match?.id}&t=${props.actionType}`,
     );
 
-    //getMeetingPage({
-    //  matchId: props.match?.id as number,
-    //  actionType: props.actionType,
-    //  currentPath: window.location.href,
-    //});
-  };
+      };
 
   return (
     <>
