@@ -22,7 +22,7 @@ export const POST = async (req: NextRequest) => {
           reschedule_url: body.entity.attendees[0].reschedule_url,
           type: actionType,
         })
-        .eq("id", matchId);
+        .eq("id", Number(matchId));
     } else if (body.action === "Meeting.rescheduled") {
       await supabase
         .from("agent_request_matches")
