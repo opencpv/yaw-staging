@@ -62,7 +62,7 @@ import LadyOnCouchLaptop from "/public/assets/images/dashboard/lady-on-couch-lap
 import CoupleStirringIntoSpace from "/public/assets/images/dashboard/couple-stirring-into-space.jpg";
 import CoupleSittingOnFloor from "/public/assets/images/dashboard/couple-sitting-on-floor.jpg";
 import LadyShopping from "/public/assets/images/moving-sale/lady-shopping.jpeg";
-
+import BlockedImage from "/public/assets/images/blocked.png";
 export const useAssets = () => {
   return {
     icons: {
@@ -133,6 +133,7 @@ export const useAssets = () => {
       CoupleStirringIntoSpace,
       CoupleSittingOnFloor,
       LadyShopping,
+      BlockedImage,
     },
   };
 };
