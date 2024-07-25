@@ -32,7 +32,7 @@ export const POST = async (req: NextRequest) => {
           cancel_url: body.entity.attendees[0].cancel_url,
           reschedule_url: body.entity.attendees[0].reschedule_url,
         })
-        .match({ meeting_id: body.entity.id });
+        .eq("meeting_id", body.entity.id);
     } else if (body.action === "Meeting.cancelled") {
       await supabase
         .from("agent_request_matches")
@@ -44,7 +44,7 @@ export const POST = async (req: NextRequest) => {
           reschedule_url: null,
           type: null,
         })
-        .match({ meeting_id: body.entity.id });
+        .eq("meeting_id", body.entity.id);
     }
   } catch (error: any) {
     console.log(error);

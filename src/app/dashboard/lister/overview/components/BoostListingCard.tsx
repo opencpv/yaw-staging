@@ -12,7 +12,7 @@ const BoostListingCard = (props: Props) => {
   return (
     <Link
       href={props.href}
-      className="w-full space-y-3 max-sm:flex-1 xsm:max-w-[200px]"
+      className="w-full space-y-3 max-ssm::flex-1 ssm:max-w-[200px]"
     >
       <div className="grid place-items-center rounded-md bg-shade p-8">
         <div className="grid place-items-center rounded-md bg-white px-7 py-6 text-shade-900 shadow-card">

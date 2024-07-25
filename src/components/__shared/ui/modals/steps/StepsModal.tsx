@@ -20,6 +20,7 @@ const StepsModal = ({
   footerClassName,
   onOpenChange,
 }: Props) => {
+  
   useEffect(() => {
     if (open) {
       setTimeout(() => {
@@ -32,7 +33,9 @@ const StepsModal = ({
     }
 
     return () => {
-      document.body.classList.remove("pointer-events-none");
+      setTimeout(() => {
+        document.body.classList.remove("pointer-events-none");
+      }, 300);
     };
   }, [open]);
 

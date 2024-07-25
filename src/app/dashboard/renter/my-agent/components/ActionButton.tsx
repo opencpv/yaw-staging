@@ -35,8 +35,7 @@ export default function ActionButton(props: Props) {
     router.push(
       `/dashboard/renter/my-agent/schedule?m=814${props.match?.id}&t=${props.actionType}`,
     );
-
-      };
+  };
 
   return (
     <>
@@ -48,13 +47,13 @@ export default function ActionButton(props: Props) {
           placement="right"
         >
           <ActionItemTrigger
-            className="col-span-1 ml-auto h-fit w-fit p-2"
+            className="col-span-1 h-fit w-full"
             onClick={() => setIsOpen(true)}
             onMouseOver={() => setIsOpen(true)}
           >
             <div
               className={cn(
-                `flex h-10 w-full min-w-max max-w-full flex-1 items-center justify-center gap-2 rounded-2xl bg-orange-100 px-10 font-semibold text-shade-300 transition-transform hover:scale-[1.02] hover:bg-orange-100/30 lg:h-14`,
+                `flex h-10 w-full max-w-full flex-1 items-center justify-center gap-2 rounded-2xl bg-orange-100 px-10 font-semibold text-shade-300 transition-transform hover:scale-[1.02] hover:bg-orange-100/30 lg:h-14`,
               )}
             >
               {formatDateTime(props.match.start_date as string)}

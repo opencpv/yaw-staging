@@ -6,7 +6,6 @@ import { FaRegBell, FaRegHourglass } from "react-icons/fa";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import CallOut from "@/components/__shared/ui/CallOut";
 import { ScrollShadow } from "@nextui-org/react";
-import { FaRegHandshake } from "react-icons/fa6";
 import { MdOutlineEdit, MdOutlineMessage } from "react-icons/md";
 import RecentActivityCard from "./components/RecentActivityCard";
 import BoostListingCard from "./components/BoostListingCard";
@@ -14,6 +13,7 @@ import Sidebar from "./components/Sidebar";
 import CaHandshake from "./components/icons/CaHandshake";
 import CaHomeBanner from "./components/icons/CaHomeBanner";
 import CaMegaphone from "./components/icons/CaMegaphone";
+import { GoShieldCheck } from "react-icons/go";
 
 type Props = {};
 
@@ -26,8 +26,8 @@ const ListerOverviewPage = (props: Props) => {
   }, [setIsSwitchingRole]);
 
   return (
-    <main className="grid-cols-4 gap-16 lg:grid lg:max-2xl:gap-8">
-      <div className="col-span-3 space-y-14 lg:max-2xl:col-span-2">
+    <main className="grid-cols-7 gap-16 lg:grid lg:max-2xl:gap-8">
+      <div className="col-span-5 space-y-14 lg:max-2xl:col-span-4">
         <section className="space-y-3">
           <div className="flex flex-wrap items-center gap-x-10 gap-y-3">
             <h2>Hi, {user?.firstname}.</h2>
@@ -52,19 +52,19 @@ const ListerOverviewPage = (props: Props) => {
           </h5>
           <div className="flex flex-wrap gap-3">
             <RecentActivityCard
-              icon={<MdOutlineMessage className="text-primary" />}
+              icon={<MdOutlineMessage className="text-primary" size={24} />}
               title="Unread Messages"
               count={5}
               href="/dashboard/lister/messages"
             />
             <RecentActivityCard
-              icon={<FaRegBell className="text-primary" />}
+              icon={<FaRegBell className="text-primary" size={24} />}
               title="Messages"
               count={5}
               href="/dashboard/lister/notifications"
             />
             <RecentActivityCard
-              icon={<FaRegHourglass className="text-yellow-400" />}
+              icon={<FaRegHourglass className="text-yellow-400" size={24} />}
               title="Pending Applications"
               count={0}
               href="/dashboard/lister/applications"
@@ -76,7 +76,7 @@ const ListerOverviewPage = (props: Props) => {
         </section>
         <section className="space-y-4">
           <h3 className="mb-1">Boost Your Listing</h3>
-          <div className="flex flex-wrap gap-5">
+          <div className="flex flex-wrap gap-10">
             <BoostListingCard
               href="#"
               title="Hire Us"
@@ -99,7 +99,7 @@ const ListerOverviewPage = (props: Props) => {
               href="#"
               title="Verify My Listings"
               description="Lorem ipsum dolor sit amet consectetur"
-              icon={<CaHandshake />}
+              icon={<GoShieldCheck className="text-primary" size={65} />}
             />
           </div>
         </section>
