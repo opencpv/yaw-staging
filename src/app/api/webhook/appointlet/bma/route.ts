@@ -39,7 +39,7 @@ export const POST = async (req: NextRequest) => {
         .update({
           start_date: null,
           end_date: null,
-          meeting_id: null,
+          //meeting_id: null,
           cancel_url: null,
           reschedule_url: null,
           type: null,

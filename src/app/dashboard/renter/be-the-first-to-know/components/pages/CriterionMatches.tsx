@@ -6,7 +6,6 @@ import { useFetchCriteriaMatches } from "../../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
 import { Skeleton } from "@nextui-org/react";
-import NoMatchEmptyState from "../NoMatchEmptyState";
 import ListingCard from "@/components/__shared/ui/listing/ListingCard";
 import { getListingProps } from "@/lib/enum";
 import capitalizeName from "@/lib/utils/stringManipulation";

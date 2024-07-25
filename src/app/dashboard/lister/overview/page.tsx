@@ -27,7 +27,7 @@ const ListerOverviewPage = (props: Props) => {
 
   return (
     <main className="grid-cols-7 gap-16 lg:grid lg:max-2xl:gap-8">
-      <div className="col-span-5 space-y-14 lg:max-2xl:col-span-4">
+      <div className="fade-in col-span-5 space-y-14 lg:max-2xl:col-span-4">
         <section className="space-y-3">
           <div className="flex flex-wrap items-center gap-x-10 gap-y-3">
             <h2>Hi, {user?.firstname}.</h2>
@@ -114,7 +114,7 @@ const ListerOverviewPage = (props: Props) => {
           </ScrollShadow>
         </section>
       </div>
-      <Sidebar className="max-lg:hidden" />
+      <Sidebar className="fade-in-bottom max-lg:hidden" />
     </main>
   );
 };
