@@ -16,21 +16,12 @@ import { getListingProps } from "@/lib/enum";
 import slugify from "@/lib/utils/slugify";
 import { create } from "zustand";
 
-const filterStore = create<{ page: string; setPage: (page: string) => void }>(
-  (set) => ({
-    page: "all",
-    setPage: (page) => set({ page }),
-  }),
-);
-
 const MySearch = ({ filter }: { filter: string }) => {
   const { user } = useAppStore();
   const router = useRouter();
-  const { page, setPage } = filterStore();
-
-  useEffect(() => {
-    setPage(filter);
-  }, [filter, setPage]);
+  const [page, setPage] = React.useState(
+    filter.toLowerCase().replaceAll(" ", "-"),
+  );
 
   const {
     data: listings,
@@ -38,11 +29,10 @@ const MySearch = ({ filter }: { filter: string }) => {
     isLoading,
     isValidating,
     loadMore,
-    mutate,
-  } = useFetchRenterBookmarks({ filter, userId: user?.id as string });
+  } = useFetchRenterBookmarks({ filter: page, userId: user?.id as string });
 
   return (
-    <main className="w-full space-y-8 bg-white">
+    <main className="flex w-full flex-col gap-8 bg-white">
       <h2>My Search</h2>
       {/* xl and above */}
       <OptionFilterTabs
@@ -87,20 +77,12 @@ const MySearch = ({ filter }: { filter: string }) => {
         <ContactPreferenceToggle />
       </div>
 
-      <section className="listing-grid">
+      <section className="listing-grid relative bottom-10">
         <FetchingStates
           data={listings}
           error={error}
           isLoading={isLoading}
           isLoadingComponent={<SkeletonListing count={3} />}
-          errorComponent={
-            <SomethingWentWrong
-              className="h-fit"
-              onTryAgain={() => {
-                mutate();
-              }}
-            />
-          }
           emptyStateComponent={<EmptyState />}
         />
         {listings?.map((listing) => (

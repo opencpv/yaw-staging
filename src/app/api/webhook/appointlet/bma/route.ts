@@ -37,12 +37,12 @@ export const POST = async (req: NextRequest) => {
       await supabase
         .from("agent_request_matches")
         .update({
-          start_date: null,
-          end_date: null,
+          //start_date: null,
+          //end_date: null,
           //meeting_id: null,
-          cancel_url: null,
-          reschedule_url: null,
-          type: null,
+          //cancel_url: null,
+          //reschedule_url: null,
+          type: undefined,
         })
         .eq("meeting_id", body.entity.id);
     }

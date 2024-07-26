@@ -1,6 +1,10 @@
+import { PROPERTY_DETAILS_SELECT_QUERY } from "@/constants";
 import slugify from "@/lib/utils/slugify";
 import supabase from "@/lib/utils/supabase/supabaseClient";
-import { useOffsetInfiniteScrollQuery } from "@supabase-cache-helpers/postgrest-swr";
+import {
+  useOffsetInfiniteScrollQuery,
+  useQuery,
+} from "@supabase-cache-helpers/postgrest-swr";
 
 export const useFetchRenterBookmarks = ({
   filter = "all",
@@ -10,29 +14,39 @@ export const useFetchRenterBookmarks = ({
   userId: string;
 }) => {
   const formattedFilter = slugify(filter).toLowerCase();
+  const { data: recentViews } = useFetchRecentViewsIds({ userId });
 
   let query = supabase
     .from("merged_property_view")
-    .select(
-      "id, is_best_value, is_realtors_choice, is_featured, is_verified, is_lister_certified, profiles!inner(id, is_certified), property_type, description, city, bedrooms, monthly_amount, favorite_user_ids, subtitle, neighbourhood, advance_period, viewing_fee",
-    );
+    .select(PROPERTY_DETAILS_SELECT_QUERY);
 
-  if (formattedFilter === "favourites") {
-    query = query.contains("favorite_user_ids", [userId]);
-  }
   if (formattedFilter === "recommendations") {
-    query = query;
+    query = query.limit(5);
   }
   if (formattedFilter === "recently-viewed") {
-    query = query;
+    query = query.in(
+      "id",
+      recentViews?.map((property) => property.property_id) || [],
+    );
   }
   if (formattedFilter === "all") {
-    // TODO: add btftk and recommendations filters
-    query = query.contains("favorite_user_ids", [userId]);
+    // TODO: add recommendations
+    query = query.in("id", [
+      ...(recentViews?.map((property) => property.property_id) || []),
+    ]);
   }
 
   return useOffsetInfiniteScrollQuery(query, {
     pageSize: 9,
     revalidateAll: true,
   });
+};
+
+const useFetchRecentViewsIds = ({ userId }: { userId: string }) => {
+  const query = supabase
+    .from("recently_viewed_properties")
+    .select("property_id")
+    .eq("user_id", userId);
+
+  return useQuery(query);
 };

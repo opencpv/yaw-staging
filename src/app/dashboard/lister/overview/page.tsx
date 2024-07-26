@@ -120,19 +120,13 @@ const ListerOverviewPage = (props: Props) => {
         </section>
         <section className="space-y-3">
           <h3 className="mb-1">My Active Listings</h3>
-          <div className="hidden-scrollbar flex gap-3 overflow-x-auto">
+          <div className="hidden-scrollbar flex w-full gap-3 overflow-x-auto *:flex-1">
             <FetchingStates
               data={listings}
               error={error}
               isLoading={isLoading}
               emptyStateComponent={<PropertiesEmptyState />}
-              isLoadingComponent={
-                <SkeletonListing
-                  count={2}
-                  cardType={1}
-                  className="w-[250px] xs:w-[350px]"
-                />
-              }
+              isLoadingComponent={<SkeletonListing count={2} cardType={1} />}
             />
             {listings?.map((listing) => (
               <ListingCard

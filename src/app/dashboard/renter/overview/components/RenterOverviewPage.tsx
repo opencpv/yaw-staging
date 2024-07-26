@@ -67,7 +67,6 @@ const RenterOverviewPage = (props: Props) => {
               href="my-agent/explore"
             />
             <RenterPaidFeatures
-              type="renter"
               className="col-span-1 lg:hidden"
             />
             <RenterExplore className="mt-3 lg:mt-0" />
@@ -76,7 +75,6 @@ const RenterOverviewPage = (props: Props) => {
         </div>
         {/* Grid col */}
         <RenterPaidFeatures
-          type="renter"
           className="col-span-1 mt-14 hidden lg:block"
         />
       </section>

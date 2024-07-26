@@ -62,7 +62,7 @@ export default function MatchTable() {
 
   return (
     <section
-      className="fade-in flex min-h-[600px] w-full flex-col gap-8 pt-20"
+      className="fade-in flex min-h-[400px] sm:min-h-[600px] w-full flex-col gap-8 pt-20"
       ref={matchesRef}
       id="agent-request-matches"
     >

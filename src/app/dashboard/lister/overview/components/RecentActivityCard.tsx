@@ -16,7 +16,7 @@ const RecentActivityCard = (props: Props) => {
     >
       {props.icon}
       <p className="text-base capitalize text-shade-300">{props.title}</p>
-      <p className="text-base font-bold">{props.count}</p>
+      <p className="font-bold">{props.count}</p>
     </Link>
   );
 };

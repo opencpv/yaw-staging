@@ -9,7 +9,6 @@ import { useFetchAgentRequestOverview } from "@/app/dashboard/renter/my-agent/se
 
 type Props = {
   className?: string;
-  type: UserRole;
 };
 
 const PaidFeaturesSection = (props: Props) => {
@@ -28,7 +27,7 @@ const PaidFeaturesSection = (props: Props) => {
       className={`flex flex-wrap justify-between gap-x-40 gap-y-10 lg:space-y-10 ${props.className}`}
     >
       <BeMyAgentMatchSummary
-        href={"/dashboard/renter/my-agent/agent?sk=true"}
+        href={requests && requests?.length > 0 ? "/dashboard/renter/my-agent/agent?sk=true" : "/dashboard/renter/my-agent/agent"}
         matches={requests as any}
         title="Be My Agent"
         callOut={{
