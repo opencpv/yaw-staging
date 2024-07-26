@@ -35,11 +35,7 @@ export default function ActionButton(props: Props) {
     <>
       {props.match?.meeting_id &&
       props.match?.type?.toLowerCase() === props.actionType.toLowerCase() ? (
-        <ActionPopover
-          isOpen={isOpen}
-          onOpenChange={setIsOpen}
-          placement="right"
-        >
+        <ActionPopover isOpen={isOpen} onOpenChange={setIsOpen} placement="top">
           <ActionItemTrigger
             className="col-span-1 h-fit w-full"
             onClick={() => setIsOpen(true)}
