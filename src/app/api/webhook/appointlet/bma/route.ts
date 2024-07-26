@@ -4,14 +4,15 @@ import { NextRequest, NextResponse } from "next/server";
 export const POST = async (req: NextRequest) => {
   try {
     const body = await req.json();
-    const matchId = body.entity.attendees[0].field_submissions.find(
-      (submission: any) => submission.name.toLowerCase() === "match",
-    ).value;
-    const actionType = body.entity.attendees[0].field_submissions.find(
-      (submission: any) => submission.name.toLowerCase() === "type",
-    ).value;
 
     if (body.action === "Meeting.scheduled") {
+      const matchId = body.entity.attendees[0].field_submissions.find(
+        (submission: any) => submission.name.toLowerCase() === "match",
+      ).value;
+      const actionType = body.entity.attendees[0].field_submissions.find(
+        (submission: any) => submission.name.toLowerCase() === "type",
+      ).value;
+
       await supabase
         .from("agent_request_matches")
         .update({
@@ -37,12 +38,12 @@ export const POST = async (req: NextRequest) => {
       await supabase
         .from("agent_request_matches")
         .update({
-          start_date: "",
-          end_date: "",
+          start_date: null,
+          end_date: null,
           meeting_id: null,
-          cancel_url: "",
-          reschedule_url: "",
-          type: "",
+          cancel_url: null,
+          reschedule_url: null,
+          type: null,
         })
         .eq("meeting_id", body.entity.id);
     }
