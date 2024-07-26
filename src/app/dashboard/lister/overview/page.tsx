@@ -14,6 +14,13 @@ import CaHandshake from "./components/icons/CaHandshake";
 import CaHomeBanner from "./components/icons/CaHomeBanner";
 import CaMegaphone from "./components/icons/CaMegaphone";
 import { GoShieldCheck } from "react-icons/go";
+import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
+import { useFetchListerActiveListings } from "./services";
+import { getListingProps } from "@/lib/enum";
+import ListingCard from "@/components/__shared/ui/listing/ListingCard";
+import PropertiesEmptyState from "@/app/properties/components/PropertiesEmptyState";
+import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
+import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
 
 type Props = {};
 
@@ -25,16 +32,24 @@ const ListerOverviewPage = (props: Props) => {
     setIsSwitchingRole(false);
   }, [setIsSwitchingRole]);
 
+  const {
+    data: listings,
+    isLoading,
+    error,
+  } = useFetchListerActiveListings({
+    listerId: user?.id as string,
+  });
+
   return (
     <main className="grid-cols-7 gap-16 lg:grid lg:max-2xl:gap-8">
-      <div className="fade-in col-span-5 space-y-14 lg:max-2xl:col-span-4">
+      <div className="fade-in col-span-5 space-y-20 lg:max-2xl:col-span-4">
         <section className="space-y-3">
           <div className="flex flex-wrap items-center gap-x-10 gap-y-3">
             <h2>Hi, {user?.firstname}.</h2>
             <Button
               variant="outline"
               color="primary"
-              href="/dashboard/lister/profile"
+              href="/dashboard/lister/settings"
               className="px-5"
             >
               Edit Profile <MdOutlineEdit />
@@ -59,7 +74,7 @@ const ListerOverviewPage = (props: Props) => {
             />
             <RecentActivityCard
               icon={<FaRegBell className="text-primary" size={24} />}
-              title="Messages"
+              title="Unread Notifications"
               count={5}
               href="/dashboard/lister/notifications"
             />
@@ -105,13 +120,28 @@ const ListerOverviewPage = (props: Props) => {
         </section>
         <section className="space-y-3">
           <h3 className="mb-1">My Active Listings</h3>
-          <ScrollShadow
-            isEnabled={false}
-            orientation="horizontal"
-            className="flex gap-3"
-          >
-            {/* ListingCard */}
-          </ScrollShadow>
+          <div className="hidden-scrollbar flex gap-3 overflow-x-auto">
+            <FetchingStates
+              data={listings}
+              error={error}
+              isLoading={isLoading}
+              emptyStateComponent={<PropertiesEmptyState />}
+              isLoadingComponent={
+                <SkeletonListing
+                  count={2}
+                  cardType={1}
+                  className="w-[250px] xs:w-[350px]"
+                />
+              }
+            />
+            {listings?.map((listing) => (
+              <ListingCard
+                key={listing.id}
+                {...getListingProps(listing, user as UserType)}
+                cardType="1"
+              />
+            ))}
+          </div>
         </section>
       </div>
       <Sidebar className="fade-in-bottom max-lg:hidden" />

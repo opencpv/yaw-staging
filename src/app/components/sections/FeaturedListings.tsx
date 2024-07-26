@@ -56,12 +56,6 @@ const FeaturedListings = (props: Props) => {
             <FetchingStates
               data={listings}
               error={error}
-              errorComponent={
-                <SomethingWentWrong
-                  className="col-span-full h-fit"
-                  onTryAgain={() => mutate()}
-                />
-              }
             />
             <SliderGrid
               items={

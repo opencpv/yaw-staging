@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Button from "@/components/__shared/ui/button/Button";
-import { saveInfoToCookie } from "../actions";
+import { getSchedulePage } from "../actions";
 import { formatDateTime } from "@/lib/utils/stringManipulation";
 import { cn } from "@/lib/utils";
 import {
@@ -9,7 +9,6 @@ import {
   ActionItemTrigger,
   ActionPopover,
 } from "@/app/dashboard/components/shared/ui/ActionPopover";
-import { useRouter } from "next/navigation";
 
 type Props = {
   children: React.ReactNode;
@@ -19,22 +18,17 @@ type Props = {
 };
 
 export default function ActionButton(props: Props) {
-  const router = useRouter();
   const [loading, setLoading] = React.useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleNewMeeting = async () => {
     setLoading(true);
 
-    saveInfoToCookie({
+    getSchedulePage({
       matchId: props.match?.id as number,
       actionType: props.actionType,
       currentPath: window.location.href,
     });
-
-    router.push(
-      `/dashboard/renter/my-agent/schedule?m=814${props.match?.id}&t=${props.actionType}`,
-    );
   };
 
   return (

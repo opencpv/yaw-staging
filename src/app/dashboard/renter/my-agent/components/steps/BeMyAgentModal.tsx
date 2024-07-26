@@ -21,7 +21,7 @@ import { usePathname } from "next/navigation";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useAddAgentRequest } from "../../services";
 import capitalizeName from "@/lib/utils/stringManipulation";
-import {views as BeMyAgentViews} from "./BeMyAgentForm";
+import { views as BeMyAgentViews } from "./BeMyAgentForm";
 
 type Props = {
   button?: "Hire Us Now" | "Get Started" | "Ghost" | "Edit" | "Price";
@@ -129,9 +129,9 @@ const BeMyAgentModal = (props: Props) => {
           variant="ghost"
           className={props.buttonClassName}
           onClick={() => {
-              setActiveSlide(BeMyAgentViews.length - 1);
-              props.onClick?.()
-            }}
+            setActiveSlide(BeMyAgentViews.length - 1);
+            props.onClick?.();
+          }}
         >
           {props.content}
         </Button>
@@ -144,9 +144,9 @@ const BeMyAgentModal = (props: Props) => {
             props.buttonClassName,
           )}
           onClick={() => {
-              setActiveSlide(BeMyAgentViews.length - 1);
-              props.onClick?.()
-            }}
+            setActiveSlide(BeMyAgentViews.length - 1);
+            props.onClick?.();
+          }}
         >
           <MdOutlineEdit size={16} />
         </Button>

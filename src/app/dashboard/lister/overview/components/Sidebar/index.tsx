@@ -5,6 +5,11 @@ import { cn } from "@/lib/utils";
 import PropertyCard from "./PropertyCard";
 import { createUUID } from "@/lib/utils/stringManipulation";
 import ItemCard from "./ItemCard";
+import { useFetchListerItems, useFetchListerListings } from "../../services";
+import { useAppStore } from "@/store/dashboard/AppStore";
+import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
+import PropertiesEmptyState from "@/app/properties/components/PropertiesEmptyState";
+import { Skeleton } from "@nextui-org/react";
 
 type Props = {
   className?: string;
@@ -13,12 +18,29 @@ type Props = {
 type TabType = "properties" | "moving sales";
 
 const Sidebar = (props: Props) => {
+  const { user } = useAppStore();
   const [activeTab, setActiveTab] = React.useState<TabType>("properties");
+
+  const {
+    data: listings,
+    isLoading,
+    error,
+  } = useFetchListerListings({
+    listerId: user?.id as string,
+  });
+
+  const {
+    data: items,
+    isLoading: isItemsLoading,
+    error: itemsError,
+  } = useFetchListerItems({
+    listerId: user?.id as string,
+  });
 
   return (
     <aside
       className={cn(
-        "col-span-2 flex w-full flex-col gap-4 rounded-md bg-neutral-50 lg:ml-auto lg:max-w-md lg:items-center lg:px-5 lg:py-5 lg:shadow-card lg:max-2xl:col-span-3",
+        "col-span-2 flex w-full flex-col gap-4 rounded-md lg:ml-auto lg:max-w-md lg:items-center lg:bg-neutral-50 lg:px-5 lg:py-5 lg:shadow-card lg:max-2xl:col-span-3",
         props.className,
       )}
     >
@@ -35,25 +57,47 @@ const Sidebar = (props: Props) => {
       <div className="hidden-scrollbar flex w-full gap-x-5 gap-y-10 overflow-x-auto lg:flex-col">
         {activeTab === "properties" ? (
           <>
-            {[1, 2, 3].map((_) => (
+            <FetchingStates
+              data={listings}
+              error={error}
+              isLoading={isLoading}
+              isLoadingComponent={
+                <div className="space-y-5">
+                  <Skeleton className="aspect-video w-full min-w-[200px] flex-1 space-y-3 max-lg:max-w-xs" />
+                  <Skeleton className="h-6 w-full max-w-20 rounded-md" />
+                </div>
+              }
+            />
+            {listings?.map((listing) => (
               <PropertyCard
-                id={1}
-                key={createUUID()}
-                title={"2 Bedroom house at Kasoa"}
+                id={listing.id}
+                key={listing.id}
+                title={`${listing.bedrooms} Bedroom ${listing.property_type} at ${listing.city}`}
                 image="/assets/images/niceHome.png"
-                date="5 December"
+                date={listing.created_at}
               />
             ))}
           </>
         ) : (
           <>
-            {[1, 2, 3].map((_) => (
+            <FetchingStates
+              data={items}
+              error={itemsError}
+              isLoading={isItemsLoading}
+              isLoadingComponent={
+                <div className="space-y-5">
+                  <Skeleton className="aspect-video w-full min-w-[200px] flex-1 space-y-3 max-lg:max-w-xs" />
+                  <Skeleton className="h-6 w-full max-w-20 rounded-md" />
+                </div>
+              }
+            />
+            {items?.map((item) => (
               <ItemCard
-                id={1}
-                key={createUUID()}
-                title={"Lorem Ipsum lorem ipsum"}
+                id={item.id}
+                key={item.id}
+                title={item.title}
                 image="/assets/images/couple-holding-boxes.png"
-                price={30021}
+                price={item.price}
               />
             ))}
           </>
@@ -63,11 +107,11 @@ const Sidebar = (props: Props) => {
         href="#"
         padding="sm"
         radius="full"
-        className="w-fit self-end bg-neutral-100 text-neutral-800"
+        className="w-fit self-end bg-shade-50 text-neutral-800"
       >
         See all
       </Button>
-      <div className="space-y-4 self-start">
+      <div className="mt-10 space-y-4 self-start">
         <h4 className="max-lg:text-xl">Recent Notifications</h4>
         {/*Notification component*/}
       </div>

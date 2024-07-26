@@ -1,6 +1,9 @@
 import React from "react";
+import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
+import calculateDaysSinceCreation from "@/lib/utils/calculateDaysSinceCreation";
+import { pluralize } from "@/lib/utils/stringManipulation";
 
 type Props = {
   id: number;
@@ -10,6 +13,8 @@ type Props = {
 };
 
 const PropertyCard = (props: Props) => {
+  const length = calculateDaysSinceCreation(props.date);
+
   return (
     <Link
       href={`/properties/${props.id}`}
@@ -25,8 +30,12 @@ const PropertyCard = (props: Props) => {
       </div>
       <h4>{props.title}</h4>
       <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 text-shade-300">
-        <p className="text-base">5 December</p>
-        <p className="text-xs lg:text-base">5 Days Ago</p>
+        <p className="text-base">
+          {format(new Date(props.date), "dd MMMM yyyy")}
+        </p>
+        <p className="text-xs lg:text-base">
+          {length} {pluralize("Day", length)} Ago
+        </p>
       </div>
     </Link>
   );

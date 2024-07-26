@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 //@ts-ignore
-// import Appointlet from "@appointlet/appointlet.js";
 import "@appointlet/appointlet.js/dist/appointlet.min.css";
 import { useSearchParams } from "next/navigation";
 
@@ -32,7 +31,7 @@ const NewMeetingPage = () => {
         containerRef.innerHTML = ""; // Clear the container
       }
     };
-  }, []);
+  }, [actionType, matchId]);
 
   useEffect(() => {
     if (appointlet && embedContainerRef.current) {

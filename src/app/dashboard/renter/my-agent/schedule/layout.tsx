@@ -9,6 +9,8 @@ const page = ({ children }: { children: React.ReactNode }) => {
   const actionType = scheduleInfo?.split(",")[1];
   const previousPath = scheduleInfo?.split(",")[2];
 
+  console.log("layout", matchId, actionType, previousPath);
+
   if (!matchId || !actionType || !previousPath) {
     redirect("/dashboard/renter/my-agent/agent");
   }
