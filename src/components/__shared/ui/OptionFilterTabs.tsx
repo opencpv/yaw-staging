@@ -31,7 +31,7 @@ const OptionFilterTabs = (
     selectedKey,
     onSelectionChange,
     variant = "default",
-    padding,
+    padding = "medium",
     tabColor,
     cursorAnimation,
     classNames,

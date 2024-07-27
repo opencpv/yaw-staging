@@ -3,13 +3,13 @@ import Button from "@/components/__shared/ui/button/Button";
 import React from "react";
 import { cn } from "@/lib/utils";
 import PropertyCard from "./PropertyCard";
-import { createUUID } from "@/lib/utils/stringManipulation";
 import ItemCard from "./ItemCard";
 import { useFetchListerItems, useFetchListerListings } from "../../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
-import PropertiesEmptyState from "@/app/properties/components/PropertiesEmptyState";
 import { Skeleton } from "@nextui-org/react";
+import { useAssets } from "@/lib/custom-hooks/useAssets";
+import ItemEmptyState from "../ItemEmptyState";
 
 type Props = {
   className?: string;
@@ -19,6 +19,7 @@ type TabType = "properties" | "moving sales";
 
 const Sidebar = (props: Props) => {
   const { user } = useAppStore();
+  const { images } = useAssets();
   const [activeTab, setActiveTab] = React.useState<TabType>("properties");
 
   const {
@@ -61,6 +62,7 @@ const Sidebar = (props: Props) => {
               data={listings}
               error={error}
               isLoading={isLoading}
+              emptyStateComponent={<ItemEmptyState variant="property" />}
               isLoadingComponent={
                 <div className="space-y-5">
                   <Skeleton className="aspect-video w-full min-w-[200px] flex-1 space-y-3 max-lg:max-w-xs" />
@@ -73,8 +75,9 @@ const Sidebar = (props: Props) => {
                 id={listing.id}
                 key={listing.id}
                 title={`${listing.bedrooms} Bedroom ${listing.property_type} at ${listing.city}`}
-                image="/assets/images/niceHome.png"
+                image={listing.images?.[0] || images.NoImagePlaceholder}
                 date={listing.created_at}
+                isActive={listing.status.toLowerCase() === "available"}
               />
             ))}
           </>
@@ -84,6 +87,7 @@ const Sidebar = (props: Props) => {
               data={items}
               error={itemsError}
               isLoading={isItemsLoading}
+              emptyStateComponent={<ItemEmptyState variant="item" />}
               isLoadingComponent={
                 <div className="space-y-5">
                   <Skeleton className="aspect-video w-full min-w-[200px] flex-1 space-y-3 max-lg:max-w-xs" />
@@ -96,8 +100,9 @@ const Sidebar = (props: Props) => {
                 id={item.id}
                 key={item.id}
                 title={item.title}
-                image="/assets/images/couple-holding-boxes.png"
+                image={images.NoImagePlaceholder} // TODO: Add image
                 price={item.price}
+                isActive={item.status.toLowerCase() === "active"}
               />
             ))}
           </>

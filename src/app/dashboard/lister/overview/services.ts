@@ -1,7 +1,6 @@
 import { PROPERTY_DETAILS_SELECT_QUERY } from "@/constants";
 import supabase from "@/lib/utils/supabase/supabaseClient";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import toast from "react-hot-toast";
+import { useQuery } from "@tanstack/react-query";
 
 export const useFetchListerActiveListings = ({
   listerId,
@@ -11,7 +10,7 @@ export const useFetchListerActiveListings = ({
   let query = supabase
     .from("property")
     .select(PROPERTY_DETAILS_SELECT_QUERY)
-    .match({ owner_uid: listerId, is_published: true })
+    .match({ owner_uid: listerId, is_published: true, status: "AVAILABLE" })
     .order("created_at", { ascending: false });
 
   const result = useQuery({
@@ -32,7 +31,7 @@ export const useFetchListerActiveListings = ({
 export const useFetchListerListings = ({ listerId }: { listerId: string }) => {
   let query = supabase
     .from("property")
-    .select("created_at, bedrooms, id, images, property_type, city")
+    .select("created_at, bedrooms, id, images, property_type, city, status")
     .eq("owner_uid", listerId)
     .order("created_at", { ascending: false });
 
@@ -54,7 +53,7 @@ export const useFetchListerListings = ({ listerId }: { listerId: string }) => {
 export const useFetchListerItems = ({ listerId }: { listerId: string }) => {
   let query = supabase
     .from("products")
-    .select("id, price, title, images")
+    .select("id, price, title, images, status")
     .eq("seller", listerId)
     .order("created_at", { ascending: false });
 

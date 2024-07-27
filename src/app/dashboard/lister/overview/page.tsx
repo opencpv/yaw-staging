@@ -19,6 +19,8 @@ import { getListingProps } from "@/lib/enum";
 import ListingCard from "@/components/__shared/ui/listing/ListingCard";
 import PropertiesEmptyState from "@/app/properties/components/PropertiesEmptyState";
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
+import ActiveListingEmptyState from "./components/ActiveListingEmptyState";
+import ListingModal from "./components/steps/ListingModal";
 
 const ListerOverviewPage = () => {
   const { user } = useAppStore();
@@ -52,9 +54,7 @@ const ListerOverviewPage = () => {
             </Button>
           </div>
           <CallOut content="Your peofile is incomplete. Click on the edit profile to complete the process" />
-          <Button href="#" color="primary" className="mt-10 w-fit">
-            Add Property
-          </Button>
+          <ListingModal />
         </section>
 
         <section className="space-y-3">
@@ -132,7 +132,7 @@ const ListerOverviewPage = () => {
               data={listings}
               error={error}
               isLoading={isLoading}
-              emptyStateComponent={<PropertiesEmptyState />}
+              emptyStateComponent={<ActiveListingEmptyState />}
               isLoadingComponent={<SkeletonListing count={2} cardType={1} />}
             />
             {listings?.map((listing) => (

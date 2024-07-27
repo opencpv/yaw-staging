@@ -96,11 +96,6 @@ export default function PropertyInformation() {
                   handleOnChange("neighbourhood", e.target.value)
                 }
               />
-              <CustomDatePicker
-                value={listingFormData?.availableDate as string}
-                label="Available Date"
-                onChange={(value) => handleOnChange("availableDate", value)}
-              />
             </div>
           </div>
         </div>

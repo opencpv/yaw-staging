@@ -15,6 +15,8 @@ const page = async () => {
     redirect("/dashboard/renter/my-agent/agent");
   }
 
+  const removeCookie = () => cookieStore.delete("bma-schedule-info");
+
   return (
     <main className="fade-in-bottom grid min-h-[calc(100vh-10rem)] place-items-center px-5">
       <section className="flex max-w-xl flex-col items-center gap-8 text-center">
@@ -32,6 +34,7 @@ const page = async () => {
           </p>
         </div>
         <Button
+          onClick={removeCookie}
           color="primary"
           href={previousPath || "/dashboard/renter/my-agent/agent"}
         >

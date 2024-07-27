@@ -60,6 +60,7 @@ import CoupleStirringIntoSpace from "/public/assets/images/dashboard/couple-stir
 import CoupleSittingOnFloor from "/public/assets/images/dashboard/couple-sitting-on-floor.jpg";
 import LadyShopping from "/public/assets/images/moving-sale/lady-shopping.jpeg";
 import CoupleHoldingBoxes from "/public/assets/images/couple-holding-boxes.png";
+import NoImagePlaceholder from "/public/assets/images/placeholder/no-image-placeholder.png";
 
 export const useAssets = () => {
   return {
@@ -130,6 +131,7 @@ export const useAssets = () => {
       CoupleSittingOnFloor,
       LadyShopping,
       CoupleHoldingBoxes,
+      NoImagePlaceholder,
     },
   };
 };
