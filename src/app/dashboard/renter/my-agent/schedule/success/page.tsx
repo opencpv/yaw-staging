@@ -16,7 +16,7 @@ const page = async () => {
   }
 
   return (
-    <main className="grid min-h-[calc(100vh-10rem)] place-items-center px-5">
+    <main className="fade-in-bottom grid min-h-[calc(100vh-10rem)] place-items-center px-5">
       <section className="flex max-w-xl flex-col items-center gap-8 text-center">
         <Image
           src="/assets/images/confetti.png"

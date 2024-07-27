@@ -1,6 +1,6 @@
 "use client";
 import "../../style.css";
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { HiMiniShieldCheck } from "react-icons/hi2";
 import Footer from "@/components/__shared/ui/footer/Footer";
 import { Rate } from "antd";
@@ -30,6 +30,7 @@ import { FeatureInterface } from "../../../../../interfaces";
 import dynamic from "next/dynamic";
 import { useItemPathStore } from "@/store/moving_sales/useMovingSalesStore";
 import { useRouter } from "next/navigation";
+import { updateRecentViews } from "../../_actions";
 
 const ApplicationForm = dynamic(
   () => import("@/components/__shared/ui/application-form"),
@@ -66,6 +67,18 @@ const PropertyDetailsPage = ({ params }: Props) => {
   const propertyName2 = useMemo(() => {
     return `${listing?.bedrooms} Bedroom ${listing?.property_type} at ${listing?.city}`;
   }, [listing?.bedrooms, listing?.property_type, listing?.city]);
+
+
+  useEffect(() => {
+    const upsertRecentViews = async () => {
+      await updateRecentViews({
+        propertyId: Number(params.id),
+        userId: user?.id as string,
+      });
+    };
+
+    upsertRecentViews();
+  }, [params.id, user?.id]);
 
   return (
     <>

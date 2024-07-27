@@ -5,7 +5,6 @@ import Button from "@/components/__shared/ui/button/Button";
 import { FaRegBell, FaRegHourglass } from "react-icons/fa";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import CallOut from "@/components/__shared/ui/CallOut";
-import { ScrollShadow } from "@nextui-org/react";
 import { MdOutlineEdit, MdOutlineMessage } from "react-icons/md";
 import RecentActivityCard from "./components/RecentActivityCard";
 import BoostListingCard from "./components/BoostListingCard";
@@ -19,12 +18,9 @@ import { useFetchListerActiveListings } from "./services";
 import { getListingProps } from "@/lib/enum";
 import ListingCard from "@/components/__shared/ui/listing/ListingCard";
 import PropertiesEmptyState from "@/app/properties/components/PropertiesEmptyState";
-import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
 
-type Props = {};
-
-const ListerOverviewPage = (props: Props) => {
+const ListerOverviewPage = () => {
   const { user } = useAppStore();
   const { setIsSwitchingRole } = useDashboardStore();
 
@@ -41,9 +37,9 @@ const ListerOverviewPage = (props: Props) => {
   });
 
   return (
-    <main className="grid-cols-7 gap-16 lg:grid lg:max-2xl:gap-8">
+    <main className="grid-cols-7 gap-12 lg:grid lg:max-2xl:gap-8">
       <div className="fade-in col-span-5 space-y-20 lg:max-2xl:col-span-4">
-        <section className="space-y-3">
+        <section className="flex flex-col gap-3">
           <div className="flex flex-wrap items-center gap-x-10 gap-y-3">
             <h2>Hi, {user?.firstname}.</h2>
             <Button
@@ -56,16 +52,17 @@ const ListerOverviewPage = (props: Props) => {
             </Button>
           </div>
           <CallOut content="Your peofile is incomplete. Click on the edit profile to complete the process" />
+          <Button href="#" color="primary" className="mt-10 w-fit">
+            Add Property
+          </Button>
         </section>
-        <Button href="#" color="primary">
-          Add Property
-        </Button>
+
         <section className="space-y-3">
           <h3 className="mb-1">Recent Activities</h3>
           <h5 className="font-normal text-shade-300">
             Here is an overview of your activities
           </h5>
-          <div className="flex flex-wrap gap-3">
+          <div className="grid max-w-2xl gap-3 xxs:grid-cols-2 xs:grid-cols-3">
             <RecentActivityCard
               icon={<MdOutlineMessage className="text-primary" size={24} />}
               title="Unread Messages"
@@ -91,7 +88,12 @@ const ListerOverviewPage = (props: Props) => {
         </section>
         <section className="space-y-4">
           <h3 className="mb-1">Boost Your Listing</h3>
-          <div className="flex flex-wrap gap-10">
+          <div
+            className="grid gap-10 2xl:max-w-4xl"
+            style={{
+              gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
+            }}
+          >
             <BoostListingCard
               href="#"
               title="Hire Us"
@@ -114,7 +116,12 @@ const ListerOverviewPage = (props: Props) => {
               href="#"
               title="Verify My Listings"
               description="Lorem ipsum dolor sit amet consectetur"
-              icon={<GoShieldCheck className="text-primary" size={65} />}
+              icon={
+                <GoShieldCheck
+                  className="aspect-square text-primary"
+                  size={65}
+                />
+              }
             />
           </div>
         </section>
@@ -132,7 +139,7 @@ const ListerOverviewPage = (props: Props) => {
               <ListingCard
                 key={listing.id}
                 {...getListingProps(listing, user as UserType)}
-                cardType="1"
+                showOnlyImage
               />
             ))}
           </div>

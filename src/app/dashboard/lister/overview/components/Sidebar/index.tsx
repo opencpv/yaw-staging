@@ -40,7 +40,7 @@ const Sidebar = (props: Props) => {
   return (
     <aside
       className={cn(
-        "col-span-2 flex w-full flex-col gap-4 rounded-md lg:ml-auto lg:max-w-md lg:items-center lg:bg-neutral-50 lg:px-5 lg:py-5 lg:shadow-card lg:max-2xl:col-span-3",
+        "col-span-2 flex w-full flex-col gap-4 rounded-md lg:ml-auto lg:h-fit lg:max-w-md lg:items-center lg:bg-neutral-50 lg:px-5 lg:py-5 lg:shadow-card lg:max-2xl:col-span-3",
         props.className,
       )}
     >
@@ -112,7 +112,7 @@ const Sidebar = (props: Props) => {
         See all
       </Button>
       <div className="mt-10 space-y-4 self-start">
-        <h4 className="max-lg:text-xl">Recent Notifications</h4>
+        <h4 className="max-lg:text-xl">Notifications</h4>
         {/*Notification component*/}
       </div>
     </aside>

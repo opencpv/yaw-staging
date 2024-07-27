@@ -299,6 +299,42 @@ export type Database = {
           },
         ]
       }
+      banned_users: {
+        Row: {
+          banned: boolean | null
+          created_at: string
+          id: number
+          user: string | null
+        }
+        Insert: {
+          banned?: boolean | null
+          created_at?: string
+          id?: number
+          user?: string | null
+        }
+        Update: {
+          banned?: boolean | null
+          created_at?: string
+          id?: number
+          user?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "banned_users_user_fkey"
+            columns: ["user"]
+            isOneToOne: false
+            referencedRelation: "distinct_messages_view"
+            referencedColumns: ["sender_id"]
+          },
+          {
+            foreignKeyName: "banned_users_user_fkey"
+            columns: ["user"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       blocked_users: {
         Row: {
           block_reason: string | null
@@ -1614,21 +1650,18 @@ export type Database = {
           id: number
           property_id: number
           user_id: string
-          viewed_at: string
         }
         Insert: {
           created_at?: string
           id?: number
           property_id: number
           user_id: string
-          viewed_at?: string
         }
         Update: {
           created_at?: string
           id?: number
           property_id?: number
           user_id?: string
-          viewed_at?: string
         }
         Relationships: [
           {

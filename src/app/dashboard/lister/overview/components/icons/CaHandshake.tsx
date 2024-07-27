@@ -13,6 +13,7 @@ const CaHandshake = (props: Props) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       xlinkHref="http://www.w3.org/1999/xlink"
+      className="aspect-square shrink"
     >
       <rect
         x="0.125"

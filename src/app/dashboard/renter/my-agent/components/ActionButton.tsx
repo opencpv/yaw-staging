@@ -24,11 +24,20 @@ export default function ActionButton(props: Props) {
   const handleNewMeeting = async () => {
     setLoading(true);
 
-    getSchedulePage({
-      matchId: props.match?.id as number,
-      actionType: props.actionType,
-      currentPath: window.location.href,
-    });
+    if (!props.match?.meeting_id) {
+      getSchedulePage({
+        matchId: props.match?.id as number,
+        actionType: props.actionType,
+        currentPath: window.location.href,
+      });
+    }
+  };
+  const handleActionTrigger = () => {
+    const today = new Date();
+    const meetingDate = new Date(props.match?.start_date as string);
+    if (today < meetingDate) {
+      setIsOpen(true);
+    }
   };
 
   return (
@@ -38,8 +47,8 @@ export default function ActionButton(props: Props) {
         <ActionPopover isOpen={isOpen} onOpenChange={setIsOpen} placement="top">
           <ActionItemTrigger
             className="col-span-1 h-fit w-full"
-            onClick={() => setIsOpen(true)}
-            onMouseOver={() => setIsOpen(true)}
+            onClick={handleActionTrigger}
+            onMouseOver={handleActionTrigger}
           >
             <div
               className={cn(

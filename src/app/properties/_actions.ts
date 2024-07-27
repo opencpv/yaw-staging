@@ -36,3 +36,19 @@ export const updateLikedProperty = async (
 
   return query;
 };
+
+export const updateRecentViews = async ({
+  propertyId,
+  userId,
+}: {
+  propertyId: number;
+  userId: string;
+}) => {
+  const { error } = await supabase
+    .from("recently_viewed_properties")
+    .upsert({ property_id: propertyId, user_id: userId });
+
+  if (error) {
+    console.error("Error updating recent views:", error);
+  }
+};
