@@ -2,15 +2,22 @@ import supabase from "@/lib/utils/supabase/supabaseClient";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
-export const useFetchAgentRequests = ({ userId }: { userId: string }) => {
+export const useFetchAgentRequests = ({
+  userId,
+  payload,
+}: {
+  userId: string;
+  payload: AgentRequest;
+}) => {
   let query = supabase
     .from("agent_request")
     .select()
     .eq("renter_id", userId)
-    .order("is_paid", { ascending: false });
+    .order("is_paid", { ascending: false })
+    .order("created_at");
 
   const result = useQuery({
-    queryKey: ["agent_requests", userId],
+    queryKey: ["agent_requests", userId, payload],
     queryFn: async () => {
       const { data, error } = await query;
       if (error) {
@@ -55,9 +62,11 @@ export const useFetchAgentRequestById = ({
 export const useFetchAgentRequestMatches = ({
   userId,
   agentRequestId,
+  payload,
 }: {
   userId: string;
   agentRequestId: number;
+  payload: AgentRequestMatch;
 }) => {
   const { data: agentRequest } = useFetchAgentRequestById({
     id: agentRequestId as number,
@@ -68,17 +77,15 @@ export const useFetchAgentRequestMatches = ({
 
   if (agentRequest)
     query = supabase
-      //.from("merged_property_view")
-      //.select("*, profiles!inner(id, is_certified)")
-      //.in("id", (agentRequest?.matched_properties as number[]) || []);
       .from("agent_request_matches")
       .select(
         "*, property!inner(id, images, property_type, city, monthly_amount)",
       )
-      .eq("request_id", agentRequestId);
+      .eq("request_id", agentRequestId)
+      .order("created_at", { ascending: false });
 
   const result = useQuery({
-    queryKey: ["agent_request_matches", userId, agentRequestId],
+    queryKey: ["agent_request_matches", userId, agentRequestId, payload],
     queryFn: async () => {
       const { data, error } = await query;
       if (error) {

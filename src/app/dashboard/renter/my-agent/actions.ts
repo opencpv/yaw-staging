@@ -20,3 +20,10 @@ export const getSchedulePage = (data: {
     `/dashboard/renter/my-agent/schedule?m=814${data.matchId}&t=${data.actionType}`,
   );
 };
+
+
+export const deleteScheduleCookie = (previousPath: string) => {
+  cookies().delete("bma-schedule-info");
+
+  redirect(previousPath || `/dashboard/renter/my-agent/agent`);
+};

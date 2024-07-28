@@ -19,15 +19,12 @@ import { formatDateOnly } from "@/lib/utils/stringManipulation";
 import { useSearchParams } from "next/navigation";
 import SchedulePhysicalTour from "./SchedulePhysicalTour";
 import NoMatchState from "./NoMatchState";
-import {
-  useFetchAgentRequestById,
-  useFetchAgentRequestMatches,
-} from "../services";
+import { useFetchAgentRequestMatches } from "../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import { Skeleton } from "@nextui-org/react";
 import TableSkeleton from "@/app/dashboard/components/shared/skeleton/TableSkeleton";
 import { cn } from "@/lib/utils";
 import RentIt from "./RentIt";
+import supabase from "@/lib/utils/supabase/supabaseClient";
 
 type Match = AgentRequestMatch & {
   property: {
@@ -42,7 +39,26 @@ export default function MatchTable() {
   const { user } = useAppStore();
   const searchParams = useSearchParams();
   const agentId = searchParams?.get("a")?.slice(3);
+  const title = searchParams?.get("t");
   const matchesRef = React.useRef<HTMLElement>(null);
+  const [payload, setPayload] = React.useState<AgentRequestMatch | null>(null);
+
+  useEffect(() => {
+    const agentRequestMatchesChannel = supabase
+      .channel("agent-request-matches-all-channel")
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "agent_request_matches" },
+        (payload) => {
+          setPayload(payload.new as AgentRequestMatch);
+        },
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(agentRequestMatchesChannel);
+    };
+  }, []);
 
   useEffect(() => {
     if (matchesRef.current && location.href.includes("sk=true")) {
@@ -50,29 +66,20 @@ export default function MatchTable() {
     }
   }, []);
 
-  const { data: agentRequest, isLoading } = useFetchAgentRequestById({
-    userId: user?.id as string,
-    id: Number(agentId),
-  });
   const { data: matches, isLoading: isLoadingMatches } =
     useFetchAgentRequestMatches({
       userId: user?.id as string,
       agentRequestId: Number(agentId),
+      payload: payload as AgentRequestMatch,
     });
 
   return (
     <section
-      className="fade-in flex min-h-[400px] sm:min-h-[600px] w-full flex-col gap-8 pt-20"
+      className="fade-in flex min-h-[400px] w-full flex-col gap-8 pt-20 sm:min-h-[600px]"
       ref={matchesRef}
       id="agent-request-matches"
     >
-      {isLoading ? (
-        <Skeleton className="h-5 w-60 rounded-md" />
-      ) : (
-        <h3 className={cn({ hidden: !matches })}>
-          {agentRequest?.search_title} Matches
-        </h3>
-      )}
+      <h3 className={cn({ hidden: !matches })}>{title} Matches</h3>
       <div className={cn({ hidden: !matches })}>
         <CallOut content="Lorem ipsum dolor sit amet consectetur. Consequat elementum consequat interdum integer imperdiet nisl. Ipsum eu eu tortor enim est mauris in sem. Eget dignissim risus diam consectetur magna. Non." />
       </div>
@@ -126,13 +133,13 @@ const MatchRowMobile = ({ match }: { match: Match }) => {
     <TableRowSm>
       {/* Property */}
       <TableBodySm href={`/properties/${match.property.id}`}>
-        <div className="flex flex-wrap justify-between gap-5 truncate xsm:flex-nowrap">
+        <div className="flex flex-wrap gap-3 xsm:flex-nowrap">
           <TbPropertyImageSm
             title={match.property.property_type + " at " + match.property.city}
             image="/assets/images/niceHome.png"
           />
-          <div className="flex flex-col justify-between gap-2">
-            <h4 className="truncate">
+          <div className="flex flex-col items-start gap-2">
+            <h4 className="line-clamp-2" title={match.property.property_type + " at " + match.property.city}>
               {match.property.property_type + " at " + match.property.city}
             </h4>
             <span className="text-shade-200">
@@ -169,20 +176,16 @@ const MatchRow = ({ match }: { match: Match }) => {
       {/* Property */}
       <TableBody
         href={`/properties/${match.property.id}`}
-        className="col-span-2 mx-0 flex gap-2 truncate"
+        className="col-span-2 mx-0 flex items-start gap-3"
       >
         <TbPropertyImage
           title={match.property.property_type + " at " + match.property.city}
           image="/assets/images/niceHome.png"
         />
-        <div className="flex h-full flex-col justify-between gap-5">
-          <h4 className="line-clamp-1 font-bold">
+        <div className="flex flex-col items-start gap-2">
+          <h4 className="line-clamp-2 text-left font-bold" title={match.property.property_type + " at " + match.property.city}>
             {match.property.property_type + " at " + match.property.city}
           </h4>
-          {/* <p className="-mt-2 truncate text-[0.8125rem] text-[#B0B0B0]">
-            Assin Fosu
-          </p> */}
-          {/* <PaymentStructure monthlyPrice={3000} advancePayment="one year" /> */}
           <span className="text-shade-200">
             {formatPrice(match.property.monthly_amount as number)}
           </span>
@@ -193,7 +196,6 @@ const MatchRow = ({ match }: { match: Match }) => {
         <p className="font-semibold">
           {formatDateOnly(match.completed_at as string)}
         </p>
-        {/* <p className="text-[0.625rem] text-shade-200">20 days ago</p> */}
       </TableBody>
       {/* Actions */}
       <TableBody className="col-span-4">

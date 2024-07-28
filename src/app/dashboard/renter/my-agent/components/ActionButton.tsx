@@ -59,10 +59,16 @@ export default function ActionButton(props: Props) {
             </div>
           </ActionItemTrigger>
           <ActionContent>
-            <ActionItem href={props.match?.reschedule_url ?? undefined}>
+            <ActionItem
+              href={props.match?.reschedule_url ?? undefined}
+              target="_blank"
+            >
               Reschedule
             </ActionItem>
-            <ActionItem href={props.match?.cancel_url ?? undefined}>
+            <ActionItem
+              href={props.match?.cancel_url ?? undefined}
+              target="_blank"
+            >
               Cancel
             </ActionItem>
           </ActionContent>

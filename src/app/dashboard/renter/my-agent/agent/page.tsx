@@ -8,16 +8,36 @@ import { useFetchAgentRequests } from "../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import SkeletonRectangle from "@/components/__shared/ui/skeleton/SkeletonRectangle";
 import { Skeleton } from "@nextui-org/react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import supabase from "@/lib/utils/supabase/supabaseClient";
 
 export default function Page() {
   const { user } = useAppStore();
   const searchParams = useSearchParams();
   const agentRequestId = searchParams?.get("a")?.slice(3);
   const router = useRouter();
+  const [payload, setPayload] = React.useState<AgentRequest | null>(null);
+
+  useEffect(() => {
+    const agentRequestMatchesChannel = supabase
+      .channel("agent-request-matches-all-channel")
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "agent_request_matches" },
+        (payload) => {
+          setPayload(payload.new as AgentRequest);
+        },
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(agentRequestMatchesChannel);
+    };
+  }, []);
 
   const { data: agentRequests, isLoading } = useFetchAgentRequests({
     userId: user?.id as string,
+    payload: payload as AgentRequest,
   });
 
   useEffect(() => {

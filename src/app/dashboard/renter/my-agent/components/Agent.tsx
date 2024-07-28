@@ -15,7 +15,7 @@ import dynamic from "next/dynamic";
 import DeleteButton from "@/components/__shared/ui/button/DeleteButton";
 import { useDeleteAgentRequest } from "../services";
 import { useCallback, useEffect } from "react";
-import {views as BeMyAgentViews} from "./steps/BeMyAgentForm";
+import { views as BeMyAgentViews } from "./steps/BeMyAgentForm";
 const BeMyAgentModal = dynamic(() => import("./steps/BeMyAgentModal"));
 
 type Props = {
@@ -42,7 +42,10 @@ export default function Agent({
 
   const handleClick = () => {
     if (isActive) {
-      router.replace(`?a=217${agentRequest.id}`, { scroll: false });
+      router.replace(
+        `?t=${agentRequest.search_title}&a=217${agentRequest.id}`,
+        { scroll: false },
+      );
 
       setTimeout(() => {
         // scroll to bottom of page
@@ -99,7 +102,8 @@ export default function Agent({
         {isActive ? (
           <Button
             className="bg-shade-50 px-4 text-shade-200"
-            onClick={() => { handleEdit();
+            onClick={() => {
+              handleEdit();
               setActiveSlide(BeMyAgentViews.length - 1);
             }}
           >

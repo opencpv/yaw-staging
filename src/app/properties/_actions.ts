@@ -31,7 +31,7 @@ export const updateLikedProperty = async (
       })
       .select();
   }
-  
+
   revalidatePath("/dashboard/renter/favourites");
 
   return query;
@@ -44,11 +44,23 @@ export const updateRecentViews = async ({
   propertyId: number;
   userId: string;
 }) => {
-  const { error } = await supabase
+  const { data, error } = await supabase
     .from("recently_viewed_properties")
-    .upsert({ property_id: propertyId, user_id: userId });
+    .select("id")
+    .match({ property_id: propertyId, user_id: userId })
+    .maybeSingle();
+
 
   if (error) {
-    console.error("Error updating recent views:", error);
+    console.error("Error fetching recent views:", error);
+  }
+
+  if (data === null) {
+    const { error } = await supabase
+      .from("recently_viewed_properties")
+      .upsert({ property_id: propertyId, user_id: userId });
+    if (error) {
+      console.error("Error updating recent views:", error);
+    }
   }
 };

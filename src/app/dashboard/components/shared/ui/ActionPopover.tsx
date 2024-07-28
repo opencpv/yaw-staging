@@ -63,13 +63,16 @@ type ItemProps = {
   onClick?: () => void;
   disabled?: boolean;
   href?: string;
+  target?: React.HTMLAttributeAnchorTarget;
 };
 
 export const ActionItem = (props: ItemProps) => {
   if (props.href)
     return (
       <Link
+        target={props.target}
         href={props.href}
+        rel="noopener noreferrer"
         className={cn(
           "deep-green-hover flex w-full items-center gap-2 px-4 py-2",
           {

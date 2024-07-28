@@ -1,8 +1,8 @@
 import { cookies } from "next/headers";
 import React from "react";
-import Button from "@/components/__shared/ui/button/Button";
 import { redirect } from "next/navigation";
 import Image from "next/image";
+import GoHomeBtn from "../../components/GoHomeBtn";
 
 const page = async () => {
   const cookieStore = cookies();
@@ -12,13 +12,11 @@ const page = async () => {
   const previousPath = scheduleInfo?.split(",")[2];
 
   if (!matchId || !actionType || !previousPath) {
-    redirect("/dashboard/renter/my-agent/agent");
+    redirect(previousPath || "/dashboard/renter/my-agent/agent");
   }
 
-  const removeCookie = () => cookieStore.delete("bma-schedule-info");
-
   return (
-    <main className="fade-in-bottom grid min-h-[calc(100vh-10rem)] place-items-center px-5">
+    <main className="fade-in-bottom grid min-h-[calc(100vh-15rem)] place-items-center px-5">
       <section className="flex max-w-xl flex-col items-center gap-8 text-center">
         <Image
           src="/assets/images/confetti.png"
@@ -33,13 +31,7 @@ const page = async () => {
             will be contacted when the schedule is due. Thank you.
           </p>
         </div>
-        <Button
-          onClick={removeCookie}
-          color="primary"
-          href={previousPath || "/dashboard/renter/my-agent/agent"}
-        >
-          Go home
-        </Button>
+        <GoHomeBtn previousPath={previousPath} />
       </section>
     </main>
   );
