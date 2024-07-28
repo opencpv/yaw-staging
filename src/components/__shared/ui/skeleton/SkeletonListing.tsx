@@ -13,9 +13,12 @@ const SkeletonListing = ({
     <>
       {count &&
         countArray.map((_, idx) => (
-          <div key={idx + 1} className={cn("space-y-3 w-[384px] xs:w-[448px]", className)}>
+          <div
+            key={idx + 1}
+            className={cn("w-[350px] mx-auto space-y-3 xs:w-[448px]", className)}
+          >
             <Skeleton
-              className={cn("min-w-full rounded-2xl", {
+              className={cn("w-full max-w-sm rounded-2xl ssm:max-w-md", {
                 "h-80": cardType === 1,
                 "h-[26rem]": cardType === 2,
               })}

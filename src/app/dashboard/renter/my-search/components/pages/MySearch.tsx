@@ -10,11 +10,9 @@ import { useRouter } from "next/navigation";
 import { useFetchRenterBookmarks } from "../../../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
-import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
 import EmptyState from "@/components/__shared/ui/states/EmptyState";
 import { getListingProps } from "@/lib/enum";
 import slugify from "@/lib/utils/slugify";
-import { create } from "zustand";
 
 const MySearch = ({ filter }: { filter: string }) => {
   const { user } = useAppStore();

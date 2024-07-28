@@ -25,6 +25,7 @@ import TableSkeleton from "@/app/dashboard/components/shared/skeleton/TableSkele
 import { cn } from "@/lib/utils";
 import RentIt from "./RentIt";
 import supabase from "@/lib/utils/supabase/supabaseClient";
+import { useQueryClient } from "@tanstack/react-query";
 
 type Match = AgentRequestMatch & {
   property: {
@@ -41,7 +42,7 @@ export default function MatchTable() {
   const agentId = searchParams?.get("a")?.slice(3);
   const title = searchParams?.get("t");
   const matchesRef = React.useRef<HTMLElement>(null);
-  const [payload, setPayload] = React.useState<AgentRequestMatch | null>(null);
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     const agentRequestMatchesChannel = supabase
@@ -50,7 +51,8 @@ export default function MatchTable() {
         "postgres_changes",
         { event: "*", schema: "public", table: "agent_request_matches" },
         (payload) => {
-          setPayload(payload.new as AgentRequestMatch);
+          if (payload)
+            queryClient.invalidateQueries({ queryKey: ["agent_requests"] });
         },
       )
       .subscribe();
@@ -58,7 +60,7 @@ export default function MatchTable() {
     return () => {
       supabase.removeChannel(agentRequestMatchesChannel);
     };
-  }, []);
+  }, [queryClient]);
 
   useEffect(() => {
     if (matchesRef.current && location.href.includes("sk=true")) {
@@ -70,7 +72,6 @@ export default function MatchTable() {
     useFetchAgentRequestMatches({
       userId: user?.id as string,
       agentRequestId: Number(agentId),
-      payload: payload as AgentRequestMatch,
     });
 
   return (
@@ -139,7 +140,12 @@ const MatchRowMobile = ({ match }: { match: Match }) => {
             image="/assets/images/niceHome.png"
           />
           <div className="flex flex-col items-start gap-2">
-            <h4 className="line-clamp-2" title={match.property.property_type + " at " + match.property.city}>
+            <h4
+              className="line-clamp-2"
+              title={
+                match.property.property_type + " at " + match.property.city
+              }
+            >
               {match.property.property_type + " at " + match.property.city}
             </h4>
             <span className="text-shade-200">
@@ -183,7 +189,10 @@ const MatchRow = ({ match }: { match: Match }) => {
           image="/assets/images/niceHome.png"
         />
         <div className="flex flex-col items-start gap-2">
-          <h4 className="line-clamp-2 text-left font-bold" title={match.property.property_type + " at " + match.property.city}>
+          <h4
+            className="line-clamp-2 text-left font-bold"
+            title={match.property.property_type + " at " + match.property.city}
+          >
             {match.property.property_type + " at " + match.property.city}
           </h4>
           <span className="text-shade-200">

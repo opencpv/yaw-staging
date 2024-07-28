@@ -103,6 +103,7 @@ const Button: React.FC<Props> = ({
           className,
         )}
         onPress={onClick}
+        {...props as any}
       >
         {children} {arrowIcon && <FaArrowRight />}
       </NextUIButton>
@@ -158,6 +159,7 @@ const Button: React.FC<Props> = ({
           className,
         )}
         onPress={onClick}
+        {...props as any}
       >
         {children} {arrowIcon && <FaArrowRight />}
       </NextUIButton>

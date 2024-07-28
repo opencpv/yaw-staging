@@ -8,7 +8,8 @@ export const useFetchUserFavorites = ({ userId }: { userId: string }) => {
     .select(
     PROPERTY_DETAILS_SELECT_QUERY
     )
-    .contains("favorite_user_ids", [userId]);
+    .contains("favorite_user_ids", [userId])
+    .order("created_at", { ascending: false });
 
   return useOffsetInfiniteScrollQuery(query, {
     pageSize: 9,

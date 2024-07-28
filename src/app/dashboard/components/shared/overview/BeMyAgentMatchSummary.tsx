@@ -1,10 +1,12 @@
 import CallOut from "@/components/__shared/ui/CallOut";
 import Button from "@/components/__shared/ui/button/Button";
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { pluralize } from "@/lib/utils/stringManipulation";
 import Link from "next/link";
 import { Skeleton } from "@nextui-org/react";
+import supabase from "@/lib/utils/supabase/supabaseClient";
+import { useQueryClient } from "@tanstack/react-query";
 
 type Props = {
   matches:
@@ -23,6 +25,26 @@ const BeMyAgentMatchSummary = ({
   title,
   callOut,
 }: Props) => {
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    const agentRequestMatchesChannel = supabase
+      .channel("agent-request-matches-all-channel")
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "agent_request_matches" },
+        (payload) => {
+          if (payload)
+            queryClient.invalidateQueries({ queryKey: ["agent_requests"] });
+        },
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(agentRequestMatchesChannel);
+    };
+  }, [queryClient]);
+
   return (
     <section className={`w-full space-y-4 xs:max-lg:max-w-md lg:max-w-full`}>
       <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl bg-primary-400 p-2 px-4 capitalize text-white">
@@ -73,7 +95,7 @@ const BeMyAgentMatchSummary = ({
                   <div className="flex-[3] space-y-3">
                     <h3>{match.request?.search_title}</h3>
                     <Link
-                      href={`/dashboard/renter/my-agent/agent?a=535${match.request.id}&sk=true`}
+                      href={`/dashboard/renter/my-agent/agent?t=${match.request.search_title}&a=535${match.request.id}&sk=true`}
                       className="block w-fit rounded-xl bg-[#FEF8ED] p-2 px-6 text-neutral-700"
                     >
                       {match.request?.matched_properties?.length}{" "}

@@ -9,35 +9,15 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import SkeletonRectangle from "@/components/__shared/ui/skeleton/SkeletonRectangle";
 import { Skeleton } from "@nextui-org/react";
 import React, { useEffect } from "react";
-import supabase from "@/lib/utils/supabase/supabaseClient";
 
 export default function Page() {
   const { user } = useAppStore();
   const searchParams = useSearchParams();
   const agentRequestId = searchParams?.get("a")?.slice(3);
   const router = useRouter();
-  const [payload, setPayload] = React.useState<AgentRequest | null>(null);
-
-  useEffect(() => {
-    const agentRequestMatchesChannel = supabase
-      .channel("agent-request-matches-all-channel")
-      .on(
-        "postgres_changes",
-        { event: "*", schema: "public", table: "agent_request_matches" },
-        (payload) => {
-          setPayload(payload.new as AgentRequest);
-        },
-      )
-      .subscribe();
-
-    return () => {
-      supabase.removeChannel(agentRequestMatchesChannel);
-    };
-  }, []);
 
   const { data: agentRequests, isLoading } = useFetchAgentRequests({
     userId: user?.id as string,
-    payload: payload as AgentRequest,
   });
 
   useEffect(() => {
@@ -45,9 +25,11 @@ export default function Page() {
       (request) => request.is_paid === true,
     );
 
-    if (activeCard && agentRequestId === undefined)
-      router.replace(`?a=461${activeCard.id}`, { scroll: false });
-  }, [agentRequests, router, agentRequestId]);
+    if (activeCard)
+      router.replace(`?t=${activeCard.search_title}&a=461${activeCard.id}`, {
+        scroll: false,
+      });
+  }, [agentRequests, router]);
 
   return (
     <div className="mx-auto my-16 flex max-w-screen-3xl flex-col items-center justify-center gap-8 px-5 sm:px-10">

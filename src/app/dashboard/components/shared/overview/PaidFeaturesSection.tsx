@@ -1,6 +1,4 @@
 import React from "react";
-import FeatureExplainer from "./FeatureExplainer";
-import { UserRole } from "../../../types";
 import BTFTKMatchSummary from "./BTFTKMatchSummary";
 import { useFetchCriteriaOverview } from "@/app/dashboard/renter/be-the-first-to-know/services";
 import { useAppStore } from "@/store/dashboard/AppStore";

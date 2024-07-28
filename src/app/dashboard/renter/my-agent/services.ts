@@ -2,13 +2,7 @@ import supabase from "@/lib/utils/supabase/supabaseClient";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
-export const useFetchAgentRequests = ({
-  userId,
-  payload,
-}: {
-  userId: string;
-  payload: AgentRequest;
-}) => {
+export const useFetchAgentRequests = ({ userId }: { userId: string }) => {
   let query = supabase
     .from("agent_request")
     .select()
@@ -17,7 +11,7 @@ export const useFetchAgentRequests = ({
     .order("created_at");
 
   const result = useQuery({
-    queryKey: ["agent_requests", userId, payload],
+    queryKey: ["agent_requests", userId],
     queryFn: async () => {
       const { data, error } = await query;
       if (error) {
@@ -62,11 +56,9 @@ export const useFetchAgentRequestById = ({
 export const useFetchAgentRequestMatches = ({
   userId,
   agentRequestId,
-  payload,
 }: {
   userId: string;
   agentRequestId: number;
-  payload: AgentRequestMatch;
 }) => {
   const { data: agentRequest } = useFetchAgentRequestById({
     id: agentRequestId as number,
@@ -85,7 +77,7 @@ export const useFetchAgentRequestMatches = ({
       .order("created_at", { ascending: false });
 
   const result = useQuery({
-    queryKey: ["agent_request_matches", userId, agentRequestId, payload],
+    queryKey: ["agent_requests", "matches", userId, agentRequestId],
     queryFn: async () => {
       const { data, error } = await query;
       if (error) {
@@ -150,7 +142,7 @@ export const useFetchAgentRequestOverview = ({
 
   const query = useQuery({
     queryFn: getSummary,
-    queryKey: ["agent_request_overview", userId],
+    queryKey: ["agent_requests", "overview", userId],
   });
 
   return query;

@@ -18,7 +18,8 @@ export const useFetchRenterBookmarks = ({
 
   let query = supabase
     .from("merged_property_view")
-    .select(PROPERTY_DETAILS_SELECT_QUERY);
+    .select(PROPERTY_DETAILS_SELECT_QUERY)
+    .order("created_at", { ascending: false });
 
   if (formattedFilter === "recommendations") {
     query = query.limit(5);
