@@ -14,7 +14,7 @@ import DestructiveModal from "@/components/__shared/ui/modals/DestructiveModal";
 
 type Props = {
   status: RenterApplicationStatus;
-  id: string;
+  id: number;
   table: TableNames;
 };
 
@@ -47,7 +47,7 @@ const RtApplicationAction = ({ status, id, table }: Props) => {
         </PopoverTrigger>
         <PopoverContent className="rounded-md bg-[#fefefe] px-0 py-0">
           <div className="flex flex-col divide-y rounded-md">
-            {status === "incomplete" && (
+            {status === "INCOMPLETE" && (
               <>
                 <button
                   className="deep-green-hover flex w-full  items-center gap-2 px-4 py-2"
@@ -68,7 +68,7 @@ const RtApplicationAction = ({ status, id, table }: Props) => {
             )}
             <button
               className="deep-green-hover flex w-full items-center  gap-2 px-4 py-2"
-              onClick={() => ""}
+              // onClick={}
             >
               <span className="mr-auto">Message</span>
 

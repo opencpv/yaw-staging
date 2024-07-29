@@ -1,119 +1,100 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import RtApplicationRow from "./RtApplicationRow";
 import { useFetchTableWithPagination } from "@/lib/custom-hooks/useFetch";
 import TableSkeleton from "../../../components/shared/skeleton/TableSkeleton";
-import { useApplicationsStore } from "@/store/dashboard/applicationsStore";
-import Pagination from "@/components/__shared/ui/Pagination";
+import Pagination, { usePagination } from "@/components/__shared/ui/Pagination";
 import {
   Table,
   TableBodyRowGroup,
   TableHeader,
   TableHeaderRow,
 } from "../../../components/shared/table/Table";
-import Button from "@/components/__shared/ui/button/Button";
-import { IoArchiveOutline } from "react-icons/io5";
 import Loader from "@/components/__shared/ui/loader/Loader";
 import { cn } from "@/lib/utils";
+import { RenterApplicationStatus } from "./RtApplicationStatus";
+import Archived from "@/app/dashboard/components/shared/table/Archived";
 
-type Props = {};
+type Props = { data: any[]; loading: boolean; refetch: () => void };
 
-const RtManageApplicationsTable = (props: Props) => {
-  let pageSize = 4;
-  const setCount = useApplicationsStore((state) => state.setFetchCount);
-
-  const {
-    currentPage,
-    nextPage,
-    previousPage,
-    error,
-    isLoading,
-    isValidating,
-    totalCount,
-  } = useFetchTableWithPagination({
-    tableName: "regular_application",
-    pageSize,
-    order: { column: "created_at", ascending: false },
-    select: "id, created_at, firstname, lastname",
-    // revalidateOnFocus: false,
+const RtManageApplicationsTable = ({ data, loading, refetch }: Props) => {
+  const { currentItems, handlePageClick, pageCount } = usePagination({
+    items: data,
   });
+  const [onlyArchived, setonlyArchived] = useState(false);
+  const handleArchived = () => {
+    setonlyArchived(!onlyArchived);
+  };
+  const [filteredData, setfilteredData] = useState<any[]>(currentItems);
 
-  setCount(totalCount);
+  useEffect(() => {
+    setfilteredData(
+      currentItems.filter((item) => item.is_archived == onlyArchived),
+    );
+  }, [currentItems, onlyArchived]);
 
   return (
     <section className="hidden lg:block">
-      {error && <p>Error: {error.message}</p>}
+      <div className="mb-4 flex items-center justify-between">
+        <small className="text-sm capitalize">
+          {filteredData
+            ? `Showing ${
+                (filteredData.length as number) > 9
+                  ? filteredData.length
+                  : filteredData.length == 0
+                    ? "0"
+                    : `0${filteredData.length}`
+              } Results`
+            : "..."}
+        </small>
+        <Archived clickHandler={handleArchived} />
+      </div>
       <Table
         className={cn("mb-8", {
-          "min-h-[35rem]": currentPage && currentPage.length > 3,
+          "min-h-[35rem]": filteredData && filteredData.length > 3,
         })}
       >
         <TableHeaderRow className="grid-cols-5" gap="2rem">
-          <TableHeader className="col-span-2">Property</TableHeader>
-          <TableHeader className="col-span-1">Applied on</TableHeader>
+          <TableHeader className="col-span-1">Property</TableHeader>
+          <TableHeader className="col-span-1">Property Owner</TableHeader>
+          <TableHeader className="col-span-1">Date</TableHeader>
           <TableHeader className="col-span-1">Status</TableHeader>
           <TableHeader className="col-span-1">Actions</TableHeader>
         </TableHeaderRow>
         <TableBodyRowGroup>
-          {isValidating === false && !error && currentPage?.length === 0 && (
+          {data && data?.length === 0 && (
             <tr className="mt-4 italic">
               <td>There are no applications yet.</td>
             </tr>
           )}
-          {isLoading ? (
+          {loading ? (
             <TableSkeleton rows={4} columns={4} />
           ) : (
-            currentPage?.map((applicant, idx) => (
+            filteredData?.map((applicant: any, idx: number) => (
               <RtApplicationRow
-                key={applicant.id as string}
-                propertyTitle="Property Title"
+                key={applicant?.id as string}
+                propertyTitle={applicant?.property!.property_name}
                 propertyImage="/assets/images/Stock.jpg"
-                listerImage="/assets/images/profile-image.jpg"
-                listerName={`${applicant.firstname} ${applicant.lastname}`}
-                propertyPrice={30000}
+                listerImage={applicant.property.owner_uid.avatar_url}
+                listerName={`${applicant.property.owner_uid.full_name}`}
+                propertyPrice={applicant?.property?.total_amount}
                 date={applicant.created_at as string}
-                status={
-                  idx === 1
-                    ? "accepted"
-                    : idx === 3
-                      ? "declined"
-                      : idx === 0
-                        ? "incomplete"
-                        : "under review"
-                }
+                status={applicant.status as RenterApplicationStatus}
+                submitted={applicant.is_submitted}
+                applicationId={applicant.id}
+                refetch={refetch}
               />
             ))
           )}
-          {isValidating ? (
+          {loading ? (
             <div className="flex h-[20rem] w-full items-center justify-center">
               <Loader />
             </div>
           ) : null}
         </TableBodyRowGroup>
       </Table>
-      <div className="grid place-items-end">
-        <Button
-          variant="ghost"
-          className="ml-auto"
-          title="View all applications"
-        >
-          Archive <IoArchiveOutline />
-        </Button>
-      </div>
-      <div className="mt-5 grid place-items-center">
-        {/* <Pagination
-          total={totalCount ? totalCount / pageSize : 1}
-          handlePrev={() => {
-            if (previousPage) previousPage();
-          }}
-          handleNext={() => {
-            if (nextPage) nextPage();
-          }}
-          nextDisabled={nextPage === null ? true : false}
-          prevDisabled={previousPage === null ? true : false}
-        /> */}
-      </div>
+      <Pagination handlePageClick={handlePageClick} pageCount={pageCount} />
     </section>
   );
 };

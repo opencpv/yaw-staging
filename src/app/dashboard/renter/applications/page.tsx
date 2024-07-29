@@ -1,29 +1,13 @@
-"use client";
-import React from "react";
-import RtManageApplicationsTable from "./components/RtManageApplicationsTable";
-import RtManageApplicationsSmallScreen from "./components/RtManageApplicationsSm";
-import { useApplicationsStore } from "@/store/dashboard/applicationsStore";
+import { loadQuery } from "@/lib/utils/sanity/sanityStore";
+import { SanityDocument } from "next-sanity";
+import { BUBBLES_QUERY } from "@/lib/utils/sanity/queries";
+import ApplicationsPageView from "./components/ApplicationsPage";
 
-const ApplicationsPage = () => {
-  const fetchCount = useApplicationsStore((state) => state.fetchCount);
+const ApplicationsPage = async () => {
+  const initial = await loadQuery<SanityDocument[]>(BUBBLES_QUERY);
+  const bubblesData = initial.data[0];
 
-  return (
-    <main className="text-neutral-800">
-      <section className="mb-6 space-y-5">
-        <h2>My Applications</h2>
-        <small className="inline-block text-sm capitalize">
-          {fetchCount &&
-            `Showing ${
-              (fetchCount as number) > 9 ? fetchCount : `0${fetchCount}`
-            } Results`}
-        </small>
-      </section>
-      {/* Table */}
-      <RtManageApplicationsTable />
-      {/* Small screen view */}
-      <RtManageApplicationsSmallScreen />
-    </main>
-  );
+  return <ApplicationsPageView bubblesData={bubblesData} />;
 };
 
 export default ApplicationsPage;
