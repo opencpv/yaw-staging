@@ -100,7 +100,7 @@ function Invoices({ customerId }: Props) {
           className="shrink-0 group-hover:text-white"
         />
       </Button>
-      <section className="hidden w-full justify-between gap-5 bg-[#F8F8F8] py-5  lg:flex">
+      <section className="bg-shade hidden w-full justify-between gap-5 py-5  lg:flex">
         <div />
         <div>
           <Cost
@@ -117,7 +117,7 @@ function Invoices({ customerId }: Props) {
       <section className="mt-10 flex w-full justify-end lg:hidden">
         <Cost subTotal={subTotal} tax={tax} total={total} variant={"invoice"} />
       </section>
-      <section className="sticky bottom-0 z-50 grid w-full grid-cols-2 items-center justify-end gap-5 bg-[#F8F8F8] py-5 pb-2 max-lg:max-w-2xl lg:hidden">
+      <section className="bg-shade sticky bottom-0 z-50 grid w-full grid-cols-2 items-center justify-end gap-5 py-5 pb-2 max-lg:max-w-2xl lg:hidden">
         <div />
         <CheckoutButton affix={checkoutItems.length} />
       </section>

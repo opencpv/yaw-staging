@@ -11,7 +11,7 @@ type Props = {
 export default function AllReviewCard({ data }: Props) {
   return (
     <div className="flex w-full max-w-[1431px] flex-col items-start   gap-4 pb-4 ">
-      <div className="flex w-full flex-col items-start gap-4 border-b-[1px] border-l-4 border-b-[#E9ECEF] border-l-[#00974A] pb-4 pl-4">
+      <div className="flex w-full flex-col items-start gap-4  border-l-4  border-l-[#00974A]  pl-4">
         <div className="flex w-full items-center justify-start gap-4">
           <div
             className={`relative h-full w-full  aspect-square max-w-[100px] rounded-full overflow-hidden `}
@@ -24,7 +24,7 @@ export default function AllReviewCard({ data }: Props) {
             />
           </div>
           <div className="flex w-full flex-col gap-1 2xl:gap-2">
-            <p className=" font-semibold 2xl:text-[1.5625rem]">
+            <p className=" font-semibold 2xl:text-2xl">
               {data?.name}
             </p>
             <p className="text-sm 2xl:text-base">{data?.date}</p>
@@ -33,23 +33,18 @@ export default function AllReviewCard({ data }: Props) {
         </div>
 
         <div className="flex w-full gap-1">
-          <p className="leading-[23.04px] text-base text-[#333]">
-            {/* {data?.recommended == "yes" ? (
-              <span className="">
-                <CaThumbsUpYellow />
-              </span>
-            ) : (
-              <CaThumbsDown />
-            )} */}
+
+          <p className="text-base text-[#333] max-w-full">
+          
             {data?.review}
           </p>
         </div>
       </div>
 
-      <div className="flex flex-col items-start justify-center gap-[1.3125rem] border-b-[1px] border-b-[#E9ECEF] pb-4 pl-2 ">
+      <div className="flex flex-col items-start justify-center gap-[1.3125rem] border-b-[1px] border-b-[#E9ECEF] pb-6 pl-2 ">
         {data?.replies && (
           <div className="flex items-center gap-1">
-            <p className="font-semibold text-primary">Response from John Doe</p>
+            <p className="font-semibold text-primary text-base">Response from John Doe</p>
             <CaREviewsReply2 />
           </div>
         )}
@@ -62,7 +57,7 @@ export default function AllReviewCard({ data }: Props) {
               <Image fill alt="Person image" src={r?.image} objectFit="cover" />
             </div>
             <div>
-              <p>{r?.reply}</p>
+              <p className="text-base">{r?.reply}</p>
             </div>
           </div>
         ))}

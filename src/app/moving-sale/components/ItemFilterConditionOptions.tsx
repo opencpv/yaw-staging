@@ -11,7 +11,7 @@ const ConditionOptions = () => {
   return (
     <RadioChoices<Condition>
       value={condition as Condition}
-      choices={["New", "Used", "Used-like New", "All"]}
+      choices={["New", "Used-like New", "Used", "All"]}
       onValueChange={setCondition}
     />
   );

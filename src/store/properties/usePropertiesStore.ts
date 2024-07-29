@@ -1,10 +1,5 @@
 import { create } from "zustand";
 
-type CarouselStore = {
-  activeIndex: number;
-  setActiveIndex: (idx: number) => void;
-};
-
 export type FilterOption =
   | "all"
   | "realtor's choice"
@@ -25,11 +20,6 @@ type PropertiesPathStore = {
   previousPath: string | undefined;
   setPreviousPath: (path: string) => void;
 };
-
-export const carouselStore = create<CarouselStore>((set) => ({
-  activeIndex: 0,
-  setActiveIndex: (idx) => set({ activeIndex: idx }),
-}));
 
 export const propertyFilterStore = create<PropertyFilterStore>((set) => ({
   searchString: "",

@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import Status from "@/components/__shared/ui/states/Status";
-import { ProductStatusProp } from "@/lib/typings";
 
 export type ItemPublicationStatus =
   | "Active"
@@ -10,39 +9,38 @@ export type ItemPublicationStatus =
   | "Archived";
 
 type Props = {
-  status: ProductStatusProp;
+  status: ItemPublicationStatus;
   isAvailable: boolean;
-  id: number;
 };
 
-const PublicationStatus = ({ status, isAvailable, id }: Props) => {
+const PublicationStatus = ({ status, isAvailable }: Props) => {
   return (
     <>
       <Status
         variant={
-          status === "active" && isAvailable
+          status === "Active" && isAvailable
             ? "success"
-            : status === "suspended"
+            : status === "Suspended"
               ? "warning"
-              : status === "archived"
+              : status === "Archived"
                 ? "neutral-light"
-                : status === "inactive" && !isAvailable
+                : status === "Inactive" && !isAvailable
                   ? "neutral"
                   : undefined
         }
         tooltipContent={
-          status === "suspended"
+          status === "Suspended"
             ? "The lister has reviewed your application and should be in touch with you shortly. Check your messages or contact them directly if a response is delayed."
             : ""
         }
         text={
-          status === "active" && isAvailable
+          status === "Active" && isAvailable
             ? "Active"
-            : status === "suspended"
+            : status === "Suspended"
               ? "Suspended"
-              : status === "archived"
+              : status === "Archived"
                 ? "Archived"
-                : status === "inactive" && !isAvailable
+                : status === "Inactive" && !isAvailable
                   ? "Inactive"
                   : ""
         }

@@ -6,7 +6,7 @@ import Link from "next/link";
 function JobCantFindCard() {
   return (
     <div
-      className="flex h-full w-full cursor-pointer flex-col justify-between rounded-xl border-[1px] border-shade-50 bg-white pb-4 transition-all hover:scale-[1.02]"
+      className="flex h-full w-full flex-col justify-between rounded-xl border-[1px] border-shade-50 bg-white pb-4"
       style={{
         boxShadow:
           "0px 1px 2px 0px rgba(0, 0, 0, 0.06), 0px 1px 3px 0px rgba(0, 0, 0, 0.10)",

@@ -11,6 +11,7 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import { getListingProps } from "@/lib/enum";
 import { writer } from "repl";
 import { useFetchFeaturedListings } from "@/app/properties/services";
+import { IFRAME_ALLOW } from "@/constants";
 
 type Props = {
   data: any;
@@ -39,7 +40,7 @@ const ContactFormSideContent = (props: Props) => {
             <iframe
               src={sectionData.videoUrl}
               title={activeTab}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allow={IFRAME_ALLOW}
               allowFullScreen
               className="absolute inset-0 h-full w-full rounded-3xl"
             ></iframe>

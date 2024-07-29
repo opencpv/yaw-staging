@@ -32,8 +32,8 @@ export const getListingProps = (listing: any, user: UserType) => {
     monthlyAmount: listing?.monthly_amount as number,
     paymentStructure: "Bi-Annually" as PaymentStructure, // TODO: check database
     subtitle: listing?.subtitle as string,
-    rating: 4.5, // TODO: check database
-    ratingCount: 105, // TODO: check database
+    rating: 0, // TODO: check database
+    ratingCount: 3, // TODO: check database
     hint: listing?.is_realtors_choice
       ? ("Realtor's Choice" as HintTag)
       : listing?.is_best_value

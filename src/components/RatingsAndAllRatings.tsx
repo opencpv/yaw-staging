@@ -38,16 +38,18 @@ function RatingsAndAllRatings() {
       <Modal
         closeButton={<CloseModalIcon />}
         // header={}
-        body={<RatingsFormForm  />}
+
+        body={<RatingsFormForm />}
         // footer={<ModalFooter />}
         isOpen={openRatingsForm}
         onOpenChange={setOpenRatingsForm}
         size="4xl"
+        className="max-w-[799px] "
       />
 
       <Modal
         closeButton={<CloseModalIcon />}
-        body={<AllReviewsData  />} // TODO: add rating form
+        body={<AllReviewsData />} // TODO: add rating form
         isOpen={openAllRatings}
         onOpenChange={setOpenAllRatings}
         size="5xl"

@@ -3,11 +3,6 @@ import JoinUsNavbar from "./components/JoinUsNavbar";
 import { headers } from "next/headers";
 import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Jobs",
-  description: "", // tentative
-};
-
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const headerList = headers();
   const pathname = headerList.get("x-pathname") || "";

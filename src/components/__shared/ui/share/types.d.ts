@@ -9,4 +9,5 @@ type ShareDataProps = {
     icon?: string;
   };
   label?: string;
+  children?: React.ReactNode;
 };

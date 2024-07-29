@@ -1,83 +1,69 @@
-import { styled } from "@stitches/react";
-import {
-  Dispatch,
-  HTMLAttributes,
-  SetStateAction,
-  useEffect,
-  useState,
-} from "react";
-import { useSwiper } from "swiper/react";
-
 type Props = {
   number: number;
-  activeNumber: number;
-  label: string;
-  classes: string;
-  setActiveIndex: Dispatch<SetStateAction<number>>;
-  third?: boolean;
 };
-import styles from "../index.module.css";
+import useRatingsStore from "../useRatingsStore";
+import Image from "next/image";
 
-export const Progress = ({
+export const ProgressLabel = ({
   number,
-  activeNumber,
   label,
-  classes,
-  setActiveIndex,
-  third,
-}: Props) => {
-  const [active, setActive] = useState(false);
-  const swiper = useSwiper();
+}: {
+  number: number;
+  label: string;
+}) => {
+  const { activeTab, setActiveTab } = useRatingsStore();
 
-  const scrollToRight = (className: string) => {
-    const element = document.querySelector(`.${className}`);
-
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth", // You can use "auto" for instant scrolling
-        block: "start", // You can adjust this to "center" or "end" as needed
-        inline: "end", // This scrolls to the right edge of the element
-      });
-    }
-  };
-
-  const handleSwipe = () => {
-    setActiveIndex(number);
-    swiper.slideTo(number - 1);
-    scrollToRight(`sc${number}`);
-  };
-
-  useEffect(() => {
-    if (number == activeNumber) {
-      setActive(true);
-    } else {
-      setActive(false);
-    }
-  }, [activeNumber, number]);
   return (
-    <div className={` flex  w-full gap-6 ${classes}`} onClick={handleSwipe}>
-      <div className={`flex flex-col items-center gap-4 `}>
+    <p
+      className={`text-[10px] sm:text-[13px] break-wod    font-semibold capitalize  ${
+        activeTab == number - 1 ? "text-black " : "text-shade-200"
+      } `}
+    >
+      {label}
+    </p>
+  );
+};
+
+export const ProgressLine = () => {
+  return (
+    <div className="flex w-full items-center justify-center">
+      <div className="relative h-[1px] w-full">
+        <Image
+          src={"/assets/images/reviews-line.png"}
+          alt="Reviews line"
+          fill
+        />
+      </div>
+    </div>
+  );
+};
+
+export const Progress = ({ number }: Props) => {
+  const { activeTab, setActiveTab } = useRatingsStore();
+
+  return (
+    <button
+      className={` flex justify-center  `}
+      onClick={() => setActiveTab(number - 1)}
+    >
+      <div className={`flex flex-col items-center gap-8 `}>
         <div
+          style={{
+            boxShadow: "0px 24px 48px -12px rgba(0, 0, 0, 0.18)",
+          }}
           className={`cursor-pointer 
-          hover:bg-gray-300 ${
-            active
-              ? `${styles.review_pagination} font-bold text-white`
-              : "border-[1px] border-[#E6E6E6]"
-          } flex aspect-square w-[40px] max-w-[80px] items-center justify-center rounded-full text-base font-semibold text-[#B0B0B0]  md:w-[80px] md:text-[1.9375rem] `}
+            ${
+              activeTab == number - 1
+                ? `bg-[#41807E] font-bold text-white `
+                : " border-2 border-shade-200 text-shade-200"
+            } flex aspect-square w-[40px] max-w-[80px] items-center justify-center rounded-full text-base font-semibold duration-300 ${
+              activeTab != number - 1 &&
+              "hover:border-primary-300 hover:bg-primary-300"
+            } md:w-[80px] md:text-[1.9375rem]`}
         >
           {number}
         </div>
-        <p
-          className={`text-[13px] font-semibold capitalize  ${
-            active ? " text-black " : "text-shade-200"
-          } `}
-        >
-          {label}
-        </p>
       </div>
-      <div className="mt-[8%] md:mt-[14%]">
-        {!third && <div className="h-[1px] w-[100px] md:w-[200px] bg-[#CFCFCF]"></div>}{" "}
-      </div>{" "}
-    </div>
+    </button>
   );
 };

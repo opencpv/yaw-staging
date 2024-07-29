@@ -1,14 +1,21 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { useEffect, useState } from "react";
 import Review from "./Review";
 import Recommend from "./Recommend";
-import { Progress } from "./Progress";
+import {
+  Progress,
+  ProgressLabel,
+  ProgressLine,
+} from "./Progress";
 import { styled } from "@stitches/react";
 import Rate from "./Rate";
 
 import { useRatingsModalStore } from "@/store/modal/useRatingsModalStore";
+import useRatingsStore from "../useRatingsStore";
+import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
+import { fadeUp } from "@/lib/animations";
+import Button from "../../button/Button";
 
 function RatingsFormForm() {
   const {
@@ -19,77 +26,84 @@ function RatingsFormForm() {
     currentProperty,
     setCurrentProperty,
   } = useRatingsModalStore();
+  const { activeTab, setActiveTab } = useRatingsStore();
 
-  const [activeNumber, setActiveNumber] = useState(1);
+  const pages: any = {
+    0: <Rate />,
+    1: <Recommend />,
+    2: <Review />,
+  };
+
+  useEffect(() => {
+    setActiveTab(0);
+  }, [setActiveTab]);
 
   return (
-    <Root className="flex flex-col gap-4 px-1 py-3 lg:px-4">
-      <div className="flex flex-col gap-4">
-        <p className="text-base font-bold text-[#373737] 2xl:text-[1.5625rem]">
+    <Root className="flex h-[726px] min-h-[726px] flex-col justify-between gap-4 px-0 py-2 lg:px-5">
+      <div className="flex h-full flex-col gap-4 ">
+        <p className="text-base font-bold text-[#373737] 2xl:text-2xl">
           Write a review
         </p>
 
         <div className="flex  items-center gap-4">
-          <div className="relative aspect-square w-full max-w-[48px] overflow-hidden rounded-full">
+          <div className="relative aspect-[120/100] w-full max-w-[120px] overflow-hidden rounded-lg">
             <Image src={currentProperty?.images?.[0] ?? ""} fill alt="Image" />
           </div>
-          <div className="flex items-center flex-wrap gap-1 xs:gap-4">
-            <p className="text-base font-semibold md:text-[1.25rem]">
-              {currentProperty?.bedrooms} Bedroom {currentProperty?.propertyType}
+
+          <div className="flex flex-wrap items-center gap-1 xs:gap-2 xl:gap-4">
+            <p className="text-base md:text-xl">
+              {currentProperty?.bedrooms} Bedroom{" "}
+              {currentProperty?.propertyType}
             </p>
 
-            <span
+            <button
               onClick={() => {
                 setOpenRatingsForm(false);
                 setOpenAllRatings(true);
               }}
-              className="cursor-pointer border-b-[1px] border-primary bg-white lg:text-[1.25rem] text-primary"
+              className="cursor-pointer border-primary bg-white text-primary lg:text-xl"
             >
-              ( {currentProperty?.ratingCount} reviews )
-            </span>
+              <p className="leading-5 underline"> Read Reviews </p>
+            </button>
           </div>
-          
+        </div>
+
+        <div className="my-8 mb-16 flex h-full w-full flex-col justify-center  gap-8">
+          <div className=" grid grid-cols-5 items-center gap-2 sm:gap-5  pl-1 w-full">
+            <Progress number={1} />
+            <ProgressLine />
+            <Progress number={2}  />
+            <ProgressLine />
+
+            <Progress number={3} />
+          </div>
+          <div className="grid w-full grid-cols-5 items-center justify-center gap-2 sm:gap-5 text-center">
+            <ProgressLabel number={1} label="Rate" />
+            <p></p>
+            <ProgressLabel number={2} label="Recommend" />
+            <p></p>
+            <ProgressLabel number={7} label="Review" />
+          </div>
+          <div className="flex h-full flex-col justify-center">
+            {pages[activeTab]}
+          </div>{" "}
         </div>
       </div>
 
-      <Swiper className="mt-8 w-full px-1 " spaceBetween={50}>
-        <div className="mb-16 flex items-center gap-5 overflow-x-scroll pl-1">
-          <Progress
-            number={1}
-            label="Rate"
-            classes="sc1"
-            activeNumber={activeNumber}
-            setActiveIndex={setActiveNumber}
-          />
-          <Progress
-            number={2}
-            label="review"
-            classes="sc2"
-            activeNumber={activeNumber}
-            setActiveIndex={setActiveNumber}
-          />
-          <Progress
-            third
-            number={3}
-            label="recommend"
-            classes="sc3"
-            activeNumber={activeNumber}
-            setActiveIndex={setActiveNumber}
-          />
-        </div>
-        <SwiperSlide>
-          <Rate setActiveIndex={setActiveNumber} />
-        </SwiperSlide>
-        <SwiperSlide className="w-full">
-          <Review setActiveIndex={setActiveNumber} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Recommend
-            setActiveIndex={setActiveNumber}
-            setOpen={setOpenRatingsForm}
-          />
-        </SwiperSlide>
-      </Swiper>
+      <div className="flex w-full justify-center">
+        <Button
+          color="primary"
+          onClick={() => {
+            activeTab != 2 && setActiveTab(activeTab + 1);
+            if (activeTab == 2) {
+              setOpenRatingsForm(false);
+            }
+          }}
+          className="h-[48px] w-full lg:w-[264px]"
+        >
+          {activeTab != 2 ? "Next" : "Finish"}
+        </Button>
+      </div>
     </Root>
   );
 }
@@ -99,9 +113,5 @@ export default RatingsFormForm;
 const Root = styled("div", {
   "::-webkit-scrollbar": {
     width: 0,
-  },
-  ".swiper": {
-    display: "flex",
-    flexDirection: "column-reverse",
   },
 });

@@ -56,7 +56,7 @@ const About = async () => {
             <div className="w-full">
               {heading2.split("#").map((heading: string, index: number) => (
                 <h4
-                  className="max-w-2xl text-2xl font-[500] text-[#65969F]"
+                  className="max-w-2xl sm:text-2xl font-[500] text-[#65969F]"
                   key={index}
                 >
                   {heading}
@@ -118,11 +118,11 @@ const About = async () => {
           <SimpleSlider data={services} />
         </section>
 
-        <FramerWrapper className="mx-auto h-fit max-w-screen-2xl px-5 sm:px-10 lg:pt-28">
+        <FramerWrapper className="mx-auto h-fit max-w-screen-2xl px-5 sm:px-10 lg:pt-20">
           <VerticalSlider data={popularPosts} />
         </FramerWrapper>
       </main>
-      <FeaturedListings className="wrapper pb-0 pt-28" />
+      <FeaturedListings className="wrapper pb-0 pt-20" />
       <Footer />
     </>
   );

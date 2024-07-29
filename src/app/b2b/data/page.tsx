@@ -8,7 +8,7 @@ function Page() {
     redirect("/b2b");
   }
   return (
-    <main className="wrapper bg-[#F8F8F8]">
+    <main className="wrapper bg-shade">
       <InvoiceReceiptFilter customerId={customerId} />
     </main>
   );

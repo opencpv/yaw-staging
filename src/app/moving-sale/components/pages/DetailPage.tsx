@@ -56,7 +56,7 @@ const DetailPage = (props: Props) => {
         )}
       </div>
       <ItemImages query={query} />
-      <section className="mb-20 grid gap-x-20 gap-y-10 lg:grid-cols-3">
+      <section className="grid gap-x-20 gap-y-10 lg:grid-cols-3">
         {/* Grid col */}
         <ItemDetails query={query} />
         {/* Grid col */}

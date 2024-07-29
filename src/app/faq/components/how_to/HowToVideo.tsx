@@ -1,3 +1,4 @@
+import { IFRAME_ALLOW } from "@/constants";
 import React, { useEffect, useRef, useState } from "react";
 
 type Props = {
@@ -25,7 +26,7 @@ const HowToVideo = (props: Props) => {
           <iframe
             src={props.src}
             title={props.heading}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+            allow={IFRAME_ALLOW}
             className="absolute inset-0 h-full w-full rounded-3xl"
             ref={videoRef}
           ></iframe>

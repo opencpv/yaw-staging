@@ -9,15 +9,12 @@ import ProductCondition, { ItemCondition } from "./ProductCondition";
 import PublicationStatus, { ItemPublicationStatus } from "./PublicationStatus";
 import { createContext } from "react";
 import { ItemContext } from "@/app/dashboard/contexts/ItemContext";
-import { ProductStatusProp } from "@/lib/typings";
 
 type Props = {
   data: Item;
-  refetch: () => void;
-  id: number;
 };
 
-const DesktopProductCard = ({ data: item, refetch, id }: Props) => {
+const DesktopProductCard = ({ data: item }: Props) => {
   return (
     <ItemContext.Provider value={{ item }}>
       <TableBodyRow className="grid-cols-7">
@@ -54,23 +51,20 @@ const DesktopProductCard = ({ data: item, refetch, id }: Props) => {
         {/* Available */}
         <TableBody className="col-span-1">
           <ProductStatus
-            id={item.id}
             status={item.status as ItemPublicationStatus}
             isAvailable={item.is_available}
-            refetch={refetch}
           />
         </TableBody>
         {/* Publication */}
         <TableBody className="col-span-1">
           <PublicationStatus
-            status={item.status as ProductStatusProp}
+            status={item.status as ItemPublicationStatus}
             isAvailable={item.is_available}
-            id={id}
           />
         </TableBody>
         {/* Actions */}
         <TableBody className="col-span-1 mx-auto">
-          <Actions refetch={refetch} id={id} />
+          <Actions />
         </TableBody>
       </TableBodyRow>
     </ItemContext.Provider>
