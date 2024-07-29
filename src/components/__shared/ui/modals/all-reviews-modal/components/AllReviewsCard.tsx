@@ -33,7 +33,7 @@ export default function AllReviewCard({ data }: Props) {
         </div>
 
         <div className="flex w-full gap-1">
-          <p className="leading-[23.04px] text-[#333]">
+          <p className="leading-[23.04px] text-base text-[#333]">
             {/* {data?.recommended == "yes" ? (
               <span className="">
                 <CaThumbsUpYellow />
