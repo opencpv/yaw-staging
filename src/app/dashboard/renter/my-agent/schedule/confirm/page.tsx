@@ -8,7 +8,7 @@ type Props = {
 
 const page = (props: Props) => {
   const matchId = Number(props.searchParams.m?.slice(3));
-
+  const actionType = props.searchParams.t;
 
   return (
     <main>
@@ -22,7 +22,7 @@ const page = (props: Props) => {
         </div>
       </header>
       <Suspense fallback={<Loader position="center" />}>
-        <MatchDetail matchId={matchId} />
+        <MatchDetail matchId={matchId} actionType={actionType as string} />
       </Suspense>
     </main>
   );

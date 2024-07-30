@@ -95,7 +95,7 @@ export const fetchRequestMatchById = async (id: number) => {
   const { data, error } = await supabase
     .from("agent_request_matches")
     .select(
-      "agent_request!inner(id, search_title, title, first_name, last_name, country, email, phone), property!inner(id, city, bedrooms, property_type, monthly_amount, images, features_and_amenities)",
+      "id, agent_request!inner(id, search_title, title, first_name, last_name, country, email, phone), property!inner(id, city, bedrooms, property_type, monthly_amount, images, features_and_amenities)",
     )
     .eq("id", id)
     .maybeSingle();

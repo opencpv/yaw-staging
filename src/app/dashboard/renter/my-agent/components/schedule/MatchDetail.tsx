@@ -12,6 +12,7 @@ import images from "@/enum/temp/images";
 
 type Props = {
   matchId: number;
+  actionType: string;
 };
 
 const MatchDetail = async (props: Props) => {
@@ -86,7 +87,7 @@ const MatchDetail = async (props: Props) => {
             previousPath={previousPath || "/dashboard/renter/my-agent/agent"}
           />
           <Button
-            href={`/dashboard/renter/my-agent/schedule?fn=${match?.agent_request?.first_name}&ln=${match?.agent_request?.last_name}&e=${match?.agent_request?.email}&p=${match?.agent_request?.phone}`}
+            href={`/dashboard/renter/my-agent/schedule?m=814${match?.id}&t=${props.actionType}&fn=${match?.agent_request?.first_name}&ln=${match?.agent_request?.last_name}&e=${match?.agent_request?.email}&p=${match?.agent_request?.phone}`}
             color="primary"
           >
             Confirnm Rental Request
