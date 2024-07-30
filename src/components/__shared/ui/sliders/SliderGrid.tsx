@@ -1,8 +1,7 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation, Grid, FreeMode } from "swiper/modules";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "@/styles/custom-swiper.css";
 import "swiper/css/bundle";
 import "swiper/css";
@@ -11,6 +10,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/free-mode";
 import { SliderGridProps } from "./sliders";
+import SliderNav from "./SliderNav";
 
 const SliderGrid = ({ items }: SliderGridProps) => {
   // const [shouldRefresh, setShouldRefresh] = useState(false);
@@ -90,14 +90,24 @@ const SliderGrid = ({ items }: SliderGridProps) => {
       <div className="relative top-10 z-20 mx-auto -mt-9 flex w-11/12 items-center justify-center 2xl:w-9/12">
         {/* Prev Button */}
         <div className="inline-flex w-full items-center justify-between gap-5">
-          <div className="listing-grid-prev grid h-12 w-12 shrink-0 cursor-pointer place-items-center rounded-full bg-accent-50 md:h-16 md:w-16">
-            <FaChevronLeft className="text-white" />
-          </div>
+          <SliderNav
+            position="left"
+            className={`listing-grid-prev bg-accent`}
+            size="lg"
+            classNames={{
+              icon: "text-white",
+            }}
+          />
           <div className="slider-grid-pagination absolute left-20 hidden w-full min-[250px]:block"></div>
           {/* Next button */}
-          <div className="listing-grid-next grid h-12 w-12 shrink-0 cursor-pointer place-items-center rounded-full bg-accent-50 md:h-16 md:w-16">
-            <FaChevronRight className="text-white" />
-          </div>
+          <SliderNav
+            position="right"
+            className={`listing-grid-next bg-accent`}
+            size="lg"
+            classNames={{
+              icon: "text-white",
+            }}
+          />
         </div>
       </div>
     </div>

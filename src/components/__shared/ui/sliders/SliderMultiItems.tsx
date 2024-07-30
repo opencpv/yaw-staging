@@ -2,7 +2,6 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation, Autoplay, FreeMode } from "swiper/modules";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -10,6 +9,7 @@ import "swiper/css/navigation";
 import "swiper/css/autoplay";
 import "swiper/css/free-mode";
 import { SliderMultiItemsProps } from "./sliders";
+import SliderNav from "./SliderNav";
 
 const SliderMultiItems = ({
   items,
@@ -77,14 +77,25 @@ const SliderMultiItems = ({
           <div className="relative bottom-[-2rem] z-20 mx-auto flex w-11/12 items-center justify-center">
             <div className="inline-flex w-full items-center justify-between gap-5">
               {/* Prev Button */}
-              <div className="slider-multi-items-prev grid h-12 w-12 shrink-0 place-items-center rounded-full bg-accent-50 md:h-16 md:w-16">
-                <FaChevronLeft className="text-white" />
-              </div>
+              <SliderNav
+                position="left"
+                className={`slider-multi-items-prev bg-accent`}
+                size="lg"
+                classNames={{
+                  icon: "text-white",
+                }}
+              />
+
               <div className="slider-multi-items-pagination-lg absolute left-20 hidden w-full min-[250px]:block" />
               {/* Next button */}
-              <div className="slider-multi-items-next grid h-12 w-12 shrink-0 place-items-center rounded-full bg-accent-50 md:h-16 md:w-16">
-                <FaChevronRight className="text-white" />
-              </div>
+              <SliderNav
+                position="right"
+                className={`slider-multi-items-next bg-accent`}
+                size="lg"
+                classNames={{
+                  icon: "text-white",
+                }}
+              />
             </div>
           </div>
         )}
@@ -128,14 +139,24 @@ const SliderMultiItems = ({
           <div className="relative bottom-[-2rem] z-20 mx-auto flex w-11/12 items-center justify-center">
             <div className="inline-flex w-full items-center justify-between gap-5">
               {/* Prev Button */}
-              <div className="slider-multi-items-prev grid h-12 w-12 shrink-0 place-items-center rounded-full bg-accent-50 md:h-16 md:w-16">
-                <FaChevronLeft className="text-white" />
-              </div>
+              <SliderNav
+                position="left"
+                className={`slider-multi-items-prev bg-accent`}
+                size="lg"
+                classNames={{
+                  icon: "text-white",
+                }}
+              />
               <div className="slider-multi-items-pagination absolute left-20 hidden w-full min-[250px]:block" />
               {/* Next button */}
-              <div className="slider-multi-items-next grid h-12 w-12 shrink-0 place-items-center rounded-full bg-accent-50 md:h-16 md:w-16">
-                <FaChevronRight className="text-white" />
-              </div>
+              <SliderNav
+                position="right"
+                className={`slider-multi-items-next bg-accent`}
+                size="lg"
+                classNames={{
+                  icon: "text-white",
+                }}
+              />
             </div>
           </div>
         )}

@@ -8,6 +8,8 @@ type Props = {
 
 const page = (props: Props) => {
   const matchId = Number(props.searchParams.m?.slice(3));
+
+
   return (
     <main>
       <header className="bg-primary p-10 text-white max-sm:px-5">

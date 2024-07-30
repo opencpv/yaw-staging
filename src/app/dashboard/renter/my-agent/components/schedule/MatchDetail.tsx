@@ -7,6 +7,8 @@ import RenterInformation from "./RenterInformation";
 import Button from "@/components/__shared/ui/button/Button";
 import { cookies } from "next/headers";
 import CancelRequestBtn from "./CancelRequestBtn";
+import PropertyImageSlider from "./PropertyImageSlider";
+import images from "@/enum/temp/images";
 
 type Props = {
   matchId: number;
@@ -29,10 +31,15 @@ const MatchDetail = async (props: Props) => {
     <>
       <section className="p-10 max-sm:px-5">
         <div className="mx-auto max-w-screen-hd">
-          <div className="space-y-3">
+          <div className="fade-in-left space-y-3">
             <h3>Property Information</h3>
             <div className="grid grid-cols-1 gap-10 sm:grid-cols-5">
-              <div className="col-span-3">slider</div>
+              <div className="col-span-3">
+                <PropertyImageSlider
+                  images={images}
+                  title={generatePropertyTitle(match?.property as Property)}
+                />
+              </div>
               <div className="col-span-2 flex flex-col gap-16">
                 <div className="space-y-3">
                   <h2 className="text-shade-300">
@@ -44,16 +51,25 @@ const MatchDetail = async (props: Props) => {
                 </div>
                 <div className="space-y-3 text-shade-300">
                   <h4>Features</h4>
-                  <ul className="flex flex-col gap-3">
-                    {match?.property?.features_and_amenities?.map((feature) => (
-                      <li
-                        className="flex items-center gap-5 text-primary"
-                        key={feature}
-                      >
-                        {getFeatureIcon("wifi", 20)} {feature}
-                      </li>
-                    ))}
-                  </ul>
+                  {match?.property?.features_and_amenities?.length === 0 ? (
+                    <p className="italic text-shade-200">Not specified</p>
+                  ) : (
+                    <ul className="flex flex-col gap-3">
+                      {match?.property?.features_and_amenities?.map(
+                        (feature) => (
+                          <li className="flex items-center gap-5" key={feature}>
+                            <span
+                              className="text-primary"
+                              style={{ color: "#11605E" }}
+                            >
+                              {getFeatureIcon(feature, 20, "#11605E")}
+                            </span>
+                            {feature}
+                          </li>
+                        ),
+                      )}
+                    </ul>
+                  )}
                 </div>
               </div>
             </div>

@@ -1,12 +1,12 @@
 import React from "react";
 
-function Tiles() {
+function Tiles({ size, color }: { size?: number | string; color?: string }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="45"
-      height="44"
-      fill="none"
+      width={size || "44"}
+      height={size || "44"}
+      stroke={color}
       viewBox="0 0 45 44"
     >
       <g clipPath="url(#clip0_5650_72037)">
@@ -25,3 +25,4 @@ function Tiles() {
 }
 
 export default Tiles;
+

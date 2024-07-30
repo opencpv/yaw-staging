@@ -24,7 +24,6 @@ const data = [
   { name: "sliding windows", icon: <TbDoorExit size="44" /> },
   { name: "pets allowed", icon: <PiPawPrintLight size="44" /> },
   { name: "near road", icon: <GiRoad size="44" /> },
-
   { name: "security camera", icon: <BiSolidCctv size="44" /> },
   { name: "pool", icon: <MdOutlinePool size="44" /> },
   { name: "pool table", icon: <GiPoolTableCorner size="44" /> },
