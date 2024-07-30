@@ -10,6 +10,10 @@ const NewMeetingPage = () => {
   const searchParams = useSearchParams();
   const matchId = searchParams?.get("m")?.slice(3);
   const actionType = searchParams?.get("t");
+  const firstName = searchParams?.get("fn");
+  const lastName = searchParams?.get("ln");
+  const email = searchParams?.get("e");
+  const phone = searchParams?.get("p");
 
   useEffect(() => {
     const containerRef = embedContainerRef.current;
@@ -18,7 +22,7 @@ const NewMeetingPage = () => {
       //@ts-ignore
       const Appointlet = (await import("@appointlet/appointlet.js")).default;
       const appointletInstance = new Appointlet(
-        `https://appt.link/meet-with-rentrightGH/be-my-agent-renter?field__match=${matchId}&field__type=${actionType}`,
+        `https://appt.link/meet-with-rentrightGH/be-my-agent-renter?field__match=${matchId}&field__type=${actionType}&first_name=${firstName}&last_name=${lastName}&email=${email}&location=${phone}`,
       );
       setAppointlet(appointletInstance);
     };
@@ -31,7 +35,7 @@ const NewMeetingPage = () => {
         containerRef.innerHTML = ""; // Clear the container
       }
     };
-  }, [actionType, matchId]);
+  }, [actionType, matchId, firstName, lastName, email, phone]);
 
   useEffect(() => {
     if (appointlet && embedContainerRef.current) {

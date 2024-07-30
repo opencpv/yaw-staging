@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
 import Select from "../../../../components/shared/ui/Select";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
@@ -10,16 +10,15 @@ import { useRouter } from "next/navigation";
 import { useFetchRenterBookmarks } from "../../../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
-import EmptyState from "@/components/__shared/ui/states/EmptyState";
 import { getListingProps } from "@/lib/enum";
 import slugify from "@/lib/utils/slugify";
+import NoSearchEmptyState from "../NoSearchEmptyState";
+import { unslugify } from "@/lib/utils/stringManipulation";
 
 const MySearch = ({ filter }: { filter: string }) => {
   const { user } = useAppStore();
   const router = useRouter();
-  const [page, setPage] = React.useState(
-    filter.toLowerCase().replaceAll(" ", "-"),
-  );
+  const [page, setPage] = React.useState(slugify(filter));
 
   const {
     data: listings,
@@ -35,7 +34,7 @@ const MySearch = ({ filter }: { filter: string }) => {
       {/* xl and above */}
       <OptionFilterTabs
         options={["All", "Recommendations", "Recently Viewed"]}
-        selectedKey={page.replaceAll("-", " ")}
+        selectedKey={unslugify(page)}
         onSelectionChange={(key) => {
           const slug = slugify(key.toString());
           setPage(key.toString());
@@ -52,7 +51,7 @@ const MySearch = ({ filter }: { filter: string }) => {
       <div className="md:hidden">
         <Select
           options={["All", "Recommendations", "Recently Viewed"]}
-          value={page.replaceAll("-", " ")}
+          value={unslugify(page)}
           className="mx-0 w-60 font-bold"
           valueClassName="font-bold"
           variant="default"
@@ -81,7 +80,7 @@ const MySearch = ({ filter }: { filter: string }) => {
           error={error}
           isLoading={isLoading}
           isLoadingComponent={<SkeletonListing count={3} />}
-          emptyStateComponent={<EmptyState />}
+          emptyStateComponent={<NoSearchEmptyState page={page} />}
         />
         {listings?.map((listing) => (
           <ListingCard

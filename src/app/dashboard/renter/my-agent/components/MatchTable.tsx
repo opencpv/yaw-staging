@@ -26,10 +26,12 @@ import { cn } from "@/lib/utils";
 import RentIt from "./RentIt";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { useQueryClient } from "@tanstack/react-query";
+import { generatePropertyTitle } from "@/lib/enum";
 
 type Match = AgentRequestMatch & {
   property: {
     id: number;
+    bedrooms: number;
     city: string;
     monthly_amount: number;
     property_type: string;
@@ -136,20 +138,20 @@ const MatchRowMobile = ({ match }: { match: Match }) => {
       <TableBodySm href={`/properties/${match.property.id}`}>
         <div className="flex flex-wrap gap-3 xsm:flex-nowrap">
           <TbPropertyImageSm
-            title={match.property.property_type + " at " + match.property.city}
+            title={generatePropertyTitle(match.property)}
             image="/assets/images/niceHome.png"
           />
           <div className="flex flex-col items-start gap-2">
             <h4
               className="line-clamp-2"
               title={
-                match.property.property_type + " at " + match.property.city
+                generatePropertyTitle(match.property) 
               }
             >
-              {match.property.property_type + " at " + match.property.city}
+              {generatePropertyTitle(match.property)}
             </h4>
             <span className="text-shade-200">
-              {formatPrice(match.property.monthly_amount as number)}
+              {formatPrice(match.property.monthly_amount as number)} / month
             </span>
           </div>
         </div>
@@ -185,18 +187,18 @@ const MatchRow = ({ match }: { match: Match }) => {
         className="col-span-2 mx-0 flex items-start gap-3"
       >
         <TbPropertyImage
-          title={match.property.property_type + " at " + match.property.city}
+          title={generatePropertyTitle(match.property)}
           image="/assets/images/niceHome.png"
         />
         <div className="flex flex-col items-start gap-2">
           <h4
             className="line-clamp-2 text-left font-bold"
-            title={match.property.property_type + " at " + match.property.city}
+            title={generatePropertyTitle(match.property)}
           >
-            {match.property.property_type + " at " + match.property.city}
+            {generatePropertyTitle(match.property)}
           </h4>
           <span className="text-shade-200">
-            {formatPrice(match.property.monthly_amount as number)}
+            {formatPrice(match.property.monthly_amount as number)} / month
           </span>
         </div>
       </TableBody>

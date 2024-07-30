@@ -1,0 +1,84 @@
+import React from "react";
+import { fetchRequestMatchById } from "../../services";
+import { generatePropertyTitle } from "@/lib/enum";
+import { formatPrice } from "@/lib/utils/numberManipulation";
+import { getFeatureIcon } from "@/lib/utils/getFeatureIcon";
+import RenterInformation from "./RenterInformation";
+import Button from "@/components/__shared/ui/button/Button";
+import { cookies } from "next/headers";
+import CancelRequestBtn from "./CancelRequestBtn";
+
+type Props = {
+  matchId: number;
+};
+
+const MatchDetail = async (props: Props) => {
+  const cookieStore = cookies();
+  const scheduleInfo = cookieStore.get("bma-schedule-info")?.value;
+  const previousPath = scheduleInfo?.split(",")[2];
+  const match = await fetchRequestMatchById(props.matchId);
+
+  const initialValues = {
+    title: match?.agent_request?.title,
+    firstName: match?.agent_request?.first_name,
+    lastName: match?.agent_request?.last_name,
+    country: match?.agent_request?.country,
+  };
+
+  return (
+    <>
+      <section className="p-10 max-sm:px-5">
+        <div className="mx-auto max-w-screen-hd">
+          <div className="space-y-3">
+            <h3>Property Information</h3>
+            <div className="grid grid-cols-1 gap-10 sm:grid-cols-5">
+              <div className="col-span-3">slider</div>
+              <div className="col-span-2 flex flex-col gap-16">
+                <div className="space-y-3">
+                  <h2 className="text-shade-300">
+                    {generatePropertyTitle(match?.property as Property)}
+                  </h2>
+                  <h2 className="text-3xl">
+                    {formatPrice(match?.property?.monthly_amount || 0)} / month
+                  </h2>
+                </div>
+                <div className="space-y-3 text-shade-300">
+                  <h4>Features</h4>
+                  <ul className="flex flex-col gap-3">
+                    {match?.property?.features_and_amenities?.map((feature) => (
+                      <li
+                        className="flex items-center gap-5 text-primary"
+                        key={feature}
+                      >
+                        {getFeatureIcon("wifi", 20)} {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="space-y-5 pt-10">
+            <h3>Renter Information</h3>
+            <RenterInformation initialValues={initialValues} />
+          </div>
+        </div>
+      </section>
+      <footer className="mx-auto mt-10 max-w-screen-hd border-t border-black p-10 pt-5 max-sm:px-5">
+        <div className="mx-auto flex flex-col gap-5 sm:flex-row sm:justify-end">
+          <CancelRequestBtn
+            previousPath={previousPath || "/dashboard/renter/my-agent/agent"}
+          />
+          <Button
+            href={`/dashboard/renter/my-agent/schedule?fn=${match?.agent_request?.first_name}&ln=${match?.agent_request?.last_name}&e=${match?.agent_request?.email}&p=${match?.agent_request?.phone}`}
+            color="primary"
+          >
+            Confirnm Rental Request
+          </Button>
+        </div>
+      </footer>
+    </>
+  );
+};
+
+export default MatchDetail;

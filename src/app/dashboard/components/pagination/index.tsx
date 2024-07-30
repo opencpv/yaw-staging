@@ -116,14 +116,14 @@ const Pagination = () => {
       </ScrollShadow>
 
       {/* Desktop */}
-      <Button
-        className="hidden h-14 w-12 shrink-0 items-center justify-center rounded-lg bg-primary p-0 text-white ssm:order-2 md:flex"
+      <button
+        className="hidden h-14 max-w-12 w-full shrink-0 items-center justify-center rounded-lg bg-primary p-0 text-white ssm:order-2 md:flex"
         onClick={() => setIsOpen(true)}
       >
         <div className="flex items-center justify-center">
           <HiBars3BottomRight size={25} />
         </div>
-      </Button>
+      </button>
 
       <Switch className="relative order-1 my-auto mr-auto flex w-full flex-1 items-center gap-5 ssm:order-3 ssm:hidden" />
 

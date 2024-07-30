@@ -134,3 +134,27 @@ export const getDaysRemaining = (createdAt: string, days: number) => {
 
   return days - diffDays;
 };
+
+export const getArticle = (word: string) => {
+  if (
+    word.charAt(0) === "a" ||
+    word.charAt(0) === "e" ||
+    word.charAt(0) === "i" ||
+    word.charAt(0) === "o" ||
+    word.charAt(0) === "u"
+  ) {
+    return `an ${word}`;
+  } else {
+    return `a ${word}`;
+  }
+};
+
+export const caseInsensitiveCompare = (a: string, b: string) => {
+  return a.toLowerCase() === b.toLowerCase();
+};
+
+export const unslugify = (text: string) => {
+  return text
+    .split("-")
+    .join(" ");
+};

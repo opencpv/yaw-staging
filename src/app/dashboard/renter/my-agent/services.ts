@@ -71,7 +71,7 @@ export const useFetchAgentRequestMatches = ({
     query = supabase
       .from("agent_request_matches")
       .select(
-        "*, property!inner(id, images, property_type, city, monthly_amount)",
+        "*, property!inner(id, images, bedrooms, property_type, city, monthly_amount)",
       )
       .eq("request_id", agentRequestId)
       .order("created_at", { ascending: false });
@@ -89,6 +89,21 @@ export const useFetchAgentRequestMatches = ({
   });
 
   return result;
+};
+
+export const fetchRequestMatchById = async (id: number) => {
+  const { data, error } = await supabase
+    .from("agent_request_matches")
+    .select(
+      "agent_request!inner(id, search_title, title, first_name, last_name, country, email, phone), property!inner(id, city, bedrooms, property_type, monthly_amount, images, features_and_amenities)",
+    )
+    .eq("id", id)
+    .maybeSingle();
+
+  if (error) {
+    console.log(error.message);
+  }
+  return data;
 };
 
 export const useFetchAgentRequestOverview = ({

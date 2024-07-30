@@ -2,12 +2,16 @@
 import Toggle from "@/components/__shared/ui/Toggle";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const ContactPreferenceToggle = () => {
   const { user, setUser } = useAppStore();
-  const [selected, setSelected] = useState(user?.should_be_contacted || false);
+  const [selected, setSelected] = useState(user?.should_be_contacted);
+
+  useEffect(() => {
+    setSelected(user?.should_be_contacted); 
+  }, [user]);
 
   const handleToggle = async (isSelected: boolean) => {
     setSelected(isSelected);

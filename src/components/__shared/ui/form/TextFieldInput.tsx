@@ -1,6 +1,5 @@
 "use client";
-import { ErrorMessage, Field, Formik, useFormik } from "formik";
-import { styled } from "@stitches/react";
+import { ErrorMessage, Field } from "formik";
 import { InputHTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 
@@ -49,6 +48,7 @@ const TextFieldInput: React.FC<
                 "form-input form-field-border h-[52px] w-full rounded-[4px] px-4 text-base focus:outline-accent-50",
                 {
                   "pl-16": prefix,
+                  "border-shade-50 hover:border-neutral-300": props.disabled,
                 },
                 classNames?.input,
               )}

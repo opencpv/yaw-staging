@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Button from "@/components/__shared/ui/button/Button";
-import { getSchedulePage } from "../actions";
+import { getConfirmationPage } from "../actions";
 import { formatDateTime } from "@/lib/utils/stringManipulation";
 import { cn } from "@/lib/utils";
 import {
@@ -20,22 +20,23 @@ type Props = {
 export default function ActionButton(props: Props) {
   const [loading, setLoading] = React.useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const now = new Date();
+  const meetingDate = new Date(props.match?.start_date as string);
 
   const handleNewMeeting = async () => {
     setLoading(true);
 
     if (!props.match?.meeting_id) {
-      getSchedulePage({
+      getConfirmationPage({
         matchId: props.match?.id as number,
         actionType: props.actionType,
         currentPath: window.location.href,
+        requestId: props.match?.request_id as number,
       });
     }
   };
   const handleActionTrigger = () => {
-    const today = new Date();
-    const meetingDate = new Date(props.match?.start_date as string);
-    if (today < meetingDate) {
+    if (now < meetingDate) {
       setIsOpen(true);
     }
   };
@@ -44,7 +45,7 @@ export default function ActionButton(props: Props) {
     <>
       {props.match?.meeting_id &&
       props.match?.type?.toLowerCase() === props.actionType.toLowerCase() ? (
-        <ActionPopover isOpen={isOpen} onOpenChange={setIsOpen} placement="top">
+        <ActionPopover isOpen={isOpen} onOpenChange={(open) => { now < meetingDate ? setIsOpen(open) : setIsOpen(false) }} placement="top">
           <ActionItemTrigger
             className="col-span-1 h-fit w-full"
             onClick={handleActionTrigger}

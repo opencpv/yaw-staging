@@ -15,7 +15,7 @@ const SkeletonListing = ({
         countArray.map((_, idx) => (
           <div
             key={idx + 1}
-            className={cn("w-[350px] mx-auto space-y-3 xs:w-[448px]", className)}
+            className={cn("w-[350px] mx-auto flex flex-col gap-3 xs:w-[448px]", className)}
           >
             <Skeleton
               className={cn("w-full max-w-sm rounded-2xl ssm:max-w-md", {

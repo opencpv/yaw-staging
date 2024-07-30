@@ -1,19 +1,13 @@
 import { cookies } from "next/headers";
 import React from "react";
-import { redirect } from "next/navigation";
 import Image from "next/image";
-import GoHomeBtn from "../../components/GoHomeBtn";
+import GoHomeBtn from "../../components/schedule/GoHomeBtn";
 
 const page = async () => {
   const cookieStore = cookies();
   const scheduleInfo = cookieStore.get("bma-schedule-info")?.value;
-  const matchId = scheduleInfo?.split(",")[0];
-  const actionType = scheduleInfo?.split(",")[1];
   const previousPath = scheduleInfo?.split(",")[2];
-
-  if (!matchId || !actionType || !previousPath) {
-    redirect(previousPath || "/dashboard/renter/my-agent/agent");
-  }
+  
 
   return (
     <main className="fade-in-bottom grid min-h-[calc(100vh-15rem)] place-items-center px-5">
@@ -31,7 +25,7 @@ const page = async () => {
             will be contacted when the schedule is due. Thank you.
           </p>
         </div>
-        <GoHomeBtn previousPath={previousPath} />
+        <GoHomeBtn previousPath={previousPath || "/dashboard/renter/my-agent/agent" } />
       </section>
     </main>
   );

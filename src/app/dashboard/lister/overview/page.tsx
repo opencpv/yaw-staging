@@ -17,7 +17,6 @@ import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingState
 import { useFetchListerActiveListings } from "./services";
 import { getListingProps } from "@/lib/enum";
 import ListingCard from "@/components/__shared/ui/listing/ListingCard";
-import PropertiesEmptyState from "@/app/properties/components/PropertiesEmptyState";
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
 import ActiveListingEmptyState from "./components/ActiveListingEmptyState";
 import ListingModal from "./components/steps/ListingModal";
@@ -118,7 +117,7 @@ const ListerOverviewPage = () => {
               description="Lorem ipsum dolor sit amet consectetur"
               icon={
                 <GoShieldCheck
-                  className="aspect-square text-primary"
+                  className="max-sm:scale-80 text-primary"
                   size={65}
                 />
               }

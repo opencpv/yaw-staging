@@ -1,4 +1,5 @@
 import images from "@/enum/temp/images";
+import capitalizeName from "./utils/stringManipulation";
 
 export const getListingProps = (listing: any, user: UserType) => {
   return {
@@ -43,3 +44,10 @@ export const getListingProps = (listing: any, user: UserType) => {
     ViewingFee: listing?.viewing_fee as number,
   };
 };
+
+
+export const generatePropertyTitle = (property: Partial<Property>) => {
+  return `${property.bedrooms || ""} Bedroom ${capitalizeName(property?.property_type || "")} at ${property?.city || ""}`;
+}
+
+

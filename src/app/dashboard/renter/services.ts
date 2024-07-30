@@ -22,7 +22,7 @@ export const useFetchRenterBookmarks = ({
     .order("created_at", { ascending: false });
 
   if (formattedFilter === "recommendations") {
-    query = query.limit(5);
+    query = query.eq("id", 0);
   }
   if (formattedFilter === "recently-viewed") {
     query = query.in(

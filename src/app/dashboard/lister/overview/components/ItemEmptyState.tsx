@@ -1,5 +1,4 @@
-import Button from "@/components/__shared/ui/button/Button";
-import capitalizeName from "@/lib/utils/stringManipulation";
+import capitalizeName, { getArticle } from "@/lib/utils/stringManipulation";
 import React from "react";
 import { FaPlus } from "react-icons/fa6";
 
@@ -13,7 +12,7 @@ const ItemEmptyState = (props: Props) => {
       <div className="flex flex-col items-center">
         <p>You have no active {props.variant}</p>
         <p className="text-base text-shade-300">
-          Click here to create a {props.variant}
+          Click here to create {getArticle(props.variant)}
         </p>
       </div>
 

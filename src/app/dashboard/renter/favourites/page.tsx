@@ -19,14 +19,13 @@ const FavourtiesPage = () => {
     isLoading,
     isValidating,
     loadMore,
-    mutate,
   } = useFetchUserFavorites({ userId: user?.id as string });
 
   return (
-    <main className="w-full flex flex-col gap-8 bg-white">
+    <main className="flex w-full flex-col gap-8 bg-white">
       <h2>Favourites</h2>
 
-      <div className="relative bottom-4">
+      <div className="relative">
         <ContactPreferenceToggle />
       </div>
 

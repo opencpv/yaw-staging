@@ -1,7 +1,4 @@
 import { styled } from "@stitches/react";
-import { FaWifi } from "react-icons/fa";
-import SlideEnter from "./SlideEnter";
-import { motion } from "framer-motion";
 import Amenity from "./Amenity";
 import { useEffect, useState } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
