@@ -19,7 +19,8 @@ const MatchDetail = async (props: Props) => {
   const cookieStore = cookies();
   const scheduleInfo = cookieStore.get("bma-schedule-info")?.value;
   const previousPath = scheduleInfo?.split(",")[2];
-  const match = await fetchRequestMatchById(props.matchId);
+  const renterId = scheduleInfo?.split(",")[4];
+  const match = await fetchRequestMatchById({id: props.matchId, renterId: renterId as string});
 
   const initialValues = {
     title: match?.agent_request?.title,
@@ -32,7 +33,7 @@ const MatchDetail = async (props: Props) => {
     <>
       <section className="p-10 max-sm:px-5">
         <div className="mx-auto max-w-screen-hd">
-          <div className="fade-in-left space-y-3">
+          <div className="fade-in-left space-y-5">
             <h3>Property Information</h3>
             <div className="grid grid-cols-1 gap-10 sm:grid-cols-5">
               <div className="col-span-3">
@@ -42,11 +43,11 @@ const MatchDetail = async (props: Props) => {
                 />
               </div>
               <div className="col-span-2 flex flex-col gap-16">
-                <div className="space-y-3">
+                <div className="space-y-2">
                   <h2 className="text-shade-300">
                     {generatePropertyTitle(match?.property as Property)}
                   </h2>
-                  <h2 className="text-3xl">
+                  <h2 className="sm:text-3xl">
                     {formatPrice(match?.property?.monthly_amount || 0)} / month
                   </h2>
                 </div>
@@ -63,7 +64,7 @@ const MatchDetail = async (props: Props) => {
                               className="text-primary"
                               style={{ color: "#11605E" }}
                             >
-                              {getFeatureIcon(feature, 20, "#11605E")}
+                              {getFeatureIcon(feature, 22, "#11605E")}
                             </span>
                             {feature}
                           </li>
@@ -81,7 +82,7 @@ const MatchDetail = async (props: Props) => {
           </div>
         </div>
       </section>
-      <footer className="mx-auto mt-10 max-w-screen-hd border-t border-black p-10 pt-5 max-sm:px-5">
+      <footer className="mx-auto mt-10 max-w-screen-hd border-t border-shade-500 p-10 pt-4 max-sm:px-5">
         <div className="mx-auto flex flex-col gap-5 sm:flex-row sm:justify-end">
           <CancelRequestBtn
             previousPath={previousPath || "/dashboard/renter/my-agent/agent"}

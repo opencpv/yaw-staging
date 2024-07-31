@@ -9,6 +9,7 @@ import {
   ActionItemTrigger,
   ActionPopover,
 } from "@/app/dashboard/components/shared/ui/ActionPopover";
+import { useAppStore } from "@/store/dashboard/AppStore";
 
 type Props = {
   children: React.ReactNode;
@@ -18,6 +19,7 @@ type Props = {
 };
 
 export default function ActionButton(props: Props) {
+  const {user} = useAppStore()
   const [loading, setLoading] = React.useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const now = new Date();
@@ -32,6 +34,7 @@ export default function ActionButton(props: Props) {
         actionType: props.actionType,
         currentPath: window.location.href,
         requestId: props.match?.request_id as number,
+        renterId: user?.id as string,
       });
     }
   };

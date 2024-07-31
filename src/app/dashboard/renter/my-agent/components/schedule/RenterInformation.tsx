@@ -12,8 +12,8 @@ const RenterInformation = (props: Props) => {
     <Formik initialValues={props.initialValues} onSubmit={() => {}}>
       <Form className="grid gap-5 xs:grid-cols-2">
         <TextFieldInput name="title" label="Title" disabled />
-        <TextFieldInput name="firstName" label="Title" disabled />
-        <TextFieldInput name="lastName" label="Title" disabled />
+        <TextFieldInput name="firstName" label="First Name" disabled />
+        <TextFieldInput name="lastName" label="Last Name" disabled />
         <TextFieldInput name="country" label="Country" disabled />
       </Form>
     </Formik>

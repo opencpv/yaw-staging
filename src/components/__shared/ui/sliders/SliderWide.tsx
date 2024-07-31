@@ -7,7 +7,6 @@ import "@/styles/custom-swiper.css";
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Image from "next/image";
-import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import Link from "next/link";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { cn } from "@/lib/utils";
@@ -106,12 +105,12 @@ const SliderWide = ({
       <SliderNav
         position="left"
         className={`slider-wide-prev-btn`}
-        hidden={activeIndex === 0}
+        hidden={activeIndex === 0 || !navigation}
       />
       <SliderNav
         position="right"
         className={`slider-wide-next-btn`}
-        hidden={activeIndex === lastIndex}
+        hidden={activeIndex === lastIndex || !navigation}
       />
     </div>
   );

@@ -8,10 +8,11 @@ export const getConfirmationPage = (data: {
   actionType: string;
   currentPath: string;
   requestId: number;
+  renterId: string
 }) => {
   cookies().set({
     name: "bma-schedule-info",
-    value: `${data.matchId},${data.actionType},${data.currentPath},${data.requestId}`,
+    value: `${data.matchId},${data.actionType},${data.currentPath},${data.requestId},${data.renterId}`,
     path: "/dashboard/renter/my-agent/schedule/",
     maxAge: 20 * 60,
     httpOnly: true,

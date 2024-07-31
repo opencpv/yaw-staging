@@ -47,7 +47,7 @@ export const getListingProps = (listing: any, user: UserType) => {
 
 
 export const generatePropertyTitle = (property: Partial<Property>) => {
-  return `${property.bedrooms || ""} Bedroom ${capitalizeName(property?.property_type || "")} at ${property?.city || ""}`;
+  return `${property?.bedrooms || ""} Bedroom ${capitalizeName(property?.property_type || "")} at ${property?.city || ""}`;
 }
 
 

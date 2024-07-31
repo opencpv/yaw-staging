@@ -16,7 +16,7 @@ const page = (props: Props) => {
         <div className="mx-auto max-w-screen-hd space-y-3">
           <h3>Confirm Your Rental Request</h3>
           <p className="text-base text-shade-50">
-            Excellent! We are glag you found a match. Please confirm your
+            Excellent! We are glad you found a match. Please confirm your
             details below to proceed.
           </p>
         </div>

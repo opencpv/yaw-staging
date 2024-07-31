@@ -91,13 +91,20 @@ export const useFetchAgentRequestMatches = ({
   return result;
 };
 
-export const fetchRequestMatchById = async (id: number) => {
+export const fetchRequestMatchById = async ({
+  id,
+  renterId,
+}: {
+  id: number;
+  renterId: string;
+}) => {
   const { data, error } = await supabase
     .from("agent_request_matches")
     .select(
-      "id, agent_request!inner(id, search_title, title, first_name, last_name, country, email, phone), property!inner(id, city, bedrooms, property_type, monthly_amount, images, features_and_amenities)",
+      "id, agent_request!inner(id, search_title, title, first_name, last_name, country, email, phone, renter_id), property!inner(id, city, bedrooms, property_type, monthly_amount, images, features_and_amenities)",
     )
     .eq("id", id)
+    .eq("agent_request.renter_id", renterId)
     .maybeSingle();
 
   if (error) {
