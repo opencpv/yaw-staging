@@ -5,15 +5,18 @@ import { MdOutlineOutlinedFlag } from "react-icons/md";
 import { MdOutlineMessage } from "react-icons/md";
 import { TiLocationOutline } from "react-icons/ti";
 
-function UserImageAndDetails() {
+type Props = {
+  type: string;
+};
+function UserImageAndDetails({ type }: Props) {
   return (
     <div className="w-full">
-      <div className="hidden h-[330px] bg-[url('/assets/images/general-details/general-details-bg.png')] bg-cover bg-no-repeat lg:block"></div>
+      <div className=" h-[330px] bg-[url('/assets/images/general-details/general-details-bg.png')] bg-cover bg-no-repeat block"></div>
 
-      <div className=" px-10 py-8 ">
-        <div className=" flex h-fit flex-col-reverse items-end justify-start gap-6 lg:flex-row">
+      <div className=" px-10 pb-8 pt-10 wrapper">
+        <div className=" flex h-fit  items-end justify-start gap-6 flex-row">
           <div className="relative flex h-full w-[350px] flex-col justify-end gap-3">
-            <div className="absolute left-0 top-[-300px] z-[100] hidden h-full w-full lg:block">
+            <div className="absolute left-0 top-[-290px] z-[100]  h-full w-full block">
               <div className="relative aspect-[350/275] max-h-[275px] w-full max-w-[350px] overflow-hidden rounded-2xl">
                 <Image
                   src={"/assets/images/profile-image.jpg"}
@@ -28,9 +31,9 @@ function UserImageAndDetails() {
               <Button
                 variant="outline"
                 color="primary"
-                className="w-full    max-w-[181px] whitespace-nowrap text-xs font-semibold"
+                className=" border-0 whitespace-nowrap  w-fit px-4 py-2 text-sm font-semibold"
               >
-                <MdOutlineOutlinedFlag />
+                <MdOutlineOutlinedFlag className="text-primary text-lg"/>
                 Report this profile
               </Button>
             </div>
@@ -41,17 +44,17 @@ function UserImageAndDetails() {
               <div className="flex items-center gap-2.5">
                 {" "}
                 <h2 className="text-3xl">Esther Howards</h2>
-                <p className="rounded-xl bg-primary px-4 py-1 text-base font-bold text-white ">
-                  Renter
+                <p className="rounded-xl bg-primary px-4 py-1 text-base font-bold text-white capitalize">
+                  {type}
                 </p>
               </div>
 
               <Button
                 variant="default"
                 color="primary"
-                className="max-w-[162px] whitespace-nowrap text-xs font-semibold"
+                className=" whitespace-nowrap text-xs font-semibold py-2 px-4 w-fit"
               >
-                <MdOutlineMessage />
+                <MdOutlineMessage className="text-white text-xl" />
                 Send Message
               </Button>
             </div>

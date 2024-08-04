@@ -7,7 +7,13 @@ import UserImageAndDetails from "./components/UserImageAndDetails";
 import UserReviews from "./components/UserReviews";
 import UserImageAndDetailsSm from "./components/UserImageAndDetailsSm";
 
-async function Page() {
+type Props = {
+  params: {
+    type: string;
+    id: number;
+  };
+};
+async function Page({ params }: Props) {
   const ads = await loadQuery<SanityDocument[]>(ADS_QUERY);
   const adsData = ads.data;
   const filteredAdsData = adsData.filter(
@@ -15,17 +21,24 @@ async function Page() {
   );
 
   return (
-    <div className="md:wrapper flex flex-col gap-5">
-      <div className="hidden md:flex w-full">
-        <UserImageAndDetails />
+    <div className=" flex w-full flex-col  gap-5 !pt-0">
+      <div className="hidden w-full md:flex">
+        <UserImageAndDetails type={params.type} />
       </div>
-      <div className="lg:hidden">
+      <div className="md:hidden">
         <UserImageAndDetailsSm />
       </div>{" "}
-      <div className="px-5 md:px-10">
-        <UserAboutUs />
-        <UserReviews />
-        <FeaturedListings data={filteredAdsData} />
+      <div className="wrapper flex w-full flex-col gap-5 !pt-0">
+        <div className="flex flex-col gap-10 w-full ">
+          <UserAboutUs />
+          <UserReviews />
+        </div>
+        <div>
+          <h2 className="text-2xl text-shade-300 2xl:text-3xl">
+            Esthers Listings
+          </h2>
+        </div>
+        {/* <FeaturedListings data={filteredAdsData} /> */}
       </div>
     </div>
   );

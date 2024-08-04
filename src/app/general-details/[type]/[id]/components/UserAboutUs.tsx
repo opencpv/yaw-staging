@@ -3,7 +3,7 @@ import RatingsAndAllRatings from "@/components/RatingsAndAllRatings";
 function UserAboutUs() {
   return (
     <div className="flex flex-col gap-4">
-      <h3 className="text-shade-300">About Esther</h3>
+      <h2 className="text-2xl 2xl:text-3xl text-shade-300">About Esther</h2>
 
       <p className="text-base leading-loose text-shade-300">
         Lorem ipsum dolor sit amet consectetur. At vulputate etiam elementum
