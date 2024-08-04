@@ -55,7 +55,7 @@ const NotificationItem: React.FC<Props> = ({
       >
         <div className="flex gap-4">
           <div className={`pt-1 ${notification?.read && "opacity-50"}`}>
-            {notificationItems[notification?.type]}
+            {notificationItems[notification?.type]} 
           </div>
 
           <div className="flex flex-col gap-1">

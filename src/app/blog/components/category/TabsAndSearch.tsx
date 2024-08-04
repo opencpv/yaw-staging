@@ -15,7 +15,7 @@ const TabsAndSearch = ({ handleSearch, categories, onChange }: Props) => {
       <div className="w-full max-w-2xl flex-1">
         <SearchInput onSearch={handleSearch} onChange={onChange} />
       </div>
-      <div className="flex-1 overflow-x-auto">
+      <div className="hidden-scrollbar flex-1 overflow-x-auto">
         <CategoryTabs categories={categories} />
       </div>
     </div>

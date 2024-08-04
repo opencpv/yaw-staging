@@ -48,11 +48,7 @@ type ContextType = {
 
 const FileContext = createContext<ContextType | null>(null);
 
-const FileUploader = ({
-  onFileSelect,
-  defaultImages = [],
-  defaultPrimaryImage = null,
-}: Props) => {
+const FileUploader = ({ onFileSelect, defaultImages }: Props) => {
   const [field, meta, helpers] = useField("images");
 
   const [primaryImage, setPrimaryImage] = React.useState<string | undefined>(

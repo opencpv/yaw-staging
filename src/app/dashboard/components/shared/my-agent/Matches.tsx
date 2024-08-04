@@ -34,7 +34,7 @@ export default function MatchesYet() {
   }, []);
 
   return (
-    <section className="flex w-full flex-col gap-8 pt-28" ref={matchesRef}>
+    <section className="flex w-full flex-col gap-8 pt-20" ref={matchesRef}>
       <p className="text-[1.25rem] font-semibold lg:text-[1.5625rem]">
         Your Matches
       </p>

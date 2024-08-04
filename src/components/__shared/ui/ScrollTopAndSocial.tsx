@@ -4,22 +4,22 @@ import FixedSocials from "../../FixedSocials";
 import ScrollTop from "./ScrollTop";
 
 type Props = {
-  socialHidden?: boolean;
-  scrollTopHidden?: boolean;
+  hideSocial?: boolean;
+  hideScrollTop?: boolean;
   thresholdMin?: number;
 };
 
 const ScrollTopAndSocial = ({
-  scrollTopHidden,
-  socialHidden,
+  hideScrollTop,
+  hideSocial,
   thresholdMin,
 }: Props) => {
   return (
     <>
-      <div style={{ display: socialHidden ? "none" : "block" }}>
+      <div style={{ display: hideSocial ? "none" : "block" }}>
         <FixedSocials thresholdMin={thresholdMin} />
       </div>
-      <div style={{ display: scrollTopHidden ? "none" : "block" }}>
+      <div style={{ display: hideScrollTop ? "none" : "block" }}>
         <ScrollTop />
       </div>
     </>

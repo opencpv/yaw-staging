@@ -4,22 +4,24 @@ import CaArrowBackLong from "../icons/CaArrowBackLong";
 import RichTextRenderer from "@/components/__shared/RichTextRenderer";
 import Image from "next/image";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
+import styles from "../index.module.css";
 
 const MainView = ({ data }: { data: any }) => {
   const router = useRouter();
   const { icons, images } = useAssets();
+  const words = data.subtitle.split(" ");
 
   return (
-    <div className="flex  h-[65vh] w-full flex-col items-center justify-center">
-      <div className="flex w-full flex-col items-start justify-between gap-4 pt-8 lg:flex-row lg:items-center lg:pt-0">
-        <div className="flex shrink-0 basis-[60%] flex-col items-start justify-center gap-4 text-white">
-          <div className="mb-4 flex flex-col">
-            <h1 className="leading-tight">{data.title}</h1>
-            <h1 className="leading-tight">{data.subtitle}</h1>
-          </div>
-          <div className="max-w-[824px]">
-            <RichTextRenderer content={data.description[0]} />
-          </div>
+    <div className="flex  w-full flex-col items-center justify-center text-white">
+      <div className="flex flex-col items-center gap-6 lg:max-w-[60vw] 2xl:gap-12">
+        <div className="mb-4 flex w-full flex-col items-center ">
+          <h1 className="leading-tight">{data.title}</h1>
+          <h1 className="leading-tight text-white">{data.subtitle}</h1>
+        </div>
+        <div
+          className={`${styles.termsMain} break-words text-xl 2xl:font-semibold`}
+        >
+          <RichTextRenderer content={data.description[0]} />
         </div>
       </div>
     </div>

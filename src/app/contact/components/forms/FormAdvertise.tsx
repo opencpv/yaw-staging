@@ -34,7 +34,6 @@ const FormAdvertise = (props: Props) => {
     loading,
     setLoading,
     tableName,
-    handleFileUpload,
     validate,
     contactFormSession,
     handleSessionChange,

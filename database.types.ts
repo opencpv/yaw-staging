@@ -771,14 +771,18 @@ export type Database = {
           category: string
           condition: string
           created_at: string
+          deletion_date: string | null
           description: string
           id: number
           images: string[] | null
+          inactive_date: string | null
           is_available: boolean
+          is_deleted: boolean
           phone: string | null
           price: number
           seller: string
           status: string
+          suspension_date: string | null
           term: string
           title: string
           views: number
@@ -788,14 +792,18 @@ export type Database = {
           category: string
           condition?: string
           created_at?: string
+          deletion_date?: string | null
           description: string
           id?: number
           images?: string[] | null
+          inactive_date?: string | null
           is_available?: boolean
+          is_deleted?: boolean
           phone?: string | null
           price: number
           seller: string
           status?: string
+          suspension_date?: string | null
           term?: string
           title: string
           views?: number
@@ -805,14 +813,18 @@ export type Database = {
           category?: string
           condition?: string
           created_at?: string
+          deletion_date?: string | null
           description?: string
           id?: number
           images?: string[] | null
+          inactive_date?: string | null
           is_available?: boolean
+          is_deleted?: boolean
           phone?: string | null
           price?: number
           seller?: string
           status?: string
+          suspension_date?: string | null
           term?: string
           title?: string
           views?: number
@@ -1422,66 +1434,6 @@ export type Database = {
           },
         ]
       }
-      sell_items: {
-        Row: {
-          avaliable: boolean
-          category: string
-          condition: string
-          created_at: string
-          description: string
-          id: number
-          img_url: string
-          negotiable: boolean | null
-          phone: string
-          price: number | null
-          product_name: string
-          user_id: string
-        }
-        Insert: {
-          avaliable?: boolean
-          category: string
-          condition?: string
-          created_at?: string
-          description: string
-          id?: number
-          img_url: string
-          negotiable?: boolean | null
-          phone: string
-          price?: number | null
-          product_name: string
-          user_id: string
-        }
-        Update: {
-          avaliable?: boolean
-          category?: string
-          condition?: string
-          created_at?: string
-          description?: string
-          id?: number
-          img_url?: string
-          negotiable?: boolean | null
-          phone?: string
-          price?: number | null
-          product_name?: string
-          user_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "sell_items_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "distinct_messages_view"
-            referencedColumns: ["sender_id"]
-          },
-          {
-            foreignKeyName: "sell_items_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       subscribers: {
         Row: {
           campaign: string | null
@@ -1969,9 +1921,32 @@ export type Database = {
       }
     }
     Functions: {
+      archive_old_products: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
+      }
+      generate_random_alphanumeric: {
+        Args: {
+          length: number
+        }
+        Returns: string
+      }
       increment_property_views: {
         Args: {
           propertyid: number
+        }
+        Returns: undefined
+      }
+      insert_customer: {
+        Args: {
+          p_full_name: string
+          p_email: string
+          p_phone: string
+          p_customer_id: string
+          p_firstname: string
+          p_lastname: string
+          p_company: string
+          p_address: string
         }
         Returns: undefined
       }

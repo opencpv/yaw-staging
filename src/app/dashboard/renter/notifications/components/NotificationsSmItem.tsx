@@ -18,7 +18,7 @@ type Props = {
 const NotificationsSmItem: React.FC<Props> = ({ notification }) => {
   return (
     <div className="flex w-full items-start justify-between gap-2 hover:bg-[#E6EBEB]">
-      <NotificationsSmModal currentNotification={notification} />
+      <NotificationsSmModal notification={notification} />
       <div className="pt-5 ">
         <MarkAndDeletePopup read={notification?.read} />
       </div>

@@ -1,9 +1,5 @@
 "use client";
-import CaInstagram from "@/components/__shared/ui/icons/CaInstagram";
-import CaTwitter from "@/components/__shared/ui/icons/CaTwitter";
-import CaWhatsappBusiness from "@/components/__shared/ui/icons/CaWhatsappBusiness";
 import Link from "next/link";
-import CaFacebook from "@/components/__shared/ui/icons/CaFacebook";
 import quickLinks from "@/enum/footer/quickLinks";
 import { getCurrentYear } from "@/lib/utils/numberManipulation";
 import Logo from "@/components/__shared/ui/Logo";
@@ -23,8 +19,13 @@ import FloatItemsHack from "@/components/FloatItemsHack";
 import { useIntersectionObserver } from "@/lib/utils/intersectionObserver";
 import { useEffect } from "react";
 import { floatItemsIntersectionStore } from "@/store/footer/footerStore";
+import { cn } from "@/lib/utils";
 
-const Footer = () => {
+type Props = {
+  className?: string;
+};
+
+const Footer = (props: Props) => {
   const { onOpen } = useToastDisclosure();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     // TODO: handle logic
@@ -63,7 +64,10 @@ const Footer = () => {
     <>
       <FloatItemsHack />
       <footer
-        className={`gap no-print mt-16 flex w-full flex-col gap-[min(10vh,10rem)] bg-[#131B1A] font-montserrat sm:mt-20`}
+        className={cn(
+          "gap no-print mt-16 flex w-full flex-col gap-[min(10vh,10rem)] bg-[#131B1A] font-montserrat sm:mt-20",
+          props.className,
+        )}
         id="footer"
         ref={ref as any}
       >
@@ -112,7 +116,7 @@ const Footer = () => {
         <div className="mt-10 flex flex-col items-center gap-10 pb-14 text-[32px] text-[#fff] ">
           <h2 className="font-bold">
             Get{" "}
-            <span className={`font-pacifico ${pacifico.className}`}>
+            <span className={`${pacifico.className}`}>
               social
             </span>{" "}
             with us:

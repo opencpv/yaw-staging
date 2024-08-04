@@ -23,10 +23,10 @@ const TextFieldInput: React.FC<
       className={`flex w-full flex-col gap-[0.9375rem] font-[400] capitalize text-[#6A6968]`}
     >
       {label && (
-        <label className="normal-case">
-          {label}{" "}
+        <label className="flex gap-x-1.5">
+          {label}
           {required && (
-            <span className="relative left-[-4px] top-[-5px] text-xs">*</span>
+            <span className="relative text-sm text-shade-300">*</span>
           )}
         </label>
       )}

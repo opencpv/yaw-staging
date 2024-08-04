@@ -10,7 +10,7 @@ type Props = {
 export default function AllReviewCard({ data }: Props) {
   return (
     <div className="flex w-full max-w-[1431px] flex-col items-start   gap-4 pb-4 ">
-      <div className="flex w-full flex-col items-start gap-4 border-b-[1px] border-l-4 border-b-[#E9ECEF] border-l-[#00974A] pb-4 pl-4">
+      <div className="flex w-full flex-col items-start gap-4  border-l-4  border-l-[#00974A]  pl-4">
         <div className="flex w-full items-center justify-start gap-4">
           <div
             className={`relative aspect-square h-full  w-full max-w-[100px] overflow-hidden rounded-full `}
@@ -23,21 +23,18 @@ export default function AllReviewCard({ data }: Props) {
             />
           </div>
           <div className="flex w-full flex-col gap-1 2xl:gap-2">
-            <p className=" font-semibold 2xl:text-[1.5625rem]">{data?.name}</p>
+            <p className=" font-semibold 2xl:text-2xl">
+              {data?.name}
+            </p>
             <p className="text-sm 2xl:text-base">{data?.date}</p>
             {<ReviewStarsFixed rating={data?.ratings} />}
           </div>
         </div>
 
         <div className="flex w-full gap-1">
-          <p className="text-base leading-[23.04px] text-[#333]">
-            {/* {data?.recommended == "yes" ? (
-              <span className="">
-                <CaThumbsUpYellow />
-              </span>
-            ) : (
-              <CaThumbsDown />
-            )} */}
+
+          <p className="text-base text-[#333] max-w-full">
+          
             {data?.review}
           </p>
         </div>

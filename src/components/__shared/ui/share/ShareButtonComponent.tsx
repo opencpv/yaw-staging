@@ -15,7 +15,7 @@ const ShareButtonComponent: React.FC<Props> = ({
   ...props
 }) => {
   return (
-    <div className="rounded-lg border hover:bg-slate-50">
+    <div className="rounded-lg hover:bg-slate-50">
       <ShareButton {...props} className="inline-block w-full">
         <div className="flex w-full items-center gap-3 p-4">
           <Icon

@@ -51,7 +51,6 @@ const ContactFullNameField = ({
         handleSessionChange("fullname", e.target.value);
       }}
       onBlur={handleBlur}
-      className={`p-3`}
       ref={fullNameInputRef}
     />
   );
