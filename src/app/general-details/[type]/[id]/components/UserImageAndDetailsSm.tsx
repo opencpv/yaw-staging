@@ -3,7 +3,10 @@ import Image from "next/image";
 import { MdOutlineMessage, MdOutlineOutlinedFlag } from "react-icons/md";
 import { TiLocationOutline } from "react-icons/ti";
 
-function UserImageAndDetailsSm() {
+type Props = {
+  type: string;
+};
+function UserImageAndDetailsSm({type} : Props) {
   return (
     <div>
       <div className="relative  w-full ">
@@ -26,20 +29,21 @@ function UserImageAndDetailsSm() {
                   Renter
                 </p>
               </div>
-              <div className="w-full flex flex-wrap md:flex-nowrap items-start justify-start md:justify-between gap-0 md:gap-5">
-                <Button
-                  variant="default"
-                  color="primary"
-                  className="w-full max-w-[162px] whitespace-nowrap text-xs font-semibold"
-                >
-                  <MdOutlineMessage className="text-xl" />
-                  Send Message
-                </Button>
-
+              <div className="flex w-full flex-wrap items-start justify-start gap-0 md:flex-nowrap md:justify-between md:gap-5">
+                {type == "lister" && (
+                  <Button
+                    variant="default"
+                    color="primary"
+                    className="w-full max-w-[162px] whitespace-nowrap text-sm font-semibold"
+                  >
+                    <MdOutlineMessage className="text-xl" />
+                    Send Message
+                  </Button>
+                )}
                 <Button
                   variant="outline"
                   color="primary"
-                  className="  border-0  whitespace-nowrap text-xs font-semibold !px-5 md:px-10"
+                  className="  whitespace-nowrap  border-0 !px-5 text-sm font-semibold md:px-10"
                 >
                   <MdOutlineOutlinedFlag className="text-xl" />
                   Report this profile

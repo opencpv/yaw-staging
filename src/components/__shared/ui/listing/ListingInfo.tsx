@@ -7,9 +7,9 @@ import Image from "next/image";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { cn } from "@/lib/utils";
 import Tooltip from "@/components/__shared/ui/Tooltip";
-import RatingsForm from "../ratings-form";
 import AllReviewsModal from "../modals/all-reviews-modal";
 import { useRatingsModalStore } from "@/store/modal/useRatingsModalStore";
+import Rating from "../ratings-form";
 
 const ListingInfo = (props: Partial<ListingCardInterface>) => {
   const { user } = useAppStore();
@@ -41,7 +41,7 @@ const ListingInfo = (props: Partial<ListingCardInterface>) => {
           {/* rating */}
           <div className="flex min-w-max items-center gap-2 min-[320px]:ml-auto">
 
-            <RatingsForm property={props} value={props.ratingCount} />
+            <Rating property={props} value={props.ratingCount} />
 
             {props?.ratingCount !== undefined && props.ratingCount > 0 && (
               <AllReviewsModal

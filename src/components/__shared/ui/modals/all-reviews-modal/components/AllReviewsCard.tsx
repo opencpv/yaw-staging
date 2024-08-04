@@ -33,7 +33,7 @@ export default function AllReviewCard({ data }: Props) {
 
         <div className="flex w-full gap-1">
 
-          <p className="text-base text-[#333] max-w-full">
+          <p className="text-base text-[#333] m">
           
             {data?.review}
           </p>

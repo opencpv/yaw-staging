@@ -1,9 +1,14 @@
 import RatingsAndAllRatings from "@/components/RatingsAndAllRatings";
+import Rating from "@/components/__shared/ui/ratings-form";
 
 function UserAboutUs() {
   return (
     <div className="flex flex-col gap-4">
-      <h2 className="text-2xl 2xl:text-3xl text-shade-300">About Esther</h2>
+      <div className="flex items-center gap-5">
+        {" "}
+        <h2 className="text-2xl text-shade-300 2xl:text-3xl">About Esther</h2>
+        <Rating value={3} />
+      </div>
 
       <p className="text-base leading-loose text-shade-300">
         Lorem ipsum dolor sit amet consectetur. At vulputate etiam elementum

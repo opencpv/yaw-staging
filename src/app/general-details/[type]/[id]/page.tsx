@@ -26,7 +26,7 @@ async function Page({ params }: Props) {
         <UserImageAndDetails type={params.type} />
       </div>
       <div className="md:hidden">
-        <UserImageAndDetailsSm />
+        <UserImageAndDetailsSm type={params.type}/>
       </div>{" "}
       <div className="wrapper flex w-full flex-col gap-5 !pt-0">
         <div className="flex flex-col gap-10 w-full ">
