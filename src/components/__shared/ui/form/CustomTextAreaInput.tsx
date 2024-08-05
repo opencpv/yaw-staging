@@ -1,7 +1,8 @@
 import ErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
-import { Textarea } from "@/components/__shared/ui/form/textarea";
+import { cn } from "@/lib/utils";
 import { styled } from "@stitches/react";
 import { useField } from "formik";
+import React from "react";
 
 type Props = {
   rows?: number;
@@ -12,6 +13,7 @@ type Props = {
   name?: string;
   initialValues?: string;
   required?: boolean;
+  characterLimit?: number;
 };
 
 const CustomTextAreaInput = ({
@@ -22,8 +24,26 @@ const CustomTextAreaInput = ({
   name,
   initialValues,
   required,
+  characterLimit,
 }: Props) => {
   const [field, meta, helpers] = useField(name as string);
+  const fieldLength = field.value?.length || 0;
+
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>, characterLimit: number) => {
+    const slicedChacracters = e.target.value.slice(0, characterLimit);
+      // @ts-ignore
+      if (e.nativeEvent.inputType === "insertFromPaste") {
+        field.onChange({target: {name: field.name, value: slicedChacracters}})
+    }
+      if (
+        fieldLength < characterLimit ||
+      // @ts-ignore
+        e.nativeEvent.inputType === "deleteContentBackward"
+      ) {
+        onChange && onChange({target: {value: slicedChacracters}});
+        field.onChange({target: {name: field.name, value: slicedChacracters}})
+      }
+  }
 
   return (
     <Root className="text-[#6A6968]">
@@ -36,17 +56,39 @@ const CustomTextAreaInput = ({
         </label>
       )}
 
-      <textarea
-        className={`form-input hidden-scrollbar pb-5 hover:border-black/50 focus:outline-accent-50 ${classes}`}
-        placeholder={placeholder}
-        onChange={(e) => {
-          onChange && onChange(e);
-          field.onChange(e);
-        }}
-        name={field.name}
-        value={field.value}
-        defaultValue={initialValues}
-      />
+      {characterLimit ? (
+        <div className="flex flex-col gap-2">
+          <textarea
+            className={`form-input hidden-scrollbar pb-5 hover:border-black/50 focus:outline-accent-50 ${classes}`}
+            placeholder={placeholder}
+            onChange={(e) => handleChange(e, characterLimit)}
+            name={field.name}
+            value={field.value}
+            defaultValue={initialValues}
+          />
+          <small
+            className={cn("text-primary", {
+              "text-red-500":
+                fieldLength === characterLimit || (meta.touched && meta.error),
+            })}
+          >
+            {field.value?.length} / {characterLimit}
+          </small>
+        </div>
+      ) : (
+        <textarea
+          className={`form-input hidden-scrollbar pb-5 hover:border-black/50 focus:outline-accent-50 ${classes}`}
+          placeholder={placeholder}
+          onChange={(e) => {
+            onChange && onChange(e);
+            field.onChange(e);
+          }}
+          name={field.name}
+          value={field.value}
+          defaultValue={initialValues}
+        />
+      )}
+
       {meta.touched && meta.error ? (
         <ErrorMessage error={meta.error}>{meta.error}</ErrorMessage>
       ) : null}

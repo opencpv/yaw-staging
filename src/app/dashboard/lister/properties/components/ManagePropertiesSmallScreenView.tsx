@@ -27,7 +27,7 @@ const ManagePropertiesSmallScreenView = () => {
     ...(filterOption !== "all" && {
       eq: { column: "status", match: UpperCase(filterOption as string) },
     }),
-    select: "id, created_at, status, is_paid_for",
+    select: "id, created_at, status, is_paid",
   });
 
   return (
@@ -53,7 +53,7 @@ const ManagePropertiesSmallScreenView = () => {
             image="/assets/images/Stock.jpg"
             price={30000}
             posted_on={property.created_at as string}
-            isPaidFor={property.is_paid_for as boolean}
+            isPaidFor={property.is_paid as boolean}
             status={(property.status as PropertyStatusInterface).toLowerCase()}
           />
         ))}

@@ -230,7 +230,7 @@ const PropertyDetailsPage = ({ params }: Props) => {
             </section>
 
             <PropertyDetailsFeatures
-              features={listing?.features_and_amenities as FeatureInterface[]}
+              features={listing?.features as FeatureInterface[]}
             />
             <>
               <PropertyRating />

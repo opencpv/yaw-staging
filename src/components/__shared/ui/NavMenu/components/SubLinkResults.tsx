@@ -9,7 +9,7 @@ import { Skeleton } from "@nextui-org/react";
 import ArrowLink from "../../links/ArrowLink";
 
 function SubLinkResults() {
-  const { activeSubLink } = useMenuStore();
+  const { activeSubLink, setToggle } = useMenuStore();
   const { user } = useAppStore();
 
   const {
@@ -58,7 +58,12 @@ function SubLinkResults() {
                 />
               ))}
         </div>
-        <ArrowLink color="white" href="/properties" text="Show all" />
+        <ArrowLink
+          color="white"
+          href="/properties"
+          text="Show all"
+          onClick={() => setToggle(false)}
+        />
       </div>
     </div>
   );

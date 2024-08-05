@@ -64,7 +64,7 @@ const BTFTKFooter = () => {
           <ul className="list-disc pl-10">
             {errors &&
               Object.values(errors).map((value: any) => (
-                <li key={value}>{value.split("is")[0]}</li>
+                <li key={value}>{value.split(" is ")[0]}</li>
               ))}
           </ul>
         }

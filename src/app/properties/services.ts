@@ -1,3 +1,4 @@
+import { PROPERTY_DETAILS_SELECT_QUERY } from "@/constants";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import {
   useOffsetInfiniteScrollQuery,
@@ -14,10 +15,8 @@ export const useFetchProperties = ({
   const formattedSearchString = formatString(searchString);
 
   let query = supabase
-    .from("merged_property_view")
-    .select(
-      "id, is_best_value, is_realtors_choice, is_featured, is_verified, is_lister_certified, profiles!inner(id, is_certified), property_type, description, city, bedrooms, monthly_amount, favorite_user_ids, subtitle, neighbourhood, advance_period, viewing_fee",
-    )
+    .from("published_properties")
+    .select(PROPERTY_DETAILS_SELECT_QUERY)
     .order("is_verified", { ascending: false })
     .order("is_realtors_choice", { ascending: false })
     .order("is_best_value", { ascending: false })
@@ -59,10 +58,8 @@ export const useFetchFeaturedListings = ({
 
 export const useFetchRecommendedListings = () => {
   const query = supabase
-    .from("merged_property_view")
-    .select(
-      "id, is_best_value, is_realtors_choice, is_featured, is_verified, profiles!inner(id, is_certified), property_type, description, city, bedrooms, monthly_amount, favorite_user_ids, subtitle, neighbourhood, advance_period, viewing_fee",
-    )
+    .from("published_properties")
+    .select(PROPERTY_DETAILS_SELECT_QUERY)
     // .eq("is_featured", true)
     .order("is_verified", { ascending: false })
     .order("is_realtors_choice", { ascending: false })
@@ -79,7 +76,7 @@ export const useFetchPropertyDetails = ({
   propertyId: number;
 }) => {
   const query = supabase
-    .from("merged_property_view")
+    .from("published_properties")
     .select(
       "*, profiles!inner (id, full_name, avatar_url, profile_img, phone, whatsapp)",
     )

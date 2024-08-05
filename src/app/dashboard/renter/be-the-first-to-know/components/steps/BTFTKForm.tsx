@@ -62,7 +62,7 @@ export default function BTFTKForm() {
   const sideImageCriteria = firstSlide || lastSlide || activeSlide === 2;
 
   return (
-    <div ref={BTFTKStepsRef}>
+    <div className="h-full" ref={BTFTKStepsRef}>
       {/* Main area */}
       <section
         className={cn(

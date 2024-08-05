@@ -181,8 +181,8 @@ const BeMyAgentModal = (props: Props) => {
             BeMyAgentDefaultValues.searchTitle,
           location:
             agentRequest?.location ||
-            BeMyAgentCreationSteps?.location ||
-            BeMyAgentDefaultValues.location,
+            BeMyAgentCreationSteps?.additional_fees ||
+            BeMyAgentDefaultValues.additional_fees,
           bedMaximum:
             agentRequest?.max_beds?.toString() ||
             BeMyAgentCreationSteps?.bedMaximum ||

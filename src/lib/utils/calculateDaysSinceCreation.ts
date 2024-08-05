@@ -1,15 +1,15 @@
 function calculateDaysSinceCreation(creationDateTime: string) {
   const currentDate = new Date();
   const oldDate = new Date(creationDateTime);
-  var tv1 = oldDate.valueOf(); // msec since 1970
-  var tv2 = currentDate.valueOf();
 
   // Calculate the difference in milliseconds
-  var ndays = (tv2 - tv1) / 1000 / 86400;
-  ndays = Math.round(ndays - 0.5);
-  return ndays;
+  const timeDifference = currentDate.valueOf() - oldDate.valueOf();
 
-  return Math.floor(ndays);
+  // Convert the difference to days
+  const millisecondsInADay = 1000 * 60 * 60 * 24;
+  const ndays = Math.ceil(timeDifference / millisecondsInADay);
+
+  return ndays;
 }
 
 export default calculateDaysSinceCreation;

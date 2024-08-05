@@ -150,11 +150,25 @@ export const getArticle = (word: string) => {
 };
 
 export const caseInsensitiveCompare = (a: string, b: string) => {
-  return a.toLowerCase() === b.toLowerCase();
+  return a?.toLowerCase() === b?.toLowerCase();
 };
 
 export const unslugify = (text: string) => {
-  return text
-    .split("-")
-    .join(" ");
+  return text.split("-").join(" ");
+};
+
+export const convertBooleanToYesNo = (value: boolean | undefined) => {
+  if (value) {
+    return "Yes";
+  } else {
+    return "No";
+  }
+};
+
+export const convertYesNoToBoolean = (value: string) => {
+  if (value === "Yes") {
+    return true;
+  } else {
+    return false;
+  }
 };

@@ -20,7 +20,10 @@ const MatchDetail = async (props: Props) => {
   const scheduleInfo = cookieStore.get("bma-schedule-info")?.value;
   const previousPath = scheduleInfo?.split(",")[2];
   const renterId = scheduleInfo?.split(",")[4];
-  const match = await fetchRequestMatchById({id: props.matchId, renterId: renterId as string});
+  const match = await fetchRequestMatchById({
+    id: props.matchId,
+    renterId: renterId as string,
+  });
 
   const initialValues = {
     title: match?.agent_request?.title,
@@ -53,18 +56,18 @@ const MatchDetail = async (props: Props) => {
                 </div>
                 <div className="space-y-3 text-shade-300">
                   <h4>Features</h4>
-                  {match?.property?.features_and_amenities?.length === 0 ? (
+                  {match?.property?.features?.length === 0 ? (
                     <p className="italic text-shade-200">Not specified</p>
                   ) : (
                     <ul className="flex flex-col gap-3">
-                      {match?.property?.features_and_amenities?.map(
+                      {match?.property?.features?.map(
                         (feature) => (
                           <li className="flex items-center gap-5" key={feature}>
                             <span
                               className="text-primary"
                               style={{ color: "#11605E" }}
                             >
-                              {getFeatureIcon(feature, 22, "#11605E")}
+                              {getFeatureIcon(feature.toLowerCase(), 22, "#11605E")}
                             </span>
                             {feature}
                           </li>
@@ -87,12 +90,14 @@ const MatchDetail = async (props: Props) => {
           <CancelRequestBtn
             previousPath={previousPath || "/dashboard/renter/my-agent/agent"}
           />
-          <Button
-            href={`/dashboard/renter/my-agent/schedule?m=814${match?.id}&t=${props.actionType}&fn=${match?.agent_request?.first_name}&ln=${match?.agent_request?.last_name}&e=${match?.agent_request?.email}&p=${match?.agent_request?.phone}`}
-            color="primary"
-          >
-            Confirnm Rental Request
-          </Button>
+          {match?.meeting_id !== null && (
+            <Button
+              href={`/dashboard/renter/my-agent/schedule?m=814${match?.id}&t=${props.actionType}&fn=${match?.agent_request?.first_name}&ln=${match?.agent_request?.last_name}&e=${match?.agent_request?.email}&p=${match?.agent_request?.phone}`}
+              color="primary"
+            >
+              Confirnm Rental Request
+            </Button>
+          )}
         </div>
       </footer>
     </>

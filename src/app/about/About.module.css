@@ -2,7 +2,9 @@
   @apply max-w-4xl;
 }
 
-.about h1,
+.about h1 {
+  @apply text-3xl sm:text-5xl;
+}
 .about h2 {
   @apply text-2xl sm:text-4xl;
 }

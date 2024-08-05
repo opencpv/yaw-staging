@@ -7,7 +7,6 @@ import styles from "../../../index.module.css";
 import TextFieldInput from "../../../../../../../components/__shared/ui/form/TextFieldInput";
 import { useField } from "formik";
 import { BeMyAgentDefaultValues } from "@/store/dashboard/BeMyAgentStepsStore";
-import { createUUID } from "@/lib/utils/stringManipulation";
 
 type LocationType = {
   city: string;
@@ -33,7 +32,7 @@ const Location = ({
   const [field, meta, helpers] = useField("location");
 
   const handleInputChange = (name: string, value: string, index: number) => {
-    const updateLocation = field.value?.map(
+    const updatedLocation = field.value?.map(
       (location: LocationType, currentIndex: number) =>
         currentIndex === index
           ? {
@@ -43,11 +42,11 @@ const Location = ({
           : location,
     );
 
-    helpers.setValue(updateLocation);
+    helpers.setValue(updatedLocation);
 
     setBeMyAgentCreationSteps({
       ...BeMyAgentCreationSteps,
-      location: updateLocation,
+      location: updatedLocation,
     });
   };
 
@@ -134,7 +133,7 @@ const DesiredLocations = () => {
           <div>
             {field.value?.map((location: LocationType, index: number) => (
               <div
-                key={createUUID()}
+                key={index}
                 className={index === 0 ? "mb-10" : "mb-2"}
               >
                 <ClientOnly>

@@ -14,16 +14,19 @@ import { cn } from "@/lib/utils";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useMenuLinks } from "./content";
 import { animate, stagger } from "framer-motion";
+import { usePathname } from "next/navigation";
+import { useContactStore } from "@/store/contact/useContactStore";
+import { useFaqHowToSwitchStore } from "@/store/faq/useFaqStore";
 
 const MenuOption = ({
   name,
   sub = [], // provide default value as an empty array
-  sub2 = [], // provide default value as an empty array
 }: {
   name: string;
   sub?: any[];
-  sub2?: any[];
 }) => {
+  const pathname = usePathname();
+
   const CollapsibleRoot = styled(Collapsible.Root, {
     width: 300,
     height: "fit-content",
@@ -50,16 +53,19 @@ const MenuOption = ({
 
   const [open, setOpen] = useState(false);
   const { setToggle } = useMenuStore();
+  const { activePage: activeFaqKey } = useFaqHowToSwitchStore();
 
   return (
     <CollapsibleRoot open={open} onOpenChange={setOpen}>
       <Collapsible.Trigger asChild>
         <div
-          className={`
-              " flex w-full cursor-pointer flex-row items-center justify-between
-              font-[600]
-              ${open ? "text-accent-100" : "text-[#fff]"}
-            `}
+          className={cn(
+            `
+              " flex w-full cursor-pointer flex-row items-center justify-between font-[600] text-white`,
+            {
+              "text-accent-100": open,
+            },
+          )}
         >
           <h2 className={"main-menu-link-sm uppercase"}>{name}</h2>
           <ArrowDownNav color={open ? "#ddd" : "#fff"} />
@@ -72,21 +78,29 @@ const MenuOption = ({
             <Collapsible.Trigger className="main-menu-link-sm flex justify-between pr-20 text-left text-base">
               {LowerCase(r?.name) === "how to" ? (
                 <HowToLink
-                  className="text-base font-normal"
+                  className={cn("text-base font-normal", {
+                    "text-accent":
+                      pathname?.includes(r?.url) && activeFaqKey === "how to",
+                  })}
                   onClick={() => {
                     setToggle(false);
                   }}
                 />
               ) : LowerCase(r?.name) === "report fraud" ? (
                 <ReportFraud
-                  className="text-base font-normal"
+                  className={cn("text-base font-normal", {
+                    "text-accent": pathname?.includes(r?.url),
+                  })}
                   onClick={() => {
                     setToggle(false);
                   }}
                 />
               ) : LowerCase(r?.name) === "faq" ? (
                 <FaqLink
-                  className="text-base font-normal"
+                  className={cn("text-base font-normal", {
+                    "text-accent":
+                      pathname?.includes(r?.url) && activeFaqKey === "faq",
+                  })}
                   onClick={() => {
                     setToggle(false);
                   }}
@@ -94,12 +108,16 @@ const MenuOption = ({
               ) : (
                 // please make it properties and add r?.label to the get to the corresponding url
                 <Link
-                  href={`/properties`}
+                  href={r?.url || ""}
                   onClick={() => setToggle(false)}
-                  className="flex w-full items-center justify-between gap-10"
+                  className={cn(
+                    "flex w-full items-center justify-between gap-10",
+                    {
+                      "text-accent-100": pathname === r?.url,
+                    },
+                  )}
                 >
                   {r?.name}
-                  {/* <CaArrowRight /> */}
                 </Link>
               )}
             </Collapsible.Trigger>
@@ -111,7 +129,9 @@ const MenuOption = ({
 };
 
 export const MobileMenu = (props: any) => {
+  const pathname = usePathname();
   const { setToggle, toggle } = useMenuStore();
+  const { activeKey } = useContactStore();
   const { user } = useAppStore();
   const { linksAfterLogin, linksBeforeLogin } = useMenuLinks();
 
@@ -134,7 +154,7 @@ export const MobileMenu = (props: any) => {
   }, [toggle]);
 
   return (
-    <div className={`px-8 pt-10 ${props?.className}`}>
+    <div className={`flex px-8 pt-10 lg:hidden ${props?.className}`}>
       {/* Before login */}
       <div
         className={cn("space-y-10", {
@@ -153,14 +173,20 @@ export const MobileMenu = (props: any) => {
         {linksBeforeLogin.map((r, index) =>
           r?.sub ? (
             <div className="main-menu-link-sm-bl" key={index}>
-              <MenuOption name={r.name} sub={r?.sub} sub2={r?.sub2} />
+              <MenuOption
+                name={r.name}
+                sub={r?.sub}
+              />
             </div> // sub links ---> View all listings, how to, etc...
           ) : (
             r?.name.toLowerCase() !== "area vibes" && ( // main links ---> Home for rent, Login, Moving sale, etc...
               <Link
                 href={r?.url}
                 key={index}
-                className="main-menu-link-sm-bl mb-10 block"
+                className={cn("main-menu-link-sm-bl mb-10 block", {
+                  "text-accent":
+                    pathname?.includes(r?.url) && activeKey === "report",
+                })}
                 onClick={() => setToggle(false)}
               >
                 <p className={"text-2xl !font-semibold uppercase text-[#fff]"}>
@@ -185,7 +211,6 @@ export const MobileMenu = (props: any) => {
                 key={index}
                 name={r.name}
                 sub={r?.sub}
-                sub2={r?.sub2}
               />
             </div>
           ) : (
@@ -194,12 +219,15 @@ export const MobileMenu = (props: any) => {
               <Link
                 href={r?.url}
                 key={index}
-                className="main-menu-link-sm-al mb-10 block"
+                className={cn(
+                  "main-menu-link-sm-al mb-10 block text-2xl font-semibold uppercase text-[#fff]",
+                  {
+                    "text-accent": pathname?.includes(r?.url),
+                  },
+                )}
                 onClick={() => setToggle(false)}
               >
-                <p className={"text-2xl !font-semibold uppercase text-[#fff]"}>
-                  {r?.name}
-                </p>
+                {r?.name}
               </Link>
             )
           ),

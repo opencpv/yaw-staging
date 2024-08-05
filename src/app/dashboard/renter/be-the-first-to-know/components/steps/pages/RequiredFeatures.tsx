@@ -1,7 +1,7 @@
 import Amenity from "@/components/__shared/ui/listing-form/components/Amenity";
 import styles from "../../../index.module.css";
 import { useField } from "formik";
-import { requiredFeatures } from "@/app/dashboard/components/shared/content";
+import { features } from "@/app/dashboard/components/shared/content";
 import CallOut from "@/components/__shared/ui/CallOut";
 import { createUUID } from "@/lib/utils/stringManipulation";
 import { BTFTKDefaultValues } from "@/store/dashboard/BTFTKStepsStore";
@@ -39,7 +39,7 @@ const RequiredFeatures = () => {
           <CallOut content="You may select more than one response" />
         </div>
         <div className="grid w-full grid-cols-4 gap-5 lg:grid-cols-3">
-          {requiredFeatures.map((r: any, index: number) => (
+          {features.map((r: any, index: number) => (
             <Amenity
               key={createUUID()}
               n={index}

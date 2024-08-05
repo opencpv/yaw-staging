@@ -35,7 +35,6 @@ export const submitListing = async (
           city: listingData?.city,
           neighbourhood: listingData?.neighbourhood,
           monthly_amount: listingData?.monthlyAmount,
-          require_advance_payment: listingData?.advancePayment,
           advance_payment_options: listingData?.advancePaymentOptions,
           require_refundable_security_deposit:
             listingData?.refundableSecurityDeposit,
@@ -47,7 +46,7 @@ export const submitListing = async (
           agent_fee: listingData?.agentFee,
           require_viewing_fee: listingData?.viewingFee,
           viewing_fee: listingData?.viewingFeeAmount,
-          features_and_amenities: listingData?.featuresAndAmenities,
+          features: listingData?.featuresAndAmenities,
           is_complete: is_complete,
         },
       ])
@@ -90,7 +89,6 @@ export const editListing = async (
         city: listingData?.city,
         neighbourhood: listingData?.neighbourhood,
         monthly_amount: listingData?.monthlyAmount,
-        require_advance_payment: listingData?.advancePayment,
         advance_payment_options: listingData?.advancePaymentOptions,
         require_refundable_security_deposit:
           listingData?.refundableSecurityDeposit,
@@ -102,7 +100,7 @@ export const editListing = async (
         agent_fee: listingData?.agentFee,
         require_viewing_fee: listingData?.viewingFee,
         viewing_fee: listingData?.viewingFeeAmount,
-        features_and_amenities: listingData?.featuresAndAmenities,
+        features: listingData?.featuresAndAmenities,
         is_complete: is_complete,
       },
     ])

@@ -24,7 +24,7 @@ export const useFetchListerLeads = ({ listerId }: { listerId: string }) => {
   // and where the owner is the current user (lister).
   const { data: standardTemplate } = useQuery(
     supabase
-      .from("merged_property_view")
+      .from("published_properties")
       .select("id, profiles!inner (id), favorite_user_ids")
       .overlaps("favorite_user_ids", preferredIds as string[])
       .eq("profiles.id", listerId),

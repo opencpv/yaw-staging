@@ -20,12 +20,14 @@ import { useEffect } from "react";
 import { floatItemsIntersectionStore } from "@/store/footer/footerStore";
 import { cn } from "@/lib/utils";
 import toast from "react-hot-toast";
+import { usePathname } from "next/navigation";
 
 type Props = {
   className?: string;
 };
 
 const Footer = (props: Props) => {
+  const pathname = usePathname();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     // TODO: handle logic
     toast.success("Congratulations, you are in the loop!");
@@ -81,7 +83,11 @@ const Footer = (props: Props) => {
                 <button className="text-2xl">Feedback</button>
               </Feedback>
             ) : (
-              <Link key={r?.label} href={r?.href}>
+              <Link
+                key={r?.label}
+                href={r?.href}
+                className={cn({ "text-accent": pathname?.includes(r?.href) })}
+              >
                 <h2 className="font-[400]">{r.label}</h2>
               </Link>
             ),

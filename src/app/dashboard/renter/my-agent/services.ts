@@ -101,7 +101,7 @@ export const fetchRequestMatchById = async ({
   const { data, error } = await supabase
     .from("agent_request_matches")
     .select(
-      "id, agent_request!inner(id, search_title, title, first_name, last_name, country, email, phone, renter_id), property!inner(id, city, bedrooms, property_type, monthly_amount, images, features_and_amenities)",
+      "id, meeting_id, agent_request!inner(id, search_title, title, first_name, last_name, country, email, phone, renter_id), property!inner(id, city, bedrooms, property_type, monthly_amount, images, features)",
     )
     .eq("id", id)
     .eq("agent_request.renter_id", renterId)

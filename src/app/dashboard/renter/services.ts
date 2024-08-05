@@ -17,7 +17,7 @@ export const useFetchRenterBookmarks = ({
   const { data: recentViews } = useFetchRecentViewsIds({ userId });
 
   let query = supabase
-    .from("merged_property_view")
+    .from("published_properties")
     .select(PROPERTY_DETAILS_SELECT_QUERY)
     .order("created_at", { ascending: false });
 

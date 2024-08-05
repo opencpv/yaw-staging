@@ -76,7 +76,7 @@ export default function BeMyAgentForm() {
 
   return (
     <ClientOnly>
-      <div>
+      <div className="h-full">
         {/* Main area */}
         <section
           className={cn(

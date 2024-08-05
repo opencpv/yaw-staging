@@ -1,6 +1,6 @@
 import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
 import { styled } from "@stitches/react";
-import React, { useState } from "react";
+import React from "react";
 import CountryInput from "@/components/__shared/ui/form/CountryInput";
 import CurrencyInput from "@/components/__shared/ui/form/CurrencyInput";
 import CustomSelect from "@/components/__shared/ui/form/CustomSelect";

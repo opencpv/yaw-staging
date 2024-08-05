@@ -29,7 +29,7 @@ const ManagePropertiesTable = (props: Props) => {
     tableName: "property",
     pageSize,
     order: { column: "created_at", ascending: false },
-    select: "id, created_at, status, is_paid_for",
+    select: "id, created_at, status, is_paid",
     revalidateOnFocus: false,
     ...(filterOption !== "all" && {
       eq: { column: "status", match: UpperCase(filterOption as string) },
@@ -74,7 +74,7 @@ const ManagePropertiesTable = (props: Props) => {
                 image="/assets/images/Stock.jpg"
                 price={30000}
                 posted_on={property.created_at as string}
-                isPaidFor={property.is_paid_for as boolean}
+                isPaidFor={property.is_paid as boolean}
                 status={(
                   property.status as PropertyStatusInterface
                 ).toLowerCase()}

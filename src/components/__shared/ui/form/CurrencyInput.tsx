@@ -28,6 +28,7 @@ import CustomSelect, {
   OptionTypes,
 } from "@/components/__shared/ui/form/CustomSelect";
 import capitalizeName from "@/lib/utils/stringManipulation";
+import TextFieldInput from "./TextFieldInput";
 
 type DataItem = {
   label: string;
@@ -134,11 +135,11 @@ const CurrencyInput = ({
   return (
     <div>
       <Root className="flex ">
-        <div className={`flex gap-2 font-[400] capitalize text-[#6A6968]`}>
+        <div className={`flex gap-2 font-[400] text-[#6A6968]`}>
           <label>{label}</label>
           {infoBubble && <InfoBubble content="Data" />}
         </div>
-        <div className="flex items-center justify-start gap-4">
+        <div className="flex justify-start gap-4">
           <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>
               <Button
@@ -168,8 +169,8 @@ const CurrencyInput = ({
                       className="flex cursor-pointer gap-3 hover:bg-slate-100"
                       key={idx}
                       onSelect={(currentValue) => {
-                      onChange?.(capitalizeName(currentValue));
-                      helpers.setValue(capitalizeName(currentValue));
+                      onChange?.(currentValue.toUpperCase());
+                      helpers.setValue(currentValue.toUpperCase());
                       setOpen(false);
                     }}
                     >
@@ -189,12 +190,10 @@ const CurrencyInput = ({
               onChange={(value) => onChange2 && onChange2(value)}
             />
           ) : (
-            <input
-              name="salaryCurrency"
-              pattern="[0-9]"
-              className="form-input w-full hover:border-black/50"
-              value={value2}
+            <TextFieldInput
+              name={name2 as string}
               onChange={(e) => onChange2 && onChange2(e.target.value)}
+              //value={value2}
             />
           )}
         </div>

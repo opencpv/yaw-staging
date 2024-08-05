@@ -3,7 +3,7 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import Amenity from "../../../../../../../components/__shared/ui/listing-form/components/Amenity";
 import styles from "../../../index.module.css";
 import { useField } from "formik";
-import { requiredFeatures } from "../../../../../components/shared/content";
+import { features } from "../../../../../components/shared/content";
 import CallOut from "@/components/__shared/ui/CallOut";
 import { BeMyAgentDefaultValues } from "@/store/dashboard/BeMyAgentStepsStore";
 import { createUUID } from "@/lib/utils/stringManipulation";
@@ -40,7 +40,7 @@ export default function FeaturesAndAmenities() {
           <CallOut content="You may select more than one response" />
         </div>
         <div className="grid w-full grid-cols-4 gap-5 lg:grid-cols-3">
-          {requiredFeatures.map((r: any, index: number) => (
+          {features.map((r: any, index: number) => (
             <div
               key={index}
               className="col-span-2 lg:col-span-1"

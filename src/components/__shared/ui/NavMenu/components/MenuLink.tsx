@@ -3,15 +3,19 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
 import CaArrowRight from "./icons/CaArrowRight";
+import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
 
 type Props = {
   active: boolean;
   linkObject: any; // TODO: get the correct type of linkObject
   onClick: () => void;
   isSubLink?: boolean;
+  className?: string;
 };
 
 const MenuLink = (props: Props) => {
+  const pathname = usePathname();
   const { setToggle } = useMenuStore();
   const { activeSubLink } = useMenuStore();
   const hasSubMenu =
@@ -26,15 +30,20 @@ const MenuLink = (props: Props) => {
       tabIndex={hasSubMenu ? 0 : -1}
     >
       <div
-        className={`w-full cursor-pointer whitespace-nowrap ${
-          props.active ? "text-accent-100" : "text-white"
-        }`}
+        className={cn(
+          `w-full cursor-pointer whitespace-nowrap text-white`,
+          {
+            "text-accent-100": props.active,
+            "text-accent": pathname?.includes(props.linkObject?.url),
+          },
+          props.className,
+        )}
       >
         {hasSubMenu ? (
           <div
-            className={`flex w-full items-center ${
-              activeSubLink == props.linkObject?.label && "text-accent-100"
-            } `}
+            className={cn(`flex w-full items-center`, {
+              "text-accent-100": activeSubLink == props.linkObject?.label,
+            })}
           >
             {props.isSubLink ? (
               // <Link href={props.linkObject?.url}>
@@ -48,11 +57,13 @@ const MenuLink = (props: Props) => {
         ) : (
           <Link
             href={props.linkObject?.url}
-            className={`flex ${
-              props.isSubLink
-                ? "text-base font-normal"
-                : " text-2xl font-semibold"
-            }`}
+            className={cn(
+              `flex text-2xl font-semibold`,
+              {
+                "text-base font-normal": props.isSubLink,
+              },
+              props.className,
+            )}
             onClick={() => setToggle(false)}
           >
             {props.linkObject?.name}

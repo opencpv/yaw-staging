@@ -1,33 +1,127 @@
 "use client";
 import React, { useEffect } from "react";
 import { cn } from "@/lib/utils";
+import * as Yup from "yup";
+import { useAppStore } from "@/store/dashboard/AppStore";
+import Button from "@/components/__shared/ui/button/Button";
+import ListingHeader from "./ListingHeader";
+import ListingFooter from "./ListingFooter";
 import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
 import StepsModal from "@/components/__shared/ui/modals/steps/StepsModal";
 import { Form, Formik } from "formik";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import * as Yup from "yup";
+import {
+  ListingDefaultValues,
+  ListingStepsStore,
+} from "@/store/dashboard/ListingStepsStore";
 import { usePathname } from "next/navigation";
-import { useAppStore } from "@/store/dashboard/AppStore";
-import ListingFormForm from "@/components/__shared/ui/listing-form/components/ListingFormForm";
-import Button from "@/components/__shared/ui/button/Button";
+import capitalizeName, {
+  convertBooleanToYesNo,
+  convertYesNoToBoolean,
+} from "@/lib/utils/stringManipulation";
+import ListingForm, { views as ListingViews } from "./ListingForm";
+import { useAddListing } from "../../services";
+import { getFormValues } from "../../utils";
 
 type Props = {
-  button?: "Hire Us Now" | "Get Started" | "Ghost" | "Edit" | "Price";
   buttonClassName?: string;
-  content?: React.ReactNode | string | number;
   children?: React.ReactNode;
   /** Use for only Edit */
   onClick?: () => void;
 };
 
-const ListingValidationSchema = Yup.object({});
+const ListingValidationSchema = Yup.object({
+  property_type: Yup.string().required("Type of place is required"),
+  suited_for: Yup.array().min(1, "Best Suited for is required"),
+  furnish_level: Yup.string().required("Furnish level is required"),
+  property_size: Yup.string().required("Property size is required"),
+  description: Yup.string().required("Description is required"),
+  bedrooms: Yup.string().required("Bedrooms is required"),
+  bathrooms: Yup.string().required("Bathrooms is required"),
+  renter_knowledge: Yup.string().required(
+    "Things for renter to know is required",
+  ),
+  city: Yup.string().required("City is required"),
+  neighbourhood: Yup.string().required("Neighbourhood is required"),
+  available_date: Yup.string().required("Available Date is required"),
+  features: Yup.array().min(1, "Features is required"),
+  utilities: Yup.array().min(1, "Utilities is requiconveniencesred"),
+  images: Yup.array().min(10, "At least 10 Images is required"),
+  banner_image: Yup.object().required("Banner Image is required"),
+  total_amount: Yup.number().required("Amount is required"),
+  payment_terms: Yup.string().required("Payment Terms is required"),
+  require_refundable_security_deposit: Yup.string(),
+  require_additional_fees: Yup.string(),
+  require_agent_fee: Yup.string(),
+  require_viewing_fee: Yup.string(),
+  refundable_security_deposit: Yup.number().when(
+    "require_refundable_security_deposit",
+    {
+      is: "Yes",
+      then: (schema) =>
+        schema.required("Refundable Security Deposit is required"),
+    },
+  ),
+  additional_fees: Yup.array().when("require_additional_fees", {
+    is: "Yes",
+    then: (schema) => schema.required("Additional Fee is required"),
+  }),
+  agent_fee: Yup.number().when("require_agent_fee", {
+    is: "Yes",
+    then: (schema) => schema.required("Agent Fee is required"),
+  }),
+  viewing_fee: Yup.number().when("require_viewing_fee", {
+    is: "Yes",
+    then: (schema) => schema.required("Viewing Fee is required"),
+  }),
+});
 
 const ListingModal = (props: Props) => {
   const pathname = usePathname();
   const { user } = useAppStore();
-  //const [listingCreationSteps] = useLocalStorage<
-  //  typeof BeMyAgentDefaultValues | null
-  //>("listing-creation-steps");
+  const [listingCreationSteps] = useLocalStorage<
+    typeof ListingDefaultValues | null
+  >("listing-creation-steps");
+
+  const {
+    isOpen,
+    onOpen,
+    listing,
+    onOpenEditPage,
+    isOpenEditPage,
+    onCloseEditPage,
+    onClose,
+    setActiveSlide,
+    activeSlide,
+    setListing,
+  } = ListingStepsStore();
+
+  const { mutate: addListing, data: listingData, isSuccess } = useAddListing();
+
+  useEffect(() => {
+    pathname?.includes("edit") ? onOpenEditPage() : onCloseEditPage();
+    pathname?.includes("create") ? onOpen() : onClose();
+    if (isSuccess) {
+      setListing(listingData);
+      setActiveSlide(ListingViews.length - 1);
+      localStorage.removeItem("bma-creation-steps");
+    }
+  }, [
+    onOpen,
+    onClose,
+    pathname,
+    onOpenEditPage,
+    onCloseEditPage,
+    setListing,
+    isSuccess,
+    listingData,
+    setActiveSlide,
+  ]);
+
+  const convertToString = (value: number | null | undefined) => {
+    if (value) return value;
+    else return "";
+  };
 
   return (
     <div
@@ -39,20 +133,152 @@ const ListingModal = (props: Props) => {
         href="/dashboard/lister/overview/create"
         color="primary"
         className="mt-5 w-fit"
+        onClick={() => {
+          setActiveSlide(0)
+          setListing(null)
+        }}
       >
         Add Property
       </Button>
       <Formik
-        initialValues={{}}
+        initialValues={{
+          template_type:
+            listing?.template_type ||
+            listingCreationSteps?.template_type ||
+            ListingDefaultValues?.template_type,
+          property_type:
+            listing?.furnish_level ||
+            listingCreationSteps?.property_type ||
+            ListingDefaultValues?.property_type,
+          suited_for:
+            listing?.suited_for ||
+            listingCreationSteps?.suited_for ||
+            ListingDefaultValues?.suited_for,
+          furnish_level:
+            listing?.furnish_level ||
+            listingCreationSteps?.furnish_level ||
+            ListingDefaultValues?.furnish_level,
+          property_name:
+            listing?.property_name ||
+            listingCreationSteps?.property_name ||
+            ListingDefaultValues?.property_name,
+          description:
+            listing?.description ||
+            listingCreationSteps?.description ||
+            ListingDefaultValues?.description,
+          renter_knowledge:
+            listing?.renter_knowledge ||
+            listingCreationSteps?.renter_knowledge ||
+            ListingDefaultValues?.renter_knowledge,
+          property_size:
+            listing?.property_size ||
+            listingCreationSteps?.property_size ||
+            ListingDefaultValues?.property_size,
+          bedrooms:
+            listing?.bedrooms ||
+            listingCreationSteps?.bedrooms ||
+            ListingDefaultValues?.bedrooms,
+          bathrooms:
+            listing?.bathrooms ||
+            listingCreationSteps?.bathrooms ||
+            ListingDefaultValues?.bathrooms,
+          city:
+            listing?.city ||
+            listingCreationSteps?.city ||
+            ListingDefaultValues?.city,
+          neighbourhood:
+            listing?.neighbourhood ||
+            listingCreationSteps?.neighbourhood ||
+            ListingDefaultValues?.neighbourhood,
+          available_date:
+            listing?.available_date ||
+            listingCreationSteps?.available_date ||
+            ListingDefaultValues?.available_date,
+          features:
+            listing?.features ||
+            listingCreationSteps?.features ||
+            ListingDefaultValues?.features,
+          utilities:
+            listing?.utilities ||
+            listingCreationSteps?.utilities ||
+            ListingDefaultValues?.utilities,
+          images:
+            listing?.images ||
+            listingCreationSteps?.images ||
+            ListingDefaultValues?.images,
+          banner_image:
+            listing?.banner_image ||
+            listingCreationSteps?.banner_image ||
+            ListingDefaultValues?.banner_image,
+          payment_terms:
+            listing?.payment_terms ||
+            listingCreationSteps?.payment_terms ||
+            ListingDefaultValues?.payment_terms,
+          total_amount:
+            convertToString(listing?.total_amount) ||
+            listingCreationSteps?.total_amount ||
+            ListingDefaultValues?.total_amount,
+          require_refundable_security_deposit:
+            convertBooleanToYesNo(
+              listing?.require_refundable_security_deposit,
+            ) ||
+            listingCreationSteps?.require_refundable_security_deposit ||
+            ListingDefaultValues?.require_refundable_security_deposit,
+          require_additional_fees:
+            convertBooleanToYesNo(listing?.require_additional_fees) ||
+            listingCreationSteps?.require_additional_fees ||
+            ListingDefaultValues?.require_additional_fees,
+          require_agent_fee:
+            convertBooleanToYesNo(listing?.require_agent_fee) ||
+            listingCreationSteps?.require_agent_fee ||
+            ListingDefaultValues?.require_agent_fee,
+          require_viewing_fee:
+            convertBooleanToYesNo(listing?.require_viewing_fee) ||
+            listingCreationSteps?.require_viewing_fee ||
+            ListingDefaultValues?.require_viewing_fee,
+          refundable_security_deposit:
+            convertToString(listing?.refundable_security_deposit as number) ||
+            listingCreationSteps?.refundable_security_deposit ||
+            ListingDefaultValues?.refundable_security_deposit,
+          additional_fees:
+            listing?.additional_fees ||
+            listingCreationSteps?.additional_fees ||
+            ListingDefaultValues?.additional_fees,
+          agent_fee:
+            convertToString(listing?.agent_fee as number) ||
+            listingCreationSteps?.agent_fee ||
+            ListingDefaultValues?.agent_fee,
+          viewing_fee:
+            convertToString(listing?.viewing_fee as number) ||
+            listingCreationSteps?.viewing_fee ||
+            ListingDefaultValues?.viewing_fee,
+          currency:
+            listing?.currency ||
+            listingCreationSteps?.currency ||
+            ListingDefaultValues?.currency,
+          lease_duration:
+            listing?.lease_duration ||
+            listingCreationSteps?.lease_duration ||
+            ListingDefaultValues?.lease_duration,
+        }}
         validationSchema={ListingValidationSchema}
-        onSubmit={(values) => {}}
+        onSubmit={(values) => {
+          addListing(
+            getFormValues({
+              ...values,
+              owner_uid: user?.id,
+              is_complete: true,
+              id: listing?.id,
+            } as unknown as typeof ListingDefaultValues),
+          );
+        }}
       >
         <Form>
           <StepsModal
-            header={<div>In Progress...</div>}
+            header={<ListingHeader />}
             body={<Body />}
-            footer={<div>In Progress...</div>}
-            open={pathname?.includes("create") || pathname?.includes("edit")}
+            footer={<ListingFooter />}
+            open={isOpenEditPage || isOpen}
           />
         </Form>
       </Formik>
@@ -65,7 +291,7 @@ export default ListingModal;
 const Body = () => {
   return (
     <ClientOnly>
-      <ListingFormForm setOpen={() => {}} />
+      <ListingForm />
     </ClientOnly>
   );
 };

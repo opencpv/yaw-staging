@@ -9,7 +9,6 @@ export const useMenuLinks = () => {
       url: `/dashboard/${currentRole}/my-agent/explore`,
       name: "HIRE US",
     },
-
     {
       id: "#",
       url: "#",
@@ -17,21 +16,34 @@ export const useMenuLinks = () => {
       sub: [
         {
           name: "View All Listings",
+          url: "/properties",
           id: "#",
           label: "all-listings",
         },
-        { name: "Self Contained ", id: "#", label: "self-contained" },
-        { name: "Apartments", id: "#", label: "apartments" },
-        { name: "Flats", id: "#", label: "flats" },
-        { name: "Compound Houses", id: "#", label: "compound-houses" },
-      ],
-      //sub2 is only used for mobile view
-      sub2: [
-        // {
-        //   id: "#",
-        //   url: "#",
-        //   name: "stuff goes here",
-        // },
+        {
+          name: "Self Contained ",
+          url: "/properties/self-contained",
+          id: "#",
+          label: "self-contained",
+        },
+        {
+          name: "Apartments",
+          url: "/properties/apartments",
+          id: "#",
+          label: "apartments",
+        },
+        {
+          name: "Flats",
+          id: "#",
+          url: "/properties/flats",
+          label: "flats",
+        },
+        {
+          name: "Compound Houses",
+          id: "#",
+          url: "/properties/compound-houses",
+          label: "compound-houses",
+        },
       ],
     },
     // COMMENTED OUT FOR NOW DON'T DELETE !!!
@@ -145,14 +157,6 @@ export const useMenuLinks = () => {
         { name: "Apartments", id: "#", label: "apartments" },
         { name: "Flats", id: "#", label: "flats" },
         { name: "Compound Houses", id: "#", label: "compound-houses" },
-      ],
-      //sub2 is only used for mobile view
-      sub2: [
-        // {
-        //   id: "#",
-        //   url: "#",
-        //   name: "stuff goes here",
-        // },
       ],
     },
     { id: "#", url: "/moving-sale", name: "MOVING SALE" },

@@ -9,7 +9,7 @@ type Props = {
 const Promotions = (props: Props) => {
   return (
     <section
-      className={cn("section h-fit bg-[#F2F2F2] py-12", {
+      className={cn("section h-fit bg-[#F2F2F2] py-2 sm:py-12", {
         hidden: props.data.promotions.length === 0,
       })}
     >

@@ -1,10 +1,40 @@
 import styles from "../../../index.module.css";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
+import { StaticImageData } from "next/dist/shared/lib/get-img-props";
 
 const Intro = () => {
   const { images } = useAssets();
+  
+  const data = [
+    {
+      number: 1,
+      title: "Tell us about your dream place",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+      image: {
+        src: images.CoupleStirringIntoSpace,
+        alt: "Couple stirring into space",
+      },
+    },
+    {
+      number: 2,
+      title: "Receive notifications",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+      image: {
+        src: images.YellowNotification,
+        alt: "Yellow notification background",
+      },
+    },
+    {
+      number: 3,
+      title: "View matches",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+      image: {
+        src: images.LadyStirringAtPhone,
+        alt: "Lady stirring at phone",
+      },
+    },
+  ]
 
   return (
     <>
@@ -13,33 +43,12 @@ const Intro = () => {
         dream place.
       </h2>
       <div className="flex flex-col">
-        <HeadsUp
-          number={1}
-          title="Tell us about your dream place"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing."
-          image={{
-            src: images.CoupleStirringIntoSpace,
-            alt: "lady-stirring-at-phone",
-          }}
-        />
-        <HeadsUp
-          number={2}
-          title="Receive notifications"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing."
-          image={{
-            src: images.YellowNotification,
-            alt: "lady-stirring-at-phone",
-          }}
-        />
-        <HeadsUp
-          number={3}
-          title="View matches"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing."
-          image={{
-            src: images.LadyStirringAtPhone,
-            alt: "lady-stirring-at-phone",
-          }}
-        />
+        {data.map((item) => (
+          <HeadsUp
+            key={item.number}
+            {...item}
+          />
+        ))}
       </div>
     </>
   );
@@ -49,7 +58,7 @@ export default Intro;
 
 type Props = {
   image: {
-    src: string | StaticImport;
+    src: string | StaticImageData;
     alt: string;
   };
   title: string;
@@ -63,10 +72,10 @@ const HeadsUp = ({ image, title, description, number }: Props) => {
         <h3 className="text-2xl font-normal">0{number}</h3>
       </div>
       <div className="order-3 flex-1 space-y-4 md:order-2">
-        <h3 className="text-2xl">{title}</h3>
+        <h3>{title}</h3>
         <p className="text-shade-300">{description}</p>
       </div>
-      <div className="relative order-2 aspect-video w-full ssm:w-[450px] md:order-3 md:w-[308px]">
+      <div className="relative order-2 aspect-video w-full md:ml-20 ssm:w-[450px] md:order-3 md:w-[308px]">
         <Image src={image.src} alt={image.alt} className="rounded-3xl" fill />
       </div>
     </div>

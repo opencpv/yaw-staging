@@ -51,7 +51,7 @@ const CustomRadioInput = ({
           {label}
           {infoBubble && <InfoBubble content={"info content"} />}
         </div>{" "}
-        <div className="flex gap-10">
+        <div className="flex flex-wrap gap-x-10 gap-y-5">
           {options?.map((option) => (
             <div key={option} className="flex items-center">
               <RadioGroup.Item
@@ -75,7 +75,7 @@ const CustomRadioInput = ({
                 />
               </RadioGroup.Item>
               <label
-                className=" pl-[15px] text-[15px] capitalize leading-none"
+                className=" pl-[15px] text-[15px] leading-none"
                 htmlFor={label + option}
               >
                 {option}

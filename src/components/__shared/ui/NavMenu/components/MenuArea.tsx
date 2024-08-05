@@ -6,7 +6,7 @@ import Logo from "@/components/__shared/ui/Logo";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
 
 const MenuArea = (props: any) => {
-  const { setToggle, toggle } = useMenuStore();
+  const { setToggle } = useMenuStore();
 
   return (
     <div className={"flex flex-col "}>
@@ -35,8 +35,8 @@ const MenuArea = (props: any) => {
           </div>
         </div>
         <div className={"mt-10"}>
-          <MobileMenu className={"flex lg:hidden "} />
-          <DesktopMenu className={"hidden lg:flex"} />
+          <MobileMenu />
+          <DesktopMenu />
         </div>
       </div>
     </div>

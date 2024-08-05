@@ -1,7 +1,6 @@
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { FadeInOut } from "@/lib/animations";
 import MenuLink from "./components/MenuLink";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
 import { useFaqHowToSwitchStore } from "@/store/faq/useFaqStore";
@@ -10,6 +9,7 @@ import { useMenuLinks } from "./content";
 import { createUUID } from "@/lib/utils/stringManipulation";
 import SubLinkResults from "./components/SubLinkResults";
 import { animate, stagger } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 export const DesktopMenu = (props: any) => {
   const { linksAfterLogin, linksBeforeLogin } = useMenuLinks();
@@ -18,11 +18,28 @@ export const DesktopMenu = (props: any) => {
   const router = useRouter();
   const { toggle } = useMenuStore();
   const { activeSubLink, setActiveSubLink } = useMenuStore();
+  const { activePage: activeFaqKey } = useFaqHowToSwitchStore();
   const { user } = useAppStore();
 
   const setFaqActivePage = useFaqHowToSwitchStore(
     (state) => state.setActivePage,
   );
+
+  const toggleActiveSubMenu = (label: string) => {
+    if (activeSubLink === label) {
+      setActiveSubLink("");
+    } else {
+      setActiveSubLink(label);
+    }
+  };
+
+  const toggleActiveMainMenu = (idx: number) => {
+    if (active === idx) {
+      setActive(null);
+    } else {
+      setActive(idx);
+    }
+  };
 
   useEffect(() => {
     animate(".main-menu-link", toggle ? { opacity: [0, 1] } : { opacity: 1 }, {
@@ -31,7 +48,7 @@ export const DesktopMenu = (props: any) => {
   }, [toggle]);
 
   return (
-    <div className={`flex-row gap-12 px-8 ${props?.className} `}>
+    <div className={`hidden flex-row gap-12 px-8 lg:flex ${props?.className}`}>
       <div
         className={
           "flex w-max flex-col gap-10 border-r-[3px] border-r-white pr-10"
@@ -40,7 +57,7 @@ export const DesktopMenu = (props: any) => {
         {/* main links before login */}
         {!user &&
           linksBeforeLogin.map(
-            (r, idx) =>
+            (r: (typeof linksBeforeLogin)[0], idx) =>
               r.name.toLowerCase() !== "more" && (
                 <React.Fragment key={idx}>
                   <MenuLink
@@ -52,7 +69,7 @@ export const DesktopMenu = (props: any) => {
                       }
 
                       if (r?.sub) {
-                        setActive(idx);
+                        toggleActiveMainMenu(idx);
                         setActiveSubLink("");
                         setSubId(null);
                       } else {
@@ -61,6 +78,10 @@ export const DesktopMenu = (props: any) => {
                         router.push(r?.url);
                       }
                     }}
+                    className={cn({
+                      "text-white":
+                        r?.name === "faq" && activeFaqKey === "how to",
+                    })}
                   />
                 </React.Fragment>
               ),
@@ -81,7 +102,7 @@ export const DesktopMenu = (props: any) => {
                       }
 
                       if (r?.sub) {
-                        setActive(idx);
+                        toggleActiveMainMenu(idx);
                         setActiveSubLink("");
                         setSubId(null);
                       } else {
@@ -90,6 +111,11 @@ export const DesktopMenu = (props: any) => {
                         router.push(r?.url);
                       }
                     }}
+                    className={cn({
+                      "text-white":
+                        r?.name.toLowerCase() === "faq" &&
+                        activeFaqKey === "how to",
+                    })}
                   />
                 </React.Fragment>
               ),
@@ -113,7 +139,7 @@ export const DesktopMenu = (props: any) => {
                 linkObject={l}
                 isSubLink
                 onClick={() => {
-                  setActiveSubLink(l?.label);
+                  toggleActiveSubMenu(l?.label);
                 }}
               />
             ))}
@@ -139,7 +165,7 @@ export const DesktopMenu = (props: any) => {
                 linkObject={l}
                 isSubLink
                 onClick={() => {
-                  setActiveSubLink(l?.label);
+                  toggleActiveSubMenu(l?.label);
                 }}
               />
             ))}

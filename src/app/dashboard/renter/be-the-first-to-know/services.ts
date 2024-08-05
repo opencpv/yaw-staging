@@ -90,7 +90,7 @@ export const useFetchCriteriaMatches = ({
   }
 
   let query = supabase
-    .from("merged_property_view")
+    .from("published_properties")
     .select(PROPERTY_DETAILS_SELECT_QUERY)
     .in("id", propertyIds);
 

@@ -182,7 +182,7 @@ export default function PropertyRequirements() {
           <div className="grid grid-cols-1 gap-5 gap-y-8 lg:grid-cols-2">
             <CustomSelect
               name="paymentOption"
-              label="Preferred Payment Option"
+              label="Preferred Payment Term"
               options={[
                 { name: "rent advance", value: "Rent Advance" },
                 {

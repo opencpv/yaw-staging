@@ -1,0 +1,56 @@
+.amenityGrid {
+  @apply grid w-full gap-5 xxs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.fieldsInlineGap {
+  @apply max-sm:gap-y-8 gap-x-5;
+}
+
+.fieldsBlockGap {
+  @apply gap-y-8;
+}
+
+.marginBlockWide {
+  margin-block: 3rem;
+}
+
+.title,
+.titleNoMargin {
+  @apply capitalize;
+  font-size: 1.5625rem;
+  margin-bottom: 2rem;
+
+  @media screen and (max-width: 1024px) {
+    font-size: 1.35rem;
+    line-height: 28px;
+  }
+}
+
+.asterisk {
+  @apply text-sm text-shade-300;
+}
+
+.titleNoMargin {
+  margin-bottom: 0;
+}
+
+.titleCallOutContainer {
+  @apply mb-10 flex w-full flex-col gap-8;
+}
+
+.subHeading {
+  @apply font-normal;
+}
+
+.subHeadingFieldsConainer {
+  @apply flex flex-col gap-4;
+}
+
+.subHeadingGap {
+  @apply space-y-4;
+}

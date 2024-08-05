@@ -20,7 +20,6 @@ const StepsModal = ({
   footerClassName,
   onOpenChange,
 }: Props) => {
-  
   useEffect(() => {
     if (open) {
       setTimeout(() => {
@@ -48,23 +47,23 @@ const StepsModal = ({
           onEscapeKeyDown={(e) => e.preventDefault()}
         >
           {header && (
-            <div className="flex flex-initial flex-col gap-1 px-6 py-4 text-large font-semibold">
+            <header className="flex flex-initial flex-col gap-1 px-6 py-4 text-large font-semibold">
               {header}
-            </div>
+            </header>
           )}
 
-          <div className="hidden-scrollbar flex flex-1 flex-col gap-3 overflow-y-auto px-6 py-2">
+          <main className="hidden-scrollbar flex h-full flex-1 flex-col justify-center gap-3 overflow-y-auto px-6 py-2">
             {body}
-          </div>
+          </main>
           {footer && (
-            <div
+            <footer
               className={cn(
                 "flex flex-row justify-end gap-2 border-t px-6 py-4",
                 footerClassName,
               )}
             >
               {footer}
-            </div>
+            </footer>
           )}
         </Dialog.Content>
       </Dialog.Portal>

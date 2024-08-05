@@ -24,7 +24,7 @@ const ArrowLink = ({
     <Link
       href={href as string}
       className={cn(
-        "mt-5 inline-flex items-center gap-2.5 transition-all hover:scale-[1.02]",
+        "mt-5 inline-flex w-fit items-center gap-2.5 transition-all hover:scale-[1.02]",
         className,
       )}
       style={{ color: color ?? "#222" }}

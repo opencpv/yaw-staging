@@ -4,7 +4,7 @@ import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 import "swiper/css/autoplay";
 import React, { useCallback, useRef } from "react";
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import { Swiper, SwiperSlide, useSwiper, useSwiperSlide } from "swiper/react";
 import Image from "next/image";
 import { Navigation, Pagination, EffectFade, Autoplay } from "swiper/modules";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
@@ -96,9 +96,19 @@ const NavButton = ({
   placement: "left" | "right";
   onClick: () => void;
 }) => {
+  useSwiperSlide();
+  const { isBeginning, isEnd } = useSwiper();
+
   return (
     <button
-      className="grid size-10 place-items-center rounded-lg border-2 border-primary bg-white text-primary hover:bg-primary hover:text-white sm:h-14 sm:w-20"
+      className={cn(
+        "grid size-10 place-items-center rounded-lg border-2 border-primary bg-white text-primary hover:bg-primary hover:text-white sm:h-14 sm:w-20",
+        {
+          "cursor-default opacity-50 hover:bg-white hover:text-primary":
+            (isBeginning && placement === "left") ||
+            (isEnd && placement === "right"),
+        },
+      )}
       onClick={onClick}
     >
       {placement === "left" ? (

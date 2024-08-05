@@ -1,14 +1,31 @@
 import React, { Suspense } from "react";
 import MatchDetail from "../../components/schedule/MatchDetail";
 import Loader from "@/components/__shared/ui/loader/Loader";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
 const page = (props: Props) => {
+  const cookieStore = cookies();
+  const scheduleInfo = cookieStore.get("bma-schedule-info")?.value;
+  const cookieMatchId = scheduleInfo?.split(",")[0];
+  const cookieActionType = scheduleInfo?.split(",")[1];
+  const previousPath = scheduleInfo?.split(",")[2];
+  const cookieRequestId = scheduleInfo?.split(",")[3];
   const matchId = Number(props.searchParams.m?.slice(3));
   const actionType = props.searchParams.t;
+  const requestId = props.searchParams.r;
+
+  if (
+    cookieMatchId !== String(matchId) ||
+    cookieActionType !== actionType ||
+    cookieRequestId !== requestId
+  ) {
+    redirect(previousPath || "/dashboard/renter/my-agent/agent");
+  }
 
   return (
     <main>
