@@ -11,7 +11,7 @@ export default function ReviewSummary({ className }: Props) {
     <Root className="mb-8 flex w-full max-w-[1103px] flex-col items-start gap-3">
       <div className="flex items-center justify-start gap-5 ">
         <CaReviewSummary />
-        <p className="text-[#DCA847]">Review Summary</p>
+        <p className="text-accent">Review Summary</p>
       </div>
       <div
         className={`flex flex-col gap-2.5 rounded-2xl border-[1px] border-[#E6E6E6] ${className} px-8 py-6`}
@@ -20,10 +20,12 @@ export default function ReviewSummary({ className }: Props) {
           <CaReviewHead />
         </div>
         <div className="text-shade-300">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae, est
-          nostrum esse expedita sapiente aliquam voluptatibus eaque numquam
-          sequi id fugiat dignissimos dolorum sed impedit? Obcaecati nihil et
-          itaque sapiente.
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae, est
+            nostrum esse expedita sapiente aliquam voluptatibus eaque numquam
+            sequi id fugiat dignissimos dolorum sed impedit? Obcaecati nihil et
+            itaque sapiente.
+          </p>
         </div>
       </div>
     </Root>

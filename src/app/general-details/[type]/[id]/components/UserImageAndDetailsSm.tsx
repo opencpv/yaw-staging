@@ -6,7 +6,7 @@ import { TiLocationOutline } from "react-icons/ti";
 type Props = {
   type: string;
 };
-function UserImageAndDetailsSm({type} : Props) {
+function UserImageAndDetailsSm({ type }: Props) {
   return (
     <div>
       <div className="relative  w-full ">
@@ -19,33 +19,35 @@ function UserImageAndDetailsSm({type} : Props) {
           />
           {/* Change alt text */}
         </div>
-        <div className=" relative top-[-15px] flex w-full flex-col items-start justify-start gap-6 rounded-3xl bg-white px-5 py-7 lg:flex-row ">
-          <div className="flex w-full flex-col gap-6">
+        <div className=" relative top-[-15px] flex w-full flex-col items-start justify-start gap-6 rounded-3xl bg-white px-5 py-3 pt-7 lg:flex-row ">
+          <div className="flex w-full flex-col gap-3">
             <div className="flex w-full flex-col items-start gap-3">
               <div className="flex w-full items-center gap-2.5">
                 {" "}
                 <h2 className="text-3xl">Esther Howards</h2>
                 <p className="rounded-xl bg-primary px-4 py-1 text-base font-bold text-white ">
-                  Renter
+                  {type}
                 </p>
               </div>
-              <div className="flex w-full flex-wrap items-start justify-start gap-0 md:flex-nowrap md:justify-between md:gap-5">
+              <div className="flex w-full flex-wrap items-start  justify-between gap-0 md:flex-nowrap md:gap-5">
                 {type == "lister" && (
                   <Button
                     variant="default"
                     color="primary"
                     className="w-full max-w-[162px] whitespace-nowrap text-sm font-semibold"
                   >
-                    <MdOutlineMessage className="text-xl" />
+                    <MdOutlineMessage className="shrink-0 text-xl" />
                     Send Message
                   </Button>
                 )}
                 <Button
                   variant="outline"
                   color="primary"
-                  className="  whitespace-nowrap  border-0 !px-5 text-sm font-semibold md:px-10"
+                  className={` whitespace-nowrap  border-0  ${
+                    type == "renter" ? "!px-0" : "!px-5"
+                  } text-sm font-semibold md:px-10`}
                 >
-                  <MdOutlineOutlinedFlag className="text-xl" />
+                  <MdOutlineOutlinedFlag className="text-xl " />
                   Report this profile
                 </Button>
               </div>

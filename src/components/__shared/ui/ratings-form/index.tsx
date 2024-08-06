@@ -1,8 +1,7 @@
 "use client";
 import React, { useMemo, useState } from "react";
-import { FaRegStar, FaStar } from "react-icons/fa";
+
 import { useAppStore } from "@/store/dashboard/AppStore";
-import { cn } from "@/lib/utils";
 import { ListingCardInterface } from "../../../../../interfaces";
 import { useRatingsModalStore } from "@/store/modal/useRatingsModalStore";
 import { useSignInModalStore } from "@/store/modal/useSignInModalStore";
@@ -17,9 +16,7 @@ export default function Rating({ value, className, property }: Props) {
   const { user } = useAppStore();
   const { openSignInModal, setOpenSignInModal } = useSignInModalStore();
 
-  const ratingValue = useMemo(() => {
-    return value ?? 0 > 5 ? 5 : value;
-  }, [value]);
+
 
   const {
     openRatingsForm,
@@ -47,18 +44,11 @@ export default function Rating({ value, className, property }: Props) {
         className="flex appearance-none items-center gap-2"
         onClick={handleRating}
       >
-        <FaRegStar className="text-yellow-400" />
-        {value !== undefined && value > 0 && (
-          <small className={cn("cursor-pointer underline", className)}>
-            {ratingValue}
-          </small>
-        )}
-
-        {value === 0 && (
-          <small className="text-neutral-900 underline hover:text-neutral-900 active:text-neutral-900">
-            Rate
-          </small>
-        )}
+      
+        <div className="flex items-center gap-2 text-primary">
+          <p>|</p>
+          <p className="text-lg ">Rate</p>
+        </div>
       </button>
     </>
   );

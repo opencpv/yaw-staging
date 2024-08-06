@@ -1,17 +1,21 @@
 "use client";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Button, useDisclosure } from "@nextui-org/react";
+import { cn } from "@/lib/utils";
 
 import Modal from "../Modal";
 import CloseModalIcon from "../../icons/CloseModalIcon";
 import { useRatingsModalStore } from "@/store/modal/useRatingsModalStore";
 import { ListingCardInterface } from "../../../../../../interfaces";
+import { FaRegStar } from "react-icons/fa";
 
 type Props = {
   value?: number;
+  className?: string;
+
   property?: Partial<ListingCardInterface>;
 };
-export default function AllReviewsModal({ property, value }: Props) {
+export default function AllReviewsModal({ property, value, className }: Props) {
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const {
     openRatingsForm,
@@ -21,6 +25,10 @@ export default function AllReviewsModal({ property, value }: Props) {
     currentProperty,
     setCurrentProperty,
   } = useRatingsModalStore();
+
+  const ratingValue = useMemo(() => {
+    return value ?? 0 > 5 ? 5 : value;
+  }, [value]);
 
   return (
     <>
@@ -32,8 +40,14 @@ export default function AllReviewsModal({ property, value }: Props) {
         }}
       >
         {/* <p>All reviews</p> */}
-
-        <small>( {(value as number) > 0 ? `${value}+` : `${value}`} )</small>
+        <div className="undefrline flex items-center gap-1 border-b-1 border-shade-300 leading-6">
+          <FaRegStar className="text-yellow-400" />
+          {value !== undefined && value > 0 && (
+            <p className={cn("cursor-pointer text-lg ", className)}>
+              {ratingValue} ( {value} reviews)
+            </p>
+          )}
+        </div>{" "}
       </button>
     </>
   );

@@ -1,13 +1,24 @@
 import RatingsAndAllRatings from "@/components/RatingsAndAllRatings";
+import AllReviewsModal from "@/components/__shared/ui/modals/all-reviews-modal";
 import Rating from "@/components/__shared/ui/ratings-form";
 
-function UserAboutUs() {
+type Props = {
+  type: string;
+};
+function UserAboutUs({ type }: Props) {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center gap-5">
         {" "}
-        <h2 className="text-2xl text-shade-300 2xl:text-3xl">About Esther</h2>
-        <Rating value={3} />
+        <h2 className="text-base text-shade-300 md:text-2xl 2xl:text-3xl">
+          About Esther
+        </h2>
+        {type == "lister" && (
+          <div className="flex items-center gap-3">
+            <AllReviewsModal value={3} />
+            <Rating value={3} />
+          </div>
+        )}
       </div>
 
       <p className="text-base leading-loose text-shade-300">
