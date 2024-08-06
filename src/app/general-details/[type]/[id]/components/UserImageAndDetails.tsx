@@ -11,7 +11,7 @@ type Props = {
 function UserImageAndDetails({ type }: Props) {
   return (
     <div className="w-full ">
-      <div className=" block h-[330px] bg-[url('/assets/images/general-details/general-details-bg.png')] bg-cover bg-fixed bg-no-repeat"></div>
+      <div className=" block h-[330px] bg-[url('/assets/images/general-details/general-details-bg.png')] bg-contain bg-fixed bg-no-repeat"></div>
 
       <div className=" wrapper px-10 pb-8 pt-10">
         <div className=" flex h-fit  flex-row items-end justify-start gap-6">
@@ -19,7 +19,7 @@ function UserImageAndDetails({ type }: Props) {
             <div className="absolute left-0 top-[-290px] z-[100]  block h-full w-full">
               <div className="relative aspect-[350/275] max-h-[275px] w-full max-w-[350px] overflow-hidden rounded-2xl">
                 <Image
-                  src={"/assets/images/profile-image.jpg"}
+                  src={"/assets/images/general-details/profile-image1.jpg"}
                   alt="User Profile Pic"
                   fill
                   objectFit="cover"

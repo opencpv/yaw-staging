@@ -4,7 +4,6 @@ import { mockReviewData } from "@/app/dashboard/components/shared/my-reviews/con
 import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 import { Button } from "@/components/__shared/ui/button";
 import AllReviewCard from "@/components/__shared/ui/modals/all-reviews-modal/components/AllReviewsCard";
-import AllReviewsData from "@/components/__shared/ui/modals/all-reviews-modal/components/AllReviewsData";
 import { fadeIn } from "@/lib/animations";
 
 function UserReviews() {

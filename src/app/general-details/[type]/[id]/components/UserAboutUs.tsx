@@ -1,4 +1,4 @@
-import RatingsAndAllRatings from "@/components/RatingsAndAllRatings";
+
 import AllReviewsModal from "@/components/__shared/ui/modals/all-reviews-modal";
 import Rating from "@/components/__shared/ui/ratings-form";
 
