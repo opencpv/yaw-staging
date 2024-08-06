@@ -10,11 +10,11 @@ export const metadata: Metadata = {
   description: "", // tentative
 };
 
-const page = async() => {
-    const initial = await loadQuery<SanityDocument[]>(BUBBLES_QUERY);
-    const bubblesData = initial.data[0]
+const page = async () => {
+  const initial = await loadQuery<SanityDocument[]>(BUBBLES_QUERY);
+  const bubblesData = initial.data[0];
 
-  return <RenterOverviewPage bubblesData = {bubblesData} />;
+  return <RenterOverviewPage bubblesData={bubblesData} />;
 };
 
 export default page;

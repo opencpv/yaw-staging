@@ -83,6 +83,7 @@ const config: Config = {
           DEFAULT: "#2E5AAC",
           bg: "#EEF2FA",
         },
+        "gray-text": "#8A8A8A",
       },
       gridTemplateColumns: {
         "autofit-listing-card": "repeat(auto-fit, minmax(380px, 1fr))",

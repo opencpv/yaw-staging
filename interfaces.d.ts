@@ -65,6 +65,9 @@ interface RenterApplicationsInterface extends ApplicationsInterface {
   listerImage: string;
   listerName: string;
   status: RenterApplicationStatus;
+  submitted: boolean;
+  applicationId: number;
+  refetch: () => void;
 }
 
 interface ChatInterface {
@@ -185,5 +188,3 @@ export interface HowTo {
 }
 
 export interface BlogPost {}
-
-

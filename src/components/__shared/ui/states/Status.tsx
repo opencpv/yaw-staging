@@ -11,6 +11,7 @@ type Props = {
     | "danger"
     | "neutral"
     | "neutral-light"
+    | "review"
     | undefined;
   tooltipContent: string;
   text: string;

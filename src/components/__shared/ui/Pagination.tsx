@@ -34,7 +34,7 @@ const Pagination = ({ className, handlePageClick, pageCount }: Props) => {
       breakClassName={`${style.paginationSquare}`}
       disabledClassName="bg-neutral-300"
       disabledLinkClassName="text-white pointer-events-none cursor-not-allowed"
-      activeLinkClassName="border-accent-100 text-accent-100 pointer-events-none"
+      activeLinkClassName="bg-primary text-white "
       hrefBuilder={() => null}
     />
   );
