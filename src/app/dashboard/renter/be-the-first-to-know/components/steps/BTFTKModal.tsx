@@ -99,8 +99,8 @@ const BTFTKModal = (props: Props) => {
           "max-xs:rounded-xl max-xs:shadow-md": props.float,
         })}
         onClick={() => {
-          setActiveSlide(0);
-          setCriterion(null);
+          setActiveSlide(0); // set to 0 when creating
+          setCriterion(null); // set to null when creating
         }}
       >
         <FaPlus /> Create a search

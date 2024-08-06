@@ -10,7 +10,7 @@ import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/Button
 import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
-import { getListingProps } from "@/lib/enum";
+import { getListingProps, Listing } from "@/lib/enum";
 import { useIntersectionObserver } from "@/lib/utils/intersectionObserver";
 import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 import { SanityDocument } from "next-sanity";
@@ -82,7 +82,10 @@ const PropertiesListing = (props: Props) => {
               ?.map((listing) => (
                 <ListingCard
                   key={listing.id}
-                  {...getListingProps(listing, user as UserType)}
+                  {...getListingProps(
+                    listing as Partial<Listing>,
+                    user as UserType,
+                  )}
                 />
               ))}
             {showAd && (
@@ -96,7 +99,10 @@ const PropertiesListing = (props: Props) => {
               ?.map((listing) => (
                 <ListingCard
                   key={listing.id}
-                  {...getListingProps(listing, user as UserType)}
+                  {...getListingProps(
+                    listing as Partial<Listing>,
+                    user as UserType,
+                  )}
                 />
               ))}
           </section>

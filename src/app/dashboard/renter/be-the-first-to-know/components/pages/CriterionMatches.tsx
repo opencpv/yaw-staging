@@ -7,7 +7,7 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
 import { Skeleton } from "@nextui-org/react";
 import ListingCard from "@/components/__shared/ui/listing/ListingCard";
-import { getListingProps } from "@/lib/enum";
+import { getListingProps, Listing } from "@/lib/enum";
 import capitalizeName from "@/lib/utils/stringManipulation";
 
 type Props = {
@@ -55,7 +55,10 @@ const CriterionMatches = ({ params }: Props) => {
             {matchedListings?.map((listing) => (
               <ListingCard
                 key={listing.id}
-                {...getListingProps(listing, user as UserType)}
+                {...getListingProps(
+                  listing as Partial<Listing>,
+                  user as UserType,
+                )}
               />
             ))}
           </div>

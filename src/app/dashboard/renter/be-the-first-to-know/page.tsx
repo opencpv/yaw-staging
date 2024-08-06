@@ -4,7 +4,7 @@ import ListingCard from "@/components/__shared/ui/listing/ListingCard";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import ContactPreferenceToggle from "../../components/shared/ContactPreferenceToggle";
 import { useFetchCriteriaMatches, useFetchSearchCriteria } from "./services";
-import { getListingProps } from "@/lib/enum";
+import { getListingProps, Listing } from "@/lib/enum";
 import { Skeleton } from "@nextui-org/react";
 import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
 import ManageButton from "./components/ManageButton";
@@ -53,7 +53,10 @@ const BeTheFirstToKnow = () => {
               {matchedListings?.map((listing) => (
                 <ListingCard
                   key={listing.id}
-                  {...getListingProps(listing, user as UserType)}
+                  {...getListingProps(
+                    listing as Partial<Listing>,
+                    user as UserType,
+                  )}
                 />
               ))}
             </section>

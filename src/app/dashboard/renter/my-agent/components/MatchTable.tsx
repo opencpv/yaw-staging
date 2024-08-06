@@ -31,7 +31,7 @@ import { generatePropertyTitle } from "@/lib/enum";
 type Match = AgentRequestMatch & {
   property: {
     id: number;
-    bedrooms: number;
+    bedrooms: string;
     city: string;
     monthly_amount: number;
     property_type: string;
@@ -144,9 +144,7 @@ const MatchRowMobile = ({ match }: { match: Match }) => {
           <div className="flex flex-col items-start gap-2">
             <h4
               className="line-clamp-2"
-              title={
-                generatePropertyTitle(match.property) 
-              }
+              title={generatePropertyTitle(match.property)}
             >
               {generatePropertyTitle(match.property)}
             </h4>

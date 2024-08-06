@@ -4,7 +4,7 @@ interface ListingCardInterface extends ListingInterface {
   propertyDescription: string;
   subtitle: string;
   propertyType: string;
-  bedrooms: number;
+  bedrooms: string;
   rating: number;
   ratingCount: number;
   paymentStructure: PaymentStructure;

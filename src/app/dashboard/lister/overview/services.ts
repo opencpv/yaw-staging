@@ -11,7 +11,7 @@ export const useFetchListerActiveListings = ({
   let query = supabase
     .from("property")
     .select(PROPERTY_DETAILS_SELECT_QUERY)
-    .match({ owner_uid: listerId, is_published: true, status: "AVAILABLE" })
+    .match({ owner_uid: listerId, is_published: true })
     .order("created_at", { ascending: false });
 
   const result = useQuery({
@@ -32,9 +32,10 @@ export const useFetchListerActiveListings = ({
 export const useFetchListerListings = ({ listerId }: { listerId: string }) => {
   let query = supabase
     .from("property")
-    .select("created_at, bedrooms, id, images, property_type, city, status")
+    .select(PROPERTY_DETAILS_SELECT_QUERY)
     .eq("owner_uid", listerId)
-    .order("created_at", { ascending: false });
+    .order("created_at", { ascending: false })
+    .limit(3);
 
   const result = useQuery({
     queryKey: ["lister_listings", listerId],

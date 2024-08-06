@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 import { useFetchRenterBookmarks } from "../../../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
-import { getListingProps } from "@/lib/enum";
+import { getListingProps, Listing } from "@/lib/enum";
 import slugify from "@/lib/utils/slugify";
 import NoSearchEmptyState from "../NoSearchEmptyState";
 import { unslugify } from "@/lib/utils/stringManipulation";
@@ -85,7 +85,7 @@ const MySearch = ({ filter }: { filter: string }) => {
         {listings?.map((listing) => (
           <ListingCard
             key={listing.id}
-            {...getListingProps(listing, user as UserType)}
+            {...getListingProps(listing as Partial<Listing>, user as UserType)}
           />
         ))}
       </section>

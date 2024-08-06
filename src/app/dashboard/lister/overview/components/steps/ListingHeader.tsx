@@ -22,18 +22,22 @@ const ListingHeader = () => {
   const { values, resetForm, setSubmitting } =
     useFormikContext<typeof ListingDefaultValues>();
 
-  const [ListingCreationSteps] = useLocalStorage<{
+  const [listingCreationSteps, setListingCreationSteps] = useLocalStorage<{
     activeSlide: number;
   }>("listing-creation-steps");
 
+
+  const [listingEditSteps, setListingEditSteps] = useLocalStorage<
+    { listing: number; activeSlide: number }[]
+  >("listing-edit-steps", []);
+
   const {
-    firstSlide,
     lastSlide,
     progressValue,
     setActiveSlide,
     activeSlide,
-    onClose,
-    onCloseEditPage,
+    closeCreatePage,
+    closeEditPage,
     setListing,
     listing,
   } = ListingStepsStore();
@@ -41,14 +45,14 @@ const ListingHeader = () => {
   const { mutate: addListing, isPending, isSuccess } = useAddListing();
 
   const handleActiveSlide = useCallback(() => {
-    setActiveSlide(ListingCreationSteps?.activeSlide ?? activeSlide);
-  }, [setActiveSlide, activeSlide, ListingCreationSteps?.activeSlide]);
+    setActiveSlide(listingCreationSteps?.activeSlide ?? activeSlide);
+  }, [setActiveSlide, activeSlide, listingCreationSteps?.activeSlide]);
 
   useEffect(() => {
     if (isSuccess) {
       resetForm({});
-      onClose();
-      onCloseEditPage();
+      closeCreatePage();
+      closeEditPage();
       setListing(null);
       localStorage.removeItem("listing-creation-steps");
       pathname?.includes("edit") &&
@@ -58,8 +62,8 @@ const ListingHeader = () => {
     if (pathname?.includes("create")) handleActiveSlide();
   }, [
     isSuccess,
-    onClose,
-    onCloseEditPage,
+    closeCreatePage,
+    closeEditPage,
     pathname,
     setActiveSlide,
     setListing,
@@ -71,10 +75,23 @@ const ListingHeader = () => {
     handleActiveSlide,
   ]);
 
+const handleListingEditStepsStorage = () => {
+    setListingEditSteps((prevSteps) => {
+      const updatedSteps = prevSteps.filter(
+        (step) => step.listing !== listing?.id,
+      );
+      return [
+        { listing: listing?.id as number, activeSlide: activeSlide },
+        ...updatedSteps,
+      ];
+    });
+    setListingCreationSteps({ activeSlide: 0 });
+  };
+
   const handleCancel = () => {
     resetForm({});
-    onClose();
-    onCloseEditPage();
+    closeCreatePage();
+    closeEditPage();
     setListing(null);
     localStorage.removeItem("listing-creation-steps");
     pathname?.includes("edit") && router.replace("/dashboard/lister/overview");
@@ -82,6 +99,7 @@ const ListingHeader = () => {
   };
 
   const handleSaveAndExit = () => {
+    handleListingEditStepsStorage();
     addListing(getFormValues({...values, 
       owner_uid: user?.id,
       is_published: false,

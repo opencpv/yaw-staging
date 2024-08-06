@@ -18,19 +18,19 @@ const SkeletonListing = ({
             className={cn("w-[350px] mx-auto flex flex-col gap-3 xs:w-[448px]", className)}
           >
             <Skeleton
-              className={cn("w-full max-w-sm rounded-2xl ssm:max-w-md", {
+              className={cn("block w-full max-w-sm rounded-2xl ssm:max-w-md", {
                 "h-80": cardType === 1,
                 "h-[26rem]": cardType === 2,
               })}
             />
             <div className="flex justify-between">
-              <Skeleton className="h-5 w-32 rounded-md" />
-              <Skeleton className="h-5 w-20 rounded-md" />
+              <Skeleton className="block h-5 w-32 rounded-md" />
+              <Skeleton className="block h-5 w-20 rounded-md" />
             </div>
-            <Skeleton className="h-10 w-full rounded-md" />
+            <Skeleton className="block h-10 w-full rounded-md" />
             <div className="flex justify-between">
-              <Skeleton className="h-5 w-40 rounded-md" />
-              <Skeleton className="h-8 w-8 rounded-full" />
+              <Skeleton className=" block h-5 w-40 rounded-md" />
+              <Skeleton className="block h-8 w-8 rounded-full" />
             </div>
           </div>
         ))}
@@ -38,19 +38,19 @@ const SkeletonListing = ({
       {count === undefined && (
         <div className={cn("space-y-3", className)}>
           <Skeleton
-            className={cn("min-w-full rounded-2xl", {
+            className={cn("block min-w-full rounded-2xl", {
               "h-80": cardType === 1,
               "h-[26rem]": cardType === 2,
             })}
           />
           <div className="flex justify-between">
-            <Skeleton className="h-5 w-32 rounded-md" />
-            <Skeleton className="h-5 w-20 rounded-md" />
+              <Skeleton className="block h-5 w-32 rounded-md" />
+              <Skeleton className="block h-5 w-20 rounded-md" />
           </div>
           <Skeleton className="h-10 w-full rounded-md" />
           <div className="flex justify-between">
-            <Skeleton className="h-5 w-40 rounded-md" />
-            <Skeleton className="h-8 w-8 rounded-full" />
+              <Skeleton className="block h-5 w-40 rounded-md" />
+              <Skeleton className="block h-8 w-8 rounded-full" />
           </div>
         </div>
       )}

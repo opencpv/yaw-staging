@@ -1,4 +1,5 @@
 "use client";
+import Loader from "@/components/__shared/ui/loader/Loader";
 import dynamic from "next/dynamic";
 import React from "react";
 const BTFTKModal = dynamic(
@@ -6,7 +7,10 @@ const BTFTKModal = dynamic(
 );
 
 const CriteriaEditPage = () => {
-  return <BTFTKModal />;
+  return <main className="flex flex-col gap-40">
+      <BTFTKModal />
+      <Loader position="center" />
+    </main>
 };
 
 export default CriteriaEditPage;

@@ -14,10 +14,10 @@ type ListingStepsStoreType = {
   setActiveSlide: (val: number) => void;
   setFirstSlide: (val: boolean) => void;
   setLastSlide: (val: boolean) => void;
-  onOpen: () => void;
-  onClose: () => void;
-  onOpenEditPage: () => void;
-  onCloseEditPage: () => void;
+  openCreatePage: () => void;
+  closeCreatePage: () => void;
+  openEditPage: () => void;
+  closeEditPage: () => void;
   setShouldShowMotivationMessage: (val: boolean) => void;
   setSelectedSummaryPage: (page: string) => void;
   listing: Property | null;
@@ -40,6 +40,7 @@ export const ListingDefaultValues = {
   available_date: formatDate(new Date().toISOString()),
   features: [],
   utilities: [],
+  utilities_included: [],
   images: [],
   banner_image: {},
   total_amount: "",
@@ -75,10 +76,10 @@ export const ListingStepsStore = create<ListingStepsStoreType>((set) => ({
   setActiveSlide: (val) => set((state) => ({ ...state, activeSlide: val })),
   setFirstSlide: (val) => set((state) => ({ ...state, firstSlide: val })),
   setLastSlide: (val) => set((state) => ({ ...state, lastSlide: val })),
-  onOpen: () => set((state) => ({ ...state, isOpen: true })),
-  onClose: () => set((state) => ({ ...state, isOpen: false })),
-  onOpenEditPage: () => set((state) => ({ ...state, isOpenEditPage: true })),
-  onCloseEditPage: () => set((state) => ({ ...state, isOpenEditPage: false })),
+  openCreatePage: () => set((state) => ({ ...state, isOpen: true })),
+  closeCreatePage: () => set((state) => ({ ...state, isOpen: false })),
+  openEditPage: () => set((state) => ({ ...state, isOpenEditPage: true })),
+  closeEditPage: () => set((state) => ({ ...state, isOpenEditPage: false })),
   setListing: (request) => set((state) => ({ ...state, listing: request })),
   setShouldShowMotivationMessage: (val) =>
     set((state) => ({

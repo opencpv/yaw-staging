@@ -55,7 +55,8 @@ const Actions = ({ criterion }: Props) => {
     );
   };
 
-  const handleActiveSlideEdit = useCallback(() => {
+  const handleEdit = useCallback(() => {
+    setCriterion(criterion);
     router.replace(
       `/dashboard/renter/be-the-first-to-know/manage-criteria/edit/LS6pI-${criterion.id}-LWIKyOgnw==`,
     );
@@ -63,7 +64,7 @@ const Actions = ({ criterion }: Props) => {
       BTFTKEditSteps?.find((step) => step.criterion === criterion?.id)
         ?.activeSlide ?? 1,
     );
-  }, [criterion?.id, BTFTKEditSteps, setActiveSlide, router]);
+  }, [criterion, BTFTKEditSteps, setActiveSlide, router, setCriterion]);
 
   return (
     <>
@@ -101,8 +102,7 @@ const Actions = ({ criterion }: Props) => {
 
           <ActionItem
             onClick={() => {
-              setCriterion(criterion);
-              handleActiveSlideEdit();
+              handleEdit();
             }}
             disabled={
               criterion.is_active ||

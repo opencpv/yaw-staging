@@ -77,7 +77,6 @@ const BeMyAgentModal = (props: Props) => {
     onCloseEditPage,
     onClose,
     setActiveSlide,
-    activeSlide,
     setAgentRequest,
   } = BeMyAgentStepsStore();
 
@@ -181,8 +180,8 @@ const BeMyAgentModal = (props: Props) => {
             BeMyAgentDefaultValues.searchTitle,
           location:
             agentRequest?.location ||
-            BeMyAgentCreationSteps?.additional_fees ||
-            BeMyAgentDefaultValues.additional_fees,
+            BeMyAgentCreationSteps?.location ||
+            BeMyAgentDefaultValues.location,
           bedMaximum:
             agentRequest?.max_beds?.toString() ||
             BeMyAgentCreationSteps?.bedMaximum ||

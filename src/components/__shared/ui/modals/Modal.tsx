@@ -95,6 +95,7 @@ const Modal = ({
             }`,
             {
               "rounded-none max-h-screen": size === "full",
+              "pointer-events-auto": isOpen,
             },
             className,
           ),

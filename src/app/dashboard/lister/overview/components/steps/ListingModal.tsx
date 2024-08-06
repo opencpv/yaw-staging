@@ -85,14 +85,13 @@ const ListingModal = (props: Props) => {
 
   const {
     isOpen,
-    onOpen,
+    openCreatePage: onOpen,
     listing,
-    onOpenEditPage,
+    openEditPage: onOpenEditPage,
     isOpenEditPage,
-    onCloseEditPage,
-    onClose,
+    closeEditPage: onCloseEditPage,
+    closeCreatePage: onClose,
     setActiveSlide,
-    activeSlide,
     setListing,
   } = ListingStepsStore();
 
@@ -134,8 +133,8 @@ const ListingModal = (props: Props) => {
         color="primary"
         className="mt-5 w-fit"
         onClick={() => {
-          setActiveSlide(0)
-          setListing(null)
+          setActiveSlide(0);
+          setListing(null);
         }}
       >
         Add Property
@@ -147,7 +146,7 @@ const ListingModal = (props: Props) => {
             listingCreationSteps?.template_type ||
             ListingDefaultValues?.template_type,
           property_type:
-            listing?.furnish_level ||
+            listing?.property_type ||
             listingCreationSteps?.property_type ||
             ListingDefaultValues?.property_type,
           suited_for:
@@ -202,6 +201,10 @@ const ListingModal = (props: Props) => {
             listing?.utilities ||
             listingCreationSteps?.utilities ||
             ListingDefaultValues?.utilities,
+          utilities_included:
+            listing?.utilities_included ||
+            listingCreationSteps?.utilities_included ||
+            ListingDefaultValues?.utilities_included,
           images:
             listing?.images ||
             listingCreationSteps?.images ||

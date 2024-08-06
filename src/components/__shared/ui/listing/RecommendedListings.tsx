@@ -11,7 +11,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow } from "swiper/modules";
 import { useFetchRecommendedListings } from "@/app/properties/services";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import { getListingProps } from "@/lib/enum";
+import { getListingProps, Listing } from "@/lib/enum";
 import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
 import { cn } from "@/lib/utils";
 import { useIntersectionObserver } from "@/lib/utils/intersectionObserver";
@@ -101,7 +101,10 @@ const RecommendedListings = ({ className, showAllButton }: Props) => {
                     <SwiperSlide key={idx} className={`h-full w-full max-w-96`}>
                       <ListingCard
                         key={listing.id}
-                        {...getListingProps(listing, user as UserType)}
+                        {...getListingProps(
+                          listing as Partial<Listing>,
+                          user as UserType,
+                        )}
                         showOnlyImage
                       />
                     </SwiperSlide>

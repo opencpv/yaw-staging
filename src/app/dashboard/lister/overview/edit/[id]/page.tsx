@@ -2,15 +2,15 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import Loader from "@/components/__shared/ui/loader/Loader";
-const BeMyAgentModal = dynamic(
-  () => import("../../../components/steps/BeMyAgentModal"),
+const ListingModal = dynamic(
+  () => import("../../components/steps/ListingModal"),
 );
 
-const AgenEditPage = () => {
+const ListingEditPage = () => {
   return <main className="flex flex-col gap-40">
-      <BeMyAgentModal />
+      <ListingModal />
       <Loader position="center" />
     </main>
 };
 
-export default AgenEditPage;
+export default ListingEditPage;

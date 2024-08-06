@@ -32,6 +32,24 @@ const RentInformation = React.forwardRef<HTMLInputElement, Props>(({}, ref) => {
     });
   };
 
+  const handleDisabled = (options: string[]) => {
+    let obj = {};
+    options.forEach((option) => {
+      Object.assign(obj, { [option]: true });
+    });
+
+    return obj;
+  };
+
+  const options = [
+    "Less than 1 year",
+    "1 Year",
+    "2 Years",
+    "3 Years",
+    "4 Years",
+    "5 Years",
+  ];
+
   return (
     <div className={style.container}>
       <h2 className={`${style.title}`}>
@@ -57,14 +75,12 @@ const RentInformation = React.forwardRef<HTMLInputElement, Props>(({}, ref) => {
           />
           <CustomRadioInput
             name="lease_duration"
-            options={[
-              "Less than 1 year",
-              "1 Year",
-              "2 Years",
-              "3 Years",
-              "4 Years",
-              "5 Years",
-            ]}
+            options={options}
+            disabled={
+              caseInsensitiveCompare(values.payment_terms, "monthly")
+                ? handleDisabled(options)
+                : undefined
+            }
             label={"Lease Duration"}
             onChange={(value) => {
               handleOnChange("lease_duration", value);
@@ -74,8 +90,15 @@ const RentInformation = React.forwardRef<HTMLInputElement, Props>(({}, ref) => {
           <TextFieldInput
             name="monthly_amount_calculation"
             label="Rent / Month"
-            value={monthlyAmount || ""}
+            value={
+              caseInsensitiveCompare(values.payment_terms, "monthly")
+                ? values.total_amount
+                : monthlyAmount || ""
+            }
             disabled
+            classNames={{
+              input: "max-w-xs",
+            }}
           />
           <CustomRadioInput
             name="require_refundable_security_deposit"
@@ -90,15 +113,17 @@ const RentInformation = React.forwardRef<HTMLInputElement, Props>(({}, ref) => {
             values.require_refundable_security_deposit,
             "yes",
           ) && (
-            <CurrencyInput
-              name="currency"
-              name2="refundable_security_deposit"
-              label="Refundable Security Deposit Amount"
-              onChange={(value) => handleOnChange("currency", value)}
-              onChange2={(value) =>
-                handleOnChange("refundable_security_deposit", value)
-              }
-            />
+            <span className="fade-in-top">
+              <CurrencyInput
+                name="currency"
+                name2="refundable_security_deposit"
+                label="Refundable Security Deposit Amount"
+                onChange={(value) => handleOnChange("currency", value)}
+                onChange2={(value) =>
+                  handleOnChange("refundable_security_deposit", value)
+                }
+              />
+            </span>
           )}
         </div>
         <div
@@ -115,7 +140,9 @@ const RentInformation = React.forwardRef<HTMLInputElement, Props>(({}, ref) => {
             color="primary"
           />
           {caseInsensitiveCompare(values.require_additional_fees, "yes") && (
-            <AdditionalFees />
+            <span className="fade-in-top">
+              <AdditionalFees />
+            </span>
           )}
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { convertYesNoToBoolean } from "@/lib/utils/stringManipulation"
+import { caseInsensitiveCompare, convertYesNoToBoolean } from "@/lib/utils/stringManipulation"
 import { ListingDefaultValues } from "@/store/dashboard/ListingStepsStore"
 
 export const getFormValues = (values: typeof ListingDefaultValues) => {
@@ -34,5 +34,6 @@ for (let key in values) {
       ),
       agent_fee: Number(values.agent_fee),
       viewing_fee: Number(values.viewing_fee),
+      lease_duration: caseInsensitiveCompare(values.payment_terms, "monthly") ? null : values.lease_duration,
   }
 }

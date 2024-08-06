@@ -1,3 +1,4 @@
+//@ts-nocheck
 "use client";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";

@@ -2178,8 +2178,7 @@ export type Database = {
           id: number
           created_at: string
           is_verified: boolean
-          status: string
-          is_paid_for: boolean
+          is_paid: boolean
           is_available: boolean
           is_published: boolean
           owner_uid: string
@@ -2190,24 +2189,20 @@ export type Database = {
           property_name: string
           property_size: string
           description: string
-          bedrooms: number
-          bathrooms: number
+          bedrooms: string
+          bathrooms: string
           renter_knowledge: string
           address: string
           digital_address: string
           available_date: string
           city: string
-          lease_type: string
-          lease_start_date: string
-          lease_end_date: string
-          lease_length: number
-          lease_details: string
-          features_and_amenities: string[]
+          lease_duration: string
+          features: string[]
           total_amount: number
           agent_fee: number
           monthly_amount: number
           utilities: string[]
-          advance_period: number
+          payment_terms: string
           require_refundable_security_deposit: boolean
           refundable_security_deposit: number
           require_agent_fee: boolean
@@ -2222,10 +2217,8 @@ export type Database = {
           is_complete: boolean
           suited_for: string[]
           price_drop: boolean
-          subtitle: string
           query_string: string
           favorite_user_ids: string[]
-          vr_tour_url: string
           template_type: Database["public"]["Enums"]["template"]
           is_lister_certified: boolean
         }[]

@@ -9,8 +9,8 @@ const useStepsSummaryContent = () => {
     {
       title: "Location",
       content: {
-        City: values?.additional_fees?.map((location) => location.city).join(", "),
-        Neighbourhood: values?.additional_fees
+        City: values?.location?.map((location) => location.city).join(", "),
+        Neighbourhood: values?.location
           ?.map((location) => location.neighbourhood)
           .join(", "),
       },

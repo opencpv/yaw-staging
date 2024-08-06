@@ -14,6 +14,9 @@ type Props = {
   options: string[];
   onChange?: (e: any) => void;
   color?: "accent" | "primary";
+  disabled?: {
+    [key: string]: boolean;
+  };
 };
 
 const CustomRadioInput = ({
@@ -25,6 +28,7 @@ const CustomRadioInput = ({
   name,
   options,
   color = "accent",
+  disabled,
 }: Props) => {
   const [value, setValue] = useState<any>();
   useEffect(() => {
@@ -58,24 +62,31 @@ const CustomRadioInput = ({
                 className={cn(
                   "h-[25px] w-[25px] cursor-default rounded-full border bg-white shadow-blackA4 outline-none hover:bg-violet3 focus:outline-0",
                 )}
+                disabled={disabled?.[option] || false}
                 value={option}
                 // checked={value == "yes"}
                 id={label + option}
               >
                 <RadioGroup.Indicator
                   className={cn(
-                    "relative flex h-full w-full items-center justify-center after:block after:h-[25px] after:w-[25px] after:rounded-full  after:bg-[white] after:content-['']",
+                    "relative flex after:border-[5px] h-full w-full items-center justify-center after:block after:h-[25px] after:w-[25px] after:rounded-full  after:bg-[white] after:content-['']",
                     {
-                      "after:border-[5px] after:border-accent":
+                      "after:border-accent":
                         color === "accent",
-                      "after:border-[5px] after:border-primary":
+                      "after:border-primary":
                         color === "primary",
+                      "after:border-shade-200": disabled?.[option], 
                     },
                   )}
                 />
               </RadioGroup.Item>
               <label
-                className=" pl-[15px] text-[15px] leading-none"
+                className={cn(
+                  "pl-[15px] text-[15px] leading-none transition-colors",
+                  {
+                    "text-neutral-300": disabled?.[option],
+                  },
+                )}
                 htmlFor={label + option}
               >
                 {option}

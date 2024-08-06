@@ -1,3 +1,4 @@
+//@ts-nocheck
 "use client";
 import ListingCard from "@/components/__shared/ui/listing/ListingCard";
 import SliderGrid from "@/components/__shared/ui/sliders/SliderGrid";

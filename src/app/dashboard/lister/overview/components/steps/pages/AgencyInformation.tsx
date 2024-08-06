@@ -40,6 +40,7 @@ const AgencyInformation = React.forwardRef<HTMLInputElement, Props>(
           {caseInsensitiveCompare(values.require_agent_fee, "yes") && (
             <>
               <CallOut content="You can add more utilities after you publish your listing." />
+            <span className="fade-in-top">
               <CurrencyInput
                 name="currency"
                 name2="agent_fee"
@@ -47,6 +48,7 @@ const AgencyInformation = React.forwardRef<HTMLInputElement, Props>(
                 onChange={(value) => handleOnChange("currency", value)}
                 onChange2={(value) => handleOnChange("agent_fee", value)}
               />
+              </span>
             </>
           )}
           <CustomRadioInput
@@ -59,6 +61,7 @@ const AgencyInformation = React.forwardRef<HTMLInputElement, Props>(
           {caseInsensitiveCompare(values.require_viewing_fee, "yes") && (
             <>
               <CallOut content="You can add more utilities after you publish your listing." />
+            <span className="fade-in-top">
               <CurrencyInput
                 name="currency"
                 name2="viewing_fee"
@@ -66,6 +69,7 @@ const AgencyInformation = React.forwardRef<HTMLInputElement, Props>(
                 onChange={(value) => handleOnChange("currency", value)}
                 onChange2={(value) => handleOnChange("viewing_fee", value)}
               />
+              </span>
             </>
           )}
         </div>

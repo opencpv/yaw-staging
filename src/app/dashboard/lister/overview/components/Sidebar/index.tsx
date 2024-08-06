@@ -72,12 +72,8 @@ const Sidebar = (props: Props) => {
             />
             {listings?.map((listing) => (
               <PropertyCard
-                id={listing.id}
                 key={listing.id}
-                title={`${listing.bedrooms} Bedroom ${listing.property_type} at ${listing.city}`}
-                image={listing.images?.[0] || images.NoImagePlaceholder}
-                date={listing.created_at}
-                isActive={listing.status.toLowerCase() === "available"}
+                listing={listing}
               />
             ))}
           </>
@@ -107,30 +103,29 @@ const Sidebar = (props: Props) => {
             ))}
           </>
         )}
-        
       </div>
       {activeTab === "properties" ? (
-      <Button
-        href="#"
-        padding="sm"
-        radius="full"
-        className="w-fit self-end bg-shade-50 text-neutral-800"
-        style={{ display: listings?.length === 0 ? "none" : "flex" }}
-      >
-        See all
-      </Button>
-        ) : (
-      <Button
-        href="#"
-        padding="sm"
-        radius="full"
-        className="w-fit self-end bg-shade-50 text-neutral-800"
-        style={{ display: items?.length === 0 ? "none" : "flex" }}
-      >
-        See all
-      </Button>
-        )}
-        <div className="mt-10 space-y-4 self-start">
+        <Button
+          href="/dashboard/lister/overview"
+          padding="sm"
+          radius="full"
+          className="w-fit self-end bg-shade-50 text-neutral-800"
+          style={{ display: listings?.length === 0 ? "none" : "flex" }}
+        >
+          See all
+        </Button>
+      ) : (
+        <Button
+          href="/dashboard/lister/sell-products"
+          padding="sm"
+          radius="full"
+          className="w-fit self-end bg-shade-50 text-neutral-800"
+          style={{ display: items?.length === 0 ? "none" : "flex" }}
+        >
+          See all
+        </Button>
+      )}
+      <div className="mt-10 space-y-4 self-start">
         <h4 className="max-lg:text-xl">Notifications</h4>
         {/*Notification component*/}
       </div>

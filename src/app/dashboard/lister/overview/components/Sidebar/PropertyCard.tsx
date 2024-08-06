@@ -1,46 +1,78 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { format } from "date-fns";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import calculateDaysSinceCreation from "@/lib/utils/calculateDaysSinceCreation";
 import { pluralize } from "@/lib/utils/stringManipulation";
+import { ListingStepsStore } from "@/store/dashboard/ListingStepsStore";
+import { useRouter } from "next/navigation";
+import { useLocalStorage } from "@uidotdev/usehooks";
+import { useAssets } from "@/lib/custom-hooks/useAssets";
+import { generatePropertyTitle } from "@/lib/enum";
+import { Json } from "../../../../../../../database.types";
 
 type Props = {
-  id: number;
-  image: string | StaticImageData;
-  title: string;
-  date: string;
-  isActive: boolean;
+  listing: Property & {
+    banner_image:
+      | {
+          image: StaticImageData;
+        }
+      | Json;
+  };
 };
 
 const PropertyCard = (props: Props) => {
-  const length = calculateDaysSinceCreation(props.date);
+  const router = useRouter();
+  const { images } = useAssets();
+  const length = calculateDaysSinceCreation(props.listing.created_at);
+  //@ts-ignore
+  const image = props.listing.banner_image?.image || images.NoImagePlaceholder;
+
+  const [listingEditSteps] =
+    useLocalStorage<{ listing: number; activeSlide: number }[]>(
+      "listing-edit-steps",
+    );
+
+  const { setActiveSlide, setListing } = ListingStepsStore();
+
+  const handleEdit = useCallback(() => {
+    setListing(props.listing);
+    router.replace(`/dashboard/lister/overview/edit/501${props.listing?.id}`);
+    setActiveSlide(
+      listingEditSteps?.find((step) => step.listing === props.listing?.id)
+        ?.activeSlide ?? 1,
+    );
+  }, [props.listing, listingEditSteps, setActiveSlide, router, setListing]);
 
   return (
-    <div
-      className="w-full min-w-[200px] flex-1 space-y-3 max-lg:max-w-xs"
-    >
-      <Link 
-      href={`/properties/${props.id}`}
-        className="relative block aspect-video w-full rounded-lg">
+    <div className="w-full min-w-[200px] flex-1 space-y-3 max-lg:max-w-xs">
+      <Link
+        href={`/properties/${props.listing?.id}`}
+        className="relative block aspect-video w-full rounded-lg"
+      >
         <Image
-          src={props.image}
-          alt={props.title}
+          src={image}
+          alt={generatePropertyTitle(props.listing)}
           fill
           className="rounded-[inherit] object-cover"
         />
       </Link>
-      <h4>{props.title || " - "}</h4>
+      <h4>{generatePropertyTitle(props.listing) || " - "}</h4>
       <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 text-shade-300">
         <p className="text-base">
-          {format(new Date(props.date), "dd MMMM yyyy")}
+          {format(new Date(props.listing?.created_at), "dd MMMM yyyy")}
         </p>
-        {props.isActive ? (
-        <p className="text-xs lg:text-base">
-          {length} {pluralize("Day", length)} Ago
-        </p>
+        {props.listing?.is_complete ? (
+          <p className="text-xs lg:text-base">
+            {length} {pluralize("Day", length)} Ago
+          </p>
         ) : (
-        <button className="text-base font-bold text-primary">Continue</button>
+          <button
+            onClick={handleEdit}
+            className="text-base font-bold text-primary"
+          >
+            Continue
+          </button>
         )}
       </div>
     </div>

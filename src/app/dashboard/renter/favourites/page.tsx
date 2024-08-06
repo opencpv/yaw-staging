@@ -6,11 +6,11 @@ import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
 import EmptyState from "@/components/__shared/ui/states/EmptyState";
-import { getListingProps } from "@/lib/enum";
+import { getListingProps, Listing } from "@/lib/enum";
 import { useFetchUserFavorites } from "./services";
 import ContactPreferenceToggle from "../../components/shared/ContactPreferenceToggle";
 
-const FavourtiesPage = () => {
+const FavouritesPage = () => {
   const { user } = useAppStore();
 
   const {
@@ -40,7 +40,7 @@ const FavourtiesPage = () => {
         {listings?.map((listing) => (
           <ListingCard
             key={listing.id}
-            {...getListingProps(listing, user as UserType)}
+            {...getListingProps(listing as Partial<Listing>, user as UserType)}
           />
         ))}
       </section>
@@ -54,4 +54,4 @@ const FavourtiesPage = () => {
   );
 };
 
-export default FavourtiesPage;
+export default FavouritesPage;
