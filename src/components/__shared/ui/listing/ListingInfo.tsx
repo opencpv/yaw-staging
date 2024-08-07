@@ -1,14 +1,10 @@
 import React from "react";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import { ListingCardInterface } from "../../../../../interfaces";
-import { useAppStore } from "@/store/dashboard/AppStore";
-import Image from "next/image";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { cn } from "@/lib/utils";
-import Tooltip from "@/components/__shared/ui/Tooltip";
 import RatingsForm from "../ratings-form";
 import AllReviewsModal from "../modals/all-reviews-modal";
-import { useRatingsModalStore } from "@/store/modal/useRatingsModalStore";
 
 const ListingInfo = (props: Partial<ListingCardInterface>) => {
   const { icons } = useAssets();

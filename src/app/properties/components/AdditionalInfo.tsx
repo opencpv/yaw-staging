@@ -18,7 +18,7 @@ const AdditionalInfo = ({ className, listing }: Props) => {
         className,
       )}
     >
-      <section className="flex flex-col gap-3 pb-6">
+      <section className="flex w-full flex-col gap-3 pb-6">
         <Button color="primary" className="min-w-full flex-1">
           Apply Now
         </Button>

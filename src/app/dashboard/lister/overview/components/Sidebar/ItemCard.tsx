@@ -2,6 +2,7 @@ import React from "react";
 import Image, { StaticImageData } from "next/image";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import Link from "next/link";
+import style from "../../index.module.css";
 
 type Props = {
   id: number;
@@ -13,24 +14,37 @@ type Props = {
 
 const ItemCard = (props: Props) => {
   return (
-    <div className="w-full min-w-[200px] flex-1 space-y-3 max-lg:max-w-xs">
-      <Link
-        href={`/moving-sale/${props.id}`}
-        className="relative block aspect-video w-full rounded-lg"
-      >
-        <Image
-          src={props.image}
-          alt={props.title}
-          fill
-          className="rounded-[inherit] object-cover"
-        />
-      </Link>
+    <div className={style.card}>
+      {props.isActive ? (
+        <Link
+          href={`/moving-sale/${props.id}`}
+          className={style.cardLink}
+        >
+          <Image
+            src={props.image}
+            alt={props.title}
+            fill
+            className={style.cardImage}
+          />
+        </Link>
+      ) : (
+          <div
+            className={style.cardLink}
+          >
+            <Image
+              src={props.image}
+              alt={props.title}
+              fill
+              className={style.cardImage}
+            />
+          </div>
+        )}
       <h4>{props.title}</h4>
       {props.isActive ? (
         <p className="text-base">{formatPrice(props.price)}</p>
       ) : (
-        <button className="text-base font-bold text-primary">Continue</button>
-      )}
+          <button className="text-base font-bold text-primary">Continue</button>
+        )}
     </div>
   );
 };

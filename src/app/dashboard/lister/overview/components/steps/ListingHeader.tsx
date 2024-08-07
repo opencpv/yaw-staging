@@ -9,7 +9,6 @@ import { useFormikContext } from "formik";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { usePathname, useRouter } from "next/navigation";
 import { useAddListing } from "../../services";
-import { convertYesNoToBoolean } from "@/lib/utils/stringManipulation";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { LiaTimesSolid } from "react-icons/lia";
 import { cn } from "@/lib/utils";
@@ -111,7 +110,7 @@ const handleListingEditStepsStorage = () => {
   return (
     <section className="flex flex-col gap-4">
       <div className="flex items-center justify-between gap-5">
-        <h4>Create Listing</h4>
+        <h4 className="w-fit">Create Listing</h4>
         <span className="flex items-center gap-3">
           {/* For very small screens */}
           <Button

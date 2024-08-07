@@ -16,6 +16,14 @@ export default function SetItApart() {
                 <p className="text-[3.0625rem] font-bold">
                   Set it apart and make it exceptional
                 </p>
+        <div className="relative w-full max-w-[683px] aspect-[683/617] rounded-2xl h-full ">
+              <Image
+                src="/assets/images/leaseform/lease-form-2.jpeg"
+                alt="Lease Image Form"
+                fill
+                className="w-full h-full object-cover rounded-2xl"
+              />
+            </div>
                 <p
                   className="text-[1.25rem] font-[400]
                   max-w-[684px] leading-[28px] text-[#8A8A8A]

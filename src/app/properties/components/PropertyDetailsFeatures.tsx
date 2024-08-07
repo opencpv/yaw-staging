@@ -20,7 +20,7 @@ const PropertyDetailsFeatures = ({ listing }: Props) => {
         onOpenChange={onOpenChange}
         body={<Features listing={listing} />}
         size={"2xl"}
-        classNames={{ body: "py-20" }}
+        classNames={{ body: "py-10" }}
       />
       <section className="flex flex-col gap-10">
         <h3 className="text-shade-500">Features</h3>
@@ -48,6 +48,7 @@ const FeatureCard = (props: { name: string }) => {
 };
 
 const Features = ({ listing, limit }: Props) => {
+  // combine features and utilities
   const sortedArr = listing?.features
     ?.concat(listing?.utilities as string[])
     ?.sort((a: any, b: any) => a - b);

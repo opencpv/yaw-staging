@@ -1,6 +1,23 @@
 .amenityGrid {
   @apply grid w-full gap-5 xxs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4;
 }
+
+.asterisk {
+  @apply text-sm text-shade-300;
+}
+
+.card {
+  @apply w-full min-w-[280px] flex-1 space-y-3 max-lg:max-w-xs;
+}
+
+.cardLink {
+  @apply relative block aspect-video w-full rounded-lg;
+}
+
+.cardImage {
+  @apply rounded-[inherit] object-cover;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -8,11 +25,39 @@
 }
 
 .fieldsInlineGap {
-  @apply max-sm:gap-y-8 gap-x-5;
+  @apply gap-x-5 max-sm:gap-y-8;
 }
 
 .fieldsBlockGap {
   @apply gap-y-8;
+}
+
+.formTitle {
+  @apply w-fit;
+}
+
+.highlightWrapper {
+  @apply grid items-center gap-10 md:grid-cols-2;
+}
+
+.highlightBulletText {
+  @apply flex flex-col gap-4;
+}
+
+.highlightTitle {
+  @apply max-md:mt-5 sm:text-4xl;
+}
+
+.highlightBullet {
+  @apply animate-bounce;
+}
+
+.highlightImageWrapper {
+  @apply relative aspect-square max-h-[300px] w-full max-md:max-w-[400px] md:max-h-[500px];
+}
+
+.highlightImage {
+  @apply rounded-3xl object-cover;
 }
 
 .marginBlockWide {
@@ -29,10 +74,6 @@
     font-size: 1.35rem;
     line-height: 28px;
   }
-}
-
-.asterisk {
-  @apply text-sm text-shade-300;
 }
 
 .titleNoMargin {

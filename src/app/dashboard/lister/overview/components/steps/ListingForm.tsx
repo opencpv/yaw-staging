@@ -36,6 +36,7 @@ export const views = [
   <RentInformation key={"rent-information"} />,
   <AgencyInformation key={"agency-information"} />,
   <FinishUp key={"finish-up"} />,
+  <AgencyInformation key={"agency-information-temp"} />,
 ];
 
 export default function ListingForm() {
@@ -71,10 +72,10 @@ export default function ListingForm() {
   return (
     <ClientOnly>
       {/* Main area */}
-      <div className="h-full" ref={ListingStepsRef}>
+      <div className="h-full flex items-center" ref={ListingStepsRef}>
         {/* Main area */}
         <section
-          className={cn("mx-auto mb-10 pb-20 mt-5 lg:mt-10 max-w-screen-lg")}
+          className={cn("mx-auto mb-10 pb-20 w-full mt-5 lg:mt-10 max-w-screen-lg")}
         >
           <div>
             <div>{views[activeSlide]}</div>

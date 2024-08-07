@@ -1,3 +1,7 @@
+.formTitle {
+  @apply w-fit
+}
+
 .title,
 .titleNoMargin {
   font-size: 1.5625rem;

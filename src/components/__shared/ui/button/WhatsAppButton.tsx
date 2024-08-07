@@ -45,15 +45,16 @@ const WhatsAppButton = ({
         className={cn(`flex w-full items-center gap-2`, className)}
         onClick={handleSendWhatsAppMsg}
       >
-        {iconPosition === "left" && <FaWhatsapp className="text-lg" />}
+        {iconPosition === "left" && <FaWhatsapp className="text-lg shrink-0" />}
         <motion.span
           key={text}
           whileInView={{ opacity: 1 }}
           initial={{ opacity: 0 }}
+          className="truncate"
         >
           {text}
         </motion.span>
-        {iconPosition === "right" && <FaWhatsapp className="text-lg" />}
+        {iconPosition === "right" && <FaWhatsapp className="text-lg shrink-0" />}
       </Button>
     </div>
   );

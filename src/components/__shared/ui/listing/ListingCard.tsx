@@ -34,7 +34,7 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
 
   return (
     <div
-      className={`group/parent relative flex max-w-sm cursor-default flex-col ssm:max-w-md ${
+      className={`group/parent relative flex w-full max-w-sm cursor-default flex-col ssm:max-w-md ${
         props.className
       } ${
         props.cardType === "2"

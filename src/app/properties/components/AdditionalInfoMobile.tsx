@@ -25,6 +25,7 @@ const AdditionalInfoMobile = ({ listing }: Props) => {
       <Button
         color="primary"
         className="fixed bottom-5 left-[50%] translate-x-[-50%] z-10 min-w-[90%] mx-auto md:hidden"
+        onClick={onOpen}
       >
         Additional Information
       </Button>

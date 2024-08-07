@@ -3,11 +3,11 @@
 }
 
 .listerInfoButton {
-  @apply whitespace-nowrap bg-primary min-[1370px]:flex-1;
+  @apply whitespace-nowrap bg-primary;
 }
 
 .listerInfoButtonSecondary {
-  @apply max-[1370px]:flex-1 max-[1370px]:min-w-full min-[1370px]:px-5 font-normal text-primary/70;
+  @apply px-5 font-normal text-primary/70;
 }
 
 .lightGreenBg {

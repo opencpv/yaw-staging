@@ -10,6 +10,7 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { generatePropertyTitle } from "@/lib/enum";
 import { Json } from "../../../../../../../database.types";
+import style from "../../index.module.css";
 
 type Props = {
   listing: Property & {
@@ -37,7 +38,7 @@ const PropertyCard = (props: Props) => {
 
   const handleEdit = useCallback(() => {
     setListing(props.listing);
-    router.replace(`/dashboard/lister/overview/edit/501${props.listing?.id}`);
+    router.replace(`/dashboard/lister/overview/edit/501${props.listing?.id}`); // just redirects, doesn't use the id
     setActiveSlide(
       listingEditSteps?.find((step) => step.listing === props.listing?.id)
         ?.activeSlide ?? 1,
@@ -45,19 +46,34 @@ const PropertyCard = (props: Props) => {
   }, [props.listing, listingEditSteps, setActiveSlide, router, setListing]);
 
   return (
-    <div className="w-full min-w-[200px] flex-1 space-y-3 max-lg:max-w-xs">
-      <Link
-        href={`/properties/${props.listing?.id}`}
-        className="relative block aspect-video w-full rounded-lg"
-      >
-        <Image
-          src={image}
-          alt={generatePropertyTitle(props.listing)}
-          fill
-          className="rounded-[inherit] object-cover"
-        />
-      </Link>
-      <h4>{generatePropertyTitle(props.listing) || " - "}</h4>
+    <div className={style.card}>
+      {props.listing.is_published ? (
+        <Link
+          href={`/properties/${props.listing?.id}`}
+          className={style.cardLink}
+        >
+          <Image
+            src={image}
+            alt={generatePropertyTitle(props.listing)}
+            fill
+            className={style.cardImage}
+          />
+        </Link>
+      ) : (
+        <div className={style.cardLink}>
+          <Image
+            src={image}
+            alt={generatePropertyTitle(props.listing)}
+            fill
+            className={style.cardImage}
+          />
+        </div>
+      )}
+      <h4>
+        {props.listing?.property_name ||
+          generatePropertyTitle(props.listing) ||
+          " - "}
+      </h4>
       <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 text-shade-300">
         <p className="text-base">
           {format(new Date(props.listing?.created_at), "dd MMMM yyyy")}

@@ -2,7 +2,7 @@
 import CallButton from "@/components/__shared/ui/button/CallButton";
 import WhatsAppButton from "@/components/__shared/ui/button/WhatsAppButton";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import Image, { StaticImageData } from "next/image";
+import { StaticImageData } from "next/image";
 import React from "react";
 import { FaStar } from "react-icons/fa";
 import style from "../Template.module.css";
@@ -39,7 +39,10 @@ const PropertyOwnerInfo = (props: Props) => {
         </div>
         <p className={style.lightGreenText}>( {120} ) Reviews</p>
       </div>
-      <div className="flex max-[1370px]:flex-wrap gap-2">
+      <div
+        className="grid grid-cols-3 gap-2"
+        style={{ gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))" }}
+      >
         <Button className={cn(style.listerInfoButton)}>Send Message</Button>
         <WhatsAppButton
           iconPosition="right"

@@ -117,7 +117,7 @@ const ListerOverviewPage = () => {
               description="Lorem ipsum dolor sit amet consectetur"
               icon={
                 <GoShieldCheck
-                  className="max-sm:scale-80 text-primary"
+                  className="text-primary max-sm:scale-80"
                   size={65}
                 />
               }

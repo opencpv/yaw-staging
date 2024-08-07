@@ -4,6 +4,10 @@
     0px 12px 16px -4px rgba(0, 0, 0, 0.08);
 }
 
+.formTitle {
+  @apply w-fit
+}
+
 .title,
 .titleNoMargin {
   font-size: 1.5625rem;

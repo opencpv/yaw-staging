@@ -35,15 +35,16 @@ const ButtonCall = ({ color, phoneNumber, className, iconPosition }: Props) => {
         className={`w-full p-4 ${className}`}
         onClick={() => initiatePhoneCall(phoneNumber)}
       >
-        {iconPosition === "left" && <MdOutlinePhone className="text-lg" /> }
+        {iconPosition === "left" && <MdOutlinePhone className="text-lg shrink-0" /> }
         <motion.span
           key={text}
           whileInView={{ opacity: 1 }}
           initial={{ opacity: 0 }}
+          className="truncate"
         >
           {text}
         </motion.span>
-        {iconPosition === "right" && <MdOutlinePhone className="text-lg" /> }
+        {iconPosition === "right" && <MdOutlinePhone className="text-lg shrink-0" /> }
       </Button>
     </div>
   );

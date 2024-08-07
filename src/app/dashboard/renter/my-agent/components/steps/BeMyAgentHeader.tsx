@@ -13,6 +13,7 @@ import capitalizeName from "@/lib/utils/stringManipulation";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { LiaTimesSolid } from "react-icons/lia";
 import { cn } from "@/lib/utils";
+import style from "../../index.module.css";
 
 const BeMyAgentHeader = () => {
   const { user } = useAppStore();
@@ -140,7 +141,7 @@ const BeMyAgentHeader = () => {
   return (
     <section className="flex flex-col gap-4">
       <div className="flex items-center justify-between gap-5">
-        <h4>Be My Agent</h4>
+        <h4 className={style.formTitle}>Be My Agent</h4>
         <span className="flex gap-3 items-center">
           {/* For very small screens */}
         <Button
