@@ -41,49 +41,27 @@ const Navbar = (props: any) => {
     };
   }, [pathname]);
 
-  const shouldChangeColor = isScrolling && pathname?.includes("/properties/");
-  const isNotTargetPage = !pathname?.includes("/properties/");
+  //const shouldChangeColor = isScrolling && pathname?.includes("/properties/");
+  //const isNotTargetPage = !pathname?.includes("/properties/");
 
   return (
     <>
       <nav
-        className={`no-print z-40 w-full px-3 py-3 sm:px-8 ${
-          props.isMenuOpen && "absolute"
-        } ${
-          isNotTargetPage
-            ? "sticky bg-primary-500"
-            : shouldChangeColor
-              ? "fixed bg-primary-500 transition-all duration-300"
-              : "fixed bg-transparent transition-all duration-300"
-        } top-0 bg-primary-500`}
+        className={cn(
+          `no-print sticky top-0 z-40 w-full bg-primary px-3 py-3 transition-all duration-300 sm:px-8`,
+          {
+            absolute: props.isMenuOpen,
+          },
+        )}
       >
         <div className="flex items-center justify-between">
           <Logo />
           <div className="flex w-full items-center justify-end md:gap-[31px] lg:gap-[73px]">
-            {!pathname?.includes("/properties/") ? (
-              <GetStartedButton
-                className={cn("w-fit px-[4.5rem] text-xl", {
-                  invisible: user,
-                })}
-              />
-            ) : (
-              <div className="flex items-center gap-4">
-                <LikeHeart
-                  liked={props.liked}
-                  userId={user?.id as string | number}
-                  propertyId={props.propertyId}
-                  className="text-3xl text-white sm:text-4xl"
-                />
-                <Share
-                  title={props.propertyName}
-                  content={props.propertyDescription}
-                  classNames={{
-                    icon: "text-5xl text-white",
-                  }}
-                  hideLabel
-                />
-              </div>
-            )}
+            <GetStartedButton
+              className={cn("w-fit px-[4.5rem] text-xl", {
+                invisible: user,
+              })}
+            />
             <div className="flex items-center gap-5">
               {user && <AvatarMenu />}
               {/* Hamburger button */}

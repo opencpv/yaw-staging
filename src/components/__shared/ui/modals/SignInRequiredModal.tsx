@@ -23,7 +23,9 @@ const SignInRequiredModal = ({ open, onOpenChange, onClose }: Props) => {
         size="5xl"
         scrollBehavior="normal"
         hideCloseButton
-        bodyClassName="p-0"
+        classNames={{
+          body: "p-0",  
+        }}
       />
     </>
   );

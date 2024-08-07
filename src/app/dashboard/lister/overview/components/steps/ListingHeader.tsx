@@ -57,7 +57,7 @@ const ListingHeader = () => {
       localStorage.removeItem("listing-creation-steps");
       pathname?.includes("edit") &&
         router.replace("/dashboard/lister/overview");
-      pathname?.includes("create") && router.back();
+      pathname?.includes("create") && router.push("/dashboard/lister/overview");
     }
     if (pathname?.includes("create")) handleActiveSlide();
   }, [
@@ -95,7 +95,7 @@ const handleListingEditStepsStorage = () => {
     setListing(null);
     localStorage.removeItem("listing-creation-steps");
     pathname?.includes("edit") && router.replace("/dashboard/lister/overview");
-    pathname?.includes("create") && router.back();
+    pathname?.includes("create") && router.push("/dashboard/lister/overview");
   };
 
   const handleSaveAndExit = () => {

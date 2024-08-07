@@ -77,19 +77,6 @@ interface ChatInterface {
   isBlocked?: boolean;
 }
 
-type FeatureInterface =
-  | "Fire Extinguisher"
-  | "Smoke Alarm"
-  | "Satellite TV"
-  | "Pool Table"
-  | "Wifi"
-  | "Gas"
-  | "Air Conditioning"
-  | "Security Cameras on Property"
-  | "Kitchen"
-  | "Free Parking on Premises"
-  | "Hot Tub"
-  | "Pool";
 
 interface ListingInterface {
   images?: string[];

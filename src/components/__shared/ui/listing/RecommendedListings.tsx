@@ -18,10 +18,10 @@ import { useIntersectionObserver } from "@/lib/utils/intersectionObserver";
 
 type Props = {
   className?: string;
-  showAllButton?: boolean;
+  hideShowAll?: boolean;
 };
 
-const RecommendedListings = ({ className, showAllButton }: Props) => {
+const RecommendedListings = ({ className, hideShowAll }: Props) => {
   const { ref, hasIntersected } = useIntersectionObserver();
 
   const { user } = useAppStore();
@@ -51,7 +51,7 @@ const RecommendedListings = ({ className, showAllButton }: Props) => {
           href="/properties"
           variant="ghost"
           className={`text-sm text-neutral-800 ${
-            showAllButton ? "block" : "hidden"
+            hideShowAll ? "hidden" : "block"
           } ${isLoading && "hidden"}`}
         >
           Show all

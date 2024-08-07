@@ -8,7 +8,6 @@ export const getFormValues = (values: typeof ListingDefaultValues) => {
 
 for (let key in values) {
   if (key.startsWith("amount") || key.startsWith("fee_title")) {
-    // Delete the key
     //@ts-ignore
     delete values[key];
   }

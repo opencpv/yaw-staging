@@ -101,8 +101,8 @@ const SliderArea = (props: Partial<ListingCardInterface>) => {
         props.showOnlyImage ? ( // when only images show without pagination or controls
           <React.Fragment key={createUUID()}>
             {index === 0 && (
-              <SwiperSlide key={createUUID()}>
-                <Link href={`${props.href}`}>
+              <SwiperSlide key={createUUID()} style={{ width: "100%" }}>
+                <Link href={`${props.href}`} className="w-full">
                   <div className="relative h-full w-full">
                     <Image
                       src={image}

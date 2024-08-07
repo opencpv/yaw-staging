@@ -1,25 +1,48 @@
 "use client";
-import { cn } from "@/lib/utils";
+import Button from "@/components/__shared/ui/button/Button";
 import React from "react";
+import style from "../Template.module.css";
+import PropertyOwnerInfo from "./PropertyOwnerInfo";
+import { cn } from "@/lib/utils";
 
 type Props = {
-  children: React.ReactNode;
+  listing: Property;
   className?: string;
-  hidden?: boolean;
 };
 
-const AdditionalInfo = ({ children, className, hidden }: Props) => {
+const AdditionalInfo = ({ className, listing }: Props) => {
   return (
     <div
       className={cn(
-        "mt-2 w-full rounded-xl border p-5 font-[500] text-neutral-800",
-        {
-          hidden,
-        },
+        "col-span-1 h-fit divide-y rounded-xl border p-5 shadow-sm",
         className,
       )}
     >
-      {children}
+      <section className="flex flex-col gap-3 pb-6">
+        <Button color="primary" className="min-w-full flex-1">
+          Apply Now
+        </Button>
+        <div>Available on</div>
+      </section>
+      <section className={style.additionalInfoWrapper}>
+        <h4>Additional Information</h4>
+        <h5>Agency Fee</h5>
+        <div>Viewing fee</div>
+      </section>
+      <section className={style.additionalInfoWrapper}>
+        <h4>Property Fees</h4>
+        <div>Refundable Security Deposit</div>
+      </section>
+      <section className={style.additionalInfoWrapper}>
+        <h4>Utilities Included</h4>
+        <div>utilities </div>
+      </section>
+      <PropertyOwnerInfo
+        name="John Doe"
+        rating={4.5}
+        reviews={10}
+        picture={""}
+      />
     </div>
   );
 };

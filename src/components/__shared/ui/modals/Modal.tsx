@@ -1,6 +1,6 @@
 "use client";
 import { LiaTimesSolid } from "react-icons/lia";
-import { cn } from "@nextui-org/react";
+import { SlotsToClasses, cn } from "@nextui-org/react";
 
 import {
   Modal as NextUIModal,
@@ -8,6 +8,7 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
+  ModalProps
 } from "@nextui-org/react";
 import { useModalFullscreenStore } from "@/store/modal/useModalStore";
 import { useEffect } from "react";
@@ -36,12 +37,9 @@ type Props = {
   hideCloseButton?: boolean;
   backgroundColor?: any;
   backdrop?: any;
-  backdropClassName?: string;
-  bodyClassName?: string;
   className?: string;
-  footerClassName?: string;
-  wrapperClassName?: string;
   scrollBehavior?: "normal" | "inside";
+  classNames?: ModalProps["classNames"];
 };
 
 const Modal = ({
@@ -58,12 +56,9 @@ const Modal = ({
   hideCloseButton,
   backgroundColor,
   backdrop,
-  backdropClassName,
   className,
-  footerClassName,
-  wrapperClassName,
-  bodyClassName,
   scrollBehavior,
+  classNames,
 }: Props) => {
   const setHideWindowScrollbar = useModalFullscreenStore(
     (state) => state.setHideWindowScrollbar,
@@ -79,16 +74,17 @@ const Modal = ({
     <>
       <NextUIModal
         classNames={{
-          backdrop: cn("z-[9999]", backdropClassName),
-          wrapper: cn("z-[99999]", wrapperClassName),
+          backdrop: cn("z-[9999]", classNames?.backdrop),
+          wrapper: cn("z-[99999]", classNames?.wrapper),
           body: cn(
             "hidden-scrollbar",
             {
               "overflow-y-auto": size === "full",
             },
-            bodyClassName,
+            classNames?.body,
           ),
-          footer: footerClassName,
+          footer: classNames?.footer,
+          header: classNames?.header,
           base: cn(
             `relative focus:outline-none ${
               backgroundColor ? backgroundColor : "bg-[#fefefe]"
@@ -98,6 +94,7 @@ const Modal = ({
               "pointer-events-auto": isOpen,
             },
             className,
+            classNames?.base,
           ),
           closeButton: "mr-3 mt-1",
         }}

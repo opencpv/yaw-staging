@@ -19,7 +19,7 @@ const ReportIssue = ({ className }: Props) => {
   return (
     <Link
       href="/contact"
-      className={`inline-block font-[600] text-red-500 ${className}`}
+      className={`inline-block font-[600] text-sm text-red-500/80 ${className}`}
       onClick={handleClick}
     >
       Report issue

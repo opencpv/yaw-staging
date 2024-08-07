@@ -7,17 +7,14 @@ import { utilities } from "../../../../../components/shared/content";
 import { ListingDefaultValues } from "@/store/dashboard/ListingStepsStore";
 import UtilitiesIncludedModal from "../../UtilitiesIncludedModal";
 import { useDisclosure } from "@nextui-org/react";
-import React from "react";
-import { CheckedState } from "@radix-ui/react-checkbox";
+import React, { useEffect, useRef } from "react";
+import toast from "react-hot-toast";
 
 export default function Utilities() {
+  const bodyRef = useRef<HTMLDivElement>(null)
   const [listingCreationSteps, setListingCreationSteps] = useLocalStorage<
     typeof ListingDefaultValues
   >("listing-creation-steps");
-
-  const [listingUtilityCheck, setListingUtilityCheck] = useLocalStorage<{
-    apply_to_all_check: CheckedState;
-  }>("listing-utility-check", { apply_to_all_check: false });
 
   const { onOpenChange, isOpen, onOpen, onClose } = useDisclosure();
   const [selectedUtility, setSelectedUtility] = React.useState("");
@@ -27,6 +24,7 @@ export default function Utilities() {
 
   const handleAmenityClick = (r: string) => {
     if (field.value?.includes(r)) {
+      // remove from both utilities and utilities_included if already included
       helpers.setValue(field.value?.filter((item: string) => item !== r));
       helpersUtilityInc.setValue(
         fieldUtilityInc.value?.filter((item: string) => item !== r),
@@ -39,20 +37,15 @@ export default function Utilities() {
           (item: string) => item !== r,
         ),
       });
+      fieldUtilityInc?.value?.includes(r) && toast("Removed from utilities included", {duration: 2000});
     } else {
+      // only add to utilities if not already included
       helpers.setValue([...field.value, r]);
       setListingCreationSteps({
         ...listingCreationSteps,
         utilities: [...field.value, r] as any,
       });
     }
-  };
-
-  const handleChecked = (checked: CheckedState) => {
-    setListingUtilityCheck({
-      ...listingUtilityCheck,
-      apply_to_all_check: checked,
-    });
   };
 
   const openModal = (utility: string) => {
@@ -82,9 +75,26 @@ export default function Utilities() {
     onClose();
   };
 
-  const handleNo = () => {
-    onClose();
-  };
+
+  useEffect(() => {
+    const bodyRefCurrent = bodyRef.current;
+    if (isOpen && bodyRef.current) {
+      setTimeout(() => {
+        bodyRefCurrent?.classList.add("pointer-events-none");
+      }, 300);
+    } else {
+      setTimeout(() => {
+        bodyRefCurrent?.classList.remove("pointer-events-none");
+      }, 300);
+    }
+
+    return () => {
+      setTimeout(() => {
+        bodyRefCurrent?.classList.remove("pointer-events-none");
+      }, 300);
+    };
+  }, [isOpen]);
+
 
   return (
     <>
@@ -92,14 +102,12 @@ export default function Utilities() {
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         handleYes={handleYes}
-        handleNo={handleNo}
+        handleNo={onClose}
         utility={selectedUtility}
-        checked={listingUtilityCheck?.apply_to_all_check || false}
-        onCheckedChange={handleChecked}
       />
       <div
+        ref={bodyRef}
         className={style.container}
-        style={{ pointerEvents: isOpen ? "none" : "auto" }}
       >
         <div className={style.titleCallOutContainer}>
           <h2 className={`${style.titleNoMargin}`}>

@@ -7,7 +7,6 @@ import FixedSocials from "@/components/FixedSocials";
 import ScrollTop from "@/components/__shared/ui/ScrollTop";
 import PropertiesListing from "./components/PropertiesListing";
 import SearchCity from "./components/SearchCity";
-import { Metadata } from "next";
 import { loadQuery } from "@sanity/react-loader";
 import { SanityDocument } from "next-sanity";
 import { ADS_QUERY } from "@/lib/utils/sanity/queries";

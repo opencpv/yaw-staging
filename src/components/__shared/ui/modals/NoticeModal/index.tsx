@@ -43,7 +43,9 @@ const NoticeModal = () => {
           setOpen(open);
         }}
         scrollBehavior="normal"
-        bodyClassName="p-0"
+        classNames={{
+          body: "p-0",  
+        }}
         hideCloseButton
         className="max-w-[88rem]"
       />

@@ -25,7 +25,6 @@ const PropertiesListing = (props: Props) => {
   const search = searchParams?.get("search") || "";
   const tag = searchParams?.get("tag") || "all";
   const router = useRouter();
-  const { ref, hasIntersected } = useIntersectionObserver();
   const [showAd, setShowAd] = useState(false);
   const { user } = useAppStore();
   const {
@@ -54,66 +53,63 @@ const PropertiesListing = (props: Props) => {
     loadMore ? loadMore() : null;
   };
   return (
-    <main className="wrapper overflow-x-hidden max-sm:-mt-10">
-      <div ref={ref as any} />
+    <main className="wrapper mx-auto max-w-fit overflow-x-hidden max-sm:-mt-10">
       {/* Listing */}
-      {hasIntersected && (
-        <FramerWrapper>
-          <section className="listing-grid">
-            <FetchingStates
-              data={listings}
-              error={error}
-              isLoading={isLoading}
-              isLoadingComponent={<SkeletonListing count={3} />}
-              errorComponent={
-                <SomethingWentWrong
-                  className="h-fit"
-                  onTryAgain={() => {
-                    mutate();
-                  }}
-                />
-              }
-              emptyStateComponent={
-                <PropertiesEmptyState onClick={handleViewSimilarResults} />
-              }
-            />
-            {listings
-              ?.slice(0, 9)
-              ?.map((listing) => (
-                <ListingCard
-                  key={listing.id}
-                  {...getListingProps(
-                    listing as Partial<Listing>,
-                    user as UserType,
-                  )}
-                />
-              ))}
-            {showAd && (
-              <div className="col-span-1 w-full md:col-span-2 lg:col-span-3">
-                {" "}
-                <Ad data={props.ads} />
-              </div>
-            )}
-            {listings
-              ?.slice(9)
-              ?.map((listing) => (
-                <ListingCard
-                  key={listing.id}
-                  {...getListingProps(
-                    listing as Partial<Listing>,
-                    user as UserType,
-                  )}
-                />
-              ))}
-          </section>
-          <ButtonInfiniteLoading
+      <FramerWrapper>
+        <section className="listing-grid">
+          <FetchingStates
             data={listings}
+            error={error}
             isLoading={isLoading}
-            isValidating={isValidating}
-            loadMore={handleLoadMore}
+            isLoadingComponent={<SkeletonListing count={3} />}
+            errorComponent={
+              <SomethingWentWrong
+                className="h-fit"
+                onTryAgain={() => {
+                  mutate();
+                }}
+              />
+            }
+            emptyStateComponent={
+              <PropertiesEmptyState onClick={handleViewSimilarResults} />
+            }
           />
-        </FramerWrapper>
-      )}
+          {listings
+            ?.slice(0, 9)
+            ?.map((listing) => (
+              <ListingCard
+                key={listing.id}
+                {...getListingProps(
+                  listing as Partial<Listing>,
+                  user as UserType,
+                )}
+              />
+            ))}
+          {showAd && (
+            <div className="col-span-1 w-full md:col-span-2 lg:col-span-3">
+              {" "}
+              <Ad data={props.ads} />
+            </div>
+          )}
+          {listings
+            ?.slice(9)
+            ?.map((listing) => (
+              <ListingCard
+                key={listing.id}
+                {...getListingProps(
+                  listing as Partial<Listing>,
+                  user as UserType,
+                )}
+              />
+            ))}
+        </section>
+        <ButtonInfiniteLoading
+          data={listings}
+          isLoading={isLoading}
+          isValidating={isValidating}
+          loadMore={handleLoadMore}
+        />
+      </FramerWrapper>
     </main>
   );
 };

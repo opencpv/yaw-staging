@@ -1,5 +1,7 @@
 import images from "@/enum/temp/images";
-import capitalizeName from "./utils/stringManipulation";
+import capitalizeName, {
+  caseInsensitiveCompare, convertNumWithoutPlus,
+} from "./utils/stringManipulation";
 
 export type Listing = {
   profiles?: {
@@ -15,6 +17,7 @@ export const getListingProps = (listing: Partial<Listing>, user: UserType) => {
     propertyId: listing?.id as number,
     href: `/properties/${listing?.id}?${new URLSearchParams({
       property_type: listing?.property_type as string,
+      property_name: listing?.property_name as string,
       bedrooms: String(listing?.bedrooms),
       city: listing?.city as string,
       neighbourhood: listing?.neighbourhood as string,
@@ -28,6 +31,7 @@ export const getListingProps = (listing: Partial<Listing>, user: UserType) => {
     })}`,
     bedrooms: listing?.bedrooms as string,
     propertyType: listing?.property_type as string,
+    propertyName: listing?.property_name as string,
     city: listing?.city as string,
     neighbourhood: listing?.neighbourhood as string,
     images: images, // TODO: check database
@@ -46,9 +50,20 @@ export const getListingProps = (listing: Partial<Listing>, user: UserType) => {
         ? ("Best Value" as HintTag)
         : undefined,
     //advancePeriod: listing?.payment_terms as number,
-    advancePeriod: 1,
+    advancePeriod: caseInsensitiveCompare(
+      listing?.payment_terms as string,
+      "advance",
+    )
+      ? getAdvancePeriod(listing?.lease_duration as string)
+      : undefined,
     ViewingFee: listing?.viewing_fee as number,
   };
+};
+
+export const getAdvancePeriod = (period: string) => {
+  const split = period.split(" ");
+  const number = convertNumWithoutPlus(split[0]);
+  return isNaN(number) ? undefined : number;
 };
 
 export const generatePropertyTitle = (property: Partial<Property>) => {
@@ -57,9 +72,6 @@ export const generatePropertyTitle = (property: Partial<Property>) => {
   )} at ${property?.city || ""}`;
 };
 
-export const convertNumWithoutPlus = (number: string) => {
-  const result = number.includes("+")
-    ? number.slice(0, number.indexOf("+"))
-    : number;
-  return Number(result);
-};
+
+export { convertNumWithoutPlus };
+

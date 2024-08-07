@@ -16,6 +16,10 @@
   background-color: #ffffff !important;
 }
 
+.listing-card-slider .swiper-slide {
+  width: 100% !important;
+}
+
 .slider-multi-items > .swiper-wrapper {
   transition-timing-function: linear !important;
 }

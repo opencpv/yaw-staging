@@ -1,15 +1,15 @@
 "use client";
-import ReportIssue from "@/components/__shared/ui/links/ReportIssue";
 import CallButton from "@/components/__shared/ui/button/CallButton";
-import MessageButton from "@/components/__shared/ui/button/MessageButton";
 import WhatsAppButton from "@/components/__shared/ui/button/WhatsAppButton";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image, { StaticImageData } from "next/image";
 import React from "react";
 import { FaStar } from "react-icons/fa";
-import { motion } from "framer-motion";
-import { fadeUp } from "@/lib/animations";
+import style from "../Template.module.css";
 import Rating from "@/components/__shared/ui/ratings-form";
+import { cn } from "@/lib/utils";
+import Button from "@/components/__shared/ui/button/Button";
+import Avatar from "@/components/__shared/ui/avatar/Avatar";
 
 type Props = {
   name: string;
@@ -23,58 +23,36 @@ type Props = {
 
 const PropertyOwnerInfo = (props: Props) => {
   const { images } = useAssets();
-  return (
-    <motion.section className="mx-auto flex w-full items-center justify-center">
-      <div className="mt-12 flex w-full flex-col items-center gap-10 sm:w-11/12">
-        <div className="flex items-center gap-10 font-[600]">
-          <div className="relative h-24 w-24 rounded-full">
-            <Image
-              src={props.picture || images.NoProfilePH}
-              className="rounded-full transition-all hover:scale-105"
-              alt={props.name}
-              fill
-              style={{ objectFit: "cover" }}
-              title={props.name}
-            />
-          </div>
-          <div className="flex flex-col items-center gap-2 text-xl text-primary-500 min-[360px]:flex-row">
-            <FaStar className="text-yellow-400" />
-            <Rating value={props.rating} className="text-xl" />
-          </div>
-          <p className="text-xl text-[#93B5BC]">{props.reviews} Reviews</p>
-        </div>
-        {/* Contact this property */}
-        <div className="flex w-full flex-col items-center gap-2 rounded-xl border border-neutral-300 px-10 py-8">
-          <h2 className="text-center text-2xl font-[600] capitalize text-neutral-800 sm:w-9/12">
-            Contact This Property
-          </h2>
 
-          {props.telephone && (
-            <CallButton
-              color="gradient"
-              phoneNumber={props.telephone}
-              className="py-7"
-            />
-          )}
-          <MessageButton
-            id={props.id as string}
-            color="gradient"
-            className="py-7"
-          />
-          {props.whatsappNumber && (
-            <WhatsAppButton
-              phone={props.whatsappNumber}
-              color="gradient"
-              className="py-7"
-            />
-          )}
+  return (
+    <section className={style.additionalInfoWrapper}>
+      <h4>Contact this lister</h4>
+      <div className="flex items-center gap-5 font-semibold">
+        <Avatar
+          size="sm"
+          image={props.picture || images.NoImagePlaceholder}
+          name={""}
+        />
+        <div className="flex flex-col items-center gap-2 text-primary min-[360px]:flex-row">
+          <FaStar className="text-yellow-400" />
+          <Rating value={5} className="text-xl" />
         </div>
-        {/* Report issue */}
-        <div className="relative -top-6 mb-10 self-start">
-          <ReportIssue />
-        </div>
+        <p className={style.lightGreenText}>( {120} ) Reviews</p>
       </div>
-    </motion.section>
+      <div className="flex max-[1370px]:flex-wrap gap-2">
+        <Button className={cn(style.listerInfoButton)}>Send Message</Button>
+        <WhatsAppButton
+          iconPosition="right"
+          phone={"123456789"}
+          className={cn(style.listerInfoButtonSecondary, style.lightGreenBg)}
+        />
+        <CallButton
+          iconPosition="right"
+          phoneNumber="123456789"
+          className={cn(style.listerInfoButtonSecondary, style.lightGreenBg)}
+        />
+      </div>
+    </section>
   );
 };
 

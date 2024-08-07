@@ -31,9 +31,7 @@ const ListingInfo = (props: Partial<ListingCardInterface>) => {
               className="truncate font-bold capitalize text-black"
               title={`${props.bedrooms} Bedroom ${props.propertyType}`}
             >
-              <span>{props.bedrooms} </span>
-              <span>Bedroom </span>
-              <span>{props.propertyType}</span>
+              <span>{`${props.bedrooms} Bedroom ${props.propertyType}`}</span>
             </h5>
           </div>
           {/* rating */}
@@ -45,9 +43,9 @@ const ListingInfo = (props: Partial<ListingCardInterface>) => {
             )}
           </div>
         </div>
-        {/* subtitle */}
+        {/* property name */}
         <p className="line-clamp-1 max-w-xl text-base text-black">
-          {props.subtitle}
+          {props.propertyName}
         </p>
       </div>
       {/* monthly amount */}
@@ -68,7 +66,7 @@ const ListingInfo = (props: Partial<ListingCardInterface>) => {
             "bg-info-bg text-info": !props.advancePeriod,
           })}
         >
-          {props.advancePeriod === 1 ? (
+          {props.advancePeriod ? (
             <small>
               <span
                 className={cn("xl:max-2xl:hidden", {
@@ -76,7 +74,11 @@ const ListingInfo = (props: Partial<ListingCardInterface>) => {
                     props.cardType === "2",
                 })}
               >
-                One Year Advance
+                {props.advancePeriod === 1 && "One Year Advance"}
+                {props.advancePeriod === 2 && "Two Year Advance"}
+                {props.advancePeriod === 3 && "Three Year Advance"}
+                {props.advancePeriod === 4 && "Four Year Advance"}
+                {props.advancePeriod === 5 && "Five Year Advance"}
               </span>
               <span
                 className={cn("hidden xl:max-2xl:inline", {
@@ -84,40 +86,26 @@ const ListingInfo = (props: Partial<ListingCardInterface>) => {
                     props.cardType === "2",
                 })}
               >
-                1yr Advance
+                {props.advancePeriod === 1 && "1Yr Advance"}
+                {props.advancePeriod === 2 && "2Yr Advance"}
+                {props.advancePeriod === 3 && "3Yr Advance"}
+                {props.advancePeriod === 4 && "4Yr Advance"}
+                {props.advancePeriod === 5 && "5Yr Advance"}
               </span>
             </small>
-          ) : props.advancePeriod === 2 ? (
-            <small>
-              <span
-                className={cn("xl:max-2xl:hidden", {
-                  "max-xsm:hidden lg:max-xl:hidden xl:max-2xl:inline":
-                    props.cardType === "2",
-                })}
-              >
-                Two Year Advance
-              </span>
-              <span
-                className={cn("hidden xl:max-2xl:inline", {
-                  "hidden max-xsm:inline lg:max-xl:inline xl:max-2xl:hidden":
-                    props.cardType === "2",
-                })}
-              >
-                2yr Advance
-              </span>
-            </small>
-          ) : !props.advancePeriod ? (
+          ) : (
             <small className="px-1.5">
               <span>No Advance</span>
             </small>
-          ) : null}
+          )}
         </div>
       </div>
       {/* City and like */}
       <div className="mt-auto flex flex-wrap items-center justify-between gap-2">
         <div className="text-sm text-shade-300">
-          <span>{props.neighbourhood}, </span>
-          <span>{props.city}</span>
+          <span>
+            {props.neighbourhood}, {props.city}
+          </span>
         </div>
         {/* Spotline -- RELEASE 2 */}
       </div>

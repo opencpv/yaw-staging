@@ -1,0 +1,23 @@
+.heading {
+  @apply text-shade-500;
+}
+
+.listerInfoButton {
+  @apply whitespace-nowrap bg-primary min-[1370px]:flex-1;
+}
+
+.listerInfoButtonSecondary {
+  @apply max-[1370px]:flex-1 max-[1370px]:min-w-full min-[1370px]:px-5 font-normal text-primary/70;
+}
+
+.lightGreenBg {
+  @apply bg-primary/10;
+}
+
+.lightGreenText {
+  @apply text-primary/40;
+}
+
+.additionalInfoWrapper {
+  @apply space-y-5 py-5;
+}

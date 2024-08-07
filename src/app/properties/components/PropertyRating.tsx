@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import ReviewComment from "./ReviewComment";
 import ReviewCount from "./ReviewCount";

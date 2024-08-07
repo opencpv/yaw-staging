@@ -8,7 +8,9 @@ type Props = {
   header?: React.ReactNode;
   footer?: React.ReactNode;
   open?: boolean;
-  footerClassName?: string;
+  classNames?: {
+    footer?: string
+  };
   onOpenChange?: (open: boolean) => void;
 };
 
@@ -17,7 +19,7 @@ const StepsModal = ({
   body,
   footer,
   open,
-  footerClassName,
+  classNames,
   onOpenChange,
 }: Props) => {
   useEffect(() => {
@@ -59,7 +61,7 @@ const StepsModal = ({
             <footer
               className={cn(
                 "flex flex-row justify-end gap-2 border-t px-6 py-4",
-                footerClassName,
+                classNames?.footer,
               )}
             >
               {footer}

@@ -1,68 +1,56 @@
-import ReportIssue from "@/components/__shared/ui/links/ReportIssue";
-import SliderWide from "@/components/__shared/ui/sliders/SliderWide";
+"use client";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { useDisclosure } from "@nextui-org/react";
-import Image from "next/image";
 import PropertyGalleryModal from "./PropertyGalleryModal";
 import { ListingInterface } from "../../../../interfaces";
 import { useIntersectionObserver } from "@/lib/utils/intersectionObserver";
+import Image from "next/image";
+import images from "@/enum/temp/images";
 
 type Props = {
-  images: ListingInterface;
+  images: string[];
 };
 
 const PropertyDetailsImages = (props: Props) => {
-  const { images } = useAssets();
   const { isOpen, onClose, onOpen, onOpenChange } = useDisclosure();
   const { ref, hasIntersected } = useIntersectionObserver();
 
   return (
-    <>
+    <section>
       <PropertyGalleryModal
         onOpenChange={onOpenChange}
         onClose={onClose}
         isOpen={isOpen}
       />
-      <section className="fade-in-bottom mb-10 h-full max-h-[150rem]">
-        <>
-          <div
-            className="hidden h-full cursor-pointer grid-cols-2 gap-3 lg:grid"
-            onClick={onOpen}
-          >
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((_, idx) => (
-              <div
-                key={idx + 1}
-                className={`property-details-img-group relative ${
-                  idx === 4 || idx === 5 ? "row-span-2" : "row-span-1"
-                }`}
-              >
-                <Image
-                  src={images.StockImage}
-                  alt={props.images.propertyName as string}
-                  fill
-                  className="transition-all hover:scale-[1.02]"
-                  style={{ objectFit: "cover" }}
-                />
-              </div>
-            ))}
-          </div>
-          {/* Slider */}
-          <div className="h-fit w-full cursor-pointer lg:hidden">
-            <SliderWide
-              pagination
-              navigation
-              onClick={onOpen}
-              images={[1, 2, 3, 4, 5].map((image) => ({
-                src: "/assets/images/Stock.jpg",
-                name: "",
-                href: "",
-              }))}
+      <section className="grid md:grid-cols-4 gap-5">
+        <div className="relative col-span-3 aspect-video w-full">
+          <Image
+            src={images[0]}
+            alt=""
+            fill
+            className="rounded-3xl object-cover"
+          />
+        </div>
+        <div className="grid gap-5 max-md:hidden">
+          <div className="relative w-full">
+            <Image
+              src={images[1]}
+              alt=""
+              fill
+              className="rounded-3xl object-cover"
             />
           </div>
-          <ReportIssue className="mt-5" />
-        </>
+          <div className="relative w-full">
+            <Image
+              src={images[2]}
+              alt=""
+              fill
+              className="rounded-3xl object-cover"
+            />
+          </div>
+        </div>
       </section>
-    </>
+    </section>
   );
 };
 

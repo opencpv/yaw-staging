@@ -6,12 +6,13 @@ import { MdOutlinePhone } from "react-icons/md";
 import { motion } from "framer-motion";
 
 type Props = {
-  color: "primary" | "gradient" | "accent" | "white";
   phoneNumber: string;
+  color?: "primary" | "gradient" | "accent" | "white";
   className?: string;
+  iconPosition?: "left" | "right";
 };
 
-const ButtonCall = ({ color, phoneNumber, className }: Props) => {
+const ButtonCall = ({ color, phoneNumber, className, iconPosition }: Props) => {
   const [text, setText] = useState("Call me");
 
   const buttonRef = useRef<HTMLDivElement>(null);
@@ -28,13 +29,13 @@ const ButtonCall = ({ color, phoneNumber, className }: Props) => {
   }, [phoneNumber]);
 
   return (
-    <div ref={buttonRef} className="flex w-full justify-center">
+    <div ref={buttonRef} className="flex justify-center">
       <Button
         color={color}
         className={`w-full p-4 ${className}`}
         onClick={() => initiatePhoneCall(phoneNumber)}
       >
-        <MdOutlinePhone className="text-lg text-white" />
+        {iconPosition === "left" && <MdOutlinePhone className="text-lg" /> }
         <motion.span
           key={text}
           whileInView={{ opacity: 1 }}
@@ -42,6 +43,7 @@ const ButtonCall = ({ color, phoneNumber, className }: Props) => {
         >
           {text}
         </motion.span>
+        {iconPosition === "right" && <MdOutlinePhone className="text-lg" /> }
       </Button>
     </div>
   );

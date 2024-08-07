@@ -1,62 +1,77 @@
-"use client";
-import Tooltip from "@/components/__shared/ui/Tooltip";
+import ReportIssue from "@/components/__shared/ui/links/ReportIssue";
 import { formatPrice } from "@/lib/utils/numberManipulation";
+import capitalizeName, {
+  caseInsensitiveCompare,
+  convertNumWithoutPlus,
+  wordifyNumber,
+} from "@/lib/utils/stringManipulation";
 import React from "react";
-import { BsInfoCircle } from "react-icons/bs";
+import { CiWallet } from "react-icons/ci";
+import { LiaBedSolid } from "react-icons/lia";
+import { MdOutlinePhotoSizeSelectSmall, MdOutlineShower } from "react-icons/md";
 
 type Props = {
-  monthlyRent: number;
-  bedroomTotal?: number;
-  bathroomTotal?: number;
-  squareMeter?: { from: number; to: number };
+  listing: Property;
 };
 
-const PropertyDetailsFigures = ({
-  monthlyRent,
-  bedroomTotal,
-  bathroomTotal,
-  squareMeter,
-}: Props) => {
+const PropertyDetailsFigures = ({ listing }: Props) => {
+  const advancePeriod = caseInsensitiveCompare(
+    listing?.payment_terms,
+    "monthly",
+  )
+    ? "No Advance"
+    : capitalizeName(
+        wordifyNumber(convertNumWithoutPlus(listing?.lease_duration?.slice(0,1) as string)),
+      ) + " Year Advance";
   return (
-    <div className="grid grid-cols-1 justify-between divide-x-0 divide-y-1 divide-gray-400 rounded-xl border border-gray-500 bg-white px-10 py-8 text-sm text-primary-400 shadow-xl sm:grid-cols-4 sm:items-center sm:divide-x-1 sm:divide-y-0 sm:px-2">
-      <div className="flex flex-col items-center gap-1 px-5 py-2 sm:py-0">
-        <h4 className="flex items-center justify-center gap-x-4 text-center text-sm font-[400]">
-          Monthly Rent{" "}
-          <Tooltip content="Lorem ipsum dolor sit amet.">
-            <BsInfoCircle size={16} className="inline" />
-          </Tooltip>
-        </h4>
-        <p className="text-center text-base sm:text-start">
-          <span className="mr-2 font-[600]">GHS </span>
-          {(monthlyRent && formatPrice(monthlyRent, false)) || "-"}
-        </p>
+    <section className="space-y-5">
+      <div
+        className="grid gap-3"
+        style={{ gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr)" }}
+      >
+        <FigureCard
+          title="Monthly Rent"
+          icon={<CiWallet size={24} />}
+          value={formatPrice(listing?.monthly_amount as number)}
+          tag={advancePeriod}
+        />
+        <FigureCard
+          title="Bedroom"
+          icon={<LiaBedSolid size={24} />}
+          value={listing?.bedrooms}
+        />
+        <FigureCard
+          title="Bathroom"
+          icon={<MdOutlineShower size={32} />}
+          value={listing?.bathrooms}
+        />
+        <FigureCard
+          title="Sq/m"
+          icon={<MdOutlinePhotoSizeSelectSmall size={24} />}
+          value={listing?.property_size}
+        />
       </div>
-      <div className="flex flex-col gap-1 px-5 py-2 sm:py-0">
-        <h4 className="text-center text-sm font-[400] text-primary-400">
-          Bedrooms
-        </h4>
-        <p className="text-center">{bedroomTotal || "-"}</p>
-      </div>
-      <div className="flex flex-col gap-1 px-5 py-2 sm:py-0">
-        <h4 className="text-center text-sm font-[400] text-primary-400">
-          Bathrooms
-        </h4>
-        <p className="text-center">{bathroomTotal || "-"}</p>
-      </div>
-      <div className="flex flex-col gap-1 px-5 py-2 sm:py-0">
-        <h4 className="text-center text-sm font-[400] text-primary-400">
-          Square Meter
-        </h4>
-        <p className="text-center">
-          {squareMeter ? (
-            <>
-              {squareMeter.from} - {squareMeter.to} M<sup>2</sup>
-            </>
-          ) : (
-            <span>-</span>
-          )}
-        </p>
-      </div>
+      <ReportIssue />
+    </section>
+  );
+};
+
+const FigureCard = (props: {
+  title: string;
+  icon: React.ReactNode;
+  value?: string | number | null;
+  tag?: string;
+}) => {
+  return (
+    <div className="relative flex flex-col items-center justify-center gap-3 rounded-lg border p-4">
+      {props.tag && (
+        <div className="absolute left-0 top-0 w-full max-w-[150px] rounded-lg bg-info-bg p-1 text-center text-xs text-info">
+          {props.tag}
+        </div>
+      )}
+      {props.icon}
+      <p className="text-base">{props.title}</p>
+      <p className="font-bold text-primary">{props.value || " - "}</p>
     </div>
   );
 };

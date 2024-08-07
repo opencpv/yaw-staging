@@ -145,7 +145,9 @@ const RecentSearch = ({ title, date }: { title: string; date: string }) => {
         onClose={onClose}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        backdropClassName="z-[99999]"
+        classNames={{
+          backdrop: "z-[99999]",
+        }}
         handleDestruction={() => {}}
       />
     </div>

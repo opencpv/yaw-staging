@@ -7,7 +7,9 @@ type ModalProps = {
   onOpenChange: () => void;
   onClose: () => void;
   label?: string;
-  backdropClassName?: string;
+  classNames?: {
+   backdrop?: string 
+  }
   handleDestruction: () => void;
   loading?: boolean;
 };
@@ -27,9 +29,9 @@ const DestructiveModal = ({
   onOpenChange,
   onClose,
   label,
-  backdropClassName,
   handleDestruction,
   loading,
+  classNames,
 }: ModalProps) => {
   return (
     <Modal
@@ -44,7 +46,9 @@ const DestructiveModal = ({
       isOpen={isOpen}
       onOpenChange={onOpenChange}
       size="md"
-      backdropClassName={backdropClassName}
+      classNames={{
+        backdrop: classNames?.backdrop 
+      }}
       className="pt-10 pb-5"
     />
   );

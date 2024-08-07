@@ -93,7 +93,8 @@ export const getFeatureIcon = (feature, size = 44, color) => {
     case "unfurnished":
       return <LuBattery size={size} />;
     default:
-      return <AiOutlineApartment size={size} />;
+      //return <AiOutlineApartment size={size} />;
+      return null
   }
 };
 
@@ -121,7 +122,8 @@ export const getPropertyTypeIcon = (property, size = 44) => {
     case "hostel":
       return <BsBuilding size={size} />;
     default:
-      return <IoHomeOutline size={size} />;
+      //return <IoHomeOutline size={size} />;
+      return null
   }
 };
 
@@ -140,6 +142,7 @@ export const getUtilityIcon = (utility, size = 44) => {
     case "internet":
     return <IoIosCellular size={size} />
         default:
-      return <AiOutlineApartment size={size} />;
+      //return <AiOutlineApartment size={size} />;
+      return null
   }
 };

@@ -15,10 +15,7 @@ import {
   ListingStepsStore,
 } from "@/store/dashboard/ListingStepsStore";
 import { usePathname } from "next/navigation";
-import capitalizeName, {
-  convertBooleanToYesNo,
-  convertYesNoToBoolean,
-} from "@/lib/utils/stringManipulation";
+import { convertBooleanToYesNo } from "@/lib/utils/stringManipulation";
 import ListingForm, { views as ListingViews } from "./ListingForm";
 import { useAddListing } from "../../services";
 import { getFormValues } from "../../utils";

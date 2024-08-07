@@ -126,7 +126,7 @@ const ListerOverviewPage = () => {
         </section>
         <section className="space-y-3">
           <h3 className="mb-1">My Active Listings</h3>
-          <div className="hidden-scrollbar flex w-full gap-3 overflow-x-auto *:flex-1">
+          <div className="hidden-scrollbar flex w-full gap-3 overflow-x-auto">
             <FetchingStates
               data={listings}
               error={error}

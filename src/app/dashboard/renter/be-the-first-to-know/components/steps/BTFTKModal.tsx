@@ -197,7 +197,7 @@ const BTFTKModal = (props: Props) => {
             body={<Body />}
             footer={!lastSlide && <BTFTKFooter />}
             open={isOpenEditPage || isOpen}
-            footerClassName={lastSlide ? "border-t-0" : "border-t"}
+            classNames={{footer: lastSlide ? "border-t-0" : "border-t"}}
           />
         </Form>
       </Formik>

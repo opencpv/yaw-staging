@@ -1,6 +1,8 @@
 import { Metadata, ResolvingMetadata } from "next";
 import PropertyDetailsPage from "../components/pages/PropertyDetailsPage";
 import supabase from "@/lib/utils/supabase/supabaseClient";
+import { Suspense } from "react";
+import LoadingState from "../components/LoadingState";
 
 type Props = {
   params: { id: string };
@@ -31,8 +33,10 @@ export async function generateMetadata(
   };
 }
 
-const page = ({ params }: Props) => {
-  return <PropertyDetailsPage params={params} />;
+const page = async ({ params }: Props) => {
+  return <Suspense fallback={<LoadingState />}>
+    <PropertyDetailsPage params={params} />
+  </Suspense>;
 };
 
 export default page;

@@ -11,7 +11,7 @@ export const useFetchListerActiveListings = ({
   let query = supabase
     .from("property")
     .select(PROPERTY_DETAILS_SELECT_QUERY)
-    .match({ owner_uid: listerId, is_published: true })
+    .match({ owner_uid: listerId, is_published: true, is_complete: true })
     .order("created_at", { ascending: false });
 
   const result = useQuery({
