@@ -1,3 +1,6 @@
+.feeTextSize {
+  @apply text-sm
+}
 .heading {
   @apply text-shade-500;
 }
@@ -19,5 +22,5 @@
 }
 
 .additionalInfoWrapper {
-  @apply space-y-5 py-5;
+  @apply space-y-4 py-5;
 }

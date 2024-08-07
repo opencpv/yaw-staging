@@ -72,7 +72,7 @@ export default function ListingForm() {
   return (
     <ClientOnly>
       {/* Main area */}
-      <div className="h-full flex items-center" ref={ListingStepsRef}>
+      <div className="h-full grid place-items-center" ref={ListingStepsRef}>
         {/* Main area */}
         <section
           className={cn("mx-auto mb-10 pb-20 w-full mt-5 lg:mt-10 max-w-screen-lg")}

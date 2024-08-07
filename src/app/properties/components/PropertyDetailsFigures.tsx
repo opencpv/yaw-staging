@@ -32,7 +32,7 @@ const PropertyDetailsFigures = ({ listing }: Props) => {
         <FigureCard
           title="Monthly Rent"
           icon={<CiWallet size={24} />}
-          value={formatPrice(listing?.monthly_amount as number)}
+          value={formatPrice(listing?.monthly_amount as number, true, listing?.currency as string)}
           tag={advancePeriod}
         />
         <FigureCard

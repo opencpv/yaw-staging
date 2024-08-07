@@ -1,8 +1,8 @@
-export const formatPrice = (price: number, prefix = true) => {
+export const formatPrice = (price: number, prefix = true, currency = "GHS") => {
   return prefix
     ? price?.toLocaleString("en-US", {
         style: "currency",
-        currency: "GHS",
+        currency: currency,
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
       })
