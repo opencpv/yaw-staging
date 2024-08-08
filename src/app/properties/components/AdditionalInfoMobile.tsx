@@ -19,13 +19,13 @@ const AdditionalInfoMobile = ({ listing }: Props) => {
         onOpenChange={onOpenChange}
         body={<AdditionalInfo listing={listing} />}
         size={"full"}
-        classNames={{ body: "py-10", backdrop: "md:hidden" }}
+        classNames={{ body: "py-10" }}
         className="md:hidden"
       />
 
       <Button
         color="primary"
-        className="fixed bottom-5 left-[50%] translate-x-[-50%] z-10 min-w-[90%] mx-auto md:hidden"
+        className="fixed bottom-5 left-[50%] z-10 mx-auto min-w-[90%] translate-x-[-50%] sm:min-w-[60%] md:hidden"
         onClick={onOpen}
       >
         Additional Information

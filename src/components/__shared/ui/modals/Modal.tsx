@@ -8,7 +8,7 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-  ModalProps
+  ModalProps,
 } from "@nextui-org/react";
 import { useModalFullscreenStore } from "@/store/modal/useModalStore";
 import { useEffect } from "react";
@@ -40,6 +40,7 @@ type Props = {
   className?: string;
   scrollBehavior?: "normal" | "inside";
   classNames?: ModalProps["classNames"];
+  showScroll?: boolean;
 };
 
 const Modal = ({
@@ -59,6 +60,7 @@ const Modal = ({
   className,
   scrollBehavior,
   classNames,
+  showScroll = false,
 }: Props) => {
   const setHideWindowScrollbar = useModalFullscreenStore(
     (state) => state.setHideWindowScrollbar,
@@ -77,9 +79,9 @@ const Modal = ({
           backdrop: cn("z-[9999]", classNames?.backdrop),
           wrapper: cn("z-[99999]", classNames?.wrapper),
           body: cn(
-            "hidden-scrollbar",
             {
               "overflow-y-auto": size === "full",
+              "hidden-scrolbar": !showScroll,
             },
             classNames?.body,
           ),

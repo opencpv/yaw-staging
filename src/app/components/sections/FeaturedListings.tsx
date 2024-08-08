@@ -26,13 +26,14 @@ const FeaturedListings = (props: Props) => {
     isLoading,
   } = useFetchFeaturedListings({ limit: 9 });
 
+  console.log(error, listings)
+
 
   return (
     <section className="wrapper section sm:pb-0" style={{ display: isLoading ? "block" : !isLoading && listings && listings.length === 0 ? "none" : "block"}}>
       <div className="space-y-10">
         <div
           className="flex items-center justify-between gap-5"
-          //ref={ref as unknown as React.LegacyRef<HTMLDivElement>}
         >
           <h2 className="uppercase">Featured Listings</h2>
           <Button

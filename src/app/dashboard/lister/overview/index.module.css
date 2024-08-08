@@ -45,7 +45,7 @@
 }
 
 .highlightTitle {
-  @apply max-md:mt-5 sm:text-4xl;
+  @apply text-3xl max-md:mt-5 sm:text-4xl;
 }
 
 .highlightBullet {

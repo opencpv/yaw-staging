@@ -14,6 +14,9 @@ import supabase from "@/lib/utils/supabase/supabaseClient";
 import AdditionalInfo from "../AdditionalInfo";
 import Button from "@/components/__shared/ui/button/Button";
 import AdditionalInfoMobile from "../AdditionalInfoMobile";
+import PropertySuitedFor from "../PropertySuitedFor";
+import LikeShare from "../LikeShare";
+import { BsShieldFillCheck } from "react-icons/bs";
 
 const ApplicationForm = dynamic(
   () => import("@/components/__shared/ui/application-form"),
@@ -34,7 +37,7 @@ const PropertyDetailsPage = async ({ params }: Props) => {
   const { data: listing, error } = await supabase
     .from("published_properties")
     .select(
-      "*, profiles!inner (id, full_name, avatar_url, profile_img, phone, whatsapp)",
+      "*, profiles!inner (id, full_name, avatar_url, profile_img, phone, whatsapp, is_certified)",
     )
     .eq("id", propertyId)
     .maybeSingle();
@@ -54,44 +57,27 @@ const PropertyDetailsPage = async ({ params }: Props) => {
 
   return (
     <>
-      <Navbar
-      //propertyName={generatePropertyTitle(listing as Partial<Property>)}
-      //propertyId={listing?.id}
-      //liked={listing?.favorite_user_ids?.includes(user?.id as string)}
-      />
-      <main className="wrapper flex flex-col gap-10 text-shade-300">
+      <Navbar />
+      <main className="wrapper flex flex-col gap-10 text-shade-300 max-md:pb-32">
         <section className="flex w-full flex-col gap-x-10 gap-y-5 md:flex-row">
           <h2 className="text-primary">
             {generatePropertyTitle(listing as Partial<Property>)}
           </h2>
           <div className="flex flex-1 items-center justify-between gap-5">
-            <div>Verfied Listing</div>
-            <div>like and share</div>
-              {/*
-              <div className="flex items-center gap-4">
-                <LikeHeart
-                  liked={props.liked}
-                  userId={user?.id as string | number}
-                  propertyId={props.propertyId}
-                  className="text-3xl text-white sm:text-4xl"
-                />
-                <Share
-                  title={props.propertyName}
-                  content={props.propertyDescription}
-                  classNames={{
-                    icon: "text-5xl text-white",
-                  }}
-                  hideLabel
-                />
+            {(listing?.profiles?.is_certified || listing?.is_verified) && (
+              <div className="flex items-center gap-2">
+                <BsShieldFillCheck className="text-primary/80" size={20} />{" "}
+                Verified Listing
               </div>
-              */}
-            
+            )}
+            <LikeShare listing={listing as Property} />
           </div>
         </section>
         <PropertyDetailsImages images={[]} />
         <section className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           <div className="col-span-1 flex flex-col gap-10 lg:col-span-2">
             <h2 className="text-shade-500">Property Details</h2>
+            <PropertySuitedFor listing={listing as Property} />
             <PropertyDetailsFigures listing={listing as Property} />
             <section>{listing?.description}</section>
             <PropertyDetailsFeatures listing={listing as Property} />

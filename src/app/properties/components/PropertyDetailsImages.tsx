@@ -1,9 +1,6 @@
 "use client";
-import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { useDisclosure } from "@nextui-org/react";
 import PropertyGalleryModal from "./PropertyGalleryModal";
-import { ListingInterface } from "../../../../interfaces";
-import { useIntersectionObserver } from "@/lib/utils/intersectionObserver";
 import Image from "next/image";
 import images from "@/enum/temp/images";
 
@@ -13,7 +10,6 @@ type Props = {
 
 const PropertyDetailsImages = (props: Props) => {
   const { isOpen, onClose, onOpen, onOpenChange } = useDisclosure();
-  const { ref, hasIntersected } = useIntersectionObserver();
 
   return (
     <section>
@@ -22,8 +18,9 @@ const PropertyDetailsImages = (props: Props) => {
         onClose={onClose}
         isOpen={isOpen}
       />
-      <section className="grid md:grid-cols-4 gap-5">
-        <div className="relative col-span-3 aspect-video w-full">
+      <section className="grid gap-5 md:grid-cols-4">
+        {/* banner image */}
+        <div className="fade-in fade-in relative col-span-3 aspect-video w-full">
           <Image
             src={images[0]}
             alt=""
@@ -31,7 +28,7 @@ const PropertyDetailsImages = (props: Props) => {
             className="rounded-3xl object-cover"
           />
         </div>
-        <div className="grid gap-5 max-md:hidden">
+        <div className="fade-in grid gap-5 max-md:hidden">
           <div className="relative w-full">
             <Image
               src={images[1]}
@@ -40,7 +37,10 @@ const PropertyDetailsImages = (props: Props) => {
               className="rounded-3xl object-cover"
             />
           </div>
-          <div className="relative w-full">
+          <div
+            className="fade-in-bottom relative w-full"
+            style={{ animationDelay: "0.5s" }}
+          >
             <Image
               src={images[2]}
               alt=""
