@@ -23,7 +23,7 @@ const LikeShare = ({ listing }: Props) => {
           liked={listing?.favorite_user_ids?.includes(user?.id as string)}
           userId={user?.id as string | number}
           propertyId={listing?.id as number}
-          className="text-3xl text-primary"
+          className="text-3xl fade-in-bottom-slight text-primary"
         />
       </div>
 
@@ -38,7 +38,7 @@ const LikeShare = ({ listing }: Props) => {
           }, ${listing?.city as string}`}
           content={listing?.description as string}
           classNames={{
-            icon: "text-3xl text-primary",
+            icon: "text-3xl text-primary fade-in-top-slight",
           }}
           hideLabel
         />

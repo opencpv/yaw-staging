@@ -2202,6 +2202,7 @@ export type Database = {
           agent_fee: number
           monthly_amount: number
           utilities: string[]
+          utilities_included: string[]
           payment_terms: string
           require_refundable_security_deposit: boolean
           refundable_security_deposit: number
@@ -2210,7 +2211,6 @@ export type Database = {
           require_viewing_fee: boolean
           viewing_fee: number
           require_additional_fees: boolean
-          require_advance_payment: boolean
           additional_fees: Json[]
           furnish_level: string
           neighbourhood: string
@@ -2221,6 +2221,10 @@ export type Database = {
           favorite_user_ids: string[]
           template_type: Database["public"]["Enums"]["template"]
           is_lister_certified: boolean
+          is_admin_property: boolean
+          currency: string
+          banner_image: Json
+          images: string[]
         }[]
       }
       get_search_criteria: {

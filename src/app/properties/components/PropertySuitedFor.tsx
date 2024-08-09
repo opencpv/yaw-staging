@@ -17,7 +17,7 @@ const PropertySuitedFor = ({ listing }: Props) => {
               key={suit}
               className={cn(
                 style.lightGreenBg,
-                "rounded-md p-2 px-2.5 text-primary",
+                "rounded-md text-sm p-2 px-2.5 text-primary",
               )}
             >
               {suit}

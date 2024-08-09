@@ -20,7 +20,7 @@ const PropertyDetailsImages = (props: Props) => {
       />
       <section className="grid gap-5 md:grid-cols-4">
         {/* banner image */}
-        <div className="fade-in fade-in relative col-span-3 aspect-video w-full">
+        <div className="fade-in relative col-span-3 aspect-video w-full">
           <Image
             src={images[0]}
             alt=""
@@ -38,7 +38,7 @@ const PropertyDetailsImages = (props: Props) => {
             />
           </div>
           <div
-            className="fade-in-bottom relative w-full"
+            className="fade-in relative w-full"
             style={{ animationDelay: "0.5s" }}
           >
             <Image

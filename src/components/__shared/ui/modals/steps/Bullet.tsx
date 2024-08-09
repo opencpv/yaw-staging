@@ -8,8 +8,8 @@ type Props = {
 
 const Bullet = (props: Props) => {
   return (
-      <div className={cn("grid h-20 w-20 place-items-center rounded-full p-3 shadow-large", props.className)}>
-        <h3 className="text-2xl font-normal">0{props.number}</h3>
+      <div className={cn("grid size-14 sm:size-20 place-items-center rounded-full p-3 shadow-large", props.className)}>
+        <h3 className="text-lg sm:text-2xl font-normal">0{props.number}</h3>
       </div>
   )
 }

@@ -51,8 +51,10 @@ export const ActionItemTrigger = (props: TriggerProps) => {
 
 export const ActionContent = ({ children }: { children: React.ReactNode }) => {
   return (
-    <PopoverContent className="rounded-md bg-[#fefefe] px-0 py-0">
-      <div className="flex flex-col divide-y rounded-md">{children}</div>
+    <PopoverContent className="relative z-50 pointer-events-auto rounded-lg bg-[#fefefe] px-0 py-0">
+      <div className="flex flex-col divide-y divide-neutral-100 rounded-lg">
+        {children}
+      </div>
     </PopoverContent>
   );
 };
@@ -74,7 +76,7 @@ export const ActionItem = (props: ItemProps) => {
         href={props.href}
         rel="noopener noreferrer"
         className={cn(
-          "deep-green-hover flex w-full items-center gap-2 px-4 py-2",
+          "deep-green-hover flex w-full items-center gap-2 px-4 py-2 first:rounded-t-lg last:rounded-b-lg",
           {
             "pointer-events-none cursor-not-allowed text-shade-200":
               props.disabled,
@@ -90,7 +92,7 @@ export const ActionItem = (props: ItemProps) => {
     return (
       <button
         className={cn(
-          "deep-green-hover flex w-full items-center gap-2 px-4 py-2",
+          "deep-green-hover flex w-full items-center gap-2 px-4 py-2 first:rounded-t-lg last:rounded-b-lg",
           {
             "pointer-events-none cursor-not-allowed text-shade-200":
               props.disabled,

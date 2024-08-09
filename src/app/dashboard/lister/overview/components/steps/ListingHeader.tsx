@@ -136,7 +136,7 @@ const handleListingEditStepsStorage = () => {
             color="white"
             greenHover
             radius="full"
-            className={cn("border px-5", { hidden: lastSlide })}
+            className={cn("border px-5 xxs:whitespace-nowrap", { hidden: lastSlide })}
             isLoading={isPending}
             onClick={handleSaveAndExit}
           >

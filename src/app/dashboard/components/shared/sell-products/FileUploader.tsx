@@ -23,8 +23,6 @@ import {
   ActionItemTrigger,
   ActionPopover,
 } from "../ui/ActionPopover";
-import { useDisclosure } from "@nextui-org/react";
-import { createUUID } from "@/lib/utils/stringManipulation";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
 
@@ -134,8 +132,8 @@ const FileUploader = ({
     >
       <Dropzone
         // maxFiles={5}
-        minSize={100000}
-        maxSize={2097152}
+        minSize={102400} // 100kb
+        maxSize={2097152} // 2mb
         onDrop={onDrop}
         onDropRejected={onDropRejected}
         multiple
@@ -144,7 +142,6 @@ const FileUploader = ({
           "image/png": [],
         }}
       >
-        {/* minSize= 100kb, MaxSize is 2mb */}
         {({
           getRootProps,
           getInputProps,
@@ -185,9 +182,9 @@ const FileUploader = ({
         )}
       </Dropzone>
       <ul className="mt-5 flex flex-wrap gap-5">
-        {files?.map((file: any) => (
+        {files?.map((file: any, index: number) => (
           <Preview
-            key={createUUID()}
+            key={`${file.name}-${index}`}
             file={file}
             isPrimary={file.name === primaryImage}
           />

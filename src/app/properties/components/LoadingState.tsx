@@ -1,42 +1,54 @@
-import SkeletonTextual from '@/components/__shared/ui/skeleton/SkeletonTextual'
-import { Skeleton } from '@nextui-org/react'
-import React from 'react'
-
+import SkeletonTextual from "@/components/__shared/ui/skeleton/SkeletonTextual";
+import { Skeleton } from "@nextui-org/react";
+import React from "react";
 
 const LoadingState = () => {
   return (
     <div className="wrapper flex flex-col gap-10">
-      <section className="flex w-full justify-between gap-10">
-        <Skeleton  className='w-2/3 rounded-lg'>
-          <div className="text-primary" />
+      <section className="flex w-full flex-col justify-between gap-x-10 gap-y-5 md:flex-row">
+        {/* property title */}
+        <Skeleton className="rounded-lg" isLoaded={false}>
+          <div>Lorem ipsum Lorem ipsum</div>
         </Skeleton>
-          <Skeleton  className='w-1/3 rounded-lg'>
-          <div className="text-primary" />
-        </Skeleton>
-        </section>
-      <section className="grid grid-cols-4 gap-5">
-        <Skeleton  className='rounded-3xl'>
-        <div className="relative col-span-3 aspect-video w-full" />
-        </Skeleton>
-        <div className="grid gap-5">
-        <Skeleton  className='rounded-3xl'>
-          <div className="relative w-full aspect-video" />
+        {/* LikeShare */}
+        <div className="ml-auto flex items-center gap-3 max-md:self-end md:gap-2">
+          <Skeleton className="rounded-lg" isLoaded={false}>
+            <div>Lorem</div>
           </Skeleton>
-          <Skeleton  className='rounded-3xl'>
-          <div className="relative w-full aspect-video" />
+          <Skeleton className="rounded-lg" isLoaded={false}>
+            <div>Lorem</div>
           </Skeleton>
         </div>
       </section>
-        <section className='grid grid-cols-3 gap-5'>
-        <div className='col-span-2'>
-          <SkeletonTextual /> 
+      {/* property images */}
+      <section className="grid gap-5 md:grid-cols-4">
+        {/* banner image */}
+        <Skeleton
+          className="relative col-span-3 aspect-video w-full rounded-3xl"
+          isLoaded={false}
+        >
+          <div />
+        </Skeleton>
+        <div className="grid gap-5 max-md:hidden">
+          <Skeleton className="rounded-3xl" isLoaded={false}>
+            <div className="relative aspect-video w-full" />
+          </Skeleton>
+          <Skeleton className="rounded-3xl" isLoaded={false}>
+            <div className="relative aspect-video w-full" />
+          </Skeleton>
         </div>
-        <Skeleton  className='rounded-lg'>
-          <div className='h-40'></div>
+      </section>
+      {/* property details */}
+      <section className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="col-span-1 flex flex-col gap-10 lg:col-span-2">
+          <SkeletonTextual />
+        </div>
+        <Skeleton className="col-span-1 rounded-lg" isLoaded={false}>
+          <div className="h-40"></div>
         </Skeleton>
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default LoadingState
+export default LoadingState;

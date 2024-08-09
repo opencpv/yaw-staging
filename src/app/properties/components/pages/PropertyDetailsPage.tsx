@@ -1,6 +1,5 @@
 import "../../style.css";
 import React from "react";
-import Navbar from "@/components/__shared/ui/Navbar";
 import RecommendedListings from "@/components/__shared/ui/listing/RecommendedListings";
 import PropertyDetailsFigures from "../PropertyDetailsFigures";
 import PropertyRating from "../PropertyRating";
@@ -12,7 +11,6 @@ import { generatePropertyTitle } from "@/lib/enum";
 import toast from "react-hot-toast";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import AdditionalInfo from "../AdditionalInfo";
-import Button from "@/components/__shared/ui/button/Button";
 import AdditionalInfoMobile from "../AdditionalInfoMobile";
 import PropertySuitedFor from "../PropertySuitedFor";
 import LikeShare from "../LikeShare";
@@ -56,46 +54,43 @@ const PropertyDetailsPage = async ({ params }: Props) => {
   //}, [params.id, user?.id]);
 
   return (
-    <>
-      <Navbar />
-      <main className="wrapper flex flex-col gap-10 text-shade-300 max-md:pb-32">
-        <section className="flex w-full flex-col gap-x-10 gap-y-5 md:flex-row">
-          <h2 className="text-primary">
-            {generatePropertyTitle(listing as Partial<Property>)}
-          </h2>
-          <div className="flex flex-1 items-center justify-between gap-5">
-            {(listing?.profiles?.is_certified || listing?.is_verified) && (
-              <div className="flex items-center gap-2">
-                <BsShieldFillCheck className="text-primary/80" size={20} />{" "}
-                Verified Listing
-              </div>
-            )}
-            <LikeShare listing={listing as Property} />
-          </div>
-        </section>
-        <PropertyDetailsImages images={[]} />
-        <section className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          <div className="col-span-1 flex flex-col gap-10 lg:col-span-2">
-            <h2 className="text-shade-500">Property Details</h2>
-            <PropertySuitedFor listing={listing as Property} />
-            <PropertyDetailsFigures listing={listing as Property} />
-            <section>{listing?.description}</section>
-            <PropertyDetailsFeatures listing={listing as Property} />
-            <section className="space-y-10">
-              <h3 className="text-shade-500">Things To Know</h3>
-              <p>{listing?.renter_knowledge}</p>
-            </section>
-          </div>
-          <AdditionalInfo
-            listing={listing as Property}
-            className="max-md:hidden"
-          />
-        </section>
-        <PropertyRating />
-        <AdditionalInfoMobile listing={listing as Property} />
-        <RecommendedListings />
-      </main>
-    </>
+    <main className="wrapper flex flex-col gap-10 text-shade-300 max-md:pb-32">
+      <section className="flex w-full flex-col gap-x-10 gap-y-5 md:flex-row">
+        <h2 className="text-primary">
+          {generatePropertyTitle(listing as Partial<Property>)}
+        </h2>
+        <div className="flex flex-1 items-center justify-between gap-5">
+          {(listing?.profiles?.is_certified || listing?.is_verified) && (
+            <div className="flex items-center gap-2">
+              <BsShieldFillCheck className="text-primary/80" size={20} />{" "}
+              Verified Listing
+            </div>
+          )}
+          <LikeShare listing={listing as Property} />
+        </div>
+      </section>
+      <PropertyDetailsImages images={[]} />
+      <section className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="col-span-1 flex flex-col gap-10 lg:col-span-2">
+          <h2 className="text-shade-500">Property Details</h2>
+          <PropertySuitedFor listing={listing as Property} />
+          <PropertyDetailsFigures listing={listing as Property} />
+          <section>{listing?.description}</section>
+          <PropertyDetailsFeatures listing={listing as Property} />
+          <section className="space-y-10">
+            <h3 className="text-shade-500">Things To Know</h3>
+            <p>{listing?.renter_knowledge}</p>
+          </section>
+        </div>
+        <AdditionalInfo
+          listing={listing as Property}
+          className="max-md:hidden"
+        />
+      </section>
+      <PropertyRating />
+      <AdditionalInfoMobile listing={listing as Property} />
+      <RecommendedListings />
+    </main>
   );
 };
 
