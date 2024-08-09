@@ -1,7 +1,6 @@
 import { Metadata, ResolvingMetadata } from "next";
 import PropertyDetailsPage from "../components/pages/PropertyDetailsPage";
 import supabase from "@/lib/utils/supabase/supabaseClient";
-import Navbar from "@/components/__shared/ui/Navbar";
 
 type Props = {
   params: { id: string };
@@ -35,7 +34,6 @@ export async function generateMetadata(
 const page = ({ params }: Props) => {
   return (
     <>
-      <Navbar />
       <PropertyDetailsPage params={params} />
     </>
   );

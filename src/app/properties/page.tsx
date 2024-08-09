@@ -1,4 +1,3 @@
-import Navbar from "@/components/__shared/ui/Navbar";
 import Image from "next/image";
 import React from "react";
 import TagsSelect from "./components/TagsSelect";
@@ -21,7 +20,6 @@ const page = () => {
 
   return (
     <>
-      <Navbar />
       <div className="relative aspect-video h-40 w-full sm:h-60">
         <Image
           src="/assets/images/Stock.jpg"

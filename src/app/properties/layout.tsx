@@ -1,3 +1,4 @@
+import Navbar from "@/components/__shared/ui/Navbar";
 import legal from "@/enum/about/legal";
 import { Metadata } from "next";
 
@@ -10,7 +11,10 @@ export const metadata: Metadata = {
 };
 
 const PropertyLayout = ({ children }: { children: React.ReactNode }) => {
-  return <>{children}</>;
+  return <>
+    <Navbar />
+    {children}
+  </>;
 };
 
 export default PropertyLayout;

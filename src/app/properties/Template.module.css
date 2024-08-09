@@ -1,7 +1,12 @@
-.feeTextSize {
-  @apply text-sm
+.detailWrapper {
+  @apply flex flex-col gap-6;
 }
-.heading {
+
+.feeTextSize {
+  @apply text-sm;
+}
+
+.detailHeading {
   @apply text-shade-500;
 }
 

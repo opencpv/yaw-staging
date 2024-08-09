@@ -3,7 +3,6 @@ import LikeHeart from "@/components/__shared/ui/LikeHeart";
 import Share from "@/components/__shared/ui/share/Share";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import React from "react";
-import style from "../Template.module.css";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -23,7 +22,7 @@ const LikeShare = ({ listing }: Props) => {
           liked={listing?.favorite_user_ids?.includes(user?.id as string)}
           userId={user?.id as string | number}
           propertyId={listing?.id as number}
-          className="text-3xl fade-in-bottom-slight text-primary"
+          className="fade-in-bottom-slight text-2xl text-primary"
         />
       </div>
 
@@ -38,7 +37,7 @@ const LikeShare = ({ listing }: Props) => {
           }, ${listing?.city as string}`}
           content={listing?.description as string}
           classNames={{
-            icon: "text-3xl text-primary fade-in-top-slight",
+            icon: "text-2xl text-primary fade-in-top-slight",
           }}
           hideLabel
         />

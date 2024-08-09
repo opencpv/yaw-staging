@@ -14,7 +14,6 @@ import React, {
 import Dropzone, {
   DropEvent,
   FileRejection,
-  useDropzone,
 } from "react-dropzone";
 import { HiBars3BottomRight } from "react-icons/hi2";
 import { motion } from "framer-motion";
@@ -51,7 +50,7 @@ const ImageUploader = ({}: Props) => {
 
   const [files, setFiles] = React.useState<any[]>([]);
 
-  const onDropRejected = (
+  const onDropRejected = useCallback((
     fileRejections: FileRejection[],
     event: DropEvent,
   ) => {
@@ -67,7 +66,7 @@ const ImageUploader = ({}: Props) => {
         }`,
       );
     });
-  };
+  }, []);
 
   const onDrop = useCallback(
     (acceptedFiles: any) => {
@@ -79,7 +78,7 @@ const ImageUploader = ({}: Props) => {
           Object.assign(file, {
             preview: URL.createObjectURL(file),
             is_banner: files?.some((f: any) => f.is_banner)
-              ? false
+              ? file?.is_banner
               : index === 0, // assign is_banner to the first image if there is no banner
           }),
       );
@@ -163,7 +162,7 @@ const ImageUploader = ({}: Props) => {
                         ?.map((file: any, index: number) => (
                           <Preview key={`${file.name}-${index}`} file={file} />
                         ))}
-                      <AddMoreImages {...getRootProps()} />
+                      <AddMoreImages />
                     </ul>
                   </section>
                 ) : (
@@ -203,7 +202,7 @@ const Preview = ({ file }: { file: any }) => {
   const setFiles = useContext(FileContext)?.setFiles;
   const [field, meta, helpers] = useField("banner_image");
 
-  const handleBannerImage = () => {
+  const handleBannerImage = useCallback(() => {
     setIsOpen(false);
     files?.forEach((f: any) => {
       if (f.name === file.name) {
@@ -214,31 +213,37 @@ const Preview = ({ file }: { file: any }) => {
     });
     const newFiles = files?.map((f: any) => f);
     setFiles?.(newFiles as any);
-  };
+  }, [file.name, files, setFiles]) 
 
-  const handleRemoveFile = () => {
+  const handleRemoveFile = useCallback(() => {
     setIsOpen(false);
     // Remove files and assign is_banner to another image
     const newFiles = files?.filter((f: any) => f.name !== file.name);
 
-    //newFiles?.forEach((f: any, index) => {
-    //  Object.assign(f, {
-    //    is_banner: newFiles?.some((f: any) => f.is_banner)
-    //      ? false
-    //      : index === 0,
-    //  });
-    //});
+    const updatedFiles = newFiles?.map(
+      (
+        file: any,
+        index: number,
+      ) =>
+        Object.assign(file, {
+          //preview: URL.createObjectURL(file),
+          is_banner: newFiles?.some((f: any) => f.is_banner)
+            ? file?.is_banner
+            : index === 0, // assign is_banner to the first image if there is no banner
+        }),
+    );
 
-    setFiles?.(newFiles as any);
-  };
 
-  const handleCaption = () => {
+    setFiles?.(updatedFiles as any);
+  }, [file.name, files, setFiles]);
+
+  const handleCaption = useCallback(() => {
     setIsOpen(false);
-    const prompt = window.prompt("Enter caption");
+    const prompt = window.prompt("Enter caption", file?.caption);
     if (prompt) {
       Object.assign(file, { caption: prompt });
     }
-  };
+  }, [file]);
 
   return (
     <li

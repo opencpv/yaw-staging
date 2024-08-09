@@ -2,6 +2,7 @@
 
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { revalidatePath } from "next/cache";
+import { cache } from "react";
 
 export const updateLikedProperty = async (
   userId: number | string,
@@ -37,7 +38,7 @@ export const updateLikedProperty = async (
   return query;
 };
 
-export const updateRecentViews = async ({
+export const updateRecentViews = cache(async ({
   propertyId,
   userId,
 }: {
@@ -63,4 +64,4 @@ export const updateRecentViews = async ({
       console.error("Error updating recent views:", error);
     }
   }
-};
+});

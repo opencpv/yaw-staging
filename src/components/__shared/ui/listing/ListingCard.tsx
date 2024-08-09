@@ -10,6 +10,7 @@ import supabase from "@/lib/utils/supabase/supabaseClient";
 import { usePathname } from "next/navigation";
 import { propertiesPathStore } from "@/store/properties/usePropertiesStore";
 import SliderArea from "./SliderArea";
+import { cn } from "@nextui-org/react";
 
 const ListingCard = (props: Partial<ListingCardInterface>) => {
   const pathname = usePathname();
@@ -34,13 +35,13 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
 
   return (
     <div
-      className={`group/parent relative flex w-full max-w-sm cursor-default flex-col ssm:max-w-md ${
-        props.className
-      } ${
-        props.cardType === "2"
-          ? null
-          : "rounded-xl shadow-[1px_3px_13px_rgba(0,_0,_0,_0.10)]"
-      }`}
+      className={cn(
+        `group/parent relative flex w-full max-w-sm cursor-default flex-col ssm:max-w-md`,
+        {
+          "rounded-xl shadow-card": props.cardType === "1",
+        },
+        props.className,
+      )}
       onClick={() =>
         pathname === "/properties" && setPreviousPath(window.location.href)
       }

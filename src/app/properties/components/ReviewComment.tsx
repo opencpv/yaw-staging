@@ -1,6 +1,7 @@
-"use client"
+"use client";
+import Rate from "@/components/__shared/ui/Rate";
+import Avatar from "@/components/__shared/ui/avatar/Avatar";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import Image from "next/image";
 import React from "react";
 
 type Props = {};
@@ -10,32 +11,24 @@ const ReviewComment = (props: Props) => {
   return (
     <>
       <div className="flex flex-wrap gap-x-5 gap-y-3">
-        <div className="relative h-20 w-20 shrink-0 rounded-full">
-          <Image
-            src={images.StockImage}
-            className="shrink-0 rounded-full"
-            alt=""
-            fill
-            style={{ objectFit: "cover" }}
-          />
-        </div>
-        <div className="text-neutral-800">
-          <h3 className="text-xl font-[700]">Amina Frimpong</h3>
-          <p className="text-neutral-700">April, 2023</p>
+        <Avatar size="lg" image={images?.StockImage} name={"Amina Frimpong"} />
+        <div className="space-y-1">
+          <h5 className="font-semibold text-shade-500">Amina Frimpong</h5>
+          <span className="flex flex-wrap gap-1">
+            <Rate disabled value={4.5} />
+            <small>April, 2023</small>
+          </span>
         </div>
       </div>
-      <div className="lg:ml-24">
-        <p className="mt-10 max-w-5xl text-neutral-700">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente
-          dolores soluta accusamus culpa praesentium optio sed architecto, a
-          voluptatem aliquam. Tempora dicta consectetur ea facilis reiciendis
-          omnis maxime aperiam a. Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Ullam, doloremque? Magnam nisi dolorem
-          necessitatibus rem eum tempora corporis explicabo cupiditate
-          laboriosam facere voluptatum minus dolores, iure assumenda maxime sint
-          excepturi?
-        </p>
-      </div>
+      <p className="line-clamp-3 text-base">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente
+        dolores soluta accusamus culpa praesentium optio sed architecto, a
+        voluptatem aliquam. Tempora dicta consectetur ea facilis reiciendis
+        omnis maxime aperiam a. Lorem ipsum dolor sit amet consectetur
+        adipisicing elit. Ullam, doloremque? Magnam nisi dolorem necessitatibus
+        rem eum tempora corporis explicabo cupiditate laboriosam facere
+        voluptatum minus dolores, iure assumenda maxime sint excepturi?
+      </p>
     </>
   );
 };

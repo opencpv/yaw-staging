@@ -1,4 +1,5 @@
 "use client";
+import style from "../Template.module.css";
 import Button from "@/components/__shared/ui/button/Button";
 import Modal from "@/components/__shared/ui/modals/Modal";
 import { getFeatureIcon, getUtilityIcon } from "@/lib/utils/getFeatureIcon";
@@ -22,8 +23,8 @@ const PropertyDetailsFeatures = ({ listing }: Props) => {
         size={"2xl"}
         classNames={{ body: "py-10" }}
       />
-      <section className="flex flex-col gap-10">
-        <h3 className="text-shade-500">Features</h3>
+      <section className={style.detailWrapper}>
+        <h3 className={style.detailHeading}>Features</h3>
         <Features listing={listing} limit={true} />
         <Button
           variant="ghost"
@@ -41,7 +42,9 @@ const PropertyDetailsFeatures = ({ listing }: Props) => {
 const FeatureCard = (props: { name: string }) => {
   return (
     <div className="flex min-h-28 items-center gap-5 rounded-lg border p-4">
-      <span className="text-primary">{getFeatureIcon(props.name, 28) || getUtilityIcon(props.name, 28)}</span>
+      <span className="text-primary">
+        {getFeatureIcon(props.name, 28) || getUtilityIcon(props.name, 28)}
+      </span>
       <p className="text-base">{props.name}</p>
     </div>
   );

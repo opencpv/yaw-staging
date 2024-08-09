@@ -13,46 +13,79 @@ const SkeletonListing = ({
     <>
       {count &&
         countArray.map((_, idx) => (
-          <div
-            key={idx + 1}
-            className={cn("w-[350px] mx-auto flex flex-col gap-3 xs:w-[448px]", className)}
-          >
-            <Skeleton
-              className={cn("block w-full max-w-sm rounded-2xl ssm:max-w-md", {
-                "h-80": cardType === 1,
-                "h-[26rem]": cardType === 2,
-              })}
-            />
-            <div className="flex justify-between">
-              <Skeleton className="block h-5 w-32 rounded-md" />
-              <Skeleton className="block h-5 w-20 rounded-md" />
+          <Skeleton key={idx} isLoaded={false} className="rounded-xl w-full">
+            <div
+              className={cn(
+                "flex w-full sm:min-w-[384px] max-w-sm flex-col gap-3 ssm:max-w-md",
+                {
+                  "h-80": cardType === 1,
+                  "h-[26rem]": cardType === 2,
+                },
+                className,
+              )}
+            >
+              <div className="flex w-full justify-between">
+                <Skeleton className="rounded-md" isLoaded={false}>
+                  <div>Lorem ipsum dolor sit.</div>
+                </Skeleton>
+                <Skeleton className="rounded-md" isLoaded={false}>
+                  <div>Lorem</div>
+                </Skeleton>
+              </div>
+              <Skeleton className="rounded-md" isLoaded={false}>
+                <div>Lorem ipsum.</div>
+              </Skeleton>
+              <div className="flex w-full justify-between">
+                <Skeleton className="rounded-md" isLoaded={false}>
+                  <div>Lorem ipsum dol.</div>
+                </Skeleton>
+                <Skeleton className="rounded-md" isLoaded={false}>
+                  <div>Lorem ipsum.</div>
+                </Skeleton>
+              </div>
+              <Skeleton className="rounded-md" isLoaded={false}>
+                <div>Lorem</div>
+              </Skeleton>
             </div>
-            <Skeleton className="block h-10 w-full rounded-md" />
-            <div className="flex justify-between">
-              <Skeleton className=" block h-5 w-40 rounded-md" />
-              <Skeleton className="block h-8 w-8 rounded-full" />
-            </div>
-          </div>
+          </Skeleton>
         ))}
 
       {count === undefined && (
-        <div className={cn("space-y-3", className)}>
-          <Skeleton
-            className={cn("block min-w-full rounded-2xl", {
-              "h-80": cardType === 1,
-              "h-[26rem]": cardType === 2,
-            })}
-          />
-          <div className="flex justify-between">
-              <Skeleton className="block h-5 w-32 rounded-md" />
-              <Skeleton className="block h-5 w-20 rounded-md" />
+        <Skeleton isLoaded={false} className="rounded-xl w-full">
+          <div
+            className={cn(
+              "flex w-full sm:min-w-[384px] max-w-sm flex-col gap-3 ssm:max-w-md",
+              {
+                "h-80": cardType === 1,
+                "h-[26rem]": cardType === 2,
+              },
+              className,
+            )}
+          >
+            <div className="flex w-full justify-between">
+              <Skeleton className="rounded-md" isLoaded={false}>
+                <div>Lorem ipsum dolor sit.</div>
+              </Skeleton>
+              <Skeleton className="rounded-md" isLoaded={false}>
+                <div>Lorem</div>
+              </Skeleton>
+            </div>
+            <Skeleton className="rounded-md" isLoaded={false}>
+              <div>Lorem ipsum.</div>
+            </Skeleton>
+            <div className="flex w-full justify-between">
+              <Skeleton className="rounded-md" isLoaded={false}>
+                <div>Lorem ipsum dol.</div>
+              </Skeleton>
+              <Skeleton className="rounded-md" isLoaded={false}>
+                <div>Lorem ipsum.</div>
+              </Skeleton>
+            </div>
+            <Skeleton className="rounded-md" isLoaded={false}>
+              <div>Lorem</div>
+            </Skeleton>
           </div>
-          <Skeleton className="h-10 w-full rounded-md" />
-          <div className="flex justify-between">
-              <Skeleton className="block h-5 w-40 rounded-md" />
-              <Skeleton className="block h-8 w-8 rounded-full" />
-          </div>
-        </div>
+        </Skeleton>
       )}
     </>
   );

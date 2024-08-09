@@ -1,5 +1,6 @@
 import "../../style.css";
-import React from "react";
+import style from "../../Template.module.css";
+import React, { cache } from "react";
 import RecommendedListings from "@/components/__shared/ui/listing/RecommendedListings";
 import PropertyDetailsFigures from "../PropertyDetailsFigures";
 import PropertyRating from "../PropertyRating";
@@ -8,13 +9,14 @@ import PropertyDetailsFeatures from "../PropertyDetailsFeatures";
 import dynamic from "next/dynamic";
 import { updateRecentViews } from "../../_actions";
 import { generatePropertyTitle } from "@/lib/enum";
-import toast from "react-hot-toast";
-import supabase from "@/lib/utils/supabase/supabaseClient";
 import AdditionalInfo from "../AdditionalInfo";
 import AdditionalInfoMobile from "../AdditionalInfoMobile";
 import PropertySuitedFor from "../PropertySuitedFor";
 import LikeShare from "../LikeShare";
 import { BsShieldFillCheck } from "react-icons/bs";
+import { createClient } from "@/lib/utils/supabase/auth/server";
+import supabase from "@/lib/utils/supabase/supabaseClient";
+import toast from "react-hot-toast";
 
 const ApplicationForm = dynamic(
   () => import("@/components/__shared/ui/application-form"),
@@ -27,31 +29,33 @@ type Props = {
 };
 
 const PropertyDetailsPage = async ({ params }: Props) => {
-  //const router = useRouter();
-  //const { previousPath } = useItemPathStore();
   const { id: propertyId } = params;
-  //const { user } = useAppStore();
-  //
-  const { data: listing, error } = await supabase
-    .from("published_properties")
-    .select(
-      "*, profiles!inner (id, full_name, avatar_url, profile_img, phone, whatsapp, is_certified)",
-    )
-    .eq("id", propertyId)
-    .maybeSingle();
+  const supabaseClient = createClient();
+  const { data } = await supabaseClient.auth.getSession();
 
-  if (error) toast.error("Failed to fetch property. Please try again.");
+  const fetchPropertyDetails = cache(
+    async () => {
+      const query = await supabase
+        .from("published_properties")
+        .select(
+          "*, profiles!inner (id, full_name, avatar_url, profile_img, phone, whatsapp, is_certified)",
+        )
+        .eq("id", propertyId)
+        .maybeSingle();
 
-  //useEffect(() => {
-  //  const upsertRecentViews = async () => {
-  //    await updateRecentViews({
-  //      propertyId: Number(params.id),
-  //      userId: user?.id as string,
-  //    });
-  //  };
-  //
-  //  upsertRecentViews();
-  //}, [params.id, user?.id]);
+    if (query.error) toast.error("Failed to fetch property. Please try again.");
+
+    return query;
+  },
+);
+
+  const {data: listing} = await fetchPropertyDetails();
+
+  await updateRecentViews({
+    propertyId: Number(params.id),
+    userId: data?.session?.user?.id as string,
+  });
+
 
   return (
     <main className="wrapper flex flex-col gap-10 text-shade-300 max-md:pb-32">
@@ -77,8 +81,8 @@ const PropertyDetailsPage = async ({ params }: Props) => {
           <PropertyDetailsFigures listing={listing as Property} />
           <section>{listing?.description}</section>
           <PropertyDetailsFeatures listing={listing as Property} />
-          <section className="space-y-10">
-            <h3 className="text-shade-500">Things To Know</h3>
+          <section className={style.detailWrapper}>
+            <h3 className={style.detailHeading}>Things To Know</h3>
             <p>{listing?.renter_knowledge}</p>
           </section>
         </div>
@@ -88,8 +92,8 @@ const PropertyDetailsPage = async ({ params }: Props) => {
         />
       </section>
       <PropertyRating />
-      <AdditionalInfoMobile listing={listing as Property} />
       <RecommendedListings />
+      <AdditionalInfoMobile listing={listing as Property} />
     </main>
   );
 };

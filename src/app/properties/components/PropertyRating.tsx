@@ -1,54 +1,39 @@
-"use client"
+"use client";
 import React from "react";
+import style from "../Template.module.css";
 import ReviewComment from "./ReviewComment";
-import ReviewCount from "./ReviewCount";
-import { HiOutlineHomeModern, HiStar } from "react-icons/hi2";
 import Button from "@/components/__shared/ui/button/Button";
-import { BsBookmarkStarFill } from "react-icons/bs";
-import { motion } from "framer-motion";
 import { fadeUp } from "@/lib/animations";
+import { cn } from "@/lib/utils";
+import Rate from "@/components/__shared/ui/Rate";
+import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
+import ReportIssue from "@/components/__shared/ui/links/ReportIssue";
 
 type Props = {};
 
 const PropertyRating = (props: Props) => {
   return (
-    <motion.section className="section">
-      <div className="rounded-xl border-neutral-200 md:border-3 md:px-14 md:pb-32">
-        <div className="flex flex-wrap justify-between gap-5 rounded-xl bg-[#65969F] p-10 text-white">
-          <div className="flex flex-wrap items-center gap-3">
-            <p className="text-xl font-[600]">
-              How would you rate this property?
-            </p>
-            <BsBookmarkStarFill className="shrink-0 text-lg" />
-          </div>
-          <Button variant="outline" color="white" className="w-60 p-4 py-7">
-            Write a review
-          </Button>
+    <section className={cn(style.detailWrapper, "pt-10")}>
+      <h3 className={style.detailHeading}>From Our Renters</h3>
+      <FramerWrapper {...fadeUp} className="space-y-6 rounded-2xl border-2 p-6">
+        <div className="flex flex-wrap items-center justify-between gap-5">
+          <h4 className={cn(style.detailHeading, "font-bold")}>All Reviews</h4>
+          <Button color="primary">Write a review</Button>
         </div>
-        {/* Rating count */}
-        <div className="mt-20 grid grid-cols-3 items-start gap-x-20 gap-y-10">
-          <div className="col-span-3 flex items-center gap-10 text-lg font-[600] text-neutral-800 xl:col-span-1">
-            <div className="flex flex-wrap items-center gap-1.5">
-              <HiOutlineHomeModern />
-              <HiStar className="text-yellow-500" />
-              <p className="">3.2</p>
-            </div>
-            <p className="">10 reviews</p>
-          </div>
-          <div className="col-span-3 grid w-full grid-cols-1 justify-between gap-x-8 gap-y-4 min-[900px]:grid-cols-2 xl:col-span-2">
-            {[1, 2, 3, 4, 5, 6].map((count, idx) => (
-              <ReviewCount key={idx + 1} />
-            ))}
+        <div className="space-y-1">
+          <h5 className="font-normal">Overall Ratings</h5>
+          <div className="flex flex-wrap items-center gap-2">
+            <small className="font-bold text-shade-500">4.7</small>
+            <Rate value={4.5} allowHalf disabled />
+            <span>( 3 ) reviews</span>
           </div>
         </div>
-        {/* Review comment */}
-        <div className="mt-24 space-y-10">
-          {[1, 2, 3].map((comment, idx) => (
-            <ReviewComment key={idx + 1} />
-          ))}
-        </div>
-      </div>
-    </motion.section>
+        <ReviewComment />
+        <ReviewComment />
+        <ReviewComment />
+      </FramerWrapper>
+      <ReportIssue />
+    </section>
   );
 };
 

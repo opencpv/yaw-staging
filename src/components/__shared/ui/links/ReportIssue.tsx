@@ -1,4 +1,5 @@
 "use client";
+import { cn } from "@/lib/utils";
 import { useContactStore } from "@/store/contact/useContactStore";
 import Link from "next/link";
 import React from "react";
@@ -19,7 +20,10 @@ const ReportIssue = ({ className }: Props) => {
   return (
     <Link
       href="/contact"
-      className={`inline-block font-[600] text-sm text-red-500/80 ${className}`}
+      className={cn(
+        `inline-block w-fit text-sm font-[600] text-red-500/80`,
+        className,
+      )}
       onClick={handleClick}
     >
       Report issue

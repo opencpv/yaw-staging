@@ -7,11 +7,9 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import { useFetchProperties } from "../services";
 import PropertiesEmptyState from "./PropertiesEmptyState";
 import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
-import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { getListingProps, Listing } from "@/lib/enum";
-import { useIntersectionObserver } from "@/lib/utils/intersectionObserver";
 import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 import { SanityDocument } from "next-sanity";
 import Ad from "@/app/components/sections/Ad";
@@ -33,7 +31,6 @@ const PropertiesListing = (props: Props) => {
     isLoading,
     isValidating,
     loadMore,
-    mutate,
   } = useFetchProperties({ searchString: search as string, filter: tag });
 
   const handleViewSimilarResults = () => {
@@ -62,14 +59,6 @@ const PropertiesListing = (props: Props) => {
             error={error}
             isLoading={isLoading}
             isLoadingComponent={<SkeletonListing count={3} />}
-            errorComponent={
-              <SomethingWentWrong
-                className="h-fit"
-                onTryAgain={() => {
-                  mutate();
-                }}
-              />
-            }
             emptyStateComponent={
               <PropertiesEmptyState onClick={handleViewSimilarResults} />
             }

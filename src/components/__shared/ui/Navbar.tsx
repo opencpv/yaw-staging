@@ -5,8 +5,6 @@ import Image from "next/image";
 import { usePathname } from "next/navigation.js";
 import { useEffect, useState } from "react";
 import Logo from "@/components/__shared/ui/Logo";
-import LikeHeart from "./LikeHeart";
-import Share from "./share/Share";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
 import GetStartedButton from "./button/GetStartedButton";
 import { useHideDocumentScrollBar } from "@/lib/custom-hooks/useWindowEvents";

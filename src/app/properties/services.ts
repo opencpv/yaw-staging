@@ -4,7 +4,6 @@ import {
   useOffsetInfiniteScrollQuery,
   useQuery,
 } from "@supabase-cache-helpers/postgrest-swr";
-import toast from "react-hot-toast";
 
 export const useFetchProperties = ({
   searchString = "",
@@ -34,9 +33,7 @@ export const useFetchProperties = ({
     query = query.or(`is_realtors_choice.eq.true, is_best_value.eq.true`);
   }
   if (filter === "verified") {
-    //query = query.or(`is_verified.eq.true, is_lister_certified.eq.true`);
-    query = query.or(`is_certified.eq.true`, { referencedTable: "profiles" });
-    //.or(`is_verified.eq.true`)
+    query = query.or(`is_verified.eq.true, is_lister_certified.eq.true`);
   }
   if (filter === "no viewing fee") {
     query = query.is("viewing_fee", null);
@@ -73,24 +70,6 @@ export const useFetchRecommendedListings = () => {
     .order("created_at", { ascending: false });
 
   return useQuery(query);
-};
-
-export const fetchPropertyDetails = async ({
-  propertyId,
-}: {
-  propertyId: number;
-}) => {
-  const query = await supabase
-    .from("published_properties")
-    .select(
-      "*, profiles!inner (id, full_name, avatar_url, profile_img, phone, whatsapp)",
-    )
-    .eq("id", propertyId)
-    .maybeSingle();
-
-  if (query.error) toast.error("Failed to fetch property. Please try again.");
-
-  return query;
 };
 
 const formatString = (str: string): string => {
