@@ -38,7 +38,7 @@ const PropertyCard = (props: Props) => {
 
   const handleEdit = useCallback(() => {
     setListing(props.listing);
-    router.replace(`/dashboard/lister/overview/edit/501${props.listing?.id}`); // just redirects, doesn't use the id
+    router.replace(`/dashboard/lister/overview/edit/501${props.listing?.id}`); // just redirects, doesn't use the id in its implementation
     setActiveSlide(
       listingEditSteps?.find((step) => step.listing === props.listing?.id)
         ?.activeSlide ?? 1,

@@ -1,4 +1,5 @@
 import capitalizeName, { getArticle } from "@/lib/utils/stringManipulation";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { FaPlus } from "react-icons/fa6";
 
@@ -7,8 +8,16 @@ type Props = {
 };
 
 const ItemEmptyState = (props: Props) => {
+  const router = useRouter()
+  const handleCreate = () => {
+    if (props.variant === "property")
+    router.push(`/dashboard/lister/overview/create`); 
+    else
+    router.push(`/dashboard/lister/sell-products/add-new-product`); 
+  };
+
   return (
-    <button className="scale-hover flex flex-col items-center gap-5">
+    <button className="scale-hover flex flex-col items-center gap-5" onClick={handleCreate}>
       <div className="flex flex-col items-center">
         <p>You have no active {props.variant}</p>
         <p className="text-base text-shade-300">

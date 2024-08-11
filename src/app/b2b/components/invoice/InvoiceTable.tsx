@@ -18,7 +18,7 @@ import TableSkeleton from "@/app/dashboard/components/shared/skeleton/TableSkele
 import TableSkeletonSm from "@/app/dashboard/components/shared/skeleton/TableSkeletonSm";
 import Pagination, { usePagination } from "@/components/__shared/ui/Pagination";
 import InvoiceEmptyState from "../__shared/InvoiceEmptyState";
-import Archived from "@/app/dashboard/components/shared/table/Archived";
+import ArchivedButton from "@/app/dashboard/components/shared/table/Archived";
 
 type Props = {
   searchString: string;

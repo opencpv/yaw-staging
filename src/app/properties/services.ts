@@ -36,10 +36,10 @@ export const useFetchProperties = ({
     query = query.or(`is_verified.eq.true, is_lister_certified.eq.true`);
   }
   if (filter === "no viewing fee") {
-    query = query.is("viewing_fee", null);
+    query = query.is("require_viewing_fee", false);
   }
   if (filter === "no advance") {
-    query = query.is("advance_period", null);
+    query = query.eq("payment_terms", "Monthly");
   }
 
   return useOffsetInfiniteScrollQuery(query, {

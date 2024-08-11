@@ -5,5 +5,6 @@ export const IFRAME_ALLOW =
 export const SLIDER_AUTOPLAY_DELAY = 6000;
 export const BE_THE_FIRST_TO_KNOW_LAPSE_DAYS = 180; // days
 export const BE_MY_AGENT_LAPSE_DAYS = 60; // days
+export const LISTING_LAPSE_DAYS = 30; // days
 export const PROPERTY_DETAILS_SELECT_QUERY =
   "*, profiles!inner(id, is_certified)";

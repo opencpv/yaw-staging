@@ -1,54 +1,67 @@
 "use client";
 import React from "react";
-import PaymentWarning from "./PaymentWarning";
-import Button from "@/components/__shared/ui/button/Button";
-import { FaRegCheckCircle, FaRegTimesCircle } from "react-icons/fa";
-import Select from "../../../components/shared/ui/Select";
-import Schedule from "node-schedule";
-import { useSelectDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
-import { PropertyStatusInterface } from "../../../../../../interfaces";
+import Status from "@/components/__shared/ui/states/Status";
+import { ListingStepsStore } from "@/store/dashboard/ListingStepsStore";
+import { getListingProps } from "@/lib/enum";
+import { useAppStore } from "@/store/dashboard/AppStore";
+
+//export type CriteriaStatus = "Match" | "No Matches" | "Pending" | "Not Started";
 
 type Props = {
-  isPaidFor: boolean;
-  status: PropertyStatusInterface;
+  listing: Property;
 };
 
-const PropertyStatus = ({ isPaidFor, status }: Props) => {
-  const { setValue, handleSelectionChange } =
-    useSelectDisclosure<PropertyStatusInterface>("available");
+const PropertyStatus = ({ listing: listing }: Props) => {
+  const {user} = useAppStore()
+  const { setListing } = ListingStepsStore();
 
-  if (isPaidFor === false) return <PaymentWarning />;
-  else if (isPaidFor)
-    return (
-      <>
-        <Select
-          options={["Available", "Contract Pending", "Leased", "Dormant"]}
-          value={status}
-          handleSelectionChange={handleSelectionChange}
-        />
-        {((status as unknown) === "available" ||
-          (status as unknown) === "contract pending") && (
-          <div className="mt-3 flex items-center justify-center gap-2 text-xs font-[600]">
-            Still Available?
-            <Button
-              isIconOnly
-              className="rounded-md border-0 bg-white p-1 shadow-large"
-            >
-              <FaRegCheckCircle className="text-xl text-green-500" />
-            </Button>
-            <Button
-              isIconOnly
-              className="rounded-md border-0 bg-white p-1 shadow-large"
-            >
-              <FaRegTimesCircle
-                className="text-xl text-red-500"
-                onClick={() => setValue("leased")}
-              />
-            </Button>
-          </div>
-        )}
-      </>
-    );
+  const published =
+    listing?.is_published;
+  const incomplete =
+    listing?.is_complete === false && listing?.is_suspended === false
+  const suspended = listing?.is_suspended;
+  const unpublished =
+    listing?.is_complete === true && listing?.is_published === false;
+
+  return (
+    <>
+      <Status
+        href={
+          published
+            ? getListingProps(listing, user as UserType)?.href              
+            : undefined
+        }
+        onClick={() => setListing(listing)}
+        variant={
+          incomplete
+            ? "warning"
+            : unpublished
+              ? "neutral-light"
+              : published
+                ? "success"
+                : suspended
+                  ? "danger"
+                  : undefined
+        }
+        tooltipContent={
+         suspended
+              ? "No matches in 180 days deactivates your search. Reactivate by toggling on."
+              : ""
+        }
+        text={
+          incomplete
+            ? "Incomplete"
+            : unpublished
+              ? "Unpublished"
+              : published
+                ? "Published"
+                : suspended
+                  ? "Suspended"
+                  : ""
+        }
+      />
+    </>
+  );
 };
 
 export default PropertyStatus;

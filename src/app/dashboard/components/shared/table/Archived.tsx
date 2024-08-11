@@ -4,7 +4,7 @@ import { IoArchiveOutline } from "react-icons/io5";
 
 type Props = {};
 
-const Archived = (props: Props) => {
+const ArchivedButton = (props: Props) => {
   return (
     <Button
       variant="ghost"
@@ -16,4 +16,4 @@ const Archived = (props: Props) => {
   );
 };
 
-export default Archived;
+export default ArchivedButton;

@@ -1,82 +1,77 @@
-import { useAssets } from "@/lib/custom-hooks/useAssets";
-import Image from "next/image";
-import React from "react";
-import { BiPencil } from "react-icons/bi";
-import { FiTrash2 } from "react-icons/fi";
-import Button from "@/components/__shared/ui/button/Button";
-import PropertyStatus from "./PropertyStatus";
+import { formatDateOnly } from "@/lib/utils/stringManipulation";
 import { formatPrice } from "@/lib/utils/numberManipulation";
-import { formatDate, formatTime } from "@/lib/utils/stringManipulation";
-import { useDaysDifference } from "@/lib/custom-hooks/useDaysDifference";
-import DeleteButton from "@/components/__shared/ui/button/DeleteButton";
-import DestructiveModal from "@/components/__shared/ui/modals/DestructiveModal";
-import { useDisclosure } from "@nextui-org/react";
-import { ManagePropertiesInterface } from "../../../../../../interfaces";
+import { generatePropertyTitle, getListingProps } from "@/lib/enum";
+import { useAppStore } from "@/store/dashboard/AppStore";
+import { useAssets } from "@/lib/custom-hooks/useAssets";
+import {
+  TableBody,
+  TableBodyRow,
+} from "@/app/dashboard/components/shared/table/Table";
+import TbPropertyImage from "@/app/dashboard/components/shared/TbPropertyImage";
+import PublicationStatus from "./PublicationStatus";
+import PropertyStatus from "./PropertyStatus";
+import Actions from "./Actions";
 
-const PropertyRow = ({
-  isPaidFor,
-  image,
-  propertyTitle,
-  posted_on,
-  price,
-  status,
-}: ManagePropertiesInterface) => {
+type Props = {
+  listing: Property;
+};
+
+const PropertyRow = ({ listing }: Props) => {
+  const { user } = useAppStore();
   const { images } = useAssets();
-  const daysDifference = useDaysDifference(posted_on);
+  const title = listing?.property_name || generatePropertyTitle(listing);
 
   return (
-    <>
-      <tr className="h-fit border-b">
-        {/* Property */}
-        <td className="p-2 pt-3 ">
-          <div className="flex gap-2">
-            <div className="relative h-24 w-32">
-              <Image
-                src={image}
-                alt={propertyTitle}
-                fill
-                style={{ objectFit: "cover" }}
-                className="rounded-lg"
-              />
-            </div>
-            <div className="flex flex-col justify-between">
-              <h4 className="text-sm font-[600] capitalize">{propertyTitle}</h4>
-              <p className="mt-2 text-sm text-neutral-400">{propertyTitle}</p>
-              <p className="mt-auto text-sm font-[700] text-neutral-500">
-                {formatPrice(price)}
-              </p>
-            </div>
-          </div>
-        </td>
-        {/* Posted On */}
-        <td className="p-2 pt-3 text-center align-middle">
-          <h4 className="text-sm font-[600]">
-            {formatDate(posted_on)} {formatTime(posted_on)}
-          </h4>
-          <small className="inline-block text-[0.6rem] text-neutral-400">
-            {daysDifference < 1
-              ? `Less Than A Day Ago`
-              : `${daysDifference} Days Ago`}
-          </small>
-        </td>
-        {/* Status */}
-        <td className="pt-3 text-center align-middle">
-          <PropertyStatus isPaidFor={isPaidFor} status={status} />
-        </td>
-        {/* Actions */}
-        <td className="flex h-full items-center justify-center pt-3">
-          <div className="mt-10 flex gap-1.5">
-            <Button
-              isIconOnly
-              className="flex w-6 items-center justify-center rounded-md bg-secondary-50 py-3 text-neutral-800"
-            >
-              <BiPencil className="text-xl" />
-            </Button>
-            <DeleteButton handleDestruction={() => {}} loading={false} />
-          </div>
-        </td>
-      </tr>
-    </>
+    <TableBodyRow className="grid-cols-6">
+      {/* Property */}
+      <TableBody className="col-span-2 flex w-full gap-[0.62rem] truncate p-2.5 text-start">
+        <TbPropertyImage
+          title={title}
+          //@ts-ignore
+          image={listing?.banner_image?.image || images.NoImagePlaceholder}
+          href={getListingProps(listing, user as UserType)?.href}
+        />
+        <div className="flex flex-col gap-2">
+          {listing?.property_name ? (
+            <p className="text-base font-semibold">{title}</p>
+          ) : (
+            <p className="text-base italic text-primary">Not Available</p>
+          )}
+          {listing?.monthly_amount ? (
+            <small className="font-bold text-shade-200">
+              {formatPrice(
+                listing?.monthly_amount as number,
+                true,
+                listing?.currency || "GHS",
+              )}{" "}
+              / month
+            </small>
+          ) : (
+            <small className="italic text-shade-200">Not Available</small>
+          )}
+        </div>
+      </TableBody>
+      {/* Date created */}
+      <TableBody className="col-span-1">
+        {listing?.is_complete ? (
+          formatDateOnly(listing?.created_at)
+        ) : (
+          <p className="text-base italic text-primary">Not Available</p>
+        )}
+      </TableBody>
+      {/* Published status */}
+      <TableBody className="col-span-1">
+        <PublicationStatus listing={listing} />
+      </TableBody>
+      {/* Property Status */}
+      <TableBody className="col-span-1">
+        <PropertyStatus listing={listing} />
+      </TableBody>
+      {/* Actions */}
+      <TableBody className="col-span-1 mx-auto">
+        <Actions listing={listing} />
+      </TableBody>
+    </TableBodyRow>
   );
 };
 

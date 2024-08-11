@@ -1,52 +1,109 @@
 "use client";
 
+import { useAssets } from "@/lib/custom-hooks/useAssets";
+import Image from "next/image";
+import Button from "@/components/__shared/ui/button/Button";
+import { useDashboardStore } from "@/store/dashboard/dashboardStore";
+import { cn } from "@/lib/utils";
+import CallOut from "@/components/__shared/ui/CallOut";
+import { pluralize } from "@/lib/utils/stringManipulation";
+import { useFetchAllListerProperties } from "./services";
+import { useAppStore } from "@/store/dashboard/AppStore";
+import {
+  Table,
+  TableBody,
+  TableBodyRow,
+  TableBodyRowGroup,
+  TableHeader,
+  TableHeaderRow,
+  TableSm,
+} from "../../components/shared/table/Table";
+import ArchivedButton from "../../components/shared/table/Archived";
+import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
+import TableSkeleton from "../../components/shared/skeleton/TableSkeleton";
 import React from "react";
-import { FaArrowRight } from "react-icons/fa";
-import LargeButton from "./components/LargeButton";
-import { AiOutlineExclamationCircle } from "react-icons/ai";
-import { HiOutlineUserGroup } from "react-icons/hi2";
-import ManagePropertiesTable from "./components/ManagePropertiesTable";
-import ManagePropertiesSmallScreenView from "./components/ManagePropertiesSmallScreenView";
-import ManagePropertiesTabs from "./components/ManagePropertiesTabs";
-import ListingFormModal from "@/components/__shared/ui/listing-form";
-import FetchCount from "../../components/shared/FetchCount";
-import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
+import PropertyRow from "./components/PropertyRow";
 
-const page = () => {
+const ManageProperties = () => {
+  const { user } = useAppStore();
+  const {
+    data: listings,
+    error,
+    isLoading,
+  } = useFetchAllListerProperties({ listerId: user?.id as string });
+
+
   return (
-    <main className="mx-auto max-w-screen-2xl text-neutral-800">
-      <section className="mb-20">
-        <div className="mb-5 flex flex-wrap items-center gap-4">
-          <h2 className="text-2xl font-[700]">Properties</h2>
-          <div className="flex items-center gap-4">
-            <small className="flex items-center gap-2 rounded-xl bg-[#FEF8ED] p-2 px-3 text-xs">
-              Members post for free <FaArrowRight />
-            </small>
-            <AiOutlineExclamationCircle className="rotate-180 text-accent-50" />
-          </div>
-        </div>
-        <div className="flex flex-wrap gap-5">
-          {/* <ClientOnly>
-            <ListingFormModal />
-          </ClientOnly> */}
-          <LargeButton label="Leads" icon={<HiOutlineUserGroup />} />
-        </div>
+    <main className="pb-40">
+      <section className="mb-6 flex flex-col gap-5">
+        <h2>My Listings</h2>
+        <CallOut
+          content="Members post for free"
+        />
+        {listings && listings?.length > 0 ? (
+          <small className="inline-block capitalize">
+            Showing {listings.length} {pluralize("Item", listings.length)}
+          </small>
+        ) : null}
       </section>
-      <section className="mb-6 grid-cols-3 items-center justify-between gap-x-3 md:grid">
-        <div className="col-span-1 space-y-4">
-          <h2 className="text-2xl font-[700]">Manage Properties</h2>
-          <FetchCount data="manage-properties" />
-        </div>
-        <div className="col-span-2 mt-3 md:mt-0">
-          <ManagePropertiesTabs />
-        </div>
-      </section>
-      {/* Table */}
-      <ManagePropertiesTable />
-      {/* Small screen view */}
-      <ManagePropertiesSmallScreenView />
+
+      {/* DESKTOP VIEW */}
+      <div className="flex flex-col gap-8">
+        <Table
+          className={cn({
+            "min-h-[35rem]": listings && listings?.length > 3,
+          })}
+        >
+          <TableHeaderRow className="grid-cols-6">
+            <TableHeader className="col-span-2">Property</TableHeader>
+            <TableHeader className="col-span-1">Date Created</TableHeader>
+            <TableHeader className="col-span-1">Published</TableHeader>
+            <TableHeader className="col-span-1">Status</TableHeader>
+            <TableHeader className="col-span-1">{" "}</TableHeader>
+          </TableHeaderRow>
+          <TableBodyRowGroup>
+            <FetchingStates
+              data={listings}
+              error={error}
+              isLoading={isLoading}
+              isLoadingComponent={<TableSkeleton rows={1} columns={5} />}
+              emptyStateComponent={<ListingEmptyState />}
+            />
+
+            {listings?.map((listing) => <PropertyRow key={listing.id} listing={listing} />)}
+          </TableBodyRowGroup>
+        </Table>
+
+        {/* MOBILE VIEW */}
+        <TableSm>{listings?.map((item) => <React.Fragment key={item.id}></React.Fragment>)}</TableSm>
+      </div>
+      <ArchivedButton />
     </main>
   );
 };
 
-export default page;
+export default ManageProperties;
+
+const ListingEmptyState = () => {
+  const { images } = useAssets();
+
+  return (
+    <div className="flex justify-center lg:mt-20">
+      <div className="flex flex-col items-center gap-6">
+        <Image
+          src={images.Clipboard}
+          alt="clipboard"
+          width={250}
+          className="w-[150px] sm:w-[250px]"
+        />
+        <p className="text-2xl font-semibold text-neutral-600">No item Added</p>
+        <Button
+          href={`/dashboard/lister/overview/create`}
+          color="primary"
+        >
+          Add New Item
+        </Button>
+      </div>
+    </div>
+  );
+};

@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { styled } from "@stitches/react";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";

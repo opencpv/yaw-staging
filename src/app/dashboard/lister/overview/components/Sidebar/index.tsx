@@ -106,7 +106,7 @@ const Sidebar = (props: Props) => {
       </div>
       {activeTab === "properties" ? (
         <Button
-          href="/dashboard/lister/overview"
+          href="/dashboard/lister/properties"
           padding="sm"
           radius="full"
           className="w-fit self-end bg-shade-50 text-neutral-800"

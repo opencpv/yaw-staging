@@ -19,10 +19,8 @@ import {
 } from "../../table/Table";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { cn } from "@/lib/utils";
-import Archived from "../../table/Archived";
+import ArchivedButton from "../../table/Archived";
 import CallOut from "@/components/__shared/ui/CallOut";
-import { IoIosArrowDown } from "react-icons/io";
-import Select from "../../ui/Select";
 import SelectMobile from "../../ui/SelectMobile";
 import { FaPlus } from "react-icons/fa6";
 import AddItemButton from "../AddItemButton";
@@ -30,6 +28,7 @@ import { useCurrentUserId } from "@/lib/custom-hooks/useCurrentUserId";
 import { Product } from "@/lib/typings";
 import { useQuery } from "@tanstack/react-query";
 import { createClient } from "@/lib/utils/supabase/auth/client";
+import { pluralize } from "@/lib/utils/stringManipulation";
 
 let items = [
   {
@@ -118,7 +117,7 @@ const ItemsPage = () => {
           />
           {products?.length > 0 ? (
             <small className="order-3 inline-block capitalize">
-              Showing {products.length} {products.length > 1 ? "Items" : "Item"}
+              Showing {products.length} {pluralize("Item", products.length)}
             </small>
           ) : null}
           <div className="order-4 flex justify-end gap-5 xs:justify-between lg:hidden">
@@ -190,7 +189,7 @@ const ItemsPage = () => {
             ))}
           </TableSm>
         </div>
-        <Archived />
+        <ArchivedButton />
       </div>
     </main>
   );

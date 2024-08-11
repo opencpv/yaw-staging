@@ -156,13 +156,6 @@ export type Database = {
             foreignKeyName: "agent_criteria_renter_id_fkey"
             columns: ["renter_id"]
             isOneToOne: false
-            referencedRelation: "distinct_messages_view"
-            referencedColumns: ["sender_id"]
-          },
-          {
-            foreignKeyName: "agent_criteria_renter_id_fkey"
-            columns: ["renter_id"]
-            isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
@@ -309,13 +302,6 @@ export type Database = {
             foreignKeyName: "banned_users_user_fkey"
             columns: ["user"]
             isOneToOne: false
-            referencedRelation: "distinct_messages_view"
-            referencedColumns: ["sender_id"]
-          },
-          {
-            foreignKeyName: "banned_users_user_fkey"
-            columns: ["user"]
-            isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
@@ -348,13 +334,6 @@ export type Database = {
             foreignKeyName: "blocked_users_blocked_id_fkey"
             columns: ["blocked_id"]
             isOneToOne: false
-            referencedRelation: "distinct_messages_view"
-            referencedColumns: ["sender_id"]
-          },
-          {
-            foreignKeyName: "blocked_users_blocked_id_fkey"
-            columns: ["blocked_id"]
-            isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
@@ -362,12 +341,41 @@ export type Database = {
             foreignKeyName: "blocked_users_blocker_id_fkey"
             columns: ["blocker_id"]
             isOneToOne: false
-            referencedRelation: "distinct_messages_view"
-            referencedColumns: ["sender_id"]
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      chat_threads: {
+        Row: {
+          created_at: string
+          id: number
+          user_1: string | null
+          user_2: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          user_1?: string | null
+          user_2?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          user_1?: string | null
+          user_2?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "chat_threads_user_1_fkey"
+            columns: ["user_1"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "blocked_users_blocker_id_fkey"
-            columns: ["blocker_id"]
+            foreignKeyName: "chat_threads_user_2_fkey"
+            columns: ["user_2"]
             isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["id"]
@@ -394,13 +402,6 @@ export type Database = {
           user_id?: string
         }
         Relationships: [
-          {
-            foreignKeyName: "public_contact_owner_preference_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: true
-            referencedRelation: "distinct_messages_view"
-            referencedColumns: ["sender_id"]
-          },
           {
             foreignKeyName: "public_contact_owner_preference_user_id_fkey"
             columns: ["user_id"]
@@ -719,13 +720,6 @@ export type Database = {
             foreignKeyName: "public_hubtel_payments_client_id_fkey"
             columns: ["client_id"]
             isOneToOne: false
-            referencedRelation: "distinct_messages_view"
-            referencedColumns: ["sender_id"]
-          },
-          {
-            foreignKeyName: "public_hubtel_payments_client_id_fkey"
-            columns: ["client_id"]
-            isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
@@ -900,57 +894,50 @@ export type Database = {
       }
       messages: {
         Row: {
-          content: string
+          content: string | null
           created_at: string
           id: number
-          recipient_id: string | null
+          read_at: string | null
           sender_id: string | null
-          sent_at: string
+          thread_id: number | null
         }
         Insert: {
-          content: string
+          content?: string | null
           created_at?: string
           id?: number
-          recipient_id?: string | null
+          read_at?: string | null
           sender_id?: string | null
-          sent_at?: string
+          thread_id?: number | null
         }
         Update: {
-          content?: string
+          content?: string | null
           created_at?: string
           id?: number
-          recipient_id?: string | null
+          read_at?: string | null
           sender_id?: string | null
-          sent_at?: string
+          thread_id?: number | null
         }
         Relationships: [
           {
-            foreignKeyName: "messages_recipient_id_fkey"
-            columns: ["recipient_id"]
-            isOneToOne: false
-            referencedRelation: "distinct_messages_view"
-            referencedColumns: ["sender_id"]
-          },
-          {
-            foreignKeyName: "messages_recipient_id_fkey"
-            columns: ["recipient_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "messages_sender_id_fkey"
-            columns: ["sender_id"]
-            isOneToOne: false
-            referencedRelation: "distinct_messages_view"
-            referencedColumns: ["sender_id"]
-          },
-          {
             foreignKeyName: "messages_sender_id_fkey"
             columns: ["sender_id"]
             isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "messages_thread_id_fkey"
+            columns: ["thread_id"]
+            isOneToOne: false
+            referencedRelation: "chat_threads"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "messages_thread_id_fkey"
+            columns: ["thread_id"]
+            isOneToOne: false
+            referencedRelation: "thread_summary"
+            referencedColumns: ["thread_id"]
           },
         ]
       }
@@ -996,22 +983,8 @@ export type Database = {
             foreignKeyName: "notifications_receiver_id_fkey"
             columns: ["receiver_id"]
             isOneToOne: false
-            referencedRelation: "distinct_messages_view"
-            referencedColumns: ["sender_id"]
-          },
-          {
-            foreignKeyName: "notifications_receiver_id_fkey"
-            columns: ["receiver_id"]
-            isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "notifications_sender_id_fkey"
-            columns: ["sender_id"]
-            isOneToOne: false
-            referencedRelation: "distinct_messages_view"
-            referencedColumns: ["sender_id"]
           },
           {
             foreignKeyName: "notifications_sender_id_fkey"
@@ -1167,12 +1140,47 @@ export type Database = {
             foreignKeyName: "products_seller_fkey"
             columns: ["seller"]
             isOneToOne: false
-            referencedRelation: "distinct_messages_view"
-            referencedColumns: ["sender_id"]
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profile_review: {
+        Row: {
+          created_at: string
+          id: number
+          recipient_id: string | null
+          review_text: string | null
+          review_value: number | null
+          sender_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          recipient_id?: string | null
+          review_text?: string | null
+          review_value?: number | null
+          sender_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          recipient_id?: string | null
+          review_text?: string | null
+          review_value?: number | null
+          sender_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "profile_review_recipient_id_fkey"
+            columns: ["recipient_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "products_seller_fkey"
-            columns: ["seller"]
+            foreignKeyName: "profile_review_sender_id_fkey"
+            columns: ["sender_id"]
             isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["id"]
@@ -1195,6 +1203,7 @@ export type Database = {
           linkedin: string | null
           phone: string | null
           profile_img: string | null
+          review: number | null
           twitter: string | null
           updated_at: string | null
           whatsapp: string | null
@@ -1214,6 +1223,7 @@ export type Database = {
           linkedin?: string | null
           phone?: string | null
           profile_img?: string | null
+          review?: number | null
           twitter?: string | null
           updated_at?: string | null
           whatsapp?: string | null
@@ -1233,6 +1243,7 @@ export type Database = {
           linkedin?: string | null
           phone?: string | null
           profile_img?: string | null
+          review?: number | null
           twitter?: string | null
           updated_at?: string | null
           whatsapp?: string | null
@@ -1275,6 +1286,7 @@ export type Database = {
           is_paid: boolean
           is_published: boolean
           is_realtors_choice: boolean
+          is_suspended: boolean | null
           is_verified: boolean
           lease_duration: string | null
           monthly_amount: number | null
@@ -1327,6 +1339,7 @@ export type Database = {
           is_paid?: boolean
           is_published?: boolean
           is_realtors_choice?: boolean
+          is_suspended?: boolean | null
           is_verified?: boolean
           lease_duration?: string | null
           monthly_amount?: number | null
@@ -1379,6 +1392,7 @@ export type Database = {
           is_paid?: boolean
           is_published?: boolean
           is_realtors_choice?: boolean
+          is_suspended?: boolean | null
           is_verified?: boolean
           lease_duration?: string | null
           monthly_amount?: number | null
@@ -1405,13 +1419,6 @@ export type Database = {
           viewing_fee?: number | null
         }
         Relationships: [
-          {
-            foreignKeyName: "public_property_owner_uid_fkey"
-            columns: ["owner_uid"]
-            isOneToOne: false
-            referencedRelation: "distinct_messages_view"
-            referencedColumns: ["sender_id"]
-          },
           {
             foreignKeyName: "public_property_owner_uid_fkey"
             columns: ["owner_uid"]
@@ -1531,13 +1538,6 @@ export type Database = {
             foreignKeyName: "property_application_user_fkey"
             columns: ["user"]
             isOneToOne: false
-            referencedRelation: "distinct_messages_view"
-            referencedColumns: ["sender_id"]
-          },
-          {
-            foreignKeyName: "property_application_user_fkey"
-            columns: ["user"]
-            isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
@@ -1651,13 +1651,6 @@ export type Database = {
             foreignKeyName: "property_owner_profile_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: true
-            referencedRelation: "distinct_messages_view"
-            referencedColumns: ["sender_id"]
-          },
-          {
-            foreignKeyName: "property_owner_profile_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: true
             referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
@@ -1740,13 +1733,6 @@ export type Database = {
             foreignKeyName: "recently_viewed_properties_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: false
-            referencedRelation: "distinct_messages_view"
-            referencedColumns: ["sender_id"]
-          },
-          {
-            foreignKeyName: "recently_viewed_properties_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
@@ -1772,13 +1758,6 @@ export type Database = {
           user_id?: string | null
         }
         Relationships: [
-          {
-            foreignKeyName: "renter_profile_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "distinct_messages_view"
-            referencedColumns: ["sender_id"]
-          },
           {
             foreignKeyName: "renter_profile_user_id_fkey"
             columns: ["user_id"]
@@ -1860,13 +1839,6 @@ export type Database = {
             foreignKeyName: "search_critieria_renter_id_fkey"
             columns: ["renter_id"]
             isOneToOne: false
-            referencedRelation: "distinct_messages_view"
-            referencedColumns: ["sender_id"]
-          },
-          {
-            foreignKeyName: "search_critieria_renter_id_fkey"
-            columns: ["renter_id"]
-            isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
@@ -1937,13 +1909,6 @@ export type Database = {
             foreignKeyName: "public_user_favorite_properties_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: false
-            referencedRelation: "distinct_messages_view"
-            referencedColumns: ["sender_id"]
-          },
-          {
-            foreignKeyName: "public_user_favorite_properties_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
@@ -1951,39 +1916,6 @@ export type Database = {
       }
     }
     Views: {
-      distinct_messages_view: {
-        Row: {
-          content: string | null
-          created_at: string | null
-          recipient_full_name: string | null
-          recipient_id: string | null
-          recipient_profile_img: string | null
-          sender_id: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "messages_recipient_id_fkey"
-            columns: ["recipient_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "messages_recipient_id_fkey"
-            columns: ["recipient_id"]
-            isOneToOne: false
-            referencedRelation: "distinct_messages_view"
-            referencedColumns: ["sender_id"]
-          },
-          {
-            foreignKeyName: "profiles_id_fkey"
-            columns: ["sender_id"]
-            isOneToOne: true
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       published_properties: {
         Row: {
           additional_fees: Json[] | null
@@ -2012,6 +1944,7 @@ export type Database = {
           is_paid: boolean | null
           is_published: boolean | null
           is_realtors_choice: boolean | null
+          is_suspended: boolean | null
           is_verified: boolean | null
           lease_duration: string | null
           monthly_amount: number | null
@@ -2064,6 +1997,7 @@ export type Database = {
           is_paid?: boolean | null
           is_published?: boolean | null
           is_realtors_choice?: boolean | null
+          is_suspended?: boolean | null
           is_verified?: boolean | null
           lease_duration?: string | null
           monthly_amount?: number | null
@@ -2116,6 +2050,7 @@ export type Database = {
           is_paid?: boolean | null
           is_published?: boolean | null
           is_realtors_choice?: boolean | null
+          is_suspended?: boolean | null
           is_verified?: boolean | null
           lease_duration?: string | null
           monthly_amount?: number | null
@@ -2149,12 +2084,32 @@ export type Database = {
             referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
+        ]
+      }
+      thread_summary: {
+        Row: {
+          last_message_content: string | null
+          thread_id: number | null
+          unread_message_count: number | null
+          user_1_id: string | null
+          user_1_object: Json | null
+          user_2_id: string | null
+          user_2_object: Json | null
+        }
+        Relationships: [
           {
-            foreignKeyName: "public_property_owner_uid_fkey"
-            columns: ["owner_uid"]
+            foreignKeyName: "chat_threads_user_1_fkey"
+            columns: ["user_1_id"]
             isOneToOne: false
-            referencedRelation: "distinct_messages_view"
-            referencedColumns: ["sender_id"]
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "chat_threads_user_2_fkey"
+            columns: ["user_2_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
           },
         ]
       }
@@ -2225,6 +2180,7 @@ export type Database = {
           currency: string
           banner_image: Json
           images: string[]
+          is_suspended: boolean
         }[]
       }
       get_search_criteria: {

@@ -1,4 +1,3 @@
-import calculateDaysSinceCreation from "@/lib/utils/calculateDaysSinceCreation";
 import { formatDateOnly } from "@/lib/utils/stringManipulation";
 import ProductStatus from "./ProductStatus";
 import { TableBody, TableBodyRow } from "../table/Table";
@@ -7,7 +6,6 @@ import { formatPrice } from "@/lib/utils/numberManipulation";
 import Actions from "./Actions";
 import ProductCondition, { ItemCondition } from "./ProductCondition";
 import PublicationStatus, { ItemPublicationStatus } from "./PublicationStatus";
-import { createContext } from "react";
 import { ItemContext } from "@/app/dashboard/contexts/ItemContext";
 import { ProductStatusProp } from "@/lib/typings";
 

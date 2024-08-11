@@ -13,10 +13,10 @@ const SkeletonListing = ({
     <>
       {count &&
         countArray.map((_, idx) => (
-          <Skeleton key={idx} isLoaded={false} className="rounded-xl w-full">
+          <Skeleton key={idx} isLoaded={false} className="w-full rounded-xl">
             <div
               className={cn(
-                "flex w-full sm:min-w-[384px] max-w-sm flex-col gap-3 ssm:max-w-md",
+                "flex w-full min-w-[384px] max-w-sm flex-col gap-3 ssm:max-w-md",
                 {
                   "h-80": cardType === 1,
                   "h-[26rem]": cardType === 2,
@@ -51,10 +51,10 @@ const SkeletonListing = ({
         ))}
 
       {count === undefined && (
-        <Skeleton isLoaded={false} className="rounded-xl w-full">
+        <Skeleton isLoaded={false} className="w-full rounded-xl">
           <div
             className={cn(
-              "flex w-full sm:min-w-[384px] max-w-sm flex-col gap-3 ssm:max-w-md",
+              "flex w-full min-w-[384px] max-w-sm flex-col gap-3 ssm:max-w-md",
               {
                 "h-80": cardType === 1,
                 "h-[26rem]": cardType === 2,

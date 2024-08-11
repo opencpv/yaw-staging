@@ -39,7 +39,7 @@ const ListerOverviewPage = () => {
 
   return (
     <main className="grid-cols-7 gap-12 lg:grid lg:max-2xl:gap-8">
-      <div className="fade-in col-span-5 space-y-20 lg:max-2xl:col-span-4">
+      <div className="col-span-5 space-y-20 lg:max-2xl:col-span-4">
         <section className="flex flex-col gap-3">
           <div className="flex flex-wrap items-center gap-x-10 gap-y-3">
             <h2>Hi, {user?.firstname}.</h2>

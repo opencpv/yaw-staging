@@ -235,7 +235,6 @@ export const useUpdateCriteriaStatus = () => {
     }
 
     if (query.error) {
-      console.log(query.error);
       throw new Error(query.error.message);
     }
   };

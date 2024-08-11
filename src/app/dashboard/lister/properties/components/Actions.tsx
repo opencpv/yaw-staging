@@ -1,3 +1,4 @@
+
 import { useDisclosure } from "@nextui-org/react";
 import React, { useCallback, useState } from "react";
 import { BiDotsVerticalRounded } from "react-icons/bi";
@@ -10,37 +11,38 @@ import {
   ActionItemTrigger,
   ActionPopover,
 } from "@/app/dashboard/components/shared/ui/ActionPopover";
-import CriteriaStatus from "./Status";
+import PublicationStatus from "./PublicationStatus";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import { useDeleteSearchCriteria } from "../services";
-import slugify from "@/lib/utils/slugify";
-import { BTFTKStepsStore } from "@/store/dashboard/BTFTKStepsStore";
+import { useDeleteListing } from "../services";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { useRouter } from "next/navigation";
+import { getListingProps } from "@/lib/enum";
+import { ListingStepsStore } from "@/store/dashboard/ListingStepsStore";
+import { PiArrowLineUp } from "react-icons/pi";
 
 type Props = {
-  criterion: SearchCriteria;
+  listing: Property;
 };
 
-const Actions = ({ criterion }: Props) => {
+const Actions = (props: Props) => {
   const router = useRouter();
   const { user } = useAppStore();
-  const { setCriterion, setActiveSlide } = BTFTKStepsStore();
+  const { listing, setListing, setActiveSlide } = ListingStepsStore();
   const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
   const [popoverIsOpen, setPopoverIsOpen] = useState(false);
 
-  const [BTFTKEditSteps] = useLocalStorage<
-    { criterion: number; activeSlide: number }[]
-  >("btftk-edit-steps", []);
+  const [ListingEditSteps] = useLocalStorage<
+    { listing: number; activeSlide: number }[]
+  >("listing-edit-steps", []);
 
   const {
-    mutate: deleteCriteria,
+    mutate: deleteListing,
     isPending: isMutating,
     isSuccess,
-  } = useDeleteSearchCriteria();
+  } = useDeleteListing();
 
   const handleDestruction = () => {
-    deleteCriteria({ id: criterion.id, renter_id: user?.id as string });
+    deleteListing({ id: props.listing.id, owner_uid: user?.id as string });
 
     if (isSuccess) {
       onClose();
@@ -48,33 +50,25 @@ const Actions = ({ criterion }: Props) => {
   };
 
   const handleView = () => {
-    if (
-      (criterion.matched_properties &&
-        criterion.matched_properties.length > 0) ||
-        criterion.matched_properties !== null
-    ){
-      router.push(
-        `/dashboard/renter/be-the-first-to-know/${slugify(
-criterion?.title?.toLowerCase() as string,
-)}/qkMM9hHt7-${criterion.id}-qKpgw==`,
-      );
-    }
-
+    listing?.is_published && router.push(getListingProps(props.listing, user as UserType)?.href,
+    );
   };
 
+  const handlePublish = () => {
+
+  }
+
   const handleEdit = useCallback(() => {
-    if (criterion.is_active === false || criterion.matched_properties === null
-    ){
-      setCriterion(criterion);
+    if (listing?.is_suspended !== true){
+      setListing(listing);
       router.replace(
-        `/dashboard/renter/be-the-first-to-know/manage-criteria/edit/LS6pI-${criterion.id}-LWIKyOgnw==`,
-      );
+        `/dashboard/lister/overview/edit/012${props.listing?.id}`,)
       setActiveSlide(
-        BTFTKEditSteps?.find((step) => step.criterion === criterion?.id)
+        ListingEditSteps?.find((step) => step.listing === listing?.id)
           ?.activeSlide ?? 1,
       );
     }
-  }, [criterion, BTFTKEditSteps, setActiveSlide, router, setCriterion]);
+  }, [listing, ListingEditSteps, props.listing?.id, setActiveSlide, router, setListing]);
 
   return (
     <>
@@ -82,7 +76,7 @@ criterion?.title?.toLowerCase() as string,
         isOpen={isOpen}
         onClose={onClose}
         onOpenChange={onOpenChange}
-        label={`Are you sure you want to delete "${criterion.title}" ?`}
+        label={`Are you sure you want to delete "${listing?.property_name}" ?`}
         handleDestruction={handleDestruction}
         loading={isMutating}
       />
@@ -96,15 +90,18 @@ criterion?.title?.toLowerCase() as string,
         </ActionItemTrigger>
         <ActionContent>
           <ActionItem className="lg:hidden">
-            <CriteriaStatus criterion={criterion} />
+            <PublicationStatus listing={listing as Property} />
           </ActionItem>
           <ActionItem
             onClick={handleView}
-            disabled={
-              (criterion.matched_properties &&
-                criterion.matched_properties.length <= 0) ||
-              criterion.matched_properties === null
-            }
+            disabled={listing?.is_complete !== true}
+          >
+            <PiArrowLineUp />
+            {listing?.is_published ? "Unpublish" : "Publish"}
+          </ActionItem>
+          <ActionItem
+            onClick={handleView}
+            disabled={listing?.is_complete === false}
           >
             <MdOutlineRemoveRedEye />
             View
@@ -114,11 +111,7 @@ criterion?.title?.toLowerCase() as string,
             onClick={() => {
               handleEdit();
             }}
-            disabled={
-              criterion.is_active ||
-              (criterion.matched_properties !== null &&
-                criterion.matched_properties.length > 0)
-            }
+            disabled={listing?.is_suspended as boolean}
           >
             <MdOutlineEdit />
             Edit

@@ -43,7 +43,7 @@ export const formatDateTime = (dateTime: string) => {
 };
 
 export const formatDateOnly = (date: string) => {
-  return format(new Date(date), "dd MMM, yyyy");
+  return format(new Date(date), "dd MMM. yyyy");
 };
 
 export const formatDateDMY = (dateString: string) => {

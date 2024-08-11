@@ -1,6 +1,7 @@
 import images from "@/enum/temp/images";
 import capitalizeName, {
-  caseInsensitiveCompare, convertNumWithoutPlus,
+  caseInsensitiveCompare,
+  convertNumWithoutPlus,
 } from "./utils/stringManipulation";
 
 export type Listing = {
@@ -41,7 +42,6 @@ export const getListingProps = (listing: Partial<Listing>, user: UserType) => {
         ? ("Certified" as GuaranteeTag)
         : undefined,
     monthlyAmount: listing?.monthly_amount as number,
-    paymentStructure: "Bi-Annually" as PaymentStructure, // TODO: check database
     rating: 0, // TODO: check database
     ratingCount: 3, // TODO: check database
     hint: listing?.is_realtors_choice
@@ -49,14 +49,14 @@ export const getListingProps = (listing: Partial<Listing>, user: UserType) => {
       : listing?.is_best_value
         ? ("Best Value" as HintTag)
         : undefined,
-    //advancePeriod: listing?.payment_terms as number,
     advancePeriod: caseInsensitiveCompare(
       listing?.payment_terms as string,
       "advance",
     )
       ? getAdvancePeriod(listing?.lease_duration as string)
       : undefined,
-    ViewingFee: listing?.viewing_fee as number,
+    viewingFee: listing?.viewing_fee as number,
+    currency: listing?.currency as string,
   };
 };
 
@@ -72,6 +72,4 @@ export const generatePropertyTitle = (property: Partial<Property>) => {
   )} at ${property?.city || ""}`;
 };
 
-
 export { convertNumWithoutPlus };
-
