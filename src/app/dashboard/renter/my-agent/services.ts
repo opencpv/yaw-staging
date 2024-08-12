@@ -15,6 +15,7 @@ export const useFetchAgentRequests = ({ userId }: { userId: string }) => {
     queryFn: async () => {
       const { data, error } = await query;
       if (error) {
+        toast.error("An error occurred while fetching agent requests.");
         throw new Error(error.message);
       }
       return data;
@@ -43,6 +44,7 @@ export const useFetchAgentRequestById = ({
     queryFn: async () => {
       const { data, error } = await query;
       if (error) {
+        toast.error("An error occurred while fetching agent request.");
         throw new Error(error.message);
       }
       return data;
@@ -81,6 +83,7 @@ export const useFetchAgentRequestMatches = ({
     queryFn: async () => {
       const { data, error } = await query;
       if (error) {
+        toast.error("An error occurred while fetching agent request matches.");
         throw new Error(error.message);
       }
       return data;
@@ -108,7 +111,7 @@ export const fetchRequestMatchById = async ({
     .maybeSingle();
 
   if (error) {
-    console.log(error.message);
+    toast.error("An error occurred while fetching agent request match.");
   }
   return data;
 };
@@ -116,19 +119,24 @@ export const fetchRequestMatchById = async ({
 export const useFetchAgentRequestOverview = ({
   userId,
 }: {
-  userId: string;
-}) => {
+    userId: string;
+  }) => {
   const propertiesIds: number[] = [];
   const images: string[] = [];
 
   const getSummary = async () => {
-    const { data: requests } = await supabase
+    const { data: requests, error } = await supabase
       .from("agent_request")
       .select("id, matched_properties, search_title")
       .eq("renter_id", userId)
       .not("match_modified_at", "is", null)
       .order("match_modified_at", { ascending: false })
       .limit(2);
+
+    if (error){
+    toast.error("An error occurred while fetching agent request match.");
+      throw new Error(error.message);
+    }
 
     if (requests) {
       requests.forEach((request) => {
@@ -142,10 +150,15 @@ export const useFetchAgentRequestOverview = ({
       });
     }
 
-    const { data: properties } = await supabase
+    const { data: properties, error: propertiesError } = await supabase
       .from("property")
       .select("id, images")
       .in("id", propertiesIds);
+
+    if (propertiesError) {
+      toast.error("An error occurred while fetching agent request match.");
+      throw new Error(propertiesError.message);
+    }
 
     if (properties) {
       properties.forEach((property) => {

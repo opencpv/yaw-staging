@@ -19,27 +19,13 @@ import { useScrollToTop } from "@/lib/custom-hooks/useWindowEvents";
 
 export const views = [
   <Location key={"location"} />,
-  <ClientOnly key={"preferred-type"}>
-    <PreferredType key={"preferred-type"} />
-  </ClientOnly>,
-  <ClientOnly key={"features"}>
-    <FeaturesAndAmenities key={"features"} />
-  </ClientOnly>,
-  <ClientOnly key={"property-requirements"}>
-    <PropertyRequirements key={"property-requirements"} />
-  </ClientOnly>,
-  <ClientOnly key={"lease-holder-information"}>
-    <LeaseHolderInformation key={"lease-holder-information"} />
-  </ClientOnly>,
-  <ClientOnly key={"contact-information"}>
-    <ContactInformation key={"contact-information"} />
-  </ClientOnly>,
-  <ClientOnly key={"employment-information"}>
-    <EmploymentInformation key={"employment-information"} />
-  </ClientOnly>,
-  <ClientOnly key={"steps-summary"}>
-    <StepsSummary key={"steps-summary"} />
-  </ClientOnly>,
+  <PreferredType key={"preferred-type"} />,
+  <FeaturesAndAmenities key={"features"} />,
+  <PropertyRequirements key={"property-requirements"} />,
+  <LeaseHolderInformation key={"lease-holder-information"} />,
+  <ContactInformation key={"contact-information"} />,
+  <EmploymentInformation key={"employment-information"} />,
+  <StepsSummary key={"steps-summary"} />,
 ];
 
 export default function BeMyAgentForm() {
@@ -76,11 +62,11 @@ export default function BeMyAgentForm() {
 
   return (
     <ClientOnly>
-      <div className="h-full">
+      <div className="min-h-full">
         {/* Main area */}
         <section
           className={cn(
-            "mx-auto mb-10 mt-5 grid w-full max-w-screen-sm grid-cols-1 gap-10 lg:mt-10 lg:max-w-screen-3xl lg:grid-cols-5 lg:gap-28",
+            "mx-auto mt-5 grid w-full max-w-screen-sm grid-cols-1 gap-10 pb-20 lg:mt-10 lg:max-w-screen-3xl lg:grid-cols-5 lg:gap-28",
             {
               "block max-w-full px-0 lg:max-hd:max-w-screen-lg hd:max-w-screen-xl":
                 lastSlide,

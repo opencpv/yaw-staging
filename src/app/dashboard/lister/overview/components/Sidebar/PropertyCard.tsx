@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useCallback } from "react";
 import { format } from "date-fns";
 import Image, { StaticImageData } from "next/image";
@@ -11,6 +12,7 @@ import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { generatePropertyTitle } from "@/lib/enum";
 import { Json } from "../../../../../../../database.types";
 import style from "../../index.module.css";
+import { cn } from "@/lib/utils";
 
 type Props = {
   listing: Property & {
@@ -56,7 +58,7 @@ const PropertyCard = (props: Props) => {
             src={image}
             alt={generatePropertyTitle(props.listing)}
             fill
-            className={style.cardImage}
+            className={cn(style.cardImage, "brightness-95")}
           />
         </Link>
       ) : (
@@ -65,7 +67,7 @@ const PropertyCard = (props: Props) => {
             src={image}
             alt={generatePropertyTitle(props.listing)}
             fill
-            className={style.cardImage}
+            className={cn(style.cardImage, "brightness-95")}
           />
         </div>
       )}

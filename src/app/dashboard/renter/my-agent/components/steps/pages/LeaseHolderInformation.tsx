@@ -4,9 +4,10 @@ import CustomRadioInput from "@/components/__shared/ui/form/CustomRadioInput";
 import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
 import React from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import styles from "../../../index.module.css";
+import style from "../../../index.module.css";
 import { BeMyAgentDefaultValues } from "@/store/dashboard/BeMyAgentStepsStore";
 import CallOut from "@/components/__shared/ui/CallOut";
+import { cn } from "@/lib/utils";
 
 type Props = {};
 
@@ -23,17 +24,17 @@ const LeaseHolderInformation = React.forwardRef<HTMLInputElement, Props>(
     };
 
     return (
-      <Root className="space-y-10">
+      <div className={style.fieldsSectionWrapper}>
         {/* Lease Holder Information */}
         <div>
-          <div className="mb-10 flex w-full flex-col gap-8">
-            <h2 className={`${styles.titleNoMargin}`}>
+          <div className={style.titleCallOutContainer}>
+            <h2 className={`${style.titleNoMargin}`}>
               Lease Holder Information{" "}
-              <span className="text-sm text-shade-300">*</span>
+              <span className={style.asterisk}>*</span>
             </h2>
             <CallOut content="You may select more than one response" />
           </div>
-          <div className="grid grid-cols-1 gap-x-5 gap-y-8 lg:grid-cols-2">
+          <div className={style.wrappingFieldsGrid}>
             <CustomSelect
               name="title"
               label="Title"
@@ -56,36 +57,36 @@ const LeaseHolderInformation = React.forwardRef<HTMLInputElement, Props>(
             />
             <TextFieldInput
               type="text"
-              name="firstName"
+              name="first_name"
               label="First Name"
               placeholder="Enter your first name"
               onChange={(e) =>
                 setBeMyAgentCreationSteps({
                   ...BeMyAgentCreationSteps,
-                  firstName: e.target.value,
+                  first_name: e.target.value,
                 })
               }
             />
             <TextFieldInput
               type="text"
-              name="lastName"
+              name="last_name"
               label="Last Name"
               placeholder="Enter your last name"
               onChange={(e) =>
                 setBeMyAgentCreationSteps({
                   ...BeMyAgentCreationSteps,
-                  lastName: e.target.value,
+                  last_name: e.target.value,
                 })
               }
             />
             <CustomSelect
-              name="maritalStatus"
+              name="marital_status"
               label="Marital Status"
               options={[
                 { name: "single", value: "Single" },
                 { name: "married", value: "Married" },
               ]}
-              onChange={(value) => handleOnChange("maritalStatus", value)}
+              onChange={(value) => handleOnChange("marital_status", value)}
             />
             <CustomSelect
               name="tenants"
@@ -101,9 +102,9 @@ const LeaseHolderInformation = React.forwardRef<HTMLInputElement, Props>(
         </div>
         {/* Screening & Other Details */}
         <div>
-          <h2 className={styles.title}>Screening & Other Details</h2>
-          <div className="grid grid-cols-1 gap-x-5 gap-y-8 lg:grid-cols-2">
-            <div className="form-col">
+          <h2 className={style.title}>Screening & Other Details</h2>
+          <div className={style.wrappingFieldsGrid}>
+            <div className={cn("flex flex-col", style.fieldsBlockGap)}>
               <CustomRadioInput
                 name="evicted"
                 options={["Yes", "No"]}
@@ -155,33 +156,33 @@ const LeaseHolderInformation = React.forwardRef<HTMLInputElement, Props>(
                 />
               )} */}
             </div>
-            <div className="form-col">
+            <div className={cn("flex flex-col", style.fieldsBlockGap)}>
               <CustomRadioInput
-                name="hasPets"
+                name="has_pets"
                 options={["Yes", "No"]}
                 label={"Do you have any pets?"}
                 onChange={(value) =>
                   setBeMyAgentCreationSteps({
                     ...BeMyAgentCreationSteps,
-                    hasPets: value,
+                    has_pets: value,
                   })
                 }
               />
               <CustomRadioInput
-                name="hasVehicles"
+                name="has_vehicles"
                 options={["Yes", "No"]}
                 label={"Do you have any vehicles?"}
                 onChange={(value) =>
                   setBeMyAgentCreationSteps({
                     ...BeMyAgentCreationSteps,
-                    hasVehicles: value,
+                    has_vehicles: value,
                   })
                 }
               />
             </div>
           </div>
         </div>
-      </Root>
+      </div>
     );
   },
 );
@@ -189,11 +190,3 @@ const LeaseHolderInformation = React.forwardRef<HTMLInputElement, Props>(
 LeaseHolderInformation.displayName == "LeaseHolderInformation";
 
 export default LeaseHolderInformation;
-
-const Root = styled("div", {
-  ".form-col": {
-    display: "flex",
-    flexDirection: "column",
-    gap: "2rem",
-  },
-});

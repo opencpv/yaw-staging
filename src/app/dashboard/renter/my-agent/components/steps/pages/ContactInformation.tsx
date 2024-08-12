@@ -4,7 +4,7 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
 import CountryInput from "@/components/__shared/ui/form/CountryInput";
 import CustomTextAreaInput from "@/components/__shared/ui/form/CustomTextAreaInput";
-import styles from "../../../index.module.css";
+import style from "../../../index.module.css";
 import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
 import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
@@ -23,37 +23,37 @@ const ContactInformation = React.forwardRef<HTMLInputElement, Props>(
     const { handlePhone, handleCountryChange, phone } =
       usePhoneInputDisclosure();
 
-    const [field, meta, helpers] = useField("preferredMethodOfContact");
+    const [field, meta, helpers] = useField("preferred_contact_method");
 
     return (
       <Root>
         <div className="h-full">
-          <h2 className={`${styles.title}`}>
+          <h2 className={`${style.title}`}>
             Contact Information{" "}
-            <span className="text-sm text-shade-300">*</span>
+            <span className={style.asterisk}>*</span>
           </h2>
-          <div className="grid grid-cols-1 gap-x-5 gap-y-8 lg:grid-cols-2">
+          <div className={style.wrappingFieldsGrid}>
             <TextFieldInput
-              name="currentAddress1"
+              name="current_address_1"
               type="text"
               label="Current Address 1"
               placeholder="Please provide your street address"
               onChange={(e) =>
                 setBeMyAgentCreationSteps({
                   ...BeMyAgentCreationSteps,
-                  currentAddress1: e.target.value,
+                  current_address_1: e.target.value,
                 })
               }
             />
             <TextFieldInput
-              name="currentAddress2"
+              name="current_address_2"
               type="text"
               label="Current Address 2 ( optional )"
               placeholder="Eg: Apartment No."
               onChange={(e) =>
                 setBeMyAgentCreationSteps({
                   ...BeMyAgentCreationSteps,
-                  currentAddress2: e.target.value,
+                  current_address_2: e.target.value,
                 })
               }
             />
@@ -80,7 +80,7 @@ const ContactInformation = React.forwardRef<HTMLInputElement, Props>(
               }
             />
             <div className="space-y-3">
-              <label className="text-[#6A6968]">
+              <label className="text-shade-300">
                 Preferred Method of Contact
               </label>
               <div className="w-fit rounded-full bg-primary-600/5 p-2">
@@ -100,7 +100,7 @@ const ContactInformation = React.forwardRef<HTMLInputElement, Props>(
                     helpers.setValue(key as any);
                     setBeMyAgentCreationSteps({
                       ...BeMyAgentCreationSteps,
-                      preferredMethodOfContact: key as any,
+                      preferred_contact_method: key as any,
                     });
                   }}
                   radius="large"
@@ -134,7 +134,7 @@ const ContactInformation = React.forwardRef<HTMLInputElement, Props>(
                     handlePhone(val);
                     setBeMyAgentCreationSteps({
                       ...BeMyAgentCreationSteps,
-                      whatsApp: val as E164Number,
+                      phone: val as E164Number,
                     });
                   }}
                   onCountryChange={handleCountryChange}
@@ -142,16 +142,16 @@ const ContactInformation = React.forwardRef<HTMLInputElement, Props>(
               </div>
             </div>
             <CustomTextAreaInput
+              name="moving_reason"
               label="Purpose for Moving"
               placeholder={
                 "Why are you moving and what are you looking for in your new place?"
               }
               classes="h-[167px]"
-              name="purposeForMoving"
               onChange={(e) =>
                 setBeMyAgentCreationSteps({
                   ...BeMyAgentCreationSteps,
-                  purposeForMoving: e.target.value,
+                  moving_reason: e.target.value,
                 })
               }
             />

@@ -21,6 +21,7 @@ export default function Page() {
   });
 
   useEffect(() => {
+    // redirect to active card if any
     const activeCard = agentRequests?.find(
       (request) => request.is_paid === true,
     );

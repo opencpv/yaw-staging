@@ -4,6 +4,7 @@ import { BiPencil } from "react-icons/bi";
 import { BeMyAgentStepsStore } from "@/store/dashboard/BeMyAgentStepsStore";
 import { LowerCase, createUUID } from "@/lib/utils/stringManipulation";
 import { cn } from "@/lib/utils";
+import { getFeatureIcon, getPropertyTypeIcon, getUtilityIcon } from "@/lib/utils/getFeatureIcon";
 
 type Props = {
   processPagesRefs: React.MutableRefObject<any[]>;

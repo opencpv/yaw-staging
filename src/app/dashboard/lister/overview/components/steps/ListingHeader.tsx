@@ -48,7 +48,7 @@ const ListingHeader = () => {
   }, [setActiveSlide, activeSlide, listingCreationSteps?.activeSlide]);
 
   useEffect(() => {
-    if (isSuccess) {
+    if (isSuccess && (pathname?.includes("edit") || pathname?.includes("create"))) {
       resetForm({});
       closeCreatePage();
       closeEditPage();

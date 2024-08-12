@@ -14,8 +14,10 @@ import {
   TableBody,
   TableBodyRow,
   TableBodyRowGroup,
+  TableBodySm,
   TableHeader,
   TableHeaderRow,
+  TableRowSm,
   TableSm,
 } from "../../components/shared/table/Table";
 import ArchivedButton from "../../components/shared/table/Archived";
@@ -23,6 +25,9 @@ import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingState
 import TableSkeleton from "../../components/shared/skeleton/TableSkeleton";
 import React from "react";
 import PropertyRow from "./components/PropertyRow";
+import Actions from "./components/Actions";
+import PropertyRowMobile from "./components/PropertyRowMobile";
+import TableSkeletonSm from "../../components/shared/skeleton/TableSkeletonSm";
 
 const ManageProperties = () => {
   const { user } = useAppStore();
@@ -75,7 +80,18 @@ const ManageProperties = () => {
         </Table>
 
         {/* MOBILE VIEW */}
-        <TableSm>{listings?.map((item) => <React.Fragment key={item.id}></React.Fragment>)}</TableSm>
+        <TableSm>
+          <FetchingStates
+            data={listings}
+            error={error}
+            isLoading={isLoading}
+            isLoadingComponent={<TableSkeletonSm rows={2} />}
+            emptyStateComponent={<ListingEmptyState />}
+          />
+          {listings?.map((listing) => (
+            <PropertyRowMobile key={listing.id} listing={listing} />
+          ))}
+        </TableSm>
       </div>
       <ArchivedButton />
     </main>

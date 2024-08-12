@@ -13,7 +13,7 @@ export type Database = {
         Row: {
           age: string | null
           city: string | null
-          convicted: string | null
+          convicted: boolean
           country: string | null
           created_at: string
           current_address_1: string | null
@@ -22,11 +22,11 @@ export type Database = {
           employer: string | null
           employer_country: string | null
           employment_status: string | null
-          evicted: string | null
+          evicted: boolean
           features: string[] | null
           first_name: string | null
-          has_pets: string | null
-          has_vehicles: string | null
+          has_pets: boolean
+          has_vehicles: boolean
           id: number
           is_paid: boolean
           job_title: string | null
@@ -60,7 +60,7 @@ export type Database = {
         Insert: {
           age?: string | null
           city?: string | null
-          convicted?: string | null
+          convicted?: boolean
           country?: string | null
           created_at?: string
           current_address_1?: string | null
@@ -69,11 +69,11 @@ export type Database = {
           employer?: string | null
           employer_country?: string | null
           employment_status?: string | null
-          evicted?: string | null
+          evicted?: boolean
           features?: string[] | null
           first_name?: string | null
-          has_pets?: string | null
-          has_vehicles?: string | null
+          has_pets: boolean
+          has_vehicles?: boolean
           id?: number
           is_paid?: boolean
           job_title?: string | null
@@ -107,7 +107,7 @@ export type Database = {
         Update: {
           age?: string | null
           city?: string | null
-          convicted?: string | null
+          convicted?: boolean
           country?: string | null
           created_at?: string
           current_address_1?: string | null
@@ -116,11 +116,11 @@ export type Database = {
           employer?: string | null
           employer_country?: string | null
           employment_status?: string | null
-          evicted?: string | null
+          evicted?: boolean
           features?: string[] | null
           first_name?: string | null
-          has_pets?: string | null
-          has_vehicles?: string | null
+          has_pets?: boolean
+          has_vehicles?: boolean
           id?: number
           is_paid?: boolean
           job_title?: string | null
@@ -309,37 +309,37 @@ export type Database = {
       }
       blocked_users: {
         Row: {
+          block_id: string
           block_reason: string | null
-          blocked_id: string
-          blocker_id: string
+          blocker: string
           created_at: string
           id: number
         }
         Insert: {
+          block_id?: string
           block_reason?: string | null
-          blocked_id?: string
-          blocker_id?: string
+          blocker?: string
           created_at?: string
           id?: number
         }
         Update: {
+          block_id?: string
           block_reason?: string | null
-          blocked_id?: string
-          blocker_id?: string
+          blocker?: string
           created_at?: string
           id?: number
         }
         Relationships: [
           {
-            foreignKeyName: "blocked_users_blocked_id_fkey"
-            columns: ["blocked_id"]
+            foreignKeyName: "blocked_users_block_id_fkey"
+            columns: ["block_id"]
             isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "blocked_users_blocker_id_fkey"
-            columns: ["blocker_id"]
+            foreignKeyName: "blocked_users_blocker_fkey"
+            columns: ["blocker"]
             isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["id"]

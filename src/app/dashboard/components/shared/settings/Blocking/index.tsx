@@ -74,7 +74,7 @@ export default function Blocking() {
             <div className="flex flex-col gap-4">
               {blockedUsers?.map((blocked) => (
                 <BlockCard
-                  key={blocked.blocked_id}
+                  key={blocked.block_id}
                   data={blocked as BlockedUserType}
                 />
               ))}
@@ -103,7 +103,7 @@ const BlockCard = (props: { data: BlockedUserType }) => {
   const handleUnblock = () => {
     unblockUser({
       blockerId: user?.id as string,
-      blockedId: props.data.blocked_id,
+      blockedId: props.data.block_id,
     });
   };
 

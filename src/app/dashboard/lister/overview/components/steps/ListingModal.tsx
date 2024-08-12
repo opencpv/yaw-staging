@@ -114,11 +114,6 @@ const ListingModal = (props: Props) => {
     setActiveSlide,
   ]);
 
-  const convertToString = (value: number | null | undefined) => {
-    if (value) return value;
-    else return "";
-  };
-
   return (
     <div
       className={cn({
@@ -215,7 +210,7 @@ const ListingModal = (props: Props) => {
             listingCreationSteps?.payment_terms ||
             ListingDefaultValues?.payment_terms,
           total_amount:
-            convertToString(listing?.total_amount) ||
+            listing?.total_amount ||
             listingCreationSteps?.total_amount ||
             ListingDefaultValues?.total_amount,
           require_refundable_security_deposit:
@@ -237,7 +232,7 @@ const ListingModal = (props: Props) => {
             listingCreationSteps?.require_viewing_fee ||
             ListingDefaultValues?.require_viewing_fee,
           refundable_security_deposit:
-            convertToString(listing?.refundable_security_deposit as number) ||
+            (listing?.refundable_security_deposit as number) ||
             listingCreationSteps?.refundable_security_deposit ||
             ListingDefaultValues?.refundable_security_deposit,
           additional_fees:
@@ -245,11 +240,11 @@ const ListingModal = (props: Props) => {
             listingCreationSteps?.additional_fees ||
             ListingDefaultValues?.additional_fees,
           agent_fee:
-            convertToString(listing?.agent_fee as number) ||
+            listing?.agent_fee as number ||
             listingCreationSteps?.agent_fee ||
             ListingDefaultValues?.agent_fee,
           viewing_fee:
-            convertToString(listing?.viewing_fee as number) ||
+            listing?.viewing_fee as number ||
             listingCreationSteps?.viewing_fee ||
             ListingDefaultValues?.viewing_fee,
           currency:

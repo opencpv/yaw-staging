@@ -5,7 +5,6 @@ import { ListingStepsStore } from "@/store/dashboard/ListingStepsStore";
 import { getListingProps } from "@/lib/enum";
 import { useAppStore } from "@/store/dashboard/AppStore";
 
-//export type CriteriaStatus = "Match" | "No Matches" | "Pending" | "Not Started";
 
 type Props = {
   listing: Property;

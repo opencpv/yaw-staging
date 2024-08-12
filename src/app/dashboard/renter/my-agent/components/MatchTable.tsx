@@ -27,6 +27,7 @@ import RentIt from "./RentIt";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { useQueryClient } from "@tanstack/react-query";
 import { generatePropertyTitle } from "@/lib/enum";
+import Loader from "@/components/__shared/ui/loader/Loader";
 
 type Match = AgentRequestMatch & {
   property: {
@@ -45,6 +46,12 @@ export default function MatchTable() {
   const title = searchParams?.get("t");
   const matchesRef = React.useRef<HTMLElement>(null);
   const queryClient = useQueryClient();
+
+  const { data: matches, isLoading, isRefetching } =
+    useFetchAgentRequestMatches({
+      userId: user?.id as string,
+      agentRequestId: Number(agentId) || 0,
+    });
 
   useEffect(() => {
     const agentRequestMatchesChannel = supabase
@@ -70,48 +77,46 @@ export default function MatchTable() {
     }
   }, []);
 
-  const { data: matches, isLoading: isLoadingMatches } =
-    useFetchAgentRequestMatches({
-      userId: user?.id as string,
-      agentRequestId: Number(agentId),
-    });
+  
 
   return (
-    <section
-      className="fade-in flex min-h-[400px] w-full flex-col gap-8 pt-20 sm:min-h-[600px]"
-      ref={matchesRef}
-      id="agent-request-matches"
-    >
-      <h3 className={cn({ hidden: !matches })}>{title} Matches</h3>
-      <div className={cn({ hidden: !matches })}>
-        <CallOut content="Lorem ipsum dolor sit amet consectetur. Consequat elementum consequat interdum integer imperdiet nisl. Ipsum eu eu tortor enim est mauris in sem. Eget dignissim risus diam consectetur magna. Non." />
-      </div>
-      {/* table */}
-      <Table className={cn({ "lg:hidden": !matches })}>
-        <TableHeaderRow
-          className="grid-cols-7 gap-16 lg:max-llg:gap-8"
-          gap="2rem"
+    <>
+      {isRefetching && (<Loader position="center" />)}
+        <section
+          className="fade-in flex min-h-[400px] w-full flex-col gap-8 pt-20 sm:min-h-[600px]"
+          ref={matchesRef}
+          id="agent-request-matches"
         >
-          <TableHeader className="col-span-2">Property</TableHeader>
-          <TableHeader className="col-span-1">Completed</TableHeader>
-          <TableHeader className="col-span-4">Actions</TableHeader>
-        </TableHeaderRow>
-        <TableBodyRowGroup>
-          {isLoadingMatches && <TableSkeleton rows={3} columns={7} />}
-          {matches?.length === 0 && (
-            <TableBodyRow className="grid-cols-7">
-              <TableBody className="col-span-full w-full">
-                <NoMatchState />
-              </TableBody>
-            </TableBodyRow>
-          )}
-          {matches &&
-            matches?.length > 0 &&
-            matches?.map((match: Match) => (
-              <MatchRow key={match.id as number} match={match} />
-            ))}
-        </TableBodyRowGroup>
-      </Table>
+          <h3 className={cn({ hidden: !matches })}>{title} Matches</h3>
+          <div className={cn({ hidden: !matches })}>
+            <CallOut content="Lorem ipsum dolor sit amet consectetur. Consequat elementum consequat interdum integer imperdiet nisl. Ipsum eu eu tortor enim est mauris in sem. Eget dignissim risus diam consectetur magna. Non." />
+          </div>
+          {/* table */}
+          <Table className={cn({ "lg:hidden": !matches })}>
+            <TableHeaderRow
+              className="grid-cols-7 gap-16 lg:max-llg:gap-8"
+              gap="2rem"
+            >
+              <TableHeader className="col-span-2">Property</TableHeader>
+              <TableHeader className="col-span-1">Completed</TableHeader>
+              <TableHeader className="col-span-4">Actions</TableHeader>
+            </TableHeaderRow>
+            <TableBodyRowGroup>
+              {isLoading && <TableSkeleton rows={3} columns={7} />}
+              {matches?.length === 0 && (
+                <TableBodyRow className="grid-cols-7">
+                  <TableBody className="col-span-full w-full">
+                    <NoMatchState />
+                  </TableBody>
+                </TableBodyRow>
+              )}
+              {matches &&
+                matches?.length > 0 &&
+                matches?.map((match: Match) => (
+                  <MatchRow key={match.id as number} match={match} />
+                ))}
+            </TableBodyRowGroup>
+          </Table>
 
       <TableSm className={cn("mx-auto", { hidden: !matches })}>
         {matches?.length === 0 && (
@@ -128,6 +133,7 @@ export default function MatchTable() {
           ))}
       </TableSm>
     </section>
+      </>
   );
 }
 

@@ -1,9 +1,10 @@
-import styles from "../../../index.module.css";
+import style from "../../../index.module.css";
 import { CustomDatePicker } from "@/components/__shared/ui/form/CustomDatePicker";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
 import CallOut from "@/components/__shared/ui/CallOut";
 import { BeMyAgentDefaultValues } from "@/store/dashboard/BeMyAgentStepsStore";
+import { cn } from "@/lib/utils";
 
 export default function PropertyRequirements() {
   const [BeMyAgentCreationSteps, setBeMyAgentCreationSteps] =
@@ -18,14 +19,14 @@ export default function PropertyRequirements() {
 
   return (
     <>
-      <h2 className={`${styles.title}`}>Property Requirements</h2>
-      <div className="flex w-full flex-col gap-8">
+      <h2 className={`${style.title}`}>Property Requirements</h2>
+      <div className={cn("flex w-full flex-col", style.fieldsBlockGap)}>
         {/* Price range */}
-        <div className="flex flex-col gap-4">
+        <div className={style.subHeadingFieldsContainer}>
           <h3>Price Range</h3>
-          <div className="grid grid-cols-2 gap-5">
+          <div className={cn("grid grid-cols-2", style.fieldsInlineGap)}>
             <CustomSelect
-              name="priceRangeMinimum"
+              name="min_price"
               label="Minimum"
               prefix="GHS"
               options={[
@@ -40,10 +41,10 @@ export default function PropertyRequirements() {
                 { name: "9000", value: "9000" },
                 { name: "10000", value: "10000" },
               ]}
-              onChange={(value) => handleOnChange("priceRangeMinimum", value)}
+              onChange={(value) => handleOnChange("min_price", value)}
             />
             <CustomSelect
-              name="priceRangeMaximum"
+              name="max_price"
               label="Maximum"
               prefix="GHS"
               options={[
@@ -58,16 +59,16 @@ export default function PropertyRequirements() {
                 { name: "9000", value: "9000" },
                 { name: "10000+", value: "10000+" },
               ]}
-              onChange={(value) => handleOnChange("priceRangeMaximum", value)}
+              onChange={(value) => handleOnChange("max_price", value)}
             />
           </div>
         </div>
         {/* Bed */}
-        <div className="flex flex-col gap-4">
+        <div className={style.subHeadingFieldsContainer}>
           <h3>Bed</h3>
-          <div className="grid grid-cols-2 gap-5">
+          <div className={cn("grid grid-cols-2", style.fieldsInlineGap)}>
             <CustomSelect
-              name="bedMinimum"
+              name="min_beds"
               label="Minimum"
               options={[
                 { name: "1", value: "1" },
@@ -81,10 +82,10 @@ export default function PropertyRequirements() {
                 { name: "9", value: "9" },
                 { name: "10", value: "10" },
               ]}
-              onChange={(value) => handleOnChange("bedMinimum", value)}
+              onChange={(value) => handleOnChange("min_beds", value)}
             />
             <CustomSelect
-              name="bedMaximum"
+              name="max_beds"
               label="Maximum"
               options={[
                 { name: "1", value: "1" },
@@ -98,16 +99,16 @@ export default function PropertyRequirements() {
                 { name: "9", value: "9" },
                 { name: "10+", value: "10+" },
               ]}
-              onChange={(value) => handleOnChange("bedMaximum", value)}
+              onChange={(value) => handleOnChange("max_beds", value)}
             />
           </div>
         </div>
         {/* Bathroom */}
-        <div className="flex flex-col gap-4">
+        <div className={style.subHeadingFieldsContainer}>
           <h3>Bathroom</h3>
-          <div className="grid grid-cols-2 gap-5">
+          <div className={cn("grid grid-cols-2", style.fieldsInlineGap)}>
             <CustomSelect
-              name="bathroomMinimum"
+              name="min_bathrooms"
               label="Minimum"
               options={[
                 { name: "1", value: "1" },
@@ -121,10 +122,10 @@ export default function PropertyRequirements() {
                 { name: "9", value: "9" },
                 { name: "10", value: "10" },
               ]}
-              onChange={(value) => handleOnChange("bathroomMinimum", value)}
+              onChange={(value) => handleOnChange("min_bathrooms", value)}
             />
             <CustomSelect
-              name="bathroomMaximum"
+              name="max_bathrooms"
               label="Maximum"
               options={[
                 { name: "1", value: "1" },
@@ -138,7 +139,7 @@ export default function PropertyRequirements() {
                 { name: "9", value: "9" },
                 { name: "10+", value: "10+" },
               ]}
-              onChange={(value) => handleOnChange("bathroomMaximum", value)}
+              onChange={(value) => handleOnChange("max_bathrooms", value)}
             />
           </div>
         </div>
@@ -147,11 +148,11 @@ export default function PropertyRequirements() {
           content="1-2 year lease with rent paid in advance are most common"
           className="mt-5"
         />
-        <div className="flex flex-col gap-4">
+        <div className={style.subHeadingFieldsContainer}>
           <h3>Lease Terms</h3>
-          <div className="grid grid-cols-2 gap-5">
+          <div className={cn("grid grid-cols-2", style.fieldsInlineGap)}>
             <CustomSelect
-              name="leaseTermMinimum"
+              name="min_lease"
               label="Minimum"
               options={[
                 { name: "1", value: "1" },
@@ -160,10 +161,10 @@ export default function PropertyRequirements() {
                 { name: "4", value: "4" },
                 { name: "5", value: "5" },
               ]}
-              onChange={(value) => handleOnChange("leaseTermMinimum", value)}
+              onChange={(value) => handleOnChange("min_lease", value)}
             />
             <CustomSelect
-              name="leaseTermMaximum"
+              name="max_lease"
               label="Maximum"
               options={[
                 { name: "1", value: "1" },
@@ -172,16 +173,16 @@ export default function PropertyRequirements() {
                 { name: "4", value: "4" },
                 { name: "5+", value: "5+" },
               ]}
-              onChange={(value) => handleOnChange("leaseTermMaximum", value)}
+              onChange={(value) => handleOnChange("max_lease", value)}
             />
           </div>
         </div>
         {/* Preferred Payment Plan */}
-        <div className="flex flex-col gap-4">
+        <div className={style.subHeadingFieldsContainer}>
           <h3>Move In</h3>
-          <div className="grid grid-cols-1 gap-5 gap-y-8 lg:grid-cols-2">
+          <div className={cn("grid grid-cols-1 sm:grid-cols-2", style.fieldsInlineGap, style.fieldsBlockGap)}>
             <CustomSelect
-              name="paymentOption"
+              name="preferred_payment_option"
               label="Preferred Payment Term"
               options={[
                 { name: "rent advance", value: "Rent Advance" },
@@ -191,12 +192,12 @@ export default function PropertyRequirements() {
                 },
                 { name: "any", value: "Any" },
               ]}
-              onChange={(value) => handleOnChange("paymentOption", value)}
+              onChange={(value) => handleOnChange("preferred_payment_option", value)}
             />
             <CustomDatePicker
-              name="moveInDate"
+              name="move_in_date"
               label="Desired Move In Date"
-              onChange={(value) => handleOnChange("moveInDate", value)}
+              onChange={(value) => handleOnChange("move_in_date", value)}
             />
           </div>
         </div>

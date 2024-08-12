@@ -9,11 +9,12 @@ export const useFetchBlockedUsers = ({ userId }: { userId: string }) => {
       const { data, error } = await supabase
         .from("blocked_users")
         .select(
-          "*, blocked_user:profiles!blocked_users_blocked_id_fkey(id, full_name, profile_img)",
+          "*, blocked_user:profiles!blocked_users_block_id_fkey(id, full_name, profile_img)",
         )
-        .eq("blocker_id", userId as string);
+        .eq("blocker", userId as string);
 
       if (error) {
+        toast.error("Failed to fetch blocked users.");
         throw new Error(error.message);
       }
 
@@ -37,7 +38,7 @@ export const useUnblockUser = () => {
       const { error } = await supabase
         .from("blocked_users")
         .delete()
-        .match({ blocked_id: blockedId, blocker_id: blockerId });
+        .match({ block_id: blockedId, blocker: blockerId });
 
       if (error) {
         throw new Error(error.message);
@@ -47,7 +48,7 @@ export const useUnblockUser = () => {
       queryClient.invalidateQueries({ queryKey: ["blocked_users"] });
     },
     onError: () => {
-     toast.error("An error occurred. Please try again.");
+      toast.error("An error occurred. Please try again.");
     },
   });
 
@@ -62,7 +63,7 @@ export const useUnblockAllUsers = () => {
       const { error } = await supabase
         .from("blocked_users")
         .delete()
-        .eq("blocker_id", blockerId);
+        .eq("blocker", blockerId);
 
       if (error) {
         throw new Error(error.message);
@@ -72,7 +73,7 @@ export const useUnblockAllUsers = () => {
       queryClient.invalidateQueries({ queryKey: ["blocked_users"] });
     },
     onError: () => {
-     toast.error("An error occurred. Please try again.");
+      toast.error("An error occurred. Please try again.");
     },
   });
 

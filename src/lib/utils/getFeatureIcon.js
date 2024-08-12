@@ -34,11 +34,10 @@ import {
 } from "react-icons/lu";
 import { MdOutlineBedroomParent, MdOutlinePropaneTank } from "react-icons/md";
 import { FaRegLightbulb } from "react-icons/fa6";
-import { AiOutlineApartment } from "react-icons/ai";
 import { IoIosCellular } from "react-icons/io";
 
-export const getFeatureIcon = (feature, size = 44, color) => {
-  const lowerCaseFeature = feature.toLowerCase();
+export const getFeatureIcon = (feature = "", size = 44, color) => {
+  const lowerCaseFeature = feature?.toLowerCase();
   switch (lowerCaseFeature) {
     case "wifi":
       return <CiWifiOn size={size} />;
@@ -93,13 +92,12 @@ export const getFeatureIcon = (feature, size = 44, color) => {
     case "unfurnished":
       return <LuBattery size={size} />;
     default:
-      //return <AiOutlineApartment size={size} />;
-      return null
+      return null;
   }
 };
 
-export const getPropertyTypeIcon = (property, size = 44) => {
-  const lowerCaseProperty = property.toLowerCase();
+export const getPropertyTypeIcon = (property = "", size = 44) => {
+  const lowerCaseProperty = property?.toLowerCase();
   switch (lowerCaseProperty) {
     case "house":
       return <IoHomeOutline size={size} />;
@@ -122,27 +120,24 @@ export const getPropertyTypeIcon = (property, size = 44) => {
     case "hostel":
       return <BsBuilding size={size} />;
     default:
-      //return <IoHomeOutline size={size} />;
-      return null
+      return null;
   }
 };
 
-
-export const getUtilityIcon = (utility, size = 44) => {
-  const lowerCaseUtility = utility.toLowerCase();
+export const getUtilityIcon = (utility = "", size = 44) => {
+  const lowerCaseUtility = utility?.toLowerCase();
   switch (lowerCaseUtility) {
     case "satellite tv":
       return <PiMonitorLight size={size} />;
-        case "water":
+    case "water":
       return <IoWaterOutline size={size} />;
     case "electricty":
       return <FaRegLightbulb size={size} />;
     case "gas":
       return <PiGasCan size={size} />;
     case "internet":
-    return <IoIosCellular size={size} />
-        default:
-      //return <AiOutlineApartment size={size} />;
-      return null
+      return <IoIosCellular size={size} />;
+    default:
+      return null;
   }
 };

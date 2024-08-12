@@ -91,7 +91,7 @@
   @apply font-normal;
 }
 
-.subHeadingFieldsConainer {
+.subHeadingFieldsContainer {
   @apply flex flex-col gap-4;
 }
 

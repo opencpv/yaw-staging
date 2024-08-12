@@ -56,7 +56,7 @@ const FirstToKnowHeader = () => {
   
 
   useEffect(() => {
-    if (isSuccess) {
+    if (isSuccess && (pathname?.includes("edit") || pathname?.includes("create"))) {
       resetForm({});
       onClose();
       onCloseEditPage();
@@ -69,9 +69,6 @@ const FirstToKnowHeader = () => {
         );
       pathname?.includes("create") && router.back();
     }
-    //if (pathname?.includes("edit")) {
-    //  handleActiveSlideEdit();
-    //}
     if (pathname?.includes("create")) handleActiveSlide();
   }, [
     isSuccess,

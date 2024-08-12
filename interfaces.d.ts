@@ -92,22 +92,6 @@ interface MessageInterface {
   type: "sender" | "recipient";
 }
 
-type ManagePropertiesInterface = {
-  propertyTitle: string;
-  image: string;
-  posted_on: string;
-  price: number;
-  isPaidFor: boolean;
-  status: PropertyStatusInterface;
-};
-
-type PropertyStatusInterface =
-  | "available"
-  | "contract pending"
-  | "leased"
-  | "dormant"
-  | string;
-
 export interface CartProp {
   name: string;
   cost: number;

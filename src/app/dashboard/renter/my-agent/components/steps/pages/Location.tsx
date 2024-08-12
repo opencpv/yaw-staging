@@ -3,10 +3,11 @@ import React from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
 import CustomSelect from "../../../../../../../components/__shared/ui/form/CustomSelect";
-import styles from "../../../index.module.css";
+import style from "../../../index.module.css";
 import TextFieldInput from "../../../../../../../components/__shared/ui/form/TextFieldInput";
 import { useField } from "formik";
 import { BeMyAgentDefaultValues } from "@/store/dashboard/BeMyAgentStepsStore";
+import { cn } from "@/lib/utils";
 
 type LocationType = {
   city: string;
@@ -51,7 +52,7 @@ const Location = ({
   };
 
   return (
-    <div className="flex w-full flex-col gap-8 lg:max-w-lg">
+    <div className={cn("flex w-full flex-col lg:max-w-lg", style.fieldsBlockGap)}>
       <CustomSelect
         name={city + index}
         label="City"
@@ -106,20 +107,20 @@ const DesiredLocations = () => {
   };
 
   return (
-    <div className="space-y-10">
+    <div className={style.fieldsSectionWrapper}>
       {/* SearchTitle */}
       <div className="space-y-4 lg:max-w-lg">
-        <h2 className={`${styles.titleNoMargin}`}>
-          Name your Search <span className="text-sm text-shade-300">*</span>
+        <h2 className={`${style.titleNoMargin}`}>
+          Name your Search <span className={style.asterisk}>*</span>
         </h2>
         <TextFieldInput
           type="text"
-          name="searchTitle"
+          name="search_title"
           placeholder="e.g: My Accra Dream Home"
           onChange={(e) =>
             setBeMyAgentCreationSteps({
               ...BeMyAgentCreationSteps,
-              searchTitle: e.target.value,
+              search_title: e.target.value,
             })
           }
         />
@@ -127,7 +128,7 @@ const DesiredLocations = () => {
 
       {/* Location */}
       <div>
-        <h2 className={styles.title}>Desired Locations</h2>
+        <h2 className={style.title}>Desired Locations</h2>
         <div className={"col-span-3 flex flex-col gap-2 lg:col-span-1"}>
           {/* Locations */}
           <div>
