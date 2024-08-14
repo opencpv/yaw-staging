@@ -119,12 +119,13 @@ export const fetchRequestMatchById = async ({
 export const useFetchAgentRequestOverview = ({
   userId,
 }: {
-    userId: string;
-  }) => {
+  userId: string;
+}) => {
   const propertiesIds: number[] = [];
   const images: string[] = [];
 
   const getSummary = async () => {
+    if (!userId) return;
     const { data: requests, error } = await supabase
       .from("agent_request")
       .select("id, matched_properties, search_title")
@@ -133,8 +134,8 @@ export const useFetchAgentRequestOverview = ({
       .order("match_modified_at", { ascending: false })
       .limit(2);
 
-    if (error){
-    toast.error("An error occurred while fetching agent request match.");
+    if (error) {
+      toast.error("An error occurred while fetching agent request match.");
       throw new Error(error.message);
     }
 

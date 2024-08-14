@@ -2,6 +2,7 @@ import Button from "@/components/__shared/ui/button/Button";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import { FaPlus } from "react-icons/fa6";
 
 const ListingModal = dynamic(() => import("../../overview/components/steps/ListingModal")); 
 
@@ -22,6 +23,7 @@ const EmptyState = () => {
         </p>
         <ListingModal>
           <Button href={`/dashboard/lister/overview/create`} color="primary">
+            <FaPlus />
             Create New Listing
           </Button>
         </ListingModal>

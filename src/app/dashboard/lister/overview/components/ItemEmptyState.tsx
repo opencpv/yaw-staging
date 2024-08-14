@@ -39,7 +39,7 @@ const ItemEmptyState = (props: Props) => {
         </ListingModal>
       ) : (
         <button
-          className="scale-hover flex flex-col items-center gap-5"
+          className="scale-hover w-full flex flex-col items-center gap-5"
           onClick={handleCreate}
         >
           <div className="flex flex-col items-center">

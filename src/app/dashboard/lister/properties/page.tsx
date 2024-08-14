@@ -1,6 +1,5 @@
 "use client";
 
-import Button from "@/components/__shared/ui/button/Button";
 import { cn } from "@/lib/utils";
 import CallOut from "@/components/__shared/ui/CallOut";
 import { pluralize } from "@/lib/utils/stringManipulation";
@@ -24,8 +23,11 @@ import { FaPlus } from "react-icons/fa6";
 import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
 import EmptyState from "./components/EmptyState";
 import dynamic from "next/dynamic";
+import Pagination, { usePagination } from "@/components/__shared/ui/Pagination";
 
-const ListingModal = dynamic(() => import("../overview/components/steps/ListingModal")); 
+const ListingModal = dynamic(
+  () => import("../overview/components/steps/ListingModal"),
+);
 
 const ManageProperties = () => {
   const { user } = useAppStore();
@@ -35,7 +37,22 @@ const ManageProperties = () => {
     data: listings,
     error,
     isLoading,
-  } = useFetchAllListerProperties({ listerId: user?.id as string, status, archived: showArchived });
+  } = useFetchAllListerProperties({
+    listerId: user?.id as string,
+    status,
+    archived: showArchived,
+  });
+
+  const {
+    currentItems: paginatedListings,
+    handlePageClick,
+    pageCount,
+    currentPage,
+  } = usePagination({
+    items: listings as Property[],
+    variable: status,
+  });
+
 
   const options = [
     "All",
@@ -51,7 +68,7 @@ const ManageProperties = () => {
         <h2>My Listings</h2>
         <CallOut content="Members post for free" />
         <div className="flex flex-col gap-8">
-          <ListingModal className="bg-primary flex items-center gap-2 w-fit text-white p-3 px-5 rounded-md">
+          <ListingModal className="flex w-fit items-center gap-2 rounded-md bg-primary p-3 px-5 text-white">
             <FaPlus />
             Create New Listing
           </ListingModal>
@@ -70,11 +87,16 @@ const ManageProperties = () => {
                   tabList: "flex-nowrap",
                 }}
               />
-              <ArchivedButton className="max-lg:hidden" onClick={() => setShowArchived(!showArchived)} showingArchived={showArchived} />
+              <ArchivedButton
+                className="max-lg:hidden"
+                onClick={() => setShowArchived(!showArchived)}
+                showingArchived={showArchived}
+              />
             </div>
-            {listings?.length ? (
+            {paginatedListings?.length ? (
               <small className="inline-block capitalize">
-                Showing {listings.length} {pluralize("Item", listings.length)}
+                Showing {paginatedListings.length}{" "}
+                {pluralize("Item", paginatedListings.length)}
               </small>
             ) : null}
           </div>
@@ -83,29 +105,28 @@ const ManageProperties = () => {
 
       {/* DESKTOP VIEW */}
       <div className="flex flex-col gap-8">
-        <Table
-          className={cn({
-            "min-h-[35rem]": listings && listings?.length > 3,
-          })}
-        >
-          <TableHeaderRow className="grid-cols-6">
-            <TableHeader className="col-span-2">Property</TableHeader>
-            <TableHeader className="col-span-1">Date Created</TableHeader>
-            <TableHeader className="col-span-1">Published</TableHeader>
-            <TableHeader className="col-span-1">Status</TableHeader>
+        <Table className={cn("min-h-[35rem]")}>
+          <TableHeaderRow className="grid-cols-12">
+            <TableHeader className="col-span-4">Property</TableHeader>
+            <TableHeader className="col-span-2">Date Created</TableHeader>
+            <TableHeader className="col-span-3">Published</TableHeader>
+            <TableHeader className="col-span-2">Status</TableHeader>
             <TableHeader className="col-span-1"> </TableHeader>
           </TableHeaderRow>
           <TableBodyRowGroup>
             <FetchingStates
-              data={listings}
+              data={paginatedListings}
               error={error}
               isLoading={isLoading}
               isLoadingComponent={<TableSkeleton rows={1} columns={5} />}
               emptyStateComponent={<EmptyState />}
             />
 
-            {listings?.map((listing) => (
-              <PropertyRow key={listing.id} listing={listing as unknown as Property} />
+            {paginatedListings?.map((listing) => (
+              <PropertyRow
+                key={listing.id}
+                listing={listing as unknown as Property}
+              />
             ))}
           </TableBodyRowGroup>
         </Table>
@@ -113,18 +134,30 @@ const ManageProperties = () => {
         {/* MOBILE VIEW */}
         <TableSm>
           <FetchingStates
-            data={listings}
+            data={paginatedListings}
             error={error}
             isLoading={isLoading}
             isLoadingComponent={<TableSkeletonSm rows={2} />}
             emptyStateComponent={<EmptyState />}
           />
-          {listings?.map((listing) => (
-            <PropertyRowMobile key={listing.id} listing={listing as unknown as Property} />
+          {paginatedListings?.map((listing) => (
+            <PropertyRowMobile
+              key={listing.id}
+              listing={listing as unknown as Property}
+            />
           ))}
         </TableSm>
       </div>
-      <ArchivedButton className="lg:hidden" onClick={() => setShowArchived(!showArchived)} showingArchived={showArchived} />
+      <ArchivedButton
+        className="lg:hidden"
+        onClick={() => setShowArchived(!showArchived)}
+        showingArchived={showArchived}
+      />
+      <Pagination
+        handlePageClick={handlePageClick}
+        pageCount={pageCount}
+        forcePage={currentPage}
+      />
     </main>
   );
 };

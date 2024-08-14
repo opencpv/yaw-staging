@@ -90,6 +90,7 @@ const BeMyAgentModal = (props: Props) => {
     pathname?.includes("edit") ? onOpenEditPage() : onCloseEditPage();
     pathname?.includes("create") ? onOpen() : onClose();
     if (isSuccess) {
+      // success after Finish button is clicked
       setAgentRequest(agentRequestData);
       setActiveSlide(BeMyAgentViews.length - 1);
       localStorage.removeItem("bma-creation-steps");

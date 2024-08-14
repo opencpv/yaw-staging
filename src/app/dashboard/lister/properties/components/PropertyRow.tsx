@@ -1,6 +1,6 @@
 import { formatDateOnly } from "@/lib/utils/stringManipulation";
 import { formatPrice } from "@/lib/utils/numberManipulation";
-import { generatePropertyTitle, getListingProps } from "@/lib/enum";
+import { getListingProps } from "@/lib/enum";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import {
@@ -21,9 +21,9 @@ const PropertyRow = ({ listing }: Props) => {
   const { images } = useAssets();
 
   return (
-    <TableBodyRow className="grid-cols-6">
+    <TableBodyRow className="grid-cols-12">
       {/* Property */}
-      <TableBody className="col-span-2 items-start flex w-full gap-[0.62rem] truncate p-2.5 text-start">
+      <TableBody className="col-span-4 flex w-full items-start gap-[0.62rem] truncate p-2.5 text-start">
         <TbPropertyImage
           title={listing?.property_name || ""}
           //@ts-ignore
@@ -52,7 +52,7 @@ const PropertyRow = ({ listing }: Props) => {
         </div>
       </TableBody>
       {/* Date created */}
-      <TableBody className="col-span-1">
+      <TableBody className="col-span-2">
         {listing?.is_complete ? (
           formatDateOnly(listing?.created_at)
         ) : (
@@ -60,11 +60,11 @@ const PropertyRow = ({ listing }: Props) => {
         )}
       </TableBody>
       {/* Published status */}
-      <TableBody className="col-span-1">
+      <TableBody className="col-span-3">
         <PublicationStatus listing={listing} />
       </TableBody>
       {/* Property Status */}
-      <TableBody className="col-span-1">
+      <TableBody className="col-span-2">
         <PropertyStatus listing={listing} />
       </TableBody>
       {/* Actions */}

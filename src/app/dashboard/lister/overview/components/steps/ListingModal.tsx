@@ -23,9 +23,14 @@ import Link from "next/link";
 
 type Props = {
   className?: string;
+  classNames?: {
+    wrapper?: string;
+  }
   children?: React.ReactNode;
-  /** Use for only Edit */
   onClick?: () => void;
+  variant: "edit" | "create";
+  listing?: Property;
+  disabled?: boolean;
 };
 
 const ListingValidationSchema = Yup.object({
@@ -81,14 +86,18 @@ const ListingModal = (props: Props) => {
     typeof ListingDefaultValues | null
   >("listing-creation-steps");
 
+  const [listingEditSteps] = useLocalStorage<
+    { listing: number; activeSlide: number }[]
+  >("listing-edit-steps", []);
+
   const {
     isOpen,
-    openCreatePage: onOpen,
+    openCreatePage,
     listing,
-    openEditPage: onOpenEditPage,
+    openEditPage,
     isOpenEditPage,
-    closeEditPage: onCloseEditPage,
-    closeCreatePage: onClose,
+    closeEditPage,
+    closeCreatePage,
     setActiveSlide,
     setListing,
     setPreviousPath,
@@ -97,40 +106,66 @@ const ListingModal = (props: Props) => {
   const { mutate: addListing, data: listingData, isSuccess } = useAddListing();
 
   useEffect(() => {
-    pathname?.includes("edit") ? onOpenEditPage() : onCloseEditPage();
-    pathname?.includes("create") ? onOpen() : onClose();
+    pathname?.includes("edit") ? openEditPage() : closeEditPage();
+    pathname?.includes("create") ? openCreatePage() : closeCreatePage();
     if (isSuccess) {
-      setListing(listingData);
+      // success when Finish button is clicked
       setActiveSlide(ListingViews.length - 1);
-      localStorage.removeItem("bma-creation-steps");
+      localStorage.removeItem("listing-creation-steps");
+      localStorage.removeItem("listing-edit-steps");
     }
   }, [
-    onOpen,
-    onClose,
+    openCreatePage,
+    closeCreatePage,
     pathname,
-    onOpenEditPage,
-    onCloseEditPage,
+    openEditPage,
+    closeEditPage,
     setListing,
     isSuccess,
     listingData,
     setActiveSlide,
   ]);
 
+  const handleCreate = () => {
+    setActiveSlide(0);
+    setListing(null);
+  };
+
+  const handleEdit = () => {
+    setPreviousPath(pathname as string);
+
+    if (props.variant === "edit") {
+      if (props.listing?.is_suspended !== true) {
+        setListing(props.listing as Property);
+        setActiveSlide(
+          listingEditSteps?.find(
+            (step) => step.listing === props.listing?.id,
+          )?.activeSlide ?? 1,
+        );
+      }
+    } else {
+      handleCreate();
+    }
+  }
+
   return (
     <div
       className={cn("w-full", {
         invisible: pathname?.includes("edit") || pathname?.includes("create"), // hide button to avoid double click
-      })}
+      }, props?.classNames?.wrapper)}
     >
       {props?.children ? (
         <Link
-          href="/dashboard/lister/overview/create"
+          href={
+            props.disabled
+              ? ""
+              : props.variant === "edit"
+                ? `/dashboard/lister/overview/edit/012${props.listing?.id}` // for navifation purpose, it doesn't use the id in its function
+                : "/dashboard/lister/overview/create"
+          }
           className={cn("block w-full", props.className)}
-          onClick={() => {
-            setActiveSlide(0);
-            setListing(null);
-            setPreviousPath(pathname as string);
-          }}
+          scroll={false}
+          onClick={handleEdit}
         >
           {props.children}
         </Link>
@@ -140,11 +175,7 @@ const ListingModal = (props: Props) => {
           color="primary"
           className={cn(props.className)}
           fit
-          onClick={() => {
-            setActiveSlide(0);
-            setListing(null);
-            setPreviousPath(pathname as string);
-          }}
+          onClick={handleCreate}
         >
           Add Property
         </Button>

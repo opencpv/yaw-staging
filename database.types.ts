@@ -1300,6 +1300,7 @@ export type Database = {
           property_name: string | null
           property_size: string | null
           property_type: string | null
+          published_date: string | null
           query_string: string | null
           refundable_security_deposit: number | null
           renter_knowledge: string | null
@@ -1356,6 +1357,7 @@ export type Database = {
           property_name?: string | null
           property_size?: string | null
           property_type?: string | null
+          published_date?: string | null
           query_string?: string | null
           refundable_security_deposit?: number | null
           renter_knowledge?: string | null
@@ -1412,6 +1414,7 @@ export type Database = {
           property_name?: string | null
           property_size?: string | null
           property_type?: string | null
+          published_date?: string | null
           query_string?: string | null
           refundable_security_deposit?: number | null
           renter_knowledge?: string | null
@@ -1973,6 +1976,7 @@ export type Database = {
           property_name: string | null
           property_size: string | null
           property_type: string | null
+          published_date: string | null
           query_string: string | null
           refundable_security_deposit: number | null
           renter_knowledge: string | null
@@ -2029,6 +2033,7 @@ export type Database = {
           property_name?: string | null
           property_size?: string | null
           property_type?: string | null
+          published_date?: string | null
           query_string?: string | null
           refundable_security_deposit?: number | null
           renter_knowledge?: string | null
@@ -2085,6 +2090,7 @@ export type Database = {
           property_name?: string | null
           property_size?: string | null
           property_type?: string | null
+          published_date?: string | null
           query_string?: string | null
           refundable_security_deposit?: number | null
           renter_knowledge?: string | null
@@ -2149,62 +2155,35 @@ export type Database = {
         }
         Returns: string
       }
-      get_lister_properties:
-        | {
-            Args: {
-              user_id?: string
-              status?: string
-            }
-            Returns: {
-              id: number
-              property_name: string
-              property_type: string
-              bedrooms: string
-              city: string
-              neighbourhood: string
-              monthly_amount: number
-              currency: string
-              banner_image: Json
-              is_complete: boolean
-              is_realtors_choice: boolean
-              is_best_value: boolean
-              is_featured: boolean
-              is_published: boolean
-              is_suspended: boolean
-              is_admin_approved: boolean
-              is_archived: boolean
-              created_at: string
-              owner_uid: string
-            }[]
-          }
-        | {
-            Args: {
-              user_id?: string
-              status?: string
-              archived?: boolean
-            }
-            Returns: {
-              id: number
-              property_name: string
-              property_type: string
-              bedrooms: string
-              city: string
-              neighbourhood: string
-              monthly_amount: number
-              currency: string
-              banner_image: Json
-              is_complete: boolean
-              is_realtors_choice: boolean
-              is_best_value: boolean
-              is_featured: boolean
-              is_published: boolean
-              is_suspended: boolean
-              is_admin_approved: boolean
-              is_archived: boolean
-              created_at: string
-              owner_uid: string
-            }[]
-          }
+      get_lister_properties: {
+        Args: {
+          user_id?: string
+          status?: string
+          archived?: boolean
+        }
+        Returns: {
+          id: number
+          property_name: string
+          property_type: string
+          bedrooms: string
+          city: string
+          neighbourhood: string
+          monthly_amount: number
+          currency: string
+          banner_image: Json
+          is_complete: boolean
+          is_realtors_choice: boolean
+          is_best_value: boolean
+          is_featured: boolean
+          is_published: boolean
+          is_suspended: boolean
+          is_admin_approved: boolean
+          is_archived: boolean
+          published_date: string
+          created_at: string
+          owner_uid: string
+        }[]
+      }
       get_matching_properties: {
         Args: {
           criteria_id: number

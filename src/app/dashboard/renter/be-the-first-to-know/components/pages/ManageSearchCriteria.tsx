@@ -24,7 +24,6 @@ import NoCriteriaEmptyState from "../NoCriteriaEmptyState";
 import Pagination, { usePagination } from "@/components/__shared/ui/Pagination";
 import { cn } from "@/lib/utils";
 import TableSkeletonSm from "@/app/dashboard/components/shared/skeleton/TableSkeletonSm";
-import { CiLocationOn } from "react-icons/ci";
 
 const ManageSearchCriteria = () => {
   const { user } = useAppStore();
@@ -38,8 +37,10 @@ const ManageSearchCriteria = () => {
     currentItems: paginatedCriteria,
     handlePageClick,
     pageCount,
+    currentPage,
   } = usePagination({
     items: searchCriteria as SearchCriteria[],
+    variable: status,
   });
 
   return searchCriteria?.length === 0 && status === undefined ? (
@@ -136,7 +137,11 @@ const ManageSearchCriteria = () => {
           </TableRowSm>
         ))}
       </TableSm>
-      <Pagination handlePageClick={handlePageClick} pageCount={pageCount} />
+      <Pagination
+        handlePageClick={handlePageClick}
+        pageCount={pageCount}
+        forcePage={currentPage}
+      />
     </section>
   );
 };

@@ -1,5 +1,5 @@
 import { useDisclosure } from "@nextui-org/react";
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { FiTrash2 } from "react-icons/fi";
 import { MdOutlineEdit, MdOutlineRemoveRedEye } from "react-icons/md";
@@ -19,9 +19,13 @@ import {
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { useRouter } from "next/navigation";
 import { getListingProps } from "@/lib/enum";
-import { ListingStepsStore } from "@/store/dashboard/ListingStepsStore";
 import { PiArrowLineUp } from "react-icons/pi";
 import { TbTrashOff } from "react-icons/tb";
+import dynamic from "next/dynamic";
+
+const ListingModal = dynamic(
+  () => import("../../overview/components/steps/ListingModal"),
+);
 
 type Props = {
   listing: Property;
@@ -30,13 +34,15 @@ type Props = {
 const Actions = ({ listing }: Props) => {
   const router = useRouter();
   const { user } = useAppStore();
-  const { setListing, setActiveSlide } = ListingStepsStore();
   const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
+  const {
+    onClose: onClosePublish,
+    isOpen: isOpenPublish,
+    onOpenChange: onOpenChangePublish,
+    onOpen: onOpenPublish,
+  } = useDisclosure();
   const [popoverIsOpen, setPopoverIsOpen] = useState(false);
 
-  const [ListingEditSteps] = useLocalStorage<
-    { listing: number; activeSlide: number }[]
-  >("listing-edit-steps", []);
 
   const {
     mutate: handleArchived,
@@ -44,8 +50,11 @@ const Actions = ({ listing }: Props) => {
     isSuccess,
   } = useHandleArchived();
 
-  const { mutate: updatePublishStatus, isPending: isPublishing } =
-    useUpdatePropertyPublicationStatus();
+  const {
+    mutate: updatePublishStatus,
+    isPending: isPublishing,
+    isSuccess: isSuccessPublish,
+  } = useUpdatePropertyPublicationStatus();
 
   const canEdit = listing?.is_suspended === false;
   const canView =
@@ -78,18 +87,12 @@ const Actions = ({ listing }: Props) => {
         owner_uid: user?.id as string,
         is_published: !listing.is_published,
       });
+
+    if (isSuccessPublish) {
+      onClosePublish();
+    }
   };
 
-  const handleEdit = useCallback(() => {
-    if (canEdit) {
-      setListing(listing);
-      router.replace(`/dashboard/lister/overview/edit/012${listing?.id}`);
-      setActiveSlide(
-        ListingEditSteps?.find((step) => step.listing === listing?.id)
-          ?.activeSlide ?? 1,
-      );
-    }
-  }, [ListingEditSteps, listing, setActiveSlide, router, setListing, canEdit]);
 
   return (
     <>
@@ -109,7 +112,22 @@ const Actions = ({ listing }: Props) => {
         handleDestruction={handleDestruction}
         loading={isDeleting}
       />
-
+      <DestructiveModal
+        isOpen={isOpenPublish}
+        onClose={onClosePublish}
+        onOpenChange={onOpenChangePublish}
+        label={
+          listing?.is_published
+            ? `Are you sure you want to unpublish "${
+                listing?.property_name || "[No Title]"
+              }"?`
+            : `Are you sure you want to publish "${
+                listing?.property_name || "[No Title]"
+              }"?`
+        }
+        handleDestruction={handlePublish}
+        loading={isPublishing}
+      />
       <ActionPopover isOpen={popoverIsOpen} onOpenChange={setPopoverIsOpen}>
         <ActionItemTrigger
           className="col-span-1 ml-auto h-fit w-fit p-2"
@@ -121,7 +139,7 @@ const Actions = ({ listing }: Props) => {
           <ActionItem className="lg:hidden">
             <PublicationStatus listing={listing as Property} />
           </ActionItem>
-          <ActionItem onClick={handlePublish} disabled={!canPublish}>
+          <ActionItem onClick={onOpenPublish} disabled={!canPublish}>
             <PiArrowLineUp />
             {isPublishing
               ? "Upading..."
@@ -134,17 +152,14 @@ const Actions = ({ listing }: Props) => {
             View
           </ActionItem>
 
-          <ActionItem
-            onClick={() => {
-              handleEdit();
-            }}
-            disabled={!canEdit}
-          >
-            <MdOutlineEdit />
-            Edit
-          </ActionItem>
+          <ListingModal variant="edit" listing={listing} disabled={!canEdit}>
+            <ActionItem disabled={!canEdit}>
+              <MdOutlineEdit />
+              Edit
+            </ActionItem>
+          </ListingModal>
           <ActionItem onClick={onOpen} disabled={!canDelete}>
-            {listing?.is_archived ? <TbTrashOff /> :<FiTrash2 /> }
+            {listing?.is_archived ? <TbTrashOff /> : <FiTrash2 />}
             {listing?.is_archived ? "Unarchive" : "Delete"}
           </ActionItem>
         </ActionContent>

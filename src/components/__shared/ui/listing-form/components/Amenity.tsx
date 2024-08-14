@@ -22,7 +22,7 @@ const Amenity = ({
     <button
       onClick={onClick}
       className={cn(
-        `fade-in-left flex aspect-video w-full sm:max-w-xs cursor-pointer flex-col items-center justify-center gap-4 rounded-xl px-2 py-4 text-center text-[1rem] !transition-transform hover:!scale-[1.05] hover:bg-slate-200 lg:py-0 lg:text-[1.125rem]`,
+        `fade-in flex aspect-video w-full sm:max-w-xs cursor-pointer flex-col items-center justify-center gap-4 rounded-xl px-2 py-4 text-center text-[1rem] !transition-transform hover:!scale-[1.05] hover:bg-slate-200 lg:py-0 lg:text-[1.125rem]`,
         {
           "border border-[#a3a3a3]": selected,
         },

@@ -9,9 +9,15 @@ import dynamic from "next/dynamic";
 import React from "react";
 import { HiChevronRight } from "react-icons/hi";
 
-const FramerWrapper = dynamic(() => import("@/components/__shared/hoc/FramerWrapper"))
-const ListingCard = dynamic(() => import("@/components/__shared/ui/listing/ListingCard")) 
-const SliderGrid = dynamic(() => import("@/components/__shared/ui/sliders/SliderGrid"))
+const FramerWrapper = dynamic(
+  () => import("@/components/__shared/hoc/FramerWrapper"),
+);
+const ListingCard = dynamic(
+  () => import("@/components/__shared/ui/listing/ListingCard"),
+);
+const SliderGrid = dynamic(
+  () => import("@/components/__shared/ui/sliders/SliderGrid"),
+);
 
 type Props = {
   data: any;
@@ -26,15 +32,19 @@ const FeaturedListings = (props: Props) => {
     isLoading,
   } = useFetchFeaturedListings({ limit: 9 });
 
-  console.log(error, listings)
-
-
   return (
-    <section className="wrapper section sm:pb-0" style={{ display: isLoading ? "block" : !isLoading && listings && listings.length === 0 ? "none" : "block"}}>
+    <section
+      className="wrapper section sm:pb-0"
+      style={{
+        display: isLoading
+          ? "block"
+          : !isLoading && listings && listings.length === 0
+            ? "none"
+            : "block",
+      }}
+    >
       <div className="space-y-10">
-        <div
-          className="flex items-center justify-between gap-5"
-        >
+        <div className="flex items-center justify-between gap-5">
           <h2 className="uppercase">Featured Listings</h2>
           <Button
             variant="ghost"
@@ -46,27 +56,24 @@ const FeaturedListings = (props: Props) => {
           </Button>
         </div>
         {/* Listing Slider */}
-          <FramerWrapper className="relative mx-auto h-fit max-w-screen-xl">
-            <FetchingStates
-              data={listings}
-              error={error}
-            />
-            <SliderGrid
-              items={
-                isLoading
-                  ? Array.from({ length: 5 }, (_, idx) => (
-                      <SkeletonListing key={idx} cardType={1} />
-                    ))
-                  : listings?.map((listing) => (
-                      <ListingCard
-                        key={listing?.id}
-                        {...getListingProps(listing, user as UserType)}
-                        cardType="1"
-                      />
-                    ))
-              }
-            />
-          </FramerWrapper>
+        <FramerWrapper className="relative mx-auto h-fit max-w-screen-xl">
+          <FetchingStates data={listings} error={error} />
+          <SliderGrid
+            items={
+              isLoading
+                ? Array.from({ length: 5 }, (_, idx) => (
+                    <SkeletonListing key={idx} cardType={1} />
+                  ))
+                : listings?.map((listing) => (
+                    <ListingCard
+                      key={listing?.id}
+                      {...getListingProps(listing, user as UserType)}
+                      cardType="1"
+                    />
+                  ))
+            }
+          />
+        </FramerWrapper>
         <Button
           variant="ghost"
           color="primary"

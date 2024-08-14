@@ -48,15 +48,26 @@ const ListingHeader = () => {
     setActiveSlide(listingCreationSteps?.activeSlide ?? activeSlide);
   }, [setActiveSlide, activeSlide, listingCreationSteps?.activeSlide]);
 
+  const handleClearData = useCallback(() => {
+    resetForm({});
+    closeCreatePage();
+    closeEditPage();
+    setListing(null);
+    localStorage.removeItem("listing-creation-steps");
+    router.replace(previousPath || "/dashboard/lister/properties")
+  }, [
+      resetForm,
+      closeCreatePage,
+      closeEditPage,
+      setListing,
+      previousPath,
+      router
+    ]) 
+
   useEffect(() => {
     // when it's successful after clicking save and exit
     if (isSuccess && (pathname?.includes("edit") || pathname?.includes("create"))) {
-      resetForm({});
-      closeCreatePage();
-      closeEditPage();
-      setListing(null);
-      localStorage.removeItem("listing-creation-steps");
-      router.replace(previousPath || "/dashboard/lister/properties")
+      handleClearData();
     }
     if (pathname?.includes("create")) handleActiveSlide();
   }, [
@@ -72,7 +83,8 @@ const ListingHeader = () => {
     lastSlide,
     setSubmitting,
     handleActiveSlide,
-      previousPath,
+    previousPath,
+    handleClearData
   ]);
 
 const handleListingEditStepsStorage = () => {
@@ -88,14 +100,6 @@ const handleListingEditStepsStorage = () => {
     setListingCreationSteps({ activeSlide: 0 });
   };
 
-  const handleCancel = () => {
-    resetForm({});
-    closeCreatePage();
-    closeEditPage();
-    setListing(null);
-    localStorage.removeItem("listing-creation-steps");
-      router.replace(previousPath || "/dashboard/lister/properties")
-  };
 
   const handleSaveAndExit = () => {
     handleListingEditStepsStorage();
@@ -119,7 +123,7 @@ const handleListingEditStepsStorage = () => {
             greenHover
             radius="full"
             className="rounded-full border px-3 py-3 xsm:hidden"
-            onClick={handleCancel}
+            onClick={handleClearData}
           >
             <LiaTimesSolid />
           </Button>
@@ -128,7 +132,7 @@ const handleListingEditStepsStorage = () => {
             greenHover
             radius="full"
             className="px-5 border max-xsm:hidden"
-            onClick={handleCancel}
+            onClick={handleClearData}
           >
             {lastSlide ? "Exit" : "Cancel"}
           </Button>

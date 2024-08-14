@@ -68,6 +68,35 @@ export const useUpdatePropertyPublicationStatus = () => {
   return mutation;
 };
 
+export const useExtendPublication = () => {
+  const queryClient = useQueryClient();
+  const extendPublication = async (data: { id: number; owner_uid: string }) => {
+    let query = await supabase
+      .from("property")
+      .update({ published_date: new Date().toISOString() })
+      .match({ id: data.id, owner_uid: data.owner_uid });
+
+    if (query.error) {
+      throw new Error(query.error.message);
+    }
+  };
+
+  const mutation = useMutation({
+    mutationFn: extendPublication,
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ["lister_listings"] });
+    },
+    onSuccess: () => {
+      toast.success("Publication extended successfully.");
+    },
+    onError: () => {
+      toast.error("An error occurred. Please try again.");
+    },
+  });
+
+  return mutation;
+};
+
 export const useHandleArchived = () => {
   // The property will be archived instead of deleted
   const queryClient = useQueryClient();

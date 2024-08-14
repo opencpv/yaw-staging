@@ -1,10 +1,15 @@
 import Toggle from "@/components/__shared/ui/Toggle";
-import { useUpdatePropertyPublicationStatus } from "../services";
-import { useEffect } from "react";
+import {
+  useExtendPublication,
+  useUpdatePropertyPublicationStatus,
+} from "../services";
 import { cn } from "@/lib/utils";
 import { getDaysRemaining, pluralize } from "@/lib/utils/stringManipulation";
 import { LISTING_LAPSE_DAYS } from "@/constants";
 import { useAppStore } from "@/store/dashboard/AppStore";
+import DestructiveModal from "@/components/__shared/ui/modals/DestructiveModal";
+import { useDisclosure } from "@nextui-org/react";
+import Button from "@/components/__shared/ui/button/Button";
 
 interface Props {
   listing: Property;
@@ -12,59 +17,123 @@ interface Props {
 
 const PublicationStatus = ({ listing }: Props) => {
   const { user } = useAppStore();
+  const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
+  const {
+    onClose: onCloseExtend,
+    isOpen: isOpenExtend,
+    onOpenChange: onOpenChangeExtend,
+    onOpen: onOpenExtend,
+  } = useDisclosure();
   const days = LISTING_LAPSE_DAYS;
-  const daysRemaining = getDaysRemaining(listing?.created_at, days);
+  const daysRemaining = getDaysRemaining(
+    listing?.published_date as string,
+    days,
+  );
   const canPublish =
     listing?.is_suspended === false && listing?.is_admin_approved === true;
 
   const {
     mutate: updateStatus,
-    variables,
-    reset,
+    isPending,
     isSuccess,
-    submittedAt,
   } = useUpdatePropertyPublicationStatus();
 
-  const handlePublish = (isSelected: boolean) => {
+  const {
+    mutate: extendPublication,
+    isPending: isExtending,
+    isSuccess: isSuccessExtend,
+  } = useExtendPublication();
+
+  const handlePublish = () => {
     canPublish &&
       updateStatus({
         id: listing.id,
         owner_uid: user?.id as string,
-        is_published: isSelected,
+        is_published: !listing.is_published,
       });
+
+    if (isSuccess) {
+      onClose();
+    }
   };
 
-  // Reset variables so that it doesn't clash with Publishing from Actions
-  //useEffect(() => {
-  //  if (isSuccess && !submittedAt) {
-  //    reset();
-  //  }
-  //}, [isSuccess, reset, submittedAt]);
-
-  // Set the status to inactive if the days remaining is less than or equal to 0
-  useEffect(() => {
-    if (daysRemaining <= 0) {
-      updateStatus({
-        id: listing?.id,
-        owner_uid: listing?.owner_uid,
-        is_published: false,
+  const handleExtend = () => {
+    canPublish &&
+      extendPublication({
+        id: listing.id,
+        owner_uid: user?.id as string,
       });
+
+    if (isSuccessExtend) {
+      onCloseExtend();
     }
-  }, [daysRemaining, listing?.id, listing?.owner_uid, updateStatus]);
+  };
+
+  // Unpublish listing when date is due
+  // May have to be cron/webhk since it involves notifs
+  //useEffect(() => {
+  //  if (daysRemaining <= 0) {
+  //    updateStatus({
+  //      id: listing?.id,
+  //      owner_uid: listing?.owner_uid,
+  //      is_published: false,
+  //    });
+  //  }
+  //}, [daysRemaining, listing?.id, listing?.owner_uid, updateStatus]);
 
   return (
-    <Toggle
-      label={`${daysRemaining} ${pluralize("day", daysRemaining)} remaining`}
-      color="primary"
-      isSelected={
-        submittedAt
-          ? variables?.is_published ?? listing?.is_published
-          : listing?.is_published
-      }
-      onValueChange={handlePublish}
-      disabled={!canPublish}
-      classNames={{ label: cn({ invisible: listing?.is_published === false }) }}
-    />
+    <>
+      <DestructiveModal
+        isOpen={isOpen}
+        onClose={onClose}
+        onOpenChange={onOpenChange}
+        label={
+          listing?.is_published
+            ? `Are you sure you want to unpublish "${
+                listing?.property_name || "[No Title]"
+              }"?`
+            : `Are you sure you want to publish "${
+                listing?.property_name || "[No Title]"
+              }"?`
+        }
+        handleDestruction={handlePublish}
+        loading={isPending}
+      />
+      <DestructiveModal
+        isOpen={isOpenExtend}
+        onClose={onCloseExtend}
+        onOpenChange={onOpenChangeExtend}
+        label={"Are you sure you want to extend this listing?"}
+        handleDestruction={handleExtend}
+        loading={isExtending}
+      />
+      <span className="flex items-center gap-2">
+        <Toggle
+          label={`${daysRemaining} ${pluralize(
+            "day",
+            daysRemaining,
+          )} remaining`}
+          color="primary"
+          isSelected={listing?.is_published}
+          onValueChange={onOpen}
+          disabled={!canPublish}
+          classNames={{
+            label: cn({ invisible: listing?.is_published === false }),
+          }}
+        />
+        <Button
+          color="primary"
+          variant="ghost"
+          className={cn("text-xs underline", {
+            invisible: listing?.is_published === false,
+          })}
+          isLoading={isExtending}
+          onClick={onOpenExtend}
+        >
+          Extend
+        </Button>
+      </span>
+    </>
   );
 };
 

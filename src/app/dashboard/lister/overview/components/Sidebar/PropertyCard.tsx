@@ -1,18 +1,17 @@
-//@ts-nocheck
-import React, { useCallback } from "react";
+import React from "react";
 import { format } from "date-fns";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import calculateDaysSinceCreation from "@/lib/utils/calculateDaysSinceCreation";
 import { pluralize } from "@/lib/utils/stringManipulation";
-import { ListingStepsStore } from "@/store/dashboard/ListingStepsStore";
-import { useRouter } from "next/navigation";
-import { useLocalStorage } from "@uidotdev/usehooks";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { generatePropertyTitle } from "@/lib/enum";
 import { Json } from "../../../../../../../database.types";
 import style from "../../index.module.css";
 import { cn } from "@/lib/utils";
+import dynamic from "next/dynamic";
+
+const ListingModal = dynamic(() => import("../steps/ListingModal"));
 
 type Props = {
   listing: Property & {
@@ -25,27 +24,10 @@ type Props = {
 };
 
 const PropertyCard = (props: Props) => {
-  const router = useRouter();
   const { images } = useAssets();
   const length = calculateDaysSinceCreation(props.listing.created_at);
   //@ts-ignore
   const image = props.listing.banner_image?.image || images.NoImagePlaceholder;
-
-  const [listingEditSteps] =
-    useLocalStorage<{ listing: number; activeSlide: number }[]>(
-      "listing-edit-steps",
-    );
-
-  const { setActiveSlide, setListing } = ListingStepsStore();
-
-  const handleEdit = useCallback(() => {
-    setListing(props.listing);
-    router.replace(`/dashboard/lister/overview/edit/501${props.listing?.id}`); // just redirects, doesn't use the id in its implementation
-    setActiveSlide(
-      listingEditSteps?.find((step) => step.listing === props.listing?.id)
-        ?.activeSlide ?? 1,
-    );
-  }, [props.listing, listingEditSteps, setActiveSlide, router, setListing]);
 
   return (
     <div className={style.card}>
@@ -76,7 +58,7 @@ const PropertyCard = (props: Props) => {
           generatePropertyTitle(props.listing) ||
           " - "}
       </h4>
-      <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 text-shade-300">
+      <div className="flex items-center justify-between gap-x-5 gap-y-3 text-shade-300 max-xxs:flex-wrap">
         <p className="text-base">
           {format(new Date(props.listing?.created_at), "dd MMMM yyyy")}
         </p>
@@ -85,12 +67,16 @@ const PropertyCard = (props: Props) => {
             {length} {pluralize("Day", length)} Ago
           </p>
         ) : (
-          <button
-            onClick={handleEdit}
-            className="text-base font-bold text-primary"
+          <ListingModal
+            variant="edit"
+            listing={props.listing}
+            className="inline w-fit"
+            classNames={{ wrapper: "w-fit" }}
           >
-            Continue
-          </button>
+            <button className="text-base font-bold text-primary">
+              Continue
+            </button>
+          </ListingModal>
         )}
       </div>
     </div>

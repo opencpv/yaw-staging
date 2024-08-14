@@ -71,6 +71,7 @@ const BTFTKModal = (props: Props) => {
     pathname?.includes("edit") ? onOpenEditPage() : onCloseEditPage();
     pathname?.includes("create") ? onOpen() : onClose();
     if (isSuccess) {
+      // success after Finish buton is clicked
       setActiveSlide(BTFTKViews.length - 1);
       localStorage.removeItem("btftk-creation-steps");
       localStorage.removeItem("btftk-edit-steps");
