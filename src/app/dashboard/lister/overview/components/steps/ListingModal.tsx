@@ -25,10 +25,10 @@ type Props = {
   className?: string;
   classNames?: {
     wrapper?: string;
-  }
+  };
   children?: React.ReactNode;
   onClick?: () => void;
-  variant: "edit" | "create";
+  variant?: "edit" | "create";
   listing?: Property;
   disabled?: boolean;
 };
@@ -138,21 +138,24 @@ const ListingModal = (props: Props) => {
       if (props.listing?.is_suspended !== true) {
         setListing(props.listing as Property);
         setActiveSlide(
-          listingEditSteps?.find(
-            (step) => step.listing === props.listing?.id,
-          )?.activeSlide ?? 1,
+          listingEditSteps?.find((step) => step.listing === props.listing?.id)
+            ?.activeSlide ?? 1,
         );
       }
     } else {
       handleCreate();
     }
-  }
+  };
 
   return (
     <div
-      className={cn("w-full", {
-        invisible: pathname?.includes("edit") || pathname?.includes("create"), // hide button to avoid double click
-      }, props?.classNames?.wrapper)}
+      className={cn(
+        "w-full",
+        {
+          invisible: pathname?.includes("edit") || pathname?.includes("create"), // hide button to avoid double click
+        },
+        props?.classNames?.wrapper,
+      )}
     >
       {props?.children ? (
         <Link

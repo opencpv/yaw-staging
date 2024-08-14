@@ -60,19 +60,21 @@ const MatchDetail = async (props: Props) => {
                     <p className="italic text-shade-200">Not specified</p>
                   ) : (
                     <ul className="flex flex-col gap-3">
-                      {match?.property?.features?.map(
-                        (feature) => (
-                          <li className="flex items-center gap-5" key={feature}>
-                            <span
-                              className="text-primary"
-                              style={{ color: "#11605E" }}
-                            >
-                              {getFeatureIcon(feature.toLowerCase(), 22, "#11605E")}
-                            </span>
-                            {feature}
-                          </li>
-                        ),
-                      )}
+                      {match?.property?.features?.map((feature) => (
+                        <li className="flex items-center gap-5" key={feature}>
+                          <span
+                            className="text-primary"
+                            style={{ color: "#11605E" }}
+                          >
+                            {getFeatureIcon(
+                              feature.toLowerCase(),
+                              22,
+                              "#11605E",
+                            )}
+                          </span>
+                          {feature}
+                        </li>
+                      ))}
                     </ul>
                   )}
                 </div>
