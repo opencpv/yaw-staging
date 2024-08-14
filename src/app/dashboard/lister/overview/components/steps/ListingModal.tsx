@@ -19,9 +19,10 @@ import { convertBooleanToYesNo } from "@/lib/utils/stringManipulation";
 import ListingForm, { views as ListingViews } from "./ListingForm";
 import { useAddListing } from "../../services";
 import { getFormValues } from "../../utils";
+import Link from "next/link";
 
 type Props = {
-  buttonClassName?: string;
+  className?: string;
   children?: React.ReactNode;
   /** Use for only Edit */
   onClick?: () => void;
@@ -90,6 +91,7 @@ const ListingModal = (props: Props) => {
     closeCreatePage: onClose,
     setActiveSlide,
     setListing,
+    setPreviousPath,
   } = ListingStepsStore();
 
   const { mutate: addListing, data: listingData, isSuccess } = useAddListing();
@@ -116,21 +118,38 @@ const ListingModal = (props: Props) => {
 
   return (
     <div
-      className={cn({
+      className={cn("w-full", {
         invisible: pathname?.includes("edit") || pathname?.includes("create"), // hide button to avoid double click
       })}
     >
-      <Button
-        href="/dashboard/lister/overview/create"
-        color="primary"
-        className="mt-5 w-fit"
-        onClick={() => {
-          setActiveSlide(0);
-          setListing(null);
-        }}
-      >
-        Add Property
-      </Button>
+      {props?.children ? (
+        <Link
+          href="/dashboard/lister/overview/create"
+          className={cn("block w-full", props.className)}
+          onClick={() => {
+            setActiveSlide(0);
+            setListing(null);
+            setPreviousPath(pathname as string);
+          }}
+        >
+          {props.children}
+        </Link>
+      ) : (
+        <Button
+          href="/dashboard/lister/overview/create"
+          color="primary"
+          className={cn(props.className)}
+          fit
+          onClick={() => {
+            setActiveSlide(0);
+            setListing(null);
+            setPreviousPath(pathname as string);
+          }}
+        >
+          Add Property
+        </Button>
+      )}
+
       <Formik
         initialValues={{
           template_type:
@@ -240,11 +259,11 @@ const ListingModal = (props: Props) => {
             listingCreationSteps?.additional_fees ||
             ListingDefaultValues?.additional_fees,
           agent_fee:
-            listing?.agent_fee as number ||
+            (listing?.agent_fee as number) ||
             listingCreationSteps?.agent_fee ||
             ListingDefaultValues?.agent_fee,
           viewing_fee:
-            listing?.viewing_fee as number ||
+            (listing?.viewing_fee as number) ||
             listingCreationSteps?.viewing_fee ||
             ListingDefaultValues?.viewing_fee,
           currency:

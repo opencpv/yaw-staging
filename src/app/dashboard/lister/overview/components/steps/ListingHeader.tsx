@@ -39,6 +39,7 @@ const ListingHeader = () => {
     closeEditPage,
     setListing,
     listing,
+    previousPath,
   } = ListingStepsStore();
 
   const { mutate: addListing, isPending, isSuccess } = useAddListing();
@@ -48,15 +49,14 @@ const ListingHeader = () => {
   }, [setActiveSlide, activeSlide, listingCreationSteps?.activeSlide]);
 
   useEffect(() => {
+    // when it's successful after clicking save and exit
     if (isSuccess && (pathname?.includes("edit") || pathname?.includes("create"))) {
       resetForm({});
       closeCreatePage();
       closeEditPage();
       setListing(null);
       localStorage.removeItem("listing-creation-steps");
-      pathname?.includes("edit") &&
-        router.replace("/dashboard/lister/overview");
-      pathname?.includes("create") && router.push("/dashboard/lister/overview");
+      router.replace(previousPath || "/dashboard/lister/properties")
     }
     if (pathname?.includes("create")) handleActiveSlide();
   }, [
@@ -72,6 +72,7 @@ const ListingHeader = () => {
     lastSlide,
     setSubmitting,
     handleActiveSlide,
+      previousPath,
   ]);
 
 const handleListingEditStepsStorage = () => {
@@ -93,8 +94,7 @@ const handleListingEditStepsStorage = () => {
     closeEditPage();
     setListing(null);
     localStorage.removeItem("listing-creation-steps");
-    pathname?.includes("edit") && router.replace("/dashboard/lister/overview");
-    pathname?.includes("create") && router.push("/dashboard/lister/overview");
+      router.replace(previousPath || "/dashboard/lister/properties")
   };
 
   const handleSaveAndExit = () => {

@@ -1,20 +1,23 @@
-import { PROPERTY_DETAILS_SELECT_QUERY } from "@/constants";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 export const useFetchAllListerProperties = ({
   listerId,
+  status,
+  archived,
 }: {
   listerId: string;
+  status: string;
+  archived: boolean;
 }) => {
-  let query = supabase.from("property").select(PROPERTY_DETAILS_SELECT_QUERY)
-  .eq("owner_uid", listerId)
-  //.order("created_at", { ascending: false })
-  .order("is_suspended", { ascending: false })
-
+  let query = supabase.rpc("get_lister_properties", {
+    user_id: listerId,
+    status,
+    archived,
+  });
   const result = useQuery({
-    queryKey: ["lister_listings", listerId],
+    queryKey: ["lister_listings", listerId, status, archived],
     queryFn: async () => {
       const { data, error } = await query;
       if (error) {
@@ -30,7 +33,7 @@ export const useFetchAllListerProperties = ({
 
 export const useUpdatePropertyPublicationStatus = () => {
   const queryClient = useQueryClient();
-  const updateCriteria = async (data: {
+  const updatePublication = async (data: {
     id: number;
     owner_uid: string;
     is_published: boolean;
@@ -46,7 +49,7 @@ export const useUpdatePropertyPublicationStatus = () => {
   };
 
   const mutation = useMutation({
-    mutationFn: updateCriteria,
+    mutationFn: updatePublication,
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ["lister_listings"] });
     },
@@ -63,15 +66,19 @@ export const useUpdatePropertyPublicationStatus = () => {
   });
 
   return mutation;
-}
+};
 
-
-export const useDeleteListing = () => {
+export const useHandleArchived = () => {
+  // The property will be archived instead of deleted
   const queryClient = useQueryClient();
-  const deleteListing = async (data: { id: number; owner_uid: string }) => {
+  const handleArchived = async (data: {
+    id: number;
+    owner_uid: string;
+    is_archived: boolean;
+  }) => {
     const { error } = await supabase
       .from("property")
-      .delete()
+      .update({ is_archived: !data.is_archived })
       .match({ id: data.id, owner_uid: data.owner_uid });
 
     if (error) {
@@ -80,10 +87,16 @@ export const useDeleteListing = () => {
   };
 
   const mutation = useMutation({
-    mutationFn: deleteListing,
-    onSuccess: () => {
+    mutationFn: handleArchived,
+    onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ["lister_listings"] });
-      toast.success("Property deleted successfully.");
+    },
+    onSuccess: (data, variables) => {
+      toast.success(
+        variables?.is_archived
+          ? "Property removed from archive successfully."
+          : "Property archived successfully.",
+      );
     },
     onError: () => {
       toast.error("An error occurred. Please try again.");

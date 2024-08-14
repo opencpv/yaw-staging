@@ -15,12 +15,12 @@ const PropertyStatus = ({ listing: listing }: Props) => {
   const { setListing } = ListingStepsStore();
 
   const published =
-    listing?.is_published;
+    listing?.is_admin_approved && listing?.is_published;
   const incomplete =
     listing?.is_complete === false && listing?.is_suspended === false
   const suspended = listing?.is_suspended;
   const unpublished =
-    listing?.is_complete === true && listing?.is_published === false;
+    listing?.is_complete && listing?.is_published === false;
 
   return (
     <>

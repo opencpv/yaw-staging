@@ -53,7 +53,7 @@ const ListerOverviewPage = () => {
             </Button>
           </div>
           <CallOut content="Your peofile is incomplete. Click on the edit profile to complete the process" />
-          <ListingModal />
+          <ListingModal className="mt-5" />
         </section>
 
         <section className="space-y-3">

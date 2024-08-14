@@ -1,6 +1,9 @@
 import React from "react";
 import PropertyStatus from "./PropertyStatus";
-import { TableBodySm, TableRowSm } from "@/app/dashboard/components/shared/table/Table";
+import {
+  TableBodySm,
+  TableRowSm,
+} from "@/app/dashboard/components/shared/table/Table";
 import PublicationStatus from "./PublicationStatus";
 import { generatePropertyTitle, getListingProps } from "@/lib/enum";
 import TbPropertyImageSm from "@/app/dashboard/components/shared/TbPropertyImageSm";
@@ -9,13 +12,9 @@ import { formatPrice } from "@/lib/utils/numberManipulation";
 import Actions from "./Actions";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 
-const PropertyRowMobile = ({
-  listing
-}: {listing: Property }) => {
+const PropertyRowMobile = ({ listing }: { listing: Property }) => {
   const { user } = useAppStore();
   const { images } = useAssets();
-
-  const title = listing?.property_name || generatePropertyTitle(listing);
 
   return (
     <TableRowSm className="pb-0">
@@ -23,7 +22,7 @@ const PropertyRowMobile = ({
         <div className="flex flex-col gap-3 max-xxs:hidden">
           {/* Image */}
           <TbPropertyImageSm
-            title={title}
+            title={listing?.property_name || ""}
             //@ts-ignore
             image={listing?.banner_image?.image || images.NoImagePlaceholder}
             href={getListingProps(listing, user as UserType)?.href}
@@ -36,15 +35,17 @@ const PropertyRowMobile = ({
           <div className="flex flex-1 flex-col  items-start gap-3">
             {/* Title */}
             {listing?.property_name ? (
-              <p className="truncate font-semibold">{title}</p>
+              <p className="truncate font-semibold">{listing?.property_name}</p>
             ) : (
-                <p className="truncate font-semibold italic text-primary">Not Available</p>
-              )}
+              <p className="truncate font-semibold italic text-primary">
+                [No Title]
+              </p>
+            )}
             {/* Status */}
             <PropertyStatus listing={listing} />
           </div>
           {/* Price */}
-          <p className="ml-auto font-bold text-shade-200">
+          <p className="font-bold text-shade-200 min-[400px]:ml-auto min-[400px]:text-end">
             {listing?.monthly_amount ? (
               <small className="font-bold text-shade-200">
                 {formatPrice(
@@ -55,12 +56,12 @@ const PropertyRowMobile = ({
                 / month
               </small>
             ) : (
-                <small><span className="text-shade-300">{listing?.currency} </span><span className="italic text-shade-200">Not Available</span></small>
-              )}
+              <small className="italic text-shade-300">[No Price]</small>
+            )}
           </p>
         </div>
         {/* Actions */}
-        <Actions listing={listing}/>
+        <Actions listing={listing} />
       </TableBodySm>
     </TableRowSm>
   );

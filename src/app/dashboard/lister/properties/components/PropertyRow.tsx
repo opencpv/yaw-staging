@@ -19,23 +19,23 @@ type Props = {
 const PropertyRow = ({ listing }: Props) => {
   const { user } = useAppStore();
   const { images } = useAssets();
-  const title = listing?.property_name || generatePropertyTitle(listing);
 
   return (
     <TableBodyRow className="grid-cols-6">
       {/* Property */}
-      <TableBody className="col-span-2 flex w-full gap-[0.62rem] truncate p-2.5 text-start">
+      <TableBody className="col-span-2 items-start flex w-full gap-[0.62rem] truncate p-2.5 text-start">
         <TbPropertyImage
-          title={title}
+          title={listing?.property_name || ""}
           //@ts-ignore
           image={listing?.banner_image?.image || images.NoImagePlaceholder}
           href={getListingProps(listing, user as UserType)?.href}
         />
+        {/* Title */}
         <div className="flex flex-col gap-2">
           {listing?.property_name ? (
-            <p className="text-base font-semibold">{title}</p>
+            <p className="text-base font-semibold">{listing?.property_name}</p>
           ) : (
-            <p className="text-base italic text-primary">Not Available</p>
+            <p className="text-base italic text-primary">[No Title]</p>
           )}
           {listing?.monthly_amount ? (
             <small className="font-bold text-shade-200">
@@ -47,7 +47,7 @@ const PropertyRow = ({ listing }: Props) => {
               / month
             </small>
           ) : (
-            <small className="italic text-shade-200">Not Available</small>
+            <small className="italic text-shade-200">[No Price]</small>
           )}
         </div>
       </TableBody>
@@ -56,7 +56,7 @@ const PropertyRow = ({ listing }: Props) => {
         {listing?.is_complete ? (
           formatDateOnly(listing?.created_at)
         ) : (
-          <p className="text-base italic text-primary">Not Available</p>
+          <p className="text-base italic text-primary">[No Date]</p>
         )}
       </TableBody>
       {/* Published status */}

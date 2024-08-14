@@ -10,6 +10,7 @@ type ListingStepsStoreType = {
   isOpenEditPage: boolean;
   shouldShowMotivationMessage: boolean;
   selectedSummaryPage: string;
+  previousPath: string | null;
   setProgressValue: (val: number) => void;
   setActiveSlide: (val: number) => void;
   setFirstSlide: (val: boolean) => void;
@@ -22,6 +23,7 @@ type ListingStepsStoreType = {
   setSelectedSummaryPage: (page: string) => void;
   listing: Property | null;
   setListing: (listing: Property | null) => void;
+  setPreviousPath: (path: string) => void;
 };
 
 export const ListingDefaultValues = {
@@ -72,6 +74,7 @@ export const ListingStepsStore = create<ListingStepsStoreType>((set) => ({
   shouldShowMotivationMessage: true,
   selectedSummaryPage: "",
   listing: null,
+  previousPath: null,
   setProgressValue: (val) => set((state) => ({ ...state, progressValue: val })),
   setActiveSlide: (val) => set((state) => ({ ...state, activeSlide: val })),
   setFirstSlide: (val) => set((state) => ({ ...state, firstSlide: val })),
@@ -91,4 +94,5 @@ export const ListingStepsStore = create<ListingStepsStoreType>((set) => ({
       ...state,
       selectedSummaryPage: page,
     })),
+  setPreviousPath: (path) => set((state) => ({ ...state, previousPath: path })),
 }));

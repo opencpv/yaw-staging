@@ -90,9 +90,10 @@ export const TableRowSm = (props: TableHeaderRowProps) => {
       role="row"
       aria-label="table row"
       className={cn(
-        `flex cursor-default flex-col gap-4 overflow-hidden rounded-lg px-5 py-5 hover:bg-shade`,
+        `fade-in flex cursor-default flex-col gap-4 overflow-hidden rounded-lg px-5 py-5 hover:bg-shade`,
         props.className,
       )}
+      style={{animationDuration: "0.5s"}}
     >
       {props.children}
     </div>
@@ -156,10 +157,10 @@ export const TableBodyRow = (props: TableBodyRowProps) => {
       role="row"
       aria-label="table body row"
       className={cn(
-        "grid items-center px-1.5 py-2 text-neutral-700 first:pt-0 hover:bg-shade xl:px-4",
+        "fade-in grid items-center px-1.5 py-2 text-neutral-700 first:pt-0 hover:bg-shade xl:px-4",
         props.className,
       )}
-      style={{ gap: props.gap ?? "4rem" }}
+      style={{ gap: props.gap ?? "4rem", animationDuration: "0.5s" }}
     >
       {props.children}
     </div>

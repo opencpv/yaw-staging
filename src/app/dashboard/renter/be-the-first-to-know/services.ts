@@ -26,7 +26,7 @@ export const useFetchSearchCriteria = ({
     user_id: userId,
   });
 
-  const result = useReactQuery<SearchCriteria[]>({
+  const result = useReactQuery({
     queryKey: ["search_criteria", userId, status],
     queryFn: async () => {
       const { data, error } = await query;

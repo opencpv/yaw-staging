@@ -8,6 +8,7 @@ import Link from "next/link";
 interface Props extends React.HTMLAttributes<HTMLButtonElement> {
   variant?: "default" | "outline" | "ghost";
   padding?: "sm" | "default";
+  fit?: boolean;
   color?: "primary" | "accent" | "white" | "gradient" | "black";
   borderColor?: string;
   isIconOnly?: boolean;
@@ -45,6 +46,7 @@ const Button: React.FC<Props> = ({
   type,
   target,
   tabIndex,
+  fit,
   ...props
 }: Props) => {
   if (href)
@@ -99,6 +101,7 @@ const Button: React.FC<Props> = ({
             " hover:scale-[1.02]":
               greenHover === false || greenHover === undefined,
             "h-fit w-fit p-0": isIconOnly,
+            "w-fit px-5": fit,
           },
           className,
         )}
@@ -155,6 +158,7 @@ const Button: React.FC<Props> = ({
             " hover:scale-[1.02]":
               greenHover === false || greenHover === undefined,
             "h-fit w-fit p-0": isIconOnly,
+            "w-fit px-5": fit,
           },
           className,
         )}

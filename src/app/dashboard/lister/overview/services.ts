@@ -33,7 +33,7 @@ export const useFetchListerListings = ({ listerId }: { listerId: string }) => {
   let query = supabase
     .from("property")
     .select(PROPERTY_DETAILS_SELECT_QUERY)
-    .eq("owner_uid", listerId)
+    .match({ owner_uid: listerId, is_archived: false, is_suspended: false })
     .order("created_at", { ascending: false })
     .limit(3);
 

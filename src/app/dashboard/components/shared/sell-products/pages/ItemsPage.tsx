@@ -189,7 +189,7 @@ const ItemsPage = () => {
             ))}
           </TableSm>
         </div>
-        <ArchivedButton />
+        <ArchivedButton showingArchived={false} />
       </div>
     </main>
   );
