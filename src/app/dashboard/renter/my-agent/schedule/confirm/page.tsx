@@ -17,7 +17,10 @@ const page = (props: Props) => {
   const cookieRequestId = scheduleInfo?.split(",")[3];
   const matchId = Number(props.searchParams.m?.slice(3));
   const actionType = props.searchParams.t;
-  const requestId = props.searchParams.r;
+  const requestId = props.searchParams.r?.slice(3);
+
+  console.log(scheduleInfo)
+  console.log(matchId, actionType, requestId)
 
   if (
     cookieMatchId !== String(matchId) ||

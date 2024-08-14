@@ -90,7 +90,7 @@ const MatchDetail = async (props: Props) => {
           <CancelRequestBtn
             previousPath={previousPath || "/dashboard/renter/my-agent/agent"}
           />
-          {match?.meeting_id !== null && (
+          {match?.meeting_id === null && (
             <Button
               href={`/dashboard/renter/my-agent/schedule?m=814${match?.id}&t=${props.actionType}&fn=${match?.agent_request?.first_name}&ln=${match?.agent_request?.last_name}&e=${match?.agent_request?.email}&p=${match?.agent_request?.phone}`}
               color="primary"
