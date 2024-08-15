@@ -36,7 +36,7 @@ export default function FeaturesAndAmenities() {
           </h2>
           <CallOut content="You may select more than one response" />
         </div>
-        <div className={style.amenityGrid} style={{gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))"}}>
+        <div className={style.amenityGrid}>
           {features.map((r, index: number) => (
             <Amenity
               key={r?.name}

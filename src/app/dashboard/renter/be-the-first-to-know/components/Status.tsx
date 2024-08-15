@@ -1,6 +1,6 @@
 import Toggle from "@/components/__shared/ui/Toggle";
 import { useUpdateCriteriaStatus } from "../services";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { getDaysRemaining, pluralize } from "@/lib/utils/stringManipulation";
 import { BE_THE_FIRST_TO_KNOW_LAPSE_DAYS } from "@/constants";
@@ -16,11 +16,12 @@ const CriteriaStatus = ({ criterion }: Props) => {
   const { mutate: updateStatus, variables } = useUpdateCriteriaStatus();
 
   const handleSelectionChange = async (value: boolean) => {
-    updateStatus({
-      id: criterion.id,
-      renter_id: criterion.renter_id,
-      is_active: value,
-    });
+    criterion?.matched_properties !== null &&
+      updateStatus({
+        id: criterion.id,
+        renter_id: criterion.renter_id,
+        is_active: value,
+      });
   };
 
   // Set the status to inactive if the days remaining is less than or equal to 0

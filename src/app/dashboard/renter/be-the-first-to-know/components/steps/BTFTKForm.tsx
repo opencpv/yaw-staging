@@ -66,7 +66,7 @@ export default function BTFTKForm() {
       {/* Main area */}
       <section
         className={cn(
-          "mx-auto mb-10 mt-5 grid w-full max-w-screen-sm grid-cols-1 gap-10 lg:mt-10 lg:max-w-screen-3xl lg:grid-cols-5 lg:gap-28",
+          "mx-auto mb-10 pb-20 mt-5 grid w-full max-w-screen-sm grid-cols-1 gap-10 lg:mt-10 lg:max-w-screen-3xl lg:grid-cols-5 lg:gap-28",
           {
             "block max-w-full px-0 lg:max-hd:max-w-screen-lg hd:max-w-screen-xl":
               sideImageCriteria,

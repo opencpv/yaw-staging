@@ -23,10 +23,12 @@ const CriterionMatches = ({ params }: Props) => {
   const id = secondParam.split("-")[1];
   const criterionTitle = capitalizeName(firstParams.replaceAll("-", " "));
 
-  const { data: matchedListings, isLoading } = useFetchCriteriaMatches({
+  const { data: matchedListings, isLoading, error } = useFetchCriteriaMatches({
     userId: user?.id as string,
     criterionId: Number(id),
   });
+  
+  console.log(matchedListings, error)
 
   return (
     <div className="space-y-20">

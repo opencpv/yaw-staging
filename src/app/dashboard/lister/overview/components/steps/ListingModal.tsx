@@ -163,7 +163,7 @@ const ListingModal = (props: Props) => {
             props.disabled
               ? ""
               : props.variant === "edit"
-                ? `/dashboard/lister/overview/edit/012${props.listing?.id}` // for navifation purpose, it doesn't use the id in its function
+                ? `/dashboard/lister/overview/edit/012${props.listing?.id}` // for navigation purpose, it doesn't use the id in its function
                 : "/dashboard/lister/overview/create"
           }
           className={cn("block w-full", props.className)}

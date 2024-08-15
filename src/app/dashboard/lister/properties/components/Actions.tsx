@@ -16,7 +16,6 @@ import {
   useHandleArchived,
   useUpdatePropertyPublicationStatus,
 } from "../services";
-import { useLocalStorage } from "@uidotdev/usehooks";
 import { useRouter } from "next/navigation";
 import { getListingProps } from "@/lib/enum";
 import { PiArrowLineUp } from "react-icons/pi";

@@ -1,5 +1,5 @@
 import CustomTextAreaInput from "@/components/__shared/ui/form/CustomTextAreaInput";
-import styles from "../../../index.module.css";
+import style from "../../../index.module.css";
 import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
@@ -9,6 +9,7 @@ import { useField } from "formik";
 import { BTFTKDefaultValues } from "@/store/dashboard/BTFTKStepsStore";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { E164Number } from "libphonenumber-js/core";
+import { cn } from "@/lib/utils";
 
 const SpecialKeyword = () => {
   const { handlePhone, handleCountryChange, phone } = usePhoneInputDisclosure();
@@ -20,9 +21,9 @@ const SpecialKeyword = () => {
   >("btftk-creation-steps");
 
   return (
-    <div className="space-y-10">
+    <div className={style.fieldsSectionWrapper}>
       <div className="space-y-1">
-        <h2 className={`${styles.titleNoMargin}`}>Describe your home</h2>
+        <h2 className={`${style.titleNoMargin}`}>Describe your home</h2>
         <p className="text-shade-300">
           What words would you use to describe your search? Separate each word
           with a comma.
@@ -41,7 +42,7 @@ const SpecialKeyword = () => {
           }
         />
       </div>
-      <div className="max-w-sm space-y-4">
+      <div className={cn("max-w-sm", style.subHeadingFieldsContainer)}>
         <label className="text-shade-300">
           How would you like to be notified?{" "}
           <span className="text-sm text-shade-300">*</span>

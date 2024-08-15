@@ -1,9 +1,8 @@
 import React from "react";
 import ManageSearchCriteria from "../components/pages/ManageSearchCriteria";
 
-type Props = {};
 
-const page = (props: Props) => {
+const page = () => {
   return <ManageSearchCriteria />;
 };
 

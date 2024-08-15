@@ -73,14 +73,18 @@ const ManageSearchCriteria = () => {
         </TableHeaderRow>
 
         <TableBodyRowGroup>
-          {isLoading && <TableSkeleton rows={3} columns={6} />}
+          {isLoading && <TableSkeleton rows={1} columns={6} />}
           {paginatedCriteria?.map((criterion) => (
             <TableBodyRow key={criterion.id} className="grid-cols-8">
               {/* Property */}
               <TableBody className="col-span-2 flex gap-[0.62rem] truncate p-2.5">
                 <div className="flex flex-col justify-between gap-[0.62rem] truncate">
-                  <h4 className="truncate font-semibold">
-                    {criterion.title || "-"}
+                  <h4
+                    className={cn("truncate font-semibold", {
+                      "italic text-primary": !criterion.title,
+                    })}
+                  >
+                    {criterion.title || "[No Title]"}
                   </h4>
                 </div>
               </TableBody>
@@ -94,7 +98,7 @@ const ManageSearchCriteria = () => {
                     {criterion.location[0]}
                   </span>
                 ) : (
-                  "-"
+                  <span className="italic text-primary">[No Location]</span>
                 )}
               </TableBody>
               {/* Status */}
@@ -125,7 +129,13 @@ const ManageSearchCriteria = () => {
         {paginatedCriteria?.map((criterion) => (
           <TableRowSm key={criterion.id}>
             <TableBodySm className="flex items-center justify-between gap-5">
-              <h4 className="truncate">{criterion.title || "-"}</h4>
+              <h4
+                className={cn("truncate", {
+                  "italic text-primary": !criterion.title,
+                })}
+              >
+                {criterion.title || "[No Title]"}
+              </h4>
               <ResultsState criterion={criterion} />
             </TableBodySm>
             <TableBodySm className="flex items-center justify-between gap-5">

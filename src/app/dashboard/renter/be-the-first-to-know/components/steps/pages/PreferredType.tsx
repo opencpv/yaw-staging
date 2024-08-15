@@ -1,9 +1,8 @@
 import Amenity from "@/components/__shared/ui/listing-form/components/Amenity";
-import styles from "../../../index.module.css";
+import style from "../../../index.module.css";
 import CallOut from "@/components/__shared/ui/CallOut";
 import { useField } from "formik";
 import { properties } from "@/app/dashboard/components/shared/content";
-import { createUUID } from "@/lib/utils/stringManipulation";
 import { BTFTKDefaultValues } from "@/store/dashboard/BTFTKStepsStore";
 import { useLocalStorage } from "@uidotdev/usehooks";
 
@@ -32,24 +31,23 @@ export default function PreferredType() {
 
   return (
     <section>
-      <div className="mb-10 flex w-full flex-col gap-8">
-        <h2 className={`${styles.titleNoMargin}`}>
-          Preferred Type <span className="text-sm text-shade-300">*</span>
+      <div className={style.titleCallOutContainer}>
+        <h2 className={`${style.titleNoMargin}`}>
+          Preferred Type <span className={style.asterisk}>*</span>
         </h2>
         <CallOut content="You may select more than one response" />
       </div>
-      <div className="space-y-4">
+      <div className={style.subHeadingFieldsContainer}>
         <h3 className="font-normal">Types of Place</h3>
-        <div className="grid w-full grid-cols-4 gap-5 lg:grid-cols-3">
+          <div className={style.amenityGrid}>
           {properties.map((r: any, index: number) => (
             <Amenity
-              key={createUUID()}
+              key={index}
               n={index}
               name={r?.name}
               icon={r?.icon}
               selected={field.value.includes(r?.name)}
               onClick={() => handleAmenityClick(r)}
-              className="col-span-2 h-full lg:col-span-1"
             />
           ))}
         </div>

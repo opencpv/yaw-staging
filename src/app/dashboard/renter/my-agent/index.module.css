@@ -3,7 +3,7 @@
 }
 
 .amenityGrid {
-  @apply grid gap-5 mx-auto w-full justify-center;
+  @apply grid gap-5 mx-auto w-full justify-center xxs:grid-cols-2 ssm:grid-cols-3 2xl:grid-cols-3;
 }
 
 .beMyAgentHeader {

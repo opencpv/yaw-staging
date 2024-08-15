@@ -38,7 +38,7 @@ export default function PreferredType() {
         </div>
         <div className={style.subHeadingFieldsContainer}>
           <h3 className="font-normal">Types of Place</h3>
-          <div className={style.amenityGrid} style={{gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))"}}>
+          <div className={style.amenityGrid}>
             {properties.map((r, index: number) => (
               <Amenity
                 key={r?.name}

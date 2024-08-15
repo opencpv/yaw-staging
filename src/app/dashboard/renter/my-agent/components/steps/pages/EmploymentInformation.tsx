@@ -19,14 +19,14 @@ const EmploymentInformation = React.forwardRef<HTMLInputElement, Props>(
 
     return (
       <Root>
-        <div className="mb-10 flex w-full flex-col gap-8">
+        <div className={style.titleCallOutContainer}>
           <h2 className={`${style.titleNoMargin}`}>
             Employment Information{" "}
-            <span className="text-sm text-shade-300">*</span>
+            <span className={style.asterisk}>*</span>
           </h2>
           <CallOut content="You may select more than one response" />
         </div>
-          <div className={style.wrappingFieldsGrid}>
+        <div className={style.wrappingFieldsGrid}>
           <CustomSelect
             name="employment_status"
             options={MostRecentEmployment}

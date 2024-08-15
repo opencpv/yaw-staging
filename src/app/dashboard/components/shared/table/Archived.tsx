@@ -13,14 +13,18 @@ const ArchivedButton = (props: Props) => {
   return (
     <Button
       className={cn(
-        "ml-auto justify-end bg-primary/10 text-primary/80 max-lg:mt-20",
+        "ml-auto flex justify-end bg-primary/10 text-primary/80 max-lg:mt-20",
         {
           "bg-primary text-white": props.showingArchived,
         },
         props.className,
       )}
       fit
-      title={props.showingArchived ? "Click to show all active data" : "Click to view all archived data"}
+      title={
+        props.showingArchived
+          ? "Click to show all active data"
+          : "Click to view all archived data"
+      }
       onClick={props.onClick}
     >
       {props.showingArchived ? "Show Active" : "Archived"}{" "}

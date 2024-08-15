@@ -1,7 +1,8 @@
 import { BTFTKDefaultValues } from "@/store/dashboard/BTFTKStepsStore";
-import styles from "../../../index.module.css";
+import style from "../../../index.module.css";
 import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
 import { useLocalStorage } from "@uidotdev/usehooks";
+import { cn } from "@/lib/utils";
 
 export default function PropertyRequirements() {
   const [BTFTKCreationSteps, setBTFTKCreationSteps] = useLocalStorage<
@@ -17,12 +18,12 @@ export default function PropertyRequirements() {
 
   return (
     <>
-      <h2 className={`${styles.title}`}>Property Requirements</h2>
+      <h2 className={`${style.title}`}>Property Requirements</h2>
       <div className="flex w-full flex-col gap-8">
         {/* Price range */}
-        <div className="flex flex-col gap-4">
+        <div className={style.subHeadingFieldsContainer}>
           <h3>Price Range</h3>
-          <div className="grid grid-cols-2 gap-5">
+          <div className={cn("grid grid-cols-2", style.fieldsInlineGap)}>
             <CustomSelect
               name="priceRangeMinimum"
               label="Minimum"
@@ -62,9 +63,9 @@ export default function PropertyRequirements() {
           </div>
         </div>
         {/* Bed */}
-        <div className="flex flex-col gap-4">
+        <div className={style.subHeadingFieldsContainer}>
           <h3>Bed</h3>
-          <div className="grid grid-cols-2 gap-5">
+          <div className={cn("grid grid-cols-2", style.fieldsInlineGap)}>
             <CustomSelect
               name="bedMinimum"
               label="Minimum"
@@ -102,9 +103,9 @@ export default function PropertyRequirements() {
           </div>
         </div>
         {/* Bathroom */}
-        <div className="flex flex-col gap-4">
+        <div className={style.subHeadingFieldsContainer}>
           <h3>Bathroom</h3>
-          <div className="grid grid-cols-2 gap-5">
+          <div className={cn("grid grid-cols-2", style.fieldsInlineGap)}>
             <CustomSelect
               name="bathroomMinimum"
               label="Minimum"

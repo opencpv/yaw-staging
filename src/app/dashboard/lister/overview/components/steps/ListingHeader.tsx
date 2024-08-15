@@ -72,18 +72,8 @@ const ListingHeader = () => {
     if (pathname?.includes("create")) handleActiveSlide();
   }, [
     isSuccess,
-    closeCreatePage,
-    closeEditPage,
     pathname,
-    setActiveSlide,
-    setListing,
-    router,
-    resetForm,
-    listing?.id,
-    lastSlide,
-    setSubmitting,
     handleActiveSlide,
-    previousPath,
     handleClearData
   ]);
 

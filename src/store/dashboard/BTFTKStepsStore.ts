@@ -8,6 +8,7 @@ type BTFTKStepsStore = {
   isOpen: boolean;
   isOpenEditPage: boolean;
   shouldShowMotivationMessage: boolean;
+  previousPath: string | null;
   setProgressValue: (val: number) => void;
   setActiveSlide: (val: number) => void;
   setFirstSlide: (val: boolean) => void;
@@ -19,6 +20,7 @@ type BTFTKStepsStore = {
   setShouldShowMotivationMessage: (val: boolean) => void;
   criterion: SearchCriteria | null;
   setCriterion: (criterion: SearchCriteria | null) => void;
+  setPreviousPath: (path: string) => void;
 };
 
 export const BTFTKDefaultValues = {
@@ -47,6 +49,7 @@ export const BTFTKStepsStore = create<BTFTKStepsStore>((set) => ({
   isOpenEditPage: false,
   shouldShowMotivationMessage: true,
   criterion: null,
+  previousPath: null,
   setProgressValue: (val) => set((state) => ({ ...state, progressValue: val })),
   setActiveSlide: (val) => set((state) => ({ ...state, activeSlide: val })),
   setFirstSlide: (val) => set((state) => ({ ...state, firstSlide: val })),
@@ -61,4 +64,5 @@ export const BTFTKStepsStore = create<BTFTKStepsStore>((set) => ({
       ...state,
       shouldShowMotivationMessage: val,
     })),
+  setPreviousPath: (path) => set((state) => ({ ...state, previousPath: path })),
 }));

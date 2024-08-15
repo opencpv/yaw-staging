@@ -1,5 +1,5 @@
 import { useLocalStorage } from "@uidotdev/usehooks";
-import styles from "../../../index.module.css";
+import style from "../../../index.module.css";
 import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
 import { BTFTKDefaultValues } from "@/store/dashboard/BTFTKStepsStore";
 
@@ -10,8 +10,8 @@ const SearchTitle = () => {
 
   return (
     <div className="relative lg:top-32">
-      <h2 className={`${styles.title}`}>
-        Search Title <span className="text-sm text-shade-300">*</span>
+      <h2 className={`${style.title}`}>
+        Search Title <span className={style.asterisk}>*</span>
       </h2>
       <div className="max-w-sm">
         <TextFieldInput

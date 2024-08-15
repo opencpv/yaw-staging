@@ -39,6 +39,7 @@ const FirstToKnowHeader = () => {
     onCloseEditPage,
     setCriterion,
     criterion,
+    previousPath,
   } = BTFTKStepsStore();
 
   // Save to DB
@@ -53,36 +54,27 @@ const FirstToKnowHeader = () => {
     setActiveSlide(BTFTKCreationSteps?.activeSlide ?? activeSlide);
   }, [setActiveSlide, activeSlide, BTFTKCreationSteps?.activeSlide]);
 
-  
+  const handleClearData = useCallback(() => {
+    resetForm({});
+    onClose();
+    onCloseEditPage();
+    setCriterion(null);
+    localStorage.removeItem("btftk-creation-steps");
+    localStorage.removeItem("btftk-edit-steps");
+    router.replace(
+      previousPath || "/dashboard/renter/be-the-first-to-know/manage-criteria",
+    );
+  }, [resetForm, onClose, onCloseEditPage, setCriterion, previousPath, router]);
 
   useEffect(() => {
-    if (isSuccess && (pathname?.includes("edit") || pathname?.includes("create"))) {
-      resetForm({});
-      onClose();
-      onCloseEditPage();
-      setCriterion(null);
-      localStorage.removeItem("btftk-creation-steps");
-      localStorage.removeItem("btftk-edit-steps");
-      pathname?.includes("edit") &&
-        router.replace(
-          "/dashboard/renter/be-the-first-to-know/manage-criteria",
-        );
-      pathname?.includes("create") && router.back();
+    if (
+      isSuccess &&
+      (pathname?.includes("edit") || pathname?.includes("create"))
+    ) {
+      handleClearData();
     }
     if (pathname?.includes("create")) handleActiveSlide();
-  }, [
-    isSuccess,
-    onClose,
-    onCloseEditPage,
-    pathname,
-    setActiveSlide,
-    setCriterion,
-    router,
-    resetForm,
-    criterion?.id,
-    handleActiveSlide,
-    //handleActiveSlideEdit,
-  ]);
+  }, [isSuccess, pathname, handleActiveSlide, handleClearData]);
 
   const handleBTFTKEditStepsStorage = () => {
     setBTFTKEditSteps((prevSteps) => {
@@ -95,17 +87,6 @@ const FirstToKnowHeader = () => {
       ];
     });
     setBTFTKCreationSteps({ activeSlide: 0 });
-  };
-
-  const handleCancel = () => {
-    resetForm({});
-    onClose();
-    onCloseEditPage();
-    setCriterion(null);
-    localStorage.removeItem("btftk-creation-steps");
-    pathname?.includes("edit") &&
-      router.replace("/dashboard/renter/be-the-first-to-know/manage-criteria");
-    pathname?.includes("create") && router.back();
   };
 
   const handleSaveAndExit = () => {
@@ -148,7 +129,7 @@ const FirstToKnowHeader = () => {
             greenHover
             radius="full"
             className="rounded-full border px-3 py-3 ssm:hidden"
-            onClick={handleCancel}
+            onClick={handleClearData}
           >
             <LiaTimesSolid />
           </Button>
@@ -157,7 +138,7 @@ const FirstToKnowHeader = () => {
             greenHover
             radius="full"
             className="border px-5 max-ssm:hidden"
-            onClick={handleCancel}
+            onClick={handleClearData}
           >
             {lastSlide ? "Exit" : "Cancel"}
           </Button>

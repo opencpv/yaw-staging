@@ -20,12 +20,16 @@ import { usePathname } from "next/navigation";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import { views as BTFTKViews } from "./BTFTKForm";
+import Link from "next/link";
 
 type Props = {
   buttonClassName?: string;
   content?: React.ReactNode | string | number;
   float?: boolean;
   disabled?: boolean;
+  variant?: "create" | "edit";
+  children?: React.ReactNode;
+  criterion?: SearchCriteria
 };
 
 const BTFTKValidationSchema = Yup.object({
@@ -52,6 +56,11 @@ const BTFTKModal = (props: Props) => {
     typeof BTFTKDefaultValues | null
   >("btftk-creation-steps");
 
+  
+  const [BTFTKEditSteps] = useLocalStorage<
+    { criterion: number; activeSlide: number }[]
+  >("btftk-edit-steps", []);
+
   const {
     lastSlide,
     isOpen,
@@ -63,6 +72,7 @@ const BTFTKModal = (props: Props) => {
     onCloseEditPage,
     setCriterion,
     onClose,
+    setPreviousPath
   } = BTFTKStepsStore();
 
   const { mutate: addSearchCriteria, isSuccess } = useAddSearchCriteria();
@@ -86,6 +96,19 @@ const BTFTKModal = (props: Props) => {
     isSuccess,
   ]);
 
+  const handleEdit = () => {
+    setPreviousPath(pathname as string);
+
+    if (props?.criterion && (props.criterion.is_active === false || props.criterion.matched_properties === null)
+    ){
+      setCriterion(props.criterion);
+      setActiveSlide(
+        BTFTKEditSteps?.find((step) => step.criterion === props.criterion?.id)
+          ?.activeSlide ?? 1,
+      );
+    }
+  };
+
   return (
     <div
       className={cn({
@@ -93,75 +116,85 @@ const BTFTKModal = (props: Props) => {
         invisible: pathname?.includes("edit") || pathname?.includes("create"),
       })}
     >
-      <Button
-        href="/dashboard/renter/be-the-first-to-know/create"
-        color="primary"
-        className={cn("w-fit px-5 ", {
-          "max-xs:rounded-xl max-xs:shadow-md": props.float,
-        })}
-        onClick={() => {
-          setActiveSlide(0); // set to 0 when creating
-          setCriterion(null); // set to null when creating
-        }}
-      >
-        <FaPlus /> Create a search
-      </Button>
+      {props.variant === "edit" ? (
+        <Link href={props.disabled ? "" : `/dashboard/renter/be-the-first-to-know/manage-criteria/edit/LS6pI-${props.criterion?.id}-LWIKyOgnw==`}
+          scroll={false}
+          onClick={handleEdit}
+        >
+          {props.children}
+        </Link>
+      ) : (
+          <Button
+            href="/dashboard/renter/be-the-first-to-know/create"
+            color="primary"
+            className={cn("w-fit px-5 ", {
+              "max-xs:rounded-xl max-xs:shadow-md": props.float,
+            })}
+            onClick={() => {
+              setActiveSlide(0); // set to 0 when creating
+              setCriterion(null); // set to null when creating
+              setPreviousPath(pathname as string);
+            }}
+          >
+            <FaPlus /> Create a search
+          </Button>
+        )}
       <Formik
         initialValues={{
           searchTitle:
-            criterion?.title ||
+          criterion?.title ||
             BTFTKCreationSteps?.searchTitle ||
             BTFTKDefaultValues.searchTitle,
           location:
-            criterion?.location ||
+          criterion?.location ||
             BTFTKCreationSteps?.location ||
             BTFTKDefaultValues.location,
           bedMaximum:
-            criterion?.max_beds?.toString() ||
+          criterion?.max_beds?.toString() ||
             BTFTKCreationSteps?.bedMaximum ||
             BTFTKDefaultValues.bedMaximum,
           bedMinimum:
-            criterion?.min_beds?.toString() ||
+          criterion?.min_beds?.toString() ||
             BTFTKCreationSteps?.bedMinimum ||
             BTFTKDefaultValues.bedMinimum,
           priceRangeMaximum:
-            criterion?.max_price?.toString() ||
+          criterion?.max_price?.toString() ||
             BTFTKCreationSteps?.priceRangeMaximum ||
             BTFTKDefaultValues.priceRangeMaximum,
           priceRangeMinimum:
-            criterion?.min_price?.toString() ||
+          criterion?.min_price?.toString() ||
             BTFTKCreationSteps?.priceRangeMinimum ||
             BTFTKDefaultValues.priceRangeMinimum,
           bathroomMaximum:
-            criterion?.max_bathrooms?.toString() ||
+          criterion?.max_bathrooms?.toString() ||
             BTFTKCreationSteps?.bathroomMaximum ||
             BTFTKDefaultValues.bathroomMaximum,
           bathroomMinimum:
-            criterion?.min_bathrooms?.toString() ||
+          criterion?.min_bathrooms?.toString() ||
             BTFTKCreationSteps?.bathroomMinimum ||
             BTFTKDefaultValues.bathroomMinimum,
           preferredType:
-            criterion?.property_type ||
+          criterion?.property_type ||
             BTFTKCreationSteps?.preferredType ||
             BTFTKDefaultValues.preferredType,
           requiredFeatures:
-            criterion?.features ||
+          criterion?.features ||
             BTFTKCreationSteps?.requiredFeatures ||
             BTFTKDefaultValues.requiredFeatures,
           specialKeywords:
-            criterion?.keywords ||
+          criterion?.keywords ||
             BTFTKCreationSteps?.specialKeywords ||
             BTFTKDefaultValues.specialKeywords,
           preferredMethodOfContact:
-            criterion?.preferred_contact_method ||
+          criterion?.preferred_contact_method ||
             BTFTKCreationSteps?.preferredMethodOfContact ||
             BTFTKDefaultValues.preferredMethodOfContact,
           email:
-            criterion?.email ||
+          criterion?.email ||
             BTFTKCreationSteps?.email ||
             BTFTKDefaultValues.email,
           whatsApp:
-            criterion?.phone ||
+          criterion?.phone ||
             BTFTKCreationSteps?.whatsApp ||
             BTFTKDefaultValues.whatsApp,
         }}
