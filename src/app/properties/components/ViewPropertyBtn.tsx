@@ -26,6 +26,7 @@ const ViewPropertyBtn = ({ href, className, disabled }: Props) => {
         onOpenChange={onOpenChange}
         onClose={onClose}
         isOpen={isOpen}
+        itemData={{} as any}
       />
       {pathname === "/" ? (
         <Link
