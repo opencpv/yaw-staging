@@ -3,7 +3,7 @@
 }
 
 .feeTextSize {
-  @apply text-sm;
+  @apply text-base;
 }
 
 .detailHeading {
@@ -27,5 +27,5 @@
 }
 
 .additionalInfoWrapper {
-  @apply space-y-4 py-5;
+  @apply space-y-4 pt-5 pb-8;
 }

@@ -49,37 +49,44 @@ const PropertyDetailsPage = async ({ params }: Props) => {
 
   const { data: listing } = await fetchPropertyDetails();
 
-  await updateRecentViews({
-    propertyId: Number(params.id),
-    userId: data?.session?.user?.id as string,
-  });
+  if (listing) {
+    await updateRecentViews({
+      propertyId: Number(params.id),
+      userId: data?.session?.user?.id as string,
+    });
+  }
 
   return (
-    <main className="wrapper flex flex-col gap-10 text-shade-300 max-md:pb-32">
-      <section className="flex w-full flex-col gap-x-10 gap-y-5 md:flex-row">
-        <h2 className="text-primary">
+    <main className="wrapper flex flex-col gap-10 text-shade-300 max-md:pb-32 sm:pt-20">
+      <section className="flex w-full flex-wrap gap-x-10 gap-y-5">
+        <h1 className="font-semibold text-primary sm:text-3xl">
           {generatePropertyTitle(listing as Partial<Property>)}
-        </h2>
-        <div className="flex flex-1 items-center justify-between gap-5">
+        </h1>
+        <div className="flex flex-1 items-center justify-between gap-5 max-sm:flex-wrap">
           {(listing?.profiles?.is_certified || listing?.is_verified) && (
-            <div className="flex items-center gap-2">
-              <BsShieldFillCheck className="text-primary/80" size={20} />{" "}
-              Verified Listing
+            <div className="flex items-center gap-5 font-semibold">
+              <BsShieldFillCheck
+                className="shrink-0 text-green-700"
+                size={20}
+              />{" "}
+              <span className="sm:whitespace-nowrap">Verified Listing</span>
             </div>
           )}
           <LikeShare listing={listing as unknown as Property} />
         </div>
       </section>
-      <PropertyDetailsImages images={[]} />
+      <PropertyDetailsImages listing={listing as Property} />
       <section className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         <div className="col-span-1 flex flex-col gap-10 lg:col-span-2">
-          <h2 className="text-shade-500">Property Details</h2>
+          <h2 className="font-semibold text-shade-500 sm:text-3xl">
+            Property Details
+          </h2>
           <PropertySuitedFor listing={listing as unknown as Property} />
           <PropertyDetailsFigures listing={listing as unknown as Property} />
           <section>{listing?.description}</section>
           <PropertyDetailsFeatures listing={listing as unknown as Property} />
           <section className={style.detailWrapper}>
-            <h3 className={style.detailHeading}>Things To Know</h3>
+            <h2 className={style.detailHeading}>Things To Know</h2>
             <p>{listing?.renter_knowledge}</p>
           </section>
         </div>

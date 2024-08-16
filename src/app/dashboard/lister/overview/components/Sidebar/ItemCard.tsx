@@ -35,7 +35,8 @@ const ItemCard = (props: Props) => {
           />
         </div>
       )}
-      <h4>{props.title}</h4>
+      <h4 className={cn({"italic text-primary": !props.title})}>
+        {props.title || "[No Title]"}</h4>
       {props.isActive ? (
         <p className="text-base">{formatPrice(props.price)}</p>
       ) : (

@@ -61,7 +61,7 @@ const ListerOverviewPage = () => {
           <h5 className="font-normal text-shade-300">
             Here is an overview of your activities
           </h5>
-          <div className="grid max-w-2xl gap-3 xxs:grid-cols-2 xs:grid-cols-3">
+          <div className="grid max-w-3xl gap-5 xxs:grid-cols-2 xs:grid-cols-3">
             <RecentActivityCard
               icon={<MdOutlineMessage className="text-primary" size={24} />}
               title="Unread Messages"

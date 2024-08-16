@@ -1,48 +1,37 @@
 "use client";
 
-import Modal from "@/components/__shared/ui/modals/Modal";
-import Carousel from "@/components/__shared/ui/sliders/Carousel";
-import Share from "@/components/__shared/ui/share/Share";
 import React from "react";
-import { FaTimes } from "react-icons/fa";
 import GalleryModal from "@/components/__shared/ui/GalleryModal";
 
 let carouselDemo = [
-  {
-    src: "/assets/images/niceHome.png",
-    label: "Kitchen",
-  },
-  {
-    src: "/assets/images/niceHome.png",
-    label: "Bathroom",
-  },
-  {
-    src: "/assets/images/niceHome.png",
-    label: "Hall",
-  },
+  "/assets/images/home/promotion-1.jpg",
+  "/assets/images/leaseform/listing1.jpg",
+  "/assets/images/leaseform/lease-form-3.jpeg",
+  "/assets/images/leaseform/lease-form-1.png",
 ];
 
 type ModalProps = {
   isOpen: boolean;
   onOpenChange: () => void;
   onClose?: () => void;
+  itemData: Property;
 };
 
 const PropertyGalleryModal = ({
   isOpen,
   onOpenChange,
   onClose,
+  itemData,
 }: ModalProps) => {
   return (
-    // <GalleryModal
-    //   isOpen={isOpen}
-    //   onOpenChange={onOpenChange}
-    //   onClose={onClose}
-    //   images={itemData.images || []}
-    //   shareTitle={itemData.title}
-    //   shareDescription={itemData.description}
-    // />
-    <></>
+    <GalleryModal
+      isOpen={isOpen}
+      onOpenChange={onOpenChange}
+      onClose={onClose}
+      images={carouselDemo || []}
+      shareTitle={itemData?.property_name || ""}
+      shareDescription={itemData?.description || ""}
+    />
   );
 };
 

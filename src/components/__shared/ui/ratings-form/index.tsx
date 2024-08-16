@@ -47,17 +47,17 @@ export default function Rating({ value, className, property }: Props) {
         className="flex appearance-none items-center gap-2"
         onClick={handleRating}
       >
-        <FaRegStar className="text-yellow-400" />
+        <FaRegStar size={18} className="text-yellow-400" />
         {value !== undefined && value > 0 && (
-          <small className={cn("cursor-pointer underline", className)}>
+          <p className={cn("cursor-pointer underline", className)}>
             {ratingValue}
-          </small>
+          </p>
         )}
 
         {value === 0 && (
-          <small className="text-neutral-900 underline hover:text-neutral-900 active:text-neutral-900">
+          <p className="text-neutral-900 underline hover:text-neutral-900 active:text-neutral-900">
             Rate
-          </small>
+          </p>
         )}
       </button>
     </>

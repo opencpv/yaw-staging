@@ -10,6 +10,10 @@ import {
 import { FaRegStar, FaRegHeart } from "react-icons/fa";
 import { BsEnvelope } from "react-icons/bs";
 import { LiaMedalSolid } from "react-icons/lia";
+import CaHandshake from "../../lister/overview/components/icons/CaHandshake";
+import CaHomeBanner from "../../lister/overview/components/icons/CaHomeBanner";
+import CaMegaphone from "../../lister/overview/components/icons/CaMegaphone";
+import { GoShieldCheck } from "react-icons/go";
 
 export const PgRoutesRenter = [
   {
@@ -100,22 +104,52 @@ export const PgRoutesLister = [
     link: "/dashboard/lister/properties",
   },
   {
-    name: "applications",
+    name: "hire us",
     url: "",
-    icon: <IoFolderOutline />,
-    link: "/dashboard/lister/applications",
+    icon: <CaHandshake size={24} />,
+    link: "/dashboard/lister/properties",
   },
   {
-    name: "messages",
+    name: "main banner",
     url: "",
-    icon: <HiOutlineChatBubbleLeftEllipsis />,
-    link: "/dashboard/lister/messages",
+    icon: <CaHomeBanner size={24} />,
+    link: "/dashboard/lister/properties",
   },
+  {
+    name: "featured",
+    url: "",
+    icon: <CaMegaphone size={24} />,
+    link: "/dashboard/lister/properties",
+  },
+  {
+    name: "verify",
+    url: "",
+    icon: <GoShieldCheck />,
+    link: "/dashboard/lister/properties",
+  },
+  //{
+  //  name: "applications",
+  //  url: "",
+  //  icon: <IoFolderOutline />,
+  //  link: "/dashboard/lister/applications",
+  //},
+  //{
+  //  name: "messages",
+  //  url: "",
+  //  icon: <HiOutlineChatBubbleLeftEllipsis />,
+  //  link: "/dashboard/lister/messages",
+  //},
   {
     name: "Payments",
     url: "",
     icon: <BsEnvelope />,
     link: "/b2b",
+  },
+  {
+    name: "my reviews",
+    url: "",
+    icon: <FaRegStar />,
+    link: "/dashboard/renter/my-reviews",
   },
   {
     name: "moving sale",

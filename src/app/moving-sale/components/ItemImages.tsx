@@ -1,9 +1,8 @@
-import Button from "@/components/__shared/ui/button/Button";
 import Image from "next/image";
 import React from "react";
-import { MdWindow } from "react-icons/md";
 import { useDisclosure } from "@nextui-org/react";
 import dynamic from "next/dynamic";
+import GalleryModalBtn from "@/components/__shared/ui/button/GalleryModalBtn";
 
 const ItemGalleryModal = dynamic(() => import("./ItemGalleryModal"));
 
@@ -51,14 +50,7 @@ const ItemImages = ({ query }: Props) => {
             </div>
           ))}
         </div>
-        <Button
-          color="white"
-          className="absolute bottom-2 right-2 flex h-fit w-fit gap-3 rounded-md px-3 py-1 text-neutral-600 shadow-md md:bottom-5 md:right-10"
-          onClick={onOpen}
-        >
-          View all
-          <MdWindow className="shrink-0" size={18} />
-        </Button>
+        <GalleryModalBtn onClick={onOpen} />
       </section>
     </>
   );

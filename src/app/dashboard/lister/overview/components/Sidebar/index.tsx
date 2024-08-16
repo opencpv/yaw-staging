@@ -45,7 +45,7 @@ const Sidebar = (props: Props) => {
         props.className,
       )}
     >
-      <h2 className="text-xl lg:text-center lg:text-2xl">
+      <h2 className="lg:text-center">
         {activeTab === "properties" ? "Manage Listings" : "Manage Items"}
       </h2>
       <OptionFilterTabs
@@ -71,10 +71,7 @@ const Sidebar = (props: Props) => {
               }
             />
             {listings?.map((listing) => (
-              <PropertyCard
-                key={listing.id}
-                listing={listing}
-              />
+              <PropertyCard key={listing.id} listing={listing} />
             ))}
           </>
         ) : (

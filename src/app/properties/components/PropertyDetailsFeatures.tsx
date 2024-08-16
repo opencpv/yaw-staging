@@ -2,6 +2,7 @@
 import style from "../Template.module.css";
 import Button from "@/components/__shared/ui/button/Button";
 import Modal from "@/components/__shared/ui/modals/Modal";
+import { cn } from "@/lib/utils";
 import { getFeatureIcon, getUtilityIcon } from "@/lib/utils/getFeatureIcon";
 import { useDisclosure } from "@nextui-org/react";
 import { FaCaretDown } from "react-icons/fa";
@@ -24,7 +25,7 @@ const PropertyDetailsFeatures = ({ listing }: Props) => {
         classNames={{ body: "py-10" }}
       />
       <section className={style.detailWrapper}>
-        <h3 className={style.detailHeading}>Features</h3>
+        <h2 className={style.detailHeading}>Features</h2>
         <Features listing={listing} limit={true} />
         <Button
           variant="ghost"
@@ -41,11 +42,11 @@ const PropertyDetailsFeatures = ({ listing }: Props) => {
 
 const FeatureCard = (props: { name: string }) => {
   return (
-    <div className="flex min-h-28 items-center gap-5 rounded-lg border p-4">
-      <span className="text-primary">
+    <div className="flex min-h-28 items-center md:max-[900px]:flex-col gap-x-8 gap-y-5 rounded-lg border p-4">
+      <span className="font-semibold text-primary">
         {getFeatureIcon(props.name, 28) || getUtilityIcon(props.name, 28)}
       </span>
-      <p className="text-base">{props.name}</p>
+      <h3>{props.name}</h3>
     </div>
   );
 };
@@ -58,7 +59,11 @@ const Features = ({ listing, limit }: Props) => {
   const featuresAndUtilities = limit ? sortedArr?.slice(0, 4) : sortedArr;
 
   return (
-    <div className="grid gap-3 xs:grid-cols-2">
+    <div
+      className={cn("grid gap-5 xs:grid-cols-2", {
+        "text-shade-200": !limit,
+      })}
+    >
       {featuresAndUtilities?.map((feature) => (
         <FeatureCard key={feature} name={feature} />
       ))}

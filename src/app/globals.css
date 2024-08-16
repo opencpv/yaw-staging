@@ -39,11 +39,11 @@ body {
   }
 
   h2 {
-    @apply max-w-3xl text-[1.563rem] font-[600] leading-[2.2rem];
+    @apply max-w-3xl text-2xl font-[600] leading-[2.2rem] sm:text-[1.763rem];
   }
 
   h3 {
-    @apply max-w-3xl text-xl font-[600];
+    @apply max-w-3xl text-[1.3rem] leading-[1.75rem] font-[600];
   }
 
   h4 {

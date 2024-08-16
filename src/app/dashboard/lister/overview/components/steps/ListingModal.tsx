@@ -177,7 +177,6 @@ const ListingModal = (props: Props) => {
           href="/dashboard/lister/overview/create"
           color="primary"
           className={cn(props.className)}
-          fit
           onClick={handleCreate}
         >
           Add Property

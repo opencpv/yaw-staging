@@ -3,12 +3,13 @@ import { useDisclosure } from "@nextui-org/react";
 import PropertyGalleryModal from "./PropertyGalleryModal";
 import Image from "next/image";
 import images from "@/enum/temp/images";
+import GalleryModalBtn from "@/components/__shared/ui/button/GalleryModalBtn";
 
 type Props = {
-  images: string[];
+  listing: Property;
 };
 
-const PropertyDetailsImages = (props: Props) => {
+const PropertyDetailsImages = ({ listing }: Props) => {
   const { isOpen, onClose, onOpen, onOpenChange } = useDisclosure();
 
   return (
@@ -17,6 +18,7 @@ const PropertyDetailsImages = (props: Props) => {
         onOpenChange={onOpenChange}
         onClose={onClose}
         isOpen={isOpen}
+        itemData={listing}
       />
       <section className="grid gap-5 md:grid-cols-4">
         {/* banner image */}
@@ -27,6 +29,7 @@ const PropertyDetailsImages = (props: Props) => {
             fill
             className="rounded-3xl object-cover"
           />
+          <GalleryModalBtn onClick={onOpen} />
         </div>
         <div className="fade-in grid gap-5 max-md:hidden">
           <div className="relative w-full">

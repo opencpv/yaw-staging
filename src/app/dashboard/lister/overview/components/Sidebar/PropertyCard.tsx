@@ -5,7 +5,6 @@ import Link from "next/link";
 import calculateDaysSinceCreation from "@/lib/utils/calculateDaysSinceCreation";
 import { pluralize } from "@/lib/utils/stringManipulation";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import { generatePropertyTitle } from "@/lib/enum";
 import { Json } from "../../../../../../../database.types";
 import style from "../../index.module.css";
 import { cn } from "@/lib/utils";
@@ -38,7 +37,7 @@ const PropertyCard = (props: Props) => {
         >
           <Image
             src={image}
-            alt={generatePropertyTitle(props.listing)}
+            alt={props.listing.property_name || ""}
             fill
             className={cn(style.cardImage, "brightness-95")}
           />
@@ -47,16 +46,16 @@ const PropertyCard = (props: Props) => {
         <div className={style.cardLink}>
           <Image
             src={image}
-            alt={generatePropertyTitle(props.listing)}
+            alt={props.listing.property_name || ""}
             fill
             className={cn(style.cardImage, "brightness-95")}
           />
         </div>
       )}
-      <h4>
-        {props.listing?.property_name ||
-          generatePropertyTitle(props.listing) ||
-          " - "}
+      <h4
+        className={cn({ "italic text-primary": !props.listing.property_name })}
+      >
+        {props.listing?.property_name || "[No Title]"}
       </h4>
       <div className="flex items-center justify-between gap-x-5 gap-y-3 text-shade-300 max-xxs:flex-wrap">
         <p className="text-base">

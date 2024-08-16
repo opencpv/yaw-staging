@@ -26,7 +26,7 @@ const PropertyDetailsFigures = ({ listing }: Props) => {
   return (
     <section className="space-y-5">
       <div
-        className="grid gap-3"
+        className="grid gap-5"
         style={{ gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr)" }}
       >
         <FigureCard
@@ -65,7 +65,7 @@ const FigureCard = (props: {
   return (
     <div className="relative flex flex-col items-center justify-center gap-3 rounded-lg border p-4">
       {props.tag && (
-        <div className="absolute left-0 top-0 w-full max-w-[150px] rounded-lg bg-info-bg p-1 text-center text-xs text-info">
+        <div className="absolute left-0 top-0 w-full max-w-[150px] font-semibold rounded-lg bg-info-bg p-1 text-center text-xs text-info">
           {props.tag}
         </div>
       )}

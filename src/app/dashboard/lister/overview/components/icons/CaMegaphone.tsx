@@ -7,8 +7,8 @@ type Props = {
 const CaHandshake = (props: Props) => {
   return (
     <svg
-      width="65"
-      height="64"
+      width={props.size?.toString() || "65"}
+      height={props.size?.toString() || "64"}
       viewBox="0 0 65 64"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

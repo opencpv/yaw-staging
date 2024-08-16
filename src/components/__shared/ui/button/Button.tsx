@@ -64,7 +64,7 @@ const Button: React.FC<Props> = ({
         type={type}
         tabIndex={tabIndex}
         className={cn(
-          `no-print min-h-fit max-w-sm gap-2 space-x-2 whitespace-normal rounded-md bg-transparent px-10 py-3 text-base font-[600] ${
+          `no-print min-h-[48px] max-w-sm gap-2 space-x-2 whitespace-normal rounded-md bg-transparent px-10 py-3 text-base font-[600] ${
             borderColor && `border border-[${borderColor}]`
           }`,
           {
@@ -86,11 +86,11 @@ const Button: React.FC<Props> = ({
               variant === "outline" && color === "black",
             "border border-[#21A19F] bg-transparent text-[#21A19F]":
               variant === "outline" && color === "gradient",
-            "h-fit w-fit min-w-unit-5 max-w-none justify-normal rounded-none bg-transparent p-0 text-neutral-800 hover:scale-100":
+            "min-w-unit-5 h-fit w-fit max-w-none justify-normal rounded-none bg-transparent p-0 text-neutral-800 hover:scale-100":
               variant === "ghost",
-            "h-fit w-fit min-w-unit-5 max-w-none justify-normal rounded-none bg-transparent p-0 text-primary hover:scale-100":
+            "min-w-unit-5 h-fit w-fit max-w-none justify-normal rounded-none bg-transparent p-0 text-primary hover:scale-100":
               variant === "ghost" && color === "primary",
-            "h-fit w-fit min-w-unit-5 max-w-none justify-normal rounded-none bg-transparent p-0 text-accent hover:scale-100":
+            "min-w-unit-5 h-fit w-fit max-w-none justify-normal rounded-none bg-transparent p-0 text-accent hover:scale-100":
               variant === "ghost" && color === "accent",
             "rounded-full": radius === "full",
             "h-unit-6 min-w-unit-5 px-2.5 py-1.5": padding === "sm",
@@ -106,7 +106,7 @@ const Button: React.FC<Props> = ({
           className,
         )}
         onPress={onClick}
-        {...props as any}
+        {...(props as any)}
       >
         {children} {arrowIcon && <FaArrowRight />}
       </NextUIButton>
@@ -121,7 +121,7 @@ const Button: React.FC<Props> = ({
         type={type}
         tabIndex={tabIndex}
         className={cn(
-          `no-print min-h-fit max-w-sm gap-2 space-x-2 whitespace-normal rounded-md bg-transparent p-3 px-10 text-base font-[600] ${
+          `no-print min-h-[48px] max-w-sm gap-2 space-x-2 whitespace-normal rounded-md bg-transparent p-3 px-10 text-base font-[600] ${
             borderColor && `border border-[${borderColor}]`
           }`,
           {
@@ -143,11 +143,11 @@ const Button: React.FC<Props> = ({
               variant === "outline" && color === "black",
             "border border-[#21A19F] bg-transparent text-[#21A19F]":
               variant === "outline" && color === "gradient",
-            "h-fit w-fit min-w-unit-5 max-w-none justify-normal rounded-none bg-transparent p-0 text-neutral-800 hover:scale-100":
+            "min-w-unit-5 h-fit w-fit max-w-none justify-normal rounded-none bg-transparent p-0 text-neutral-800 hover:scale-100":
               variant === "ghost",
-            "h-fit w-fit min-w-unit-5 max-w-none justify-normal rounded-none bg-transparent p-0 text-primary hover:scale-100":
+            "min-w-unit-5 h-fit w-fit max-w-none justify-normal rounded-none bg-transparent p-0 text-primary hover:scale-100":
               variant === "ghost" && color === "primary",
-            "h-fit w-fit min-w-unit-5 max-w-none justify-normal rounded-none bg-transparent p-0 text-accent hover:scale-100":
+            "min-w-unit-5 h-fit w-fit max-w-none justify-normal rounded-none bg-transparent p-0 text-accent hover:scale-100":
               variant === "ghost" && color === "accent",
             "rounded-full": radius === "full",
             "h-unit-6 min-w-unit-5 px-2.5 py-1.5": padding === "sm",
@@ -163,7 +163,7 @@ const Button: React.FC<Props> = ({
           className,
         )}
         onPress={onClick}
-        {...props as any}
+        {...(props as any)}
       >
         {children} {arrowIcon && <FaArrowRight />}
       </NextUIButton>

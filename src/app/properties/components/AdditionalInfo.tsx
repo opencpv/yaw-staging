@@ -22,16 +22,17 @@ const AdditionalInfo = ({ className, listing }: Props) => {
     : [];
 
   return (
-    <div
+    <aside
       className={cn(
-        "col-span-1 h-fit divide-y shadow-sm md:rounded-xl md:border md:p-5",
+        "col-span-1 h-fit divide-y shadow-sm md:rounded-xl md:border-2 md:p-5",
         className,
       )}
     >
-      <section className="flex w-full flex-col gap-3 pb-6">
+      <section className="flex w-full flex-col gap-5 pb-10">
         <Button color="primary" className="min-w-full flex-1">
           Apply Now
         </Button>
+        {/* Available on*/}
         <div
           className={cn(
             style.lightGreenBg,
@@ -46,9 +47,9 @@ const AdditionalInfo = ({ className, listing }: Props) => {
         </div>
       </section>
       <section className={style.additionalInfoWrapper}>
-        <h4 className="pb-5">Additional Information</h4>
-        <h5>Agency Fee</h5>
-        <div className="flex flex-col gap-3">
+        <h3 className="pb-5">Additional Information</h3>
+        <h4>Agency Fee</h4>
+        <div className="flex flex-col gap-5">
           <AgencyFee
             title="Viewing Fee"
             amount={listing?.viewing_fee as number}
@@ -62,7 +63,7 @@ const AdditionalInfo = ({ className, listing }: Props) => {
         </div>
       </section>
       <section className={style.additionalInfoWrapper}>
-        <h5>Property Fees</h5>
+        <h4>Property Fees</h4>
         <div className="flex flex-col gap-3">
           <PropertyFee
             title="Refundable Security Deposit"
@@ -80,7 +81,7 @@ const AdditionalInfo = ({ className, listing }: Props) => {
         </div>
       </section>
       <section className={style.additionalInfoWrapper}>
-        <h5>Utilities Included</h5>
+        <h4>Utilities Included</h4>
         <ul className="grid justify-between gap-3 text-shade-200 xxs:grid-cols-2">
           {listing?.utilities_included?.map((utility) => (
             <li key={utility} className="flex items-center gap-2">
@@ -90,10 +91,8 @@ const AdditionalInfo = ({ className, listing }: Props) => {
           ))}
         </ul>
       </section>
-      <PropertyOwnerInfo
-        listing={listing}
-      />
-    </div>
+      <PropertyOwnerInfo listing={listing} />
+    </aside>
   );
 };
 
@@ -105,7 +104,7 @@ const AgencyFee = (props: {
   return (
     <div
       className={cn(
-        "flex flex-wrap items-center gap-3 rounded-2xl border p-2.5 px-3",
+        "flex flex-wrap items-center gap-3 rounded-2xl border-2 p-2.5 px-3",
         style.feeTextSize,
       )}
     >
@@ -122,7 +121,7 @@ const AgencyFee = (props: {
               style.feeTextSize,
             )}
           >
-            Add to cart <FaCirclePlus />
+            Add to cart <FaCirclePlus size={18} />
           </Button>
         </>
       ) : (
