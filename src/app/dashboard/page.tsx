@@ -25,11 +25,9 @@ const Dashboard = () => {
   }, [router, currentRole]);
 
   return (
-    <>
       <main className="grid h-40 place-items-center">
         <Loader />
       </main>
-    </>
   );
 };
 

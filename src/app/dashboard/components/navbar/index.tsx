@@ -1,32 +1,22 @@
 "use client";
 
-import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { styled } from "@stitches/react";
-import Image from "next/image";
 import Switch from "./switch";
 import Search from "./search";
 import NotificationsPopover from "../../renter/notifications/components/NotificationsPopover";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import style from "../../Dashboard.module.css";
-import { useLocalStorage } from "@uidotdev/usehooks";
 import Logo from "@/components/__shared/ui/Logo";
 import { AiOutlineSearch } from "react-icons/ai";
 import { IoIosCloseCircle } from "react-icons/io";
-import { useRef, useState } from "react";
-import Loader from "@/components/__shared/ui/loader/Loader";
+import { useState } from "react";
 import { useDashboardMenuStore } from "@/store/navmenu/useDashboardMenuStore";
-import Avatar from "@/components/__shared/ui/avatar/Avatar";
-import { getFirstWord } from "@/lib/utils/stringManipulation";
 import AvatarMenu from "@/components/__shared/ui/avatar/AvatarMenu";
 import useNotifications from "../../renter/notifications/useNotifications";
 
 const Navbar = () => {
   const user = useAppStore((state) => state.user);
   const { unreadNotifications } = useNotifications();
-
-  const [dashboardType, setDashboardType] =
-    useLocalStorage<any>("dashboard-type");
-
   const [expandMobileSearch, setExpandMobileSearch] = useState(false);
   const { isOpen } = useDashboardMenuStore();
 

@@ -25,7 +25,11 @@ const PaidFeaturesSection = (props: Props) => {
       className={`flex flex-wrap justify-between gap-x-40 gap-y-10 lg:space-y-10 ${props.className}`}
     >
       <BeMyAgentMatchSummary
-        href={requests && requests?.length > 0 ? "/dashboard/renter/my-agent/agent?sk=true" : "/dashboard/renter/my-agent/agent"}
+        href={
+          requests && requests?.length > 0
+            ? "/dashboard/renter/my-agent/agent?sk=true"
+            : "/dashboard/renter/my-agent/agent"
+        }
         matches={requests as any}
         title="Be My Agent"
         callOut={{
@@ -37,7 +41,7 @@ const PaidFeaturesSection = (props: Props) => {
       <BTFTKMatchSummary
         href={"/dashboard/renter/be-the-first-to-know/manage-criteria"}
         matches={criteria as any}
-        title="Get Notified"
+        title="Be The First To Know"
         callOut={{
           content:
             "Upgrade now to unlock this exclusive feature and supercharge your renting experience",
