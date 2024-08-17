@@ -31,7 +31,6 @@ const PaidFeaturesSection = (props: Props) => {
             : "/dashboard/renter/my-agent/agent"
         }
         matches={requests as any}
-        title="Be My Agent"
         callOut={{
           content: "You have no record for this service",
           href: "/dashboard/renter/my-agent/explore",
@@ -41,7 +40,6 @@ const PaidFeaturesSection = (props: Props) => {
       <BTFTKMatchSummary
         href={"/dashboard/renter/be-the-first-to-know/manage-criteria"}
         matches={criteria as any}
-        title="Be The First To Know"
         callOut={{
           content:
             "Upgrade now to unlock this exclusive feature and supercharge your renting experience",

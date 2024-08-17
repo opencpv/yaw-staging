@@ -18,7 +18,7 @@ const ListingHeader = () => {
   const { user } = useAppStore();
   const router = useRouter();
   const pathname = usePathname();
-  const { values, resetForm, setSubmitting } =
+  const { values, resetForm } =
     useFormikContext<typeof ListingDefaultValues>();
 
   const [listingCreationSteps, setListingCreationSteps] = useLocalStorage<{

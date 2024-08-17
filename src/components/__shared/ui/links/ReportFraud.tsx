@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { useContactStore } from "@/store/contact/useContactStore";
+import { cn } from "@/lib/utils";
 
 type Props = {
   className?: string;
@@ -20,8 +21,9 @@ const ReportFraud = ({ className, onClick }: Props) => {
         setContactTabActiveKey("report");
         setReportIssueHref(href);
       }}
+      className={cn("text-2xl", className)}
     >
-      <h2 className={`${className}`}>Report Fraud</h2>
+      Report Fraud
     </Link>
   );
 };

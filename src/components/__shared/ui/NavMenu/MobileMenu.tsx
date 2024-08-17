@@ -67,7 +67,7 @@ const MenuOption = ({
             },
           )}
         >
-          <h2 className={"main-menu-link-sm uppercase"}>{name}</h2>
+          <span className={"main-menu-link-sm text-2xl uppercase"}>{name}</span>
           <ArrowDownNav color={open ? "#ddd" : "#fff"} />
         </div>
       </Collapsible.Trigger>

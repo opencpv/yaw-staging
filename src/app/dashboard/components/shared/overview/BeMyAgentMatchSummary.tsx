@@ -1,3 +1,4 @@
+import style from "./Feature.module.css"
 import CallOut from "@/components/__shared/ui/CallOut";
 import Button from "@/components/__shared/ui/button/Button";
 import React, { useEffect } from "react";
@@ -22,7 +23,6 @@ const BeMyAgentMatchSummary = ({
   isLoading,
   href,
   matches,
-  title,
   callOut,
 }: Props) => {
   const queryClient = useQueryClient();
@@ -46,15 +46,15 @@ const BeMyAgentMatchSummary = ({
   }, [queryClient]);
 
   return (
-    <section className={`w-full space-y-4 xs:max-lg:max-w-md lg:max-w-full`}>
-      <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl bg-primary-400 p-2 px-4 capitalize text-white">
-        <h3 className="min-w-fit font-normal">{title}</h3>
+    <section className={style.sideFeatureWrapper}>
+      <div className={style.sideFeatureInnerWrapper}>
+        <h3 className={style.sideFeatureTitle} title="Be My Agent">Be My Agent</h3>
         {matches && matches.length > 0 ? (
           <Button
             href={href}
             radius="full"
             padding="sm"
-            className="w-fit bg-neutral-100 text-neutral-800"
+            className={style.sideFeatureButton}
           >
             See all
           </Button>
@@ -63,40 +63,40 @@ const BeMyAgentMatchSummary = ({
             href={href}
             radius="full"
             padding="sm"
-            className="w-fit bg-neutral-100 text-neutral-800"
+            className={style.sideFeatureButton}
           >
             Start here
           </Button>
         )}
       </div>
       {isLoading ? (
-        <div className="flex flex-col gap-2 border-b-2 pb-5 pt-2 last:border-b-0 last:pb-2 last:pt-0 min-[320px]:flex-row">
-          <Skeleton className="relative aspect-square size-32 rounded-xl min-[320px]:flex-1" />
-          <Skeleton className="flex-2 h-8 w-full rounded-md" />
+        <div className={style.sideFeatureSkeletonWrapper}>
+          <Skeleton className={style.sideFeatureSkeleton1} />
+          <Skeleton className={style.sideFeatureSkeleton2} />
         </div>
       ) : (
         <>
           {matches && matches.length > 0 ? (
-            <ul className="space-y-6">
+            <ul className={style.sideFeatureList}>
               {matches.map((match) => (
-                <div
+                <li
                   key={match.request?.search_title}
-                  className="flex flex-col gap-2 border-b-2 pb-5 pt-2 last:border-b-0 last:pb-2 last:pt-0 min-[320px]:flex-row"
+                  className={style.sideFeatureListItem}
                 >
-                  <div className="relative aspect-square max-h-28 w-32 rounded-xl bg-[#F9DFAE] p-6 min-[320px]:w-[initial] min-[320px]:flex-1">
+                  <div className={style.sideFeatureImageWrapper}>
                     <Image
                       src={match.associated_image}
                       alt={match.request?.search_title + " match"}
                       fill
                       style={{ objectFit: "cover" }}
-                      className="rounded-xl"
+                      className={style.sideFeatureImage}
                     />
                   </div>
-                  <div className="flex-[3] space-y-3">
+                  <div className={style.sideFeatureMatchTextWrapper}>
                     <h3>{match.request?.search_title}</h3>
                     <Link
                       href={`/dashboard/renter/my-agent/agent?t=${match.request.search_title}&a=535${match.request.id}&sk=true`}
-                      className="block w-fit rounded-xl bg-[#FEF8ED] p-2 px-6 text-neutral-700"
+                      className={style.sideFeatureMatchLink}
                     >
                       {match.request?.matched_properties?.length}{" "}
                       {pluralize(
@@ -106,7 +106,7 @@ const BeMyAgentMatchSummary = ({
                       )}
                     </Link>
                   </div>
-                </div>
+                </li>
               ))}
             </ul>
           ) : (
@@ -120,7 +120,7 @@ const BeMyAgentMatchSummary = ({
                       <Button
                         href={callOut.href}
                         variant="ghost"
-                        className="mt-1 text-sm font-[700] capitalize text-[#45808B] underline"
+                        className={style.sideFeatureLearnMoreButton}
                       >
                         Learn more
                       </Button>

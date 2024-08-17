@@ -98,7 +98,7 @@ export const PgRoutesLister = [
     link: "/dashboard/lister/overview",
   },
   {
-    name: "properties",
+    name: "my listings",
     url: "",
     icon: <TbHomeDot />,
     link: "/dashboard/lister/properties",
@@ -107,38 +107,26 @@ export const PgRoutesLister = [
     name: "hire us",
     url: "",
     icon: <CaHandshake size={24} />,
-    link: "/dashboard/lister/properties",
+    link: "/dashboard/lister/hire-us",
   },
   {
-    name: "main banner",
+    name: "front page",
     url: "",
     icon: <CaHomeBanner size={24} />,
-    link: "/dashboard/lister/properties",
+    link: "/dashboard/lister/front-page",
   },
   {
     name: "featured",
     url: "",
     icon: <CaMegaphone size={24} />,
-    link: "/dashboard/lister/properties",
+    link: "/dashboard/lister/featured",
   },
   {
     name: "verify",
     url: "",
     icon: <GoShieldCheck />,
-    link: "/dashboard/lister/properties",
+    link: "/dashboard/lister/verify",
   },
-  //{
-  //  name: "applications",
-  //  url: "",
-  //  icon: <IoFolderOutline />,
-  //  link: "/dashboard/lister/applications",
-  //},
-  //{
-  //  name: "messages",
-  //  url: "",
-  //  icon: <HiOutlineChatBubbleLeftEllipsis />,
-  //  link: "/dashboard/lister/messages",
-  //},
   {
     name: "Payments",
     url: "",
@@ -157,6 +145,19 @@ export const PgRoutesLister = [
     icon: <HiOutlineShoppingBag />,
     link: "/dashboard/lister/sell-products",
   },
+  {
+    name: "applications",
+    url: "",
+    icon: <IoFolderOutline />,
+    link: "/dashboard/lister/applications",
+  },
+  {
+    name: "messages",
+    url: "",
+    icon: <HiOutlineChatBubbleLeftEllipsis />,
+    link: "/dashboard/lister/messages",
+  },
+
   {
     name: "notifications",
     url: "",

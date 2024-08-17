@@ -50,7 +50,7 @@ const MenuLink = (props: Props) => {
               <h4 className={`mr-10 font-normal`}>{props.linkObject?.name}</h4>
             ) : (
               // </Link>
-              <h2 className="mr-10">{props.linkObject?.name}</h2>
+              <h2 className="mr-10 text-2xl">{props.linkObject?.name}</h2>
             )}
             <CaArrowRight />
           </div>

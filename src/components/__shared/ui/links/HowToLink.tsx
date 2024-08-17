@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { useFaqHowToSwitchStore } from "@/store/faq/useFaqStore";
+import { cn } from "@/lib/utils";
 
 type Props = {
   className?: string;
@@ -19,8 +20,9 @@ const HowToLink = ({ className, onClick }: Props) => {
         onClick && onClick();
         setFaqActivePage("how to");
       }}
+      className={cn("text-2xl", className)}
     >
-      <h2 className={`${className}`}>How To</h2>
+      How To
     </Link>
   );
 };
