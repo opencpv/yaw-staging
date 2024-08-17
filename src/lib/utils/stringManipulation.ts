@@ -1,5 +1,6 @@
 import { format } from "date-fns";
 import { enUS } from "date-fns/locale";
+//@ts-ignore
 import { v4 as uuidv4 } from "uuid";
 
 const capitalizeName = (initialName: string, delimiter?: string) => {
