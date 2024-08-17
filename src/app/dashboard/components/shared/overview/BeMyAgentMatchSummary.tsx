@@ -13,7 +13,6 @@ type Props = {
   matches:
     | { request: Partial<AgentRequest>; associated_image: string }[]
     | null;
-  title: string;
   href: string;
   callOut: { content: string; href?: string };
   isLoading?: boolean;
