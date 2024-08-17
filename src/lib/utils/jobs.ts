@@ -1,3 +1,4 @@
+//@ts-ignore
 import Schedule from "node-schedule";
 
 // Rule for scheduling (every day at 2:30 PM)

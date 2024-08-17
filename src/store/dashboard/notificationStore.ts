@@ -1,4 +1,4 @@
-import { NotificationType } from "@/app/dashboard/renter/notifications/components/types";
+import { NotificationType } from "@/app/dashboard/renter/notifications/types";
 import { create } from "zustand";
 
 type AppStore = {

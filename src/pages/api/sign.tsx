@@ -1,3 +1,4 @@
+//@ts-ignore
 import { v2 as cloudinary } from "cloudinary";
 
 export default async function handler(req: any, res: any) {

@@ -1,4 +1,3 @@
-import { PaymentData } from "@/app/b2b/components/types";
 import { create } from "zustand";
 
 type InvoiceStore = {

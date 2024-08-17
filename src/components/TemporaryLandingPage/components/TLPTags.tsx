@@ -1,4 +1,4 @@
-import { Button } from "@nextui-org/react";
+import Button from "@/components/__shared/ui/button/Button";
 import styles from "../index.module.css";
 
 type Props = {

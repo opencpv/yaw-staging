@@ -1,4 +1,3 @@
-import { Number } from "./../../components/__shared/ui/listing-form/components/GetStarted";
 import { create } from "zustand";
 
 type CustomerStore = {
