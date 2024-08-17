@@ -1,9 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { NextUIProvider } from "@nextui-org/system";
 // import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-// import { ThemeProviderProps } from "next-themes/dist/types";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { SWRConfig } from "swr";
 // import { Theme } from "@radix-ui/themes";
@@ -31,7 +29,7 @@ const Providers = ({ children }: Props) => {
   return (
     <QueryClientProvider client={queryClient}>
       <SWRConfig value={swrConfig}>
-        <NextUIProvider>{children}</NextUIProvider>
+        {children}
       </SWRConfig>
       {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </QueryClientProvider>
