@@ -1,0 +1,159 @@
+import { RenterApplicationStatus } from "@/app/dashboard/renter/applications/components/RtApplicationStatus";
+
+interface ListingCardInterface extends ListingInterface {
+  propertyDescription: string;
+  subtitle: string;
+  propertyType: string;
+  bedrooms: string;
+  rating: number;
+  ratingCount: number;
+  paymentStructure: PaymentStructure;
+  monthlyAmount: number;
+  liked: boolean;
+  propertyId: number | string;
+  userId: number | string;
+  hint: HintTag;
+  guarantee: GuaranteeTag;
+  className: string;
+  cardType: "1" | "2";
+  city: string;
+  neighbourhood: string;
+  showOnlyImage: boolean;
+  isMyFavoritePage: boolean;
+  isRecommendationsPage: boolean;
+  showNotViewed: boolean;
+  isViewed: boolean;
+  advancePeriod: number;
+  ViewingFee: number;
+  currency: string;
+}
+
+interface RenterPaidFeatureInterface {
+  title: "Be My Agent" | "Get Notified";
+  href: string;
+  locked: boolean;
+  className?: string;
+}
+
+interface AdImage {
+  /**
+   * What property is being advertise?
+   */
+  propertyName: string;
+  image: string;
+  href: string;
+}
+
+interface AdCardInterface {
+  images: AdImage[];
+  className?: string;
+  href?: string;
+}
+
+interface ApplicationsInterface {
+  propertyTitle: string;
+  propertyImage: string;
+  date: string;
+  propertyPrice: number;
+}
+
+interface ListerApplicationsInterface extends ApplicationsInterface {
+  applicantImage: string;
+  applicantName: string;
+}
+
+interface RenterApplicationsInterface extends ApplicationsInterface {
+  listerImage: string;
+  listerName: string;
+  status: RenterApplicationStatus;
+}
+
+interface ChatInterface {
+  href: string;
+  image: string | StaticImageData;
+  name: string;
+  last_message: string;
+  messages_count: number;
+  id: string | null;
+  isBlocked?: boolean;
+}
+
+
+interface ListingInterface {
+  images?: string[];
+  propertyName?: string;
+  href?: string;
+  isAdmin?: boolean;
+}
+
+interface MessageInterface {
+  content: string;
+  time: string;
+  type: "sender" | "recipient";
+}
+
+export interface CartProp {
+  name: string;
+  cost: number;
+  quantity: number;
+  date: null | string;
+  isQuantityChangable: boolean;
+  isInvoice: boolean;
+  invoiceId?: number;
+  tax_rate: number;
+}
+
+export interface SentimentSpan {
+  skill: string;
+  type: string;
+  span: [number, number];
+  spanText: string;
+  span_text: string;
+  outputSpans: {
+    section: number;
+    start: number;
+    end: number;
+  }[];
+  value: string;
+  data: Record<string, unknown>;
+}
+
+export interface SentimentResponse {
+  text: string;
+  requestId: string;
+  stats: {
+    concurrencyWaitTime: number;
+    wordCount: number;
+    transcriptionSecondsCount: number;
+  };
+  sentiments: SentimentSpan[];
+}
+
+export interface SanityReference {
+  _ref: string;
+  _type: string;
+}
+
+type SanityImageReference = {
+  _type: string;
+  asset: SanityReference;
+};
+export interface BlogAuthor {
+  profile_image: SanityImageReference;
+  _createdAt: string;
+  _rev: string;
+  _type: string;
+  name: string;
+  bio: string;
+  _id: string;
+  _updatedAt: string;
+}
+
+export interface HowTo {
+  title: string;
+  description: string;
+  video_url: string;
+  tags: { tag: string }[];
+}
+
+export interface BlogPost {}
