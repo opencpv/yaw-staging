@@ -1,12 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Button from "../button/Button";
-// import Modal from "../modals/Modal";
+// const Modal = dynamic(() => import("../button/Button"))
 // import { useDisclosure } from "@nextui-org/react";
 import CloseModalIcon from "../icons/CloseModalIcon";
 import { motion } from "framer-motion";
 import { RiSurveyLine } from "react-icons/ri";
 import { cn } from "@/lib/utils";
+import dynamic from "next/dynamic";
 
 type Props = {};
 

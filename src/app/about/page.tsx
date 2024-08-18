@@ -6,9 +6,11 @@ import { ABOUT_PAGE_QUERY, BLOG_QUERY } from "@/lib/utils/sanity/queries";
 import { loadQuery } from "@/lib/utils/sanity/sanityStore";
 import { SanityDocument } from "next-sanity";
 import { urlForImage } from "@/lib/utils/sanity/utils";
-import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 import dynamic from "next/dynamic";
 const SimpleSlider = dynamic(() => import("./components/Slider/SimpleSlider"));
+const FramerWrapper = dynamic(
+  () => import("@/components/__shared/hoc/FramerWrapper"),
+);
 const VerticalSlider = dynamic(
   () => import("./components/Slider/VerticalSlider"),
 );
