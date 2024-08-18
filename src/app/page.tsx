@@ -29,6 +29,7 @@ const ScrollTopAndSocial = dynamic(
 );
 const FeedbackButton = dynamic(
   () => import("@/components/__shared/ui/feedback/FeedbackButton"),
+  { ssr: false },
 );
 const Navbar = dynamic(() => import("@/components/__shared/ui/Navbar"));
 
@@ -50,7 +51,7 @@ const page = async (props: Props) => {
   return (
     <ClientPageWrapper>
       <Navbar />
-      <Link href="/about">About</Link>
+      <Link href="/b2b">b2b</Link>
       <Landing data={filteredHomeData[filteredHomeData.length - 1]} />
       <Promotions data={data} />
       <FeaturedListings data={filteredAdsData} />
