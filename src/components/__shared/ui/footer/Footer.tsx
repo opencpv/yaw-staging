@@ -7,7 +7,7 @@ import SubscribeForm from "../form/SubscribeForm";
 import Feedback from "@/components/__shared/ui/feedback/Feedback";
 import { LowerCase } from "@/lib/utils/stringManipulation";
 import legal from "@/enum/about/legal";
-import ReportFraud from "@/components/__shared/ui/links/ReportFraud";
+// import ReportFraud from "@/components/__shared/ui/links/ReportFraud";
 import HowToLink from "@/components/__shared/ui/links/HowToLink";
 import { FaEnvelope } from "react-icons/fa6";
 import { MdLocalPhone } from "react-icons/md";
@@ -21,6 +21,12 @@ import { floatItemsIntersectionStore } from "@/store/footer/footerStore";
 import { cn } from "@/lib/utils";
 import toast from "react-hot-toast";
 import { usePathname } from "next/navigation";
+import dynamic from "next/dynamic";
+
+const ReportFraud = dynamic(
+  () => import("@/components/__shared/ui/links/ReportFraud"),
+  { ssr: false },
+);
 
 type Props = {
   className?: string;
@@ -118,7 +124,7 @@ const Footer = (props: Props) => {
           <SubscribeForm onSubmit={handleSubmit} />
         </div>
 
-        <div className="mt-10 flex flex-col items-center gap-10 pb-14 text-[32px] text-[#fff] ">
+        <div className="mt-10 flex flex-col items-center gap-10 pb-14 text-[32px] text-[#fff]">
           <h2 className="font-bold">
             Get <span className={`${pacifico.className}`}>social</span> with us:
           </h2>
