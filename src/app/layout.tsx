@@ -6,6 +6,8 @@ import Providers from "@/context/Providers";
 import LoadingIndicator from "@/components/__shared/ui/LoadingIndicator";
 import NoticeModal from "@/components/__shared/ui/modals/NoticeModal";
 import TemporayLandingPage from "@/components/TemporaryLandingPage";
+import ToastConfig from "@/components/__shared/ToastConfig";
+// import MenuWrapperNoSSR from "@/components/__shared/hoc/MenuWrapperNoSSR";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -69,7 +71,7 @@ export default function RootLayout({
         className={`bg-white text-neutral-800 light ${inter.className}`}
       >
         <Providers>
-          {/* <ToastConfig /> */}
+          <ToastConfig />
           {/* <MenuWrapperNoSSR> */}
             <LoadingIndicator />
             {/* <NoticeModal /> */}

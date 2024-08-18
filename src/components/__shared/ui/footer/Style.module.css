@@ -1,0 +1,8 @@
+.footer {
+    container-type: inline-size;
+}
+
+.footer .cq {
+    font-size: 16cqi;
+    /* text-decoration: underline; */
+}
