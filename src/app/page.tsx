@@ -51,8 +51,8 @@ const page = async (props: Props) => {
   return (
     <ClientPageWrapper>
       <Navbar />
-      <Link href="/checkout" className="text-green-500">
-        checkout
+      <Link href="/terms-of-service" className="text-red-500">
+        Term
       </Link>
       <Landing data={filteredHomeData[filteredHomeData.length - 1]} />
       <Promotions data={data} />
