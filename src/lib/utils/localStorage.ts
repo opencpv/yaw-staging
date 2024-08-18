@@ -7,11 +7,11 @@ function setLocalStorageWithExpiry(key: string, value: any, ttl: number) {
     value: value,
     expiry: now.setHours(now.getHours() + ttl),
   };
-  localStorage.setItem(key, JSON.stringify(item));
+  window.localStorage.setItem(key, JSON.stringify(item));
 }
 
 function getLocalStorageWithExpiry(key: string) {
-  const itemStr = localStorage.getItem(key);
+  const itemStr = window.localStorage.getItem(key);
   // if the item doesn't exist, return null
   if (!itemStr) {
     return null;
@@ -20,7 +20,7 @@ function getLocalStorageWithExpiry(key: string) {
   const now = new Date();
   // if the item is expired, return null
   if (now > item.expiry) {
-    localStorage.removeItem(key);
+    window.localStorage.removeItem(key);
     return null;
   }
   return item.value;
