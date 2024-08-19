@@ -1,4 +1,4 @@
-import RichTextRenderer from "@/components/__shared/RichTextRenderer";
+import RichTextRenderer from "@/components/__shared/rich-text/RichTextRenderer";
 
 const TermItem = ({ data, index }: { data: any; index: number }) => {
   const Bullet = () => (
@@ -37,7 +37,7 @@ const TermItem = ({ data, index }: { data: any; index: number }) => {
           <Title />
         </div>
 
-        <div className="w-full ">
+        <div className="w-full">
           <div className="text-base text-shade-200">
             <Description />
           </div>{" "}

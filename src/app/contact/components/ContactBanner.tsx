@@ -9,7 +9,7 @@ const ContactBanner = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
       className={`banner green-gradient flex h-fit w-screen flex-col items-center justify-center gap-5 px-10 pt-10 text-white max-xs:-mx-5 xs:w-full xs:rounded-3xl sm:px-24 md:pt-24 lg:flex-row lg:items-start lg:justify-between`}
       ref={ref}
     >
-      <div className="">
+      <div>
         <h1 className="text-center sm:text-5xl">Get in touch with us</h1>
       </div>
       <Image

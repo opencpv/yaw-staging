@@ -2,7 +2,7 @@
 
 import Modal from "@/components/__shared/ui/modals/Modal";
 import Carousel from "@/components/__shared/ui/sliders/Carousel";
-import Share from "@/components/__shared/ui/share/Share";
+import Share from "@/components/__shared/ui/share";
 import React from "react";
 import { LiaTimesSolid } from "react-icons/lia";
 import { PiShareFat } from "react-icons/pi";
@@ -92,7 +92,7 @@ const ModalHeader = () => {
           />
         </Share>
         <button
-          className="hover:text-shade-300 circle-hover"
+          className="circle-hover hover:text-shade-300"
           onClick={() => {
             onClose?.();
           }}

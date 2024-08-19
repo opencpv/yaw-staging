@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import Share from "@/components/__shared/ui/share/Share";
+import Share from "@/components/__shared/ui/share";
 import Print from "@/components/__shared/ui/Print";
 //@ts-ignore
 import { loadQuery } from "@sanity/react-loader";

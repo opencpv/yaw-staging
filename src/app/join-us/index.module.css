@@ -1,0 +1,10 @@
+.header {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.60) 0%, rgba(0, 0, 0, 0.60) 100%), url('/assets/images/joinus/header.jpeg'), lightgray 50% / cover no-repeat;
+    background-position: center;
+}
+
+.open_positions_header {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.60) 0%, rgba(0, 0, 0, 0.60) 100%), url('/assets/images/joinus/open-positions-header.jpeg'), lightgray 50% / cover no-repeat;
+    background-position: center;
+}
+

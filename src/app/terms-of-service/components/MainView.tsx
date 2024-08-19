@@ -2,7 +2,7 @@
 import dynamic from "next/dynamic";
 import styles from "../index.module.css";
 const RichTextRenderer = dynamic(
-  () => import("@/components/__shared/RichTextRenderer"),
+  () => import("@/components/__shared/rich-text/RichTextRenderer"),
 );
 
 const MainView = ({ data }: { data: any }) => {

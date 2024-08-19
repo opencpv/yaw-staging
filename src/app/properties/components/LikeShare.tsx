@@ -4,7 +4,7 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import React from "react";
 import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
-const Share = dynamic(() => import("@/components/__shared/ui/share/Share"));
+const Share = dynamic(() => import("@/components/__shared/ui/share"));
 
 type Props = {
   listing: Property;
