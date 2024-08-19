@@ -1,7 +1,8 @@
-import ContactForm from "./ContactForm";
 import Image from "next/image";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
+const ContactForm = dynamic(() => import("./ContactForm"), { ssr: false });
 
 export const metadata: Metadata = {
   title: "FAQ",

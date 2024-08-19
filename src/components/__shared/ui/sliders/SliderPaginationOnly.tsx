@@ -37,9 +37,9 @@ const SliderPaginationOnly = ({
         key={createUUID()}
       >
         {images?.map((image, idx) => (
-          <>
+          <React.Fragment key={idx}>
             {image.href ? (
-              <SwiperSlide key={idx + 1} title={image.name}>
+              <SwiperSlide title={image.name}>
                 <Link
                   href={image.href}
                   className="relative block h-full w-full"
@@ -53,7 +53,7 @@ const SliderPaginationOnly = ({
                 </Link>
               </SwiperSlide>
             ) : (
-              <SwiperSlide key={idx + 1}>
+              <SwiperSlide>
                 <div
                   className="relative h-full w-full before:absolute before:bottom-0 before:left-0 before:z-10 before:h-10 before:w-full before:rounded-b-lg before:bg-neutral-600/30"
                   title={image.name}
@@ -67,7 +67,7 @@ const SliderPaginationOnly = ({
                 </div>
               </SwiperSlide>
             )}
-          </>
+          </React.Fragment>
         ))}
       </Swiper>
     </div>
