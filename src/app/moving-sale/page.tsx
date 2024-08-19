@@ -1,18 +1,14 @@
 import React from "react";
 import SliderWide from "@/components/__shared/ui/sliders/SliderWide";
 import CallOut from "@/components/__shared/ui/CallOut";
-import { SanityDocument } from "next-sanity";
-import { loadQuery } from "@sanity/react-loader";
 import { ADS_QUERY } from "@/lib/utils/sanity/queries";
 import dynamic from "next/dynamic";
+import { client } from "@/lib/utils/sanity/client";
 const Items = dynamic(() => import("./components/Items"));
 
 const page = async () => {
-  // const ads = await loadQuery<SanityDocument[]>(ADS_QUERY);
-  // const adsData = ads.data;
-  // const filteredAdsData = adsData.filter(
-  //   (item: any) => item.isPublished == true,
-  // );
+  const data = await client.fetch(ADS_QUERY);
+  const filteredAdsData = data.filter((item: any) => item.isPublished == true);
 
   return (
     <main className="wrapper overflow-x-hidden pb-0 text-neutral-600">
@@ -42,7 +38,7 @@ const page = async () => {
         content="You may select more than one response"
         className="mb-20"
       />
-      {/* <Items ads={filteredAdsData} /> */}
+      <Items ads={filteredAdsData} />
     </main>
   );
 };

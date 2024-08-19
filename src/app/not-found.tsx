@@ -1,7 +1,5 @@
 import dynamic from "next/dynamic";
-// import Navbar from "@/components/__shared/ui/Navbar";
 // import PageNotFound from "../components/__shared/ui/states/PageNotFound";
-// import Footer from "@/components/__shared/ui/footer/Footer";
 
 // const Navbar = dynamic(() => import("@/components/__shared/ui/Navbar"));
 // const PageNotFound = dynamic(

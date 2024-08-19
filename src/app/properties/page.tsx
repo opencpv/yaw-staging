@@ -7,19 +7,16 @@ import { loadQuery } from "@sanity/react-loader";
 import { SanityDocument } from "next-sanity";
 import { ADS_QUERY } from "@/lib/utils/sanity/queries";
 import dynamic from "next/dynamic";
+import { client } from "@/lib/utils/sanity/client";
 const Footer = dynamic(() => import("@/components/__shared/ui/footer/Footer"));
 const PropertiesListing = dynamic(
   () => import("./components/PropertiesListing"),
 );
 const SearchCity = dynamic(() => import("./components/SearchCity"));
 
-const page = () => {
-  let adsData: SanityDocument[] = [];
-  let filteredAdsData: SanityDocument[] = [];
-  loadQuery<SanityDocument[]>(ADS_QUERY).then((ads) => {
-    adsData = ads?.data;
-    filteredAdsData = adsData?.filter((item: any) => item.isPublished == true);
-  });
+async function page() {
+  const data = await client.fetch(ADS_QUERY);
+  const filteredAdsData = data.filter((item: any) => item.isPublished == true);
 
   return (
     <>
@@ -44,6 +41,6 @@ const page = () => {
       <ScrollTop />
     </>
   );
-};
+}
 
 export default page;
