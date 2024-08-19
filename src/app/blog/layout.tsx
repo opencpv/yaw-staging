@@ -1,11 +1,14 @@
-import Footer from "@/components/__shared/ui/footer/Footer";
-import Navbar from "@/components/__shared/ui/Navbar";
-import FeaturedListings from "@/components/__shared/ui/listing/FeaturedListings";
 import React from "react";
 import { loadQuery } from "@/lib/utils/sanity/sanityStore";
 import { SanityDocument } from "next-sanity";
 import { HOME_PAGE_QUERY } from "@/lib/utils/sanity/queries";
 import { Metadata } from "next";
+import dynamic from "next/dynamic";
+const Footer = dynamic(() => import("@/components/__shared/ui/footer/Footer"));
+const Navbar = dynamic(() => import("@/components/__shared/ui/Navbar"));
+const FeaturedListings = dynamic(
+  () => import("@/components/__shared/ui/listing/FeaturedListings"),
+);
 
 type Props = {
   children: React.ReactNode;

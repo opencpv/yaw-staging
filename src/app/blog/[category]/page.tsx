@@ -8,12 +8,14 @@ import {
   SINGLE_BLOG_CATEGORY,
 } from "@/lib/utils/sanity/queries";
 import { SanityDocument } from "next-sanity";
-//@ts-ignore
 import { loadQuery } from "@sanity/react-loader";
-import SummaryPostView from "../components/category/SummaryPostView";
-import Survey from "@/components/__shared/ui/survey";
 import { Metadata, ResolvingMetadata } from "next";
 import { urlForImage } from "@/lib/utils/sanity/utils";
+import dynamic from "next/dynamic";
+const Survey = dynamic(() => import("@/components/__shared/survey"));
+const SummaryPostView = dynamic(
+  () => import("../components/category/SummaryPostView"),
+);
 
 type Props = {
   params: { category: string };

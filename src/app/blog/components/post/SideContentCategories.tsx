@@ -1,7 +1,6 @@
 import React from "react";
 import { BLOG_CATEGORY_QUERY } from "@/lib/utils/sanity/queries";
 import { SanityDocument } from "next-sanity";
-//@ts-ignore
 import { loadQuery } from "@sanity/react-loader";
 import Link from "next/link";
 import slugify from "@/lib/utils/slugify";

@@ -1,12 +1,11 @@
 "use client";
 import * as React from "react";
-import PostSummary from "./PostSummary";
-import { usePathname } from "next/navigation";
-import convertSlugToString from "@/lib/utils/convertSlugToString";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import SkeletonLong from "@/components/__shared/ui/skeleton/SkeletonLong";
 import slugify from "@/lib/utils/slugify";
 import SkeletonTextual from "@/components/__shared/ui/skeleton/SkeletonTextual";
+import dynamic from "next/dynamic";
+const PostSummary = dynamic(() => import("./PostSummary"));
 
 interface IPostsGridProps {
   posts: any[];

@@ -1,11 +1,14 @@
 "use client";
 import Button from "@/components/__shared/ui/button/Button";
-// import Modal from "@/components/__shared/ui/modals/Modal";
 import SubscribeForm from "@/components/__shared/ui/form/SubscribeForm";
 // import { useDisclosure } from "@nextui-org/react";
 import React from "react";
-import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 import toast from "react-hot-toast";
+import dynamic from "next/dynamic";
+// const Modal = dynamic(() => import("@/components/__shared/ui/modals/Modal"));
+const FramerWrapper = dynamic(
+  () => import("@/components/__shared/hoc/FramerWrapper"),
+);
 
 type Props = {
   className?: string;

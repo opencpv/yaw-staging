@@ -2,11 +2,14 @@ import React, { Suspense } from "react";
 import SideContent from "./SideContent";
 import { socialLinks } from "@/enum/links/socials";
 import Link from "next/link";
-import SliderPaginationOnly from "@/components/__shared/ui/sliders/SliderPaginationOnly";
-import SideContentCategories from "./SideContentCategories";
-import Loader from "@/components/__shared/ui/loader/Loader";
 import { urlForImage } from "@/lib/utils/sanity/utils";
-import RelatedPosts from "./RelatedPosts";
+import dynamic from "next/dynamic";
+import Loader from "@/components/__shared/ui/loader/Loader";
+const SliderPaginationOnly = dynamic(
+  () => import("@/components/__shared/ui/sliders/SliderPaginationOnly"),
+);
+const RelatedPosts = dynamic(() => import("./RelatedPosts"));
+const SideContentCategories = dynamic(() => import("./SideContentCategories"));
 
 type Props = {
   ads?: any;

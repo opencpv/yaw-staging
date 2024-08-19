@@ -2,7 +2,6 @@
 import { Formik, Form, ErrorMessage } from "formik";
 import { useState } from "react";
 import supabase from "@/lib/utils/supabase/supabaseClient";
-import CustomErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
 import ContactSchema from "@/app/contact/components/forms/lib/contactSchema";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { E164Number } from "libphonenumber-js/core";
@@ -15,7 +14,10 @@ import { useSessionStorage } from "@uidotdev/usehooks";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import dynamic from "next/dynamic";
-const Loader = dynamic(() => import("@/components/__shared/ui/loader/Loader"));
+import Loader from "@/components/__shared/ui/loader/Loader";
+const CustomErrorMessage = dynamic(
+  () => import("@/components/__shared/ui/states/ErrorMessage"),
+);
 
 const ContactForm = () => {
   const [loading, setLoading] = useState(false);

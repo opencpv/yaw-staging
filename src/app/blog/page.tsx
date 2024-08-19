@@ -1,11 +1,8 @@
 import React from "react";
 import CategoryCard from "./components/CategoryCard";
-import Authors from "./components/author/Authors";
 import SubscribeToBlogButton from "./components/SubscribeToBlogButton";
-import PostSlider from "./components/post/PostSlider";
-//@ts-ignore
 import { loadQuery } from "@sanity/react-loader";
-import { SanityDocument} from "next-sanity";
+import { SanityDocument } from "next-sanity";
 import {
   AUTHORS,
   BLOG_CATEGORY_QUERY,
@@ -13,11 +10,16 @@ import {
 } from "@/lib/utils/sanity/queries";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import slugify from "@/lib/utils/slugify";
-import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
-import AdsSlider from "./components/post/AdsSlider";
-import RecentPosts from "./components/post/RecentPosts";
-import PopularPosts from "./components/post/PopularPosts";
-import Survey from "@/components/__shared/survey";
+import dynamic from "next/dynamic";
+const Survey = dynamic(() => import("@/components/__shared/survey"));
+const PopularPosts = dynamic(() => import("./components/post/PopularPosts"));
+const RecentPosts = dynamic(() => import("./components/post/RecentPosts"));
+const FramerWrapper = dynamic(
+  () => import("@/components/__shared/hoc/FramerWrapper"),
+);
+const AdsSlider = dynamic(() => import("./components/post/AdsSlider"));
+const PostSlider = dynamic(() => import("./components/post/PostSlider"));
+const Authors = dynamic(() => import("./components/author/Authors"));
 
 const page = async () => {
   const initialBlogData: any = await loadQuery<SanityDocument[]>(BLOG_QUERY);

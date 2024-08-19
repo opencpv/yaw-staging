@@ -3,8 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FaChevronRight } from "react-icons/fa";
-import { fadeIn } from "@/lib/animations";
-import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
+import dynamic from "next/dynamic";
+const FramerWrapper = dynamic(
+  () => import("@/components/__shared/hoc/FramerWrapper"),
+);
 
 const PostSummary = ({
   author,

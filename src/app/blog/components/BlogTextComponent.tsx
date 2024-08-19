@@ -1,6 +1,5 @@
 import * as React from "react";
 import { PortableText } from "@portabletext/react";
-import { PortableTextObject } from "sanity";
 
 interface IPortableTextComponentProps {
   value: any;

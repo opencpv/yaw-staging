@@ -1,11 +1,12 @@
 import React from "react";
-import OtherPosts from "../OtherPosts";
 import { loadQuery } from "@sanity/react-loader";
 import { SanityDocument } from "next-sanity";
 import { BLOG_QUERY } from "@/lib/utils/sanity/queries";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import slugify from "@/lib/utils/slugify";
 import { cn } from "@/lib/utils";
+import dynamic from "next/dynamic";
+const OtherPosts = dynamic(() => import("../OtherPosts"));
 
 const RelatedPosts = async ({
   className,
@@ -15,7 +16,7 @@ const RelatedPosts = async ({
   currentPost: any;
 }) => {
   const initialBlogData: any = await loadQuery<SanityDocument[]>(BLOG_QUERY);
-  const blogData = initialBlogData.data;
+  const blogData = initialBlogData?.data;
   const relatedPosts = blogData
     .filter(
       (post: any) =>

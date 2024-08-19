@@ -1,11 +1,13 @@
 "use client";
-import SliderWide from "@/components/__shared/ui/sliders/SliderWide";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import slugify from "@/lib/utils/slugify";
 import { useBlogPostSlider } from "@/store/blog/blogStore";
-import Link from "next/link";
+import dynamic from "next/dynamic";
 import React from "react";
 import { Swiper } from "swiper/types";
+const SliderWide = dynamic(
+  () => import("@/components/__shared/ui/sliders/SliderWide"),
+);
 
 type Props = { posts: any[] };
 

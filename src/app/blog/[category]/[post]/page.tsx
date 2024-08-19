@@ -1,15 +1,12 @@
 import Image from "next/image";
 import React from "react";
-import Share from "@/components/__shared/ui/share";
 import Print from "@/components/__shared/ui/Print";
-//@ts-ignore
 import { loadQuery } from "@sanity/react-loader";
 import { SanityDocument } from "next-sanity";
 import { SINGLE_BLOG_POST } from "@/lib/utils/sanity/queries";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import { PortableText } from "@portabletext/react";
 import "../../style.css";
-//@ts-ignore
 import urlBuilder from "@sanity/image-url";
 import { client } from "@/lib/utils/sanity/client";
 import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
@@ -18,8 +15,10 @@ import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Rate from "@/components/__shared/ui/Rate";
 import Rating from "../../components/post/Rating";
 import SideContentGroup from "../../components/post/SideContentGroup";
-import Survey from "@/components/__shared/ui/survey";
 import { Metadata, ResolvingMetadata } from "next";
+import dynamic from "next/dynamic";
+const Share = dynamic(() => import("@/components/__shared/ui/share"));
+const Survey = dynamic(() => import("@/components/__shared/ui/survey"));
 
 type Props = {
   params: { slug: string };
