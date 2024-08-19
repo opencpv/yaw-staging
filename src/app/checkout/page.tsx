@@ -1,6 +1,4 @@
 "use client";
-import { useAssets } from "@/lib/custom-hooks/useAssets";
-import BillingForm from "./components/BillingForm";
 import { useRouter } from "next/navigation";
 import CaBackArrow from "../../components/__shared/ui/icons/CaBackArrow";
 import useCartStore from "@/store/cart/useCartStore";
@@ -9,9 +7,10 @@ import { CartProp } from "../../../interfaces";
 import { useEffect, useState } from "react";
 import CaNormalArrowDown from "../../components/__shared/ui/icons/CaNormalArrowDown";
 import CaNormalArrowUp from "../../components/__shared/ui/icons/CaNormalArrowUp";
+import dynamic from "next/dynamic";
+const BillingForm = dynamic(() => import("./components/BillingForm"));
 
 const Checkout = () => {
-  const { icons } = useAssets();
   const router = useRouter();
   const { items, getTotalPrice, setCart, discountCode } = useCartStore();
   const [toggle, settoggle] = useState<boolean>(false);
@@ -25,7 +24,7 @@ const Checkout = () => {
     if (storedCarttItems) {
       setCart(JSON.parse(storedCarttItems as string));
     }
-  }, []);
+  }, [setCart]);
 
   const CartItem = ({
     item,
@@ -48,7 +47,7 @@ const Checkout = () => {
           </div>
           <div className="flex items-center gap-4">
             <p className="">Qty</p>
-            <p className=" rounded-full  bg-secondary-50 px-8 py-2">
+            <p className="rounded-full bg-secondary-50 px-8 py-2">
               {item.quantity}
             </p>
           </div>
@@ -63,19 +62,18 @@ const Checkout = () => {
         className={`grid grid-cols-1 gap-x-[141px] px-4 py-4 lg:grid-cols-2 lg:px-16`}
       >
         <div className="py-12">
-          <div className="block py-[49px] lg:hidden  lg:bg-[#D9D9D9] lg:px-[60px] ">
+          <div className="block py-[49px] lg:hidden lg:bg-[#D9D9D9] lg:px-[60px]">
             <button
               onClick={() => {
                 router.push("/cart");
               }}
-              className={`mb-8 flex items-center justify-center gap-4 py-8 text-[#DDB771] outline-none hover:scale-[1.04]
-          lg:mb-[63px] lg:p-0`}
+              className={`mb-8 flex items-center justify-center gap-4 py-8 text-[#DDB771] outline-none hover:scale-[1.04] lg:mb-[63px] lg:p-0`}
             >
               <CaBackArrow />
-              <p className="text-lg ">Cart</p>
+              <p className="text-lg">Cart</p>
             </button>
-            <div className="flex items-center justify-between border-b-2  pb-1">
-              <h2 className="text-[20px] font-semibold ">Order Summary</h2>
+            <div className="flex items-center justify-between border-b-2 pb-1">
+              <h2 className="text-[20px] font-semibold">Order Summary</h2>
               <button
                 onClick={() => {
                   settoggle(!toggle);
@@ -85,8 +83,8 @@ const Checkout = () => {
               </button>
             </div>
             {toggle && (
-              <div className=" mt-8">
-                <div className=" mb-16">
+              <div className="mt-8">
+                <div className="mb-16">
                   {items.map((item, index) => (
                     <CartItem item={item} key={index} item_index={index} />
                   ))}
@@ -123,21 +121,20 @@ const Checkout = () => {
           </h1>
           <BillingForm amount={getTotalPrice(items) + tax} />
         </div>
-        <div className="hidden px-4 py-[49px] lg:block lg:bg-[#D9D9D9] lg:px-[60px] ">
+        <div className="hidden px-4 py-[49px] lg:block lg:bg-[#D9D9D9] lg:px-[60px]">
           <button
             onClick={() => {
               router.push("/cart");
             }}
-            className={`mb-8 flex items-center justify-center gap-4 px-8 py-8 text-[#DDB771] outline-none hover:scale-[1.04]
-          lg:mb-[63px] lg:p-0`}
+            className={`mb-8 flex items-center justify-center gap-4 px-8 py-8 text-[#DDB771] outline-none hover:scale-[1.04] lg:mb-[63px] lg:p-0`}
           >
             <CaBackArrow />
-            <p className="text-lg ">Cart</p>
+            <p className="text-lg">Cart</p>
           </button>
           <h2 className="mb-9 border-b-2 pb-1 text-[20px] font-semibold">
             Order Summary
           </h2>
-          <div className=" mb-16">
+          <div className="mb-16">
             {items.map((item, index) => (
               <CartItem item={item} key={index} item_index={index} />
             ))}

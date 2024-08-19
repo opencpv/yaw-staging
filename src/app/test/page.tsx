@@ -1,11 +1,7 @@
-// @ts-nocheck
-
 "use client";
-import supabase from "@/lib/utils/supabase/supabaseClient";
-import { useAppStore } from "@/store/dashboard/AppStore";
 import axios from "axios";
 import Head from "next/head";
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 
 const Test = () => {
   const [file, setFile] = useState<File | null>();
@@ -27,7 +23,7 @@ const Test = () => {
           className="text-white"
         />
         <button
-          className="mt-4 rounded-full bg-white p-2 "
+          className="mt-4 rounded-full bg-white p-2"
           onClick={async () => {
             // Check if file is not null before proceeding
             if (file) {

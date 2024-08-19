@@ -1,19 +1,17 @@
-// @ts-nocheck
-import {
-  TableBodySm,
-  TableRowSm,
-} from "@/app/dashboard/components/shared/table/Table";
-import ViewDataDetailsModal from "../__shared/ViewDataDetailsModal";
-import { PaymentData } from "../types";
+import { TableBodySm, TableRowSm } from "@/components/__shared/ui/table/Table";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import { formatDateOnly } from "@/lib/utils/stringManipulation";
-import { CheckboxNoFormik as Checkbox } from "@/app/dashboard/components/shared/ui/Checkbox";
+import { CheckboxNoFormik as Checkbox } from "@/components/__shared/ui/form/Checkbox";
 import { useReceiptData } from "../../hooks/useReceiptData";
 import { RiFileListLine } from "react-icons/ri";
+import dynamic from "next/dynamic";
+const ViewDataDetailsModal = dynamic(
+  () => import("../__shared/ViewDataDetailsModal"),
+);
 
 type Props = {
   variant: "invoice" | "receipt";
-  data: PaymentData;
+  data: Invoice;
 };
 
 function DataRowSm({ variant, data }: Props) {

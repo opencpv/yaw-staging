@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import styles from "../style.module.css";
 import CitySearchForm from "./CitySearchForm";
 import { animate, motion, stagger } from "framer-motion";
@@ -95,7 +95,9 @@ const Landing = (props: Props) => {
         </Link>
       </FramerWrapper>
       <div className="space-y-2">
-        <CitySearchForm placeholder={props.data.searchDefault} />
+        <Suspense>
+          <CitySearchForm placeholder={props.data.searchDefault} />
+        </Suspense>
         <small className="font-semibold">
           Start searching for your next dream home.
         </small>

@@ -61,7 +61,15 @@ const InvoiceReceiptFilter = (props: Props) => {
     setReceiptItems([]);
 
     fetchData();
-  }, []);
+  }, [
+    id,
+    props.customerId,
+    setCheckoutItems,
+    setCustomer,
+    setInvoiceItems,
+    setReceiptItems,
+    supabaseClient,
+  ]);
 
   useEffect(() => {
     console.log(customer);

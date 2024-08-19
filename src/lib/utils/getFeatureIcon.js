@@ -20,7 +20,7 @@ import {
   PiWallLight,
 } from "react-icons/pi";
 import { BiCctv, BiDish } from "react-icons/bi";
-import Tiles from "@/components/__shared/ui/listing-form/components/icons/Tiles";
+import Tiles from "@/app/dashboard/components/shared/icons/Tiles";
 import { CiWifiOn } from "react-icons/ci";
 import { IoCarOutline } from "react-icons/io5";
 import { LiaBuilding } from "react-icons/lia";

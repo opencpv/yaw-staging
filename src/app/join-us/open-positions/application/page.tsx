@@ -3,6 +3,7 @@ import JobApplicationForm from "../components/JobApplicationForm";
 import JoinUsButtons from "../../components/JoinUsButtons";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { Suspense } from "react";
 const Footer = dynamic(() => import("@/components/__shared/ui/footer/Footer"));
 
 export const metadata: Metadata = {
@@ -33,7 +34,9 @@ function Page() {
           </div>
         </div>
         <div className="flex w-full flex-col gap-4">
-          <JobApplicationForm variant="application" />
+          <Suspense>
+            <JobApplicationForm variant="application" />
+          </Suspense>
         </div>
       </div>
       <Footer className="mt-0 sm:mt-0" />

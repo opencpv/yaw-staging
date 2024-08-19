@@ -1,10 +1,5 @@
-//@ts-nocheck
-import {
-  TableBody,
-  TableBodyRow,
-} from "@/app/dashboard/components/shared/table/Table";
-import { CheckboxNoFormik as Checkbox } from "@/app/dashboard/components/shared/ui/Checkbox";
-import { PaymentData } from "../types";
+import { TableBody, TableBodyRow } from "@/components/__shared/ui/table/Table";
+import { CheckboxNoFormik as Checkbox } from "@/components/__shared/ui/form/Checkbox";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import { formatDateOnly } from "@/lib/utils/stringManipulation";
 import ViewDataDetailsModal from "../__shared/ViewDataDetailsModal";

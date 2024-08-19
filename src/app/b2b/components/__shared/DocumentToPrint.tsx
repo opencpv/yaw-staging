@@ -1,9 +1,8 @@
 import React from "react";
-import { PaymentData } from "../types";
 import { pdfDownloadStore } from "@/store/payment/pdfDownloadStore";
 
 type Props = {
-  data: PaymentData | PaymentData[];
+  data: Invoice | Invoice[];
   variant: "invoice" | "receipt";
 };
 

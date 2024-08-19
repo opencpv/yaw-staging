@@ -13,7 +13,7 @@ import { FaEnvelope } from "react-icons/fa6";
 import { MdLocalPhone } from "react-icons/md";
 import { socialLinks } from "@/enum/links/socials";
 import { useQuery } from "@tanstack/react-query";
-import { pacifico } from "@/lib/utils/fonts";
+// import { pacifico } from "@/lib/utils/fonts";
 import FloatItemsHack from "@/components/FloatItemsHack";
 import { useIntersectionObserver } from "@/lib/utils/intersectionObserver";
 import { useEffect } from "react";
@@ -126,7 +126,7 @@ const Footer = (props: Props) => {
 
         <div className="mt-10 flex flex-col items-center gap-10 pb-14 text-[32px] text-[#fff]">
           <h2 className="font-bold">
-            Get <span className={`${pacifico.className}`}>social</span> with us:
+            Get <span className={"font-pacifico"}>social</span> with us:
           </h2>
 
           <div className="flex items-center gap-4 md:gap-8">

@@ -1,10 +1,8 @@
 import Image from "next/image";
-import React from "react";
+import React, { Suspense } from "react";
 import TagsSelect from "./components/TagsSelect";
 import FixedSocials from "@/components/__shared/ui/FixedSocials";
 import ScrollTop from "@/components/__shared/ui/ScrollTop";
-import { loadQuery } from "@sanity/react-loader";
-import { SanityDocument } from "next-sanity";
 import { ADS_QUERY } from "@/lib/utils/sanity/queries";
 import dynamic from "next/dynamic";
 import { client } from "@/lib/utils/sanity/client";
@@ -32,10 +30,14 @@ async function page() {
       <section className="flex w-full flex-col items-center">
         <SearchCity />
         <div className="mx-auto w-full text-neutral-500">
-          <TagsSelect />
+          <Suspense>
+            <TagsSelect />
+          </Suspense>
         </div>
       </section>
-      <PropertiesListing ads={filteredAdsData} />
+      <Suspense>
+        <PropertiesListing ads={filteredAdsData} />
+      </Suspense>
       <FixedSocials thresholdMin={300} />
       <Footer />
       <ScrollTop />

@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { JobType } from "../types";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { Suspense } from "react";
 const Footer = dynamic(() => import("@/components/__shared/ui/footer/Footer"));
 
 export const metadata: Metadata = {
@@ -55,7 +56,9 @@ const Page = async () => {
           >
             {jobsData.map((job: any) => (
               <div className="col-span-3 w-full md:col-span-1" key={job._id}>
-                <JobCard job={job} jobs={jobsData as unknown as JobType[]} />
+                <Suspense>
+                  <JobCard job={job} jobs={jobsData as unknown as JobType[]} />
+                </Suspense>
               </div>
             ))}
             <div className="col-span-3 h-full w-full md:col-span-1">

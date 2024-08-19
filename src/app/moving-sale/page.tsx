@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import SliderWide from "@/components/__shared/ui/sliders/SliderWide";
 import CallOut from "@/components/__shared/ui/CallOut";
 import { ADS_QUERY } from "@/lib/utils/sanity/queries";
@@ -38,7 +38,9 @@ const page = async () => {
         content="You may select more than one response"
         className="mb-20"
       />
-      <Items ads={filteredAdsData} />
+      <Suspense>
+        <Items ads={filteredAdsData} />
+      </Suspense>
     </main>
   );
 };

@@ -33,7 +33,10 @@ type Props = {
 const PropertyDetailsPage = async ({ params }: Props) => {
   const { id: propertyId } = params;
   const supabaseClient = createClient();
-  const { data } = await supabaseClient.auth.getSession();
+  // const { data } = await supabaseClient.auth.getSession();
+  const {
+    data: { user },
+  } = await supabaseClient.auth.getUser();
 
   const fetchPropertyDetails = cache(async () => {
     const query = await supabase
@@ -54,7 +57,7 @@ const PropertyDetailsPage = async ({ params }: Props) => {
   if (listing) {
     await updateRecentViews({
       propertyId: Number(params.id),
-      userId: data?.session?.user?.id as string,
+      userId: user?.id as string,
     });
   }
 

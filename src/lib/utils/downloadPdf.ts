@@ -1,4 +1,4 @@
-// @ts-ignore
+//@ts-ignore
 import html2pdf from "html2pdf.js";
 
 type Params = {

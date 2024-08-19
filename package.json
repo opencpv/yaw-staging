@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "PORT=3001 next start",
+    "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
@@ -37,6 +37,7 @@
     "date-fns": "^3.6.0",
     "formik": "^2.4.6",
     "framer-motion": "^11.3.28",
+    "html2pdf.js": "^0.10.2",
     "next": "14.2.5",
     "next-sanity": "^9.4.5",
     "next-sanity-client": "^1.0.8",
@@ -54,6 +55,7 @@
     "react-phone-number-input": "^3.4.5",
     "react-share": "^5.1.0",
     "sanity": "^3.54.0",
+    "sharp": "^0.33.5",
     "swiper": "^11.1.9",
     "swr": "^2.2.5",
     "tailwind-merge": "^2.5.2",

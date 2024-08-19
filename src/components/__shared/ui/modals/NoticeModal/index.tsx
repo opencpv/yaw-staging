@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 // import Modal from "../Modal";
 import { LiaTimesSolid } from "react-icons/lia";
-import { pacifico } from "@/lib/utils/fonts";
+// import { pacifico } from "@/lib/utils/fonts";
 // import Button from "../../button/Button";
 import { FaThumbsUp } from "react-icons/fa6";
 import styles from "./NoticeModal.module.css";
@@ -35,7 +35,8 @@ const NoticeModal = () => {
 
   return (
     // <Context.Provider value={{ handleVisibility, setOpen }}>
-      {/* <Modal
+    {
+      /* <Modal
         body={<ModalBody />}
         isOpen={open ?? true}
         onOpenChange={(open) => {
@@ -48,7 +49,8 @@ const NoticeModal = () => {
         }}
         hideCloseButton
         className="max-w-[88rem]"
-      /> */}
+      /> */
+    }
     // </Context.Provider>
   );
 };
@@ -96,7 +98,7 @@ const ModalBody = () => {
           <span className={styles.emCallout}>No Wahala No Azaa.</span>
         </p>
         <div className="flex flex-col items-start self-start">
-          <small className={`${pacifico.className}`}>Sincerely,</small>
+          <small className={"font-pacifico"}>Sincerely,</small>
           <small>Rentright Team</small>
         </div>
         <button

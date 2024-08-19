@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { Suspense } from "react";
 import ModalCloseIcon from "@/components/__shared/ui/modals/ModalCloseIcon";
 import Image from "next/image";
 import { JobType } from "../../types";
@@ -36,7 +36,11 @@ export default function JobCard({ job, jobs }: Props) {
             <Share title={position as string} content={job.description_brief} />
           </div>
         }
-        body={<JobDescriptionModalContent jobs={jobs} />}
+        body={
+          <Suspense>
+            <JobDescriptionModalContent jobs={jobs} />
+          </Suspense>
+        }
         isOpen={position ? true : false}
         onOpenChange={handleOpenChange}
         scrollBehavior="inside"

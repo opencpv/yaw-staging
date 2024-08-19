@@ -1,6 +1,6 @@
 "use client";
 import BreadCrumbPreLink from "@/components/__shared/ui/BreadCrumbPreLink";
-import React, { useEffect, useRef } from "react";
+import React, { Suspense, useEffect, useRef } from "react";
 import { FaChevronRight } from "react-icons/fa6";
 import ItemDetails from "../ItemDetails";
 import ItemImages from "../ItemImages";
@@ -62,7 +62,9 @@ const DetailPage = (props: Props) => {
         {/* Grid col */}
         <ItemOwnerContact query={query} />
       </section>
-      <ItemRelatedItems />
+      <Suspense>
+        <ItemRelatedItems />
+      </Suspense>
     </main>
   );
 };

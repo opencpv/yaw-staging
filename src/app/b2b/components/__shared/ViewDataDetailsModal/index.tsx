@@ -11,7 +11,6 @@ import legal from "@/enum/about/legal";
 import DownloadButton from "../DownloadButton";
 import CheckoutButton from "../CheckoutButton";
 import { formatPrice } from "@/lib/utils/numberManipulation";
-import { PaymentData } from "../../types";
 import { formatDateDMY, formatDateOnly } from "@/lib/utils/stringManipulation";
 import { customerStore } from "@/store/payment/customerStore";
 
@@ -36,7 +35,7 @@ export default function ViewDataDetailsModal({ variant, data }: Props) {
         closeButton={<ModalCloseIcon />}
         size="3xl"
       /> */}
-        {/* <ViewButton
+      {/* <ViewButton
           onOpen={onOpen}
           className="max-sm:w-fit max-sm:bg-transparent max-sm:p-0 sm:h-11"
         /> */}
@@ -54,7 +53,7 @@ const ModalHeader = ({
   return (
     <div
       className={`sticky -top-2 mx-auto -mt-2 flex w-full items-center justify-between rounded-xl px-4 py-2 ${
-        variant === "invoice" ? "bg-primary" : "bg-shade rounded-t-xl"
+        variant === "invoice" ? "bg-primary" : "rounded-t-xl bg-shade"
       }`}
     >
       <div
@@ -91,9 +90,9 @@ const ModalBody = ({ variant, data }: { variant: Variant; data: Invoice }) => {
   const { customer } = customerStore();
 
   return (
-    <main className=" bg-shade mx-auto rounded-t-xl p-2 pt-0 sm:w-11/12">
+    <main className="mx-auto rounded-t-xl bg-shade p-2 pt-0 sm:w-11/12">
       <ModalHeader variant={variant} data={data} />
-      <section className=" space-y-8">
+      <section className="space-y-8">
         <section className="highlight flex gap-5 max-xs:justify-between">
           <h4>Date issued</h4>
           <p className="highlight-body">{formatDateDMY(data.billing_date)}</p>
@@ -149,7 +148,7 @@ const ModalBody = ({ variant, data }: { variant: Variant; data: Invoice }) => {
         </section>
         <section className="flex flex-col gap-1 pt-14">
           <p className="font-bold">Thank you for doing business with us!</p>
-          <div className="flex gap-2  ssm:items-center">
+          <div className="flex gap-2 ssm:items-center">
             <div className="relative shrink-0 max-ssm:top-2">
               <CaQuote />
             </div>
