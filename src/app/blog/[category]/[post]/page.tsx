@@ -9,7 +9,6 @@ import { PortableText } from "@portabletext/react";
 import "../../style.css";
 import urlBuilder from "@sanity/image-url";
 import { client } from "@/lib/utils/sanity/client";
-import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 import { headers } from "next/headers";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Rate from "@/components/__shared/ui/Rate";
@@ -19,6 +18,9 @@ import { Metadata, ResolvingMetadata } from "next";
 import dynamic from "next/dynamic";
 const Share = dynamic(() => import("@/components/__shared/ui/share"));
 const Survey = dynamic(() => import("@/components/__shared/ui/survey"));
+const FramerWrapper = dynamic(
+  () => import("@/components/__shared/hoc/FramerWrapper"),
+);
 
 type Props = {
   params: { slug: string };

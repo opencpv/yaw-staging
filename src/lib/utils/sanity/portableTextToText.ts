@@ -1,17 +1,16 @@
-// @ts-nocheck
 const defaults = { nonTextBehavior: "remove" };
 
-export const portableTextToText = (blocks, opts = {}) => {
+export const portableTextToText = (blocks: any, opts = {}) => {
   const options = Object.assign({}, defaults, opts);
   return blocks
-    .map((block) => {
+    .map((block: any) => {
       if (block._type !== "block" || !block.children) {
         return options.nonTextBehavior === "remove"
           ? ""
           : `[${block._type} block]`;
       }
 
-      return block.children.map((child) => child.text).join("");
+      return block.children.map((child: any) => child.text).join("");
     })
     .join("\n\n");
 };

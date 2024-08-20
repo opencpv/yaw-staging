@@ -6,24 +6,28 @@ import CitySearchForm from "./CitySearchForm";
 import { animate, motion, stagger } from "framer-motion";
 import Link from "next/link";
 import { urlForImage } from "@/lib/utils/sanity/utils";
-import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
+import dynamic from "next/dynamic";
+const FramerWrapper = dynamic(
+  () => import("@/components/__shared/hoc/FramerWrapper"),
+  { ssr: false },
+);
 
 type Props = {
   data: any;
 };
 
 const Landing = (props: Props) => {
-  useEffect(() => {
-    animate(
-      ".featured-info div, .featured-info p, .featured-info h3",
-      { opacity: 1, y: 0 },
-      {
-        delay: stagger(0.1, { startDelay: 0.5 }),
-        type: "tween",
-        ease: "linear",
-      },
-    );
-  }, []);
+  // useEffect(() => {
+  //   animate(
+  //     ".featured-info div, .featured-info p, .featured-info h3",
+  //     { opacity: 1, y: 0 },
+  //     {
+  //       delay: stagger(0.1, { startDelay: 0.5 }),
+  //       type: "tween",
+  //       ease: "linear",
+  //     },
+  //   );
+  // }, []);
 
   const title = props.data.title.split(" ").slice(0, -1).join(" ");
   const titleHighlight = props.data.title.split(" ").slice(-1)[0];

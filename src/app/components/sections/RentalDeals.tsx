@@ -1,10 +1,13 @@
-import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 import Image from "next/image";
 import React from "react";
 import DealCard from "../ui/DealCard";
 import Button from "@/components/__shared/ui/button/Button";
 import { HiChevronRight } from "react-icons/hi";
 import { urlForImage } from "@/lib/utils/sanity/utils";
+import dynamic from "next/dynamic";
+const FramerWrapper = dynamic(
+  () => import("@/components/__shared/hoc/FramerWrapper"),
+);
 
 type Props = {
   data: any;

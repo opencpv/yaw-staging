@@ -2,8 +2,7 @@
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/effect-coverflow";
-import React, { useEffect, useState } from "react";
-import ListingCard from "./ListingCard";
+import React from "react";
 import SkeletonListing from "../skeleton/SkeletonListing";
 import FetchingStates from "../data_fetching/FetchingStates";
 import Button from "../button/Button";
@@ -14,8 +13,10 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import { getListingProps } from "@/lib/enum";
 import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
 import { cn } from "@/lib/utils";
-import FramerWrapper from "../../hoc/FramerWrapper";
 import { useIntersectionObserver } from "@/lib/utils/intersectionObserver";
+import dynamic from "next/dynamic";
+const ListingCard = dynamic(() => import("./ListingCard"));
+const FramerWrapper = dynamic(() => import("../../hoc/FramerWrapper"));
 
 type Props = {
   className?: string;

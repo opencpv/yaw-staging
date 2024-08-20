@@ -2,7 +2,10 @@
 import Image from "next/image";
 import Button from "@/components/__shared/ui/button/Button";
 import { HiChevronRight } from "react-icons/hi";
-import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
+import dynamic from "next/dynamic";
+const FramerWrapper = dynamic(
+  () => import("@/components/__shared/hoc/FramerWrapper"),
+);
 
 type Props = {
   activity: string;

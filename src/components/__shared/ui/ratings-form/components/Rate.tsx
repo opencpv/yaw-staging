@@ -1,19 +1,23 @@
-import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
 import RateStars from "./RateStars";
 import SwiperSlideControls from "./SwiperSliderControls";
 import { fadeIn } from "@/lib/animations";
-
+import dynamic from "next/dynamic";
+const FramerWrapper = dynamic(
+  () => import("@/components/__shared/hoc/FramerWrapper"),
+);
 
 function Rate() {
-
   return (
-    <FramerWrapper {...fadeIn} className="w-full  flex flex-col items-center justify-between  ">
-      <div className="flex flex-col gap-5 lg:gap-14  w-full ">
-        <div className="w-full justify-between items-center flex flex-col md:flex-row  gap-5 lg:gap-0">
+    <FramerWrapper
+      {...fadeIn}
+      className="flex w-full flex-col items-center justify-between"
+    >
+      <div className="flex w-full flex-col gap-5 lg:gap-14">
+        <div className="flex w-full flex-col items-center justify-between gap-5 md:flex-row lg:gap-0">
           <RateStars label="Cleanliness" />
           <RateStars label="Comfort & Amenities" />
         </div>
-        <div className="w-full justify-between items-center flex flex-col md:flex-row  gap-5 lg:gap-0">
+        <div className="flex w-full flex-col items-center justify-between gap-5 md:flex-row lg:gap-0">
           <RateStars label="Noise Levels" />
           <RateStars label="Safety & Security" />
         </div>

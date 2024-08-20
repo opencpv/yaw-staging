@@ -1,11 +1,12 @@
 import { useState } from "react";
-
-import FramerWrapper from "@/components/__shared/hoc/FramerWrapper";
-import { fadeIn } from "@/lib/animations";
 import Thumbs from "../../feedback/Thumbs";
 import { useFeedbackDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { Form, Formik } from "formik";
 import { useRatingsModalStore } from "@/store/modal/useRatingsModalStore";
+import dynamic from "next/dynamic";
+const FramerWrapper = dynamic(
+  () => import("@/components/__shared/hoc/FramerWrapper"),
+);
 
 function Recommend() {
   const [recommendation, setRecommendation] = useState<"yes" | "no">();
@@ -34,11 +35,8 @@ function Recommend() {
     setCurrentProperty,
   } = useRatingsModalStore();
   return (
-    <FramerWrapper
-      {...fadeIn}
-      className="flex flex-col items-center justify-center"
-    >
-      <div className="flex h-full w-full flex-col items-center justify-center gap-4 ">
+    <FramerWrapper className="flex flex-col items-center justify-center">
+      <div className="flex h-full w-full flex-col items-center justify-center gap-4">
         <p className="text-lg font-semibold text-shade-300 2xl:text-xl">
           Would you recommend{" "}
           <span className="font-bold">

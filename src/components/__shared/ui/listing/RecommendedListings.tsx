@@ -3,7 +3,6 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/effect-coverflow";
 import React from "react";
-import ListingCard from "./ListingCard";
 import SkeletonListing from "../skeleton/SkeletonListing";
 import FetchingStates from "../data_fetching/FetchingStates";
 import Button from "../button/Button";
@@ -15,6 +14,8 @@ import { getListingProps, Listing } from "@/lib/enum";
 import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
 import { cn } from "@/lib/utils";
 import { useIntersectionObserver } from "@/lib/utils/intersectionObserver";
+import dynamic from "next/dynamic";
+const ListingCard = dynamic(() => import("./ListingCard"));
 
 type Props = {
   className?: string;

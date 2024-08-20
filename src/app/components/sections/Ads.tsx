@@ -1,20 +1,22 @@
 "use client";
 import { useFetchFeaturedListings } from "@/app/properties/services";
-import ListingCard from "@/components/__shared/ui/listing/ListingCard";
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
-import SliderGrid from "@/components/__shared/ui/sliders/SliderGrid";
 import { getListingProps } from "@/lib/enum";
 import { useAppStore } from "@/store/dashboard/AppStore";
+import dynamic from "next/dynamic";
 import React from "react";
+const ListingCard = dynamic(
+  () => import("@/components/__shared/ui/listing/ListingCard"),
+);
+const SliderGrid = dynamic(
+  () => import("@/components/__shared/ui/sliders/SliderGrid"),
+);
 
 type Props = {};
 
 const FeaturedListings = (props: Props) => {
   const { user } = useAppStore();
-  const {
-    data: listings,
-    isLoading,
-  } = useFetchFeaturedListings();
+  const { data: listings, isLoading } = useFetchFeaturedListings();
 
   return (
     <section className="wrapper section">
