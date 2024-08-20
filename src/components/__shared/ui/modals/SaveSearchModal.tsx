@@ -10,9 +10,10 @@ import Modal from "./Modal";
 import Button from "../button/Button";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { FiTrash2 } from "react-icons/fi";
-import DestructiveModal from "./DestructiveModal";
 import { cn } from "@/lib/utils";
 import CloseModalIcon from "../icons/CloseModalIcon";
+import dynamic from "next/dynamic";
+const DestructiveModal = dynamic(() => import("./DestructiveModal"));
 
 type Props = {
   className?: string;

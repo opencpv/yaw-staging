@@ -26,7 +26,12 @@ const UserOverview = ({
 
   return (
     <div className={className}>
-      <Link href="/dashboard/renter/notifications">Chale notifs</Link>
+      <Link
+        href="/dashboard/renter/sell-products"
+        className="italic text-blue-500 underline"
+      >
+        Sell
+      </Link>
       <h2 className="mb-6">Overview</h2>
       <h3 className="mb-6 text-neutral-700 md:hidden">
         Welcome, {user?.full_name}

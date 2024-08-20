@@ -13,7 +13,6 @@ import { FaEnvelope } from "react-icons/fa6";
 import { MdLocalPhone } from "react-icons/md";
 import { socialLinks } from "@/enum/links/socials";
 import { useQuery } from "@tanstack/react-query";
-// import { pacifico } from "@/lib/utils/fonts";
 import FloatItemsHack from "@/components/FloatItemsHack";
 import { useIntersectionObserver } from "@/lib/utils/intersectionObserver";
 import { useEffect } from "react";

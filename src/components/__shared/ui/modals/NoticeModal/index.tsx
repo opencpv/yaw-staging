@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 // import Modal from "../Modal";
 import { LiaTimesSolid } from "react-icons/lia";
-// import { pacifico } from "@/lib/utils/fonts";
 // import Button from "../../button/Button";
 import { FaThumbsUp } from "react-icons/fa6";
 import styles from "./NoticeModal.module.css";

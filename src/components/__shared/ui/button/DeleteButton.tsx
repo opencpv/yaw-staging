@@ -2,8 +2,9 @@ import React from "react";
 import Button from "./Button";
 import { FiTrash2 } from "react-icons/fi";
 import { cn } from "@/lib/utils";
-// import DestructiveModal from "../modals/DestructiveModal";
+import dynamic from "next/dynamic";
 // import { useDisclosure } from "@nextui-org/react";
+// const DestructiveModal = dynamic(() => import("../modals/DestructiveModal"));
 
 type Props = {
   className?: string;
@@ -13,7 +14,7 @@ type Props = {
   handleDestruction: () => void;
   loading: boolean;
   label?: string;
-  variant?: "background" | "ghost"
+  variant?: "background" | "ghost";
 };
 
 const DeleteButton = ({
@@ -22,7 +23,7 @@ const DeleteButton = ({
   label,
   handleDestruction,
   classNames,
-  variant = "ghost"
+  variant = "ghost",
 }: Props) => {
   // const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
 
@@ -39,9 +40,13 @@ const DeleteButton = ({
       <Button
         isIconOnly
         title="Delete"
-        className={cn("", {
-          "bg-secondary-50 p-4 rounded-md": variant === "background",
-        }, className)}
+        className={cn(
+          "",
+          {
+            "rounded-md bg-secondary-50 p-4": variant === "background",
+          },
+          className,
+        )}
         // onClick={onOpen}
       >
         <FiTrash2
