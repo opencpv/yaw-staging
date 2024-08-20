@@ -101,6 +101,7 @@ export const fetchRequestMatchById = async ({
   id: number;
   renterId: string;
 }) => {
+  if (!renterId) return;
   const { data, error } = await supabase
     .from("agent_request_matches")
     .select(

@@ -6,13 +6,16 @@ import { useFetchItems } from "../services";
 import { useSearchParams } from "next/navigation";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import EmptyState from "@/components/__shared/ui/states/EmptyState";
-import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
 import SkeletonItem from "@/components/__shared/ui/skeleton/SkeletonItem";
 import { cn } from "@/lib/utils";
 import { pluralize } from "@/lib/utils/stringManipulation";
 // import { Skeleton } from "@nextui-org/react";
 import { SanityDocument } from "next-sanity";
-import Ad from "@/app/components/sections/Ad";
+import dynamic from "next/dynamic";
+const ButtonInfiniteLoading = dynamic(
+  () => import("@/components/__shared/ui/data_fetching/ButtonInfiniteLoading"),
+);
+const Ad = dynamic(() => import("@/app/components/sections/Ad"));
 
 type Props = {
   ads: SanityDocument[];

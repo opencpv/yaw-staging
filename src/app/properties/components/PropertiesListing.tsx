@@ -5,12 +5,14 @@ import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useFetchProperties } from "../services";
 import PropertiesEmptyState from "./PropertiesEmptyState";
-import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { getListingProps, Listing } from "@/lib/enum";
 import { SanityDocument } from "next-sanity";
 import dynamic from "next/dynamic";
+const ButtonInfiniteLoading = dynamic(
+  () => import("@/components/__shared/ui/data_fetching/ButtonInfiniteLoading"),
+);
 const ListingCard = dynamic(
   () => import("@/components/__shared/ui/listing/ListingCard"),
 );

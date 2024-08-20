@@ -11,6 +11,7 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import { AiOutlineUser } from "react-icons/ai";
 import CallOut from "@/components/__shared/ui/CallOut";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 const UserOverviewMV = dynamic(() => import("./UserOverviewMV"));
 
 const UserOverview = ({
@@ -25,6 +26,7 @@ const UserOverview = ({
 
   return (
     <div className={className}>
+      <Link href="/dashboard/renter/my-search/all">Cool search</Link>
       <h2 className="mb-6">Overview</h2>
       <h3 className="mb-6 text-neutral-700 md:hidden">
         Welcome, {user?.full_name}
