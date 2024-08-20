@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 import Providers from "@/context/Providers";
@@ -7,9 +6,9 @@ import LoadingIndicator from "@/components/__shared/ui/LoadingIndicator";
 import NoticeModal from "@/components/__shared/ui/modals/NoticeModal";
 import TemporayLandingPage from "@/components/TemporaryLandingPage";
 import ToastConfig from "@/components/__shared/ToastConfig";
+import { openSans } from "@/lib/utils/fonts";
+import { cn } from "@/lib/utils";
 // import MenuWrapperNoSSR from "@/components/__shared/hoc/MenuWrapperNoSSR";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
@@ -43,7 +42,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   const showTemporaryLandingPage =
     process.env.NEXT_PUBLIC_TEMPORARY_LANDING_PAGE === "true";
 
@@ -68,18 +66,17 @@ export default function RootLayout({
       <Script src="https://widget.cloudinary.com/v2.0/global/all.js" />
 
       <body
-        className={`bg-white text-neutral-800 light ${inter.className}`}
+        className={cn(
+          "light bg-white font-sans text-neutral-800 antialiased",
+          openSans.variable,
+        )}
       >
         <Providers>
           <ToastConfig />
           {/* <MenuWrapperNoSSR> */}
-            <LoadingIndicator />
-            {/* <NoticeModal /> */}
-            {showTemporaryLandingPage ? (
-              <TemporayLandingPage />
-            ) : (
-              children
-            )}
+          <LoadingIndicator />
+          {/* <NoticeModal /> */}
+          {showTemporaryLandingPage ? <TemporayLandingPage /> : children}
           {/* </MenuWrapperNoSSR> */}
         </Providers>
         {/* <RatingsAndAllRatings /> */}

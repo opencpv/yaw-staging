@@ -1,0 +1,34 @@
+import React from "react";
+import Image from "next/image";
+
+type Props = {
+  title: string;
+  image: string;
+  matches: number;
+  description?: string;
+};
+
+const PaidFeature = (props: Props) => {
+  return (
+    <div className="flex flex-col gap-2 border-b-2 pb-5 pt-2 last:border-b-0 last:pb-2 last:pt-0 min-[320px]:flex-row">
+      <div className="relative aspect-square max-h-28 w-32 rounded-xl bg-[#F9DFAE] p-6 min-[320px]:w-[initial] min-[320px]:flex-1">
+        <Image
+          src={props.image}
+          alt={props.title}
+          fill
+          style={{ objectFit: "cover" }}
+          className="rounded-xl"
+        />
+      </div>
+      <div className="flex-[3] space-y-3">
+        <h3>{props.title}</h3>
+        <p>{props.description}</p>
+        <div className="w-fit rounded-xl bg-[#FEF8ED] p-2 px-6 text-neutral-700">
+          {props.matches} matches
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default PaidFeature;

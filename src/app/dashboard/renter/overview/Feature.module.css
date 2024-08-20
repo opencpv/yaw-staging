@@ -1,0 +1,80 @@
+.ribbonFree {
+  position: absolute;
+  background: #b0e3c9;
+  padding: 1rem;
+  font-size: 1.2rem;
+  box-shadow: 0 0 0 999px #b0e3c9;
+  clip-path: inset(0 -100%);
+  inset: 0 auto auto 0;
+  transform-origin: 100% 0;
+  transform: translate(-25%) rotate(-45deg);
+}
+
+.ribbonUpgrade {
+  position: absolute;
+  background: rgb(241 179 70);
+  padding: 1rem;
+  font-size: 1.2rem;
+  box-shadow: 0 0 0 999px rgb(241 179 70);
+  clip-path: inset(0 -100%);
+  inset: 0 auto auto 0;
+  transform-origin: 100% 0;
+  transform: translate(-25%) rotate(-45deg);
+}
+
+.sideFeatureWrapper {
+  @apply w-full space-y-4 xs:max-lg:max-w-md lg:max-w-full;
+}
+
+.sideFeatureInnerWrapper {
+  @apply grid grid-cols-4 items-center justify-between gap-2 rounded-xl bg-primary-400 p-2 px-4 capitalize text-white;
+}
+
+.sideFeatureTitle {
+  @apply col-span-3 line-clamp-1 min-w-fit font-normal;
+}
+
+.sideFeatureButton {
+  @apply ml-auto w-fit bg-neutral-100 text-neutral-800;
+}
+
+.sideFeatureSkeletonWrapper {
+  @apply flex flex-col gap-2 border-b-2 pb-5 pt-2 last:border-b-0 last:pb-2 last:pt-0 min-[320px]:flex-row;
+}
+
+.sideFeatureSkeleton1 {
+  @apply relative aspect-square size-32 rounded-xl min-[320px]:flex-1;
+}
+
+.sideFeatureSkeleton2 {
+  @apply h-8 w-full flex-[2] rounded-md;
+}
+
+.sideFeatureList {
+  @apply space-y-6;
+}
+
+.sideFeatureListItem {
+  @apply flex flex-col gap-2 border-b-2 pb-5 pt-2 last:border-b-0 last:pb-2 last:pt-0 min-[320px]:flex-row;
+}
+
+.sideFeatureImageWrapper {
+  @apply relative aspect-square max-h-28 w-32 rounded-xl bg-[#F9DFAE] p-6 min-[320px]:w-[initial] min-[320px]:flex-1;
+}
+
+.sideFeatureImage {
+  @apply rounded-xl;
+}
+
+.sideFeatureMatchTextWrapper {
+  @apply flex-[3] space-y-3;
+}
+
+.sideFeatureMatchLink {
+  @apply block w-fit rounded-xl bg-[#FEF8ED] p-2 px-6 text-neutral-700;
+}
+
+.sideFeatureLearnMoreButton {
+  @apply mt-1 text-sm font-[700] capitalize text-[#45808B] underline;
+}
+

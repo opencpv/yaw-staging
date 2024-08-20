@@ -14,6 +14,8 @@ import legal from "@/enum/about/legal";
 //   setLocalStorageWithExpiry,
 // } from "@/lib/utils/localStorage";
 import { NOTICE_MODAL_TTL } from "@/constants";
+import { cn } from "@/lib/utils";
+import { pacifico } from "@/lib/utils/fonts";
 
 const Context = createContext<{
   handleVisibility: () => void;
@@ -98,7 +100,9 @@ const ModalBody = () => {
           <span className={styles.emCallout}>No Wahala No Azaa.</span>
         </p>
         <div className="flex flex-col items-start self-start">
-          <small className={"font-pacifico"}>Sincerely,</small>
+          <small className={cn("font-pacifico antialiased", pacifico.variable)}>
+            Sincerely,
+          </small>
           <small>Rentright Team</small>
         </div>
         <button

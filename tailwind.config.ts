@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss";
 import defaultTheme from "tailwindcss/defaultTheme";
-import { mauve, violet, green, blackA } from "@radix-ui/colors"
+import { mauve, violet, green, blackA } from "@radix-ui/colors";
 
 const config: Config = {
   content: [
@@ -94,9 +94,9 @@ const config: Config = {
         "39": "2.4375rem",
       },
       fontFamily: {
-        sans: ["var(--font-open-sans)"],
-        montserrat: ["var(--font-montserrat)"],
-        pacifico: ["var(--font-pacifico)"],
+        sans: ["var(--font-open-sans)", ...defaultTheme.fontFamily.sans],
+        montserrat: ["var(--font-montserrat)", ...defaultTheme.fontFamily.sans],
+        pacifico: ["var(--font-pacifico)", ...defaultTheme.fontFamily.mono],
       },
       screens: {
         xxs: "280px",

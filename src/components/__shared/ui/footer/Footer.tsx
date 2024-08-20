@@ -22,6 +22,7 @@ import { cn } from "@/lib/utils";
 import toast from "react-hot-toast";
 import { usePathname } from "next/navigation";
 import dynamic from "next/dynamic";
+import { pacifico } from "@/lib/utils/fonts";
 
 const ReportFraud = dynamic(
   () => import("@/components/__shared/ui/links/ReportFraud"),
@@ -126,7 +127,13 @@ const Footer = (props: Props) => {
 
         <div className="mt-10 flex flex-col items-center gap-10 pb-14 text-[32px] text-[#fff]">
           <h2 className="font-bold">
-            Get <span className={"font-pacifico"}>social</span> with us:
+            Get{" "}
+            <span
+              className={cn("font-pacifico antialiased", pacifico.variable)}
+            >
+              social
+            </span>{" "}
+            with us:
           </h2>
 
           <div className="flex items-center gap-4 md:gap-8">
