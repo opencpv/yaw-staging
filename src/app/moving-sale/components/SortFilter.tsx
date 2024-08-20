@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Select from "@/components/__shared/ui/Select";
+import Select from "@/components/__shared/ui/form/Select";
 import Button from "@/components/__shared/ui/button/Button";
 import { FaChevronDown } from "react-icons/fa6";
 // import ItemsFilterModal from "./ItemsFilterModal";

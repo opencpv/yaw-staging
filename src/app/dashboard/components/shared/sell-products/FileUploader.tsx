@@ -116,7 +116,7 @@ const FileUploader = ({
       setFiles(defaultImages);
       // setPrimaryImage(defaultPrimaryImage as string);
     }
-  }, []);
+  }, [defaultImages]);
 
   useEffect(() => {
     // Make sure to revoke the data uris to avoid memory leaks, will run on unmount

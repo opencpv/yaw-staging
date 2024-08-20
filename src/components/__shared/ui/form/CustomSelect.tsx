@@ -6,7 +6,8 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "./select";
+  //@ts-ignore
+} from "../select";
 import { cn } from "@/lib/utils";
 import ErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
 

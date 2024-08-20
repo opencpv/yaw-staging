@@ -1,7 +1,7 @@
 "use client";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { IoIosArrowDown } from "react-icons/io";
-import Select from "@/components/__shared/ui/Select";
+import Select from "@/components/__shared/ui/form/Select";
 import { UserRole } from "../../types";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
