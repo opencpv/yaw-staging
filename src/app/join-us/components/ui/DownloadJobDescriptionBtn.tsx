@@ -92,6 +92,7 @@ const JoinUsTemplate = ({ job }: Props) => {
         <View style={styles.heading}>
           <Text style={styles.title}>{job?.title}</Text>
           <Link src={`${legal.websiteUrl}`}>
+            {/* eslint-disable-next-line jsx-a11y/alt-text */}
             <Image
               src={`https://cdn.sanity.io/images/jmb2nd2r/production/fb888167abb7d253eddca9e8914d951e33c57621-1780x2000.webp`}
               style={styles.image}

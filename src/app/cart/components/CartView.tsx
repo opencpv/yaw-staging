@@ -111,7 +111,7 @@ const CartView = () => {
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
         <button
-          className="flex items-center gap-2 rounded-full bg-secondary-50  px-4 py-2 focus:outline-accent"
+          className="flex items-center gap-2 rounded-full bg-secondary-50 px-4 py-2 focus:outline-accent"
           aria-label="modify item quantity"
         >
           <p className="text-[10px]">{item.quantity}</p>
@@ -148,7 +148,7 @@ const CartView = () => {
       setCart(JSON.parse(storedCartItems as string));
       console.log("hit", storedCartItems);
     }
-  }, []);
+  }, [setCart]);
   {
     /** EC: "setCart" dependency missing. Please address missing deps or leave a comment if is intentional.
      * Please address similar instances.
@@ -192,7 +192,7 @@ const CartView = () => {
             <div className="mb-16 flex flex-wrap gap-2">
               <input
                 type="text"
-                className="min-h-[40px] flex-1 rounded-sm border-[1px] px-4  text-[#AD842A] outline-none"
+                className="min-h-[40px] flex-1 rounded-sm border-[1px] px-4 text-[#AD842A] outline-none"
                 onChange={(e) => setDiscount(e.target.value)}
               />
               <Button

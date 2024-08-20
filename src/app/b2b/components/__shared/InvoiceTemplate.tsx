@@ -145,8 +145,8 @@ export const PDFTemplateObject = ({
               )}
             </View>
           </View>
-          {/* eslint-disable-next-line jsx-a11y/alt-text */}
           {variant == "invoice" && (
+            // eslint-disable-next-line jsx-a11y/alt-text
             <Image
               style={styles.image}
               src="http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FLogo.73b03ab3.png&w=96&q=100"

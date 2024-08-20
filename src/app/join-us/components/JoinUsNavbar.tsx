@@ -43,7 +43,7 @@ const JoinUsNavbar = (props: any) => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [pathname]);
+  }, [pathname, setIsNavScrolling]);
 
   return (
     <>
