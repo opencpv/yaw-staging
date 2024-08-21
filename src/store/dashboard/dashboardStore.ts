@@ -11,7 +11,7 @@ type DashboardStore = {
   setFirstTimeRole: (key: Role | undefined) => void;
 };
 
-const useDashboardStore = create<DashboardStore>((set) => ({
+export const useDashboardStore = create<DashboardStore>((set) => ({
   currentRole: "renter",
   isSwitchingRole: false,
   firstTimeRole: undefined,
@@ -21,5 +21,3 @@ const useDashboardStore = create<DashboardStore>((set) => ({
   setIsSwitchingRole: (isSwitching) =>
     set((state) => ({ ...state, isSwitchingRole: isSwitching })),
 }));
-
-export { useDashboardStore };

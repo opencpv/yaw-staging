@@ -12,7 +12,7 @@ import "@/styles/custom-swiper.css";
 import Link from "next/link";
 import { createUUID } from "@/lib/utils/stringManipulation";
 import { SLIDER_AUTOPLAY_DELAY } from "@/constants";
-import { SliderPaginationOnlyProps } from "./sliders";
+import { SliderPaginationOnlyProps } from "./types";
 
 const SliderPaginationOnly = ({
   images,

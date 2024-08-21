@@ -1,11 +1,11 @@
-import { boolean } from "yup";
+import { Swiper } from "swiper/types";
 export type CarouselProps = {
   images: string[];
   setActiveIndex: React.Dispatch<React.SetStateAction<number>>;
   isCover?: boolean;
 };
 
-type SliderPaginationOnlyProps = {
+export type SliderPaginationOnlyProps = {
   images: SliderPaginationOnlyImage[];
   className?: string;
   classNames?: {
@@ -15,7 +15,7 @@ type SliderPaginationOnlyProps = {
   disabledOnInteraction?: boolean;
 };
 
-interface SliderWideProps extends SliderPaginationOnlyProps {
+export interface SliderWideProps extends SliderPaginationOnlyProps {
   navigation?: boolean;
   pagination?: boolean;
   loop?: boolean;
@@ -24,15 +24,16 @@ interface SliderWideProps extends SliderPaginationOnlyProps {
   onSlideChange?: (swiper: Swiper) => void;
 }
 
-type SliderPaginationOnlyImage = {
+export type SliderPaginationOnlyImage = {
   name: string;
   src: string;
   href?: string;
 };
 
-type SliderMultiItemsProps = {
+export type SliderMultiItemsProps = {
   items: React.ReactNode[] | undefined;
   slidesPerView?: number | "auto";
+  //@ts-ignore
   breakpoints?: { [key: number]: { [key: any]: any } };
   hasNavAndPagination?: boolean;
   autoplay?: boolean;
@@ -42,7 +43,7 @@ type SliderMultiItemsProps = {
   spaceBetween?: number;
 };
 
-type SliderGridProps = {
+export type SliderGridProps = {
   items: React.ReactNode[] | undefined;
   slidesPerView?: number;
 };

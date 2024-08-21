@@ -10,7 +10,7 @@ import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { createUUID } from "@/lib/utils/stringManipulation";
 import { cn } from "@/lib/utils";
 
-import { CarouselProps } from "./sliders";
+import { CarouselProps } from "./types";
 
 const Carousel = (props: CarouselProps) => {
   return (
@@ -29,7 +29,7 @@ const Carousel = (props: CarouselProps) => {
         >
           {props.images.map((image) => (
             <SwiperSlide key={createUUID()}>
-              <div className="relative mx-auto aspect-square h-[40rem] max-h-[40rem] w-full rounded-lg ">
+              <div className="relative mx-auto aspect-square h-[40rem] max-h-[40rem] w-full rounded-lg">
                 <Image
                   src={image}
                   alt={"#"} // Fixme:

@@ -11,7 +11,7 @@ import Link from "next/link";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { cn } from "@/lib/utils";
 import { SLIDER_AUTOPLAY_DELAY } from "@/constants";
-import { SliderWideProps } from "./sliders";
+import { SliderWideProps } from "./types";
 import SliderNav from "./SliderNav";
 
 const SliderWide = ({

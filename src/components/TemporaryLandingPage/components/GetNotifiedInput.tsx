@@ -38,7 +38,7 @@ function GetNotifiedInput() {
     //         onClick={() => setShowInputs((init: boolean) => !init)}
     //       >
     //         <p
-    //           className="2xl:text-[1.5625rem text-left text-20 font-semibold
+    //           className="2xl:text-[1.5625rem text-left font-semibold
     //       leading-[2.1875rem] text-[#F2B94E] xs:whitespace-nowrap"
     //         >
     //           Click here to get notified!

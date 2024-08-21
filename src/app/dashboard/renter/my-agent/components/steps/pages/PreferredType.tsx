@@ -1,5 +1,5 @@
 import { useLocalStorage } from "@uidotdev/usehooks";
-import Amenity from "@/app/dashboard/components/shared/Amenity";
+import Amenity from "@/app/dashboard/components/shared/ui/Amenity";
 import style from "../../../index.module.css";
 import CallOut from "../../../../../../../components/__shared/ui/CallOut";
 import { useField } from "formik";

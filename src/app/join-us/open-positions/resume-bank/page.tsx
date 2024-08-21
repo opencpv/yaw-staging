@@ -27,9 +27,7 @@ function Page() {
               iconType="arrow-left"
               reverseIcon
             />
-            <p className="text-25 font-semibold capitalize text-white">
-              Resume Bank
-            </p>
+            <h2 className="capitalize text-white">Resume Bank</h2>
           </div>
         </div>
         <div className="flex w-full flex-col gap-4">

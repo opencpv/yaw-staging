@@ -3,7 +3,6 @@
 import React from "react";
 import RtApplicationRow from "./RtApplicationRow";
 import TableSkeleton from "@/components/__shared/ui/skeleton/TableSkeleton";
-import { useApplicationsStore } from "@/store/dashboard/applicationsStore";
 import {
   Table,
   TableBodyRowGroup,

@@ -9,7 +9,7 @@ import "swiper/css/grid";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/free-mode";
-import { SliderGridProps } from "./sliders";
+import { SliderGridProps } from "./types";
 import SliderNav from "./SliderNav";
 
 const SliderGrid = ({ items }: SliderGridProps) => {

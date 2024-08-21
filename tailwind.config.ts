@@ -87,12 +87,6 @@ const config: Config = {
         "autofit-listing-card": "repeat(auto-fit, minmax(380px, 1fr))",
         "autofit-ad-card": "repeat(1, minmax(200px, 1fr))",
       },
-      fontSize: {
-        "20": "1.25rem",
-        "25": "1.5625rem",
-        "31": "1.9375rem",
-        "39": "2.4375rem",
-      },
       fontFamily: {
         sans: ["var(--font-open-sans)", ...defaultTheme.fontFamily.sans],
         montserrat: ["var(--font-montserrat)", ...defaultTheme.fontFamily.sans],
@@ -108,8 +102,6 @@ const config: Config = {
         hd: "1670px",
         "3xl": "1728px",
         fhd: "1920px",
-        "2k": "2040px",
-        "4k": "3840px",
       },
       boxShadow: {
         card: "6px 4px 36px 10px #2F2B2B0D, -6px 4px 200px 10px #2F2B2B0D",
