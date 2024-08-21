@@ -16,7 +16,7 @@ import slugify from "@/lib/utils/slugify";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 const DestructiveModal = dynamic(
-  () => import("@/components/__shared/ui/modals/DestructiveModal"),
+  () => import("@/components/__shared/ui/modals/PopupModal"),
 );
 
 const BTFTKModal = dynamic(() => import("./steps/BTFTKModal"), {

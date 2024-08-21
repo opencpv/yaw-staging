@@ -12,7 +12,7 @@ import Rating from "@/components/__shared/ui/ratings-form";
 import TbUserImage from "@/app/dashboard/components/shared/ui/TbUserImage";
 import dynamic from "next/dynamic";
 const DestructiveModal = dynamic(
-  () => import("@/components/__shared/ui/modals/DestructiveModal"),
+  () => import("@/components/__shared/ui/modals/PopupModal"),
 );
 
 const LsApplicationRow = ({

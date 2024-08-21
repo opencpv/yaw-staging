@@ -21,7 +21,7 @@ import { PiArrowLineUp } from "react-icons/pi";
 import { TbTrashOff } from "react-icons/tb";
 import dynamic from "next/dynamic";
 const DestructiveModal = dynamic(
-  () => import("@/components/__shared/ui/modals/DestructiveModal"),
+  () => import("@/components/__shared/ui/modals/PopupModal"),
 );
 
 const ListingModal = dynamic(

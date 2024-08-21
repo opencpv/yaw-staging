@@ -18,7 +18,7 @@ import ViewButton from "@/components/__shared/ui/button/ViewButton";
 import dynamic from "next/dynamic";
 // import Rating from "../../../components/shared/Rating";
 const DestructiveModal = dynamic(
-  () => import("@/components/__shared/ui/modals/DestructiveModal"),
+  () => import("@/components/__shared/ui/modals/PopupModal"),
 );
 
 const LsApplicationRowSm = ({

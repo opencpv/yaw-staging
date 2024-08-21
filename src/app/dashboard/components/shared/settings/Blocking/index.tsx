@@ -13,7 +13,7 @@ import {
 } from "../services";
 import dynamic from "next/dynamic";
 const DestructiveModal = dynamic(
-  () => import("@/components/__shared/ui/modals/DestructiveModal"),
+  () => import("@/components/__shared/ui/modals/PopupModal"),
 );
 
 type BlockedUserType = BlockedUser & {

@@ -8,15 +8,15 @@ type ModalProps = {
   onClose: () => void;
   label?: string;
   classNames?: {
-   backdrop?: string 
-  }
-  handleDestruction: () => void;
+    backdrop?: string;
+  };
+  handleAction: () => void;
   loading?: boolean;
 };
 
 type ModalFooterProps = {
   onClose: () => void;
-  handleDestruction: () => void;
+  handleAction: () => void;
   loading: boolean;
 };
 
@@ -24,12 +24,12 @@ type ModalBodyProps = {
   label?: string;
 };
 
-const DestructiveModal = ({
+const PopupModal = ({
   isOpen,
   onOpenChange,
   onClose,
   label,
-  handleDestruction,
+  handleAction,
   loading,
   classNames,
 }: ModalProps) => {
@@ -39,7 +39,7 @@ const DestructiveModal = ({
       footer={
         <ModalFooter
           onClose={onClose}
-          handleDestruction={handleDestruction}
+          handleAction={handleAction}
           loading={loading || false}
         />
       }
@@ -47,9 +47,9 @@ const DestructiveModal = ({
       onOpenChange={onOpenChange}
       size="md"
       classNames={{
-        backdrop: classNames?.backdrop 
+        backdrop: classNames?.backdrop,
       }}
-      className="pt-10 pb-5"
+      className="pb-5 pt-10"
     />
   );
 };
@@ -65,16 +65,12 @@ const ModalBody = ({ label }: ModalBodyProps) => {
   );
 };
 
-const ModalFooter = ({
-  onClose,
-  handleDestruction,
-  loading,
-}: ModalFooterProps) => {
+const ModalFooter = ({ onClose, handleAction, loading }: ModalFooterProps) => {
   return (
     <div className="flex w-full justify-end gap-2">
       <Button
         className="w-32 max-w-[8rem] rounded-lg bg-red-500 py-1 font-[500] text-white"
-        onClick={handleDestruction}
+        onClick={handleAction}
         isLoading={loading}
       >
         Yes
@@ -89,4 +85,4 @@ const ModalFooter = ({
   );
 };
 
-export default DestructiveModal;
+export default PopupModal;
