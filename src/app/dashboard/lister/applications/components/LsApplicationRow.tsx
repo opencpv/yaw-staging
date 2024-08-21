@@ -1,29 +1,19 @@
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import Image from "next/image";
 import React from "react";
-import Button from "@/components/__shared/ui/button/Button";
-import { formatPrice } from "@/lib/utils/numberManipulation";
-import { formatDate, formatTime } from "@/lib/utils/stringManipulation";
-import { AiOutlineEye } from "react-icons/ai";
+import { formatDate } from "@/lib/utils/stringManipulation";
 import ApplicationStatus from "./LsApplicationStatus";
 import { useDaysDifference } from "@/lib/custom-hooks/useDaysDifference";
 import capitalizeName from "@/lib/utils/stringManipulation";
-import DestructiveModal from "@/components/__shared/ui/modals/DestructiveModal";
-import { useDisclosure } from "@nextui-org/react";
-import DeleteButton from "@/components/__shared/ui/button/DeleteButton";
-import {
-  ApplicationsInterface,
-  ListerApplicationsInterface,
-} from "../../../../../../interfaces";
-import {
-  TableBody,
-  TableBodyRow,
-} from "../../../components/shared/table/Table";
-import TbPropertyImage from "../../../components/shared/TbPropertyImage";
-import PaymentStructure from "../../../components/shared/PaymentStructure";
-import ViewButton from "@/components/__shared/ui/button/ViewButton";
-import Rating from "../../../components/shared/Rating";
-import TbUserImage from "@/app/dashboard/components/shared/TbUserImage";
+// import { useDisclosure } from "@nextui-org/react";
+import { ListerApplicationsInterface } from "../../../../../../interfaces";
+import { TableBody, TableBodyRow } from "@/components/__shared/ui/table/Table";
+import TbPropertyImage from "@/app/dashboard/components/shared/ui/TbPropertyImage";
+import Rating from "@/components/__shared/ui/ratings-form";
+import TbUserImage from "@/app/dashboard/components/shared/ui/TbUserImage";
+import dynamic from "next/dynamic";
+const DestructiveModal = dynamic(
+  () => import("@/components/__shared/ui/modals/DestructiveModal"),
+);
 
 const LsApplicationRow = ({
   propertyImage,
@@ -37,17 +27,17 @@ const LsApplicationRow = ({
 
   const daysDifference = useDaysDifference(date);
 
-  const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
+  // const { onClose, isOpen, onOpenChange } = useDisclosure();
 
   return (
     <>
-      <DestructiveModal
+      {/* <DestructiveModal
         isOpen={isOpen}
         onClose={onClose}
         onOpenChange={onOpenChange}
         label="Are you sure you want to delete this application?"
         handleDestruction={() => {}}
-      />
+      /> */}
       <TableBodyRow className="grid-cols-5">
         {/* Applicant */}
         <TableBody className="col-span-1">
@@ -60,7 +50,7 @@ const LsApplicationRow = ({
               <p className="truncate text-sm text-[600]">
                 {capitalizeName(applicantName, " ")}
               </p>
-              <Rating rate={3.5} count={5} countClassName="lg:max-llg:hidden" />
+              {/* <Rating rate={3.5} count={5} countClassName="lg:max-llg:hidden" /> */}
             </div>
           </div>
         </TableBody>
@@ -80,7 +70,7 @@ const LsApplicationRow = ({
             >
               Assin Fosu
             </p>
-            <PaymentStructure monthlyPrice={3000} advancePayment="one year" />
+            {/* <PaymentStructure monthlyPrice={3000} advancePayment="one year" /> */}
           </div>
         </TableBody>
         {/* Posted On */}

@@ -2,34 +2,21 @@
 
 import React from "react";
 import LsApplicationRowSm from "./LsApplicationRowSm";
-import { useFetchTableWithInfiniteScroll } from "@/lib/custom-hooks/useFetch";
-import TableSkeletonSm from "../../../components/shared/skeleton/TableSkeletonSm";
+// import { useFetchTableWithInfiniteScroll } from "@/lib/custom-hooks/useFetch";
+import TableSkeletonSm from "@/components/__shared/ui/skeleton/TableSkeletonSm";
 import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
-import { TableSm } from "../../../components/shared/table/Table";
+import { TableSm } from "@/components/__shared/ui/table/Table";
 import { IoArchiveOutline } from "react-icons/io5";
 import Button from "@/components/__shared/ui/button/Button";
 
 type Props = {};
 
 const LsManageApplicationsSm = (props: Props) => {
-  const {
-    data: applicants,
-    error,
-    isValidating,
-    isLoading,
-    loadMore,
-  } = useFetchTableWithInfiniteScroll({
-    tableName: "regular_application",
-    pageSize: 5,
-    order: { column: "created_at", ascending: false },
-    select: "id, created_at, firstname, lastname",
-  });
-
   return (
     <div className="lg:hidden">
-      <FetchingStates
+      {/* <FetchingStates
         data={applicants}
         error={error}
         isLoading={isLoading}
@@ -39,8 +26,8 @@ const LsManageApplicationsSm = (props: Props) => {
         emptyStateComponent={
           <p className="mt-4 italic">There are no applications yet.</p>
         }
-      />
-      <TableSm className="mb-10 mt-3 flex lg:hidden">
+      /> */}
+      {/* <TableSm className="mb-10 mt-3 flex lg:hidden">
         {applicants?.map((applicant) => (
           <LsApplicationRowSm
             key={applicant.id as string}
@@ -52,8 +39,8 @@ const LsManageApplicationsSm = (props: Props) => {
             date={applicant.created_at as string}
           />
         ))}
-      </TableSm>
-      <div className="text-center">
+      </TableSm> */}
+      {/* <div className="text-center">
         {isLoading && loadMore ? "Fetching..." : null}
       </div>
       <div className="my-14 ml-auto grid place-items-end">
@@ -66,7 +53,7 @@ const LsManageApplicationsSm = (props: Props) => {
         isLoading={isLoading}
         isValidating={isValidating}
         loadMore={loadMore}
-      />
+      /> */}
     </div>
   );
 };
