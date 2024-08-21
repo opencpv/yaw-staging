@@ -4,8 +4,9 @@ import Footer from "@/components/__shared/ui/footer/Footer";
 import { TERMS_QUERY } from "@/lib/utils/sanity/queries";
 import { SanityDocument } from "next-sanity";
 import { loadQuery } from "@/lib/utils/sanity/sanityStore";
-import ScrollTop from "@/components/__shared/ui/ScrollTop";
 import TermsMenuWrapper from "../TermsMenuWrapper";
+import dynamic from "next/dynamic";
+const ScrollTop = dynamic(() => import("@/components/__shared/ui/ScrollTop"));
 
 const Terms = async (props: any) => {
   const path = props.params.terms;

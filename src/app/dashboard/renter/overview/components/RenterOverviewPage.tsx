@@ -3,14 +3,17 @@ import React, { useEffect } from "react";
 import UserOverview from "./UserOverview";
 import RenterPaidFeatures from "./PaidFeaturesSection";
 import RenterExplore from "./RenterExplore";
-import RecommendedListings from "@/components/__shared/ui/listing/RecommendedListings";
 import GradientBanner from "./GradientBanner";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import SellYourItem from "./SellYourItem";
 import RenterActivityCard from "./RenterActivityCard";
-import ScrollTop from "@/components/__shared/ui/ScrollTop";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { useAppStore } from "@/store/dashboard/AppStore";
+import dynamic from "next/dynamic";
+const ScrollTop = dynamic(() => import("@/components/__shared/ui/ScrollTop"));
+const RecommendedListings = dynamic(
+  () => import("@/components/__shared/ui/listing/RecommendedListings"),
+);
 
 type Props = {};
 

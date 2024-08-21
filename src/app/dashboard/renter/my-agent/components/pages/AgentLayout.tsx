@@ -1,11 +1,14 @@
 "use client";
 import React from "react";
 import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
-import BeMyAgentModal from "../../components/steps/BeMyAgentModal";
 import styles from "../../index.module.css";
 import CallOut from "@/components/__shared/ui/CallOut";
 import { usePathname } from "next/navigation";
-import ScrollTop from "@/components/__shared/ui/ScrollTop";
+import dynamic from "next/dynamic";
+const ScrollTop = dynamic(() => import("@/components/__shared/ui/ScrollTop"));
+const BeMyAgentModal = dynamic(
+  () => import("../../components/steps/BeMyAgentModal"),
+);
 
 const AgentLayout = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
@@ -14,8 +17,7 @@ const AgentLayout = ({ children }: { children: React.ReactNode }) => {
     <>
       {!pathname?.includes("schedule") && (
         <header
-          className={`mt-12 flex w-full justify-center ${styles.beMyAgentHeader}
-    `}
+          className={`mt-12 flex w-full justify-center ${styles.beMyAgentHeader} `}
         >
           <div className="flex w-full max-w-screen-3xl flex-col items-start justify-center gap-4 overflow-x-hidden p-7 pt-0">
             <h2>Be My Agent</h2>

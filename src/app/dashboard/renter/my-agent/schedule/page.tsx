@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-//@ts-ignore
 import "@appointlet/appointlet.js/dist/appointlet.min.css";
 import { useSearchParams } from "next/navigation";
 
