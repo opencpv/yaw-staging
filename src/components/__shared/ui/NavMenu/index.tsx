@@ -2,13 +2,16 @@ import { styled } from "@stitches/react";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ExpandCircle } from "@/lib/animations";
-import MenuBottomLinks from "./components/MenuBottomLinks";
-import MenuArea from "./components/MenuArea";
-import MenuScrollDownButton from "./components/MenuScrollDownButton";
 import { useIsElementInViewport } from "./hooks/useIsElementInViewport";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useMenuLinks } from "./content";
+import dynamic from "next/dynamic";
+const MenuBottomLinks = dynamic(() => import("./components/MenuBottomLinks"));
+const MenuArea = dynamic(() => import("./components/MenuArea"));
+const MenuScrollDownButton = dynamic(
+  () => import("./components/MenuScrollDownButton"),
+);
 
 export default function Menu(props: any) {
   const { bottomLinksAfterLogin, bottomLinksBeforeLogin } = useMenuLinks();

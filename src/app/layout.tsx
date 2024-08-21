@@ -1,14 +1,26 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Script from "next/script";
-import Providers from "@/context/Providers";
-import LoadingIndicator from "@/components/__shared/ui/LoadingIndicator";
-import NoticeModal from "@/components/__shared/ui/modals/NoticeModal";
-import TemporayLandingPage from "@/components/TemporaryLandingPage";
-import ToastConfig from "@/components/__shared/ToastConfig";
 import { openSans } from "@/lib/utils/fonts";
 import { cn } from "@/lib/utils";
-// import MenuWrapperNoSSR from "@/components/__shared/hoc/MenuWrapperNoSSR";
+import dynamic from "next/dynamic";
+const TemporaryLandingPage = dynamic(
+  () => import("@/components/TemporaryLandingPage"),
+);
+const ToastConfig = dynamic(() => import("@/components/__shared/ToastConfig"));
+const Providers = dynamic(() => import("@/context/Providers"));
+const NoticeModal = dynamic(
+  () => import("@/components/__shared/ui/modals/NoticeModal"),
+);
+const LoadingIndicator = dynamic(
+  () => import("@/components/__shared/ui/LoadingIndicator"),
+);
+const MenuWrapper = dynamic(
+  () => import("@/components/__shared/hoc/MenuWrapper"),
+  {
+    ssr: false,
+  },
+);
 
 export const metadata: Metadata = {
   title: {
@@ -73,11 +85,11 @@ export default function RootLayout({
       >
         <Providers>
           <ToastConfig />
-          {/* <MenuWrapperNoSSR> */}
-          <LoadingIndicator />
-          {/* <NoticeModal /> */}
-          {showTemporaryLandingPage ? <TemporayLandingPage /> : children}
-          {/* </MenuWrapperNoSSR> */}
+          <MenuWrapper>
+            <LoadingIndicator />
+            <NoticeModal />
+            {showTemporaryLandingPage ? <TemporaryLandingPage /> : children}
+          </MenuWrapper>
         </Providers>
         {/* <RatingsAndAllRatings /> */}
       </body>

@@ -1,7 +1,10 @@
 "use client";
 import React from "react";
-import Menu from "../ui/NavMenu";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
+import dynamic from "next/dynamic";
+const Menu = dynamic(() => import("../ui/NavMenu"), {
+  ssr: false,
+});
 
 type Props = {
   children: React.ReactNode;
