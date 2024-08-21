@@ -4,7 +4,7 @@ import { FiTrash2 } from "react-icons/fi";
 import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
 // import { useDisclosure } from "@nextui-org/react";
-// const DestructiveModal = dynamic(() => import("../modals/DestructiveModal"));
+// const PopupModal = dynamic(() => import("../modals/DestructiveModal"));
 
 type Props = {
   className?: string;
@@ -29,12 +29,12 @@ const DeleteButton = ({
 
   return (
     <>
-      {/* <DestructiveModal
+      {/* <PopupModal
         isOpen={isOpen}
         onClose={onClose}
         onOpenChange={onOpenChange}
         label={label ?? "Are you sure you want to delete this item?"}
-        handleDestruction={handleDestruction}
+        handleAction={handleDestruction}
         loading={loading}
       /> */}
       <Button

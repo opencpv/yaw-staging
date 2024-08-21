@@ -15,7 +15,7 @@ import { useDeleteSearchCriteria } from "../services";
 import slugify from "@/lib/utils/slugify";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
-const DestructiveModal = dynamic(
+const PopupModal = dynamic(
   () => import("@/components/__shared/ui/modals/PopupModal"),
 );
 
@@ -61,12 +61,12 @@ const Actions = ({ criterion }: Props) => {
 
   return (
     <>
-      {/* <DestructiveModal
+      {/* <PopupModal
         isOpen={isOpen}
         onClose={onClose}
         onOpenChange={onOpenChange}
         label={`Are you sure you want to delete "${criterion.title || "[No Title]"}" ?`}
-        handleDestruction={handleDestruction}
+        handleAction={handleDestruction}
         loading={isMutating}
       /> */}
 

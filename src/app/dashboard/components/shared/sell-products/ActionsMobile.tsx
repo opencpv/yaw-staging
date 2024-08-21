@@ -13,7 +13,7 @@ import {
 import { ItemPublicationStatus } from "./PublicationStatus";
 import { ItemContext } from "@/app/dashboard/contexts/ItemContext";
 import dynamic from "next/dynamic";
-const DestructiveModal = dynamic(
+const PopupModal = dynamic(
   () => import("@/components/__shared/ui/modals/PopupModal"),
 );
 
@@ -30,12 +30,12 @@ const ActionsMobile = ({ refetch, id }: Props) => {
 
   return (
     <>
-      {/* <DestructiveModal
+      {/* <PopupModal
         isOpen={isOpen}
         onClose={onClose}
         onOpenChange={onOpenChange}
         label="Are you sure you want to delete this item?"
-        handleDestruction={handleDestruction}
+        handleAction={handleDestruction}
       /> */}
       <ActionPopover isOpen={popoverIsOpen} onOpenChange={setPopoverIsOpen}>
         <ActionItemTrigger

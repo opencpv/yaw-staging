@@ -20,7 +20,7 @@ import { getListingProps } from "@/lib/enum";
 import { PiArrowLineUp } from "react-icons/pi";
 import { TbTrashOff } from "react-icons/tb";
 import dynamic from "next/dynamic";
-const DestructiveModal = dynamic(
+const PopupModal = dynamic(
   () => import("@/components/__shared/ui/modals/PopupModal"),
 );
 
@@ -95,7 +95,7 @@ const Actions = ({ listing }: Props) => {
 
   return (
     <>
-      {/* <DestructiveModal
+      {/* <PopupModal
         isOpen={isOpen}
         onClose={onClose}
         onOpenChange={onOpenChange}
@@ -108,10 +108,10 @@ const Actions = ({ listing }: Props) => {
                 listing?.property_name || "[No Title]"
               }"?`
         }
-        handleDestruction={handleDestruction}
+        handleAction={handleDestruction}
         loading={isDeleting}
       /> */}
-      {/* <DestructiveModal
+      {/* <PopupModal
         isOpen={isOpenPublish}
         onClose={onClosePublish}
         onOpenChange={onOpenChangePublish}
@@ -124,7 +124,7 @@ const Actions = ({ listing }: Props) => {
                 listing?.property_name || "[No Title]"
               }"?`
         }
-        handleDestruction={handlePublish}
+        handleAction={handlePublish}
         loading={isPublishing}
       /> */}
       <ActionPopover isOpen={popoverIsOpen} onOpenChange={setPopoverIsOpen}>

@@ -9,7 +9,7 @@ import React from "react";
 import { FaBan, FaEllipsisV } from "react-icons/fa";
 import { MdLockOpen } from "react-icons/md";
 import dynamic from "next/dynamic";
-const DestructiveModal = dynamic(
+const PopupModal = dynamic(
   () => import("@/components/__shared/ui/modals/PopupModal"),
 );
 
@@ -51,12 +51,12 @@ const BlockUserPopOver = (props: Props) => {
         </PopoverContent>
       </Popover> */}
 
-      {/* <DestructiveModal
+      {/* <PopupModal
         label="Are you sure you want to block this user?"
         onClose={onClose}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        handleDestruction={() => {}}
+        handleAction={() => {}}
       /> */}
     </>
   );

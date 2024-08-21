@@ -11,7 +11,7 @@ import { MdOutlineEdit } from "react-icons/md";
 import { PiChatCenteredDots } from "react-icons/pi";
 import { RenterApplicationStatus } from "./RtApplicationStatus";
 import dynamic from "next/dynamic";
-const DestructiveModal = dynamic(
+const PopupModal = dynamic(
   () => import("@/components/__shared/ui/modals/PopupModal"),
 );
 
@@ -27,12 +27,12 @@ const RtApplicationAction = ({ status, id, table }: Props) => {
 
   return (
     <>
-      {/* <DestructiveModal
+      {/* <PopupModal
         isOpen={isOpen}
         onClose={onClose}
         onOpenChange={onOpenChange}
         label="Are you sure you want to delete this application?"
-        handleDestruction={() => {}}
+        handleAction={() => {}}
       /> */}
       {/* <Popover
         style={{ zIndex: "99999" }}

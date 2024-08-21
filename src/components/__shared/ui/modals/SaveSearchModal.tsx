@@ -13,7 +13,7 @@ import { FiTrash2 } from "react-icons/fi";
 import { cn } from "@/lib/utils";
 import CloseModalIcon from "../icons/CloseModalIcon";
 import dynamic from "next/dynamic";
-const DestructiveModal = dynamic(() => import("./PopupModal"));
+const PopupModal = dynamic(() => import("./PopupModal"));
 
 type Props = {
   className?: string;
@@ -141,7 +141,7 @@ const RecentSearch = ({ title, date }: { title: string; date: string }) => {
         </PopoverContent>
       </Popover> */}
 
-      {/* <DestructiveModal
+      {/* <PopupModal
         label="Are you sure you want to delete this saved search?"
         onClose={onClose}
         isOpen={isOpen}
@@ -149,7 +149,7 @@ const RecentSearch = ({ title, date }: { title: string; date: string }) => {
         classNames={{
           backdrop: "z-[99999]",
         }}
-        handleDestruction={() => {}}
+        handleAction={() => {}}
       /> */}
     </div>
   );

@@ -10,7 +10,7 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 // import { useDisclosure } from "@nextui-org/react";
 import Button from "@/components/__shared/ui/button/Button";
 import dynamic from "next/dynamic";
-const DestructiveModal = dynamic(
+const PopupModal = dynamic(
   () => import("@/components/__shared/ui/modals/PopupModal"),
 );
 
@@ -86,7 +86,7 @@ const PublicationStatus = ({ listing }: Props) => {
 
   return (
     <>
-      {/* <DestructiveModal
+      {/* <PopupModal
         isOpen={isOpen}
         onClose={onClose}
         onOpenChange={onOpenChange}
@@ -99,15 +99,15 @@ const PublicationStatus = ({ listing }: Props) => {
                 listing?.property_name || "[No Title]"
               }"?`
         }
-        handleDestruction={handlePublish}
+        handleAction={handlePublish}
         loading={isPending}
       /> */}
-      {/* <DestructiveModal
+      {/* <PopupModal
         isOpen={isOpenExtend}
         onClose={onCloseExtend}
         onOpenChange={onOpenChangeExtend}
         label={"Are you sure you want to extend this listing?"}
-        handleDestruction={handleExtend}
+        handleAction={handleExtend}
         loading={isExtending}
       /> */}
       <span className="flex items-center gap-2">

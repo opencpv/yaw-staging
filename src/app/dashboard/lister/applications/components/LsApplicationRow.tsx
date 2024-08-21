@@ -11,7 +11,7 @@ import TbPropertyImage from "@/app/dashboard/components/shared/ui/TbPropertyImag
 import Rating from "@/components/__shared/ui/ratings-form";
 import TbUserImage from "@/app/dashboard/components/shared/ui/TbUserImage";
 import dynamic from "next/dynamic";
-const DestructiveModal = dynamic(
+const PopupModal = dynamic(
   () => import("@/components/__shared/ui/modals/PopupModal"),
 );
 
@@ -31,12 +31,12 @@ const LsApplicationRow = ({
 
   return (
     <>
-      {/* <DestructiveModal
+      {/* <PopupModal
         isOpen={isOpen}
         onClose={onClose}
         onOpenChange={onOpenChange}
         label="Are you sure you want to delete this application?"
-        handleDestruction={() => {}}
+        handleAction={() => {}}
       /> */}
       <TableBodyRow className="grid-cols-5">
         {/* Applicant */}

@@ -14,7 +14,7 @@ import { createClient } from "@/lib/utils/supabase/auth/client";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
-const DestructiveModal = dynamic(
+const PopupModal = dynamic(
   () => import("@/components/__shared/ui/modals/PopupModal"),
 );
 
@@ -46,12 +46,12 @@ const Actions = ({ refetch, id }: Props) => {
 
   return (
     <>
-      {/* <DestructiveModal
+      {/* <PopupModal
         isOpen={isOpen}
         onClose={onClose}
         onOpenChange={onOpenChange}
         label="Are you sure you want to delete this item?"
-        handleDestruction={handleDestruction}
+        handleAction={handleDestruction}
       /> */}
 
       <ActionPopover isOpen={popoverIsOpen} onOpenChange={setPopoverIsOpen}>

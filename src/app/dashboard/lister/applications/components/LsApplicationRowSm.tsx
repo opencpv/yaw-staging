@@ -17,7 +17,7 @@ import TbPropertyImageSm from "@/app/dashboard/components/shared/ui/TbPropertyIm
 import ViewButton from "@/components/__shared/ui/button/ViewButton";
 import dynamic from "next/dynamic";
 // import Rating from "../../../components/shared/Rating";
-const DestructiveModal = dynamic(
+const PopupModal = dynamic(
   () => import("@/components/__shared/ui/modals/PopupModal"),
 );
 
@@ -35,12 +35,12 @@ const LsApplicationRowSm = ({
 
   return (
     <>
-      {/* <DestructiveModal
+      {/* <PopupModal
         isOpen={isOpen}
         onClose={onClose}
         onOpenChange={onOpenChange}
         label="Are you sure you want to delete this application?"
-        handleDestruction={() => {}}
+        handleAction={() => {}}
       /> */}
       {/* <TableRowSm> */}
       {/* Applicant */}

@@ -12,7 +12,7 @@ import {
   useUnblockUser,
 } from "../services";
 import dynamic from "next/dynamic";
-const DestructiveModal = dynamic(
+const PopupModal = dynamic(
   () => import("@/components/__shared/ui/modals/PopupModal"),
 );
 
@@ -34,12 +34,12 @@ export default function Blocking() {
 
   return (
     <>
-      {/* <DestructiveModal
+      {/* <PopupModal
         isOpen={isOpen}
         onClose={onClose}
         onOpenChange={onOpenChange}
         label={`Are you sure you want to unblock all?`}
-        handleDestruction={handleUnblockAll}
+        handleAction={handleUnblockAll}
         loading={isPending}
       /> */}
       <section className="flex flex-col gap-5">
@@ -112,12 +112,12 @@ const BlockCard = (props: { data: BlockedUserType }) => {
 
   return (
     <>
-      {/* <DestructiveModal
+      {/* <PopupModal
         isOpen={isOpen}
         onClose={onClose}
         onOpenChange={onOpenChange}
         label={`Are you sure you want to unblock ${props.data.blocked_user.full_name}?`}
-        handleDestruction={handleUnblock}
+        handleAction={handleUnblock}
         loading={isPending}
       /> */}
       <div className="flex w-full cursor-pointer items-center justify-between gap-3 hover:bg-shade">

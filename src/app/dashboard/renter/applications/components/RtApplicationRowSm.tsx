@@ -15,7 +15,7 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import Avatar from "@/components/__shared/ui/avatar/Avatar";
 import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
-const DestructiveModal = dynamic(
+const PopupModal = dynamic(
   () => import("@/components/__shared/ui/modals/PopupModal"),
 );
 
