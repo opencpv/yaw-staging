@@ -79,22 +79,18 @@ const SliderMultiItems = ({
               {/* Prev Button */}
               <SliderNav
                 position="left"
-                className={`slider-multi-items-prev bg-accent`}
+                className={`slider-multi-items-prev`}
                 size="lg"
-                classNames={{
-                  icon: "text-white",
-                }}
+                color="accent"
               />
 
               <div className="slider-multi-items-pagination-lg absolute left-20 hidden w-full min-[250px]:block" />
               {/* Next button */}
               <SliderNav
                 position="right"
-                className={`slider-multi-items-next bg-accent`}
+                className={`slider-multi-items-next`}
                 size="lg"
-                classNames={{
-                  icon: "text-white",
-                }}
+                color="accent"
               />
             </div>
           </div>
@@ -141,21 +137,17 @@ const SliderMultiItems = ({
               {/* Prev Button */}
               <SliderNav
                 position="left"
-                className={`slider-multi-items-prev bg-accent`}
+                className={`slider-multi-items-prev`}
                 size="lg"
-                classNames={{
-                  icon: "text-white",
-                }}
+                color="accent"
               />
               <div className="slider-multi-items-pagination absolute left-20 hidden w-full min-[250px]:block" />
               {/* Next button */}
               <SliderNav
                 position="right"
-                className={`slider-multi-items-next bg-accent`}
+                className={`slider-multi-items-next`}
                 size="lg"
-                classNames={{
-                  icon: "text-white",
-                }}
+                color="accent"
               />
             </div>
           </div>

@@ -46,9 +46,10 @@ const RentalDeals = (props: Props) => {
           })}
         </div>
         <LinkButton
-          variant="ghost"
+          variant="link"
+          color="accent"
           href="/about/#t73yjgClfDUknQ=="
-          className="mt-10 self-end text-accent"
+          className="mt-10 self-end"
         >
           Explore <HiChevronRight size={24} />
         </LinkButton>

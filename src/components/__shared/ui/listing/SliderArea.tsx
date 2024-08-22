@@ -13,6 +13,7 @@ import { ListingCardInterface } from "../../../../../interfaces";
 import LikeHeart from "../LikeHeart";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { createUUID } from "@/lib/utils/stringManipulation";
+import SliderNav from "../sliders/SliderNav";
 
 const SliderArea = (props: Partial<ListingCardInterface>) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
@@ -157,22 +158,33 @@ const SliderArea = (props: Partial<ListingCardInterface>) => {
       )}
 
       {/* Pagination bullets and button */}
-      <NavButton
+
+      <SliderNav
         position="left"
-        lastIndex={lastIndex as number}
-        activeIndex={activeIndex as number}
-        {...props}
+        hidden={
+          activeIndex === 0 ||
+          props.showOnlyImage ||
+          props.isMyFavoritePage ||
+          props.isRecommendationsPage
+        }
+        className="custom-l-prev"
+        size="sm"
       />
       <div
         className={`custom-l-pagination bottom-40 w-full space-x-3 text-center ${
           props.showOnlyImage && "hidden"
         }`}
       ></div>
-      <NavButton
+      <SliderNav
         position="right"
-        lastIndex={lastIndex as number}
-        activeIndex={activeIndex as number}
-        {...props}
+        hidden={
+          lastIndex === activeIndex ||
+          props.showOnlyImage ||
+          props.isMyFavoritePage ||
+          props.isRecommendationsPage
+        }
+        className="custom-l-next"
+        size="sm"
       />
       {/* Like button */}
       <span className="absolute bottom-5 right-[5%] z-10 grid size-11 place-items-center rounded-md bg-shade-500/40">

@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useCallback, useRef, useState } from "react";
 import SlideItem from "./SlideItem";
 import { urlForImage } from "@/lib/utils/sanity/utils";
+import SliderNav from "@/components/__shared/ui/sliders/SliderNav";
 
 const MobileVersion = ({ data }: { data: any }) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
@@ -44,18 +45,8 @@ const MobileVersion = ({ data }: { data: any }) => {
         ))}
       </Swiper>
       <div className="mt-[32px] flex items-center justify-between pb-[30px] md:mt-[40px] md:pb-[107px]">
-        <button
-          onClick={handlePrev}
-          className="flex  h-[40px] w-[40px] items-center justify-center rounded-full bg-white md:h-[70px] md:w-[70px]"
-        >
-          <MdChevronLeft className="text-neutral-800" />
-        </button>
-        <button
-          onClick={handleNext}
-          className="flex  h-[40px] w-[40px] items-center justify-center rounded-full bg-white md:h-[70px] md:w-[70px]"
-        >
-          <MdChevronRight className="text-neutral-800" />
-        </button>
+        <SliderNav onClick={handlePrev} position="left" isAbsolute={false} />
+        <SliderNav onClick={handleNext} position="right" isAbsolute={false} />
       </div>
     </div>
   );

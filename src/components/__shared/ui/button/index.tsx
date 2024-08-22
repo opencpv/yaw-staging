@@ -9,13 +9,17 @@ const buttonVariants = cva(
   "inline-flex gap-2 w-fit items-center justify-center whitespace-nowrap text-base font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 transition-transform hover:scale-102",
   {
     variants: {
+      color: {
+        primary: "border-primary text-primary",
+        accent: "border-accent text-accent",
+      },
       variant: {
         default: "bg-primary text-white",
         accent: "bg-accent text-white",
         destructive: "bg-red-500 text-white hover:bg-red-500/90",
-        outline: "border border-input hover:bg-transparent",
-        ghost: "text-primary hover:bg-accent hover:bg-transparent",
-        link: "text-primary hover:bg-transparent underline-offset-4 hover:underline",
+        outline: "border bg-transparent hover:bg-transparent",
+        ghost: "bg-transparent hover:bg-accent hover:bg-transparent",
+        link: "hover:bg-transparent underline-offset-4 hover:underline",
       },
       size: {
         default: "h-12 px-4 sm:px-8 py-2",
@@ -34,6 +38,7 @@ const buttonVariants = cva(
       variant: "default",
       size: "default",
       radius: "default",
+      color: "primary",
     },
   },
 );
@@ -42,15 +47,17 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
+  color?: "primary" | "accent";
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  ({ className, variant, size, color, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={cn(buttonVariants({ variant, size, className, color }))}
         ref={ref}
+        color={color}
         {...props}
       />
     );

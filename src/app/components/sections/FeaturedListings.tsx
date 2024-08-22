@@ -47,9 +47,9 @@ const FeaturedListings = (props: Props) => {
         <div className="flex items-center justify-between gap-5">
           <h2 className="uppercase">Featured Listings</h2>
           <LinkButton
-            variant="ghost"
+            variant="link"
             href={`/properties?${new URLSearchParams({ tag: "featured" })}`}
-            className="font-medium max-ssm:hidden"
+            className="max-ssm:hidden"
           >
             View all <HiChevronRight size={24} />
           </LinkButton>
@@ -74,9 +74,9 @@ const FeaturedListings = (props: Props) => {
           />
         </FramerWrapper>
         <LinkButton
-          variant="ghost"
+          variant="link"
           href={`/properties?${new URLSearchParams({ tag: "featured" })}`}
-          className="font-medium ssm:hidden"
+          className="ssm:hidden"
         >
           View all <HiChevronRight size={24} />
         </LinkButton>

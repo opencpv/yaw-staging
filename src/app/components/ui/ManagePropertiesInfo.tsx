@@ -29,10 +29,10 @@ const ManagePropertiesInfo = ({ activity, image, title, body }: Props) => {
         <h3 className="font-bold">{title}</h3>
         <p>{body}</p>
         <LinkButton
-          variant="ghost"
+          color="accent"
+          variant="link"
           size="fit"
           href="/about#QePYkSphjGkugQ=="
-          className="text-accent"
         >
           List your property <HiChevronRight size={24} />
         </LinkButton>

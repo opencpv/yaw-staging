@@ -92,21 +92,17 @@ const SliderGrid = ({ items }: SliderGridProps) => {
         <div className="inline-flex w-full items-center justify-between gap-5">
           <SliderNav
             position="left"
-            className={`listing-grid-prev bg-accent`}
+            className={`listing-grid-prev`}
             size="lg"
-            classNames={{
-              icon: "text-white",
-            }}
+            color="accent"
           />
           <div className="slider-grid-pagination absolute left-20 hidden w-full min-[250px]:block"></div>
           {/* Next button */}
           <SliderNav
             position="right"
-            className={`listing-grid-next bg-accent`}
+            className={`listing-grid-next`}
             size="lg"
-            classNames={{
-              icon: "text-white",
-            }}
+            color="accent"
           />
         </div>
       </div>

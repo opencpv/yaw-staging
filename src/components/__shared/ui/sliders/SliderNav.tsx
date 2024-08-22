@@ -10,6 +10,9 @@ type Props = {
   classNames?: {
     icon?: string;
   };
+  color?: "accent" | "white";
+  onClick?: () => void;
+  isAbsolute?: boolean;
 };
 
 const SliderNav = ({
@@ -18,30 +21,33 @@ const SliderNav = ({
   className,
   classNames,
   size = "md",
+  color = "white",
+  onClick,
+  isAbsolute = true,
 }: Props) => {
   return (
     <button
+      onClick={onClick}
       className={cn(
-        "absolute bottom-[40%] z-20 flex shrink-0 cursor-default items-center justify-center rounded-full bg-white",
+        "flex shrink-0 items-center justify-center rounded-full",
         {
+          "absolute bottom-[40%] z-20": isAbsolute,
           "left-[5%]": position === "left",
           "right-[5%]": position === "right",
-          "size-9": size === "sm",
-          "size-9 sm:size-12": size === "md",
+          "size-10": size === "sm",
+          "size-12": size === "md",
           "size-12 md:size-16": size === "lg",
+          "bg-white text-shade-500": color === "white",
+          "bg-accent text-white": color === "accent",
           hidden: hidden,
         },
         className,
       )}
     >
       {position === "right" ? (
-        <MdChevronRight
-          className={cn("text-lg text-neutral-700", classNames?.icon)}
-        />
+        <MdChevronRight className={cn("text-lg", classNames?.icon)} />
       ) : (
-        <MdChevronLeft
-          className={cn("text-lg text-neutral-700", classNames?.icon)}
-        />
+        <MdChevronLeft className={cn("text-lg", classNames?.icon)} />
       )}
     </button>
   );
