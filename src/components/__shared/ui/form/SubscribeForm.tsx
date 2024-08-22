@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Button from "../button/Button";
+import { Button } from "../button";
 
 type Props = {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
@@ -16,18 +16,14 @@ const SubscribeForm = ({ onSubmit }: Props) => {
       }}
     >
       <input
-        className="h-full min-h-[70px] w-full
-            rounded-[4rem]
-            bg-[#D9D9D9] px-10
-            text-xl text-neutral-800 placeholder:text-xl
-            focus:outline-accent-50 xs:text-2xl xs:placeholder:text-2xl md:min-h-[95px] md:rounded-r-[0px] lg:w-3/5"
+        className="h-full min-h-[70px] w-full rounded-[4rem] bg-[#D9D9D9] px-10 text-xl text-neutral-800 placeholder:text-xl focus:outline-accent-50 xs:text-2xl xs:placeholder:text-2xl md:min-h-[95px] md:rounded-r-[0px] lg:w-3/5"
         placeholder="Email or WhatsApp"
         required
       />
       <Button
-        color="accent"
-        radius="full"
-        className="min-h-[70px] w-full max-w-full rounded-[4rem] text-2xl font-semibold uppercase md:min-h-[95px] md:rounded-l-[0px] lg:w-2/5"
+        variant="accent"
+        size="lg"
+        className="min-h-[70px] rounded-full text-2xl font-semibold uppercase max-md:w-full md:min-h-[95px] md:rounded-l-none"
         type="submit"
       >
         subscribe now!

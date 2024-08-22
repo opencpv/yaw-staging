@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import Link from "next/link";
 import { IFRAME_ALLOW, SLIDER_AUTOPLAY_DELAY } from "@/constants";
+import { Button } from "@/components/__shared/ui/button";
 
 const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
   const sliderRef = useRef<any>(null);
@@ -58,7 +59,7 @@ const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
                   </div>
                 )}
               </div>
-              <div className="relative col-span-4 aspect-video w-full max-sm:mt-5 ">
+              <div className="relative col-span-4 aspect-video w-full max-sm:mt-5">
                 {promotion.fileType === "image" ? (
                   <Link href="/">
                     <Image
@@ -100,15 +101,15 @@ const NavButton = ({
   const { isBeginning, isEnd } = useSwiper();
 
   return (
-    <button
+    <Button
+      variant="outline"
       className={cn(
-        "grid size-10 place-items-center rounded-lg border-2 border-primary bg-white text-primary hover:bg-primary hover:text-white sm:h-14 sm:w-20",
-        {
-          "cursor-default opacity-50 hover:bg-white hover:text-primary":
-            (isBeginning && placement === "left") ||
-            (isEnd && placement === "right"),
-        },
+        "border-primary bg-white text-primary hover:bg-primary hover:text-white",
       )}
+      disabled={
+        (isBeginning && placement === "left") ||
+        (isEnd && placement === "right")
+      }
       onClick={onClick}
     >
       {placement === "left" ? (
@@ -116,7 +117,7 @@ const NavButton = ({
       ) : (
         <FaChevronRight size={15} />
       )}
-    </button>
+    </Button>
   );
 };
 

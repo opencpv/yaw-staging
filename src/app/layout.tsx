@@ -1,5 +1,6 @@
-import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import "../styles/animations.css";
+import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { openSans } from "@/lib/utils/fonts";
 import { cn } from "@/lib/utils";

@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
-import Button from "@/components/__shared/ui/button/Button";
 import { HiChevronRight } from "react-icons/hi";
 import dynamic from "next/dynamic";
+import { LinkButton } from "@/components/__shared/ui/button";
 const FramerWrapper = dynamic(
   () => import("@/components/__shared/hoc/FramerWrapper"),
 );
@@ -28,14 +28,14 @@ const ManagePropertiesInfo = ({ activity, image, title, body }: Props) => {
       <div className="flex max-w-xl flex-col gap-4 text-primary group-even:sm:order-1">
         <h3 className="font-bold">{title}</h3>
         <p>{body}</p>
-        <Button
+        <LinkButton
           variant="ghost"
-          color="accent"
+          size="fit"
           href="/about#QePYkSphjGkugQ=="
-          className="font-medium sm:text-lg"
+          className="text-accent"
         >
           List your property <HiChevronRight size={24} />
-        </Button>
+        </LinkButton>
       </div>
     </li>
   );

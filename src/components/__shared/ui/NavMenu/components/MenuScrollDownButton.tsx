@@ -1,6 +1,7 @@
 import React from "react";
 import { FaChevronDown } from "react-icons/fa";
 import { cn } from "@/lib/utils";
+import { Button } from "../../button";
 
 type Props = {
   isInViewport: boolean;
@@ -11,18 +12,20 @@ type Props = {
 
 const MenuScrollDownButton = (props: Props) => {
   return (
-    <button
+    <Button
+      size="icon"
+      variant="ghost"
       className={cn(
-        "hidden bottom-5 text-accent-100 transition-all duration-700 hover:scale-[1.02] hover:-translate-y-1 lg:block",
-        props.className
+        "bottom-5 hidden text-accent-100 transition-all duration-700 hover:-translate-y-1 hover:scale-[1.02] lg:block",
+        props.className,
       )}
       onClick={props.onClick}
       style={{
         visibility: props.hide || props.isInViewport ? "hidden" : "visible",
       }}
     >
-      <FaChevronDown className="text-3xl shrink-0" />
-    </button>
+      <FaChevronDown className="shrink-0 text-3xl" />
+    </Button>
   );
 };
 

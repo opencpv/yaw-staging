@@ -8,7 +8,6 @@ import {
   HOME_PAGE_QUERY,
 } from "@/lib/utils/sanity/queries";
 import dynamic from "next/dynamic";
-
 const Landing = dynamic(() => import("./components/Landing"));
 const Promotions = dynamic(() => import("./components/sections/Promotions"));
 const FeaturedListings = dynamic(

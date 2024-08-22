@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { floatItemsIntersectionStore } from "@/store/footer/footerStore";
 import { usePathname } from "next/navigation";
 import { getLocalStorageWithExpiry } from "@/lib/utils/localStorage";
+import { Button } from "../button";
 
 type Props = {
   data: any;
@@ -74,7 +75,7 @@ const FeedbackButton = (props: Props) => {
         })}
       >
         <Feedback data={props.data}>
-          <FeedbackIcon className="fixed -left-2 top-[33rem] z-50 scale-80" />
+          <FeedbackIcon className="scale-80 fixed -left-2 top-[33rem] z-50" />
         </Feedback>
       </div>
       <motion.div
@@ -99,14 +100,15 @@ const FeedbackButton = (props: Props) => {
 
 const FeedbackIcon = ({ className }: { className?: string }) => {
   return (
-    <button
+    <Button
+      size="icon"
       className={cn(
-        "flex size-14 items-center justify-center rounded-full bg-gradient-to-t from-primary-500 to-primary-400 shadow-lg",
+        "rounded-full bg-gradient-to-t from-primary-500 to-primary-400 shadow-lg",
         className,
       )}
     >
       <HiOutlineChatBubbleOvalLeftEllipsis className="text-3xl text-white" />
-    </button>
+    </Button>
   );
 };
 

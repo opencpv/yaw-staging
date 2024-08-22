@@ -48,14 +48,8 @@ const Button: React.FC<Props> = ({
   fit,
   ...props
 }: Props) => {
-  if (href)
-  return (
-    <button></button>
-  );
-  else
-  return (
-    <button></button>
-  );
+  if (href) return <button></button>;
+  else return <button></button>;
 };
 
 export default Button;

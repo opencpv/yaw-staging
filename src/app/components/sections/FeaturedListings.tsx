@@ -1,6 +1,6 @@
 "use client";
 import { useFetchFeaturedListings } from "@/app/properties/services";
-import Button from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
 import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
 import { getListingProps } from "@/lib/enum";
@@ -46,14 +46,13 @@ const FeaturedListings = (props: Props) => {
       <div className="space-y-10">
         <div className="flex items-center justify-between gap-5">
           <h2 className="uppercase">Featured Listings</h2>
-          <Button
+          <LinkButton
             variant="ghost"
-            color="primary"
             href={`/properties?${new URLSearchParams({ tag: "featured" })}`}
-            className="text-xl font-medium max-ssm:hidden"
+            className="font-medium max-ssm:hidden"
           >
             View all <HiChevronRight size={24} />
-          </Button>
+          </LinkButton>
         </div>
         {/* Listing Slider */}
         <FramerWrapper className="relative mx-auto h-fit max-w-screen-xl">
@@ -74,14 +73,13 @@ const FeaturedListings = (props: Props) => {
             }
           />
         </FramerWrapper>
-        <Button
+        <LinkButton
           variant="ghost"
-          color="primary"
           href={`/properties?${new URLSearchParams({ tag: "featured" })}`}
-          className="text-xl font-medium ssm:hidden"
+          className="font-medium ssm:hidden"
         >
           View all <HiChevronRight size={24} />
-        </Button>
+        </LinkButton>
       </div>
     </section>
   );

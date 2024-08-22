@@ -106,6 +106,9 @@ const config: Config = {
       boxShadow: {
         card: "6px 4px 36px 10px #2F2B2B0D, -6px 4px 200px 10px #2F2B2B0D",
       },
+      scale: {
+        102: "1.02",
+      },
     },
   },
   plugins: [],
