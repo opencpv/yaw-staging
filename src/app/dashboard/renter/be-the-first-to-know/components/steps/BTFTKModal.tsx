@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import Button from "@/components/__shared/ui/button/Button";
 import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
-import StepsModal from "@/components/__shared/ui/modals/steps/StepsModal";
+import StepsModal from "@/components/__shared/ui/modals/steps/steps-modal";
 import { Form, Formik } from "formik";
 import BTFTKForm from "./BTFTKForm";
 import * as Yup from "yup";

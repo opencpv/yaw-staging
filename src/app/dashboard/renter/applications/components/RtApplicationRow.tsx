@@ -7,7 +7,7 @@ import RtApplicationStatus from "./RtApplicationStatus";
 import { useDaysDifference } from "@/lib/custom-hooks/useDaysDifference";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import { RenterApplicationsInterface } from "../../../../../../interfaces";
-import { TableBody, TableBodyRow } from "@/components/__shared/ui/table/Table";
+import { TableBody, TableBodyRow } from "@/components/__shared/ui/table";
 import TbPropertyImage from "@/app/dashboard/components/shared/ui/TbPropertyImage";
 // import PaymentStructure from "../../../components/shared/PaymentStructure";
 import RtApplicationAction from "./RtApplicationAction";

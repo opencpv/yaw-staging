@@ -9,7 +9,7 @@ import "swiper/css/navigation";
 import "swiper/css/autoplay";
 import "swiper/css/free-mode";
 import { SliderMultiItemsProps } from "./types";
-import SliderNav from "./SliderNav";
+import SliderNav from "./slider-nav";
 
 const SliderMultiItems = ({
   items,

@@ -1,5 +1,5 @@
 import React from "react";
-import { TableBodySm, TableRowSm } from "../table/Table";
+import { TableBodySm, TableRowSm } from "../table";
 import TbPropertyImageSm from "@/app/dashboard/components/shared/ui/TbPropertyImageSm";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 

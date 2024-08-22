@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
 const FramerWrapper = dynamic(
-  () => import("@/components/__shared/hoc/FramerWrapper"),
+  () => import("@/components/__shared/hoc/framer-wrapper"),
 );
 
 type Props = {};

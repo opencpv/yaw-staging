@@ -5,7 +5,7 @@ import Button from "@/components/__shared/ui/button/Button";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 // import { Skeleton, useDisclosure } from "@nextui-org/react";
-import CallOut from "@/components/__shared/ui/CallOut";
+import CallOut from "@/components/__shared/ui/callout";
 import {
   useFetchBlockedUsers,
   useUnblockAllUsers,
@@ -13,7 +13,7 @@ import {
 } from "../services";
 import dynamic from "next/dynamic";
 const PopupModal = dynamic(
-  () => import("@/components/__shared/ui/modals/PopupModal"),
+  () => import("@/components/__shared/ui/modals/popup-modal"),
 );
 
 type BlockedUserType = BlockedUser & {

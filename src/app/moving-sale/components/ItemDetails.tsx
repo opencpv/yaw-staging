@@ -1,4 +1,4 @@
-import SkeletonTextual from "@/components/__shared/ui/skeleton/SkeletonTextual";
+import SkeletonTextual from "@/components/__shared/ui/skeleton/skeleton-textual";
 import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import { LowerCase } from "@/lib/utils/stringManipulation";

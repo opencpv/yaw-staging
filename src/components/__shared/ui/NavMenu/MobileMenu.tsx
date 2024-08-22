@@ -7,9 +7,9 @@ import Link from "next/link";
 import ArrowDownNav from "@/components/__shared/ui/icons/CaArrowDownNav.";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
 import { LowerCase } from "@/lib/utils/stringManipulation";
-import ReportFraud from "@/components/__shared/ui/links/ReportFraud";
-import HowToLink from "@/components/__shared/ui/links/HowToLink";
-import FaqLink from "@/components/__shared/ui/links/FaqLink";
+import ReportFraud from "@/components/__shared/ui/links/report-fraud";
+import HowToLink from "@/components/__shared/ui/links/how-to-link";
+import FaqLink from "@/components/__shared/ui/links/faq-link";
 import { cn } from "@/lib/utils";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useMenuLinks } from "./content";
@@ -60,8 +60,7 @@ const MenuOption = ({
       <Collapsible.Trigger asChild>
         <div
           className={cn(
-            `
-              " flex w-full cursor-pointer flex-row items-center justify-between font-[600] text-white`,
+            `" flex w-full cursor-pointer flex-row items-center justify-between font-[600] text-white`,
             {
               "text-accent-100": open,
             },
@@ -74,7 +73,7 @@ const MenuOption = ({
       <Collapsible.Content className={"py-4"}>
         {/* sub links ---> View all listings, how to, etc.. */}
         {sub?.map((r, index) => (
-          <Collapsible.Root key={index} className="flex flex-col text-white ">
+          <Collapsible.Root key={index} className="flex flex-col text-white">
             <Collapsible.Trigger className="main-menu-link-sm flex justify-between pr-20 text-left text-base">
               {LowerCase(r?.name) === "how to" ? (
                 <HowToLink
@@ -173,10 +172,7 @@ export const MobileMenu = (props: any) => {
         {linksBeforeLogin.map((r, index) =>
           r?.sub ? (
             <div className="main-menu-link-sm-bl" key={index}>
-              <MenuOption
-                name={r.name}
-                sub={r?.sub}
-              />
+              <MenuOption name={r.name} sub={r?.sub} />
             </div> // sub links ---> View all listings, how to, etc...
           ) : (
             r?.name.toLowerCase() !== "area vibes" && ( // main links ---> Home for rent, Login, Moving sale, etc...
@@ -207,11 +203,7 @@ export const MobileMenu = (props: any) => {
         {linksAfterLogin.map((r, index) =>
           r?.sub ? (
             <div className="main-menu-link-sm-al" key={index}>
-              <MenuOption
-                key={index}
-                name={r.name}
-                sub={r?.sub}
-              />
+              <MenuOption key={index} name={r.name} sub={r?.sub} />
             </div>
           ) : (
             // sub links ---> View all listings, how to, etc...

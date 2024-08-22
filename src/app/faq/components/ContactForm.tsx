@@ -14,7 +14,7 @@ import { useSessionStorage } from "@uidotdev/usehooks";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import dynamic from "next/dynamic";
-import Loader from "@/components/__shared/ui/loader/Loader";
+import Loader from "@/components/__shared/ui/loader";
 const CustomErrorMessage = dynamic(
   () => import("@/components/__shared/ui/states/ErrorMessage"),
 );

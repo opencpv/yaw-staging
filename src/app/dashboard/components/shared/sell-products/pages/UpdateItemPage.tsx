@@ -11,7 +11,7 @@ import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure"
 import Button from "@/components/__shared/ui/button/Button";
 import { useFetchItemCategories } from "@/app/moving-sale/services";
 import capitalizeName from "@/lib/utils/stringManipulation";
-import Loader from "@/components/__shared/ui/loader/Loader";
+import Loader from "@/components/__shared/ui/loader";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { CheckboxNoFormik as Checkbox } from "@/components/__shared/ui/form/Checkbox";
 import axios from "axios";

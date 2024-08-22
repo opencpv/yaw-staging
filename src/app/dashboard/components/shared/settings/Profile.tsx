@@ -6,7 +6,7 @@ import { FaFacebook, FaLinkedin, FaTwitter, FaWhatsapp } from "react-icons/fa";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Loader from "@/components/__shared/ui/loader/Loader";
+import Loader from "@/components/__shared/ui/loader";
 import ProfilePhone from "./ProfilePhone";
 
 interface Props {
@@ -219,7 +219,7 @@ const ProfileInfo = ({
 
                     <div className="form-div">
                       <label>Phone:</label>
-                      <div className="flex max-w-[422px] gap-4 ">
+                      <div className="flex max-w-[422px] gap-4">
                         <ProfilePhone
                           phoneChange={handlePhone}
                           codeChange={handleCode}
@@ -275,9 +275,7 @@ const ProfileInfo = ({
                       id="bio"
                       name="bio"
                       placeholder="Enter your bio"
-                      className="form-input-textarea max-w-[422px] rounded-[4px]
-                  border border-[#E6E6E6] px-4
-                  py-2 text-[#737373]"
+                      className="form-input-textarea max-w-[422px] rounded-[4px] border border-[#E6E6E6] px-4 py-2 text-[#737373]"
                       rows="15" // Optional: Set the number of rows for the text area
                       cols="50" // Optional: Set the number of columns for the text area
                     />
@@ -292,8 +290,7 @@ const ProfileInfo = ({
                     ) : (
                       <button
                         type="submit"
-                        className="mt-5 aspect-[160/52] max-h-[52px] w-full
-                max-w-[160px] rounded-[8px] bg-accent text-[#ffff]"
+                        className="mt-5 aspect-[160/52] max-h-[52px] w-full max-w-[160px] rounded-[8px] bg-accent text-[#ffff]"
                       >
                         Update Profile
                       </button>

@@ -11,7 +11,7 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import Button from "@/components/__shared/ui/button/Button";
 import dynamic from "next/dynamic";
 const PopupModal = dynamic(
-  () => import("@/components/__shared/ui/modals/PopupModal"),
+  () => import("@/components/__shared/ui/modals/popup-modal"),
 );
 
 interface Props {

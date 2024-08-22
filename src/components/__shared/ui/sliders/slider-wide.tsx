@@ -12,7 +12,7 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { cn } from "@/lib/utils";
 import { SLIDER_AUTOPLAY_DELAY } from "@/constants";
 import { SliderWideProps } from "./types";
-import SliderNav from "./SliderNav";
+import SliderNav from "./slider-nav";
 
 const SliderWide = ({
   images,

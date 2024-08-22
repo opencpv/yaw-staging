@@ -2,7 +2,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useFetchAgentRequests } from "../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import SkeletonRectangle from "@/components/__shared/ui/skeleton/SkeletonRectangle";
+import SkeletonRectangle from "@/components/__shared/ui/skeleton/skeleton-rectangle";
 // import { Skeleton } from "@nextui-org/react";
 import React, { useEffect } from "react";
 import dynamic from "next/dynamic";

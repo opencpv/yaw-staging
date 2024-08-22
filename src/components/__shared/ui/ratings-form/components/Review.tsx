@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 const FramerWrapper = dynamic(
-  () => import("@/components/__shared/hoc/FramerWrapper"),
+  () => import("@/components/__shared/hoc/framer-wrapper"),
 );
 
 function Review() {

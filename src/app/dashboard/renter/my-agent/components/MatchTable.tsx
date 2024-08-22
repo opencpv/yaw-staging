@@ -1,5 +1,5 @@
 import ScheduleVirtualTour from "./ScheduleVirtualTour";
-import CallOut from "@/components/__shared/ui/CallOut";
+import CallOut from "@/components/__shared/ui/callout";
 import React, { useEffect } from "react";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import {
@@ -12,7 +12,7 @@ import {
   TableHeaderRow,
   TableRowSm,
   TableSm,
-} from "@/components/__shared/ui/table/Table";
+} from "@/components/__shared/ui/table";
 import TbPropertyImageSm from "@/app/dashboard/components/shared/ui/TbPropertyImageSm";
 import TbPropertyImage from "@/app/dashboard/components/shared/ui/TbPropertyImage";
 import { formatDateOnly } from "@/lib/utils/stringManipulation";
@@ -20,13 +20,13 @@ import { useSearchParams } from "next/navigation";
 import SchedulePhysicalTour from "./SchedulePhysicalTour";
 import { useFetchAgentRequestMatches } from "../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import TableSkeleton from "@/components/__shared/ui/skeleton/TableSkeleton";
+import TableSkeleton from "@/components/__shared/ui/skeleton/skeleton-table";
 import { cn } from "@/lib/utils";
 import RentIt from "./RentIt";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { useQueryClient } from "@tanstack/react-query";
 import { generatePropertyTitle } from "@/lib/enum";
-import Loader from "@/components/__shared/ui/loader/Loader";
+import Loader from "@/components/__shared/ui/loader";
 import dynamic from "next/dynamic";
 const NoMatchState = dynamic(() => import("./NoMatchState"));
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { TableBody, TableBodyRow } from "../table/Table";
+import { TableBody, TableBodyRow } from "../table";
 import { cn } from "@/lib/utils";
 
 type Props = {

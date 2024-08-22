@@ -1,4 +1,4 @@
-import { TableBodySm, TableRowSm } from "@/components/__shared/ui/table/Table";
+import { TableBodySm, TableRowSm } from "@/components/__shared/ui/table";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import { formatDateOnly } from "@/lib/utils/stringManipulation";
 import { CheckboxNoFormik as Checkbox } from "@/components/__shared/ui/form/Checkbox";

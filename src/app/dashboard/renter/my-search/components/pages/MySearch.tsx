@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
-import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
+import OptionFilterTabs from "@/components/__shared/ui/tabs";
 import Select from "@/app/dashboard/components/shared/ui/Select";
-import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
-import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
+import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
+import SkeletonListing from "@/components/__shared/ui/skeleton/skeleton-listing";
 import ContactPreferenceToggle from "../../../../components/shared/ui/ContactPreferenceToggle";
 import { useRouter } from "next/navigation";
 import { useFetchRenterBookmarks } from "../../services";
@@ -14,10 +14,11 @@ import { unslugify } from "@/lib/utils/stringManipulation";
 import dynamic from "next/dynamic";
 const NoSearchEmptyState = dynamic(() => import("../NoSearchEmptyState"));
 const ListingCard = dynamic(
-  () => import("@/components/__shared/ui/listing/ListingCard"),
+  () => import("@/components/__shared/ui/listing/listing-card"),
 );
 const ButtonInfiniteLoading = dynamic(
-  () => import("@/components/__shared/ui/data_fetching/ButtonInfiniteLoading"),
+  () =>
+    import("@/components/__shared/ui/data_fetching/button-infinite-loading"),
 );
 
 const MySearch = ({ filter }: { filter: string }) => {

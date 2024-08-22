@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import HowToVideosSection from "../how_to/HowToVideosSection";
-import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
+import OptionFilterTabs from "@/components/__shared/ui/tabs";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import { HowTo } from "../../../../../interfaces";
 
@@ -34,9 +34,7 @@ const HowToPage = (props: Props) => {
         <OptionFilterTabs
           options={[
             "All",
-            ...props.tags.map((item: any) =>
-              capitalizeName(item.tag),
-            ),
+            ...props.tags.map((item: any) => capitalizeName(item.tag)),
           ]}
           selectedKey={value}
           onSelectionChange={(key) => setValue(key as string)}

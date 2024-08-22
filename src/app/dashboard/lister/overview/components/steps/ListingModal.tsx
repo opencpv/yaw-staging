@@ -21,7 +21,7 @@ import dynamic from "next/dynamic";
 const ListingHeader = dynamic(() => import("./ListingHeader"));
 const ListingFooter = dynamic(() => import("./ListingFooter"));
 const StepsModal = dynamic(
-  () => import("@/components/__shared/ui/modals/steps/StepsModal"),
+  () => import("@/components/__shared/ui/modals/steps/steps-modal"),
 );
 
 type Props = {

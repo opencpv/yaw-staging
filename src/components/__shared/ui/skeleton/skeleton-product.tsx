@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 // import { Skeleton } from "@nextui-org/react";
 import React from "react";
-import SkeletonTextual from "./SkeletonTextual";
+import SkeletonTextual from "./skeleton-textual";
 
 type Props = {
   count?: number;

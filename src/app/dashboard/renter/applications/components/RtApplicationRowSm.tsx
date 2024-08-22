@@ -5,18 +5,18 @@ import RtApplicationStatus from "./RtApplicationStatus";
 import { useDaysDifference } from "@/lib/custom-hooks/useDaysDifference";
 // import { useDisclosure } from "@nextui-org/react";
 import { RenterApplicationsInterface } from "../../../../../../interfaces";
-import { TableBodySm, TableRowSm } from "@/components/__shared/ui/table/Table";
+import { TableBodySm, TableRowSm } from "@/components/__shared/ui/table";
 import TbPropertyImageSm from "@/app/dashboard/components/shared/ui/TbPropertyImageSm";
 // import PaymentStructure from "../../../components/shared/PaymentStructure";
-import DeleteButton from "@/components/__shared/ui/button/DeleteButton";
-import EditButton from "@/components/__shared/ui/button/EditButton";
-import MessageButton from "@/components/__shared/ui/button/MessageButton";
+import DeleteButton from "@/components/__shared/ui/button/delete-button";
+import EditButton from "@/components/__shared/ui/button/edit-button";
+import MessageButton from "@/components/__shared/ui/button/message-button";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import Avatar from "@/components/__shared/ui/avatar/Avatar";
 import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
 const PopupModal = dynamic(
-  () => import("@/components/__shared/ui/modals/PopupModal"),
+  () => import("@/components/__shared/ui/modals/popup-modal"),
 );
 
 const RtApplicationRowSm = ({

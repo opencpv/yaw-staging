@@ -1,20 +1,21 @@
 "use client";
 import React from "react";
-import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
-import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
+import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
+import SkeletonListing from "@/components/__shared/ui/skeleton/skeleton-listing";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { getListingProps, Listing } from "@/lib/enum";
 import { useFetchUserFavorites } from "./services";
 import ContactPreferenceToggle from "../../components/shared/ui/ContactPreferenceToggle";
 import dynamic from "next/dynamic";
 const EmptyState = dynamic(
-  () => import("@/components/__shared/ui/states/EmptyState"),
+  () => import("@/components/__shared/ui/states/empty-state"),
 );
 const ListingCard = dynamic(
-  () => import("@/components/__shared/ui/listing/ListingCard"),
+  () => import("@/components/__shared/ui/listing/listing-card"),
 );
 const ButtonInfiniteLoading = dynamic(
-  () => import("@/components/__shared/ui/data_fetching/ButtonInfiniteLoading"),
+  () =>
+    import("@/components/__shared/ui/data_fetching/button-infinite-loading"),
 );
 
 const FavouritesPage = () => {

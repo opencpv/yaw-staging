@@ -4,7 +4,7 @@ import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import Button from "@/components/__shared/ui/button/Button";
 import { FaRegBell, FaRegHourglass } from "react-icons/fa";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import CallOut from "@/components/__shared/ui/CallOut";
+import CallOut from "@/components/__shared/ui/callout";
 import { MdOutlineEdit, MdOutlineMessage } from "react-icons/md";
 import RecentActivityCard from "./components/RecentActivityCard";
 import BoostListingCard from "./components/BoostListingCard";
@@ -13,17 +13,17 @@ import CaHandshake from "./components/icons/CaHandshake";
 import CaHomeBanner from "./components/icons/CaHomeBanner";
 import CaMegaphone from "./components/icons/CaMegaphone";
 import { GoShieldCheck } from "react-icons/go";
-import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
+import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
 import { useFetchListerActiveListings } from "./services";
 import { getListingProps } from "@/lib/enum";
-import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
+import SkeletonListing from "@/components/__shared/ui/skeleton/skeleton-listing";
 import dynamic from "next/dynamic";
 const ListingModal = dynamic(() => import("./components/steps/ListingModal"));
 const ActiveListingEmptyState = dynamic(
   () => import("./components/ActiveListingEmptyState"),
 );
 const ListingCard = dynamic(
-  () => import("@/components/__shared/ui/listing/ListingCard"),
+  () => import("@/components/__shared/ui/listing/listing-card"),
 );
 
 const ListerOverviewPage = () => {

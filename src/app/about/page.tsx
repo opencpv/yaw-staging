@@ -9,7 +9,7 @@ import { urlForImage } from "@/lib/utils/sanity/utils";
 import dynamic from "next/dynamic";
 const SimpleSlider = dynamic(() => import("./components/Slider/SimpleSlider"));
 const FramerWrapper = dynamic(
-  () => import("@/components/__shared/hoc/FramerWrapper"),
+  () => import("@/components/__shared/hoc/framer-wrapper"),
 );
 const VerticalSlider = dynamic(
   () => import("./components/Slider/VerticalSlider"),
@@ -18,7 +18,7 @@ const AboutItem = dynamic(() => import("./components/AboutItem"));
 const Navbar = dynamic(() => import("@/components/__shared/ui/Navbar"));
 const Footer = dynamic(() => import("@/components/__shared/ui/footer/Footer"));
 const FeaturedListings = dynamic(
-  () => import("@/components/__shared/ui/listing/FeaturedListings"),
+  () => import("@/components/__shared/ui/listing/featured-listings"),
 );
 const AboutOurTags = dynamic(() => import("./components/AboutOurTags"));
 

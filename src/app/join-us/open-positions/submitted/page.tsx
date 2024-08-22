@@ -1,7 +1,7 @@
 import Button from "@/components/__shared/ui/button/Button";
 import dynamic from "next/dynamic";
 const GreenCheckLottie = dynamic(
-  () => import("@/components/__shared/lotties/GreenCheckLottie"),
+  () => import("@/components/__shared/lotties/green-check-lottie"),
 );
 
 function Page() {

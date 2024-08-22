@@ -12,7 +12,7 @@ import { IFRAME_ALLOW } from "@/constants";
 import { SliderPaginationOnlyImage } from "@/components/__shared/ui/sliders/types";
 import dynamic from "next/dynamic";
 const SliderPaginationOnly = dynamic(
-  () => import("@/components/__shared/ui/sliders/SliderPaginationOnly"),
+  () => import("@/components/__shared/ui/sliders/slider-pagination-only"),
 );
 
 type Props = {

@@ -1,6 +1,6 @@
 "use client";
-import CallButton from "@/components/__shared/ui/button/CallButton";
-import WhatsAppButton from "@/components/__shared/ui/button/WhatsAppButton";
+import CallButton from "@/components/__shared/ui/button/call-button";
+import WhatsAppButton from "@/components/__shared/ui/button/whatsapp-button";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import React from "react";
 import style from "../Template.module.css";

@@ -4,16 +4,17 @@ import SortFilter from "./SortFilter";
 import ItemCard from "./ItemCard";
 import { useFetchItems } from "../services";
 import { useSearchParams } from "next/navigation";
-import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
-import EmptyState from "@/components/__shared/ui/states/EmptyState";
-import SkeletonItem from "@/components/__shared/ui/skeleton/SkeletonItem";
+import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
+import EmptyState from "@/components/__shared/ui/states/empty-state";
+import SkeletonItem from "@/components/__shared/ui/skeleton/skeleton-product";
 import { cn } from "@/lib/utils";
 import { pluralize } from "@/lib/utils/stringManipulation";
 // import { Skeleton } from "@nextui-org/react";
 import { SanityDocument } from "next-sanity";
 import dynamic from "next/dynamic";
 const ButtonInfiniteLoading = dynamic(
-  () => import("@/components/__shared/ui/data_fetching/ButtonInfiniteLoading"),
+  () =>
+    import("@/components/__shared/ui/data_fetching/button-infinite-loading"),
 );
 const Ad = dynamic(() => import("@/app/components/sections/Ad"));
 

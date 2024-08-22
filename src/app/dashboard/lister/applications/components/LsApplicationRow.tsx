@@ -6,13 +6,13 @@ import { useDaysDifference } from "@/lib/custom-hooks/useDaysDifference";
 import capitalizeName from "@/lib/utils/stringManipulation";
 // import { useDisclosure } from "@nextui-org/react";
 import { ListerApplicationsInterface } from "../../../../../../interfaces";
-import { TableBody, TableBodyRow } from "@/components/__shared/ui/table/Table";
+import { TableBody, TableBodyRow } from "@/components/__shared/ui/table";
 import TbPropertyImage from "@/app/dashboard/components/shared/ui/TbPropertyImage";
 import Rating from "@/components/__shared/ui/ratings-form";
 import TbUserImage from "@/app/dashboard/components/shared/ui/TbUserImage";
 import dynamic from "next/dynamic";
 const PopupModal = dynamic(
-  () => import("@/components/__shared/ui/modals/PopupModal"),
+  () => import("@/components/__shared/ui/modals/popup-modal"),
 );
 
 const LsApplicationRow = ({

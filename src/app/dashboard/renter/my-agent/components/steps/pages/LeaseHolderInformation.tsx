@@ -5,7 +5,7 @@ import React from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import style from "../../../index.module.css";
 import { BeMyAgentDefaultValues } from "@/store/dashboard/BeMyAgentStepsStore";
-import CallOut from "@/components/__shared/ui/CallOut";
+import CallOut from "@/components/__shared/ui/callout";
 import { cn } from "@/lib/utils";
 
 type Props = {};

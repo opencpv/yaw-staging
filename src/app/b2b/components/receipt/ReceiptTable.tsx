@@ -7,16 +7,16 @@ import {
   TableHeader,
   TableHeaderRow,
   TableSm,
-} from "@/components/__shared/ui/table/Table";
+} from "@/components/__shared/ui/table";
 import { CheckboxNoFormik as Checkbox } from "@/components/__shared/ui/form/Checkbox";
 import { useReceiptData } from "../../hooks/useReceiptData";
 import { createUUID } from "@/lib/utils/stringManipulation";
 import { useFetchReceipts } from "../../services";
-import Pagination, { usePagination } from "@/components/__shared/ui/Pagination";
-import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
-import TableSkeleton from "@/components/__shared/ui/skeleton/TableSkeleton";
+import Pagination, { usePagination } from "@/components/__shared/ui/pagination";
+import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
+import TableSkeleton from "@/components/__shared/ui/skeleton/skeleton-table";
 import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
-import TableSkeletonSm from "@/components/__shared/ui/skeleton/TableSkeletonSm";
+import TableSkeletonSm from "@/components/__shared/ui/skeleton/skeleton-table-mobile";
 import InvoiceEmptyState from "../__shared/InvoiceEmptyState";
 import { customerStore } from "@/store/payment/customerStore";
 import { HiOutlineDownload } from "react-icons/hi";

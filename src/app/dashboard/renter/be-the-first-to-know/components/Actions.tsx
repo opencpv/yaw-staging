@@ -16,7 +16,7 @@ import slugify from "@/lib/utils/slugify";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 const PopupModal = dynamic(
-  () => import("@/components/__shared/ui/modals/PopupModal"),
+  () => import("@/components/__shared/ui/modals/popup-modal"),
 );
 
 const BTFTKModal = dynamic(() => import("./steps/BTFTKModal"), {

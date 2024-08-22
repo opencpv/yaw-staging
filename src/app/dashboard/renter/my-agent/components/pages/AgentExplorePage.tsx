@@ -10,7 +10,7 @@ import React from "react";
 import LearnMoreYoutubeBtn from "../LearnMoreYoutubeBtn";
 import dynamic from "next/dynamic";
 const FramerWrapper = dynamic(
-  () => import("@/components/__shared/hoc/FramerWrapper"),
+  () => import("@/components/__shared/hoc/framer-wrapper"),
 );
 const BeMyAgentModal = dynamic(() => import("../steps/BeMyAgentModal"));
 

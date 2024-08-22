@@ -4,13 +4,13 @@ import React from "react";
 import { FaChevronLeft } from "react-icons/fa";
 import { useFetchCriteriaMatches } from "../../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
+import SkeletonListing from "@/components/__shared/ui/skeleton/skeleton-listing";
 // import { Skeleton } from "@nextui-org/react";
 import { getListingProps, Listing } from "@/lib/enum";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import dynamic from "next/dynamic";
 const ListingCard = dynamic(
-  () => import("@/components/__shared/ui/listing/ListingCard"),
+  () => import("@/components/__shared/ui/listing/listing-card"),
 );
 
 type Props = {

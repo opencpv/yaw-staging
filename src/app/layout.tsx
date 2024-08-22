@@ -14,7 +14,7 @@ const NoticeModal = dynamic(
   () => import("@/components/__shared/ui/modals/NoticeModal"),
 );
 const LoadingIndicator = dynamic(
-  () => import("@/components/__shared/ui/LoadingIndicator"),
+  () => import("@/components/__shared/ui/loading-indicator"),
 );
 const MenuWrapper = dynamic(
   () => import("@/components/__shared/hoc/MenuWrapper"),

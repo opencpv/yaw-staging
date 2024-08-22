@@ -10,7 +10,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useFetchItemCategories } from "../services";
 import { LiaTimesSolid } from "react-icons/lia";
 import dynamic from "next/dynamic";
-import Loader from "@/components/__shared/ui/loader/Loader";
+import Loader from "@/components/__shared/ui/loader";
 const Modal = dynamic(() => import("@/components/__shared/ui/modals/Modal"));
 
 type Props = {

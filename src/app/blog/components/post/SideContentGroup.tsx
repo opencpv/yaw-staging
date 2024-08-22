@@ -4,9 +4,9 @@ import { socialLinks } from "@/enum/links/socials";
 import Link from "next/link";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import dynamic from "next/dynamic";
-import Loader from "@/components/__shared/ui/loader/Loader";
+import Loader from "@/components/__shared/ui/loader";
 const SliderPaginationOnly = dynamic(
-  () => import("@/components/__shared/ui/sliders/SliderPaginationOnly"),
+  () => import("@/components/__shared/ui/sliders/slider-pagination-only"),
 );
 const RelatedPosts = dynamic(() => import("./RelatedPosts"));
 const SideContentCategories = dynamic(() => import("./SideContentCategories"));

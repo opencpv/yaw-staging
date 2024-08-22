@@ -1,8 +1,8 @@
 "use client";
 import { useFetchFeaturedListings } from "@/app/properties/services";
 import { LinkButton } from "@/components/__shared/ui/button";
-import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
-import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
+import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
+import SkeletonListing from "@/components/__shared/ui/skeleton/skeleton-listing";
 import { getListingProps } from "@/lib/enum";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import dynamic from "next/dynamic";
@@ -10,13 +10,13 @@ import React from "react";
 import { HiChevronRight } from "react-icons/hi";
 
 const FramerWrapper = dynamic(
-  () => import("@/components/__shared/hoc/FramerWrapper"),
+  () => import("@/components/__shared/hoc/framer-wrapper"),
 );
 const ListingCard = dynamic(
-  () => import("@/components/__shared/ui/listing/ListingCard"),
+  () => import("@/components/__shared/ui/listing/listing-card"),
 );
 const SliderGrid = dynamic(
-  () => import("@/components/__shared/ui/sliders/SliderGrid"),
+  () => import("@/components/__shared/ui/sliders/slider-grid"),
 );
 
 type Props = {

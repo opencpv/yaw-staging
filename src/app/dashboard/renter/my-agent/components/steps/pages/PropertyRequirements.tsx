@@ -2,7 +2,7 @@ import style from "../../../index.module.css";
 import { CustomDatePicker } from "@/components/__shared/ui/form/CustomDatePicker";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
-import CallOut from "@/components/__shared/ui/CallOut";
+import CallOut from "@/components/__shared/ui/callout";
 import { BeMyAgentDefaultValues } from "@/store/dashboard/BeMyAgentStepsStore";
 import { cn } from "@/lib/utils";
 

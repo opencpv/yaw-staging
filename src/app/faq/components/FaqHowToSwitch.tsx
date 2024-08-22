@@ -1,4 +1,4 @@
-import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
+import OptionFilterTabs from "@/components/__shared/ui/tabs";
 import { useFaqHowToSwitchStore } from "@/store/faq/useFaqStore";
 import React, { useRef } from "react";
 

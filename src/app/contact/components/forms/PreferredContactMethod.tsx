@@ -1,7 +1,7 @@
 import React from "react";
 import InputPhoneNumber from "./InputPhoneNumber";
 import TextFieldInput from "./TextFieldInput";
-import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
+import OptionFilterTabs from "@/components/__shared/ui/tabs";
 import { MdOutlineMailOutline, MdOutlineWhatsapp } from "react-icons/md";
 import { useField } from "formik";
 import { E164Number, CountryCode } from "libphonenumber-js/core";

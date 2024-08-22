@@ -1,5 +1,5 @@
 "use client";
-import BreadCrumbPreLink from "@/components/__shared/ui/BreadCrumbPreLink";
+import BreadCrumbPreLink from "@/components/__shared/ui/breadcrumb-pre-link";
 import React, { Suspense, useEffect, useRef } from "react";
 import { FaChevronRight } from "react-icons/fa6";
 import ItemDetails from "../ItemDetails";

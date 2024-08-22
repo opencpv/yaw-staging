@@ -12,7 +12,7 @@ import { PiChatCenteredDots } from "react-icons/pi";
 import { RenterApplicationStatus } from "./RtApplicationStatus";
 import dynamic from "next/dynamic";
 const PopupModal = dynamic(
-  () => import("@/components/__shared/ui/modals/PopupModal"),
+  () => import("@/components/__shared/ui/modals/popup-modal"),
 );
 
 type Props = {

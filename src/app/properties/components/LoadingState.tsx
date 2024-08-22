@@ -1,4 +1,4 @@
-import SkeletonTextual from "@/components/__shared/ui/skeleton/SkeletonTextual";
+import SkeletonTextual from "@/components/__shared/ui/skeleton/skeleton-textual";
 // import { Skeleton } from "@nextui-org/react";
 import React from "react";
 

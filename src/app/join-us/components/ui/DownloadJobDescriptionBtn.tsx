@@ -16,7 +16,7 @@ import { TypedObject } from "sanity";
 import legal from "@/enum/about/legal";
 import dynamic from "next/dynamic";
 const PDFRichTextRenderer = dynamic(
-  () => import("@/components/__shared/rich-text/PDFRichTextRenderer"),
+  () => import("@/components/__shared/rich-text/pdf-rich-text-renderer"),
 );
 
 type Props = {

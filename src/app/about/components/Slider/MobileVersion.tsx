@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useCallback, useRef, useState } from "react";
 import SlideItem from "./SlideItem";
 import { urlForImage } from "@/lib/utils/sanity/utils";
-import SliderNav from "@/components/__shared/ui/sliders/SliderNav";
+import SliderNav from "@/components/__shared/ui/sliders/slider-nav";
 
 const MobileVersion = ({ data }: { data: any }) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);

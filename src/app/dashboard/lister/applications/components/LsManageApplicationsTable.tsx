@@ -2,16 +2,16 @@
 
 import React from "react";
 import LsApplicationRow from "./LsApplicationRow";
-import TableSkeleton from "@/components/__shared/ui/skeleton/TableSkeleton";
+import TableSkeleton from "@/components/__shared/ui/skeleton/skeleton-table";
 import {
   Table,
   TableBodyRowGroup,
   TableHeader,
   TableHeaderRow,
-} from "@/components/__shared/ui/table/Table";
+} from "@/components/__shared/ui/table";
 import Button from "@/components/__shared/ui/button/Button";
 import { IoArchiveOutline } from "react-icons/io5";
-import Loader from "@/components/__shared/ui/loader/Loader";
+import Loader from "@/components/__shared/ui/loader";
 import { cn } from "@/lib/utils";
 
 type Props = {};

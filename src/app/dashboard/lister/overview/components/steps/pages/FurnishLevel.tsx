@@ -1,6 +1,6 @@
 import { useLocalStorage } from "@uidotdev/usehooks";
 import style from "../../../index.module.css";
-import CallOut from "../../../../../../../components/__shared/ui/CallOut";
+import CallOut from "../../../../../../../components/__shared/ui/callout";
 import { useField } from "formik";
 import { ListingDefaultValues } from "@/store/dashboard/ListingStepsStore";
 import { cn } from "@/lib/utils";
@@ -76,17 +76,22 @@ const Furnish = (props: {
   return (
     <button
       className={cn(
-        "!hover:scale-50 !transition-all fade-in-top items-start space-y-5 p-3 text-left",
+        "!hover:scale-50 fade-in-top items-start space-y-5 p-3 text-left !transition-all",
         {
-          "rounded-xl border transition-all duration-1000 bg-white pt-5 shadow-md w-full": props.selected,
+          "w-full rounded-xl border bg-white pt-5 shadow-md transition-all duration-1000":
+            props.selected,
         },
       )}
       style={{ animationDelay: `0.${props.n + 6}s` }}
       onClick={props.onClick}
     >
-    <h3 className={cn({
-        "text-shade-200": !props.selected,
-      })}>{props.name}</h3>
+      <h3
+        className={cn({
+          "text-shade-200": !props.selected,
+        })}
+      >
+        {props.name}
+      </h3>
       <p className="text-shade-200">{props.description}</p>
     </button>
   );

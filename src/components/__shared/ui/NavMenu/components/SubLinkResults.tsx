@@ -6,7 +6,7 @@ import SubLinkResultsCard from "./SubLinkResultsCard";
 import Link from "next/link";
 import Separator from "@/components/__shared/ui/Separator";
 // import { Skeleton } from "@nextui-org/react";
-import ArrowLink from "../../links/ArrowLink";
+import ArrowLink from "../../links/arrow-link";
 
 function SubLinkResults() {
   const { activeSubLink, setToggle } = useMenuStore();

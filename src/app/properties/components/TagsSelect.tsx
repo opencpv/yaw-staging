@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
+import OptionFilterTabs from "@/components/__shared/ui/tabs";
 import { FilterOptionArray } from "@/store/properties/usePropertiesStore";
 import { useRouter, useSearchParams } from "next/navigation";
 

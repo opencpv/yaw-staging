@@ -16,7 +16,7 @@ import { createClient } from "@/lib/utils/supabase/auth/server";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import toast from "react-hot-toast";
 const RecommendedListings = dynamic(
-  () => import("@/components/__shared/ui/listing/RecommendedListings"),
+  () => import("@/components/__shared/ui/listing/recommended-listings"),
 );
 const LikeShare = dynamic(() => import("../LikeShare"));
 

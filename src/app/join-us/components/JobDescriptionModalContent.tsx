@@ -6,7 +6,7 @@ import { PortableText } from "next-sanity";
 import Button from "@/components/__shared/ui/button/Button";
 import { JobType } from "../types";
 import { TypedObject } from "sanity";
-import EmptyState from "@/components/__shared/ui/states/EmptyState";
+import EmptyState from "@/components/__shared/ui/states/empty-state";
 import DownloadJobDescriptionBtn from "./ui/DownloadJobDescriptionBtn";
 
 type Props = {

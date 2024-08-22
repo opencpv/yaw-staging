@@ -1,4 +1,4 @@
-import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
+import OptionFilterTabs from "@/components/__shared/ui/tabs";
 import { useManagePropertiesStore } from "@/store/dashboard/propertiesStore";
 import React from "react";
 

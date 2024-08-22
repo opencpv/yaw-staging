@@ -1,9 +1,9 @@
 "use client";
 import * as React from "react";
 import { urlForImage } from "@/lib/utils/sanity/utils";
-import SkeletonLong from "@/components/__shared/ui/skeleton/SkeletonLong";
+import SkeletonLong from "@/components/__shared/ui/skeleton/skeleton-long";
 import slugify from "@/lib/utils/slugify";
-import SkeletonTextual from "@/components/__shared/ui/skeleton/SkeletonTextual";
+import SkeletonTextual from "@/components/__shared/ui/skeleton/skeleton-textual";
 import dynamic from "next/dynamic";
 const PostSummary = dynamic(() => import("./PostSummary"));
 

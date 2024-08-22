@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import dynamic from "next/dynamic";
 // const Modal = dynamic(() => import("@/components/__shared/ui/modals/Modal"));
 const FramerWrapper = dynamic(
-  () => import("@/components/__shared/hoc/FramerWrapper"),
+  () => import("@/components/__shared/hoc/framer-wrapper"),
 );
 
 type Props = {

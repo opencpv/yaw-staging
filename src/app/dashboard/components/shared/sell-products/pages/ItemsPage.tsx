@@ -14,11 +14,11 @@ import {
   TableHeader,
   TableHeaderRow,
   TableSm,
-} from "@/components/__shared/ui/table/Table";
+} from "@/components/__shared/ui/table";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { cn } from "@/lib/utils";
-import ArchivedButton from "@/components/__shared/ui/table/Archived";
-import CallOut from "@/components/__shared/ui/CallOut";
+import ArchivedButton from "@/components/__shared/ui/table/archived-button";
+import CallOut from "@/components/__shared/ui/callout";
 import SelectMobile from "../../ui/SelectMobile";
 import AddItemButton from "../AddItemButton";
 import { useCurrentUserId } from "@/lib/custom-hooks/useCurrentUserId";

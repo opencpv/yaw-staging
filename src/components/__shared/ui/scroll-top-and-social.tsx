@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import FixedSocials from "./FixedSocials";
+import FixedSocials from "./fixed-socials";
 import dynamic from "next/dynamic";
-const ScrollTop = dynamic(() => import("./ScrollTop"));
+const ScrollTop = dynamic(() => import("./scroll-top"));
 
 type Props = {
   hideSocial?: boolean;

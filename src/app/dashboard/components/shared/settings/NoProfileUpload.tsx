@@ -1,4 +1,4 @@
-import ProfileLottie from "@/components/__shared/lotties/ProfileLottie";
+import ProfileLottie from "@/components/__shared/lotties/profile-lottie";
 import React from "react";
 import { PiUserLight } from "react-icons/pi";
 

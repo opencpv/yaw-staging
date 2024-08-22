@@ -8,7 +8,7 @@ import Feedback from "@/components/__shared/ui/feedback/Feedback";
 import { LowerCase } from "@/lib/utils/stringManipulation";
 import legal from "@/enum/about/legal";
 // import ReportFraud from "@/components/__shared/ui/links/ReportFraud";
-import HowToLink from "@/components/__shared/ui/links/HowToLink";
+import HowToLink from "@/components/__shared/ui/links/how-to-link";
 import { FaEnvelope } from "react-icons/fa6";
 import { MdLocalPhone } from "react-icons/md";
 import { socialLinks } from "@/enum/links/socials";
@@ -24,7 +24,7 @@ import dynamic from "next/dynamic";
 import { pacifico } from "@/lib/utils/fonts";
 
 const ReportFraud = dynamic(
-  () => import("@/components/__shared/ui/links/ReportFraud"),
+  () => import("@/components/__shared/ui/links/report-fraud"),
   { ssr: false },
 );
 

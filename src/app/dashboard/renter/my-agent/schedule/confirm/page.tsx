@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import MatchDetail from "../../components/schedule/MatchDetail";
-import Loader from "@/components/__shared/ui/loader/Loader";
+import Loader from "@/components/__shared/ui/loader";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 

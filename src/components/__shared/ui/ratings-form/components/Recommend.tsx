@@ -5,7 +5,7 @@ import { Form, Formik } from "formik";
 import { useRatingsModalStore } from "@/store/modal/useRatingsModalStore";
 import dynamic from "next/dynamic";
 const FramerWrapper = dynamic(
-  () => import("@/components/__shared/hoc/FramerWrapper"),
+  () => import("@/components/__shared/hoc/framer-wrapper"),
 );
 
 function Recommend() {

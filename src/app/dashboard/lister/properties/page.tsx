@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import CallOut from "@/components/__shared/ui/CallOut";
+import CallOut from "@/components/__shared/ui/callout";
 import { pluralize } from "@/lib/utils/stringManipulation";
 import { useFetchAllListerProperties } from "./services";
 import { useAppStore } from "@/store/dashboard/AppStore";
@@ -11,18 +11,18 @@ import {
   TableHeader,
   TableHeaderRow,
   TableSm,
-} from "@/components/__shared/ui/table/Table";
-import ArchivedButton from "@/components/__shared/ui/table/Archived";
-import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
-import TableSkeleton from "@/components/__shared/ui/skeleton/TableSkeleton";
+} from "@/components/__shared/ui/table";
+import ArchivedButton from "@/components/__shared/ui/table/archived-button";
+import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
+import TableSkeleton from "@/components/__shared/ui/skeleton/skeleton-table";
 import React, { useState } from "react";
 import PropertyRow from "./components/PropertyRow";
 import PropertyRowMobile from "./components/PropertyRowMobile";
-import TableSkeletonSm from "@/components/__shared/ui/skeleton/TableSkeletonSm";
+import TableSkeletonSm from "@/components/__shared/ui/skeleton/skeleton-table-mobile";
 import { FaPlus } from "react-icons/fa6";
-import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
+import OptionFilterTabs from "@/components/__shared/ui/tabs";
 import dynamic from "next/dynamic";
-import Pagination, { usePagination } from "@/components/__shared/ui/Pagination";
+import Pagination, { usePagination } from "@/components/__shared/ui/pagination";
 const EmptyState = dynamic(() => import("./components/EmptyState"));
 
 const ListingModal = dynamic(

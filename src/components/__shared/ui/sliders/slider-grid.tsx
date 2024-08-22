@@ -10,7 +10,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/free-mode";
 import { SliderGridProps } from "./types";
-import SliderNav from "./SliderNav";
+import SliderNav from "./slider-nav";
 
 const SliderGrid = ({ items }: SliderGridProps) => {
   // const [shouldRefresh, setShouldRefresh] = useState(false);

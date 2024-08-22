@@ -1,4 +1,4 @@
-import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
+import OptionFilterTabs from "@/components/__shared/ui/tabs";
 import Button from "@/components/__shared/ui/button/Button";
 import React from "react";
 import { cn } from "@/lib/utils";
@@ -6,7 +6,7 @@ import PropertyCard from "./PropertyCard";
 import ItemCard from "./ItemCard";
 import { useFetchListerItems, useFetchListerListings } from "../../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
+import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
 // import { Skeleton } from "@nextui-org/react";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import dynamic from "next/dynamic";

@@ -6,7 +6,7 @@ import { urlForImage } from "@/lib/utils/sanity/utils";
 import dynamic from "next/dynamic";
 import { LinkButton } from "@/components/__shared/ui/button";
 const FramerWrapper = dynamic(
-  () => import("@/components/__shared/hoc/FramerWrapper"),
+  () => import("@/components/__shared/hoc/framer-wrapper"),
 );
 
 type Props = {

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import onlyUnique from "@/lib/utils/onlyUnique,";
 import groupByCategory from "../lib/groupFAQ";
 import FAQItem from "./FAQItem";
-import Loader from "@/components/__shared/ui/loader/Loader";
+import Loader from "@/components/__shared/ui/loader";
 import { useFaqStore } from "@/store/faq/useFaqStore";
 import style from "../Faq.module.css";
 

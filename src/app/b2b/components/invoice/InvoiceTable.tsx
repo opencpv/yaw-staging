@@ -7,16 +7,16 @@ import {
   TableHeader,
   TableHeaderRow,
   TableSm,
-} from "@/components/__shared/ui/table/Table";
+} from "@/components/__shared/ui/table";
 import { CheckboxNoFormik as Checkbox } from "@/components/__shared/ui/form/Checkbox";
 import { useInvoiceData } from "../../hooks/useInvoiceData";
 import { createUUID } from "@/lib/utils/stringManipulation";
 import { useFetchInvoices } from "../../services";
-import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
+import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
 import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
-import TableSkeleton from "@/components/__shared/ui/skeleton/TableSkeleton";
-import TableSkeletonSm from "@/components/__shared/ui/skeleton/TableSkeletonSm";
-import Pagination, { usePagination } from "@/components/__shared/ui/Pagination";
+import TableSkeleton from "@/components/__shared/ui/skeleton/skeleton-table";
+import TableSkeletonSm from "@/components/__shared/ui/skeleton/skeleton-table-mobile";
+import Pagination, { usePagination } from "@/components/__shared/ui/pagination";
 import InvoiceEmptyState from "../__shared/InvoiceEmptyState";
 
 type Props = {

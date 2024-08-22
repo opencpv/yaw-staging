@@ -5,7 +5,7 @@ import Button from "@/components/__shared/ui/button/Button";
 import { useRouter } from "next/navigation";
 import { RenterPaidFeatureInterface } from "../../../../../../interfaces";
 import PaidFeature from "./PaidFeature";
-import CallOut from "@/components/__shared/ui/CallOut";
+import CallOut from "@/components/__shared/ui/callout";
 
 const FeatureExplainer = ({
   title,

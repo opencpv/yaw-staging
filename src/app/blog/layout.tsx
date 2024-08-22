@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 const Footer = dynamic(() => import("@/components/__shared/ui/footer/Footer"));
 const Navbar = dynamic(() => import("@/components/__shared/ui/Navbar"));
 const FeaturedListings = dynamic(
-  () => import("@/components/__shared/ui/listing/FeaturedListings"),
+  () => import("@/components/__shared/ui/listing/featured-listings"),
 );
 
 type Props = {

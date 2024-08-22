@@ -1,7 +1,7 @@
 "use client";
 
 import Modal from "@/components/__shared/ui/modals/Modal";
-import Carousel from "@/components/__shared/ui/sliders/Carousel";
+import Carousel from "@/components/__shared/ui/sliders/carousel";
 import Share from "@/components/__shared/ui/share";
 import React from "react";
 import { LiaTimesSolid } from "react-icons/lia";

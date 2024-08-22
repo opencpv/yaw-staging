@@ -1,8 +1,8 @@
 import React from "react";
-import CallButton from "@/components/__shared/ui/button/CallButton";
-import MessageButton from "@/components/__shared/ui/button/MessageButton";
-import WhatsAppButton from "@/components/__shared/ui/button/WhatsAppButton";
-import SkeletonRectangle from "@/components/__shared/ui/skeleton/SkeletonRectangle";
+import CallButton from "@/components/__shared/ui/button/call-button";
+import MessageButton from "@/components/__shared/ui/button/message-button";
+import WhatsAppButton from "@/components/__shared/ui/button/whatsapp-button";
+import SkeletonRectangle from "@/components/__shared/ui/skeleton/skeleton-rectangle";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -15,7 +15,7 @@ const ItemOwnerContact = ({ query }: Props) => {
       {query.isLoading ? (
         <SkeletonRectangle />
       ) : (
-        <div className="flex w-full flex-col items-center gap-3 rounded-xl bg-white p-8 shadow-large lg:mt-12">
+        <div className="shadow-large flex w-full flex-col items-center gap-3 rounded-xl bg-white p-8 lg:mt-12">
           <CallButton
             color="accent"
             phoneNumber={query.data?.phone}

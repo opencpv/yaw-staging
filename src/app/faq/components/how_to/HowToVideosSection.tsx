@@ -1,9 +1,14 @@
 import React, { useState } from "react";
-import HowToVideo from "./HowToVideo";
 import Button from "@/components/__shared/ui/button/Button";
-import LoadingIndicator from "@/components/LoadingIndicator";
 import { HowTo } from "../../../../../interfaces";
-import EmptyState from "@/components/__shared/ui/states/EmptyState";
+import dynamic from "next/dynamic";
+const LoadingIndicator = dynamic(
+  () => import("@/components/__shared/ui/loading-indicator"),
+);
+const EmptyState = dynamic(
+  () => import("@/components/__shared/ui/states/empty-state"),
+);
+const HowToVideo = dynamic(() => import("./HowToVideo"));
 
 type Props = { content: HowTo[] };
 

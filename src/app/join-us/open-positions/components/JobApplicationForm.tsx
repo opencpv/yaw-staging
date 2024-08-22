@@ -5,7 +5,7 @@ import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
 import { Form, Formik } from "formik";
 import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
 import { useContactForm } from "@/app/contact/components/forms/hooks/useContactForm";
-import CallOut from "@/components/__shared/ui/CallOut";
+import CallOut from "@/components/__shared/ui/callout";
 import { useJoinUsPageStore } from "../../components/useJoinUsPageStore";
 import { useState } from "react";
 import {

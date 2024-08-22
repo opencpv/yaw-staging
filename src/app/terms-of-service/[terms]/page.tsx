@@ -6,7 +6,7 @@ import { SanityDocument } from "next-sanity";
 import { loadQuery } from "@/lib/utils/sanity/sanityStore";
 import TermsMenuWrapper from "../TermsMenuWrapper";
 import dynamic from "next/dynamic";
-const ScrollTop = dynamic(() => import("@/components/__shared/ui/ScrollTop"));
+const ScrollTop = dynamic(() => import("@/components/__shared/ui/scroll-top"));
 
 const Terms = async (props: any) => {
   const path = props.params.terms;

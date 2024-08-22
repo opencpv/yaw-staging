@@ -1,5 +1,5 @@
 "use client";
-import Loader from "@/components/__shared/ui/loader/Loader";
+import Loader from "@/components/__shared/ui/loader";
 import { createClient } from "@/lib/utils/supabase/auth/client";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { useRouter } from "next/navigation";
@@ -25,9 +25,9 @@ const Dashboard = () => {
   }, [router, currentRole]);
 
   return (
-      <main className="grid h-40 place-items-center">
-        <Loader />
-      </main>
+    <main className="grid h-40 place-items-center">
+      <Loader />
+    </main>
   );
 };
 

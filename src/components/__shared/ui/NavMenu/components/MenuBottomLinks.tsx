@@ -3,8 +3,8 @@ import { LowerCase } from "@/lib/utils/stringManipulation";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
 import Link from "next/link";
 import React, { LegacyRef, forwardRef } from "react";
-import ReportFraud from "@/components/__shared/ui/links/ReportFraud";
-import HowToLink from "@/components/__shared/ui/links/HowToLink";
+import ReportFraud from "@/components/__shared/ui/links/report-fraud";
+import HowToLink from "@/components/__shared/ui/links/how-to-link";
 import { useQuery } from "@tanstack/react-query";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
@@ -18,7 +18,7 @@ type Props = {
 const MenuBottomLinks = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
   const pathname = usePathname();
   const { activeKey: activeContactKey } = useContactStore();
-  const { activePage: activeFaqKey } = useFaqHowToSwitchStore() 
+  const { activePage: activeFaqKey } = useFaqHowToSwitchStore();
   const { setToggle } = useMenuStore();
 
   const { data } = useQuery({
@@ -46,9 +46,10 @@ const MenuBottomLinks = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
           {LowerCase(r?.name) === "how to" ? (
             <HowToLink
               className={cn(
-                "transition-all hover:scale-110 hover:text-accent-100 ",
+                "transition-all hover:scale-110 hover:text-accent-100",
                 {
-                  "text-accent": pathname?.includes(r?.url) && activeFaqKey === "how to",
+                  "text-accent":
+                    pathname?.includes(r?.url) && activeFaqKey === "how to",
                 },
               )}
               onClick={() => {
@@ -58,7 +59,7 @@ const MenuBottomLinks = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
           ) : LowerCase(r?.name) === "report fraud" ? (
             <ReportFraud
               className={cn(
-                "transition-all hover:scale-110 hover:text-accent-100 ",
+                "transition-all hover:scale-110 hover:text-accent-100",
                 {
                   "text-accent":
                     pathname?.includes(r?.url) && activeContactKey === "report",
@@ -70,7 +71,7 @@ const MenuBottomLinks = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
             />
           ) : LowerCase(r?.name) === "feedback" ? (
             <Feedback data={data}>
-              <button className="transition-all hover:scale-110 hover:text-accent-100 ">
+              <button className="transition-all hover:scale-110 hover:text-accent-100">
                 Feedback
               </button>
             </Feedback>
@@ -78,7 +79,7 @@ const MenuBottomLinks = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
             <Link
               href={r?.url}
               className={cn(
-                "transition-all hover:scale-110 hover:text-accent-100 ",
+                "transition-all hover:scale-110 hover:text-accent-100",
                 {
                   "text-accent": pathname?.includes(r?.url),
                 },

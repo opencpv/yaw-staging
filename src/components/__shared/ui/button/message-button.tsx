@@ -4,7 +4,6 @@ import Button from "./Button";
 // import { useMessageStore } from "@/store/dashboard/useMessageStore";
 // import { useUserDetails } from "@/lib/custom-hooks/message/useUserDetails";
 // import { useUserSession } from "@/lib/custom-hooks/database/useUserSession";
-import LoaderDots from "../loader/LoaderDots";
 // import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { PiChatCenteredDots } from "react-icons/pi";
@@ -12,7 +11,7 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import dynamic from "next/dynamic";
 
 const SignInRequiredModal = dynamic(
-  () => import("../modals/SignInRequiredModal"),
+  () => import("../modals/sign-in-required-modal"),
 );
 
 type Props = {
@@ -77,8 +76,9 @@ const MessageButton = ({ color, className, id, children, type }: Props) => {
           title={"Send message"}
           className={cn("w-full", className)}
           onClick={handleClick}
+          isLoading={loadingMessage}
         >
-          {loadingMessage ? <LoaderDots /> : (children ?? "Send Message")}
+          {children ?? "Send Message"}
         </Button>
       )}
     </>

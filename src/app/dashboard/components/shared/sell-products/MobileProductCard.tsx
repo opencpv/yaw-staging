@@ -1,4 +1,4 @@
-import { TableBodySm, TableRowSm } from "@/components/__shared/ui/table/Table";
+import { TableBodySm, TableRowSm } from "@/components/__shared/ui/table";
 import TbPropertyImageSm from "../ui/TbPropertyImageSm";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import PublicationStatus from "./PublicationStatus";

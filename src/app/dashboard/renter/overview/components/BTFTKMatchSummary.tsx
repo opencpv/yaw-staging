@@ -1,5 +1,5 @@
 import style from "../Feature.module.css";
-import CallOut from "@/components/__shared/ui/CallOut";
+import CallOut from "@/components/__shared/ui/callout";
 import Button from "@/components/__shared/ui/button/Button";
 import React from "react";
 import Image from "next/image";

@@ -1,10 +1,10 @@
 "use client";
-import SliderMultiItems from "@/components/__shared/ui/sliders/SliderMultiItems";
+import SliderMultiItems from "@/components/__shared/ui/sliders/slider-multi-items";
 import React from "react";
 import PopularCitiesCard from "../ui/PopularCitiesCard";
-import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
+import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
 import Image from "next/image";
-import SkeletonRectangle from "@/components/__shared/ui/skeleton/SkeletonRectangle";
+import SkeletonRectangle from "@/components/__shared/ui/skeleton/skeleton-rectangle";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
 import { createClient } from "@/lib/utils/supabase/auth/client";
 import { useQuery } from "@tanstack/react-query";

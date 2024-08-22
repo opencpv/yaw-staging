@@ -13,7 +13,7 @@ import { FiTrash2 } from "react-icons/fi";
 import { cn } from "@/lib/utils";
 import CloseModalIcon from "../icons/CloseModalIcon";
 import dynamic from "next/dynamic";
-const PopupModal = dynamic(() => import("./PopupModal"));
+const PopupModal = dynamic(() => import("./popup-modal"));
 
 type Props = {
   className?: string;

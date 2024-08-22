@@ -11,14 +11,14 @@ import { useDaysDifference } from "@/lib/custom-hooks/useDaysDifference";
 import capitalizeName from "@/lib/utils/stringManipulation";
 // import { useDisclosure } from "@nextui-org/react";
 import { ListerApplicationsInterface } from "../../../../../../interfaces";
-import { TableBody, TableBodyRow } from "@/components/__shared/ui/table/Table";
+import { TableBody, TableBodyRow } from "@/components/__shared/ui/table";
 import TbPropertyImageSm from "@/app/dashboard/components/shared/ui/TbPropertyImageSm";
 // import PaymentStructure from "../../../components/shared/PaymentStructure";
 import ViewButton from "@/components/__shared/ui/button/ViewButton";
 import dynamic from "next/dynamic";
 // import Rating from "../../../components/shared/Rating";
 const PopupModal = dynamic(
-  () => import("@/components/__shared/ui/modals/PopupModal"),
+  () => import("@/components/__shared/ui/modals/popup-modal"),
 );
 
 const LsApplicationRowSm = ({

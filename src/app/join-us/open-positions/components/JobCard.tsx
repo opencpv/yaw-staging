@@ -1,6 +1,6 @@
 "use client";
 import React, { Suspense } from "react";
-import ModalCloseIcon from "@/components/__shared/ui/modals/ModalCloseIcon";
+import ModalCloseIcon from "@/components/__shared/ui/modals/modal-close-icon";
 import Image from "next/image";
 import { JobType } from "../../types";
 import JobDescriptionButton from "../../components/JobDescriptionButton";

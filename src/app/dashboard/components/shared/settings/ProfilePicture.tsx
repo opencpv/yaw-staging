@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import React from "react";
 import NoProfileUpload from "./NoProfileUpload";
-import Loader from "@/components/__shared/ui/loader/Loader";
+import Loader from "@/components/__shared/ui/loader";
 import dynamic from "next/dynamic";
 const Tooltip = dynamic(() => import("@/components/__shared/ui/Tooltip"));
 

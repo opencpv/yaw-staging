@@ -6,10 +6,10 @@ import Button from "@/components/__shared/ui/button/Button";
 import { fadeUp } from "@/lib/animations";
 import { cn } from "@/lib/utils";
 import Rate from "@/components/__shared/ui/Rate";
-import ReportIssue from "@/components/__shared/ui/links/ReportIssue";
+import ReportIssue from "@/components/__shared/ui/links/report-issue";
 import dynamic from "next/dynamic";
 const FramerWrapper = dynamic(
-  () => import("@/components/__shared/hoc/FramerWrapper"),
+  () => import("@/components/__shared/hoc/framer-wrapper"),
 );
 type Props = {};
 

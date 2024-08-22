@@ -5,7 +5,7 @@ import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
 import CountryInput from "@/components/__shared/ui/form/CountryInput";
 import CustomTextAreaInput from "@/components/__shared/ui/form/CustomTextAreaInput";
 import style from "../../../index.module.css";
-import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
+import OptionFilterTabs from "@/components/__shared/ui/tabs";
 import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { MdOutlineMailOutline, MdOutlineWhatsapp } from "react-icons/md";
@@ -29,8 +29,7 @@ const ContactInformation = React.forwardRef<HTMLInputElement, Props>(
       <Root>
         <div className="h-full">
           <h2 className={`${style.title}`}>
-            Contact Information{" "}
-            <span className={style.asterisk}>*</span>
+            Contact Information <span className={style.asterisk}>*</span>
           </h2>
           <div className={style.wrappingFieldsGrid}>
             <TextFieldInput

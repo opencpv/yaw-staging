@@ -7,7 +7,7 @@ import { IoChevronForwardOutline } from "react-icons/io5";
 import { BTFTKStepsStore } from "@/store/dashboard/BTFTKStepsStore";
 import { useFormikContext } from "formik";
 import { useEffect, useRef } from "react";
-import GreenCheckLottie from "@/components/__shared/lotties/GreenCheckLottie";
+import GreenCheckLottie from "@/components/__shared/lotties/green-check-lottie";
 import CloseModalIcon from "@/components/__shared/ui/icons/CloseModalIcon";
 import { useRouter } from "next/navigation";
 
@@ -89,7 +89,7 @@ const Success = () => {
       </Link>
       <Link href="/dashboard/renter/my-agent/explore" onClick={handleClose}>
         <div className="flex flex-col gap-10 rounded-xl bg-gradient-to-r from-[#0B7371] to-[#A5CACD] p-6 pb-0 text-white max-ssm:items-center ssm:flex-row ssm:items-start ssm:pr-0">
-          <div className="flex flex-col gap-5 pb-10 pt-8  max-ssm:items-center">
+          <div className="flex flex-col gap-5 pb-10 pt-8 max-ssm:items-center">
             <h3 className="max-ssm:text-center">
               Not finding what you&apos;re looking for?
             </h3>

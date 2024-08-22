@@ -4,7 +4,7 @@ import { AiFillInstagram, AiOutlineLink } from "react-icons/ai";
 import { FaFacebook, FaLinkedin } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Loader from "@/components/__shared/ui/loader/Loader";
+import Loader from "@/components/__shared/ui/loader";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";

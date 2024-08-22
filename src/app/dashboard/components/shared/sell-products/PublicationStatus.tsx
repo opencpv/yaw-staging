@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Status from "@/components/__shared/ui/states/Status";
+import Status from "@/components/__shared/ui/states/status";
 import { ProductStatusProp } from "@/lib/typings";
 
 export type ItemPublicationStatus =

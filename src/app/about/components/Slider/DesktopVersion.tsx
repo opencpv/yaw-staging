@@ -5,7 +5,7 @@ import { useCallback, useRef, useState } from "react";
 import "swiper/css";
 import Image from "next/image";
 import { urlForImage } from "@/lib/utils/sanity/utils";
-import SliderNav from "@/components/__shared/ui/sliders/SliderNav";
+import SliderNav from "@/components/__shared/ui/sliders/slider-nav";
 
 const DesktopVersion = ({ data }: { data: any }) => {
   const initialSlide = 1;

@@ -1,5 +1,5 @@
 "use client";
-import Loader from "@/components/__shared/ui/loader/Loader";
+import Loader from "@/components/__shared/ui/loader";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 
 const RoleSwitcherOverlay = () => {

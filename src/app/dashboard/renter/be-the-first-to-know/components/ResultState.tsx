@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Status from "@/components/__shared/ui/states/Status";
+import Status from "@/components/__shared/ui/states/status";
 import slugify from "@/lib/utils/slugify";
 import { BTFTKStepsStore } from "@/store/dashboard/BTFTKStepsStore";
 
@@ -34,7 +34,7 @@ const ResultState = ({ criterion }: Props) => {
             ? `/dashboard/renter/be-the-first-to-know/${slugify(
                 criterion?.title?.toLowerCase() as string,
               )}/uUT60Lgh-${criterion.id}-BDJ7Q`
-              : undefined
+            : undefined
         }
         onClick={() => setCriterion(criterion)}
         variant={

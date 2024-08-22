@@ -23,7 +23,7 @@ const PopularCities = dynamic(
 );
 const Footer = dynamic(() => import("@/components/__shared/ui/footer/Footer"));
 const ScrollTopAndSocial = dynamic(
-  () => import("@/components/__shared/ui/ScrollTopAndSocial"),
+  () => import("@/components/__shared/ui/scroll-top-and-social"),
 );
 const FeedbackButton = dynamic(
   () => import("@/components/__shared/ui/feedback/FeedbackButton"),

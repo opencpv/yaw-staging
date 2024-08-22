@@ -5,7 +5,7 @@ import { IoIosShareAlt } from "react-icons/io";
 // import { useDisclosure } from "@nextui-org/react";
 import ShareModalBody from "./ShareModalBody";
 import { cn } from "@/lib/utils";
-import CopyButton from "./CopyButton";
+import CopyButton from "./copy-button";
 
 const Share = ({
   title,

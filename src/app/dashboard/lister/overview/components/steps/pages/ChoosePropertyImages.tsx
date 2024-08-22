@@ -1,6 +1,6 @@
 import { useLocalStorage } from "@uidotdev/usehooks";
 import style from "../../../index.module.css";
-import CallOut from "../../../../../../../components/__shared/ui/CallOut";
+import CallOut from "../../../../../../../components/__shared/ui/callout";
 import { useField } from "formik";
 import { ListingDefaultValues } from "@/store/dashboard/ListingStepsStore";
 import dynamic from "next/dynamic";

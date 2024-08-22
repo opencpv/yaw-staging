@@ -12,7 +12,7 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
 import { invoiceStore } from "@/store/payment/invoiceStore";
 import { customerStore } from "@/store/payment/customerStore";
-import DeleteButton from "@/components/__shared/ui/button/DeleteButton";
+import DeleteButton from "@/components/__shared/ui/button/delete-button";
 import CaCartEmptyItem from "@/components/__shared/ui/icons/CaCartEmptyIcon";
 
 const CartView = () => {

@@ -7,7 +7,7 @@ import Link from "next/link";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import dynamic from "next/dynamic";
 const FramerWrapper = dynamic(
-  () => import("@/components/__shared/hoc/FramerWrapper"),
+  () => import("@/components/__shared/hoc/framer-wrapper"),
   { ssr: false },
 );
 
