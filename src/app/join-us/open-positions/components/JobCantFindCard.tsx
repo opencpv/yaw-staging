@@ -1,5 +1,6 @@
-import JoinUsButtons from "../../components/JoinUsButtons";
+import { LinkButton } from "@/components/__shared/ui/button";
 import styles from "./index.module.css";
+import { MdArrowRightAlt } from "react-icons/md";
 
 function JobCantFindCard() {
   return (
@@ -27,13 +28,14 @@ function JobCantFindCard() {
               Click on the button below to submit your resume.
             </p>
           </div>
-          <JoinUsButtons
+          <LinkButton
+            variant={"link"}
+            color="accent"
             href="/join-us/open-positions/resume-bank"
-            variant="text-yellow"
-            content="Resume Bank"
-            icon
-            iconType="arrow-right"
-          />
+          >
+            Resume Bank
+            <MdArrowRightAlt size="20" />
+          </LinkButton>
         </div>
       </div>
     </div>

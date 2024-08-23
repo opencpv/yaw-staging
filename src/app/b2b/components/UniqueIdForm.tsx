@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { handleCustomerIdSubmit } from "../actions";
 import { cn } from "@/lib/utils";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 
 const UniqueIdForm = () => {
   const [message, setMessage] = React.useState("");
@@ -37,12 +37,7 @@ const UniqueIdForm = () => {
           asterisk={false}
         /> */}
         <p className={cn("mb-5 text-error", { hidden: !message })}>{message}</p>
-        <Button
-          type="submit"
-          color="primary"
-          className="h-[52px] w-full max-w-full"
-          isLoading={loading}
-        >
+        <Button type="submit" size="full" isLoading={loading}>
           Proceed
         </Button>
       </div>

@@ -1,7 +1,7 @@
 "use client";
 import { MdArrowRightAlt } from "react-icons/md";
 import CaJoinUsIconLeft from "../open-positions/components/icons/CaJoinUsIconLongLeft";
-import Button from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -47,17 +47,20 @@ function JoinUsButtons({
   };
 
   return (
-    <Button
+    <LinkButton
       href={href}
       variant={variant === "text-yellow-accent" ? "ghost" : undefined}
       className={cn(
-        `${buttonClasses[variant]} ${reverseIcon && "flex-row-reverse"}`,
+        {
+          "flex-row-reverse": reverseIcon,
+          [buttonClasses[variant]]: variant,
+        },
         className,
       )}
     >
       {content}
       {icon && iconType && iconTypeOptions[iconType]}
-    </Button>
+    </LinkButton>
   );
 }
 

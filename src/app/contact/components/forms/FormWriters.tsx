@@ -8,16 +8,19 @@ import ContactMessageField from "./ContactMessageField";
 import ContactFullNameField from "./ContactFullNameField";
 import ContactPhoneField from "./ContactPhoneField";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
-import CustomErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import { useRouter } from "next/navigation";
 import { generateString } from "@/lib/utils";
 import slugify from "@/lib/utils/slugify";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { UploadFile } from "../UploadFile";
 import { E164Number } from "libphonenumber-js/core";
+import dynamic from "next/dynamic";
+const CustomErrorMessage = dynamic(
+  () => import("@/components/__shared/ui/states/ErrorMessage"),
+);
 
 type Props = {};
 
@@ -161,7 +164,7 @@ const FormWriters = (props: Props) => {
 
             <Button
               className="max-w-full xs:max-w-fit"
-              color="accent"
+              variant="accent"
               isLoading={loading}
               type="submit"
             >

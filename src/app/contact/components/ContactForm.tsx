@@ -1,14 +1,14 @@
 "use client";
 import React from "react";
 import { useContactForm } from "./forms/hooks/useContactForm";
-import FormGeneral from "./forms/FormGeneral";
-import FormAdvertise from "./forms/FormAdvertise";
-import FormReport from "./forms/FormReport";
-import FormWriters from "./forms/FormWriters";
+import dynamic from "next/dynamic";
 
-type Props = {};
+const FormGeneral = dynamic(() => import("./forms/FormGeneral"));
+const FormAdvertise = dynamic(() => import("./forms/FormAdvertise"));
+const FormReport = dynamic(() => import("./forms/FormReport"));
+const FormWriters = dynamic(() => import("./forms/FormWriters"));
 
-const ContactForm = (props: Props) => {
+const ContactForm = () => {
   const { activeTab } = useContactForm();
 
   if (activeTab === "general") return <FormGeneral />;

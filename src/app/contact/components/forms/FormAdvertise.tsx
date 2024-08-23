@@ -17,7 +17,7 @@ import { generateString } from "@/lib/utils";
 import slugify from "@/lib/utils/slugify";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { UploadFile } from "../UploadFile";
 
 type Props = {};
@@ -181,7 +181,7 @@ const FormAdvertise = (props: Props) => {
                 />
                 <Button
                   className="max-w-full xs:max-w-fit"
-                  color="accent"
+                  variant="accent"
                   isLoading={loading}
                   type="submit"
                 >

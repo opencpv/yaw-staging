@@ -1,4 +1,3 @@
-import JoinUsButtons from "../components/JoinUsButtons";
 import styles from "../index.module.css";
 import JobCard from "./components/JobCard";
 import JobCantFindCard from "./components/JobCantFindCard";
@@ -10,6 +9,8 @@ import { JobType } from "../types";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
+import { LinkButton } from "@/components/__shared/ui/button";
+import CaJoinUsIconLeft from "./components/icons/CaJoinUsIconLongLeft";
 const Footer = dynamic(() => import("@/components/__shared/ui/footer/Footer"));
 
 export const metadata: Metadata = {
@@ -32,19 +33,17 @@ const Page = async () => {
           </h1>
 
           <div className="order-1 flex flex-col items-center justify-center gap-x-14 gap-y-6 lg:order-2 lg:flex-row">
-            <JoinUsButtons
-              href="/join-us"
-              variant="text-yellow-accent"
-              content="Go back"
-              icon
-              iconType="arrow-left"
-              reverseIcon
-            />
-            <JoinUsButtons
+            <LinkButton variant={"ghost"} color="accent" href="/join-us">
+              <CaJoinUsIconLeft />
+              Go back
+            </LinkButton>
+            <LinkButton
+              variant={"outline"}
+              color="accent"
               href="/join-us/open-positions/resume-bank"
-              variant="outline-yellow-accent"
-              content="Resume Bank"
-            />
+            >
+              Resume Bank
+            </LinkButton>
           </div>
         </div>
         <section className="wrapper flex w-full flex-col gap-6 px-5 lg:mt-10">

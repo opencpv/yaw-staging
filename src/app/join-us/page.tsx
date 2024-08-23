@@ -1,8 +1,8 @@
 import Image from "next/image";
-import JoinUsButtons from "./components/JoinUsButtons";
 import styles from "./index.module.css";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { LinkButton } from "@/components/__shared/ui/button";
 const Footer = dynamic(() => import("@/components/__shared/ui/footer/Footer"));
 const ScrollTopAndSocial = dynamic(
   () => import("@/components/__shared/ui/scroll-top-and-social"),
@@ -30,16 +30,19 @@ const JoinUsPage = async () => {
             </h5>
           </div>{" "}
           <div className="flex w-full flex-wrap items-center justify-center gap-4 px-2">
-            <JoinUsButtons
+            <LinkButton
               href="/join-us/open-positions"
-              variant="filled-green"
-              content="Open Positions"
-            />
-            <JoinUsButtons
+              className="bg-secondary-400"
+            >
+              Open Positions
+            </LinkButton>
+            <LinkButton
+              variant={"outline"}
               href="/join-us/open-positions/resume-bank"
-              variant="outline-green"
-              content="Resume Bank"
-            />
+              className="border-secondary-400 text-secondary-400"
+            >
+              Resume Bank
+            </LinkButton>
           </div>
         </div>
         <div className="mt-5 grid max-w-[1728px] grid-cols-2 items-start justify-center gap-16 px-5 pt-10 lg:mt-24 lg:px-14 2xl:px-7">

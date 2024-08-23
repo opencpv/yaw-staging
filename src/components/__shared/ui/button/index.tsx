@@ -4,6 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { LuLoader2 } from "react-icons/lu";
 
 const buttonVariants = cva(
   "inline-flex gap-2 w-fit items-center justify-center whitespace-nowrap text-base font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 transition-transform hover:scale-102",
@@ -24,9 +25,9 @@ const buttonVariants = cva(
       size: {
         default: "h-12 px-4 sm:px-8 py-2",
         sm: "h-9 px-3",
-        lg: "px-4 sm:px-14",
+        lg: "h-12 px-4 sm:px-14",
         fit: "p-0",
-        full: "w-full",
+        full: "w-full h-12 px-4 sm:px-8 py-2",
         icon: "h-fit w-fit p-1",
       },
       radius: {
@@ -48,9 +49,10 @@ export interface ButtonProps
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
   color?: "primary" | "accent";
+  isLoading?: boolean;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+const BaseButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, color, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
     return (
@@ -63,18 +65,36 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     );
   },
 );
+BaseButton.displayName = "BaseButton";
+
+const Button = React.forwardRef<
+  HTMLButtonElement,
+  React.ButtonHTMLAttributes<HTMLButtonElement> & ButtonProps
+>(({ children, isLoading, ...props }, ref) => {
+  return (
+    <BaseButton ref={ref} disabled={isLoading} {...props}>
+      <>
+        {isLoading && <LuLoader2 className="mr-2 h-4 w-4 animate-spin" />}
+        {children}
+      </>
+    </BaseButton>
+  );
+});
 Button.displayName = "Button";
 
 const LinkButton = React.forwardRef<
   HTMLAnchorElement,
   React.AnchorHTMLAttributes<HTMLAnchorElement> & ButtonProps
->(({ children, href, ...props }, ref) => {
+>(({ children, href, className, variant, size, color, ...props }, ref) => {
   return (
-    <Button asChild {...props}>
-      <Link href={href || ""} ref={ref}>
-        {children}
-      </Link>
-    </Button>
+    <Link
+      href={href || ""}
+      className={buttonVariants({ variant, size, className, color })}
+      ref={ref}
+      {...props}
+    >
+      {children}
+    </Link>
   );
 });
 LinkButton.displayName = "LinkButton";

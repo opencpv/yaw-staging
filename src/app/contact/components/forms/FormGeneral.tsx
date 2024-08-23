@@ -16,8 +16,8 @@ import axios from "axios";
 import { generateString } from "@/lib/utils";
 import slugify from "@/lib/utils/slugify";
 import { toast } from "react-hot-toast";
-import Button from "@/components/__shared/ui/button/Button";
 import { E164Number } from "libphonenumber-js/core";
+import { Button } from "@/components/__shared/ui/button";
 
 type Props = {};
 
@@ -159,7 +159,7 @@ const FormGeneral = (props: Props) => {
             />
             <Button
               className="max-w-full xs:max-w-fit"
-              color="accent"
+              variant="accent"
               isLoading={loading}
               type="submit"
             >

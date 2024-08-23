@@ -17,7 +17,7 @@ import { generateString } from "@/lib/utils";
 import slugify from "@/lib/utils/slugify";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { UploadFile } from "../UploadFile";
 import { E164Number } from "libphonenumber-js/core";
 
@@ -188,7 +188,7 @@ const FormReport = (props: Props) => {
             </div>
             <Button
               className="max-w-full xs:max-w-fit"
-              color="accent"
+              variant="accent"
               isLoading={loading}
               type="submit"
             >
