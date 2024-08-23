@@ -1,6 +1,6 @@
 "use client";
 import React, { ReactNode, useEffect, useState } from "react";
-import Button from "./Button";
+import { Button, ButtonProps } from "./";
 // import { useMessageStore } from "@/store/dashboard/useMessageStore";
 // import { useUserDetails } from "@/lib/custom-hooks/message/useUserDetails";
 // import { useUserSession } from "@/lib/custom-hooks/database/useUserSession";
@@ -16,13 +16,18 @@ const SignInRequiredModal = dynamic(
 
 type Props = {
   id?: string;
-  color?: "primary" | "gradient" | "accent" | "white";
-  className?: string;
-  children?: ReactNode;
   type?: 1 | 2;
-};
+} & ButtonProps;
 
-const MessageButton = ({ color, className, id, children, type }: Props) => {
+const MessageButton = ({
+  color,
+  className,
+  id,
+  children,
+  type,
+  variant = "outline",
+  ...props
+}: Props) => {
   // const router = useRouter();
   const { user } = useAppStore();
   // const setRecipientId = useMessageStore((state) => state.setRecipientId);
@@ -62,21 +67,25 @@ const MessageButton = ({ color, className, id, children, type }: Props) => {
       />
       {type === 2 ? (
         <Button
-          isIconOnly
+          size="icon"
+          variant="ghost"
           title="Send message"
-          className={cn("", className)}
+          className={cn(className)}
           onClick={handleClick}
+          {...props}
         >
           <PiChatCenteredDots size={24} className="text-neutral-700" />
         </Button>
       ) : (
         <Button
-          variant="outline"
+          variant={variant}
           color={color}
+          size="full"
           title={"Send message"}
-          className={cn("w-full", className)}
+          className={cn(className)}
           onClick={handleClick}
           isLoading={loadingMessage}
+          {...props}
         >
           {children ?? "Send Message"}
         </Button>

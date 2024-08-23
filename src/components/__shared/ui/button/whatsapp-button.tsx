@@ -1,22 +1,21 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import Button from "./Button";
+import { Button, ButtonProps } from "./";
 import { FaWhatsapp } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 type Props = {
   phone: string;
-  color?: "primary" | "gradient" | "accent" | "white";
-  className?: string;
   iconPosition?: "left" | "right";
-};
+} & ButtonProps;
 
 const WhatsAppButton = ({
   color,
   className,
   phone,
   iconPosition = "left",
+  ...props
 }: Props) => {
   const [text, setText] = useState("WhatsApp");
 
@@ -39,13 +38,14 @@ const WhatsAppButton = ({
   };
 
   return (
-    <div ref={buttonRef} className="flex justify-center">
+    <div ref={buttonRef} className="flex w-full justify-center">
       <Button
         color={color}
-        className={cn(`flex w-full items-center gap-2`, className)}
+        className={cn(className)}
         onClick={handleSendWhatsAppMsg}
+        {...props}
       >
-        {iconPosition === "left" && <FaWhatsapp className="text-lg shrink-0" />}
+        {iconPosition === "left" && <FaWhatsapp className="shrink-0 text-lg" />}
         <motion.span
           key={text}
           whileInView={{ opacity: 1 }}
@@ -54,7 +54,9 @@ const WhatsAppButton = ({
         >
           {text}
         </motion.span>
-        {iconPosition === "right" && <FaWhatsapp className="text-lg shrink-0" />}
+        {iconPosition === "right" && (
+          <FaWhatsapp className="shrink-0 text-lg" />
+        )}
       </Button>
     </div>
   );

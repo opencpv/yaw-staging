@@ -17,7 +17,7 @@ const ItemOwnerContact = ({ query }: Props) => {
       ) : (
         <div className="shadow-large flex w-full flex-col items-center gap-3 rounded-xl bg-white p-8 lg:mt-12">
           <CallButton
-            color="accent"
+            variant="accent"
             phoneNumber={query.data?.phone}
             className={cn({
               hidden: !query.data?.phone,

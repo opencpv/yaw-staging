@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import SubscribeForm from "@/components/__shared/ui/form/SubscribeForm";
 // import { useDisclosure } from "@nextui-org/react";
 import React from "react";
@@ -31,8 +31,9 @@ const SubscribeToBlogButton = ({ className }: Props) => {
       /> */}
       <FramerWrapper>
         <Button
-          color="accent"
-          className={`no-print min-h-fit w-full bg-gradient-to-b from-[#E5BF79] to-[#B58E48EB]/90 py-7 text-lg uppercase sm:py-10 ${className}`}
+          variant="accent"
+          size="lg"
+          className={`no-print min-h-fit bg-gradient-to-b from-[#E5BF79] to-[#B58E48EB]/90 uppercase ${className}`}
           // onClick={onOpen}
         >
           Subscribe to our blog

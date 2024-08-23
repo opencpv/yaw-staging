@@ -1,18 +1,23 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import Button from "./Button";
+import { Button, ButtonProps } from "./";
 import { initiatePhoneCall } from "@/lib/utils/initiatePhoneCall";
 import { MdOutlinePhone } from "react-icons/md";
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 type Props = {
   phoneNumber: string;
-  color?: "primary" | "gradient" | "accent" | "white";
-  className?: string;
   iconPosition?: "left" | "right";
-};
+} & ButtonProps;
 
-const ButtonCall = ({ color, phoneNumber, className, iconPosition }: Props) => {
+const ButtonCall = ({
+  color,
+  phoneNumber,
+  className,
+  iconPosition,
+  ...props
+}: Props) => {
   const [text, setText] = useState("Call me");
 
   const buttonRef = useRef<HTMLDivElement>(null);
@@ -26,16 +31,23 @@ const ButtonCall = ({ color, phoneNumber, className, iconPosition }: Props) => {
         setText("Call me");
       });
     }
+    return () => {
+      setText("Call me");
+    };
   }, [phoneNumber]);
 
   return (
-    <div ref={buttonRef} className="flex justify-center">
+    <div ref={buttonRef} className="flex w-full justify-center">
       <Button
         color={color}
-        className={`w-full p-4 ${className}`}
+        size="full"
+        className={cn(className)}
         onClick={() => initiatePhoneCall(phoneNumber)}
+        {...props}
       >
-        {iconPosition === "left" && <MdOutlinePhone className="text-lg shrink-0" /> }
+        {iconPosition === "left" && (
+          <MdOutlinePhone className="shrink-0 text-lg" />
+        )}
         <motion.span
           key={text}
           whileInView={{ opacity: 1 }}
@@ -44,7 +56,9 @@ const ButtonCall = ({ color, phoneNumber, className, iconPosition }: Props) => {
         >
           {text}
         </motion.span>
-        {iconPosition === "right" && <MdOutlinePhone className="text-lg shrink-0" /> }
+        {iconPosition === "right" && (
+          <MdOutlinePhone className="shrink-0 text-lg" />
+        )}
       </Button>
     </div>
   );

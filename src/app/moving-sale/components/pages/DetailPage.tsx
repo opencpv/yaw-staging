@@ -1,5 +1,4 @@
 "use client";
-import BreadCrumbPreLink from "@/components/__shared/ui/breadcrumb-pre-link";
 import React, { Suspense, useEffect, useRef } from "react";
 import { FaChevronRight } from "react-icons/fa6";
 import ItemDetails from "../ItemDetails";
@@ -12,6 +11,14 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import { updateItemViewCount } from "../../actions";
 import { useItemPathStore } from "@/store/moving_sales/useMovingSalesStore";
 import { useRouter } from "next/navigation";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/__shared/ui/breadcrumb";
 
 type Props = {
   id: number;
@@ -38,28 +45,29 @@ const DetailPage = (props: Props) => {
 
   return (
     <main className="wrapper text-shade-200">
-      <div className="mb-5 flex items-center gap-2">
-        <BreadCrumbPreLink
-          label="Shop"
-          onClick={() =>
-            previousPath
-              ? router.push(previousPath)
-              : router.push("/moving-sale")
-          }
-        />
-        <FaChevronRight className="text-shade-200" />
-        {query.isLoading ? (
-          // <Skeleton className="h-[20px] w-[200px]" />
-          <></>
-        ) : (
-          <p className="font-[600] text-neutral-800">{query.data?.title}</p>
-        )}
-      </div>
+      <Breadcrumb className="mb-10">
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href={previousPath ? previousPath : "/moving-sale"}>
+              Shop
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>
+              {query.isLoading ? (
+                // <Skeleton className="h-[20px] w-[200px]" />
+                <></>
+              ) : (
+                <>{query.data?.title}</>
+              )}
+            </BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
       {query?.data && <ItemImages query={query} />}
       <section className="grid gap-x-20 gap-y-10 lg:grid-cols-3">
-        {/* Grid col */}
         <ItemDetails query={query} />
-        {/* Grid col */}
         <ItemOwnerContact query={query} />
       </section>
       <Suspense>

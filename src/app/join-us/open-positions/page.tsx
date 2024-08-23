@@ -33,7 +33,12 @@ const Page = async () => {
           </h1>
 
           <div className="order-1 flex flex-col items-center justify-center gap-x-14 gap-y-6 lg:order-2 lg:flex-row">
-            <LinkButton variant={"ghost"} color="accent" href="/join-us">
+            <LinkButton
+              variant={"ghost"}
+              size="sm"
+              color="accent"
+              href="/join-us"
+            >
               <CaJoinUsIconLeft />
               Go back
             </LinkButton>

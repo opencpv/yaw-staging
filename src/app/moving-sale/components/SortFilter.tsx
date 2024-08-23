@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Select from "@/components/__shared/ui/form/Select";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { FaChevronDown } from "react-icons/fa6";
 // import ItemsFilterModal from "./ItemsFilterModal";
 // import { useDisclosure } from "@nextui-org/react";
@@ -67,7 +67,7 @@ const SortFilter = () => {
           className="mx-0"
         />
         <Button
-          color="accent"
+          variant="accent"
           //  onClick={onOpen}
           className="h-unit-10"
         >

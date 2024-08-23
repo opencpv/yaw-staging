@@ -6,8 +6,9 @@ import React from "react";
 import style from "../Template.module.css";
 import Rating from "@/components/__shared/ui/ratings-form";
 import { cn } from "@/lib/utils";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import Avatar from "@/components/__shared/ui/avatar/Avatar";
+import MessageButton from "@/components/__shared/ui/button/message-button";
 
 type Props = {
   listing: Property & {
@@ -37,18 +38,20 @@ const PropertyOwnerInfo = ({ listing }: Props) => {
       </div>
       <div
         className="grid grid-cols-3 gap-2 pt-2"
-        style={{ gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))" }}
+        //style={{ gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))" }}
       >
-        <Button className={cn(style.listerInfoButton)}>Send Message</Button>
+        <MessageButton variant="default">Send Message</MessageButton>
         <WhatsAppButton
           iconPosition="right"
           phone={listing?.profiles?.whatsapp as string}
           className={cn(style.listerInfoButtonSecondary, style.lightGreenBg)}
+          size="full"
         />
         <CallButton
           iconPosition="right"
           phoneNumber={listing?.profiles?.phone as string}
           className={cn(style.listerInfoButtonSecondary, style.lightGreenBg)}
+          size="full"
         />
       </div>
     </section>

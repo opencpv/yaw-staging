@@ -1,10 +1,10 @@
 "use client";
+import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import style from "../Template.module.css";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { cn } from "@/lib/utils";
 import { getFeatureIcon, getUtilityIcon } from "@/lib/utils/getFeatureIcon";
 import dynamic from "next/dynamic";
-// import { useDisclosure } from "@nextui-org/react";
 import { FaCaretDown } from "react-icons/fa";
 const Modal = dynamic(() => import("@/components/__shared/ui/modals/Modal"));
 
@@ -14,7 +14,7 @@ type Props = {
 };
 
 const PropertyDetailsFeatures = ({ listing }: Props) => {
-  // const { isOpen, onOpenChange, onOpen } = useDisclosure();
+  const { isOpen, onOpenChange, onOpen } = useDisclosure();
 
   return (
     <>
@@ -28,14 +28,9 @@ const PropertyDetailsFeatures = ({ listing }: Props) => {
       <section className={style.detailWrapper}>
         <h2 className={style.detailHeading}>Features</h2>
         <Features listing={listing} limit={true} />
-        {/* <Button
-          variant="ghost"
-          className="self-end"
-          color="primary"
-          onClick={onOpen}
-        >
+        <Button variant="ghost" className="self-end" onClick={onOpen}>
           Show more <FaCaretDown />
-        </Button> */}
+        </Button>
       </section>
     </>
   );

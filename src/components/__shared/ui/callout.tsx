@@ -4,7 +4,7 @@ import { BsInfoCircle } from "react-icons/bs";
 import { LiaTimesSolid } from "react-icons/lia";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import Button from "./button/Button";
+import { Button } from "./button";
 
 type Props = {
   content?: string;
@@ -29,9 +29,10 @@ export default function CallOut({
     hide: {
       opacity: 0,
       height: 0,
-      transitionEnd: {
-        display: "none",
-      },
+      display: "none",
+      //transitionEnd: {
+      //  display: "none",
+      //},
     },
   };
 
@@ -51,7 +52,7 @@ export default function CallOut({
           <small>{content || children}</small>
         </div>
       </div>
-      <Button variant="ghost" isIconOnly className="text-info">
+      <Button variant="ghost" size="icon" className="text-info">
         <LiaTimesSolid
           size={20}
           className="shrink-0"

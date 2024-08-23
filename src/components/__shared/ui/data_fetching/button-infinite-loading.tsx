@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../button/Button";
+import { Button } from "../button";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -20,8 +20,8 @@ const ButtonInfiniteLoading = ({
       {isLoading ? null : (
         <Button
           onClick={() => loadMore && loadMore()}
-          color="accent"
-          className={cn("rounded-xl p-2 px-5 font-semibold", {
+          variant="accent"
+          className={cn({
             hidden: isLoading || data?.length === 0 || !loadMore,
           })}
           disabled={loadMore === null ? true : false}

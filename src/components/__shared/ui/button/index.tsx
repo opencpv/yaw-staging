@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { LuLoader2 } from "react-icons/lu";
@@ -13,10 +12,14 @@ const buttonVariants = cva(
       color: {
         primary: "border-primary text-primary",
         accent: "border-accent text-accent",
+        white: "border-shade-500 text-shade-500",
+        gradient: "border-primary text-primary",
       },
       variant: {
         default: "bg-primary text-white",
         accent: "bg-accent text-white",
+        white: "bg-white text-shade-500",
+        gradient: "bg-gradient-to-r from-primary-500 to-primary-400 text-white",
         destructive: "bg-red-500 text-white hover:bg-red-500/90",
         outline: "border bg-transparent hover:bg-transparent",
         ghost: "bg-transparent hover:bg-accent hover:bg-transparent",
@@ -25,7 +28,7 @@ const buttonVariants = cva(
       size: {
         default: "h-12 px-4 sm:px-8 py-2",
         sm: "h-9 px-3",
-        lg: "h-12 px-4 sm:px-14",
+        lg: "h-12 px-4 py-7 w-full text-lg sm:py-10",
         fit: "p-0",
         full: "w-full h-12 px-4 sm:px-8 py-2",
         icon: "h-fit w-fit p-1",
@@ -48,7 +51,7 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
-  color?: "primary" | "accent";
+  color?: "primary" | "accent" | "white" | "gradient";
   isLoading?: boolean;
 }
 
@@ -59,7 +62,7 @@ const BaseButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <Comp
         className={cn(buttonVariants({ variant, size, className, color }))}
         ref={ref}
-        color={color}
+        //color={color}
         {...props}
       />
     );
