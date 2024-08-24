@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../../../index.module.css";
 import Image from "next/image";
-import Toggle from "@/components/__shared/ui/Toggle";
+import { Switch } from "@/components/__shared/ui/switch";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
@@ -12,11 +12,10 @@ const ChooseTemplate = () => {
         Choose your preferred template to list property
       </h2>
       {/*
-        <Toggle
+        <Switch
         label="Show comparison"
-        isSelected={false}
-        onValueChange={() => {}}
-        color="primary"
+        checked={false}
+        onCheckedChange={() => {}}
       />
       RELEASE 2*/}
       <section className="mt-6 grid gap-5 sm:grid-cols-2">
@@ -60,20 +59,23 @@ const Template = (props: {
       <div className="flex w-full flex-col items-center gap-5">
         <Image src={props.image} alt="template" width={320} height={320} />
         {props.isActive ? (
-
-        <Link
-          href={props.href as string}
-          target="_blank"
-          className={cn("bottom-0 self-end font-semibold underline sm:sticky")}
-        >
-          View Sample
-        </Link>
+          <Link
+            href={props.href as string}
+            target="_blank"
+            className={cn(
+              "bottom-0 self-end font-semibold underline sm:sticky",
+            )}
+          >
+            View Sample
+          </Link>
         ) : (
-        <div
-          className={cn("bottom-0 self-end font-semibold underline text-shade-200 sm:sticky")}
-        >
-          View Sample
-        </div>
+          <div
+            className={cn(
+              "bottom-0 self-end font-semibold text-shade-200 underline sm:sticky",
+            )}
+          >
+            View Sample
+          </div>
         )}
       </div>
     </div>

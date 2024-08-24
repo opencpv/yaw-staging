@@ -3,17 +3,13 @@ import { LinkButton } from "@/components/__shared/ui/button";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
 const FramerWrapper = dynamic(
   () => import("@/components/__shared/hoc/framer-wrapper"),
 );
 
-type Props = {};
-
-const SellYourItem = (props: Props) => {
-  const router = useRouter();
+const SellYourItem = () => {
   const { icons } = useAssets();
   return (
     <div className="flex w-full items-center justify-center rounded-xl py-24 shadow-card">

@@ -5,7 +5,7 @@ import PropertiesReview from "./components/PropertiesReview";
 import ServiceProsReviews from "./components/ServiceProsReviews";
 import OptionFilterTabs from "@/components/__shared/ui/tabs";
 import { useReviewsStore } from "@/store/dashboard/reviewsStore";
-import Toggle from "@/components/__shared/ui/Toggle";
+import Switch from "@/components/__shared/ui/switch";
 import AllReviewsReceived from "./components/AllReviewsReceived";
 import useReviews from "./components/useReviews";
 import Select from "../../components/shared/ui/Select";
@@ -48,7 +48,7 @@ export default function MyReviews() {
 
         <div className="hidden w-full flex-col items-start gap-5 md:flex md:flex-row lg:items-center">
           {activePage == "reviews given" && (
-            <Toggle
+            <Switch
               label="View By"
               isSelected={filter !== "all"}
               onValueChange={(state: any) => {

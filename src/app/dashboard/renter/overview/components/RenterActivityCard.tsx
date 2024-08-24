@@ -1,4 +1,4 @@
-import Button from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import React from "react";
 import { FaRegCopy } from "react-icons/fa";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
@@ -27,9 +27,9 @@ const RenterActivityCard = ({ type, count, href }: Props) => {
               : "Reviews"}
         </h4>
         <h2 className="font-bold">{count}</h2>
-        <Button href={href} color="accent" radius="full" padding="sm">
+        <LinkButton href={href} variant="accent" size="sm" radius="full">
           See Details
-        </Button>
+        </LinkButton>
       </div>
     </div>
   );

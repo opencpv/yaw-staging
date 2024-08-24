@@ -71,10 +71,9 @@
 }
 
 .sideFeatureMatchLink {
-  @apply block w-fit rounded-xl bg-[#FEF8ED] p-2 px-6 text-neutral-700;
+  @apply block w-fit rounded-xl bg-[#FEF8ED] p-2 px-6 text-neutral-700 underline-offset-4 hover:underline;
 }
 
 .sideFeatureLearnMoreButton {
   @apply mt-1 text-sm font-[700] capitalize text-[#45808B] underline;
 }
-

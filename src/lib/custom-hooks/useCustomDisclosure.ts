@@ -12,7 +12,11 @@ export const useDisclosure = () => {
       onOpen();
     }
   };
-  return { isOpen, onOpen, onOpenChange };
+
+  const onClose = () => {
+    setIsOpen(false);
+  };
+  return { isOpen, onOpen, onOpenChange, onClose };
 };
 
 export const useSelectDisclosure = <T extends string>(defaultOption: T) => {

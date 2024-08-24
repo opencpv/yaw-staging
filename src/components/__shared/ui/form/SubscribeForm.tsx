@@ -23,7 +23,8 @@ const SubscribeForm = ({ onSubmit }: Props) => {
       <Button
         variant="accent"
         size="lg"
-        className="min-h-[70px] rounded-full text-2xl font-semibold uppercase max-md:w-full md:min-h-[95px] md:rounded-l-none"
+        radius={"full"}
+        className="min-h-[70px] text-2xl font-semibold uppercase max-md:w-full md:min-h-[95px] md:rounded-l-none"
         type="submit"
       >
         subscribe now!

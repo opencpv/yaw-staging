@@ -1,4 +1,4 @@
-import Toggle from "@/components/__shared/ui/Toggle";
+import { Switch } from "@/components/__shared/ui/switch";
 import {
   useExtendPublication,
   useUpdatePropertyPublicationStatus,
@@ -7,8 +7,8 @@ import { cn } from "@/lib/utils";
 import { getDaysRemaining, pluralize } from "@/lib/utils/stringManipulation";
 import { LISTING_LAPSE_DAYS } from "@/constants";
 import { useAppStore } from "@/store/dashboard/AppStore";
-// import { useDisclosure } from "@nextui-org/react";
-import Button from "@/components/__shared/ui/button/Button";
+import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import { Button } from "@/components/__shared/ui/button";
 import dynamic from "next/dynamic";
 const PopupModal = dynamic(
   () => import("@/components/__shared/ui/modals/popup-modal"),
@@ -20,13 +20,13 @@ interface Props {
 
 const PublicationStatus = ({ listing }: Props) => {
   const { user } = useAppStore();
-  // const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
-  // const {
-  //   onClose: onCloseExtend,
-  //   isOpen: isOpenExtend,
-  //   onOpenChange: onOpenChangeExtend,
-  //   onOpen: onOpenExtend,
-  // } = useDisclosure();
+  const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
+  const {
+    onClose: onCloseExtend,
+    isOpen: isOpenExtend,
+    onOpenChange: onOpenChangeExtend,
+    onOpen: onOpenExtend,
+  } = useDisclosure();
   const days = LISTING_LAPSE_DAYS;
   const daysRemaining = getDaysRemaining(
     listing?.published_date as string,
@@ -111,21 +111,20 @@ const PublicationStatus = ({ listing }: Props) => {
         loading={isExtending}
       /> */}
       <span className="flex items-center gap-2">
-        {/* <Toggle
+        <Switch
           label={`${daysRemaining} ${pluralize(
             "day",
             daysRemaining,
           )} remaining`}
           color="primary"
-          isSelected={listing?.is_published}
-          onValueChange={onOpen}
+          checked={listing?.is_published}
+          onCheckedChange={onOpen}
           disabled={!canPublish}
           classNames={{
             label: cn({ invisible: listing?.is_published === false }),
           }}
         />
         <Button
-          color="primary"
           variant="ghost"
           className={cn("text-xs underline", {
             invisible: listing?.is_published === false,
@@ -134,7 +133,7 @@ const PublicationStatus = ({ listing }: Props) => {
           onClick={onOpenExtend}
         >
           Extend
-        </Button> */}
+        </Button>
       </span>
     </>
   );

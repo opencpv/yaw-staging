@@ -5,13 +5,12 @@ import "swiper/css/effect-coverflow";
 import React from "react";
 import SkeletonListing from "../skeleton/skeleton-listing";
 import FetchingStates from "../data_fetching/fetching-states";
-import Button from "../button/Button";
+import { LinkButton } from "../button";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow } from "swiper/modules";
 import { useFetchRecommendedListings } from "@/app/properties/services";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { getListingProps, Listing } from "@/lib/enum";
-import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
 import { cn } from "@/lib/utils";
 import { useIntersectionObserver } from "@/lib/utils/intersectionObserver";
 import dynamic from "next/dynamic";
@@ -26,12 +25,7 @@ const RecommendedListings = ({ className, hideShowAll }: Props) => {
   const { ref, hasIntersected } = useIntersectionObserver();
 
   const { user } = useAppStore();
-  const {
-    data: listings,
-    error,
-    isLoading,
-    mutate,
-  } = useFetchRecommendedListings();
+  const { data: listings, error, isLoading } = useFetchRecommendedListings();
 
   return (
     <section
@@ -48,30 +42,19 @@ const RecommendedListings = ({ className, hideShowAll }: Props) => {
         ref={ref as unknown as React.LegacyRef<HTMLDivElement>}
       >
         <h2 className="text-shade-500">Recommended Listings</h2>
-        <Button
+        <LinkButton
           href="/properties"
-          variant="ghost"
-          className={`text-sm text-neutral-800 ${
-            hideShowAll ? "hidden" : "block"
-          } ${isLoading && "hidden"}`}
+          variant="link"
+          className={cn(`text-shade-500`, {
+            hidden: hideShowAll || isLoading,
+          })}
         >
           Show all
-        </Button>
+        </LinkButton>
       </div>
       {hasIntersected && (
         <>
-          <FetchingStates
-            data={listings}
-            error={error}
-            errorComponent={
-              <SomethingWentWrong
-                className="h-fit"
-                onTryAgain={() => {
-                  mutate();
-                }}
-              />
-            }
-          />
+          <FetchingStates data={listings} error={error} />
           <div>
             <Swiper
               effect="coverflow"

@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { ItemPublicationStatus } from "./PublicationStatus";
-import Toggle from "@/components/__shared/ui/Toggle";
+import Switch from "@/components/__shared/ui/switch";
 import { ItemContext } from "@/app/dashboard/contexts/ItemContext";
 import { ProductStatusProp } from "@/lib/typings";
 import { toast } from "react-hot-toast";
@@ -39,7 +39,7 @@ const ProductStatus = ({ isAvailable, status, id, refetch }: Props) => {
     }
   };
   return (
-    <Toggle
+    <Switch
       color="primary"
       isSelected={value}
       disabled={status === "Suspended"}

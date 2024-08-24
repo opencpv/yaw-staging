@@ -1,12 +1,12 @@
 import style from "../Feature.module.css";
 import CallOut from "@/components/__shared/ui/callout";
-import Button from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import React from "react";
 import Image from "next/image";
 import { pluralize } from "@/lib/utils/stringManipulation";
 import Link from "next/link";
 import slugify from "@/lib/utils/slugify";
-// import { Skeleton } from "@nextui-org/react";
+import { Skeleton } from "@/components/__shared/ui/skeleton";
 
 type Props = {
   matches:
@@ -25,29 +25,29 @@ const BTFTKMatchSummary = ({ isLoading, href, matches, callOut }: Props) => {
           Be The First To Know
         </h3>
         {matches && matches.length > 0 ? (
-          <Button
+          <LinkButton
             href={href}
             radius="full"
-            padding="sm"
+            size="sm"
             className={style.sideFeatureButton}
           >
             See all
-          </Button>
+          </LinkButton>
         ) : (
-          <Button
+          <LinkButton
             href={href}
             radius="full"
-            padding="sm"
+            size="sm"
             className={style.sideFeatureButton}
           >
             Start here
-          </Button>
+          </LinkButton>
         )}
       </div>
       {isLoading ? (
         <div className={style.sideFeatureSkeletonWrapper}>
-          {/* <Skeleton className={style.sideFeatureSkeleton1} />
-          <Skeleton className={style.sideFeatureSkeleton2} /> */}
+          <Skeleton className={style.sideFeatureSkeleton1} />
+          <Skeleton className={style.sideFeatureSkeleton2} />
         </div>
       ) : (
         <>
@@ -94,13 +94,13 @@ const BTFTKMatchSummary = ({ isLoading, href, matches, callOut }: Props) => {
                   {callOut?.href && (
                     <>
                       <br />
-                      <Button
+                      <LinkButton
                         href={callOut.href}
-                        variant="ghost"
+                        variant="link"
                         className={style.sideFeatureLearnMoreButton}
                       >
                         Learn more
-                      </Button>
+                      </LinkButton>
                     </>
                   )}
                 </div>

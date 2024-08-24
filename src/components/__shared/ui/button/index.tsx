@@ -89,18 +89,25 @@ Button.displayName = "Button";
 const LinkButton = React.forwardRef<
   HTMLAnchorElement,
   React.AnchorHTMLAttributes<HTMLAnchorElement> & ButtonProps
->(({ children, href, className, variant, size, color, ...props }, ref) => {
-  return (
-    <Link
-      href={href || ""}
-      className={buttonVariants({ variant, size, className, color })}
-      ref={ref}
-      {...props}
-    >
-      {children}
-    </Link>
-  );
-});
+>(
+  (
+    { children, href, className, variant, size, color, radius, ...props },
+    ref,
+  ) => {
+    return (
+      <Link
+        href={href || ""}
+        className={cn(
+          buttonVariants({ variant, size, className, color, radius }),
+        )}
+        ref={ref}
+        {...props}
+      >
+        {children}
+      </Link>
+    );
+  },
+);
 LinkButton.displayName = "LinkButton";
 
 export { Button, LinkButton, buttonVariants };

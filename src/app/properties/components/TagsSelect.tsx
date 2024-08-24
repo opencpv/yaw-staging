@@ -79,9 +79,9 @@ const TagsSelect = () => {
           </div> */}
           {/* <div className="flex items-center justify-center gap-2">
             <div className="">
-              <Toggle
-                isSelected={isAdvancedActive}
-                onValueChange={handleIsActive}
+              <Switch
+                checked={isAdvancedActive}
+                onCheckedChange={handleIsActive}
                 label="Advanced search"
               />
             </div>

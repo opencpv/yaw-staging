@@ -143,6 +143,6 @@ const Breadcrumb = React.forwardRef<
     </BaseBreadcrumb>
   );
 });
-Breadcrumb.displayName = "BreadcrumbLink";
+Breadcrumb.displayName = "Breadcrumb";
 
 export { Breadcrumb };

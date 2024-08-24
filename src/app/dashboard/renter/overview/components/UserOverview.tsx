@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import Image from "next/image";
 import React from "react";
 import { BsTelephone } from "react-icons/bs";
@@ -100,12 +100,9 @@ const UserOverview = ({
                     </div>
                   )}
                 </div>
-                <Button
-                  href="settings"
-                  className="flex w-fit items-center gap-1.5 rounded-md bg-[#597C7B] p-1 px-4 text-sm font-semibold text-white"
-                >
+                <LinkButton href="settings" className="bg-[#597C7B] text-white">
                   Edit profile <HiOutlinePencil />{" "}
-                </Button>
+                </LinkButton>
               </div>
             </div>
           </div>
