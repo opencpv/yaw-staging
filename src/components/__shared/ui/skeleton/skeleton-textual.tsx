@@ -1,4 +1,4 @@
-// import { Skeleton } from "@nextui-org/react";
+import { Skeleton } from ".";
 import React from "react";
 
 type Props = {
@@ -8,11 +8,11 @@ type Props = {
 const SkeletonTextual = ({ className }: Props) => {
   return (
     <>
-      {/* <div className={`space-y-3 ${className}`}>
-        <Skeleton className={`rounded-xl w-96 h-4`} />
-        <Skeleton className={`rounded-xl w-72 h-4`} />
-        <Skeleton className={`rounded-xl w-40 h-4`} />
-      </div> */}
+      <div className={`space-y-3 ${className}`}>
+        <Skeleton className={`h-4 w-96 rounded-xl`} />
+        <Skeleton className={`h-4 w-72 rounded-xl`} />
+        <Skeleton className={`h-4 w-40 rounded-xl`} />
+      </div>
     </>
   );
 };

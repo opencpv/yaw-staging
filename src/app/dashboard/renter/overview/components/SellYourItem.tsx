@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import dynamic from "next/dynamic";
 import Image from "next/image";
@@ -16,7 +16,7 @@ const SellYourItem = (props: Props) => {
   const router = useRouter();
   const { icons } = useAssets();
   return (
-    <div className="shadow-large flex w-full items-center justify-center rounded-xl py-24">
+    <div className="flex w-full items-center justify-center rounded-xl py-24 shadow-card">
       <div className="flex flex-wrap justify-center gap-y-3 px-8 xs:px-16">
         <FramerWrapper>
           <Image
@@ -33,13 +33,9 @@ const SellYourItem = (props: Props) => {
           <p className="mb-1 text-sm capitalize text-neutral-600">
             Your Exclusive Marketplace, Completely Fee-Free
           </p>
-          <Button
-            href="sell-products"
-            color="primary"
-            className="w-full p-2 px-4 text-sm capitalize"
-          >
+          <LinkButton href="sell-products" size={"full"} className="capitalize">
             Add Sale Item <FaArrowRight />
-          </Button>
+          </LinkButton>
         </div>
       </div>
     </div>

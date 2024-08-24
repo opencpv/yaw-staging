@@ -1,31 +1,22 @@
 "use client";
 import React, { Suspense, useEffect, useRef } from "react";
-import { FaChevronRight } from "react-icons/fa6";
 import ItemDetails from "../ItemDetails";
 import ItemImages from "../ItemImages";
 import ItemOwnerContact from "../ItemOwnerContact";
 import ItemRelatedItems from "../ItemRelatedItems";
 import { useFetchItemDetails } from "../../services";
-// import { Skeleton } from "@nextui-org/react";
+import { Skeleton } from "@/components/__shared/ui/skeleton";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { updateItemViewCount } from "../../actions";
 import { useItemPathStore } from "@/store/moving_sales/useMovingSalesStore";
-import { useRouter } from "next/navigation";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/__shared/ui/breadcrumb";
+import { Breadcrumb } from "@/components/__shared/ui/breadcrumb";
+import toast from "react-hot-toast";
 
 type Props = {
   id: number;
 };
 
 const DetailPage = (props: Props) => {
-  const router = useRouter();
   const { previousPath } = useItemPathStore();
   const query = useFetchItemDetails({ itemId: props.id });
   const [itemViewCount, setItemViewCount] = useLocalStorage<{
@@ -43,36 +34,39 @@ const DetailPage = (props: Props) => {
     }
   }, [itemViewCount.itemIds, props.id, setItemViewCount]);
 
+  if (query.error) toast.error("Something went wrong while fetching data");
+
   return (
     <main className="wrapper text-shade-200">
-      <Breadcrumb className="mb-10">
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href={previousPath ? previousPath : "/moving-sale"}>
-              Shop
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>
-              {query.isLoading ? (
-                // <Skeleton className="h-[20px] w-[200px]" />
-                <></>
-              ) : (
-                <>{query.data?.title}</>
-              )}
-            </BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-      {query?.data && <ItemImages query={query} />}
-      <section className="grid gap-x-20 gap-y-10 lg:grid-cols-3">
-        <ItemDetails query={query} />
-        <ItemOwnerContact query={query} />
-      </section>
-      <Suspense>
-        <ItemRelatedItems />
-      </Suspense>
+      {query.isLoading ? (
+        <div className="flex flex-col gap-10">
+          <Skeleton>
+            <div>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</div>
+          </Skeleton>
+          <Skeleton className="w-full max-w-3xl">
+            <div className="aspect-video" />
+          </Skeleton>
+          <Skeleton>
+            <div>Lorem ipsum dolor sit amet.</div>
+          </Skeleton>
+        </div>
+      ) : (
+        <>
+          <Breadcrumb
+            link={previousPath ? previousPath : "/moving-sale"}
+            page={query.data?.title || ""}
+            className="mb-10"
+          />
+          {query?.data && <ItemImages query={query} />}
+          <section className="grid gap-x-20 gap-y-10 lg:grid-cols-3">
+            <ItemDetails query={query} />
+            <ItemOwnerContact query={query} />
+          </section>
+          <Suspense>
+            <ItemRelatedItems />
+          </Suspense>
+        </>
+      )}
     </main>
   );
 };

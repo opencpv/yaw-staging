@@ -9,9 +9,9 @@ import EmptyState from "@/components/__shared/ui/states/empty-state";
 import SkeletonItem from "@/components/__shared/ui/skeleton/skeleton-product";
 import { cn } from "@/lib/utils";
 import { pluralize } from "@/lib/utils/stringManipulation";
-// import { Skeleton } from "@nextui-org/react";
 import { SanityDocument } from "next-sanity";
 import dynamic from "next/dynamic";
+import { Skeleton } from "@/components/__shared/ui/skeleton";
 const ButtonInfiniteLoading = dynamic(
   () =>
     import("@/components/__shared/ui/data_fetching/button-infinite-loading"),
@@ -56,8 +56,7 @@ function Items(props: Props) {
     <>
       <div className="mb-5 flex flex-wrap items-center justify-between gap-3 text-sm">
         {isLoading ? (
-          // <Skeleton className="h-5 w-32" />
-          <></>
+          <Skeleton className="h-5 w-32" />
         ) : (
           <p className={cn("text-base", { invisible: items?.length === 0 })}>
             Showing {items?.length} {pluralize("result", items?.length)}

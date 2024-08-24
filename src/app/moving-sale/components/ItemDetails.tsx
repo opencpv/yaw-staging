@@ -1,8 +1,5 @@
-import SkeletonTextual from "@/components/__shared/ui/skeleton/skeleton-textual";
-import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import { LowerCase } from "@/lib/utils/stringManipulation";
-// import { Skeleton } from "@nextui-org/react";
 import React from "react";
 
 type Props = {
@@ -13,67 +10,33 @@ const ItemDetails = ({ query }: Props) => {
   return (
     <div className="lg:col-span-2">
       <div className="mb-16 flex flex-wrap items-center gap-x-20 gap-y-5">
-        {query.isLoading ? (
-          <>
-            {/* <Skeleton className="h-10 w-32" />
-            <Skeleton className="h-10 w-32" /> */}
-          </>
-        ) : (
-          <>
-            <h3 className="text-xl font-[500] text-neutral-500">
-              {query.data?.title}
-            </h3>
-            <div className="min-w-[100px] rounded-md bg-accent-50 p-3 text-center text-sm text-white">
-              {query.data?.category}
-            </div>
-          </>
-        )}
+        <h3 className="text-xl font-[500] text-neutral-500">
+          {query.data?.title}
+        </h3>
+        <div className="min-w-[100px] rounded-md bg-accent-50 p-3 text-center text-sm text-white">
+          {query.data?.category}
+        </div>
       </div>
       <div className="mb-16 space-y-3">
-        {query.isLoading ? (
-          // <Skeleton className="h-10 w-32" />
-          <></>
-        ) : (
-          <h2 className="text-3xl font-[700] text-primary">
-            {formatPrice(query.data?.price)}
-          </h2>
-        )}
+        <h2 className="text-3xl font-[700] text-primary">
+          {formatPrice(query.data?.price)}
+        </h2>
         <span className="flex w-full max-w-xs items-center gap-5 *:flex-1">
-          {query.isLoading ? (
-            <>
-              {/* <Skeleton className="h-10 w-32" />
-              <Skeleton className="h-10 w-32" /> */}
-            </>
-          ) : (
-            <>
-              <Term
-                variant={
-                  LowerCase(query.data?.term) === "negotiable"
-                    ? "negotiable"
-                    : "non-negotiable"
-                }
-              />
-              <Condition
-                variant={
-                  LowerCase(query.data?.condition) === "new" ? "new" : "used"
-                }
-              />
-            </>
-          )}
+          <Term
+            variant={
+              LowerCase(query.data?.term) === "negotiable"
+                ? "negotiable"
+                : "non-negotiable"
+            }
+          />
+          <Condition
+            variant={
+              LowerCase(query.data?.condition) === "new" ? "new" : "used"
+            }
+          />
         </span>
       </div>
-      {query.error ? (
-        <SomethingWentWrong
-          className="-mt-52 h-fit"
-          onTryAgain={() => {
-            query.mutate();
-          }}
-        />
-      ) : (
-        <p className="max-w-4xl">
-          {query.isLoading ? <SkeletonTextual /> : query.data?.description}
-        </p>
-      )}
+      <p className="max-w-4xl">{query.data?.description}</p>
     </div>
   );
 };

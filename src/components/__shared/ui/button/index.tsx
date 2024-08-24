@@ -35,7 +35,8 @@ const buttonVariants = cva(
       },
       radius: {
         default: "rounded-md",
-        full: "rounded-full",
+        lg: "!rounded-xl",
+        full: "!rounded-full",
       },
     },
     defaultVariants: {

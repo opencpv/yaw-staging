@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-// import { Skeleton } from "@nextui-org/react";
+import { Skeleton } from ".";
 import React from "react";
 import SkeletonTextual from "./skeleton-textual";
 
@@ -12,7 +12,7 @@ const SkeletonItem = ({ count, className }: Props) => {
 
   return (
     <>
-      {/* {count &&
+      {count &&
         countArray.map((_, idx) => (
           <div key={idx + 1} className={cn("space-y-3", className)}>
             <Skeleton className="mb-10 h-60 min-w-full rounded-md" />
@@ -25,7 +25,7 @@ const SkeletonItem = ({ count, className }: Props) => {
           <Skeleton className="mb-10 min-w-full rounded-md" />
           <SkeletonTextual />
         </div>
-      )} */}
+      )}
     </>
   );
 };

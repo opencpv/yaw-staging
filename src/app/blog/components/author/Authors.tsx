@@ -17,7 +17,7 @@ const Authors = ({ authors }: Props) => {
     <section className="max-w-lg space-y-4">
       <SideHeader>Our authors</SideHeader>
       <div key={authors[currentAuthorIndex]?._id} className="space-y-1">
-        <div className="flex max-w-lg items-center gap-3 rounded-[5rem] bg-white p-5 shadow-large">
+        <div className="flex max-w-lg items-center gap-3 rounded-[5rem] bg-white p-5 shadow-card">
           <div className="relative aspect-square w-20">
             <Image
               src={

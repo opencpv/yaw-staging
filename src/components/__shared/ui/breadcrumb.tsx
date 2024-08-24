@@ -5,13 +5,13 @@ import { cn } from "@/lib/utils";
 import { LuChevronRight, LuMoreHorizontal } from "react-icons/lu";
 import Link from "next/link";
 
-const Breadcrumb = React.forwardRef<
+const BaseBreadcrumb = React.forwardRef<
   HTMLElement,
   React.ComponentPropsWithoutRef<"nav"> & {
     separator?: React.ReactNode;
   }
 >(({ ...props }, ref) => <nav ref={ref} aria-label="breadcrumb" {...props} />);
-Breadcrumb.displayName = "Breadcrumb";
+BaseBreadcrumb.displayName = "BaseBreadcrumb";
 
 const BreadcrumbList = React.forwardRef<
   HTMLOListElement,
@@ -122,12 +122,27 @@ const BreadcrumbEllipsis = ({
 );
 BreadcrumbEllipsis.displayName = "BreadcrumbElipssis";
 
-export {
-  Breadcrumb,
-  BreadcrumbList,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-  BreadcrumbEllipsis,
-};
+const Breadcrumb = React.forwardRef<
+  HTMLElement,
+  React.ComponentPropsWithoutRef<"nav"> & {
+    link: string;
+    page: string;
+  }
+>(({ children, link, page, className, ...props }, ref) => {
+  return (
+    <BaseBreadcrumb className={className} ref={ref} {...props}>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href={link}>Shop</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbPage>{page}</BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </BaseBreadcrumb>
+  );
+});
+Breadcrumb.displayName = "BreadcrumbLink";
+
+export { Breadcrumb };
