@@ -11,7 +11,6 @@ import {
   CommandItem,
 } from "@/components/__shared/ui/command";
 import {
-  Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/__shared/ui/popover";
@@ -22,6 +21,11 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import { cn } from "@/lib/utils";
+import dynamic from "next/dynamic";
+
+const Popover = dynamic(() =>
+  import("@/components/__shared/ui/popover").then((mod) => mod.Popover),
+);
 
 type DataItem = {
   label: string;

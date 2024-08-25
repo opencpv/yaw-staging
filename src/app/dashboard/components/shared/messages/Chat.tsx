@@ -9,6 +9,14 @@ import Rating from "@/components/__shared/ui/Rating";
 import { FaBan } from "react-icons/fa";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import dynamic from "next/dynamic";
+import {
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/__shared/ui/popover";
+import { MdLockOpen } from "react-icons/md";
+const Popover = dynamic(() =>
+  import("@/components/__shared/ui/popover").then((mod) => mod.Popover),
+);
 const Tooltip = dynamic(() =>
   import("@/components/__shared/ui/tooltip").then((mod) => mod.Tooltip),
 );
@@ -79,7 +87,7 @@ const Chat = ({
       {/* blocked */}
       {isBlocked && (
         <div className="ml-auto" onClick={(e) => e.stopPropagation()}>
-          {/* <Popover style={{ zIndex: "30" }} placement="top">
+          <Popover>
             <PopoverTrigger className="h-fit w-fit">
               <button className="h-fit w-fit">
                 <FaBan
@@ -88,11 +96,14 @@ const Chat = ({
                 />
               </button>
             </PopoverTrigger>
-            <PopoverContent className="flex items-center gap-2 bg-primary-400 text-white">
+            <PopoverContent
+              side="top"
+              className="flex items-center gap-2 bg-primary-400 text-white"
+            >
               Unblock this user
               <MdLockOpen />
             </PopoverContent>
-          </Popover> */}
+          </Popover>
           <Tooltip
             content="This user has been blocked"
             className="bg-primary-500 p-3 text-white"

@@ -6,13 +6,16 @@ import { cn } from "@/lib/utils";
 import Button from "../button/Button";
 import { Calendar } from "@/components/__shared/ui/calendar";
 import {
-  Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/__shared/ui/popover";
 import { useField } from "formik";
 import { formatDate } from "@/lib/utils/stringManipulation";
 import toast from "react-hot-toast";
+import dynamic from "next/dynamic";
+const Popover = dynamic(() =>
+  import("@/components/__shared/ui/popover").then((mod) => mod.Popover),
+);
 
 type Props = {
   label: string;

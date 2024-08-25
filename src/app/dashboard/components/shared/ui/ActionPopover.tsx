@@ -1,5 +1,4 @@
 import {
-  Popover,
   PopoverContent,
   PopoverPlacement,
   PopoverTrigger,
@@ -7,6 +6,10 @@ import {
 import React from "react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+const Popover = dynamic(() =>
+  import("@/components/__shared/ui/popover").then((mod) => mod.Popover),
+);
 
 type Props = {
   placement?: any;

@@ -10,13 +10,17 @@ import { TbLogout } from "react-icons/tb";
 import Avatar from "./Avatar";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import {
-  Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@radix-ui/react-popover";
+} from "@/components/__shared/ui/popover";
 import { createClient } from "@/lib/utils/supabase/auth/client";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import toast from "react-hot-toast";
+import dynamic from "next/dynamic";
+const Tooltip = dynamic(() => import("../tooltip").then((mod) => mod.Tooltip));
+const Popover = dynamic(() =>
+  import("@/components/__shared/ui/popover").then((mod) => mod.Popover),
+);
 
 type Props = {
   /** ClassName for the avatar  */
@@ -58,28 +62,28 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
               image={user?.profile_img as string}
               name={user?.full_name || ""}
               email={user?.email}
-              className={cn("", className)}
+              className={cn(className)}
               display={user ? true : false}
             />
           </div>
         ) : (
           <div className="p-1">
-            {/* <Tooltip content="Please upload your profile image"> */}
-            <Avatar
-              image={images.NoProfilePH}
-              name={user?.full_name || ""}
-              email={user?.email}
-              className={cn("object-contain", className)}
-              display={user ? true : false}
-            />
-            {/* </Tooltip> */}
+            <Tooltip content="Please upload your profile image">
+              <Avatar
+                image={images.NoProfilePH}
+                name={user?.full_name || ""}
+                email={user?.email}
+                className={cn("object-contain", className)}
+                display={user ? true : false}
+              />
+            </Tooltip>
           </div>
         )}
       </PopoverTrigger>
       {/* Avatar Menu */}
       <PopoverContent
         className={cn(
-          "z-50 w-fit max-w-[18rem] rounded-lg border-none bg-white text-neutral-600 shadow-lg outline-none transition-all focus:border-none focus:outline-none xs:min-w-[18rem]",
+          "w-fit max-w-[18rem] rounded-lg border-none text-neutral-600 shadow-lg outline-none transition-all focus:border-none focus:outline-none xs:min-w-[18rem]",
           popoverClassName,
         )}
         onOpenAutoFocus={(e) => e.preventDefault()}

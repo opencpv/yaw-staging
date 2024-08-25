@@ -1,5 +1,5 @@
 import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
-import React, { useState } from "react";
+import React from "react";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { FiTrash2 } from "react-icons/fi";
 import { MdOutlineEdit, MdOutlineRemoveRedEye } from "react-icons/md";
@@ -42,7 +42,6 @@ const Actions = ({ listing }: Props) => {
     onOpenChange: onOpenChangePublish,
     onOpen: onOpenPublish,
   } = useDisclosure();
-  //const [popoverIsOpen, setPopoverIsOpen] = useState(false);
 
   const {
     mutate: handleArchived,
@@ -128,10 +127,7 @@ const Actions = ({ listing }: Props) => {
         loading={isPublishing}
       /> */}
       <ActionPopover>
-        <ActionItemTrigger
-          className="col-span-1 ml-auto h-fit w-fit p-2"
-          //onClick={() => setPopoverIsOpen(true)}
-        >
+        <ActionItemTrigger className="col-span-1 ml-auto p-2">
           <BiDotsVerticalRounded />
         </ActionItemTrigger>
         <ActionContent>
