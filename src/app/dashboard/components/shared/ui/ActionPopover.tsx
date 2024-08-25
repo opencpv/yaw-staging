@@ -1,32 +1,26 @@
-// import {
-//   Popover,
-//   PopoverContent,
-//   PopoverTrigger,
-//   TooltipPlacement,
-// } from "@nextui-org/react";
+import {
+  Popover,
+  PopoverContent,
+  PopoverPlacement,
+  PopoverTrigger,
+} from "@/components/__shared/ui/popover";
 import React from "react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 type Props = {
   placement?: any;
-  // TooltipPlacement;
   children: React.ReactNode[];
-  isOpen: boolean;
-  onOpenChange: (open: boolean) => void;
+  isOpen?: boolean;
+  onOpenChange?: (open: boolean) => void;
 };
 
 export const ActionPopover = (props: Props) => {
   return (
     <>
-      {/* <Popover
-        style={{ zIndex: "99999" }}
-        placement={props.placement || "left"}
-        isOpen={props.isOpen}
-        onOpenChange={props.onOpenChange}
-      >
+      <Popover open={props.isOpen} onOpenChange={props.onOpenChange}>
         {props.children}
-      </Popover> */}
+      </Popover>
     </>
   );
 };
@@ -40,25 +34,38 @@ type TriggerProps = {
 
 export const ActionItemTrigger = (props: TriggerProps) => {
   return (
-    // <PopoverTrigger
-    //   className={cn("h-fit w-fit", props.className)}
-    //   onClick={props.onClick}
-    //   onMouseOver={props.onMouseOver}
-    // >
-    //   <button>{props.children}</button>
-    // </PopoverTrigger>
-    <></>
+    <PopoverTrigger
+      className={cn("h-fit w-fit", props.className)}
+      onClick={props.onClick}
+      onMouseOver={props.onMouseOver}
+      asChild
+    >
+      <button>{props.children}</button>
+    </PopoverTrigger>
   );
 };
 
-export const ActionContent = ({ children }: { children: React.ReactNode }) => {
+export const ActionContent = ({
+  children,
+  className,
+  placement = "left",
+}: {
+  children: React.ReactNode;
+  className?: string;
+  placement?: PopoverPlacement;
+}) => {
   return (
-    // <PopoverContent className="relative z-50 pointer-events-auto rounded-lg bg-[#fefefe] px-0 py-0">
-    //   <div className="flex flex-col divide-y divide-neutral-100 rounded-lg">
-    //     {children}
-    //   </div>
-    // </PopoverContent>
-    <></>
+    <PopoverContent
+      className={cn(
+        "pointer-events-auto relative z-50 w-fit rounded-lg bg-[#fefefe] px-0 py-0",
+        className,
+      )}
+      side={placement}
+    >
+      <div className="flex flex-col divide-y divide-neutral-100 rounded-lg">
+        {children}
+      </div>
+    </PopoverContent>
   );
 };
 
@@ -69,7 +76,7 @@ type ItemProps = {
   disabled?: boolean;
   href?: string;
   target?: React.HTMLAttributeAnchorTarget;
-};
+} & React.HTMLAttributes<HTMLElement>;
 
 export const ActionItem = (props: ItemProps) => {
   if (props.href)
@@ -87,6 +94,7 @@ export const ActionItem = (props: ItemProps) => {
           props.className,
         )}
         onClick={props.onClick}
+        {...props}
       >
         {props.children}
       </Link>
@@ -103,6 +111,7 @@ export const ActionItem = (props: ItemProps) => {
           props.className,
         )}
         onClick={props.onClick}
+        {...props}
       >
         {props.children}
       </button>

@@ -24,7 +24,9 @@ import { BsInfoCircle } from "react-icons/bs";
 import emailjs from "@emailjs/browser";
 import slugify from "@/lib/utils/slugify";
 import dynamic from "next/dynamic";
-const Tooltip = dynamic(() => import("@/components/__shared/ui/Tooltip"));
+const Tooltip = dynamic(() =>
+  import("@/components/__shared/ui/tooltip").then((mod) => mod.Tooltip),
+);
 
 type Props = {
   variant: "application" | "resume";

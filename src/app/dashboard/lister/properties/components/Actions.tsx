@@ -1,4 +1,4 @@
-// import { useDisclosure } from "@nextui-org/react";
+import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import React, { useState } from "react";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { FiTrash2 } from "react-icons/fi";
@@ -35,14 +35,14 @@ type Props = {
 const Actions = ({ listing }: Props) => {
   const router = useRouter();
   const { user } = useAppStore();
-  // const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
-  // const {
-  //   onClose: onClosePublish,
-  //   isOpen: isOpenPublish,
-  //   onOpenChange: onOpenChangePublish,
-  //   onOpen: onOpenPublish,
-  // } = useDisclosure();
-  const [popoverIsOpen, setPopoverIsOpen] = useState(false);
+  const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
+  const {
+    onClose: onClosePublish,
+    isOpen: isOpenPublish,
+    onOpenChange: onOpenChangePublish,
+    onOpen: onOpenPublish,
+  } = useDisclosure();
+  //const [popoverIsOpen, setPopoverIsOpen] = useState(false);
 
   const {
     mutate: handleArchived,
@@ -72,7 +72,7 @@ const Actions = ({ listing }: Props) => {
       });
 
     if (isSuccess) {
-      // onClose();
+      onClose();
     }
   };
 
@@ -89,7 +89,7 @@ const Actions = ({ listing }: Props) => {
       });
 
     if (isSuccessPublish) {
-      // onClosePublish();
+      onClosePublish();
     }
   };
 
@@ -127,10 +127,10 @@ const Actions = ({ listing }: Props) => {
         handleAction={handlePublish}
         loading={isPublishing}
       /> */}
-      <ActionPopover isOpen={popoverIsOpen} onOpenChange={setPopoverIsOpen}>
+      <ActionPopover>
         <ActionItemTrigger
           className="col-span-1 ml-auto h-fit w-fit p-2"
-          onClick={() => setPopoverIsOpen(true)}
+          //onClick={() => setPopoverIsOpen(true)}
         >
           <BiDotsVerticalRounded />
         </ActionItemTrigger>
@@ -138,10 +138,7 @@ const Actions = ({ listing }: Props) => {
           <ActionItem className="lg:hidden">
             <PublicationStatus listing={listing as Property} />
           </ActionItem>
-          <ActionItem
-            // onClick={onOpenPublish}
-            disabled={!canPublish}
-          >
+          <ActionItem onClick={onOpenPublish} disabled={!canPublish}>
             <PiArrowLineUp />
             {isPublishing
               ? "Upading..."
@@ -155,15 +152,12 @@ const Actions = ({ listing }: Props) => {
           </ActionItem>
 
           <ListingModal variant="edit" listing={listing} disabled={!canEdit}>
-            <ActionItem disabled={!canEdit}>
+            <ActionItem disabled={!canEdit} tabIndex={-1}>
               <MdOutlineEdit />
               Edit
             </ActionItem>
           </ListingModal>
-          <ActionItem
-            // onClick={onOpen}
-            disabled={!canDelete}
-          >
+          <ActionItem onClick={onOpen} disabled={!canDelete}>
             {listing?.is_archived ? <TbTrashOff /> : <FiTrash2 />}
             {listing?.is_archived ? "Unarchive" : "Delete"}
           </ActionItem>

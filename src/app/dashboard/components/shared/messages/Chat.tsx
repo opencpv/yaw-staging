@@ -9,7 +9,9 @@ import Rating from "@/components/__shared/ui/Rating";
 import { FaBan } from "react-icons/fa";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import dynamic from "next/dynamic";
-const Tooltip = dynamic(() => import("@/components/__shared/ui/Tooltip"));
+const Tooltip = dynamic(() =>
+  import("@/components/__shared/ui/tooltip").then((mod) => mod.Tooltip),
+);
 
 const Chat = ({
   href,

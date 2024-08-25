@@ -56,7 +56,7 @@ const PublicationStatus = ({ listing }: Props) => {
       });
 
     if (isSuccess) {
-      // onClose();
+      onClose();
     }
   };
 
@@ -68,7 +68,7 @@ const PublicationStatus = ({ listing }: Props) => {
       });
 
     if (isSuccessExtend) {
-      // onCloseExtend();
+      onCloseExtend();
     }
   };
 
@@ -110,7 +110,7 @@ const PublicationStatus = ({ listing }: Props) => {
         handleAction={handleExtend}
         loading={isExtending}
       /> */}
-      <span className="flex items-center gap-2">
+      <span className="flex items-center gap-2 max-md:pl-2">
         <Switch
           label={`${daysRemaining} ${pluralize(
             "day",
@@ -126,6 +126,7 @@ const PublicationStatus = ({ listing }: Props) => {
         />
         <Button
           variant="ghost"
+          size="sm"
           className={cn("text-xs underline", {
             invisible: listing?.is_published === false,
           })}
