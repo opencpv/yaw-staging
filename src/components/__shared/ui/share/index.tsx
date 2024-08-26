@@ -1,11 +1,15 @@
 "use client";
 import React from "react";
 import { IoIosShareAlt } from "react-icons/io";
-// import Modal from "../modals/Modal";
-// import { useDisclosure } from "@nextui-org/react";
+import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import ShareModalBody from "./ShareModalBody";
 import { cn } from "@/lib/utils";
 import CopyButton from "./copy-button";
+import dynamic from "next/dynamic";
+
+const Modal = dynamic(() =>
+  import("@/components/__shared/ui/modals/dialog").then((mod) => mod.Modal),
+);
 
 const Share = ({
   title,
@@ -16,19 +20,18 @@ const Share = ({
   hideLabel,
   children,
 }: ShareDataProps) => {
-  // const { onOpenChange, isOpen, onOpen } = useDisclosure();
+  const { onOpenChange, isOpen, onOpen } = useDisclosure();
 
   return (
     <>
-      {/* <Modal
+      <Modal
         onOpenChange={onOpenChange}
         isOpen={isOpen}
         header={<ShareModalHeader title={title as string} />}
         body={<ShareModalBody url={location.href || url} title={title} />}
         size="lg"
-        className="max-w-md"
-      /> */}
-      {/* <button
+      />
+      <button
         className={cn(
           "flex items-center gap-3 text-neutral-800",
           classNames?.base,
@@ -39,7 +42,7 @@ const Share = ({
           <>
             <p
               className={cn(
-                "text-base font-[500]",
+                "text-sm font-[500]",
                 {
                   hidden: hideLabel,
                 },
@@ -49,10 +52,10 @@ const Share = ({
               {label}
             </p>
 
-            <IoIosShareAlt className={cn(classNames?.icon)} />
+            <IoIosShareAlt size={18} className={cn(classNames?.icon)} />
           </>
         )}
-      </button> */}
+      </button>
     </>
   );
 };

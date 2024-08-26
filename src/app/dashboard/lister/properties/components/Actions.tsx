@@ -20,8 +20,8 @@ import { getListingProps } from "@/lib/enum";
 import { PiArrowLineUp } from "react-icons/pi";
 import { TbTrashOff } from "react-icons/tb";
 import dynamic from "next/dynamic";
-const PopupModal = dynamic(
-  () => import("@/components/__shared/ui/modals/popup-modal"),
+const PopupModal = dynamic(() =>
+  import("@/components/__shared/ui/alert-dialog").then((mod) => mod.PopupModal),
 );
 
 const ListingModal = dynamic(

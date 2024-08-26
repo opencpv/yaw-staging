@@ -8,6 +8,7 @@ function ModalCloseIcon() {
       height="25"
       fill="none"
       viewBox="0 0 45 44"
+      className="relative bottom-1.5"
     >
       <path
         fill="#F9565D"

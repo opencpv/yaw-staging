@@ -11,7 +11,9 @@ import { useFetchItemCategories } from "../services";
 import { LiaTimesSolid } from "react-icons/lia";
 import dynamic from "next/dynamic";
 import Loader from "@/components/__shared/ui/loader";
-const Modal = dynamic(() => import("@/components/__shared/ui/modals/Modal"));
+const Modal = dynamic(() =>
+  import("@/components/__shared/ui/modals/dialog").then((mod) => mod.Modal),
+);
 
 type Props = {
   isOpen: boolean;

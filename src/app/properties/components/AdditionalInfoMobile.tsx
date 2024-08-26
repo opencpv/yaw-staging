@@ -1,27 +1,28 @@
 "use client";
 import Button from "@/components/__shared/ui/button/Button";
-// import { useDisclosure } from "@nextui-org/react";
+import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import React from "react";
 import AdditionalInfo from "./AdditionalInfo";
 import dynamic from "next/dynamic";
-const Modal = dynamic(() => import("@/components/__shared/ui/modals/Modal"));
+const Modal = dynamic(() =>
+  import("@/components/__shared/ui/modals/dialog").then((mod) => mod.Modal),
+);
 
 type Props = {
   listing: Property;
 };
 
 const AdditionalInfoMobile = ({ listing }: Props) => {
-  // const { isOpen, onOpenChange, onOpen } = useDisclosure();
+  const { isOpen, onOpenChange, onOpen } = useDisclosure();
 
   return (
     <>
-      {/* <Modal
+      <Modal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         body={<AdditionalInfo listing={listing} />}
         size={"full"}
-        classNames={{ body: "py-10" }}
-        className="md:hidden"
+        className="py-10 md:hidden"
       />
 
       <Button
@@ -30,7 +31,7 @@ const AdditionalInfoMobile = ({ listing }: Props) => {
         onClick={onOpen}
       >
         Additional Information
-      </Button> */}
+      </Button>
     </>
   );
 };

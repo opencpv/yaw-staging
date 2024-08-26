@@ -100,15 +100,15 @@ const FeedbackButton = (props: Props) => {
 
 const FeedbackIcon = ({ className }: { className?: string }) => {
   return (
-    <Button
-      size="icon"
+    <button
+      //size="sm"
       className={cn(
-        "rounded-full bg-gradient-to-t from-primary-500 to-primary-400 shadow-lg",
+        "grid size-14 place-items-center rounded-full bg-gradient-to-t from-primary-500 to-primary-400 shadow-lg",
         className,
       )}
     >
       <HiOutlineChatBubbleOvalLeftEllipsis className="text-3xl text-white" />
-    </Button>
+    </button>
   );
 };
 

@@ -1,11 +1,14 @@
 "use client";
 
-import Modal from "@/components/__shared/ui/modals/Modal";
+const Modal = dynamic(() =>
+  import("@/components/__shared/ui/modals/dialog").then((mod) => mod.Modal),
+);
 import Carousel from "@/components/__shared/ui/sliders/carousel";
 import Share from "@/components/__shared/ui/share";
 import React from "react";
 import { LiaTimesSolid } from "react-icons/lia";
 import { PiShareFat } from "react-icons/pi";
+import dynamic from "next/dynamic";
 
 type Image = {
   src: string;
@@ -58,9 +61,9 @@ const GalleryModal = ({
         // footer={<ModalFooter />}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        hideCloseButton={true}
+        //hideCloseButton={true}
+        className="bg-[#010E19]"
         size="full"
-        backgroundColor="bg-[#010E19]"
       />
     </Context.Provider>
   );

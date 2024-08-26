@@ -1,4 +1,4 @@
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { HiOutlineDownload } from "react-icons/hi";
 import downloadPdf from "@/lib/utils/downloadPdf";
 
@@ -15,7 +15,6 @@ function DownloadButton({ maxWidth, data, variant, content }: Props) {
   return (
     <>
       <Button
-        color="primary"
         className={`${maxWidth === "fit" && "max-w-[241px]"} w-full`}
         onClick={() =>
           downloadPdf({

@@ -2,7 +2,9 @@ import Button from "@/components/__shared/ui/button/Button";
 import dynamic from "next/dynamic";
 import React, { useContext } from "react";
 import { BsInfo } from "react-icons/bs";
-const Modal = dynamic(() => import("@/components/__shared/ui/modals/Modal"));
+const Modal = dynamic(() =>
+  import("@/components/__shared/ui/modals/dialog").then((mod) => mod.Modal),
+);
 
 type Props = {
   handleYes: (r: string) => void;
@@ -27,14 +29,15 @@ const UtilitiesIncludedModal = (props: Props) => {
       <Modal
         header={<ModalHeader />}
         body={<ModalBody />}
-        footerAlignment="end"
+        //footerAlignment="end"
         isOpen={props?.isOpen as boolean}
         onOpenChange={props?.onOpenChange as (open: boolean) => void}
         size="lg"
-        classNames={{
-          header: "pb-0",
-          body: "pb-10",
-        }}
+        //classNames={{
+        //  header: "pb-0",
+        //  body: "pb-10",
+        //}}
+        className="pb-10"
       />
     </Context.Provider>
   );

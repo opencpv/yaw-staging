@@ -13,8 +13,8 @@ import {
 import dynamic from "next/dynamic";
 import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { Skeleton } from "@/components/__shared/ui/skeleton";
-const PopupModal = dynamic(
-  () => import("@/components/__shared/ui/modals/popup-modal"),
+const PopupModal = dynamic(() =>
+  import("@/components/__shared/ui/alert-dialog").then((mod) => mod.PopupModal),
 );
 
 type BlockedUserType = BlockedUser & {

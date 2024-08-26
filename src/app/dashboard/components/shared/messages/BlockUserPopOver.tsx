@@ -12,8 +12,8 @@ import { Button } from "@/components/__shared/ui/button";
 const Popover = dynamic(() =>
   import("@/components/__shared/ui/popover").then((mod) => mod.Popover),
 );
-const PopupModal = dynamic(
-  () => import("@/components/__shared/ui/modals/popup-modal"),
+const PopupModal = dynamic(() =>
+  import("@/components/__shared/ui/alert-dialog").then((mod) => mod.PopupModal),
 );
 
 type Props = {

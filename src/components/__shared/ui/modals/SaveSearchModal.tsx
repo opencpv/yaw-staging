@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { HiSaveAs } from "react-icons/hi";
-import Modal from "./Modal";
+import Modal from "./modal";
 import Button from "../button/Button";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { FiTrash2 } from "react-icons/fi";
@@ -14,7 +14,9 @@ import {
   ActionItemTrigger,
   ActionPopover,
 } from "@/components/__shared/ui/popover/action-popover";
-const PopupModal = dynamic(() => import("./popup-modal"));
+const PopupModal = dynamic(() =>
+  import("../alert-dialog").then((mod) => mod.PopupModal),
+);
 
 const Popover = dynamic(() =>
   import("@/components/__shared/ui/popover").then((mod) => mod.Popover),

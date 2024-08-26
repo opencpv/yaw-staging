@@ -14,8 +14,8 @@ import { createClient } from "@/lib/utils/supabase/auth/client";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
-const PopupModal = dynamic(
-  () => import("@/components/__shared/ui/modals/popup-modal"),
+const PopupModal = dynamic(() =>
+  import("@/components/__shared/ui/alert-dialog").then((mod) => mod.PopupModal),
 );
 
 interface Props {

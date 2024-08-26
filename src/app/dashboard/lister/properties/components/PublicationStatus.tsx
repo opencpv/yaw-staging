@@ -10,8 +10,8 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { Button } from "@/components/__shared/ui/button";
 import dynamic from "next/dynamic";
-const PopupModal = dynamic(
-  () => import("@/components/__shared/ui/modals/popup-modal"),
+const PopupModal = dynamic(() =>
+  import("@/components/__shared/ui/alert-dialog").then((mod) => mod.PopupModal),
 );
 
 interface Props {

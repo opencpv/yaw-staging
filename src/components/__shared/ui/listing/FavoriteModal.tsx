@@ -1,12 +1,16 @@
 "use client";
 import React, { useEffect, useState } from "react";
-// import Modal from "../modals/Modal";
 import { MdOutlineChat } from "react-icons/md";
 import Button from "../button/Button";
 import { handleFavoriteDialogSave } from "@/components/actions";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useLocalStorage, useSessionStorage } from "@uidotdev/usehooks";
 import toast from "react-hot-toast";
+import dynamic from "next/dynamic";
+
+const Modal = dynamic(() =>
+  import("@/components/__shared/ui/modals/dialog").then((mod) => mod.Modal),
+);
 
 type ModalProps = {
   isOpen: boolean;
@@ -22,17 +26,16 @@ const FavoriteModal = ({ isOpen, onOpenChange, onClose }: ModalProps) => {
   }, []);
 
   return (
-    // <Modal
-    //   isDismissible={false}
-    //   header={<ModalHeader onClose={onClose} />}
-    //   body={<ModalBody />}
-    //   footer={<ModalFooter />}
-    //   isOpen={isOpen}
-    //   onOpenChange={onOpenChange}
-    //   hideCloseButton={true}
-    //   size="md"
-    // />
-    <></>
+    <Modal
+      isDismissible={false}
+      header={<ModalHeader onClose={onClose} />}
+      body={<ModalBody />}
+      footer={<ModalFooter />}
+      isOpen={isOpen}
+      onOpenChange={onOpenChange}
+      //hideCloseButton={true}
+      size="md"
+    />
   );
 };
 
@@ -50,7 +53,7 @@ const ModalHeader = ({ onClose }: { onClose: () => void }) => {
     toast(
       contactUponFavorite
         ? "👍 Great choice! We've noted that you're open to being contacted by your property owners. Expect to hear from them soon!"
-        : "Noted! Your preference for privacy is important to us. Your property owners will not contact you unless necessary."
+        : "Noted! Your preference for privacy is important to us. Your property owners will not contact you unless necessary.",
     );
   };
 

@@ -13,8 +13,8 @@ import {
 import { ItemPublicationStatus } from "./PublicationStatus";
 import { ItemContext } from "@/app/dashboard/contexts/ItemContext";
 import dynamic from "next/dynamic";
-const PopupModal = dynamic(
-  () => import("@/components/__shared/ui/modals/popup-modal"),
+const PopupModal = dynamic(() =>
+  import("@/components/__shared/ui/alert-dialog").then((mod) => mod.PopupModal),
 );
 
 interface Props {

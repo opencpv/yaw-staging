@@ -15,8 +15,8 @@ import { useDeleteSearchCriteria } from "../services";
 import slugify from "@/lib/utils/slugify";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
-const PopupModal = dynamic(
-  () => import("@/components/__shared/ui/modals/popup-modal"),
+const PopupModal = dynamic(() =>
+  import("@/components/__shared/ui/alert-dialog").then((mod) => mod.PopupModal),
 );
 
 const BTFTKModal = dynamic(() => import("./steps/BTFTKModal"), {

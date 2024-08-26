@@ -9,7 +9,9 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 const Share = dynamic(() => import("@/components/__shared/ui/share"));
-const Modal = dynamic(() => import("@/components/__shared/ui/modals/Modal"));
+const Modal = dynamic(() =>
+  import("@/components/__shared/ui/modals/dialog").then((mod) => mod.Modal),
+);
 
 type Props = {
   job: JobType;
@@ -43,10 +45,7 @@ export default function JobCard({ job, jobs }: Props) {
         }
         isOpen={position ? true : false}
         onOpenChange={handleOpenChange}
-        scrollBehavior="inside"
-        onClose={() => setIsOpen(false)}
         closeButton={<ModalCloseIcon />}
-        className="[75vh] w-[90vw] max-w-[784px]"
       />
 
       <Link

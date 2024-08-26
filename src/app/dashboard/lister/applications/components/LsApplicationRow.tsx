@@ -12,8 +12,8 @@ import Rating from "@/components/__shared/ui/ratings-form";
 import TbUserImage from "@/app/dashboard/components/shared/ui/TbUserImage";
 import dynamic from "next/dynamic";
 import DeleteButton from "@/components/__shared/ui/button/delete-button";
-const PopupModal = dynamic(
-  () => import("@/components/__shared/ui/modals/popup-modal"),
+const PopupModal = dynamic(() =>
+  import("@/components/__shared/ui/alert-dialog").then((mod) => mod.PopupModal),
 );
 
 const LsApplicationRow = ({

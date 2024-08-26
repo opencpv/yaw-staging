@@ -13,8 +13,8 @@ import {
   ActionPopover,
 } from "@/components/__shared/ui/popover/action-popover";
 
-const PopupModal = dynamic(
-  () => import("@/components/__shared/ui/modals/popup-modal"),
+const PopupModal = dynamic(() =>
+  import("@/components/__shared/ui/alert-dialog").then((mod) => mod.PopupModal),
 );
 
 type Props = {
