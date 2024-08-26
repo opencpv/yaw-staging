@@ -13,7 +13,7 @@ import {
   ActionItem,
   ActionItemTrigger,
   ActionPopover,
-} from "@/app/dashboard/components/shared/ui/ActionPopover";
+} from "@/components/__shared/ui/popover/action-popover";
 const PopupModal = dynamic(() => import("./popup-modal"));
 
 const Popover = dynamic(() =>
@@ -136,16 +136,13 @@ const RecentSearch = ({ title, date }: { title: string; date: string }) => {
         </ActionContent>
       </ActionPopover>
 
-      {/* <PopupModal
+      <PopupModal
         label="Are you sure you want to delete this saved search?"
         onClose={onClose}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        classNames={{
-          backdrop: "z-[99999]",
-        }}
         handleAction={() => {}}
-      /> */}
+      />
     </div>
   );
 };

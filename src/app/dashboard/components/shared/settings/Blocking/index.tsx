@@ -4,7 +4,6 @@ import CaBlockingBlock from "./icons/CaBlockingBlock";
 import Button from "@/components/__shared/ui/button/Button";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-// import { Skeleton, useDisclosure } from "@nextui-org/react";
 import CallOut from "@/components/__shared/ui/callout";
 import {
   useFetchBlockedUsers,
@@ -12,6 +11,8 @@ import {
   useUnblockUser,
 } from "../services";
 import dynamic from "next/dynamic";
+import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import { Skeleton } from "@/components/__shared/ui/skeleton";
 const PopupModal = dynamic(
   () => import("@/components/__shared/ui/modals/popup-modal"),
 );
@@ -22,7 +23,7 @@ type BlockedUserType = BlockedUser & {
 
 export default function Blocking() {
   const { user } = useAppStore();
-  // const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
+  const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
   const { data: blockedUsers, isLoading } = useFetchBlockedUsers({
     userId: user?.id as string,
   });
@@ -34,14 +35,14 @@ export default function Blocking() {
 
   return (
     <>
-      {/* <PopupModal
+      <PopupModal
         isOpen={isOpen}
         onClose={onClose}
         onOpenChange={onOpenChange}
         label={`Are you sure you want to unblock all?`}
         handleAction={handleUnblockAll}
         loading={isPending}
-      /> */}
+      />
       <section className="flex flex-col gap-5">
         <div className="border-b-2 py-6">
           <div className="flex max-w-[610px] flex-col gap-5">
@@ -57,7 +58,7 @@ export default function Blocking() {
               <Button
                 isLoading={isPending}
                 className="rounded-lg bg-primary px-5 py-2.5 text-white"
-                // onClick={onOpen}
+                onClick={onOpen}
               >
                 Unblock all
                 <CaBlockingPadlock />
@@ -66,11 +67,11 @@ export default function Blocking() {
           </div>
           {isLoading && (
             <div className="flex w-full cursor-pointer items-center justify-between gap-3 hover:bg-primary-300">
-              {/* <div className="flex w-full items-center gap-6">
+              <div className="flex w-full items-center gap-6">
                 <Skeleton className="relative aspect-square w-full max-w-[69px] overflow-hidden rounded-full" />
                 <Skeleton className="h-5 w-20 rounded-md" />
               </div>
-              <Skeleton className="h-10 w-20 rounded-md" /> */}
+              <Skeleton className="h-10 w-20 rounded-md" />
             </div>
           )}
           {blockedUsers && blockedUsers?.length > 0 && (
@@ -100,7 +101,7 @@ export default function Blocking() {
 const BlockCard = (props: { data: BlockedUserType }) => {
   const { images } = useAssets();
   const { user } = useAppStore();
-  // const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
+  const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
   const { mutate: unblockUser, isPending } = useUnblockUser();
 
   const handleUnblock = () => {
@@ -112,14 +113,14 @@ const BlockCard = (props: { data: BlockedUserType }) => {
 
   return (
     <>
-      {/* <PopupModal
+      <PopupModal
         isOpen={isOpen}
         onClose={onClose}
         onOpenChange={onOpenChange}
         label={`Are you sure you want to unblock ${props.data.blocked_user.full_name}?`}
         handleAction={handleUnblock}
         loading={isPending}
-      /> */}
+      />
       <div className="flex w-full cursor-pointer items-center justify-between gap-3 hover:bg-shade">
         <div className="flex w-full items-center gap-6">
           <div className="relative aspect-square w-full max-w-[69px] overflow-hidden rounded-full">
@@ -138,7 +139,7 @@ const BlockCard = (props: { data: BlockedUserType }) => {
           <Button
             isLoading={isPending}
             className="rounded-lg bg-secondary-400 px-5 py-2.5 text-[13px] text-white"
-            // onClick={onOpen}
+            onClick={onOpen}
           >
             Unblock
           </Button>

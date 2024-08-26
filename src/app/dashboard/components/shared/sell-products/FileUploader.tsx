@@ -16,7 +16,7 @@ import {
   ActionItem,
   ActionItemTrigger,
   ActionPopover,
-} from "../ui/ActionPopover";
+} from "../../../../../components/__shared/ui/popover/action-popover";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
 import dynamic from "next/dynamic";

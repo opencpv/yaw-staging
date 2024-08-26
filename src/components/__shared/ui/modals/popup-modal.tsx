@@ -1,27 +1,28 @@
-import Button from "@/components/__shared/ui/button/Button";
-import Modal from "@/components/__shared/ui/modals/Modal";
+import { Button } from "@/components/__shared/ui/button";
 import React from "react";
+import {
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "../alert-dialog";
+import dynamic from "next/dynamic";
+const AlertDialog = dynamic(() =>
+  import("@/components/__shared/ui/alert-dialog").then(
+    (mod) => mod.AlertDialog,
+  ),
+);
 
 type ModalProps = {
   isOpen: boolean;
-  onOpenChange: () => void;
+  onOpenChange: (open: boolean) => void;
   onClose: () => void;
   label?: string;
-  classNames?: {
-    backdrop?: string;
-  };
   handleAction: () => void;
   loading?: boolean;
-};
-
-type ModalFooterProps = {
-  onClose: () => void;
-  handleAction: () => void;
-  loading: boolean;
-};
-
-type ModalBodyProps = {
-  label?: string;
 };
 
 const PopupModal = ({
@@ -31,57 +32,35 @@ const PopupModal = ({
   label,
   handleAction,
   loading,
-  classNames,
 }: ModalProps) => {
   return (
-    <Modal
-      body={<ModalBody label={label} />}
-      footer={
-        <ModalFooter
-          onClose={onClose}
-          handleAction={handleAction}
-          loading={loading || false}
-        />
-      }
-      isOpen={isOpen}
-      onOpenChange={onOpenChange}
-      size="md"
-      classNames={{
-        backdrop: classNames?.backdrop,
-      }}
-      className="pb-5 pt-10"
-    />
-  );
-};
-
-const ModalBody = ({ label }: ModalBodyProps) => {
-  return (
-    <>
-      <h2 className="font-[700] text-neutral-900">Notice</h2>
-      <p className="text-base text-neutral-500">
-        {label ? label : "Are you sure you want to delete this item?"}
-      </p>
-    </>
-  );
-};
-
-const ModalFooter = ({ onClose, handleAction, loading }: ModalFooterProps) => {
-  return (
-    <div className="flex w-full justify-end gap-2">
-      <Button
-        className="w-32 max-w-[8rem] rounded-lg bg-red-500 py-1 font-[500] text-white"
-        onClick={handleAction}
-        isLoading={loading}
-      >
-        Yes
-      </Button>
-      <Button
-        className="w-32 max-w-[8rem] rounded-lg bg-neutral-200 py-1 font-[500] text-neutral-500"
-        onClick={onClose}
-      >
-        No
-      </Button>
-    </div>
+    <AlertDialog open={isOpen} onOpenChange={onOpenChange}>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Notice</AlertDialogTitle>
+          <AlertDialogDescription>{label}</AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel asChild>
+            <Button
+              className="bg-neutral-200 text-neutral-500"
+              onClick={onClose}
+            >
+              No
+            </Button>
+          </AlertDialogCancel>
+          <AlertDialogAction asChild>
+            <Button
+              variant="destructive"
+              onClick={handleAction}
+              isLoading={loading}
+            >
+              Yes
+            </Button>
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
   );
 };
 

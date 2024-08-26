@@ -8,7 +8,7 @@ import {
   ActionItem,
   ActionItemTrigger,
   ActionPopover,
-} from "@/app/dashboard/components/shared/ui/ActionPopover";
+} from "@/components/__shared/ui/popover/action-popover";
 import PublicationStatus from "./PublicationStatus";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import {
@@ -94,7 +94,7 @@ const Actions = ({ listing }: Props) => {
 
   return (
     <>
-      {/* <PopupModal
+      <PopupModal
         isOpen={isOpen}
         onClose={onClose}
         onOpenChange={onOpenChange}
@@ -109,8 +109,8 @@ const Actions = ({ listing }: Props) => {
         }
         handleAction={handleDestruction}
         loading={isDeleting}
-      /> */}
-      {/* <PopupModal
+      />
+      <PopupModal
         isOpen={isOpenPublish}
         onClose={onClosePublish}
         onOpenChange={onOpenChangePublish}
@@ -125,7 +125,7 @@ const Actions = ({ listing }: Props) => {
         }
         handleAction={handlePublish}
         loading={isPublishing}
-      /> */}
+      />
       <ActionPopover>
         <ActionItemTrigger className="col-span-1 ml-auto p-2">
           <BiDotsVerticalRounded />

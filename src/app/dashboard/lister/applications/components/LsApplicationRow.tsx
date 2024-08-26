@@ -4,13 +4,14 @@ import { formatDate } from "@/lib/utils/stringManipulation";
 import ApplicationStatus from "./LsApplicationStatus";
 import { useDaysDifference } from "@/lib/custom-hooks/useDaysDifference";
 import capitalizeName from "@/lib/utils/stringManipulation";
-// import { useDisclosure } from "@nextui-org/react";
+import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { ListerApplicationsInterface } from "../../../../../../interfaces";
 import { TableBody, TableBodyRow } from "@/components/__shared/ui/table";
 import TbPropertyImage from "@/app/dashboard/components/shared/ui/TbPropertyImage";
 import Rating from "@/components/__shared/ui/ratings-form";
 import TbUserImage from "@/app/dashboard/components/shared/ui/TbUserImage";
 import dynamic from "next/dynamic";
+import DeleteButton from "@/components/__shared/ui/button/delete-button";
 const PopupModal = dynamic(
   () => import("@/components/__shared/ui/modals/popup-modal"),
 );
@@ -27,17 +28,17 @@ const LsApplicationRow = ({
 
   const daysDifference = useDaysDifference(date);
 
-  // const { onClose, isOpen, onOpenChange } = useDisclosure();
+  const { onClose, isOpen, onOpenChange } = useDisclosure();
 
   return (
     <>
-      {/* <PopupModal
+      <PopupModal
         isOpen={isOpen}
         onClose={onClose}
         onOpenChange={onOpenChange}
         label="Are you sure you want to delete this application?"
         handleAction={() => {}}
-      /> */}
+      />
       <TableBodyRow className="grid-cols-5">
         {/* Applicant */}
         <TableBody className="col-span-1">
@@ -87,11 +88,15 @@ const LsApplicationRow = ({
           <ApplicationStatus />
         </TableBody>
         {/* Actions */}
-        {/* <TableBody className="col-span-1 flex items-center justify-center">
+        <TableBody className="col-span-1 flex items-center justify-center">
           <div className="flex gap-1.5">
-            <DeleteButton onOpen={onOpen} className="w-fit" />
+            <DeleteButton
+              handleDestruction={() => {}}
+              loading={false}
+              className="w-fit"
+            />
           </div>
-        </TableBody> */}
+        </TableBody>
       </TableBodyRow>
     </>
   );

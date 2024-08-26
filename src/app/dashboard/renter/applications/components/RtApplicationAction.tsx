@@ -11,7 +11,7 @@ import {
   ActionItem,
   ActionItemTrigger,
   ActionPopover,
-} from "@/app/dashboard/components/shared/ui/ActionPopover";
+} from "@/components/__shared/ui/popover/action-popover";
 
 const PopupModal = dynamic(
   () => import("@/components/__shared/ui/modals/popup-modal"),
@@ -28,13 +28,13 @@ const RtApplicationAction = ({ status, id, table }: Props) => {
 
   return (
     <>
-      {/* <PopupModal
+      <PopupModal
         isOpen={isOpen}
         onClose={onClose}
         onOpenChange={onOpenChange}
         label="Are you sure you want to delete this application?"
         handleAction={() => {}}
-      /> */}
+      />
       <ActionPopover>
         <ActionItemTrigger className="col-span-1 ml-auto p-2">
           <BiDotsVerticalRounded />

@@ -86,7 +86,7 @@ const PublicationStatus = ({ listing }: Props) => {
 
   return (
     <>
-      {/* <PopupModal
+      <PopupModal
         isOpen={isOpen}
         onClose={onClose}
         onOpenChange={onOpenChange}
@@ -101,18 +101,18 @@ const PublicationStatus = ({ listing }: Props) => {
         }
         handleAction={handlePublish}
         loading={isPending}
-      /> */}
-      {/* <PopupModal
+      />
+      <PopupModal
         isOpen={isOpenExtend}
         onClose={onCloseExtend}
         onOpenChange={onOpenChangeExtend}
         label={"Are you sure you want to extend this listing?"}
         handleAction={handleExtend}
         loading={isExtending}
-      /> */}
+      />
       <span className="flex items-center gap-2 max-md:pl-2">
         <Switch
-          label={`${daysRemaining} ${pluralize(
+          label={`${daysRemaining > 0 ? daysRemaining : 0} ${pluralize(
             "day",
             daysRemaining,
           )} remaining`}

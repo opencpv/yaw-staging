@@ -1,10 +1,10 @@
 import React from "react";
-import Button from "./Button";
+import { Button } from "./";
 import { FiTrash2 } from "react-icons/fi";
 import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
-// import { useDisclosure } from "@nextui-org/react";
-// const PopupModal = dynamic(() => import("../modals/DestructiveModal"));
+import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+const PopupModal = dynamic(() => import("../modals/popup-modal"));
 
 type Props = {
   className?: string;
@@ -25,29 +25,28 @@ const DeleteButton = ({
   classNames,
   variant = "ghost",
 }: Props) => {
-  // const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
+  const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
 
   return (
     <>
-      {/* <PopupModal
+      <PopupModal
         isOpen={isOpen}
         onClose={onClose}
         onOpenChange={onOpenChange}
         label={label ?? "Are you sure you want to delete this item?"}
         handleAction={handleDestruction}
         loading={loading}
-      /> */}
+      />
       <Button
-        isIconOnly
+        size="icon"
         title="Delete"
         className={cn(
-          "",
           {
-            "rounded-md bg-secondary-50 p-4": variant === "background",
+            "bg-secondary-50 p-4": variant === "background",
           },
           className,
         )}
-        // onClick={onOpen}
+        onClick={onOpen}
       >
         <FiTrash2
           size={variant === "background" ? 16 : 24}

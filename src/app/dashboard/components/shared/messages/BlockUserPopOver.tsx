@@ -50,13 +50,13 @@ const BlockUserPopOver = (props: Props) => {
         </PopoverContent>
       </Popover>
 
-      {/* <PopupModal
+      <PopupModal
         label="Are you sure you want to block this user?"
         onClose={onClose}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         handleAction={() => {}}
-      /> */}
+      />
     </>
   );
 };

@@ -8,7 +8,7 @@ import {
   ActionItem,
   ActionItemTrigger,
   ActionPopover,
-} from "@/app/dashboard/components/shared/ui/ActionPopover";
+} from "@/components/__shared/ui/popover/action-popover";
 import { useAppStore } from "@/store/dashboard/AppStore";
 
 type Props = {
@@ -19,7 +19,7 @@ type Props = {
 };
 
 export default function ActionButton(props: Props) {
-  const {user} = useAppStore()
+  const { user } = useAppStore();
   const [loading, setLoading] = React.useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const now = new Date();
@@ -48,7 +48,13 @@ export default function ActionButton(props: Props) {
     <>
       {props.match?.meeting_id &&
       props.match?.type?.toLowerCase() === props.actionType.toLowerCase() ? (
-        <ActionPopover isOpen={isOpen} onOpenChange={(open) => { now < meetingDate ? setIsOpen(open) : setIsOpen(false) }} placement="top">
+        <ActionPopover
+          isOpen={isOpen}
+          onOpenChange={(open) => {
+            now < meetingDate ? setIsOpen(open) : setIsOpen(false);
+          }}
+          placement="top"
+        >
           <ActionItemTrigger
             className="col-span-1 h-fit w-full"
             onClick={handleActionTrigger}

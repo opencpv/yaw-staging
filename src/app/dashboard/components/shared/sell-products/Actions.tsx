@@ -1,4 +1,4 @@
-// import { useDisclosure } from "@nextui-org/react";
+import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import React, { useContext, useState } from "react";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { FiTrash2 } from "react-icons/fi";
@@ -8,7 +8,7 @@ import {
   ActionItem,
   ActionItemTrigger,
   ActionPopover,
-} from "../ui/ActionPopover";
+} from "../../../../../components/__shared/ui/popover/action-popover";
 import { ItemContext } from "@/app/dashboard/contexts/ItemContext";
 import { createClient } from "@/lib/utils/supabase/auth/client";
 import { toast } from "react-hot-toast";
@@ -23,7 +23,7 @@ interface Props {
   id: number;
 }
 const Actions = ({ refetch, id }: Props) => {
-  // const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
+  const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
   const [popoverIsOpen, setPopoverIsOpen] = useState(false);
   const item = useContext(ItemContext)?.item;
   const supabase = createClient();
@@ -46,13 +46,13 @@ const Actions = ({ refetch, id }: Props) => {
 
   return (
     <>
-      {/* <PopupModal
+      <PopupModal
         isOpen={isOpen}
         onClose={onClose}
         onOpenChange={onOpenChange}
         label="Are you sure you want to delete this item?"
         handleAction={handleDestruction}
-      /> */}
+      />
 
       <ActionPopover isOpen={popoverIsOpen} onOpenChange={setPopoverIsOpen}>
         <ActionItemTrigger
@@ -68,9 +68,7 @@ const Actions = ({ refetch, id }: Props) => {
             <MdOutlineEdit />
             Edit
           </ActionItem>
-          <ActionItem
-          // onClick={onOpen}
-          >
+          <ActionItem onClick={onOpen}>
             <FiTrash2 />
             Delete
           </ActionItem>

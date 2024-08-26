@@ -1,4 +1,4 @@
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { cn } from "@/lib/utils";
 import React from "react";
 import { MdOutlineArchive } from "react-icons/md";
@@ -19,7 +19,6 @@ const ArchivedButton = (props: Props) => {
         },
         props.className,
       )}
-      fit
       title={
         props.showingArchived
           ? "Click to show all active data"

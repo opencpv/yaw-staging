@@ -19,7 +19,7 @@ import {
   ActionItem,
   ActionItemTrigger,
   ActionPopover,
-} from "@/app/dashboard/components/shared/ui/ActionPopover";
+} from "@/components/__shared/ui/popover/action-popover";
 import Button from "@/components/__shared/ui/button/Button";
 import { BiImageAdd } from "react-icons/bi";
 import dynamic from "next/dynamic";
