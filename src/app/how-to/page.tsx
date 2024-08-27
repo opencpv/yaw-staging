@@ -1,26 +1,27 @@
 import { loadQuery } from "@/lib/utils/sanity/sanityStore";
 import { SanityDocument } from "next-sanity";
 import {
-  FAQ_CATEGORIES_QUERY,
-  FAQ_PAGE_QUERY,
+  HOW_TO_PAGE_QUERY,
+  HOW_TO_TAGS_QUERY,
 } from "@/lib/utils/sanity/queries";
 import { Metadata } from "next";
-import FaqPage from "./components/pages/FaqPage";
+import HowToPage from "../faq/components/pages/HowToPage";
 import Navbar from "@/components/__shared/ui/Navbar";
+import FaqHeader from "../faq/components/FaqHeader";
+import FaqHowToSwitch from "../faq/components/FaqHowToSwitch";
 import Footer from "@/components/__shared/ui/footer/Footer";
 import Survey from "@/components/__shared/ui/survey";
-import FaqHeader from "./components/FaqHeader";
-import FaqHowToSwitch from "./components/FaqHowToSwitch";
 
 export const metadata: Metadata = {
-  title: "FAQ",
+  title: "How To",
   description: "", // tentative
 };
 
 export default async function page() {
-  const initialFaqData = await loadQuery<SanityDocument[]>(FAQ_PAGE_QUERY);
-  const faqData = initialFaqData.data;
-  const faqCategories = await loadQuery<SanityDocument[]>(FAQ_CATEGORIES_QUERY);
+  const initialHowToData = await loadQuery<SanityDocument[]>(HOW_TO_PAGE_QUERY);
+  const howToData = initialHowToData.data;
+  const initialTagsData = await loadQuery<SanityDocument[]>(HOW_TO_TAGS_QUERY);
+  const tagsData = initialTagsData.data;
 
   return (
     <>
@@ -28,7 +29,7 @@ export default async function page() {
       <main className="wrapper relative max-xs:pt-0">
         <FaqHeader />
         <FaqHowToSwitch />
-        <FaqPage data={faqData} faqCategories={faqCategories.data} />
+        <HowToPage tags={tagsData} howtos={howToData} />
       </main>
       <Footer />
       <Survey />

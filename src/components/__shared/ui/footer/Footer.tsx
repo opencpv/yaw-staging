@@ -7,8 +7,6 @@ import SubscribeForm from "../form/SubscribeForm";
 import Feedback from "@/components/__shared/ui/feedback/Feedback";
 import { LowerCase } from "@/lib/utils/stringManipulation";
 import legal from "@/enum/about/legal";
-// import ReportFraud from "@/components/__shared/ui/links/ReportFraud";
-import HowToLink from "@/components/__shared/ui/links/how-to-link";
 import { FaEnvelope } from "react-icons/fa6";
 import { MdLocalPhone } from "react-icons/md";
 import { socialLinks } from "@/enum/links/socials";
@@ -82,8 +80,6 @@ const Footer = (props: Props) => {
           {quickLinks.map((r) =>
             LowerCase(r.label) === "report fraud" ? (
               <ReportFraud key={r?.label} className="font-[400]" />
-            ) : LowerCase(r.label) === "how to" ? (
-              <HowToLink key={r?.label} className="font-[400]" />
             ) : LowerCase(r?.label) === "feedback" ? (
               <Feedback data={data} key={r?.label}>
                 <button className="text-2xl">Feedback</button>

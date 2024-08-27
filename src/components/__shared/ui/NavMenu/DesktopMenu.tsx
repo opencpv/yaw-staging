@@ -3,13 +3,11 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import MenuLink from "./components/MenuLink";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
-import { useFaqHowToSwitchStore } from "@/store/faq/useFaqStore";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useMenuLinks } from "./content";
 import { createUUID } from "@/lib/utils/stringManipulation";
 import SubLinkResults from "./components/SubLinkResults";
 import { animate, stagger } from "framer-motion";
-import { cn } from "@/lib/utils";
 
 export const DesktopMenu = (props: any) => {
   const { linksAfterLogin, linksBeforeLogin } = useMenuLinks();
@@ -18,12 +16,7 @@ export const DesktopMenu = (props: any) => {
   const router = useRouter();
   const { toggle } = useMenuStore();
   const { activeSubLink, setActiveSubLink } = useMenuStore();
-  const { activePage: activeFaqKey } = useFaqHowToSwitchStore();
   const { user } = useAppStore();
-
-  const setFaqActivePage = useFaqHowToSwitchStore(
-    (state) => state.setActivePage,
-  );
 
   const toggleActiveSubMenu = (label: string) => {
     if (activeSubLink === label) {
@@ -64,10 +57,6 @@ export const DesktopMenu = (props: any) => {
                     active={active === idx}
                     linkObject={r}
                     onClick={() => {
-                      if (r.name.toLowerCase() === "faq") {
-                        setFaqActivePage("faq");
-                      }
-
                       if (r?.sub) {
                         toggleActiveMainMenu(idx);
                         setActiveSubLink("");
@@ -78,10 +67,6 @@ export const DesktopMenu = (props: any) => {
                         router.push(r?.url);
                       }
                     }}
-                    className={cn({
-                      "text-white":
-                        r?.name === "faq" && activeFaqKey === "how to",
-                    })}
                   />
                 </React.Fragment>
               ),
@@ -97,10 +82,6 @@ export const DesktopMenu = (props: any) => {
                     active={active === idx}
                     linkObject={r}
                     onClick={() => {
-                      if (r.name.toLowerCase() === "faq") {
-                        setFaqActivePage("faq");
-                      }
-
                       if (r?.sub) {
                         toggleActiveMainMenu(idx);
                         setActiveSubLink("");
@@ -111,11 +92,6 @@ export const DesktopMenu = (props: any) => {
                         router.push(r?.url);
                       }
                     }}
-                    className={cn({
-                      "text-white":
-                        r?.name.toLowerCase() === "faq" &&
-                        activeFaqKey === "how to",
-                    })}
                   />
                 </React.Fragment>
               ),

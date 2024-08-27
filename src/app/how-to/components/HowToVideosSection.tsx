@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Button from "@/components/__shared/ui/button/Button";
-import { HowTo } from "../../../../../interfaces";
+import { HowTo } from "../../../../interfaces";
 import dynamic from "next/dynamic";
 const LoadingIndicator = dynamic(
   () => import("@/components/__shared/ui/loading-indicator"),

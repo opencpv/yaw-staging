@@ -4,12 +4,10 @@ import { useMenuStore } from "@/store/navmenu/useMenuStore";
 import Link from "next/link";
 import React, { LegacyRef, forwardRef } from "react";
 import ReportFraud from "@/components/__shared/ui/links/report-fraud";
-import HowToLink from "@/components/__shared/ui/links/how-to-link";
 import { useQuery } from "@tanstack/react-query";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { useContactStore } from "@/store/contact/useContactStore";
-import { useFaqHowToSwitchStore } from "@/store/faq/useFaqStore";
 
 type Props = {
   links: any[];
@@ -18,7 +16,6 @@ type Props = {
 const MenuBottomLinks = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
   const pathname = usePathname();
   const { activeKey: activeContactKey } = useContactStore();
-  const { activePage: activeFaqKey } = useFaqHowToSwitchStore();
   const { setToggle } = useMenuStore();
 
   const { data } = useQuery({
@@ -43,20 +40,7 @@ const MenuBottomLinks = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
     >
       {props.links.map((r, index) => (
         <React.Fragment key={index}>
-          {LowerCase(r?.name) === "how to" ? (
-            <HowToLink
-              className={cn(
-                "transition-all hover:scale-110 hover:text-accent-100",
-                {
-                  "text-accent":
-                    pathname?.includes(r?.url) && activeFaqKey === "how to",
-                },
-              )}
-              onClick={() => {
-                setToggle(false);
-              }}
-            />
-          ) : LowerCase(r?.name) === "report fraud" ? (
+          {LowerCase(r?.name) === "report fraud" ? (
             <ReportFraud
               className={cn(
                 "transition-all hover:scale-110 hover:text-accent-100",

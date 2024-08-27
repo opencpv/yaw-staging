@@ -72,7 +72,7 @@ export const useMenuLinks = () => {
           name: "FAQ",
         },
         {
-          url: "/faq",
+          url: "/how-to",
           name: "How to",
         },
         {
@@ -102,7 +102,7 @@ export const useMenuLinks = () => {
     //   name: "Our Services",
     // },
     {
-      url: "/faq",
+      url: "/how-to",
       name: "How to",
     },
     {
@@ -171,7 +171,7 @@ export const useMenuLinks = () => {
           name: "Area Vibes",
         },
         {
-          url: "/faq",
+          url: "/how-to",
           name: "How To",
         },
         {
@@ -192,7 +192,7 @@ export const useMenuLinks = () => {
 
   const bottomLinksBeforeLogin = [
     {
-      url: "/faq",
+      url: "/how-to",
       name: "How To",
     },
     {
@@ -200,7 +200,7 @@ export const useMenuLinks = () => {
       name: "Payments",
     },
     // {
-    //   url: "/faq",
+    //   url: "/how-to",
     //   name: "How to",
     // },
     // {

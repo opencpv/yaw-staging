@@ -8,15 +8,12 @@ import ArrowDownNav from "@/components/__shared/ui/icons/CaArrowDownNav.";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
 import { LowerCase } from "@/lib/utils/stringManipulation";
 import ReportFraud from "@/components/__shared/ui/links/report-fraud";
-import HowToLink from "@/components/__shared/ui/links/how-to-link";
-import FaqLink from "@/components/__shared/ui/links/faq-link";
 import { cn } from "@/lib/utils";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useMenuLinks } from "./content";
 import { animate, stagger } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useContactStore } from "@/store/contact/useContactStore";
-import { useFaqHowToSwitchStore } from "@/store/faq/useFaqStore";
 
 const MenuOption = ({
   name,
@@ -53,7 +50,6 @@ const MenuOption = ({
 
   const [open, setOpen] = useState(false);
   const { setToggle } = useMenuStore();
-  const { activePage: activeFaqKey } = useFaqHowToSwitchStore();
 
   return (
     <CollapsibleRoot open={open} onOpenChange={setOpen}>
@@ -75,30 +71,10 @@ const MenuOption = ({
         {sub?.map((r, index) => (
           <Collapsible.Root key={index} className="flex flex-col text-white">
             <Collapsible.Trigger className="main-menu-link-sm flex justify-between pr-20 text-left text-base">
-              {LowerCase(r?.name) === "how to" ? (
-                <HowToLink
-                  className={cn("text-base font-normal", {
-                    "text-accent":
-                      pathname?.includes(r?.url) && activeFaqKey === "how to",
-                  })}
-                  onClick={() => {
-                    setToggle(false);
-                  }}
-                />
-              ) : LowerCase(r?.name) === "report fraud" ? (
+              {LowerCase(r?.name) === "report fraud" ? (
                 <ReportFraud
                   className={cn("text-base font-normal", {
                     "text-accent": pathname?.includes(r?.url),
-                  })}
-                  onClick={() => {
-                    setToggle(false);
-                  }}
-                />
-              ) : LowerCase(r?.name) === "faq" ? (
-                <FaqLink
-                  className={cn("text-base font-normal", {
-                    "text-accent":
-                      pathname?.includes(r?.url) && activeFaqKey === "faq",
                   })}
                   onClick={() => {
                     setToggle(false);

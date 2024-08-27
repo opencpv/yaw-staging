@@ -1,10 +1,4 @@
-import React from "react";
 import { create } from "zustand";
-
-type FaqHowToSwitchStore = {
-  activePage: string;
-  setActivePage: (page: string) => void;
-};
 
 type HowToTabsStore = {
   activeTab: string;
@@ -16,13 +10,8 @@ type FaqStore = {
   setActiveBrowser: (value: number) => void;
 };
 
-export const useFaqHowToSwitchStore = create<FaqHowToSwitchStore>((set) => ({
-  activePage: "FAQ",
-  setActivePage: (page) => set({ activePage: page }),
-}));
-
 export const useHowToTabsStore = create<HowToTabsStore>((set) => ({
-  activeTab: "all",
+  activeTab: "All",
   setActiveTab: (page) => set({ activeTab: page }),
 }));
 

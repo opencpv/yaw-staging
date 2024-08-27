@@ -38,7 +38,7 @@ const TabsTrigger = React.forwardRef<
     className={cn(
       "ring-offset-background inline-flex items-center justify-center whitespace-nowrap rounded-md bg-primary-50 px-6 py-2 text-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm",
       {
-        "rounded-full bg-transparent sm:px-10": variant === "rounded",
+        "rounded-full bg-transparent sm:px-16": variant === "rounded",
       },
       className,
     )}

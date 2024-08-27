@@ -10,9 +10,7 @@ type Props = {
 const FaqPage = (props: Props) => {
   return (
     <>
-      <h2 className={`text-neutral-800 sm:text-3xl`}>
-        Frequently Asked Questions
-      </h2>
+      <h2>Frequently Asked Questions</h2>
       <FAQBrowser data={props.data} faqCategories={props.faqCategories} />
       <ContactSection />
     </>
