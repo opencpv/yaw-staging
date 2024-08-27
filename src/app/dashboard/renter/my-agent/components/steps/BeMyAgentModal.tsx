@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import AgentButtons from "../Button";
 import BeMyAgentForm from "./BeMyAgentForm";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { MdOutlineEdit } from "react-icons/md";
 import { cn } from "@/lib/utils";
 import { formatPrice } from "@/lib/utils/numberManipulation";
@@ -139,7 +139,7 @@ const BeMyAgentModal = (props: Props) => {
         </Button>
       ) : props.button === "Edit" ? (
         <Button
-          isIconOnly
+          size="sm"
           title="Edit"
           className={cn(
             "flex w-fit items-center justify-center rounded-md bg-secondary-50 p-4 text-neutral-800",
