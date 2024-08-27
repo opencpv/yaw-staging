@@ -1,121 +1,121 @@
 "use client";
-import capitalizeName, { LowerCase } from "@/lib/utils/stringManipulation";
-// import { Tab, Tabs, cn } from "@nextui-org/react";
-import React, { forwardRef } from "react";
+
+import * as React from "react";
+import * as TabsPrimitive from "@radix-ui/react-tabs";
+
+import { cn } from "@/lib/utils";
 
 type Option = {
   label: string;
   icon?: React.ReactNode;
 };
 
-type Props = {
-  /** You can use any case. The key is converted to lowercase Eg: ["First", "SECOND"] --> "first", "second" */
-  options: (string | Option)[];
-  radius?: "large" | "small";
-  padding?: "small" | "medium" | "wide";
-  tabColor?: "transparent" | "colored";
-  onSelectionChange: (key: React.Key) => void;
-  variant?: "default" | "gradient" | "green1";
-  selectedKey?: any;
-  cursorAnimation?: boolean;
-  classNames?: {
-    base?: string;
-    tabList?: string;
-  };
-};
+const BaseTabs = TabsPrimitive.Root;
 
-const OptionFilterTabs = (
-  {
-    radius,
-    options,
-    selectedKey,
-    onSelectionChange,
-    variant = "default",
-    padding = "medium",
-    tabColor,
-    cursorAnimation,
-    classNames,
-  }: Props,
-  ref: any,
-) => {
-  return (
-    <>
-      {/* <Tabs
-        ref={ref}
-        variant="light"
-        aria-label="Tabs variants"
-        classNames={{
-          base: cn(
-            "bg-transparent transition-all",
-            {
-              "w-full": variant === "gradient",
-            },
-            classNames?.base,
-          ),
-          tabList: cn(
-            "justify-center flex flex-wrap",
-            {
-              "gap-x-8 w-full flex-col sm:flex-row sm:flex-wrap xl:flex-nowrap":
-                variant === "gradient",
-            },
-            classNames?.tabList,
-          ),
-          tab: cn(
-            "bg-transparent px-4 py-5 flex-1 w-auto w-full rounded-full data-[selected=true]:bg-primary sm:max-w-[200px] sm:w-fit",
-            {
-              "px-12 h-10 flex-initial data-[selected=true]:bg-gradient-to-r data-[selected=true]:from-[#21A19F] data-[selected=true]:to-[#1EA9A6A1]":
-                variant === "gradient",
-              "bg-primary-50": tabColor === "colored",
-              "rounded-lg": radius === "small",
-              "px-8 sm:px-20": padding === "wide",
-              "px-5 xs:px-8": padding === "medium",
-              "data-[selected=true]:bg-transparent": cursorAnimation,
-            },
-          ),
-          tabContent: cn(
-            "text-primary text-[0.6rem] text-sm group-data-[selected=true]:text-white",
-            {
-              "text-neutral-600": variant === "gradient",
-            },
-          ),
-          cursor: cn("rounded-full", {
-            "bg-primary-100": variant === "green1",
-            "bg-gradient-to-r from-[#21A19F] to-[#1EA9A6A1]":
-              variant === "gradient",
-            "bg-primary dark:bg-primary shadow-none": variant === "default",
-            "rounded-lg": radius === "small",
-            "bg-transparent dark:bg-transparent": !cursorAnimation,
-          }),
-        }}
-        selectedKey={selectedKey}
-        onSelectionChange={onSelectionChange}
-        disableCursorAnimation={!cursorAnimation}
-      >
-        {options.map((option) => (
-          <Tab
-            key={
-              typeof option !== "string"
-                ? LowerCase(option.label)
-                : LowerCase(option)
-            }
-            title={
-              <div className="flex items-center space-x-2">
-                {typeof option !== "string" ? (
-                  <>
-                    <span>{capitalizeName(option.label, " ")}</span>
-                    {option.icon && option.icon}
-                  </>
-                ) : (
-                  <span>{capitalizeName(option, " ")}</span>
-                )}
-              </div>
-            }
-            tabIndex={0}
-          />
-        ))}
-      </Tabs> */}
-    </>
-  );
-};
+const TabsList = React.forwardRef<
+  React.ElementRef<typeof TabsPrimitive.List>,
+  React.ComponentPropsWithoutRef<typeof TabsPrimitive.List>
+>(({ className, ...props }, ref) => (
+  <TabsPrimitive.List
+    ref={ref}
+    className={cn(
+      "inline-flex h-10 items-center justify-center gap-3 p-1 text-primary",
+      className,
+    )}
+    {...props}
+  />
+));
+TabsList.displayName = TabsPrimitive.List.displayName;
 
-export default forwardRef(OptionFilterTabs);
+const TabsTrigger = React.forwardRef<
+  React.ElementRef<typeof TabsPrimitive.Trigger>,
+  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger> & {
+    variant?: "default" | "rounded";
+  }
+>(({ className, variant, ...props }, ref) => (
+  <TabsPrimitive.Trigger
+    ref={ref}
+    className={cn(
+      "ring-offset-background inline-flex items-center justify-center whitespace-nowrap rounded-md bg-primary-50 px-6 py-2 text-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm",
+      {
+        "rounded-full bg-transparent sm:px-10": variant === "rounded",
+      },
+      className,
+    )}
+    {...props}
+  />
+));
+TabsTrigger.displayName = TabsPrimitive.Trigger.displayName;
+
+const TabsContent = React.forwardRef<
+  React.ElementRef<typeof TabsPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Content>
+>(({ className, ...props }, ref) => (
+  <TabsPrimitive.Content
+    ref={ref}
+    className={cn(
+      "ring-offset-background mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2",
+      className,
+    )}
+    {...props}
+  />
+));
+TabsContent.displayName = TabsPrimitive.Content.displayName;
+
+const Tabs = React.forwardRef<
+  React.ElementRef<typeof TabsPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Root> & {
+    options: (string | Option)[];
+    variant?: "default" | "rounded";
+    onSelectionChange?: (key: string) => void;
+    selectedKey?: string;
+  }
+>(
+  (
+    {
+      className,
+      children,
+      options,
+      onSelectionChange,
+      selectedKey,
+      variant = "default",
+      ...props
+    },
+    ref,
+  ) => (
+    <BaseTabs
+      className={className}
+      ref={ref}
+      onValueChange={onSelectionChange}
+      value={selectedKey}
+      {...props}
+    >
+      {options ? (
+        <TabsList>
+          {options.map((option) => (
+            <>
+              {typeof option !== "string" ? (
+                <TabsTrigger
+                  key={option.label}
+                  value={option.label}
+                  variant={variant}
+                >
+                  {option.label}
+                </TabsTrigger>
+              ) : (
+                <TabsTrigger key={option} value={option} variant={variant}>
+                  {option}
+                </TabsTrigger>
+              )}
+            </>
+          ))}
+        </TabsList>
+      ) : (
+        children
+      )}
+    </BaseTabs>
+  ),
+);
+Tabs.displayName = "Tabs";
+
+export { Tabs, TabsList, TabsTrigger, TabsContent };

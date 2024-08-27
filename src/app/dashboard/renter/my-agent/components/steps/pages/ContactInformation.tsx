@@ -5,7 +5,7 @@ import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
 import CountryInput from "@/components/__shared/ui/form/CountryInput";
 import CustomTextAreaInput from "@/components/__shared/ui/form/CustomTextAreaInput";
 import style from "../../../index.module.css";
-import OptionFilterTabs from "@/components/__shared/ui/tabs";
+import { Tabs } from "@/components/__shared/ui/tabs";
 import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { MdOutlineMailOutline, MdOutlineWhatsapp } from "react-icons/md";
@@ -83,7 +83,7 @@ const ContactInformation = React.forwardRef<HTMLInputElement, Props>(
                 Preferred Method of Contact
               </label>
               <div className="w-fit rounded-full bg-primary-600/5 p-2">
-                <OptionFilterTabs
+                <Tabs
                   options={[
                     {
                       label: "Email",
@@ -102,13 +102,14 @@ const ContactInformation = React.forwardRef<HTMLInputElement, Props>(
                       preferred_contact_method: key as any,
                     });
                   }}
-                  radius="large"
-                  padding="medium"
-                  cursorAnimation
                 />
               </div>
               {/* email */}
-              <div className={field.value === "whatsapp" ? "hidden" : "block"}>
+              <div
+                className={
+                  field.value?.toLowerCase() === "whatsapp" ? "hidden" : "block"
+                }
+              >
                 <TextFieldInput
                   name="email"
                   type="email"
@@ -123,7 +124,11 @@ const ContactInformation = React.forwardRef<HTMLInputElement, Props>(
               </div>
               {/* whatsapp */}
               <div
-                className={field.value === "whatsapp" ? "block pt-2" : "hidden"}
+                className={
+                  field.value?.toLowerCase() === "whatsapp"
+                    ? "block pt-2"
+                    : "hidden"
+                }
               >
                 <InputPhoneNumber
                   id=""

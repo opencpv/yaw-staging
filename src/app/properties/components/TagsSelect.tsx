@@ -1,8 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import OptionFilterTabs from "@/components/__shared/ui/tabs";
+import { Tabs } from "@/components/__shared/ui/tabs"
 import { FilterOptionArray } from "@/store/properties/usePropertiesStore";
 import { useRouter, useSearchParams } from "next/navigation";
+import capitalizeName from "@/lib/utils/stringManipulation";
 
 const TagsSelect = () => {
   const tabsRef = React.useRef<HTMLDivElement>(null);
@@ -16,11 +17,11 @@ const TagsSelect = () => {
   };
 
   const filterOptionArray: FilterOptionArray = [
-    "all",
-    "realtor's choice",
-    "verified",
-    "no viewing fee",
-    "no advance",
+    "All",
+    "Realtor's Choice",
+    "Verified",
+    "No Viewing Fee",
+    "No Advance",
   ];
 
   useEffect(() => {
@@ -33,9 +34,9 @@ const TagsSelect = () => {
     <div className="w-full justify-center px-5 sm:flex sm:px-0" ref={tabsRef}>
       <div className="hidden-scrollbar w-full overflow-x-auto">
         <section className="flex w-full flex-col flex-wrap items-center justify-center gap-8">
-          <OptionFilterTabs
+          <Tabs
             options={filterOptionArray}
-            selectedKey={tag}
+            selectedKey={capitalizeName(tag)}
             onSelectionChange={(key) =>
               router.replace(
                 `/properties?${new URLSearchParams({
@@ -47,11 +48,6 @@ const TagsSelect = () => {
                 },
               )
             }
-            radius="small"
-            tabColor="colored"
-            classNames={{
-              tabList: "flex-nowrap",
-            }}
           />
           {/* !!! COMMENTED OUT FOR NOW */}
 

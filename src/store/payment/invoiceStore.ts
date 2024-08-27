@@ -1,8 +1,8 @@
 import { create } from "zustand";
 
 type InvoiceStore = {
-  activePage: React.Key;
-  setActivePage: (option: React.Key) => void;
+  activePage: string;
+  setActivePage: (option: string) => void;
   checkoutItems: Invoice[];
   invoiceItems: Invoice[];
   receiptItem: Invoice[];
@@ -16,7 +16,7 @@ type InvoiceStore = {
 };
 
 export const invoiceStore = create<InvoiceStore>((set) => ({
-  activePage: "invoice",
+  activePage: "Invoice",
   invoiceItems: [],
   receiptItem: [],
   setActivePage: (option) => set((state) => ({ ...state, activePage: option })),

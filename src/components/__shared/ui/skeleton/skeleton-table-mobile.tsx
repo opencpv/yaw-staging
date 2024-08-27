@@ -2,6 +2,7 @@ import React from "react";
 import { TableBodySm, TableRowSm } from "../table";
 import TbPropertyImageSm from "@/app/dashboard/components/shared/ui/TbPropertyImageSm";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
+import { Skeleton } from ".";
 
 type Props = {
   rows: number;
@@ -15,7 +16,7 @@ const TableSkeletonSm = ({ rows }: Props) => {
     <TableRowSm key={idx} className="pb-0">
       <TableBodySm className="flex flex-nowrap gap-5">
         {/* Image */}
-        {/* <Skeleton isLoaded={false} className="rounded-md">
+        <Skeleton className="rounded-md">
           <div className="flex flex-col gap-3 max-xxs:hidden">
             <TbPropertyImageSm
               title={""}
@@ -23,19 +24,27 @@ const TableSkeletonSm = ({ rows }: Props) => {
               href={""}
             />
           </div>
-        </Skeleton> */}
+        </Skeleton>
         <div className="grid flex-1 justify-between gap-x-10 gap-y-3 [@media(min-width:400px)]:grid-cols-2">
           <div className="flex flex-1 flex-col items-start gap-3">
             {/* Title */}
-            {/* <Skeleton isLoaded={false} className="rounded-md"><p>Lorem, ipsum.</p></Skeleton> */}
+            <Skeleton className="rounded-md">
+              <p>Lorem, ipsum.</p>
+            </Skeleton>
             {/* Status */}
-            {/* <Skeleton isLoaded={false} className="rounded-md"><div>Lorem, ipsum.</div></Skeleton> */}
+            <Skeleton className="rounded-md">
+              <div>Lorem, ipsum.</div>
+            </Skeleton>
           </div>
           {/* Price */}
-          {/* <Skeleton isLoaded={false} className="rounded-md"><div>Lorem, ipsum Lorem.</div></Skeleton> */}
+          <Skeleton className="rounded-md">
+            <div>Lorem, ipsum Lorem.</div>
+          </Skeleton>
         </div>
         {/* Actions */}
-        {/* <Skeleton isLoaded={false} className="rounded-full h-5"><div>L</div></Skeleton> */}
+        <Skeleton className="h-5 rounded-full">
+          <div>L</div>
+        </Skeleton>
       </TableBodySm>
     </TableRowSm>
   ));

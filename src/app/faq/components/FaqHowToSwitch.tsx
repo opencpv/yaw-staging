@@ -1,6 +1,6 @@
-import OptionFilterTabs from "@/components/__shared/ui/tabs";
+import { Tabs } from "@/components/__shared/ui/tabs";
 import { useFaqHowToSwitchStore } from "@/store/faq/useFaqStore";
-import React, { useRef } from "react";
+import React from "react";
 
 const FaqHowToSwitch = () => {
   const activePage = useFaqHowToSwitchStore((state) => state.activePage);
@@ -8,13 +8,11 @@ const FaqHowToSwitch = () => {
 
   return (
     <div className="my-8 w-fit rounded-xl border p-3">
-      <OptionFilterTabs
-        options={["FAQ", "how to"]}
+      <Tabs
+        options={["FAQ", "How To"]}
         selectedKey={activePage}
         onSelectionChange={setActivePage}
-        radius="large"
-        padding="wide"
-        cursorAnimation
+        variant="rounded"
       />
     </div>
   );

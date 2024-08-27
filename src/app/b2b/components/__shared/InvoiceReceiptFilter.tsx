@@ -1,5 +1,5 @@
 "use client";
-// import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
+import { Tabs } from "@/components/__shared/ui/tabs";
 import { invoiceStore } from "@/store/payment/invoiceStore";
 import React, { useEffect, useState } from "react";
 import Invoices from "../pages/Invoices";
@@ -77,19 +77,16 @@ const InvoiceReceiptFilter = (props: Props) => {
   return (
     <>
       <div className="mb-10">
-        {/* <OptionFilterTabs
-          options={["invoice", "receipt", "forms"]}
+        <Tabs
+          options={["Invoice", "Receipt", "Forms"]}
           selectedKey={activePage}
           onSelectionChange={setActivePage}
-          radius="large"
-          padding="wide"
-          tabColor="colored"
-          cursorAnimation
-        /> */}
+          variant="rounded"
+        />
       </div>
-      {activePage === "invoice" ? (
+      {activePage === "Invoice" ? (
         <Invoices customerId={props.customerId} />
-      ) : activePage === "receipt" ? (
+      ) : activePage === "Receipt" ? (
         <Receipts customerId={props.customerId} />
       ) : (
         <Forms />

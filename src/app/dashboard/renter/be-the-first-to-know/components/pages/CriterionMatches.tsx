@@ -5,7 +5,7 @@ import { FaChevronLeft } from "react-icons/fa";
 import { useFetchCriteriaMatches } from "../../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import SkeletonListing from "@/components/__shared/ui/skeleton/skeleton-listing";
-// import { Skeleton } from "@nextui-org/react";
+import { Skeleton } from "@/components/__shared/ui/skeleton";
 import { getListingProps, Listing } from "@/lib/enum";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import dynamic from "next/dynamic";
@@ -50,7 +50,7 @@ const CriterionMatches = ({ params }: Props) => {
 
       {isLoading && (
         <section className="space-y-5">
-          {/* <Skeleton className="h-5 w-80 rounded-md" /> */}
+          <Skeleton className="h-5 w-80 rounded-md" />
 
           <div className="listing-grid">{<SkeletonListing />}</div>
         </section>

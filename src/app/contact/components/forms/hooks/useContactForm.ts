@@ -30,7 +30,7 @@ export const useContactForm = () => {
       message: "",
       fileUrl: "",
       reportLink: "",
-      preferredContact: "email",
+      preferredContact: "Email",
     },
   );
 

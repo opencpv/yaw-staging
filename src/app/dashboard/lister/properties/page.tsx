@@ -20,7 +20,7 @@ import PropertyRow from "./components/PropertyRow";
 import PropertyRowMobile from "./components/PropertyRowMobile";
 import TableSkeletonSm from "@/components/__shared/ui/skeleton/skeleton-table-mobile";
 import { FaPlus } from "react-icons/fa6";
-import OptionFilterTabs from "@/components/__shared/ui/tabs";
+import { Tabs } from "@/components/__shared/ui/tabs";
 import dynamic from "next/dynamic";
 import Pagination, { usePagination } from "@/components/__shared/ui/pagination";
 const EmptyState = dynamic(() => import("./components/EmptyState"));
@@ -31,7 +31,8 @@ const ListingModal = dynamic(
 
 const ManageProperties = () => {
   const { user } = useAppStore();
-  const [status, setStatus] = useState("all");
+  const [status, setStatus] = useState("All");
+  console.log("status", status);
   const [showArchived, setShowArchived] = useState(false);
   const {
     data: listings,
@@ -74,16 +75,12 @@ const ManageProperties = () => {
           <div className="flex flex-col gap-5">
             <h3>Manage Properties</h3>
             <div className="hidden-scrollbar flex items-center justify-between gap-5 overflow-x-auto">
-              <OptionFilterTabs
+              <Tabs
                 options={options}
                 selectedKey={status}
                 onSelectionChange={(selection) => {
+                  console.log(selection);
                   setStatus(selection as string);
-                }}
-                radius="small"
-                tabColor="colored"
-                classNames={{
-                  tabList: "flex-nowrap",
                 }}
               />
               <ArchivedButton

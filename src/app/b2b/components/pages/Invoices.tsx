@@ -4,11 +4,11 @@ import InvoiceTable from "../invoice/InvoiceTable";
 import { invoiceStore } from "@/store/payment/invoiceStore";
 import SearchInput from "@/components/__shared/ui/form/SearchInput";
 import { useState } from "react";
-// import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
+import { Tabs } from "@/components/__shared/ui/tabs";
 import { customerStore } from "@/store/payment/customerStore";
 import CheckoutButton from "../__shared/CheckoutButton";
 import { HiOutlineDownload } from "react-icons/hi";
-// import { Button } from "@/components/__shared/ui/button";
+import { Button } from "@/components/__shared/ui/button";
 import axios from "axios";
 import { title } from "process";
 import downloadPdf from "@/lib/utils/downloadPdf";
@@ -17,8 +17,9 @@ import { PDFDownload, PDFTemplateObject } from "../__shared/InvoiceTemplate";
 import CaCard from "@/components/__shared/ui/icons/CaCard";
 import theme from "tailwindcss/defaultTheme";
 import { IoArchiveOutline } from "react-icons/io5";
+import ArchivedButton from "@/components/__shared/ui/table/archived-button";
 
-type Status = "all" | "paid" | "pending";
+type Status = "All" | "Paid" | "Pending";
 
 type Props = {
   customerId: string;
@@ -26,7 +27,7 @@ type Props = {
 function Invoices({ customerId }: Props) {
   const { checkoutItems } = invoiceStore();
   const [searchString, setSearchString] = useState("");
-  const [filter, setFilter] = useState<Status>("all");
+  const [filter, setFilter] = useState<Status>("All");
   const subTotal = checkoutItems.reduce(
     (acc, item) => (item.is_paid ? 0 : acc + item.amount),
     0,
@@ -63,9 +64,7 @@ function Invoices({ customerId }: Props) {
             }
             fileName={`${item.service}.pdf`}
           >
-            {/* <Button size="sm" className="px-4" id={`${item.service}-invoice`}>
-              Download
-            </Button> */}
+            <Button id={`${item.service}-invoice`}>Download</Button>
           </PDFDownloadLink>
         ))}
       </div>
@@ -81,21 +80,17 @@ function Invoices({ customerId }: Props) {
         /> */}
       </div>
       <div className="flex flex-wrap items-center justify-between">
-        {/* <OptionFilterTabs
-          options={["all", "paid", "pending"]}
+        <Tabs
+          options={["All", "Paid", "Pending"]}
           selectedKey={filter}
           onSelectionChange={(key) => setFilter(key as Status)}
-          radius="small"
-          padding="small"
-          tabColor="colored"
-        /> */}
+        />
         <div className="flex gap-2">
-          {/* <Button color="primary" className=" gap-2">
+          <Button>
             Checkout <CaCard />
-          </Button> */}
-          {/* <Button
-            color=""
-            className="gap-2 bg-[#E7EFEF] text-[#11605E] hover:text-white"
+          </Button>
+          <Button
+            className="bg-primary-50 text-primary hover:text-white"
             onClick={() => {
               downloadAll();
             }}
@@ -105,13 +100,14 @@ function Invoices({ customerId }: Props) {
               size="24"
               className="shrink-0 group-hover:text-white"
             />
-          </Button> */}
+          </Button>
           {/* <Button
             color=""
-            className="gap-2 bg-[#E7EFEF] text-[#11605E] hover:text-white"
+            className="gap-2 bg-primary-50 text-[#11605E] hover:text-white"
           >
             Archive <IoArchiveOutline />
           </Button> */}
+          <ArchivedButton showingArchived={false} />
         </div>
       </div>
       <InvoiceTable

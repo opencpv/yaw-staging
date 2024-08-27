@@ -6,7 +6,7 @@ import Link from "next/link";
 import { LuLoader2 } from "react-icons/lu";
 
 const buttonVariants = cva(
-  "inline-flex gap-2 w-fit items-center justify-center whitespace-nowrap text-base font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 transition-transform hover:scale-102",
+  "inline-flex gap-2 w-fit items-center justify-center whitespace-nowrap text-base font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 transition-transform hover:scale-102",
   {
     variants: {
       color: {

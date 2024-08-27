@@ -18,10 +18,11 @@ import TableSkeleton from "@/components/__shared/ui/skeleton/skeleton-table";
 import TableSkeletonSm from "@/components/__shared/ui/skeleton/skeleton-table-mobile";
 import Pagination, { usePagination } from "@/components/__shared/ui/pagination";
 import InvoiceEmptyState from "../__shared/InvoiceEmptyState";
+import toast from "react-hot-toast";
 
 type Props = {
   searchString: string;
-  filter: "all" | "paid" | "pending";
+  filter: "All" | "Paid" | "Pending";
   customerId: string;
 };
 
@@ -44,6 +45,8 @@ const InvoiceTable = ({ searchString, customerId, filter }: Props) => {
   } = usePagination({
     items: invoices as Invoice[],
   });
+
+  if (error) toast.error("Something went wrong while fetching invoices");
 
   return (
     <>
@@ -72,14 +75,6 @@ const InvoiceTable = ({ searchString, customerId, filter }: Props) => {
             error={error}
             isLoading={isLoading}
             isLoadingComponent={<TableSkeleton rows={3} columns={7} />}
-            errorComponent={
-              <SomethingWentWrong
-                className="h-fit"
-                onTryAgain={() => {
-                  mutate();
-                }}
-              />
-            }
             emptyStateComponent={<InvoiceEmptyState />}
           />
           {paginatedInvoices?.map((invoice) => (

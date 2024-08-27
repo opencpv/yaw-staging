@@ -1,12 +1,12 @@
 import React from "react";
 import InputPhoneNumber from "./InputPhoneNumber";
 import TextFieldInput from "./TextFieldInput";
-import OptionFilterTabs from "@/components/__shared/ui/tabs";
+import { Tabs } from "@/components/__shared/ui/tabs";
 import { MdOutlineMailOutline, MdOutlineWhatsapp } from "react-icons/md";
 import { useField } from "formik";
 import { E164Number, CountryCode } from "libphonenumber-js/core";
 
-type Contact = "email" | "whatsapp";
+type Contact = "Email" | "WhatsApp";
 
 type Props = {
   selectedKey: Contact;
@@ -28,7 +28,7 @@ type Props = {
 };
 
 const PreferredContactMethod = ({
-  selectedKey = "email",
+  selectedKey = "Email",
   onSelectionChange,
   hideEmail,
   onChangeEmail,
@@ -44,7 +44,7 @@ const PreferredContactMethod = ({
   return (
     <>
       <div className="w-fit rounded-full bg-primary-600/5 p-2">
-        <OptionFilterTabs
+        <Tabs
           options={[
             {
               label: "Email",
@@ -60,15 +60,13 @@ const PreferredContactMethod = ({
             helpers.setValue(key as any);
             onSelectionChange?.(key as Contact);
           }}
-          radius="large"
-          padding="medium"
-          cursorAnimation
+          variant="rounded"
         />
       </div>
       {/* email */}
       <div
         className={
-          selectedKey === "whatsapp" || hideEmail ? "hidden" : "block pt-2"
+          selectedKey === "WhatsApp" || hideEmail ? "hidden" : "block pt-2"
         }
       >
         <TextFieldInput
@@ -85,7 +83,7 @@ const PreferredContactMethod = ({
       {/* whatsapp */}
       <div
         className={
-          selectedKey === "whatsapp" || hideEmail ? "block pt-2" : "hidden"
+          selectedKey === "WhatsApp" || hideEmail ? "block pt-2" : "hidden"
         }
       >
         <InputPhoneNumber

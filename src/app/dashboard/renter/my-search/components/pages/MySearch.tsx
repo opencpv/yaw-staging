@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import OptionFilterTabs from "@/components/__shared/ui/tabs";
+import { Tabs } from "@/components/__shared/ui/tabs";
 import Select from "@/app/dashboard/components/shared/ui/Select";
 import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
 import SkeletonListing from "@/components/__shared/ui/skeleton/skeleton-listing";
@@ -10,7 +10,7 @@ import { useFetchRenterBookmarks } from "../../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { getListingProps, Listing } from "@/lib/enum";
 import slugify from "@/lib/utils/slugify";
-import { unslugify } from "@/lib/utils/stringManipulation";
+import capitalizeName, { unslugify } from "@/lib/utils/stringManipulation";
 import dynamic from "next/dynamic";
 const NoSearchEmptyState = dynamic(() => import("../NoSearchEmptyState"));
 const ListingCard = dynamic(
@@ -25,6 +25,7 @@ const MySearch = ({ filter }: { filter: string }) => {
   const { user } = useAppStore();
   const router = useRouter();
   const [page, setPage] = React.useState(slugify(filter));
+  console.log("page", page);
 
   const {
     data: listings,
@@ -38,9 +39,9 @@ const MySearch = ({ filter }: { filter: string }) => {
     <main className="flex w-full flex-col gap-8 bg-white">
       <h2>My Search</h2>
       {/* xl and above */}
-      <OptionFilterTabs
+      <Tabs
         options={["All", "Recommendations", "Recently Viewed"]}
-        selectedKey={unslugify(page)}
+        selectedKey={unslugify(capitalizeName(page))}
         onSelectionChange={(key) => {
           const slug = slugify(key.toString());
           setPage(key.toString());
@@ -48,10 +49,7 @@ const MySearch = ({ filter }: { filter: string }) => {
             scroll: false,
           });
         }}
-        radius="small"
-        tabColor="colored"
-        cursorAnimation
-        classNames={{ base: "max-md:hidden" }}
+        className="max-md:hidden"
       />
       {/* xl and below */}
       <div className="md:hidden">

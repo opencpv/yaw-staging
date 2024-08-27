@@ -3,7 +3,7 @@ import style from "../../../index.module.css";
 import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
-import OptionFilterTabs from "@/components/__shared/ui/tabs";
+import { Tabs } from "@/components/__shared/ui/tabs";
 import { MdOutlineMailOutline, MdOutlineWhatsapp } from "react-icons/md";
 import { useField } from "formik";
 import { BTFTKDefaultValues } from "@/store/dashboard/BTFTKStepsStore";
@@ -48,7 +48,7 @@ const SpecialKeyword = () => {
           <span className="text-sm text-shade-300">*</span>
         </label>
         <div className="w-fit rounded-full bg-primary-600/5 p-2">
-          <OptionFilterTabs
+          <Tabs
             options={[
               {
                 label: "Email",
@@ -67,13 +67,14 @@ const SpecialKeyword = () => {
                 preferredMethodOfContact: key as any,
               });
             }}
-            radius="large"
-            padding="medium"
-            cursorAnimation
           />
         </div>
         {/* email */}
-        <div className={field.value === "whatsapp" ? "hidden" : "block"}>
+        <div
+          className={
+            field.value?.toLowerCase() === "whatsapp" ? "hidden" : "block"
+          }
+        >
           <TextFieldInput
             name="email"
             type="email"
@@ -87,7 +88,11 @@ const SpecialKeyword = () => {
           />
         </div>
         {/* whatsapp */}
-        <div className={field.value === "whatsapp" ? "block" : "hidden"}>
+        <div
+          className={
+            field.value?.toLowerCase() === "whatsapp" ? "block" : "hidden"
+          }
+        >
           <InputPhoneNumber
             name="whatsApp"
             value={phone}

@@ -21,7 +21,7 @@ type Props = {
 
   handlePhone: (value: any) => void;
   handleCountryChange: (country: CountryCode | undefined) => void;
-  onSelectionChange?: (key: "email" | "whatsapp") => void;
+  onSelectionChange?: (key: "Email" | "Whatsapp") => void;
 };
 
 const ContactPhoneField = ({
@@ -34,8 +34,8 @@ const ContactPhoneField = ({
 }: Props) => {
   const { contactFormSession, handleSessionChange } = useContactForm();
   const [preferredContact, setPreferredContact] = useState<
-    "email" | "whatsapp"
-  >("email");
+    "Email" | "Whatsapp"
+  >("Email");
 
   return (
     <PreferredContactMethod
@@ -43,7 +43,7 @@ const ContactPhoneField = ({
       emailValue={contactFormSession.email}
       placeholder="WhatsApp"
       selectedKey={
-        (contactFormSession.preferredContact as "email" | "whatsapp") ||
+        (contactFormSession.preferredContact as typeof preferredContact) ||
         preferredContact
       }
       onBlur={handleBlur}

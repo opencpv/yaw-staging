@@ -137,7 +137,7 @@ export const PgRoutesLister = [
     name: "my reviews",
     url: "",
     icon: <FaRegStar />,
-    link: "/dashboard/renter/my-reviews",
+    link: "/dashboard/lister/my-reviews",
   },
   {
     name: "moving sale",
