@@ -99,7 +99,7 @@ const RtApplicationRowSm = ({
               <DeleteButton handleDestruction={() => {}} loading={false} />
             </>
           ) : (
-            <MessageButton type={2} />
+            <MessageButton isIcon />
           )}
         </TableBodySm>
       </TableRowSm>

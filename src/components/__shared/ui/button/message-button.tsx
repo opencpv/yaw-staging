@@ -16,7 +16,7 @@ const SignInRequiredModal = dynamic(
 
 type Props = {
   id?: string;
-  type?: 1 | 2;
+  isIcon?: boolean;
 } & ButtonProps;
 
 const MessageButton = ({
@@ -24,7 +24,7 @@ const MessageButton = ({
   className,
   id,
   children,
-  type,
+  isIcon,
   variant = "outline",
   ...props
 }: Props) => {
@@ -65,7 +65,7 @@ const MessageButton = ({
         onOpenChange={setSignInModalOpen}
         onClose={() => setSignInModalOpen(false)}
       />
-      {type === 2 ? (
+      {isIcon ? (
         <Button
           size="icon"
           variant="ghost"

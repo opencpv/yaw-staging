@@ -5,7 +5,8 @@ import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { LoginButton } from "@/app/login/components/LoginButton";
 import Link from "next/link";
 import { LiaTimesSolid } from "react-icons/lia";
-import Modal from "./modal";
+import dynamic from "next/dynamic";
+const Modal = dynamic(() => import("./dialog").then((mod) => mod.Modal));
 
 type Props = {
   open: boolean;
@@ -21,11 +22,7 @@ const SignInRequiredModal = ({ open, onOpenChange, onClose }: Props) => {
         isOpen={open}
         onOpenChange={onOpenChange}
         size="5xl"
-        scrollBehavior="normal"
-        hideCloseButton
-        classNames={{
-          body: "p-0",
-        }}
+        className="p-0"
       />
     </>
   );

@@ -1,11 +1,7 @@
 "use client";
 import React from "react";
-
-import CloseModalIcon from "../../icons/CloseModalIcon";
 import { useRatingsModalStore } from "@/store/modal/useRatingsModalStore";
 import { ListingCardInterface } from "../../../../../../interfaces";
-import dynamic from "next/dynamic";
-const Modal = dynamic(() => import("../modal"));
 
 type Props = {
   value?: number;

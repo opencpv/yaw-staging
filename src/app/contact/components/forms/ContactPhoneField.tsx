@@ -4,6 +4,8 @@ import { useContactForm } from "./hooks/useContactForm";
 import { E164Number, CountryCode } from "libphonenumber-js/core";
 import PreferredContactMethod from "./PreferredContactMethod";
 
+type ContactMethod = "Email" | "WhatsApp";
+
 type Props = {
   phone?: E164Number;
   handleChange?: {
@@ -21,7 +23,7 @@ type Props = {
 
   handlePhone: (value: any) => void;
   handleCountryChange: (country: CountryCode | undefined) => void;
-  onSelectionChange?: (key: "Email" | "Whatsapp") => void;
+  onSelectionChange?: (key: ContactMethod) => void;
 };
 
 const ContactPhoneField = ({
@@ -33,9 +35,8 @@ const ContactPhoneField = ({
   onSelectionChange,
 }: Props) => {
   const { contactFormSession, handleSessionChange } = useContactForm();
-  const [preferredContact, setPreferredContact] = useState<
-    "Email" | "Whatsapp"
-  >("Email");
+  const [preferredContact, setPreferredContact] =
+    useState<ContactMethod>("Email");
 
   return (
     <PreferredContactMethod

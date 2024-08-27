@@ -65,7 +65,7 @@ TabsContent.displayName = TabsPrimitive.Content.displayName;
 const Tabs = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof TabsPrimitive.Root> & {
-    options: (string | Option)[];
+    options?: (string | Option)[];
     variant?: "default" | "rounded";
     onSelectionChange?: (key: string) => void;
     selectedKey?: string;

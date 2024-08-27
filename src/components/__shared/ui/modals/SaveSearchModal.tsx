@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { HiSaveAs } from "react-icons/hi";
-import Modal from "./modal";
+const Modal = dynamic(() => import("./dialog").then((mod) => mod.Modal));
 import Button from "../button/Button";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { FiTrash2 } from "react-icons/fi";
@@ -39,7 +39,7 @@ const SaveSearchModal = (props: Props) => {
         size={20}
         onClick={onOpen}
       />
-      {/* <Modal
+      <Modal
         closeButton={<CloseModalIcon />}
         header={<ModalHeader />}
         body={<ModalBody />}
@@ -48,7 +48,7 @@ const SaveSearchModal = (props: Props) => {
         onOpenChange={onOpenChange}
         size="xl"
         className="max-w-2xl"
-      /> */}
+      />
     </>
   );
 };
