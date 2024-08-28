@@ -23,7 +23,10 @@ const Landing = (props: Props) => {
     <section className="section wrapper space-y-8 pb-20 pt-10 text-shade-200">
       <div className="space-y-1">
         <h1 className="text-2xl capitalize text-neutral-600 min-[300px]:text-3xl">
-          {title} <span className="text-accent-100">{titleHighlight}</span>
+          {title}{" "}
+          <span className="tracking-in-contract text-accent-100">
+            {titleHighlight}
+          </span>
         </h1>
         <h4>{props.data.description}</h4>
       </div>

@@ -7,7 +7,6 @@ import ReportFraud from "@/components/__shared/ui/links/report-fraud";
 import { useQuery } from "@tanstack/react-query";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
-import { useContactStore } from "@/store/contact/useContactStore";
 
 type Props = {
   links: any[];
@@ -15,7 +14,6 @@ type Props = {
 
 const MenuBottomLinks = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
   const pathname = usePathname();
-  const { activeKey: activeContactKey } = useContactStore();
   const { setToggle } = useMenuStore();
 
   const { data } = useQuery({
@@ -44,10 +42,6 @@ const MenuBottomLinks = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
             <ReportFraud
               className={cn(
                 "transition-all hover:scale-110 hover:text-accent-100",
-                {
-                  "text-accent":
-                    pathname?.includes(r?.url) && activeContactKey === "report",
-                },
               )}
               onClick={() => {
                 setToggle(false);

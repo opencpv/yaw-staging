@@ -1,6 +1,6 @@
 import React from "react";
 import InputPhoneNumber from "./InputPhoneNumber";
-import TextFieldInput from "./TextFieldInput";
+import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
 import { Tabs } from "@/components/__shared/ui/tabs";
 import { MdOutlineMailOutline, MdOutlineWhatsapp } from "react-icons/md";
 import { useField } from "formik";

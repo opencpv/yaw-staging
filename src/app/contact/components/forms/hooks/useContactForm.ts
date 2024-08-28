@@ -14,7 +14,6 @@ type FormValue = {
 export const useContactForm = () => {
   const formRef = React.useRef<HTMLFormElement>(null);
 
-  const activeTab = useContactStore((state) => state.activeKey);
   const [loading, setLoading] = React.useState(false);
   const [_, setCountry] = React.useState<CountryCode>("GH");
   const [file, setFile] = React.useState<File | null>();
@@ -68,7 +67,6 @@ export const useContactForm = () => {
     handleFileRemove,
     handleCountryChange,
     handlePhone,
-    activeTab,
     formRef,
     phone,
     file,

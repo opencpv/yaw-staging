@@ -1,12 +1,15 @@
 "use client";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import { useContactStore } from "@/store/contact/useContactStore";
+import {
+  ContactTabActiveKey,
+  useContactStore,
+} from "@/store/contact/useContactStore";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import demoimages from "@/enum/temp/images";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import { getListingProps } from "@/lib/enum";
+import { generatePropertyTitle, getListingProps } from "@/lib/enum";
 import { useFetchFeaturedListings } from "@/app/properties/services";
 import { IFRAME_ALLOW } from "@/constants";
 import { SliderPaginationOnlyImage } from "@/components/__shared/ui/sliders/types";
@@ -17,10 +20,11 @@ const SliderPaginationOnly = dynamic(
 
 type Props = {
   data: any;
+  tag: ContactTabActiveKey;
 };
 
 const ContactFormSideContent = (props: Props) => {
-  const activeTab = useContactStore((state) => state.activeKey);
+  //const activeTab = useContactStore((state) => state.activeKey);
   const { images } = useAssets();
   const { data: listings } = useFetchFeaturedListings({ limit: 3 });
   const { user } = useAppStore();
@@ -32,7 +36,7 @@ const ContactFormSideContent = (props: Props) => {
     writers: "writersSection",
   };
 
-  const sectionData = props.data[tabToData[activeTab]];
+  const sectionData = props.data[tabToData[props.tag]];
 
   const SidePanel = (data: any) => {
     if (sectionData) {
@@ -41,7 +45,7 @@ const ContactFormSideContent = (props: Props) => {
           <div className="relative aspect-video w-full flex-1 rounded-2xl md:mt-8 md:aspect-auto md:h-[40rem]">
             <iframe
               src={sectionData.videoUrl}
-              title={activeTab}
+              title={props.tag}
               allow={IFRAME_ALLOW}
               allowFullScreen
               className="absolute inset-0 h-full w-full rounded-3xl"
@@ -83,7 +87,7 @@ const ContactFormSideContent = (props: Props) => {
             images={
               listings?.map((listing) => ({
                 src: demoimages[0],
-                name: `${listing.bedrooms} Bedroom ${listing.property_type} at ${listing.city}`,
+                name: generatePropertyTitle(listing),
                 href: getListingProps(listing, user as UserType).href,
               })) as SliderPaginationOnlyImage[]
             }
@@ -93,13 +97,14 @@ const ContactFormSideContent = (props: Props) => {
       }
     } else return <></>;
   };
-  if (activeTab === "general")
-    return <SidePanel data={props.data["general"]} />;
-  if (activeTab === "report") return <SidePanel data={props.data["reports"]} />;
-  if (activeTab === "advertise")
-    return <SidePanel data={props.data["advertise"]} />;
-  if (activeTab === "writers")
-    return <SidePanel data={props.data["writers"]} />;
+  return <SidePanel data={props.data[props.tag]} />;
+  //if (props.tag === "general")
+  //  return <SidePanel data={props.data["general"]} />;
+  //if (props.tag === "report") return <SidePanel data={props.data["reports"]} />;
+  //if (props.tag === "advertise")
+  //  return <SidePanel data={props.data["advertise"]} />;
+  //if (props.tag === "writers")
+  //  return <SidePanel data={props.data["writers"]} />;
 };
 
 export default ContactFormSideContent;

@@ -1,5 +1,5 @@
 "use client";
-import TextInput from "@/components/__shared/ui/form/TextInput";
+import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
 import React, { ChangeEvent, FocusEvent, useEffect, useRef } from "react";
 import { useContactForm } from "./hooks/useContactForm";
 
@@ -27,31 +27,18 @@ const ContactFullNameField = ({
   error,
 }: Props) => {
   const { contactFormSession, handleSessionChange } = useContactForm();
-  const fullNameInputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (error) {
-      if (fullNameInputRef.current) {
-        fullNameInputRef.current.scrollIntoView({
-          block: "center",
-          behavior: "smooth",
-        });
-      }
-    }
-  }, [error]);
 
   return (
-    <TextInput
+    <TextFieldInput
       name="fullname"
-      value={contactFormSession.fullname || value}
-      label="Full Name"
+      value={contactFormSession.fullname || (value as string)}
+      placeholder="Full Name"
       required
       onChange={(e) => {
         handleChange?.(e);
         handleSessionChange("fullname", e.target.value);
       }}
       onBlur={handleBlur}
-      ref={fullNameInputRef}
     />
   );
 };

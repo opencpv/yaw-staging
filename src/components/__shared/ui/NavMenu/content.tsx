@@ -88,7 +88,7 @@ export const useMenuLinks = () => {
           name: "Join Us",
         },
         {
-          url: "/contact",
+          url: "/contact/report",
           name: "Report Fraud",
         },
       ],
@@ -118,7 +118,7 @@ export const useMenuLinks = () => {
       name: "Join Us",
     },
     {
-      url: "/contact",
+      url: "/contact/report",
       name: "Report Fraud",
     },
     {
@@ -183,7 +183,7 @@ export const useMenuLinks = () => {
           name: "Join Us",
         },
         {
-          url: "/contact",
+          url: "/contact/report",
           name: "Report Fraud",
         },
       ],
@@ -212,7 +212,7 @@ export const useMenuLinks = () => {
       name: "Join Us",
     },
     {
-      url: "/contact",
+      url: "/contact/report",
       name: "Report Fraud",
     },
     {

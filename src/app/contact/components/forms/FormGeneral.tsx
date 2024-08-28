@@ -18,12 +18,12 @@ import slugify from "@/lib/utils/slugify";
 import { toast } from "react-hot-toast";
 import { E164Number } from "libphonenumber-js/core";
 import { Button } from "@/components/__shared/ui/button";
+import { tag } from "@/store/contact/useContactStore";
 
 type Props = {};
 
 const FormGeneral = (props: Props) => {
   const {
-    activeTab,
     file,
     formRef,
     loading,
@@ -55,7 +55,8 @@ const FormGeneral = (props: Props) => {
         validate(values, contactFormSession.phone as E164Number)
       }
       onSubmit={async (values, { resetForm }) => {
-        values.contactType = capitalizeName(activeTab);
+        if (!tag) return;
+        values.contactType = capitalizeName(tag);
         const newFilename: string =
           generateString(4) + "-" + slugify(file?.name || "");
         var newFile = new File([file as File], newFilename, {
@@ -125,10 +126,6 @@ const FormGeneral = (props: Props) => {
                 handleChange={handleChange}
                 error={errors.fullname}
               />
-              <CustomErrorMessage className="mt-5" error={errors.fullname}>
-                {/* @ts-ignore */}
-                <ErrorMessage name="fullname" error={errors.fullname} />
-              </CustomErrorMessage>
             </div>
             <div className="form-div">
               <ContactPhoneField

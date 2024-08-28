@@ -31,17 +31,20 @@ const TabsTrigger = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger> & {
     variant?: "default" | "rounded";
+    size?: "sm" | "md";
   }
->(({ className, variant, ...props }, ref) => (
+>(({ className, variant, size = "sm", ...props }, ref) => (
   <TabsPrimitive.Trigger
     ref={ref}
     className={cn(
-      "ring-offset-background inline-flex items-center justify-center whitespace-nowrap rounded-md bg-primary-50 px-6 py-2 text-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm",
+      "ring-offset-background inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md bg-primary-50 px-6 py-2 text-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm",
       {
-        "rounded-full bg-transparent sm:px-16": variant === "rounded",
+        "sm:px-16": size === "md",
+        "rounded-full bg-transparent": variant === "rounded",
       },
       className,
     )}
+    type="button"
     {...props}
   />
 ));
@@ -67,6 +70,7 @@ const Tabs = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof TabsPrimitive.Root> & {
     options?: (string | Option)[];
     variant?: "default" | "rounded";
+    size?: "sm" | "md";
     onSelectionChange?: (key: string) => void;
     selectedKey?: string;
   }
@@ -79,6 +83,7 @@ const Tabs = React.forwardRef<
       onSelectionChange,
       selectedKey,
       variant = "default",
+      size = "sm",
       ...props
     },
     ref,
@@ -99,8 +104,9 @@ const Tabs = React.forwardRef<
                   key={option.label}
                   value={option.label}
                   variant={variant}
+                  size={size}
                 >
-                  {option.label}
+                  {option.label} {option.icon}
                 </TabsTrigger>
               ) : (
                 <TabsTrigger key={option} value={option} variant={variant}>

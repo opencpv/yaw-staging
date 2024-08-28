@@ -52,6 +52,7 @@ const FeedbackBody = ({
       <Formik
         initialValues={initialValues}
         onSubmit={async (values, {}) => {
+          // value_c represents the thumbs
           if (values.value_c === undefined) return;
 
           const value_a_rounded = Math.round(values.value_a / 5) * 5;

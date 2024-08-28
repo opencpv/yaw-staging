@@ -1,8 +1,0 @@
-.required::after {
-    content: " *";
-    @apply text-neutral-900;
-}
-
-.requiredPlaceholder::placeholder::first-letter {
-    @apply text-neutral-800
-}

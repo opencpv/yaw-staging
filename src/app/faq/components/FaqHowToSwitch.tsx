@@ -25,6 +25,7 @@ const FaqHowToSwitch = () => {
         selectedKey={activePage}
         onSelectionChange={handleTabClick}
         variant="rounded"
+        size="md"
       />
     </div>
   );

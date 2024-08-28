@@ -11,7 +11,7 @@ import ContactPhoneField from "./ContactPhoneField";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import CustomErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
 import capitalizeName from "@/lib/utils/stringManipulation";
-import { useContactStore } from "@/store/contact/useContactStore";
+import { tag, useContactStore } from "@/store/contact/useContactStore";
 import { useRouter } from "next/navigation";
 import { generateString } from "@/lib/utils";
 import slugify from "@/lib/utils/slugify";
@@ -25,7 +25,6 @@ type Props = {};
 
 const FormReport = (props: Props) => {
   const {
-    activeTab,
     file,
     formRef,
     loading,
@@ -66,8 +65,9 @@ const FormReport = (props: Props) => {
         validate(values, contactFormSession.phone as E164Number)
       }
       onSubmit={async (values, { resetForm }) => {
+        if (!tag) return;
         setLoading(true);
-        values.contactType = capitalizeName(activeTab);
+        values.contactType = capitalizeName(tag);
         values.fileUrl = file?.name as string;
         const newFilename: string =
           generateString(8) + "-" + slugify(file?.name || "");
@@ -141,10 +141,6 @@ const FormReport = (props: Props) => {
                 handleChange={handleChange}
                 error={errors.fullname}
               />
-              <CustomErrorMessage className="mt-5" error={errors.fullname}>
-                {/* @ts-ignore */}
-                <ErrorMessage name="fullname" error={errors.fullname} />
-              </CustomErrorMessage>
             </div>
             <div className="form-div">
               <ContactPhoneField

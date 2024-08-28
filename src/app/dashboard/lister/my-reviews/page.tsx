@@ -24,13 +24,13 @@ export default function MyReviews() {
       <p className="text-[1.9375rem] font-semibold">My Reviews</p>
       <Tabs defaultValue="properties">
         <TabsList>
-          <TabsTrigger variant="rounded" value="properties">
+          <TabsTrigger size="md" variant="rounded" value="properties">
             Properties
           </TabsTrigger>
-          <TabsTrigger variant="rounded" value="property owners">
+          <TabsTrigger size="md" variant="rounded" value="property owners">
             Property Owners
           </TabsTrigger>
-          <TabsTrigger variant="rounded" value="service pros">
+          <TabsTrigger size="md" variant="rounded" value="service pros">
             Service Pros
           </TabsTrigger>
         </TabsList>

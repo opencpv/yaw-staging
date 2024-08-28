@@ -13,7 +13,6 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import { useMenuLinks } from "./content";
 import { animate, stagger } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { useContactStore } from "@/store/contact/useContactStore";
 
 const MenuOption = ({
   name,
@@ -106,7 +105,6 @@ const MenuOption = ({
 export const MobileMenu = (props: any) => {
   const pathname = usePathname();
   const { setToggle, toggle } = useMenuStore();
-  const { activeKey } = useContactStore();
   const { user } = useAppStore();
   const { linksAfterLogin, linksBeforeLogin } = useMenuLinks();
 
@@ -155,10 +153,7 @@ export const MobileMenu = (props: any) => {
               <Link
                 href={r?.url}
                 key={index}
-                className={cn("main-menu-link-sm-bl mb-10 block", {
-                  "text-accent":
-                    pathname?.includes(r?.url) && activeKey === "report",
-                })}
+                className={cn("main-menu-link-sm-bl mb-10 block")}
                 onClick={() => setToggle(false)}
               >
                 <p className={"text-2xl !font-semibold uppercase text-[#fff]"}>

@@ -10,15 +10,13 @@ type Props = {
 
 const ReportFraud = ({ className, onClick }: Props) => {
   const href = location.href;
-  const { setActiveKey: setContactTabActiveKey, setReportIssueHref } =
-    useContactStore();
+  const { setReportIssueHref } = useContactStore();
 
   return (
     <Link
-      href="/contact"
+      href="/contact/report"
       onClick={() => {
-        onClick && onClick();
-        setContactTabActiveKey("report");
+        onClick?.();
         setReportIssueHref(href);
       }}
       className={cn("text-2xl", className)}

@@ -10,16 +10,15 @@ type Props = {
 
 const ReportIssue = ({ className }: Props) => {
   const href = location.href;
-  const { setActiveKey, setReportIssueHref } = useContactStore();
+  const { setReportIssueHref } = useContactStore();
 
   const handleClick = () => {
-    setActiveKey("report");
     setReportIssueHref(href);
   };
 
   return (
     <Link
-      href="/contact"
+      href="/contact/report"
       className={cn(
         `inline-block w-fit text-sm font-[600] text-red-500/80`,
         className,

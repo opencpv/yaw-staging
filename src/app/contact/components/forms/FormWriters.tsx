@@ -18,6 +18,7 @@ import { Button } from "@/components/__shared/ui/button";
 import { UploadFile } from "../UploadFile";
 import { E164Number } from "libphonenumber-js/core";
 import dynamic from "next/dynamic";
+import { tag } from "@/store/contact/useContactStore";
 const CustomErrorMessage = dynamic(
   () => import("@/components/__shared/ui/states/ErrorMessage"),
 );
@@ -26,7 +27,6 @@ type Props = {};
 
 const FormWriters = (props: Props) => {
   const {
-    activeTab,
     file,
     formRef,
     loading,
@@ -58,7 +58,8 @@ const FormWriters = (props: Props) => {
         validate(values, contactFormSession.phone as E164Number)
       }
       onSubmit={async (values, { resetForm }) => {
-        values.contactType = capitalizeName(activeTab);
+        if (!tag) return;
+        values.contactType = capitalizeName(tag);
         const newFilename: string =
           generateString(4) + "-" + slugify(file?.name || "");
         var newFile = new File([file as File], newFilename, {
@@ -129,10 +130,6 @@ const FormWriters = (props: Props) => {
                 handleChange={handleChange}
                 error={errors.fullname}
               />
-              <CustomErrorMessage className="mt-5" error={errors.fullname}>
-                {/* @ts-ignore */}
-                <ErrorMessage name="fullname" error={errors.fullname} />
-              </CustomErrorMessage>
             </div>
             <div className="form-div">
               <ContactPhoneField
