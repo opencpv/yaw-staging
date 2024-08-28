@@ -6,11 +6,12 @@ import {
 } from "@/lib/utils/sanity/queries";
 import { Metadata } from "next";
 import FaqPage from "./components/pages/FaqPage";
-import Navbar from "@/components/__shared/ui/Navbar";
-import Footer from "@/components/__shared/ui/footer/Footer";
-import Survey from "@/components/__shared/ui/survey";
 import FaqHeader from "./components/FaqHeader";
 import FaqHowToSwitch from "./components/FaqHowToSwitch";
+import dynamic from "next/dynamic";
+const Navbar = dynamic(() => import("@/components/__shared/ui/Navbar"));
+const Footer = dynamic(() => import("@/components/__shared/ui/footer"));
+const Survey = dynamic(() => import("@/components/__shared/ui/survey"));
 
 export const metadata: Metadata = {
   title: "FAQ",

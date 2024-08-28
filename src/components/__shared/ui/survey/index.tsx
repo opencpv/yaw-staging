@@ -1,18 +1,20 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Button from "../button/Button";
-// const Modal = dynamic(() => import("../button/Button"))
-// import { useDisclosure } from "@nextui-org/react";
+import { Button } from "../button";
+import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import CloseModalIcon from "../icons/CloseModalIcon";
 import { motion } from "framer-motion";
 import { RiSurveyLine } from "react-icons/ri";
 import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
+const Modal = dynamic(() =>
+  import("@/components/__shared/ui/modals/dialog").then((mod) => mod.Modal),
+);
 
 type Props = {};
 
 const Survey = (props: Props) => {
-  // const { onOpen, isOpen, onOpenChange } = useDisclosure();
+  const { onOpen, isOpen, onOpenChange } = useDisclosure();
   const [showButton, setShowButton] = useState(false);
   const [timedOut, setTimedOut] = useState(false);
 
@@ -56,15 +58,14 @@ const Survey = (props: Props) => {
 
   return (
     <>
-      {/* <Modal
+      <Modal
         header={<ModalHeader />}
         body={<ModalBody />}
         footer={<ModalFooter />}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         closeButton={<CloseModalIcon />}
-        size="5xl"
-      /> */}
+      />
       <motion.div
         variants={variants}
         animate={showButton && !timedOut ? "open" : "closed"}
@@ -74,7 +75,7 @@ const Survey = (props: Props) => {
       >
         <Button
           className="h-10 gap-2 rounded-sm rounded-b-2xl bg-gradient-to-t from-primary-500 to-primary-400 text-xl opacity-70 hover:opacity-100"
-          // onClick={onOpen}
+          onClick={onOpen}
         >
           Survey
           <RiSurveyLine className="text-white" />

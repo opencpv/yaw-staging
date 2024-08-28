@@ -16,7 +16,7 @@ const VerticalSlider = dynamic(
 );
 const AboutItem = dynamic(() => import("./components/AboutItem"));
 const Navbar = dynamic(() => import("@/components/__shared/ui/Navbar"));
-const Footer = dynamic(() => import("@/components/__shared/ui/footer/Footer"));
+const Footer = dynamic(() => import("@/components/__shared/ui/footer"));
 const FeaturedListings = dynamic(
   () => import("@/components/__shared/ui/listing/featured-listings"),
 );

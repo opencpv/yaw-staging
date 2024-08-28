@@ -12,7 +12,7 @@ import { loadQuery } from "@sanity/react-loader";
 import { Metadata, ResolvingMetadata } from "next";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import dynamic from "next/dynamic";
-const Survey = dynamic(() => import("@/components/__shared/survey"));
+const Survey = dynamic(() => import("@/components/__shared/ui/survey"));
 const SummaryPostView = dynamic(
   () => import("../components/category/SummaryPostView"),
 );

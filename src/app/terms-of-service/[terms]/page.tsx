@@ -1,11 +1,11 @@
 import TermsNav from "../components/TermsNav";
 import TermsMainView from "./components/TermsMainView";
-import Footer from "@/components/__shared/ui/footer/Footer";
 import { TERMS_QUERY } from "@/lib/utils/sanity/queries";
 import { SanityDocument } from "next-sanity";
 import { loadQuery } from "@/lib/utils/sanity/sanityStore";
 import TermsMenuWrapper from "../TermsMenuWrapper";
 import dynamic from "next/dynamic";
+import Footer from "@/components/__shared/ui/footer";
 const ScrollTop = dynamic(() => import("@/components/__shared/ui/scroll-top"));
 
 const Terms = async (props: any) => {

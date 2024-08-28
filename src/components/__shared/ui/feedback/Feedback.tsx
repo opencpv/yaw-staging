@@ -43,6 +43,7 @@ const Feedback = ({ children, data }: Props) => {
         onOpenChange={onOpenChange}
         scrollBehavior="outside"
         size="lg"
+        className="mt-52"
       />
       <div className="cursor-pointer focus:outline-none" onClick={onOpen}>
         {children}

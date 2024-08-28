@@ -6,7 +6,7 @@ import { ADS_QUERY } from "@/lib/utils/sanity/queries";
 import dynamic from "next/dynamic";
 import { client } from "@/lib/utils/sanity/client";
 const ScrollTop = dynamic(() => import("@/components/__shared/ui/scroll-top"));
-const Footer = dynamic(() => import("@/components/__shared/ui/footer/Footer"));
+const Footer = dynamic(() => import("@/components/__shared/ui/footer"));
 const PropertiesListing = dynamic(
   () => import("./components/PropertiesListing"),
 );

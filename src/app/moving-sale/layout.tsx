@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import React from "react";
 const Navbar = dynamic(() => import("@/components/__shared/ui/Navbar"));
-const Footer = dynamic(() => import("@/components/__shared/ui/footer/Footer"));
+const Footer = dynamic(() => import("@/components/__shared/ui/footer"));
 
 export const metadata: Metadata = {
   title: {

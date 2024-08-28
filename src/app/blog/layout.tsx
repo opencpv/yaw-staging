@@ -4,7 +4,7 @@ import { SanityDocument } from "next-sanity";
 import { HOME_PAGE_QUERY } from "@/lib/utils/sanity/queries";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
-const Footer = dynamic(() => import("@/components/__shared/ui/footer/Footer"));
+const Footer = dynamic(() => import("@/components/__shared/ui/footer"));
 const Navbar = dynamic(() => import("@/components/__shared/ui/Navbar"));
 const FeaturedListings = dynamic(
   () => import("@/components/__shared/ui/listing/featured-listings"),

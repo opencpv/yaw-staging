@@ -21,7 +21,7 @@ const ManagePropertiesSection = dynamic(
 const PopularCities = dynamic(
   () => import("./components/sections/PopularCities"),
 );
-const Footer = dynamic(() => import("@/components/__shared/ui/footer/Footer"));
+const Footer = dynamic(() => import("@/components/__shared/ui/footer"));
 const ScrollTopAndSocial = dynamic(
   () => import("@/components/__shared/ui/scroll-top-and-social"),
 );
