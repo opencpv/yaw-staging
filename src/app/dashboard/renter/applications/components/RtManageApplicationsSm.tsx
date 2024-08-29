@@ -22,8 +22,8 @@ const RtManageApplicationsSm = (props: Props) => {
     <div className="flex flex-col gap-10 lg:hidden">
       <RtMobileFilters
         statusFilter={statusFilter}
-        handleStatusSelectionChange={(e) =>
-          setStatusFilter(e.target.value as StatusFilter)
+        handleStatusSelectionChange={(value) =>
+          setStatusFilter(value as StatusFilter)
         }
       />
       {/* <FetchingStates

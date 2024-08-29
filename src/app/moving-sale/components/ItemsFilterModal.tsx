@@ -17,7 +17,7 @@ const Modal = dynamic(() =>
 
 type Props = {
   isOpen: boolean;
-  onOpenChange: () => void;
+  onOpenChange: (isOpen: boolean) => void;
   onClose: () => void;
 };
 

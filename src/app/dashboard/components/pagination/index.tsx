@@ -59,13 +59,13 @@ const Pagination = () => {
     // sets the active tab
     if (pathname) {
       const currentURL = pathname;
-      if (currentRole === "lister") {
+      if (currentRole === "LISTER") {
         PgRoutesLister.forEach((r) => {
           if (currentURL.includes(r?.link)) {
             setActive(r?.name);
           }
         });
-      } else if (currentRole === "renter") {
+      } else if (currentRole === "RENTER") {
         PgRoutesRenter.forEach((r) => {
           if (currentURL.includes(r?.link)) {
             setActive(r?.name);
@@ -78,7 +78,7 @@ const Pagination = () => {
   return (
     <Root className="flex w-full items-start gap-7 px-5 py-1 pb-4 md:items-center">
       <ScrollArea className="order-2 h-fit w-full justify-between gap-5 max-md:invisible ssm:order-1">
-        {currentRole === "renter" &&
+        {currentRole === "RENTER" &&
           PgRoutesRenter.map(
             (r, index) =>
               index < 7 && (
@@ -92,7 +92,7 @@ const Pagination = () => {
                 </div>
               ),
           )}
-        {currentRole === "lister" &&
+        {currentRole === "LISTER" &&
           PgRoutesLister.map(
             (r, index) =>
               index < 7 && (

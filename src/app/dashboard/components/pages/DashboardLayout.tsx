@@ -34,8 +34,8 @@ const Wrapper = ({ children }: LayoutProps) => {
   useEffect(() => {
     if (!isSwitchingRole) {
       // to make sure it doesn't conflict with actual switch
-      if (pathname?.includes("/lister")) setCurrentRole("lister");
-      if (pathname?.includes("/renter")) setCurrentRole("renter");
+      if (pathname?.includes("/lister")) setCurrentRole("LISTER");
+      if (pathname?.includes("/renter")) setCurrentRole("RENTER");
     }
   }, [pathname, setCurrentRole, isSwitchingRole]);
 

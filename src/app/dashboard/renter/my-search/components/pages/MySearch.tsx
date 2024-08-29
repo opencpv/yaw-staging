@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Tabs } from "@/components/__shared/ui/tabs";
-import Select from "@/app/dashboard/components/shared/ui/Select";
+import { Select } from "@/components/__shared/ui/form/select";
 import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
 import SkeletonListing from "@/components/__shared/ui/skeleton/skeleton-listing";
 import ContactPreferenceToggle from "../../../../components/shared/ui/ContactPreferenceToggle";
@@ -56,13 +56,13 @@ const MySearch = ({ filter }: { filter: string }) => {
         <Select
           options={["All", "Recommendations", "Recently Viewed"]}
           value={unslugify(page)}
-          className="mx-0 w-60 font-bold"
-          valueClassName="font-bold"
-          variant="default"
-          color="primary"
-          handleSelectionChange={(e) => {
-            const slug = slugify(e.target.value);
-            setPage(e.target.value);
+          // className="mx-0 w-60 font-bold"
+          // valueClassName="font-bold"
+          // variant="default"
+          // color="primary"
+          onValueChange={(value) => {
+            const slug = slugify(value);
+            setPage(value);
             router.replace(`/dashboard/renter/my-search/${slug}`, {
               scroll: false,
             });

@@ -8,7 +8,7 @@ import { useReviewsStore } from "@/store/dashboard/reviewsStore";
 import { Switch } from "@/components/__shared/ui/switch";
 import AllReviewsReceived from "./components/AllReviewsReceived";
 import useReviews from "./components/useReviews";
-import Select from "../../components/shared/ui/Select";
+import { Select } from "@/components/__shared/ui/form/select";
 
 export default function MyReviews() {
   const { activePage, setActivePage, subActivePage, setSubActivePage } =
@@ -35,11 +35,11 @@ export default function MyReviews() {
             <Select
               options={["All", "Properties", "Property Owners", "Service Pros"]}
               value={filter as string}
-              className="mx-0 w-60 font-bold"
-              valueClassName="font-bold"
-              variant="ghost"
-              color="primary"
-              handleSelectionChange={(e) => setFilter(e.target.value)}
+              // className="mx-0 w-60 font-bold"
+              // valueClassName="font-bold"
+              // variant="ghost"
+              // color="primary"
+              onValueChange={(value) => setFilter(value)}
             />
           </div>
         )}

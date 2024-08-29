@@ -3,7 +3,7 @@ export interface AppContextType {
   setUser: React.Dispatch<React.SetStateAction<{}>>;
 }
 
-export type UserRole = "lister" | "renter";
+export type UserRole = "LISTER" | "RENTER";
 
 export type NotificationType = {
   id: number;

@@ -36,7 +36,7 @@ const PaginationMenu = () => {
       </div>
       <div className="flex items-center justify-center">
         <div className="grid w-full gap-x-5 gap-y-10 sm:w-[initial] sm:grid-cols-2 sm:gap-y-20 lg:grid-cols-3">
-          {currentRole === "renter" &&
+          {currentRole === "RENTER" &&
             PgRoutesRenter.map((route) => (
               <PaginationMenuItem
                 key={route.name}
@@ -45,7 +45,7 @@ const PaginationMenu = () => {
                 label={route.name}
               />
             ))}
-          {currentRole === "lister" &&
+          {currentRole === "LISTER" &&
             PgRoutesLister.map((route) => (
               <PaginationMenuItem
                 key={route.name}

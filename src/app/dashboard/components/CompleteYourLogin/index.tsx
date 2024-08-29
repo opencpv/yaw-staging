@@ -5,9 +5,10 @@ import { Button } from "@/components/__shared/ui/button";
 import * as Dialog from "@radix-ui/react-dialog";
 import { useEffect, useState } from "react";
 import { Form, Formik } from "formik";
-import { Role, useDashboardStore } from "@/store/dashboard/dashboardStore";
+import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import HowToSwitch from "../HowToSwitch";
 import RoleExplainer from "./RoleExplainer";
+import { UserRole } from "../../types";
 
 type Props = {
   open?: boolean;
@@ -57,7 +58,7 @@ function CompleteYourLogin({ open }: Props) {
                           setOpen(false);
                           setHowToSwitchOpen(true);
                           setFirstTimeRole(
-                            (values.role.toLowerCase() as Role) || "renter",
+                            (values.role.toUpperCase() as UserRole) || "RENTER",
                           ); // resorting to firstTimeRole instead of CurrentRole
                           // on first time login
                         }}
