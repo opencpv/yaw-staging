@@ -76,13 +76,15 @@ const Footer = (props: Props) => {
         id="footer"
         ref={ref as any}
       >
-        <div className="flex flex-col justify-center gap-10 bg-[#333] px-5 py-8 text-[#8A8A8A] hover:*:text-accent [@media(min-width:950px)]:flex-row">
+        <section className="flex flex-col justify-center gap-10 bg-[#333] px-5 py-8 text-[#8A8A8A] hover:*:text-accent [@media(min-width:950px)]:flex-row">
           {quickLinks.map((r) =>
             LowerCase(r.label) === "report fraud" ? (
               <ReportFraud key={r?.label} className="font-[400]" />
             ) : LowerCase(r?.label) === "feedback" ? (
               <Feedback data={data} key={r?.label}>
-                <button className="text-2xl">Feedback</button>
+                <button>
+                  <h2>Feedback</h2>
+                </button>
               </Feedback>
             ) : (
               <Link
@@ -94,7 +96,7 @@ const Footer = (props: Props) => {
               </Link>
             ),
           )}
-        </div>
+        </section>
 
         <div className="w-fit px-8">
           <Logo size="lg" />

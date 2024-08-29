@@ -1,4 +1,4 @@
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import dynamic from "next/dynamic";
 import React, { useContext } from "react";
 import { BsInfo } from "react-icons/bs";
@@ -68,13 +68,19 @@ const ModalBody = () => {
       </p>
 
       <div className="flex w-full flex-col gap-x-5 gap-y-3 xxs:flex-row">
-        <Button color="primary" onClick={handleYes} className="flex-1">
+        <Button
+          onClick={() => {
+            handleYes?.(utility as string);
+          }}
+          className="flex-1"
+        >
           Yes
         </Button>
         <Button
           variant="outline"
-          color="primary"
-          onClick={handleNo}
+          onClick={() => {
+            handleNo?.(utility as string);
+          }}
           className="flex-1"
         >
           No

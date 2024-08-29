@@ -20,7 +20,7 @@ import {
   ActionItemTrigger,
   ActionPopover,
 } from "@/components/__shared/ui/popover/action-popover";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { BiImageAdd } from "react-icons/bi";
 import dynamic from "next/dynamic";
 const ErrorMessage = dynamic(
@@ -311,8 +311,10 @@ const AddMoreImages = ({ onlyButton }: { onlyButton?: boolean }) => {
         <div className="cursor-pointer self-end">
           <Button
             variant="outline"
-            color="black"
-            className={cn(style.addMoreImagesButton, "fade-in-bottom-slight")}
+            className={cn(
+              style.addMoreImagesButton,
+              "fade-in-bottom-slight text-black",
+            )}
             type="button"
           >
             Add More Images
@@ -323,8 +325,7 @@ const AddMoreImages = ({ onlyButton }: { onlyButton?: boolean }) => {
         <div className="grid aspect-video cursor-pointer place-items-center rounded-lg border border-dashed border-shade-300">
           <Button
             variant="outline"
-            color="black"
-            className={style.addMoreImagesButton}
+            className={cn(style.addMoreImagesButton, "text-black")}
             type="button"
           >
             Add More Images

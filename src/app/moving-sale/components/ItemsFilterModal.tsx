@@ -1,4 +1,4 @@
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import React from "react";
 import CategoryCheckboxes from "./CategoryCheckboxes";
 import ItemsFilterModalOption from "./ItemsFilterModalOption";
@@ -102,14 +102,10 @@ const FilterModalFooter = ({ onClose }: FilterModalFooterProps) => {
   };
   return (
     <span className="flex w-full flex-wrap items-center justify-between gap-5">
-      <Button color="accent" className="w-48 max-w-xs" onClick={handleSubmit}>
+      <Button variant="accent" size="sm" onClick={handleSubmit}>
         Filter
       </Button>
-      <Button
-        variant="ghost"
-        className="text-sm font-normal underline"
-        onClick={clearAll}
-      >
+      <Button variant="ghost" className="text-sm underline" onClick={clearAll}>
         Clear All <LiaTimesSolid />
       </Button>
     </span>

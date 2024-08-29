@@ -1,7 +1,7 @@
 import React from "react";
 import { HiSaveAs } from "react-icons/hi";
 const Modal = dynamic(() => import("./dialog").then((mod) => mod.Modal));
-import Button from "../button/Button";
+import { Button } from "../button";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { FiTrash2 } from "react-icons/fi";
 import { cn } from "@/lib/utils";
@@ -67,9 +67,7 @@ const ModalBody = () => {
           className="col-span-5 rounded-sm border p-3 outline-none xs:col-span-4"
           placeholder="Bantama search"
         />
-        <Button color="primary" className="col-span-1 h-full">
-          Save
-        </Button>
+        <Button className="col-span-1">Save</Button>
       </div>
       <div className="mt-8 border-t pt-4">
         <h3 className="font-medium">Your saved searches</h3>
@@ -97,10 +95,7 @@ const ModalBody = () => {
 
 const ModalFooter = () => {
   return (
-    <Button
-      variant="ghost"
-      className="mb-5 font-medium text-neutral-800 underline"
-    >
+    <Button variant="ghost" className="mb-5 text-neutral-800 underline">
       View All
     </Button>
   );

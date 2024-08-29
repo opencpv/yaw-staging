@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import React from "react";
 import AdditionalInfo from "./AdditionalInfo";
@@ -26,7 +26,6 @@ const AdditionalInfoMobile = ({ listing }: Props) => {
       />
 
       <Button
-        color="primary"
         className="fixed bottom-5 left-[50%] z-10 mx-auto min-w-[90%] translate-x-[-50%] sm:min-w-[60%] md:hidden"
         onClick={onOpen}
       >

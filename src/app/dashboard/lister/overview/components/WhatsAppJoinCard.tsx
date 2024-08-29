@@ -1,4 +1,4 @@
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import React from "react";
@@ -47,7 +47,7 @@ const WhatsAppJoinCard = (props: Props) => {
         </div>
       </div>
       <div className="flex min-h-[5rem] items-end rounded-b-xl bg-white px-14 py-2">
-        <Button className="w-full max-w-full gap-3 rounded-3xl bg-[#00A651] text-base text-white">
+        <Button size={"full"} className="bg-[#00A651] text-white">
           <FaWhatsapp />
           Join Now
         </Button>

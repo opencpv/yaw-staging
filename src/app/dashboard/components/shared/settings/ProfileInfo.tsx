@@ -10,7 +10,7 @@ import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure"
 import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
 import { E164Number } from "libphonenumber-js/core";
 import { useRouter } from "next/navigation";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { createClient } from "@/lib/utils/supabase/auth/client";
 import { RiPhoneFill, RiTwitterXFill, RiWhatsappFill } from "react-icons/ri";
 import { CheckboxNoFormik as Checkbox } from "@/components/__shared/ui/form/Checkbox";
@@ -325,7 +325,7 @@ const ProfileInfo = () => {
                       </div>
                       <>
                         <Button
-                          color="accent"
+                          variant="accent"
                           type="submit"
                           className="mt-8"
                           isLoading={isSubmitting}

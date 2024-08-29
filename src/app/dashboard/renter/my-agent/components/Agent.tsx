@@ -1,6 +1,6 @@
 import Image from "next/image";
 import CaAgentTickGreenBg from "./icons/CaAgentTickGreenBg";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
 import { cn } from "@/lib/utils";
 import {
@@ -101,7 +101,7 @@ export default function Agent({
         />
         {isActive ? (
           <Button
-            className="bg-shade-50 px-4 text-shade-200"
+            className="bg-shade-50 text-shade-200"
             onClick={() => {
               handleEdit();
               setActiveSlide(BeMyAgentViews.length - 1);

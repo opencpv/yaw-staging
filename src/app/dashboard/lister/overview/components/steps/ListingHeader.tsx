@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from "react";
 import Progress from "@/app/dashboard/components/shared/ui/Progress";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import {
   ListingDefaultValues,
   ListingStepsStore,
@@ -106,29 +106,31 @@ const ListingHeader = () => {
         <span className="flex items-center gap-3">
           {/* For very small screens */}
           <Button
-            isIconOnly
+            size={"icon"}
             color="white"
-            greenHover
             radius="full"
-            className="rounded-full border px-3 py-3 xsm:hidden"
+            variant={"outline"}
+            className="border xsm:hidden"
             onClick={handleClearData}
           >
             <LiaTimesSolid />
           </Button>
           <Button
             color="white"
-            greenHover
             radius="full"
-            className="border px-5 max-xsm:hidden"
+            size={"sm"}
+            variant={"outline"}
+            className="border max-xsm:hidden"
             onClick={handleClearData}
           >
             {lastSlide ? "Exit" : "Cancel"}
           </Button>
           <Button
             color="white"
-            greenHover
             radius="full"
-            className={cn("border px-5 xxs:whitespace-nowrap", {
+            size={"sm"}
+            variant={"outline"}
+            className={cn("border xxs:whitespace-nowrap", {
               hidden: lastSlide,
             })}
             isLoading={isPending}

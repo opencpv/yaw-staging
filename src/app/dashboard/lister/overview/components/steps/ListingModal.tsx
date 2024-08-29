@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { cn } from "@/lib/utils";
 import * as Yup from "yup";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import Button from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
 import { Form, Formik } from "formik";
 import { useLocalStorage } from "@uidotdev/usehooks";
@@ -176,14 +176,13 @@ const ListingModal = (props: Props) => {
           {props.children}
         </Link>
       ) : (
-        <Button
+        <LinkButton
           href="/dashboard/lister/overview/create"
-          color="primary"
           className={cn(props.className)}
           onClick={handleCreate}
         >
           Add Property
-        </Button>
+        </LinkButton>
       )}
 
       <Formik

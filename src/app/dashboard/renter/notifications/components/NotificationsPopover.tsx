@@ -6,7 +6,7 @@ import { useNotificationStore } from "@/store/dashboard/notificationStore";
 import useNotifications from "@/app/dashboard/renter/notifications/useNotifications";
 import NtfSkeleton from "@/app/dashboard/renter/notifications/components/NtfSkeleton";
 import { useRouter } from "next/navigation";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { GoBellFill } from "react-icons/go";
 import dynamic from "next/dynamic";
 import {
@@ -59,7 +59,10 @@ const NotificationsPopover = () => {
 
         {unreadNotifications && (
           <div className="mb-2 flex w-full justify-end">
-            <Button className="bg-unset focus:!unset active:unset flex items-center justify-end gap-2 p-2 text-black hover:bg-[#11605E12]">
+            <Button
+              size={"sm"}
+              className="bg-unset focus:!unset active:unset justify-end text-black hover:bg-[#11605E12]"
+            >
               <div className="flex gap-0">
                 <CaMarkAsRead />
               </div>

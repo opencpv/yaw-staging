@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { IoChevronDown } from "react-icons/io5";
-import Button from "../button/Button";
+import { Button } from "../button";
 import {
   Command,
   CommandEmpty,

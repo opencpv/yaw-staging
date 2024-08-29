@@ -8,7 +8,7 @@ const Modal = dynamic(() =>
 
 type Props = {
   isOpen: boolean;
-  onOpenChange: () => void;
+  onOpenChange: (open: boolean) => void;
   image: Image;
 };
 

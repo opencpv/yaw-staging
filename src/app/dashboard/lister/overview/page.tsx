@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
-import Button from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import { FaRegBell, FaRegHourglass } from "react-icons/fa";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import CallOut from "@/components/__shared/ui/callout";
@@ -48,14 +48,9 @@ const ListerOverviewPage = () => {
         <section className="flex flex-col gap-3">
           <div className="flex flex-wrap items-center gap-x-10 gap-y-3">
             <h2>Hi, {user?.firstname}.</h2>
-            <Button
-              variant="outline"
-              color="primary"
-              href="/dashboard/lister/settings"
-              className="px-5"
-            >
+            <LinkButton variant="outline" href="/dashboard/lister/settings">
               Edit Profile <MdOutlineEdit />
-            </Button>
+            </LinkButton>
           </div>
           <CallOut content="Your peofile is incomplete. Click on the edit profile to complete the process" />
           <ListingModal className="mt-5" />

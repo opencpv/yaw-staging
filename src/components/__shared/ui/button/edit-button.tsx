@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "./Button";
+import { Button } from "./";
 import { cn } from "@/lib/utils";
 import { MdOutlineEdit } from "react-icons/md";
 
@@ -11,9 +11,9 @@ type Props = {
 const EditButton = ({ onOpen, className }: Props) => {
   return (
     <Button
-      isIconOnly
+      size={"icon"}
       title="Edit"
-      className={cn("", className)}
+      className={cn(className)}
       onClick={onOpen}
     >
       <MdOutlineEdit size={24} className="text-neutral-700" />

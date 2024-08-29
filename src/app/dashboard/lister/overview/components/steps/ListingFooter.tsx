@@ -5,7 +5,7 @@ import {
   ListingDefaultValues,
   ListingStepsStore,
 } from "@/store/dashboard/ListingStepsStore";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { useFormikContext } from "formik";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
@@ -84,7 +84,6 @@ const ListingFooter = () => {
         )}
       >
         <Button
-          color="primary"
           variant="outline"
           className={cn(
             "col-span-1 rounded-lg font-semibold focus:outline-none xs:text-base sm:h-[58px] sm:min-w-[16rem]",
@@ -93,6 +92,7 @@ const ListingFooter = () => {
             },
           )}
           onClick={handleBack}
+          radius={"lg"}
         >
           Back
         </Button>
@@ -108,6 +108,7 @@ const ListingFooter = () => {
             handleForward();
           }}
           type={lastSlide ? "button" : "submit"}
+          radius={"lg"}
           isLoading={isSubmitting}
         >
           {lastSlide

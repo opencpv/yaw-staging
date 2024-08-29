@@ -24,7 +24,10 @@ const Landing = (props: Props) => {
       <div className="space-y-1">
         <h1 className="text-2xl capitalize text-neutral-600 min-[300px]:text-3xl">
           {title}{" "}
-          <span className="tracking-in-contract text-accent-100">
+          <span
+            className="tracking-in-contract text-accent-100"
+            style={{ animationDelay: "1s" }}
+          >
             {titleHighlight}
           </span>
         </h1>

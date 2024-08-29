@@ -16,7 +16,7 @@ const SubscribeForm = ({ onSubmit }: Props) => {
       }}
     >
       <input
-        className="h-full min-h-[70px] w-full rounded-full bg-shade-50 px-10 text-xl text-neutral-800 xs:text-2xl md:col-span-5 md:rounded-r-none"
+        className="h-full min-h-[70px] w-full rounded-full bg-shade-50 px-10 text-xl text-neutral-800 focus-visible:outline-accent xs:text-2xl md:col-span-5 md:rounded-r-none"
         placeholder="Email or WhatsApp"
         required
       />

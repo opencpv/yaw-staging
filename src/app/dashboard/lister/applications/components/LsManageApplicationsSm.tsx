@@ -9,7 +9,7 @@ import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-stat
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
 import { TableSm } from "@/components/__shared/ui/table";
 import { IoArchiveOutline } from "react-icons/io5";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 
 type Props = {};
 
@@ -44,7 +44,7 @@ const LsManageApplicationsSm = (props: Props) => {
         {isLoading && loadMore ? "Fetching..." : null}
       </div>
       <div className="my-14 ml-auto grid place-items-end">
-        <Button variant="ghost" className="" title="View all applications">
+        <Button variant="ghost" title="View all applications">
           Archive <IoArchiveOutline />
         </Button>
       </div>

@@ -4,7 +4,7 @@ import {
   BTFTKDefaultValues,
   BTFTKStepsStore,
 } from "@/store/dashboard/BTFTKStepsStore";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { useFormikContext } from "formik";
 import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { useLocalStorage } from "@uidotdev/usehooks";
@@ -80,7 +80,6 @@ const BTFTKFooter = () => {
         )}
       >
         <Button
-          color="primary"
           variant="outline"
           className={cn(
             "col-span-1 rounded-lg font-semibold focus:outline-none xs:text-base sm:h-[58px] sm:min-w-[16rem]",
@@ -93,7 +92,6 @@ const BTFTKFooter = () => {
           Back
         </Button>
         <Button
-          color="primary"
           className={cn(
             "col-span-1 rounded-lg font-semibold focus:outline-none xs:text-base sm:h-[58px] sm:min-w-[16rem]",
           )}

@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { MdOutlineChat } from "react-icons/md";
-import Button from "../button/Button";
+import { Button } from "../button";
 import { handleFavoriteDialogSave } from "@/components/actions";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useLocalStorage, useSessionStorage } from "@uidotdev/usehooks";
@@ -62,9 +62,10 @@ const ModalHeader = ({ onClose }: { onClose: () => void }) => {
       <span className="flex flex-wrap items-center justify-between gap-5">
         <MdOutlineChat className="shrink-0 text-xl text-primary-200 md:text-4xl" />
         <Button
-          color="black"
           variant="outline"
-          className="h-6 w-fit rounded-3xl px-4 text-sm hover:bg-[#E7F8F2]"
+          size={"sm"}
+          radius={"full"}
+          className="border-black text-sm hover:bg-[#E7F8F2]"
           isLoading={isLoading}
           onClick={async (e) => {
             setIsLoading(true);

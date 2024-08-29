@@ -1,10 +1,12 @@
-import Button from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { FaPlus } from "react-icons/fa6";
 
-const ListingModal = dynamic(() => import("../../overview/components/steps/ListingModal")); 
+const ListingModal = dynamic(
+  () => import("../../overview/components/steps/ListingModal"),
+);
 
 const EmptyState = () => {
   const { images } = useAssets();
@@ -18,14 +20,12 @@ const EmptyState = () => {
           width={250}
           className="w-[70px] sm:w-[100px]"
         />
-        <p className="font-semibold sm:text-2xl">
-          No listings available
-        </p>
+        <p className="font-semibold sm:text-2xl">No listings available</p>
         <ListingModal>
-          <Button href={`/dashboard/lister/overview/create`} color="primary">
+          <LinkButton href={`/dashboard/lister/overview/create`}>
             <FaPlus />
             Create New Listing
-          </Button>
+          </LinkButton>
         </ListingModal>
       </div>
     </div>

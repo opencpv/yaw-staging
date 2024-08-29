@@ -19,7 +19,7 @@ const ReportFraud = ({ className, onClick }: Props) => {
         onClick?.();
         setReportIssueHref(href);
       }}
-      className={cn("text-2xl", className)}
+      className={cn("text-2xl sm:text-[1.763rem]", className)}
     >
       Report Fraud
     </Link>

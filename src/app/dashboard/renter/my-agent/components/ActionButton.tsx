@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { getConfirmationPage } from "../actions";
 import { formatDateTime } from "@/lib/utils/stringManipulation";
 import { cn } from "@/lib/utils";
@@ -86,8 +86,10 @@ export default function ActionButton(props: Props) {
       ) : (
         <Button
           className={cn(
-            `h-10 w-full gap-2 rounded-2xl bg-secondary-500 font-semibold text-shade-200 hover:bg-primary-200 hover:text-white lg:h-14`,
+            `bg-secondary-500 text-shade-200 hover:bg-primary-200 hover:text-white`,
           )}
+          size={"full"}
+          radius={"lg"}
           title={props.title}
           isLoading={loading}
           disabled={

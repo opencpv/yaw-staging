@@ -2,8 +2,7 @@
 // import PhoneNumberInputv2 from "@/components/__shared/ui/form/PhoneInputv2";
 import { Formik } from "formik";
 import { ChangeEvent, useEffect, useState } from "react";
-// import { Button } from "@nextui-org/react";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { useRouter } from "next/navigation";
 import useCartStore from "@/store/cart/useCartStore";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
@@ -242,8 +241,9 @@ const BillingForm = ({ amount }: Props) => {
         disabled={paid}
         // size="lg"
         // color={paid ? "success" : "default"}
-        className="w-full rounded-md py-4 font-semibold text-white"
+        className="text-white"
         onClick={async () => await handlePayment()}
+        size={"full"}
       >
         {paid ? "Payment Verified" : " Proceed to Payment"}
       </Button>

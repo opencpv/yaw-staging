@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import React from "react";
 import { FaChevronLeft } from "react-icons/fa";
 import { useFetchCriteriaMatches } from "../../services";
@@ -39,14 +39,14 @@ const CriterionMatches = ({ params }: Props) => {
 
   return (
     <div className="space-y-20">
-      <Button
+      <LinkButton
         href="/dashboard/renter/be-the-first-to-know/manage-criteria"
         variant="ghost"
-        className="gap-3 font-semibold"
+        className="font-semibold"
       >
         <FaChevronLeft size={18} />
         Go Back
-      </Button>
+      </LinkButton>
 
       {isLoading && (
         <section className="space-y-5">

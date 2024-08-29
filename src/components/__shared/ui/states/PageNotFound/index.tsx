@@ -2,7 +2,7 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import Button from "../../button/Button";
+import { Button } from "../../button";
 
 type Props = {
   className?: string;
@@ -27,11 +27,7 @@ function PageNotFound({ className }: Props) {
               There seem to be an error accessing this page
             </p>
           </div>
-          <Button
-            color="accent"
-            onClick={() => router.back()}
-            className="w-fit"
-          >
+          <Button variant="accent" onClick={() => router.back()}>
             Go Back
           </Button>
         </div>

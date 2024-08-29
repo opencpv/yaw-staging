@@ -5,7 +5,7 @@ import {
   BeMyAgentDefaultValues,
   BeMyAgentStepsStore,
 } from "@/store/dashboard/BeMyAgentStepsStore";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { useFormikContext } from "formik";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
@@ -88,7 +88,6 @@ const BeMyAgentFooter = () => {
         )}
       >
         <Button
-          color="primary"
           variant="outline"
           className={cn(
             "col-span-1 rounded-lg font-semibold focus:outline-none xs:text-base sm:h-[58px] sm:min-w-[16rem]",
@@ -101,7 +100,6 @@ const BeMyAgentFooter = () => {
           Back
         </Button>
         <Button
-          color="primary"
           className={cn(
             "col-span-1 whitespace-nowrap rounded-lg font-semibold focus:outline-none xs:text-base sm:h-[58px] sm:min-w-[16rem]",
             {

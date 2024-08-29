@@ -1,7 +1,7 @@
 import Image from "next/image";
 import CaBlockingPadlock from "./icons/CaBlockingPadlock";
 import CaBlockingBlock from "./icons/CaBlockingBlock";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import CallOut from "@/components/__shared/ui/callout";
@@ -55,11 +55,7 @@ export default function Blocking() {
             {" "}
             <h4 className="text-lg">Your Blocked List</h4>
             {blockedUsers && blockedUsers?.length > 0 && (
-              <Button
-                isLoading={isPending}
-                className="rounded-lg bg-primary px-5 py-2.5 text-white"
-                onClick={onOpen}
-              >
+              <Button isLoading={isPending} onClick={onOpen}>
                 Unblock all
                 <CaBlockingPadlock />
               </Button>
@@ -138,7 +134,7 @@ const BlockCard = (props: { data: BlockedUserType }) => {
         <div>
           <Button
             isLoading={isPending}
-            className="rounded-lg bg-secondary-400 px-5 py-2.5 text-[13px] text-white"
+            className="bg-secondary-400 text-white"
             onClick={onOpen}
           >
             Unblock

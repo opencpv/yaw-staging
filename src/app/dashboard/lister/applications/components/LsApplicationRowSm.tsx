@@ -1,22 +1,12 @@
-import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import React from "react";
-import { FiTrash2 } from "react-icons/fi";
-import Button from "@/components/__shared/ui/button/Button";
-import { formatPrice } from "@/lib/utils/numberManipulation";
-import { formatDate, formatTime } from "@/lib/utils/stringManipulation";
+import { formatDate } from "@/lib/utils/stringManipulation";
 import ApplicationStatus from "./LsApplicationStatus";
-import { AiOutlineEye } from "react-icons/ai";
 import { useDaysDifference } from "@/lib/custom-hooks/useDaysDifference";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { ListerApplicationsInterface } from "../../../../../../interfaces";
-import {
-  TableBody,
-  TableBodyRow,
-  TableBodySm,
-  TableRowSm,
-} from "@/components/__shared/ui/table";
+import { TableBodySm, TableRowSm } from "@/components/__shared/ui/table";
 import TbPropertyImageSm from "@/app/dashboard/components/shared/ui/TbPropertyImageSm";
 // import PaymentStructure from "../../../components/shared/PaymentStructure";
 import ViewButton from "@/components/__shared/ui/button/ViewButton";

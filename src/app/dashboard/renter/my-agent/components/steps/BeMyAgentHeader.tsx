@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from "react";
 import Progress from "@/app/dashboard/components/shared/ui/Progress";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import {
   BeMyAgentDefaultValues,
   BeMyAgentStepsStore,
@@ -108,28 +108,27 @@ const BeMyAgentHeader = () => {
         <span className="flex items-center gap-3">
           {/* For very small screens */}
           <Button
-            isIconOnly
+            size={"icon"}
             color="white"
-            greenHover
             radius="full"
-            className="rounded-full border px-3 py-3 xsm:hidden"
+            className="border xsm:hidden"
             onClick={handleCancel}
           >
             <LiaTimesSolid />
           </Button>
           <Button
             color="white"
-            greenHover
             radius="full"
-            className="border px-5 max-xsm:hidden"
+            variant={"outline"}
+            className="border max-xsm:hidden"
             onClick={handleCancel}
           >
             {lastSlide ? "Exit" : "Cancel"}
           </Button>
           <Button
             color="white"
-            greenHover
             radius="full"
+            variant={"outline"}
             className={cn("border px-5", { hidden: lastSlide })}
             isLoading={isPending}
             onClick={handleSaveAndExit}

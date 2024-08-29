@@ -1,7 +1,7 @@
 "use client";
 import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
 import styles from "./index.module.css";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import * as Dialog from "@radix-ui/react-dialog";
 import { useEffect, useState } from "react";
 import { Form, Formik } from "formik";
@@ -94,9 +94,10 @@ function CompleteYourLogin({ open }: Props) {
                           <RoleExplainer />
                           <div className="flex w-full justify-end">
                             <Button
+                              variant={"accent"}
                               isLoading={loading}
                               type="submit"
-                              className="flex h-[52px] w-full max-w-[151px] items-center justify-center rounded-lg bg-accent-50 px-8 py-4 font-semibold text-white"
+                              radius={"lg"}
                             >
                               Continue
                             </Button>

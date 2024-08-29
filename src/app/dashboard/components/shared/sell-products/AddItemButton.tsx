@@ -1,4 +1,4 @@
-import Button from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import { cn } from "@/lib/utils";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import React from "react";
@@ -29,19 +29,17 @@ const AddItemButton = (props: Props) => {
 
   return (
     <>
-      <Button
+      <LinkButton
         href={`/dashboard/${currentRole}/sell-products/add-new-product`}
-        color="primary"
         className={`${
           isButtonInViewport ? "whitespace-nowrap max-xs:hidden" : "hidden"
         }`}
       >
         Add Item
-      </Button>
+      </LinkButton>
       <span ref={floatButtonRef} className="max-xs:hidden">
-        <Button
+        <LinkButton
           href={`/dashboard/${currentRole}/sell-products/add-new-product`}
-          color="primary"
           className={cn(
             "fixed bottom-12 right-5 z-10 h-[4.5rem] rounded-3xl shadow-lg transition-all",
             {
@@ -50,17 +48,16 @@ const AddItemButton = (props: Props) => {
           )}
         >
           <FaPlus size={20} />
-        </Button>
+        </LinkButton>
       </span>
-      <Button
+      <LinkButton
         href={`/dashboard/${currentRole}/sell-products/add-new-product`}
-        color="primary"
         className={cn(
           "fixed bottom-12 right-5 z-10 h-[4.5rem] rounded-3xl shadow-lg transition-all xs:hidden",
         )}
       >
         <FaPlus size={20} />
-      </Button>
+      </LinkButton>
     </>
   );
 };

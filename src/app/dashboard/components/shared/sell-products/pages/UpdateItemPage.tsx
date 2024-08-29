@@ -8,7 +8,7 @@ import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
 import CustomTextAreaInput from "@/components/__shared/ui/form/CustomTextAreaInput";
 import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { useFetchItemCategories } from "@/app/moving-sale/services";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import Loader from "@/components/__shared/ui/loader";
@@ -378,7 +378,6 @@ const UpdateItemPage = () => {
                     <div className="mt-auto flex justify-end">
                       <Button
                         type="submit"
-                        color="primary"
                         className="mt-8"
                         isLoading={loading}
                       >

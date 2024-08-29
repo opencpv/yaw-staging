@@ -10,7 +10,7 @@ import Rate from "./Rate";
 import { useRatingsModalStore } from "@/store/modal/useRatingsModalStore";
 import useRatingsStore from "../useRatingsStore";
 
-import Button from "../../button/Button";
+import { Button } from "../../button";
 
 function RatingsFormForm() {
   const {
@@ -35,7 +35,7 @@ function RatingsFormForm() {
 
   return (
     <Root className="flex h-[726px] min-h-[726px] flex-col justify-between gap-4 px-0 py-2 lg:px-5">
-      <div className="flex h-full flex-col gap-4 ">
+      <div className="flex h-full flex-col gap-4">
         <h3 className="text-base font-bold text-shade-300 2xl:text-2xl">
           {/* EC: Good, however you may want to use <h5> since you are using "text-base 2xl:text-2xl"
            *  e.g. <h5 className="2xl:text-2xl">, which is by default text-base
@@ -45,7 +45,7 @@ function RatingsFormForm() {
           Write a review
         </h3>
 
-        <div className="flex  items-center gap-4">
+        <div className="flex items-center gap-4">
           <div className="relative aspect-[120/100] w-full max-w-[120px] overflow-hidden rounded-lg">
             <Image
               src={currentProperty?.images?.[0] ?? ""}
@@ -75,8 +75,8 @@ function RatingsFormForm() {
           </div>
         </div>
 
-        <div className="my-8 mb-16 flex h-full w-full flex-col justify-center  gap-8">
-          <div className=" grid w-full grid-cols-5 items-center gap-2  pl-1 sm:gap-5">
+        <div className="my-8 mb-16 flex h-full w-full flex-col justify-center gap-8">
+          <div className="grid w-full grid-cols-5 items-center gap-2 pl-1 sm:gap-5">
             <Progress number={1} />
             <ProgressLine />
             <Progress number={2} />

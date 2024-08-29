@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import * as Dialog from "@radix-ui/react-dialog";
 import { useEffect, useState } from "react";
 import { IoMdInformationCircleOutline } from "react-icons/io";
@@ -84,7 +84,7 @@ function HowToSwitch({ open }: Props) {
               <div className="mt-8 flex w-full justify-center">
                 <Button
                   isLoading={loading}
-                  className="flex h-[52px] w-full max-w-[151px] items-center justify-center rounded-lg bg-primary font-semibold text-white"
+                  radius={"lg"}
                   role="button"
                   onClick={() => {
                     setOpen(false);

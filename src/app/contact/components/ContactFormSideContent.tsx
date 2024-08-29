@@ -24,7 +24,6 @@ type Props = {
 };
 
 const ContactFormSideContent = (props: Props) => {
-  //const activeTab = useContactStore((state) => state.activeKey);
   const { images } = useAssets();
   const { data: listings } = useFetchFeaturedListings({ limit: 3 });
   const { user } = useAppStore();

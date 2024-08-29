@@ -1,4 +1,4 @@
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import CaReviewReply from "./icons/CaReviewReply";
 import { MdOutlineModeEdit } from "react-icons/md";
 
@@ -12,7 +12,7 @@ export default function ReviewButton({ variant, onClick }: Props) {
     <div>
       {variant == "respond" && (
         <Button
-          className="flex h-[52px] items-center justify-center rounded-xl border-[1px] border-[#99B3B2] bg-white px-10 py-[0.94rem] font-semibold text-[#99B3B2]"
+          className="border-[#99B3B2] bg-white text-[#99B3B2]"
           // onPress={onClick}
         >
           Respond to this
@@ -20,7 +20,7 @@ export default function ReviewButton({ variant, onClick }: Props) {
       )}
       {variant == "edit" && (
         <Button
-          className="flex h-[52px] items-center justify-center rounded-xl border-[1px] border-[#99B3B2] bg-white px-10 py-[0.94rem] font-semibold text-[#99B3B2]"
+          className="border-[#99B3B2] bg-white text-[#99B3B2]"
           // onPress={onClick}
         >
           Edit Review
@@ -30,7 +30,7 @@ export default function ReviewButton({ variant, onClick }: Props) {
 
       {variant == "update" && (
         <Button
-          className="flex h-[52px] items-center justify-center rounded-xl border-[1px] border-[#99B3B2] bg-white px-10 py-[0.94rem] font-semibold text-[#99B3B2]"
+          className="border-[#99B3B2] bg-white text-[#99B3B2]"
           // onPress={onClick}
         >
           Update
@@ -40,7 +40,7 @@ export default function ReviewButton({ variant, onClick }: Props) {
 
       {variant == "reply" && (
         <Button
-          className="flex h-[52px] items-center justify-center rounded-xl border-[1px] border-[#99B3B2] bg-white px-10 py-[0.94rem] font-semibold text-[#99B3B2]"
+          className="border-[#99B3B2] bg-white text-[#99B3B2]"
           // onPress={onClick}
         >
           Reply

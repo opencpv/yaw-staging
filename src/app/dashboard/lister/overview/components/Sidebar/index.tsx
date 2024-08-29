@@ -1,5 +1,5 @@
 import { Tabs } from "@/components/__shared/ui/tabs";
-import Button from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import React from "react";
 import { cn } from "@/lib/utils";
 import PropertyCard from "./PropertyCard";
@@ -101,25 +101,25 @@ const Sidebar = (props: Props) => {
         )}
       </div>
       {activeTab === "Properties" ? (
-        <Button
+        <LinkButton
           href="/dashboard/lister/properties"
-          padding="sm"
+          size="sm"
           radius="full"
-          className="w-fit self-end bg-shade-50 text-neutral-800"
+          className="self-end bg-shade-50 text-neutral-800"
           style={{ display: listings?.length === 0 ? "none" : "flex" }}
         >
           See all
-        </Button>
+        </LinkButton>
       ) : (
-        <Button
+        <LinkButton
           href="/dashboard/lister/sell-products"
-          padding="sm"
+          size="sm"
           radius="full"
-          className="w-fit self-end bg-shade-50 text-neutral-800"
+          className="self-end bg-shade-50 text-neutral-800"
           style={{ display: items?.length === 0 ? "none" : "flex" }}
         >
           See all
-        </Button>
+        </LinkButton>
       )}
       <div className="mt-10 space-y-4 self-start">
         <h4 className="max-lg:text-xl">Notifications</h4>

@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import Button from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { FaChevronLeft } from "react-icons/fa";
 import dynamic from "next/dynamic";
@@ -17,14 +17,14 @@ const UsernameDisplayBar = ({ userName }: Props) => {
 
   return (
     <div className="sticky top-0 z-40 flex items-center justify-between gap-x-4 rounded-xl bg-primary-400 p-4 text-white">
-      <Button
+      <LinkButton
         variant="ghost"
         href={`/dashboard/${currentRole}/messages`}
-        className="flex lg:hidden"
+        className="lg:hidden"
       >
         <FaChevronLeft className="text-white" />
         {/* <Image src={icons.ArrowIcon} alt="back" className="text-3xl" /> */}
-      </Button>
+      </LinkButton>
       <h2 className="text-xl">{userName}</h2>
       <BlockUserPopOver />
     </div>

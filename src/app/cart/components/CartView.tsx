@@ -6,7 +6,7 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import CaDropdownArrow from "@/components/__shared/ui/icons/CaDropdownArrow";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import { cn } from "@/lib/utils";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { useEffect, useState } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
@@ -110,13 +110,14 @@ const CartView = () => {
   }) => (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
-        <button
-          className="flex items-center gap-2 rounded-full bg-secondary-50 px-4 py-2 focus:outline-accent"
+        <Button
+          className="bg-secondary-50 focus:outline-accent"
+          radius={"full"}
           aria-label="modify item quantity"
         >
           <p className="text-[10px]">{item.quantity}</p>
           <CaDropdownArrow />
-        </button>
+        </Button>
       </DropdownMenu.Trigger>
       <DropdownMenu.Portal>
         <DropdownMenu.Content
@@ -162,7 +163,7 @@ const CartView = () => {
         {!isItemsEmpty && (
           <Button
             variant="ghost"
-            className="mb-8 text-right font-normal text-error underline"
+            className="mb-8 text-right text-error underline"
             onClick={() => {
               clearCart();
             }}
@@ -196,9 +197,9 @@ const CartView = () => {
                 onChange={(e) => setDiscount(e.target.value)}
               />
               <Button
-                // variant="bordered"
+                variant={"outline"}
                 isLoading={loading}
-                className="rounded-lg border border-[#AD842A] text-[#AD842A]"
+                className="border-accent-200 text-accent-200"
                 onClick={async () => {
                   setloading(true);
                   try {
@@ -276,7 +277,8 @@ const CartView = () => {
               </p>
             </div>
             <Button
-              className="w-full rounded-lg bg-[#AD842A] font-bold"
+              size={"full"}
+              className="bg-accent-200 font-bold"
               onClick={() => {
                 localStorage.setItem("cart", JSON.stringify(items));
                 router.push("/checkout");

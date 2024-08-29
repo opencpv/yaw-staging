@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../button/Button";
+import { LinkButton } from "../button";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
@@ -48,9 +48,9 @@ const EmptyState = ({
       <h4>{tagLine || "Sorry, there are no results at the moment"}</h4>
       {description && <p className="text-shade-300">{description}</p>}
       {buttonLabel && (
-        <Button href={href} color="primary" className="" onClick={onClick}>
+        <LinkButton href={href} onClick={onClick}>
           {buttonLabel}
-        </Button>
+        </LinkButton>
       )}
     </section>
   );

@@ -9,29 +9,29 @@ import "./styles.css";
 import Image from "next/image";
 import Link from "next/link";
 import { IoIosArrowRoundForward } from "react-icons/io";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 
 // import required modules
 import { Pagination, Autoplay } from "swiper/modules";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import { cn } from "@/lib/utils";
 import PromotionModal from "./PromotionModal";
-// import { useDisclosure } from "@nextui-org/react";
+import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { useRouter } from "next/navigation";
 import { IFRAME_ALLOW } from "@/constants";
 
 const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
-  // const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [promotionalImage, setPromotionalImage] = useState("");
   const router = useRouter();
 
   return (
     <>
-      {/* <PromotionModal
+      <PromotionModal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         image={{ src: promotionalImage, alt: "Promotional image" }}
-      /> */}
+      />
       {promotions.length > 0 && (
         <Swiper
           direction={"vertical"}

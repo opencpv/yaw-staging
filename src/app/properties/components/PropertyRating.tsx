@@ -2,7 +2,7 @@
 import React from "react";
 import style from "../Template.module.css";
 import ReviewComment from "./ReviewComment";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { fadeUp } from "@/lib/animations";
 import { cn } from "@/lib/utils";
 import Rate from "@/components/__shared/ui/Rate";
@@ -20,7 +20,7 @@ const PropertyRating = (props: Props) => {
       <FramerWrapper {...fadeUp} className="space-y-6 rounded-2xl border-2 p-6">
         <div className="flex flex-wrap items-center justify-between gap-5">
           <h4 className={cn(style.detailHeading, "font-bold")}>All Reviews</h4>
-          <Button color="primary">Write a review</Button>
+          <Button>Write a review</Button>
         </div>
         <div className="space-y-1">
           <h5 className="font-medium">Overall Ratings</h5>

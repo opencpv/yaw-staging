@@ -2,7 +2,7 @@
 import React from "react";
 import { Bar, Chart } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale } from "chart.js/auto";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { HiEllipsisVertical } from "react-icons/hi2";
 ChartJS.register(CategoryScale);
 
@@ -78,7 +78,7 @@ const PageVisitAnalytics = (props: Props) => {
         <h3>Page Visit Summary</h3>
         <Button
           variant="ghost"
-          isIconOnly
+          size={"icon"}
           className="max-w-fit text-neutral-500"
         >
           <HiEllipsisVertical className="shrink-0 text-lg" />

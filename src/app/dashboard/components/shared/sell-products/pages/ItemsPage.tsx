@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import DesktopProductCard from "../DesktopProductCard";
 import MobileProductCard from "../MobileProductCard";
-import Button from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import {
   Table,
   TableBody,
@@ -99,13 +99,12 @@ const ItemsPage = () => {
         <section className="mb-6 flex flex-col gap-5">
           <div className="order-2 flex items-center justify-between gap-5 lg:order-1">
             <h2>Items</h2>
-            <Button
+            <LinkButton
               href={`/dashboard/${currentRole}/sell-products/add-new-product`}
-              color="primary"
               className="max-lg:hidden"
             >
               Add Item
-            </Button>
+            </LinkButton>
           </div>
           <CallOut
             title="Important Notice !!"
@@ -207,12 +206,11 @@ const AddItem = () => {
           className="w-[150px] sm:w-[250px]"
         />
         <p className="text-2xl font-semibold text-neutral-600">No item Added</p>
-        <Button
+        <LinkButton
           href={`/dashboard/${currentRole}/sell-products/add-new-product`}
-          color="primary"
         >
           Add New Item
-        </Button>
+        </LinkButton>
       </div>
     </div>
   );

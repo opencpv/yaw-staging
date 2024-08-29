@@ -4,7 +4,7 @@ import { generatePropertyTitle } from "@/lib/enum";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import { getFeatureIcon } from "@/lib/utils/getFeatureIcon";
 import RenterInformation from "./RenterInformation";
-import Button from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import { cookies } from "next/headers";
 import CancelRequestBtn from "./CancelRequestBtn";
 import PropertyImageSlider from "./PropertyImageSlider";
@@ -93,12 +93,18 @@ const MatchDetail = async (props: Props) => {
             previousPath={previousPath || "/dashboard/renter/my-agent/agent"}
           />
           {match?.meeting_id === null && (
-            <Button
-              href={`/dashboard/renter/my-agent/schedule?m=814${match?.id}&t=${props.actionType}&fn=${match?.agent_request?.first_name}&ln=${match?.agent_request?.last_name}&e=${match?.agent_request?.email}&p=${match?.agent_request?.phone}`}
-              color="primary"
+            <LinkButton
+              href={`/dashboard/renter/my-agent/schedule?${new URLSearchParams({
+                m: `814${match?.id}`,
+                t: props.actionType,
+                fn: String(match?.agent_request?.first_name),
+                ln: String(match?.agent_request?.last_name),
+                e: String(match?.agent_request?.email),
+                p: String(match?.agent_request?.phone),
+              })}`}
             >
-              Confirnm Rental Request
-            </Button>
+              Confirm Rental Request
+            </LinkButton>
           )}
         </div>
       </footer>

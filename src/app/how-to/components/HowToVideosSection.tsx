@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { HowTo } from "../../../../interfaces";
 import dynamic from "next/dynamic";
 const LoadingIndicator = dynamic(
@@ -40,7 +40,7 @@ const HowToVideosSection = (props: Props) => {
           </div>
           <div className="flex justify-center pt-14">
             {displayCount < props.content.length && (
-              <Button color="accent" onClick={handleLoadMore}>
+              <Button variant="accent" onClick={handleLoadMore}>
                 Load more
               </Button>
             )}

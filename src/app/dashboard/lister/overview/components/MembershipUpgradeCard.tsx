@@ -1,4 +1,4 @@
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import React from "react";
@@ -19,9 +19,7 @@ const MembershipUpgradeCard = (props: Props) => {
       <div className="relative z-20 space-y-3 px-10 py-28 text-white">
         <h3 className="uppercase">Upgrade to Premium GuaranteeTag</h3>
         <small>Lorem ipsum dolor sit amet consectetur adipisicing elit.</small>
-        <Button color="primary" className="py-2 text-base">
-          Upgrade Now
-        </Button>
+        <Button>Upgrade Now</Button>
       </div>
     </div>
   );

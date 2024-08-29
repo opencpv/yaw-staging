@@ -1,6 +1,6 @@
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
-import Button from "@/components/__shared/ui/button/Button";
+import { LinkButton, Button } from "@/components/__shared/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { IoChevronForwardOutline } from "react-icons/io5";
@@ -63,18 +63,16 @@ const Success = () => {
           posted to the site
         </p>
       </div>
-      <Button
+      <LinkButton
         href={`/dashboard/renter/overview`}
-        className={cn(
-          "h-[58px] rounded-lg bg-[#0B7371] font-semibold focus:outline-none xs:text-base sm:min-w-[22rem]",
-        )}
+        className={cn("bg-[#0B7371] focus:outline-none sm:min-w-[22rem]")}
         onClick={() => {
           handleClose();
           router.replace("/dashboard/renter/overview");
         }}
       >
         Go to my Dashboard
-      </Button>
+      </LinkButton>
       <Link
         href="/dashboard/renter/be-the-first-to-know/manage-criteria"
         className="text-[#0B7371]"
@@ -98,7 +96,8 @@ const Success = () => {
             </p>
             <Button
               color="white"
-              className="w-fit border border-[#0B7371] text-[#0B7371]"
+              variant={"outline"}
+              className="w-fit border-[#0B7371] text-[#0B7371]"
             >
               Explore Now
               <IoChevronForwardOutline />

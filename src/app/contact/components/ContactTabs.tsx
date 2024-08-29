@@ -11,7 +11,7 @@ import { BiRightArrowCircle } from "react-icons/bi";
 const ContactTabs = () => {
   const router = useRouter();
   const pathname = usePathname();
-  const [active, setActive] = useState<ContactTabActiveKey>(tag ?? "general");
+  const [active, setActive] = useState<ContactTabActiveKey>(tag || "general");
   const [isEndOfContainer, setIsEndOfContainer] = useState<boolean>(false);
 
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);

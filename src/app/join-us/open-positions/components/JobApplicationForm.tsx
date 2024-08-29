@@ -18,7 +18,7 @@ import { toast } from "react-hot-toast";
 import axios from "axios";
 import routes from "@/lib/utils/route";
 import { useRouter, useSearchParams } from "next/navigation";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import JoinUsButtons from "../../components/JoinUsButtons";
 import { BsInfoCircle } from "react-icons/bs";
 import emailjs from "@emailjs/browser";
@@ -231,9 +231,9 @@ function JobApplicationForm({ variant, position }: Props) {
             </div>
             <div className="mt-12 flex justify-center pb-10 lg:pb-16">
               <Button
-                color="accent"
+                variant="accent"
                 isLoading={loading}
-                className="w-full"
+                size={"full"}
                 type="submit"
                 onClick={() => {
                   const errors: errorProp = validate();

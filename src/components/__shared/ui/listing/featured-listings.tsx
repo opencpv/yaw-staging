@@ -5,7 +5,7 @@ import "swiper/css/effect-coverflow";
 import React from "react";
 import SkeletonListing from "../skeleton/skeleton-listing";
 import FetchingStates from "../data_fetching/fetching-states";
-import Button from "../button/Button";
+import { LinkButton } from "../button";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow } from "swiper/modules";
 import { useFetchFeaturedListings } from "@/app/properties/services";
@@ -50,15 +50,15 @@ const FeaturedListings = ({ className, showAllButton }: Props) => {
         ref={ref as unknown as React.LegacyRef<HTMLDivElement>}
       >
         <h2>Featured Listings</h2>
-        <Button
+        <LinkButton
           href="/properties"
-          variant="ghost"
+          variant="link"
           className={`text-sm text-neutral-800 ${
             showAllButton ? "block" : "hidden"
           } ${isLoading && "hidden"}`}
         >
           Show all
-        </Button>
+        </LinkButton>
       </div>
       <FetchingStates
         data={listings}
