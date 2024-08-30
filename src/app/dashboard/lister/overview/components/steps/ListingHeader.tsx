@@ -13,6 +13,7 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import { LiaTimesSolid } from "react-icons/lia";
 import { cn } from "@/lib/utils";
 import { getFormValues } from "../../utils";
+import HeaderButtons from "@/components/__shared/ui/modals/steps/HeaderButtons";
 
 const ListingHeader = () => {
   const { user } = useAppStore();
@@ -103,42 +104,12 @@ const ListingHeader = () => {
     <section className="flex flex-col gap-4">
       <div className="flex items-center justify-between gap-5">
         <h4 className="w-fit">Create Listing</h4>
-        <span className="flex items-center gap-3">
-          {/* For very small screens */}
-          <Button
-            size={"icon"}
-            color="white"
-            radius="full"
-            variant={"outline"}
-            className="border xsm:hidden"
-            onClick={handleClearData}
-          >
-            <LiaTimesSolid />
-          </Button>
-          <Button
-            color="white"
-            radius="full"
-            size={"sm"}
-            variant={"outline"}
-            className="border max-xsm:hidden"
-            onClick={handleClearData}
-          >
-            {lastSlide ? "Exit" : "Cancel"}
-          </Button>
-          <Button
-            color="white"
-            radius="full"
-            size={"sm"}
-            variant={"outline"}
-            className={cn("border xxs:whitespace-nowrap", {
-              hidden: lastSlide,
-            })}
-            isLoading={isPending}
-            onClick={handleSaveAndExit}
-          >
-            Save & Exit
-          </Button>
-        </span>
+        <HeaderButtons
+          onSaveAndExit={handleSaveAndExit}
+          onCancel={handleClearData}
+          lastSlide={lastSlide}
+          isPending={isPending}
+        />
       </div>
 
       <div className="mt-0 w-full">

@@ -2,7 +2,7 @@
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { useState } from "react";
-import CustomRadioInput from "@/components/__shared/ui/form/CustomRadioInput";
+import { RadioInput } from "@/components/__shared/ui/form/radio-input";
 import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
 import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
 import CustomTextAreaInput from "@/components/__shared/ui/form/CustomTextAreaInput";
@@ -218,7 +218,7 @@ const AddItemPage = () => {
                     { name: "used", value: "Used" },
                   ]}
                 />
-                <CustomRadioInput
+                <RadioInput
                   options={["yes", "no"]}
                   label="Negotiable"
                   name="term"

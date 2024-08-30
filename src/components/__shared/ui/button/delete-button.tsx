@@ -16,7 +16,7 @@ type Props = {
   handleDestruction: () => void;
   loading: boolean;
   label?: string;
-  variant?: "background" | "ghost";
+  variant?: "default" | "ghost";
 };
 
 const DeleteButton = ({
@@ -25,7 +25,7 @@ const DeleteButton = ({
   label,
   handleDestruction,
   classNames,
-  variant = "ghost",
+  variant = "default",
 }: Props) => {
   const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
 
@@ -44,15 +44,15 @@ const DeleteButton = ({
         title="Delete"
         className={cn(
           {
-            "bg-secondary-50 p-4": variant === "background",
+            "bg-secondary-50 p-4": variant === "default",
           },
           className,
         )}
         onClick={onOpen}
       >
         <FiTrash2
-          size={variant === "background" ? 16 : 24}
-          className={cn("text-neutral-700", classNames?.icon)}
+          size={variant === "default" ? 16 : 24}
+          className={cn("text-error", classNames?.icon)}
         />
       </Button>
     </>

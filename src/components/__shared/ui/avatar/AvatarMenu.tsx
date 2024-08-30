@@ -121,7 +121,7 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
               </Link>
             ) : (
               <Link
-                href={`/dashboard/${currentRole}/overview`}
+                href={`/dashboard/${currentRole.toLowerCase()}/overview`}
                 className="flex items-center gap-2 pb-2.5 pt-4"
               >
                 <MdOutlineDashboard size={20} />
@@ -132,7 +132,7 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
           {/* Settings */}
           <li className="deep-green-hover pl-8 pr-4">
             <Link
-              href={`/dashboard/${currentRole}/settings`}
+              href={`/dashboard/${currentRole.toLowerCase()}/settings`}
               className="flex items-center gap-2 pb-4 pt-2.5"
             >
               <FaRegUser size={20} />

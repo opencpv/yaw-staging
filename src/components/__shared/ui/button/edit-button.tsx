@@ -4,19 +4,28 @@ import { cn } from "@/lib/utils";
 import { MdOutlineEdit } from "react-icons/md";
 
 type Props = {
-  onOpen: () => void;
+  onClick?: () => void;
   className?: string;
+  variant?: "default" | "ghost";
 };
 
-const EditButton = ({ onOpen, className }: Props) => {
+const EditButton = ({ onClick, variant = "default", className }: Props) => {
   return (
     <Button
       size={"icon"}
       title="Edit"
-      className={cn(className)}
-      onClick={onOpen}
+      className={cn(
+        {
+          "bg-secondary-50 p-4": variant === "default",
+        },
+        className,
+      )}
+      onClick={onClick}
     >
-      <MdOutlineEdit size={24} className="text-neutral-700" />
+      <MdOutlineEdit
+        size={variant === "default" ? 16 : 24}
+        className="text-neutral-700"
+      />
     </Button>
   );
 };

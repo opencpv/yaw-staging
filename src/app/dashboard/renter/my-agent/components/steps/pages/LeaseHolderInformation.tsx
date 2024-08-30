@@ -1,5 +1,5 @@
 import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
-import CustomRadioInput from "@/components/__shared/ui/form/CustomRadioInput";
+import { RadioInput } from "@/components/__shared/ui/form/radio-input";
 import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
 import React from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
@@ -103,11 +103,11 @@ const LeaseHolderInformation = React.forwardRef<HTMLInputElement, Props>(
           <h2 className={style.title}>Screening & Other Details</h2>
           <div className={style.wrappingFieldsGrid}>
             <div className={cn("flex flex-col", style.fieldsBlockGap)}>
-              <CustomRadioInput
+              <RadioInput
                 name="evicted"
                 options={["Yes", "No"]}
                 label={"Have you ever been evicted?"}
-                onChange={(value) =>
+                onValueChange={(value) =>
                   setBeMyAgentCreationSteps({
                     ...BeMyAgentCreationSteps,
                     evicted: value,
@@ -128,11 +128,11 @@ const LeaseHolderInformation = React.forwardRef<HTMLInputElement, Props>(
                   }
                 />
               )}*/}
-              <CustomRadioInput
+              <RadioInput
                 name="convicted"
                 options={["Yes", "No"]}
                 label={"Have you ever been convicted?"}
-                onChange={(value) =>
+                onValueChange={(value) =>
                   setBeMyAgentCreationSteps({
                     ...BeMyAgentCreationSteps,
                     convicted: value,
@@ -155,22 +155,22 @@ const LeaseHolderInformation = React.forwardRef<HTMLInputElement, Props>(
               )} */}
             </div>
             <div className={cn("flex flex-col", style.fieldsBlockGap)}>
-              <CustomRadioInput
+              <RadioInput
                 name="has_pets"
                 options={["Yes", "No"]}
                 label={"Do you have any pets?"}
-                onChange={(value) =>
+                onValueChange={(value) =>
                   setBeMyAgentCreationSteps({
                     ...BeMyAgentCreationSteps,
                     has_pets: value,
                   })
                 }
               />
-              <CustomRadioInput
+              <RadioInput
                 name="has_vehicles"
                 options={["Yes", "No"]}
                 label={"Do you have any vehicles?"}
-                onChange={(value) =>
+                onValueChange={(value) =>
                   setBeMyAgentCreationSteps({
                     ...BeMyAgentCreationSteps,
                     has_vehicles: value,

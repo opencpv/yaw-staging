@@ -93,6 +93,7 @@ const LsApplicationRow = ({
             <DeleteButton
               handleDestruction={() => {}}
               loading={false}
+              variant="ghost"
               className="w-fit"
             />
           </div>

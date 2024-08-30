@@ -3,7 +3,7 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import style from "../../../index.module.css";
 import { ListingDefaultValues } from "@/store/dashboard/ListingStepsStore";
 import CurrencyInput from "@/components/__shared/ui/form/CurrencyInput";
-import CustomRadioInput from "@/components/__shared/ui/form/CustomRadioInput";
+import { RadioInput } from "@/components/__shared/ui/form/radio-input";
 import { useFormikContext } from "formik";
 import { caseInsensitiveCompare } from "@/lib/utils/stringManipulation";
 import AdditionalFees from "../../AdditionalFee";
@@ -57,11 +57,11 @@ const RentInformation = React.forwardRef<HTMLInputElement, Props>(({}, ref) => {
       </h2>
       <div className={`grid sm:grid-cols-2 ${style.fieldsInlineGap}`}>
         <div className={`fade-in-bottom flex flex-col ${style.fieldsBlockGap}`}>
-          <CustomRadioInput
+          <RadioInput
             name="payment_terms"
             options={["Monthly", "Advance"]}
             label={"When is the Payment Due?"}
-            onChange={(value) => handleOnChange("payment_terms", value)}
+            onValueChange={(value) => handleOnChange("payment_terms", value)}
             color="primary"
           />
           <CurrencyInput
@@ -73,16 +73,16 @@ const RentInformation = React.forwardRef<HTMLInputElement, Props>(({}, ref) => {
               handleOnChange("total_amount", value);
             }}
           />
-          <CustomRadioInput
+          <RadioInput
             name="lease_duration"
             options={options}
             disabled={
-              caseInsensitiveCompare(values.payment_terms, "monthly")
+              (caseInsensitiveCompare(values.payment_terms, "monthly")
                 ? handleDisabled(options)
-                : undefined
+                : undefined) as any // FIXME: any
             }
             label={"Lease Duration"}
-            onChange={(value) => {
+            onValueChange={(value) => {
               handleOnChange("lease_duration", value);
             }}
             color="primary"
@@ -100,11 +100,11 @@ const RentInformation = React.forwardRef<HTMLInputElement, Props>(({}, ref) => {
               input: "max-w-xs",
             }}
           />
-          <CustomRadioInput
+          <RadioInput
             name="require_refundable_security_deposit"
             options={["Yes", "No"]}
             label={"Do you require a Refundable Security Deposit?"}
-            onChange={(value) =>
+            onValueChange={(value) =>
               handleOnChange("require_refundable_security_deposit", value)
             }
             color="primary"
@@ -130,11 +130,11 @@ const RentInformation = React.forwardRef<HTMLInputElement, Props>(({}, ref) => {
           className={`fade-in-bottom flex flex-col ${style.fieldsBlockGap}`}
           style={{ animationDelay: "0.5s" }}
         >
-          <CustomRadioInput
+          <RadioInput
             name="require_additional_fees"
             options={["Yes", "No"]}
             label={"Do you require Other Fees?"}
-            onChange={(value) =>
+            onValueChange={(value) =>
               handleOnChange("require_additional_fees", value)
             }
             color="primary"

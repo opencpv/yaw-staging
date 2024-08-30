@@ -85,8 +85,12 @@ const TargetedSearchCard = ({ href, property, state, count }: Props) => {
           <h4 className="font-normal">Kumasi</h4>
         </div>
         <div className="flex items-center gap-2">
-          <EditButton onOpen={() => ""} />
-          <DeleteButton loading={false} handleDestruction={() => {}} />
+          <EditButton onClick={() => ""} />
+          <DeleteButton
+            loading={false}
+            handleDestruction={() => {}}
+            variant="ghost"
+          />
         </div>
       </div>
     </div>

@@ -14,6 +14,7 @@ import { LiaTimesSolid } from "react-icons/lia";
 import { cn } from "@/lib/utils";
 import style from "../../index.module.css";
 import { getFormValues } from "../../utils";
+import HeaderButtons from "@/components/__shared/ui/modals/steps/HeaderButtons";
 
 const BeMyAgentHeader = () => {
   const { user } = useAppStore();
@@ -105,37 +106,12 @@ const BeMyAgentHeader = () => {
     <section className="flex flex-col gap-4">
       <div className="flex items-center justify-between gap-5">
         <h4 className={style.formTitle}>Be My Agent</h4>
-        <span className="flex items-center gap-3">
-          {/* For very small screens */}
-          <Button
-            size={"icon"}
-            color="white"
-            radius="full"
-            className="border xsm:hidden"
-            onClick={handleCancel}
-          >
-            <LiaTimesSolid />
-          </Button>
-          <Button
-            color="white"
-            radius="full"
-            variant={"outline"}
-            className="border max-xsm:hidden"
-            onClick={handleCancel}
-          >
-            {lastSlide ? "Exit" : "Cancel"}
-          </Button>
-          <Button
-            color="white"
-            radius="full"
-            variant={"outline"}
-            className={cn("border px-5", { hidden: lastSlide })}
-            isLoading={isPending}
-            onClick={handleSaveAndExit}
-          >
-            Save & Exit
-          </Button>
-        </span>
+        <HeaderButtons
+          onSaveAndExit={handleSaveAndExit}
+          onCancel={handleCancel}
+          lastSlide={lastSlide}
+          isPending={isPending}
+        />
       </div>
 
       <div className="mt-0 w-full">

@@ -15,6 +15,7 @@ import capitalizeName from "@/lib/utils/stringManipulation";
 import { LiaTimesSolid } from "react-icons/lia";
 import { cn } from "@/lib/utils";
 import style from "../../index.module.css";
+import HeaderButtons from "@/components/__shared/ui/modals/steps/HeaderButtons";
 
 const FirstToKnowHeader = () => {
   const router = useRouter();
@@ -121,39 +122,13 @@ const FirstToKnowHeader = () => {
     <section className="flex flex-col gap-4">
       <div className="flex items-center justify-between gap-5">
         <h4 className={style.formTitle}>Be The First to Know</h4>
-        <span className="flex items-center gap-3">
-          {/* For very small screens */}
-          <Button
-            size="icon"
-            color="white"
-            radius="full"
-            variant={"outline"}
-            className="border ssm:hidden"
-            onClick={handleClearData}
-          >
-            <LiaTimesSolid />
-          </Button>
-          <Button
-            color="white"
-            radius="full"
-            variant={"outline"}
-            className="border max-ssm:hidden"
-            onClick={handleClearData}
-          >
-            {lastSlide ? "Exit" : "Cancel"}
-          </Button>
-          <Button
-            color="white"
-            radius="full"
-            variant={"outline"}
-            className={cn("border", { hidden: lastSlide })}
-            isLoading={isPending}
-            disabled={isError}
-            onClick={handleSaveAndExit}
-          >
-            Save & Exit
-          </Button>
-        </span>
+        <HeaderButtons
+          onSaveAndExit={handleSaveAndExit}
+          onCancel={handleClearData}
+          lastSlide={lastSlide}
+          isPending={isPending}
+          cancelBreakpoint="ssm"
+        />
       </div>
 
       <div className="mt-0 w-full">

@@ -25,6 +25,7 @@ import capitalizeName, {
 } from "@/lib/utils/stringManipulation";
 import { views as BeMyAgentViews } from "./BeMyAgentForm";
 import { getFormValues } from "../../utils";
+import EditButton from "@/components/__shared/ui/button/edit-button";
 
 type Props = {
   button?: "Hire Us Now" | "Get Started" | "Ghost" | "Edit" | "Price";
@@ -138,20 +139,13 @@ const BeMyAgentModal = (props: Props) => {
           {props.content}
         </Button>
       ) : props.button === "Edit" ? (
-        <Button
-          size="sm"
-          title="Edit"
-          className={cn(
-            "flex w-fit items-center justify-center rounded-md bg-secondary-50 p-4 text-neutral-800",
-            props.buttonClassName,
-          )}
+        <EditButton
+          className={cn(props.buttonClassName)}
           onClick={() => {
             setActiveSlide(BeMyAgentViews.length - 1);
             props.onClick?.();
           }}
-        >
-          <MdOutlineEdit size={16} />
-        </Button>
+        />
       ) : props.button === "Hire Us Now" ? (
         <AgentButtons
           href="/dashboard/renter/my-agent/create"

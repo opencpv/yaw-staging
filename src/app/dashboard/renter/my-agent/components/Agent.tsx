@@ -116,7 +116,6 @@ export default function Agent({
                 handleDestruction={handleDelete}
                 loading={isPending}
                 classNames={{ icon: "text-error" }}
-                variant="background"
                 className="relative top-[0.1rem]"
               />
               <BeMyAgentModal button="Edit" onClick={handleEdit} />

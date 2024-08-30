@@ -69,10 +69,7 @@ const CartView = () => {
                   handleDestruction={() => {
                     removeItem(item_index);
                   }}
-                  className="rounded-md bg-secondary-50 p-4 ssm:hidden"
-                  classNames={{
-                    icon: "text-red-500",
-                  }}
+                  className="ssm:hidden"
                 />
               </div>
             </div>

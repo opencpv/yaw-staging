@@ -39,7 +39,7 @@ export default function AgentButtons({
         <LinkButton
           href={href}
           className={cn(
-            "w-full max-w-fit rounded-2xl bg-[#E6F6EE] text-shade-300 lg:min-w-[16rem]",
+            "w-full max-w-fit rounded-2xl bg-[#E6F6EE] font-semibold text-shade-300 lg:min-w-[16rem]",
             className,
           )}
           onClick={onClick}

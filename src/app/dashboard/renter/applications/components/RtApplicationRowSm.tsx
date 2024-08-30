@@ -93,9 +93,9 @@ const RtApplicationRowSm = ({
         </TableBodySm>
         {/* Actions */}
         <TableBodySm className={cn("flex items-center justify-end gap-1.5")}>
-          {status === "incomplete" ? (
+          {status === "Incomplete" ? (
             <>
-              <EditButton onOpen={() => ""} />
+              <EditButton variant="ghost" onClick={() => ""} />
               <DeleteButton handleDestruction={() => {}} loading={false} />
             </>
           ) : (
