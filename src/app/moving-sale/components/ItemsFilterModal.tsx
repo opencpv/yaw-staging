@@ -39,7 +39,7 @@ const ItemsFilterModal = (props: Props) => {
 };
 
 const FilterModalHeader = () => {
-  return <hr className="mt-10" />;
+  return <hr className="mb-4 mt-7" />;
 };
 
 const FilterModalBody = () => {
@@ -72,7 +72,7 @@ const FilterModalBody = () => {
 const FilterModalFooter = ({ onClose }: FilterModalFooterProps) => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const sort = searchParams?.get("sort") || "newest";
+  const sort = searchParams?.get("sort") || "Newest";
   const category = searchParams?.get("category") || "";
   const {
     categories,
@@ -102,10 +102,15 @@ const FilterModalFooter = ({ onClose }: FilterModalFooterProps) => {
   };
   return (
     <span className="flex w-full flex-wrap items-center justify-between gap-5">
-      <Button variant="accent" size="sm" onClick={handleSubmit}>
+      <Button variant="accent" onClick={handleSubmit}>
         Filter
       </Button>
-      <Button variant="ghost" className="text-sm underline" onClick={clearAll}>
+      <Button
+        variant="ghost"
+        size={"fit"}
+        className="text-sm text-shade-500 underline"
+        onClick={clearAll}
+      >
         Clear All <LiaTimesSolid />
       </Button>
     </span>

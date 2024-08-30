@@ -21,11 +21,13 @@ const ButtonInfiniteLoading = dynamic(
     import("@/components/__shared/ui/data_fetching/button-infinite-loading"),
 );
 
+const options = ["All", "Recommendations", "Recently Viewed"];
+
 const MySearch = ({ filter }: { filter: string }) => {
   const { user } = useAppStore();
   const router = useRouter();
   const [page, setPage] = React.useState(slugify(filter));
-  console.log("page", page);
+  const selected = capitalizeName(unslugify(page));
 
   const {
     data: listings,
@@ -35,44 +37,35 @@ const MySearch = ({ filter }: { filter: string }) => {
     loadMore,
   } = useFetchRenterBookmarks({ filter: page, userId: user?.id as string });
 
+  const handleChange = (value: string) => {
+    const slug = slugify(value);
+    setPage(value);
+    router.replace(`/dashboard/renter/my-search/${slug}`, {
+      scroll: false,
+    });
+  };
+
   return (
     <main className="flex w-full flex-col gap-8 bg-white">
       <h2>My Search</h2>
       {/* xl and above */}
       <Tabs
-        options={["All", "Recommendations", "Recently Viewed"]}
-        selectedKey={unslugify(capitalizeName(page))}
-        onSelectionChange={(key) => {
-          const slug = slugify(key.toString());
-          setPage(key.toString());
-          router.replace(`/dashboard/renter/my-search/${slug}`, {
-            scroll: false,
-          });
-        }}
+        options={options}
+        selectedKey={selected}
+        onSelectionChange={handleChange}
         className="max-md:hidden"
       />
       {/* xl and below */}
       <div className="md:hidden">
         <Select
-          options={["All", "Recommendations", "Recently Viewed"]}
-          value={unslugify(page)}
-          // className="mx-0 w-60 font-bold"
-          // valueClassName="font-bold"
-          // variant="default"
-          // color="primary"
-          onValueChange={(value) => {
-            const slug = slugify(value);
-            setPage(value);
-            router.replace(`/dashboard/renter/my-search/${slug}`, {
-              scroll: false,
-            });
-          }}
+          options={options}
+          value={selected}
+          color="primary"
+          onValueChange={handleChange}
         />
       </div>
 
-      <h4 className="hidden capitalize md:block">
-        {filter.replaceAll("-", " ")}
-      </h4>
+      <h4 className="hidden capitalize md:block">{unslugify(filter)}</h4>
 
       <div className="relative bottom-4">
         <ContactPreferenceToggle />

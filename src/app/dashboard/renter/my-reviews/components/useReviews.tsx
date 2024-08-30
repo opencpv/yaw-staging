@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 function useReviews() {
   const [reply, setReply] = useState(false);
 
-  const [filter, setFilter] = useState<any>("all");
+  const [filter, setFilter] = useState("All");
 
   const replyReview = () => {
     setReply(false);

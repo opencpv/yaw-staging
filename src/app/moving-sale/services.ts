@@ -13,7 +13,7 @@ export const useFetchItemCategories = () => {
 
 export const useFetchItems = ({
   categories = "",
-  sort = "newest",
+  sort = "Newest",
   condition = "",
   term = "",
   priceRangeFrom = "",
@@ -42,13 +42,13 @@ export const useFetchItems = ({
   }
 
   if (sort) {
-    if (sort === "newest") {
+    if (sort === "Newest") {
       query = query.order("created_at", { ascending: false });
-    } else if (sort === "price: high to low") {
+    } else if (sort === "Price: High to Low") {
       query = query.order("price", { ascending: false });
-    } else if (sort === "price: low to high") {
+    } else if (sort === "Price: Low to High") {
       query = query.order("price");
-    } else if (sort === "popular") {
+    } else if (sort === "Popular") {
       query = query.order("views", { ascending: false });
     }
   }

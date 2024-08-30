@@ -98,7 +98,9 @@ const Tabs = React.forwardRef<
       {options ? (
         <TabsList>
           {options.map((option) => (
-            <>
+            <React.Fragment
+              key={typeof option === "string" ? option : option.label}
+            >
               {typeof option !== "string" ? (
                 <TabsTrigger
                   key={option.label}
@@ -113,7 +115,7 @@ const Tabs = React.forwardRef<
                   {option}
                 </TabsTrigger>
               )}
-            </>
+            </React.Fragment>
           ))}
         </TabsList>
       ) : (

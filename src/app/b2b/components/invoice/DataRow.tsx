@@ -1,5 +1,5 @@
 import { TableBody, TableBodyRow } from "@/components/__shared/ui/table";
-import { CheckboxNoFormik as Checkbox } from "@/components/__shared/ui/form/Checkbox";
+import { CheckboxNoFormik as Checkbox } from "@/components/__shared/ui/form/checkbox";
 import InvoiceStatus from "./InvoiceStatus";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import { formatDateDMY, formatDateOnly } from "@/lib/utils/stringManipulation";

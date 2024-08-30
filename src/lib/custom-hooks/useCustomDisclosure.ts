@@ -19,15 +19,6 @@ export const useDisclosure = () => {
   return { isOpen, onOpen, onOpenChange, onClose };
 };
 
-export const useSelectDisclosure = <T extends string>(defaultOption: T) => {
-  const [value, setValue] = useState<T>(defaultOption);
-  const handleSelectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setValue(e.target.value as T);
-  };
-
-  return { value, setValue, handleSelectionChange };
-};
-
 export const usePhoneInputDisclosure = () => {
   const [phone, setPhone] = React.useState<E164Number>();
   const [_, setCountry] = React.useState<CountryCode>("GH");

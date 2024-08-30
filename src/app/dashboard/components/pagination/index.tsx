@@ -7,7 +7,6 @@ import { usePathname } from "next/navigation";
 import { PgRoutesLister, PgRoutesRenter } from "./links";
 import { HiBars3BottomRight } from "react-icons/hi2";
 import { Button } from "@/components/__shared/ui/button";
-import { LowerCase } from "@/lib/utils/stringManipulation";
 import { useDashboardMenuStore } from "@/store/navmenu/useDashboardMenuStore";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import Switch from "../navbar/switch";
@@ -16,17 +15,17 @@ import { ScrollArea } from "@/components/__shared/ui/scroll-area";
 const PaginationMenu = dynamic(() => import("./PaginationMenu"));
 
 type PaginationTabProps = {
-  active: string;
   icon: React.ReactNode;
   name: string;
   link: string;
 };
 
-const PaginationTab = ({ active, icon, name, link }: PaginationTabProps) => {
+const PaginationTab = ({ icon, name, link }: PaginationTabProps) => {
+  const pathname = usePathname();
   return (
-    <Link href={link} draggable={false}>
+    <Link href={link} draggable={false} className="rounded-xl">
       <PgItem
-        type={LowerCase(active) === LowerCase(name) ? "active" : undefined}
+        type={pathname?.includes(link) ? "active" : undefined}
         className={`flex h-fit min-w-[160px] cursor-pointer items-center justify-center gap-3 rounded-xl px-4 py-3 text-2xl font-semibold text-[#B0B0B0] transition-all lg:max-w-none lg:py-4 ${name}`}
         draggable={false}
       >
@@ -83,12 +82,7 @@ const Pagination = () => {
             (r, index) =>
               index < 7 && (
                 <div key={index} className="min-w-fit max-w-fit">
-                  <PaginationTab
-                    name={r?.name}
-                    active={active}
-                    icon={r?.icon}
-                    link={r?.link}
-                  />
+                  <PaginationTab name={r?.name} icon={r?.icon} link={r?.link} />
                 </div>
               ),
           )}
@@ -97,12 +91,7 @@ const Pagination = () => {
             (r, index) =>
               index < 7 && (
                 <div key={index} className="min-w-fit max-w-fit">
-                  <PaginationTab
-                    name={r?.name}
-                    active={active}
-                    icon={r?.icon}
-                    link={r?.link}
-                  />
+                  <PaginationTab name={r?.name} icon={r?.icon} link={r?.link} />
                 </div>
               ),
           )}
@@ -147,7 +136,7 @@ const Root = styled("div", {
   },
 });
 
-const PgItem = styled("button", {
+const PgItem = styled("div", {
   "&:hover": {
     backgroundColor: "#39626125",
     color: "black",

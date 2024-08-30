@@ -8,10 +8,10 @@ export interface LoginButtonProps {
 }
 
 export type ProductStatusProp =
-  | "active"
-  | "inactive"
-  | "suspended"
-  | "archived";
+  | "Active"
+  | "Inactive"
+  | "Suspended"
+  | "Srchived";
 
 export interface Product {
   id: number;
@@ -35,9 +35,3 @@ export interface Product {
   deletion_date: null | string;
   status: ProductStatusProp;
 }
-
-export type ProductStatusProp =
-  | "active"
-  | "inactive"
-  | "suspended"
-  | "archived";

@@ -13,7 +13,7 @@ import { useFetchItemCategories } from "@/app/moving-sale/services";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import Loader from "@/components/__shared/ui/loader";
 import supabase from "@/lib/utils/supabase/supabaseClient";
-import { CheckboxNoFormik as Checkbox } from "@/components/__shared/ui/form/Checkbox";
+import { CheckboxNoFormik as Checkbox } from "@/components/__shared/ui/form/checkbox";
 import axios from "axios";
 import { generateString } from "@/lib/utils";
 import slugify from "@/lib/utils/slugify";
@@ -230,7 +230,6 @@ const AddItemPage = () => {
                     defaultChecked
                     label="In app messaging ( Default)"
                     disabled={true}
-                    color="disabled"
                   />
                   <Checkbox
                     label="Email"

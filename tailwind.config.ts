@@ -127,8 +127,16 @@ const config: Config = {
           to: { opacity: "0" },
         },
         "zoom-in": {
-          from: { transform: "scale(0.95)" },
-          to: { transform: "scale(1)" },
+          from: {
+            transform: "scale(0.95)",
+            opacity: "0",
+            transformOrigin: "50% 0% 0px",
+          },
+          to: {
+            transform: "scale(1)",
+            opacity: "1",
+            transformOrigin: "50% 0% 0px",
+          },
         },
         "zoom-out": {
           from: { transform: "scale(1)" },

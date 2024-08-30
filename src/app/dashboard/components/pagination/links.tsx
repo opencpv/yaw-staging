@@ -38,7 +38,7 @@ export const PgRoutesRenter = [
     name: "my search",
     url: "",
     icon: <TbHomeSearch />,
-    link: "/dashboard/renter/my-search/all",
+    link: "/dashboard/renter/my-search",
   },
   {
     name: "messages",

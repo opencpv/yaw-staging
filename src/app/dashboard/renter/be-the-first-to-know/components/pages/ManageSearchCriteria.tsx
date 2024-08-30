@@ -11,7 +11,7 @@ import {
   TableRowSm,
   TableSm,
 } from "@/components/__shared/ui/table";
-import SelectMobile from "@/app/dashboard/components/shared/ui/SelectMobile";
+import SelectMobile from "@/components/__shared/ui/form/select-mobile";
 import Actions from "../Actions";
 import { useFetchSearchCriteria } from "../../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
@@ -60,7 +60,7 @@ const ManageSearchCriteria = () => {
             setStatus(value);
             handlePageClick({ selected: 0 });
           }}
-          classNames={{ trigger: "self-end" }}
+          classNames={{ trigger: "w-[100px] self-end" }}
         />
       </div>
       <Table>

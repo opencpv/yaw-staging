@@ -2,7 +2,6 @@
 import React from "react";
 import { Select } from "@/components/__shared/ui/form/select";
 import { Button } from "@/components/__shared/ui/button";
-import { FaChevronDown } from "react-icons/fa6";
 import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
@@ -10,16 +9,16 @@ import dynamic from "next/dynamic";
 const ItemsFilterModal = dynamic(() => import("./ItemsFilterModal"));
 
 type ItemSort =
-  | "popular"
-  | "newest"
-  | "price: high to low"
-  | "price: low to high";
+  | "Popular"
+  | "Newest"
+  | "Price: High to Low"
+  | "Price: Low to High";
 
 const SortFilter = () => {
   const router = useRouter();
   const { isOpen, onOpenChange, onOpen, onClose } = useDisclosure();
   const searchParams = useSearchParams();
-  const sort = searchParams?.get("sort") || "newest";
+  const sort = searchParams?.get("sort") || "Newest";
   const categories = searchParams?.get("categories") || "";
   const condition = searchParams?.get("condition") || "";
   const term = searchParams?.get("term") || "";
@@ -53,7 +52,7 @@ const SortFilter = () => {
       />
       <div className="flex flex-wrap items-center gap-3">
         <Select
-          // radius="none"
+          color="accent"
           options={[
             "Popular",
             "Newest",
@@ -62,7 +61,6 @@ const SortFilter = () => {
           ]}
           value={sort as unknown as ItemSort}
           onValueChange={handleSelectionChange}
-          // className="mx-0"
         />
         <Button variant="accent" onClick={onOpen} className="h-unit-10">
           Filter

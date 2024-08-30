@@ -34,11 +34,8 @@ export default function MyReviews() {
           <div className="my-2 lg:hidden">
             <Select
               options={["All", "Properties", "Property Owners", "Service Pros"]}
-              value={filter as string}
-              // className="mx-0 w-60 font-bold"
-              // valueClassName="font-bold"
-              // variant="ghost"
-              // color="primary"
+              value={filter}
+              color="primary"
               onValueChange={(value) => setFilter(value)}
             />
           </div>

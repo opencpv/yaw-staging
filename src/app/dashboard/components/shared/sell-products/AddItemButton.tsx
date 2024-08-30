@@ -41,7 +41,7 @@ const AddItemButton = (props: Props) => {
         <LinkButton
           href={`/dashboard/${currentRole}/sell-products/add-new-product`}
           className={cn(
-            "fixed bottom-12 right-5 z-10 h-[4.5rem] rounded-3xl shadow-lg transition-all",
+            "fixed bottom-12 right-5 z-10 h-[60px] w-[80px] rounded-3xl shadow-lg transition-all",
             {
               "pointer-events-none opacity-0": isButtonInViewport,
             },
@@ -53,7 +53,7 @@ const AddItemButton = (props: Props) => {
       <LinkButton
         href={`/dashboard/${currentRole}/sell-products/add-new-product`}
         className={cn(
-          "fixed bottom-12 right-5 z-10 h-[4.5rem] rounded-3xl shadow-lg transition-all xs:hidden",
+          "fixed bottom-12 right-5 z-10 h-[60px] w-[80px] rounded-3xl shadow-lg transition-all xs:hidden",
         )}
       >
         <FaPlus size={20} />

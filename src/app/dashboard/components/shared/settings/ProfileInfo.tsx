@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/__shared/ui/button";
 import { createClient } from "@/lib/utils/supabase/auth/client";
 import { RiPhoneFill, RiTwitterXFill, RiWhatsappFill } from "react-icons/ri";
-import { CheckboxNoFormik as Checkbox } from "@/components/__shared/ui/form/Checkbox";
+import { CheckboxNoFormik as Checkbox } from "@/components/__shared/ui/form/checkbox";
 import ProfilePicture from "./ProfilePicture";
 import CountryInput from "@/components/__shared/ui/form/CountryInput";
 import toast from "react-hot-toast";
@@ -269,7 +269,6 @@ const ProfileInfo = () => {
                               <label className="pl-8">Whatsapp</label>
                             </div>
                             <Checkbox
-                              color="accent"
                               label="Same as phone"
                               onCheckedChange={(checked) =>
                                 setSameAsPhone(checked as boolean)

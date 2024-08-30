@@ -3,7 +3,7 @@ import React from "react";
 import { RenterApplicationStatus } from "./RtApplicationStatus";
 
 type Props = {
-  statusFilter: "all" | "archived" | RenterApplicationStatus;
+  statusFilter: "All" | "Archived" | RenterApplicationStatus;
   handleStatusSelectionChange: (value: string) => void;
 };
 
@@ -35,10 +35,7 @@ const RtMobileFilters = ({
           "Archived",
         ]}
         value={statusFilter}
-        // className="mx-0 w-48 font-bold"
-        // valueClassName="font-bold"
-        // variant="ghost"
-        // color="primary"
+        color="primary"
         onValueChange={handleStatusSelectionChange}
       />
     </div>

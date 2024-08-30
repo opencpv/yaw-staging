@@ -12,22 +12,6 @@ const Switch = ({ className }: { className?: string }) => {
     useDashboardStore();
 
   const handleRoleSwitch = (value: string) => {
-    // if (!e || !e.target) {
-    //   console.error("e or e.target is null in Switch.handleRoleSwitch");
-    //   return;
-    // }
-    // const selectedRole = e.target.value as UserRole;
-    // if (selectedRole !== ("" as UserRole)) {
-    //   setCurrentRole(selectedRole);
-    //   setIsSwitchingRole(true);
-    // }
-    // if (selectedRole !== ("" as UserRole)) {
-    //   router.replace(`/dashboard/${selectedRole}/overview`); // For reason it doesn't work in the first if block
-    // }
-    // if (!router) {
-    //   console.error("router is null in Switch.handleRoleSwitch");
-    //   return;
-    // }
     const role = value.toUpperCase();
     const path = value.toLowerCase();
     setCurrentRole(role as UserRole);

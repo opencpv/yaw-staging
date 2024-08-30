@@ -7,11 +7,13 @@ import { LuCheck, LuChevronDown, LuChevronUp } from "react-icons/lu";
 import { cn } from "@/lib/utils";
 
 type SelectContentProps = {
+  position?: "popper" | "item-aligned";
   constraint?: boolean;
 };
 
 type SelectTriggerProps = {
-  variant?: "ghost" | "outline";
+  variant?: "default" | "ghost" | "outline";
+  radius?: "default" | "full";
 };
 
 type SelectItemProps = {
@@ -28,24 +30,31 @@ const SelectTrigger = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger> &
     SelectTriggerProps
->(({ className, children, variant = "outline", ...props }, ref) => (
-  <SelectPrimitive.Trigger
-    ref={ref}
-    className={cn(
-      "ring-offset-background flex h-10 w-full items-center justify-between rounded-md bg-transparent px-3 py-2 text-sm placeholder:text-shade-500 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 [&>svg]:transition-transform [&[data-state=open]>svg]:rotate-180",
-      {
-        border: variant === "outline",
-      },
-      className,
-    )}
-    {...props}
-  >
-    {children}
-    <SelectPrimitive.Icon asChild>
-      <LuChevronDown className="h-5 w-5 opacity-50" />
-    </SelectPrimitive.Icon>
-  </SelectPrimitive.Trigger>
-));
+>(
+  (
+    { className, children, variant = "default", radius = "default", ...props },
+    ref,
+  ) => (
+    <SelectPrimitive.Trigger
+      ref={ref}
+      className={cn(
+        "ring-offset-background flex h-10 w-full items-center justify-between rounded-md bg-transparent px-3 py-2 text-sm placeholder:text-shade-500 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 [&>svg]:transition-transform [&[data-state=open]>svg]:rotate-180",
+        {
+          "bg-neutral-100": variant === "default",
+          border: variant === "outline",
+          "rounded-full": radius === "full",
+        },
+        className,
+      )}
+      {...props}
+    >
+      {children}
+      <SelectPrimitive.Icon asChild>
+        <LuChevronDown className="h-5 w-5 opacity-50" />
+      </SelectPrimitive.Icon>
+    </SelectPrimitive.Trigger>
+  ),
+);
 SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
 
 const SelectScrollUpButton = React.forwardRef<
@@ -196,6 +205,8 @@ const Select = React.forwardRef<
       constraint,
       classNames,
       color,
+      radius,
+      position,
       ...props
     },
     ref,
@@ -206,6 +217,7 @@ const Select = React.forwardRef<
           <SelectTrigger
             className={cn("w-[180px]", classNames?.trigger)}
             variant={variant}
+            radius={radius}
           >
             {value ? (
               <SelectValue aria-label={value}>
@@ -215,7 +227,7 @@ const Select = React.forwardRef<
               <SelectValue placeholder={placeholder || "Select..."} />
             )}
           </SelectTrigger>
-          <SelectContent constraint={constraint} ref={ref}>
+          <SelectContent position={position} constraint={constraint} ref={ref}>
             {options?.map((option) => (
               <SelectItem key={option} value={option} color={color}>
                 {option}
@@ -243,106 +255,3 @@ export {
   SelectScrollUpButton,
   SelectScrollDownButton,
 };
-
-// import React from "react";
-// // import { Select as NextUISelect, SelectItem, cn } from "@nextui-org/react";
-// import { cn } from "@/lib/utils";
-// import { FaCaretDown } from "react-icons/fa";
-// import { LowerCase } from "@/lib/utils/stringManipulation";
-
-// type Props = {
-//   options: string[];
-//   value: string;
-//   handleSelectionChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-//   radius?: "full" | "none";
-//   variant?: "default" | "ghost";
-//   color?: "default" | "primary";
-//   selectorIcon?: React.ReactNode;
-//   className?: string;
-//   valueClassName?: string;
-//   disabled?: boolean;
-//   triggerClassName?: string;
-//   selectorIconClassName?: string;
-// };
-
-// const Select = ({
-//   options,
-//   handleSelectionChange,
-//   value,
-//   radius = "full",
-//   selectorIcon,
-//   className,
-//   valueClassName,
-//   variant,
-//   color,
-//   disabled,
-//   triggerClassName,
-//   selectorIconClassName,
-// }: Props) => {
-//   return (
-//     // <NextUISelect
-//     //   size="sm"
-//     //   radius={radius}
-//     //   label="select"
-//     //   //   selectionMode="single"
-//     //   isDisabled={disabled}
-//     //   labelPlacement="outside"
-//     //   selectedKeys={[value]}
-//     //   disallowEmptySelection
-//     //   classNames={{
-//     //     // mainWrapper: [variant === "ghost" && "hover:bg-transparent"],
-//     //     base: cn(
-//     //       "w-44 mx-auto text-xs hover:bg-neutral-100 rounded-full",
-//     //       className,
-//     //       {
-//     //         "text-base rounded-md": variant === "ghost",
-//     //         "opacity-100": disabled,
-//     //       },
-//     //     ),
-//     //     value: cn("text-xs", valueClassName, {
-//     //       "text-base": variant === "ghost",
-//     //     }),
-//     //     selectorIcon: cn(
-//     //       `mr-5 h-3 w-3`,
-//     //       {
-//     //         "text-accent-50": color === "default",
-//     //         "text-primary-100": color === "primary",
-//     //         "h-4.5 w-4.5 mr-0": variant === "ghost",
-//     //       },
-//     //       selectorIconClassName,
-//     //     ),
-//     //     trigger: cn(
-//     //       "px-10 z-30",
-//     //       {
-//     //         "pl-2 text-base bg-transparent data-[hover=true]:bg-transparent shadow-none":
-//     //           variant === "ghost",
-//     //         "bg-neutral-300": disabled,
-//     //       },
-//     //       triggerClassName,
-//     //     ),
-//     //     label: "hidden",
-//     //   }}
-//     //   selectorIcon={selectorIcon ? selectorIcon : <FaCaretDown />}
-//     //   onChange={handleSelectionChange}
-//     // >
-//     //   {options.map((option) => (
-//     //     <SelectItem
-//     //       key={LowerCase(option)}
-//     //       className={cn("text-neutral-800", {
-//     //         "text-base": variant === "ghost",
-//     //         "focus:outline-none data-[hover=true]:bg-primary-100 data-[focus-visible=true]:outline-primary-100 data-[selectable=true]:focus:bg-primary-100":
-//     //           color === "primary",
-//     //         "focus:outline-none data-[hover=true]:bg-accent-50 data-[focus-visible=true]:outline-accent-50 data-[selectable=true]:focus:bg-accent-50":
-//     //           color === "default" || !color,
-//     //       })}
-//     //       value={LowerCase(option)}
-//     //     >
-//     //       {option}
-//     //     </SelectItem>
-//     //   ))}
-//     // </NextUISelect>
-//     <div></div>
-//   );
-// };
-
-// export default Select;

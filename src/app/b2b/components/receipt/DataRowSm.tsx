@@ -1,7 +1,7 @@
 import { TableBodySm, TableRowSm } from "@/components/__shared/ui/table";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import { formatDateOnly } from "@/lib/utils/stringManipulation";
-import { CheckboxNoFormik as Checkbox } from "@/components/__shared/ui/form/Checkbox";
+import { CheckboxNoFormik as Checkbox } from "@/components/__shared/ui/form/checkbox";
 import { useReceiptData } from "../../hooks/useReceiptData";
 import { RiFileListLine } from "react-icons/ri";
 import dynamic from "next/dynamic";
