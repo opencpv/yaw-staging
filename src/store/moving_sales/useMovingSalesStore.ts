@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
-type Condition = "used" | "new" | "all" | "used-like new";
-type Term = "negotiable" | "non-negotiable" | "all";
+type Condition = "New" | "Used" | "All" | "Used-Like New";
+type Term = "Negotiable" | "Non-Negotiable" | "All";
 
 type ItemFilterStore = {
   categories: string[];
@@ -26,10 +26,10 @@ type ItemPathStore = {
 
 const useItemFilterStore = create<ItemFilterStore>((set) => ({
   categories: [],
-  condition: "all",
+  condition: "All",
   priceRangeFrom: "",
   priceRangeTo: "",
-  term: "all",
+  term: "All",
   isChangeDetected: false,
   setCategories: (categories) =>
     set((state) => ({ ...state, categories, isChangeDetected: true })),
@@ -47,10 +47,10 @@ const useItemFilterStore = create<ItemFilterStore>((set) => ({
     set((state) => ({
       ...state,
       categories: [],
-      condition: "all",
+      condition: "All",
       priceRangeFrom: "",
       priceRangeTo: "",
-      term: "all",
+      term: "All",
       isChangeDetected: false,
     })),
 }));

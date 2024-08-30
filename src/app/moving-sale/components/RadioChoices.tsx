@@ -1,57 +1,33 @@
-import capitalizeName from "@/lib/utils/stringManipulation";
-// import { Radio, RadioGroup, cn } from "@nextui-org/react";
 import { cn } from "@/lib/utils";
 import React from "react";
+import * as RadioGroup from "@radix-ui/react-radio-group";
 
-type RadioChoicesProps<T> = {
-  choices: string[];
+type Props<T> = {
   value: T;
-  onValueChange: (newVal: T) => void;
+  options: T[];
+  onValueChange: (value: T) => void;
 };
 
-const RadioChoice = (props: any) => {
-  const { children, ...otherProps } = props;
+function RadioChoices<T extends string>(props: Props<T>) {
   return (
-    // <Radio
-    //   {...otherProps}
-    //   classNames={{
-    //     base: cn(
-    //       "flex-row-reverse bg-neutral-100 rounded-3xl",
-    //       "data-[selected=true]:border data-[selected=true]:border-accent-50",
-    //       "hover:bg-neutral-200"
-    //     ),
-    //     label: "text-sm pr-3",
-    //     wrapper: cn("hidden"),
-    //   }}
-    // >
-    //   {children}
-    // </Radio>
-    <></>
+    <RadioGroup.Root
+      value={props.value}
+      onValueChange={props.onValueChange}
+      className="flex w-full gap-5"
+    >
+      {props.options?.map((option) => (
+        <RadioGroup.Item
+          key={option}
+          value={option}
+          className={cn(
+            "size-fit rounded-full bg-neutral-100 p-2 px-5 text-shade-500 transition-colors hover:bg-neutral-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:border data-[state=checked]:border-accent",
+          )}
+        >
+          {option}
+        </RadioGroup.Item>
+      ))}
+    </RadioGroup.Root>
   );
-};
-
-const RadioChoices = <T extends string>({
-  choices,
-  value,
-  onValueChange,
-}: RadioChoicesProps<T>) => {
-  return (
-    <div>
-      {/* <RadioGroup
-        color="primary"
-        classNames={{ wrapper: cn("gap-8") }}
-        orientation="horizontal"
-        value={value}
-        onValueChange={onValueChange as () => void}
-      >
-        {choices.map((choice) => (
-          <RadioChoice key={choice} value={choice.toLowerCase()}>
-            {capitalizeName(choice)}
-          </RadioChoice>
-        ))}
-      </RadioGroup> */}
-    </div>
-  );
-};
+}
 
 export default RadioChoices;

@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect } from "react";
 import Progress from "@/app/dashboard/components/shared/ui/Progress";
-import { Button } from "@/components/__shared/ui/button";
 import {
   ListingDefaultValues,
   ListingStepsStore,
@@ -10,8 +9,6 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import { usePathname, useRouter } from "next/navigation";
 import { useAddListing } from "../../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import { LiaTimesSolid } from "react-icons/lia";
-import { cn } from "@/lib/utils";
 import { getFormValues } from "../../utils";
 import HeaderButtons from "@/components/__shared/ui/modals/steps/HeaderButtons";
 
