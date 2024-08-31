@@ -1,5 +1,5 @@
 "use client";
-import SearchInput from "@/components/__shared/ui/form/SearchInput";
+import SearchInput from "@/components/__shared/ui/form/search-input";
 import DownloadButton from "../__shared/DownloadButton";
 import ReceiptTable from "../receipt/ReceiptTable";
 import { useState } from "react";

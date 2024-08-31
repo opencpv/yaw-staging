@@ -7,7 +7,7 @@ import axios from "axios";
 import Loader from "@/components/__shared/ui/loader";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
-import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
+import PhoneNumberInput from "@/components/__shared/ui/form/phone-number-input";
 import { E164Number } from "libphonenumber-js/core";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/__shared/ui/button";
@@ -15,7 +15,7 @@ import { createClient } from "@/lib/utils/supabase/auth/client";
 import { RiPhoneFill, RiTwitterXFill, RiWhatsappFill } from "react-icons/ri";
 import { Checkbox } from "@/components/__shared/ui/form/checkbox";
 import ProfilePicture from "./ProfilePicture";
-import CountryInput from "@/components/__shared/ui/form/CountryInput";
+import CountryInput from "@/components/__shared/ui/form/country-input";
 import toast from "react-hot-toast";
 
 interface Props {
@@ -203,7 +203,7 @@ const ProfileInfo = () => {
                             />
                             <label className="pl-8">Phone</label>
                           </div>
-                          <InputPhoneNumber
+                          <PhoneNumberInput
                             name="phone"
                             value={values.phone as E164Number}
                             onChange={(val) => {
@@ -276,7 +276,7 @@ const ProfileInfo = () => {
                             />
                           </div>
                           {sameAsPhone ? (
-                            <InputPhoneNumber
+                            <PhoneNumberInput
                               name="phone"
                               value={values.phone as E164Number}
                               onChange={(val) => {
@@ -289,7 +289,7 @@ const ProfileInfo = () => {
                               onCountryChange={handleCountryChange}
                             />
                           ) : (
-                            <InputPhoneNumber
+                            <PhoneNumberInput
                               name="whatsapp"
                               value={values.whatsapp as E164Number}
                               onChange={(val) => {

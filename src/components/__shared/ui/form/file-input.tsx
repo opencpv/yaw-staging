@@ -1,24 +1,21 @@
 import { useRef, useState } from "react";
 import CaAttachment from "../icons/CaAttachment";
+import { cn } from "@/lib/utils";
 
 type Props = {
   handleFile?: (file: File | null) => void; // Specify the type of handleFile function
   label?: string;
   required?: boolean;
-  variant?: "green" | "accent" | undefined;
+  variant?: "primary" | "accent";
   placeholder?: string;
 };
-function CustomFileInput({
+function FileInput({
   handleFile,
   label,
   required,
-  variant = "green",
+  variant = "primary",
   placeholder,
 }: Props) {
-  const variants: any = {
-    green: "bg-[#11605E]",
-    accent: "bg-accent-50",
-  };
   const [fileUploaded, setFileUploaded] = useState<File | null>(null);
   const hiddenFileInput = useRef<HTMLInputElement | null>(null); // Specify the type
 
@@ -44,15 +41,13 @@ function CustomFileInput({
     }
   };
   return (
-    <div className="flex flex-col gap-4">
+    <label className="flex flex-col gap-4">
       {label && (
-        <div className="flex gap-2.5">
-          <p className="text-[#6A6968]">
-            {label}
-            {required && (
-              <span className="relative top-[-5px] text-xs"> *</span>
-            )}
-          </p>
+        <div className="flex gap-x-1.5">
+          <h5 className="font-normal capitalize text-shade-300">{label}</h5>
+          {required && (
+            <span className="relative text-sm text-shade-300">*</span>
+          )}
         </div>
       )}
       <div className="form-field-border relative flex w-full items-center justify-between rounded-[4px] pl-4">
@@ -83,7 +78,13 @@ function CustomFileInput({
           )}
 
           <button
-            className={`${variants[variant]} h-[52px] w-[128px] cursor-pointer rounded-[4px] font-[500] text-white focus:outline-primary`}
+            className={cn(
+              `h-[52px] w-[128px] cursor-pointer rounded-[4px] font-[500] text-white focus-visible:outline-accent`,
+              {
+                "bg-primary": variant === "primary",
+                "bg-accent": variant === "accent",
+              },
+            )}
             style={{
               boxShadow:
                 "0px 4px 6px -2px rgba(0, 0, 0, 0.03), 0px 12px 16px -4px rgba(0, 0, 0, 0.08)",
@@ -101,8 +102,8 @@ function CustomFileInput({
         type="file"
         style={{ display: "none" }} // NOTICE!
       />
-    </div>
+    </label>
   );
 }
 
-export default CustomFileInput;
+export default FileInput;

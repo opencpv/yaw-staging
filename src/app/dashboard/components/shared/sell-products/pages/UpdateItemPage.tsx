@@ -4,9 +4,9 @@ import * as Yup from "yup";
 import { useEffect, useState } from "react";
 import { RadioInput } from "@/components/__shared/ui/form/radio-input";
 import { Input } from "@/components/__shared/ui/form/input";
-import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
-import { Textarea } from "@/components/__shared/ui/form/Textarea";
-import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
+import { SelectInput } from "@/components/__shared/ui/form/select";
+import { Textarea } from "@/components/__shared/ui/form/textarea";
+import PhoneNumberInput from "@/components/__shared/ui/form/phone-number-input";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { Button } from "@/components/__shared/ui/button";
 import { useFetchItemCategories } from "@/app/moving-sale/services";
@@ -270,14 +270,13 @@ const UpdateItemPage = () => {
                       placeholder="e.g. Dining table"
                       required
                     />
-                    <CustomSelect
+                    <SelectInput
                       name="category"
                       label="Category"
                       options={
-                        categories?.map((category) => ({
-                          name: category.category,
-                          value: capitalizeName(category.category),
-                        })) || []
+                        categories?.map((data) =>
+                          capitalizeName(data.category),
+                        ) || []
                       }
                     />
                     <Input name="price" label="Price" prefix="GHS" required />
@@ -289,14 +288,10 @@ const UpdateItemPage = () => {
                     />
                   </div>
                   <div className="flex flex-col gap-8">
-                    <CustomSelect
+                    <SelectInput
                       name="condition"
                       label="Condition"
-                      options={[
-                        { name: "new", value: "New" },
-                        { name: "used-like new", value: "Used-like New" },
-                        { name: "used", value: "Used" },
-                      ]}
+                      options={["New", "Used-Like New", "Used"]}
                     />
                     <RadioInput
                       options={["yes", "no"]}
@@ -336,7 +331,7 @@ const UpdateItemPage = () => {
                         }
                       />
                       {usePhone && (
-                        <InputPhoneNumber
+                        <PhoneNumberInput
                           id=""
                           label="Phone"
                           name="phone"
@@ -352,7 +347,7 @@ const UpdateItemPage = () => {
                         }
                       />
                       {useWhatsapp && (
-                        <InputPhoneNumber
+                        <PhoneNumberInput
                           id=""
                           label="WhatsApp No."
                           name="whatsapp"

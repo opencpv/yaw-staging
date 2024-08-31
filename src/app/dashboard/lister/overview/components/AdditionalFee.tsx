@@ -4,7 +4,7 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import { useField } from "formik";
 import { ListingDefaultValues } from "@/store/dashboard/ListingStepsStore";
 import { Input } from "@/components/__shared/ui/form/input";
-import CurrencyInput from "@/components/__shared/ui/form/CurrencyInput";
+import CurrencyInput from "@/components/__shared/ui/form/currency-input";
 
 type AdditionalFeeType = {
   fee_title: string;

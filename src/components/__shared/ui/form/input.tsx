@@ -3,11 +3,14 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { FieldInputProps, useFormikContext } from "formik";
 import ErrorMessage from "../states/error-message";
+import { Tooltip } from "../tooltip";
+import { BsInfoCircle } from "react-icons/bs";
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   prefix?: string;
+  tooltip?: string;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -21,6 +24,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       value,
       onChange,
       required,
+      tooltip,
       ...props
     },
     ref,
@@ -35,12 +39,17 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <label className="flex flex-col gap-4 text-shade-300">
         {label && (
-          <h5 className="flex gap-x-1.5 font-normal capitalize">
-            {label}
+          <div className="flex gap-x-1.5">
+            <h5 className="font-normal capitalize">{label}</h5>
             {required && (
               <span className="relative text-sm text-shade-300">*</span>
             )}
-          </h5>
+            {tooltip && (
+              <Tooltip content={tooltip}>
+                <BsInfoCircle className="text-accent" size={20} />
+              </Tooltip>
+            )}
+          </div>
         )}
         <small className="relative">
           {prefix && (

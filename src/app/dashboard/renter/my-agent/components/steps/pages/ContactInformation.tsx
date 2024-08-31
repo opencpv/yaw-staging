@@ -2,11 +2,11 @@ import { styled } from "@stitches/react";
 import React from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { Input } from "@/components/__shared/ui/form/input";
-import CountryInput from "@/components/__shared/ui/form/CountryInput";
-import { Textarea } from "@/components/__shared/ui/form/Textarea";
+import CountryInput from "@/components/__shared/ui/form/country-input";
+import { Textarea } from "@/components/__shared/ui/form/textarea";
 import style from "../../../index.module.css";
 import { Tabs } from "@/components/__shared/ui/tabs";
-import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
+import PhoneNumberInput from "@/components/__shared/ui/form/phone-number-input";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { MdOutlineMailOutline, MdOutlineWhatsapp } from "react-icons/md";
 import { E164Number } from "libphonenumber-js/core";
@@ -130,7 +130,7 @@ const ContactInformation = React.forwardRef<HTMLInputElement, Props>(
                     : "hidden"
                 }
               >
-                <InputPhoneNumber
+                <PhoneNumberInput
                   id=""
                   name="whatsApp"
                   value={phone}

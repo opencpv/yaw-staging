@@ -1,9 +1,9 @@
 "use client";
 
-import CustomFileInput from "@/components/__shared/ui/form/CustomFileInput";
+import FileInput from "@/components/__shared/ui/form/file-input";
 import { Input } from "@/components/__shared/ui/form/input";
 import { Form, Formik } from "formik";
-import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
+import PhoneNumberInput from "@/components/__shared/ui/form/phone-number-input";
 import { useContactForm } from "@/app/contact/components/forms/hooks/useContactForm";
 import CallOut from "@/components/__shared/ui/callout";
 import { useJoinUsPageStore } from "../../components/useJoinUsPageStore";
@@ -18,12 +18,13 @@ import { toast } from "react-hot-toast";
 import axios from "axios";
 import routes from "@/lib/utils/route";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Button } from "@/components/__shared/ui/button";
+import { Button, LinkButton } from "@/components/__shared/ui/button";
 import JoinUsButtons from "../../components/JoinUsButtons";
 import { BsInfoCircle } from "react-icons/bs";
 import emailjs from "@emailjs/browser";
 import slugify from "@/lib/utils/slugify";
 import dynamic from "next/dynamic";
+import CaJoinUsIconLeft from "./icons/CaJoinUsIconLongLeft";
 const Tooltip = dynamic(() =>
   import("@/components/__shared/ui/tooltip").then((mod) => mod.Tooltip),
 );
@@ -106,17 +107,18 @@ function JobApplicationForm({ variant, position }: Props) {
   };
   return (
     <div className="flex flex-col gap-4 px-5 pt-5 lg:px-20">
-      <JoinUsButtons
+      <LinkButton
+        variant={"ghost"}
+        size="sm"
+        color="accent"
         href="/join-us/open-positions"
-        variant="text-yellow-accent"
-        content="Go back"
-        icon
-        iconType="arrow-left"
-        reverseIcon
         className={`absolute top-5 ${
           isScrolling ? "z-[11]" : "z-[9999]"
         } mt-6 hidden justify-start gap-2.5 lg:flex`}
-      />
+      >
+        <CaJoinUsIconLeft />
+        Go back
+      </LinkButton>
       <Formik
         initialValues={{
           firstname: "",
@@ -135,10 +137,10 @@ function JobApplicationForm({ variant, position }: Props) {
         {({ handleBlur, handleChange, values, errors }) => (
           <Form>
             <div className="flex flex-col gap-4 pt-8 lg:pt-16">
-              <p className="hidden pt-5 text-[1.9375rem] font-semibold text-[#333] lg:flex">
+              <h2 className="hidden pt-5 text-shade-500 lg:flex">
                 {variant == "application" && "Application"}
                 {variant == "resume" && "Resume Bank"}
-              </p>
+              </h2>
 
               {variant == "resume" && (
                 <div className="lg:pt-5">
@@ -151,16 +153,13 @@ function JobApplicationForm({ variant, position }: Props) {
                   variant == "resume" ? "pt-4" : "pt-8"
                 }`}
               >
-                <p className="text-[1.25rem] font-[600] text-shade-300">
-                  Contact Information{" "}
-                </p>
-                <div className="flex flex-col gap-5 lg:flex-row">
+                <h3 className="text-shade-300">Contact Information</h3>
+                <div className="grid gap-5 sm:grid-cols-2">
                   <Input
                     required
                     onChange={(e) => setFirstname(e.target.value)}
                     label="First Name"
                     placeholder="Enter your first name"
-                    type="text"
                     name="first_name"
                   />
                   <Input
@@ -168,20 +167,19 @@ function JobApplicationForm({ variant, position }: Props) {
                     onChange={(e) => setLastname(e.target.value)}
                     label="Last Name"
                     placeholder="Enter your last name"
-                    type="text"
                     name="last_name"
                   />
                 </div>
-                <div className="flex flex-col gap-5 lg:flex-row">
+                <div className="grid gap-5 sm:grid-cols-2">
                   <Input
                     required
                     onChange={(e) => setEmail(e.target.value)}
                     label="Email"
                     placeholder="Enter your email"
-                    type="text"
+                    type="email"
                     name="email"
                   />
-                  <InputPhoneNumber
+                  <PhoneNumberInput
                     required
                     label="Phone"
                     id="phone"
@@ -198,35 +196,25 @@ function JobApplicationForm({ variant, position }: Props) {
             </div>
 
             <div className="mt-12 flex flex-col gap-6">
-              <p className="text-[1.25rem] font-[600] text-shade-300">
-                Professional Profile
-              </p>
+              <h3 className="text-shade-300">Professional Profile</h3>
               <div className="flex flex-col gap-5">
-                <CustomFileInput
+                <FileInput
                   label="Upload Cover Letter as PDF"
-                  variant="green"
                   handleFile={setCoverLetter}
                 />
-                <CustomFileInput
+                <FileInput
                   label="Upload Resume as PDF"
                   required
-                  variant="green"
                   handleFile={setResume}
                 />
-                <div className="flex flex-col gap-3">
-                  <div className="flex gap-2.5">
-                    <p className="text-[#6A6968]">Additional Information</p>
-                    <Tooltip content="Add other relevant information to highlight your skillset (e.g. personal website, work portfolio, etc)">
-                      <BsInfoCircle className="text-accent" size={20} />
-                    </Tooltip>
-                  </div>
-                  <input
-                    placeholder="Paste your link here"
-                    type="text"
-                    onChange={(e) => setLink(e.target.value)}
-                    className="form-field-border h-[52px] w-full rounded-[4px] px-4 focus:outline-accent-50"
-                  />
-                </div>
+
+                <Input
+                  name="link"
+                  label="Additional Information"
+                  placeholder="Paste your link here"
+                  onChange={(e) => setLink(e.target.value)}
+                  tooltip="Add other relevant information to highlight your skillset (e.g. personal website, work portfolio, etc)"
+                />
               </div>
             </div>
             <div className="mt-12 flex justify-center pb-10 lg:pb-16">

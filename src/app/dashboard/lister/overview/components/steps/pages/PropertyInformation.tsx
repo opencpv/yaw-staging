@@ -1,11 +1,11 @@
 import React from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { Input } from "@/components/__shared/ui/form/input";
-import { Textarea } from "@/components/__shared/ui/form/Textarea";
+import { Textarea } from "@/components/__shared/ui/form/textarea";
 import style from "../../../index.module.css";
 import { ListingDefaultValues } from "@/store/dashboard/ListingStepsStore";
-import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
-import { CustomDatePicker } from "@/components/__shared/ui/form/CustomDatePicker";
+import { SelectInput } from "@/components/__shared/ui/form/select";
+import { DatePicker } from "@/components/__shared/ui/form/date-picker";
 
 type Props = {};
 
@@ -66,56 +66,43 @@ const PropertyInformation = React.forwardRef<HTMLInputElement, Props>(
               onChange={(e) => handleOnChange("property_size", e.target.value)}
             />
 
-            <CustomSelect
+            <SelectInput
               name="bedrooms"
               label="Number of Bedrooms"
-              options={[
-                { name: "1", value: "1" },
-                { name: "2", value: "2" },
-                { name: "3", value: "3" },
-                { name: "4", value: "4" },
-                { name: "5", value: "5" },
-                { name: "6+", value: "6+" },
-              ]}
+              options={["1", "2", "3", "4", "5", "6+"]}
               onChange={(value) => handleOnChange("bedrooms", value)}
             />
-            <CustomSelect
+            <SelectInput
               name="bathrooms"
               label="Number of Bathrooms"
               options={[
-                { name: "1", value: "1" },
-                { name: "1.5", value: "1.5" },
-                { name: "2", value: "2" },
-                { name: "2.5", value: "2.5" },
-                { name: "3", value: "3" },
-                { name: "3.5", value: "3.5" },
-                { name: "4", value: "4" },
-                { name: "4.5", value: "4.5" },
-                { name: "5", value: "5" },
-                { name: "5.5", value: "5.5" },
-                { name: "6+", value: "6+" },
+                "1",
+                "1.5",
+                "2",
+                "2.5",
+                "3",
+                "3.5",
+                "4",
+                "4.5",
+                "5",
+                "5.5",
+                "6+",
               ]}
               onChange={(value) => handleOnChange("bathrooms", value)}
             />
-            <CustomSelect
+            <SelectInput
               name="city"
               label="City"
-              options={[
-                { name: "Accra", value: "Accra" },
-                { name: "Tema", value: "Tema" },
-              ]}
+              options={["Accra", "Tema"]}
               onChange={(value) => handleOnChange("city", value)}
             />
-            <CustomSelect
+            <SelectInput
               name="neighbourhood"
               label="Neighbourhood"
-              options={[
-                { name: "Dansoman", value: "Dansoman" },
-                { name: "Osu", value: "Osu" },
-              ]}
+              options={["Dansoman", "Osu"]}
               onChange={(value) => handleOnChange("neighbourhood", value)}
             />
-            <CustomDatePicker
+            <DatePicker
               name="available_date"
               label="Available On"
               onChange={(value) => handleOnChange("available_date", value)}

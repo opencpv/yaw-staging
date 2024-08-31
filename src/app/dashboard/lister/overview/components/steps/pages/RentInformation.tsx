@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import style from "../../../index.module.css";
 import { ListingDefaultValues } from "@/store/dashboard/ListingStepsStore";
-import CurrencyInput from "@/components/__shared/ui/form/CurrencyInput";
+import CurrencyInput from "@/components/__shared/ui/form/currency-input";
 import { RadioInput } from "@/components/__shared/ui/form/radio-input";
 import { useFormikContext } from "formik";
 import { caseInsensitiveCompare } from "@/lib/utils/stringManipulation";

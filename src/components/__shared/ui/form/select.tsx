@@ -5,6 +5,13 @@ import * as SelectPrimitive from "@radix-ui/react-select";
 import { LuCheck, LuChevronDown, LuChevronUp } from "react-icons/lu";
 
 import { cn } from "@/lib/utils";
+import {
+  FieldHelperProps,
+  FieldInputProps,
+  FieldMetaProps,
+  useFormikContext,
+} from "formik";
+import ErrorMessage from "../states/error-message";
 
 type SelectContentProps = {
   position?: "popper" | "item-aligned";
@@ -243,8 +250,89 @@ const Select = React.forwardRef<
 );
 Select.displayName = "Select";
 
+type Props = {
+  placeholder?: string;
+  options: string[];
+  onChange?: (value: any) => void;
+  label?: string;
+  fadeText?: boolean;
+  className?: string;
+  classNames?: {
+    option?: string;
+    placeholder?: string;
+  };
+  value?: string;
+  name?: string;
+  /** A string that shows before the value. Eg: GHS 1000 */
+  prefix?: string;
+};
+
+const SelectInput = ({
+  label,
+  options,
+  onChange,
+  placeholder,
+  value,
+  className,
+  classNames,
+  prefix,
+  name,
+}: Props) => {
+  const formikContext = useFormikContext();
+  let field: FieldInputProps<any> | undefined;
+  let helpers: FieldHelperProps<any> | undefined;
+  let meta: FieldMetaProps<any> | undefined;
+
+  if (formikContext) {
+    field = formikContext.getFieldProps(name as string);
+    helpers = formikContext.getFieldHelpers(name as string);
+    meta = formikContext.getFieldMeta(name as string);
+  }
+
+  return (
+    <div className={cn("flex w-full flex-col gap-4 text-shade-300", className)}>
+      {label && <label>{label}</label>}
+      <Select
+        onValueChange={(value) => {
+          helpers?.setValue(value);
+          onChange?.(value);
+        }}
+        value={field?.value || value}
+        name={field?.name || name}
+      >
+        <SelectTrigger
+          className={`form-field-border h-[52px] w-full bg-white px-3 py-2`}
+        >
+          <div
+            className={cn("flex items-center gap-5", classNames?.placeholder)}
+          >
+            {prefix && <span>{prefix}</span>}
+            <SelectValue placeholder={placeholder} />
+          </div>
+        </SelectTrigger>
+        <SelectContent>
+          {options.map((option, index) => (
+            <SelectItem
+              key={index}
+              value={option}
+              className={cn("capitalize", classNames?.option)}
+              color="accent"
+            >
+              {option}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+
+      {formikContext ? <ErrorMessage name={field?.name as string} /> : null}
+    </div>
+  );
+};
+SelectInput.displayName = "SelectInput";
+
 export {
   Select,
+  SelectInput,
   SelectGroup,
   SelectValue,
   SelectTrigger,

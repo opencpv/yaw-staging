@@ -1,5 +1,5 @@
 import React from "react";
-import InputPhoneNumber from "./InputPhoneNumber";
+import PhoneNumberInput from "@/components/__shared/ui/form/phone-number-input";
 import { Input } from "@/components/__shared/ui/form/input";
 import { Tabs } from "@/components/__shared/ui/tabs";
 import { MdOutlineMailOutline, MdOutlineWhatsapp } from "react-icons/md";
@@ -83,7 +83,7 @@ const PreferredContactMethod = ({
           selectedKey === "WhatsApp" || hideEmail ? "block pt-2" : "hidden"
         }
       >
-        <InputPhoneNumber
+        <PhoneNumberInput
           name="phone"
           onChange={onChange}
           onCountryChange={handleCountryChange}

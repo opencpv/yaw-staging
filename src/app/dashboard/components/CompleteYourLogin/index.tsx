@@ -1,5 +1,5 @@
 "use client";
-import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
+import { SelectInput } from "@/components/__shared/ui/form/select";
 import styles from "./index.module.css";
 import { Button } from "@/components/__shared/ui/button";
 import * as Dialog from "@radix-ui/react-dialog";
@@ -78,14 +78,10 @@ function CompleteYourLogin({ open }: Props) {
                             }
                           }}
                         >
-                          <CustomSelect
+                          <SelectInput
                             name="role"
                             placeholder="Select your role"
-                            options={[
-                              { name: "renter", value: "Renter" },
-                              { name: "lister", value: "Lister" },
-                              // { name: "service pro", value: "service Pro" }, // maybe future
-                            ]}
+                            options={["Renter", "Lister"]}
                             classNames={{
                               option: "text-lg",
                               placeholder: "text-lg",

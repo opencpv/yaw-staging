@@ -1,6 +1,6 @@
 import { BTFTKDefaultValues } from "@/store/dashboard/BTFTKStepsStore";
 import style from "../../../index.module.css";
-import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
+import { SelectInput } from "@/components/__shared/ui/form/select";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { cn } from "@/lib/utils";
 
@@ -24,39 +24,39 @@ export default function PropertyRequirements() {
         <div className={style.subHeadingFieldsContainer}>
           <h3>Price Range</h3>
           <div className={cn("grid grid-cols-2", style.fieldsInlineGap)}>
-            <CustomSelect
+            <SelectInput
               name="priceRangeMinimum"
               label="Minimum"
               prefix="GHS"
               options={[
-                { name: "100", value: "100" },
-                { name: "1000", value: "1000" },
-                { name: "2000", value: "2000" },
-                { name: "4000", value: "4000" },
-                { name: "5000", value: "5000" },
-                { name: "6000", value: "6000" },
-                { name: "7000", value: "7000" },
-                { name: "8000", value: "8000" },
-                { name: "9000", value: "9000" },
-                { name: "10000", value: "10000" },
+                "100",
+                "1000",
+                "2000",
+                "4000",
+                "5000",
+                "6000",
+                "7000",
+                "8000",
+                "9000",
+                "10000",
               ]}
               onChange={(value) => handleOnChange("priceRangeMinimum", value)}
             />
-            <CustomSelect
+            <SelectInput
               name="priceRangeMaximum"
               label="Maximum"
               prefix="GHS"
               options={[
-                { name: "100", value: "100" },
-                { name: "1000", value: "1000" },
-                { name: "2000", value: "2000" },
-                { name: "4000", value: "4000" },
-                { name: "5000", value: "5000" },
-                { name: "6000", value: "6000" },
-                { name: "7000", value: "7000" },
-                { name: "8000", value: "8000" },
-                { name: "9000", value: "9000" },
-                { name: "10000+", value: "10000+" },
+                "100",
+                "1000",
+                "2000",
+                "4000",
+                "5000",
+                "6000",
+                "7000",
+                "8000",
+                "9000",
+                "10000+",
               ]}
               onChange={(value) => handleOnChange("priceRangeMaximum", value)}
             />
@@ -66,38 +66,16 @@ export default function PropertyRequirements() {
         <div className={style.subHeadingFieldsContainer}>
           <h3>Bed</h3>
           <div className={cn("grid grid-cols-2", style.fieldsInlineGap)}>
-            <CustomSelect
+            <SelectInput
               name="bedMinimum"
               label="Minimum"
-              options={[
-                { name: "1", value: "1" },
-                { name: "2", value: "2" },
-                { name: "3", value: "3" },
-                { name: "4", value: "4" },
-                { name: "5", value: "5" },
-                { name: "6", value: "6" },
-                { name: "7", value: "7" },
-                { name: "8", value: "8" },
-                { name: "9", value: "9" },
-                { name: "10", value: "10" },
-              ]}
+              options={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]}
               onChange={(value) => handleOnChange("bedMinimum", value)}
             />
-            <CustomSelect
+            <SelectInput
               name="bedMaximum"
               label="Maximum"
-              options={[
-                { name: "1", value: "1" },
-                { name: "2", value: "2" },
-                { name: "3", value: "3" },
-                { name: "4", value: "4" },
-                { name: "5", value: "5" },
-                { name: "6", value: "6" },
-                { name: "7", value: "7" },
-                { name: "8", value: "8" },
-                { name: "9", value: "9" },
-                { name: "10+", value: "10+" },
-              ]}
+              options={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10+"]}
               onChange={(value) => handleOnChange("bedMaximum", value)}
             />
           </div>
@@ -106,38 +84,16 @@ export default function PropertyRequirements() {
         <div className={style.subHeadingFieldsContainer}>
           <h3>Bathroom</h3>
           <div className={cn("grid grid-cols-2", style.fieldsInlineGap)}>
-            <CustomSelect
+            <SelectInput
               name="bathroomMinimum"
               label="Minimum"
-              options={[
-                { name: "1", value: "1" },
-                { name: "2", value: "2" },
-                { name: "3", value: "3" },
-                { name: "4", value: "4" },
-                { name: "5", value: "5" },
-                { name: "6", value: "6" },
-                { name: "7", value: "7" },
-                { name: "8", value: "8" },
-                { name: "9", value: "9" },
-                { name: "10", value: "10" },
-              ]}
+              options={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]}
               onChange={(value) => handleOnChange("bathroomMinimum", value)}
             />
-            <CustomSelect
+            <SelectInput
               name="bathroomMaximum"
               label="Maximum"
-              options={[
-                { name: "1", value: "1" },
-                { name: "2", value: "2" },
-                { name: "3", value: "3" },
-                { name: "4", value: "4" },
-                { name: "5", value: "5" },
-                { name: "6", value: "6" },
-                { name: "7", value: "7" },
-                { name: "8", value: "8" },
-                { name: "9", value: "9" },
-                { name: "10+", value: "10+" },
-              ]}
+              options={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10+"]}
               onChange={(value) => handleOnChange("bathroomMaximum", value)}
             />
           </div>

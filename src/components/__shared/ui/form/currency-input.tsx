@@ -20,10 +20,7 @@ import { useField } from "formik";
 import { styled } from "@stitches/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-// import { InfoBubble } from "@/components/__shared/ui/application-form/components/InfoBubble";
-import CustomSelect, {
-  OptionTypes,
-} from "@/components/__shared/ui/form/CustomSelect";
+import { SelectInput } from "@/components/__shared/ui/form/select";
 import { Input } from "./input";
 
 type DataItem = {
@@ -33,8 +30,6 @@ type DataItem = {
 };
 
 type Props = {
-  initialCurrency?: any;
-  initialValue?: any;
   value2?: string;
   placeholder?: string;
   label: string;
@@ -47,7 +42,7 @@ type Props = {
   infoBubble?: boolean;
   isSelectElement?: boolean;
   /** options to use when isSelectElement is true */
-  options?: OptionTypes[];
+  options?: string[];
   /** For first element */
   name?: string;
   /** For second element */
@@ -55,45 +50,24 @@ type Props = {
 };
 
 const CurrencyInput = ({
-  initialCurrency,
-  initialValue,
   placeholder = "Select currency",
   label,
   onChange,
   onChange2,
   value2,
-  placeholderMonthlyIncome,
   placeholderMonthlyIncomeCurrency,
-  infoBubble,
   isSelectElement,
   options,
   name,
   name2,
 }: Props) => {
   const [currencyData, setCurrencyData] = useState<DataItem[]>();
-  const [selectedCurrency, setSelectedCurrency] = useState<any>({});
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState<string>(
     placeholderMonthlyIncomeCurrency || "",
   );
-  // const [value2, setValue2] = useState<string>("");
 
   const [totalValue, setTotalValue] = useState<string>();
-
-  //useEffect(() => {
-  //  if (initialValue) {
-  //    setValue(initialValue.slice(0, 4));
-  //    // setValue2(initialValue.slice(4));
-  //  } else {
-  //    setValue("GHS");
-  //  }
-  //}, [initialValue]);
-
-  //useEffect(() => {
-  //  if (initialCurrency) {
-  //    setSelectedCurrency(initialCurrency);
-  //  }
-  //}, [initialCurrency]);
 
   useEffect(() => {
     setTotalValue(value);
@@ -132,7 +106,6 @@ const CurrencyInput = ({
       <Root className="flex">
         <div className={`flex gap-2 font-[400] text-[#6A6968]`}>
           <label>{label}</label>
-          {/* {infoBubble && <InfoBubble content="Data" />} */}
         </div>
         <div className="flex justify-start gap-4">
           <Popover open={open} onOpenChange={setOpen}>
@@ -141,7 +114,7 @@ const CurrencyInput = ({
                 variant="outline"
                 role="combobox"
                 aria-expanded={open}
-                className="form-field-border h-[52px] w-full max-w-[100px] justify-between whitespace-nowrap uppercase text-[#6A6968] focus:border-2 focus:border-accent-50 focus:outline-none focus-visible:ring-0"
+                className="form-field-border h-[52px] w-full max-w-[100px] justify-between whitespace-nowrap uppercase text-[#6A6968] focus:border-2 focus:outline-none focus-visible:border-accent focus-visible:ring-0"
                 //@ts-ignore
                 name={field.name}
                 value={field.value || value}
@@ -179,10 +152,10 @@ const CurrencyInput = ({
           </Popover>
 
           {isSelectElement ? (
-            <CustomSelect
+            <SelectInput
               name={name2}
               value={value2}
-              options={options as OptionTypes[]}
+              options={options as string[]}
               onChange={(value) => onChange2 && onChange2(value)}
             />
           ) : (

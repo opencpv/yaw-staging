@@ -31,6 +31,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
 
     if (formikContext) {
       field = formikContext.getFieldProps(name as string);
+      meta = formikContext.getFieldMeta(name as string);
       fieldLength = field.value?.length || 0;
     }
 

@@ -1,5 +1,10 @@
 "use client";
-import { Tabs } from "@/components/__shared/ui/tabs";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/__shared/ui/tabs";
 import { invoiceStore } from "@/store/payment/invoiceStore";
 import React, { useEffect, useState } from "react";
 import Invoices from "../pages/Invoices";
@@ -17,13 +22,7 @@ const InvoiceReceiptFilter = (props: Props) => {
   const searchParams = useSearchParams();
   const id = searchParams?.get("id");
 
-  const {
-    activePage,
-    setActivePage,
-    setCheckoutItems,
-    setInvoiceItems,
-    setReceiptItems,
-  } = invoiceStore();
+  const { setCheckoutItems, setInvoiceItems, setReceiptItems } = invoiceStore();
   const { setCustomer, customer } = customerStore();
   const [loading, setloading] = useState(false);
   const supabaseClient = createClient();
@@ -76,21 +75,28 @@ const InvoiceReceiptFilter = (props: Props) => {
   }, [customer]);
   return (
     <>
-      <div className="mb-10">
-        <Tabs
-          options={["Invoice", "Receipt", "Forms"]}
-          selectedKey={activePage}
-          onSelectionChange={setActivePage}
-          variant="rounded"
-        />
-      </div>
-      {activePage === "Invoice" ? (
-        <Invoices customerId={props.customerId} />
-      ) : activePage === "Receipt" ? (
-        <Receipts customerId={props.customerId} />
-      ) : (
-        <Forms />
-      )}
+      <Tabs defaultValue="Invoice" variant="rounded">
+        <TabsList className="mb-10">
+          <TabsTrigger variant="rounded" value="Invoice">
+            Invoices
+          </TabsTrigger>
+          <TabsTrigger variant="rounded" value="Receipt">
+            Receipts
+          </TabsTrigger>
+          <TabsTrigger variant="rounded" value="Forms">
+            Forms
+          </TabsTrigger>
+        </TabsList>
+        <TabsContent value="Invoice">
+          <Invoices customerId={props.customerId} />
+        </TabsContent>
+        <TabsContent value="Receipt">
+          <Receipts customerId={props.customerId} />
+        </TabsContent>
+        <TabsContent value="Forms">
+          <Forms />
+        </TabsContent>
+      </Tabs>
     </>
   );
 };

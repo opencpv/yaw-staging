@@ -83,7 +83,7 @@ const Footer = (props: Props) => {
             ) : LowerCase(r?.label) === "feedback" ? (
               <Feedback data={data} key={r?.label}>
                 <button>
-                  <h2>Feedback</h2>
+                  <h2 className="font-normal">Feedback</h2>
                 </button>
               </Feedback>
             ) : (

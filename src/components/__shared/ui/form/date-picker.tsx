@@ -26,7 +26,8 @@ type Props = {
   name?: string;
   value?: string;
 };
-export function CustomDatePicker({
+
+export function DatePicker({
   label,
   onChange,
   disabled,

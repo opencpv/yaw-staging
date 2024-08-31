@@ -2,7 +2,7 @@ import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import React from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
-import CustomSelect from "../../../../../../../components/__shared/ui/form/CustomSelect";
+import { SelectInput } from "../../../../../../../components/__shared/ui/form/select";
 import style from "../../../index.module.css";
 import { Input } from "../../../../../../../components/__shared/ui/form/input";
 import { useField } from "formik";
@@ -55,24 +55,18 @@ const Location = ({
     <div
       className={cn("flex w-full flex-col lg:max-w-lg", style.fieldsBlockGap)}
     >
-      <CustomSelect
+      <SelectInput
         name={city + index}
         label="City"
         value={city}
-        options={[
-          { name: "accra", value: "Accra" },
-          { name: "tema", value: "Tema" },
-        ]}
+        options={["Accra", "Tema"]}
         onChange={(val) => handleInputChange("city", val, index)}
       />
-      <CustomSelect
+      <SelectInput
         name={neighbourhood + index}
         label="Neighbourhood"
         value={neighbourhood}
-        options={[
-          { name: "dansoman", value: "Dansoman" },
-          { name: "osu", value: "Osu" },
-        ]}
+        options={["Dansoman", "Osu"]}
         onChange={(val) => handleInputChange("neighbourhood", val, index)}
       />
     </div>

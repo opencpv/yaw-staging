@@ -40,7 +40,7 @@ const Tooltip = React.forwardRef<
     <span className="max-md:hidden">
       <TooltipProvider>
         <BaseTooltip>
-          <TooltipTrigger>{children}</TooltipTrigger>
+          <TooltipTrigger type="button">{children}</TooltipTrigger>
           <TooltipContent
             className={cn(className, { hidden: !content })}
             ref={ref}

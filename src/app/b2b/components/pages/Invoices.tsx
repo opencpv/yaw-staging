@@ -2,7 +2,7 @@
 import Cost from "../__shared/Cost";
 import InvoiceTable from "../invoice/InvoiceTable";
 import { invoiceStore } from "@/store/payment/invoiceStore";
-import SearchInput from "@/components/__shared/ui/form/SearchInput";
+import SearchInput from "@/components/__shared/ui/form/search-input";
 import { useState } from "react";
 import { Tabs } from "@/components/__shared/ui/tabs";
 import { customerStore } from "@/store/payment/customerStore";

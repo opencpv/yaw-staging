@@ -10,6 +10,11 @@ type Option = {
   icon?: React.ReactNode;
 };
 
+type TabsProps = {
+  variant?: "default" | "rounded";
+  size?: "sm" | "md";
+};
+
 const BaseTabs = TabsPrimitive.Root;
 
 const TabsList = React.forwardRef<
@@ -29,10 +34,7 @@ TabsList.displayName = TabsPrimitive.List.displayName;
 
 const TabsTrigger = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger> & {
-    variant?: "default" | "rounded";
-    size?: "sm" | "md";
-  }
+  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger> & TabsProps
 >(({ className, variant, size = "sm", ...props }, ref) => (
   <TabsPrimitive.Trigger
     ref={ref}
@@ -67,13 +69,12 @@ TabsContent.displayName = TabsPrimitive.Content.displayName;
 
 const Tabs = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Root> & {
-    options?: (string | Option)[];
-    variant?: "default" | "rounded";
-    size?: "sm" | "md";
-    onSelectionChange?: (key: string) => void;
-    selectedKey?: string;
-  }
+  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Root> &
+    TabsProps & {
+      options?: (string | Option)[];
+      onSelectionChange?: (key: string) => void;
+      selectedKey?: string;
+    }
 >(
   (
     {

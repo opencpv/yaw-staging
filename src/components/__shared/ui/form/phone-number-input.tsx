@@ -3,8 +3,13 @@ import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import React, { useState } from "react";
 import { E164Number, CountryCode } from "libphonenumber-js/core";
-import { useField } from "formik";
-import ErrorMessage from "@/components/__shared/ui/states/error-message";
+import {
+  FieldHelperProps,
+  FieldInputProps,
+  FieldMetaProps,
+  useFormikContext,
+} from "formik";
+import ErrorMessage from "../states/error-message";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -20,7 +25,7 @@ type Props = {
   required?: boolean;
 };
 
-const InputPhoneNumber: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
+const PhoneNumberInput: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
   value,
   name,
   id,
@@ -36,7 +41,15 @@ const InputPhoneNumber: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
   const [country] = useState<CountryCode>("GH");
   const [showCode, setShowCode] = useState<boolean>(false);
 
-  const [field, meta, helpers] = useField(name as string);
+  const formikContext = useFormikContext();
+  let field: FieldInputProps<any> | undefined;
+  let meta: FieldMetaProps<any> | undefined;
+  let helpers: FieldHelperProps<any> | undefined;
+
+  if (formikContext) {
+    field = formikContext.getFieldProps(name as string);
+    meta = formikContext.getFieldMeta(name as string);
+  }
 
   const handleFocus = (e: any) => {
     setShowCode(true);
@@ -45,20 +58,22 @@ const InputPhoneNumber: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
   };
 
   return (
-    <div className="w-full space-y-4 text-sm">
+    <label className="w-full space-y-4 text-sm">
       {props.label && (
-        <label className="text-base text-shade-300">
+        <div className="flex gap-x-1.5 text-base text-shade-300">
           {props.label}
-          {required && <span className="relative top-[-5px]">*</span>}
-        </label>
+          {required && (
+            <span className="relative text-sm text-shade-300">*</span>
+          )}
+        </div>
       )}
       <PhoneInput
         id={id}
-        name={field.name || name}
-        value={field.value || value}
+        name={field?.name || name}
+        value={field?.value || value}
         onChange={(value) => {
           onChange(value);
-          helpers.setValue(value);
+          helpers?.setValue(value);
         }}
         defaultCountry={country}
         international={showCode}
@@ -71,13 +86,11 @@ const InputPhoneNumber: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
       />
       {showError && (
         <>
-          {meta.touched && meta.error ? (
-            <ErrorMessage>{meta.error}</ErrorMessage>
-          ) : null}
+          {formikContext ? <ErrorMessage name={field?.name as string} /> : null}
         </>
       )}
-    </div>
+    </label>
   );
 };
 
-export default InputPhoneNumber;
+export default PhoneNumberInput;
