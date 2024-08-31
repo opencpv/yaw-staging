@@ -17,7 +17,7 @@ const Dashboard = () => {
         error,
       } = await supabase.auth.getUser();
       if (user) {
-        router.replace(`/dashboard/${currentRole}/overview`);
+        router.replace(`/dashboard/${currentRole.toLowerCase()}/overview`);
       }
     };
 

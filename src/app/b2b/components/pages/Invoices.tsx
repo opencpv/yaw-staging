@@ -90,7 +90,7 @@ function Invoices({ customerId }: Props) {
             Checkout <CaCard />
           </Button>
           <Button
-            className="bg-primary-50 text-primary hover:text-white"
+            className="bg-primary-50 text-primary"
             onClick={() => {
               downloadAll();
             }}

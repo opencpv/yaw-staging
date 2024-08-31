@@ -7,7 +7,7 @@ import { RadioInput } from "@/components/__shared/ui/form/radio-input";
 import { useFormikContext } from "formik";
 import { caseInsensitiveCompare } from "@/lib/utils/stringManipulation";
 import AdditionalFees from "../../AdditionalFee";
-import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
+import { Input } from "@/components/__shared/ui/form/input";
 
 type Props = {};
 
@@ -87,7 +87,7 @@ const RentInformation = React.forwardRef<HTMLInputElement, Props>(({}, ref) => {
             }}
             color="primary"
           />
-          <TextFieldInput
+          <Input
             name="monthly_amount_calculation"
             label="Rent / Month"
             value={
@@ -96,9 +96,7 @@ const RentInformation = React.forwardRef<HTMLInputElement, Props>(({}, ref) => {
                 : monthlyAmount || ""
             }
             disabled
-            classNames={{
-              input: "max-w-xs",
-            }}
+            className="max-w-xs"
           />
           <RadioInput
             name="require_refundable_security_deposit"

@@ -4,7 +4,7 @@ import PhoneInput from "react-phone-number-input";
 import React, { useState } from "react";
 import { E164Number, CountryCode } from "libphonenumber-js/core";
 import { useField } from "formik";
-import ErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
+import ErrorMessage from "@/components/__shared/ui/states/error-message";
 import { cn } from "@/lib/utils";
 
 type Props = {

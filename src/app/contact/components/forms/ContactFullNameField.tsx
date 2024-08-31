@@ -1,5 +1,5 @@
 "use client";
-import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
+import { Input } from "@/components/__shared/ui/form/input";
 import React, { ChangeEvent, FocusEvent, useEffect, useRef } from "react";
 import { useContactForm } from "./hooks/useContactForm";
 
@@ -29,7 +29,7 @@ const ContactFullNameField = ({
   const { contactFormSession, handleSessionChange } = useContactForm();
 
   return (
-    <TextFieldInput
+    <Input
       name="fullname"
       value={contactFormSession.fullname || (value as string)}
       placeholder="Full Name"

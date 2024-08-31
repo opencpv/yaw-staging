@@ -13,7 +13,7 @@ const ArchivedButton = (props: Props) => {
   return (
     <Button
       className={cn(
-        "ml-auto flex justify-end bg-primary/10 text-primary/80 max-lg:mt-20",
+        "ml-auto flex justify-end bg-primary-50 text-primary max-lg:mt-20",
         {
           "bg-primary text-white": props.showingArchived,
         },

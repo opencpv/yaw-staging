@@ -8,7 +8,7 @@ import {
   SelectValue,
 } from "../form/select";
 import { cn } from "@/lib/utils";
-import ErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
+import ErrorMessage from "@/components/__shared/ui/states/error-message";
 
 export type OptionTypes = {
   name: string;
@@ -82,7 +82,7 @@ const CustomSelect = ({
       </Select>
 
       {meta.touched && meta.error ? (
-        <ErrorMessage error={meta.error}>{meta.error}</ErrorMessage>
+        <ErrorMessage name={meta.error}>{meta.error}</ErrorMessage>
       ) : null}
     </Root>
   );

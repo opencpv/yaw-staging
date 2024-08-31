@@ -100,7 +100,7 @@ const ItemsPage = () => {
           <div className="order-2 flex items-center justify-between gap-5 lg:order-1">
             <h2>Items</h2>
             <LinkButton
-              href={`/dashboard/${currentRole}/sell-products/add-new-product`}
+              href={`/dashboard/${currentRole.toLowerCase()}/sell-products/add-new-product`}
               className="max-lg:hidden"
             >
               Add Item
@@ -207,7 +207,7 @@ const AddItem = () => {
         />
         <p className="text-2xl font-semibold text-neutral-600">No item Added</p>
         <LinkButton
-          href={`/dashboard/${currentRole}/sell-products/add-new-product`}
+          href={`/dashboard/${currentRole.toLowerCase()}/sell-products/add-new-product`}
         >
           Add New Item
         </LinkButton>

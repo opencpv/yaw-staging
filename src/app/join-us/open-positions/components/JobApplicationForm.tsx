@@ -1,7 +1,7 @@
 "use client";
 
 import CustomFileInput from "@/components/__shared/ui/form/CustomFileInput";
-import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
+import { Input } from "@/components/__shared/ui/form/input";
 import { Form, Formik } from "formik";
 import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
 import { useContactForm } from "@/app/contact/components/forms/hooks/useContactForm";
@@ -155,7 +155,7 @@ function JobApplicationForm({ variant, position }: Props) {
                   Contact Information{" "}
                 </p>
                 <div className="flex flex-col gap-5 lg:flex-row">
-                  <TextFieldInput
+                  <Input
                     required
                     onChange={(e) => setFirstname(e.target.value)}
                     label="First Name"
@@ -163,7 +163,7 @@ function JobApplicationForm({ variant, position }: Props) {
                     type="text"
                     name="first_name"
                   />
-                  <TextFieldInput
+                  <Input
                     required
                     onChange={(e) => setLastname(e.target.value)}
                     label="Last Name"
@@ -173,7 +173,7 @@ function JobApplicationForm({ variant, position }: Props) {
                   />
                 </div>
                 <div className="flex flex-col gap-5 lg:flex-row">
-                  <TextFieldInput
+                  <Input
                     required
                     onChange={(e) => setEmail(e.target.value)}
                     label="Email"

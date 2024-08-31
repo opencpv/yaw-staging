@@ -8,7 +8,7 @@ import {
   TableHeaderRow,
   TableSm,
 } from "@/components/__shared/ui/table";
-import { CheckboxNoFormik as Checkbox } from "@/components/__shared/ui/form/checkbox";
+import { Checkbox } from "@/components/__shared/ui/form/checkbox";
 import { useReceiptData } from "../../hooks/useReceiptData";
 import { createUUID } from "@/lib/utils/stringManipulation";
 import { useFetchReceipts } from "../../services";
@@ -71,7 +71,7 @@ const ReceiptTable = ({ searchString, customerId }: Props) => {
               className="relative xl:left-1"
               onCheckedChange={handleCheckAll}
               checked={allChecked}
-              classNames={{ checkIcon: "text-primary" }}
+              // classNames={{ checkIcon: "text-primary" }}
             />{" "}
           </TableHeader>
           <TableHeader className="col-span-1">Receipt Id</TableHeader>

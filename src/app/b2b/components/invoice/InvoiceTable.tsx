@@ -8,7 +8,7 @@ import {
   TableHeaderRow,
   TableSm,
 } from "@/components/__shared/ui/table";
-import { CheckboxNoFormik as Checkbox } from "@/components/__shared/ui/form/checkbox";
+import { Checkbox } from "@/components/__shared/ui/form/checkbox";
 import { useInvoiceData } from "../../hooks/useInvoiceData";
 import { createUUID } from "@/lib/utils/stringManipulation";
 import { useFetchInvoices } from "../../services";

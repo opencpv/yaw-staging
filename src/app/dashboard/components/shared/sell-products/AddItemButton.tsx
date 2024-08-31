@@ -30,7 +30,7 @@ const AddItemButton = (props: Props) => {
   return (
     <>
       <LinkButton
-        href={`/dashboard/${currentRole}/sell-products/add-new-product`}
+        href={`/dashboard/${currentRole.toLowerCase()}/sell-products/add-new-product`}
         className={`${
           isButtonInViewport ? "whitespace-nowrap max-xs:hidden" : "hidden"
         }`}
@@ -39,7 +39,7 @@ const AddItemButton = (props: Props) => {
       </LinkButton>
       <span ref={floatButtonRef} className="max-xs:hidden">
         <LinkButton
-          href={`/dashboard/${currentRole}/sell-products/add-new-product`}
+          href={`/dashboard/${currentRole.toLowerCase()}/sell-products/add-new-product`}
           className={cn(
             "fixed bottom-12 right-5 z-10 h-[60px] w-[80px] rounded-3xl shadow-lg transition-all",
             {
@@ -51,7 +51,7 @@ const AddItemButton = (props: Props) => {
         </LinkButton>
       </span>
       <LinkButton
-        href={`/dashboard/${currentRole}/sell-products/add-new-product`}
+        href={`/dashboard/${currentRole.toLowerCase()}/sell-products/add-new-product`}
         className={cn(
           "fixed bottom-12 right-5 z-10 h-[60px] w-[80px] rounded-3xl shadow-lg transition-all xs:hidden",
         )}

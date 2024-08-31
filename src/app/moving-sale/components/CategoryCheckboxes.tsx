@@ -1,4 +1,4 @@
-import { CheckboxNoFormik as Checkbox } from "@/components/__shared/ui/form/checkbox";
+import { Checkbox } from "@/components/__shared/ui/form/checkbox";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import { useItemFilterStore } from "@/store/moving_sales/useMovingSalesStore";
 import React from "react";

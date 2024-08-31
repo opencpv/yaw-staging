@@ -24,7 +24,7 @@ import { useEffect, useState } from "react";
 import CustomSelect, {
   OptionTypes,
 } from "@/components/__shared/ui/form/CustomSelect";
-import TextFieldInput from "./TextFieldInput";
+import { Input } from "./input";
 
 type DataItem = {
   label: string;
@@ -186,7 +186,7 @@ const CurrencyInput = ({
               onChange={(value) => onChange2 && onChange2(value)}
             />
           ) : (
-            <TextFieldInput
+            <Input
               name={name2 as string}
               onChange={(e) => onChange2 && onChange2(e.target.value)}
               //value={value2}

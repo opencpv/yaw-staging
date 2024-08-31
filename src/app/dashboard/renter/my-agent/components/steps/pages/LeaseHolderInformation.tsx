@@ -1,4 +1,4 @@
-import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
+import { Input } from "@/components/__shared/ui/form/input";
 import { RadioInput } from "@/components/__shared/ui/form/radio-input";
 import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
 import React from "react";
@@ -53,7 +53,7 @@ const LeaseHolderInformation = React.forwardRef<HTMLInputElement, Props>(
               ]}
               onChange={(value) => handleOnChange("age", value)}
             />
-            <TextFieldInput
+            <Input
               type="text"
               name="first_name"
               label="First Name"
@@ -65,7 +65,7 @@ const LeaseHolderInformation = React.forwardRef<HTMLInputElement, Props>(
                 })
               }
             />
-            <TextFieldInput
+            <Input
               type="text"
               name="last_name"
               label="Last Name"
@@ -115,7 +115,7 @@ const LeaseHolderInformation = React.forwardRef<HTMLInputElement, Props>(
                 }
               />
               {/* {BeMyAgentCreationSteps?.evicted === true && (
-                <CustomTextAreaInput
+                <Textarea
                   label="State Your Reasons"
                   placeholder={"State your reasons here"}
                   classes="h-[52px]"
@@ -140,7 +140,7 @@ const LeaseHolderInformation = React.forwardRef<HTMLInputElement, Props>(
                 }
               />
               {/* {BeMyAgentCreationSteps?.convicted === true && (
-                <CustomTextAreaInput
+                <Textarea
                   label="State Your Reasons"
                   placeholder={"State your reasons here"}
                   classes="h-[52px]"

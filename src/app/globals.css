@@ -133,7 +133,7 @@ body {
     @apply rounded-xl bg-primary/10;
   }
   .form-field-border {
-    @apply border border-neutral-300 hover:border-black/40;
+    @apply border border-neutral-300 hover:border-black/40 focus-visible:outline-accent;
   }
 
   .form-input {

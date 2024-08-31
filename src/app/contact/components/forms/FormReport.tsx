@@ -9,7 +9,7 @@ import ContactMessageField from "./ContactMessageField";
 import ContactFullNameField from "./ContactFullNameField";
 import ContactPhoneField from "./ContactPhoneField";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
-import CustomErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
+import CustomErrorMessage from "@/components/__shared/ui/states/error-message";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import { tag, useContactStore } from "@/store/contact/useContactStore";
 import { useRouter } from "next/navigation";
@@ -159,7 +159,7 @@ const FormReport = (props: Props) => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              <CustomErrorMessage className="mt-2" error={errors.message}>
+              <CustomErrorMessage className="mt-2" name={errors.message}>
                 {/* @ts-ignore */}
                 <ErrorMessage name="message" error={errors.message} />
               </CustomErrorMessage>

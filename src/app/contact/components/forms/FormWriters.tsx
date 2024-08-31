@@ -20,7 +20,7 @@ import { E164Number } from "libphonenumber-js/core";
 import dynamic from "next/dynamic";
 import { tag } from "@/store/contact/useContactStore";
 const CustomErrorMessage = dynamic(
-  () => import("@/components/__shared/ui/states/ErrorMessage"),
+  () => import("@/components/__shared/ui/states/error-message"),
 );
 
 type Props = {};
@@ -148,7 +148,7 @@ const FormWriters = (props: Props) => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              <CustomErrorMessage className="mt-2" error={errors.message}>
+              <CustomErrorMessage className="mt-2" name={errors.message}>
                 {/* @ts-ignore */}
                 <ErrorMessage name="message" error={errors.message} />
               </CustomErrorMessage>

@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/__shared/ui/button";
 import { createClient } from "@/lib/utils/supabase/auth/client";
 import { RiPhoneFill, RiTwitterXFill, RiWhatsappFill } from "react-icons/ri";
-import { CheckboxNoFormik as Checkbox } from "@/components/__shared/ui/form/checkbox";
+import { Checkbox } from "@/components/__shared/ui/form/checkbox";
 import ProfilePicture from "./ProfilePicture";
 import CountryInput from "@/components/__shared/ui/form/CountryInput";
 import toast from "react-hot-toast";

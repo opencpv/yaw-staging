@@ -1,12 +1,8 @@
-import { useDashboardStore } from "@/store/dashboard/dashboardStore";
-
 export const useMenuLinks = () => {
-  const { currentRole } = useDashboardStore();
-
   const linksAfterLogin = [
     {
       id: "#",
-      url: `/dashboard/${currentRole}/my-agent/explore`,
+      url: `/dashboard/renter/my-agent/explore`,
       name: "HIRE US",
     },
     {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "./";
+import { Button } from ".";
 import { cn } from "@/lib/utils";
 import { AiOutlineEye } from "react-icons/ai";
 
@@ -13,7 +13,7 @@ const ViewButton = ({ onOpen, className }: Props) => {
     <Button
       size="icon"
       title="View"
-      className={cn("bg-secondary-50 text-neutral-800", className)}
+      className={cn("bg-secondary-50 p-4 text-shade-500", className)}
       onClick={onOpen}
     >
       <AiOutlineEye size={16} />

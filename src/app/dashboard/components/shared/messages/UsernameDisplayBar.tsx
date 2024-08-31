@@ -19,7 +19,7 @@ const UsernameDisplayBar = ({ userName }: Props) => {
     <div className="sticky top-0 z-40 flex items-center justify-between gap-x-4 rounded-xl bg-primary-400 p-4 text-white">
       <LinkButton
         variant="ghost"
-        href={`/dashboard/${currentRole}/messages`}
+        href={`/dashboard/${currentRole.toLowerCase()}/messages`}
         className="lg:hidden"
       >
         <FaChevronLeft className="text-white" />

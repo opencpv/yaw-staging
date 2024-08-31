@@ -24,7 +24,7 @@ const EditButton = ({ onClick, variant = "default", className }: Props) => {
     >
       <MdOutlineEdit
         size={variant === "default" ? 16 : 24}
-        className="text-neutral-700"
+        className="text-shade-500"
       />
     </Button>
   );

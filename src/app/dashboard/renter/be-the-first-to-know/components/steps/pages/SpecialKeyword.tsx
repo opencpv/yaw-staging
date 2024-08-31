@@ -1,6 +1,6 @@
-import CustomTextAreaInput from "@/components/__shared/ui/form/CustomTextAreaInput";
+import { Textarea } from "@/components/__shared/ui/form/Textarea";
 import style from "../../../index.module.css";
-import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
+import { Input } from "@/components/__shared/ui/form/input";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
 import { Tabs } from "@/components/__shared/ui/tabs";
@@ -30,10 +30,10 @@ const SpecialKeyword = () => {
         </p>
       </div>
       <div className="">
-        <CustomTextAreaInput
+        <Textarea
           placeholder="e.g. Tema, Community 1, 2 bedroom, private bathroom"
           name="specialKeywords"
-          classes="h-40"
+          className="h-40"
           onChange={(e) =>
             setBTFTKCreationSteps({
               ...BTFTKCreationSteps,
@@ -75,7 +75,7 @@ const SpecialKeyword = () => {
             field.value?.toLowerCase() === "whatsapp" ? "hidden" : "block"
           }
         >
-          <TextFieldInput
+          <Input
             name="email"
             type="email"
             placeholder="Enter your email address"

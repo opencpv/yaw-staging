@@ -3,14 +3,14 @@ import React from "react";
 import { E164Number } from "libphonenumber-js/core";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { sendContactUsEmail } from "../../api";
-import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
+import { Input } from "@/components/__shared/ui/form/input";
 import ContactSchema from "./lib/contactSchema";
 import { useContactForm } from "./hooks/useContactForm";
 import ContactMessageField from "./ContactMessageField";
 import ContactFullNameField from "./ContactFullNameField";
 import ContactPhoneField from "./ContactPhoneField";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
-import CustomErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
+import CustomErrorMessage from "@/components/__shared/ui/states/error-message";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import { useRouter } from "next/navigation";
 import { generateString } from "@/lib/utils";
@@ -137,7 +137,7 @@ const FormAdvertise = (props: Props) => {
                   />
                 </div>
                 <div className="form-div">
-                  <TextFieldInput
+                  <Input
                     name="companyName"
                     value={values.companyName}
                     placeholder="Company Name"
@@ -166,7 +166,7 @@ const FormAdvertise = (props: Props) => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
-                  <CustomErrorMessage className="mt-2" error={errors.message}>
+                  <CustomErrorMessage className="mt-2" name={errors.message}>
                     {/* @ts-ignore */}
                     <ErrorMessage name="message" error={errors.message} />
                   </CustomErrorMessage>

@@ -1,9 +1,9 @@
 import { styled } from "@stitches/react";
 import React from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
+import { Input } from "@/components/__shared/ui/form/input";
 import CountryInput from "@/components/__shared/ui/form/CountryInput";
-import CustomTextAreaInput from "@/components/__shared/ui/form/CustomTextAreaInput";
+import { Textarea } from "@/components/__shared/ui/form/Textarea";
 import style from "../../../index.module.css";
 import { Tabs } from "@/components/__shared/ui/tabs";
 import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
@@ -32,7 +32,7 @@ const ContactInformation = React.forwardRef<HTMLInputElement, Props>(
             Contact Information <span className={style.asterisk}>*</span>
           </h2>
           <div className={style.wrappingFieldsGrid}>
-            <TextFieldInput
+            <Input
               name="current_address_1"
               type="text"
               label="Current Address 1"
@@ -44,7 +44,7 @@ const ContactInformation = React.forwardRef<HTMLInputElement, Props>(
                 })
               }
             />
-            <TextFieldInput
+            <Input
               name="current_address_2"
               type="text"
               label="Current Address 2 ( optional )"
@@ -56,7 +56,7 @@ const ContactInformation = React.forwardRef<HTMLInputElement, Props>(
                 })
               }
             />
-            <TextFieldInput
+            <Input
               name="city"
               type="city"
               label="City"
@@ -110,7 +110,7 @@ const ContactInformation = React.forwardRef<HTMLInputElement, Props>(
                   field.value?.toLowerCase() === "whatsapp" ? "hidden" : "block"
                 }
               >
-                <TextFieldInput
+                <Input
                   name="email"
                   type="email"
                   placeholder="Enter your email address"
@@ -145,13 +145,12 @@ const ContactInformation = React.forwardRef<HTMLInputElement, Props>(
                 />
               </div>
             </div>
-            <CustomTextAreaInput
+            <Textarea
               name="moving_reason"
               label="Purpose for Moving"
               placeholder={
                 "Why are you moving and what are you looking for in your new place?"
               }
-              classes="h-[167px]"
               onChange={(e) =>
                 setBeMyAgentCreationSteps({
                   ...BeMyAgentCreationSteps,

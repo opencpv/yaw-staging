@@ -12,11 +12,11 @@ import { RenterApplicationStatus } from "./RtApplicationStatus";
 
 type Props = {};
 
-type StatusFilter = "all" | "archived" | RenterApplicationStatus;
+type StatusFilter = "All" | "Archived" | RenterApplicationStatus;
 type DateFilter = "newest" | "oldest" | "last modified";
 
 const RtManageApplicationsSm = (props: Props) => {
-  const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
+  const [statusFilter, setStatusFilter] = useState<StatusFilter>("All");
 
   return (
     <div className="flex flex-col gap-10 lg:hidden">

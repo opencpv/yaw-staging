@@ -3,9 +3,9 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { useEffect, useState } from "react";
 import { RadioInput } from "@/components/__shared/ui/form/radio-input";
-import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
+import { Input } from "@/components/__shared/ui/form/input";
 import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
-import CustomTextAreaInput from "@/components/__shared/ui/form/CustomTextAreaInput";
+import { Textarea } from "@/components/__shared/ui/form/Textarea";
 import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { Button } from "@/components/__shared/ui/button";
@@ -13,7 +13,7 @@ import { useFetchItemCategories } from "@/app/moving-sale/services";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import Loader from "@/components/__shared/ui/loader";
 import supabase from "@/lib/utils/supabase/supabaseClient";
-import { CheckboxNoFormik as Checkbox } from "@/components/__shared/ui/form/checkbox";
+import { Checkbox } from "@/components/__shared/ui/form/checkbox";
 import axios from "axios";
 import { generateString } from "@/lib/utils";
 import slugify from "@/lib/utils/slugify";
@@ -264,7 +264,7 @@ const UpdateItemPage = () => {
                   }}
                 >
                   <div className="flex flex-col gap-8">
-                    <TextFieldInput
+                    <Input
                       name="itemName"
                       label="Item name"
                       placeholder="e.g. Dining table"
@@ -280,17 +280,11 @@ const UpdateItemPage = () => {
                         })) || []
                       }
                     />
-                    <TextFieldInput
-                      name="price"
-                      label="Price"
-                      prefix="GHS"
-                      required
-                    />
-                    <CustomTextAreaInput
+                    <Input name="price" label="Price" prefix="GHS" required />
+                    <Textarea
                       name="description"
                       label="Description"
                       placeholder="Describe your item"
-                      classes="h-[167px]"
                       required
                     />
                   </div>
@@ -322,14 +316,13 @@ const UpdateItemPage = () => {
                       />
                       <Checkbox
                         label="Email"
-                        color="primary"
                         defaultChecked
                         onCheckedChange={(checked) =>
                           setUseEmail(checked as boolean)
                         }
                       />
                       {useEmail && (
-                        <TextFieldInput
+                        <Input
                           name="email"
                           label="Email Address"
                           placeholder="Enter email address"
@@ -338,7 +331,6 @@ const UpdateItemPage = () => {
                       )}
                       <Checkbox
                         label="Phone call"
-                        color="primary"
                         onCheckedChange={(checked) =>
                           setUsePhone(checked as boolean)
                         }
@@ -355,7 +347,6 @@ const UpdateItemPage = () => {
                       )}
                       <Checkbox
                         label="WhatsApp"
-                        color="primary"
                         onCheckedChange={(checked) =>
                           setUseWhatsapp(checked as boolean)
                         }

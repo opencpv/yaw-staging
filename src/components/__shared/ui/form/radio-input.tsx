@@ -6,11 +6,11 @@ import { LuCircle } from "react-icons/lu";
 
 import { cn } from "@/lib/utils";
 import { useField } from "formik";
-import ErrorMessage from "../states/ErrorMessage";
+import ErrorMessage from "../states/error-message";
 
 type RadioInputProps = {
   options?: string[];
-  color?: "accent" | "primary" | "white";
+  color?: "accent" | "primary";
   disabled?: {
     [key: string]: boolean;
   };
@@ -35,7 +35,7 @@ const RadioGroupItem = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item> & {
     color?: "accent" | "primary";
   }
->(({ className, color = "accent", disabled, ...props }, ref) => {
+>(({ className, color, disabled, ...props }, ref) => {
   return (
     <RadioGroupPrimitive.Item
       ref={ref}
@@ -73,7 +73,7 @@ const RadioInput = React.forwardRef<
       className,
       label,
       disabled,
-      color,
+      color = "accent",
       name,
       options,
       onValueChange,
@@ -103,6 +103,7 @@ const RadioInput = React.forwardRef<
                 value={option}
                 id={option}
                 disabled={disabled?.[option] || false}
+                color={color}
               />
               <div
                 className={cn("pl-2 text-base leading-none transition-colors", {
@@ -115,7 +116,7 @@ const RadioInput = React.forwardRef<
           ))}
         </div>
         {meta.touched && meta.error ? (
-          <ErrorMessage error={meta.error}>{meta.error}</ErrorMessage>
+          <ErrorMessage name={meta.error}>{meta.error}</ErrorMessage>
         ) : null}
       </RadioGroup>
     );

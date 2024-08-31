@@ -1,6 +1,6 @@
 import React from "react";
 import InputPhoneNumber from "./InputPhoneNumber";
-import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
+import { Input } from "@/components/__shared/ui/form/input";
 import { Tabs } from "@/components/__shared/ui/tabs";
 import { MdOutlineMailOutline, MdOutlineWhatsapp } from "react-icons/md";
 import { useField } from "formik";
@@ -69,15 +69,12 @@ const PreferredContactMethod = ({
           selectedKey === "WhatsApp" || hideEmail ? "hidden" : "block pt-2"
         }
       >
-        <TextFieldInput
+        <Input
           value={emailValue as string}
           name="email"
           type="email"
           placeholder="Enter your email address"
           onChange={onChangeEmail}
-          classNames={{
-            input: "text-base text-neutral-800 placeholder:text-base",
-          }}
         />
       </div>
       {/* whatsapp */}

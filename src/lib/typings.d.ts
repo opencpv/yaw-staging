@@ -11,7 +11,7 @@ export type ProductStatusProp =
   | "Active"
   | "Inactive"
   | "Suspended"
-  | "Srchived";
+  | "Archived";
 
 export interface Product {
   id: number;

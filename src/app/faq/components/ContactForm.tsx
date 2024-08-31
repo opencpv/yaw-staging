@@ -16,7 +16,7 @@ import toast from "react-hot-toast";
 import dynamic from "next/dynamic";
 import Loader from "@/components/__shared/ui/loader";
 const CustomErrorMessage = dynamic(
-  () => import("@/components/__shared/ui/states/ErrorMessage"),
+  () => import("@/components/__shared/ui/states/error-message"),
 );
 
 const ContactForm = () => {
@@ -106,7 +106,7 @@ const ContactForm = () => {
                 }}
                 onBlur={handleBlur}
               />
-              <CustomErrorMessage className="mt-2" error={errors.message}>
+              <CustomErrorMessage className="mt-2" name={errors.message}>
                 {/* @ts-ignore */}
                 <ErrorMessage name="message" error={errors.message} />
               </CustomErrorMessage>

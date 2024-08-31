@@ -26,7 +26,7 @@ const ProductStatus = ({ isAvailable, status, id, refetch }: Props) => {
     } = {};
 
     updateObject.is_available = value;
-    updateObject.status = value ? "active" : "inactive";
+    updateObject.status = value ? "Active" : "Inactive";
     updateObject.inactive_date = value ? null : new Date().toISOString();
     const { data, error } = await supabase
       .from("products")

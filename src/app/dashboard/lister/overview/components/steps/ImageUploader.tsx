@@ -24,7 +24,7 @@ import { Button } from "@/components/__shared/ui/button";
 import { BiImageAdd } from "react-icons/bi";
 import dynamic from "next/dynamic";
 const ErrorMessage = dynamic(
-  () => import("@/components/__shared/ui/states/ErrorMessage"),
+  () => import("@/components/__shared/ui/states/error-message"),
 );
 
 interface Props {
@@ -190,7 +190,7 @@ const ImageUploader = ({}: Props) => {
         )}
       </Dropzone>
       {meta.touched && meta.error && (
-        <ErrorMessage error={meta.error}>{meta.error}</ErrorMessage>
+        <ErrorMessage name={meta.error}>{meta.error}</ErrorMessage>
       )}
     </FileContext.Provider>
   );

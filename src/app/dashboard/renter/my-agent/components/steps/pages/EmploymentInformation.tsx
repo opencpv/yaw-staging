@@ -1,4 +1,4 @@
-import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
+import { Input } from "@/components/__shared/ui/form/input";
 import { styled } from "@stitches/react";
 import React from "react";
 import CountryInput from "@/components/__shared/ui/form/CountryInput";
@@ -44,7 +44,7 @@ const EmploymentInformation = React.forwardRef<HTMLInputElement, Props>(
               })
             }
           />
-          <TextFieldInput
+          <Input
             name="employer"
             type="text"
             label="Employer or Income Source"
@@ -67,7 +67,7 @@ const EmploymentInformation = React.forwardRef<HTMLInputElement, Props>(
               })
             }
           />
-          <TextFieldInput
+          <Input
             name="job_title"
             type="text"
             label="Job Title"
