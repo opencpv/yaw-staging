@@ -3,22 +3,31 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { Input } from "./input";
 
-const SearchInput = ({ placeholder, onSearch, onChange, className }: any) => {
-  const inputRef = React.useRef<any>(null);
+type Props = {
+  placeholder?: string;
+  onEnter?: () => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  className?: string;
+};
 
-  const handleSearch = () => {
-    onSearch?.();
-    inputRef.current?.blur();
+const SearchInput = ({ placeholder, onEnter, onChange, className }: Props) => {
+  const inputRef = React.useRef<HTMLInputElement>(null);
+
+  const handleSearch = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      onEnter?.();
+      inputRef.current?.blur();
+    }
   };
 
   return (
     <Input
+      name="search"
       type="search"
       placeholder={placeholder ? placeholder : "Search"}
-      prefix={""}
-      className={cn("max-w-2xl", className)}
+      className={cn("max-w-2xl focus-visible:outline-primary/50", className)}
       onChange={onChange}
-      // onKeyDown={handleSearch}
+      onKeyDown={handleSearch}
       ref={inputRef}
     />
   );

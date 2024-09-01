@@ -73,11 +73,13 @@ function Invoices({ customerId }: Props) {
         <h4 className="font-normal">
           Effortlessly handle your invoices right here
         </h4>
-        {/* <SearchInput
-          onChange={(e) => setSearchString(e.target.value)}
+        <SearchInput
+          onChange={(e) =>
+            setSearchString(isNaN(Number(e.target.value)) ? "" : e.target.value)
+          }
           className="mt-5"
           placeholder="Search invoice ID"
-        /> */}
+        />
       </div>
       <div className="flex flex-wrap items-center justify-between">
         <Tabs
@@ -101,12 +103,6 @@ function Invoices({ customerId }: Props) {
               className="shrink-0 group-hover:text-white"
             />
           </Button>
-          {/* <Button
-            color=""
-            className="gap-2 bg-primary-50 text-[#11605E] hover:text-white"
-          >
-            Archive <IoArchiveOutline />
-          </Button> */}
           <ArchivedButton showingArchived={false} />
         </div>
       </div>
