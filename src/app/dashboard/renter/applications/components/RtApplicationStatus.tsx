@@ -1,12 +1,12 @@
 "use client";
 import React from "react";
-import Status from "@/components/__shared/ui/states/Status";
+import Status from "@/components/__shared/ui/states/status";
 
 export type RenterApplicationStatus =
-  | "accepted"
-  | "declined"
-  | "under review"
-  | "incomplete";
+  | "Accepted"
+  | "Declined"
+  | "Under Review"
+  | "Incomplete";
 
 type Props = {
   status: RenterApplicationStatus;
@@ -16,29 +16,29 @@ const RtApplicationStatus = ({ status }: Props) => {
   return (
     <Status
       tooltipContent={
-        status === "accepted"
+        status === "Accepted"
           ? "The lister has reviewed your application and should be in touch with you shortly. Check your messages or contact them directly if a response is delayed."
-          : status === "declined"
+          : status === "Declined"
             ? "The lister has declined your application. Continue your search or contact them directly with more questions."
-            : status === "under review"
+            : status === "Under Review"
               ? "The lister has received your application and should respond shortly. Contact them directly if a response is delayed."
               : "Please submit form for review."
       }
       text={
-        status === "accepted"
+        status === "Accepted"
           ? "Accepted"
-          : status === "declined"
+          : status === "Declined"
             ? "Declined"
-            : status === "under review"
+            : status === "Under Review"
               ? "Under review"
               : "Incomplete"
       }
       variant={
-        status === "accepted"
+        status === "Accepted"
           ? "success"
-          : status === "declined"
+          : status === "Declined"
             ? "danger"
-            : status === "under review"
+            : status === "Under Review"
               ? "warning"
               : "danger"
       }

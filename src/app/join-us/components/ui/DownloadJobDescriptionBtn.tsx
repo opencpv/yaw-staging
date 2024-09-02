@@ -14,10 +14,7 @@ import {
 import { JobType } from "../../types";
 import { TypedObject } from "sanity";
 import legal from "@/enum/about/legal";
-import dynamic from "next/dynamic";
-const PDFRichTextRenderer = dynamic(
-  () => import("@/components/__shared/rich-text/PDFRichTextRenderer"),
-);
+import PDFRichTextRenderer from "@/components/__shared/rich-text/pdf-rich-text-renderer";
 
 type Props = {
   job: JobType | undefined;
@@ -122,22 +119,22 @@ const DownloadJobDescriptionBtn = ({ job }: Props) => {
         borderRadius: "0.5rem",
         display: "grid",
         placeItems: "center",
+        fontSize: "1rem",
       }}
       className="transition-all hover:scale-[1.02]"
       document={<JoinUsTemplate job={job} />}
       fileName={`${job?.title}-${legal.websiteName}.pdf`}
     >
-      {({ loading }) =>
-        loading ? (
-          <span className="flex gap-2">
-            Loading... <HiOutlineDownload size="24" color="white" />
-          </span>
-        ) : (
-          <span className="flex gap-2">
-            Download <HiOutlineDownload size="24" color="white" />
-          </span>
-        )
-      }
+      {({ loading }) => (
+        <span className="flex gap-2">
+          {loading ? "Loading..." : "Download"}{" "}
+          <HiOutlineDownload
+            className="max-xsm:hidden"
+            size="24"
+            color="white"
+          />
+        </span>
+      )}
     </PDFDownloadLink>
   );
 };

@@ -3,8 +3,8 @@ import React from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { useField } from "formik";
 import { ListingDefaultValues } from "@/store/dashboard/ListingStepsStore";
-import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
-import CurrencyInput from "@/components/__shared/ui/form/CurrencyInput";
+import { Input } from "@/components/__shared/ui/form/input";
+import CurrencyInput from "@/components/__shared/ui/form/currency-input";
 
 type AdditionalFeeType = {
   fee_title: string;
@@ -57,7 +57,7 @@ const AdditionalFee = ({
   };
   return (
     <div className="grid w-full grid-cols-2 gap-8">
-      <TextFieldInput
+      <Input
         name={`fee_title ${index}`}
         label="Fee Title"
         type="text"
@@ -134,7 +134,7 @@ const AdditionalFees = () => {
       </div>
       <button
         type="button"
-        className="h-38 text-13 flex w-fit items-center justify-start gap-1 whitespace-nowrap p-2  font-normal text-[#AD842A] hover:bg-[#ad832a20]"
+        className="h-38 text-13 flex w-fit items-center justify-start gap-1 whitespace-nowrap p-2 font-normal text-[#AD842A] hover:bg-[#ad832a20]"
         onClick={handleAdd}
       >
         Add Another Fee

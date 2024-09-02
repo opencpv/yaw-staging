@@ -4,7 +4,7 @@ import { CustomScroll } from "./components/CustomScroll";
 import CaMarkAsRead from "./components/icons/CaMarkAsRead";
 import useNotifications from "./useNotifications";
 import NtfSkeleton from "./components/NtfSkeleton";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import dynamic from "next/dynamic";
 const NotificationItem = dynamic(() => import("./components/NotificationItem"));
 const NotificationDetailsFull = dynamic(
@@ -43,7 +43,10 @@ const Page = () => {
 
           {notifications?.length > 0 && (
             <div className="flex w-full justify-end">
-              <Button className="bg-unset flex items-center justify-end gap-2 p-2 text-black hover:bg-[#11605E12]">
+              <Button
+                size={"sm"}
+                className="bg-unset justify-end text-black hover:bg-[#11605E12]"
+              >
                 <div className="flex gap-0">
                   <CaMarkAsRead />
                 </div>

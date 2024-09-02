@@ -1,7 +1,7 @@
 import { useRouter } from "next/navigation";
 import CaTriangle from "./CaTriangle";
 import { cn } from "@/lib/utils";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { IoCloudOfflineOutline } from "react-icons/io5";
 
 type Props = {
@@ -34,13 +34,13 @@ function SomethingWentWrong({ className, onTryAgain, reset, error }: Props) {
             </p>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-5">
-            <Button color="accent" onClick={() => router.back()}>
+            <Button variant="accent" onClick={() => router.back()}>
               Go Back
             </Button>
             <Button
               variant="outline"
               onClick={() => onTryAgain?.()}
-              className={cn("border border-accent-200 text-accent-200", {
+              className={cn("border-accent-200 text-accent-200", {
                 hidden: !onTryAgain,
               })}
             >

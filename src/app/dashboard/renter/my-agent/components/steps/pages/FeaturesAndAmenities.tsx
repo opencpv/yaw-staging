@@ -3,7 +3,7 @@ import Amenity from "@/app/dashboard/components/shared/ui/Amenity";
 import style from "../../../index.module.css";
 import { useField } from "formik";
 import { features } from "../../../../../components/shared/content";
-import CallOut from "@/components/__shared/ui/CallOut";
+import CallOut from "@/components/__shared/ui/callout";
 import { BeMyAgentDefaultValues } from "@/store/dashboard/BeMyAgentStepsStore";
 
 export default function FeaturesAndAmenities() {

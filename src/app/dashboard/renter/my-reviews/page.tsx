@@ -3,12 +3,12 @@ import ReviewersSay from "./components/ReviewersSay";
 import PropertyOwnersReview from "./components/PropertyOwnersReview";
 import PropertiesReview from "./components/PropertiesReview";
 import ServiceProsReviews from "./components/ServiceProsReviews";
-import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
+import { Tabs } from "@/components/__shared/ui/tabs";
 import { useReviewsStore } from "@/store/dashboard/reviewsStore";
-import Toggle from "@/components/__shared/ui/Toggle";
+import { Switch } from "@/components/__shared/ui/switch";
 import AllReviewsReceived from "./components/AllReviewsReceived";
 import useReviews from "./components/useReviews";
-import Select from "../../components/shared/ui/Select";
+import { Select } from "@/components/__shared/ui/form/select";
 
 export default function MyReviews() {
   const { activePage, setActivePage, subActivePage, setSubActivePage } =
@@ -17,67 +17,58 @@ export default function MyReviews() {
 
   return (
     <div className="flex w-full flex-col gap-4">
-      <h2 className="">My Reviews</h2>
+      <h2>My Reviews</h2>
       <div className="flex flex-col gap-2">
         <div className="flex flex-col items-start justify-start gap-5 lg:flex-row">
-          <OptionFilterTabs
+          <Tabs
             options={["Reviews Received", "Reviews Given"]}
             selectedKey={activePage}
             onSelectionChange={(selectedOption) =>
               setActivePage(selectedOption)
             }
-            radius="large"
-            padding="wide"
-            cursorAnimation
+            variant="rounded"
           />
         </div>
 
-        {activePage == "reviews given" && (
+        {activePage === "Reviews Given" && (
           <div className="my-2 lg:hidden">
             <Select
               options={["All", "Properties", "Property Owners", "Service Pros"]}
-              value={filter as string}
-              className="mx-0 w-60 font-bold"
-              valueClassName="font-bold"
-              variant="ghost"
+              value={filter}
               color="primary"
-              handleSelectionChange={(e) => setFilter(e.target.value)}
+              onValueChange={(value) => setFilter(value)}
             />
           </div>
         )}
 
         <div className="hidden w-full flex-col items-start gap-5 md:flex md:flex-row lg:items-center">
-          {activePage == "reviews given" && (
-            <Toggle
+          {activePage === "Reviews Given" && (
+            <Switch
               label="View By"
-              isSelected={filter !== "all"}
-              onValueChange={(state: any) => {
+              checked={filter !== "all"}
+              onCheckedChange={(state: any) => {
                 state && setFilter("any");
                 !state && setFilter("all");
               }}
             />
           )}
 
-          {activePage == "reviews given" && filter !== "all" && (
-            <OptionFilterTabs
-              variant="green1"
-              options={["properties", "property owners", "service-pros"]}
+          {activePage == "Reviews Given" && filter !== "all" && (
+            <Tabs
+              options={["Properties", "Property Owners", "Service Pros"]}
               selectedKey={filter}
               onSelectionChange={(selectedOption) => setFilter(selectedOption)}
-              radius="large"
-              padding="wide"
-              cursorAnimation
             />
           )}
         </div>
       </div>
-      {activePage == "reviews received" && <ReviewersSay />}
-      {activePage != "reviews received" && filter == "all" && (
+      {activePage === "Reviews Received" && <ReviewersSay />}
+      {activePage !== "Reviews Received" && filter === "all" && (
         <AllReviewsReceived />
       )}
-      {filter == "properties" && <PropertiesReview />}
-      {filter == "property owners" && <PropertyOwnersReview />}
-      {filter == "service-pros" && <ServiceProsReviews />}
+      {filter === "Properties" && <PropertiesReview />}
+      {filter === "Property Owners" && <PropertyOwnersReview />}
+      {filter === "Service Pros" && <ServiceProsReviews />}
     </div>
   );
 }

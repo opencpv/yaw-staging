@@ -1,5 +1,5 @@
 "use client";
-import Loader from "@/components/__shared/ui/loader/Loader";
+import Loader from "@/components/__shared/ui/loader";
 import { createClient } from "@/lib/utils/supabase/auth/client";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { useRouter } from "next/navigation";
@@ -17,7 +17,7 @@ const Dashboard = () => {
         error,
       } = await supabase.auth.getUser();
       if (user) {
-        router.replace(`/dashboard/${currentRole}/overview`);
+        router.replace(`/dashboard/${currentRole.toLowerCase()}/overview`);
       }
     };
 
@@ -25,9 +25,9 @@ const Dashboard = () => {
   }, [router, currentRole]);
 
   return (
-      <main className="grid h-40 place-items-center">
-        <Loader />
-      </main>
+    <main className="grid h-40 place-items-center">
+      <Loader />
+    </main>
   );
 };
 

@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect } from "react";
-import Button from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
-import StepsModal from "@/components/__shared/ui/modals/steps/StepsModal";
+import StepsModal from "@/components/__shared/ui/modals/steps/steps-modal";
 import { Form, Formik } from "formik";
 import BTFTKForm from "./BTFTKForm";
 import * as Yup from "yup";
@@ -131,10 +131,9 @@ const BTFTKModal = (props: Props) => {
           {props.children}
         </Link>
       ) : (
-        <Button
+        <LinkButton
           href="/dashboard/renter/be-the-first-to-know/create"
-          color="primary"
-          className={cn("w-fit px-5", {
+          className={cn({
             "max-xs:rounded-xl max-xs:shadow-md": props.float,
           })}
           onClick={() => {
@@ -144,7 +143,7 @@ const BTFTKModal = (props: Props) => {
           }}
         >
           <FaPlus /> Create a search
-        </Button>
+        </LinkButton>
       )}
       <Formik
         initialValues={{

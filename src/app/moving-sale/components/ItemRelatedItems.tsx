@@ -2,7 +2,7 @@ import React from "react";
 import ItemCard from "./ItemCard";
 import { useSearchParams } from "next/navigation";
 import { useFetchPopularItems, useFetchRelatedItems } from "../services";
-// import { ScrollShadow } from "@nextui-org/react";
+import { ScrollArea } from "@/components/__shared/ui/scroll-area";
 
 type Props = {};
 
@@ -26,12 +26,7 @@ const ItemRelatedItems = (props: Props) => {
         <h3 className="mb-6 text-shade-200">
           Related items ({relatedItems?.length})
         </h3>
-        {/* <ScrollShadow
-          orientation="horizontal"
-          isEnabled={false}
-          hideScrollBar
-          className="flex gap-5"
-        >
+        <ScrollArea>
           {relatedItems?.map((item) => (
             <ItemCard
               key={item.id}
@@ -49,10 +44,10 @@ const ItemRelatedItems = (props: Props) => {
               description={item.description}
               image="/assets/images/about/young-couple.webp"
               price={item.price}
-              className="min-w-[350px]" 
+              className="min-w-[350px]"
             />
           ))}
-        </ScrollShadow> */}
+        </ScrollArea>
       </section>
     );
   else
@@ -63,12 +58,7 @@ const ItemRelatedItems = (props: Props) => {
         <h3 className="mb-6 text-shade-200">
           Popular items ({popularItems?.length})
         </h3>
-        {/* <ScrollShadow
-          orientation="horizontal"
-          hideScrollBar
-          isEnabled={false}
-          className="flex gap-5"
-        >
+        <ScrollArea>
           {popularItems?.map((item) => (
             <ItemCard
               key={item.id}
@@ -89,7 +79,7 @@ const ItemRelatedItems = (props: Props) => {
               className="min-w-[350px]"
             />
           ))}
-        </ScrollShadow> */}
+        </ScrollArea>
       </section>
     );
 };

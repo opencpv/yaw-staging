@@ -1,12 +1,12 @@
 import Image from "next/image";
 import React from "react";
 import DealCard from "../ui/DealCard";
-import Button from "@/components/__shared/ui/button/Button";
 import { HiChevronRight } from "react-icons/hi";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import dynamic from "next/dynamic";
+import { LinkButton } from "@/components/__shared/ui/button";
 const FramerWrapper = dynamic(
-  () => import("@/components/__shared/hoc/FramerWrapper"),
+  () => import("@/components/__shared/hoc/framer-wrapper"),
 );
 
 type Props = {
@@ -45,14 +45,14 @@ const RentalDeals = (props: Props) => {
             );
           })}
         </div>
-        <Button
-          variant="ghost"
+        <LinkButton
+          variant="link"
           color="accent"
           href="/about/#t73yjgClfDUknQ=="
-          className="mt-10 self-end text-xl font-medium"
+          className="mt-10 self-end"
         >
           Explore <HiChevronRight size={24} />
-        </Button>
+        </LinkButton>
       </div>
     </section>
   );

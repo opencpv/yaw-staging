@@ -1,13 +1,15 @@
 "use client";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import SubscribeForm from "@/components/__shared/ui/form/SubscribeForm";
-// import { useDisclosure } from "@nextui-org/react";
+import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import React from "react";
 import toast from "react-hot-toast";
 import dynamic from "next/dynamic";
-// const Modal = dynamic(() => import("@/components/__shared/ui/modals/Modal"));
+const Modal = dynamic(() =>
+  import("@/components/__shared/ui/modals/dialog").then((mod) => mod.Modal),
+);
 const FramerWrapper = dynamic(
-  () => import("@/components/__shared/hoc/FramerWrapper"),
+  () => import("@/components/__shared/hoc/framer-wrapper"),
 );
 
 type Props = {
@@ -15,25 +17,23 @@ type Props = {
 };
 
 const SubscribeToBlogButton = ({ className }: Props) => {
-  // const { onOpen, isOpen, onOpenChange, onClose } = useDisclosure();
+  const { onOpen, isOpen, onOpenChange, onClose } = useDisclosure();
 
   return (
     <>
-      {/* <Modal
+      <Modal
         header={<div className="h-20"></div>}
         body={<SubscribeModalBody onClose={onClose} />}
         footer={<div className="h-20"></div>}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        scrollBehavior="normal"
-        onClose={onClose}
-        size="5xl"
-      /> */}
+      />
       <FramerWrapper>
         <Button
-          color="accent"
-          className={`no-print min-h-fit w-full bg-gradient-to-b from-[#E5BF79] to-[#B58E48EB]/90 py-7 text-lg uppercase sm:py-10 ${className}`}
-          // onClick={onOpen}
+          variant="accent"
+          size="lg"
+          className={`no-print min-h-fit bg-gradient-to-b from-[#E5BF79] to-[#B58E48EB]/90 uppercase ${className}`}
+          onClick={onOpen}
         >
           Subscribe to our blog
         </Button>

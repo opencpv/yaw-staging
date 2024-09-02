@@ -1,9 +1,9 @@
-import CustomTextAreaInput from "@/components/__shared/ui/form/CustomTextAreaInput";
+import { Textarea } from "@/components/__shared/ui/form/textarea";
 import style from "../../../index.module.css";
-import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
+import { Input } from "@/components/__shared/ui/form/input";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
-import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
-import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
+import PhoneNumberInput from "@/components/__shared/ui/form/phone-number-input";
+import { Tabs } from "@/components/__shared/ui/tabs";
 import { MdOutlineMailOutline, MdOutlineWhatsapp } from "react-icons/md";
 import { useField } from "formik";
 import { BTFTKDefaultValues } from "@/store/dashboard/BTFTKStepsStore";
@@ -30,10 +30,10 @@ const SpecialKeyword = () => {
         </p>
       </div>
       <div className="">
-        <CustomTextAreaInput
+        <Textarea
           placeholder="e.g. Tema, Community 1, 2 bedroom, private bathroom"
           name="specialKeywords"
-          classes="h-40"
+          className="h-40"
           onChange={(e) =>
             setBTFTKCreationSteps({
               ...BTFTKCreationSteps,
@@ -48,7 +48,7 @@ const SpecialKeyword = () => {
           <span className="text-sm text-shade-300">*</span>
         </label>
         <div className="w-fit rounded-full bg-primary-600/5 p-2">
-          <OptionFilterTabs
+          <Tabs
             options={[
               {
                 label: "Email",
@@ -67,14 +67,15 @@ const SpecialKeyword = () => {
                 preferredMethodOfContact: key as any,
               });
             }}
-            radius="large"
-            padding="medium"
-            cursorAnimation
           />
         </div>
         {/* email */}
-        <div className={field.value === "whatsapp" ? "hidden" : "block"}>
-          <TextFieldInput
+        <div
+          className={
+            field.value?.toLowerCase() === "whatsapp" ? "hidden" : "block"
+          }
+        >
+          <Input
             name="email"
             type="email"
             placeholder="Enter your email address"
@@ -87,8 +88,12 @@ const SpecialKeyword = () => {
           />
         </div>
         {/* whatsapp */}
-        <div className={field.value === "whatsapp" ? "block" : "hidden"}>
-          <InputPhoneNumber
+        <div
+          className={
+            field.value?.toLowerCase() === "whatsapp" ? "block" : "hidden"
+          }
+        >
+          <PhoneNumberInput
             name="whatsApp"
             value={phone}
             onChange={(value) => {

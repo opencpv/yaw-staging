@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import Print from "@/components/__shared/ui/Print";
+import Print from "@/components/__shared/ui/print";
 import { loadQuery } from "@sanity/react-loader";
 import { SanityDocument } from "next-sanity";
 import { SINGLE_BLOG_POST } from "@/lib/utils/sanity/queries";
@@ -19,7 +19,7 @@ import dynamic from "next/dynamic";
 const Share = dynamic(() => import("@/components/__shared/ui/share"));
 const Survey = dynamic(() => import("@/components/__shared/ui/survey"));
 const FramerWrapper = dynamic(
-  () => import("@/components/__shared/hoc/FramerWrapper"),
+  () => import("@/components/__shared/hoc/framer-wrapper"),
 );
 
 type Props = {

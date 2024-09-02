@@ -3,16 +3,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
 import Link from "next/link";
 import Image from "next/image";
-import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-import Button from "../button/Button";
+import { Button } from "../button";
 import ListingCardButton from "./ListingCardButton";
 import { FiTrash2 } from "react-icons/fi";
-import { cn } from "@/lib/utils";
 import ListingTags from "./ListingTags";
 import { ListingCardInterface } from "../../../../../interfaces";
-import LikeHeart from "../LikeHeart";
+import LikeHeart from "../like-button";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { createUUID } from "@/lib/utils/stringManipulation";
+import SliderNav from "../sliders/slider-nav";
 
 const SliderArea = (props: Partial<ListingCardInterface>) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
@@ -87,10 +86,7 @@ const SliderArea = (props: Partial<ListingCardInterface>) => {
             icon="eye open"
           />
           {props.liked && !props.isRecommendationsPage && (
-            <Button
-              variant="ghost"
-              className="gap-3 text-lg font-semibold text-white underline"
-            >
+            <Button variant="ghost" className="text-white underline">
               Delete
               <FiTrash2 />
             </Button>
@@ -157,22 +153,33 @@ const SliderArea = (props: Partial<ListingCardInterface>) => {
       )}
 
       {/* Pagination bullets and button */}
-      <NavButton
+
+      <SliderNav
         position="left"
-        lastIndex={lastIndex as number}
-        activeIndex={activeIndex as number}
-        {...props}
+        hidden={
+          activeIndex === 0 ||
+          props.showOnlyImage ||
+          props.isMyFavoritePage ||
+          props.isRecommendationsPage
+        }
+        className="custom-l-prev"
+        size="sm"
       />
       <div
         className={`custom-l-pagination bottom-40 w-full space-x-3 text-center ${
           props.showOnlyImage && "hidden"
         }`}
       ></div>
-      <NavButton
+      <SliderNav
         position="right"
-        lastIndex={lastIndex as number}
-        activeIndex={activeIndex as number}
-        {...props}
+        hidden={
+          lastIndex === activeIndex ||
+          props.showOnlyImage ||
+          props.isMyFavoritePage ||
+          props.isRecommendationsPage
+        }
+        className="custom-l-next"
+        size="sm"
       />
       {/* Like button */}
       <span className="absolute bottom-5 right-[5%] z-10 grid size-11 place-items-center rounded-md bg-shade-500/40">
@@ -184,42 +191,6 @@ const SliderArea = (props: Partial<ListingCardInterface>) => {
         />
       </span>
     </Swiper>
-  );
-};
-
-const NavButton = ({
-  position,
-  lastIndex,
-  activeIndex,
-  ...props
-}: {
-  position: "left" | "right";
-  lastIndex: number;
-  activeIndex: number;
-} & Partial<ListingCardInterface>) => {
-  return (
-    <button
-      className={cn(
-        "absolute bottom-32 z-10 flex h-10 w-10 shrink-0 cursor-default items-center justify-center rounded-full bg-white transition-opacity md:pointer-events-none md:opacity-0 md:group-hover/parent:pointer-events-auto md:group-hover/parent:opacity-100",
-        {
-          hidden:
-            (lastIndex === activeIndex && position === "right") ||
-            (activeIndex === 0 && position === "left") ||
-            props.showOnlyImage ||
-            props.isMyFavoritePage ||
-            props.isRecommendationsPage,
-          "bottom-48": props.cardType === "2",
-          "custom-l-next right-[5%]": position === "right",
-          "custom-l-prev left-[5%]": position === "left",
-        },
-      )}
-    >
-      {position === "right" ? (
-        <MdChevronRight className="text-lg text-neutral-700" />
-      ) : (
-        <MdChevronLeft className="text-lg text-neutral-700" />
-      )}
-    </button>
   );
 };
 

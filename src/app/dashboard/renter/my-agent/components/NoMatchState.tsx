@@ -1,4 +1,4 @@
-import HourGlassLottie from "@/components/__shared/lotties/HourGlassLottie";
+import HourGlassLottie from "@/components/__shared/lotties/hour-glass-lottie";
 
 export default function NoMatchState() {
   return (

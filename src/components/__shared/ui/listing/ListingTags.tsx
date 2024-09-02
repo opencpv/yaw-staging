@@ -1,9 +1,12 @@
-// import Tooltip from "@/components/__shared/ui/Tooltip";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import React from "react";
 import { ListingCardInterface } from "../../../../../interfaces";
 import { cn } from "@/lib/utils";
+import dynamic from "next/dynamic";
+const Tooltip = dynamic(() =>
+  import("@/components/__shared/ui/tooltip").then((mod) => mod.Tooltip),
+);
 
 const ListingTags = (props: Partial<ListingCardInterface>) => {
   const { icons } = useAssets();
@@ -15,7 +18,7 @@ const ListingTags = (props: Partial<ListingCardInterface>) => {
         })}
       >
         {/* Hint */}
-        {/* <Tooltip content={props.hint as string}>
+        <Tooltip content={props.hint as string}>
           <div className="flex items-center gap-2">
             {props.hint === "Realtor's Choice" ? (
               <>
@@ -49,10 +52,10 @@ const ListingTags = (props: Partial<ListingCardInterface>) => {
               </>
             ) : null}
           </div>
-        </Tooltip> */}
+        </Tooltip>
       </div>
       {/* Guarantee */}
-      {/* {props.guarantee === "Verified" ? (
+      {props.guarantee === "Verified" ? (
         <div className="mr-4 shadow-2xl">
           <Tooltip content={props.guarantee}>
             <Image
@@ -76,7 +79,7 @@ const ListingTags = (props: Partial<ListingCardInterface>) => {
             />
           </Tooltip>
         </div>
-      ) : null} */}
+      ) : null}
     </div>
   );
 };

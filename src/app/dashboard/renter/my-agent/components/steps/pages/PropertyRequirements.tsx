@@ -1,8 +1,8 @@
 import style from "../../../index.module.css";
-import { CustomDatePicker } from "@/components/__shared/ui/form/CustomDatePicker";
+import { DatePicker } from "@/components/__shared/ui/form/date-picker";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
-import CallOut from "@/components/__shared/ui/CallOut";
+import { SelectInput } from "@/components/__shared/ui/form/select";
+import CallOut from "@/components/__shared/ui/callout";
 import { BeMyAgentDefaultValues } from "@/store/dashboard/BeMyAgentStepsStore";
 import { cn } from "@/lib/utils";
 
@@ -25,39 +25,39 @@ export default function PropertyRequirements() {
         <div className={style.subHeadingFieldsContainer}>
           <h3>Price Range</h3>
           <div className={cn("grid grid-cols-2", style.fieldsInlineGap)}>
-            <CustomSelect
+            <SelectInput
               name="min_price"
               label="Minimum"
               prefix="GHS"
               options={[
-                { name: "100", value: "100" },
-                { name: "1000", value: "1000" },
-                { name: "2000", value: "2000" },
-                { name: "4000", value: "4000" },
-                { name: "5000", value: "5000" },
-                { name: "6000", value: "6000" },
-                { name: "7000", value: "7000" },
-                { name: "8000", value: "8000" },
-                { name: "9000", value: "9000" },
-                { name: "10000", value: "10000" },
+                "100",
+                "1000",
+                "2000",
+                "4000",
+                "5000",
+                "6000",
+                "7000",
+                "8000",
+                "9000",
+                "10000",
               ]}
               onChange={(value) => handleOnChange("min_price", value)}
             />
-            <CustomSelect
+            <SelectInput
               name="max_price"
               label="Maximum"
               prefix="GHS"
               options={[
-                { name: "100", value: "100" },
-                { name: "1000", value: "1000" },
-                { name: "2000", value: "2000" },
-                { name: "4000", value: "4000" },
-                { name: "5000", value: "5000" },
-                { name: "6000", value: "6000" },
-                { name: "7000", value: "7000" },
-                { name: "8000", value: "8000" },
-                { name: "9000", value: "9000" },
-                { name: "10000+", value: "10000+" },
+                "100",
+                "1000",
+                "2000",
+                "4000",
+                "5000",
+                "6000",
+                "7000",
+                "8000",
+                "9000",
+                "10000+",
               ]}
               onChange={(value) => handleOnChange("max_price", value)}
             />
@@ -67,38 +67,16 @@ export default function PropertyRequirements() {
         <div className={style.subHeadingFieldsContainer}>
           <h3>Bed</h3>
           <div className={cn("grid grid-cols-2", style.fieldsInlineGap)}>
-            <CustomSelect
+            <SelectInput
               name="min_beds"
               label="Minimum"
-              options={[
-                { name: "1", value: "1" },
-                { name: "2", value: "2" },
-                { name: "3", value: "3" },
-                { name: "4", value: "4" },
-                { name: "5", value: "5" },
-                { name: "6", value: "6" },
-                { name: "7", value: "7" },
-                { name: "8", value: "8" },
-                { name: "9", value: "9" },
-                { name: "10", value: "10" },
-              ]}
+              options={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]}
               onChange={(value) => handleOnChange("min_beds", value)}
             />
-            <CustomSelect
+            <SelectInput
               name="max_beds"
               label="Maximum"
-              options={[
-                { name: "1", value: "1" },
-                { name: "2", value: "2" },
-                { name: "3", value: "3" },
-                { name: "4", value: "4" },
-                { name: "5", value: "5" },
-                { name: "6", value: "6" },
-                { name: "7", value: "7" },
-                { name: "8", value: "8" },
-                { name: "9", value: "9" },
-                { name: "10+", value: "10+" },
-              ]}
+              options={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10+"]}
               onChange={(value) => handleOnChange("max_beds", value)}
             />
           </div>
@@ -107,38 +85,16 @@ export default function PropertyRequirements() {
         <div className={style.subHeadingFieldsContainer}>
           <h3>Bathroom</h3>
           <div className={cn("grid grid-cols-2", style.fieldsInlineGap)}>
-            <CustomSelect
+            <SelectInput
               name="min_bathrooms"
               label="Minimum"
-              options={[
-                { name: "1", value: "1" },
-                { name: "2", value: "2" },
-                { name: "3", value: "3" },
-                { name: "4", value: "4" },
-                { name: "5", value: "5" },
-                { name: "6", value: "6" },
-                { name: "7", value: "7" },
-                { name: "8", value: "8" },
-                { name: "9", value: "9" },
-                { name: "10", value: "10" },
-              ]}
+              options={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]}
               onChange={(value) => handleOnChange("min_bathrooms", value)}
             />
-            <CustomSelect
+            <SelectInput
               name="max_bathrooms"
               label="Maximum"
-              options={[
-                { name: "1", value: "1" },
-                { name: "2", value: "2" },
-                { name: "3", value: "3" },
-                { name: "4", value: "4" },
-                { name: "5", value: "5" },
-                { name: "6", value: "6" },
-                { name: "7", value: "7" },
-                { name: "8", value: "8" },
-                { name: "9", value: "9" },
-                { name: "10+", value: "10+" },
-              ]}
+              options={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10+"]}
               onChange={(value) => handleOnChange("max_bathrooms", value)}
             />
           </div>
@@ -151,28 +107,16 @@ export default function PropertyRequirements() {
         <div className={style.subHeadingFieldsContainer}>
           <h3>Lease Terms</h3>
           <div className={cn("grid grid-cols-2", style.fieldsInlineGap)}>
-            <CustomSelect
+            <SelectInput
               name="min_lease"
               label="Minimum"
-              options={[
-                { name: "1", value: "1" },
-                { name: "2", value: "2" },
-                { name: "3", value: "3" },
-                { name: "4", value: "4" },
-                { name: "5", value: "5" },
-              ]}
+              options={["1", "2", "3", "4", "5"]}
               onChange={(value) => handleOnChange("min_lease", value)}
             />
-            <CustomSelect
+            <SelectInput
               name="max_lease"
               label="Maximum"
-              options={[
-                { name: "1", value: "1" },
-                { name: "2", value: "2" },
-                { name: "3", value: "3" },
-                { name: "4", value: "4" },
-                { name: "5+", value: "5+" },
-              ]}
+              options={["1", "2", "3", "4", "5+"]}
               onChange={(value) => handleOnChange("max_lease", value)}
             />
           </div>
@@ -187,22 +131,15 @@ export default function PropertyRequirements() {
               style.fieldsBlockGap,
             )}
           >
-            <CustomSelect
+            <SelectInput
               name="preferred_payment_option"
               label="Preferred Payment Term"
-              options={[
-                { name: "rent advance", value: "Rent Advance" },
-                {
-                  name: "monthly payments",
-                  value: "Monthly Payments",
-                },
-                { name: "any", value: "Any" },
-              ]}
+              options={["Rent Advance", "Monthly Payments", "Any"]}
               onChange={(value) =>
                 handleOnChange("preferred_payment_option", value)
               }
             />
-            <CustomDatePicker
+            <DatePicker
               name="move_in_date"
               label="Desired Move In Date"
               onChange={(value) => handleOnChange("move_in_date", value)}

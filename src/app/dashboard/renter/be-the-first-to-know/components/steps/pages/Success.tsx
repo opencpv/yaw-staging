@@ -1,13 +1,13 @@
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
-import Button from "@/components/__shared/ui/button/Button";
+import { LinkButton, Button } from "@/components/__shared/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { IoChevronForwardOutline } from "react-icons/io5";
 import { BTFTKStepsStore } from "@/store/dashboard/BTFTKStepsStore";
 import { useFormikContext } from "formik";
 import { useEffect, useRef } from "react";
-import GreenCheckLottie from "@/components/__shared/lotties/GreenCheckLottie";
+import GreenCheckLottie from "@/components/__shared/lotties/green-check-lottie";
 import CloseModalIcon from "@/components/__shared/ui/icons/CloseModalIcon";
 import { useRouter } from "next/navigation";
 
@@ -63,18 +63,16 @@ const Success = () => {
           posted to the site
         </p>
       </div>
-      <Button
+      <LinkButton
         href={`/dashboard/renter/overview`}
-        className={cn(
-          "h-[58px] rounded-lg bg-[#0B7371] font-semibold focus:outline-none xs:text-base sm:min-w-[22rem]",
-        )}
+        className={cn("bg-[#0B7371] focus:outline-none sm:min-w-[22rem]")}
         onClick={() => {
           handleClose();
           router.replace("/dashboard/renter/overview");
         }}
       >
         Go to my Dashboard
-      </Button>
+      </LinkButton>
       <Link
         href="/dashboard/renter/be-the-first-to-know/manage-criteria"
         className="text-[#0B7371]"
@@ -89,7 +87,7 @@ const Success = () => {
       </Link>
       <Link href="/dashboard/renter/my-agent/explore" onClick={handleClose}>
         <div className="flex flex-col gap-10 rounded-xl bg-gradient-to-r from-[#0B7371] to-[#A5CACD] p-6 pb-0 text-white max-ssm:items-center ssm:flex-row ssm:items-start ssm:pr-0">
-          <div className="flex flex-col gap-5 pb-10 pt-8  max-ssm:items-center">
+          <div className="flex flex-col gap-5 pb-10 pt-8 max-ssm:items-center">
             <h3 className="max-ssm:text-center">
               Not finding what you&apos;re looking for?
             </h3>
@@ -98,7 +96,8 @@ const Success = () => {
             </p>
             <Button
               color="white"
-              className="w-fit border border-[#0B7371] text-[#0B7371]"
+              variant={"outline"}
+              className="w-fit border-[#0B7371] text-[#0B7371]"
             >
               Explore Now
               <IoChevronForwardOutline />

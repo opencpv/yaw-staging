@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import DesktopProductCard from "../DesktopProductCard";
 import MobileProductCard from "../MobileProductCard";
-import Button from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import {
   Table,
   TableBody,
@@ -14,12 +14,12 @@ import {
   TableHeader,
   TableHeaderRow,
   TableSm,
-} from "@/components/__shared/ui/table/Table";
+} from "@/components/__shared/ui/table";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { cn } from "@/lib/utils";
-import ArchivedButton from "@/components/__shared/ui/table/Archived";
-import CallOut from "@/components/__shared/ui/CallOut";
-import SelectMobile from "../../ui/SelectMobile";
+import ArchivedButton from "@/components/__shared/ui/table/archived-button";
+import CallOut from "@/components/__shared/ui/callout";
+import SelectMobile from "../../../../../../components/__shared/ui/form/select-mobile";
 import AddItemButton from "../AddItemButton";
 import { useCurrentUserId } from "@/lib/custom-hooks/useCurrentUserId";
 import { Product } from "@/lib/typings";
@@ -99,13 +99,12 @@ const ItemsPage = () => {
         <section className="mb-6 flex flex-col gap-5">
           <div className="order-2 flex items-center justify-between gap-5 lg:order-1">
             <h2>Items</h2>
-            <Button
-              href={`/dashboard/${currentRole}/sell-products/add-new-product`}
-              color="primary"
+            <LinkButton
+              href={`/dashboard/${currentRole.toLowerCase()}/sell-products/add-new-product`}
               className="max-lg:hidden"
             >
               Add Item
-            </Button>
+            </LinkButton>
           </div>
           <CallOut
             title="Important Notice !!"
@@ -207,12 +206,11 @@ const AddItem = () => {
           className="w-[150px] sm:w-[250px]"
         />
         <p className="text-2xl font-semibold text-neutral-600">No item Added</p>
-        <Button
-          href={`/dashboard/${currentRole}/sell-products/add-new-product`}
-          color="primary"
+        <LinkButton
+          href={`/dashboard/${currentRole.toLowerCase()}/sell-products/add-new-product`}
         >
           Add New Item
-        </Button>
+        </LinkButton>
       </div>
     </div>
   );

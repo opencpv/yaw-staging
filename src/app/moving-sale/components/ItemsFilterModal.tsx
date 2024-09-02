@@ -1,4 +1,4 @@
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import React from "react";
 import CategoryCheckboxes from "./CategoryCheckboxes";
 import ItemsFilterModalOption from "./ItemsFilterModalOption";
@@ -10,12 +10,14 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useFetchItemCategories } from "../services";
 import { LiaTimesSolid } from "react-icons/lia";
 import dynamic from "next/dynamic";
-import Loader from "@/components/__shared/ui/loader/Loader";
-const Modal = dynamic(() => import("@/components/__shared/ui/modals/Modal"));
+import Loader from "@/components/__shared/ui/loader";
+const Modal = dynamic(() =>
+  import("@/components/__shared/ui/modals/dialog").then((mod) => mod.Modal),
+);
 
 type Props = {
   isOpen: boolean;
-  onOpenChange: () => void;
+  onOpenChange: (isOpen: boolean) => void;
   onClose: () => void;
 };
 
@@ -37,7 +39,7 @@ const ItemsFilterModal = (props: Props) => {
 };
 
 const FilterModalHeader = () => {
-  return <hr className="mt-10" />;
+  return <hr className="mb-4 mt-7" />;
 };
 
 const FilterModalBody = () => {
@@ -70,7 +72,7 @@ const FilterModalBody = () => {
 const FilterModalFooter = ({ onClose }: FilterModalFooterProps) => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const sort = searchParams?.get("sort") || "newest";
+  const sort = searchParams?.get("sort") || "Newest";
   const category = searchParams?.get("category") || "";
   const {
     categories,
@@ -100,12 +102,13 @@ const FilterModalFooter = ({ onClose }: FilterModalFooterProps) => {
   };
   return (
     <span className="flex w-full flex-wrap items-center justify-between gap-5">
-      <Button color="accent" className="w-48 max-w-xs" onClick={handleSubmit}>
+      <Button variant="accent" onClick={handleSubmit}>
         Filter
       </Button>
       <Button
         variant="ghost"
-        className="text-sm font-normal underline"
+        size={"fit"}
+        className="text-sm text-shade-500 underline"
         onClick={clearAll}
       >
         Clear All <LiaTimesSolid />

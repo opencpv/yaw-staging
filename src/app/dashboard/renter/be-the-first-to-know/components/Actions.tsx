@@ -1,4 +1,4 @@
-// import { useDisclosure } from "@nextui-org/react";
+import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import React, { useState } from "react";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { FiTrash2 } from "react-icons/fi";
@@ -8,15 +8,15 @@ import {
   ActionItem,
   ActionItemTrigger,
   ActionPopover,
-} from "@/app/dashboard/components/shared/ui/ActionPopover";
+} from "@/components/__shared/ui/popover/action-popover";
 import CriteriaStatus from "./Status";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useDeleteSearchCriteria } from "../services";
 import slugify from "@/lib/utils/slugify";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
-const PopupModal = dynamic(
-  () => import("@/components/__shared/ui/modals/PopupModal"),
+const PopupModal = dynamic(() =>
+  import("@/components/__shared/ui/alert-dialog").then((mod) => mod.PopupModal),
 );
 
 const BTFTKModal = dynamic(() => import("./steps/BTFTKModal"), {
@@ -30,7 +30,7 @@ type Props = {
 const Actions = ({ criterion }: Props) => {
   const router = useRouter();
   const { user } = useAppStore();
-  // const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
+  const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
   const [popoverIsOpen, setPopoverIsOpen] = useState(false);
 
   const {
@@ -46,7 +46,7 @@ const Actions = ({ criterion }: Props) => {
     deleteCriteria({ id: criterion.id, renter_id: user?.id as string });
 
     if (isSuccess) {
-      // onClose();
+      onClose();
     }
   };
 
@@ -61,14 +61,14 @@ const Actions = ({ criterion }: Props) => {
 
   return (
     <>
-      {/* <PopupModal
+      <PopupModal
         isOpen={isOpen}
         onClose={onClose}
         onOpenChange={onOpenChange}
         label={`Are you sure you want to delete "${criterion.title || "[No Title]"}" ?`}
         handleAction={handleDestruction}
         loading={isMutating}
-      /> */}
+      />
 
       <ActionPopover isOpen={popoverIsOpen} onOpenChange={setPopoverIsOpen}>
         <ActionItemTrigger
@@ -92,9 +92,7 @@ const Actions = ({ criterion }: Props) => {
               Edit
             </ActionItem>
           </BTFTKModal>
-          <ActionItem
-          // onClick={onOpen}
-          >
+          <ActionItem onClick={onOpen}>
             <FiTrash2 />
             Delete
           </ActionItem>

@@ -1,9 +1,9 @@
-import { TableBodySm, TableRowSm } from "@/components/__shared/ui/table/Table";
+import { TableBodySm, TableRowSm } from "@/components/__shared/ui/table";
 import ViewDataDetailsModal from "../__shared/ViewDataDetailsModal";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import { formatDateOnly } from "@/lib/utils/stringManipulation";
 import InvoiceStatus from "./InvoiceStatus";
-import { CheckboxNoFormik as Checkbox } from "@/components/__shared/ui/form/Checkbox";
+import { Checkbox } from "@/components/__shared/ui/form/checkbox";
 import { useInvoiceData } from "../../hooks/useInvoiceData";
 import { RiFileListLine } from "react-icons/ri";
 import { cn } from "@/lib/utils";

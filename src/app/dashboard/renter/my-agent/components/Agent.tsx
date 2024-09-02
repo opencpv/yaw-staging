@@ -1,6 +1,6 @@
 import Image from "next/image";
 import CaAgentTickGreenBg from "./icons/CaAgentTickGreenBg";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
 import { cn } from "@/lib/utils";
 import {
@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
 import { BE_MY_AGENT_LAPSE_DAYS } from "@/constants";
 import { BeMyAgentStepsStore } from "@/store/dashboard/BeMyAgentStepsStore";
 import dynamic from "next/dynamic";
-import DeleteButton from "@/components/__shared/ui/button/DeleteButton";
+import DeleteButton from "@/components/__shared/ui/button/delete-button";
 import { useDeleteAgentRequest } from "../services";
 import { useCallback, useEffect } from "react";
 import { views as BeMyAgentViews } from "./steps/BeMyAgentForm";
@@ -101,7 +101,7 @@ export default function Agent({
         />
         {isActive ? (
           <Button
-            className="bg-shade-50 px-4 text-shade-200"
+            className="bg-shade-50 text-shade-200"
             onClick={() => {
               handleEdit();
               setActiveSlide(BeMyAgentViews.length - 1);
@@ -116,7 +116,6 @@ export default function Agent({
                 handleDestruction={handleDelete}
                 loading={isPending}
                 classNames={{ icon: "text-error" }}
-                variant="background"
                 className="relative top-[0.1rem]"
               />
               <BeMyAgentModal button="Edit" onClick={handleEdit} />

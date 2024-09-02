@@ -5,6 +5,7 @@ import { useCallback, useRef, useState } from "react";
 import "swiper/css";
 import Image from "next/image";
 import { urlForImage } from "@/lib/utils/sanity/utils";
+import SliderNav from "@/components/__shared/ui/sliders/slider-nav";
 
 const DesktopVersion = ({ data }: { data: any }) => {
   const initialSlide = 1;
@@ -30,7 +31,7 @@ const DesktopVersion = ({ data }: { data: any }) => {
       <p className="mx-auto mb-8 flex items-center justify-center text-white">
         {data.slide[activeIndex].description}
       </p>
-      <div className=" h-fit md:px-[77px]">
+      <div className="h-fit md:px-[77px]">
         <Swiper
           ref={sliderRef}
           centeredSlides={true}
@@ -66,18 +67,18 @@ const DesktopVersion = ({ data }: { data: any }) => {
         </Swiper>
       </div>
       <div className="mt-[32px] flex items-center justify-between px-[311px] pb-[30px] md:mt-[40px] md:pb-[107px]">
-        <button
+        <SliderNav
           onClick={handlePrev}
-          className="flex h-[40px] w-[40px] items-center justify-center rounded-full bg-white md:h-[70px] md:w-[70px]"
-        >
-          <MdChevronLeft className="text-3xl text-neutral-800" />
-        </button>
-        <button
+          position="left"
+          size="lg"
+          isAbsolute={false}
+        />
+        <SliderNav
           onClick={handleNext}
-          className="flex h-[40px] w-[40px] items-center justify-center rounded-full bg-white md:h-[70px] md:w-[70px]"
-        >
-          <MdChevronRight className="text-3xl text-neutral-800" />
-        </button>
+          position="right"
+          size="lg"
+          isAbsolute={false}
+        />
       </div>
     </div>
   );

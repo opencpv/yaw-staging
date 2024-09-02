@@ -2,8 +2,8 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useFetchAgentRequests } from "../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import SkeletonRectangle from "@/components/__shared/ui/skeleton/SkeletonRectangle";
-// import { Skeleton } from "@nextui-org/react";
+import SkeletonRectangle from "@/components/__shared/ui/skeleton/skeleton-rectangle";
+import { Skeleton } from "@/components/__shared/ui/skeleton";
 import React, { useEffect } from "react";
 import dynamic from "next/dynamic";
 const BeMyAgentModal = dynamic(
@@ -45,7 +45,7 @@ export default function Page() {
           <h3 className="mb-5">My Agent</h3>
           {isLoading && (
             <>
-              {/* <Skeleton className="h-[38px] w-32 rounded-md" /> */}
+              <Skeleton className="h-[38px] w-32 rounded-md" />
               <section className="grid gap-5 md:grid-cols-2 llg:grid-cols-3">
                 <SkeletonRectangle count={3} />
               </section>

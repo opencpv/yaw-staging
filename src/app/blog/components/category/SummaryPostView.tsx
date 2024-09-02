@@ -2,7 +2,7 @@
 import React, { useEffect, useMemo } from "react";
 import TabsAndSearch from "./TabsAndSearch";
 import PostsGrid from "../post/PostsGrid";
-import Pagination, { usePagination } from "@/components/__shared/ui/Pagination";
+import Pagination, { usePagination } from "@/components/__shared/ui/pagination";
 import { usePathname } from "next/navigation";
 import slugify from "@/lib/utils/slugify";
 

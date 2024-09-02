@@ -10,18 +10,18 @@ import {
   TableHeaderRow,
   TableRowSm,
   TableSm,
-} from "@/components/__shared/ui/table/Table";
-import SelectMobile from "@/app/dashboard/components/shared/ui/SelectMobile";
+} from "@/components/__shared/ui/table";
+import SelectMobile from "@/components/__shared/ui/form/select-mobile";
 import Actions from "../Actions";
 import { useFetchSearchCriteria } from "../../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import TableSkeleton from "@/components/__shared/ui/skeleton/TableSkeleton";
+import TableSkeleton from "@/components/__shared/ui/skeleton/skeleton-table";
 import CriteriaStatus from "../Status";
 import MatchState from "../MatchState";
 import ResultsState from "../ResultState";
-import Pagination, { usePagination } from "@/components/__shared/ui/Pagination";
+import Pagination, { usePagination } from "@/components/__shared/ui/pagination";
 import { cn } from "@/lib/utils";
-import TableSkeletonSm from "@/components/__shared/ui/skeleton/TableSkeletonSm";
+import TableSkeletonSm from "@/components/__shared/ui/skeleton/skeleton-table-mobile";
 import dynamic from "next/dynamic";
 const NoCriteriaEmptyState = dynamic(() => import("../NoCriteriaEmptyState"));
 const BTFTKModal = dynamic(() => import("../steps/BTFTKModal"));
@@ -60,7 +60,7 @@ const ManageSearchCriteria = () => {
             setStatus(value);
             handlePageClick({ selected: 0 });
           }}
-          classNames={{ trigger: "self-end" }}
+          classNames={{ trigger: "w-[100px] self-end" }}
         />
       </div>
       <Table>

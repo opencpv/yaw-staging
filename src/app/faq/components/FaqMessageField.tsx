@@ -1,5 +1,5 @@
 import React, { HTMLAttributes } from "react";
-import style from "@/app/contact/ContactForm.module.css";
+import style from "@/app/contact/Contact.module.css";
 import { cn } from "@/lib/utils";
 
 type Props = {

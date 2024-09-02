@@ -1,9 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import HowToVideosSection from "../how_to/HowToVideosSection";
-import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
+import HowToVideosSection from "../../../how-to/components/HowToVideosSection";
+import { Tabs } from "@/components/__shared/ui/tabs";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import { HowTo } from "../../../../../interfaces";
+import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/dist/client/components/navigation";
 
 type Props = {
   tags: any;
@@ -11,40 +13,43 @@ type Props = {
 };
 
 const HowToPage = (props: Props) => {
+  const router = useRouter();
   const [content, setcontent] = useState<any>(props.howtos);
-  const [value, setValue] = useState("all");
+  const searchParams = useSearchParams();
+  const category = searchParams?.get("category") || "All";
+  const [value, setValue] = useState(category);
 
   function filterByTag(array: HowTo[], tag: string) {
     return array.filter((item) =>
-      item.tags.some((t) => t.tag.toLowerCase() === tag),
+      item.tags.some((t) => t.tag.toLowerCase() === tag.toLowerCase()),
     );
   }
   useEffect(() => {
     const data = props.howtos;
-    if (value === "all") {
+    if (category === "All") {
       setcontent(data);
     } else {
-      setcontent(filterByTag(data, value));
+      setcontent(filterByTag(data, category));
     }
-  }, [value, props.howtos]);
+  }, [category, props.howtos]);
+
+  const handleSelectionChange = (key: string) => {
+    setValue(key);
+    router.push(`?${new URLSearchParams({ category: key })}`, {
+      scroll: false,
+    });
+  };
 
   return (
     <div className="pt-12">
       <div className="hidden-scrollbar mb-8 overflow-x-auto">
-        <OptionFilterTabs
+        <Tabs
           options={[
             "All",
-            ...props.tags.map((item: any) =>
-              capitalizeName(item.tag),
-            ),
+            ...props.tags.map((item: any) => capitalizeName(item.tag)),
           ]}
           selectedKey={value}
-          onSelectionChange={(key) => setValue(key as string)}
-          radius="small"
-          tabColor="colored"
-          classNames={{
-            tabList: "flex-nowrap",
-          }}
+          onSelectionChange={handleSelectionChange}
         />
       </div>
       <HowToVideosSection content={content} />

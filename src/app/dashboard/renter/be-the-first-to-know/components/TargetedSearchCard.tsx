@@ -4,8 +4,8 @@ import Image, { StaticImageData } from "next/image";
 import MatchLabel from "./MatchLabel";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import MatchCount from "./MatchCount";
-import EditButton from "@/components/__shared/ui/button/EditButton";
-import DeleteButton from "@/components/__shared/ui/button/DeleteButton";
+import EditButton from "@/components/__shared/ui/button/edit-button";
+import DeleteButton from "@/components/__shared/ui/button/delete-button";
 import ListingCardButton from "@/components/__shared/ui/listing/ListingCardButton";
 
 export type TargetedSearchState = "match" | "no matches";
@@ -85,8 +85,12 @@ const TargetedSearchCard = ({ href, property, state, count }: Props) => {
           <h4 className="font-normal">Kumasi</h4>
         </div>
         <div className="flex items-center gap-2">
-          <EditButton onOpen={() => ""} />
-          <DeleteButton loading={false} handleDestruction={() => {}} />
+          <EditButton onClick={() => ""} />
+          <DeleteButton
+            loading={false}
+            handleDestruction={() => {}}
+            variant="ghost"
+          />
         </div>
       </div>
     </div>

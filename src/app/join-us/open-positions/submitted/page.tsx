@@ -1,7 +1,7 @@
-import Button from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import dynamic from "next/dynamic";
 const GreenCheckLottie = dynamic(
-  () => import("@/components/__shared/lotties/GreenCheckLottie"),
+  () => import("@/components/__shared/lotties/green-check-lottie"),
 );
 
 function Page() {
@@ -17,9 +17,9 @@ function Page() {
         <h2 className="text-3xl text-shade-300">Thank You !</h2>
         <p className="text-shade-200">We will get back to you soon.</p>
       </div>
-      <Button href="/join-us/open-positions" color="accent" className="w-full">
+      <LinkButton href="/join-us/open-positions" variant="accent" size="full">
         Finish
-      </Button>
+      </LinkButton>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-// import { useDisclosure } from "@nextui-org/react";
+import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import React, { useContext, useState } from "react";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { FiTrash2 } from "react-icons/fi";
@@ -9,12 +9,12 @@ import {
   ActionItem,
   ActionItemTrigger,
   ActionPopover,
-} from "../ui/ActionPopover";
+} from "../../../../../components/__shared/ui/popover/action-popover";
 import { ItemPublicationStatus } from "./PublicationStatus";
 import { ItemContext } from "@/app/dashboard/contexts/ItemContext";
 import dynamic from "next/dynamic";
-const PopupModal = dynamic(
-  () => import("@/components/__shared/ui/modals/PopupModal"),
+const PopupModal = dynamic(() =>
+  import("@/components/__shared/ui/alert-dialog").then((mod) => mod.PopupModal),
 );
 
 interface Props {
@@ -22,7 +22,7 @@ interface Props {
   id: number;
 }
 const ActionsMobile = ({ refetch, id }: Props) => {
-  // const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
+  const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
   const [popoverIsOpen, setPopoverIsOpen] = useState(false);
 
   const item = useContext(ItemContext)?.item;
@@ -30,13 +30,13 @@ const ActionsMobile = ({ refetch, id }: Props) => {
 
   return (
     <>
-      {/* <PopupModal
+      <PopupModal
         isOpen={isOpen}
         onClose={onClose}
         onOpenChange={onOpenChange}
         label="Are you sure you want to delete this item?"
         handleAction={handleDestruction}
-      /> */}
+      />
       <ActionPopover isOpen={popoverIsOpen} onOpenChange={setPopoverIsOpen}>
         <ActionItemTrigger
           className="col-span-1 ml-auto h-fit w-fit p-2"
@@ -62,10 +62,7 @@ const ActionsMobile = ({ refetch, id }: Props) => {
             <MdOutlineEdit />
             Edit
           </ActionItem>
-          <ActionItem
-            // onClick={onOpen}
-            disabled={item?.status === "Suspended"}
-          >
+          <ActionItem onClick={onOpen} disabled={item?.status === "Suspended"}>
             <FiTrash2 />
             Delete
           </ActionItem>

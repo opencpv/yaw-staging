@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
-import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
+import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
+import SkeletonListing from "@/components/__shared/ui/skeleton/skeleton-listing";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useFetchProperties } from "../services";
 import PropertiesEmptyState from "./PropertiesEmptyState";
@@ -11,13 +11,14 @@ import { getListingProps, Listing } from "@/lib/enum";
 import { SanityDocument } from "next-sanity";
 import dynamic from "next/dynamic";
 const ButtonInfiniteLoading = dynamic(
-  () => import("@/components/__shared/ui/data_fetching/ButtonInfiniteLoading"),
+  () =>
+    import("@/components/__shared/ui/data_fetching/button-infinite-loading"),
 );
 const ListingCard = dynamic(
-  () => import("@/components/__shared/ui/listing/ListingCard"),
+  () => import("@/components/__shared/ui/listing/listing-card"),
 );
 const FramerWrapper = dynamic(
-  () => import("@/components/__shared/hoc/FramerWrapper"),
+  () => import("@/components/__shared/hoc/framer-wrapper"),
 );
 const Ad = dynamic(() => import("@/app/components/sections/Ad"));
 

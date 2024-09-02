@@ -1,12 +1,8 @@
-import { useDashboardStore } from "@/store/dashboard/dashboardStore";
-
 export const useMenuLinks = () => {
-  const { currentRole } = useDashboardStore();
-
   const linksAfterLogin = [
     {
       id: "#",
-      url: `/dashboard/${currentRole}/my-agent/explore`,
+      url: `/dashboard/renter/my-agent/explore`,
       name: "HIRE US",
     },
     {
@@ -72,7 +68,7 @@ export const useMenuLinks = () => {
           name: "FAQ",
         },
         {
-          url: "/faq",
+          url: "/how-to",
           name: "How to",
         },
         {
@@ -88,7 +84,7 @@ export const useMenuLinks = () => {
           name: "Join Us",
         },
         {
-          url: "/contact",
+          url: "/contact/report",
           name: "Report Fraud",
         },
       ],
@@ -102,7 +98,7 @@ export const useMenuLinks = () => {
     //   name: "Our Services",
     // },
     {
-      url: "/faq",
+      url: "/how-to",
       name: "How to",
     },
     {
@@ -118,7 +114,7 @@ export const useMenuLinks = () => {
       name: "Join Us",
     },
     {
-      url: "/contact",
+      url: "/contact/report",
       name: "Report Fraud",
     },
     {
@@ -171,7 +167,7 @@ export const useMenuLinks = () => {
           name: "Area Vibes",
         },
         {
-          url: "/faq",
+          url: "/how-to",
           name: "How To",
         },
         {
@@ -183,7 +179,7 @@ export const useMenuLinks = () => {
           name: "Join Us",
         },
         {
-          url: "/contact",
+          url: "/contact/report",
           name: "Report Fraud",
         },
       ],
@@ -192,7 +188,7 @@ export const useMenuLinks = () => {
 
   const bottomLinksBeforeLogin = [
     {
-      url: "/faq",
+      url: "/how-to",
       name: "How To",
     },
     {
@@ -200,7 +196,7 @@ export const useMenuLinks = () => {
       name: "Payments",
     },
     // {
-    //   url: "/faq",
+    //   url: "/how-to",
     //   name: "How to",
     // },
     // {
@@ -212,7 +208,7 @@ export const useMenuLinks = () => {
       name: "Join Us",
     },
     {
-      url: "/contact",
+      url: "/contact/report",
       name: "Report Fraud",
     },
     {

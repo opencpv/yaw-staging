@@ -2,28 +2,28 @@
 
 import React, { useState } from "react";
 import RtApplicationRowSm from "./RtApplicationRowSm";
-import TableSkeletonSm from "@/components/__shared/ui/skeleton/TableSkeletonSm";
-import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
-import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
+import TableSkeletonSm from "@/components/__shared/ui/skeleton/skeleton-table-mobile";
+import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/button-infinite-loading";
+import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
-import { TableSm } from "@/components/__shared/ui/table/Table";
+import { TableSm } from "@/components/__shared/ui/table";
 import RtMobileFilters from "./RtMobileFilters";
 import { RenterApplicationStatus } from "./RtApplicationStatus";
 
 type Props = {};
 
-type StatusFilter = "all" | "archived" | RenterApplicationStatus;
+type StatusFilter = "All" | "Archived" | RenterApplicationStatus;
 type DateFilter = "newest" | "oldest" | "last modified";
 
 const RtManageApplicationsSm = (props: Props) => {
-  const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
+  const [statusFilter, setStatusFilter] = useState<StatusFilter>("All");
 
   return (
     <div className="flex flex-col gap-10 lg:hidden">
       <RtMobileFilters
         statusFilter={statusFilter}
-        handleStatusSelectionChange={(e) =>
-          setStatusFilter(e.target.value as StatusFilter)
+        handleStatusSelectionChange={(value) =>
+          setStatusFilter(value as StatusFilter)
         }
       />
       {/* <FetchingStates

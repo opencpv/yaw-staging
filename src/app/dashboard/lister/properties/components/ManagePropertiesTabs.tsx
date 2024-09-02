@@ -1,4 +1,4 @@
-import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
+import { Tabs } from "@/components/__shared/ui/tabs";
 import { useManagePropertiesStore } from "@/store/dashboard/propertiesStore";
 import React from "react";
 
@@ -13,13 +13,13 @@ const ManagePropertiesTabs = (props: Props) => {
   );
 
   return (
-    <OptionFilterTabs
+    <Tabs
       options={[
-        "all",
-        "contract pending",
-        "leased",
-        "dormant",
-        "payment pending",
+        "All",
+        "Contract Pending",
+        "Leased",
+        "Dormant",
+        "Payment Pending",
       ]}
       selectedKey={optionSelected}
       onSelectionChange={handleOptionChange}

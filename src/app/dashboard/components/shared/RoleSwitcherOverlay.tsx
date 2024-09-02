@@ -1,5 +1,8 @@
 "use client";
-import Loader from "@/components/__shared/ui/loader/Loader";
+import Loader from "@/components/__shared/ui/loader";
+import capitalizeName, {
+  caseInsensitiveCompare,
+} from "@/lib/utils/stringManipulation";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 
 const RoleSwitcherOverlay = () => {
@@ -10,8 +13,13 @@ const RoleSwitcherOverlay = () => {
       <div className="flex flex-col items-center justify-center gap-5">
         <Loader />
         <h4 className="text-primary-500">
-          Setting up {currentRole}&apos;s dashboard{" "}
-          <span className="animate-pulse">...</span>{" "}
+          Switching to{" "}
+          <span className="font-bold">{capitalizeName(currentRole)}</span> mode
+          <span className="animate-pulse">... </span> Hang tight as we prepare
+          your new{" "}
+          {caseInsensitiveCompare(currentRole, "lister")
+            ? "tools!"
+            : "dashboard!"}
         </h4>
       </div>
     </section>

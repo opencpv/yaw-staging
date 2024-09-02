@@ -1,11 +1,11 @@
 import { create } from "zustand";
 
 export type FilterOption =
-  | "all"
-  | "realtor's choice"
-  | "verified"
-  | "no viewing fee"
-  | "no advance";
+  | "All"
+  | "Realtor's Choice"
+  | "Verified"
+  | "No Viewing Fee"
+  | "No Advance";
 
 export type FilterOptionArray = Array<FilterOption>;
 
@@ -24,7 +24,7 @@ type PropertiesPathStore = {
 export const propertyFilterStore = create<PropertyFilterStore>((set) => ({
   searchString: "",
   setSearchString: (str) => set((state) => ({ ...state, searchString: str })),
-  filter: "all",
+  filter: "All",
   setFilter: (filter) => set((state) => ({ ...state, filter })),
 }));
 

@@ -1,5 +1,5 @@
-// import { useDisclosure } from "@nextui-org/react";
-import React, { useState } from "react";
+import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import React from "react";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { FiTrash2 } from "react-icons/fi";
 import { MdOutlineEdit, MdOutlineRemoveRedEye } from "react-icons/md";
@@ -8,7 +8,7 @@ import {
   ActionItem,
   ActionItemTrigger,
   ActionPopover,
-} from "@/app/dashboard/components/shared/ui/ActionPopover";
+} from "@/components/__shared/ui/popover/action-popover";
 import PublicationStatus from "./PublicationStatus";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import {
@@ -20,8 +20,8 @@ import { getListingProps } from "@/lib/enum";
 import { PiArrowLineUp } from "react-icons/pi";
 import { TbTrashOff } from "react-icons/tb";
 import dynamic from "next/dynamic";
-const PopupModal = dynamic(
-  () => import("@/components/__shared/ui/modals/PopupModal"),
+const PopupModal = dynamic(() =>
+  import("@/components/__shared/ui/alert-dialog").then((mod) => mod.PopupModal),
 );
 
 const ListingModal = dynamic(
@@ -35,14 +35,13 @@ type Props = {
 const Actions = ({ listing }: Props) => {
   const router = useRouter();
   const { user } = useAppStore();
-  // const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
-  // const {
-  //   onClose: onClosePublish,
-  //   isOpen: isOpenPublish,
-  //   onOpenChange: onOpenChangePublish,
-  //   onOpen: onOpenPublish,
-  // } = useDisclosure();
-  const [popoverIsOpen, setPopoverIsOpen] = useState(false);
+  const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
+  const {
+    onClose: onClosePublish,
+    isOpen: isOpenPublish,
+    onOpenChange: onOpenChangePublish,
+    onOpen: onOpenPublish,
+  } = useDisclosure();
 
   const {
     mutate: handleArchived,
@@ -72,7 +71,7 @@ const Actions = ({ listing }: Props) => {
       });
 
     if (isSuccess) {
-      // onClose();
+      onClose();
     }
   };
 
@@ -89,13 +88,13 @@ const Actions = ({ listing }: Props) => {
       });
 
     if (isSuccessPublish) {
-      // onClosePublish();
+      onClosePublish();
     }
   };
 
   return (
     <>
-      {/* <PopupModal
+      <PopupModal
         isOpen={isOpen}
         onClose={onClose}
         onOpenChange={onOpenChange}
@@ -110,8 +109,8 @@ const Actions = ({ listing }: Props) => {
         }
         handleAction={handleDestruction}
         loading={isDeleting}
-      /> */}
-      {/* <PopupModal
+      />
+      <PopupModal
         isOpen={isOpenPublish}
         onClose={onClosePublish}
         onOpenChange={onOpenChangePublish}
@@ -126,22 +125,16 @@ const Actions = ({ listing }: Props) => {
         }
         handleAction={handlePublish}
         loading={isPublishing}
-      /> */}
-      <ActionPopover isOpen={popoverIsOpen} onOpenChange={setPopoverIsOpen}>
-        <ActionItemTrigger
-          className="col-span-1 ml-auto h-fit w-fit p-2"
-          onClick={() => setPopoverIsOpen(true)}
-        >
+      />
+      <ActionPopover>
+        <ActionItemTrigger className="col-span-1 ml-auto p-2">
           <BiDotsVerticalRounded />
         </ActionItemTrigger>
         <ActionContent>
           <ActionItem className="lg:hidden">
             <PublicationStatus listing={listing as Property} />
           </ActionItem>
-          <ActionItem
-            // onClick={onOpenPublish}
-            disabled={!canPublish}
-          >
+          <ActionItem onClick={onOpenPublish} disabled={!canPublish}>
             <PiArrowLineUp />
             {isPublishing
               ? "Upading..."
@@ -155,15 +148,12 @@ const Actions = ({ listing }: Props) => {
           </ActionItem>
 
           <ListingModal variant="edit" listing={listing} disabled={!canEdit}>
-            <ActionItem disabled={!canEdit}>
+            <ActionItem disabled={!canEdit} tabIndex={-1}>
               <MdOutlineEdit />
               Edit
             </ActionItem>
           </ListingModal>
-          <ActionItem
-            // onClick={onOpen}
-            disabled={!canDelete}
-          >
+          <ActionItem onClick={onOpen} disabled={!canDelete}>
             {listing?.is_archived ? <TbTrashOff /> : <FiTrash2 />}
             {listing?.is_archived ? "Unarchive" : "Delete"}
           </ActionItem>

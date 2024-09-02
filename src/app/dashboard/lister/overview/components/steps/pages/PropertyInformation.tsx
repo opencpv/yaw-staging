@@ -1,11 +1,11 @@
 import React from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
-import CustomTextAreaInput from "@/components/__shared/ui/form/CustomTextAreaInput";
+import { Input } from "@/components/__shared/ui/form/input";
+import { Textarea } from "@/components/__shared/ui/form/textarea";
 import style from "../../../index.module.css";
 import { ListingDefaultValues } from "@/store/dashboard/ListingStepsStore";
-import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
-import { CustomDatePicker } from "@/components/__shared/ui/form/CustomDatePicker";
+import { SelectInput } from "@/components/__shared/ui/form/select";
+import { DatePicker } from "@/components/__shared/ui/form/date-picker";
 
 type Props = {};
 
@@ -31,26 +31,24 @@ const PropertyInformation = React.forwardRef<HTMLInputElement, Props>(
           <div
             className={`fade-in-bottom flex flex-col ${style.fieldsBlockGap}`}
           >
-            <TextFieldInput
+            <Input
               name="property_name"
               label="Property Name"
               type="text"
               placeholder="E.g. Aseda House"
               onChange={(e) => handleOnChange("property_name", e.target.value)}
             />
-            <CustomTextAreaInput
+            <Textarea
               name="description"
               label="Brief Description"
               placeholder={"Enter description"}
-              classes="h-[167px]"
               onChange={(e) => handleOnChange("description", e.target.value)}
               characterLimit={100}
             />
-            <CustomTextAreaInput
+            <Textarea
               name="renter_knowledge"
               label="Things for Renters to Know"
               placeholder={"Enter things for renters to know"}
-              classes="h-[167px]"
               onChange={(e) =>
                 handleOnChange("renter_knowledge", e.target.value)
               }
@@ -61,63 +59,50 @@ const PropertyInformation = React.forwardRef<HTMLInputElement, Props>(
             className={`fade-in-bottom flex flex-col ${style.fieldsBlockGap}`}
             style={{ animationDelay: "0.5s" }}
           >
-            <TextFieldInput
+            <Input
               name="property_size"
               type="text"
               label="Property Size ( sq M )"
               onChange={(e) => handleOnChange("property_size", e.target.value)}
             />
 
-            <CustomSelect
+            <SelectInput
               name="bedrooms"
               label="Number of Bedrooms"
-              options={[
-                { name: "1", value: "1" },
-                { name: "2", value: "2" },
-                { name: "3", value: "3" },
-                { name: "4", value: "4" },
-                { name: "5", value: "5" },
-                { name: "6+", value: "6+" },
-              ]}
+              options={["1", "2", "3", "4", "5", "6+"]}
               onChange={(value) => handleOnChange("bedrooms", value)}
             />
-            <CustomSelect
+            <SelectInput
               name="bathrooms"
               label="Number of Bathrooms"
               options={[
-                { name: "1", value: "1" },
-                { name: "1.5", value: "1.5" },
-                { name: "2", value: "2" },
-                { name: "2.5", value: "2.5" },
-                { name: "3", value: "3" },
-                { name: "3.5", value: "3.5" },
-                { name: "4", value: "4" },
-                { name: "4.5", value: "4.5" },
-                { name: "5", value: "5" },
-                { name: "5.5", value: "5.5" },
-                { name: "6+", value: "6+" },
+                "1",
+                "1.5",
+                "2",
+                "2.5",
+                "3",
+                "3.5",
+                "4",
+                "4.5",
+                "5",
+                "5.5",
+                "6+",
               ]}
               onChange={(value) => handleOnChange("bathrooms", value)}
             />
-            <CustomSelect
+            <SelectInput
               name="city"
               label="City"
-              options={[
-                { name: "Accra", value: "Accra" },
-                { name: "Tema", value: "Tema" },
-              ]}
+              options={["Accra", "Tema"]}
               onChange={(value) => handleOnChange("city", value)}
             />
-            <CustomSelect
+            <SelectInput
               name="neighbourhood"
               label="Neighbourhood"
-              options={[
-                { name: "Dansoman", value: "Dansoman" },
-                { name: "Osu", value: "Osu" },
-              ]}
+              options={["Dansoman", "Osu"]}
               onChange={(value) => handleOnChange("neighbourhood", value)}
             />
-            <CustomDatePicker
+            <DatePicker
               name="available_date"
               label="Available On"
               onChange={(value) => handleOnChange("available_date", value)}

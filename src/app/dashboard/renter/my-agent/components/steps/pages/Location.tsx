@@ -2,9 +2,9 @@ import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import React from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
-import CustomSelect from "../../../../../../../components/__shared/ui/form/CustomSelect";
+import { SelectInput } from "../../../../../../../components/__shared/ui/form/select";
 import style from "../../../index.module.css";
-import TextFieldInput from "../../../../../../../components/__shared/ui/form/TextFieldInput";
+import { Input } from "../../../../../../../components/__shared/ui/form/input";
 import { useField } from "formik";
 import { BeMyAgentDefaultValues } from "@/store/dashboard/BeMyAgentStepsStore";
 import { cn } from "@/lib/utils";
@@ -52,25 +52,21 @@ const Location = ({
   };
 
   return (
-    <div className={cn("flex w-full flex-col lg:max-w-lg", style.fieldsBlockGap)}>
-      <CustomSelect
+    <div
+      className={cn("flex w-full flex-col lg:max-w-lg", style.fieldsBlockGap)}
+    >
+      <SelectInput
         name={city + index}
         label="City"
         value={city}
-        options={[
-          { name: "accra", value: "Accra" },
-          { name: "tema", value: "Tema" },
-        ]}
+        options={["Accra", "Tema"]}
         onChange={(val) => handleInputChange("city", val, index)}
       />
-      <CustomSelect
+      <SelectInput
         name={neighbourhood + index}
         label="Neighbourhood"
         value={neighbourhood}
-        options={[
-          { name: "dansoman", value: "Dansoman" },
-          { name: "osu", value: "Osu" },
-        ]}
+        options={["Dansoman", "Osu"]}
         onChange={(val) => handleInputChange("neighbourhood", val, index)}
       />
     </div>
@@ -113,7 +109,7 @@ const DesiredLocations = () => {
         <h2 className={`${style.titleNoMargin}`}>
           Name your Search <span className={style.asterisk}>*</span>
         </h2>
-        <TextFieldInput
+        <Input
           type="text"
           name="search_title"
           placeholder="e.g: My Accra Dream Home"
@@ -133,10 +129,7 @@ const DesiredLocations = () => {
           {/* Locations */}
           <div>
             {field.value?.map((location: LocationType, index: number) => (
-              <div
-                key={index}
-                className={index === 0 ? "mb-10" : "mb-2"}
-              >
+              <div key={index} className={index === 0 ? "mb-10" : "mb-2"}>
                 <ClientOnly>
                   <Location
                     index={index}
@@ -161,7 +154,7 @@ const DesiredLocations = () => {
           </div>
           <button
             type="button"
-            className="h-38 text-13 flex w-fit items-center justify-start gap-1 whitespace-nowrap p-2  font-normal text-[#AD842A] hover:bg-[#ad832a20]"
+            className="h-38 text-13 flex w-fit items-center justify-start gap-1 whitespace-nowrap p-2 font-normal text-[#AD842A] hover:bg-[#ad832a20]"
             onClick={handleAdd}
           >
             Add Additional Location

@@ -1,22 +1,22 @@
-import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
+import { Input } from "@/components/__shared/ui/form/input";
 import { styled } from "@stitches/react";
 import React from "react";
-import CountryInput from "@/components/__shared/ui/form/CountryInput";
-import CurrencyInput from "@/components/__shared/ui/form/CurrencyInput";
-import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
+import CountryInput from "@/components/__shared/ui/form/country-input";
+import CurrencyInput from "@/components/__shared/ui/form/currency-input";
+import { SelectInput } from "@/components/__shared/ui/form/select";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import style from "../../../index.module.css";
 import { BeMyAgentDefaultValues } from "@/store/dashboard/BeMyAgentStepsStore";
-import CallOut from "@/components/__shared/ui/CallOut";
+import CallOut from "@/components/__shared/ui/callout";
 
 type Props = {};
 
 const MostRecentEmployment = [
-  { name: "employed", value: "Employed" },
-  { name: "self employed", value: "Self Employed" },
-  { name: "student", value: "Student" },
-  { name: "retired", value: "Retired" },
-  { name: "unemployed", value: "Unemployed" },
+  "Employed",
+  "Self Employed",
+  "Student",
+  "Retired",
+  "Unemployed",
 ];
 
 const EmploymentInformation = React.forwardRef<HTMLInputElement, Props>(
@@ -33,7 +33,7 @@ const EmploymentInformation = React.forwardRef<HTMLInputElement, Props>(
           <CallOut content="You may select more than one response" />
         </div>
         <div className={style.wrappingFieldsGrid}>
-          <CustomSelect
+          <SelectInput
             name="employment_status"
             options={MostRecentEmployment}
             label="Employment Status"
@@ -44,7 +44,7 @@ const EmploymentInformation = React.forwardRef<HTMLInputElement, Props>(
               })
             }
           />
-          <TextFieldInput
+          <Input
             name="employer"
             type="text"
             label="Employer or Income Source"
@@ -67,7 +67,7 @@ const EmploymentInformation = React.forwardRef<HTMLInputElement, Props>(
               })
             }
           />
-          <TextFieldInput
+          <Input
             name="job_title"
             type="text"
             label="Job Title"
@@ -86,12 +86,7 @@ const EmploymentInformation = React.forwardRef<HTMLInputElement, Props>(
             label="Monthly Income"
             isSelectElement
             //value2={BeMyAgentCreationSteps?.monthlyIncome || "1000 - 2000"}
-            options={[
-              { name: "1000 - 2000", value: "1000 - 2000" },
-              { name: "3000 - 5000", value: "3000 - 5000" },
-              { name: "6000 - 10000", value: "6000 - 10000" },
-              { name: "10000+", value: "10000+" },
-            ]}
+            options={["1000 - 2000", "3000 - 5000", "6000 - 10000", "10000+"]}
             onChange={(value) =>
               setBeMyAgentCreationSteps({
                 ...BeMyAgentCreationSteps,

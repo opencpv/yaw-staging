@@ -1,24 +1,20 @@
-import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import React from "react";
-import { FiTrash2 } from "react-icons/fi";
-import Button from "@/components/__shared/ui/button/Button";
-import { formatPrice } from "@/lib/utils/numberManipulation";
-import { formatDate, formatTime } from "@/lib/utils/stringManipulation";
+import { formatDate } from "@/lib/utils/stringManipulation";
 import ApplicationStatus from "./LsApplicationStatus";
-import { AiOutlineEye } from "react-icons/ai";
 import { useDaysDifference } from "@/lib/custom-hooks/useDaysDifference";
 import capitalizeName from "@/lib/utils/stringManipulation";
-// import { useDisclosure } from "@nextui-org/react";
+import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { ListerApplicationsInterface } from "../../../../../../interfaces";
-import { TableBody, TableBodyRow } from "@/components/__shared/ui/table/Table";
+import { TableBodySm, TableRowSm } from "@/components/__shared/ui/table";
 import TbPropertyImageSm from "@/app/dashboard/components/shared/ui/TbPropertyImageSm";
 // import PaymentStructure from "../../../components/shared/PaymentStructure";
-import ViewButton from "@/components/__shared/ui/button/ViewButton";
+import ViewButton from "@/components/__shared/ui/button/view-button";
 import dynamic from "next/dynamic";
-// import Rating from "../../../components/shared/Rating";
-const PopupModal = dynamic(
-  () => import("@/components/__shared/ui/modals/PopupModal"),
+import DeleteButton from "@/components/__shared/ui/button/delete-button";
+//import Rating from "../../../components/shared/Rating";
+const PopupModal = dynamic(() =>
+  import("@/components/__shared/ui/alert-dialog").then((mod) => mod.PopupModal),
 );
 
 const LsApplicationRowSm = ({
@@ -29,23 +25,23 @@ const LsApplicationRowSm = ({
   date,
   propertyPrice,
 }: ListerApplicationsInterface) => {
-  // const { onClose, isOpen, onOpenChange } = useDisclosure();
+  const { onClose, isOpen, onOpenChange } = useDisclosure();
 
   const daysDifference = useDaysDifference(date);
 
   return (
     <>
-      {/* <PopupModal
+      <PopupModal
         isOpen={isOpen}
         onClose={onClose}
         onOpenChange={onOpenChange}
         label="Are you sure you want to delete this application?"
         handleAction={() => {}}
-      /> */}
-      {/* <TableRowSm> */}
-      {/* Applicant */}
-      {/* <TableBodySm className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3"> */}
-      {/* <div className="space-y-2">
+      />
+      <TableRowSm>
+        Applicant
+        <TableBodySm className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3">
+          <div className="space-y-2">
             <h4 className="mb-3">Applicant</h4>
             <div className="relative h-16 w-16 shrink-0 rounded-full">
               <Image
@@ -60,16 +56,16 @@ const LsApplicationRowSm = ({
               <p className="truncate text-sm text-[600]">
                 {capitalizeName(applicantName, " ")}
               </p>
-              <Rating rate={3.5} count={5} />
+              {/* <Rating rate={3.5} count={5} /> */}
             </div>
-          </div> */}
-      {/* Status */}
-      {/* <div className="">
+          </div>
+          Status
+          <div className="">
             <ApplicationStatus />
-          </div> */}
-      {/* </TableBodySm> */}
-      {/* Property */}
-      {/* <TableBodySm href="/properties/1" className="pt-3">
+          </div>
+        </TableBodySm>
+        Property
+        <TableBodySm href="/properties/1" className="pt-3">
           <h4 className="mb-3">Property</h4>
           <div className="flex flex-wrap items-center gap-3">
             <TbPropertyImageSm image={propertyImage} title={propertyTitle} />
@@ -78,15 +74,15 @@ const LsApplicationRowSm = ({
                 {propertyTitle}
               </h4>
               <p className="mb-3 text-sm text-neutral-400">Assin Fosu</p>
-              <PaymentStructure
+              {/* <PaymentStructure
                 monthlyPrice={3000}
                 advancePayment="two years"
-              />
+              /> */}
             </div>
           </div>
-        </TableBodySm> */}
-      {/* Date */}
-      {/* <TableBodySm className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 py-3.5">
+        </TableBodySm>
+        Date
+        <TableBodySm className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 py-3.5">
           <h4>Date</h4>
           <div className="flex flex-col items-center justify-center gap-y-1">
             <h4 className="text-sm font-[600]">{formatDate(date)}</h4>
@@ -96,12 +92,12 @@ const LsApplicationRowSm = ({
                 : `${daysDifference} Days Ago`}
             </small>
           </div>
-        </TableBodySm> */}
-      {/* Actions */}
-      {/* <TableBodySm className="flex justify-center gap-1.5 pt-3">
-          <DeleteButton onOpen={onOpen} />
-        </TableBodySm> */}
-      {/* </TableRowSm> */}
+        </TableBodySm>
+        Actions
+        <TableBodySm className="flex justify-center gap-1.5 pt-3">
+          <DeleteButton handleDestruction={() => {}} loading={false} />
+        </TableBodySm>
+      </TableRowSm>
     </>
   );
 };

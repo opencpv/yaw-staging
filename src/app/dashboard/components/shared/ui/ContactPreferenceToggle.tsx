@@ -1,5 +1,5 @@
 "use client";
-import Toggle from "@/components/__shared/ui/Toggle";
+import { Switch } from "@/components/__shared/ui/switch";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import React, { useEffect, useState } from "react";
@@ -33,11 +33,10 @@ const ContactPreferenceToggle = () => {
   };
 
   return (
-    <Toggle
+    <Switch
       label="Allow property owners to contact you"
-      isSelected={selected}
-      onValueChange={handleToggle}
-      color="primary"
+      checked={selected}
+      onCheckedChange={handleToggle}
     />
   );
 };

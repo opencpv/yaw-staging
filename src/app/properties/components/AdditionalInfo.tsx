@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import React from "react";
 import style from "../Template.module.css";
 import PropertyOwnerInfo from "./PropertyOwnerInfo";
@@ -29,7 +29,7 @@ const AdditionalInfo = ({ className, listing }: Props) => {
       )}
     >
       <section className="flex w-full flex-col gap-5 pb-10">
-        <Button color="primary" className="min-w-full flex-1">
+        <Button size={"full"} className="flex-1">
           Apply Now
         </Button>
         {/* Available on*/}

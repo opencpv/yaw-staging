@@ -14,9 +14,9 @@ import { useSessionStorage } from "@uidotdev/usehooks";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import dynamic from "next/dynamic";
-import Loader from "@/components/__shared/ui/loader/Loader";
+import Loader from "@/components/__shared/ui/loader";
 const CustomErrorMessage = dynamic(
-  () => import("@/components/__shared/ui/states/ErrorMessage"),
+  () => import("@/components/__shared/ui/states/error-message"),
 );
 
 const ContactForm = () => {
@@ -81,10 +81,6 @@ const ContactForm = () => {
                 handleChange={handleChange}
                 error={errors.fullname}
               />
-              <CustomErrorMessage className="mt-5" error={errors.fullname}>
-                {/* @ts-ignore */}
-                <ErrorMessage name="fullname" error={errors.fullname} />
-              </CustomErrorMessage>
             </div>
             <div className="w-full">
               <ContactPhoneField
@@ -110,7 +106,7 @@ const ContactForm = () => {
                 }}
                 onBlur={handleBlur}
               />
-              <CustomErrorMessage className="mt-2" error={errors.message}>
+              <CustomErrorMessage className="mt-2" name={errors.message}>
                 {/* @ts-ignore */}
                 <ErrorMessage name="message" error={errors.message} />
               </CustomErrorMessage>

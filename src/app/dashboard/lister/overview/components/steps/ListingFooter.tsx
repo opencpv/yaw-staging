@@ -5,11 +5,14 @@ import {
   ListingDefaultValues,
   ListingStepsStore,
 } from "@/store/dashboard/ListingStepsStore";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { useFormikContext } from "formik";
 import { useLocalStorage } from "@uidotdev/usehooks";
-// import { useDisclosure } from "@nextui-org/react";
-import Modal from "@/components/__shared/ui/modals/Modal";
+import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import dynamic from "next/dynamic";
+const Modal = dynamic(() =>
+  import("@/components/__shared/ui/modals/dialog").then((mod) => mod.Modal),
+);
 
 const ListingFooter = () => {
   const { submitForm, validateForm, errors, isSubmitting, setSubmitting } =
@@ -23,7 +26,7 @@ const ListingFooter = () => {
     > | null>("listing-creation-steps");
 
   const lastButOneSlide = activeSlide === ListingViews.length - 2;
-  // const { onOpenChange, isOpen, onOpen } = useDisclosure();
+  const { onOpenChange, isOpen, onOpen } = useDisclosure();
 
   const handleBack = () => {
     setActiveSlide(activeSlide - 1);
@@ -38,7 +41,7 @@ const ListingFooter = () => {
     // validate the form on last but one slide
     if (lastButOneSlide) {
       if (Object.keys(errors).length > 0) {
-        // onOpen();
+        onOpen();
       } else {
         submitForm();
       }
@@ -59,7 +62,7 @@ const ListingFooter = () => {
 
   return (
     <>
-      {/* <Modal
+      <Modal
         onOpenChange={onOpenChange}
         isOpen={isOpen}
         header={<h3>Please address the required fields</h3>}
@@ -72,8 +75,8 @@ const ListingFooter = () => {
           </ul>
         }
         size="lg"
-        className="max-w-md py-10"
-      /> */}
+        className="py-10"
+      />
 
       <section
         className={cn(
@@ -81,7 +84,6 @@ const ListingFooter = () => {
         )}
       >
         <Button
-          color="primary"
           variant="outline"
           className={cn(
             "col-span-1 rounded-lg font-semibold focus:outline-none xs:text-base sm:h-[58px] sm:min-w-[16rem]",
@@ -90,6 +92,7 @@ const ListingFooter = () => {
             },
           )}
           onClick={handleBack}
+          radius={"lg"}
         >
           Back
         </Button>
@@ -105,6 +108,7 @@ const ListingFooter = () => {
             handleForward();
           }}
           type={lastSlide ? "button" : "submit"}
+          radius={"lg"}
           isLoading={isSubmitting}
         >
           {lastSlide

@@ -1,4 +1,4 @@
-import Button from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import Image, { StaticImageData } from "next/image";
 import React from "react";
 
@@ -28,9 +28,9 @@ const GradientBanner = (props: Props) => {
       <div className="min-w-full max-w-sm space-y-4 xs:min-w-[100px]">
         <h2>{props.heading}</h2>
         <p>{props.description}</p>
-        <Button href={props.href} className="bg-accent">
+        <LinkButton href={props.href} variant={"accent"}>
           {props.buttonLabel}
-        </Button>
+        </LinkButton>
       </div>
     </div>
   );

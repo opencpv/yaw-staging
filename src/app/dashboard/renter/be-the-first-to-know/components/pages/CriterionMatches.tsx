@@ -1,16 +1,16 @@
 "use client";
-import Button from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import React from "react";
 import { FaChevronLeft } from "react-icons/fa";
 import { useFetchCriteriaMatches } from "../../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
-// import { Skeleton } from "@nextui-org/react";
+import SkeletonListing from "@/components/__shared/ui/skeleton/skeleton-listing";
+import { Skeleton } from "@/components/__shared/ui/skeleton";
 import { getListingProps, Listing } from "@/lib/enum";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import dynamic from "next/dynamic";
 const ListingCard = dynamic(
-  () => import("@/components/__shared/ui/listing/ListingCard"),
+  () => import("@/components/__shared/ui/listing/listing-card"),
 );
 
 type Props = {
@@ -39,18 +39,18 @@ const CriterionMatches = ({ params }: Props) => {
 
   return (
     <div className="space-y-20">
-      <Button
+      <LinkButton
         href="/dashboard/renter/be-the-first-to-know/manage-criteria"
         variant="ghost"
-        className="gap-3 font-semibold"
+        className="font-semibold"
       >
         <FaChevronLeft size={18} />
         Go Back
-      </Button>
+      </LinkButton>
 
       {isLoading && (
         <section className="space-y-5">
-          {/* <Skeleton className="h-5 w-80 rounded-md" /> */}
+          <Skeleton className="h-5 w-80 rounded-md" />
 
           <div className="listing-grid">{<SkeletonListing />}</div>
         </section>

@@ -1,20 +1,31 @@
-import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
-import { useFaqHowToSwitchStore } from "@/store/faq/useFaqStore";
-import React, { useRef } from "react";
+"use client";
+import { Tabs } from "@/components/__shared/ui/tabs";
+import { caseInsensitiveCompare } from "@/lib/utils/stringManipulation";
+import { usePathname, useRouter } from "next/navigation";
+import React, { useState } from "react";
 
 const FaqHowToSwitch = () => {
-  const activePage = useFaqHowToSwitchStore((state) => state.activePage);
-  const setActivePage = useFaqHowToSwitchStore((state) => state.setActivePage);
+  const router = useRouter();
+  const pathname = usePathname();
+  const [activePage, setActivePage] = useState(
+    pathname === "/faq" ? "FAQ" : "How To",
+  );
+
+  const handleTabClick = (tab: string) => {
+    setActivePage(tab);
+    router.push(caseInsensitiveCompare(tab, "faq") ? "/faq" : "/how-to", {
+      scroll: false,
+    });
+  };
 
   return (
     <div className="my-8 w-fit rounded-xl border p-3">
-      <OptionFilterTabs
-        options={["FAQ", "how to"]}
+      <Tabs
+        options={["FAQ", "How To"]}
         selectedKey={activePage}
-        onSelectionChange={setActivePage}
-        radius="large"
-        padding="wide"
-        cursorAnimation
+        onSelectionChange={handleTabClick}
+        variant="rounded"
+        size="md"
       />
     </div>
   );

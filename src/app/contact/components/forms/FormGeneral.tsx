@@ -8,7 +8,7 @@ import ContactMessageField from "./ContactMessageField";
 import ContactFullNameField from "./ContactFullNameField";
 import ContactPhoneField from "./ContactPhoneField";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
-import CustomErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
+import CustomErrorMessage from "@/components/__shared/ui/states/error-message";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import { useRouter } from "next/navigation";
 import { UploadFile } from "../UploadFile";
@@ -16,14 +16,14 @@ import axios from "axios";
 import { generateString } from "@/lib/utils";
 import slugify from "@/lib/utils/slugify";
 import { toast } from "react-hot-toast";
-import Button from "@/components/__shared/ui/button/Button";
 import { E164Number } from "libphonenumber-js/core";
+import { Button } from "@/components/__shared/ui/button";
+import { tag } from "@/store/contact/useContactStore";
 
 type Props = {};
 
 const FormGeneral = (props: Props) => {
   const {
-    activeTab,
     file,
     formRef,
     loading,
@@ -55,7 +55,8 @@ const FormGeneral = (props: Props) => {
         validate(values, contactFormSession.phone as E164Number)
       }
       onSubmit={async (values, { resetForm }) => {
-        values.contactType = capitalizeName(activeTab);
+        if (!tag) return;
+        values.contactType = capitalizeName(tag);
         const newFilename: string =
           generateString(4) + "-" + slugify(file?.name || "");
         var newFile = new File([file as File], newFilename, {
@@ -125,10 +126,6 @@ const FormGeneral = (props: Props) => {
                 handleChange={handleChange}
                 error={errors.fullname}
               />
-              <CustomErrorMessage className="mt-5" error={errors.fullname}>
-                {/* @ts-ignore */}
-                <ErrorMessage name="fullname" error={errors.fullname} />
-              </CustomErrorMessage>
             </div>
             <div className="form-div">
               <ContactPhoneField
@@ -147,7 +144,7 @@ const FormGeneral = (props: Props) => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              <CustomErrorMessage className="mt-2" error={errors.message}>
+              <CustomErrorMessage className="mt-2" name={errors.message}>
                 {/* @ts-ignore */}
                 <ErrorMessage name="message" error={errors.message} />
               </CustomErrorMessage>
@@ -159,7 +156,7 @@ const FormGeneral = (props: Props) => {
             />
             <Button
               className="max-w-full xs:max-w-fit"
-              color="accent"
+              variant="accent"
               isLoading={loading}
               type="submit"
             >

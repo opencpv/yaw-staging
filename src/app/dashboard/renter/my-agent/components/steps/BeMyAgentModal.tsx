@@ -2,14 +2,14 @@
 import React, { useEffect } from "react";
 import AgentButtons from "../Button";
 import BeMyAgentForm from "./BeMyAgentForm";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { MdOutlineEdit } from "react-icons/md";
 import { cn } from "@/lib/utils";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import BeMyAgentHeader from "./BeMyAgentHeader";
 import BeMyAgentFooter from "./BeMyAgentFooter";
 import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
-import StepsModal from "@/components/__shared/ui/modals/steps/StepsModal";
+import StepsModal from "@/components/__shared/ui/modals/steps/steps-modal";
 import { Form, Formik } from "formik";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import {
@@ -20,9 +20,12 @@ import * as Yup from "yup";
 import { usePathname } from "next/navigation";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useAddAgentRequest } from "../../services";
-import capitalizeName, { convertBooleanToYesNo } from "@/lib/utils/stringManipulation";
+import capitalizeName, {
+  convertBooleanToYesNo,
+} from "@/lib/utils/stringManipulation";
 import { views as BeMyAgentViews } from "./BeMyAgentForm";
 import { getFormValues } from "../../utils";
+import EditButton from "@/components/__shared/ui/button/edit-button";
 
 type Props = {
   button?: "Hire Us Now" | "Get Started" | "Ghost" | "Edit" | "Price";
@@ -125,220 +128,211 @@ const BeMyAgentModal = (props: Props) => {
           }}
         />
       ) : props.button === "Ghost" ? (
-          <Button
-            variant="ghost"
-            className={props.buttonClassName}
-            onClick={() => {
-              setActiveSlide(BeMyAgentViews.length - 1);
-              props.onClick?.();
-            }}
-          >
-            {props.content}
-          </Button>
-        ) : props.button === "Edit" ? (
-            <Button
-              isIconOnly
-              title="Edit"
-              className={cn(
-                "flex w-fit items-center justify-center rounded-md bg-secondary-50 p-4 text-neutral-800",
-                props.buttonClassName,
-              )}
-              onClick={() => {
-                setActiveSlide(BeMyAgentViews.length - 1);
-                props.onClick?.();
-              }}
-            >
-              <MdOutlineEdit size={16} />
-            </Button>
-          ) : props.button === "Hire Us Now" ? (
-              <AgentButtons
-                href="/dashboard/renter/my-agent/create"
-                content={(props.content as string) ?? "Hire Us Now !!"}
-                variant={"green-dark"}
-                className={props.buttonClassName}
-                onClick={() => {
-                  setActiveSlide(0);
-                  setAgentRequest(null);
-                }}
-              />
-            ) : props.button === "Price" ? (
-                <AgentButtons
-                  href="/dashboard/renter/my-agent/create"
-                  variant="price"
-                  content={formatPrice(props.content as number)}
-                  className={props.buttonClassName}
-                  onClick={() => {
-                    setActiveSlide(0);
-                    setAgentRequest(null);
-                  }}
-                />
-              ) : null}
+        <Button
+          variant="ghost"
+          className={props.buttonClassName}
+          onClick={() => {
+            setActiveSlide(BeMyAgentViews.length - 1);
+            props.onClick?.();
+          }}
+        >
+          {props.content}
+        </Button>
+      ) : props.button === "Edit" ? (
+        <EditButton
+          className={cn(props.buttonClassName)}
+          onClick={() => {
+            setActiveSlide(BeMyAgentViews.length - 1);
+            props.onClick?.();
+          }}
+        />
+      ) : props.button === "Hire Us Now" ? (
+        <AgentButtons
+          href="/dashboard/renter/my-agent/create"
+          content={(props.content as string) ?? "Hire Us Now !!"}
+          variant={"green-dark"}
+          className={props.buttonClassName}
+          onClick={() => {
+            setActiveSlide(0);
+            setAgentRequest(null);
+          }}
+        />
+      ) : props.button === "Price" ? (
+        <AgentButtons
+          href="/dashboard/renter/my-agent/create"
+          variant="price"
+          content={formatPrice(props.content as number)}
+          className={props.buttonClassName}
+          onClick={() => {
+            setActiveSlide(0);
+            setAgentRequest(null);
+          }}
+        />
+      ) : null}
       <Formik
         initialValues={{
           search_title:
-          agentRequest?.search_title ||
+            agentRequest?.search_title ||
             BeMyAgentCreationSteps?.search_title ||
             BeMyAgentDefaultValues.search_title,
           location:
-          agentRequest?.location ||
+            agentRequest?.location ||
             BeMyAgentCreationSteps?.location ||
             BeMyAgentDefaultValues.location,
           max_beds:
-          agentRequest?.max_beds?.toString() ||
+            agentRequest?.max_beds?.toString() ||
             BeMyAgentCreationSteps?.max_beds ||
             BeMyAgentDefaultValues.max_beds,
           min_beds:
-          agentRequest?.min_beds?.toString() ||
+            agentRequest?.min_beds?.toString() ||
             BeMyAgentCreationSteps?.min_beds ||
             BeMyAgentDefaultValues.min_beds,
           max_price:
-          agentRequest?.max_price?.toString() ||
+            agentRequest?.max_price?.toString() ||
             BeMyAgentCreationSteps?.max_price ||
             BeMyAgentDefaultValues.max_price,
           min_price:
-          agentRequest?.min_price?.toString() ||
+            agentRequest?.min_price?.toString() ||
             BeMyAgentCreationSteps?.min_price ||
             BeMyAgentDefaultValues.min_price,
           max_bathrooms:
-          agentRequest?.max_bathrooms?.toString() ||
+            agentRequest?.max_bathrooms?.toString() ||
             BeMyAgentCreationSteps?.max_bathrooms ||
             BeMyAgentDefaultValues.max_bathrooms,
           min_bathrooms:
-          agentRequest?.min_bathrooms?.toString() ||
+            agentRequest?.min_bathrooms?.toString() ||
             BeMyAgentCreationSteps?.min_bathrooms ||
             BeMyAgentDefaultValues.min_bathrooms,
           property_type:
-          agentRequest?.property_type ||
+            agentRequest?.property_type ||
             BeMyAgentCreationSteps?.property_type ||
             BeMyAgentDefaultValues.property_type,
           features:
-          agentRequest?.features ||
+            agentRequest?.features ||
             BeMyAgentCreationSteps?.features ||
             BeMyAgentDefaultValues.features,
           preferred_contact_method:
-          agentRequest?.preferred_contact_method ||
+            agentRequest?.preferred_contact_method ||
             BeMyAgentCreationSteps?.preferred_contact_method ||
             BeMyAgentDefaultValues.preferred_contact_method,
           email:
-          agentRequest?.email ||
+            agentRequest?.email ||
             BeMyAgentCreationSteps?.email ||
             BeMyAgentDefaultValues.email,
           phone:
-          agentRequest?.phone ||
+            agentRequest?.phone ||
             BeMyAgentCreationSteps?.phone ||
             BeMyAgentDefaultValues.phone,
           move_in_date:
-          agentRequest?.move_in_date ||
+            agentRequest?.move_in_date ||
             BeMyAgentCreationSteps?.move_in_date ||
             BeMyAgentDefaultValues.move_in_date,
           country:
-          agentRequest?.country ||
+            agentRequest?.country ||
             BeMyAgentCreationSteps?.country ||
             BeMyAgentDefaultValues.country,
           moving_reason:
-          agentRequest?.moving_reason ||
+            agentRequest?.moving_reason ||
             BeMyAgentCreationSteps?.moving_reason ||
             BeMyAgentDefaultValues.moving_reason,
           city:
-          agentRequest?.city ||
+            agentRequest?.city ||
             BeMyAgentCreationSteps?.city ||
             BeMyAgentDefaultValues.city,
           employer:
-          agentRequest?.employer ||
+            agentRequest?.employer ||
             BeMyAgentCreationSteps?.employer ||
             BeMyAgentDefaultValues.employer,
           employment_status:
-          agentRequest?.employment_status ||
+            agentRequest?.employment_status ||
             BeMyAgentCreationSteps?.employment_status ||
             BeMyAgentDefaultValues.employment_status,
           employer_country:
-          agentRequest?.employer_country ||
+            agentRequest?.employer_country ||
             BeMyAgentCreationSteps?.employer_country ||
             BeMyAgentDefaultValues.employer_country,
           min_lease:
-          agentRequest?.min_lease ||
+            agentRequest?.min_lease ||
             BeMyAgentCreationSteps?.min_lease ||
             BeMyAgentDefaultValues.min_lease,
           max_lease:
-          agentRequest?.max_lease ||
+            agentRequest?.max_lease ||
             BeMyAgentCreationSteps?.max_lease ||
             BeMyAgentDefaultValues.max_lease,
           preferred_payment_option:
-          agentRequest?.preferred_payment_option ||
+            agentRequest?.preferred_payment_option ||
             BeMyAgentCreationSteps?.preferred_payment_option ||
             BeMyAgentDefaultValues.preferred_payment_option,
           title:
-          agentRequest?.title ||
+            agentRequest?.title ||
             BeMyAgentCreationSteps?.title ||
             BeMyAgentDefaultValues.title,
           age:
-          agentRequest?.age ||
+            agentRequest?.age ||
             BeMyAgentCreationSteps?.age ||
             BeMyAgentDefaultValues.age,
           marital_status:
-          agentRequest?.marital_status ||
+            agentRequest?.marital_status ||
             BeMyAgentCreationSteps?.marital_status ||
             BeMyAgentDefaultValues.marital_status,
           tenants:
-          agentRequest?.tenants ||
+            agentRequest?.tenants ||
             BeMyAgentCreationSteps?.tenants ||
             BeMyAgentDefaultValues.tenants,
           first_name:
-          agentRequest?.first_name ||
+            agentRequest?.first_name ||
             BeMyAgentCreationSteps?.first_name ||
             BeMyAgentDefaultValues.first_name,
           last_name:
-          agentRequest?.last_name ||
+            agentRequest?.last_name ||
             BeMyAgentCreationSteps?.last_name ||
             BeMyAgentDefaultValues.last_name,
           evicted:
-          convertBooleanToYesNo(agentRequest?.evicted) ||
+            convertBooleanToYesNo(agentRequest?.evicted) ||
             BeMyAgentCreationSteps?.evicted ||
             BeMyAgentDefaultValues.evicted,
           convicted:
-          convertBooleanToYesNo(agentRequest?.convicted) ||
+            convertBooleanToYesNo(agentRequest?.convicted) ||
             BeMyAgentCreationSteps?.convicted ||
             BeMyAgentDefaultValues.convicted,
           has_pets:
-          convertBooleanToYesNo(agentRequest?.has_pets) ||
+            convertBooleanToYesNo(agentRequest?.has_pets) ||
             BeMyAgentCreationSteps?.has_pets ||
             BeMyAgentDefaultValues.has_pets,
           has_vehicles:
-          convertBooleanToYesNo(agentRequest?.has_vehicles) ||
+            convertBooleanToYesNo(agentRequest?.has_vehicles) ||
             BeMyAgentCreationSteps?.has_vehicles ||
             BeMyAgentDefaultValues.has_vehicles,
           current_address_1:
-          agentRequest?.current_address_1 ||
+            agentRequest?.current_address_1 ||
             BeMyAgentCreationSteps?.current_address_1 ||
             BeMyAgentDefaultValues.current_address_1,
           current_address_2:
-          agentRequest?.current_address_2 ||
+            agentRequest?.current_address_2 ||
             BeMyAgentCreationSteps?.current_address_2 ||
             BeMyAgentDefaultValues.current_address_2,
           job_title:
-          agentRequest?.job_title ||
+            agentRequest?.job_title ||
             BeMyAgentCreationSteps?.job_title ||
             BeMyAgentDefaultValues.job_title,
           monthly_income:
-          agentRequest?.monthly_income ||
+            agentRequest?.monthly_income ||
             BeMyAgentCreationSteps?.monthly_income ||
             BeMyAgentDefaultValues.monthly_income,
           monthly_income_currency:
-          agentRequest?.monthly_income_currency ||
+            agentRequest?.monthly_income_currency ||
             BeMyAgentCreationSteps?.monthly_income_currency ||
             BeMyAgentDefaultValues.monthly_income_currency,
         }}
         validationSchema={BeMyAgentValidationSchema}
         onSubmit={(values) => {
           addAgentRequest(
-            getFormValues(
-              {
-                ...values,
-                renter_id: user?.id as string,
-                id: agentRequest?.id,
-              } as unknown as typeof BeMyAgentDefaultValues,
-
-            ));
+            getFormValues({
+              ...values,
+              renter_id: user?.id as string,
+              id: agentRequest?.id,
+            } as unknown as typeof BeMyAgentDefaultValues),
+          );
         }}
       >
         <Form>

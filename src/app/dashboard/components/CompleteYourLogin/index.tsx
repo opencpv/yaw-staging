@@ -1,13 +1,14 @@
 "use client";
-import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
+import { SelectInput } from "@/components/__shared/ui/form/select";
 import styles from "./index.module.css";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import * as Dialog from "@radix-ui/react-dialog";
 import { useEffect, useState } from "react";
 import { Form, Formik } from "formik";
-import { Role, useDashboardStore } from "@/store/dashboard/dashboardStore";
+import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import HowToSwitch from "../HowToSwitch";
 import RoleExplainer from "./RoleExplainer";
+import { UserRole } from "../../types";
 
 type Props = {
   open?: boolean;
@@ -57,7 +58,7 @@ function CompleteYourLogin({ open }: Props) {
                           setOpen(false);
                           setHowToSwitchOpen(true);
                           setFirstTimeRole(
-                            (values.role.toLowerCase() as Role) || "renter",
+                            (values.role.toUpperCase() as UserRole) || "RENTER",
                           ); // resorting to firstTimeRole instead of CurrentRole
                           // on first time login
                         }}
@@ -77,14 +78,10 @@ function CompleteYourLogin({ open }: Props) {
                             }
                           }}
                         >
-                          <CustomSelect
+                          <SelectInput
                             name="role"
                             placeholder="Select your role"
-                            options={[
-                              { name: "renter", value: "Renter" },
-                              { name: "lister", value: "Lister" },
-                              // { name: "service pro", value: "service Pro" }, // maybe future
-                            ]}
+                            options={["Renter", "Lister"]}
                             classNames={{
                               option: "text-lg",
                               placeholder: "text-lg",
@@ -94,9 +91,10 @@ function CompleteYourLogin({ open }: Props) {
                           <RoleExplainer />
                           <div className="flex w-full justify-end">
                             <Button
+                              variant={"accent"}
                               isLoading={loading}
                               type="submit"
-                              className="flex h-[52px] w-full max-w-[151px] items-center justify-center rounded-lg bg-accent-50 px-8 py-4 font-semibold text-white"
+                              radius={"lg"}
                             >
                               Continue
                             </Button>

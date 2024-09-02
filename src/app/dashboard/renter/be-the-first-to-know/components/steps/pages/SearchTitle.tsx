@@ -1,6 +1,6 @@
 import { useLocalStorage } from "@uidotdev/usehooks";
 import style from "../../../index.module.css";
-import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
+import { Input } from "@/components/__shared/ui/form/input";
 import { BTFTKDefaultValues } from "@/store/dashboard/BTFTKStepsStore";
 
 const SearchTitle = () => {
@@ -14,7 +14,7 @@ const SearchTitle = () => {
         Search Title <span className={style.asterisk}>*</span>
       </h2>
       <div className="max-w-sm">
-        <TextFieldInput
+        <Input
           type="text"
           name="searchTitle"
           label="Provide a title for your search criteria"

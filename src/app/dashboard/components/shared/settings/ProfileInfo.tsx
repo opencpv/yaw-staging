@@ -4,18 +4,18 @@ import { AiFillInstagram, AiOutlineLink } from "react-icons/ai";
 import { FaFacebook, FaLinkedin } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Loader from "@/components/__shared/ui/loader/Loader";
+import Loader from "@/components/__shared/ui/loader";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
-import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
+import PhoneNumberInput from "@/components/__shared/ui/form/phone-number-input";
 import { E164Number } from "libphonenumber-js/core";
 import { useRouter } from "next/navigation";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { createClient } from "@/lib/utils/supabase/auth/client";
 import { RiPhoneFill, RiTwitterXFill, RiWhatsappFill } from "react-icons/ri";
-import { CheckboxNoFormik as Checkbox } from "@/components/__shared/ui/form/Checkbox";
+import { Checkbox } from "@/components/__shared/ui/form/checkbox";
 import ProfilePicture from "./ProfilePicture";
-import CountryInput from "@/components/__shared/ui/form/CountryInput";
+import CountryInput from "@/components/__shared/ui/form/country-input";
 import toast from "react-hot-toast";
 
 interface Props {
@@ -203,7 +203,7 @@ const ProfileInfo = () => {
                             />
                             <label className="pl-8">Phone</label>
                           </div>
-                          <InputPhoneNumber
+                          <PhoneNumberInput
                             name="phone"
                             value={values.phone as E164Number}
                             onChange={(val) => {
@@ -269,7 +269,6 @@ const ProfileInfo = () => {
                               <label className="pl-8">Whatsapp</label>
                             </div>
                             <Checkbox
-                              color="accent"
                               label="Same as phone"
                               onCheckedChange={(checked) =>
                                 setSameAsPhone(checked as boolean)
@@ -277,7 +276,7 @@ const ProfileInfo = () => {
                             />
                           </div>
                           {sameAsPhone ? (
-                            <InputPhoneNumber
+                            <PhoneNumberInput
                               name="phone"
                               value={values.phone as E164Number}
                               onChange={(val) => {
@@ -290,7 +289,7 @@ const ProfileInfo = () => {
                               onCountryChange={handleCountryChange}
                             />
                           ) : (
-                            <InputPhoneNumber
+                            <PhoneNumberInput
                               name="whatsapp"
                               value={values.whatsapp as E164Number}
                               onChange={(val) => {
@@ -325,7 +324,7 @@ const ProfileInfo = () => {
                       </div>
                       <>
                         <Button
-                          color="accent"
+                          variant="accent"
                           type="submit"
                           className="mt-8"
                           isLoading={isSubmitting}

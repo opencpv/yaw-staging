@@ -16,7 +16,7 @@ import { createClient } from "@/lib/utils/supabase/auth/server";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import toast from "react-hot-toast";
 const RecommendedListings = dynamic(
-  () => import("@/components/__shared/ui/listing/RecommendedListings"),
+  () => import("@/components/__shared/ui/listing/recommended-listings"),
 );
 const LikeShare = dynamic(() => import("../LikeShare"));
 
@@ -33,7 +33,6 @@ type Props = {
 const PropertyDetailsPage = async ({ params }: Props) => {
   const { id: propertyId } = params;
   const supabaseClient = createClient();
-  // const { data } = await supabaseClient.auth.getSession();
   const {
     data: { user },
   } = await supabaseClient.auth.getUser();

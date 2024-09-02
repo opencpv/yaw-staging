@@ -43,7 +43,7 @@ body {
   }
 
   h3 {
-    @apply max-w-3xl text-[1.3rem] leading-[1.75rem] font-[600];
+    @apply max-w-3xl text-[1.3rem] font-[600] leading-[1.75rem];
   }
 
   h4 {
@@ -133,7 +133,7 @@ body {
     @apply rounded-xl bg-primary/10;
   }
   .form-field-border {
-    @apply border border-neutral-400 hover:border-black/50;
+    @apply border border-neutral-300 hover:border-black/40 focus-visible:outline-accent;
   }
 
   .form-input {

@@ -4,13 +4,15 @@ import {
   BTFTKDefaultValues,
   BTFTKStepsStore,
 } from "@/store/dashboard/BTFTKStepsStore";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { useFormikContext } from "formik";
-// import { useDisclosure } from "@nextui-org/react";
+import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { useEffect } from "react";
 import dynamic from "next/dynamic";
-const Modal = dynamic(() => import("@/components/__shared/ui/modals/Modal"));
+const Modal = dynamic(() =>
+  import("@/components/__shared/ui/modals/dialog").then((mod) => mod.Modal),
+);
 
 const BTFTKFooter = () => {
   const { submitForm, validateForm, errors, isSubmitting, setSubmitting } =
@@ -18,7 +20,7 @@ const BTFTKFooter = () => {
   const { activeSlide, setActiveSlide, firstSlide, lastSlide } =
     BTFTKStepsStore();
   const lastButOneSlide = activeSlide === BTFTKViews.length - 2;
-  // const { onOpenChange, isOpen, onOpen } = useDisclosure();
+  const { onOpenChange, isOpen, onOpen } = useDisclosure();
 
   const [BTFTKCreationSteps, setBTFTKCreationSteps] = useLocalStorage<Partial<
     typeof BTFTKDefaultValues & { activeSlide: number }
@@ -36,7 +38,7 @@ const BTFTKFooter = () => {
     validateForm();
     if (lastButOneSlide) {
       if (Object.keys(errors).length > 0) {
-        // onOpen();
+        onOpen();
       } else {
         submitForm();
       }
@@ -57,7 +59,7 @@ const BTFTKFooter = () => {
 
   return (
     <>
-      {/* <Modal
+      <Modal
         onOpenChange={onOpenChange}
         isOpen={isOpen}
         header={<h3>Please address the required fields</h3>}
@@ -70,15 +72,14 @@ const BTFTKFooter = () => {
           </ul>
         }
         size="lg"
-        className="max-w-md py-10"
-      /> */}
+        className="py-10"
+      />
       <section
         className={cn(
           "ml-auto grid grid-cols-2 items-center gap-2 max-sm:w-full xs:justify-end",
         )}
       >
         <Button
-          color="primary"
           variant="outline"
           className={cn(
             "col-span-1 rounded-lg font-semibold focus:outline-none xs:text-base sm:h-[58px] sm:min-w-[16rem]",
@@ -91,7 +92,6 @@ const BTFTKFooter = () => {
           Back
         </Button>
         <Button
-          color="primary"
           className={cn(
             "col-span-1 rounded-lg font-semibold focus:outline-none xs:text-base sm:h-[58px] sm:min-w-[16rem]",
           )}

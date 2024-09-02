@@ -1,7 +1,16 @@
 import React, { useEffect, useState } from "react";
-import * as Popover from "@radix-ui/react-popover";
 import { BiDotsVerticalRounded } from "react-icons/bi";
+import {
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/__shared/ui/popover";
+import dynamic from "next/dynamic";
+import { PopoverArrow } from "@radix-ui/react-popover";
 // import DeleteModal from "./DeleteModal";
+
+const Popover = dynamic(() =>
+  import("@/components/__shared/ui/popover").then((mod) => mod.Popover),
+);
 
 type Props = {
   read: boolean;
@@ -30,37 +39,33 @@ const MarkAndDeletePopup = ({ read, containerRef }: Props) => {
     };
   }, [containerRef]); // This effect runs when containerRef changes
   return (
-    <Popover.Root onOpenChange={setOpen} open={open}>
-      <Popover.Trigger asChild>
+    <Popover onOpenChange={setOpen} open={open}>
+      <PopoverTrigger asChild>
         <button
           className="utline-none inline-flex cursor-pointer items-center justify-center focus:shadow-accent"
           aria-label="Update dimensions"
         >
           <BiDotsVerticalRounded size={24} color="black" />
         </button>
-      </Popover.Trigger>
-      <Popover.Portal>
-        <Popover.Content
-          className="data-[state=open]:data-[side=top]:animate-slideDownAndFade data-[state=open]:data-[side=right]:animate-slideLeftAndFade data-[state=open]:data-[side=bottom]:animate-slideUpAndFade data-[state=open]:data-[side=left]:animate-slideRightAndFade flex flex-col items-center overflow-hidden rounded-[8px] bg-white text-[13px] shadow-[0_24px_48px_-12px_rgba(0,0,0,0.18),0_10px_20px_-15px_hsla(206,22%,7%,.2)] will-change-[transform,opacity]"
-          sideOffset={5}
-        >
-          {!read && (
-            <button
-              onClick={() => {
-                setOpen(false);
-              }}
-              className="w-full border-b-[1px] border-[#0000001A] px-8 pb-2 pt-2 hover:bg-primary-300"
-            >
-              Mark as read
-            </button>
-          )}
+      </PopoverTrigger>
 
-          {/* <DeleteModal /> */}
+      <PopoverContent sideOffset={5}>
+        {!read && (
+          <button
+            onClick={() => {
+              setOpen(false);
+            }}
+            className="w-full border-b-[1px] border-[#0000001A] px-8 pb-2 pt-2 hover:bg-primary-300"
+          >
+            Mark as read
+          </button>
+        )}
 
-          <Popover.Arrow className="fill-white" />
-        </Popover.Content>
-      </Popover.Portal>
-    </Popover.Root>
+        {/* <DeleteModal /> */}
+
+        <PopoverArrow className="fill-white" />
+      </PopoverContent>
+    </Popover>
   );
 };
 

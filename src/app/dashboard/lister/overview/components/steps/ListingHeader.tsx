@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect } from "react";
 import Progress from "@/app/dashboard/components/shared/ui/Progress";
-import Button from "@/components/__shared/ui/button/Button";
 import {
   ListingDefaultValues,
   ListingStepsStore,
@@ -10,9 +9,8 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import { usePathname, useRouter } from "next/navigation";
 import { useAddListing } from "../../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import { LiaTimesSolid } from "react-icons/lia";
-import { cn } from "@/lib/utils";
 import { getFormValues } from "../../utils";
+import HeaderButtons from "@/components/__shared/ui/modals/steps/HeaderButtons";
 
 const ListingHeader = () => {
   const { user } = useAppStore();
@@ -103,40 +101,12 @@ const ListingHeader = () => {
     <section className="flex flex-col gap-4">
       <div className="flex items-center justify-between gap-5">
         <h4 className="w-fit">Create Listing</h4>
-        <span className="flex items-center gap-3">
-          {/* For very small screens */}
-          <Button
-            isIconOnly
-            color="white"
-            greenHover
-            radius="full"
-            className="rounded-full border px-3 py-3 xsm:hidden"
-            onClick={handleClearData}
-          >
-            <LiaTimesSolid />
-          </Button>
-          <Button
-            color="white"
-            greenHover
-            radius="full"
-            className="border px-5 max-xsm:hidden"
-            onClick={handleClearData}
-          >
-            {lastSlide ? "Exit" : "Cancel"}
-          </Button>
-          <Button
-            color="white"
-            greenHover
-            radius="full"
-            className={cn("border px-5 xxs:whitespace-nowrap", {
-              hidden: lastSlide,
-            })}
-            isLoading={isPending}
-            onClick={handleSaveAndExit}
-          >
-            Save & Exit
-          </Button>
-        </span>
+        <HeaderButtons
+          onSaveAndExit={handleSaveAndExit}
+          onCancel={handleClearData}
+          lastSlide={lastSlide}
+          isPending={isPending}
+        />
       </div>
 
       <div className="mt-0 w-full">

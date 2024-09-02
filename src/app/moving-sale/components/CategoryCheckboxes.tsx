@@ -1,8 +1,6 @@
-import Checkbox from "@/components/__shared/ui/form/Checkbox";
+import { Checkbox } from "@/components/__shared/ui/form/checkbox";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import { useItemFilterStore } from "@/store/moving_sales/useMovingSalesStore";
-// import { CheckboxGroup, cn } from "@nextui-org/react";
-import { cn } from "@/lib/utils";
 import React from "react";
 
 type Props = {
@@ -13,24 +11,29 @@ const CategoryCheckboxes = ({ options }: Props) => {
   const categories = useItemFilterStore((state) => state.categories);
   const setCategories = useItemFilterStore((state) => state.setCategories);
 
+  const handleCheckChange = (checked: boolean, option: string) => {
+    if (checked) {
+      setCategories([...categories, option]);
+    } else {
+      setCategories(categories.filter((c) => c !== option));
+    }
+  };
+
   return (
-    // <CheckboxGroup
-    //   classNames={{ wrapper: cn("gap-x-10 gap-y-6") }}
-    //   orientation="horizontal"
-    //   value={categories}
-    //   onValueChange={setCategories}
-    // >
-    //   {options.map((option) => (
-    //     <Checkbox
-    //       key={option}
-    //       labelColor="text-neutral-500"
-    //       labelSize="text-base"
-    //       label={capitalizeName(option)}
-    //       value={option.toLowerCase()}
-    //     />
-    //   ))}
-    // </CheckboxGroup>
-    <></>
+    <div className="flex flex-wrap items-center gap-x-10 gap-y-6">
+      {options.map((option) => (
+        <Checkbox
+          key={option}
+          label={capitalizeName(option)}
+          checked={categories.includes(option)}
+          radius="md"
+          color="accent"
+          onCheckedChange={(checked) =>
+            handleCheckChange(checked as boolean, option)
+          }
+        />
+      ))}
+    </div>
   );
 };
 

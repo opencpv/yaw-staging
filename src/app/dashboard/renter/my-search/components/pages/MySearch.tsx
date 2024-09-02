@@ -1,29 +1,33 @@
 "use client";
 import React from "react";
-import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
-import Select from "@/app/dashboard/components/shared/ui/Select";
-import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
-import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
+import { Tabs } from "@/components/__shared/ui/tabs";
+import { Select } from "@/components/__shared/ui/form/select";
+import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
+import SkeletonListing from "@/components/__shared/ui/skeleton/skeleton-listing";
 import ContactPreferenceToggle from "../../../../components/shared/ui/ContactPreferenceToggle";
 import { useRouter } from "next/navigation";
 import { useFetchRenterBookmarks } from "../../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { getListingProps, Listing } from "@/lib/enum";
 import slugify from "@/lib/utils/slugify";
-import { unslugify } from "@/lib/utils/stringManipulation";
+import capitalizeName, { unslugify } from "@/lib/utils/stringManipulation";
 import dynamic from "next/dynamic";
 const NoSearchEmptyState = dynamic(() => import("../NoSearchEmptyState"));
 const ListingCard = dynamic(
-  () => import("@/components/__shared/ui/listing/ListingCard"),
+  () => import("@/components/__shared/ui/listing/listing-card"),
 );
 const ButtonInfiniteLoading = dynamic(
-  () => import("@/components/__shared/ui/data_fetching/ButtonInfiniteLoading"),
+  () =>
+    import("@/components/__shared/ui/data_fetching/button-infinite-loading"),
 );
+
+const options = ["All", "Recommendations", "Recently Viewed"];
 
 const MySearch = ({ filter }: { filter: string }) => {
   const { user } = useAppStore();
   const router = useRouter();
   const [page, setPage] = React.useState(slugify(filter));
+  const selected = capitalizeName(unslugify(page));
 
   const {
     data: listings,
@@ -33,47 +37,35 @@ const MySearch = ({ filter }: { filter: string }) => {
     loadMore,
   } = useFetchRenterBookmarks({ filter: page, userId: user?.id as string });
 
+  const handleChange = (value: string) => {
+    const slug = slugify(value);
+    setPage(value);
+    router.replace(`/dashboard/renter/my-search/${slug}`, {
+      scroll: false,
+    });
+  };
+
   return (
     <main className="flex w-full flex-col gap-8 bg-white">
       <h2>My Search</h2>
       {/* xl and above */}
-      <OptionFilterTabs
-        options={["All", "Recommendations", "Recently Viewed"]}
-        selectedKey={unslugify(page)}
-        onSelectionChange={(key) => {
-          const slug = slugify(key.toString());
-          setPage(key.toString());
-          router.replace(`/dashboard/renter/my-search/${slug}`, {
-            scroll: false,
-          });
-        }}
-        radius="small"
-        tabColor="colored"
-        cursorAnimation
-        classNames={{ base: "max-md:hidden" }}
+      <Tabs
+        options={options}
+        selectedKey={selected}
+        onSelectionChange={handleChange}
+        className="max-md:hidden"
       />
       {/* xl and below */}
       <div className="md:hidden">
         <Select
-          options={["All", "Recommendations", "Recently Viewed"]}
-          value={unslugify(page)}
-          className="mx-0 w-60 font-bold"
-          valueClassName="font-bold"
-          variant="default"
+          options={options}
+          value={selected}
           color="primary"
-          handleSelectionChange={(e) => {
-            const slug = slugify(e.target.value);
-            setPage(e.target.value);
-            router.replace(`/dashboard/renter/my-search/${slug}`, {
-              scroll: false,
-            });
-          }}
+          onValueChange={handleChange}
         />
       </div>
 
-      <h4 className="hidden capitalize md:block">
-        {filter.replaceAll("-", " ")}
-      </h4>
+      <h4 className="hidden capitalize md:block">{unslugify(filter)}</h4>
 
       <div className="relative bottom-4">
         <ContactPreferenceToggle />

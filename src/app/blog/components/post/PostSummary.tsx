@@ -5,7 +5,7 @@ import React from "react";
 import { FaChevronRight } from "react-icons/fa";
 import dynamic from "next/dynamic";
 const FramerWrapper = dynamic(
-  () => import("@/components/__shared/hoc/FramerWrapper"),
+  () => import("@/components/__shared/hoc/framer-wrapper"),
 );
 
 const PostSummary = ({

@@ -1,12 +1,10 @@
-import Select from "@/app/dashboard/components/shared/ui/Select";
+import { Select } from "@/components/__shared/ui/form/select";
 import React from "react";
 import { RenterApplicationStatus } from "./RtApplicationStatus";
 
 type Props = {
-  statusFilter: "all" | "archived" | RenterApplicationStatus;
-  handleStatusSelectionChange: (
-    e: React.ChangeEvent<HTMLSelectElement>,
-  ) => void;
+  statusFilter: "All" | "Archived" | RenterApplicationStatus;
+  handleStatusSelectionChange: (value: string) => void;
 };
 
 const RtMobileFilters = ({
@@ -37,11 +35,8 @@ const RtMobileFilters = ({
           "Archived",
         ]}
         value={statusFilter}
-        className="mx-0 w-48 font-bold"
-        valueClassName="font-bold"
-        variant="ghost"
         color="primary"
-        handleSelectionChange={handleStatusSelectionChange}
+        onValueChange={handleStatusSelectionChange}
       />
     </div>
   );

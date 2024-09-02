@@ -1,5 +1,5 @@
-import { TableBody, TableBodyRow } from "@/components/__shared/ui/table/Table";
-import { CheckboxNoFormik as Checkbox } from "@/components/__shared/ui/form/Checkbox";
+import { TableBody, TableBodyRow } from "@/components/__shared/ui/table";
+import { Checkbox } from "@/components/__shared/ui/form/checkbox";
 import InvoiceStatus from "./InvoiceStatus";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import { formatDateDMY, formatDateOnly } from "@/lib/utils/stringManipulation";
@@ -32,7 +32,6 @@ function DataRow({ data, variant }: Props) {
       <TableBodyRow className="grid-cols-7" gap="2rem">
         <TableBody className="col-span-1">
           <Checkbox
-            color="primary"
             onCheckedChange={() => {
               checkStatus
                 ? removeCheckoutItemById(data.id as number)

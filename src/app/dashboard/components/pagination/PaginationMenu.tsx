@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import style from "../../Dashboard.module.css";
 import Logo from "@/components/__shared/ui/Logo";
 import { AiFillCloseCircle } from "react-icons/ai";
@@ -8,7 +8,6 @@ import { useHideDocumentScrollBar } from "@/lib/custom-hooks/useWindowEvents";
 import PaginationMenuItem from "./PaginationMenuItem";
 import { PgRoutesLister, PgRoutesRenter } from "./links";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
-import { animate, stagger } from "framer-motion";
 
 const PaginationMenu = () => {
   const { isOpen, setIsOpen } = useDashboardMenuStore();
@@ -16,16 +15,6 @@ const PaginationMenu = () => {
   const paginationMenuRef = useRef<HTMLElement>(null);
 
   useHideDocumentScrollBar(isOpen);
-
-  // useEffect(() => {
-  //   animate(
-  //     ".pagination-menu-item",
-  //     isOpen ? { opacity: [0, 1] } : { opacity: 0 },
-  //     {
-  //       delay: stagger(0.1),
-  //     },
-  //   );
-  // }, [isOpen]);
 
   return (
     <section
@@ -47,7 +36,7 @@ const PaginationMenu = () => {
       </div>
       <div className="flex items-center justify-center">
         <div className="grid w-full gap-x-5 gap-y-10 sm:w-[initial] sm:grid-cols-2 sm:gap-y-20 lg:grid-cols-3">
-          {currentRole === "renter" &&
+          {currentRole === "RENTER" &&
             PgRoutesRenter.map((route) => (
               <PaginationMenuItem
                 key={route.name}
@@ -56,7 +45,7 @@ const PaginationMenu = () => {
                 label={route.name}
               />
             ))}
-          {currentRole === "lister" &&
+          {currentRole === "LISTER" &&
             PgRoutesLister.map((route) => (
               <PaginationMenuItem
                 key={route.name}

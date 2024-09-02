@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
 import { CiLock } from "react-icons/ci";
-import Button from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import { useRouter } from "next/navigation";
 import { RenterPaidFeatureInterface } from "../../../../../../interfaces";
 import PaidFeature from "./PaidFeature";
-import CallOut from "@/components/__shared/ui/CallOut";
+import CallOut from "@/components/__shared/ui/callout";
 
 const FeatureExplainer = ({
   title,
@@ -25,18 +25,18 @@ const FeatureExplainer = ({
         {locked ? (
           <CiLock className="text-lg font-[600] text-accent-100" />
         ) : (
-          <Button
+          <LinkButton
             href={
               title === "Be My Agent"
                 ? "my-agent/agent?sk=true"
                 : "be-the-first-to-know"
             }
             radius="full"
-            padding="sm"
-            className="w-fit bg-neutral-100 text-neutral-800"
+            size="sm"
+            className="bg-neutral-100 text-neutral-800"
           >
             See all
-          </Button>
+          </LinkButton>
         )}
       </div>
       {locked ? (
@@ -53,22 +53,22 @@ const FeatureExplainer = ({
               <small>You have no record for this service</small>
             )}
             {title === "Get Notified" && (
-              <Button
+              <LinkButton
                 href={href}
                 variant="ghost"
-                className="text-base font-[700] capitalize text-[#45808B] underline"
+                className="font-[700] capitalize text-[#45808B] underline"
               >
                 Learn more
-              </Button>
+              </LinkButton>
             )}
             {title === "Be My Agent" && (
-              <Button
+              <LinkButton
                 href={href}
                 variant="ghost"
                 className="text-base font-[700] capitalize text-[#45808B] underline"
               >
                 Get started
-              </Button>
+              </LinkButton>
             )}
           </div>
         </CallOut>

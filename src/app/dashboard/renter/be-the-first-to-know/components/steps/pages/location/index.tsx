@@ -1,4 +1,4 @@
-import CallOut from "@/components/__shared/ui/CallOut";
+import CallOut from "@/components/__shared/ui/callout";
 import style from "../../../../index.module.css";
 import Map from "./Map";
 

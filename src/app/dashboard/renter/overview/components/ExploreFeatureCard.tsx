@@ -1,8 +1,8 @@
 "use client";
-import Button from "@/components/__shared/ui/button/Button";
-import { useRouter } from "next/navigation";
+import { LinkButton } from "@/components/__shared/ui/button";
 import React from "react";
 import style from "../Feature.module.css";
+import { FaArrowRight } from "react-icons/fa6";
 
 type Props = {
   title: "Be The First To Know" | "Be My Agent" | "My Favourites";
@@ -12,9 +12,8 @@ type Props = {
 };
 
 const ExploreFeatureCard = (props: Props) => {
-  const router = useRouter();
   return (
-    <div className="shadow-large relative h-fit min-w-full flex-1 overflow-hidden rounded-xl bg-primary-400 px-8 pb-20 pt-40 xs:min-w-[20rem]">
+    <div className="relative h-fit min-w-full flex-1 overflow-hidden rounded-xl bg-primary-400 px-8 pb-20 pt-40 shadow-card xs:min-w-[20rem]">
       {props.tag === "Free" ? (
         <div className={`text-[#545454] ${style.ribbonFree}`}>Free</div>
       ) : props.tag === "Premium" ? (
@@ -24,13 +23,9 @@ const ExploreFeatureCard = (props: Props) => {
       <div className="flex flex-col items-center gap-5 text-center text-white">
         <h2 className="">{props.title}</h2>
         <p className="line-clamp-3 max-w-2xl text-sm">{props.description}</p>
-        <Button
-          href={props.href}
-          className="w-full bg-white/60 text-white"
-          arrowIcon
-        >
-          View
-        </Button>
+        <LinkButton href={props.href} size="full" className="bg-white/60">
+          View <FaArrowRight />
+        </LinkButton>
       </div>
     </div>
   );

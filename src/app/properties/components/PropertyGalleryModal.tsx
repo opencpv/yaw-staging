@@ -3,7 +3,7 @@
 import React from "react";
 import dynamic from "next/dynamic";
 const GalleryModal = dynamic(
-  () => import("@/components/__shared/ui/modals/GalleryModal"),
+  () => import("@/components/__shared/ui/modals/gallery-modal"),
 );
 let carouselDemo = [
   "/assets/images/home/promotion-1.jpg",
@@ -14,7 +14,7 @@ let carouselDemo = [
 
 type ModalProps = {
   isOpen: boolean;
-  onOpenChange: () => void;
+  onOpenChange: (open: boolean) => void;
   onClose?: () => void;
   itemData: Property;
 };

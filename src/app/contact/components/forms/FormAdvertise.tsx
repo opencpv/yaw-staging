@@ -3,28 +3,28 @@ import React from "react";
 import { E164Number } from "libphonenumber-js/core";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { sendContactUsEmail } from "../../api";
-import TextInput from "@/components/__shared/ui/form/TextInput";
+import { Input } from "@/components/__shared/ui/form/input";
 import ContactSchema from "./lib/contactSchema";
 import { useContactForm } from "./hooks/useContactForm";
 import ContactMessageField from "./ContactMessageField";
 import ContactFullNameField from "./ContactFullNameField";
 import ContactPhoneField from "./ContactPhoneField";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
-import CustomErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
+import CustomErrorMessage from "@/components/__shared/ui/states/error-message";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import { useRouter } from "next/navigation";
 import { generateString } from "@/lib/utils";
 import slugify from "@/lib/utils/slugify";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { UploadFile } from "../UploadFile";
+import { tag } from "@/store/contact/useContactStore";
 
 type Props = {};
 
 const FormAdvertise = (props: Props) => {
   const {
-    activeTab,
     file,
     formRef,
     loading,
@@ -58,9 +58,10 @@ const FormAdvertise = (props: Props) => {
         validate(values, contactFormSession.phone as E164Number)
       }
       onSubmit={async (values, { resetForm }) => {
+        if (!tag) return;
         setLoading(true);
 
-        values.contactType = capitalizeName(activeTab);
+        values.contactType = capitalizeName(tag);
         const newFilename: string =
           generateString(8) + "-" + slugify(file?.name || "");
         var newFile = new File([file as File], newFilename, {
@@ -134,22 +135,18 @@ const FormAdvertise = (props: Props) => {
                     handleChange={handleChange}
                     error={errors.fullname}
                   />
-                  <CustomErrorMessage className="mt-5" error={errors.fullname}>
-                    {/* @ts-ignore */}
-                    <ErrorMessage name="fullname" error={errors.fullname} />
-                  </CustomErrorMessage>
                 </div>
                 <div className="form-div">
-                  <TextInput
+                  <Input
                     name="companyName"
                     value={values.companyName}
-                    label="Company Name"
+                    placeholder="Company Name"
                     onChange={(e) => {
                       handleChange(e);
                       handleSessionChange("companyName", e.target.value);
                     }}
                     onBlur={handleBlur}
-                    className="p-3 py-7"
+                    //className="p-3 py-7"
                   />
                 </div>
                 <div className="form-div">
@@ -169,7 +166,7 @@ const FormAdvertise = (props: Props) => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
-                  <CustomErrorMessage className="mt-2" error={errors.message}>
+                  <CustomErrorMessage className="mt-2" name={errors.message}>
                     {/* @ts-ignore */}
                     <ErrorMessage name="message" error={errors.message} />
                   </CustomErrorMessage>
@@ -181,7 +178,7 @@ const FormAdvertise = (props: Props) => {
                 />
                 <Button
                   className="max-w-full xs:max-w-fit"
-                  color="accent"
+                  variant="accent"
                   isLoading={loading}
                   type="submit"
                 >

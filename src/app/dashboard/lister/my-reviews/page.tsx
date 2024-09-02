@@ -1,5 +1,10 @@
 "use client";
-// import { Tabs, Tab} from "@nextui-org/react";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/__shared/ui/tabs";
 import ReviewersSay from "../../renter/my-reviews/components/ReviewersSay";
 import PropertyOwnersReview from "../../renter/my-reviews/components/PropertyOwnersReview";
 import PropertiesReview from "../../renter/my-reviews/components/PropertiesReview";
@@ -17,38 +22,32 @@ export default function MyReviews() {
   return (
     <div className="flex w-full flex-col gap-4">
       <p className="text-[1.9375rem] font-semibold">My Reviews</p>
-      {/* <Tabs
-        variant="light"
-        aria-label="Tabs variants"
-        // radius="full"
-        classNames={{
-          base: "bg-white border-[1px] border-shade-50 w-full md:w-fit rounded-2xl p-[0.75rem] md:overflow-hidden",
-          tabList: " gap-4",
-          tab: "bg-white px-4 py-3 min-w-[75px] w-full max-w-[117.75px]  rounded-2xl",
-          tabContent:
-            "text-shade-200 text-[0.625rem] group-data-[selected=true]:text-white group-data-[selected=true]:font-semibold ",
-          cursor: "bg-primary-200 sm:bg-primary-200 text-white rounded-2xl",
-          panel: "pt-8",
-        }}
-        selectedKey={optionSelect}
-        onSelectionChange={(selectedOption) =>
-          handleOptionChange(selectedOption)
-        }
-      >
-        <Tab key="reviewers" title="Reviewers Say">
-          <ReviewersSay />
-        </Tab>
-
-        <Tab key="properties" title="Properties">
+      <Tabs defaultValue="properties">
+        <TabsList>
+          <TabsTrigger size="md" variant="rounded" value="properties">
+            Properties
+          </TabsTrigger>
+          <TabsTrigger size="md" variant="rounded" value="property owners">
+            Property Owners
+          </TabsTrigger>
+          <TabsTrigger size="md" variant="rounded" value="service pros">
+            Service Pros
+          </TabsTrigger>
+        </TabsList>
+        <TabsContent value="properties">
           <PropertiesReview />
-        </Tab>
-        <Tab key="property-owners" title="Property Owners">
+        </TabsContent>
+        <TabsContent value="property owners">
           <PropertyOwnersReview />
-        </Tab>
-        <Tab key="service-pros" title="Service Pros">
+        </TabsContent>
+        <TabsContent value="service pros">
           <ServiceProsReviews />
-        </Tab>
-      </Tabs> */}
+        </TabsContent>
+
+        {/* <Tab key="reviewers" title="Reviewers Say">
+          <ReviewersSay />
+        </Tab> */}
+      </Tabs>
     </div>
   );
 }

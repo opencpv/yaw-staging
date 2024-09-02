@@ -1,19 +1,17 @@
-import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import "../styles/animations.css";
+import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { openSans } from "@/lib/utils/fonts";
 import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
-const TemporaryLandingPage = dynamic(
-  () => import("@/components/TemporaryLandingPage"),
-);
 const ToastConfig = dynamic(() => import("@/components/__shared/ToastConfig"));
 const Providers = dynamic(() => import("@/context/Providers"));
 const NoticeModal = dynamic(
   () => import("@/components/__shared/ui/modals/NoticeModal"),
 );
 const LoadingIndicator = dynamic(
-  () => import("@/components/__shared/ui/LoadingIndicator"),
+  () => import("@/components/__shared/ui/loading-indicator"),
 );
 const MenuWrapper = dynamic(
   () => import("@/components/__shared/hoc/MenuWrapper"),
@@ -88,7 +86,7 @@ export default function RootLayout({
           <MenuWrapper>
             <LoadingIndicator />
             <NoticeModal />
-            {showTemporaryLandingPage ? <TemporaryLandingPage /> : children}
+            {children}
           </MenuWrapper>
         </Providers>
         {/* <RatingsAndAllRatings /> */}

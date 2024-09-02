@@ -1,14 +1,13 @@
 "use client";
 import Image from "next/image";
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense } from "react";
 import styles from "../style.module.css";
 import CitySearchForm from "./CitySearchForm";
-import { animate, motion, stagger } from "framer-motion";
 import Link from "next/link";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import dynamic from "next/dynamic";
 const FramerWrapper = dynamic(
-  () => import("@/components/__shared/hoc/FramerWrapper"),
+  () => import("@/components/__shared/hoc/framer-wrapper"),
   { ssr: false },
 );
 
@@ -17,18 +16,6 @@ type Props = {
 };
 
 const Landing = (props: Props) => {
-  // useEffect(() => {
-  //   animate(
-  //     ".featured-info div, .featured-info p, .featured-info h3",
-  //     { opacity: 1, y: 0 },
-  //     {
-  //       delay: stagger(0.1, { startDelay: 0.5 }),
-  //       type: "tween",
-  //       ease: "linear",
-  //     },
-  //   );
-  // }, []);
-
   const title = props.data.title.split(" ").slice(0, -1).join(" ");
   const titleHighlight = props.data.title.split(" ").slice(-1)[0];
 
@@ -36,7 +23,13 @@ const Landing = (props: Props) => {
     <section className="section wrapper space-y-8 pb-20 pt-10 text-shade-200">
       <div className="space-y-1">
         <h1 className="text-2xl capitalize text-neutral-600 min-[300px]:text-3xl">
-          {title} <span className="text-accent-100">{titleHighlight}</span>
+          {title}{" "}
+          <span
+            className="tracking-in-contract text-accent-100"
+            style={{ animationDelay: "1.5s" }}
+          >
+            {titleHighlight}
+          </span>
         </h1>
         <h4>{props.data.description}</h4>
       </div>
@@ -73,19 +66,12 @@ const Landing = (props: Props) => {
           </small>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          transition={{ delay: 0.5 }}
-          animate={{ opacity: 1 }}
-          className="featured-info absolute bottom-10 left-10 z-10 space-y-2 *:line-clamp-1"
-        >
-          <motion.h3 initial={{ y: 50 }}>
+        <div className="featured-info fade-in absolute bottom-10 left-10 z-10 space-y-2 *:line-clamp-1">
+          <h3 className="fade-in-bottom">Get this amazing 3 bedroom flat</h3>
+          <p className="fade-in-bottom" style={{ animationDelay: "0.5s" }}>
             Get this amazing 3 bedroom flat
-          </motion.h3>
-          <motion.p initial={{ y: 50 }}>
-            Get this amazing 3 bedroom flat
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
         <Link
           href={"/"}
           className="absolute bottom-0 right-0 z-10 grid size-20 place-items-center rounded-full border-2 border-shade transition-transform hover:-translate-y-2 max-sm:scale-[0.6] sm:bottom-10 sm:right-20"

@@ -1,16 +1,18 @@
 "use client";
 import React from "react";
 import dynamic from "next/dynamic";
-import Loader from "@/components/__shared/ui/loader/Loader";
+import Loader from "@/components/__shared/ui/loader";
 const ListingModal = dynamic(
   () => import("../../components/steps/ListingModal"),
 );
 
 const ListingEditPage = () => {
-  return <main className="flex flex-col gap-40">
+  return (
+    <main className="flex flex-col gap-40">
       <ListingModal />
       <Loader position="center" />
     </main>
+  );
 };
 
 export default ListingEditPage;

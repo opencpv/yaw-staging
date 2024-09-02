@@ -1,7 +1,7 @@
 import { useLocalStorage } from "@uidotdev/usehooks";
 import Amenity from "@/app/dashboard/components/shared/ui/Amenity";
 import style from "../../../index.module.css";
-import CallOut from "../../../../../../../components/__shared/ui/CallOut";
+import CallOut from "../../../../../../../components/__shared/ui/callout";
 import { useField } from "formik";
 import { properties } from "../../../../../components/shared/content";
 import { BeMyAgentDefaultValues } from "@/store/dashboard/BeMyAgentStepsStore";

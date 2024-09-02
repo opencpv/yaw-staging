@@ -1,11 +1,14 @@
-// import Modal from "@/components/__shared/ui/modals/Modal";
-// import { useDisclosure } from "@nextui-org/react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import React from "react";
 
+const Modal = dynamic(() =>
+  import("@/components/__shared/ui/modals/dialog").then((mod) => mod.Modal),
+);
+
 type Props = {
   isOpen: boolean;
-  onOpenChange: () => void;
+  onOpenChange: (open: boolean) => void;
   image: Image;
 };
 
@@ -16,13 +19,12 @@ type Image = {
 
 const PromotionModal = ({ isOpen, onOpenChange, image }: Props) => {
   return (
-    // <Modal
-    //   body={<ModalBody image={image} />}
-    //   isOpen={isOpen}
-    //   onOpenChange={onOpenChange}
-    //   size="full"
-    // />
-    <></>
+    <Modal
+      body={<ModalBody image={image} />}
+      isOpen={isOpen}
+      onOpenChange={onOpenChange}
+      size="full"
+    />
   );
 };
 

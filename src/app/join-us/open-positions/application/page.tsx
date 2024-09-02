@@ -4,7 +4,7 @@ import JoinUsButtons from "../../components/JoinUsButtons";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
-const Footer = dynamic(() => import("@/components/__shared/ui/footer/Footer"));
+const Footer = dynamic(() => import("@/components/__shared/ui/footer"));
 
 export const metadata: Metadata = {
   title: "Application Form",

@@ -12,6 +12,7 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import AvatarMenu from "./avatar/AvatarMenu";
 import { useUserData } from "@/lib/custom-hooks/database/useUserData";
 import { cn } from "@/lib/utils";
+import { Button } from "./button";
 
 const Navbar = (props: any) => {
   const pathname = usePathname();
@@ -63,18 +64,19 @@ const Navbar = (props: any) => {
             <div className="flex items-center gap-5">
               {user && <AvatarMenu />}
               {/* Hamburger button */}
-              <button
+              <Button
+                size="icon"
                 onClick={() => {
                   setToggle(true);
                 }}
-                className="group grid size-14 place-items-center rounded-full transition-all hover:bg-shade-50/80"
+                className="group rounded-full transition-all hover:bg-shade-50/80"
               >
                 <Image
                   src={icons.Hamburger}
                   alt="menu"
                   className="group-hover:scale-80"
                 />
-              </button>
+              </Button>
             </div>
           </div>
         </div>

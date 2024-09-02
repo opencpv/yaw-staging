@@ -7,16 +7,12 @@ import Link from "next/link";
 import ArrowDownNav from "@/components/__shared/ui/icons/CaArrowDownNav.";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
 import { LowerCase } from "@/lib/utils/stringManipulation";
-import ReportFraud from "@/components/__shared/ui/links/ReportFraud";
-import HowToLink from "@/components/__shared/ui/links/HowToLink";
-import FaqLink from "@/components/__shared/ui/links/FaqLink";
+import ReportFraud from "@/components/__shared/ui/links/report-fraud";
 import { cn } from "@/lib/utils";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useMenuLinks } from "./content";
 import { animate, stagger } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { useContactStore } from "@/store/contact/useContactStore";
-import { useFaqHowToSwitchStore } from "@/store/faq/useFaqStore";
 
 const MenuOption = ({
   name,
@@ -53,15 +49,13 @@ const MenuOption = ({
 
   const [open, setOpen] = useState(false);
   const { setToggle } = useMenuStore();
-  const { activePage: activeFaqKey } = useFaqHowToSwitchStore();
 
   return (
     <CollapsibleRoot open={open} onOpenChange={setOpen}>
       <Collapsible.Trigger asChild>
         <div
           className={cn(
-            `
-              " flex w-full cursor-pointer flex-row items-center justify-between font-[600] text-white`,
+            `" flex w-full cursor-pointer flex-row items-center justify-between font-[600] text-white`,
             {
               "text-accent-100": open,
             },
@@ -74,32 +68,12 @@ const MenuOption = ({
       <Collapsible.Content className={"py-4"}>
         {/* sub links ---> View all listings, how to, etc.. */}
         {sub?.map((r, index) => (
-          <Collapsible.Root key={index} className="flex flex-col text-white ">
+          <Collapsible.Root key={index} className="flex flex-col text-white">
             <Collapsible.Trigger className="main-menu-link-sm flex justify-between pr-20 text-left text-base">
-              {LowerCase(r?.name) === "how to" ? (
-                <HowToLink
-                  className={cn("text-base font-normal", {
-                    "text-accent":
-                      pathname?.includes(r?.url) && activeFaqKey === "how to",
-                  })}
-                  onClick={() => {
-                    setToggle(false);
-                  }}
-                />
-              ) : LowerCase(r?.name) === "report fraud" ? (
+              {LowerCase(r?.name) === "report fraud" ? (
                 <ReportFraud
                   className={cn("text-base font-normal", {
                     "text-accent": pathname?.includes(r?.url),
-                  })}
-                  onClick={() => {
-                    setToggle(false);
-                  }}
-                />
-              ) : LowerCase(r?.name) === "faq" ? (
-                <FaqLink
-                  className={cn("text-base font-normal", {
-                    "text-accent":
-                      pathname?.includes(r?.url) && activeFaqKey === "faq",
                   })}
                   onClick={() => {
                     setToggle(false);
@@ -131,7 +105,6 @@ const MenuOption = ({
 export const MobileMenu = (props: any) => {
   const pathname = usePathname();
   const { setToggle, toggle } = useMenuStore();
-  const { activeKey } = useContactStore();
   const { user } = useAppStore();
   const { linksAfterLogin, linksBeforeLogin } = useMenuLinks();
 
@@ -173,20 +146,14 @@ export const MobileMenu = (props: any) => {
         {linksBeforeLogin.map((r, index) =>
           r?.sub ? (
             <div className="main-menu-link-sm-bl" key={index}>
-              <MenuOption
-                name={r.name}
-                sub={r?.sub}
-              />
+              <MenuOption name={r.name} sub={r?.sub} />
             </div> // sub links ---> View all listings, how to, etc...
           ) : (
             r?.name.toLowerCase() !== "area vibes" && ( // main links ---> Home for rent, Login, Moving sale, etc...
               <Link
                 href={r?.url}
                 key={index}
-                className={cn("main-menu-link-sm-bl mb-10 block", {
-                  "text-accent":
-                    pathname?.includes(r?.url) && activeKey === "report",
-                })}
+                className={cn("main-menu-link-sm-bl mb-10 block")}
                 onClick={() => setToggle(false)}
               >
                 <p className={"text-2xl !font-semibold uppercase text-[#fff]"}>
@@ -207,11 +174,7 @@ export const MobileMenu = (props: any) => {
         {linksAfterLogin.map((r, index) =>
           r?.sub ? (
             <div className="main-menu-link-sm-al" key={index}>
-              <MenuOption
-                key={index}
-                name={r.name}
-                sub={r?.sub}
-              />
+              <MenuOption key={index} name={r.name} sub={r?.sub} />
             </div>
           ) : (
             // sub links ---> View all listings, how to, etc...

@@ -1,7 +1,8 @@
 "use client";
-// import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
+import { Tabs } from "@/components/__shared/ui/tabs";
 import convertSlugToString from "@/lib/utils/convertSlugToString";
 import slugify from "@/lib/utils/slugify";
+import capitalizeName, { unslugify } from "@/lib/utils/stringManipulation";
 import { useBlogCategoryStore } from "@/store/blog/blogStore";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -21,25 +22,19 @@ const CategoryTabs = (props: Props) => {
 
   useEffect(() => {
     const currentCategory = convertSlugToString(url?.split("/")[2] as string);
-    setOptions(["all", ...props.categories]);
+    setOptions(["All", ...props.categories?.map((cat) => capitalizeName(cat))]);
     changeCategoryOption(currentCategory as string);
   }, [changeCategoryOption, props.categories, url]);
 
   return (
-    // <OptionFilterTabs
-    //   options={options}
-    //   selectedKey={categoryOption}
-    //   onSelectionChange={(selection) => {
-    //     changeCategoryOption(selection as string);
-    //     router.push(`/blog/${slugify(selection as string)}`, { scroll: false });
-    //   }}
-    //   radius="small"
-    //   tabColor="colored"
-    //   classNames={{
-    //     tabList: "flex-nowrap",
-    //   }}
-    // />
-    <></>
+    <Tabs
+      options={options}
+      selectedKey={unslugify(capitalizeName(categoryOption))}
+      onSelectionChange={(selection) => {
+        changeCategoryOption(selection);
+        router.push(`/blog/${slugify(selection)}`, { scroll: false });
+      }}
+    />
   );
 };
 

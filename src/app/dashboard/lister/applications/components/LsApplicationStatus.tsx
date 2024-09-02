@@ -1,12 +1,9 @@
 "use client";
-import React from "react";
-import Select from "../../../components/shared/ui/Select";
-import { useSelectDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import React, { useState } from "react";
+import { Select } from "@/components/__shared/ui/form/select";
 
 const LsApplicationStatus = () => {
-  const { value, handleSelectionChange } = useSelectDisclosure<
-    "accept" | "decline"
-  >("accept");
+  const [value, setValue] = useState("Accept");
 
   return (
     <>
@@ -14,9 +11,8 @@ const LsApplicationStatus = () => {
         color="primary"
         options={["Accept", "Decline"]}
         value={value}
-        selectorIconClassName="text-neutral-800"
-        handleSelectionChange={handleSelectionChange}
-        className="lg:max-xl:w-40"
+        onValueChange={setValue}
+        //className="lg:max-xl:w-40"
       />
     </>
   );

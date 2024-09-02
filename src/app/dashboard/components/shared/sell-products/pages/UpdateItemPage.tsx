@@ -2,18 +2,18 @@
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { useEffect, useState } from "react";
-import CustomRadioInput from "@/components/__shared/ui/form/CustomRadioInput";
-import TextFieldInput from "@/components/__shared/ui/form/TextFieldInput";
-import CustomSelect from "@/components/__shared/ui/form/CustomSelect";
-import CustomTextAreaInput from "@/components/__shared/ui/form/CustomTextAreaInput";
-import InputPhoneNumber from "@/components/__shared/ui/form/InputPhoneNumber";
+import { RadioInput } from "@/components/__shared/ui/form/radio-input";
+import { Input } from "@/components/__shared/ui/form/input";
+import { SelectInput } from "@/components/__shared/ui/form/select";
+import { Textarea } from "@/components/__shared/ui/form/textarea";
+import PhoneNumberInput from "@/components/__shared/ui/form/phone-number-input";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { useFetchItemCategories } from "@/app/moving-sale/services";
 import capitalizeName from "@/lib/utils/stringManipulation";
-import Loader from "@/components/__shared/ui/loader/Loader";
+import Loader from "@/components/__shared/ui/loader";
 import supabase from "@/lib/utils/supabase/supabaseClient";
-import { CheckboxNoFormik as Checkbox } from "@/components/__shared/ui/form/Checkbox";
+import { Checkbox } from "@/components/__shared/ui/form/checkbox";
 import axios from "axios";
 import { generateString } from "@/lib/utils";
 import slugify from "@/lib/utils/slugify";
@@ -264,48 +264,37 @@ const UpdateItemPage = () => {
                   }}
                 >
                   <div className="flex flex-col gap-8">
-                    <TextFieldInput
+                    <Input
                       name="itemName"
                       label="Item name"
                       placeholder="e.g. Dining table"
                       required
                     />
-                    <CustomSelect
+                    <SelectInput
                       name="category"
                       label="Category"
                       options={
-                        categories?.map((category) => ({
-                          name: category.category,
-                          value: capitalizeName(category.category),
-                        })) || []
+                        categories?.map((data) =>
+                          capitalizeName(data.category),
+                        ) || []
                       }
                     />
-                    <TextFieldInput
-                      name="price"
-                      label="Price"
-                      prefix="GHS"
-                      required
-                    />
-                    <CustomTextAreaInput
+                    <Input name="price" label="Price" prefix="GHS" required />
+                    <Textarea
                       name="description"
                       label="Description"
                       placeholder="Describe your item"
-                      classes="h-[167px]"
                       required
                     />
                   </div>
                   <div className="flex flex-col gap-8">
-                    <CustomSelect
+                    <SelectInput
                       name="condition"
                       label="Condition"
-                      options={[
-                        { name: "new", value: "New" },
-                        { name: "used-like new", value: "Used-like New" },
-                        { name: "used", value: "Used" },
-                      ]}
+                      options={["New", "Used-Like New", "Used"]}
                     />
-                    <CustomRadioInput
-                      options={["yes", "no"]}
+                    <RadioInput
+                      options={["Yes", "No"]}
                       label="Negotiable"
                       name="term"
                       color="primary"
@@ -316,21 +305,21 @@ const UpdateItemPage = () => {
                         Preferred Method of contact
                       </p>
                       <Checkbox
+                        name="inAppCheck"
                         defaultChecked
                         label="In app messaging ( Default)"
                         disabled={true}
-                        color="disabled"
                       />
                       <Checkbox
+                        name="emailCheck"
                         label="Email"
-                        color="primary"
                         defaultChecked
                         onCheckedChange={(checked) =>
                           setUseEmail(checked as boolean)
                         }
                       />
                       {useEmail && (
-                        <TextFieldInput
+                        <Input
                           name="email"
                           label="Email Address"
                           placeholder="Enter email address"
@@ -338,14 +327,14 @@ const UpdateItemPage = () => {
                         />
                       )}
                       <Checkbox
+                        name="phoneCheck"
                         label="Phone call"
-                        color="primary"
                         onCheckedChange={(checked) =>
                           setUsePhone(checked as boolean)
                         }
                       />
                       {usePhone && (
-                        <InputPhoneNumber
+                        <PhoneNumberInput
                           id=""
                           label="Phone"
                           name="phone"
@@ -355,14 +344,14 @@ const UpdateItemPage = () => {
                         />
                       )}
                       <Checkbox
+                        name="whatsappCheck"
                         label="WhatsApp"
-                        color="primary"
                         onCheckedChange={(checked) =>
                           setUseWhatsapp(checked as boolean)
                         }
                       />
                       {useWhatsapp && (
-                        <InputPhoneNumber
+                        <PhoneNumberInput
                           id=""
                           label="WhatsApp No."
                           name="whatsapp"
@@ -378,7 +367,6 @@ const UpdateItemPage = () => {
                     <div className="mt-auto flex justify-end">
                       <Button
                         type="submit"
-                        color="primary"
                         className="mt-8"
                         isLoading={loading}
                       >

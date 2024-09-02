@@ -7,9 +7,9 @@ const ItemFilterTerms = () => {
   const setTerm = useItemFilterStore((state) => state.setTerm);
 
   return (
-    <RadioChoices<"negotiable" | "non-negotiable" | "all">
-      value={term as "negotiable" | "non-negotiable" | "all"}
-      choices={["Negotiable", "Non-negotiable", "All"]}
+    <RadioChoices
+      value={term}
+      options={["Negotiable", "Non-Negotiable", "All"]}
       onValueChange={setTerm}
     />
   );

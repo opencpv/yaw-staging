@@ -1,4 +1,4 @@
-import Button from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import Image from "next/image";
 import React from "react";
 import { AiOutlineUser } from "react-icons/ai";
@@ -47,12 +47,12 @@ const RenterOverviewMV = ({
             </div>
           )}
         </div>
-        <Button
+        <LinkButton
           href="settings"
-          className="flex items-center gap-1.5 rounded-md bg-[#597C7B] p-1 px-4 text-xs font-semibold text-white"
+          className="bg-[#597C7B] text-xs font-semibold text-white"
         >
           Edit profile <HiOutlinePencil />{" "}
-        </Button>
+        </LinkButton>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { getConfirmationPage } from "../actions";
 import { formatDateTime } from "@/lib/utils/stringManipulation";
 import { cn } from "@/lib/utils";
@@ -8,7 +8,7 @@ import {
   ActionItem,
   ActionItemTrigger,
   ActionPopover,
-} from "@/app/dashboard/components/shared/ui/ActionPopover";
+} from "@/components/__shared/ui/popover/action-popover";
 import { useAppStore } from "@/store/dashboard/AppStore";
 
 type Props = {
@@ -19,7 +19,7 @@ type Props = {
 };
 
 export default function ActionButton(props: Props) {
-  const {user} = useAppStore()
+  const { user } = useAppStore();
   const [loading, setLoading] = React.useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const now = new Date();
@@ -48,7 +48,13 @@ export default function ActionButton(props: Props) {
     <>
       {props.match?.meeting_id &&
       props.match?.type?.toLowerCase() === props.actionType.toLowerCase() ? (
-        <ActionPopover isOpen={isOpen} onOpenChange={(open) => { now < meetingDate ? setIsOpen(open) : setIsOpen(false) }} placement="top">
+        <ActionPopover
+          isOpen={isOpen}
+          onOpenChange={(open) => {
+            now < meetingDate ? setIsOpen(open) : setIsOpen(false);
+          }}
+          placement="top"
+        >
           <ActionItemTrigger
             className="col-span-1 h-fit w-full"
             onClick={handleActionTrigger}
@@ -80,8 +86,10 @@ export default function ActionButton(props: Props) {
       ) : (
         <Button
           className={cn(
-            `h-10 w-full gap-2 rounded-2xl bg-secondary-500 font-semibold text-shade-200 hover:bg-primary-200 hover:text-white lg:h-14`,
+            `bg-secondary-500 text-shade-200 hover:bg-primary-200 hover:text-white`,
           )}
+          size={"full"}
+          radius={"lg"}
           title={props.title}
           isLoading={loading}
           disabled={

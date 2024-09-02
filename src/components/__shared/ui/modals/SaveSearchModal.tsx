@@ -1,19 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 import { HiSaveAs } from "react-icons/hi";
-import Modal from "./Modal";
-// import {
-//   Popover,
-//   PopoverContent,
-//   PopoverTrigger,
-//   useDisclosure,
-// } from "@nextui-org/react";
-import Button from "../button/Button";
+const Modal = dynamic(() => import("./dialog").then((mod) => mod.Modal));
+import { Button } from "../button";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { FiTrash2 } from "react-icons/fi";
 import { cn } from "@/lib/utils";
 import CloseModalIcon from "../icons/CloseModalIcon";
 import dynamic from "next/dynamic";
-const PopupModal = dynamic(() => import("./PopupModal"));
+import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import {
+  ActionContent,
+  ActionItem,
+  ActionItemTrigger,
+  ActionPopover,
+} from "@/components/__shared/ui/popover/action-popover";
+const PopupModal = dynamic(() =>
+  import("../alert-dialog").then((mod) => mod.PopupModal),
+);
+
+const Popover = dynamic(() =>
+  import("@/components/__shared/ui/popover").then((mod) => mod.Popover),
+);
 
 type Props = {
   className?: string;
@@ -22,17 +29,17 @@ type Props = {
 let recentSearchDemo = true;
 
 const SaveSearchModal = (props: Props) => {
-  // const { isOpen, onOpenChange, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpenChange, onOpen, onClose } = useDisclosure();
 
   return (
     <>
-      {/* <HiSaveAs
+      <HiSaveAs
         className={cn("cursor-pointer text-[#21A19F]", props.className)}
         title="saved search"
         size={20}
         onClick={onOpen}
-      /> */}
-      {/* <Modal
+      />
+      <Modal
         closeButton={<CloseModalIcon />}
         header={<ModalHeader />}
         body={<ModalBody />}
@@ -41,7 +48,7 @@ const SaveSearchModal = (props: Props) => {
         onOpenChange={onOpenChange}
         size="xl"
         className="max-w-2xl"
-      /> */}
+      />
     </>
   );
 };
@@ -60,9 +67,7 @@ const ModalBody = () => {
           className="col-span-5 rounded-sm border p-3 outline-none xs:col-span-4"
           placeholder="Bantama search"
         />
-        <Button color="primary" className="col-span-1 h-full">
-          Save
-        </Button>
+        <Button className="col-span-1">Save</Button>
       </div>
       <div className="mt-8 border-t pt-4">
         <h3 className="font-medium">Your saved searches</h3>
@@ -90,18 +95,14 @@ const ModalBody = () => {
 
 const ModalFooter = () => {
   return (
-    <Button
-      variant="ghost"
-      className="mb-5 font-medium text-neutral-800 underline"
-    >
+    <Button variant="ghost" className="mb-5 text-neutral-800 underline">
       View All
     </Button>
   );
 };
 
 const RecentSearch = ({ title, date }: { title: string; date: string }) => {
-  // const { isOpen, onOpenChange, onOpen, onClose } = useDisclosure();
-  const [popoverIsOpen, setPopoverIsOpen] = useState(false);
+  const { isOpen, onOpenChange, onOpen, onClose } = useDisclosure();
 
   return (
     <div className="grid grid-cols-9 gap-6 ssm:items-center">
@@ -120,37 +121,25 @@ const RecentSearch = ({ title, date }: { title: string; date: string }) => {
       >
         Run Search
       </Button>
-      {/* <Popover
-        style={{ zIndex: "99999" }}
-        isOpen={popoverIsOpen}
-        onOpenChange={setPopoverIsOpen}
-      >
-        <PopoverTrigger
-          className="h-fit w-fit"
-          onClick={() => setPopoverIsOpen(true)}
-        >
-          <button className="col-span-1 ml-auto h-fit w-fit p-2">
-            <BiDotsVerticalRounded />
-          </button>
-        </PopoverTrigger>
-        <PopoverContent className="rounded-md bg-[#fefefe]">
-          <button className="flex items-center gap-2" onClick={onOpen}>
+      <ActionPopover>
+        <ActionItemTrigger className="col-span-1 ml-auto p-2">
+          <BiDotsVerticalRounded />
+        </ActionItemTrigger>
+        <ActionContent className="rounded-md bg-[#fefefe]">
+          <ActionItem onClick={onOpen}>
             Delete
             <FiTrash2 />
-          </button>
-        </PopoverContent>
-      </Popover> */}
+          </ActionItem>
+        </ActionContent>
+      </ActionPopover>
 
-      {/* <PopupModal
+      <PopupModal
         label="Are you sure you want to delete this saved search?"
         onClose={onClose}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        classNames={{
-          backdrop: "z-[99999]",
-        }}
         handleAction={() => {}}
-      /> */}
+      />
     </div>
   );
 };

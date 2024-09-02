@@ -1,4 +1,4 @@
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import React from "react";
 import { IoIosSearch } from "react-icons/io";
 
@@ -18,9 +18,7 @@ const PropertiesEmptyState = ({ onClick }: Props) => {
           View similar results from surrounding neighborhoods.{" "}
         </p>
       </div>
-      <Button color="primary" onClick={onClick}>
-        View results
-      </Button>
+      <Button onClick={onClick}>View results</Button>
     </div>
   );
 };

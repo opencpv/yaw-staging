@@ -11,11 +11,11 @@ import {
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import slugify from "@/lib/utils/slugify";
 import dynamic from "next/dynamic";
-const Survey = dynamic(() => import("@/components/__shared/survey"));
+const Survey = dynamic(() => import("@/components/__shared/ui/survey"));
 const PopularPosts = dynamic(() => import("./components/post/PopularPosts"));
 const RecentPosts = dynamic(() => import("./components/post/RecentPosts"));
 const FramerWrapper = dynamic(
-  () => import("@/components/__shared/hoc/FramerWrapper"),
+  () => import("@/components/__shared/hoc/framer-wrapper"),
 );
 const AdsSlider = dynamic(() => import("./components/post/AdsSlider"));
 const PostSlider = dynamic(() => import("./components/post/PostSlider"));

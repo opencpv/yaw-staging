@@ -1,9 +1,8 @@
 "use client";
 import React from "react";
-// import { useDisclosure } from "@nextui-org/react";
-// import ModalCloseIcon from "@/components/__shared/ui/modals/ModalCloseIcon";
-// import Modal from "@/components/__shared/ui/modals/Modal";
-// import ViewButton from "@/components/__shared/ui/button/ViewButton";
+import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import ModalCloseIcon from "@/components/__shared/ui/modals/modal-close-icon";
+import ViewButton from "@/components/__shared/ui/button/view-button";
 import Logo from "@/components/__shared/ui/Logo";
 import Cost from "../Cost";
 import CaQuote from "../CaQuote";
@@ -11,8 +10,12 @@ import legal from "@/enum/about/legal";
 import DownloadButton from "../DownloadButton";
 import CheckoutButton from "../CheckoutButton";
 import { formatPrice } from "@/lib/utils/numberManipulation";
-import { formatDateDMY, formatDateOnly } from "@/lib/utils/stringManipulation";
+import { formatDateDMY } from "@/lib/utils/stringManipulation";
 import { customerStore } from "@/store/payment/customerStore";
+import dynamic from "next/dynamic";
+const Modal = dynamic(() =>
+  import("@/components/__shared/ui/modals/dialog").then((mod) => mod.Modal),
+);
 
 type Variant = "invoice" | "receipt";
 
@@ -21,24 +24,22 @@ type Props = {
   data: Invoice;
 };
 export default function ViewDataDetailsModal({ variant, data }: Props) {
-  // const { onOpen, isOpen, onOpenChange } = useDisclosure();
+  const { onOpen, isOpen, onOpenChange } = useDisclosure();
 
   return (
     <>
-      {/* <Modal
+      <Modal
         header={<div className="h-5" />}
         body={<ModalBody variant={variant} data={data} />}
         footer={<ModalFooter variant={variant} data={data} />}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        scrollBehavior="inside"
         closeButton={<ModalCloseIcon />}
-        size="3xl"
-      /> */}
-      {/* <ViewButton
-          onOpen={onOpen}
-          className="max-sm:w-fit max-sm:bg-transparent max-sm:p-0 sm:h-11"
-        /> */}
+      />
+      <ViewButton
+        onOpen={onOpen}
+        className="max-sm:w-fit max-sm:bg-transparent max-sm:p-0 sm:h-11"
+      />
     </>
   );
 }

@@ -1,8 +1,7 @@
 import { useContext, useState } from "react";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { ItemPublicationStatus } from "./PublicationStatus";
-import Toggle from "@/components/__shared/ui/Toggle";
-import { ItemContext } from "@/app/dashboard/contexts/ItemContext";
+import { Switch } from "@/components/__shared/ui/switch";
 import { ProductStatusProp } from "@/lib/typings";
 import { toast } from "react-hot-toast";
 
@@ -15,8 +14,6 @@ interface Props {
 const ProductStatus = ({ isAvailable, status, id, refetch }: Props) => {
   const [value, setValue] = useState(isAvailable);
 
-  const item = useContext(ItemContext)?.item;
-
   const handleSelectionChange = async (value: boolean) => {
     setValue(value);
     const updateObject: {
@@ -26,7 +23,7 @@ const ProductStatus = ({ isAvailable, status, id, refetch }: Props) => {
     } = {};
 
     updateObject.is_available = value;
-    updateObject.status = value ? "active" : "inactive";
+    updateObject.status = value ? "Active" : "Inactive";
     updateObject.inactive_date = value ? null : new Date().toISOString();
     const { data, error } = await supabase
       .from("products")
@@ -39,12 +36,12 @@ const ProductStatus = ({ isAvailable, status, id, refetch }: Props) => {
     }
   };
   return (
-    <Toggle
+    <Switch
       color="primary"
-      isSelected={value}
+      checked={value}
       disabled={status === "Suspended"}
       title={status === "Suspended" ? "Suspended" : undefined}
-      onValueChange={handleSelectionChange}
+      onCheckedChange={handleSelectionChange}
     />
   );
 };

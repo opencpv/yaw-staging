@@ -5,7 +5,7 @@ const quickLinks = [
   },
   {
     label: "How To",
-    href: "/faq",
+    href: "/how-to",
   },
   {
     label: "Contact",
@@ -21,7 +21,7 @@ const quickLinks = [
   },
   {
     label: "Report Fraud",
-    href: "/contact",
+    href: "/contact/report",
   },
   {
     label: "Feedback",

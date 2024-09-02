@@ -2,22 +2,22 @@ import { ErrorMessage, Form, Formik } from "formik";
 import React, { useEffect } from "react";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { sendContactUsEmail } from "../../api";
-import TextInput from "@/components/__shared/ui/form/TextInput";
+import { Input } from "@/components/__shared/ui/form/input";
 import ContactSchema from "./lib/contactSchema";
 import { useContactForm } from "./hooks/useContactForm";
 import ContactMessageField from "./ContactMessageField";
 import ContactFullNameField from "./ContactFullNameField";
 import ContactPhoneField from "./ContactPhoneField";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
-import CustomErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
+import CustomErrorMessage from "@/components/__shared/ui/states/error-message";
 import capitalizeName from "@/lib/utils/stringManipulation";
-import { useContactStore } from "@/store/contact/useContactStore";
+import { tag, useContactStore } from "@/store/contact/useContactStore";
 import { useRouter } from "next/navigation";
 import { generateString } from "@/lib/utils";
 import slugify from "@/lib/utils/slugify";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { UploadFile } from "../UploadFile";
 import { E164Number } from "libphonenumber-js/core";
 
@@ -25,7 +25,6 @@ type Props = {};
 
 const FormReport = (props: Props) => {
   const {
-    activeTab,
     file,
     formRef,
     loading,
@@ -66,8 +65,9 @@ const FormReport = (props: Props) => {
         validate(values, contactFormSession.phone as E164Number)
       }
       onSubmit={async (values, { resetForm }) => {
+        if (!tag) return;
         setLoading(true);
-        values.contactType = capitalizeName(activeTab);
+        values.contactType = capitalizeName(tag);
         values.fileUrl = file?.name as string;
         const newFilename: string =
           generateString(8) + "-" + slugify(file?.name || "");
@@ -141,10 +141,6 @@ const FormReport = (props: Props) => {
                 handleChange={handleChange}
                 error={errors.fullname}
               />
-              <CustomErrorMessage className="mt-5" error={errors.fullname}>
-                {/* @ts-ignore */}
-                <ErrorMessage name="fullname" error={errors.fullname} />
-              </CustomErrorMessage>
             </div>
             <div className="form-div">
               <ContactPhoneField
@@ -163,7 +159,7 @@ const FormReport = (props: Props) => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              <CustomErrorMessage className="mt-2" error={errors.message}>
+              <CustomErrorMessage className="mt-2" name={errors.message}>
                 {/* @ts-ignore */}
                 <ErrorMessage name="message" error={errors.message} />
               </CustomErrorMessage>
@@ -175,7 +171,7 @@ const FormReport = (props: Props) => {
             />
 
             <div className="form-div" title="Paste URL link here (optional)">
-              <TextInput
+              <Input
                 name="reportLink"
                 value={contactFormSession.reportLink || values.reportLink}
                 onChange={(e) => {
@@ -188,7 +184,7 @@ const FormReport = (props: Props) => {
             </div>
             <Button
               className="max-w-full xs:max-w-fit"
-              color="accent"
+              variant="accent"
               isLoading={loading}
               type="submit"
             >

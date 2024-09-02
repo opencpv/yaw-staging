@@ -1,4 +1,4 @@
-import ReportIssue from "@/components/__shared/ui/links/ReportIssue";
+import ReportIssue from "@/components/__shared/ui/links/report-issue";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import capitalizeName, {
   caseInsensitiveCompare,
@@ -21,7 +21,9 @@ const PropertyDetailsFigures = ({ listing }: Props) => {
   )
     ? "No Advance"
     : capitalizeName(
-        wordifyNumber(convertNumWithoutPlus(listing?.lease_duration?.slice(0,1) as string)),
+        wordifyNumber(
+          convertNumWithoutPlus(listing?.lease_duration?.slice(0, 1) as string),
+        ),
       ) + " Year Advance";
   return (
     <section className="space-y-5">
@@ -32,7 +34,11 @@ const PropertyDetailsFigures = ({ listing }: Props) => {
         <FigureCard
           title="Monthly Rent"
           icon={<CiWallet size={24} />}
-          value={formatPrice(listing?.monthly_amount as number, true, listing?.currency as string)}
+          value={formatPrice(
+            listing?.monthly_amount as number,
+            true,
+            listing?.currency as string,
+          )}
           tag={advancePeriod}
         />
         <FigureCard
@@ -65,7 +71,7 @@ const FigureCard = (props: {
   return (
     <div className="relative flex flex-col items-center justify-center gap-3 rounded-lg border p-4">
       {props.tag && (
-        <div className="absolute left-0 top-0 w-full max-w-[150px] font-semibold rounded-lg bg-info-bg p-1 text-center text-xs text-info">
+        <div className="absolute left-0 top-0 w-full max-w-[150px] rounded-lg bg-info-bg p-1 text-center text-xs font-semibold text-info">
           {props.tag}
         </div>
       )}

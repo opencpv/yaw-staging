@@ -1,6 +1,6 @@
 import React from "react";
 import PropertyStatus from "./PropertyStatus";
-import { TableBodySm, TableRowSm } from "@/components/__shared/ui/table/Table";
+import { TableBodySm, TableRowSm } from "@/components/__shared/ui/table";
 import PublicationStatus from "./PublicationStatus";
 import { generatePropertyTitle, getListingProps } from "@/lib/enum";
 import TbPropertyImageSm from "@/app/dashboard/components/shared/ui/TbPropertyImageSm";

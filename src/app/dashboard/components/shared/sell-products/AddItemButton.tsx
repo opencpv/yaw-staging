@@ -1,4 +1,4 @@
-import Button from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import { cn } from "@/lib/utils";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import React from "react";
@@ -29,38 +29,35 @@ const AddItemButton = (props: Props) => {
 
   return (
     <>
-      <Button
-        href={`/dashboard/${currentRole}/sell-products/add-new-product`}
-        color="primary"
+      <LinkButton
+        href={`/dashboard/${currentRole.toLowerCase()}/sell-products/add-new-product`}
         className={`${
           isButtonInViewport ? "whitespace-nowrap max-xs:hidden" : "hidden"
         }`}
       >
         Add Item
-      </Button>
+      </LinkButton>
       <span ref={floatButtonRef} className="max-xs:hidden">
-        <Button
-          href={`/dashboard/${currentRole}/sell-products/add-new-product`}
-          color="primary"
+        <LinkButton
+          href={`/dashboard/${currentRole.toLowerCase()}/sell-products/add-new-product`}
           className={cn(
-            "fixed bottom-12 right-5 z-10 h-[4.5rem] rounded-3xl shadow-lg transition-all",
+            "fixed bottom-12 right-5 z-10 h-[60px] w-[80px] rounded-3xl shadow-lg transition-all",
             {
               "pointer-events-none opacity-0": isButtonInViewport,
             },
           )}
         >
           <FaPlus size={20} />
-        </Button>
+        </LinkButton>
       </span>
-      <Button
-        href={`/dashboard/${currentRole}/sell-products/add-new-product`}
-        color="primary"
+      <LinkButton
+        href={`/dashboard/${currentRole.toLowerCase()}/sell-products/add-new-product`}
         className={cn(
-          "fixed bottom-12 right-5 z-10 h-[4.5rem] rounded-3xl shadow-lg transition-all xs:hidden",
+          "fixed bottom-12 right-5 z-10 h-[60px] w-[80px] rounded-3xl shadow-lg transition-all xs:hidden",
         )}
       >
         <FaPlus size={20} />
-      </Button>
+      </LinkButton>
     </>
   );
 };

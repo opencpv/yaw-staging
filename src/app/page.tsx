@@ -8,7 +8,6 @@ import {
   HOME_PAGE_QUERY,
 } from "@/lib/utils/sanity/queries";
 import dynamic from "next/dynamic";
-
 const Landing = dynamic(() => import("./components/Landing"));
 const Promotions = dynamic(() => import("./components/sections/Promotions"));
 const FeaturedListings = dynamic(
@@ -22,9 +21,9 @@ const ManagePropertiesSection = dynamic(
 const PopularCities = dynamic(
   () => import("./components/sections/PopularCities"),
 );
-const Footer = dynamic(() => import("@/components/__shared/ui/footer/Footer"));
+const Footer = dynamic(() => import("@/components/__shared/ui/footer"));
 const ScrollTopAndSocial = dynamic(
-  () => import("@/components/__shared/ui/ScrollTopAndSocial"),
+  () => import("@/components/__shared/ui/scroll-top-and-social"),
 );
 const FeedbackButton = dynamic(
   () => import("@/components/__shared/ui/feedback/FeedbackButton"),

@@ -1,13 +1,13 @@
-import OptionFilterTabs from "@/components/__shared/ui/OptionFilterTabs";
-import Button from "@/components/__shared/ui/button/Button";
+import { Tabs } from "@/components/__shared/ui/tabs";
+import { LinkButton } from "@/components/__shared/ui/button";
 import React from "react";
 import { cn } from "@/lib/utils";
 import PropertyCard from "./PropertyCard";
 import ItemCard from "./ItemCard";
 import { useFetchListerItems, useFetchListerListings } from "../../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import FetchingStates from "@/components/__shared/ui/data_fetching/FetchingStates";
-// import { Skeleton } from "@nextui-org/react";
+import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
+import { Skeleton } from "@/components/__shared/ui/skeleton";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import dynamic from "next/dynamic";
 const ItemEmptyState = dynamic(() => import("../ItemEmptyState"));
@@ -16,12 +16,12 @@ type Props = {
   className?: string;
 };
 
-type TabType = "properties" | "moving sales";
+type TabType = "Properties" | "Moving Sales";
 
 const Sidebar = (props: Props) => {
   const { user } = useAppStore();
   const { images } = useAssets();
-  const [activeTab, setActiveTab] = React.useState<TabType>("properties");
+  const [activeTab, setActiveTab] = React.useState<TabType>("Properties");
 
   const {
     data: listings,
@@ -47,17 +47,15 @@ const Sidebar = (props: Props) => {
       )}
     >
       <h2 className="lg:text-center">
-        {activeTab === "properties" ? "Manage Listings" : "Manage Items"}
+        {activeTab === "Properties" ? "Manage Listings" : "Manage Items"}
       </h2>
-      <OptionFilterTabs
+      <Tabs
         options={["Properties", "Moving Sales"]}
         onSelectionChange={(key) => setActiveTab(key as TabType)}
         selectedKey={activeTab}
-        tabColor="colored"
-        cursorAnimation
       />
       <div className="hidden-scrollbar flex w-full gap-x-5 gap-y-10 overflow-x-auto lg:flex-col">
-        {activeTab === "properties" ? (
+        {activeTab === "Properties" ? (
           <>
             <FetchingStates
               data={listings}
@@ -66,8 +64,8 @@ const Sidebar = (props: Props) => {
               emptyStateComponent={<ItemEmptyState variant="property" />}
               isLoadingComponent={
                 <div className="space-y-5">
-                  {/* <Skeleton className="aspect-video w-full min-w-[200px] flex-1 space-y-3 max-lg:max-w-xs" />
-                  <Skeleton className="h-6 w-full max-w-20 rounded-md" /> */}
+                  <Skeleton className="aspect-video w-full min-w-[200px] flex-1 space-y-3 max-lg:max-w-xs" />
+                  <Skeleton className="h-6 w-full max-w-20 rounded-md" />
                 </div>
               }
             />
@@ -84,8 +82,8 @@ const Sidebar = (props: Props) => {
               emptyStateComponent={<ItemEmptyState variant="item" />}
               isLoadingComponent={
                 <div className="space-y-5">
-                  {/* <Skeleton className="aspect-video w-full min-w-[200px] flex-1 space-y-3 max-lg:max-w-xs" />
-                  <Skeleton className="h-6 w-full max-w-20 rounded-md" /> */}
+                  <Skeleton className="aspect-video w-full min-w-[200px] flex-1 space-y-3 max-lg:max-w-xs" />
+                  <Skeleton className="h-6 w-full max-w-20 rounded-md" />
                 </div>
               }
             />
@@ -102,26 +100,26 @@ const Sidebar = (props: Props) => {
           </>
         )}
       </div>
-      {activeTab === "properties" ? (
-        <Button
+      {activeTab === "Properties" ? (
+        <LinkButton
           href="/dashboard/lister/properties"
-          padding="sm"
+          size="sm"
           radius="full"
-          className="w-fit self-end bg-shade-50 text-neutral-800"
+          className="self-end bg-shade-50 text-neutral-800"
           style={{ display: listings?.length === 0 ? "none" : "flex" }}
         >
           See all
-        </Button>
+        </LinkButton>
       ) : (
-        <Button
+        <LinkButton
           href="/dashboard/lister/sell-products"
-          padding="sm"
+          size="sm"
           radius="full"
-          className="w-fit self-end bg-shade-50 text-neutral-800"
+          className="self-end bg-shade-50 text-neutral-800"
           style={{ display: items?.length === 0 ? "none" : "flex" }}
         >
           See all
-        </Button>
+        </LinkButton>
       )}
       <div className="mt-10 space-y-4 self-start">
         <h4 className="max-lg:text-xl">Notifications</h4>

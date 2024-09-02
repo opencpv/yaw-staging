@@ -12,7 +12,7 @@ import { useUserData } from "@/lib/custom-hooks/database/useUserData";
 import { cn } from "@/lib/utils";
 import AvatarMenu from "@/components/__shared/ui/avatar/AvatarMenu";
 import Share from "@/components/__shared/ui/share";
-import LikeHeart from "@/components/__shared/ui/LikeHeart";
+import LikeHeart from "@/components/__shared/ui/like-button";
 import GetStartedButton from "@/components/__shared/ui/button/GetStartedButton";
 import { useJoinUsPageStore } from "./useJoinUsPageStore";
 

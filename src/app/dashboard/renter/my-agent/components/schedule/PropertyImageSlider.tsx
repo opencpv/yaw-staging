@@ -10,7 +10,7 @@ import Image from "next/image";
 import { Navigation } from "swiper/modules";
 import { cn } from "@/lib/utils";
 import { createUUID } from "@/lib/utils/stringManipulation";
-import SliderNav from "@/components/__shared/ui/sliders/SliderNav";
+import SliderNav from "@/components/__shared/ui/sliders/slider-nav";
 
 const PropertyImageSlider = ({
   images,

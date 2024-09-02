@@ -1,5 +1,5 @@
 "use client";
-import Loader from "@/components/__shared/ui/loader/Loader";
+import Loader from "@/components/__shared/ui/loader";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { LoginButtonProps } from "@/lib/typings";
 import Image from "next/image";
@@ -80,7 +80,7 @@ export const LoginButton = ({
             />
           )}
           <p
-            className={`text-primary flex-1 text-center text-lg font-semibold min-[310px]:text-start`}
+            className={`flex-1 text-center text-lg font-semibold text-primary min-[310px]:text-start`}
           >
             {text}
           </p>

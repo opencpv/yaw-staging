@@ -1,18 +1,17 @@
+import { UserRole } from "@/app/dashboard/types";
 import { create } from "zustand";
 
-export type Role = "renter" | "lister";
-
 type DashboardStore = {
-  currentRole: Role;
+  currentRole: UserRole;
   isSwitchingRole: boolean;
-  firstTimeRole: Role | undefined;
-  setCurrentRole: (key: Role) => void;
+  firstTimeRole: UserRole | undefined;
+  setCurrentRole: (key: UserRole) => void;
   setIsSwitchingRole: (key: boolean) => void;
-  setFirstTimeRole: (key: Role | undefined) => void;
+  setFirstTimeRole: (key: UserRole | undefined) => void;
 };
 
 export const useDashboardStore = create<DashboardStore>((set) => ({
-  currentRole: "renter",
+  currentRole: "RENTER",
   isSwitchingRole: false,
   firstTimeRole: undefined,
   setCurrentRole: (role) => set((state) => ({ ...state, currentRole: role })),

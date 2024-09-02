@@ -19,12 +19,12 @@ import {
   ActionItem,
   ActionItemTrigger,
   ActionPopover,
-} from "@/app/dashboard/components/shared/ui/ActionPopover";
-import Button from "@/components/__shared/ui/button/Button";
+} from "@/components/__shared/ui/popover/action-popover";
+import { Button } from "@/components/__shared/ui/button";
 import { BiImageAdd } from "react-icons/bi";
 import dynamic from "next/dynamic";
 const ErrorMessage = dynamic(
-  () => import("@/components/__shared/ui/states/ErrorMessage"),
+  () => import("@/components/__shared/ui/states/error-message"),
 );
 
 interface Props {
@@ -190,7 +190,7 @@ const ImageUploader = ({}: Props) => {
         )}
       </Dropzone>
       {meta.touched && meta.error && (
-        <ErrorMessage error={meta.error}>{meta.error}</ErrorMessage>
+        <ErrorMessage name={meta.error}>{meta.error}</ErrorMessage>
       )}
     </FileContext.Provider>
   );
@@ -311,8 +311,10 @@ const AddMoreImages = ({ onlyButton }: { onlyButton?: boolean }) => {
         <div className="cursor-pointer self-end">
           <Button
             variant="outline"
-            color="black"
-            className={cn(style.addMoreImagesButton, "fade-in-bottom-slight")}
+            className={cn(
+              style.addMoreImagesButton,
+              "fade-in-bottom-slight text-black",
+            )}
             type="button"
           >
             Add More Images
@@ -323,8 +325,7 @@ const AddMoreImages = ({ onlyButton }: { onlyButton?: boolean }) => {
         <div className="grid aspect-video cursor-pointer place-items-center rounded-lg border border-dashed border-shade-300">
           <Button
             variant="outline"
-            color="black"
-            className={style.addMoreImagesButton}
+            className={cn(style.addMoreImagesButton, "text-black")}
             type="button"
           >
             Add More Images

@@ -1,4 +1,4 @@
-import Toggle from "@/components/__shared/ui/Toggle";
+import { Switch } from "@/components/__shared/ui/switch";
 import { useUpdateCriteriaStatus } from "../services";
 import { useEffect } from "react";
 import { cn } from "@/lib/utils";
@@ -10,7 +10,7 @@ interface Props {
 }
 
 const CriteriaStatus = ({ criterion }: Props) => {
-  const days = BE_THE_FIRST_TO_KNOW_LAPSE_DAYS
+  const days = BE_THE_FIRST_TO_KNOW_LAPSE_DAYS;
   const daysRemaining = getDaysRemaining(criterion.created_at, days);
 
   const { mutate: updateStatus, variables } = useUpdateCriteriaStatus();
@@ -36,11 +36,11 @@ const CriteriaStatus = ({ criterion }: Props) => {
   }, [daysRemaining, criterion.id, criterion.renter_id, updateStatus]);
 
   return (
-    <Toggle
+    <Switch
       label={`${daysRemaining} ${pluralize("day", daysRemaining)} remaining`}
       color="primary"
-      isSelected={variables ? variables.is_active : criterion.is_active}
-      onValueChange={handleSelectionChange}
+      checked={variables ? variables.is_active : criterion.is_active}
+      onCheckedChange={handleSelectionChange}
       disabled={
         criterion.is_active === false && criterion.matched_properties === null
       }

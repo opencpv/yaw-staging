@@ -1,6 +1,6 @@
 import { formatDateOnly } from "@/lib/utils/stringManipulation";
 import ProductStatus from "./ProductStatus";
-import { TableBody, TableBodyRow } from "@/components/__shared/ui/table/Table";
+import { TableBody, TableBodyRow } from "@/components/__shared/ui/table";
 import TbPropertyImage from "../ui/TbPropertyImage";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import Actions from "./Actions";

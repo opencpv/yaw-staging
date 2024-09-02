@@ -3,10 +3,10 @@ import React from "react";
 import Share from "@/components/__shared/ui/share";
 import { useSearchParams } from "next/navigation";
 import { PortableText } from "next-sanity";
-import Button from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import { JobType } from "../types";
 import { TypedObject } from "sanity";
-import EmptyState from "@/components/__shared/ui/states/EmptyState";
+import EmptyState from "@/components/__shared/ui/states/empty-state";
 import DownloadJobDescriptionBtn from "./ui/DownloadJobDescriptionBtn";
 
 type Props = {
@@ -46,13 +46,12 @@ function JobDescriptionModalContent({ jobs }: Props) {
               </div>
               <div className="sticky bottom-0 grid grid-cols-2 gap-3 bg-[#FAFAFA] pb-2 pt-2">
                 <DownloadJobDescriptionBtn job={job as JobType} />
-                <Button
-                  color="primary"
+                <LinkButton
                   href={`/join-us/open-positions/application?job=${job.title}`}
-                  className="w-full"
+                  size="full"
                 >
                   Apply
-                </Button>
+                </LinkButton>
               </div>
             </div>
           </>

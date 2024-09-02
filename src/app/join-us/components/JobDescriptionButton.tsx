@@ -1,19 +1,16 @@
 "use client";
-import React, { useState } from "react";
-import { useAppStore } from "@/store/dashboard/AppStore";
-import Button from "@/components/__shared/ui/button/Button";
+import React from "react";
+import { Button } from "@/components/__shared/ui/button";
 
 type Props = {
   onClick?: () => void;
 };
 export default function JobDescriptionButton({ onClick }: Props) {
-  const [animation, setAnimation] = useState(false);
-
   return (
     <Button
-      color="accent"
+      variant="accent"
       onClick={onClick}
-      className="pointer-events-none w-fit"
+      className="pointer-events-none"
       tabIndex={-1}
     >
       Job Description

@@ -3,7 +3,7 @@ import { formatPrice } from "@/lib/utils/numberManipulation";
 import { getListingProps } from "@/lib/enum";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import { TableBody, TableBodyRow } from "@/components/__shared/ui/table/Table";
+import { TableBody, TableBodyRow } from "@/components/__shared/ui/table";
 import TbPropertyImage from "@/app/dashboard/components/shared/ui/TbPropertyImage";
 import PublicationStatus from "./PublicationStatus";
 import PropertyStatus from "./PropertyStatus";

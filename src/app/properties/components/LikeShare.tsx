@@ -1,5 +1,5 @@
 "use client";
-import LikeHeart from "@/components/__shared/ui/LikeHeart";
+import LikeHeart from "@/components/__shared/ui/like-button";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import React from "react";
 import { cn } from "@/lib/utils";

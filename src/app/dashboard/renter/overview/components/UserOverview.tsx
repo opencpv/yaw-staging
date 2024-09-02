@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import Image from "next/image";
 import React from "react";
 import { BsTelephone } from "react-icons/bs";
@@ -9,9 +9,8 @@ import LargeButton from "@/app/dashboard/components/shared/ui/LargeButton";
 import { TbBuildingCommunity } from "react-icons/tb";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { AiOutlineUser } from "react-icons/ai";
-import CallOut from "@/components/__shared/ui/CallOut";
+import CallOut from "@/components/__shared/ui/callout";
 import dynamic from "next/dynamic";
-import Link from "next/link";
 const UserOverviewMV = dynamic(() => import("./UserOverviewMV"));
 
 const UserOverview = ({
@@ -100,12 +99,9 @@ const UserOverview = ({
                     </div>
                   )}
                 </div>
-                <Button
-                  href="settings"
-                  className="flex w-fit items-center gap-1.5 rounded-md bg-[#597C7B] p-1 px-4 text-sm font-semibold text-white"
-                >
+                <LinkButton href="settings" className="bg-[#597C7B] text-white">
                   Edit profile <HiOutlinePencil />{" "}
-                </Button>
+                </LinkButton>
               </div>
             </div>
           </div>

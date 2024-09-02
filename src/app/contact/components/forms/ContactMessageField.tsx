@@ -1,5 +1,5 @@
 import React, { HTMLAttributes } from "react";
-import style from "../../ContactForm.module.css";
+import style from "../../Contact.module.css";
 import { cn } from "@/lib/utils";
 import { useContactForm } from "./hooks/useContactForm";
 

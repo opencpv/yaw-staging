@@ -1,4 +1,4 @@
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { cn } from "@/lib/utils";
 import React from "react";
 
@@ -10,7 +10,7 @@ type Props = {
 const ContactSubmitButton = (props: Props) => {
   return (
     <Button
-      color="accent"
+      variant="accent"
       className={cn("mt-5 max-w-full xs:max-w-fit", props.className)}
       type="submit"
     >

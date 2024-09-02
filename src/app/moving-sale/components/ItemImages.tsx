@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-// import { useDisclosure } from "@nextui-org/react";
+import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import dynamic from "next/dynamic";
 const GalleryModalBtn = dynamic(
   () => import("@/components/__shared/ui/button/GalleryModalBtn"),
@@ -12,15 +12,15 @@ type Props = {
 };
 
 const ItemImages = ({ query }: Props) => {
-  // const { isOpen, onClose, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onClose, onOpen, onOpenChange } = useDisclosure();
   return (
     <>
-      {/* <ItemGalleryModal
+      <ItemGalleryModal
         onOpenChange={onOpenChange}
         onClose={onClose}
         isOpen={isOpen}
         itemData={query.data}
-      /> */}
+      />
       <section className="relative mb-16 grid h-60 grid-cols-2 gap-2 md:h-[27rem]">
         {/* Main image */}
         <div className="relative col-span-2 xs:col-span-1">
@@ -51,7 +51,7 @@ const ItemImages = ({ query }: Props) => {
             </div>
           ))}
         </div>
-        {/* <GalleryModalBtn onClick={onOpen} /> */}
+        <GalleryModalBtn onClick={onOpen} />
       </section>
     </>
   );

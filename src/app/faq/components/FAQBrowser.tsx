@@ -1,11 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
-import onlyUnique from "@/lib/utils/onlyUnique,";
-import groupByCategory from "../lib/groupFAQ";
 import FAQItem from "./FAQItem";
-import Loader from "@/components/__shared/ui/loader/Loader";
+import Loader from "@/components/__shared/ui/loader";
 import { useFaqStore } from "@/store/faq/useFaqStore";
-import style from "../Faq.module.css";
+import { Accordion } from "@/components/__shared/ui/accordion";
 
 const FAQBrowser = ({
   data,
@@ -14,18 +12,11 @@ const FAQBrowser = ({
   data: any[];
   faqCategories: any[];
 }) => {
-  // const [active, setActive] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedCategory, setselectedCategory] = useState<string | null>(null);
-  const [newData, setnewData] = useState<any[]>([]);
   const active = useFaqStore((state) => state.activeBrowser);
   const setActive = useFaqStore((state) => state.setActiveBrowser);
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
   const [filteredData, setfilteredData] = useState<any[]>([]);
-
-  const handleToggle = (index: number) => {
-    setOpenIndex((prevIndex) => (prevIndex === index ? null : index));
-  };
 
   useEffect(() => {
     if (data) {
@@ -44,8 +35,8 @@ const FAQBrowser = ({
           <Loader />
         </div>
       ) : (
-        <div className="flex flex-wrap items-start gap-10 pt-10 md:divide-x">
-          <div className="hidden-scrollbar flex flex-1 gap-12 overflow-x-scroll sm:max-w-[180px] sm:flex-wrap">
+        <div className="items-start gap-10 pt-10 sm:grid sm:grid-cols-6 md:grid-cols-5 md:divide-x">
+          <div className="hidden-scrollbar col-span-2 flex w-full gap-12 overflow-x-scroll max-sm:mb-10 sm:max-w-[180px] sm:flex-col md:col-span-1">
             {faqCategories.map((category: any, index: number) => (
               <button
                 key={index}
@@ -68,18 +59,22 @@ const FAQBrowser = ({
               </button>
             ))}
           </div>
-          <div className="faq-items min-w-full max-w-4xl flex-[6] sm:min-w-0 md:pl-10">
+          <Accordion
+            key={filteredData[0]?.title}
+            type="single"
+            collapsible
+            className="col-span-4 w-full min-w-full max-w-3xl sm:min-w-0 md:pl-10"
+            defaultValue={filteredData[0]?.title}
+          >
             {selectedCategory &&
               filteredData.map((faqItem: any, index: number) => (
                 <FAQItem
                   key={index}
                   title={faqItem.title}
                   text={faqItem.description}
-                  isActive={index === openIndex}
-                  onClick={() => handleToggle(index)}
                 />
               ))}
-          </div>
+          </Accordion>
         </div>
       )}
     </>

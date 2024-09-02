@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import dynamic from "next/dynamic";
-import Loader from "@/components/__shared/ui/loader/Loader";
+import Loader from "@/components/__shared/ui/loader";
 const ListingModal = dynamic(() => import("../components/steps/ListingModal"));
 
 const ListingCreatePage = () => {

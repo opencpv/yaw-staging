@@ -3,7 +3,8 @@ import { formatPrice } from "@/lib/utils/numberManipulation";
 import { ListingCardInterface } from "../../../../../interfaces";
 import { cn } from "@/lib/utils";
 import RatingsForm from "../ratings-form";
-// import AllReviewsModal from "../modals/all-reviews-modal";
+import dynamic from "next/dynamic";
+const AllReviewsModal = dynamic(() => import("../modals/all-reviews-modal"));
 
 const ListingInfo = (props: Partial<ListingCardInterface>) => {
   return (
@@ -32,8 +33,7 @@ const ListingInfo = (props: Partial<ListingCardInterface>) => {
             <RatingsForm property={props} value={props.ratingCount} />
 
             {props?.ratingCount !== undefined && props.ratingCount > 0 && (
-              // <AllReviewsModal property={props} value={props.ratingCount} />
-              <></>
+              <AllReviewsModal property={props} value={props.ratingCount} />
             )}
           </div>
         </div>
@@ -52,7 +52,7 @@ const ListingInfo = (props: Partial<ListingCardInterface>) => {
         </small>
 
         <div
-          className={cn("w-max rounded-xl px-3 py-1 text-xs ", {
+          className={cn("w-max rounded-xl px-3 py-1 text-xs", {
             "truncate bg-[#E7F8F2] text-indigo-950": props.advancePeriod,
             "bg-info-bg text-info": !props.advancePeriod,
           })}

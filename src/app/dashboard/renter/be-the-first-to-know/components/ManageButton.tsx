@@ -1,20 +1,17 @@
-import Button from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import React from "react";
 import { MdOutlineSettings } from "react-icons/md";
 
-type Props = {};
 
-const ManageButton = (props: Props) => {
+const ManageButton = () => {
   return (
-    <Button
+    <LinkButton
       href="/dashboard/renter/be-the-first-to-know/manage-criteria"
       variant="outline"
-      color="primary"
-      className="w-fit px-5"
     >
       <MdOutlineSettings />
       Manage Search
-    </Button>
+    </LinkButton>
   );
 };
 

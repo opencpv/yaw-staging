@@ -16,12 +16,12 @@ import {
   ActionItem,
   ActionItemTrigger,
   ActionPopover,
-} from "../ui/ActionPopover";
+} from "../../../../../components/__shared/ui/popover/action-popover";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
 import dynamic from "next/dynamic";
 const ErrorMessage = dynamic(
-  () => import("@/components/__shared/ui/states/ErrorMessage"),
+  () => import("@/components/__shared/ui/states/error-message"),
 );
 
 interface Props {
@@ -112,7 +112,7 @@ const FileUploader = ({
   );
 
   useEffect(() => {
-    if (defaultImages) {
+    if (defaultImages?.length > 0) {
       setFiles(defaultImages);
       // setPrimaryImage(defaultPrimaryImage as string);
     }
@@ -189,7 +189,7 @@ const FileUploader = ({
         ))}
       </ul>
       {meta.touched && meta.error && (
-        <ErrorMessage error={meta.error}>{meta.error}</ErrorMessage>
+        <ErrorMessage name={meta.error}>{meta.error}</ErrorMessage>
       )}
     </FileContext.Provider>
   );
@@ -205,7 +205,7 @@ const Preview = ({ file, isPrimary }: any) => {
   const setPrimaryImage = useContext(FileContext)?.setPrimaryImage;
   const [field, meta, helpers] = useField("primaryImage");
 
-  const handlePrimaryImage = () => {
+  const handlePrimaryImage = useCallback(() => {
     if (file.name === primaryImage) {
       setPrimaryImage?.(undefined);
       helpers.setValue("");
@@ -213,8 +213,7 @@ const Preview = ({ file, isPrimary }: any) => {
       setPrimaryImage?.(file.name);
       helpers.setValue(file.name);
     }
-  };
-
+  }, [file.name, helpers, primaryImage, setPrimaryImage]);
   return (
     <li className="relative aspect-video w-40 rounded-md">
       <div className="absolute inset-0 z-10 h-full w-full rounded-[inherit] bg-black bg-opacity-20" />

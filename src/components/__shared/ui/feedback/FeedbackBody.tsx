@@ -2,7 +2,7 @@ import React from "react";
 import Thumbs from "./Thumbs";
 import FeedbackSlider from "./FeedbackSlider";
 import Image from "next/image";
-import Button from "../button/Button";
+import { Button } from "../button";
 import { useFeedbackDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { cn } from "@/lib/utils";
 import { Form, Formik } from "formik";
@@ -23,7 +23,7 @@ const FeedbackBody = ({
   const initialValues = {
     value_a: 50,
     value_b: 50,
-    value_c: true,
+    value_c: undefined,
     value_d: "",
   };
 
@@ -47,11 +47,14 @@ const FeedbackBody = ({
         alt="group of people"
         width={128}
         height={128}
-        className="mx-auto mt-10 aspect-square w-72"
+        className="mx-auto mt-10 aspect-square w-40 sm:w-60"
       />
       <Formik
         initialValues={initialValues}
         onSubmit={async (values, {}) => {
+          // value_c represents the thumbs
+          if (values.value_c === undefined) return;
+
           const value_a_rounded = Math.round(values.value_a / 5) * 5;
           const value_b_rounded = Math.round(values.value_b / 5) * 5;
           const key = "floating-feedback-behavior";
@@ -130,14 +133,12 @@ const FeedbackBody = ({
             <Button
               isLoading={isSubmitting}
               type="submit"
-              color={
-                thumbsUpChecked || thumbsDownChecked ? "gradient" : undefined
-              }
               className={cn(
-                "w-6/12 rounded-md py-2.5 text-lg capitalize text-white hover:opacity-80",
+                "w-6/12 rounded-md capitalize text-white hover:opacity-80",
                 {
                   "bg-gray-400 text-black":
                     !thumbsDownChecked && !thumbsUpChecked,
+                  "green-gradient": thumbsDownChecked || thumbsUpChecked,
                 },
               )}
               disabled={!thumbsDownChecked && !thumbsUpChecked}

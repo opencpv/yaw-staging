@@ -1,12 +1,12 @@
 "use client";
-import SkeletonListing from "@/components/__shared/ui/skeleton/SkeletonListing";
-import ListingCard from "@/components/__shared/ui/listing/ListingCard";
+import SkeletonListing from "@/components/__shared/ui/skeleton/skeleton-listing";
+import ListingCard from "@/components/__shared/ui/listing/listing-card";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import ContactPreferenceToggle from "../../components/shared/ui/ContactPreferenceToggle";
 import { useFetchCriteriaMatches, useFetchSearchCriteria } from "./services";
 import { getListingProps, Listing } from "@/lib/enum";
-// import { Skeleton } from "@nextui-org/react";
-import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/ButtonInfiniteLoading";
+import { Skeleton } from "@/components/__shared/ui/skeleton";
+import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/button-infinite-loading";
 import ManageButton from "./components/ManageButton";
 import dynamic from "next/dynamic";
 const BTFTKModal = dynamic(() => import("./components/steps/BTFTKModal"));
@@ -36,7 +36,7 @@ const BeTheFirstToKnow = () => {
       {isLoading ? (
         <div className="flex flex-col gap-8">
           <BTFTKModal />
-          {/* <Skeleton className="h-5 w-80 rounded-md" /> */}
+          <Skeleton className="h-5 w-80 rounded-md" />
           <section className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
             <SkeletonListing />
           </section>

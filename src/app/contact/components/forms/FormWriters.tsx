@@ -8,22 +8,25 @@ import ContactMessageField from "./ContactMessageField";
 import ContactFullNameField from "./ContactFullNameField";
 import ContactPhoneField from "./ContactPhoneField";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
-import CustomErrorMessage from "@/components/__shared/ui/states/ErrorMessage";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import { useRouter } from "next/navigation";
 import { generateString } from "@/lib/utils";
 import slugify from "@/lib/utils/slugify";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-import Button from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { UploadFile } from "../UploadFile";
 import { E164Number } from "libphonenumber-js/core";
+import dynamic from "next/dynamic";
+import { tag } from "@/store/contact/useContactStore";
+const CustomErrorMessage = dynamic(
+  () => import("@/components/__shared/ui/states/error-message"),
+);
 
 type Props = {};
 
 const FormWriters = (props: Props) => {
   const {
-    activeTab,
     file,
     formRef,
     loading,
@@ -55,7 +58,8 @@ const FormWriters = (props: Props) => {
         validate(values, contactFormSession.phone as E164Number)
       }
       onSubmit={async (values, { resetForm }) => {
-        values.contactType = capitalizeName(activeTab);
+        if (!tag) return;
+        values.contactType = capitalizeName(tag);
         const newFilename: string =
           generateString(4) + "-" + slugify(file?.name || "");
         var newFile = new File([file as File], newFilename, {
@@ -126,10 +130,6 @@ const FormWriters = (props: Props) => {
                 handleChange={handleChange}
                 error={errors.fullname}
               />
-              <CustomErrorMessage className="mt-5" error={errors.fullname}>
-                {/* @ts-ignore */}
-                <ErrorMessage name="fullname" error={errors.fullname} />
-              </CustomErrorMessage>
             </div>
             <div className="form-div">
               <ContactPhoneField
@@ -148,7 +148,7 @@ const FormWriters = (props: Props) => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              <CustomErrorMessage className="mt-2" error={errors.message}>
+              <CustomErrorMessage className="mt-2" name={errors.message}>
                 {/* @ts-ignore */}
                 <ErrorMessage name="message" error={errors.message} />
               </CustomErrorMessage>
@@ -161,7 +161,7 @@ const FormWriters = (props: Props) => {
 
             <Button
               className="max-w-full xs:max-w-fit"
-              color="accent"
+              variant="accent"
               isLoading={loading}
               type="submit"
             >
