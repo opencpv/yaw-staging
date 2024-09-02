@@ -5,8 +5,6 @@ import { useItemFilterStore } from "@/store/moving_sales/useMovingSalesStore";
 type Props = {};
 
 const ItemFilterPriceRange = (props: Props) => {
-  const term = useItemFilterStore((state) => state.term);
-  const setTerm = useItemFilterStore((state) => state.setTerm);
   const priceRangeFrom = useItemFilterStore((state) => state.priceRangeFrom);
   const priceRangeTo = useItemFilterStore((state) => state.priceRangeTo);
   const setPriceRangeFrom = useItemFilterStore(
@@ -22,7 +20,6 @@ const ItemFilterPriceRange = (props: Props) => {
           label="Minimum"
           placeholder="GHS 50.00"
           onChange={(e) => setPriceRangeFrom(e.target.value)}
-          //onChange={setPriceRangeFrom}
         />
         <Input
           value={priceRangeTo}

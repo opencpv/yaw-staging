@@ -1,7 +1,6 @@
 "use client";
-import TextInput from "@/components/__shared/ui/form/text-input";
+import { Input } from "@/components/__shared/ui/form/input";
 import React, { ChangeEvent } from "react";
-import { useContactForm } from "./hooks/useContactForm";
 
 type Props = {
   value: string | null;
@@ -18,10 +17,10 @@ type Props = {
 
 const ContactEmailField = ({ value, handleChange, error }: Props) => {
   return (
-    <TextInput
+    <Input
       name="email"
       type="email"
-      value={value}
+      value={value as string}
       label="Email"
       onChange={handleChange}
       className={`p-3 py-7`}

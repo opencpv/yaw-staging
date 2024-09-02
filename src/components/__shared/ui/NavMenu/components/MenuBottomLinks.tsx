@@ -41,7 +41,7 @@ const MenuBottomLinks = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
           {LowerCase(r?.name) === "report fraud" ? (
             <ReportFraud
               className={cn(
-                "transition-all hover:scale-110 hover:text-accent-100",
+                "transition-all hover:scale-110 hover:text-accent-100 sm:text-2xl",
               )}
               onClick={() => {
                 setToggle(false);

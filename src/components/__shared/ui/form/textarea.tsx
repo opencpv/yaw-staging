@@ -27,7 +27,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     const formikContext = useFormikContext();
     let field: FieldInputProps<any> | undefined;
     let meta: FieldMetaProps<any> | undefined;
-    let fieldLength: number | undefined;
+    let fieldLength = (value as string)?.length || 0;
 
     if (formikContext) {
       field = formikContext.getFieldProps(name as string);
@@ -41,10 +41,20 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     ) => {
       const slicedChacracters = e.target.value.slice(0, characterLimit);
       // @ts-ignore
+      if (e.nativeEvent.inputType === "insertText") {
+        onChange?.({
+          // @ts-ignore
+          target: { value: slicedChacracters },
+        });
+        field?.onChange({
+          target: { name: field.name, value: slicedChacracters },
+        });
+      }
+      // @ts-ignore
       if (e.nativeEvent.inputType === "insertFromPaste") {
         onChange?.({
           // @ts-ignore
-          target: { name: name as string, value: slicedChacracters },
+          target: { value: slicedChacracters },
         });
         field?.onChange({
           target: { name: field.name, value: slicedChacracters },
@@ -57,7 +67,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       ) {
         onChange?.({
           // @ts-ignore
-          target: { name: name as string, value: slicedChacracters },
+          target: { value: slicedChacracters },
         });
         field?.onChange({
           target: { name: field.name, value: slicedChacracters },
@@ -110,7 +120,8 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
                   (meta?.touched && meta.error),
               })}
             >
-              {field?.value?.length || value} / {characterLimit}
+              {field?.value?.length || (value as string)?.length} /{" "}
+              {characterLimit}
             </small>
           )}
         </div>

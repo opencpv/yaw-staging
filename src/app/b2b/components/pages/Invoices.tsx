@@ -9,14 +9,9 @@ import { customerStore } from "@/store/payment/customerStore";
 import CheckoutButton from "../__shared/CheckoutButton";
 import { HiOutlineDownload } from "react-icons/hi";
 import { Button } from "@/components/__shared/ui/button";
-import axios from "axios";
-import { title } from "process";
-import downloadPdf from "@/lib/utils/downloadPdf";
-import ReactPDF, { PDFDownloadLink } from "@react-pdf/renderer";
-import { PDFDownload, PDFTemplateObject } from "../__shared/InvoiceTemplate";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import { PDFTemplateObject } from "../__shared/InvoiceTemplate";
 import CaCard from "@/components/__shared/ui/icons/CaCard";
-import theme from "tailwindcss/defaultTheme";
-import { IoArchiveOutline } from "react-icons/io5";
 import ArchivedButton from "@/components/__shared/ui/table/archived-button";
 
 type Status = "All" | "Paid" | "Pending";

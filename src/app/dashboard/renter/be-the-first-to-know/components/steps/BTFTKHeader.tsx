@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect } from "react";
 import Progress from "@/app/dashboard/components/shared/ui/Progress";
-import { Button } from "@/components/__shared/ui/button";
 import {
   BTFTKDefaultValues,
   BTFTKStepsStore,
@@ -12,8 +11,6 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import { usePathname, useRouter } from "next/navigation";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import capitalizeName from "@/lib/utils/stringManipulation";
-import { LiaTimesSolid } from "react-icons/lia";
-import { cn } from "@/lib/utils";
 import style from "../../index.module.css";
 import HeaderButtons from "@/components/__shared/ui/modals/steps/HeaderButtons";
 

@@ -1,19 +1,18 @@
 "use client";
 import dynamic from "next/dynamic";
-// import SomethingWentWrong from "../components/__shared/ui/states/SomethingWentWrong";
 
-// const SomethingWentWrong = dynamic(
-//   () => import("../components/__shared/ui/states/SomethingWentWrong"),
-// );
-// const Navbar = dynamic(() => import("../components/__shared/ui/Navbar"));
-// const Footer = dynamic(() => import("../components/__shared/ui/footer/Footer"));
+const SomethingWentWrong = dynamic(
+  () => import("../components/__shared/ui/states/SomethingWentWrong"),
+);
+const Navbar = dynamic(() => import("../components/__shared/ui/Navbar"));
+const Footer = dynamic(() => import("../components/__shared/ui/footer"));
 
 function Page() {
   return (
     <>
-      {/* <Navbar />
+      <Navbar />
       <SomethingWentWrong />
-      <Footer /> */}
+      <Footer />
     </>
   );
 }

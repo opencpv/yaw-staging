@@ -53,11 +53,11 @@ export const useFetchItems = ({
     }
   }
 
-  if (condition && condition !== "all") {
+  if (condition && condition !== "All") {
     query = query.eq("condition", capitalizeName(condition));
   }
 
-  if (term && term !== "all") {
+  if (term && term !== "All") {
     query = query.eq("term", capitalizeName(term));
   }
 

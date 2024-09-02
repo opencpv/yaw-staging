@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { ItemPublicationStatus } from "./PublicationStatus";
 import { Switch } from "@/components/__shared/ui/switch";
-import { ItemContext } from "@/app/dashboard/contexts/ItemContext";
 import { ProductStatusProp } from "@/lib/typings";
 import { toast } from "react-hot-toast";
 
@@ -14,8 +13,6 @@ interface Props {
 }
 const ProductStatus = ({ isAvailable, status, id, refetch }: Props) => {
   const [value, setValue] = useState(isAvailable);
-
-  const item = useContext(ItemContext)?.item;
 
   const handleSelectionChange = async (value: boolean) => {
     setValue(value);

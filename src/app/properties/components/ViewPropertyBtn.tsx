@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useModalFullscreenStore } from "@/store/modal/useModalStore";
 import dynamic from "next/dynamic";
+import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 const PropertyGalleryModal = dynamic(() => import("./PropertyGalleryModal"));
 
 type Props = {
@@ -14,7 +15,7 @@ type Props = {
 };
 
 const ViewPropertyBtn = ({ href, className, disabled }: Props) => {
-  // const { isOpen, onClose, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onClose, onOpen, onOpenChange } = useDisclosure();
   const setHideWindowScrollbar = useModalFullscreenStore(
     (state) => state.setHideWindowScrollbar,
   );
@@ -22,12 +23,12 @@ const ViewPropertyBtn = ({ href, className, disabled }: Props) => {
   const pathname = usePathname();
   return (
     <>
-      {/* <PropertyGalleryModal
+      <PropertyGalleryModal
         onOpenChange={onOpenChange}
         onClose={onClose}
         isOpen={isOpen}
         itemData={{} as any}
-      /> */}
+      />
       {pathname === "/" ? (
         <Link
           href={`${href}`}
@@ -57,7 +58,7 @@ const ViewPropertyBtn = ({ href, className, disabled }: Props) => {
             disabled && "pointer-events-none cursor-not-allowed"
           } ${className}`}
           onClick={() => {
-            // onOpen();
+            onOpen();
             setHideWindowScrollbar(true);
           }}
         >

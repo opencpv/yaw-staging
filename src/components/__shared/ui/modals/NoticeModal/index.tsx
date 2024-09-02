@@ -2,8 +2,6 @@
 import React, { createContext, useContext, useState } from "react";
 import Image from "next/image";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import { LiaTimesSolid } from "react-icons/lia";
-import { Button } from "../../button";
 import { FaThumbsUp } from "react-icons/fa6";
 import styles from "./NoticeModal.module.css";
 import legal from "@/enum/about/legal";
@@ -15,7 +13,9 @@ import { NOTICE_MODAL_TTL } from "@/constants";
 import { cn } from "@/lib/utils";
 import { pacifico } from "@/lib/utils/fonts";
 import dynamic from "next/dynamic";
-const Modal = dynamic(() => import("../dialog").then((mod) => mod.Modal));
+import { Button } from "../../button";
+import { DialogContent } from "../dialog";
+const Dialog = dynamic(() => import("../dialog").then((mod) => mod.Dialog));
 
 const Context = createContext<{
   handleVisibility: () => void;
@@ -35,25 +35,18 @@ const NoticeModal = () => {
     }
   };
 
+  const handleOpenChange = (open: boolean) => {
+    setOpen(open);
+    handleVisibility();
+  };
+
   return (
     <Context.Provider value={{ handleVisibility, setOpen }}>
-      <Modal
-        body={<ModalBody />}
-        isOpen={open ?? true}
-        onOpenChange={(open) => {
-          handleVisibility();
-          setOpen(open);
-        }}
-        closeButton={
-          <CloseButton
-            onClick={() => {
-              setOpen(false);
-              handleVisibility();
-            }}
-          />
-        }
-        className="max-w-[88rem] p-0"
-      />
+      <Dialog open={open ?? true} onOpenChange={handleOpenChange}>
+        <DialogContent className="max-w-7xl p-0">
+          <ModalBody />
+        </DialogContent>
+      </Dialog>
     </Context.Provider>
   );
 };
@@ -64,7 +57,7 @@ const ModalBody = () => {
   const handleVisibility = useContext(Context)?.handleVisibility;
 
   return (
-    <main className="relative size-full text-white md:flex md:bg-primary">
+    <main className="relative grid size-full rounded-lg text-white md:grid-cols-2 md:bg-primary">
       <Image
         src={images.CoupleHoldingBoxes}
         alt="Couple holding boxes"
@@ -97,16 +90,17 @@ const ModalBody = () => {
           </small>
           <small>Rentright Team</small>
         </div>
-        <button
+        <Button
           onClick={() => {
             setOpen?.(false);
             handleVisibility?.();
           }}
-          color="primary"
-          className="h-12 items-center gap-2 border border-white px-24 capitalize hover:bg-neutral-300 hover:text-neutral-600 max-xs:max-w-full"
+          variant={"outline"}
+          size={"full"}
+          className="border-white bg-transparent capitalize text-white hover:bg-neutral-300 hover:text-neutral-600"
         >
           Got it <FaThumbsUp size={24} className="scale-x-[-1]" />
-        </button>
+        </Button>
       </section>
       <div className="relative w-full max-md:hidden">
         <Image
@@ -120,15 +114,18 @@ const ModalBody = () => {
   );
 };
 
-const CloseButton = ({ onClick }: { onClick: () => void }) => {
-  return (
-    <button
-      className="circle-hover text-white max-md:hover:text-shade-500 md:text-shade-500"
-      onClick={onClick}
-    >
-      <LiaTimesSolid size={24} />
-    </button>
-  );
-};
+//const CloseButton = ({ onClick }: { onClick: () => void }) => {
+//  return (
+//    <Button
+//      variant={"ghost"}
+//      size={"icon"}
+//      className="circle-hover text-white max-md:hover:text-shade-500 md:text-shade-500"
+//      onClick={onClick}
+//      asChild
+//    >
+//      <LiaTimesSolid size={24} />
+//    </Button>
+//  );
+//};
 
 export default NoticeModal;

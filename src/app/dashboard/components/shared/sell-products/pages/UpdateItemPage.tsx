@@ -294,7 +294,7 @@ const UpdateItemPage = () => {
                       options={["New", "Used-Like New", "Used"]}
                     />
                     <RadioInput
-                      options={["yes", "no"]}
+                      options={["Yes", "No"]}
                       label="Negotiable"
                       name="term"
                       color="primary"
@@ -305,11 +305,13 @@ const UpdateItemPage = () => {
                         Preferred Method of contact
                       </p>
                       <Checkbox
+                        name="inAppCheck"
                         defaultChecked
                         label="In app messaging ( Default)"
                         disabled={true}
                       />
                       <Checkbox
+                        name="emailCheck"
                         label="Email"
                         defaultChecked
                         onCheckedChange={(checked) =>
@@ -325,6 +327,7 @@ const UpdateItemPage = () => {
                         />
                       )}
                       <Checkbox
+                        name="phoneCheck"
                         label="Phone call"
                         onCheckedChange={(checked) =>
                           setUsePhone(checked as boolean)
@@ -341,6 +344,7 @@ const UpdateItemPage = () => {
                         />
                       )}
                       <Checkbox
+                        name="whatsappCheck"
                         label="WhatsApp"
                         onCheckedChange={(checked) =>
                           setUseWhatsapp(checked as boolean)

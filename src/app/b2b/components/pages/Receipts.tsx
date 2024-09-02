@@ -7,7 +7,7 @@ import { invoiceStore } from "@/store/payment/invoiceStore";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { PDFTemplateObject } from "../__shared/InvoiceTemplate";
 import { customerStore } from "@/store/payment/customerStore";
-// import { Button } from "@/components/__shared/ui/button";
+import { Button } from "@/components/__shared/ui/button";
 import { HiOutlineDownload } from "react-icons/hi";
 
 type Props = {
@@ -43,9 +43,9 @@ function Receipts({ customerId }: Props) {
             }
             fileName={`${item.service}-receipt.pdf`}
           >
-            {/* <Button size="sm" className="px-4" id={`${item.service}-receipt`}>
+            <Button size="sm" id={`${item.service}-receipt`}>
               Download
-            </Button> */}
+            </Button>
           </PDFDownloadLink>
         ))}
       </div>
@@ -54,17 +54,17 @@ function Receipts({ customerId }: Props) {
         <h4 className="font-normal">
           Effortlessly handle your receipts right here
         </h4>
-        {/* <SearchInput
+        <SearchInput
           onChange={(e) => setSearchString(e.target.value)}
           className="mt-5"
           placeholder="Search receipt ID"
-        /> */}
+        />
       </div>
       <ReceiptTable searchString={searchString} customerId={customerId} />
-      {/* <Button
+      <Button
         color="primary"
         disabled={receiptItem.length == 0}
-        className={`text group w-fit gap-2  bg-opacity-20 px-8 font-bold text-[#545454] hover:text-white`}
+        className={`text group bg-opacity-20 text-shade-500 hover:text-white`}
         onClick={() => {
           downloadAll();
         }}
@@ -74,7 +74,7 @@ function Receipts({ customerId }: Props) {
           size="24"
           className="shrink-0 group-hover:text-white"
         />
-      </Button> */}
+      </Button>
       <div className="hidden w-full items-center justify-end lg:flex">
         {/* <DownloadButton maxWidth="fit" /> */}
       </div>

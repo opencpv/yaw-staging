@@ -26,7 +26,7 @@ const Landing = (props: Props) => {
           {title}{" "}
           <span
             className="tracking-in-contract text-accent-100"
-            style={{ animationDelay: "1s" }}
+            style={{ animationDelay: "1.5s" }}
           >
             {titleHighlight}
           </span>

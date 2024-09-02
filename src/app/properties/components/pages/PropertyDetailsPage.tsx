@@ -33,7 +33,6 @@ type Props = {
 const PropertyDetailsPage = async ({ params }: Props) => {
   const { id: propertyId } = params;
   const supabaseClient = createClient();
-  // const { data } = await supabaseClient.auth.getSession();
   const {
     data: { user },
   } = await supabaseClient.auth.getUser();

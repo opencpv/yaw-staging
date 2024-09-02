@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-// import { Skeleton } from "@nextui-org/react";
+import { Skeleton } from ".";
 import React from "react";
 
 const SkeletonRectangle = ({ className, count }: SkeletonProps) => {
@@ -7,23 +7,17 @@ const SkeletonRectangle = ({ className, count }: SkeletonProps) => {
 
   return (
     <>
-      {/* {count &&
+      {count &&
         countArray.map((_, idx) => (
           <Skeleton
-            classNames={{
-              base: cn("rounded-xl h-72 w-full", className),
-            }}
+            className={cn("h-72 w-full rounded-xl", className)}
             key={idx + 1}
           />
         ))}
 
       {count === undefined && (
-        <Skeleton
-          classNames={{
-            base: cn("rounded-xl h-72 w-full", className),
-          }}
-        />
-      )} */}
+        <Skeleton className={cn("h-72 w-full rounded-xl", className)} />
+      )}
     </>
   );
 };

@@ -17,7 +17,7 @@ type Image = {
 
 type ModalProps = {
   isOpen: boolean;
-  onOpenChange: () => void;
+  onOpenChange: (open: boolean) => void;
   onClose?: () => void;
   images: string[];
   shareTitle: string;

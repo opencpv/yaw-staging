@@ -27,6 +27,7 @@ const CategoryCheckboxes = ({ options }: Props) => {
           label={capitalizeName(option)}
           checked={categories.includes(option)}
           radius="md"
+          color="accent"
           onCheckedChange={(checked) =>
             handleCheckChange(checked as boolean, option)
           }

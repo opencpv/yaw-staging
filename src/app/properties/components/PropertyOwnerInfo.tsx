@@ -6,7 +6,6 @@ import React from "react";
 import style from "../Template.module.css";
 import Rating from "@/components/__shared/ui/ratings-form";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/__shared/ui/button";
 import Avatar from "@/components/__shared/ui/avatar/Avatar";
 import MessageButton from "@/components/__shared/ui/button/message-button";
 

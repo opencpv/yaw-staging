@@ -1,4 +1,4 @@
-// import { useDisclosure } from "@nextui-org/react";
+import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import React, { useEffect, useState } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import FavoriteModal from "./listing/FavoriteModal";
@@ -9,9 +9,9 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import dynamic from "next/dynamic";
 import toast from "react-hot-toast";
 
-// const SignInRequiredModal = dynamic(
-//   () => import("./modals/SignInRequiredModal"),
-// );
+const SignInRequiredModal = dynamic(
+  () => import("./modals/sign-in-required-modal"),
+);
 
 type Props = {
   userId: string | number;
@@ -22,7 +22,7 @@ type Props = {
 
 const LikeHeart = ({ liked, className, userId, propertyId }: Props) => {
   const [isLiked, setIsLiked] = useState<boolean>(liked as boolean);
-  // const { onOpen, isOpen, onOpenChange, onClose } = useDisclosure();
+  const { onOpen, isOpen, onOpenChange, onClose } = useDisclosure();
   const [signInModalOpen, setSignInModalOpen] = useState(false);
   const [shouldOpenModal, setShouldOpenModal] = useLocalStorage(
     "shouldOpenModal",
@@ -32,17 +32,15 @@ const LikeHeart = ({ liked, className, userId, propertyId }: Props) => {
 
   const handleContactPreference = React.useCallback(() => {
     if (shouldOpenModal) {
-      // onOpen();
+      onOpen();
     }
-  }, [
-    // onOpen,
-     shouldOpenModal]);
+  }, [onOpen, shouldOpenModal]);
 
   const handleDislike = async () => {
     setIsLiked(!isLiked);
     const { error } = await updateLikedProperty(userId, propertyId);
     if (error) {
-            toast.error("Something went wrong. Please try again.");
+      toast.error("Something went wrong. Please try again.");
       setIsLiked(!isLiked);
     }
   };
@@ -52,7 +50,7 @@ const LikeHeart = ({ liked, className, userId, propertyId }: Props) => {
       setIsLiked(!isLiked);
       const { error } = await updateLikedProperty(userId, propertyId);
       if (error) {
-            toast.error("Something went wrong. Please try again.");
+        toast.error("Something went wrong. Please try again.");
         setIsLiked(!isLiked);
       }
       handleContactPreference();
@@ -94,16 +92,16 @@ const LikeHeart = ({ liked, className, userId, propertyId }: Props) => {
 
   return (
     <>
-      {/* <SignInRequiredModal
+      <SignInRequiredModal
         open={signInModalOpen}
         onOpenChange={setSignInModalOpen}
         onClose={() => setSignInModalOpen(false)}
-      /> */}
-      {/* <FavoriteModal
+      />
+      <FavoriteModal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         onClose={onClose}
-      /> */}
+      />
       {isLiked ? (
         <button onClick={handleDislike}>
           <FaHeart className={` ${isLiked && "ping"} ${className}`} />

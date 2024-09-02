@@ -15,7 +15,7 @@ let carouselDemo = [
 
 type ModalProps = {
   isOpen: boolean;
-  onOpenChange: () => void;
+  onOpenChange: (open: boolean) => void;
   onClose?: () => void;
   itemData: Item;
 };

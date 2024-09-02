@@ -10,7 +10,7 @@ import legal from "@/enum/about/legal";
 import DownloadButton from "../DownloadButton";
 import CheckoutButton from "../CheckoutButton";
 import { formatPrice } from "@/lib/utils/numberManipulation";
-import { formatDateDMY, formatDateOnly } from "@/lib/utils/stringManipulation";
+import { formatDateDMY } from "@/lib/utils/stringManipulation";
 import { customerStore } from "@/store/payment/customerStore";
 import dynamic from "next/dynamic";
 const Modal = dynamic(() =>

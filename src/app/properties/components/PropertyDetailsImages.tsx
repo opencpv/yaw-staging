@@ -1,5 +1,5 @@
 "use client";
-// import { useDisclosure } from "@nextui-org/react";
+import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import Image from "next/image";
 import images from "@/enum/temp/images";
 import dynamic from "next/dynamic";
@@ -13,16 +13,16 @@ type Props = {
 };
 
 const PropertyDetailsImages = ({ listing }: Props) => {
-  // const { isOpen, onClose, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onClose, onOpen, onOpenChange } = useDisclosure();
 
   return (
     <section>
-      {/* <PropertyGalleryModal
+      <PropertyGalleryModal
         onOpenChange={onOpenChange}
         onClose={onClose}
         isOpen={isOpen}
         itemData={listing}
-      /> */}
+      />
       <section className="grid gap-5 md:grid-cols-4">
         {/* banner image */}
         <div className="fade-in relative col-span-3 aspect-video w-full">
@@ -32,7 +32,7 @@ const PropertyDetailsImages = ({ listing }: Props) => {
             fill
             className="rounded-3xl object-cover"
           />
-          {/* <GalleryModalBtn onClick={onOpen} /> */}
+          <GalleryModalBtn onClick={onOpen} />
         </div>
         <div className="fade-in grid gap-5 max-md:hidden">
           <div className="relative w-full">

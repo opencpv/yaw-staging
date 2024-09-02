@@ -2,7 +2,7 @@ import { ErrorMessage, Form, Formik } from "formik";
 import React, { useEffect } from "react";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { sendContactUsEmail } from "../../api";
-import TextInput from "@/components/__shared/ui/form/text-input";
+import { Input } from "@/components/__shared/ui/form/input";
 import ContactSchema from "./lib/contactSchema";
 import { useContactForm } from "./hooks/useContactForm";
 import ContactMessageField from "./ContactMessageField";
@@ -171,7 +171,7 @@ const FormReport = (props: Props) => {
             />
 
             <div className="form-div" title="Paste URL link here (optional)">
-              <TextInput
+              <Input
                 name="reportLink"
                 value={contactFormSession.reportLink || values.reportLink}
                 onChange={(e) => {
