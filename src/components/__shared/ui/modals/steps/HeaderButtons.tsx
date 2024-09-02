@@ -26,7 +26,10 @@ function HeaderButtons({
         color="white"
         radius="full"
         variant={"outline"}
-        className={`border-neutral-300 ${cancelBreakpoint}:hidden`}
+        className={cn("border-neutral-300", {
+          "xsm:hidden": cancelBreakpoint === "xsm",
+          "ssm:hidden": cancelBreakpoint === "ssm",
+        })}
         onClick={onCancel}
       >
         <LiaTimesSolid />
@@ -36,7 +39,10 @@ function HeaderButtons({
         radius="full"
         size={"sm"}
         variant={"outline"}
-        className={`border-neutral-300 max-${cancelBreakpoint}:hidden`}
+        className={cn("border-neutral-300", {
+          "max-xsm:hidden": cancelBreakpoint === "xsm",
+          "max-ssm:hidden": cancelBreakpoint === "ssm",
+        })}
         onClick={onCancel}
       >
         {lastSlide ? "Exit" : "Cancel"}

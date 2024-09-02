@@ -4,6 +4,7 @@ import { GiBiceps } from "react-icons/gi";
 import { IoMdHappy } from "react-icons/io";
 import { PiConfetti } from "react-icons/pi";
 import { cn } from "@/lib/utils";
+import { Progress as RadixProgress } from "@/components/__shared/ui/progress";
 
 type Props = {
   /** The current value of the progress bar */
@@ -26,8 +27,8 @@ export default function Progress({
   hideGotThisMessage,
 }: Props) {
   const [showMotivationMessage, setShowMotivationMessage] = useState(
-  shouldShowMotivationMessage  
-  )
+    shouldShowMotivationMessage,
+  );
   const [message, setMessage] = useState("");
   const [messageIcon, setMessageIcon] = useState<React.ReactElement | null>(
     null,
@@ -86,28 +87,19 @@ export default function Progress({
   ]);
 
   return (
-    <div className="h-[8px] sm:h-[16px] w-full rounded-2xl bg-primary/5">
-      <div
-        className="duration-3000 relative h-[8px] sm:h-[16px] justify-end rounded-2xl bg-primary transition-width"
-        style={{ width: `${value}%` }}
-      >
-        <div
-          className={cn(
-            `${
-              message && messageIcon && showMotivationMessage
-                ? "flex"
-                : "hidden"
-            } progress-emoji absolute right-0 top-8 z-50 w-fit items-center justify-center gap-3 whitespace-nowrap rounded-2xl bg-primary-300 px-3 py-4 text-[13px] text-shade-300 lg:text-base`,
-            {
-              "-right-20 lg:right-0": firstSlide,
-              "right-[10%] lg:right-0": lastSlide,
-            },
-          )}
-        >
+    <RadixProgress
+      value={value}
+      message={
+        <span className="flex items-center gap-2">
           {message}
           {messageIcon}
-        </div>{" "}
-      </div>
-    </div>
+        </span>
+      }
+      classNames={{
+        message: cn({
+          hidden: !(message && messageIcon && showMotivationMessage),
+        }),
+      }}
+    ></RadixProgress>
   );
 }

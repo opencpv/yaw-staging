@@ -9,19 +9,25 @@ import {
   CommandGroup,
   CommandInput,
   CommandItem,
+  CommandList,
 } from "@/components/__shared/ui/command";
 import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/__shared/ui/popover";
-import { useField } from "formik";
-import { styled } from "@stitches/react";
+import {
+  FieldHelperProps,
+  FieldInputProps,
+  FieldMetaProps,
+  useFormikContext,
+} from "formik";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
+import ErrorMessage from "../states/error-message";
 
 const Popover = dynamic(() =>
   import("@/components/__shared/ui/popover").then((mod) => mod.Popover),
@@ -78,84 +84,83 @@ const CountryInput = ({
       });
   }, []);
 
-  const [field, meta, helpers] = useField(name as string);
+  const formikContext = useFormikContext();
+  let field: FieldInputProps<any> | undefined;
+  let helpers: FieldHelperProps<any> | undefined;
+  let meta: FieldMetaProps<any> | undefined;
+
+  if (formikContext) {
+    field = formikContext.getFieldProps(name as string);
+    helpers = formikContext.getFieldHelpers(name as string);
+    meta = formikContext.getFieldMeta(name as string);
+  }
 
   return (
-    <div>
-      <Root>
-        <div className={`font-[400] capitalize text-[#6A6968]`}>
-          <label className="normal-case">{label}</label>
-        </div>
-        <Popover open={open} onOpenChange={setOpen}>
-          <PopoverTrigger asChild>
-            <Button
-              variant="outline"
-              role="combobox"
-              aria-expanded={open}
-              className={cn(
-                `h-[52px] w-full justify-between whitespace-nowrap border-[#a3a3a3] text-[#B4B2AF] placeholder:text-neutral-500 hover:border-black/50 hover:bg-transparent focus:border-2 focus:border-accent focus-visible:outline-0 focus-visible:ring-0`,
-                {
-                  "capitalize text-[#6A6968]": field.value,
-                },
-              )}
-              //@ts-ignore
-              name={field.name}
-              value={value || field.value}
-            >
-              {field.value ? field.value : value || placeholder}
-              <IoChevronDown className="ml-2 h-4 w-4 shrink-0 text-neutral-500 opacity-50" />
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="z-[200] max-h-[200px] w-fit overflow-y-scroll bg-[#fefefe] p-0 focus:outline-none">
-            <Command
-              onValueChange={(value) => {
-                onChange?.(value);
-                helpers.setValue(value);
-              }}
-            >
-              <CommandInput
-                className="focus:outline-none"
-                placeholder="Search data..."
-              />
+    <div className={cn("flex w-full flex-col gap-4 text-shade-300")}>
+      {label && <label>{label}</label>}
+      <Popover open={open} onOpenChange={setOpen}>
+        <PopoverTrigger asChild>
+          <Button
+            variant="outline"
+            role="combobox"
+            aria-expanded={open}
+            className={cn(
+              `form-field-border h-[52px] w-full justify-between whitespace-nowrap border-neutral-300 text-shade-300 placeholder:text-neutral-500 hover:scale-100 [&>svg]:transition-transform [&[data-state=open]>svg]:rotate-180`,
+              {
+                "capitalize text-shade-300": field?.value || value,
+              },
+            )}
+            size={"sm"}
+            value={field?.value || value}
+            name={field?.name || name}
+          >
+            {field?.value ? field?.value : value || placeholder}
+            <IoChevronDown className="ml-2 h-4 w-4 shrink-0 text-neutral-500 opacity-50" />
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="max-h-[200px] w-full p-0">
+          <Command
+            onValueChange={(value) => {
+              onChange?.(value);
+              helpers?.setValue(value);
+            }}
+            className="max-h-[200px] w-full"
+          >
+            <CommandInput
+              className="focus:outline-none"
+              placeholder="Search data..."
+            />
+            <CommandList>
               <CommandEmpty>No data found.</CommandEmpty>
               <CommandGroup>
                 {countryData?.map((data) => (
                   <CommandItem
-                    className="flex cursor-pointer gap-3 hover:bg-accent-50 focus:bg-accent-50 focus:text-white"
-                    key={data.value}
+                    key={data?.value}
                     onSelect={(currentValue) => {
                       onChange?.(capitalizeName(currentValue));
-                      helpers.setValue(capitalizeName(currentValue));
+                      helpers?.setValue(capitalizeName(currentValue));
                       setOpen(false);
                     }}
                   >
                     <div className="relative aspect-square w-[20px]">
-                      <Image src={data.flags} alt={data.label + " flag"} fill />
+                      <Image
+                        src={data?.flags}
+                        alt={data?.label + " flag"}
+                        fill
+                      />
                     </div>
-                    {data.label}
+                    {data?.label}
                   </CommandItem>
                 ))}
               </CommandGroup>
-            </Command>
-          </PopoverContent>
-        </Popover>
-      </Root>
+            </CommandList>
+          </Command>
+        </PopoverContent>
+      </Popover>
+
+      {formikContext ? <ErrorMessage name={field?.name as string} /> : null}
     </div>
   );
 };
 
 export default CountryInput;
-
-const Root = styled("div", {
-  fontSize: "1rem",
-  display: "flex",
-  flexDirection: "column",
-  gap: "0.9375rem",
-  ".form-input": {
-    height: "52px",
-    padding: "15px",
-    fontSize: " 0.8125rem",
-    border: "1px solid #E6E6E6",
-    borderRadius: "4px",
-  },
-});

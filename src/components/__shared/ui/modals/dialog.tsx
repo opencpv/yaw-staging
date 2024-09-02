@@ -1,5 +1,6 @@
 "use client";
 
+import style from "../../Shared.module.css";
 import * as React from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 
@@ -26,6 +27,7 @@ type ModalProps = {
   closeButton?: React.ReactNode;
   isDismissible?: boolean;
   scrollBehavior?: "inside" | "outside";
+  hideCloseButton?: boolean;
   className?: string;
 };
 
@@ -57,54 +59,75 @@ const DialogContent = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & {
     closeButton?: React.ReactNode;
     scrollBehavior?: "inside" | "outside";
+    hideCloseButton?: boolean;
   }
->(({ className, children, closeButton, scrollBehavior, ...props }, ref) => (
-  <DialogPortal>
-    {scrollBehavior === "inside" ? (
-      <>
-        <DialogOverlay />
-        <DialogPrimitive.Content
-          ref={ref}
-          className={cn(
-            "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-white p-6 shadow-lg duration-200 sm:rounded-lg",
-            className,
-          )}
-          {...props}
-        >
-          {children}
-          <DialogPrimitive.Close className="data-[state=open]:text-muted-foreground absolute right-4 top-4 z-50 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 disabled:pointer-events-none">
-            {closeButton ? closeButton : <LuX className="h-4 w-4" />}
-            <span className="sr-only">Close</span>
-          </DialogPrimitive.Close>
-        </DialogPrimitive.Content>
-      </>
-    ) : (
-      <DialogOverlay className="overflow-y-auto">
-        <DialogPrimitive.Content
-          ref={ref}
-          className={cn(
-            "relative left-[50%] top-[50%] z-50 mt-10 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-white p-6 shadow-lg duration-200 sm:rounded-lg",
-            className,
-          )}
-          {...props}
-        >
-          {children}
-          <DialogPrimitive.Close className="data-[state=open]:text-muted-foreground absolute right-4 top-4 z-50 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 disabled:pointer-events-none">
-            {closeButton ? closeButton : <LuX className="h-4 w-4" />}
-            <span className="sr-only">Close</span>
-          </DialogPrimitive.Close>
-        </DialogPrimitive.Content>
-      </DialogOverlay>
-    )}
-  </DialogPortal>
-));
+>(
+  (
+    {
+      className,
+      children,
+      closeButton,
+      hideCloseButton,
+      scrollBehavior,
+      ...props
+    },
+    ref,
+  ) => (
+    <DialogPortal>
+      {scrollBehavior === "inside" ? (
+        <>
+          <DialogOverlay />
+          <DialogPrimitive.Content
+            ref={ref}
+            className={cn(
+              "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 overflow-y-auto border bg-white p-6 shadow-lg duration-200 sm:rounded-lg",
+              className,
+            )}
+            {...props}
+          >
+            {children}
+            <DialogPrimitive.Close
+              className={cn(style.dialogClose, {
+                hidden: hideCloseButton,
+              })}
+            >
+              {closeButton ? closeButton : <LuX className="h-4 w-4" />}
+              <span className="sr-only">Close</span>
+            </DialogPrimitive.Close>
+          </DialogPrimitive.Content>
+        </>
+      ) : (
+        <DialogOverlay className="overflow-y-auto">
+          <DialogPrimitive.Content
+            ref={ref}
+            className={cn(
+              "relative left-[50%] top-[50%] z-50 mt-10 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-white p-6 shadow-lg duration-200 sm:rounded-lg",
+              className,
+            )}
+            {...props}
+          >
+            {children}
+            <DialogPrimitive.Close
+              className={cn(style.dialogClose, {
+                hidden: hideCloseButton,
+              })}
+            >
+              {closeButton ? closeButton : <LuX className="h-4 w-4" />}
+              <span className="sr-only">Close</span>
+            </DialogPrimitive.Close>
+          </DialogPrimitive.Content>
+        </DialogOverlay>
+      )}
+    </DialogPortal>
+  ),
+);
 DialogContent.displayName = DialogPrimitive.Content.displayName;
 
 const DialogHeader = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div
+  <header
     className={cn(
       "flex flex-col space-y-1.5 text-center sm:text-left",
       className,
@@ -118,7 +141,7 @@ const DialogFooter = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div
+  <footer
     className={cn(
       "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",
       className,
@@ -166,14 +189,23 @@ const Modal = ({
   isDismissible = true,
   className,
   scrollBehavior = "inside",
+  hideCloseButton,
 }: ModalProps) => {
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent
         className={cn(
-          `max-w-${size}`,
           {
             "min-h-screen sm:rounded-none": size === "full",
+            "max-w-xs": size === "xs",
+            "max-w-sm": size === "sm",
+            "max-w-md": size === "md",
+            "max-w-lg": size === "lg",
+            "max-w-xl": size === "xl",
+            "max-w-2xl": size === "2xl",
+            "max-w-3xl": size === "3xl",
+            "max-w-4xl": size === "4xl",
+            "max-w-5xl": size === "5xl",
           },
           className,
         )}
@@ -188,6 +220,7 @@ const Modal = ({
           !isDismissible && e.preventDefault();
         }}
         scrollBehavior={scrollBehavior}
+        hideCloseButton={hideCloseButton}
       >
         <DialogHeader>
           {header && <DialogTitle>{header}</DialogTitle>}

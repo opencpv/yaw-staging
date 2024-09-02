@@ -1,3 +1,4 @@
+import { client } from "@/lib/utils/sanity/client";
 import { loadQuery } from "@/lib/utils/sanity/sanityStore";
 import { SanityDocument } from "next-sanity";
 import {
@@ -19,9 +20,8 @@ export const metadata: Metadata = {
 };
 
 export default async function page() {
-  const initialFaqData = await loadQuery<SanityDocument[]>(FAQ_PAGE_QUERY);
-  const faqData = initialFaqData.data;
-  const faqCategories = await loadQuery<SanityDocument[]>(FAQ_CATEGORIES_QUERY);
+  const faqData = await client.fetch(FAQ_PAGE_QUERY);
+  const faqCategories = await client.fetch(FAQ_CATEGORIES_QUERY);
 
   return (
     <>
@@ -29,7 +29,7 @@ export default async function page() {
       <main className="wrapper relative max-xs:pt-0">
         <FaqHeader />
         <FaqHowToSwitch />
-        <FaqPage data={faqData} faqCategories={faqCategories.data} />
+        <FaqPage data={faqData} faqCategories={faqCategories} />
       </main>
       <Footer />
       <Survey />

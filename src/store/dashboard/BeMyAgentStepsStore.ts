@@ -53,7 +53,7 @@ export const BeMyAgentDefaultValues = {
   marital_status: "Single",
   tenants: "1 - 5",
   country: "Ghana",
-  preferred_contact_method: "email",
+  preferred_contact_method: "Email",
   employment_status: "Employed",
   employer: "",
   employer_country: "Ghana",

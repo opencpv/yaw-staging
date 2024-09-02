@@ -65,6 +65,7 @@ const Survey = (props: Props) => {
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         closeButton={<CloseModalIcon />}
+        size="5xl"
       />
       <motion.div
         variants={variants}

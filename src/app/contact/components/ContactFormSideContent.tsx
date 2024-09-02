@@ -1,9 +1,6 @@
 "use client";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import {
-  ContactTabActiveKey,
-  useContactStore,
-} from "@/store/contact/useContactStore";
+import { ContactTabActiveKey } from "@/store/contact/useContactStore";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -41,7 +38,7 @@ const ContactFormSideContent = (props: Props) => {
     if (sectionData) {
       if (sectionData.videoUrl) {
         return (
-          <div className="relative aspect-video w-full flex-1 rounded-2xl md:mt-8 md:aspect-auto md:h-[40rem]">
+          <div className="relative aspect-video w-full rounded-2xl md:mt-8 md:aspect-auto md:h-[40rem]">
             <iframe
               src={sectionData.videoUrl}
               title={props.tag}
@@ -68,7 +65,7 @@ const ContactFormSideContent = (props: Props) => {
             href={sectionData.pdfUrl}
             target="_blank"
             title="brochure"
-            className="flex w-full flex-1 items-center justify-center rounded-lg bg-neutral-200 shadow-2xl md:mt-8"
+            className="flex w-full items-center justify-center rounded-lg bg-neutral-200 shadow-2xl md:mt-8"
           >
             <div className="relative aspect-square w-full md:right-2 md:h-fit">
               <Image

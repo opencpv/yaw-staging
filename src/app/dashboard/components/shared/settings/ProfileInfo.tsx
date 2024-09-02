@@ -269,6 +269,7 @@ const ProfileInfo = () => {
                               <label className="pl-8">Whatsapp</label>
                             </div>
                             <Checkbox
+                              name="sameAsPhone"
                               label="Same as phone"
                               onCheckedChange={(checked) =>
                                 setSameAsPhone(checked as boolean)

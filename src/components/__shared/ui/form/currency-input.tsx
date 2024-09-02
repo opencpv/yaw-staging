@@ -10,18 +10,27 @@ import {
   CommandGroup,
   CommandInput,
   CommandItem,
+  CommandList,
 } from "@/components/__shared/ui/command";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/__shared/ui/popover";
-import { useField } from "formik";
+import {
+  FieldHelperProps,
+  FieldInputProps,
+  FieldMetaProps,
+  useField,
+  useFormikContext,
+} from "formik";
 import { styled } from "@stitches/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { SelectInput } from "@/components/__shared/ui/form/select";
 import { Input } from "./input";
+import { cn } from "@/lib/utils";
+import ErrorMessage from "../states/error-message";
 
 type DataItem = {
   label: string;
@@ -99,47 +108,56 @@ const CurrencyInput = ({
       });
   }, []);
 
-  const [field, meta, helpers] = useField(name as string);
+  const formikContext = useFormikContext();
+  let field: FieldInputProps<any> | undefined;
+  let helpers: FieldHelperProps<any> | undefined;
+  let meta: FieldMetaProps<any> | undefined;
+
+  if (formikContext) {
+    field = formikContext.getFieldProps(name as string);
+    helpers = formikContext.getFieldHelpers(name as string);
+    meta = formikContext.getFieldMeta(name as string);
+  }
 
   return (
-    <div>
-      <Root className="flex">
-        <div className={`flex gap-2 font-[400] text-[#6A6968]`}>
-          <label>{label}</label>
-        </div>
-        <div className="flex justify-start gap-4">
-          <Popover open={open} onOpenChange={setOpen}>
-            <PopoverTrigger asChild>
-              <Button
-                variant="outline"
-                role="combobox"
-                aria-expanded={open}
-                className="form-field-border h-[52px] w-full max-w-[100px] justify-between whitespace-nowrap uppercase text-[#6A6968] focus:border-2 focus:outline-none focus-visible:border-accent focus-visible:ring-0"
-                //@ts-ignore
-                name={field.name}
-                value={field.value || value}
-              >
-                {field.value ? field.value : value || placeholder}
-                <IoChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="z-[200] max-h-[400px] w-fit overflow-y-scroll bg-[#fefefe] p-0 focus:outline-none">
-              <Command
-                onValueChange={(value) => {
-                  onChange?.(value);
-                  helpers.setValue(value);
-                }}
-              >
-                <CommandInput placeholder="Search data..." />
+    <div className={cn("flex w-full flex-col gap-4 text-shade-300")}>
+      {label && <label>{label}</label>}
+      <div className="grid grid-cols-3 gap-4">
+        <Popover open={open} onOpenChange={setOpen}>
+          <PopoverTrigger asChild>
+            <Button
+              variant="outline"
+              role="combobox"
+              aria-expanded={open}
+              className={cn(
+                `form-field-border col-span-1 h-[52px] w-full justify-between whitespace-nowrap border-neutral-300 text-shade-300 placeholder:text-neutral-500 hover:scale-100 [&>svg]:transition-transform [&[data-state=open]>svg]:rotate-180`,
+              )}
+              size={"sm"}
+              value={field?.value || value}
+              name={field?.name || name}
+            >
+              {field?.value ? field.value : value || placeholder}
+              <IoChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="max-h-[200px] w-full p-0">
+            <Command
+              onValueChange={(value) => {
+                onChange?.(value);
+                helpers?.setValue(value);
+              }}
+              className="max-h-[200px] w-full"
+            >
+              <CommandInput placeholder="Search data..." />
+              <CommandList>
                 <CommandEmpty>No data found.</CommandEmpty>
                 <CommandGroup>
-                  {currencyData?.map((data, idx) => (
+                  {currencyData?.map((data) => (
                     <CommandItem
-                      className="flex cursor-pointer gap-3 hover:bg-slate-100"
-                      key={idx}
+                      key={data?.label}
                       onSelect={(currentValue) => {
                         onChange?.(currentValue.toUpperCase());
-                        helpers.setValue(currentValue.toUpperCase());
+                        helpers?.setValue(currentValue.toUpperCase());
                         setOpen(false);
                       }}
                     >
@@ -147,42 +165,32 @@ const CurrencyInput = ({
                     </CommandItem>
                   ))}
                 </CommandGroup>
-              </Command>
-            </PopoverContent>
-          </Popover>
+              </CommandList>
+            </Command>
+          </PopoverContent>
+        </Popover>
 
-          {isSelectElement ? (
-            <SelectInput
-              name={name2}
-              value={value2}
-              options={options as string[]}
-              onChange={(value) => onChange2 && onChange2(value)}
-            />
-          ) : (
-            <Input
-              name={name2 as string}
-              onChange={(e) => onChange2 && onChange2(e.target.value)}
-              //value={value2}
-            />
-          )}
-        </div>
-      </Root>
+        {isSelectElement ? (
+          <SelectInput
+            name={name2}
+            value={value2}
+            options={options as string[]}
+            onChange={(value) => onChange2 && onChange2(value)}
+            className="col-span-2"
+          />
+        ) : (
+          <Input
+            name={name2 as string}
+            onChange={(e) => onChange2 && onChange2(e.target.value)}
+            className="col-span-2"
+            //value={value2}
+          />
+        )}
+      </div>
+
+      {formikContext ? <ErrorMessage name={field?.name as string} /> : null}
     </div>
   );
 };
 
 export default CurrencyInput;
-
-const Root = styled("div", {
-  fontSize: "1rem",
-  display: "flex",
-  flexDirection: "column",
-  gap: "0.9375rem",
-  ".form-input": {
-    height: "52px",
-    padding: "15px",
-    fontSize: " 0.8125rem",
-    border: "1px solid #a3a3a3",
-    borderRadius: "4px",
-  },
-});

@@ -1,4 +1,4 @@
-import { ErrorMessage, Form, Formik } from "formik";
+import { Form, Formik } from "formik";
 import React from "react";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { sendContactUsEmail } from "../../api";
@@ -17,11 +17,7 @@ import { toast } from "react-hot-toast";
 import { Button } from "@/components/__shared/ui/button";
 import { UploadFile } from "../UploadFile";
 import { E164Number } from "libphonenumber-js/core";
-import dynamic from "next/dynamic";
 import { tag } from "@/store/contact/useContactStore";
-const CustomErrorMessage = dynamic(
-  () => import("@/components/__shared/ui/states/error-message"),
-);
 
 type Props = {};
 
@@ -121,7 +117,7 @@ const FormWriters = (props: Props) => {
       className=""
     >
       {({ handleBlur, handleChange, values, errors }) => (
-        <Form ref={formRef} className="flex-1 pt-8">
+        <Form ref={formRef} className="w-full pt-8">
           <div className="flex flex-col gap-10">
             <div className="form-div">
               <ContactFullNameField
@@ -148,10 +144,6 @@ const FormWriters = (props: Props) => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              <CustomErrorMessage className="mt-2" name={errors.message}>
-                {/* @ts-ignore */}
-                <ErrorMessage name="message" error={errors.message} />
-              </CustomErrorMessage>
             </div>
             <UploadFile
               file={file as File}

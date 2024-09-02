@@ -1,7 +1,16 @@
 "use client";
 import React, { useEffect } from "react";
-import * as Dialog from "@radix-ui/react-dialog";
 import { cn } from "@/lib/utils";
+import dynamic from "next/dynamic";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+} from "@/components/__shared/ui/modals/dialog";
+const Modal = dynamic(() =>
+  import("@/components/__shared/ui/modals/dialog").then((mod) => mod.Modal),
+);
 
 type Props = {
   body: React.ReactNode;
@@ -9,7 +18,7 @@ type Props = {
   footer?: React.ReactNode;
   open?: boolean;
   classNames?: {
-    footer?: string
+    footer?: string;
   };
   onOpenChange?: (open: boolean) => void;
 };
@@ -41,35 +50,28 @@ const StepsModal = ({
   }, [open]);
 
   return (
-    <Dialog.Root onOpenChange={onOpenChange} open={open}>
-      <Dialog.Portal>
-        <Dialog.Overlay className="data-[state=open]:animate-overlayShow fixed inset-0 z-[200] bg-blackA6" />
-        <Dialog.Content
-          className="data-[state=open]:animate-contentShow fixed left-[50%] top-[50%] z-[200] box-border flex h-[100dvh] max-h-screen w-[100dvw] translate-x-[-50%] translate-y-[-50%] flex-col overflow-y-hidden !rounded-none bg-[#fefefe] shadow-small outline-none focus:outline-none"
-          onEscapeKeyDown={(e) => e.preventDefault()}
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent
+        className="my-0 h-screen min-w-full rounded-none p-0"
+        hideCloseButton
+        onEscapeKeyDown={(e) => e.preventDefault()}
+      >
+        <DialogHeader className="text-large flex flex-initial flex-col gap-1 px-6 py-4 font-semibold">
+          {header}
+        </DialogHeader>
+        <div className="hidden-scrollbar flex h-full flex-1 flex-col justify-center gap-3 overflow-y-auto px-6 py-2">
+          {body}
+        </div>
+        <DialogFooter
+          className={cn(
+            "flex w-full flex-row justify-end space-x-2 border-t px-6 py-4",
+            classNames?.footer,
+          )}
         >
-          {header && (
-            <header className="flex flex-initial flex-col gap-1 px-6 py-4 text-large font-semibold">
-              {header}
-            </header>
-          )}
-
-          <main className="hidden-scrollbar flex h-full flex-1 flex-col justify-center gap-3 overflow-y-auto px-6 py-2">
-            {body}
-          </main>
-          {footer && (
-            <footer
-              className={cn(
-                "flex flex-row justify-end gap-2 border-t px-6 py-4",
-                classNames?.footer,
-              )}
-            >
-              {footer}
-            </footer>
-          )}
-        </Dialog.Content>
-      </Dialog.Portal>
-    </Dialog.Root>
+          {footer}
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 };
 

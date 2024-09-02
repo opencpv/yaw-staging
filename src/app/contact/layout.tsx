@@ -40,9 +40,7 @@ export default async function layout({
             className={`form-root relative z-[20] h-full min-h-[500px] w-full max-w-full rounded-2xl bg-white pt-5 sm:p-3 lg:-top-16 lg:max-w-[90%] lg:p-8 lg:pt-2 lg:shadow-[0px_24px_48px_-12px_rgba(0,_0,_0,_0.18)]`}
           >
             <ContactTabs />
-            <div className="flex h-full grid-cols-2 flex-col gap-10 md:grid">
-              {children}
-            </div>
+            <div className="grid h-full gap-10 md:grid-cols-2">{children}</div>
           </div>
         </Root>
         <FeedbackButton data={data} className="mt-20 lg:mt-0" />

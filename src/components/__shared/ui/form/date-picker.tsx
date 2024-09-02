@@ -63,13 +63,12 @@ export function DatePicker({
         <PopoverTrigger asChild>
           <Button
             variant={"outline"}
+            size={"sm"}
             className={cn(
-              "h-[52px] w-full justify-start border-[#a3a3a3] text-left font-normal hover:border-black/50 focus:border-2 focus:border-accent-50 focus:outline-none focus-visible:ring-0",
-              !field.value && "text-muted-foreground",
+              `form-field-border h-[52px] w-full justify-start whitespace-nowrap border-neutral-300 text-shade-200 placeholder:text-neutral-500 hover:scale-100`,
             )}
-            //@ts-ignore
-            name={field.name}
-            value={value || field.value}
+            name={field?.name || name}
+            value={field?.value || value}
             onClick={() => setOpen(!open)}
           >
             <CalendarIcon className="mr-2 h-4 w-4" />
@@ -79,10 +78,7 @@ export function DatePicker({
               : formatDate(value as string)}
           </Button>
         </PopoverTrigger>
-        <PopoverContent
-          className="z-[1001] w-full bg-[#fefefe] p-0"
-          align="start"
-        >
+        <PopoverContent className="w-full p-0" align="start">
           <Calendar
             mode="single"
             selected={field.value}
@@ -93,10 +89,9 @@ export function DatePicker({
               }
               helpers.setValue(value);
               setDate(value);
-              onChange && onChange(value);
+              onChange?.(value);
               setOpen(false);
             }}
-            disabled={disabled}
             //@ts-ignore
             initialFocus
           />

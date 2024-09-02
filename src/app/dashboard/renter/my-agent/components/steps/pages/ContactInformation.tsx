@@ -94,6 +94,7 @@ const ContactInformation = React.forwardRef<HTMLInputElement, Props>(
                       icon: <MdOutlineWhatsapp />,
                     },
                   ]}
+                  variant="rounded"
                   selectedKey={field.value}
                   onSelectionChange={(key) => {
                     helpers.setValue(key as any);

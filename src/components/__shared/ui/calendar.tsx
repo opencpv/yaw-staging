@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { IoChevronBack, IoChevronForward } from "react-icons/io5";
+import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 import { DayPicker } from "react-day-picker";
 
 import { cn } from "@/lib/utils";
@@ -50,11 +50,10 @@ function Calendar({
         day_hidden: "invisible",
         ...classNames,
       }}
-      components={{
-        //@ts-ignore
-        IconLeft: ({ ...props }) => <IoChevronBack className="h-4 w-4" />,
-        IconRight: ({ ...props }) => <IoChevronForward className="h-4wo-4" />,
-      }}
+      //components={{
+      //  IconLeft: ({ ...props }) => <LuChevronLeft className="h-4 w-4" />,
+      //  IconRight: ({ ...props }) => <LuChevronRight className="h-4 w-4" />,
+      //}}
       {...props}
     />
   );

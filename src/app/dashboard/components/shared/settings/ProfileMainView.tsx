@@ -1,9 +1,14 @@
 "use client";
 import { useManageAccountStore } from "@/store/dashboard/propertiesStore";
-// import { Tabs, Tab, cn } from "@nextui-org/react";
 import { cn } from "@/lib/utils";
 import Blocking from "./Blocking";
 import dynamic from "next/dynamic";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/__shared/ui/tabs";
 const ProfileInfo = dynamic(() => import("./ProfileInfo"));
 
 const ProfileMainView = () => {
@@ -17,39 +22,40 @@ const ProfileMainView = () => {
   return (
     <main>
       <h2 className="mb-5">Settings</h2>
-      {/* <Tabs
-        variant="light"
-        aria-label="Tabs variants"
-        // radius="full"
-        classNames={{
-          tabList: "gap-10 max-xxs:flex-wrap w-full",
-          tab: cn(
-            "bg-transparent w-full bg-transparent px-0 focus:outline-0 focus:text-primary-800",
-          ),
-          tabContent:
-            "text-shade-200 group-data-[selected=true]:text-primary-800",
-          cursor:
-            "shadow-none bg-transparent dark:bg-transparent border-b-primary-800 border-b-2 rounded-none w-full",
-          panel: "pt-2",
-        }}
-        selectedKey={optionSelect}
-        onSelectionChange={(selectedOption) =>
-          handleOptionChange(selectedOption)
-        }
-      > */}
-      {/* <Tab key="profile" title="Profile" tabIndex={0}>
+      <Tabs defaultValue="profile">
+        <TabsList>
+          <TabsTrigger
+            size="sm"
+            className="bg-transparent px-4 text-shade-300 shadow-none data-[state=active]:bg-transparent data-[state=active]:text-primary data-[state=active]:underline data-[state=active]:underline-offset-8"
+            value="profile"
+          >
+            Profile
+          </TabsTrigger>
+          <TabsTrigger
+            size="sm"
+            className="bg-transparent px-4 text-shade-300 shadow-none data-[state=active]:bg-transparent data-[state=active]:text-primary data-[state=active]:underline data-[state=active]:underline-offset-8"
+            value="blocked"
+          >
+            Blocked
+          </TabsTrigger>
+          <TabsTrigger
+            size="sm"
+            className="bg-transparent px-4 text-shade-300 shadow-none data-[state=active]:bg-transparent data-[state=active]:text-primary data-[state=active]:underline data-[state=active]:underline-offset-8"
+            value="account"
+          >
+            Account
+          </TabsTrigger>
+        </TabsList>
+        <TabsContent value="profile">
           <ProfileInfo />
-        </Tab>
-        <Tab key="blocked" title="Blocked" tabIndex={0}>
-          <div>
-            <Blocking />
-          </div>
-        </Tab> */}
-      {/* !!! COMMENTED OUT FOR NOW */}
-      {/* <Tab key="account" title="Account" tabIndex={0}>
+        </TabsContent>
+        <TabsContent value="blocked">
+          <Blocking />
+        </TabsContent>
+        <TabsContent value="account">
           <div>Account</div>
-        </Tab> */}
-      {/* </Tabs> */}
+        </TabsContent>
+      </Tabs>
     </main>
   );
 };

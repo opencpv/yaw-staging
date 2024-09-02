@@ -106,10 +106,6 @@ const ContactForm = () => {
                 }}
                 onBlur={handleBlur}
               />
-              <CustomErrorMessage className="mt-2" name={errors.message}>
-                {/* @ts-ignore */}
-                <ErrorMessage name="message" error={errors.message} />
-              </CustomErrorMessage>
             </div>
 
             {loading ? <Loader /> : <ContactSubmitButton label="Submit" />}

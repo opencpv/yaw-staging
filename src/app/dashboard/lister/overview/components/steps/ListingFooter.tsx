@@ -5,11 +5,11 @@ import {
   ListingDefaultValues,
   ListingStepsStore,
 } from "@/store/dashboard/ListingStepsStore";
-import { Button } from "@/components/__shared/ui/button";
 import { useFormikContext } from "formik";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import dynamic from "next/dynamic";
+import FooterButtons from "@/components/__shared/ui/modals/steps/FooterButtons";
 const Modal = dynamic(() =>
   import("@/components/__shared/ui/modals/dialog").then((mod) => mod.Modal),
 );
@@ -77,47 +77,25 @@ const ListingFooter = () => {
         size="lg"
         className="py-10"
       />
-
-      <section
-        className={cn(
-          "ml-auto grid grid-cols-2 items-center gap-2 max-sm:w-full xs:justify-end",
-        )}
-      >
-        <Button
-          variant="outline"
-          className={cn(
-            "col-span-1 rounded-lg font-semibold focus:outline-none xs:text-base sm:h-[58px] sm:min-w-[16rem]",
-            {
-              invisible: firstSlide || lastSlide,
-            },
-          )}
-          onClick={handleBack}
-          radius={"lg"}
-        >
-          Back
-        </Button>
-        <Button
-          color="primary"
-          className={cn(
-            "col-span-1 whitespace-nowrap rounded-lg font-semibold focus:outline-none xs:text-base sm:h-[58px] sm:min-w-[16rem]",
-            {
-              hidden: listing?.is_paid,
-            },
-          )}
-          onClick={() => {
-            handleForward();
-          }}
-          type={lastSlide ? "button" : "submit"}
-          radius={"lg"}
-          isLoading={isSubmitting}
-        >
-          {lastSlide
+      <FooterButtons
+        firstSlide={firstSlide}
+        lastSlide={lastSlide}
+        onBackward={handleBack}
+        onForward={handleForward}
+        isSubmitting={isSubmitting}
+        classNames={{
+          forward: cn({
+            hidden: listing?.is_paid,
+          }),
+        }}
+        forwardContent={
+          lastSlide
             ? "Proceed to pay"
             : lastButOneSlide
               ? "Summary"
-              : "Continue"}
-        </Button>
-      </section>
+              : "Continue"
+        }
+      ></FooterButtons>
     </>
   );
 };

@@ -8,7 +8,6 @@ import ContactMessageField from "./ContactMessageField";
 import ContactFullNameField from "./ContactFullNameField";
 import ContactPhoneField from "./ContactPhoneField";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
-import CustomErrorMessage from "@/components/__shared/ui/states/error-message";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import { useRouter } from "next/navigation";
 import { UploadFile } from "../UploadFile";
@@ -117,7 +116,7 @@ const FormGeneral = (props: Props) => {
       className=""
     >
       {({ handleBlur, handleChange, values, errors }) => (
-        <Form ref={formRef} className="flex-1 pt-8">
+        <Form ref={formRef} className="w-full pt-8">
           <div className="flex flex-col gap-10">
             <div className="form-div">
               <ContactFullNameField
@@ -144,10 +143,6 @@ const FormGeneral = (props: Props) => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              <CustomErrorMessage className="mt-2" name={errors.message}>
-                {/* @ts-ignore */}
-                <ErrorMessage name="message" error={errors.message} />
-              </CustomErrorMessage>
             </div>
             <UploadFile
               file={file as File}
