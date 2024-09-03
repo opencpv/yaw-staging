@@ -9,9 +9,9 @@ import { ListerApplicationsInterface } from "../../../../../../interfaces";
 import { TableBodySm, TableRowSm } from "@/components/__shared/ui/table";
 import TbPropertyImageSm from "@/app/dashboard/components/shared/ui/TbPropertyImageSm";
 // import PaymentStructure from "../../../components/shared/PaymentStructure";
-import ViewButton from "@/components/__shared/ui/button/view-button";
+import ViewButton from "@/components/__shared/ui/button/view-button/view-button";
 import dynamic from "next/dynamic";
-import DeleteButton from "@/components/__shared/ui/button/delete-button";
+import DeleteButton from "@/components/__shared/ui/button/delete-button/delete-button";
 //import Rating from "../../../components/shared/Rating";
 const PopupModal = dynamic(() =>
   import("@/components/__shared/ui/alert-dialog").then((mod) => mod.PopupModal),

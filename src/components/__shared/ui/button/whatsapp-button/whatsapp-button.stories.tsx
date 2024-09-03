@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import WhatsAppButton from "@/components/__shared/ui/button/whatsapp-button";
+import WhatsAppButton from "@/components/__shared/ui/button/whatsapp-button/whatsapp-button";
 
 // Meta configuration for the WhatsAppButton component
 const meta: Meta<typeof WhatsAppButton> = {

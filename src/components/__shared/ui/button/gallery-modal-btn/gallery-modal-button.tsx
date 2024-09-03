@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "./Button";
+import { Button } from "../Button";
 import { MdWindow } from "react-icons/md";
 
 type Props = {
@@ -9,8 +9,8 @@ type Props = {
 const GalleryModalBtn = (props: Props) => {
   return (
     <Button
-      color="white"
-      className="max-md:scale-80 absolute bottom-2 right-2 text-shade-200 shadow-md xs:bottom-5 md:right-10"
+      variant="white"
+      className="max-md:scale-80 absolute bottom-2 right-2 shadow-md xs:bottom-5 md:right-10"
       onClick={props.onClick}
       size={"sm"}
     >

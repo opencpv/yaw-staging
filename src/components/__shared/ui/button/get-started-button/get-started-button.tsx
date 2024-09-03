@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import React from "react";
-import { LinkButton } from "./Button";
+import { LinkButton } from "../Button";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
 
 type Props = {

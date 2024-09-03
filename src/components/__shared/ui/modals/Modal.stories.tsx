@@ -35,12 +35,7 @@ const meta: Meta<typeof Modal> = {
     },
     closeButton: { control: "text" },
     isDismissible: { control: "boolean" },
-    scrollBehavior: {
-      control: {
-        type: "select",
-        options: ["inside", "outside"],
-      },
-    },
+
     hideCloseButton: { control: "boolean" },
   },
 };
@@ -63,7 +58,6 @@ export const Default: Story = {
           size="md"
           closeButton="Close"
           isDismissible={true}
-          scrollBehavior="inside"
           hideCloseButton={false}
         />
         <Button onClick={() => setOpen((prev) => !prev)}>Toggle Modal</Button>
@@ -74,7 +68,6 @@ export const Default: Story = {
 
 // Large size modal
 export const LargeModal: Story = {
-
   render: () => {
     const [open, setOpen] = useState(false);
     return (
@@ -88,7 +81,6 @@ export const LargeModal: Story = {
           size="lg"
           closeButton="Close"
           isDismissible={true}
-          scrollBehavior="inside"
           hideCloseButton={false}
         />
         <Button onClick={() => setOpen((prev) => !prev)}>Toggle Modal</Button>
@@ -112,7 +104,6 @@ export const FullScreenModal: Story = {
           size="full"
           closeButton="Close"
           isDismissible={true}
-          scrollBehavior="inside"
           hideCloseButton={false}
         />
         <Button onClick={() => setOpen((prev) => !prev)}>Toggle Modal</Button>
@@ -136,7 +127,6 @@ export const CustomCloseButton: Story = {
           size="md"
           closeButton={<span>Custom Close</span>}
           isDismissible={true}
-          scrollBehavior="inside"
           hideCloseButton={false}
         />
         <Button onClick={() => setOpen((prev) => !prev)}>Toggle Modal</Button>

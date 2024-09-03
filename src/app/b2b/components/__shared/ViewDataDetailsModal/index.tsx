@@ -2,7 +2,7 @@
 import React from "react";
 import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import ModalCloseIcon from "@/components/__shared/ui/modals/modal-close-icon";
-import ViewButton from "@/components/__shared/ui/button/view-button";
+import ViewButton from "@/components/__shared/ui/button/view-button/view-button";
 import Logo from "@/components/__shared/ui/Logo";
 import Cost from "../Cost";
 import CaQuote from "../CaQuote";

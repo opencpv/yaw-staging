@@ -25,7 +25,7 @@ import capitalizeName, {
 } from "@/lib/utils/stringManipulation";
 import { views as BeMyAgentViews } from "./BeMyAgentForm";
 import { getFormValues } from "../../utils";
-import EditButton from "@/components/__shared/ui/button/edit-button";
+import EditButton from "@/components/__shared/ui/button/edit-button/edit-button";
 
 type Props = {
   button?: "Hire Us Now" | "Get Started" | "Ghost" | "Edit" | "Price";

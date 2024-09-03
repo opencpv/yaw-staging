@@ -44,6 +44,9 @@ const meta: Meta<typeof Button> = {
     className: {
       control: "text",
     },
+    asChild: {
+      control: "text",
+    },
   },
 };
 

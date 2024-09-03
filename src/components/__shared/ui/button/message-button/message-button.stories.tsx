@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import MessageButton from "@/components/__shared/ui/button/message-button";
+import MessageButton from "@/components/__shared/ui/button/message-button/message-button";
 
 // Metadata for the MessageButton component
 const meta: Meta<typeof MessageButton> = {

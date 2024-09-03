@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import EditButton from "@/components/__shared/ui/button/edit-button";
+import EditButton from "@/components/__shared/ui/button/edit-button/edit-button";
 
 // Metadata for the EditButton component
 const meta: Meta<typeof EditButton> = {

@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import GetStartedButton from "@/components/__shared/ui/button/GetStartedButton";
+import GetStartedButton from "@/components/__shared/ui/button/get-started-button/get-started-button";
 
 // Metadata for the GetStartedButton component
 const meta: Meta<typeof GetStartedButton> = {

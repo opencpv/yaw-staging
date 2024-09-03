@@ -1,4 +1,4 @@
-import ButtonCall from "@/components/__shared/ui/button/call-button";
+import ButtonCall from "@/components/__shared/ui/button/call-button/call-button";
 import type { Meta, StoryObj } from "@storybook/react";
 import { MdOutlinePhone } from "react-icons/md";
 
@@ -57,12 +57,3 @@ export const CustomColor: Story = {
   },
 };
 
-// You can uncomment and configure additional stories if needed
-// Example for a loading state or other variations
-// export const Loading: Story = {
-//   args: {
-//     phoneNumber: '+1234567890',
-//     iconPosition: 'left',
-//     isLoading: true,
-//   },
-// };

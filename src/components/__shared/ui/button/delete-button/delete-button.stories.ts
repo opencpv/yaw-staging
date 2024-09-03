@@ -1,4 +1,4 @@
-import DeleteButton from "@/components/__shared/ui/button/delete-button";
+import DeleteButton from "@/components/__shared/ui/button/delete-button/delete-button";
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 

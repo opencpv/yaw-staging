@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import GalleryModalBtn from "@/components/__shared/ui/button/GalleryModalBtn";
+import GalleryModalBtn from "@/components/__shared/ui/button/gallery-modal-btn/gallery-modal-button";
 
 // Define metadata for the GalleryModalBtn component
 const meta: Meta<typeof GalleryModalBtn> = {

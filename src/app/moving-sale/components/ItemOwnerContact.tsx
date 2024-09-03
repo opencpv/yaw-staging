@@ -1,7 +1,7 @@
 import React from "react";
-import CallButton from "@/components/__shared/ui/button/call-button";
-import MessageButton from "@/components/__shared/ui/button/message-button";
-import WhatsAppButton from "@/components/__shared/ui/button/whatsapp-button";
+import CallButton from "@/components/__shared/ui/button/call-button/call-button";
+import MessageButton from "@/components/__shared/ui/button/message-button/message-button";
+import WhatsAppButton from "@/components/__shared/ui/button/whatsapp-button/whatsapp-button";
 import { cn } from "@/lib/utils";
 
 type Props = {

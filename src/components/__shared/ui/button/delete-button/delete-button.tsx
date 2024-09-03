@@ -1,11 +1,11 @@
 import React from "react";
-import { Button } from "./Button";
+import { Button } from "../Button";
 import { FiTrash2 } from "react-icons/fi";
 import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
 import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 const PopupModal = dynamic(() =>
-  import("../alert-dialog").then((mod) => mod.PopupModal),
+  import("../../alert-dialog").then((mod) => mod.PopupModal),
 );
 
 type Props = {
