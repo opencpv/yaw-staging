@@ -25,13 +25,13 @@ const ItemDetails = ({ query }: Props) => {
           <Term
             variant={
               LowerCase(query.data?.term) === "negotiable"
-                ? "negotiable"
-                : "non-negotiable"
+                ? "Negotiable"
+                : "Non-Negotiable"
             }
           />
           <Condition
             variant={
-              LowerCase(query.data?.condition) === "new" ? "new" : "used"
+              LowerCase(query.data?.condition) === "new" ? "New" : "Used"
             }
           />
         </span>
@@ -46,7 +46,7 @@ export default ItemDetails;
 export const Term = ({
   variant,
 }: {
-  variant?: "negotiable" | "non-negotiable";
+  variant?: "Negotiable" | "Non-Negotiable";
 }) => {
   return (
     <div className="w-fit rounded-xl bg-primary-100 p-2 text-center capitalize text-white">
@@ -58,7 +58,7 @@ export const Term = ({
 export const Condition = ({
   variant,
 }: {
-  variant?: "new" | "used" | "used-like new";
+  variant?: "New" | "Used" | "Used-Like New";
 }) => {
   return (
     <div className="w-fit rounded-xl bg-[#FFE3B0] p-2 text-center capitalize text-primary">

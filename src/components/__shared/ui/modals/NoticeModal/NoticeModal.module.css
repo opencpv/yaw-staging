@@ -9,7 +9,7 @@
 }
 
 .emOutline {
-  @apply border px-1 uppercase;
+  @apply border border-accent px-1 uppercase;
 }
 
 .emCallout {
