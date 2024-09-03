@@ -1,24 +1,25 @@
-import React, { HTMLAttributes } from "react";
+import React from "react";
 import { Textarea } from "@/components/__shared/ui/form/textarea";
+import { useSessionStorage } from "@uidotdev/usehooks";
 
-type Props = {
-  value: string;
-  placeholder?: string;
-  error?: string;
-};
-
-const FaqMessageField: React.FC<Props & HTMLAttributes<HTMLTextAreaElement>> = (
-  props,
-) => {
+const FaqMessageField = () => {
+  const [faqFormSession, setFaqFormSession] = useSessionStorage(
+    "faqFormSession",
+    {
+      message: "",
+    },
+  );
   return (
     <div className="form-div">
       <Textarea
         name="message"
-        //label="Purpose for Moving"
-        placeholder={props.placeholder ? props.placeholder + " *" : "Message *"}
-        //onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        //  props.onChange?.(e);
-        //}}
+        placeholder={"How can we help you?"}
+        onChange={(e) => {
+          setFaqFormSession({
+            ...faqFormSession,
+            message: e.currentTarget.value,
+          });
+        }}
       />
     </div>
   );

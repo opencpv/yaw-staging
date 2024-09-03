@@ -5,41 +5,22 @@ import { Tabs } from "@/components/__shared/ui/tabs";
 import { MdOutlineMailOutline, MdOutlineWhatsapp } from "react-icons/md";
 import { useField } from "formik";
 import { E164Number, CountryCode } from "libphonenumber-js/core";
+import { useContactForm } from "./hooks/useContactForm";
 
 type Contact = "Email" | "WhatsApp";
 
 type Props = {
-  selectedKey: Contact;
+  selectedKey?: Contact;
   handleCountryChange: (country: CountryCode | undefined) => void;
-  /** handler for the pill */
-  hideEmail?: boolean;
-  value: string | number | readonly string[] | E164Number;
-  onChange: ((value: E164Number | undefined) => void) &
-    React.FormEventHandler<HTMLInputElement>;
-  onSelectionChange?: (key: Contact) => void;
-  /** handler for the email text input */
-  onChangeEmail?: ((value: any) => void) &
-    React.ChangeEventHandler<HTMLInputElement>;
-  onChangePhone?:
-    | (((value: E164Number | undefined) => void) &
-        React.FormEventHandler<HTMLInputElement>)
-    | undefined;
-  emailValue?: string;
 };
 
 const PreferredContactMethod = ({
-  selectedKey = "Email",
-  onSelectionChange,
-  hideEmail,
-  onChangeEmail,
-  onChangePhone,
   handleCountryChange,
-  value,
-  emailValue,
-  onChange,
-  ...props
 }: Props & React.HTMLProps<HTMLInputElement>) => {
-  const [field, meta, helpers] = useField("preferredMethodOfContact");
+  const [field, meta, helpers] = useField("preferredContactMethod");
+  const { handleSessionChange, contactFormSession } = useContactForm();
+  const selectedKey =
+    (contactFormSession.preferredContactMethod as Contact) || field.value;
 
   return (
     <>
@@ -58,37 +39,30 @@ const PreferredContactMethod = ({
           selectedKey={selectedKey}
           onSelectionChange={(key) => {
             helpers.setValue(key as any);
-            onSelectionChange?.(key as Contact);
+            handleSessionChange("preferredContactMethod", key);
           }}
           variant="rounded"
         />
       </div>
       {/* email */}
-      <div
-        className={
-          selectedKey === "WhatsApp" || hideEmail ? "hidden" : "block pt-2"
-        }
-      >
+      <div className={selectedKey === "WhatsApp" ? "hidden" : "block pt-2"}>
         <Input
-          value={emailValue as string}
           name="email"
           type="email"
           placeholder="Enter your email address"
-          onChange={onChangeEmail}
+          onChange={(e) => {
+            handleSessionChange("email", e.target.value);
+          }}
         />
       </div>
       {/* whatsapp */}
-      <div
-        className={
-          selectedKey === "WhatsApp" || hideEmail ? "block pt-2" : "hidden"
-        }
-      >
+      <div className={selectedKey === "WhatsApp" ? "block pt-2" : "hidden"}>
         <PhoneNumberInput
           name="phone"
-          onChange={onChange}
+          onChange={(value) => {
+            handleSessionChange("phone", value as E164Number);
+          }}
           onCountryChange={handleCountryChange}
-          {...props}
-          value={value as E164Number}
         />
       </div>
     </>

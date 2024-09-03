@@ -1,21 +1,13 @@
 import React from "react";
-import { useContactStore } from "@/store/contact/useContactStore";
-import { CountryCode, E164Number } from "libphonenumber-js/core";
+import { CountryCode } from "libphonenumber-js/core";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { useSessionStorage } from "@uidotdev/usehooks";
-
-type FormValue = {
-  fullname: string;
-  email: string;
-  phone: string;
-  message: string;
-};
 
 export const useContactForm = () => {
   const formRef = React.useRef<HTMLFormElement>(null);
 
   const [loading, setLoading] = React.useState(false);
-  const [_, setCountry] = React.useState<CountryCode>("GH");
+  //const [_, setCountry] = React.useState<CountryCode>("GH");
   const [file, setFile] = React.useState<File | null>();
   const { phone, handlePhone, handleCountryChange } = usePhoneInputDisclosure();
 
@@ -29,7 +21,7 @@ export const useContactForm = () => {
       message: "",
       fileUrl: "",
       reportLink: "",
-      preferredContact: "Email",
+      preferredContactMethod: "Email",
     },
   );
 
@@ -50,14 +42,14 @@ export const useContactForm = () => {
     if (file) setFile(null);
   };
 
-  const validate = (values: any, phoneValue: E164Number | undefined) => {
-    const errors: any = {};
-    if (!values.email && !phoneValue) {
-      errors.email = "Email or WhatsApp Required";
-      errors.phone = "Email or WhatsApp Required";
-    }
-    return errors;
-  };
+  //const validate = (values: any, phoneValue: E164Number | undefined) => {
+  //  const errors: any = {};
+  //  if (!values.email && !phoneValue) {
+  //    errors.email = "Email or WhatsApp Required";
+  //    errors.phone = "Email or WhatsApp Required";
+  //  }
+  //  return errors;
+  //};
 
   const tableName: keyof Database["public"]["Tables"] = "contact_us";
   const phoneInputPlaceholder = "WhatsApp Number";
@@ -75,7 +67,6 @@ export const useContactForm = () => {
     setLoading,
     tableName,
     phoneInputPlaceholder,
-    validate,
     handleSessionChange,
     contactFormSession,
   };

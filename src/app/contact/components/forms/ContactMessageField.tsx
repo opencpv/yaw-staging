@@ -1,28 +1,16 @@
-import React, { HTMLAttributes } from "react";
-import style from "../../Contact.module.css";
-import { cn } from "@/lib/utils";
+import React from "react";
 import { useContactForm } from "./hooks/useContactForm";
 import { Textarea } from "@/components/__shared/ui/form/textarea";
 
-type Props = {
-  value: string;
-  placeholder?: string;
-  error?: string;
-};
-
-const ContactMessageField: React.FC<
-  Props & HTMLAttributes<HTMLTextAreaElement>
-> = (props) => {
-  const { handleSessionChange, contactFormSession } = useContactForm();
+const ContactMessageField = () => {
+  const { handleSessionChange } = useContactForm();
 
   return (
     <div className="form-div">
       <Textarea
         name="message"
-        //label="Purpose for Moving"
-        placeholder={props.placeholder ? props.placeholder + " *" : "Message *"}
+        placeholder={"Message"}
         onChange={(e) => {
-          props.onChange?.(e);
           handleSessionChange("message", e.target.value);
         }}
       />

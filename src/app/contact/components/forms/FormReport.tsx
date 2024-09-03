@@ -11,18 +11,14 @@ import ContactPhoneField from "./ContactPhoneField";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import { tag, useContactStore } from "@/store/contact/useContactStore";
-import { useRouter } from "next/navigation";
 import { generateString } from "@/lib/utils";
 import slugify from "@/lib/utils/slugify";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { Button } from "@/components/__shared/ui/button";
 import { UploadFile } from "../UploadFile";
-import { E164Number } from "libphonenumber-js/core";
 
-type Props = {};
-
-const FormReport = (props: Props) => {
+const FormReport = () => {
   const {
     file,
     formRef,
@@ -31,16 +27,13 @@ const FormReport = (props: Props) => {
     tableName,
     handleFileUpload,
     handleFileRemove,
-    validate,
     contactFormSession,
     handleSessionChange,
   } = useContactForm();
 
-  const { phone, setPhone, handleCountryChange, handlePhone } =
-    usePhoneInputDisclosure();
+  const { handleCountryChange } = usePhoneInputDisclosure();
 
   const { reportIssueHref, setReportIssueHref } = useContactStore();
-  const router = useRouter();
 
   useEffect(() => {
     return () => {
@@ -60,9 +53,6 @@ const FormReport = (props: Props) => {
         reportLink: reportIssueHref || contactFormSession.reportLink,
       }}
       validationSchema={ContactSchema}
-      validate={(values) =>
-        validate(values, contactFormSession.phone as E164Number)
-      }
       onSubmit={async (values, { resetForm }) => {
         if (!tag) return;
         setLoading(true);
@@ -117,9 +107,7 @@ const FormReport = (props: Props) => {
                   resetForm();
                   sessionStorage.removeItem("contactFormSession");
                   setReportIssueHref("");
-                  setPhone(undefined);
                   toast.success("Successfully submitted.");
-                  router.refresh();
                   setLoading(false);
                 }
               });
@@ -130,64 +118,43 @@ const FormReport = (props: Props) => {
       }}
       className=""
     >
-      {({ handleBlur, handleChange, values, errors }) => (
-        <Form ref={formRef} className="w-full pt-8">
-          <div className="flex flex-col gap-10">
-            <div className="form-div">
-              <ContactFullNameField
-                value={values.fullname}
-                handleBlur={handleBlur}
-                handleChange={handleChange}
-                error={errors.fullname}
-              />
-            </div>
-            <div className="form-div">
-              <ContactPhoneField
-                phone={values.phone as E164Number}
-                handleBlur={handleBlur}
-                handleChange={handleChange}
-                handlePhone={handlePhone}
-                handleCountryChange={handleCountryChange}
-              />
-            </div>
-            <div>
-              <ContactMessageField
-                className="w-full min-w-full"
-                error={errors.message}
-                value={values.message}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-            </div>
-            <UploadFile
-              file={file as File}
-              handleFileUpload={handleFileUpload}
-              handleFileRemove={handleFileRemove}
-            />
-
-            <div className="form-div" title="Paste URL link here (optional)">
-              <Input
-                name="reportLink"
-                value={contactFormSession.reportLink || values.reportLink}
-                onChange={(e) => {
-                  handleChange(e);
-                  handleSessionChange("reportLink", e.target.value);
-                }}
-                placeholder="Paste URL link here (optional)"
-                className="p-3 py-7 placeholder:text-neutral-400"
-              />
-            </div>
-            <Button
-              className="max-w-full xs:max-w-fit"
-              variant="accent"
-              isLoading={loading}
-              type="submit"
-            >
-              Submit
-            </Button>
+      <Form ref={formRef} className="w-full pt-8">
+        <div className="flex flex-col gap-10">
+          <div className="form-div">
+            <ContactFullNameField />
           </div>
-        </Form>
-      )}
+          <div className="form-div">
+            <ContactPhoneField handleCountryChange={handleCountryChange} />
+          </div>
+          <div>
+            <ContactMessageField />
+          </div>
+          <UploadFile
+            file={file as File}
+            handleFileUpload={handleFileUpload}
+            handleFileRemove={handleFileRemove}
+          />
+
+          <div className="form-div" title="Paste URL link here (optional)">
+            <Input
+              name="reportLink"
+              onChange={(e) => {
+                handleSessionChange("reportLink", e.target.value);
+              }}
+              placeholder="Paste URL link here (optional)"
+              className="p-3 py-7 placeholder:text-neutral-400"
+            />
+          </div>
+          <Button
+            className="max-w-full xs:max-w-fit"
+            variant="accent"
+            isLoading={loading}
+            type="submit"
+          >
+            Submit
+          </Button>
+        </div>
+      </Form>
     </Formik>
   );
 };

@@ -110,6 +110,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
               props.onBlur?.(e);
             }}
             ref={ref}
+            required={required}
             {...props}
           />
           {characterLimit && (
