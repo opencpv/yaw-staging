@@ -3,7 +3,7 @@ import React from "react";
 import Share from "@/components/__shared/ui/share";
 import { useSearchParams } from "next/navigation";
 import { PortableText } from "next-sanity";
-import { LinkButton } from "@/components/__shared/ui/button";
+import { LinkButton } from "@/components/__shared/ui/button/Button";
 import { JobType } from "../types";
 import { TypedObject } from "sanity";
 import EmptyState from "@/components/__shared/ui/states/empty-state";

@@ -9,7 +9,7 @@ import { JobType } from "../types";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
-import { LinkButton } from "@/components/__shared/ui/button";
+import { LinkButton } from "@/components/__shared/ui/button/Button";
 import CaJoinUsIconLeft from "./components/icons/CaJoinUsIconLongLeft";
 const Footer = dynamic(() => import("@/components/__shared/ui/footer"));
 

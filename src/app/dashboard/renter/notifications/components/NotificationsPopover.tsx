@@ -6,7 +6,7 @@ import { useNotificationStore } from "@/store/dashboard/notificationStore";
 import useNotifications from "@/app/dashboard/renter/notifications/useNotifications";
 import NtfSkeleton from "@/app/dashboard/renter/notifications/components/NtfSkeleton";
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/__shared/ui/button";
+import { Button } from "@/components/__shared/ui/button/Button";
 import { GoBellFill } from "react-icons/go";
 import dynamic from "next/dynamic";
 import {

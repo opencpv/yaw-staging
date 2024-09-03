@@ -1,7 +1,7 @@
 "use client";
 import { SelectInput } from "@/components/__shared/ui/form/select";
 import styles from "./index.module.css";
-import { Button } from "@/components/__shared/ui/button";
+import { Button } from "@/components/__shared/ui/button/Button";
 import * as Dialog from "@radix-ui/react-dialog";
 import { useEffect, useState } from "react";
 import { Form, Formik } from "formik";

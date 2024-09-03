@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { FaChevronUp } from "react-icons/fa";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
-import { Button } from "./button";
+import { Button } from "./button/Button";
 
 const ScrollTop = () => {
   const [shouldShowScrollBtn, setShouldShowScrollBtn] =

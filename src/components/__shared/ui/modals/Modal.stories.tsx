@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Button } from "@/components/__shared/ui/button";
+import { Button } from "@/components/__shared/ui/button/Button";
 import { Modal } from "@/components/__shared/ui/modals/dialog";
 
 // Define metadata for the Modal component
@@ -75,6 +75,7 @@ export const Default: Story = {
 
 // Large size modal
 export const LargeModal: Story = {
+
   render: () => {
     const [open, setOpen] = useState(false);
     return (

@@ -1,4 +1,4 @@
-import { Button } from "@/components/__shared/ui/button";
+import { Button } from "@/components/__shared/ui/button/Button";
 import dynamic from "next/dynamic";
 import React, { useContext } from "react";
 import { BsInfo } from "react-icons/bs";

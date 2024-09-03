@@ -9,7 +9,7 @@ import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-stat
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
 import { TableSm } from "@/components/__shared/ui/table";
 import { IoArchiveOutline } from "react-icons/io5";
-import { Button } from "@/components/__shared/ui/button";
+import { Button } from "@/components/__shared/ui/button/Button";
 
 type Props = {};
 

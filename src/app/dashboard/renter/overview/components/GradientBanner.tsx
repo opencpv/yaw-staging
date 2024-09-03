@@ -1,4 +1,4 @@
-import { LinkButton } from "@/components/__shared/ui/button";
+import { LinkButton } from "@/components/__shared/ui/button/Button";
 import Image, { StaticImageData } from "next/image";
 import React from "react";
 

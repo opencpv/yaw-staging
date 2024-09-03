@@ -1,4 +1,4 @@
-import { LinkButton } from "@/components/__shared/ui/button";
+import { LinkButton } from "@/components/__shared/ui/button/Button";
 import styles from "./index.module.css";
 import { MdArrowRightAlt } from "react-icons/md";
 

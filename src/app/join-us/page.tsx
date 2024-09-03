@@ -2,7 +2,7 @@ import Image from "next/image";
 import styles from "./index.module.css";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
-import { LinkButton } from "@/components/__shared/ui/button";
+import { LinkButton } from "@/components/__shared/ui/button/Button";
 const Footer = dynamic(() => import("@/components/__shared/ui/footer"));
 const ScrollTopAndSocial = dynamic(
   () => import("@/components/__shared/ui/scroll-top-and-social"),

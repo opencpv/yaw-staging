@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { Button, ButtonProps } from "./";
+import { Button, ButtonProps } from "./Button";
 import { FaWhatsapp } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";

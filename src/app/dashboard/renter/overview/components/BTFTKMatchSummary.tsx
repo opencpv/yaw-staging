@@ -1,6 +1,6 @@
 import style from "../Feature.module.css";
 import CallOut from "@/components/__shared/ui/callout";
-import { LinkButton } from "@/components/__shared/ui/button";
+import { LinkButton } from "@/components/__shared/ui/button/Button";
 import React from "react";
 import Image from "next/image";
 import { pluralize } from "@/lib/utils/stringManipulation";

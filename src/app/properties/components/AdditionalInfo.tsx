@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@/components/__shared/ui/button";
+import { Button } from "@/components/__shared/ui/button/Button";
 import React from "react";
 import style from "../Template.module.css";
 import PropertyOwnerInfo from "./PropertyOwnerInfo";

@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { floatItemsIntersectionStore } from "@/store/footer/footerStore";
 import { usePathname } from "next/navigation";
 import { getLocalStorageWithExpiry } from "@/lib/utils/localStorage";
-import { Button } from "../button";
+import { Button } from "../button/Button";
 
 type Props = {
   data: any;

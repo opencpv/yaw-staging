@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { cn } from "@/lib/utils";
 import * as Yup from "yup";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import { LinkButton } from "@/components/__shared/ui/button";
+import { LinkButton } from "@/components/__shared/ui/button/Button";
 import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
 import { Form, Formik } from "formik";
 import { useLocalStorage } from "@uidotdev/usehooks";

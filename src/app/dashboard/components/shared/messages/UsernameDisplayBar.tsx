@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import { LinkButton } from "@/components/__shared/ui/button";
+import { LinkButton } from "@/components/__shared/ui/button/Button";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { FaChevronLeft } from "react-icons/fa";
 import dynamic from "next/dynamic";

@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-import { LinkButton } from "@/components/__shared/ui/button";
+import { LinkButton } from "@/components/__shared/ui/button/Button";
 import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
 import StepsModal from "@/components/__shared/ui/modals/steps/steps-modal";
 import { Form, Formik } from "formik";

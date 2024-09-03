@@ -1,4 +1,4 @@
-import { LinkButton } from "@/components/__shared/ui/button";
+import { LinkButton } from "@/components/__shared/ui/button/Button";
 import React from "react";
 import { MdOutlineSettings } from "react-icons/md";
 

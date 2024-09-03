@@ -18,7 +18,7 @@ import { toast } from "react-hot-toast";
 import axios from "axios";
 import routes from "@/lib/utils/route";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Button, LinkButton } from "@/components/__shared/ui/button";
+import { Button, LinkButton } from "@/components/__shared/ui/button/Button";
 import JoinUsButtons from "../../components/JoinUsButtons";
 import { BsInfoCircle } from "react-icons/bs";
 import emailjs from "@emailjs/browser";

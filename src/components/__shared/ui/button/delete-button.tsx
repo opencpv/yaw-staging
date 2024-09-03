@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "./";
+import { Button } from "./Button";
 import { FiTrash2 } from "react-icons/fi";
 import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";

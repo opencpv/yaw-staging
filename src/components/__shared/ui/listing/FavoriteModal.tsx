@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { MdOutlineChat } from "react-icons/md";
-import { Button } from "../button";
+import { Button } from "../button/Button";
 import { handleFavoriteDialogSave } from "@/components/actions";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useLocalStorage, useSessionStorage } from "@uidotdev/usehooks";

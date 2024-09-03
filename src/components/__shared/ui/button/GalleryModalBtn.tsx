@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "./";
+import { Button } from "./Button";
 import { MdWindow } from "react-icons/md";
 
 type Props = {

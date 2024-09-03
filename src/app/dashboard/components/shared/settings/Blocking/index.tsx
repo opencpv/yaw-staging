@@ -1,7 +1,7 @@
 import Image from "next/image";
 import CaBlockingPadlock from "./icons/CaBlockingPadlock";
 import CaBlockingBlock from "./icons/CaBlockingBlock";
-import { Button } from "@/components/__shared/ui/button";
+import { Button } from "@/components/__shared/ui/button/Button";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import CallOut from "@/components/__shared/ui/callout";

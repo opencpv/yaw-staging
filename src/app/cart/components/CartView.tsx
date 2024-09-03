@@ -6,7 +6,7 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import CaDropdownArrow from "@/components/__shared/ui/icons/CaDropdownArrow";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/__shared/ui/button";
+import { Button } from "@/components/__shared/ui/button/Button";
 import { useEffect, useState } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";

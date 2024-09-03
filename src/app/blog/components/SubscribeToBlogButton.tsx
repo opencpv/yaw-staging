@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@/components/__shared/ui/button";
+import { Button } from "@/components/__shared/ui/button/Button";
 import SubscribeForm from "@/components/__shared/ui/form/SubscribeForm";
 import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import React from "react";

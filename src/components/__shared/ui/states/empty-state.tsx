@@ -1,5 +1,5 @@
 import React from "react";
-import { LinkButton } from "../button";
+import { LinkButton } from "../button/Button";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useAssets } from "@/lib/custom-hooks/useAssets";

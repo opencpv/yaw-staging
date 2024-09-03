@@ -1,6 +1,6 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import { Button, LinkButton } from "@/components/__shared/ui/button";
+import { Button, LinkButton } from "./Button";
 
 const meta: Meta<typeof Button> = {
   title: "Components/Buttons/Button", // Title for the Storybook sidebar
@@ -61,7 +61,7 @@ export const Default: Story = {
     radius: "default",
     isLoading: false,
     disabled: false,
-    className:""
+    className: "",
   },
 };
 
@@ -128,12 +128,16 @@ export const Disabled: Story = {
 export const Link: Story = {
   args: {
     children: "Link Button",
+    //@ts-ignore
     href: "#",
     variant: "default",
     size: "default",
     color: "primary",
     radius: "default",
+    asChild: true,
   },
+  //@ts-ignore
+
   render: (args) => <LinkButton {...args} />,
 };
 

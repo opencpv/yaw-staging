@@ -5,7 +5,7 @@ import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 import { DayPicker } from "react-day-picker";
 
 import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/__shared/ui/button";
+import { buttonVariants } from "@/components/__shared/ui/button/Button";
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 

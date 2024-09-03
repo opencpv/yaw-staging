@@ -1,7 +1,7 @@
 "use client";
 import { MdArrowRightAlt } from "react-icons/md";
 import CaJoinUsIconLeft from "../open-positions/components/icons/CaJoinUsIconLongLeft";
-import { LinkButton } from "@/components/__shared/ui/button";
+import { LinkButton } from "@/components/__shared/ui/button/Button";
 import { cn } from "@/lib/utils";
 
 type Props = {

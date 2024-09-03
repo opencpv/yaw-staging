@@ -4,7 +4,7 @@ import { CustomScroll } from "./components/CustomScroll";
 import CaMarkAsRead from "./components/icons/CaMarkAsRead";
 import useNotifications from "./useNotifications";
 import NtfSkeleton from "./components/NtfSkeleton";
-import { Button } from "@/components/__shared/ui/button";
+import { Button } from "@/components/__shared/ui/button/Button";
 import dynamic from "next/dynamic";
 const NotificationItem = dynamic(() => import("./components/NotificationItem"));
 const NotificationDetailsFull = dynamic(

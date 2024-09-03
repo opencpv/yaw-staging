@@ -1,7 +1,7 @@
 "use client";
 import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import style from "../Template.module.css";
-import { Button } from "@/components/__shared/ui/button";
+import { Button } from "@/components/__shared/ui/button/Button";
 import { cn } from "@/lib/utils";
 import { getFeatureIcon, getUtilityIcon } from "@/lib/utils/getFeatureIcon";
 import dynamic from "next/dynamic";

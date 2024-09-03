@@ -1,4 +1,4 @@
-import { LinkButton } from "@/components/__shared/ui/button";
+import { LinkButton } from "@/components/__shared/ui/button/Button";
 import Image from "next/image";
 import React from "react";
 import { AiOutlineUser } from "react-icons/ai";

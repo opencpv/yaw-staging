@@ -1,7 +1,7 @@
 import { useRouter } from "next/navigation";
 import CaTriangle from "./CaTriangle";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/__shared/ui/button";
+import { Button } from "@/components/__shared/ui/button/Button";
 import { IoCloudOfflineOutline } from "react-icons/io5";
 
 type Props = {

@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
-import { LinkButton } from "@/components/__shared/ui/button";
+import { LinkButton } from "@/components/__shared/ui/button/Button";
 import { FaRegBell, FaRegHourglass } from "react-icons/fa";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import CallOut from "@/components/__shared/ui/callout";

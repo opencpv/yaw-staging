@@ -16,7 +16,7 @@ import { generateString } from "@/lib/utils";
 import slugify from "@/lib/utils/slugify";
 import { toast } from "react-hot-toast";
 import { E164Number } from "libphonenumber-js/core";
-import { Button } from "@/components/__shared/ui/button";
+import { Button } from "@/components/__shared/ui/button/Button";
 import { tag } from "@/store/contact/useContactStore";
 
 type Props = {};

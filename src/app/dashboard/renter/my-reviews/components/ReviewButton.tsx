@@ -1,4 +1,4 @@
-import { Button } from "@/components/__shared/ui/button";
+import { Button } from "@/components/__shared/ui/button/Button";
 import CaReviewReply from "./icons/CaReviewReply";
 import { MdOutlineModeEdit } from "react-icons/md";
 

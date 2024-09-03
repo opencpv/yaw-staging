@@ -1,4 +1,4 @@
-import { Button } from "@/components/__shared/ui/button";
+import { Button } from "@/components/__shared/ui/button/Button";
 import React from "react";
 import { IoIosSearch } from "react-icons/io";
 

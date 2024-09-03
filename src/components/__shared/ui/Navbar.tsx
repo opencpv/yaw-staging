@@ -12,7 +12,7 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import AvatarMenu from "./avatar/AvatarMenu";
 import { useUserData } from "@/lib/custom-hooks/database/useUserData";
 import { cn } from "@/lib/utils";
-import { Button } from "./button";
+import { Button } from "./button/Button";
 
 const Navbar = (props: any) => {
   const pathname = usePathname();

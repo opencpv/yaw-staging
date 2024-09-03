@@ -1,5 +1,5 @@
 "use client";
-import { LinkButton } from "@/components/__shared/ui/button";
+import { LinkButton } from "@/components/__shared/ui/button/Button";
 import Image from "next/image";
 import React from "react";
 import { BsTelephone } from "react-icons/bs";

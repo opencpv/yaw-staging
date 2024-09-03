@@ -1,4 +1,4 @@
-import { LinkButton } from "@/components/__shared/ui/button";
+import { LinkButton } from "@/components/__shared/ui/button/Button";
 import dynamic from "next/dynamic";
 const GreenCheckLottie = dynamic(
   () => import("@/components/__shared/lotties/green-check-lottie"),

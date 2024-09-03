@@ -1,6 +1,6 @@
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
-import { LinkButton, Button } from "@/components/__shared/ui/button";
+import { LinkButton, Button } from "@/components/__shared/ui/button/Button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { IoChevronForwardOutline } from "react-icons/io5";

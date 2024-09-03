@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Button } from "@/components/__shared/ui/button";
+import { Button } from "@/components/__shared/ui/button/Button";
 import { deleteScheduleCookie } from "../../actions";
 
 type Props = {

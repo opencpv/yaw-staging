@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import React, { FormEvent } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import SaveSearchModal from "../modals/SaveSearchModal";
-import { LinkButton } from "../button";
+import { LinkButton } from "../button/Button";
 
 type Props = {
   className?: string;

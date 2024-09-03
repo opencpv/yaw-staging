@@ -1,6 +1,6 @@
 import Image from "next/image";
 import CaAgentTickGreenBg from "./icons/CaAgentTickGreenBg";
-import { Button } from "@/components/__shared/ui/button";
+import { Button } from "@/components/__shared/ui/button/Button";
 import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
 import { cn } from "@/lib/utils";
 import {

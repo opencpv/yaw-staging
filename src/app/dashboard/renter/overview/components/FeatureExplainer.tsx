@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { CiLock } from "react-icons/ci";
-import { LinkButton } from "@/components/__shared/ui/button";
+import { LinkButton } from "@/components/__shared/ui/button/Button";
 import { useRouter } from "next/navigation";
 import { RenterPaidFeatureInterface } from "../../../../../../interfaces";
 import PaidFeature from "./PaidFeature";

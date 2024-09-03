@@ -20,7 +20,7 @@ import {
   ActionItemTrigger,
   ActionPopover,
 } from "@/components/__shared/ui/popover/action-popover";
-import { Button } from "@/components/__shared/ui/button";
+import { Button } from "@/components/__shared/ui/button/Button";
 import { BiImageAdd } from "react-icons/bi";
 import dynamic from "next/dynamic";
 const ErrorMessage = dynamic(
