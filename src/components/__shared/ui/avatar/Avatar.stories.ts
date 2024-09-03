@@ -23,7 +23,6 @@ const meta = {
     display: { control: "boolean" },
     title: { control: "text" },
   },
-  //   args: { onClick: fn() }, // Spy for any onClick handler (if applicable)
 } satisfies Meta<typeof Avatar>;
 
 export default meta;
@@ -41,7 +40,6 @@ export const Default: Story = {
   },
 };
 
-// Avatar with an image
 export const WithImage: Story = {
   args: {
     image: userImage,
@@ -52,7 +50,6 @@ export const WithImage: Story = {
   },
 };
 
-// Small size avatar
 export const SmallSize: Story = {
   args: {
     image: userImage,
@@ -63,7 +60,6 @@ export const SmallSize: Story = {
   },
 };
 
-// Avatar with only initials displayed
 export const NoImage: Story = {
   args: {
     image: "",

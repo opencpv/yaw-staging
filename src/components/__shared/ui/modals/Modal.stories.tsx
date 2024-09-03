@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "@/components/__shared/ui/button/Button";
 import { Modal } from "@/components/__shared/ui/modals/dialog";
 
-// Define metadata for the Modal component
 const meta: Meta<typeof Modal> = {
   title: "Components/Modal/Modal",
   component: Modal,
