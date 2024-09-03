@@ -14,9 +14,9 @@ import { cn } from "@/lib/utils";
 
 type Props = {
   name: string;
-  value: E164Number | undefined;
+  value?: E164Number | undefined;
   onCountryChange: (country: CountryCode | undefined) => void;
-  onChange: (value: E164Number | undefined) => void;
+  onChange?: (value: E164Number | undefined) => void;
   id?: string;
   placeholder?: string;
   onBlur?: (e: any) => void;
@@ -49,6 +49,7 @@ const PhoneNumberInput: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
   if (formikContext) {
     field = formikContext.getFieldProps(name as string);
     meta = formikContext.getFieldMeta(name as string);
+    helpers = formikContext.getFieldHelpers(name as string);
   }
 
   const handleFocus = (e: any) => {
@@ -72,7 +73,7 @@ const PhoneNumberInput: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
         name={field?.name || name}
         value={field?.value || value}
         onChange={(value) => {
-          onChange(value);
+          onChange?.(value);
           helpers?.setValue(value);
         }}
         defaultCountry={country}

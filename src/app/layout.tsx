@@ -52,9 +52,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const showTemporaryLandingPage =
-    process.env.NEXT_PUBLIC_TEMPORARY_LANDING_PAGE === "true";
-
   return (
     <html
       lang="en"

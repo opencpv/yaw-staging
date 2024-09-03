@@ -1,4 +1,4 @@
-import { ErrorMessage, Form, Formik } from "formik";
+import { Form, Formik } from "formik";
 import React from "react";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { sendContactUsEmail } from "../../api";
@@ -9,19 +9,15 @@ import ContactFullNameField from "./ContactFullNameField";
 import ContactPhoneField from "./ContactPhoneField";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import capitalizeName from "@/lib/utils/stringManipulation";
-import { useRouter } from "next/navigation";
 import { UploadFile } from "../UploadFile";
 import axios from "axios";
 import { generateString } from "@/lib/utils";
 import slugify from "@/lib/utils/slugify";
 import { toast } from "react-hot-toast";
-import { E164Number } from "libphonenumber-js/core";
-import { Button } from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { tag } from "@/store/contact/useContactStore";
 
-type Props = {};
-
-const FormGeneral = (props: Props) => {
+const FormGeneral = () => {
   const {
     file,
     formRef,
@@ -30,14 +26,10 @@ const FormGeneral = (props: Props) => {
     tableName,
     handleFileUpload,
     handleFileRemove,
-    validate,
     contactFormSession,
   } = useContactForm();
 
-  const { phone, setPhone, handleCountryChange, handlePhone } =
-    usePhoneInputDisclosure();
-
-  const router = useRouter();
+  const { handleCountryChange } = usePhoneInputDisclosure();
 
   return (
     <Formik
@@ -50,9 +42,6 @@ const FormGeneral = (props: Props) => {
         fileUrl: contactFormSession.fileUrl,
       }}
       validationSchema={ContactSchema}
-      validate={(values) =>
-        validate(values, contactFormSession.phone as E164Number)
-      }
       onSubmit={async (values, { resetForm }) => {
         if (!tag) return;
         values.contactType = capitalizeName(tag);
@@ -101,11 +90,9 @@ const FormGeneral = (props: Props) => {
                 if (error) {
                   toast.error("Something went wrong.");
                 } else {
-                  resetForm();
+                  resetForm({});
                   sessionStorage.removeItem("contactFormSession");
-                  setPhone(undefined);
                   toast.success("Successfully submitted.");
-                  router.refresh();
                 }
               });
           })
@@ -115,51 +102,32 @@ const FormGeneral = (props: Props) => {
       }}
       className=""
     >
-      {({ handleBlur, handleChange, values, errors }) => (
-        <Form ref={formRef} className="w-full pt-8">
-          <div className="flex flex-col gap-10">
-            <div className="form-div">
-              <ContactFullNameField
-                value={values.fullname}
-                handleBlur={handleBlur}
-                handleChange={handleChange}
-                error={errors.fullname}
-              />
-            </div>
-            <div className="form-div">
-              <ContactPhoneField
-                phone={values.phone as E164Number}
-                handleBlur={handleBlur}
-                handleChange={handleChange}
-                handlePhone={handlePhone}
-                handleCountryChange={handleCountryChange}
-              />
-            </div>
-            <div>
-              <ContactMessageField
-                value={values.message}
-                className="w-full min-w-full"
-                error={errors.message}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-            </div>
-            <UploadFile
-              file={file as File}
-              handleFileUpload={handleFileUpload}
-              handleFileRemove={handleFileRemove}
-            />
-            <Button
-              className="max-w-full xs:max-w-fit"
-              variant="accent"
-              isLoading={loading}
-              type="submit"
-            >
-              Submit
-            </Button>
+      <Form ref={formRef} className="w-full pt-8">
+        <div className="flex flex-col gap-10">
+          <div className="form-div">
+            <ContactFullNameField />
           </div>
-        </Form>
-      )}
+          <div className="form-div">
+            <ContactPhoneField handleCountryChange={handleCountryChange} />
+          </div>
+          <div>
+            <ContactMessageField />
+          </div>
+          <UploadFile
+            file={file as File}
+            handleFileUpload={handleFileUpload}
+            handleFileRemove={handleFileRemove}
+          />
+          <Button
+            className="max-w-full xs:max-w-fit"
+            variant="accent"
+            isLoading={loading}
+            type="submit"
+          >
+            Submit
+          </Button>
+        </div>
+      </Form>
     </Formik>
   );
 };

@@ -43,7 +43,7 @@ const NoticeModal = () => {
   return (
     <Context.Provider value={{ handleVisibility, setOpen }}>
       <Dialog open={open ?? true} onOpenChange={handleOpenChange}>
-        <DialogContent className="max-w-7xl p-0">
+        <DialogContent className="max-w-7xl p-0 max-md:max-h-screen">
           <ModalBody />
         </DialogContent>
       </Dialog>

@@ -26,7 +26,6 @@ type ModalProps = {
     | "5xl";
   closeButton?: React.ReactNode;
   isDismissible?: boolean;
-  scrollBehavior?: "inside" | "outside";
   hideCloseButton?: boolean;
   className?: string;
 };
@@ -58,69 +57,31 @@ const DialogContent = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & {
     closeButton?: React.ReactNode;
-    scrollBehavior?: "inside" | "outside";
     hideCloseButton?: boolean;
   }
->(
-  (
-    {
-      className,
-      children,
-      closeButton,
-      hideCloseButton,
-      scrollBehavior,
-      ...props
-    },
-    ref,
-  ) => (
-    <DialogPortal>
-      {scrollBehavior === "inside" ? (
-        <>
-          <DialogOverlay />
-          <DialogPrimitive.Content
-            ref={ref}
-            className={cn(
-              "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 overflow-y-auto border bg-white p-6 shadow-lg duration-200 sm:rounded-lg",
-              className,
-            )}
-            {...props}
-          >
-            {children}
-            <DialogPrimitive.Close
-              className={cn(style.dialogClose, {
-                hidden: hideCloseButton,
-              })}
-            >
-              {closeButton ? closeButton : <LuX className="h-4 w-4" />}
-              <span className="sr-only">Close</span>
-            </DialogPrimitive.Close>
-          </DialogPrimitive.Content>
-        </>
-      ) : (
-        <DialogOverlay className="overflow-y-auto">
-          <DialogPrimitive.Content
-            ref={ref}
-            className={cn(
-              "relative left-[50%] top-[50%] z-50 mt-10 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-white p-6 shadow-lg duration-200 sm:rounded-lg",
-              className,
-            )}
-            {...props}
-          >
-            {children}
-            <DialogPrimitive.Close
-              className={cn(style.dialogClose, {
-                hidden: hideCloseButton,
-              })}
-            >
-              {closeButton ? closeButton : <LuX className="h-4 w-4" />}
-              <span className="sr-only">Close</span>
-            </DialogPrimitive.Close>
-          </DialogPrimitive.Content>
-        </DialogOverlay>
+>(({ className, children, closeButton, hideCloseButton, ...props }, ref) => (
+  <DialogPortal>
+    <DialogOverlay />
+    <DialogPrimitive.Content
+      ref={ref}
+      className={cn(
+        "hidden-scrollbar fixed left-[50%] top-[50%] z-50 grid max-h-[calc(100%_-_7.5rem)] w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 overflow-y-auto border bg-white p-6 shadow-lg duration-200 sm:rounded-lg",
+        className,
       )}
-    </DialogPortal>
-  ),
-);
+      {...props}
+    >
+      {children}
+      <DialogPrimitive.Close
+        className={cn(style.dialogClose, {
+          hidden: hideCloseButton,
+        })}
+      >
+        {closeButton ? closeButton : <LuX className="h-4 w-4" />}
+        <span className="sr-only">Close</span>
+      </DialogPrimitive.Close>
+    </DialogPrimitive.Content>
+  </DialogPortal>
+));
 DialogContent.displayName = DialogPrimitive.Content.displayName;
 
 const DialogHeader = ({
@@ -172,7 +133,7 @@ const DialogDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Description
     ref={ref}
-    className={cn("text-muted-foreground text-sm", className)}
+    className={cn("text-muted-foreground mx-auto w-full text-sm", className)}
     {...props}
   />
 ));
@@ -188,7 +149,6 @@ const Modal = ({
   closeButton,
   isDismissible = true,
   className,
-  scrollBehavior = "inside",
   hideCloseButton,
 }: ModalProps) => {
   return (
@@ -219,13 +179,12 @@ const Modal = ({
         onPointerDownOutside={(e) => {
           !isDismissible && e.preventDefault();
         }}
-        scrollBehavior={scrollBehavior}
         hideCloseButton={hideCloseButton}
       >
         <DialogHeader>
           {header && <DialogTitle>{header}</DialogTitle>}
-          <DialogDescription>{body}</DialogDescription>
         </DialogHeader>
+        <div className="mx-auto w-full">{body}</div>
         {footer && <DialogFooter>{footer}</DialogFooter>}
       </DialogContent>
     </Dialog>

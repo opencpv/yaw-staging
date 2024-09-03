@@ -1,6 +1,5 @@
 import { Form, Formik } from "formik";
 import React from "react";
-import { E164Number } from "libphonenumber-js/core";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { sendContactUsEmail } from "../../api";
 import { Input } from "@/components/__shared/ui/form/input";
@@ -11,7 +10,6 @@ import ContactFullNameField from "./ContactFullNameField";
 import ContactPhoneField from "./ContactPhoneField";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import capitalizeName from "@/lib/utils/stringManipulation";
-import { useRouter } from "next/navigation";
 import { generateString } from "@/lib/utils";
 import slugify from "@/lib/utils/slugify";
 import axios from "axios";
@@ -20,9 +18,7 @@ import { Button } from "@/components/__shared/ui/button/Button";
 import { UploadFile } from "../UploadFile";
 import { tag } from "@/store/contact/useContactStore";
 
-type Props = {};
-
-const FormAdvertise = (props: Props) => {
+const FormAdvertise = () => {
   const {
     file,
     formRef,
@@ -31,15 +27,11 @@ const FormAdvertise = (props: Props) => {
     tableName,
     handleFileUpload,
     handleFileRemove,
-    validate,
     contactFormSession,
     handleSessionChange,
   } = useContactForm();
 
-  const { phone, setPhone, handleCountryChange, handlePhone } =
-    usePhoneInputDisclosure();
-
-  const router = useRouter();
+  const { handleCountryChange } = usePhoneInputDisclosure();
 
   return (
     <Formik
@@ -53,9 +45,6 @@ const FormAdvertise = (props: Props) => {
         fileUrl: contactFormSession.fileUrl,
       }}
       validationSchema={ContactSchema}
-      validate={(values) =>
-        validate(values, contactFormSession.phone as E164Number)
-      }
       onSubmit={async (values, { resetForm }) => {
         if (!tag) return;
         setLoading(true);
@@ -102,89 +91,62 @@ const FormAdvertise = (props: Props) => {
                 },
               ])
               .select()
-              .then(({ data, error }) => {
+              .then(({ error }) => {
                 if (error) {
-                  toast.error("Something went wrong.");
+                  toast.error("Something went wrong. Please try again.");
                   setLoading(false);
                 } else {
                   resetForm();
                   sessionStorage.removeItem("contactFormSession");
-                  setPhone(undefined);
                   toast.success("Successfully submitted.");
-                  router.refresh();
                   setLoading(false);
                 }
               });
           })
           .catch(() => {
-            toast.error("Something went wrong.");
+            toast.error("Something went wrong. Please try again.");
           });
       }}
-      className=""
     >
-      {({ handleBlur, handleChange, values, errors }) => (
-        <Form ref={formRef} className="w-full pt-8">
-          <div className="gap-5">
-            <div className={``}>
-              <div className="flex flex-col gap-10">
-                <div className="form-div">
-                  <ContactFullNameField
-                    value={values.fullname}
-                    handleBlur={handleBlur}
-                    handleChange={handleChange}
-                    error={errors.fullname}
-                  />
-                </div>
-                <div className="form-div">
-                  <Input
-                    name="companyName"
-                    value={values.companyName}
-                    placeholder="Company Name"
-                    onChange={(e) => {
-                      handleChange(e);
-                      handleSessionChange("companyName", e.target.value);
-                    }}
-                    onBlur={handleBlur}
-                    //className="p-3 py-7"
-                  />
-                </div>
-                <div className="form-div">
-                  <ContactPhoneField
-                    phone={values.phone as E164Number}
-                    handleBlur={handleBlur}
-                    handleChange={handleChange}
-                    handlePhone={handlePhone}
-                    handleCountryChange={handleCountryChange}
-                  />
-                </div>
-                <div>
-                  <ContactMessageField
-                    value={values.message}
-                    className="w-full min-w-full"
-                    error={errors.message}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                </div>
-                <UploadFile
-                  file={file as File}
-                  handleFileUpload={handleFileUpload}
-                  handleFileRemove={handleFileRemove}
-                />
-                <Button
-                  className="max-w-full xs:max-w-fit"
-                  variant="accent"
-                  isLoading={loading}
-                  type="submit"
-                >
-                  Submit
-                </Button>
+      <Form ref={formRef} className="w-full pt-8">
+        <div className="gap-5">
+          <div className={``}>
+            <div className="flex flex-col gap-10">
+              <div className="form-div">
+                <ContactFullNameField />
               </div>
+              <div className="form-div">
+                <Input
+                  name="companyName"
+                  placeholder="Company Name"
+                  onChange={(e) => {
+                    handleSessionChange("companyName", e.target.value);
+                  }}
+                />
+              </div>
+              <div className="form-div">
+                <ContactPhoneField handleCountryChange={handleCountryChange} />
+              </div>
+              <div>
+                <ContactMessageField />
+              </div>
+              <UploadFile
+                file={file as File}
+                handleFileUpload={handleFileUpload}
+                handleFileRemove={handleFileRemove}
+              />
+              <Button
+                className="max-w-full xs:max-w-fit"
+                variant="accent"
+                isLoading={loading}
+                type="submit"
+              >
+                Submit
+              </Button>
             </div>
           </div>
-          {/* {loading ? <Loader /> : <Button color="accent">Submit</Button>} */}
-        </Form>
-      )}
+        </div>
+      </Form>
     </Formik>
   );
 };
