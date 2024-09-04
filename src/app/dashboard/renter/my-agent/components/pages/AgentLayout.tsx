@@ -5,7 +5,9 @@ import styles from "../../index.module.css";
 import Callout from "@/components/__shared/ui/callout/callout";
 import { usePathname } from "next/navigation";
 import dynamic from "next/dynamic";
-const ScrollTop = dynamic(() => import("@/components/__shared/ui/scroll-top"));
+const ScrollTop = dynamic(
+  () => import("@/components/__shared/ui/scroll-top/scroll-top"),
+);
 const BeMyAgentModal = dynamic(
   () => import("../../components/steps/BeMyAgentModal"),
 );

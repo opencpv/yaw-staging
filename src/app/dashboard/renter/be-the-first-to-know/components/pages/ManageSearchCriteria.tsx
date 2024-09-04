@@ -19,7 +19,9 @@ import TableSkeleton from "@/components/__shared/ui/skeleton/skeleton-table";
 import CriteriaStatus from "../Status";
 import MatchState from "../MatchState";
 import ResultsState from "../ResultState";
-import Pagination, { usePagination } from "@/components/__shared/ui/pagination";
+import Pagination, {
+  usePagination,
+} from "@/components/__shared/ui/pagination/pagination";
 import { cn } from "@/lib/utils";
 import TableSkeletonSm from "@/components/__shared/ui/skeleton/skeleton-table-mobile";
 import dynamic from "next/dynamic";
@@ -36,7 +38,7 @@ const ManageSearchCriteria = () => {
 
   const {
     currentItems: paginatedCriteria,
-    handlePageClick,
+    handlePageChange,
     pageCount,
     currentPage,
   } = usePagination({
@@ -58,7 +60,7 @@ const ManageSearchCriteria = () => {
           value={status as string}
           onValueChange={(value) => {
             setStatus(value);
-            handlePageClick({ selected: 0 });
+            handlePageChange({ selected: 0 });
           }}
           classNames={{ trigger: "w-[100px] self-end" }}
         />
@@ -149,7 +151,7 @@ const ManageSearchCriteria = () => {
         ))}
       </TableSm>
       <Pagination
-        handlePageClick={handlePageClick}
+        onPageChange={handlePageChange}
         pageCount={pageCount}
         forcePage={currentPage}
       />

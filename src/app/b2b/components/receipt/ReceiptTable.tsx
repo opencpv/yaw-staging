@@ -12,7 +12,9 @@ import { Checkbox } from "@/components/__shared/ui/form/checkbox";
 import { useReceiptData } from "../../hooks/useReceiptData";
 import { createUUID } from "@/lib/utils/stringManipulation";
 import { useFetchReceipts } from "../../services";
-import Pagination, { usePagination } from "@/components/__shared/ui/pagination";
+import Pagination, {
+  usePagination,
+} from "@/components/__shared/ui/pagination/pagination";
 import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
 import TableSkeleton from "@/components/__shared/ui/skeleton/skeleton-table";
 import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
@@ -43,7 +45,7 @@ const ReceiptTable = ({ searchString, customerId }: Props) => {
 
   const {
     currentItems: paginatedReceipts,
-    handlePageClick,
+    handlePageChange,
     pageCount,
   } = usePagination({
     items: receipts as Invoice[],
@@ -123,7 +125,7 @@ const ReceiptTable = ({ searchString, customerId }: Props) => {
           <DataRowSm key={createUUID()} data={data} variant="receipt" />
         ))}
       </TableSm>
-      <Pagination handlePageClick={handlePageClick} pageCount={pageCount} />
+      <Pagination onPageChange={handlePageChange} pageCount={pageCount} />
     </>
   );
 };
