@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import AgentButtons from "../Button";
 import BeMyAgentForm from "./BeMyAgentForm";
 import { Button } from "@/components/__shared/ui/button";
-import { MdOutlineEdit } from "react-icons/md";
 import { cn } from "@/lib/utils";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import BeMyAgentHeader from "./BeMyAgentHeader";
@@ -20,12 +19,10 @@ import * as Yup from "yup";
 import { usePathname } from "next/navigation";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useAddAgentRequest } from "../../services";
-import capitalizeName, {
-  convertBooleanToYesNo,
-} from "@/lib/utils/stringManipulation";
+import { convertBooleanToYesNo } from "@/lib/utils/stringManipulation";
 import { views as BeMyAgentViews } from "./BeMyAgentForm";
 import { getFormValues } from "../../utils";
-import EditButton from "@/components/__shared/ui/button/edit-button";
+import Link from "next/link";
 
 type Props = {
   button?: "Hire Us Now" | "Get Started" | "Ghost" | "Edit" | "Price";
@@ -34,6 +31,7 @@ type Props = {
   children?: React.ReactNode;
   /** Use for only Edit */
   onClick?: () => void;
+  agentRequest?: AgentRequest;
 };
 
 const BeMyAgentValidationSchema = Yup.object({
@@ -81,6 +79,7 @@ const BeMyAgentModal = (props: Props) => {
     onClose,
     setActiveSlide,
     setAgentRequest,
+    setPreviousPath,
   } = BeMyAgentStepsStore();
 
   const {
@@ -110,6 +109,17 @@ const BeMyAgentModal = (props: Props) => {
     setActiveSlide,
   ]);
 
+  const handleCreate = () => {
+    setPreviousPath(pathname as string);
+    setActiveSlide(0);
+    setAgentRequest(null);
+  };
+
+  const handleEdit = () => {
+    setActiveSlide(BeMyAgentViews.length - 1);
+    setAgentRequest(props.agentRequest as AgentRequest);
+  };
+
   return (
     <div
       className={cn({
@@ -122,40 +132,31 @@ const BeMyAgentModal = (props: Props) => {
           content={(props.content as string) ?? "Get Started"}
           variant={"green-fade-light"}
           className={props.buttonClassName}
-          onClick={() => {
-            setActiveSlide(0);
-            setAgentRequest(null);
-          }}
+          onClick={handleCreate}
         />
       ) : props.button === "Ghost" ? (
         <Button
           variant="ghost"
           className={props.buttonClassName}
-          onClick={() => {
-            setActiveSlide(BeMyAgentViews.length - 1);
-            props.onClick?.();
-          }}
+          onClick={handleEdit}
         >
           {props.content}
         </Button>
       ) : props.button === "Edit" ? (
-        <EditButton
-          className={cn(props.buttonClassName)}
-          onClick={() => {
-            setActiveSlide(BeMyAgentViews.length - 1);
-            props.onClick?.();
-          }}
-        />
+        <Link
+          href={`/dashboard/renter/my-agent/agent/edit/181${props.agentRequest?.id}`}
+          scroll={false}
+          onClick={handleEdit}
+        >
+          {props.children}
+        </Link>
       ) : props.button === "Hire Us Now" ? (
         <AgentButtons
           href="/dashboard/renter/my-agent/create"
           content={(props.content as string) ?? "Hire Us Now !!"}
           variant={"green-dark"}
           className={props.buttonClassName}
-          onClick={() => {
-            setActiveSlide(0);
-            setAgentRequest(null);
-          }}
+          onClick={handleCreate}
         />
       ) : props.button === "Price" ? (
         <AgentButtons
@@ -163,10 +164,7 @@ const BeMyAgentModal = (props: Props) => {
           variant="price"
           content={formatPrice(props.content as number)}
           className={props.buttonClassName}
-          onClick={() => {
-            setActiveSlide(0);
-            setAgentRequest(null);
-          }}
+          onClick={handleCreate}
         />
       ) : null}
       <Formik

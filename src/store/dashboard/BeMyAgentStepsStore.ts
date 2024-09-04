@@ -10,6 +10,7 @@ type BeMyAgentStepsStore = {
   isOpenEditPage: boolean;
   shouldShowMotivationMessage: boolean;
   selectedSummaryPage: string;
+  previousPath: string | null;
   setProgressValue: (val: number) => void;
   setActiveSlide: (val: number) => void;
   setFirstSlide: (val: boolean) => void;
@@ -22,6 +23,7 @@ type BeMyAgentStepsStore = {
   setSelectedSummaryPage: (page: string) => void;
   agentRequest: AgentRequest | null;
   setAgentRequest: (request: AgentRequest | null) => void;
+  setPreviousPath: (path: string) => void;
 };
 
 export const BeMyAgentDefaultValues = {
@@ -80,6 +82,7 @@ export const BeMyAgentStepsStore = create<BeMyAgentStepsStore>((set) => ({
   shouldShowMotivationMessage: true,
   selectedSummaryPage: "",
   agentRequest: null,
+  previousPath: null,
   setProgressValue: (val) => set((state) => ({ ...state, progressValue: val })),
   setActiveSlide: (val) => set((state) => ({ ...state, activeSlide: val })),
   setFirstSlide: (val) => set((state) => ({ ...state, firstSlide: val })),
@@ -100,4 +103,5 @@ export const BeMyAgentStepsStore = create<BeMyAgentStepsStore>((set) => ({
       ...state,
       selectedSummaryPage: page,
     })),
+  setPreviousPath: (path) => set((state) => ({ ...state, previousPath: path })),
 }));

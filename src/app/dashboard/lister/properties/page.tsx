@@ -51,7 +51,7 @@ const ManageProperties = () => {
     currentPage,
   } = usePagination({
     items: listings as Property[],
-    variable: status,
+    variable: status + "" + showArchived,
   });
 
   const options = [

@@ -15,7 +15,6 @@ import dynamic from "next/dynamic";
 import DeleteButton from "@/components/__shared/ui/button/delete-button";
 import { useDeleteAgentRequest } from "../services";
 import { useCallback, useEffect } from "react";
-import { views as BeMyAgentViews } from "./steps/BeMyAgentForm";
 const BeMyAgentModal = dynamic(() => import("./steps/BeMyAgentModal"));
 
 type Props = {
@@ -36,7 +35,7 @@ export default function Agent({
     agentRequest.created_at,
     BE_MY_AGENT_LAPSE_DAYS,
   );
-  const { setAgentRequest, setActiveSlide } = BeMyAgentStepsStore();
+  const { setAgentRequest } = BeMyAgentStepsStore();
 
   const { mutate: deleteAgentRequest, isPending } = useDeleteAgentRequest();
 
@@ -100,15 +99,9 @@ export default function Agent({
           className="mr-auto h-[70px] w-[70px] sm:h-[100px] sm:w-[100px]"
         />
         {isActive ? (
-          <Button
-            className="bg-shade-50 text-shade-200"
-            onClick={() => {
-              handleEdit();
-              setActiveSlide(BeMyAgentViews.length - 1);
-            }}
-          >
-            Summary
-          </Button>
+          <BeMyAgentModal button="Edit" agentRequest={agentRequest}>
+            <Button className="bg-shade-50 px-4 text-shade-200">Summary</Button>
+          </BeMyAgentModal>
         ) : (
           <ClientOnly>
             <div className="flex gap-2">
@@ -125,23 +118,23 @@ export default function Agent({
       </div>
       <div className="mb-auto space-y-1">
         <h3
-          className="line-clamp-1"
+          className={cn("line-clamp-1", { italic: !agentRequest.search_title })}
           title={agentRequest.search_title || undefined}
         >
-          {agentRequest.search_title || "-"}
+          {agentRequest.search_title || "[No Title]"}
         </h3>
         <p className="flex items-center gap-1 text-shade-200">
           <span className="font-medium">Date Created</span> :
           <span>
             {isActive === false ? (
-              <ClientOnly>
-                <BeMyAgentModal
-                  button="Ghost"
-                  content="Continue"
-                  buttonClassName="flex-1 text-base text-primary underline underline-offset-2 font-normal"
-                  onClick={handleEdit}
-                />
-              </ClientOnly>
+              <BeMyAgentModal button="Edit" agentRequest={agentRequest}>
+                <Button
+                  variant="ghost"
+                  className="flex-1 text-base font-normal text-primary underline underline-offset-2"
+                >
+                  Continue
+                </Button>
+              </BeMyAgentModal>
             ) : (
               formatDateOnly(agentRequest.created_at)
             )}

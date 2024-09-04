@@ -13,6 +13,7 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import style from "../../index.module.css";
 import HeaderButtons from "@/components/__shared/ui/modals/steps/HeaderButtons";
+import { getFormValues } from "../../utils";
 
 const FirstToKnowHeader = () => {
   const router = useRouter();
@@ -88,31 +89,15 @@ const FirstToKnowHeader = () => {
   };
 
   const handleSaveAndExit = () => {
-    handleBTFTKEditStepsStorage();
-    addSearchCriteria({
-      title: values.searchTitle,
-      location: values.location.length > 0 ? values.location : null,
-      min_beds: values.bedMinimum,
-      max_beds: values.bedMaximum,
-      min_price: values.priceRangeMinimum,
-      max_price: values.priceRangeMaximum,
-      min_bathrooms: values.bathroomMinimum,
-      max_bathrooms: values.bathroomMaximum,
-      property_type: values.preferredType,
-      email: values.email,
-      phone: values.whatsApp,
-      preferred_contact_method: capitalizeName(values.preferredMethodOfContact),
-      features: values.requiredFeatures,
-      keywords: values.specialKeywords,
-      id: criterion?.id,
-      renter_id: user?.id,
-      is_active: false,
-      matched_properties: null,
-    });
-
-    pathname?.includes("edit") &&
-      router.replace("/dashboard/renter/be-the-first-to-know/manage-criteria");
-    pathname?.includes("create") && router.back();
+    addSearchCriteria(
+      getFormValues({
+        ...values,
+        id: criterion?.id,
+        renter_id: user?.id,
+        is_active: false,
+        matched_properties: null,
+      } as unknown as typeof BTFTKDefaultValues),
+    );
   };
 
   return (

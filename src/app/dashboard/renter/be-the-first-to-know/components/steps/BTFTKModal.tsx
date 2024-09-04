@@ -21,6 +21,7 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import { views as BTFTKViews } from "./BTFTKForm";
 import Link from "next/link";
+import { getFormValues } from "../../utils";
 
 type Props = {
   buttonClassName?: string;
@@ -142,7 +143,11 @@ const BTFTKModal = (props: Props) => {
             setPreviousPath(pathname as string);
           }}
         >
-          <FaPlus /> Create a search
+          {props.children ?? (
+            <>
+              <FaPlus /> Create a search
+            </>
+          )}
         </LinkButton>
       )}
       <Formik
@@ -206,29 +211,16 @@ const BTFTKModal = (props: Props) => {
         }}
         validationSchema={BTFTKValidationSchema}
         onSubmit={(values) => {
-          addSearchCriteria({
-            title: values.searchTitle,
-            location: values.location.length > 0 ? values.location : null,
-            min_beds: values.bedMinimum,
-            max_beds: values.bedMaximum,
-            min_price: values.priceRangeMinimum,
-            max_price: values.priceRangeMaximum,
-            min_bathrooms: values.bathroomMinimum,
-            max_bathrooms: values.bathroomMaximum,
-            property_type: values.preferredType,
-            email: values.email,
-            phone: values.whatsApp,
-            preferred_contact_method: capitalizeName(
-              values.preferredMethodOfContact,
-            ),
-            features: values.requiredFeatures,
-            keywords: values.specialKeywords,
-            renter_id: user?.id,
-            id: criterion?.id,
-            is_active: true,
-            matched_properties: criterion?.matched_properties || [],
-            created_at: new Date().toISOString(),
-          });
+          addSearchCriteria(
+            getFormValues({
+              ...values,
+              renter_id: user?.id,
+              id: criterion?.id,
+              is_active: true,
+              matched_properties: criterion?.matched_properties || [],
+              created_at: new Date().toISOString(),
+            } as unknown as typeof BTFTKDefaultValues),
+          );
         }}
       >
         <Form>

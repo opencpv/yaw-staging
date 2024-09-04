@@ -17,7 +17,7 @@ const BeMyAgentHeader = () => {
   const { user } = useAppStore();
   const router = useRouter();
   const pathname = usePathname();
-  const { values, resetForm, setSubmitting } =
+  const { values, resetForm } =
     useFormikContext<typeof BeMyAgentDefaultValues>();
 
   const [BeMyAgentCreationSteps] = useLocalStorage<{
@@ -34,6 +34,7 @@ const BeMyAgentHeader = () => {
     onCloseEditPage,
     setAgentRequest,
     agentRequest,
+    previousPath,
   } = BeMyAgentStepsStore();
 
   const {
@@ -47,46 +48,31 @@ const BeMyAgentHeader = () => {
     setActiveSlide(BeMyAgentCreationSteps?.activeSlide ?? activeSlide);
   }, [setActiveSlide, activeSlide, BeMyAgentCreationSteps?.activeSlide]);
 
-  useEffect(() => {
-    if (
-      isSuccess &&
-      (pathname?.includes("edit") || pathname?.includes("create"))
-    ) {
-      resetForm({});
-      onClose();
-      onCloseEditPage();
-      setAgentRequest(null);
-      localStorage.removeItem("bma-creation-steps");
-      pathname?.includes("edit") &&
-        router.replace("/dashboard/renter/my-agent/agent");
-      pathname?.includes("create") && router.back();
-    }
-    if (pathname?.includes("create")) handleActiveSlide();
-  }, [
-    isSuccess,
-    onClose,
-    onCloseEditPage,
-    pathname,
-    setActiveSlide,
-    setAgentRequest,
-    router,
-    resetForm,
-    agentRequest?.id,
-    lastSlide,
-    setSubmitting,
-    handleActiveSlide,
-  ]);
-
-  const handleCancel = () => {
+  const handleClearData = useCallback(() => {
     resetForm({});
     onClose();
     onCloseEditPage();
     setAgentRequest(null);
     localStorage.removeItem("bma-creation-steps");
-    pathname?.includes("edit") &&
-      router.replace("/dashboard/renter/my-agent/agent");
-    pathname?.includes("create") && router.back();
-  };
+    router.replace(previousPath || "/dashboard/renter/my-agent/agent");
+  }, [
+    resetForm,
+    onClose,
+    onCloseEditPage,
+    setAgentRequest,
+    previousPath,
+    router,
+  ]);
+
+  useEffect(() => {
+    if (
+      isSuccess &&
+      (pathname?.includes("edit") || pathname?.includes("create"))
+    ) {
+      handleClearData();
+    }
+    if (pathname?.includes("create")) handleActiveSlide();
+  }, [isSuccess, pathname, handleActiveSlide, handleClearData]);
 
   const handleSaveAndExit = () => {
     addAgentRequest(
@@ -105,7 +91,7 @@ const BeMyAgentHeader = () => {
         <h4 className={style.formTitle}>Be My Agent</h4>
         <HeaderButtons
           onSaveAndExit={handleSaveAndExit}
-          onCancel={handleCancel}
+          onCancel={handleClearData}
           lastSlide={lastSlide}
           isPending={isPending}
         />
