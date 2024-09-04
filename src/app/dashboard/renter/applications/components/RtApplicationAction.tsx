@@ -35,7 +35,7 @@ const RtApplicationAction = ({ status, id, table }: Props) => {
         onClose={onClose}
         onOpenChange={onOpenChange}
         label="Are you sure you want to delete this application?"
-        handleAction={() => {}}
+        onAction={() => {}}
       />
       <ActionPopover>
         <ActionItemTrigger className="col-span-1 ml-auto p-2">

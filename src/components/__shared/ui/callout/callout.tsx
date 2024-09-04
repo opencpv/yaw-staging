@@ -4,7 +4,7 @@ import { BsInfoCircle } from "react-icons/bs";
 import { LiaTimesSolid } from "react-icons/lia";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Button } from "./button/Button";
+import { Button } from "../button/Button";
 
 type Props = {
   content?: string;
@@ -12,11 +12,14 @@ type Props = {
   title?: string;
   children?: React.ReactNode;
 };
-export default function CallOut({
+
+/**
+ *Displays a callout for user attention.
+ */
+export default function Callout({
   content,
   className,
   title,
-  /** Note: font size should use `small` i.e: <small>, 0.875rem or 14px */
   children,
 }: Props) {
   const [show, setShow] = useState(true);

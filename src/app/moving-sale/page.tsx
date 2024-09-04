@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import SliderWide from "@/components/__shared/ui/sliders/slider-wide";
-import CallOut from "@/components/__shared/ui/callout";
+import Callout from "@/components/__shared/ui/callout/callout";
 import { ADS_QUERY } from "@/lib/utils/sanity/queries";
 import dynamic from "next/dynamic";
 import { client } from "@/lib/utils/sanity/client";
@@ -34,7 +34,7 @@ const page = async () => {
           </h1>
         </div>
       </section>
-      <CallOut
+      <Callout
         content="You may select more than one response"
         className="mb-20"
       />

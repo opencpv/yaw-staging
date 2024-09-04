@@ -11,7 +11,7 @@ type PopupModalProps = {
   onOpenChange: (open: boolean) => void;
   onClose?: () => void;
   label: string;
-  handleAction: () => void;
+  onAction: () => void;
   loading?: boolean;
 };
 
@@ -136,7 +136,7 @@ const PopupModal = ({
   onOpenChange,
   onClose,
   label,
-  handleAction,
+  onAction: handleAction,
   loading,
 }: PopupModalProps) => {
   return (

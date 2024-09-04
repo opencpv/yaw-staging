@@ -5,7 +5,7 @@ import React from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import style from "../../../index.module.css";
 import { BeMyAgentDefaultValues } from "@/store/dashboard/BeMyAgentStepsStore";
-import CallOut from "@/components/__shared/ui/callout";
+import Callout from "@/components/__shared/ui/callout/callout";
 import { cn } from "@/lib/utils";
 
 type Props = {};
@@ -30,7 +30,7 @@ const LeaseHolderInformation = React.forwardRef<HTMLInputElement, Props>(
             <h2 className={`${style.titleNoMargin}`}>
               Lease Holder Information <span className={style.asterisk}>*</span>
             </h2>
-            <CallOut content="You may select more than one response" />
+            <Callout content="You may select more than one response" />
           </div>
           <div className={style.wrappingFieldsGrid}>
             <SelectInput

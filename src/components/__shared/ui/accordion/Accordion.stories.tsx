@@ -36,9 +36,6 @@ export default meta;
 
 type Story = StoryObj<typeof Accordion>;
 
-/**
- * Can be controlled or uncontrolled
- */
 export const Default: Story = {
   args: {
     defaultValue: "item-1",

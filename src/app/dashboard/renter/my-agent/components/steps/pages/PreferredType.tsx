@@ -1,7 +1,7 @@
 import { useLocalStorage } from "@uidotdev/usehooks";
 import Amenity from "@/app/dashboard/components/shared/ui/Amenity";
 import style from "../../../index.module.css";
-import CallOut from "../../../../../../../components/__shared/ui/callout";
+import Callout from "../../../../../../../components/__shared/ui/callout/callout";
 import { useField } from "formik";
 import { properties } from "../../../../../components/shared/content";
 import { BeMyAgentDefaultValues } from "@/store/dashboard/BeMyAgentStepsStore";
@@ -34,7 +34,7 @@ export default function PreferredType() {
         <h2 className={`${style.titleNoMargin}`}>
           Preferred Type <span className={style.asterisk}>*</span>
         </h2>
-        <CallOut content="You may select more than one response" />
+        <Callout content="You may select more than one response" />
       </div>
       <div className={style.subHeadingFieldsContainer}>
         <h3 className="font-normal">Types of Place</h3>

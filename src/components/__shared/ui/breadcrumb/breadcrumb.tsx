@@ -122,6 +122,9 @@ const BreadcrumbEllipsis = ({
 );
 BreadcrumbEllipsis.displayName = "BreadcrumbElipssis";
 
+/**
+ *Displays the path to the current resource using a hierarchy of links.
+ */
 const Breadcrumb = React.forwardRef<
   HTMLElement,
   React.ComponentPropsWithoutRef<"nav"> & {

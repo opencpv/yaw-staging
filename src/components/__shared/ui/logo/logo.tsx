@@ -13,7 +13,7 @@ type Props = {
   url?: string;
 };
 
-const Logo = ({ className, size, onClick, url = "/" }: Props) => {
+const Logo = ({ className, size = "sm", onClick, url = "/" }: Props) => {
   const { icons } = useAssets();
   const { setToggle } = useMenuStore();
   const { setIsOpen } = useDashboardMenuStore();

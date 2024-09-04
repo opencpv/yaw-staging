@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import CallOut from "@/components/__shared/ui/callout";
+import Callout from "@/components/__shared/ui/callout/callout";
 import { pluralize } from "@/lib/utils/stringManipulation";
 import { useFetchAllListerProperties } from "./services";
 import { useAppStore } from "@/store/dashboard/AppStore";
@@ -66,7 +66,7 @@ const ManageProperties = () => {
     <main className="pb-40">
       <section className="mb-6 flex flex-col gap-5">
         <h2>My Listings</h2>
-        <CallOut content="Members post for free" />
+        <Callout content="Members post for free" />
         <div className="flex flex-col gap-8">
           <ListingModal className="flex w-fit items-center gap-2 rounded-md bg-primary p-3 px-5 text-white">
             <FaPlus />

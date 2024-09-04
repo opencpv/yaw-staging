@@ -9,7 +9,7 @@ import LargeButton from "@/app/dashboard/components/shared/ui/LargeButton";
 import { TbBuildingCommunity } from "react-icons/tb";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { AiOutlineUser } from "react-icons/ai";
-import CallOut from "@/components/__shared/ui/callout";
+import Callout from "@/components/__shared/ui/callout/callout";
 import dynamic from "next/dynamic";
 const UserOverviewMV = dynamic(() => import("./UserOverviewMV"));
 
@@ -29,7 +29,7 @@ const UserOverview = ({
       <h3 className="mb-6 text-neutral-700 md:hidden">
         Welcome, {user?.full_name}
       </h3>
-      <CallOut className="mb-6 h-fit w-full transition-all sm:w-10/12">
+      <Callout className="mb-6 h-fit w-full transition-all sm:w-10/12">
         <div className="flex items-center gap-5">
           <div className="space-y-1">
             {type === "renter" ? (
@@ -53,7 +53,7 @@ const UserOverview = ({
             </small>
           </div>
         </div>
-      </CallOut>
+      </Callout>
       <div className="fade-in-bottom">
         {type === "lister" && (
           <LargeButton

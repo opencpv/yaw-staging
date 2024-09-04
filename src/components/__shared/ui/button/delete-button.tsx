@@ -36,7 +36,7 @@ const DeleteButton = ({
         onClose={onClose}
         onOpenChange={onOpenChange}
         label={label ?? "Are you sure you want to delete this item?"}
-        handleAction={handleDestruction}
+        onAction={handleDestruction}
         loading={loading}
       />
       <Button
