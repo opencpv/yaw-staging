@@ -1,16 +1,12 @@
 "use client";
 import React, { useEffect } from "react";
 import { cn } from "@/lib/utils";
-import dynamic from "next/dynamic";
 import {
   Dialog,
   DialogContent,
   DialogFooter,
   DialogHeader,
 } from "@/components/__shared/ui/modals/dialog";
-const Modal = dynamic(() =>
-  import("@/components/__shared/ui/modals/dialog").then((mod) => mod.Modal),
-);
 
 type Props = {
   body: React.ReactNode;
@@ -52,7 +48,7 @@ const StepsModal = ({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
-        className="my-0 h-screen min-w-full rounded-none p-0"
+        className="my-0 h-screen max-h-screen min-w-full rounded-none p-0"
         hideCloseButton
         onEscapeKeyDown={(e) => e.preventDefault()}
       >

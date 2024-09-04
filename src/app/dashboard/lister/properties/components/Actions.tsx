@@ -21,7 +21,9 @@ import { PiArrowLineUp } from "react-icons/pi";
 import { TbTrashOff } from "react-icons/tb";
 import dynamic from "next/dynamic";
 const PopupModal = dynamic(() =>
-  import("@/components/__shared/ui/alert-dialog").then((mod) => mod.PopupModal),
+  import("@/components/__shared/ui/alert-dialog/alert-dialog").then(
+    (mod) => mod.PopupModal,
+  ),
 );
 
 const ListingModal = dynamic(

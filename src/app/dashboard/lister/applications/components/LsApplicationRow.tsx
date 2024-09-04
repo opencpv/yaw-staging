@@ -13,7 +13,9 @@ import TbUserImage from "@/app/dashboard/components/shared/ui/TbUserImage";
 import dynamic from "next/dynamic";
 import DeleteButton from "@/components/__shared/ui/button/delete-button/delete-button";
 const PopupModal = dynamic(() =>
-  import("@/components/__shared/ui/alert-dialog").then((mod) => mod.PopupModal),
+  import("@/components/__shared/ui/alert-dialog/alert-dialog").then(
+    (mod) => mod.PopupModal,
+  ),
 );
 
 const LsApplicationRow = ({

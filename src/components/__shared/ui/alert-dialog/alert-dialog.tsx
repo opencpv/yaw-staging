@@ -4,13 +4,13 @@ import * as React from "react";
 import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog";
 
 import { cn } from "@/lib/utils";
-import { Button } from "./button/Button";
+import { Button } from "../button/Button";
 
 type PopupModalProps = {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
-  onClose: () => void;
-  label?: string;
+  onClose?: () => void;
+  label: string;
   handleAction: () => void;
   loading?: boolean;
 };
@@ -127,6 +127,10 @@ const AlertDialogCancel = React.forwardRef<
 ));
 AlertDialogCancel.displayName = AlertDialogPrimitive.Cancel.displayName;
 
+/**
+ *A modal dialog that interrupts the user with important content and expects a response.
+
+ */
 const PopupModal = ({
   isOpen,
   onOpenChange,

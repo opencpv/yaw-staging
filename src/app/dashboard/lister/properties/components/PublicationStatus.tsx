@@ -11,7 +11,9 @@ import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { Button } from "@/components/__shared/ui/button/Button";
 import dynamic from "next/dynamic";
 const PopupModal = dynamic(() =>
-  import("@/components/__shared/ui/alert-dialog").then((mod) => mod.PopupModal),
+  import("@/components/__shared/ui/alert-dialog/alert-dialog").then(
+    (mod) => mod.PopupModal,
+  ),
 );
 
 interface Props {

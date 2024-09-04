@@ -145,7 +145,7 @@ const Modal = ({
   header,
   body,
   footer,
-  size = "3xl",
+  size = "md",
   closeButton,
   isDismissible = true,
   className,
@@ -156,7 +156,7 @@ const Modal = ({
       <DialogContent
         className={cn(
           {
-            "min-h-screen sm:rounded-none": size === "full",
+            "min-h-screen min-w-full sm:rounded-none": size === "full",
             "max-w-xs": size === "xs",
             "max-w-sm": size === "sm",
             "max-w-md": size === "md",
