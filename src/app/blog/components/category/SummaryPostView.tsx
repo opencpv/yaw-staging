@@ -2,7 +2,9 @@
 import React, { useEffect, useMemo } from "react";
 import TabsAndSearch from "./TabsAndSearch";
 import PostsGrid from "../post/PostsGrid";
-import Pagination, { usePagination } from "@/components/__shared/ui/pagination";
+import Pagination, {
+  usePagination,
+} from "@/components/__shared/ui/pagination/pagination";
 import { usePathname } from "next/navigation";
 import slugify from "@/lib/utils/slugify";
 
@@ -37,7 +39,7 @@ const SummaryPostView = (props: Props) => {
 
   const {
     currentItems: paginatedPosts,
-    handlePageClick,
+    handlePageChange,
     pageCount,
   } = usePagination({
     items: blogPosts,
@@ -80,7 +82,7 @@ const SummaryPostView = (props: Props) => {
           loading={loading}
         />
       </div>
-      <Pagination handlePageClick={handlePageClick} pageCount={pageCount} />
+      <Pagination onPageChange={handlePageChange} pageCount={pageCount} />
     </div>
   );
 };

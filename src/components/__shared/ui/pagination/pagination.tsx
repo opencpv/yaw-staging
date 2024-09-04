@@ -2,23 +2,31 @@
 import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
-import style from "../Shared.module.css";
+import style from "../../Shared.module.css";
 import { cn } from "@/lib/utils";
 
 type Props = {
-  handlePageClick: (event: { selected: number }) => void;
+  onPageChange: (event: { selected: number }) => void;
   pageCount: number;
   className?: string;
   forcePage?: number;
 };
 
-const Pagination = ({ className, handlePageClick, pageCount, forcePage }: Props) => {
+/**
+ * Used to paginate through a list of items. Accompanied with a usePagination hook
+ */
+const Pagination = ({
+  className,
+  onPageChange,
+  pageCount,
+  forcePage,
+}: Props) => {
   return (
     <ReactPaginate
       breakLabel={<span className={`${style.paginationSquare}`}>...</span>}
       nextLabel={<FaChevronRight />}
       previousLabel={<FaChevronLeft />}
-      onPageChange={handlePageClick}
+      onPageChange={onPageChange}
       //pageRangeDisplayed={4}
       pageCount={pageCount}
       renderOnZeroPageCount={null}
@@ -68,9 +76,9 @@ export const usePagination = ({
   }, [variable]);
 
   // Invoke when user click to request another page.
-  const handlePageClick = (event: { selected: number }) => {
+  const handlePageChange = (event: { selected: number }) => {
     const newOffset = (event.selected * itemsPerPage) % items?.length;
-    const newPage = event.selected ;
+    const newPage = event.selected;
     setCurrentPage(newPage);
     setItemOffset(newOffset);
     //router.push(`?page=${event.selected + 1}`, { scroll: false });
@@ -82,6 +90,6 @@ export const usePagination = ({
     pageCount,
     setItemOffset,
     currentPage,
-    handlePageClick,
+    handlePageChange,
   };
 };

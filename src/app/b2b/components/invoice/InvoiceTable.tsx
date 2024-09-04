@@ -16,7 +16,9 @@ import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-stat
 import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
 import TableSkeleton from "@/components/__shared/ui/skeleton/skeleton-table";
 import TableSkeletonSm from "@/components/__shared/ui/skeleton/skeleton-table-mobile";
-import Pagination, { usePagination } from "@/components/__shared/ui/pagination";
+import Pagination, {
+  usePagination,
+} from "@/components/__shared/ui/pagination/pagination";
 import InvoiceEmptyState from "../__shared/InvoiceEmptyState";
 import toast from "react-hot-toast";
 
@@ -40,7 +42,7 @@ const InvoiceTable = ({ searchString, customerId, filter }: Props) => {
 
   const {
     currentItems: paginatedInvoices,
-    handlePageClick,
+    handlePageChange,
     pageCount,
   } = usePagination({
     items: invoices as Invoice[],
@@ -103,7 +105,7 @@ const InvoiceTable = ({ searchString, customerId, filter }: Props) => {
         ))}
       </TableSm>
 
-      <Pagination handlePageClick={handlePageClick} pageCount={pageCount} />
+      <Pagination onPageChange={handlePageChange} pageCount={pageCount} />
     </>
   );
 };

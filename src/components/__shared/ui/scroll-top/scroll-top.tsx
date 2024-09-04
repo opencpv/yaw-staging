@@ -2,8 +2,11 @@
 import React, { useEffect, useState } from "react";
 import { FaChevronUp } from "react-icons/fa";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
-import { Button } from "./button/Button";
+import { Button } from "../button/Button";
 
+/**
+ * Scrolls to the top of the page
+ */
 const ScrollTop = () => {
   const [shouldShowScrollBtn, setShouldShowScrollBtn] =
     useState<boolean>(false);

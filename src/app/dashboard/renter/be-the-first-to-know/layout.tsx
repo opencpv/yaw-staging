@@ -1,6 +1,8 @@
 import dynamic from "next/dynamic";
 import React from "react";
-const ScrollTop = dynamic(() => import("@/components/__shared/ui/scroll-top"));
+const ScrollTop = dynamic(
+  () => import("@/components/__shared/ui/scroll-top/scroll-top"),
+);
 
 const BeTheFirstToKnowLayout = ({
   children,

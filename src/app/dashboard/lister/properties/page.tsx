@@ -22,7 +22,9 @@ import TableSkeletonSm from "@/components/__shared/ui/skeleton/skeleton-table-mo
 import { FaPlus } from "react-icons/fa6";
 import { Tabs } from "@/components/__shared/ui/tabs";
 import dynamic from "next/dynamic";
-import Pagination, { usePagination } from "@/components/__shared/ui/pagination";
+import Pagination, {
+  usePagination,
+} from "@/components/__shared/ui/pagination/pagination";
 const EmptyState = dynamic(() => import("./components/EmptyState"));
 
 const ListingModal = dynamic(
@@ -46,7 +48,7 @@ const ManageProperties = () => {
 
   const {
     currentItems: paginatedListings,
-    handlePageClick,
+    handlePageChange,
     pageCount,
     currentPage,
   } = usePagination({
@@ -150,7 +152,7 @@ const ManageProperties = () => {
         showingArchived={showArchived}
       />
       <Pagination
-        handlePageClick={handlePageClick}
+        onPageChange={handlePageChange}
         pageCount={pageCount}
         forcePage={currentPage}
       />
