@@ -15,7 +15,9 @@ import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 const PopupModal = dynamic(() =>
-  import("@/components/__shared/ui/alert-dialog").then((mod) => mod.PopupModal),
+  import("@/components/__shared/ui/alert-dialog/alert-dialog").then(
+    (mod) => mod.PopupModal,
+  ),
 );
 
 interface Props {

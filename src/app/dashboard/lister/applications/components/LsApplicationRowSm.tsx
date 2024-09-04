@@ -14,7 +14,9 @@ import dynamic from "next/dynamic";
 import DeleteButton from "@/components/__shared/ui/button/delete-button";
 //import Rating from "../../../components/shared/Rating";
 const PopupModal = dynamic(() =>
-  import("@/components/__shared/ui/alert-dialog").then((mod) => mod.PopupModal),
+  import("@/components/__shared/ui/alert-dialog/alert-dialog").then(
+    (mod) => mod.PopupModal,
+  ),
 );
 
 const LsApplicationRowSm = ({

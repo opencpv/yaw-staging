@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
 import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 const PopupModal = dynamic(() =>
-  import("../alert-dialog").then((mod) => mod.PopupModal),
+  import("../../alert-dialog/alert-dialog").then((mod) => mod.PopupModal),
 );
 
 type Props = {
