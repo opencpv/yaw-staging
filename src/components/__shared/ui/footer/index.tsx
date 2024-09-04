@@ -2,7 +2,7 @@
 import Link from "next/link";
 import quickLinks from "@/enum/footer/quickLinks";
 import { getCurrentYear } from "@/lib/utils/numberManipulation";
-import Logo from "@/components/__shared/ui/Logo";
+import Logo from "@/components/__shared/ui/logo/logo";
 import SubscribeForm from "../form/SubscribeForm";
 import Feedback from "@/components/__shared/ui/feedback/Feedback";
 import { LowerCase } from "@/lib/utils/stringManipulation";

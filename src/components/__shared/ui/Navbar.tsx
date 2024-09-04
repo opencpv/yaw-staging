@@ -4,7 +4,7 @@ import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import { usePathname } from "next/navigation.js";
 import { useEffect, useState } from "react";
-import Logo from "@/components/__shared/ui/Logo";
+import Logo from "@/components/__shared/ui/logo/logo";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
 import GetStartedButton from "./button/get-started-button/get-started-button";
 import { useHideDocumentScrollBar } from "@/lib/custom-hooks/useWindowEvents";

@@ -1,7 +1,7 @@
 import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import React, { useEffect, useState } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-import FavoriteModal from "./listing/FavoriteModal";
+import FavoriteModal from "../listing/FavoriteModal";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { updateLikedProperty } from "@/app/properties/_actions";
 import { getUserFavorite } from "@/components/services";
@@ -10,7 +10,7 @@ import dynamic from "next/dynamic";
 import toast from "react-hot-toast";
 
 const SignInRequiredModal = dynamic(
-  () => import("./modals/sign-in-required-modal"),
+  () => import("../modals/sign-in-required-modal"),
 );
 
 type Props = {
@@ -20,6 +20,9 @@ type Props = {
   className?: string;
 };
 
+/**
+ * Button to like or dislike a property
+ */
 const LikeHeart = ({ liked, className, userId, propertyId }: Props) => {
   const [isLiked, setIsLiked] = useState<boolean>(liked as boolean);
   const { onOpen, isOpen, onOpenChange, onClose } = useDisclosure();

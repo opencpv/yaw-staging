@@ -1,7 +1,7 @@
 import { useLocalStorage } from "@uidotdev/usehooks";
 import Amenity from "@/app/dashboard/components/shared/ui/Amenity";
 import style from "../../../index.module.css";
-import CallOut from "../../../../../../../components/__shared/ui/callout";
+import Callout from "../../../../../../../components/__shared/ui/callout/callout";
 import { useField } from "formik";
 import { features } from "../../../../../components/shared/content";
 import { ListingDefaultValues } from "@/store/dashboard/ListingStepsStore";
@@ -36,7 +36,7 @@ export default function Features() {
           <h2 className={`${style.titleNoMargin}`}>
             Features <span className={style.asterisk}>*</span>
           </h2>
-          <CallOut content="You can add more features after you publish your listing." />
+          <Callout content="You can add more features after you publish your listing." />
         </div>
 
         <div className={style.amenityGrid}>

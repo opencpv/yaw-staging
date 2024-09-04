@@ -1,5 +1,5 @@
 import style from "../Feature.module.css";
-import CallOut from "@/components/__shared/ui/callout";
+import Callout from "@/components/__shared/ui/callout/callout";
 import { LinkButton } from "@/components/__shared/ui/button/Button";
 import React, { useEffect } from "react";
 import Image from "next/image";
@@ -112,7 +112,7 @@ const BeMyAgentMatchSummary = ({
             </ul>
           ) : (
             <>
-              <CallOut>
+              <Callout>
                 <div>
                   {callOut?.content}
                   {callOut?.href && (
@@ -128,7 +128,7 @@ const BeMyAgentMatchSummary = ({
                     </>
                   )}
                 </div>
-              </CallOut>
+              </Callout>
             </>
           )}
         </>

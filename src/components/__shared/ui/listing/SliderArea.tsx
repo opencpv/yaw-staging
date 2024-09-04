@@ -8,7 +8,7 @@ import ListingCardButton from "./ListingCardButton";
 import { FiTrash2 } from "react-icons/fi";
 import ListingTags from "./ListingTags";
 import { ListingCardInterface } from "../../../../../interfaces";
-import LikeHeart from "../like-button";
+import LikeHeart from "../like-button/like-button";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { createUUID } from "@/lib/utils/stringManipulation";
 import SliderNav from "../sliders/slider-nav";

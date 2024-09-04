@@ -101,7 +101,7 @@ const PublicationStatus = ({ listing }: Props) => {
                 listing?.property_name || "[No Title]"
               }"?`
         }
-        handleAction={handlePublish}
+        onAction={handlePublish}
         loading={isPending}
       />
       <PopupModal
@@ -109,7 +109,7 @@ const PublicationStatus = ({ listing }: Props) => {
         onClose={onCloseExtend}
         onOpenChange={onOpenChangeExtend}
         label={"Are you sure you want to extend this listing?"}
-        handleAction={handleExtend}
+        onAction={handleExtend}
         loading={isExtending}
       />
       <span className="flex items-center gap-2 max-md:pl-2">

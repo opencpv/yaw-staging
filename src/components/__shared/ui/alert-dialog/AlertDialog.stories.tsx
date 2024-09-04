@@ -29,8 +29,10 @@ const meta: Meta<typeof PopupModal> = {
     onClose: {
       type: "function",
     },
-    handleAction: {
+    onAction: {
       type: "function",
+      description:
+        "Callback function when the action button <strong>(i.e Yes)</strong> is clicked",
     },
     label: {
       control: {
@@ -52,8 +54,9 @@ type Story = StoryObj<typeof PopupModal>;
 
 export const Default: Story = {
   args: {
+    loading: false,
     label: "Are you sure you want to archive this item?",
-    handleAction: () => {},
+    onAction: () => {},
   },
   render: (args) => {
     const { isOpen, onOpenChange, onOpen } = useDisclosure();
@@ -64,7 +67,8 @@ export const Default: Story = {
           label={args.label}
           isOpen={isOpen}
           onOpenChange={onOpenChange}
-          handleAction={args.handleAction}
+          onAction={args.onAction}
+          loading={args.loading}
         />
       </>
     );
@@ -75,7 +79,7 @@ export const Loading: Story = {
   args: {
     loading: true,
     label: "Are you sure you want to archive this item?",
-    handleAction: () => {},
+    onAction: () => {},
     isOpen: false,
   },
   render: (args) => {
@@ -87,7 +91,7 @@ export const Loading: Story = {
           label={args.label}
           isOpen={isOpen}
           onOpenChange={onOpenChange}
-          handleAction={args.handleAction}
+          onAction={args.onAction}
           loading={args.loading}
         />
       </>

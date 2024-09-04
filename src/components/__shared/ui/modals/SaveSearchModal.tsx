@@ -138,7 +138,7 @@ const RecentSearch = ({ title, date }: { title: string; date: string }) => {
         onClose={onClose}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        handleAction={() => {}}
+        onAction={() => {}}
       />
     </div>
   );

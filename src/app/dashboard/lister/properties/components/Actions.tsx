@@ -109,7 +109,7 @@ const Actions = ({ listing }: Props) => {
                 listing?.property_name || "[No Title]"
               }"?`
         }
-        handleAction={handleDestruction}
+        onAction={handleDestruction}
         loading={isDeleting}
       />
       <PopupModal
@@ -125,7 +125,7 @@ const Actions = ({ listing }: Props) => {
                 listing?.property_name || "[No Title]"
               }"?`
         }
-        handleAction={handlePublish}
+        onAction={handlePublish}
         loading={isPublishing}
       />
       <ActionPopover>
