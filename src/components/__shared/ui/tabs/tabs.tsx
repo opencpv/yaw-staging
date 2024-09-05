@@ -67,6 +67,9 @@ const TabsContent = React.forwardRef<
 ));
 TabsContent.displayName = TabsPrimitive.Content.displayName;
 
+/**
+ *A set of layered sections of content—known as tab panels—that are displayed one at a time.
+ */
 const Tabs = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof TabsPrimitive.Root> &
@@ -112,7 +115,12 @@ const Tabs = React.forwardRef<
                   {option.label} {option.icon}
                 </TabsTrigger>
               ) : (
-                <TabsTrigger key={option} value={option} variant={variant}>
+                <TabsTrigger
+                  key={option}
+                  value={option}
+                  variant={variant}
+                  size={size}
+                >
                   {option}
                 </TabsTrigger>
               )}

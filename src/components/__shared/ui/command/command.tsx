@@ -8,6 +8,9 @@ import { IoSearchOutline } from "react-icons/io5";
 import { cn } from "@/lib/utils";
 import { Dialog, DialogContent } from "@/components/__shared/ui/modals/dialog";
 
+/**
+ *Fast, composable command menu.
+ */
 const Command = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive>

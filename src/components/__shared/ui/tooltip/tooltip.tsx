@@ -4,7 +4,7 @@ import * as React from "react";
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 
 import { cn } from "@/lib/utils";
-import { PopoverContent, PopoverTrigger } from "./popover";
+import { PopoverContent, PopoverTrigger } from "../popover";
 import dynamic from "next/dynamic";
 const Popover = dynamic(() =>
   import("@/components/__shared/ui/popover").then((mod) => mod.Popover),

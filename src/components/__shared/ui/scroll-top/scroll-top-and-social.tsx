@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import FixedSocials from "../fixed-socials";
+import FixedSocials from "../fixed-socials/fixed-socials";
 import dynamic from "next/dynamic";
 const ScrollTop = dynamic(() => import("./scroll-top"));
 

@@ -6,7 +6,7 @@ import NoProfileUpload from "./NoProfileUpload";
 import Loader from "@/components/__shared/ui/loader";
 import dynamic from "next/dynamic";
 const Tooltip = dynamic(() =>
-  import("@/components/__shared/ui/tooltip").then((mod) => mod.Tooltip),
+  import("@/components/__shared/ui/tooltip/tooltip").then((mod) => mod.Tooltip),
 );
 
 const ProfilePicture = () => {

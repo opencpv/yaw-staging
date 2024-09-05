@@ -26,7 +26,7 @@ import slugify from "@/lib/utils/slugify";
 import dynamic from "next/dynamic";
 import CaJoinUsIconLeft from "./icons/CaJoinUsIconLongLeft";
 const Tooltip = dynamic(() =>
-  import("@/components/__shared/ui/tooltip").then((mod) => mod.Tooltip),
+  import("@/components/__shared/ui/tooltip/tooltip").then((mod) => mod.Tooltip),
 );
 
 type Props = {

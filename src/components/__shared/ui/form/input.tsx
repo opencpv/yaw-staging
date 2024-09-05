@@ -3,7 +3,7 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { FieldInputProps, useFormikContext } from "formik";
 import ErrorMessage from "../states/error-message";
-import { Tooltip } from "../tooltip";
+import { Tooltip } from "../tooltip/tooltip";
 import { BsInfoCircle } from "react-icons/bs";
 
 export interface InputProps

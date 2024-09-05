@@ -4,7 +4,7 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@/components/__shared/ui/tabs";
+} from "@/components/__shared/ui/tabs/tabs";
 import ReviewersSay from "../../renter/my-reviews/components/ReviewersSay";
 import PropertyOwnersReview from "../../renter/my-reviews/components/PropertyOwnersReview";
 import PropertiesReview from "../../renter/my-reviews/components/PropertiesReview";

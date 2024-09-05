@@ -5,7 +5,7 @@ import { Input } from "@/components/__shared/ui/form/input";
 import CountryInput from "@/components/__shared/ui/form/country-input";
 import { Textarea } from "@/components/__shared/ui/form/textarea";
 import style from "../../../index.module.css";
-import { Tabs } from "@/components/__shared/ui/tabs";
+import { Tabs } from "@/components/__shared/ui/tabs/tabs";
 import PhoneNumberInput from "@/components/__shared/ui/form/phone-number-input";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { MdOutlineMailOutline, MdOutlineWhatsapp } from "react-icons/md";

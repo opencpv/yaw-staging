@@ -4,7 +4,7 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@/components/__shared/ui/tabs";
+} from "@/components/__shared/ui/tabs/tabs";
 import { invoiceStore } from "@/store/payment/invoiceStore";
 import React, { useEffect, useState } from "react";
 import Invoices from "../pages/Invoices";

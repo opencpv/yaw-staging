@@ -17,7 +17,9 @@ import { createClient } from "@/lib/utils/supabase/auth/client";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import toast from "react-hot-toast";
 import dynamic from "next/dynamic";
-const Tooltip = dynamic(() => import("../tooltip").then((mod) => mod.Tooltip));
+const Tooltip = dynamic(() =>
+  import("../tooltip/tooltip").then((mod) => mod.Tooltip),
+);
 const Popover = dynamic(() =>
   import("@/components/__shared/ui/popover").then((mod) => mod.Popover),
 );

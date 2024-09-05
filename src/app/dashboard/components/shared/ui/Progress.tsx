@@ -4,7 +4,7 @@ import { GiBiceps } from "react-icons/gi";
 import { IoMdHappy } from "react-icons/io";
 import { PiConfetti } from "react-icons/pi";
 import { cn } from "@/lib/utils";
-import { Progress as RadixProgress } from "@/components/__shared/ui/progress";
+import { Progress as RadixProgress } from "@/components/__shared/ui/progress/progress";
 
 type Props = {
   /** The current value of the progress bar */

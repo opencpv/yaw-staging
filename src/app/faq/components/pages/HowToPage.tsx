@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import HowToVideosSection from "../../../how-to/components/HowToVideosSection";
-import { Tabs } from "@/components/__shared/ui/tabs";
+import { Tabs } from "@/components/__shared/ui/tabs/tabs";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import { HowTo } from "../../../../../interfaces";
 import { useRouter } from "next/navigation";
