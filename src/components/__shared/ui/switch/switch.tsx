@@ -26,6 +26,9 @@ const BaseSwitch = React.forwardRef<
 ));
 BaseSwitch.displayName = "BaseSwitch";
 
+/**
+ *A control that allows the user to toggle between checked and not checked.
+ */
 const Switch = React.forwardRef<
   HTMLLabelElement,
   React.LabelHTMLAttributes<HTMLLabelElement> & {
