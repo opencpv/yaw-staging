@@ -3,7 +3,7 @@ import ReviewersSay from "./components/ReviewersSay";
 import PropertyOwnersReview from "./components/PropertyOwnersReview";
 import PropertiesReview from "./components/PropertiesReview";
 import ServiceProsReviews from "./components/ServiceProsReviews";
-import { Tabs } from "@/components/__shared/ui/tabs";
+import { Tabs } from "@/components/__shared/ui/tabs/tabs";
 import { useReviewsStore } from "@/store/dashboard/reviewsStore";
 import { Switch } from "@/components/__shared/ui/switch/switch";
 import AllReviewsReceived from "./components/AllReviewsReceived";

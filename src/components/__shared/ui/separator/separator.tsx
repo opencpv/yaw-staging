@@ -1,36 +1,46 @@
-import React from "react";
-import * as SeparatorInner from "@radix-ui/react-separator";
-import { styled } from "@stitches/react";
+"use client";
 
-type Props = Omit<SeparatorInner.SeparatorProps, "color"> & {
-  color?: "primary" | "secondary" | "white" | "transparent";
-};
+import * as React from "react";
+import * as SeparatorPrimitive from "@radix-ui/react-separator";
+
+import { cn } from "@/lib/utils";
 
 /**
  *Visually or semantically separates content.
  */
-const Separator = (props: Props) => <SeparatorRoot {...props} />;
-
-const SeparatorRoot = styled(SeparatorInner.Root, {
-  "&[data-orientation=horizontal]": { height: 1, width: "100%" },
-  "&[data-orientation=vertical]": { height: "100%", width: 3 },
-  variants: {
-    color: {
-      primary: {
-        backgroundColor: "#830009",
-      },
-      secondary: {},
-      white: {
-        backgroundColor: "white",
-      },
-      transparent: {
-        backgroundColor: "rgb(255, 255, 255, 0.5)",
-      },
+const Separator = React.forwardRef<
+  React.ElementRef<typeof SeparatorPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root> & {
+    color?: "default" | "white";
+  }
+>(
+  (
+    {
+      className,
+      color = "default",
+      orientation = "horizontal",
+      decorative = true,
+      ...props
     },
-  },
-  defaultVariants: {
-    color: "primary",
-  },
-});
+    ref,
+  ) => (
+    <SeparatorPrimitive.Root
+      ref={ref}
+      decorative={decorative}
+      orientation={orientation}
+      className={cn(
+        "shrink-0 bg-neutral-300",
+        {
+          "h-[2px] w-full": orientation === "horizontal",
+          "h-full w-[2px]": orientation === "vertical",
+          "bg-white": color === "white",
+        },
+        className,
+      )}
+      {...props}
+    />
+  ),
+);
+Separator.displayName = SeparatorPrimitive.Root.displayName;
 
-export default Separator;
+export { Separator };

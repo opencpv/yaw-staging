@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Tabs } from "@/components/__shared/ui/tabs";
+import { Tabs } from "@/components/__shared/ui/tabs/tabs";
 import { Select } from "@/components/__shared/ui/form/select";
 import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
 import SkeletonListing from "@/components/__shared/ui/skeleton/skeleton-listing";

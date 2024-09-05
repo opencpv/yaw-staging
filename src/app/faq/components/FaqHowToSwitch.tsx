@@ -1,5 +1,5 @@
 "use client";
-import { Tabs } from "@/components/__shared/ui/tabs";
+import { Tabs } from "@/components/__shared/ui/tabs/tabs";
 import { caseInsensitiveCompare } from "@/lib/utils/stringManipulation";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useState } from "react";

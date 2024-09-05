@@ -8,7 +8,7 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@/components/__shared/ui/tabs";
+} from "@/components/__shared/ui/tabs/tabs";
 const ProfileInfo = dynamic(() => import("./ProfileInfo"));
 
 const ProfileMainView = () => {

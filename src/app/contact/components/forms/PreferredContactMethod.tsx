@@ -1,7 +1,7 @@
 import React from "react";
 import PhoneNumberInput from "@/components/__shared/ui/form/phone-number-input";
 import { Input } from "@/components/__shared/ui/form/input";
-import { Tabs } from "@/components/__shared/ui/tabs";
+import { Tabs } from "@/components/__shared/ui/tabs/tabs";
 import { MdOutlineMailOutline, MdOutlineWhatsapp } from "react-icons/md";
 import { useField } from "formik";
 import { E164Number, CountryCode } from "libphonenumber-js/core";

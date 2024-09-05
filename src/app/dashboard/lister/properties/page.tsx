@@ -20,7 +20,7 @@ import PropertyRow from "./components/PropertyRow";
 import PropertyRowMobile from "./components/PropertyRowMobile";
 import TableSkeletonSm from "@/components/__shared/ui/skeleton/skeleton-table-mobile";
 import { FaPlus } from "react-icons/fa6";
-import { Tabs } from "@/components/__shared/ui/tabs";
+import { Tabs } from "@/components/__shared/ui/tabs/tabs";
 import dynamic from "next/dynamic";
 import Pagination, {
   usePagination,

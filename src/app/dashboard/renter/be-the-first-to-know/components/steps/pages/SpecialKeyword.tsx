@@ -3,7 +3,7 @@ import style from "../../../index.module.css";
 import { Input } from "@/components/__shared/ui/form/input";
 import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import PhoneNumberInput from "@/components/__shared/ui/form/phone-number-input";
-import { Tabs } from "@/components/__shared/ui/tabs";
+import { Tabs } from "@/components/__shared/ui/tabs/tabs";
 import { MdOutlineMailOutline, MdOutlineWhatsapp } from "react-icons/md";
 import { useField } from "formik";
 import { BTFTKDefaultValues } from "@/store/dashboard/BTFTKStepsStore";

@@ -10,6 +10,9 @@ type Props = {
   thresholdMin?: number;
 };
 
+/**
+ * Floating socials that appear when the user scrolls down
+ */
 const FixedSocials = ({ thresholdMin }: Props) => {
   const [showSocials, setShowSocials] = useState<boolean>(false);
   const [showArrow, setShowArrow] = useState<boolean>(false);

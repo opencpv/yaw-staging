@@ -5,10 +5,6 @@ const meta: Meta<typeof ScrollTop> = {
   title: "Components/ScrollTop/ScrollTop", // Title for the Storybook sidebar
   component: ScrollTop,
   tags: ["autodocs"],
-  parameters: {
-    layout: "centered",
-  },
-  argTypes: {},
 };
 
 export default meta;
@@ -18,7 +14,7 @@ type Story = StoryObj<typeof ScrollTop>;
 export const Default: Story = {
   render: (args) => {
     return (
-      <div className="relative h-96">
+      <div className="relative h-60 w-full">
         <ScrollTop />
       </div>
     );

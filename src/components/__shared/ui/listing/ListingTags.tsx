@@ -5,7 +5,7 @@ import { ListingCardInterface } from "../../../../../interfaces";
 import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
 const Tooltip = dynamic(() =>
-  import("@/components/__shared/ui/tooltip").then((mod) => mod.Tooltip),
+  import("@/components/__shared/ui/tooltip/tooltip").then((mod) => mod.Tooltip),
 );
 
 const ListingTags = (props: Partial<ListingCardInterface>) => {
