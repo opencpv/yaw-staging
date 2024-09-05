@@ -1,4 +1,4 @@
-import { Switch } from "@/components/__shared/ui/switch";
+import { Switch } from "@/components/__shared/ui/switch/switch";
 import { useUpdateCriteriaStatus } from "../services";
 import { useEffect } from "react";
 import { cn } from "@/lib/utils";

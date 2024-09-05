@@ -18,7 +18,7 @@ type Story = StoryObj<typeof ScrollTop>;
 export const Default: Story = {
   render: (args) => {
     return (
-      <div className="relative z-50 h-96">
+      <div className="relative h-96">
         <ScrollTop />
       </div>
     );

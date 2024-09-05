@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../../../index.module.css";
 import Image from "next/image";
-import { Switch } from "@/components/__shared/ui/switch";
+import { Switch } from "@/components/__shared/ui/switch/switch";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 

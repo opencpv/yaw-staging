@@ -1,4 +1,4 @@
-import { Switch } from "@/components/__shared/ui/switch";
+import { Switch } from "@/components/__shared/ui/switch/switch";
 import {
   useExtendPublication,
   useUpdatePropertyPublicationStatus,
