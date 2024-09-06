@@ -1,14 +1,12 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import WhatsAppButton from "@/components/__shared/ui/button/whatsapp-button/whatsapp-button";
+import WhatsAppButton from "@/components/__shared/ui/button/whatsapp-button";
 
-// Meta configuration for the WhatsAppButton component
 const meta: Meta<typeof WhatsAppButton> = {
-  title: "Components/Buttons/WhatsAppButton", // Title for Storybook sidebar
-  component: WhatsAppButton, // The component to be documented
+  title: "Components/Buttons/WhatsAppButton",
+  component: WhatsAppButton,
   tags: ["autodocs"],
 
-  // ArgTypes to control props
   argTypes: {
     phone: {
       control: "text",
@@ -31,15 +29,14 @@ const meta: Meta<typeof WhatsAppButton> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Default story for the WhatsAppButton
 export const Default: Story = {
   render: (args) => {
     return <WhatsAppButton {...args} />;
   },
   args: {
-    phone: "1234567890", // Default phone number
-    iconPosition: "left", // Default icon position
-    className: "", // Default class
-    color: "primary", // Default button color
+    phone: "1234567890",
+    iconPosition: "left",
+    className: "",
+    color: "primary",
   },
 };

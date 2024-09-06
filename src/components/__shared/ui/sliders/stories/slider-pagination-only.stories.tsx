@@ -1,6 +1,3 @@
-// SliderPaginationOnly.stories.tsx
-
-import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import SliderPaginationOnly from "../slider-pagination-only";
 

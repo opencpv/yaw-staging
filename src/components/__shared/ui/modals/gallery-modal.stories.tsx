@@ -74,5 +74,4 @@ export const Default: Story = {
 
 
 
-// Story for ModalBody
 

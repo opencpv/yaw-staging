@@ -1,8 +1,8 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import ButtonInfiniteLoading from "./button-infinite-loading";
+import ButtonInfiniteLoading from "../button-infinite-loading";
 
-// Meta configuration
+
 const meta: Meta<typeof ButtonInfiniteLoading> = {
   title: "Components/DataFetching/ButtonInfiniteLoading",
   tags: ["autodocs"],
@@ -17,7 +17,6 @@ export default meta;
 
 type Story = StoryObj<typeof ButtonInfiniteLoading>;
 
-// Default story
 export const Default: Story = {
   args: {
     isLoading: false,
@@ -30,7 +29,6 @@ export const Default: Story = {
   },
 };
 
-// Loading state
 export const Loading: Story = {
   args: {
     isLoading: true,
@@ -43,7 +41,6 @@ export const Loading: Story = {
   },
 };
 
-// Disabled state
 export const Disabled: Story = {
   args: {
     isLoading: false,
@@ -56,7 +53,6 @@ export const Disabled: Story = {
   },
 };
 
-// Validating state
 export const Validating: Story = {
   args: {
     isLoading: false,
@@ -69,7 +65,6 @@ export const Validating: Story = {
   },
 };
 
-// No data to load
 export const NoData: Story = {
   args: {
     isLoading: false,

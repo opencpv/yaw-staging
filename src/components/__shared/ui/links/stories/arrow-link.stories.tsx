@@ -19,7 +19,6 @@ const meta: Meta<typeof ArrowLink> = {
 
 export default meta;
 
-// Stories Configuration
 type Story = StoryObj<typeof ArrowLink>;
 
 export const Default: Story = {

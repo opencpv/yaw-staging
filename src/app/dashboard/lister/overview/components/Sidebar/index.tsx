@@ -6,7 +6,7 @@ import PropertyCard from "./PropertyCard";
 import ItemCard from "./ItemCard";
 import { useFetchListerItems, useFetchListerListings } from "../../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states/fetching-states";
+import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
 import { Skeleton } from "@/components/__shared/ui/skeleton";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import dynamic from "next/dynamic";

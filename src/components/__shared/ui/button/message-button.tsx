@@ -1,6 +1,6 @@
 "use client";
 import React, { ReactNode, useEffect, useState } from "react";
-import { Button, ButtonProps } from "../Button";
+import { Button, ButtonProps } from "./Button";
 // import { useMessageStore } from "@/store/dashboard/useMessageStore";
 // import { useUserDetails } from "@/lib/custom-hooks/message/useUserDetails";
 // import { useUserSession } from "@/lib/custom-hooks/database/useUserSession";
@@ -11,7 +11,7 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import dynamic from "next/dynamic";
 
 const SignInRequiredModal = dynamic(
-  () => import("../../modals/sign-in-required-modal"),
+  () => import("../modals/sign-in-required-modal"),
 );
 
 type Props = {

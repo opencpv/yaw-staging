@@ -4,7 +4,7 @@ import SortFilter from "./SortFilter";
 import ItemCard from "./ItemCard";
 import { useFetchItems } from "../services";
 import { useSearchParams } from "next/navigation";
-import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states/fetching-states";
+import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
 import EmptyState from "@/components/__shared/ui/states/empty-state";
 import SkeletonItem from "@/components/__shared/ui/skeleton/skeleton-product";
 import { cn } from "@/lib/utils";

@@ -1,8 +1,7 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import NoticeModal from ".";
-import { getLocalStorageWithExpiry, setLocalStorageWithExpiry } from "@/lib/utils/localStorage";
-import { NOTICE_MODAL_TTL } from "@/constants";
+
 
 
 
@@ -17,7 +16,6 @@ export default meta;
 
 type Story = StoryObj<typeof NoticeModal>;
 
-// Story for the default open state
 export const DefaultOpen: Story = {
   render: () => {
     return <NoticeModal />;

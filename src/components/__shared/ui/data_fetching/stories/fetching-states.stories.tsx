@@ -1,10 +1,10 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import FetchingStates from "./fetching-states";
+import FetchingStates from "../fetching-states";
 import Loader from "../../loader";
-import FetchErrorMessage from "../fetch-error-message/fetch-error-message";
+import FetchErrorMessage from "../fetch-error-message";
 
-// Meta configuration
+
 const meta: Meta<typeof FetchingStates> = {
   title: 'Components/DataFetching/FetchingStates',
   component: FetchingStates,
@@ -19,7 +19,6 @@ export default meta;
 
 type Story = StoryObj<typeof FetchingStates>;
 
-// Loading state
 export const Loading: Story = {
   args: {
     isLoading: true,
@@ -30,7 +29,6 @@ export const Loading: Story = {
   },
 };
 
-// Validating state
 export const Validating: Story = {
   args: {
     isLoading: false,
@@ -41,7 +39,6 @@ export const Validating: Story = {
   },
 };
 
-// Error state
 export const ErrorState: Story = {
   args: {
     isLoading: false,
@@ -52,7 +49,6 @@ export const ErrorState: Story = {
   },
 };
 
-// Empty data state
 export const EmptyState: Story = {
   args: {
     isLoading: false,
@@ -63,7 +59,6 @@ export const EmptyState: Story = {
   },
 };
 
-// Complete example
 export const CompleteExample: Story = {
   args: {
     isLoading: false,

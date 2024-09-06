@@ -1,4 +1,3 @@
-// SliderMultiItems.stories.tsx
 
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
@@ -73,14 +72,6 @@ export const Autoplay: Story = {
   args: {
     ...Default.args,
     autoplay: true,
-  },
-};
-
-// Fewer Items
-export const FewItems: Story = {
-  args: {
-    ...Default.args,
-    items: items.slice(0, 2),
   },
 };
 

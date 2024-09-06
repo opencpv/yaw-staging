@@ -13,7 +13,7 @@ import {
   TableSm,
 } from "@/components/__shared/ui/table";
 import ArchivedButton from "@/components/__shared/ui/table/archived-button";
-import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states/fetching-states";
+import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
 import TableSkeleton from "@/components/__shared/ui/skeleton/skeleton-table";
 import React, { useState } from "react";
 import PropertyRow from "./components/PropertyRow";

@@ -17,7 +17,6 @@ const meta: Meta<typeof ReportIssue> = {
 
 export default meta;
 
-// Stories Configuration
 type Story = StoryObj<typeof ReportIssue>;
 
 export const Default: Story = {

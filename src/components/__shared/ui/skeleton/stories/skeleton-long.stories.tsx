@@ -1,4 +1,3 @@
-// src/components/SkeletonLong/SkeletonLong.stories.tsx
 
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
@@ -43,4 +42,3 @@ export const CustomStyling: Story = {
   },
 };
 
-// Story without count (fallback to default state)

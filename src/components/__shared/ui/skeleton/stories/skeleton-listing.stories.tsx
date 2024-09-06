@@ -1,4 +1,3 @@
-// src/components/SkeletonListing/SkeletonListing.stories.tsx
 
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
@@ -27,7 +26,6 @@ export const Default: Story = {
   },
 };
 
-// Story with different cardType
 export const CardType1: Story = {
   render: (args) => <SkeletonListing {...args} />,
   args: {
@@ -36,7 +34,6 @@ export const CardType1: Story = {
   },
 };
 
-// Story with custom styling
 export const CustomStyling: Story = {
   render: (args) => <SkeletonListing {...args} />,
   args: {

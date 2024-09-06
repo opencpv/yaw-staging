@@ -82,7 +82,6 @@ export default meta;
 
 type Story = StoryObj<typeof Modal>;
 
-// Default story using the Modal component
 export const Default: Story = {
   render: () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -109,7 +108,6 @@ export const Default: Story = {
   },
 };
 
-// Stories for individual components
 
 export const Anatomy: Story = {
   render: () => {

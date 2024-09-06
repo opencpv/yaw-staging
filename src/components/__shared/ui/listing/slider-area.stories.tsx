@@ -58,7 +58,6 @@ export const Default: Story = {
   },
 };
 
-// Story for showing only images
 export const OnlyImages: Story = {
   args: {
     images: mockImages,

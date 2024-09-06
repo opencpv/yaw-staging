@@ -3,7 +3,6 @@ import { Meta, StoryObj } from "@storybook/react";
 import { getListingProps, Listing } from "@/lib/enum";
 import RecommendedListings from "./recommended-listings";
 
-// Mock data and functions
 
 const meta: Meta<typeof RecommendedListings> = {
   title: "Components/Listing/RecommendedListings",
@@ -32,7 +31,7 @@ export const Default: Story = {
     className: "custom-class",
     hideShowAll: false,
   },
-  // You might want to mock `useFetchRecommendedListings` here to return `mockListings`
+
 
 };
 

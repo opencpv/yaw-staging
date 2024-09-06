@@ -65,7 +65,6 @@ export const Default: Story = {
 };
 
 
-// Story with custom class names
 export const WithCustomStyles: Story = {
   render: () => {
     const [open, setOpen] = useState(true);

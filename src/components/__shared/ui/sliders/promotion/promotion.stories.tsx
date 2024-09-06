@@ -1,4 +1,3 @@
-// src/components/PromotionModal/PromotionModal.stories.tsx
 
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
@@ -25,7 +24,6 @@ const ToggleButton = ({
   );
 };
 
-// Storybook Meta
 const meta: Meta<typeof PromotionModal> = {
   title: "Components/sliders/PromotionModal",
   component: PromotionModal,
@@ -34,7 +32,6 @@ const meta: Meta<typeof PromotionModal> = {
 
 export default meta;
 
-// Storybook Story
 export const Default: StoryObj<typeof PromotionModal> = {
   render: () => {
     const [isOpen, setIsOpen] = useState(false);

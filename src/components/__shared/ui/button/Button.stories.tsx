@@ -7,7 +7,7 @@ import { Button, LinkButton } from "./Button";
  * Displays a button or a component that looks like a button.
  */
 const meta: Meta<typeof Button> = {
-  title: "Components/Buttons/Button", // Title for the Storybook sidebar
+  title: "Components/Buttons/Button", 
   component: Button,
   tags: ["autodocs"],
   parameters: {
@@ -63,14 +63,10 @@ export default meta;
 
 type Story = StoryObj<typeof Button>;
 
-// Base Button Story
 export const Default: Story = {
   args: {
     children: "Button",
-    // variant: "default",
-    // size: "default",
     color: "primary",
-    // radius: "default",
     isLoading: false,
     disabled: false,
     className: "",

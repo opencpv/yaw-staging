@@ -56,8 +56,7 @@ export const WithSideOffset: Story = {
     </ActionPopover>
   ),
   args: {
-    placement: 'bottom' as PopoverPlacement, // Default placement
+    placement: 'bottom' as PopoverPlacement,
   },
 };
 
-// Add any additional stories as needed

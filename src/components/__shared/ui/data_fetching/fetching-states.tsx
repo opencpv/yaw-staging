@@ -1,7 +1,7 @@
 import { PostgrestError } from "@supabase/supabase-js";
 import React from "react";
-import FetchErrorMessage from "../fetch-error-message/fetch-error-message";
-import Loader from "../../loader";
+import Loader from "../loader";
+import FetchErrorMessage from "./fetch-error-message";
 
 type Props = {
   error: PostgrestError | undefined | Error | null;

@@ -31,7 +31,6 @@ export const Default: Story = {
       id: "property-123",
       name: "Sample Property",
       location: "Sample Location",
-      // Add other relevant property details here
     } as Partial<ListingCardInterface>,
   },
 };
@@ -43,7 +42,6 @@ export const NoReviews: Story = {
       id: "property-456",
       name: "Another Property",
       location: "Another Location",
-      // Add other relevant property details here
     } as Partial<ListingCardInterface>,
   },
 };
@@ -56,7 +54,6 @@ export const CustomProperty: Story = {
       name: "Custom Property",
       location: "Custom Location",
       description: "A brief description of the custom property.",
-      // Add other relevant property details here
     } as Partial<ListingCardInterface>,
   },
 };

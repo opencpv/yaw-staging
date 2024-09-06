@@ -1,4 +1,3 @@
-// SliderNav.stories.tsx
 
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
@@ -53,7 +52,6 @@ export const Default: Story = {
   },
 };
 
-// Large Accent Right Button
 export const LargeAccentRight: Story = {
   args: {
     ...Default.args,
@@ -63,7 +61,6 @@ export const LargeAccentRight: Story = {
   },
 };
 
-// Hidden Button
 export const Hidden: Story = {
   args: {
     ...Default.args,
@@ -71,7 +68,6 @@ export const Hidden: Story = {
   },
 };
 
-// Small White Button
 export const SmallWhiteButton: Story = {
   args: {
     ...Default.args,

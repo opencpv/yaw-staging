@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import MessageButton from "@/components/__shared/ui/button/message-button/message-button";
+import MessageButton from "@/components/__shared/ui/button/message-button";
 
 /**
  * Button to be used when a message is to be sent.

@@ -12,7 +12,7 @@ import { Checkbox } from "@/components/__shared/ui/form/checkbox";
 import { useInvoiceData } from "../../hooks/useInvoiceData";
 import { createUUID } from "@/lib/utils/stringManipulation";
 import { useFetchInvoices } from "../../services";
-import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states/fetching-states";
+import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
 import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
 import TableSkeleton from "@/components/__shared/ui/skeleton/skeleton-table";
 import TableSkeletonSm from "@/components/__shared/ui/skeleton/skeleton-table-mobile";

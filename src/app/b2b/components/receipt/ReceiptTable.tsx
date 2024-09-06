@@ -13,7 +13,7 @@ import { useReceiptData } from "../../hooks/useReceiptData";
 import { createUUID } from "@/lib/utils/stringManipulation";
 import { useFetchReceipts } from "../../services";
 import Pagination, { usePagination } from "@/components/__shared/ui/pagination";
-import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states/fetching-states";
+import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
 import TableSkeleton from "@/components/__shared/ui/skeleton/skeleton-table";
 import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
 import TableSkeletonSm from "@/components/__shared/ui/skeleton/skeleton-table-mobile";

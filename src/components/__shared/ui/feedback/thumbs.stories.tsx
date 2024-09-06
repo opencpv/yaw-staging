@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import Thumbs from "./Thumbs"; // Adjust import path based on your structure
+import Thumbs from "./Thumbs"; 
 import { Formik } from "formik";
 
 const meta: Meta<typeof Thumbs> = {
@@ -9,7 +9,7 @@ const meta: Meta<typeof Thumbs> = {
   tags: ["autodocs"],
 
   parameters: {
-    layout: "centered", // Center the component in the preview
+    layout: "centered", 
   },
 };
 

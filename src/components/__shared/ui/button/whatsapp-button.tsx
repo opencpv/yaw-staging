@@ -1,53 +1,51 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { Button, ButtonProps } from "../Button";
-import { initiatePhoneCall } from "@/lib/utils/initiatePhoneCall";
-import { MdOutlinePhone } from "react-icons/md";
+import { Button, ButtonProps } from "./Button";
+import { FaWhatsapp } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 type Props = {
-  phoneNumber: string;
+  phone: string;
   iconPosition?: "left" | "right";
 } & ButtonProps;
 
-const ButtonCall = ({
+const WhatsAppButton = ({
   color,
-  phoneNumber,
   className,
-  iconPosition,
+  phone,
+  iconPosition = "left",
   ...props
 }: Props) => {
-  const [text, setText] = useState("Call me");
+  const [text, setText] = useState("WhatsApp");
 
   const buttonRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (buttonRef?.current) {
       buttonRef.current.addEventListener("mouseenter", () => {
-        setText(phoneNumber);
+        setText(phone);
       });
       buttonRef.current.addEventListener("mouseleave", () => {
-        setText("Call me");
+        setText("WhatsApp");
       });
     }
-    return () => {
-      setText("Call me");
-    };
-  }, [phoneNumber]);
+  }, [phone]);
+
+  const handleSendWhatsAppMsg = () => {
+    const href = `https://wa.me/${phone}`;
+    window.open(href, "_blank");
+  };
 
   return (
     <div ref={buttonRef} className="flex w-full justify-center">
       <Button
         color={color}
-        size="full"
         className={cn(className)}
-        onClick={() => initiatePhoneCall(phoneNumber)}
+        onClick={handleSendWhatsAppMsg}
         {...props}
       >
-        {iconPosition === "left" && (
-          <MdOutlinePhone className="shrink-0 text-lg" />
-        )}
+        {iconPosition === "left" && <FaWhatsapp className="shrink-0 text-lg" />}
         <motion.span
           key={text}
           whileInView={{ opacity: 1 }}
@@ -57,11 +55,11 @@ const ButtonCall = ({
           {text}
         </motion.span>
         {iconPosition === "right" && (
-          <MdOutlinePhone className="shrink-0 text-lg" />
+          <FaWhatsapp className="shrink-0 text-lg" />
         )}
       </Button>
     </div>
   );
 };
 
-export default ButtonCall;
+export default WhatsAppButton;

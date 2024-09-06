@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import ViewButton from "@/components/__shared/ui/button/view-button/view-button";
+import ViewButton from "@/components/__shared/ui/button/view-button";
 
 const meta: Meta<typeof ViewButton> = {
   title: "Components/Buttons/ViewButton",

@@ -5,7 +5,6 @@ import { Meta, StoryObj } from "@storybook/react";
 import Share from ".";
 import { cn } from "@/lib/utils";
 
-// Define metadata for the stories
 const meta: Meta<typeof Share> = {
   title: "Components/Share",
   component: Share,
@@ -16,7 +15,6 @@ export default meta;
 
 type Story = StoryObj<typeof Share>;
 
-// Default story with a basic setup
 export const Default: Story = {
   render: (args) => (
     <Share {...args} />
@@ -33,7 +31,6 @@ export const Default: Story = {
   },
 };
 
-// Story with custom label and hidden label
 export const WithCustomLabel: Story = {
   render: (args) => (
     <Share {...args} />
@@ -50,7 +47,6 @@ export const WithCustomLabel: Story = {
   },
 };
 
-// Story with hidden label
 export const HiddenLabel: Story = {
   render: (args) => (
     <Share {...args} />
@@ -67,7 +63,6 @@ export const HiddenLabel: Story = {
   },
 };
 
-// Story with custom styling
 export const CustomStyling: Story = {
   render: (args) => (
     <Share {...args} />

@@ -2,9 +2,6 @@
 
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import { useAppStore } from "@/store/dashboard/AppStore";
-import { useRatingsModalStore } from "@/store/modal/useRatingsModalStore";
-import { useSignInModalStore } from "@/store/modal/useSignInModalStore";
 import Rating from ".";
 
 const meta: Meta<typeof Rating> = {
@@ -17,10 +14,7 @@ export default meta;
 
 type Story = StoryObj<typeof Rating>;
 
-// Mock implementations for store hooks to avoid errors in Storybook
-const mockAppStore = {
-  user: null,
-};
+
 
 const mockRatingsModalStore = {
   openRatingsForm: false,
@@ -44,9 +38,9 @@ export const Default: Story = {
     value: 4,
     className: "text-blue-500",
     property: {
-      id: 1,
-      name: "Sample Property",
-      location: "Sample Location",
+      // id: 1,
+      // name: "Sample Property",
+      // location: "Sample Location",
     },
   },
 };
@@ -59,9 +53,9 @@ export const WithoutValue: Story = {
     value: 0,
     className: "text-blue-500",
     property: {
-      id: 2,
-      name: "Another Property",
-      location: "Another Location",
+      // id: 2,
+      // name: "Another Property",
+      // location: "Another Location",
     },
   },
 };
@@ -74,9 +68,9 @@ export const WithCustomClass: Story = {
     value: 3,
     className: "text-red-500",
     property: {
-      id: 3,
-      name: "Custom Property",
-      location: "Custom Location",
+      // id: 3,
+      // name: "Custom Property",
+      // location: "Custom Location",
     },
   },
 };

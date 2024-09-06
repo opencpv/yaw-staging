@@ -2,7 +2,7 @@
 import React from "react";
 import { Tabs } from "@/components/__shared/ui/tabs";
 import { Select } from "@/components/__shared/ui/form/select";
-import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states/fetching-states";
+import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
 import SkeletonListing from "@/components/__shared/ui/skeleton/skeleton-listing";
 import ContactPreferenceToggle from "../../../../components/shared/ui/ContactPreferenceToggle";
 import { useRouter } from "next/navigation";

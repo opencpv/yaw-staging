@@ -17,7 +17,6 @@ const meta: Meta<typeof ReportFraud> = {
 
 export default meta;
 
-// Stories Configuration
 type Story = StoryObj<typeof ReportFraud>;
 
 export const Default: Story = {

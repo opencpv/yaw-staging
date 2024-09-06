@@ -1,4 +1,3 @@
-// src/components/SkeletonRectangle/SkeletonRectangle.stories.tsx
 
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";

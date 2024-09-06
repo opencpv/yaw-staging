@@ -5,7 +5,7 @@ import LsApplicationRowSm from "./LsApplicationRowSm";
 // import { useFetchTableWithInfiniteScroll } from "@/lib/custom-hooks/useFetch";
 import TableSkeletonSm from "@/components/__shared/ui/skeleton/skeleton-table-mobile";
 import ButtonInfiniteLoading from "@/components/__shared/ui/data_fetching/button-infinite-loading";
-import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states/fetching-states";
+import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
 import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
 import { TableSm } from "@/components/__shared/ui/table";
 import { IoArchiveOutline } from "react-icons/io5";

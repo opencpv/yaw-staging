@@ -1,4 +1,4 @@
-import ButtonCall from "@/components/__shared/ui/button/call-button/call-button";
+import ButtonCall from "@/components/__shared/ui/button/call-button";
 import type { Meta, StoryObj } from "@storybook/react";
 import { MdOutlinePhone } from "react-icons/md";
 

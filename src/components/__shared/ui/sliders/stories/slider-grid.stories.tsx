@@ -1,28 +1,37 @@
-// SliderGrid.stories.tsx
-
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import SliderGrid from "../slider-grid";
 
-// Example items to display in the grid
 const items = [
-  <div key="1" className="p-4 bg-blue-100 rounded">Item 1</div>,
-  <div key="2" className="p-4 bg-green-100 rounded">Item 2</div>,
-  <div key="3" className="p-4 bg-red-100 rounded">Item 3</div>,
-  <div key="4" className="p-4 bg-yellow-100 rounded">Item 4</div>,
-  <div key="5" className="p-4 bg-purple-100 rounded">Item 5</div>,
-  <div key="6" className="p-4 bg-pink-100 rounded">Item 6</div>,
+  <div key="1" className="rounded bg-blue-100 p-4">
+    Item 1
+  </div>,
+  <div key="2" className="rounded bg-green-100 p-4">
+    Item 2
+  </div>,
+  <div key="3" className="rounded bg-red-100 p-4">
+    Item 3
+  </div>,
+  <div key="4" className="rounded bg-yellow-100 p-4">
+    Item 4
+  </div>,
+  <div key="5" className="rounded bg-purple-100 p-4">
+    Item 5
+  </div>,
+  <div key="6" className="rounded bg-pink-100 p-4">
+    Item 6
+  </div>,
 ];
 
 const meta: Meta<typeof SliderGrid> = {
   title: "Components/Sliders/SliderGrid",
   component: SliderGrid,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 
   argTypes: {
     items: {
       description: "Array of items to display in the slider grid",
-    //   control: { type: "array" },
+      control: { type: "text" },
     },
   },
 };
@@ -31,7 +40,6 @@ export default meta;
 
 type Story = StoryObj<typeof SliderGrid>;
 
-// Default Story
 export const Default: Story = {
   args: {
     items,
@@ -45,7 +53,7 @@ export const Responsive: Story = {
   },
   parameters: {
     viewport: {
-      defaultViewport: "mobile2", // Set the viewport to a mobile size for responsive testing
+      defaultViewport: "mobile2",
     },
   },
 };
@@ -53,7 +61,7 @@ export const Responsive: Story = {
 // Story with Fewer Items
 export const FewItems: Story = {
   args: {
-    items: items.slice(0, 2), // Pass only two items
+    items: items.slice(0, 2),
   },
 };
 
@@ -62,7 +70,13 @@ export const ManyItems: Story = {
   args: {
     items: [
       ...items,
-      ...items, // Duplicate items to create a larger grid
+      ...items,
+      ...items,
+      ...items,
+      ...items,
+      ...items,
+      ...items,
+      ...items,
     ],
   },
 };

@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
 import { BE_MY_AGENT_LAPSE_DAYS } from "@/constants";
 import { BeMyAgentStepsStore } from "@/store/dashboard/BeMyAgentStepsStore";
 import dynamic from "next/dynamic";
-import DeleteButton from "@/components/__shared/ui/button/delete-button/delete-button";
+import DeleteButton from "@/components/__shared/ui/button/delete-button";
 import { useDeleteAgentRequest } from "../services";
 import { useCallback, useEffect } from "react";
 import { views as BeMyAgentViews } from "./steps/BeMyAgentForm";

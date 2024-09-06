@@ -13,7 +13,7 @@ import CaHandshake from "./components/icons/CaHandshake";
 import CaHomeBanner from "./components/icons/CaHomeBanner";
 import CaMegaphone from "./components/icons/CaMegaphone";
 import { GoShieldCheck } from "react-icons/go";
-import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states/fetching-states";
+import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
 import { useFetchListerActiveListings } from "./services";
 import { getListingProps } from "@/lib/enum";
 import SkeletonListing from "@/components/__shared/ui/skeleton/skeleton-listing";
