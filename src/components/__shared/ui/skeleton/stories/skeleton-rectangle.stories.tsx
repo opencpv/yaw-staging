@@ -4,6 +4,10 @@ import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import SkeletonRectangle from "../skeleton-rectangle";
 
+/**
+ * Use to show a placeholder while content is loading.
+
+ */
 const meta: Meta<typeof SkeletonRectangle> = {
   title: "Components/Skeletons/SkeletonRectangle",
   component: SkeletonRectangle,
@@ -21,7 +25,6 @@ export const Default: Story = {
   ),
   args: {
     count: 3,
-    className: "",
   },
 };
 
@@ -32,7 +35,6 @@ export const CustomCount: Story = {
   ),
   args: {
     count: 5,
-    className: "",
   },
 };
 
@@ -47,12 +49,3 @@ export const CustomStyling: Story = {
   },
 };
 
-// Story without count (fallback to default state)
-export const WithoutCount: Story = {
-  render: (args) => (
-    <SkeletonRectangle {...args} />
-  ),
-  args: {
-    className: "",
-  },
-};

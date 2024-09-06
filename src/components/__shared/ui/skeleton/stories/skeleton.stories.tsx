@@ -5,6 +5,11 @@ import { Meta, StoryObj } from "@storybook/react";
 import { cn } from "@/lib/utils";
 import { Skeleton } from "..";
 
+/**
+ * Use to show a placeholder while content is loading.
+
+ */
+
 const meta: Meta<typeof Skeleton> = {
   title: "Components/Skeletons/Skeleton",
   component: Skeleton,

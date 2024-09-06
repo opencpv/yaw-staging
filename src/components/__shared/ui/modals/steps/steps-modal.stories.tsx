@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { Button } from "@/components/__shared/ui/button/Button";
 import StepsModal from "./steps-modal";
+import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 
 const meta: Meta<typeof StepsModal> = {
   title: "Components/Modals/StepsModal",
   component: StepsModal,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 
   argTypes: {
     open: {
@@ -40,26 +41,21 @@ export default meta;
 
 type Story = StoryObj<typeof StepsModal>;
 
-// Story for the default open state
-export const DefaultOpen: Story = {
+export const Default: Story = {
   render: () => {
-    const [open, setOpen] = useState(true);
-
-    const handleOpenChange = (open: boolean) => {
-      setOpen(open);
-    };
+    const { onOpen, isOpen, onOpenChange } = useDisclosure();
 
     return (
       <>
-        <Button onClick={() => setOpen(true)}>Open Modal</Button>
+        <Button onClick={() => onOpenChange(true)}>Open Modal</Button>
         <StepsModal
-          open={open}
-          onOpenChange={handleOpenChange}
+          open={isOpen}
+          onOpenChange={onOpenChange}
           header={<h2>Modal Header</h2>}
           body={<p>This is the modal body content.</p>}
           footer={
             <div>
-              <Button onClick={() => setOpen(false)}>Close</Button>
+              <Button onClick={() => onOpenChange(false)}>Close</Button>
             </div>
           }
         />
@@ -68,33 +64,6 @@ export const DefaultOpen: Story = {
   },
 };
 
-// Story for the closed state
-export const DefaultClosed: Story = {
-  render: () => {
-    const [open, setOpen] = useState(false);
-
-    const handleOpenChange = (open: boolean) => {
-      setOpen(open);
-    };
-
-    return (
-      <>
-        <Button onClick={() => setOpen(true)}>Open Modal</Button>
-        <StepsModal
-          open={open}
-          onOpenChange={handleOpenChange}
-          header={<h2>Modal Header</h2>}
-          body={<p>This is the modal body content.</p>}
-          footer={
-            <div>
-              <Button onClick={() => setOpen(false)}>Close</Button>
-            </div>
-          }
-        />
-      </>
-    );
-  },
-};
 
 // Story with custom class names
 export const WithCustomStyles: Story = {
@@ -112,10 +81,20 @@ export const WithCustomStyles: Story = {
           open={open}
           onOpenChange={handleOpenChange}
           header={<h2 className="text-blue-500">Custom Header</h2>}
-          body={<p className="text-gray-700">This is the body with custom styles.</p>}
+          body={
+            <p className="text-gray-700">
+              This is the body with custom styles.
+            </p>
+          }
           footer={
             <div className="flex justify-end">
-              <Button onClick={() => setOpen(false)} variant="outline" className="mr-2">Close</Button>
+              <Button
+                onClick={() => setOpen(false)}
+                variant="outline"
+                className="mr-2"
+              >
+                Close
+              </Button>
             </div>
           }
           classNames={{

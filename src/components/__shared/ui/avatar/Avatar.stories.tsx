@@ -2,9 +2,11 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 import Avatar from "./Avatar";
 
-const userImage = "/assets/images/profile-image.jpg"; // Example static image
+const userImage = "https://picsum.photos/800/800?random=4";
 
-// Meta configuration for Storybook
+/**
+ * An image element with a fallback for representing the user.
+ */
 const meta = {
   title: "Components/Avatar",
   component: Avatar,
@@ -13,7 +15,7 @@ const meta = {
   },
   tags: ["autodocs"],
   argTypes: {
-    image: { control: "text" },
+    image: { control: "text", description: "Image source" },
     name: { control: "text" },
     email: { control: "text" },
     size: {
@@ -28,17 +30,16 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Default avatar with no image
 export const Default: Story = {
   args: {
     image: userImage,
     name: "John Doe",
     display: false,
     size: "sm",
-    className: "",
+    className: "bg-primary",
     title: "Default Avatar",
-  },
-};
+  }
+}
 
 export const WithImage: Story = {
   args: {

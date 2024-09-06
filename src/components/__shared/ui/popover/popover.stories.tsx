@@ -3,12 +3,14 @@ import { Meta, StoryObj } from "@storybook/react";
 import { Button } from "../button/Button";
 import { Popover, PopoverContent, PopoverTrigger } from ".";
 
+/**
+ * Displays rich content in a portal, triggered by a button.
+
+ */
 const meta: Meta<typeof Popover> = {
   title: "Components/Popover/Popover",
   component: Popover,
   tags: ["autodocs"],
-
-
 };
 
 export default meta;
@@ -21,7 +23,7 @@ export const Default: Story = {
       <PopoverTrigger asChild>
         <Button>Open Popover</Button>
       </PopoverTrigger>
-      <PopoverContent>
+      <PopoverContent >
         <p>This is the popover content!</p>
       </PopoverContent>
     </Popover>

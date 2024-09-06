@@ -4,6 +4,11 @@ import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import SkeletonTextual from "../skeleton-textual";
 
+/**
+ * Use to show a placeholder while content is loading.
+
+ */
+
 const meta: Meta<typeof SkeletonTextual> = {
   title: "Components/Skeletons/SkeletonTextual",
   component: SkeletonTextual,

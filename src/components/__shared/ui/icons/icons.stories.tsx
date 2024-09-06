@@ -154,7 +154,11 @@ export const Facebook: Story = {
   args: {},
 };
 export const Instagram: Story = {
-  render: (args) => <CaInstagram {...args} />,
+  render: (args) => (
+    <div className="w-10 h-10">
+      <CaInstagram {...args} />
+    </div>
+  ),
   args: {},
 };
 export const NormalArrowDown: Story = {
@@ -182,7 +186,11 @@ export const Rainbow: Story = {
   args: {},
 };
 export const Subscription: Story = {
-  render: (args) => <div className="bg-black"><CaSubscriptions width={50} height={50} {...args} /></div>,
+  render: (args) => (
+    <div className="bg-black">
+      <CaSubscriptions width={50} height={50} {...args} />
+    </div>
+  ),
   args: {},
 };
 export const Twitter: Story = {

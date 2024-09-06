@@ -4,52 +4,8 @@ import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import { Meta, StoryObj } from "@storybook/react";
 import { cn } from "@/lib/utils";
+import PromotionModal from "./PromotionModal";
 
-// Dynamic import of Modal component
-const Modal = dynamic(() =>
-  import("@/components/__shared/ui/modals/dialog").then((mod) => mod.Modal),
-);
-
-// PromotionModal Component
-const PromotionModal = ({
-  isOpen,
-  onOpenChange,
-  image,
-}: {
-  isOpen: boolean;
-  onOpenChange: (open: boolean) => void;
-  image: Image;
-}) => {
-  return (
-    <Modal
-      body={<ModalBody image={image} />}
-      isOpen={isOpen}
-      onOpenChange={onOpenChange}
-      size="full"
-    />
-  );
-};
-
-// ModalBody Component
-interface ImageType {
-  src: string;
-  alt: string;
-}
-const ModalBody = ({ image }: { image: ImageType }) => {
-  return (
-    <div className="grid h-full place-items-center">
-      <div className="relative aspect-video w-[45rem] rounded-lg">
-        <Image
-          src={image.src}
-          alt={image.alt}
-          fill
-          style={{ objectFit: "cover" }}
-          className="rounded-[inherit]"
-        />
-      </div>
-    </div>
-  );
-};
 
 // ToggleButton Component
 const ToggleButton = ({
@@ -62,7 +18,7 @@ const ToggleButton = ({
   return (
     <button
       onClick={onClick}
-      className="rounded-md bg-blue-500 px-4 py-2 text-white"
+      className="rounded-md bg-primary px-4 py-2 text-white"
     >
       {isOpen ? "Close Modal" : "Open Modal"}
     </button>
@@ -91,7 +47,7 @@ export const Default: StoryObj<typeof PromotionModal> = {
           isOpen={isOpen}
           onOpenChange={setIsOpen}
           image={{
-            src: "https://via.placeholder.com/800x600",
+            src: "https://picsum.photos/800/800?random=6",
             alt: "Sample Promotion Image",
           }}
         />

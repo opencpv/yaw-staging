@@ -4,12 +4,6 @@ import { getListingProps, Listing } from "@/lib/enum";
 import RecommendedListings from "./recommended-listings";
 
 // Mock data and functions
-const mockListings: Listing[] = [
-  { id: 1, title: "Listing 1", imageUrl: "/path/to/image1.jpg" },
-  { id: 2, title: "Listing 2", imageUrl: "/path/to/image2.jpg" },
-  { id: 3, title: "Listing 3", imageUrl: "/path/to/image3.jpg" },
-  // Add more mock listings as needed
-];
 
 const meta: Meta<typeof RecommendedListings> = {
   title: "Components/Listing/RecommendedListings",
@@ -42,20 +36,4 @@ export const Default: Story = {
 
 };
 
-// Story for loading state
-export const Loading: Story = {
-  args: {
-    className: "custom-class",
-    hideShowAll: false,
-  },
 
-};
-
-// Story for error state
-export const ErrorState: Story = {
-  args: {
-    className: "custom-class",
-    hideShowAll: false,
-  },
-
-};

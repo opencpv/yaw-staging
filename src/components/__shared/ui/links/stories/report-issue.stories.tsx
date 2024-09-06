@@ -2,7 +2,9 @@ import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import ReportIssue from '../report-issue';
 
-
+/**
+ * Navigates to contact us page when clicked
+ */
 
 const meta: Meta<typeof ReportIssue> = {
   title: 'Components/Links/ReportIssue',

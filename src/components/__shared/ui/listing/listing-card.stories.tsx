@@ -53,15 +53,7 @@ export const AdminView: Story = {
   },
 };
 
-// Custom styles story
-export const CustomStyles: Story = {
-  args: {
-    propertyId: 789,
-    isAdmin: false,
-    cardType: "1",
-    className: "rounded-xl shadow-lg",
-  },
-};
+
 
 // Disabled state story
 export const Disabled: Story = {

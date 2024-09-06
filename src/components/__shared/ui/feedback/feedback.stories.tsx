@@ -24,7 +24,7 @@ export const Default: Story = {
       <Formik initialValues={{}} onSubmit={() => {}}>
         <Form>
           <Button>Give Feedback</Button>
-        </Form>{" "}
+        </Form>
       </Formik>
     ),
     data: {

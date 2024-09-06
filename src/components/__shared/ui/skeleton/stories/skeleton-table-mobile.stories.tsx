@@ -4,6 +4,11 @@ import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import TableSkeletonSm from "../skeleton-table-mobile";
 
+/**
+ * Use to show a placeholder while content is loading.
+
+ */
+
 const meta: Meta<typeof TableSkeletonSm> = {
   title: "Components/Skeletons/TableSkeletonSm",
   component: TableSkeletonSm,

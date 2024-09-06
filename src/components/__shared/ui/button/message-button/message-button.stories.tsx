@@ -2,17 +2,19 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import MessageButton from "@/components/__shared/ui/button/message-button/message-button";
 
-// Metadata for the MessageButton component
+/**
+ * Button to be used when a message is to be sent.
+ * When the user is not signed in, it alerts the user to signin
+ */
 const meta: Meta<typeof MessageButton> = {
-  title: "Components/Buttons/MessageButton", // Title for Storybook sidebar
-  component: MessageButton, // The component to be documented
+  title: "Components/Buttons/MessageButton", 
+  component: MessageButton, 
   tags: ["autodocs"],
 
-  // ArgTypes to control props
   argTypes: {
-    id: { control: "text" }, // Allows setting the ID of the recipient
-    isIcon: { control: "boolean" }, // Toggle between icon and regular button
-    className: { control: "text" }, // Allows setting custom classes
+    id: { control: "text" }, 
+    isIcon: { control: "boolean" },
+    className: { control: "text" }, 
     variant: {
       control: "select",
       options: ["outline", "ghost", "default"],
@@ -23,7 +25,6 @@ const meta: Meta<typeof MessageButton> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Default story for the MessageButton
 export const Default: Story = {
   render: (args) => {
     return (
@@ -38,7 +39,6 @@ export const Default: Story = {
   },
 };
 
-// Icon Button story for MessageButton
 export const IconButton: Story = {
   args: {
     isIcon: true,
@@ -46,10 +46,9 @@ export const IconButton: Story = {
   },
 };
 
-// Modal open story for MessageButton
 export const ModalOpen: Story = {
   render: (args) => {
-    const [isOpen, setIsOpen] = React.useState(true); // Control state for modal
+    const [isOpen, setIsOpen] = React.useState(true); 
 
     return (
       <MessageButton {...args} />

@@ -10,13 +10,16 @@ import {
   DialogOverlay,
   DialogTrigger,
   DialogClose,
+  DialogPortal,
+  Dialog,
 } from "../dialog";
 import { Button } from "@/components/__shared/ui/button/Button";
+import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 
 const meta: Meta = {
   title: "Components/Modals/Modal",
   component: Modal,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 
   argTypes: {
     onOpenChange: {
@@ -41,11 +44,21 @@ const meta: Meta = {
     },
     size: {
       description: "Size of the modal.",
-      control: {
-        type: "select",
-        options: ["full", "xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl", "5xl"],
-      },
+      control: "select",
+      options: [
+        "full",
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+        "2xl",
+        "3xl",
+        "4xl",
+        "5xl",
+      ],
     },
+
     closeButton: {
       description: "Custom close button element.",
       control: "text",
@@ -83,27 +96,14 @@ export const Default: Story = {
           header={<DialogTitle>Modal Title</DialogTitle>}
           body={<p>This is the body of the modal.</p>}
           footer={
-            <DialogFooter>
+            <div>
               <Button onClick={() => alert("Action clicked")}>Action</Button>
-            </DialogFooter>
+            </div>
           }
           closeButton={<Button variant="outline">Close</Button>}
           hideCloseButton={false}
           size="lg"
-        >
-          <DialogOverlay />
-          <DialogContent className="max-w-lg mx-auto p-4 bg-white shadow-lg rounded">
-            <DialogHeader>
-              <DialogTitle>Modal Title</DialogTitle>
-            </DialogHeader>
-            <div className="mx-auto w-full">
-              <p>This is the content of the modal.</p>
-            </div>
-            <DialogFooter>
-              <Button onClick={() => alert("Action clicked")}>Action</Button>
-            </DialogFooter>
-          </DialogContent>
-        </Modal>
+        />
       </div>
     );
   },
@@ -111,52 +111,32 @@ export const Default: Story = {
 
 // Stories for individual components
 
-export const DialogContentStory: Story = {
-  render: () => (
-    <DialogContent
-      className="max-w-md mx-auto p-4 bg-white shadow-lg rounded"
-      closeButton={<Button variant="outline">Close</Button>}
-      hideCloseButton={false}
-    >
-      <DialogHeader>
-        <DialogTitle>Dialog Title</DialogTitle>
-      </DialogHeader>
-      <p>This is the content of the dialog.</p>
-      <DialogFooter>
-        <Button onClick={() => alert("Action clicked")}>Action</Button>
-      </DialogFooter>
-    </DialogContent>
-  ),
-};
+export const Anatomy: Story = {
+  render: () => {
+    const { onOpen, isOpen, onOpenChange } = useDisclosure();
 
-export const DialogHeaderStory: Story = {
-  render: () => (
-    <DialogHeader className="p-4 bg-gray-100">
-      <DialogTitle>Dialog Header</DialogTitle>
-    </DialogHeader>
-  ),
-};
+    return (
+      <>
+        <Button onClick={() => onOpenChange(true)}>Open Modal</Button>
 
-export const DialogFooterStory: Story = {
-  render: () => (
-    <DialogFooter className="p-4 bg-gray-100">
-      <Button onClick={() => alert("Action clicked")}>Action</Button>
-    </DialogFooter>
-  ),
-};
-
-export const DialogTitleStory: Story = {
-  render: () => (
-    <DialogTitle className="text-lg font-bold">
-      Dialog Title
-    </DialogTitle>
-  ),
-};
-
-export const DialogDescriptionStory: Story = {
-  render: () => (
-    <DialogDescription className="text-sm text-gray-600">
-      This is a description of the dialog. It provides additional context or instructions.
-    </DialogDescription>
-  ),
+        <Dialog open={isOpen} onOpenChange={onOpenChange}>
+          <DialogPortal>
+            <DialogContent
+              className="mx-auto max-w-md rounded bg-white p-4 shadow-lg"
+              closeButton={<Button variant="outline">Close</Button>}
+              hideCloseButton={false}
+            >
+              <DialogHeader>
+                <DialogTitle>Dialog Title</DialogTitle>
+              </DialogHeader>
+              <p>This is the content of the dialog.</p>
+              <DialogFooter>
+                <Button onClick={() => alert("Action clicked")}>Action</Button>
+              </DialogFooter>
+            </DialogContent>
+          </DialogPortal>
+        </Dialog>
+      </>
+    );
+  },
 };

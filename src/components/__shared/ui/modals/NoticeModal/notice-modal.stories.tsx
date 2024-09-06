@@ -11,9 +11,6 @@ const meta: Meta<typeof NoticeModal> = {
   component: NoticeModal,
   tags: ['autodocs'],
 
-  argTypes: {
-    // You can define custom argTypes here if you need to control props or states
-  },
 };
 
 export default meta;
@@ -23,15 +20,7 @@ type Story = StoryObj<typeof NoticeModal>;
 // Story for the default open state
 export const DefaultOpen: Story = {
   render: () => {
-    // mockGetLocalStorageWithExpiry.mockReturnValue(null); // Simulate that the modal should be open
     return <NoticeModal />;
   },
 };
 
-// Story for the closed state (if needed)
-export const DefaultClosed: Story = {
-  render: () => {
-    // mockGetLocalStorageWithExpiry.mockReturnValue("0"); // Simulate that the modal should be closed
-    return <NoticeModal />;
-  },
-};

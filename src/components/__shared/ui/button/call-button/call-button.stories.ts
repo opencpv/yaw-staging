@@ -2,9 +2,8 @@ import ButtonCall from "@/components/__shared/ui/button/call-button/call-button"
 import type { Meta, StoryObj } from "@storybook/react";
 import { MdOutlinePhone } from "react-icons/md";
 
-// Define metadata for the ButtonCall component
 const meta: Meta<typeof ButtonCall> = {
-  title: "Components/Buttons/CallButton", // Title for the Storybook sidebar
+  title: "Components/Buttons/CallButton", 
   component: ButtonCall,
   tags: ["autodocs"],
   parameters: {
@@ -32,7 +31,6 @@ const meta: Meta<typeof ButtonCall> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Default button call
 export const Default: Story = {
   args: {
     phoneNumber: "+1234567890",
@@ -40,7 +38,6 @@ export const Default: Story = {
   },
 };
 
-// Icon position right
 export const IconPositionRight: Story = {
   args: {
     phoneNumber: "+1234567890",
@@ -48,7 +45,6 @@ export const IconPositionRight: Story = {
   },
 };
 
-// Custom color
 export const CustomColor: Story = {
   args: {
     phoneNumber: "+0987654321",

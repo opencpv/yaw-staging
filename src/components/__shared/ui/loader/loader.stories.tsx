@@ -25,7 +25,6 @@ type Story = StoryObj<typeof Loader>;
 export const Default: Story = {
   args: {
     className: '',
-    position: 'default',
   },
 };
 

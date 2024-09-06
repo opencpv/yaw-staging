@@ -26,7 +26,6 @@ export const Default: Story = {
   args: {
     text: 'Click Me',
     href: '#',
-    arrowPosition: 'right',
     color: '#222',
     hideText: false,
   },
@@ -44,7 +43,6 @@ export const LeftArrow: Story = {
 export const NoText: Story = {
   args: {
     href: '#',
-    arrowPosition: 'right',
     hideText: true,
     color: '#FF5733',
   },

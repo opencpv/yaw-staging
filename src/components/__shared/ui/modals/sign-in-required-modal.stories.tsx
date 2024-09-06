@@ -7,6 +7,7 @@ import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { action } from "@storybook/addon-actions";
 import { Button } from "../button/Button";  // Assuming there's a Button component in your project
 import SignInRequiredModal from "./sign-in-required-modal";
+import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 
 const meta: Meta<typeof SignInRequiredModal> = {
   title: "Components/Modals/SignInRequiredModal",
@@ -36,16 +37,16 @@ type Story = StoryObj<typeof SignInRequiredModal>;
 // Default story
 export const Default: Story = {
   render: (args) => {
-    const [isOpen, setIsOpen] = useState(true);
+    const { onOpen, isOpen, onOpenChange } = useDisclosure();
 
     return (
       <div>
-        <Button onClick={() => setIsOpen(true)}>Open Sign-In Modal</Button>
+        <Button onClick={() => onOpenChange(true)}>Open Sign-In Modal</Button>
         <SignInRequiredModal
           {...args}
           open={isOpen}
-          onOpenChange={(open) => setIsOpen(open)}
-          onClose={() => setIsOpen(false)}
+          onOpenChange={(open) => onOpenChange(open)}
+          onClose={() => onOpenChange(false)}
         />
       </div>
     );

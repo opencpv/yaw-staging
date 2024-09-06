@@ -2,9 +2,8 @@ import DeleteButton from "@/components/__shared/ui/button/delete-button/delete-b
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 
-// Define metadata for the DeleteButton component
 const meta: Meta<typeof DeleteButton> = {
-  title: "Components/Buttons/DeleteButton", // Title for the Storybook sidebar
+  title: "Components/Buttons/DeleteButton",
   component: DeleteButton,
   tags: ["autodocs"],
 
@@ -16,6 +15,7 @@ const meta: Meta<typeof DeleteButton> = {
     classNames: {
       control: "object",
       defaultValue: { icon: "" },
+      description:"this classname is for the designing the icon"
     },
     handleDestruction: { action: "handleDestruction" },
     loading: { control: "boolean" },
@@ -32,25 +32,20 @@ const meta: Meta<typeof DeleteButton> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Default delete button
 export const Default: Story = {
   args: {
     label: "Delete Item",
     loading: false,
-    variant: "default",
   },
 };
 
-// Loading state
 export const Loading: Story = {
   args: {
     label: "Deleting...",
     loading: true,
-    variant: "default",
   },
 };
 
-// Ghost variant
 export const Ghost: Story = {
   args: {
     label: "Delete Item",
@@ -59,12 +54,10 @@ export const Ghost: Story = {
   },
 };
 
-// Custom class names
 export const CustomClassNames: Story = {
   args: {
     label: "Custom Icon",
     loading: false,
-    variant: "default",
     classNames: { icon: "text-red-500" },
   },
 };

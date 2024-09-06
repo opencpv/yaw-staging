@@ -5,6 +5,10 @@ import { Meta, StoryObj } from "@storybook/react";
 import { cn } from "@/lib/utils";
 import SkeletonListing from "../skeleton-listing";
 
+/**
+ * Use to show a placeholder while content is loading.
+
+ */
 const meta: Meta<typeof SkeletonListing> = {
   title: "Components/Skeletons/SkeletonListing",
   component: SkeletonListing,
@@ -15,13 +19,11 @@ export default meta;
 
 type Story = StoryObj<typeof SkeletonListing>;
 
-// Default story for SkeletonListing
 export const Default: Story = {
   render: (args) => <SkeletonListing {...args} />,
   args: {
     count: 3,
     cardType: 2,
-    className: "",
   },
 };
 
@@ -31,7 +33,6 @@ export const CardType1: Story = {
   args: {
     count: 3,
     cardType: 1,
-    className: "",
   },
 };
 
@@ -50,6 +51,5 @@ export const WithoutCount: Story = {
   render: (args) => <SkeletonListing {...args} />,
   args: {
     cardType: 2,
-    className: "",
   },
 };

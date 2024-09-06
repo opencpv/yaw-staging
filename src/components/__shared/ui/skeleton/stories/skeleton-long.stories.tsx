@@ -4,6 +4,10 @@ import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import SkeletonLong from "../skeleton-long";
 
+/**
+ * Use to show a placeholder while content is loading.
+
+ */
 const meta: Meta<typeof SkeletonLong> = {
   title: "Components/Skeletons/SkeletonLong",
   component: SkeletonLong,
@@ -19,7 +23,6 @@ export const Default: Story = {
   render: (args) => <SkeletonLong {...args} />,
   args: {
     count: 3,
-    className: "",
   },
 };
 
@@ -28,7 +31,6 @@ export const CustomCount: Story = {
   render: (args) => <SkeletonLong {...args} />,
   args: {
     count: 5,
-    className: "",
   },
 };
 
@@ -42,9 +44,3 @@ export const CustomStyling: Story = {
 };
 
 // Story without count (fallback to default state)
-export const WithoutCount: Story = {
-  render: (args) => <SkeletonLong {...args} />,
-  args: {
-    className: "",
-  },
-};

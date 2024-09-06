@@ -4,6 +4,10 @@ import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import TableSkeleton from "../skeleton-table";
 
+/**
+ * Use to show a placeholder while content is loading.
+
+ */
 const meta: Meta<typeof TableSkeleton> = {
   title: "Components/Skeletons/TableSkeleton",
   component: TableSkeleton,
@@ -41,12 +45,3 @@ export const MinimalTable: Story = {
   },
 };
 
-// Story with additional row class name
-export const WithCustomRowClassName: Story = {
-  render: (args) => <TableSkeleton {...args} />,
-  args: {
-    rows: 5,       // Default number of rows
-    columns: 3,    // Default number of columns
-    rowClassName: "bg-gray-100", // Example custom row class
-  },
-};

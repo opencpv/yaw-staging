@@ -19,6 +19,7 @@ type Props = {
   isIcon?: boolean;
 } & ButtonProps;
 
+/** */
 const MessageButton = ({
   color,
   className,
