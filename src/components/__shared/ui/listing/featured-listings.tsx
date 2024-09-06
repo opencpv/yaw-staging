@@ -4,7 +4,7 @@ import "swiper/css/free-mode";
 import "swiper/css/effect-coverflow";
 import React from "react";
 import SkeletonListing from "../skeleton/skeleton-listing";
-import FetchingStates from "../data_fetching/fetching-states";
+import FetchingStates from "../data_fetching/fetching-states/fetching-states";
 import { LinkButton } from "../button/Button";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow } from "swiper/modules";

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
+import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states/fetching-states";
 import SkeletonListing from "@/components/__shared/ui/skeleton/skeleton-listing";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useFetchProperties } from "../services";
