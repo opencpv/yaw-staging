@@ -1,6 +1,6 @@
 import { useFetchListerLeads } from "../services";
 import { Button } from "@/components/__shared/ui/button/Button";
-import MessageButton from "@/components/__shared/ui/button/message-button/message-button";
+import MessageButton from "@/components/__shared/ui/button/message-button";
 import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { initiatePhoneCall } from "@/lib/utils/initiatePhoneCall";

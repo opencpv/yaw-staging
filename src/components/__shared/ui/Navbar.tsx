@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation.js";
 import { useEffect, useState } from "react";
 import Logo from "@/components/__shared/ui/logo";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
-import GetStartedButton from "./button/get-started-button/get-started-button";
+import GetStartedButton from "./button/get-started-button";
 import { useHideDocumentScrollBar } from "@/lib/custom-hooks/useWindowEvents";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import AvatarMenu from "./avatar/AvatarMenu";

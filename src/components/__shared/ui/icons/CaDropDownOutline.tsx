@@ -1,4 +1,4 @@
-const CaDropdownArrow = () => {
+const CaDropdownArrowOutline = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,4 +12,4 @@ const CaDropdownArrow = () => {
   );
 };
 
-export default CaDropdownArrow;
+export default CaDropdownArrowOutline;

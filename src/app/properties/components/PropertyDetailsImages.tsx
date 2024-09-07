@@ -4,7 +4,7 @@ import Image from "next/image";
 import images from "@/enum/temp/images";
 import dynamic from "next/dynamic";
 const GalleryModalBtn = dynamic(
-  () => import("@/components/__shared/ui/button/gallery-modal-btn/gallery-modal-button"),
+  () => import("@/components/__shared/ui/button/gallery-modal-button"),
 );
 const PropertyGalleryModal = dynamic(() => import("./PropertyGalleryModal"));
 

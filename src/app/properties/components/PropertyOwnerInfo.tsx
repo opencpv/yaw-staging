@@ -1,13 +1,13 @@
 "use client";
-import CallButton from "@/components/__shared/ui/button/call-button/call-button";
-import WhatsAppButton from "@/components/__shared/ui/button/whatsapp-button/whatsapp-button";
+import CallButton from "@/components/__shared/ui/button/call-button";
+import WhatsAppButton from "@/components/__shared/ui/button/whatsapp-button";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import React from "react";
 import style from "../Template.module.css";
 import Rating from "@/components/__shared/ui/ratings-form";
 import { cn } from "@/lib/utils";
 import Avatar from "@/components/__shared/ui/avatar/Avatar";
-import MessageButton from "@/components/__shared/ui/button/message-button/message-button";
+import MessageButton from "@/components/__shared/ui/button/message-button";
 
 type Props = {
   listing: Property & {

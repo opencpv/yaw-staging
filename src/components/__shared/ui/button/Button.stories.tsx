@@ -2,8 +2,12 @@ import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { Button, LinkButton } from "./Button";
 
+
+/**
+ * Displays a button or a component that looks like a button.
+ */
 const meta: Meta<typeof Button> = {
-  title: "Components/Buttons/Button", // Title for the Storybook sidebar
+  title: "Components/Buttons/Button", 
   component: Button,
   tags: ["autodocs"],
   parameters: {
@@ -26,10 +30,13 @@ const meta: Meta<typeof Button> = {
     size: {
       control: "select",
       options: ["default", "sm", "lg", "fit", "full", "icon"],
+      description:"size of the button"
     },
     color: {
       control: "select",
       options: ["primary", "accent", "white", "gradient"],
+      description:"color of the button"
+
     },
     radius: {
       control: "select",
@@ -37,6 +44,8 @@ const meta: Meta<typeof Button> = {
     },
     isLoading: {
       control: "boolean",
+      description:"shows whether a process is loading or not"
+
     },
     disabled: {
       control: "boolean",
@@ -44,9 +53,9 @@ const meta: Meta<typeof Button> = {
     className: {
       control: "text",
     },
-    asChild: {
-      control: "text",
-    },
+    // asChild: {
+    //   control: "text",
+    // },
   },
 };
 
@@ -54,14 +63,10 @@ export default meta;
 
 type Story = StoryObj<typeof Button>;
 
-// Base Button Story
 export const Default: Story = {
   args: {
     children: "Button",
-    variant: "default",
-    size: "default",
     color: "primary",
-    radius: "default",
     isLoading: false,
     disabled: false,
     className: "",
