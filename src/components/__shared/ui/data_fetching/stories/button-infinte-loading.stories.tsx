@@ -2,7 +2,6 @@ import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import ButtonInfiniteLoading from "../button-infinite-loading";
 
-
 const meta: Meta<typeof ButtonInfiniteLoading> = {
   title: "Components/DataFetching/ButtonInfiniteLoading",
   tags: ["autodocs"],
@@ -10,6 +9,11 @@ const meta: Meta<typeof ButtonInfiniteLoading> = {
   component: ButtonInfiniteLoading,
   parameters: {
     layout: "centered",
+  },
+  argTypes: {
+    loadMore: {
+      type: "function",
+    },
   },
 };
 

@@ -15,18 +15,9 @@ const meta: Meta<typeof Accordion> = {
   component: Accordion,
   tags: ["autodocs"],
   argTypes: {
-    defaultValue: {
-      control: "text",
-    },
     type: {
       control: "select",
       options: ["single", "multiple"],
-    },
-    collapsible: {
-      control: "boolean",
-    },
-    className: {
-      control: "text",
     },
   },
 } satisfies Meta<typeof Accordion>;
@@ -46,6 +37,7 @@ export const Default: Story = {
     return (
       //@ts-ignore
       <Accordion
+        {...args}
         defaultValue={args.defaultValue}
         //@ts-ignore
         collapsible={args.collapsible}

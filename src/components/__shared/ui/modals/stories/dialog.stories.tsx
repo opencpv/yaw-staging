@@ -6,10 +6,6 @@ import {
   DialogHeader,
   DialogFooter,
   DialogTitle,
-  DialogDescription,
-  DialogOverlay,
-  DialogTrigger,
-  DialogClose,
   DialogPortal,
   Dialog,
 } from "../dialog";
@@ -20,11 +16,12 @@ const meta: Meta = {
   title: "Components/Modals/Modal",
   component: Modal,
   tags: ["autodocs"],
-
+  parameters: {
+    layout: "centered",
+  },
   argTypes: {
     onOpenChange: {
       description: "Callback when modal open state changes.",
-      action: "onOpenChange",
     },
     isOpen: {
       description: "Whether the modal is open or closed.",
@@ -83,23 +80,21 @@ export default meta;
 type Story = StoryObj<typeof Modal>;
 
 export const Default: Story = {
-  render: () => {
+  render: (args) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
       <div>
         <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
         <Modal
+          {...args}
           isOpen={isOpen}
           onOpenChange={setIsOpen}
           header={<DialogTitle>Modal Title</DialogTitle>}
           body={<p>This is the body of the modal.</p>}
           footer={
-            <div>
-              <Button onClick={() => alert("Action clicked")}>Action</Button>
-            </div>
+            <Button onClick={() => alert("Action clicked")}>Action</Button>
           }
-          closeButton={<Button variant="outline">Close</Button>}
           hideCloseButton={false}
           size="lg"
         />
@@ -109,18 +104,22 @@ export const Default: Story = {
 };
 
 export const Anatomy: Story = {
-  render: () => {
-    const { onOpen, isOpen, onOpenChange } = useDisclosure();
+  render: (args) => {
+    const { isOpen, onOpenChange } = useDisclosure();
 
     return (
       <>
         <Button onClick={() => onOpenChange(true)}>Open Modal</Button>
 
-        <Dialog open={isOpen} onOpenChange={onOpenChange}>
+        <Dialog {...args} open={isOpen} onOpenChange={onOpenChange}>
           <DialogPortal>
             <DialogContent
               className="mx-auto max-w-md rounded bg-white p-4 shadow-lg"
-              closeButton={<Button variant="outline">Close</Button>}
+              closeButton={
+                <Button variant="outline" size={"sm"}>
+                  Close
+                </Button>
+              }
               hideCloseButton={false}
             >
               <DialogHeader>

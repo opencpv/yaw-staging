@@ -60,7 +60,7 @@ const StepsModal = ({
         </div>
         <DialogFooter
           className={cn(
-            "flex w-full flex-row justify-end space-x-2 border-t px-6 py-4",
+            "mt-auto flex w-full flex-row justify-end space-x-2 border-t px-6 py-4",
             classNames?.footer,
           )}
         >

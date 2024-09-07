@@ -18,31 +18,11 @@ const meta: Meta<typeof PopupModal> = {
     layout: "centered",
   },
   argTypes: {
-    isOpen: {
-      control: {
-        type: "boolean",
-      },
-    },
-    onOpenChange: {
-      type: "function",
-    },
-    onClose: {
-      type: "function",
-    },
     onAction: {
-      type: "function",
       description:
         "Callback function when the action button <strong>(i.e Yes)</strong> is clicked",
     },
-    label: {
-      control: {
-        type: "text",
-      },
-    },
     loading: {
-      control: {
-        type: "boolean",
-      },
       description: "Use to indicate loading state of async action",
     },
   },
@@ -64,6 +44,7 @@ export const Default: Story = {
       <>
         <Button onClick={onOpen}>Toggle Modal</Button>
         <PopupModal
+          {...args}
           label={args.label}
           isOpen={isOpen}
           onOpenChange={onOpenChange}
@@ -88,6 +69,7 @@ export const Loading: Story = {
       <>
         <Button onClick={onOpen}>Toggle Modal</Button>
         <PopupModal
+          {...args}
           label={args.label}
           isOpen={isOpen}
           onOpenChange={onOpenChange}
@@ -103,7 +85,7 @@ export const Loading: Story = {
  * Use when you need to customize the PopupModal
  */
 export const Anatomy: Story = {
-  render: () => {
+  render: (args) => {
     const { isOpen, onOpenChange, onOpen } = useDisclosure();
     return (
       <>

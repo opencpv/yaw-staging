@@ -2,31 +2,18 @@ import { Meta, StoryObj } from "@storybook/react";
 import EmptyState from "../empty-state";
 
 const meta: Meta<typeof EmptyState> = {
-  title: "Components/EmptyState", // Title for the Storybook sidebar
+  title: "Components/States/EmptyState", // Title for the Storybook sidebar
   component: EmptyState,
   tags: ["autodocs"],
   parameters: {
     layout: "centered",
+    nextjs: {
+      appDirectory: true,
+    },
   },
   argTypes: {
     paddingBlock: {
       control: "select",
-    },
-    href: {
-      description: "must be used with buttonLabel",
-    },
-    // tagLine: {
-    //     control: "text",
-    // },
-    // buttonLabel: {
-    //   control: "text",
-    // },
-    onClick: {
-      type: "function",
-      description: "must be used with buttonLabel",
-    },
-    className: {
-      control: "text",
     },
   },
 };
@@ -52,11 +39,13 @@ export const Description: Story = {
 export const ButtonLabel: Story = {
   args: {
     buttonLabel: "Add Item",
+    onClick: () => alert("Add Item"),
   },
 };
 
 export const WithHref: Story = {
   args: {
     href: "/add-item",
+    buttonLabel: "Add Item",
   },
 };

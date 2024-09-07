@@ -17,6 +17,7 @@ const EditButton = ({ onClick, variant = "default", className }: Props) => {
       className={cn(
         {
           "bg-secondary-50 p-4": variant === "default",
+          "bg-transparent p-0": variant === "ghost",
         },
         className,
       )}

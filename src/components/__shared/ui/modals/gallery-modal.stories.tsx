@@ -1,41 +1,34 @@
-import React, { useState } from "react";
+import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { Button } from "@/components/__shared/ui/button";
 import GalleryModal from "./gallery-modal";
-import { PiShareFat } from "react-icons/pi";
-import { LiaTimesSolid } from "react-icons/lia";
-import Carousel from "../sliders/carousel";
 import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 
 const meta: Meta = {
   title: "Components/Modals/GalleryModal",
   component: GalleryModal,
   tags: ["autodocs"],
-
+  parameters: {
+    layout: "centered",
+  },
   argTypes: {
     isOpen: {
       description: "Whether the modal is open or closed.",
-      control: "boolean",
     },
     onOpenChange: {
       description: "Callback when modal open state changes.",
-      action: "onOpenChange",
     },
     onClose: {
       description: "Callback for modal close.",
-      action: "onClose",
     },
     images: {
       description: "Array of image URLs for the gallery.",
-      control: "text",
     },
     shareTitle: {
       description: "Title for the share functionality.",
-      control: "text",
     },
     shareDescription: {
       description: "Description for the share functionality.",
-      control: "text",
     },
   },
 };
@@ -47,7 +40,7 @@ type Story = StoryObj<typeof GalleryModal>;
 // Default story
 export const Default: Story = {
   render: (args) => {
-    const { onOpen, isOpen, onOpenChange } = useDisclosure();
+    const { isOpen, onOpenChange } = useDisclosure();
 
     return (
       <div>

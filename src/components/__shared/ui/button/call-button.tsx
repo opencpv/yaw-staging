@@ -15,7 +15,7 @@ const ButtonCall = ({
   color,
   phoneNumber,
   className,
-  iconPosition,
+  iconPosition = "left",
   ...props
 }: Props) => {
   const [text, setText] = useState("Call me");

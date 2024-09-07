@@ -10,11 +10,9 @@ const meta: Meta<typeof Breadcrumb> = {
   },
   argTypes: {
     link: {
-      control: "text",
       description: "Link to the previous page",
     },
     page: {
-      control: "text",
       description: "The current page title",
     },
   },

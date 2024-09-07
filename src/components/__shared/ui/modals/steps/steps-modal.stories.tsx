@@ -8,7 +8,9 @@ const meta: Meta<typeof StepsModal> = {
   title: "Components/Modals/StepsModal",
   component: StepsModal,
   tags: ["autodocs"],
-
+  parameters: {
+    layout: "centered",
+  },
   argTypes: {
     open: {
       description: "Controls whether the modal is open.",
@@ -32,7 +34,6 @@ const meta: Meta<typeof StepsModal> = {
     },
     onOpenChange: {
       description: "Callback function for when the modal's open state changes.",
-      action: "onOpenChange",
     },
   },
 };
@@ -42,64 +43,61 @@ export default meta;
 type Story = StoryObj<typeof StepsModal>;
 
 export const Default: Story = {
-  render: () => {
-    const { onOpen, isOpen, onOpenChange } = useDisclosure();
+  render: (args) => {
+    const { isOpen, onOpenChange } = useDisclosure();
 
     return (
       <>
         <Button onClick={() => onOpenChange(true)}>Open Modal</Button>
         <StepsModal
+          {...args}
           open={isOpen}
           onOpenChange={onOpenChange}
           header={<h2>Modal Header</h2>}
           body={<p>This is the modal body content.</p>}
-          footer={
-            <div>
-              <Button onClick={() => onOpenChange(false)}>Close</Button>
-            </div>
-          }
+          footer={<Button onClick={() => onOpenChange(false)}>Close</Button>}
         />
       </>
     );
   },
 };
 
-export const WithCustomStyles: Story = {
-  render: () => {
-    const [open, setOpen] = useState(true);
+// export const WithCustomStyles: Story = {
+//   render: () => {
+//     const [open, setOpen] = useState(true);
 
-    const handleOpenChange = (open: boolean) => {
-      setOpen(open);
-    };
+//     const handleOpenChange = (open: boolean) => {
+//       setOpen(open);
+//     };
 
-    return (
-      <>
-        <Button onClick={() => setOpen(true)}>Open Modal</Button>
-        <StepsModal
-          open={open}
-          onOpenChange={handleOpenChange}
-          header={<h2 className="text-blue-500">Custom Header</h2>}
-          body={
-            <p className="text-gray-700">
-              This is the body with custom styles.
-            </p>
-          }
-          footer={
-            <div className="flex justify-end">
-              <Button
-                onClick={() => setOpen(false)}
-                variant="outline"
-                className="mr-2"
-              >
-                Close
-              </Button>
-            </div>
-          }
-          classNames={{
-            footer: "bg-gray-100",
-          }}
-        />
-      </>
-    );
-  },
-};
+//     return (
+//       <>
+//         <Button onClick={() => setOpen(true)}>Open Modal</Button>
+//         <StepsModal
+//           open={open}
+//           onOpenChange={handleOpenChange}
+//           header={<h2 className="text-blue-500">Custom Header</h2>}
+//           body={
+//             <p className="text-gray-700">
+//               This is the body with custom styles.
+//             </p>
+//           }
+//           footer={
+//             <div className="flex justify-end">
+//               <Button
+//                 onClick={() => setOpen(false)}
+//                 variant="outline"
+//                 className="mr-2"
+//               >
+//                 Close
+//               </Button>
+//             </div>
+//           }
+//           classNames={{
+//             footer: "bg-gray-100",
+//           }}
+//         />
+//       </>
+//     );
+//   },
+// };

@@ -11,19 +11,9 @@ const meta: Meta<typeof DeleteButton> = {
     layout: "centered",
   },
   argTypes: {
-    className: { control: "text" },
-    classNames: {
-      control: "object",
-      defaultValue: { icon: "" },
-      description:"this classname is for the designing the icon"
-    },
-    handleDestruction: { action: "handleDestruction" },
-    loading: { control: "boolean" },
-    label: { control: "text" },
     variant: {
       control: {
         type: "select",
-        options: ["default", "ghost"],
       },
     },
   },
@@ -35,21 +25,19 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     label: "Delete Item",
-    loading: false,
   },
 };
 
 export const Loading: Story = {
   args: {
-    label: "Deleting...",
+    ...Default.args,
     loading: true,
   },
 };
 
 export const Ghost: Story = {
   args: {
-    label: "Delete Item",
-    loading: false,
+    ...Default.args,
     variant: "ghost",
   },
 };
@@ -57,7 +45,6 @@ export const Ghost: Story = {
 export const CustomClassNames: Story = {
   args: {
     label: "Custom Icon",
-    loading: false,
-    classNames: { icon: "text-red-500" },
+    classNames: { icon: "text-yellow-500" },
   },
 };

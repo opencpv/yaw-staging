@@ -10,11 +10,20 @@ const PopupModal = dynamic(() =>
 
 type Props = {
   className?: string;
+  /**
+   * For the styling the icon
+   */
   classNames?: {
     icon?: string;
   };
   handleDestruction: () => void;
+  /**
+   * Indicates if the modal's action button is loading
+   */
   loading: boolean;
+  /**
+   * The content of the modal
+   */
   label?: string;
   variant?: "default" | "ghost";
 };
@@ -45,6 +54,7 @@ const DeleteButton = ({
         className={cn(
           {
             "bg-secondary-50 p-4": variant === "default",
+            "bg-transparent p-0": variant === "ghost",
           },
           className,
         )}

@@ -4,6 +4,9 @@ import React from "react";
 import { MdOutlineArchive } from "react-icons/md";
 
 type Props = {
+  /**
+   * Whether archived data is being shown.
+   */
   showingArchived: boolean;
   className?: string;
   onClick?: () => void;

@@ -11,20 +11,14 @@ const meta: Meta<typeof Callout> = {
   },
   argTypes: {
     title: {
-      control: "text",
       description: "The heading of the callout",
     },
     content: {
-      control: "text",
       description: "The description of the callout",
     },
     children: {
-      control: "object",
       description:
         "The children of the callout when content is <strong>NOT</strong> provided. <br/> Note: font size should be `small` i.e: small tag, text-sm",
-    },
-    className: {
-      control: "text",
     },
   },
 };

@@ -1,13 +1,10 @@
-import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import { getListingProps, Listing } from "@/lib/enum";
 import RecommendedListings from "./recommended-listings";
 
-
 const meta: Meta<typeof RecommendedListings> = {
-  title: "Components/Listing/RecommendedListings",
+  title: "Pages/RecommendedListings",
   component: RecommendedListings,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 
   argTypes: {
     className: {
@@ -31,8 +28,4 @@ export const Default: Story = {
     className: "custom-class",
     hideShowAll: false,
   },
-
-
 };
-
-

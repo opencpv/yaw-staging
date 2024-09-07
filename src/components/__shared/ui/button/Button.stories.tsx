@@ -1,6 +1,7 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { Button, LinkButton } from ".";
+import { FaArrowRight } from "react-icons/fa6";
 
 /**
  * Displays a button or a component that looks like a button.
@@ -25,16 +26,19 @@ const meta: Meta<typeof Button> = {
         "ghost",
         "link",
       ],
+      description: "`union`",
     },
     size: {
       control: "select",
       options: ["default", "sm", "lg", "fit", "full", "icon"],
       description: "size of the button",
+      type: "string",
     },
     color: {
       control: "select",
       options: ["primary", "accent", "white", "gradient"],
       description: "color of the button",
+      type: "string",
     },
     radius: {
       control: "select",
@@ -43,16 +47,16 @@ const meta: Meta<typeof Button> = {
     isLoading: {
       control: "boolean",
       description: "shows whether a process is loading or not",
+      type: "boolean",
     },
     disabled: {
       control: "boolean",
+      type: "boolean",
     },
     className: {
       control: "text",
+      type: "string",
     },
-    // asChild: {
-    //   control: "text",
-    // },
   },
 };
 
@@ -63,10 +67,6 @@ type Story = StoryObj<typeof Button>;
 export const Default: Story = {
   args: {
     children: "Button",
-    color: "primary",
-    isLoading: false,
-    disabled: false,
-    className: "",
   },
 };
 
@@ -135,37 +135,17 @@ export const Link: Story = {
     children: "Link Button",
     //@ts-ignore
     href: "#",
-    variant: "default",
-    size: "default",
-    color: "primary",
-    radius: "default",
-    asChild: true,
   },
   //@ts-ignore
-
   render: (args) => <LinkButton {...args} />,
 };
 
 // // Button with Icon
 export const WithIcon: Story = {
   args: {
-    //     ...Default.args,
     children: (
       <>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M5 12h14" />
-          <path d="m12 5 7 7-7 7" />
-        </svg>
+        <FaArrowRight />
         Button with Icon
       </>
     ),

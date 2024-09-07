@@ -17,14 +17,8 @@ const meta: Meta<typeof Command> = {
     layout: "centered",
   },
   argTypes: {
-    onValueChange: {
-      type: "function",
-    },
     children: {
       control: "object",
-    },
-    className: {
-      control: "text",
     },
   },
 };
