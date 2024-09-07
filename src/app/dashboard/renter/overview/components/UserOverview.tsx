@@ -9,7 +9,7 @@ import LargeButton from "@/app/dashboard/components/shared/ui/LargeButton";
 import { TbBuildingCommunity } from "react-icons/tb";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { AiOutlineUser } from "react-icons/ai";
-import Callout from "@/components/__shared/ui/callout/callout";
+import Callout from "@/components/__shared/ui/callout";
 import dynamic from "next/dynamic";
 const UserOverviewMV = dynamic(() => import("./UserOverviewMV"));
 

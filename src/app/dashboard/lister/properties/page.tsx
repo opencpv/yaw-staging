@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import Callout from "@/components/__shared/ui/callout/callout";
+import Callout from "@/components/__shared/ui/callout";
 import { pluralize } from "@/lib/utils/stringManipulation";
 import { useFetchAllListerProperties } from "./services";
 import { useAppStore } from "@/store/dashboard/AppStore";
@@ -12,7 +12,7 @@ import {
   TableHeaderRow,
   TableSm,
 } from "@/components/__shared/ui/table";
-import ArchivedButton from "@/components/__shared/ui/table/archived-button";
+import ArchivedButton from "@/components/__shared/ui/button/archived-button";
 import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
 import TableSkeleton from "@/components/__shared/ui/skeleton/skeleton-table";
 import React, { useState } from "react";
@@ -20,11 +20,9 @@ import PropertyRow from "./components/PropertyRow";
 import PropertyRowMobile from "./components/PropertyRowMobile";
 import TableSkeletonSm from "@/components/__shared/ui/skeleton/skeleton-table-mobile";
 import { FaPlus } from "react-icons/fa6";
-import { Tabs } from "@/components/__shared/ui/tabs/tabs";
+import { Tabs } from "@/components/__shared/ui/tabs";
 import dynamic from "next/dynamic";
-import Pagination, {
-  usePagination,
-} from "@/components/__shared/ui/pagination/pagination";
+import Pagination, { usePagination } from "@/components/__shared/ui/pagination";
 const EmptyState = dynamic(() => import("./components/EmptyState"));
 
 const ListingModal = dynamic(

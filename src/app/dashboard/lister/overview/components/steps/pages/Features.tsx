@@ -1,7 +1,7 @@
 import { useLocalStorage } from "@uidotdev/usehooks";
 import Amenity from "@/app/dashboard/components/shared/ui/Amenity";
 import style from "../../../index.module.css";
-import Callout from "../../../../../../../components/__shared/ui/callout/callout";
+import Callout from "../../../../../../../components/__shared/ui/callout";
 import { useField } from "formik";
 import { features } from "../../../../../components/shared/content";
 import { ListingDefaultValues } from "@/store/dashboard/ListingStepsStore";

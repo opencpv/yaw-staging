@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import Pagination, { usePagination } from "./pagination";
+import Pagination, { usePagination } from ".";
 
 const meta: Meta<typeof Pagination> = {
   title: "Components/Pagination", // Title for the Storybook sidebar
@@ -44,9 +44,9 @@ export const Default: Story = {
     return (
       <>
         <Pagination
-          onPageChange={handlePageChange}
           pageCount={pageCount}
           forcePage={currentPage}
+          onPageChange={handlePageChange}
         />
         <ul className="mt-10 flex items-center gap-2">
           {currentItems?.map((item) => <li key={item}>{item}</li>)}

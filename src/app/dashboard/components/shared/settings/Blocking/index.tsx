@@ -4,7 +4,7 @@ import CaBlockingBlock from "./icons/CaBlockingBlock";
 import { Button } from "@/components/__shared/ui/button/Button";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import Callout from "@/components/__shared/ui/callout/callout";
+import Callout from "@/components/__shared/ui/callout";
 import {
   useFetchBlockedUsers,
   useUnblockAllUsers,
@@ -14,9 +14,7 @@ import dynamic from "next/dynamic";
 import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { Skeleton } from "@/components/__shared/ui/skeleton";
 const PopupModal = dynamic(() =>
-  import("@/components/__shared/ui/alert-dialog/alert-dialog").then(
-    (mod) => mod.PopupModal,
-  ),
+  import("@/components/__shared/ui/alert-dialog").then((mod) => mod.PopupModal),
 );
 
 type BlockedUserType = BlockedUser & {

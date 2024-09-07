@@ -4,7 +4,7 @@ import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import { usePathname } from "next/navigation.js";
 import { useEffect, useState } from "react";
-import Logo from "@/components/__shared/ui/logo/logo";
+import Logo from "@/components/__shared/ui/logo";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
 import { useHideDocumentScrollBar } from "@/lib/custom-hooks/useWindowEvents";
 import { useAppStore } from "@/store/dashboard/AppStore";
@@ -12,7 +12,7 @@ import { useUserData } from "@/lib/custom-hooks/database/useUserData";
 import { cn } from "@/lib/utils";
 import AvatarMenu from "@/components/__shared/ui/avatar/AvatarMenu";
 import Share from "@/components/__shared/ui/share";
-import LikeHeart from "@/components/__shared/ui/like-button/like-button";
+import LikeHeart from "@/components/__shared/ui/like-button";
 import GetStartedButton from "@/components/__shared/ui/button/get-started-button/get-started-button";
 import { useJoinUsPageStore } from "./useJoinUsPageStore";
 

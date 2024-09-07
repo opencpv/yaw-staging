@@ -11,9 +11,10 @@ const Modal = dynamic(() =>
   import("@/components/__shared/ui/modals/dialog").then((mod) => mod.Modal),
 );
 
-type Props = {};
-
-const Survey = (props: Props) => {
+/**
+ * Opens a modal with a survey link. The survey component disappears after <strong>30 seconds</strong>.
+ */
+const Survey = () => {
   const { onOpen, isOpen, onOpenChange } = useDisclosure();
   const [showButton, setShowButton] = useState(false);
   const [timedOut, setTimedOut] = useState(false);

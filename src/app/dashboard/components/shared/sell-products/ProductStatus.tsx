@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { ItemPublicationStatus } from "./PublicationStatus";
-import { Switch } from "@/components/__shared/ui/switch/switch";
+import { Switch } from "@/components/__shared/ui/switch";
 import { ProductStatusProp } from "@/lib/typings";
 import { toast } from "react-hot-toast";
 

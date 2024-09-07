@@ -9,7 +9,7 @@ import { Skeleton } from "@/components/__shared/ui/skeleton";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { updateItemViewCount } from "../../actions";
 import { useItemPathStore } from "@/store/moving_sales/useMovingSalesStore";
-import { Breadcrumb } from "@/components/__shared/ui/breadcrumb/breadcrumb";
+import { Breadcrumb } from "@/components/__shared/ui/breadcrumb";
 import toast from "react-hot-toast";
 
 type Props = {

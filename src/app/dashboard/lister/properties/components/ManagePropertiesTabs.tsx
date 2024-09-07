@@ -1,4 +1,4 @@
-import { Tabs } from "@/components/__shared/ui/tabs/tabs";
+import { Tabs } from "@/components/__shared/ui/tabs";
 import { useManagePropertiesStore } from "@/store/dashboard/propertiesStore";
 import React from "react";
 

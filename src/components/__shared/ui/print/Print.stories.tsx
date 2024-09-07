@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import Print from "./print";
+import Print from ".";
 
 const meta: Meta<typeof Print> = {
   title: "Components/Print", // Title for the Storybook sidebar
@@ -19,6 +19,4 @@ export default meta;
 
 type Story = StoryObj<typeof Print>;
 
-export const Default: Story = {
-  args: {},
-};
+export const Default: Story = {};

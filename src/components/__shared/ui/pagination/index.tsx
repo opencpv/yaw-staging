@@ -6,10 +6,10 @@ import style from "../../Shared.module.css";
 import { cn } from "@/lib/utils";
 
 type Props = {
-  onPageChange: (event: { selected: number }) => void;
   pageCount: number;
-  className?: string;
   forcePage?: number;
+  className?: string;
+  onPageChange: (event: { selected: number }) => void;
 };
 
 /**

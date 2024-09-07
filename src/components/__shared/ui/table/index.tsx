@@ -13,7 +13,7 @@ type generalProps = {
 type TableProps = {
   /**
    * The content of the table i.e table header and table body. Must be used with TableHeaderRow, TableHeader, TableBody and TableBodyRow
-   * skeleton: <Table>
+   *  <Table>
    *                <TableHeaderRow>
    *                    <TableHeader> Property </TableHeader>
    *                    <TableHeader> Status </TableHeader>
@@ -30,6 +30,9 @@ type TableProps = {
   className?: string;
 };
 
+/**
+ *A table component. Used with the <strong>TableSm</strong> component
+ */
 export const Table = (props: TableProps) => {
   return (
     <section
@@ -93,7 +96,7 @@ export const TableRowSm = (props: TableHeaderRowProps) => {
         `fade-in flex cursor-default flex-col gap-4 overflow-hidden rounded-lg px-5 py-5 hover:bg-shade`,
         props.className,
       )}
-      style={{animationDuration: "0.5s"}}
+      style={{ animationDuration: "0.5s" }}
     >
       {props.children}
     </div>

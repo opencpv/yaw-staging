@@ -6,7 +6,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "./command";
+} from ".";
 import React from "react";
 
 const meta: Meta<typeof Command> = {
@@ -54,7 +54,7 @@ export const Default: Story = {
       },
     ];
     return (
-      <Command onValueChange={args.onValueChange} className={args.className}>
+      <Command {...args}>
         <CommandInput
           className="focus:outline-none"
           placeholder="Search data..."

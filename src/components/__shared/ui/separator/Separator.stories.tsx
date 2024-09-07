@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { Separator } from "./separator";
+import { Separator } from ".";
 
 const meta: Meta<typeof Separator> = {
   title: "Components/Separator", // Title for the Storybook sidebar
@@ -48,7 +48,7 @@ export const Horizontal: Story = {};
 export const Vertical: Story = {
   args: {
     orientation: "vertical",
-    className: "h-60",
+    className: "h-32 mx-auto",
   },
   render: (args) => <Separator {...args} />,
 };
@@ -57,9 +57,10 @@ export const White: Story = {
   args: {
     ...Vertical.args,
     color: "white",
+    className: "mx-auto",
   },
   render: (args) => (
-    <div className="h-40 w-full bg-primary">
+    <div className="mx-auto h-40 w-8/12 bg-primary p-5">
       <Separator {...args} />
     </div>
   ),

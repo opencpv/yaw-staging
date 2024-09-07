@@ -6,7 +6,7 @@ import CurrencyInput from "@/components/__shared/ui/form/currency-input";
 import { RadioInput } from "@/components/__shared/ui/form/radio-input";
 import { caseInsensitiveCompare } from "@/lib/utils/stringManipulation";
 import { useFormikContext } from "formik";
-import Callout from "@/components/__shared/ui/callout/callout";
+import Callout from "@/components/__shared/ui/callout";
 
 type Props = {};
 

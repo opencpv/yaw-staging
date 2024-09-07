@@ -9,6 +9,9 @@ type Props = {
   onClick?: () => void;
 };
 
+/**
+ * Button to toggle between showing archived and active data.
+ */
 const ArchivedButton = (props: Props) => {
   return (
     <Button

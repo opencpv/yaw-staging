@@ -2,7 +2,7 @@ import Amenity from "@/app/dashboard/components/shared/ui/Amenity";
 import style from "../../../index.module.css";
 import { useField } from "formik";
 import { features } from "@/app/dashboard/components/shared/content";
-import Callout from "@/components/__shared/ui/callout/callout";
+import Callout from "@/components/__shared/ui/callout";
 import { BTFTKDefaultValues } from "@/store/dashboard/BTFTKStepsStore";
 import { useLocalStorage } from "@uidotdev/usehooks";
 

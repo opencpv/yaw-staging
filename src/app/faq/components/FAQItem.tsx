@@ -3,7 +3,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/__shared/ui/accordion/accordion";
+} from "@/components/__shared/ui/accordion";
 
 interface Props {
   title: string;

@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import LikeButton from "./like-button";
+import LikeButton from ".";
 
 const meta: Meta<typeof LikeButton> = {
   title: "Components/LikeButton", // Title for the Storybook sidebar

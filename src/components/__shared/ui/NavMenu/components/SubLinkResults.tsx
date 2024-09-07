@@ -3,7 +3,7 @@ import { useMenuStore } from "@/store/navmenu/useMenuStore";
 import { getListingProps } from "@/lib/enum";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import SubLinkResultsCard from "./SubLinkResultsCard";
-import { Separator } from "@/components/__shared/ui/separator/separator";
+import { Separator } from "@/components/__shared/ui/separator";
 import ArrowLink from "../../links/arrow-link";
 
 function SubLinkResults() {

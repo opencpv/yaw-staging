@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import SliderWide from "@/components/__shared/ui/sliders/slider-wide";
-import Callout from "@/components/__shared/ui/callout/callout";
+import Callout from "@/components/__shared/ui/callout";
 import { ADS_QUERY } from "@/lib/utils/sanity/queries";
 import dynamic from "next/dynamic";
 import { client } from "@/lib/utils/sanity/client";

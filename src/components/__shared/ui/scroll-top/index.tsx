@@ -5,7 +5,7 @@ import { useMenuStore } from "@/store/navmenu/useMenuStore";
 import { Button } from "../button/Button";
 
 /**
- * Scrolls to the top of the page
+ * Scrolls to the top of the page. It only shows when the page height is above <strong>800px</strong> and only when user is <strong>scrolling</strong> up.
  */
 const ScrollTop = () => {
   const [shouldShowScrollBtn, setShouldShowScrollBtn] =

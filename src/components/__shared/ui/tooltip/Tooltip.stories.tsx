@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { Tooltip } from "./tooltip";
+import { Tooltip } from ".";
 import React from "react";
 
 const meta: Meta<typeof Tooltip> = {
@@ -15,6 +15,9 @@ const meta: Meta<typeof Tooltip> = {
     },
     children: {
       control: "object",
+    },
+    side: {
+      control: "text",
     },
     className: {
       control: "text",
@@ -32,6 +35,10 @@ export const Default: Story = {
     children: <div>Hover me</div>,
   },
   render: (args) => {
-    return <Tooltip {...args}></Tooltip>;
+    return (
+      <div className="grid h-28 place-items-center">
+        <Tooltip {...args}></Tooltip>
+      </div>
+    );
   },
 };

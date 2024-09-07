@@ -1,5 +1,5 @@
 import ScheduleVirtualTour from "./ScheduleVirtualTour";
-import Callout from "@/components/__shared/ui/callout/callout";
+import Callout from "@/components/__shared/ui/callout";
 import React, { useEffect } from "react";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import {

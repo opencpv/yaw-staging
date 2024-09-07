@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { Switch } from "./switch";
+import { Switch } from ".";
 
 const meta: Meta<typeof Switch> = {
   title: "Components/Switch", // Title for the Storybook sidebar
@@ -11,12 +11,14 @@ const meta: Meta<typeof Switch> = {
   argTypes: {
     label: {
       control: "text",
+      type: "string",
     },
     checked: {
       control: "boolean",
     },
     disabled: {
       control: "boolean",
+      type: "boolean",
     },
     onCheckedChange: {
       type: "function",

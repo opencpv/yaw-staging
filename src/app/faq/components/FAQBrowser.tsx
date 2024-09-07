@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import FAQItem from "./FAQItem";
 import Loader from "@/components/__shared/ui/loader";
 import { useFaqStore } from "@/store/faq/useFaqStore";
-import { Accordion } from "@/components/__shared/ui/accordion/accordion";
+import { Accordion } from "@/components/__shared/ui/accordion";
 
 const FAQBrowser = ({
   data,

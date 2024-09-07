@@ -11,7 +11,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/__shared/ui/command/command";
+} from "@/components/__shared/ui/command";
 import {
   Popover,
   PopoverContent,
