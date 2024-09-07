@@ -1,7 +1,7 @@
 import React from "react";
 import { MobileMenu } from "../MobileMenu";
 import { AiFillCloseCircle } from "react-icons/ai";
-import Logo from "@/components/__shared/ui/logo/logo";
+import Logo from "@/components/__shared/ui/logo";
 import { useTermsMenuStore } from "./useTermsMenuStore";
 
 const TermsMenuArea = (props: any) => {

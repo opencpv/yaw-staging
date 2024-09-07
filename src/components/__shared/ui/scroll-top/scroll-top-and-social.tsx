@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import FixedSocials from "../fixed-socials/fixed-socials";
+import FixedSocials from "../fixed-socials";
 import dynamic from "next/dynamic";
-const ScrollTop = dynamic(() => import("./scroll-top"));
+const ScrollTop = dynamic(() => import("."));
 
 type Props = {
   hideSocial?: boolean;
@@ -10,6 +10,9 @@ type Props = {
   thresholdMin?: number;
 };
 
+/**
+ * Displays both Scroll Top and Fixed Socials.
+ */
 const ScrollTopAndSocial = ({
   hideScrollTop,
   hideSocial,

@@ -16,9 +16,7 @@ import Avatar from "@/components/__shared/ui/avatar/Avatar";
 import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
 const PopupModal = dynamic(() =>
-  import("@/components/__shared/ui/alert-dialog/alert-dialog").then(
-    (mod) => mod.PopupModal,
-  ),
+  import("@/components/__shared/ui/alert-dialog").then((mod) => mod.PopupModal),
 );
 
 const RtApplicationRowSm = ({

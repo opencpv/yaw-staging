@@ -11,7 +11,7 @@ import { useDashboardMenuStore } from "@/store/navmenu/useDashboardMenuStore";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import Switch from "../navbar/switch";
 import dynamic from "next/dynamic";
-import { ScrollArea } from "@/components/__shared/ui/scroll-area/scroll-area";
+import { ScrollArea } from "@/components/__shared/ui/scroll-area";
 const PaginationMenu = dynamic(() => import("./PaginationMenu"));
 
 type PaginationTabProps = {

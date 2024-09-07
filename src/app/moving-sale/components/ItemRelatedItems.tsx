@@ -2,7 +2,7 @@ import React from "react";
 import ItemCard from "./ItemCard";
 import { useSearchParams } from "next/navigation";
 import { useFetchPopularItems, useFetchRelatedItems } from "../services";
-import { ScrollArea } from "@/components/__shared/ui/scroll-area/scroll-area";
+import { ScrollArea } from "@/components/__shared/ui/scroll-area";
 
 type Props = {};
 

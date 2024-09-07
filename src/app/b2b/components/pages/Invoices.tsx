@@ -4,7 +4,7 @@ import InvoiceTable from "../invoice/InvoiceTable";
 import { invoiceStore } from "@/store/payment/invoiceStore";
 import SearchInput from "@/components/__shared/ui/form/search-input";
 import { useState } from "react";
-import { Tabs } from "@/components/__shared/ui/tabs/tabs";
+import { Tabs } from "@/components/__shared/ui/tabs";
 import { customerStore } from "@/store/payment/customerStore";
 import CheckoutButton from "../__shared/CheckoutButton";
 import { HiOutlineDownload } from "react-icons/hi";
@@ -12,7 +12,7 @@ import { Button } from "@/components/__shared/ui/button/Button";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { PDFTemplateObject } from "../__shared/InvoiceTemplate";
 import CaCard from "@/components/__shared/ui/icons/CaCard";
-import ArchivedButton from "@/components/__shared/ui/table/archived-button";
+import ArchivedButton from "@/components/__shared/ui/button/archived-button";
 
 type Status = "All" | "Paid" | "Pending";
 

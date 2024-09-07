@@ -32,6 +32,9 @@ const TooltipContent = React.forwardRef<
 ));
 TooltipContent.displayName = TooltipPrimitive.Content.displayName;
 
+/**
+ *A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.
+ */
 const Tooltip = React.forwardRef<
   HTMLDivElement,
   React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>

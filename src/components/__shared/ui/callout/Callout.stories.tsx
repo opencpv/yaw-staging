@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import Callout from "./callout";
+import Callout from ".";
 import { LinkButton } from "../button/Button";
 
 const meta: Meta<typeof Callout> = {
@@ -19,7 +19,7 @@ const meta: Meta<typeof Callout> = {
       description: "The description of the callout",
     },
     children: {
-      control: "text",
+      control: "object",
       description:
         "The children of the callout when content is <strong>NOT</strong> provided. <br/> Note: font size should be `small` i.e: small tag, text-sm",
     },

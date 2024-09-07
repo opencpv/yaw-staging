@@ -1,5 +1,5 @@
 "use client";
-import { Tabs } from "@/components/__shared/ui/tabs/tabs";
+import { Tabs } from "@/components/__shared/ui/tabs";
 import convertSlugToString from "@/lib/utils/convertSlugToString";
 import slugify from "@/lib/utils/slugify";
 import capitalizeName, { unslugify } from "@/lib/utils/stringManipulation";

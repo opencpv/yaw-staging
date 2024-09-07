@@ -7,7 +7,7 @@ import { HiOutlineBadgeCheck } from "react-icons/hi";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 const Tooltip = dynamic(() =>
-  import("@/components/__shared/ui/tooltip/tooltip").then((mod) => mod.Tooltip),
+  import("@/components/__shared/ui/tooltip").then((mod) => mod.Tooltip),
 );
 
 type Props = {

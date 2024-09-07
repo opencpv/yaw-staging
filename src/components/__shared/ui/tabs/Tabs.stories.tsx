@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from ".";
 import React from "react";
 
 const meta: Meta<typeof Tabs> = {
@@ -44,9 +44,6 @@ export const Default: Story = {
     selectedKey: "All",
     onSelectionChange: () => {},
   },
-  render: (args) => {
-    return <Tabs {...args} />;
-  },
 };
 
 export const Rounded: Story = {
@@ -54,18 +51,12 @@ export const Rounded: Story = {
     ...Default.args,
     variant: "rounded",
   },
-  render: (args) => {
-    return <Tabs {...args} />;
-  },
 };
 
-export const Medium: Story = {
+export const MediumSize: Story = {
   args: {
     ...Default.args,
     size: "md",
-  },
-  render: (args) => {
-    return <Tabs {...args} />;
   },
 };
 

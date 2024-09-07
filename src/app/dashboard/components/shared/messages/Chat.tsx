@@ -18,7 +18,7 @@ const Popover = dynamic(() =>
   import("@/components/__shared/ui/popover").then((mod) => mod.Popover),
 );
 const Tooltip = dynamic(() =>
-  import("@/components/__shared/ui/tooltip/tooltip").then((mod) => mod.Tooltip),
+  import("@/components/__shared/ui/tooltip").then((mod) => mod.Tooltip),
 );
 
 const Chat = ({

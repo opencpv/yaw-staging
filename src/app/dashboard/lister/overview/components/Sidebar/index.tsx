@@ -1,4 +1,4 @@
-import { Tabs } from "@/components/__shared/ui/tabs/tabs";
+import { Tabs } from "@/components/__shared/ui/tabs";
 import { LinkButton } from "@/components/__shared/ui/button/Button";
 import React from "react";
 import { cn } from "@/lib/utils";

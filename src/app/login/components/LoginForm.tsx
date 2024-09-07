@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import Logo from "@/components/__shared/ui/logo/logo";
+import Logo from "@/components/__shared/ui/logo";
 import { createClient } from "@/lib/utils/supabase/auth/server";
 import dynamic from "next/dynamic";
 const MenuButton = dynamic(() => import("@/app/login/components/MenuButton"));

@@ -7,7 +7,7 @@ import { SelectInput } from "@/components/__shared/ui/form/select";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import style from "../../../index.module.css";
 import { BeMyAgentDefaultValues } from "@/store/dashboard/BeMyAgentStepsStore";
-import Callout from "@/components/__shared/ui/callout/callout";
+import Callout from "@/components/__shared/ui/callout";
 
 type Props = {};
 

@@ -5,7 +5,7 @@ import { Input } from "@/components/__shared/ui/form/input";
 import { Form, Formik } from "formik";
 import PhoneNumberInput from "@/components/__shared/ui/form/phone-number-input";
 import { useContactForm } from "@/app/contact/components/forms/hooks/useContactForm";
-import Callout from "@/components/__shared/ui/callout/callout";
+import Callout from "@/components/__shared/ui/callout";
 import { useJoinUsPageStore } from "../../components/useJoinUsPageStore";
 import { useState } from "react";
 import {
@@ -26,7 +26,7 @@ import slugify from "@/lib/utils/slugify";
 import dynamic from "next/dynamic";
 import CaJoinUsIconLeft from "./icons/CaJoinUsIconLongLeft";
 const Tooltip = dynamic(() =>
-  import("@/components/__shared/ui/tooltip/tooltip").then((mod) => mod.Tooltip),
+  import("@/components/__shared/ui/tooltip").then((mod) => mod.Tooltip),
 );
 
 type Props = {

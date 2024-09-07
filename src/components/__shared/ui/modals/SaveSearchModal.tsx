@@ -15,7 +15,7 @@ import {
   ActionPopover,
 } from "@/components/__shared/ui/popover/action-popover";
 const PopupModal = dynamic(() =>
-  import("../alert-dialog/alert-dialog").then((mod) => mod.PopupModal),
+  import("../alert-dialog").then((mod) => mod.PopupModal),
 );
 
 const Popover = dynamic(() =>

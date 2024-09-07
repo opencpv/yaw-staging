@@ -19,9 +19,7 @@ import TableSkeleton from "@/components/__shared/ui/skeleton/skeleton-table";
 import CriteriaStatus from "../Status";
 import MatchState from "../MatchState";
 import ResultsState from "../ResultState";
-import Pagination, {
-  usePagination,
-} from "@/components/__shared/ui/pagination/pagination";
+import Pagination, { usePagination } from "@/components/__shared/ui/pagination";
 import { cn } from "@/lib/utils";
 import TableSkeletonSm from "@/components/__shared/ui/skeleton/skeleton-table-mobile";
 import dynamic from "next/dynamic";

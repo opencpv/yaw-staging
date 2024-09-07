@@ -1,5 +1,5 @@
 "use client";
-import { Switch } from "@/components/__shared/ui/switch/switch";
+import { Switch } from "@/components/__shared/ui/switch";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import React, { useEffect, useState } from "react";

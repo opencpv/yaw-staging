@@ -12,9 +12,15 @@ type Props = {
   };
   color?: "accent" | "white";
   onClick?: () => void;
+  /**
+   * Whether the button is absolute or relative
+   */
   isAbsolute?: boolean;
 };
 
+/**
+ * Round slider navigation button
+ */
 const SliderNav = ({
   position,
   hidden,

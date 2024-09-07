@@ -6,7 +6,7 @@ import Search from "./search";
 // import NotificationsPopover from "../../renter/notifications/components/NotificationsPopover";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import style from "../../Dashboard.module.css";
-import Logo from "@/components/__shared/ui/logo/logo";
+import Logo from "@/components/__shared/ui/logo";
 import { AiOutlineSearch } from "react-icons/ai";
 import { IoIosCloseCircle } from "react-icons/io";
 import { useState } from "react";

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import Print from "@/components/__shared/ui/print/print";
+import Print from "@/components/__shared/ui/print";
 import { loadQuery } from "@sanity/react-loader";
 import { SanityDocument } from "next-sanity";
 import { SINGLE_BLOG_POST } from "@/lib/utils/sanity/queries";

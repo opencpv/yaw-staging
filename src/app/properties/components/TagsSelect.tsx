@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Tabs } from "@/components/__shared/ui/tabs/tabs";
+import { Tabs } from "@/components/__shared/ui/tabs";
 import { FilterOptionArray } from "@/store/properties/usePropertiesStore";
 import { useRouter, useSearchParams } from "next/navigation";
 import capitalizeName from "@/lib/utils/stringManipulation";

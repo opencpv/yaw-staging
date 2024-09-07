@@ -4,7 +4,7 @@ import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { LinkButton } from "@/components/__shared/ui/button/Button";
 import { FaRegBell, FaRegHourglass } from "react-icons/fa";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import Callout from "@/components/__shared/ui/callout/callout";
+import Callout from "@/components/__shared/ui/callout";
 import { MdOutlineEdit, MdOutlineMessage } from "react-icons/md";
 import RecentActivityCard from "./components/RecentActivityCard";
 import BoostListingCard from "./components/BoostListingCard";

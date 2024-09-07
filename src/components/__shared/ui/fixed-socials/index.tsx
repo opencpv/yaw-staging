@@ -68,7 +68,7 @@ const FixedSocials = ({ thresholdMin }: Props) => {
         variants={variants}
         animate={showSocials ? "show" : "hide"}
         transition={{ duration: 0.2 }}
-        className="relative top-44 w-10 rounded-r-lg border border-primary-800 bg-white py-4"
+        className="absolute top-0 w-10 rounded-r-lg border border-primary-800 bg-white py-4"
       >
         <ul className="flex flex-col gap-2">
           {socialLinks.monochrome.map((link) => (
@@ -83,12 +83,13 @@ const FixedSocials = ({ thresholdMin }: Props) => {
           ))}
         </ul>
       </motion.section>
+      {/* Trigger button */}
       <motion.button
         variants={variants}
         animate={showArrow ? "show" : "hide"}
         transition={{ duration: 0.2 }}
         className={
-          "relative -z-10 grid h-16 w-6 place-items-center rounded-r-md bg-gradient-to-b from-primary to-primary-400"
+          "absolute top-0 -z-10 grid h-16 w-6 place-items-center rounded-r-md bg-gradient-to-b from-primary to-primary-400"
         }
         onClick={toggleShowSocials}
       >

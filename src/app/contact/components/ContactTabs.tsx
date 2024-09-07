@@ -1,11 +1,7 @@
 "use client";
 import { Button } from "@/components/__shared/ui/button/Button";
 import style from "../Contact.module.css";
-import {
-  Tabs,
-  TabsList,
-  TabsTrigger,
-} from "@/components/__shared/ui/tabs/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/__shared/ui/tabs";
 import { cn } from "@/lib/utils";
 import { ContactTabActiveKey, tag } from "@/store/contact/useContactStore";
 import { usePathname, useRouter } from "next/navigation";
