@@ -2,7 +2,7 @@
 import { cn } from "@/lib/utils";
 import React from "react";
 import { HiPrinter } from "react-icons/hi";
-import { Button } from "../button/Button";
+import { Button } from "../button";
 
 /**
  * Prints the page

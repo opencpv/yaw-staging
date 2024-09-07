@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import style from "../Contact.module.css";
 import { Tabs, TabsList, TabsTrigger } from "@/components/__shared/ui/tabs";
 import { cn } from "@/lib/utils";

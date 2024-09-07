@@ -13,7 +13,7 @@ import {
   DialogPortal,
   Dialog,
 } from "../dialog";
-import { Button } from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 
 const meta: Meta = {
@@ -107,7 +107,6 @@ export const Default: Story = {
     );
   },
 };
-
 
 export const Anatomy: Story = {
   render: () => {

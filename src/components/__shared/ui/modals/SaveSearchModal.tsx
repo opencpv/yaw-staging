@@ -1,7 +1,7 @@
 import React from "react";
 import { HiSaveAs } from "react-icons/hi";
 const Modal = dynamic(() => import("./dialog").then((mod) => mod.Modal));
-import { Button } from "../button/Button";
+import { Button } from "../button";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { FiTrash2 } from "react-icons/fi";
 import { cn } from "@/lib/utils";

@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import Callout from ".";
-import { LinkButton } from "../button/Button";
+import { LinkButton } from "../button";
 
 const meta: Meta<typeof Callout> = {
   title: "Components/Callout", // Title for the Storybook sidebar

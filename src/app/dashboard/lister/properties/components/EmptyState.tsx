@@ -1,4 +1,4 @@
-import { LinkButton } from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import dynamic from "next/dynamic";

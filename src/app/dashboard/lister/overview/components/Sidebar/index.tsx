@@ -1,5 +1,5 @@
 import { Tabs } from "@/components/__shared/ui/tabs";
-import { LinkButton } from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import React from "react";
 import { cn } from "@/lib/utils";
 import PropertyCard from "./PropertyCard";

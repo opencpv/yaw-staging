@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Select } from "@/components/__shared/ui/form/select";
-import { Button } from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";

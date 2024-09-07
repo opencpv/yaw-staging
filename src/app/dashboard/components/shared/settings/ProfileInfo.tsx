@@ -10,7 +10,7 @@ import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure"
 import PhoneNumberInput from "@/components/__shared/ui/form/phone-number-input";
 import { E164Number } from "libphonenumber-js/core";
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { createClient } from "@/lib/utils/supabase/auth/client";
 import { RiPhoneFill, RiTwitterXFill, RiWhatsappFill } from "react-icons/ri";
 import { Checkbox } from "@/components/__shared/ui/form/checkbox";

@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { PgRoutesLister, PgRoutesRenter } from "./links";
 import { HiBars3BottomRight } from "react-icons/hi2";
-import { Button } from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { useDashboardMenuStore } from "@/store/navmenu/useDashboardMenuStore";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import Switch from "../navbar/switch";

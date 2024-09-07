@@ -1,4 +1,4 @@
-import { Button } from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Image from "next/image";
 import React from "react";

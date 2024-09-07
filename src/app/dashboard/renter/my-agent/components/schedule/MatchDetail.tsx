@@ -4,7 +4,7 @@ import { generatePropertyTitle } from "@/lib/enum";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import { getFeatureIcon } from "@/lib/utils/getFeatureIcon";
 import RenterInformation from "./RenterInformation";
-import { LinkButton } from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import { cookies } from "next/headers";
 import CancelRequestBtn from "./CancelRequestBtn";
 import PropertyImageSlider from "./PropertyImageSlider";

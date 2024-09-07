@@ -1,6 +1,6 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import { Button } from "../button/Button";
+import { Button } from "../button";
 import { Popover, PopoverContent, PopoverTrigger } from ".";
 
 /**
@@ -23,7 +23,7 @@ export const Default: Story = {
       <PopoverTrigger asChild>
         <Button>Open Popover</Button>
       </PopoverTrigger>
-      <PopoverContent >
+      <PopoverContent>
         <p>This is the popover content!</p>
       </PopoverContent>
     </Popover>

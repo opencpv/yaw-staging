@@ -1,7 +1,6 @@
-import { LinkButton } from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import React from "react";
 import { MdOutlineSettings } from "react-icons/md";
-
 
 const ManageButton = () => {
   return (

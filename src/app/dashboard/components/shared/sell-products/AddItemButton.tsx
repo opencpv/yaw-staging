@@ -1,4 +1,4 @@
-import { LinkButton } from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import { cn } from "@/lib/utils";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import React from "react";

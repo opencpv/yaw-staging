@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Button } from "../button/Button";
+import { Button } from "../button";
 import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import CloseModalIcon from "../icons/CloseModalIcon";
 import { motion } from "framer-motion";

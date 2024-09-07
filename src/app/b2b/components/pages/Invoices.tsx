@@ -8,7 +8,7 @@ import { Tabs } from "@/components/__shared/ui/tabs";
 import { customerStore } from "@/store/payment/customerStore";
 import CheckoutButton from "../__shared/CheckoutButton";
 import { HiOutlineDownload } from "react-icons/hi";
-import { Button } from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { PDFTemplateObject } from "../__shared/InvoiceTemplate";
 import CaCard from "@/components/__shared/ui/icons/CaCard";

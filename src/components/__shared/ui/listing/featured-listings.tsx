@@ -5,7 +5,7 @@ import "swiper/css/effect-coverflow";
 import React from "react";
 import SkeletonListing from "../skeleton/skeleton-listing";
 import FetchingStates from "../data_fetching/fetching-states";
-import { LinkButton } from "../button/Button";
+import { LinkButton } from "../button";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow } from "swiper/modules";
 import { useFetchFeaturedListings } from "@/app/properties/services";

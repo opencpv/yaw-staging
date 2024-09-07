@@ -1,5 +1,5 @@
 "use client";
-import { LinkButton } from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import React from "react";
 import { FaChevronLeft } from "react-icons/fa";
 import { useFetchCriteriaMatches } from "../../services";

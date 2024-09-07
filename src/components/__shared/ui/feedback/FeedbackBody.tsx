@@ -1,8 +1,8 @@
 import React from "react";
-import Thumbs from "./Thumbs";
+import Thumbs from "./thumbs";
 import FeedbackSlider from "./FeedbackSlider";
 import Image from "next/image";
-import { Button } from "../button/Button";
+import { Button } from "../button";
 import { useFeedbackDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { cn } from "@/lib/utils";
 import { Form, Formik } from "formik";

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "../../button/Button";
+import { Button } from "../../button";
 import { LiaTimesSolid } from "react-icons/lia";
 import { cn } from "@/lib/utils";
 

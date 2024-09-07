@@ -1,6 +1,6 @@
 "use client";
 import { useFetchFeaturedListings } from "@/app/properties/services";
-import { LinkButton } from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
 import SkeletonListing from "@/components/__shared/ui/skeleton/skeleton-listing";
 import { getListingProps } from "@/lib/enum";

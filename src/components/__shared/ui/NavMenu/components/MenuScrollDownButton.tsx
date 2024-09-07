@@ -1,7 +1,7 @@
 import React from "react";
 import { FaChevronDown } from "react-icons/fa";
 import { cn } from "@/lib/utils";
-import { Button } from "../../button/Button";
+import { Button } from "../../button";
 
 type Props = {
   isInViewport: boolean;

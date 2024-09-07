@@ -1,5 +1,5 @@
 import React from "react";
-import { LinkButton } from "../button/Button";
+import { LinkButton } from "../button";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { cn } from "@/lib/utils";
 import { FaRegEyeSlash } from "react-icons/fa6";

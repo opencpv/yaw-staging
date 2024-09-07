@@ -4,7 +4,7 @@ import {
   BTFTKDefaultValues,
   BTFTKStepsStore,
 } from "@/store/dashboard/BTFTKStepsStore";
-import { Button } from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { useFormikContext } from "formik";
 import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { useLocalStorage } from "@uidotdev/usehooks";

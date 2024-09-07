@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { HowTo } from "../../../../interfaces";
 import dynamic from "next/dynamic";
 const LoadingIndicator = dynamic(

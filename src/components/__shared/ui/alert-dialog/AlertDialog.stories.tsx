@@ -1,7 +1,7 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { PopupModal } from ".";
-import { Button } from "../button/Button";
+import { Button } from "../button";
 import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import {
   Dialog,

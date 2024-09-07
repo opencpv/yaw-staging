@@ -15,7 +15,7 @@ import { generateString } from "@/lib/utils";
 import slugify from "@/lib/utils/slugify";
 import { toast } from "react-hot-toast";
 import { tag } from "@/store/contact/useContactStore";
-import { Button } from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 
 const FormGeneral = () => {
   const {

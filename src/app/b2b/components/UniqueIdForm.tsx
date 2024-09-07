@@ -3,7 +3,7 @@ import { Input } from "@/components/__shared/ui/form/input";
 import React from "react";
 import { handleCustomerIdSubmit } from "../actions";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 
 const UniqueIdForm = () => {
   const [message, setMessage] = React.useState("");

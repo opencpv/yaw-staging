@@ -1,5 +1,5 @@
 import React from "react";
-import { LinkButton } from "../button/Button";
+import { LinkButton } from "../button";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
@@ -14,6 +14,9 @@ type Props = {
   onClick?: () => void;
 };
 
+/**
+ * Generic Empty State when there are no results
+ */
 const EmptyState = ({
   buttonLabel,
   tagLine,

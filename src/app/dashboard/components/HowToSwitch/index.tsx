@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import * as Dialog from "@radix-ui/react-dialog";
 import { useEffect, useState } from "react";
 import { IoMdInformationCircleOutline } from "react-icons/io";

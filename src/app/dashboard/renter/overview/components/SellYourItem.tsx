@@ -1,5 +1,5 @@
 "use client";
-import { LinkButton } from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import dynamic from "next/dynamic";
 import Image from "next/image";

@@ -2,7 +2,7 @@ import { Input } from "@/components/__shared/ui/form/input";
 // import PhoneNumberInputv2 from "@/components/__shared/ui/form/PhoneInputv2";
 import { Formik } from "formik";
 import { ChangeEvent, useEffect, useState } from "react";
-import { Button } from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { useRouter } from "next/navigation";
 import useCartStore from "@/store/cart/useCartStore";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";

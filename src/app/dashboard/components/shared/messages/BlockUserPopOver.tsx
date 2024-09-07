@@ -7,7 +7,7 @@ import { FaBan, FaEllipsisV } from "react-icons/fa";
 import { MdLockOpen } from "react-icons/md";
 import dynamic from "next/dynamic";
 import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
-import { Button } from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 
 const Popover = dynamic(() =>
   import("@/components/__shared/ui/popover").then((mod) => mod.Popover),

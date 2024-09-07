@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import { Button } from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import GalleryModal from "./gallery-modal";
 import { PiShareFat } from "react-icons/pi";
 import { LiaTimesSolid } from "react-icons/lia";
@@ -71,7 +71,3 @@ export const Default: Story = {
     shareDescription: "Gallery Share Description",
   },
 };
-
-
-
-

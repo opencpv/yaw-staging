@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import { Button } from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import StepsModal from "./steps-modal";
 import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 
@@ -63,7 +63,6 @@ export const Default: Story = {
     );
   },
 };
-
 
 export const WithCustomStyles: Story = {
   render: () => {

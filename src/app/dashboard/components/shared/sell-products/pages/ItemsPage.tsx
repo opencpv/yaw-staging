@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import DesktopProductCard from "../DesktopProductCard";
 import MobileProductCard from "../MobileProductCard";
-import { LinkButton } from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import {
   Table,
   TableBody,

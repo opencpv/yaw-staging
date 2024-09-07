@@ -7,7 +7,7 @@ import { invoiceStore } from "@/store/payment/invoiceStore";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { PDFTemplateObject } from "../__shared/InvoiceTemplate";
 import { customerStore } from "@/store/payment/customerStore";
-import { Button } from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { HiOutlineDownload } from "react-icons/hi";
 
 type Props = {

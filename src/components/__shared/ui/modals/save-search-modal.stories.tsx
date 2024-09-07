@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import { Button } from "../button/Button";
+import { Button } from "../button";
 import SaveSearchModal from "./SaveSearchModal";
 import { HiSaveAs } from "react-icons/hi";
 
@@ -9,7 +9,7 @@ import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 const meta: Meta<typeof SaveSearchModal> = {
   title: "Components/Modals/SaveSearchModal",
   component: SaveSearchModal,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 
   argTypes: {
     className: {
@@ -26,7 +26,7 @@ type Story = StoryObj<typeof SaveSearchModal>;
 // Default story
 export const Default: Story = {
   render: (args) => {
-    const { onOpen, isOpen, onOpenChange } = useDisclosure();
+    const { onOpenChange } = useDisclosure();
 
     return (
       <div>
@@ -36,12 +36,7 @@ export const Default: Story = {
           size={20}
           onClick={() => onOpenChange(true)}
         />
-        <SaveSearchModal
-          {...args}
-          isOpen={isOpen}
-          onOpenChange={(open : any) => onOpenChange(open)}
-          onClose={() => onOpenChange(false)}
-        />
+        <SaveSearchModal {...args} />
       </div>
     );
   },
@@ -49,4 +44,3 @@ export const Default: Story = {
     className: "",
   },
 };
-

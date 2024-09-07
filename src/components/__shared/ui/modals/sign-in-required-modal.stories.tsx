@@ -5,14 +5,14 @@ import { LiaTimesSolid } from "react-icons/lia";
 import Image from "next/image";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { action } from "@storybook/addon-actions";
-import { Button } from "../button/Button";  // Assuming there's a Button component in your project
+import { Button } from "../button"; // Assuming there's a Button component in your project
 import SignInRequiredModal from "./sign-in-required-modal";
 import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 
 const meta: Meta<typeof SignInRequiredModal> = {
   title: "Components/Modals/SignInRequiredModal",
   component: SignInRequiredModal,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 
   argTypes: {
     open: {
@@ -106,10 +106,10 @@ export const ModalBodyStory: Story = {
             </div>
             <div className="flex gap-5">
               {/* <Link href="/terms-of-service"> */}
-                <p className="text-neutral-800 underline">Terms of Service</p>
+              <p className="text-neutral-800 underline">Terms of Service</p>
               {/* </Link> */}
               {/* <Link href="/privacy"> */}
-                <p className="text-neutral-800 underline">Privacy Policy</p>
+              <p className="text-neutral-800 underline">Privacy Policy</p>
               {/* </Link> */}
             </div>
           </div>

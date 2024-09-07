@@ -4,7 +4,7 @@ import DealCard from "../ui/DealCard";
 import { HiChevronRight } from "react-icons/hi";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import dynamic from "next/dynamic";
-import { LinkButton } from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 const FramerWrapper = dynamic(
   () => import("@/components/__shared/hoc/framer-wrapper"),
 );

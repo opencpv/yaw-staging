@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import Link from "next/link";
 import { IFRAME_ALLOW, SLIDER_AUTOPLAY_DELAY } from "@/constants";
-import { Button } from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 
 const PromotionSlider = ({ promotions = [] }: { promotions: any }) => {
   const sliderRef = useRef<any>(null);

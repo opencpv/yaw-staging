@@ -2,7 +2,7 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Button } from "../../button/Button";
+import { Button } from "../../button";
 
 type Props = {
   className?: string;

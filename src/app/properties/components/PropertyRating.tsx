@@ -2,7 +2,7 @@
 import React from "react";
 import style from "../Template.module.css";
 import ReviewComment from "./ReviewComment";
-import { Button } from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { fadeUp } from "@/lib/animations";
 import { cn } from "@/lib/utils";
 import Rate from "@/components/__shared/ui/Rate";

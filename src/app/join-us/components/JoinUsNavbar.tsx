@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 import AvatarMenu from "@/components/__shared/ui/avatar/AvatarMenu";
 import Share from "@/components/__shared/ui/share";
 import LikeHeart from "@/components/__shared/ui/like-button";
-import GetStartedButton from "@/components/__shared/ui/button/get-started-button/get-started-button";
+import GetStartedButton from "@/components/__shared/ui/button/get-started-button";
 import { useJoinUsPageStore } from "./useJoinUsPageStore";
 
 const JoinUsNavbar = (props: any) => {

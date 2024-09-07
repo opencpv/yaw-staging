@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { Button, ButtonProps } from "./Button";
+import { Button, ButtonProps } from ".";
 import { initiatePhoneCall } from "@/lib/utils/initiatePhoneCall";
 import { MdOutlinePhone } from "react-icons/md";
 import { motion } from "framer-motion";

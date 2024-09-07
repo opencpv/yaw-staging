@@ -3,7 +3,7 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import Logo from "@/components/__shared/ui/logo";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
 import dynamic from "next/dynamic";
-import { Button } from "../../button/Button";
+import { Button } from "../../button";
 const MobileMenu = dynamic(() =>
   import("../MobileMenu").then((mod) => mod.MobileMenu),
 );

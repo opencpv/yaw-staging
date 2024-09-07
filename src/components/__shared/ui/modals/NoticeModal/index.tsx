@@ -13,7 +13,7 @@ import { NOTICE_MODAL_TTL } from "@/constants";
 import { cn } from "@/lib/utils";
 import { pacifico } from "@/lib/utils/fonts";
 import dynamic from "next/dynamic";
-import { Button } from "../../button/Button";
+import { Button } from "../../button";
 import { DialogContent } from "../dialog";
 const Dialog = dynamic(() => import("../dialog").then((mod) => mod.Dialog));
 

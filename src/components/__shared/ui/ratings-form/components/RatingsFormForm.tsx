@@ -10,7 +10,7 @@ import Rate from "./Rate";
 import { useRatingsModalStore } from "@/store/modal/useRatingsModalStore";
 import useRatingsStore from "../useRatingsStore";
 
-import { Button } from "../../button/Button";
+import { Button } from "../../button";
 
 function RatingsFormForm() {
   const {

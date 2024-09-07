@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableHeaderRow,
 } from "@/components/__shared/ui/table";
-import { Button } from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { IoArchiveOutline } from "react-icons/io5";
 import Loader from "@/components/__shared/ui/loader";
 import { cn } from "@/lib/utils";

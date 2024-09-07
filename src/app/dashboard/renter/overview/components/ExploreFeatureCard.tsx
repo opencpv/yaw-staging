@@ -1,5 +1,5 @@
 "use client";
-import { LinkButton } from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import React from "react";
 import style from "../Feature.module.css";
 import { FaArrowRight } from "react-icons/fa6";

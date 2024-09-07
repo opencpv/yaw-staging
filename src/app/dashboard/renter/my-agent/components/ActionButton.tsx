@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { getConfirmationPage } from "../actions";
 import { formatDateTime } from "@/lib/utils/stringManipulation";
 import { cn } from "@/lib/utils";

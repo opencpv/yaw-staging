@@ -1,4 +1,4 @@
-import { Button } from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { HiOutlineDownload } from "react-icons/hi";
 import downloadPdf from "@/lib/utils/downloadPdf";
 

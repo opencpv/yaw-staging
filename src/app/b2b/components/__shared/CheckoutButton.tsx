@@ -1,4 +1,4 @@
-import { Button } from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import useCartStore from "@/store/cart/useCartStore";

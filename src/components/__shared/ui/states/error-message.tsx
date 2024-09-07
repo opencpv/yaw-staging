@@ -8,6 +8,9 @@ type Props = {
   name?: string;
 };
 
+/**
+ * Displays an error message under formik inputs
+ */
 const ErrorMessage: React.FC<Props> = (props) => {
   return (
     <FormikErrorMessage

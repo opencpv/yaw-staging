@@ -1,7 +1,7 @@
 "use client";
 import emojiStates from "@/enum/feedback/feedbackStates";
 import React from "react";
-import { Slider } from "../slider/slider";
+import { Slider } from "../slider";
 import Image from "next/image";
 import { useField } from "formik";
 

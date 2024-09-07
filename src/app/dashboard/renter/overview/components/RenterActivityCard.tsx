@@ -1,4 +1,4 @@
-import { LinkButton } from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 import React from "react";
 import { FaRegCopy } from "react-icons/fa";
 import { HiOutlineShoppingBag } from "react-icons/hi2";

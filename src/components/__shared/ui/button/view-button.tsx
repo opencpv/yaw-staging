@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "./Button";
+import { Button } from ".";
 import { cn } from "@/lib/utils";
 import { AiOutlineEye } from "react-icons/ai";
 

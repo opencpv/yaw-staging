@@ -8,7 +8,7 @@ import { getDaysRemaining, pluralize } from "@/lib/utils/stringManipulation";
 import { LISTING_LAPSE_DAYS } from "@/constants";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
-import { Button } from "@/components/__shared/ui/button/Button";
+import { Button } from "@/components/__shared/ui/button";
 import dynamic from "next/dynamic";
 const PopupModal = dynamic(() =>
   import("@/components/__shared/ui/alert-dialog").then((mod) => mod.PopupModal),

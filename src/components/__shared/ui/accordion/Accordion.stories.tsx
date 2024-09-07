@@ -9,7 +9,6 @@ import {
 
 /**
  *A vertically stacked set of interactive headings that each reveal an associated section of content.
-
  */
 const meta: Meta<typeof Accordion> = {
   title: "Components/Accordion", // Title for the Storybook sidebar

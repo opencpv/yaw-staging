@@ -3,7 +3,7 @@
 import { GoArrowRight } from "react-icons/go";
 import CaLearnMore from "../icons/CaLearnMore";
 import { cn } from "@/lib/utils";
-import { LinkButton } from "@/components/__shared/ui/button/Button";
+import { LinkButton } from "@/components/__shared/ui/button";
 
 type Props = {
   variant: any;

@@ -2,7 +2,7 @@ import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import Feedback from "./Feedback";
 import { Form, Formik } from "formik";
-import { Button } from "../button/Button";
+import { Button } from "../button";
 
 const meta: Meta<typeof Feedback> = {
   title: "Components/Feedback/Feedback",
@@ -10,7 +10,7 @@ const meta: Meta<typeof Feedback> = {
   tags: ["autodocs"],
 
   parameters: {
-    layout: "centered", 
+    layout: "centered",
   },
 };
 
@@ -30,7 +30,7 @@ export const Default: Story = {
     data: {
       userId: 123,
       feedback: "This is a sample feedback.",
-    }, 
+    },
   },
 };
 
