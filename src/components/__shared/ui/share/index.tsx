@@ -10,9 +10,14 @@ import dynamic from "next/dynamic";
 const Modal = dynamic(() =>
   import("@/components/__shared/ui/modals/dialog").then((mod) => mod.Modal),
 );
-
+/**
+ * Allows users to share the page via a modal
+ */
 const Share = ({
   title,
+  /**
+   * Default is the current url
+   */
   url,
   className,
   classNames,

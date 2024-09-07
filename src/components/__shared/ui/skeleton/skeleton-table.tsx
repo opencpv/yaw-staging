@@ -9,6 +9,9 @@ type Props = {
   rowClassName?: string;
 };
 
+/**
+ * Use to show a placeholder while table content is loading.
+ */
 const TableSkeleton = ({ rows, columns, rowClassName }: Props) => {
   let rowsArray = Array.from({ length: rows }, (_, idx) => idx + 1);
   let columnsArray = Array.from({ length: columns }, (_, idx) => idx + 1);
@@ -24,7 +27,7 @@ const TableSkeleton = ({ rows, columns, rowClassName }: Props) => {
       {columnsArray.map((column, idx) =>
         column % 2 === 0 ? (
           <TableBody key={idx + 2} className="">
-            <Skeleton className="h-12 w-48 rounded-xl" />
+            <Skeleton className="h-6 w-48 rounded-xl" />
           </TableBody>
         ) : (
           <TableBody key={idx + 2} className="p-2 pt-3 align-middle">

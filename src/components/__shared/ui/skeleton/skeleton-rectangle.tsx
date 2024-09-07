@@ -2,6 +2,9 @@ import { cn } from "@/lib/utils";
 import { Skeleton } from ".";
 import React from "react";
 
+/**
+ * Use to show a placeholder while card content is loading.
+ */
 const SkeletonRectangle = ({ className, count }: SkeletonProps) => {
   let countArray = Array.from({ length: count as number }, (_, idx) => idx + 1);
 

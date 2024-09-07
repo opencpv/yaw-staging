@@ -2,6 +2,9 @@ import { cn } from "@/lib/utils";
 import { Skeleton } from ".";
 import React from "react";
 
+/**
+ * Use to show a placeholder while listing card content is loading.
+ */
 const SkeletonListing = ({
   count,
   className,
