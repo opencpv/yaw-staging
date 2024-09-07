@@ -15,12 +15,11 @@ import { useFetchReceipts } from "../../services";
 import Pagination, { usePagination } from "@/components/__shared/ui/pagination";
 import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
 import TableSkeleton from "@/components/__shared/ui/skeleton/skeleton-table";
-import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
 import TableSkeletonSm from "@/components/__shared/ui/skeleton/skeleton-table-mobile";
 import InvoiceEmptyState from "../__shared/InvoiceEmptyState";
 import { customerStore } from "@/store/payment/customerStore";
-import { HiOutlineDownload } from "react-icons/hi";
 import { invoiceStore } from "@/store/payment/invoiceStore";
+import toast from "react-hot-toast";
 
 type Props = {
   searchString: string;
@@ -43,7 +42,7 @@ const ReceiptTable = ({ searchString, customerId }: Props) => {
 
   const {
     currentItems: paginatedReceipts,
-    handlePageClick,
+    handlePageChange,
     pageCount,
   } = usePagination({
     items: receipts as Invoice[],
@@ -58,6 +57,8 @@ const ReceiptTable = ({ searchString, customerId }: Props) => {
       }
     });
   };
+
+  if (error) toast.error("Something went wrong while fetching receipts");
 
   return (
     <>
@@ -86,14 +87,6 @@ const ReceiptTable = ({ searchString, customerId }: Props) => {
             error={error}
             isLoading={isLoading}
             isLoadingComponent={<TableSkeleton rows={3} columns={7} />}
-            errorComponent={
-              <SomethingWentWrong
-                className="h-fit"
-                onTryAgain={() => {
-                  mutate();
-                }}
-              />
-            }
             emptyStateComponent={<InvoiceEmptyState />}
           />
           {paginatedReceipts?.map((data: any) => (
@@ -109,21 +102,13 @@ const ReceiptTable = ({ searchString, customerId }: Props) => {
           error={error}
           isLoading={isLoading}
           isLoadingComponent={<TableSkeletonSm rows={3} />}
-          errorComponent={
-            <SomethingWentWrong
-              className="h-fit"
-              onTryAgain={() => {
-                mutate();
-              }}
-            />
-          }
           emptyStateComponent={<InvoiceEmptyState />}
         />
         {paginatedReceipts?.map((data: any) => (
           <DataRowSm key={createUUID()} data={data} variant="receipt" />
         ))}
       </TableSm>
-      <Pagination handlePageClick={handlePageClick} pageCount={pageCount} />
+      <Pagination onPageChange={handlePageChange} pageCount={pageCount} />
     </>
   );
 };

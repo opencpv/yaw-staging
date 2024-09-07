@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "./";
+import { Button } from ".";
 import { FiTrash2 } from "react-icons/fi";
 import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
@@ -10,11 +10,20 @@ const PopupModal = dynamic(() =>
 
 type Props = {
   className?: string;
+  /**
+   * For the styling the icon
+   */
   classNames?: {
     icon?: string;
   };
   handleDestruction: () => void;
+  /**
+   * Indicates if the modal's action button is loading
+   */
   loading: boolean;
+  /**
+   * The content of the modal
+   */
   label?: string;
   variant?: "default" | "ghost";
 };
@@ -36,7 +45,7 @@ const DeleteButton = ({
         onClose={onClose}
         onOpenChange={onOpenChange}
         label={label ?? "Are you sure you want to delete this item?"}
-        handleAction={handleDestruction}
+        onAction={handleDestruction}
         loading={loading}
       />
       <Button
@@ -45,6 +54,7 @@ const DeleteButton = ({
         className={cn(
           {
             "bg-secondary-50 p-4": variant === "default",
+            "bg-transparent p-0": variant === "ghost",
           },
           className,
         )}

@@ -6,7 +6,7 @@ import CurrencyInput from "@/components/__shared/ui/form/currency-input";
 import { RadioInput } from "@/components/__shared/ui/form/radio-input";
 import { caseInsensitiveCompare } from "@/lib/utils/stringManipulation";
 import { useFormikContext } from "formik";
-import CallOut from "@/components/__shared/ui/callout";
+import Callout from "@/components/__shared/ui/callout";
 
 type Props = {};
 
@@ -41,7 +41,7 @@ const AgencyInformation = React.forwardRef<HTMLInputElement, Props>(
           />
           {caseInsensitiveCompare(values.require_agent_fee, "yes") && (
             <>
-              <CallOut content="You can add more utilities after you publish your listing." />
+              <Callout content="You can add more utilities after you publish your listing." />
               <span className="fade-in-top">
                 <CurrencyInput
                   name="currency"
@@ -64,7 +64,7 @@ const AgencyInformation = React.forwardRef<HTMLInputElement, Props>(
           />
           {caseInsensitiveCompare(values.require_viewing_fee, "yes") && (
             <>
-              <CallOut content="You can add more utilities after you publish your listing." />
+              <Callout content="You can add more utilities after you publish your listing." />
               <span className="fade-in-top">
                 <CurrencyInput
                   name="currency"

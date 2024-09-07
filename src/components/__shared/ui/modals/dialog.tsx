@@ -65,7 +65,7 @@ const DialogContent = React.forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        "hidden-scrollbar fixed left-[50%] top-[50%] z-50 grid max-h-[calc(100%_-_7.5rem)] w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 overflow-y-auto border bg-white p-6 shadow-lg duration-200 sm:rounded-lg",
+        "hidden-scrollbar fixed left-[50%] top-[50%] z-50 grid max-h-[calc(100%_-_7.5rem)] w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 overflow-y-auto border bg-white p-6 shadow-lg duration-200 sm:rounded-lg text-black",
         className,
       )}
       {...props}
@@ -145,7 +145,7 @@ const Modal = ({
   header,
   body,
   footer,
-  size = "3xl",
+  size = "md",
   closeButton,
   isDismissible = true,
   className,
@@ -156,7 +156,7 @@ const Modal = ({
       <DialogContent
         className={cn(
           {
-            "min-h-screen sm:rounded-none": size === "full",
+            "min-h-screen min-w-full sm:rounded-none": size === "full",
             "max-w-xs": size === "xs",
             "max-w-sm": size === "sm",
             "max-w-md": size === "md",

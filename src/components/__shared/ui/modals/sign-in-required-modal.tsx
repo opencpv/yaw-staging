@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import { LoginButton } from "@/app/login/components/LoginButton";
 import Link from "next/link";
-import { LiaTimesSolid } from "react-icons/lia";
 import dynamic from "next/dynamic";
 const Modal = dynamic(() => import("./dialog").then((mod) => mod.Modal));
 
@@ -54,13 +53,10 @@ const ModalBody = ({ onClose }: { onClose: () => void }) => {
           style={{ objectFit: "cover" }}
         />
       </div>
-      <div className="flex w-full flex-col gap-10 bg-[#FAFAF9] px-10 py-16">
+      <div className="flex w-full flex-col gap-10 bg-[#FAFAF9] px-10 py-10">
         <div className="space-y-5">
           <div className="flex justify-between">
             <h3>Sign In Required</h3>
-            <button onClick={onClose}>
-              <LiaTimesSolid size={16} />
-            </button>
           </div>
           <p>Please sign in to continue</p>
         </div>

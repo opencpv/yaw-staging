@@ -1,4 +1,4 @@
-import CallOut from "@/components/__shared/ui/callout";
+import Callout from "@/components/__shared/ui/callout";
 import style from "../../../../index.module.css";
 import Map from "./Map";
 
@@ -7,7 +7,7 @@ const Location = () => {
     <>
       <h2 className={`${style.title} space-y-8`}>
         Location <span className={style.asterisk}>*</span>
-        <CallOut content="You may select up to 3 locations" />
+        <Callout content="You may select up to 3 locations" />
       </h2>
       <Map />
     </>

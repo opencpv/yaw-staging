@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef } from "react";
 import style from "../../Dashboard.module.css";
-import Logo from "@/components/__shared/ui/Logo";
+import Logo from "@/components/__shared/ui/logo";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { useDashboardMenuStore } from "@/store/navmenu/useDashboardMenuStore";
 import { useHideDocumentScrollBar } from "@/lib/custom-hooks/useWindowEvents";

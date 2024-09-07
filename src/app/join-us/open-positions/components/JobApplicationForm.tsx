@@ -5,7 +5,7 @@ import { Input } from "@/components/__shared/ui/form/input";
 import { Form, Formik } from "formik";
 import PhoneNumberInput from "@/components/__shared/ui/form/phone-number-input";
 import { useContactForm } from "@/app/contact/components/forms/hooks/useContactForm";
-import CallOut from "@/components/__shared/ui/callout";
+import Callout from "@/components/__shared/ui/callout";
 import { useJoinUsPageStore } from "../../components/useJoinUsPageStore";
 import { useState } from "react";
 import {
@@ -144,7 +144,7 @@ function JobApplicationForm({ variant, position }: Props) {
 
               {variant == "resume" && (
                 <div className="lg:pt-5">
-                  <CallOut content="Unlock your potential and join our dynamic team where innovation meets opportunity!" />
+                  <Callout content="Unlock your potential and join our dynamic team where innovation meets opportunity!" />
                 </div>
               )}
 

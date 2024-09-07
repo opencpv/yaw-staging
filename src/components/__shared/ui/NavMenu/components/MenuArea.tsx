@@ -1,6 +1,6 @@
 import React from "react";
 import { AiFillCloseCircle } from "react-icons/ai";
-import Logo from "@/components/__shared/ui/Logo";
+import Logo from "@/components/__shared/ui/logo";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
 import dynamic from "next/dynamic";
 import { Button } from "../../button";

@@ -55,7 +55,7 @@ const BlockUserPopOver = (props: Props) => {
         onClose={onClose}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        handleAction={() => {}}
+        onAction={() => {}}
       />
     </>
   );

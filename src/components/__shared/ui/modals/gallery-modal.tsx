@@ -61,7 +61,7 @@ const GalleryModal = ({
         // footer={<ModalFooter />}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        //hideCloseButton={true}
+        hideCloseButton={true}
         className="bg-[#010E19]"
         size="full"
       />

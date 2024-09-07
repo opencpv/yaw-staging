@@ -24,6 +24,9 @@ type Props = {
   onClick?: () => void;
 };
 
+/**
+ * Specialized status component with an optional tooltip
+ */
 const Status = ({ variant, tooltipContent, text, href, onClick }: Props) => {
   if (href)
     return (

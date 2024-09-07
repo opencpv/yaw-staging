@@ -11,7 +11,6 @@ import { EffectCoverflow } from "swiper/modules";
 import { useFetchFeaturedListings } from "@/app/properties/services";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { getListingProps } from "@/lib/enum";
-import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
 import { cn } from "@/lib/utils";
 import { useIntersectionObserver } from "@/lib/utils/intersectionObserver";
 import dynamic from "next/dynamic";
@@ -60,18 +59,7 @@ const FeaturedListings = ({ className, showAllButton }: Props) => {
           Show all
         </LinkButton>
       </div>
-      <FetchingStates
-        data={listings}
-        error={error}
-        errorComponent={
-          <SomethingWentWrong
-            className="h-fit"
-            onTryAgain={() => {
-              mutate();
-            }}
-          />
-        }
-      />
+      <FetchingStates data={listings} error={error} />
       {hasIntersected && (
         <FramerWrapper>
           <Swiper

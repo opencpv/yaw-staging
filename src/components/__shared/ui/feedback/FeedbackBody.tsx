@@ -1,5 +1,5 @@
 import React from "react";
-import Thumbs from "./Thumbs";
+import Thumbs from "./thumbs";
 import FeedbackSlider from "./FeedbackSlider";
 import Image from "next/image";
 import { Button } from "../button";

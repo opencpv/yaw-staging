@@ -2,7 +2,7 @@
 import Link from "next/link";
 import quickLinks from "@/enum/footer/quickLinks";
 import { getCurrentYear } from "@/lib/utils/numberManipulation";
-import Logo from "@/components/__shared/ui/Logo";
+import Logo from "@/components/__shared/ui/logo";
 import SubscribeForm from "../form/SubscribeForm";
 import Feedback from "@/components/__shared/ui/feedback/Feedback";
 import { LowerCase } from "@/lib/utils/stringManipulation";
@@ -11,7 +11,7 @@ import { FaEnvelope } from "react-icons/fa6";
 import { MdLocalPhone } from "react-icons/md";
 import { socialLinks } from "@/enum/links/socials";
 import { useQuery } from "@tanstack/react-query";
-import FloatItemsHack from "@/components/FloatItemsHack";
+import FloatItemsHack from "@/components/__shared/hacks/FloatItemsHack";
 import { useIntersectionObserver } from "@/lib/utils/intersectionObserver";
 import { useEffect } from "react";
 import { floatItemsIntersectionStore } from "@/store/footer/footerStore";

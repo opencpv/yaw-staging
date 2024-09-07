@@ -2,7 +2,7 @@ import style from "../../../index.module.css";
 import { DatePicker } from "@/components/__shared/ui/form/date-picker";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { SelectInput } from "@/components/__shared/ui/form/select";
-import CallOut from "@/components/__shared/ui/callout";
+import Callout from "@/components/__shared/ui/callout";
 import { BeMyAgentDefaultValues } from "@/store/dashboard/BeMyAgentStepsStore";
 import { cn } from "@/lib/utils";
 
@@ -100,7 +100,7 @@ export default function PropertyRequirements() {
           </div>
         </div>
         {/* Lease Terms */}
-        <CallOut
+        <Callout
           content="1-2 year lease with rent paid in advance are most common"
           className="mt-5"
         />

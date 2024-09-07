@@ -1,6 +1,5 @@
 import React from "react";
 import { HiSaveAs } from "react-icons/hi";
-const Modal = dynamic(() => import("./dialog").then((mod) => mod.Modal));
 import { Button } from "../button";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { FiTrash2 } from "react-icons/fi";
@@ -14,12 +13,9 @@ import {
   ActionItemTrigger,
   ActionPopover,
 } from "@/components/__shared/ui/popover/action-popover";
+const Modal = dynamic(() => import("./dialog").then((mod) => mod.Modal));
 const PopupModal = dynamic(() =>
   import("../alert-dialog").then((mod) => mod.PopupModal),
-);
-
-const Popover = dynamic(() =>
-  import("@/components/__shared/ui/popover").then((mod) => mod.Popover),
 );
 
 type Props = {
@@ -29,16 +25,18 @@ type Props = {
 let recentSearchDemo = true;
 
 const SaveSearchModal = (props: Props) => {
-  const { isOpen, onOpenChange, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpenChange, onOpen } = useDisclosure();
 
   return (
     <>
-      <HiSaveAs
-        className={cn("cursor-pointer text-[#21A19F]", props.className)}
-        title="saved search"
-        size={20}
-        onClick={onOpen}
-      />
+      <Button size={"icon"} variant={"ghost"}>
+        <HiSaveAs
+          className={cn("cursor-pointer text-[#21A19F]", props.className)}
+          title="Saved search"
+          size={20}
+          onClick={onOpen}
+        />
+      </Button>
       <Modal
         closeButton={<CloseModalIcon />}
         header={<ModalHeader />}
@@ -138,7 +136,7 @@ const RecentSearch = ({ title, date }: { title: string; date: string }) => {
         onClose={onClose}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        handleAction={() => {}}
+        onAction={() => {}}
       />
     </div>
   );

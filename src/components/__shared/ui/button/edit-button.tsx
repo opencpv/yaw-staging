@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "./";
+import { Button } from ".";
 import { cn } from "@/lib/utils";
 import { MdOutlineEdit } from "react-icons/md";
 
@@ -17,6 +17,7 @@ const EditButton = ({ onClick, variant = "default", className }: Props) => {
       className={cn(
         {
           "bg-secondary-50 p-4": variant === "default",
+          "bg-transparent p-0": variant === "ghost",
         },
         className,
       )}

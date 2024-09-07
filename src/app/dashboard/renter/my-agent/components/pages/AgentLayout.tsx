@@ -2,7 +2,7 @@
 import React from "react";
 import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
 import styles from "../../index.module.css";
-import CallOut from "@/components/__shared/ui/callout";
+import Callout from "@/components/__shared/ui/callout";
 import { usePathname } from "next/navigation";
 import dynamic from "next/dynamic";
 const ScrollTop = dynamic(() => import("@/components/__shared/ui/scroll-top"));
@@ -21,7 +21,7 @@ const AgentLayout = ({ children }: { children: React.ReactNode }) => {
         >
           <div className="flex w-full max-w-screen-3xl flex-col items-start justify-center gap-4 overflow-x-hidden p-7 pt-0">
             <h2>Be My Agent</h2>
-            <CallOut content="Fee waived when you rent with us." />
+            <Callout content="Fee waived when you rent with us." />
             <div className="flex w-full flex-col gap-3 gap-y-6 lg:w-fit lg:flex-row lg:items-center">
               <div className="flex flex-wrap items-center gap-5">
                 <h4 className="whitespace-nowrap font-normal">Finders Fee</h4>

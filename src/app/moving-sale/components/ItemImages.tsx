@@ -3,7 +3,7 @@ import React from "react";
 import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import dynamic from "next/dynamic";
 const GalleryModalBtn = dynamic(
-  () => import("@/components/__shared/ui/button/GalleryModalBtn"),
+  () => import("@/components/__shared/ui/button/gallery-modal-button"),
 );
 const ItemGalleryModal = dynamic(() => import("./ItemGalleryModal"));
 

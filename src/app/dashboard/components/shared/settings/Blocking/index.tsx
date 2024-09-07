@@ -4,7 +4,7 @@ import CaBlockingBlock from "./icons/CaBlockingBlock";
 import { Button } from "@/components/__shared/ui/button";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import CallOut from "@/components/__shared/ui/callout";
+import Callout from "@/components/__shared/ui/callout";
 import {
   useFetchBlockedUsers,
   useUnblockAllUsers,
@@ -40,14 +40,14 @@ export default function Blocking() {
         onClose={onClose}
         onOpenChange={onOpenChange}
         label={`Are you sure you want to unblock all?`}
-        handleAction={handleUnblockAll}
+        onAction={handleUnblockAll}
         loading={isPending}
       />
       <section className="flex flex-col gap-5">
         <div className="border-b-2 py-6">
           <div className="flex max-w-[610px] flex-col gap-5">
             <h3>Block Users</h3>
-            <CallOut content="Unblock users you have previously blocked here." />
+            <Callout content="Unblock users you have previously blocked here." />
           </div>
         </div>
         <div className="flex max-w-[603px] flex-col gap-8">
@@ -114,7 +114,7 @@ const BlockCard = (props: { data: BlockedUserType }) => {
         onClose={onClose}
         onOpenChange={onOpenChange}
         label={`Are you sure you want to unblock ${props.data.blocked_user.full_name}?`}
-        handleAction={handleUnblock}
+        onAction={handleUnblock}
         loading={isPending}
       />
       <div className="flex w-full cursor-pointer items-center justify-between gap-3 hover:bg-shade">

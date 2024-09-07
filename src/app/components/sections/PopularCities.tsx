@@ -5,7 +5,7 @@ import PopularCitiesCard from "../ui/PopularCitiesCard";
 import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
 import Image from "next/image";
 import SkeletonRectangle from "@/components/__shared/ui/skeleton/skeleton-rectangle";
-import FetchErrorMessage from "@/components/__shared/ui/data_fetching/FetchErrorMessage";
+import FetchErrorMessage from "@/components/__shared/ui/data_fetching/fetch-error-message";
 import { createClient } from "@/lib/utils/supabase/auth/client";
 import { useQuery } from "@tanstack/react-query";
 import { createUUID } from "@/lib/utils/stringManipulation";

@@ -37,7 +37,7 @@ const SummaryPostView = (props: Props) => {
 
   const {
     currentItems: paginatedPosts,
-    handlePageClick,
+    handlePageChange,
     pageCount,
   } = usePagination({
     items: blogPosts,
@@ -80,7 +80,7 @@ const SummaryPostView = (props: Props) => {
           loading={loading}
         />
       </div>
-      <Pagination handlePageClick={handlePageClick} pageCount={pageCount} />
+      <Pagination onPageChange={handlePageChange} pageCount={pageCount} />
     </div>
   );
 };

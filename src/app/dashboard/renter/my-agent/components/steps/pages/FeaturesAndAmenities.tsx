@@ -3,7 +3,7 @@ import Amenity from "@/app/dashboard/components/shared/ui/Amenity";
 import style from "../../../index.module.css";
 import { useField } from "formik";
 import { features } from "../../../../../components/shared/content";
-import CallOut from "@/components/__shared/ui/callout";
+import Callout from "@/components/__shared/ui/callout";
 import { BeMyAgentDefaultValues } from "@/store/dashboard/BeMyAgentStepsStore";
 
 export default function FeaturesAndAmenities() {
@@ -33,7 +33,7 @@ export default function FeaturesAndAmenities() {
         <h2 className={`${style.titleNoMargin}`}>
           Required Features <span className={style.asterisk}>*</span>
         </h2>
-        <CallOut content="You may select more than one response" />
+        <Callout content="You may select more than one response" />
       </div>
       <div className={style.amenityGrid}>
         {features.map((r, index: number) => (

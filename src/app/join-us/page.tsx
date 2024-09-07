@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import { LinkButton } from "@/components/__shared/ui/button";
 const Footer = dynamic(() => import("@/components/__shared/ui/footer"));
 const ScrollTopAndSocial = dynamic(
-  () => import("@/components/__shared/ui/scroll-top-and-social"),
+  () => import("@/components/__shared/ui/scroll-top/scroll-top-and-social"),
 );
 
 export const metadata: Metadata = {

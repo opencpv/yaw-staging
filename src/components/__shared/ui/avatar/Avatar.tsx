@@ -14,6 +14,8 @@ type Props = {
   title?: string;
 };
 
+
+
 const Avatar = ({ image, name, className, title, size, display }: Props) => {
   return (
     <>

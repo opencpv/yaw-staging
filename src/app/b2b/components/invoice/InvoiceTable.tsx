@@ -13,7 +13,6 @@ import { useInvoiceData } from "../../hooks/useInvoiceData";
 import { createUUID } from "@/lib/utils/stringManipulation";
 import { useFetchInvoices } from "../../services";
 import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
-import SomethingWentWrong from "@/components/__shared/ui/states/SomethingWentWrong";
 import TableSkeleton from "@/components/__shared/ui/skeleton/skeleton-table";
 import TableSkeletonSm from "@/components/__shared/ui/skeleton/skeleton-table-mobile";
 import Pagination, { usePagination } from "@/components/__shared/ui/pagination";
@@ -40,7 +39,7 @@ const InvoiceTable = ({ searchString, customerId, filter }: Props) => {
 
   const {
     currentItems: paginatedInvoices,
-    handlePageClick,
+    handlePageChange,
     pageCount,
   } = usePagination({
     items: invoices as Invoice[],
@@ -88,14 +87,6 @@ const InvoiceTable = ({ searchString, customerId, filter }: Props) => {
           error={error}
           isLoading={isLoading}
           isLoadingComponent={<TableSkeletonSm rows={3} />}
-          errorComponent={
-            <SomethingWentWrong
-              className="h-fit"
-              onTryAgain={() => {
-                mutate();
-              }}
-            />
-          }
           emptyStateComponent={<InvoiceEmptyState />}
         />
         {paginatedInvoices?.map((invoice: any) => (
@@ -103,7 +94,7 @@ const InvoiceTable = ({ searchString, customerId, filter }: Props) => {
         ))}
       </TableSm>
 
-      <Pagination handlePageClick={handlePageClick} pageCount={pageCount} />
+      <Pagination onPageChange={handlePageChange} pageCount={pageCount} />
     </>
   );
 };

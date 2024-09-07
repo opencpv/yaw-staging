@@ -1,6 +1,6 @@
 import { useLocalStorage } from "@uidotdev/usehooks";
 import style from "../../../index.module.css";
-import CallOut from "../../../../../../../components/__shared/ui/callout";
+import Callout from "../../../../../../../components/__shared/ui/callout";
 import { useField } from "formik";
 import { ListingDefaultValues } from "@/store/dashboard/ListingStepsStore";
 import { cn } from "@/lib/utils";
@@ -46,7 +46,7 @@ export default function FurnishLevel() {
             What type of place will the renter have?{" "}
             <span className={style.asterisk}>*</span>
           </h2>
-          <CallOut content="You may select more than one response" />
+          <Callout content="You may select more than one response" />
         </div>
 
         <div className="flex w-full flex-col items-start gap-5">

@@ -4,7 +4,7 @@ import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { LinkButton } from "@/components/__shared/ui/button";
 import { FaRegBell, FaRegHourglass } from "react-icons/fa";
 import { useAppStore } from "@/store/dashboard/AppStore";
-import CallOut from "@/components/__shared/ui/callout";
+import Callout from "@/components/__shared/ui/callout";
 import { MdOutlineEdit, MdOutlineMessage } from "react-icons/md";
 import RecentActivityCard from "./components/RecentActivityCard";
 import BoostListingCard from "./components/BoostListingCard";
@@ -52,7 +52,7 @@ const ListerOverviewPage = () => {
               Edit Profile <MdOutlineEdit />
             </LinkButton>
           </div>
-          <CallOut content="Your peofile is incomplete. Click on the edit profile to complete the process" />
+          <Callout content="Your peofile is incomplete. Click on the edit profile to complete the process" />
           <ListingModal className="mt-5" />
         </section>
 

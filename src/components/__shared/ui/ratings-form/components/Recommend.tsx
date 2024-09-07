@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Thumbs from "../../feedback/Thumbs";
+import Thumbs from "../../feedback/thumbs";
 import { useFeedbackDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { Form, Formik } from "formik";
 import { useRatingsModalStore } from "@/store/modal/useRatingsModalStore";

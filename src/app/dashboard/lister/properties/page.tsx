@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import CallOut from "@/components/__shared/ui/callout";
+import Callout from "@/components/__shared/ui/callout";
 import { pluralize } from "@/lib/utils/stringManipulation";
 import { useFetchAllListerProperties } from "./services";
 import { useAppStore } from "@/store/dashboard/AppStore";
@@ -12,7 +12,7 @@ import {
   TableHeaderRow,
   TableSm,
 } from "@/components/__shared/ui/table";
-import ArchivedButton from "@/components/__shared/ui/table/archived-button";
+import ArchivedButton from "@/components/__shared/ui/button/archived-button";
 import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
 import TableSkeleton from "@/components/__shared/ui/skeleton/skeleton-table";
 import React, { useState } from "react";
@@ -46,7 +46,7 @@ const ManageProperties = () => {
 
   const {
     currentItems: paginatedListings,
-    handlePageClick,
+    handlePageChange,
     pageCount,
     currentPage,
   } = usePagination({
@@ -66,7 +66,7 @@ const ManageProperties = () => {
     <main className="pb-40">
       <section className="mb-6 flex flex-col gap-5">
         <h2>My Listings</h2>
-        <CallOut content="Members post for free" />
+        <Callout content="Members post for free" />
         <div className="flex flex-col gap-8">
           <ListingModal className="flex w-fit items-center gap-2 rounded-md bg-primary p-3 px-5 text-white">
             <FaPlus />
@@ -150,7 +150,7 @@ const ManageProperties = () => {
         showingArchived={showArchived}
       />
       <Pagination
-        handlePageClick={handlePageClick}
+        onPageChange={handlePageChange}
         pageCount={pageCount}
         forcePage={currentPage}
       />

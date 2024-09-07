@@ -1,5 +1,5 @@
 import style from "../Feature.module.css";
-import CallOut from "@/components/__shared/ui/callout";
+import Callout from "@/components/__shared/ui/callout";
 import { LinkButton } from "@/components/__shared/ui/button";
 import React from "react";
 import Image from "next/image";
@@ -88,7 +88,7 @@ const BTFTKMatchSummary = ({ isLoading, href, matches, callOut }: Props) => {
             </ul>
           ) : (
             <>
-              <CallOut>
+              <Callout>
                 <div>
                   {callOut?.content}
                   {callOut?.href && (
@@ -104,7 +104,7 @@ const BTFTKMatchSummary = ({ isLoading, href, matches, callOut }: Props) => {
                     </>
                   )}
                 </div>
-              </CallOut>
+              </Callout>
             </>
           )}
         </>

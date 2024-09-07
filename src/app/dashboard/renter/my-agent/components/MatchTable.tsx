@@ -1,5 +1,5 @@
 import ScheduleVirtualTour from "./ScheduleVirtualTour";
-import CallOut from "@/components/__shared/ui/callout";
+import Callout from "@/components/__shared/ui/callout";
 import React, { useEffect } from "react";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import {
@@ -91,7 +91,7 @@ export default function MatchTable() {
       >
         <h3 className={cn({ hidden: !matches })}>{title} Matches</h3>
         <div className={cn({ hidden: !matches })}>
-          <CallOut content="Lorem ipsum dolor sit amet consectetur. Consequat elementum consequat interdum integer imperdiet nisl. Ipsum eu eu tortor enim est mauris in sem. Eget dignissim risus diam consectetur magna. Non." />
+          <Callout content="Lorem ipsum dolor sit amet consectetur. Consequat elementum consequat interdum integer imperdiet nisl. Ipsum eu eu tortor enim est mauris in sem. Eget dignissim risus diam consectetur magna. Non." />
         </div>
         {/* table */}
         <Table className={cn({ "lg:hidden": !matches })}>

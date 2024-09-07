@@ -36,7 +36,7 @@ const ManageSearchCriteria = () => {
 
   const {
     currentItems: paginatedCriteria,
-    handlePageClick,
+    handlePageChange,
     pageCount,
     currentPage,
   } = usePagination({
@@ -58,7 +58,7 @@ const ManageSearchCriteria = () => {
           value={status as string}
           onValueChange={(value) => {
             setStatus(value);
-            handlePageClick({ selected: 0 });
+            handlePageChange({ selected: 0 });
           }}
           classNames={{ trigger: "w-[100px] self-end" }}
         />
@@ -149,7 +149,7 @@ const ManageSearchCriteria = () => {
         ))}
       </TableSm>
       <Pagination
-        handlePageClick={handlePageClick}
+        onPageChange={handlePageChange}
         pageCount={pageCount}
         forcePage={currentPage}
       />

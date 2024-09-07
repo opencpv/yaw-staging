@@ -35,7 +35,7 @@ const ActionsMobile = ({ refetch, id }: Props) => {
         onClose={onClose}
         onOpenChange={onOpenChange}
         label="Are you sure you want to delete this item?"
-        handleAction={handleDestruction}
+        onAction={handleDestruction}
       />
       <ActionPopover isOpen={popoverIsOpen} onOpenChange={setPopoverIsOpen}>
         <ActionItemTrigger

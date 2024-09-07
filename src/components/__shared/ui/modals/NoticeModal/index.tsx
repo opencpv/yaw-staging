@@ -22,6 +22,10 @@ const Context = createContext<{
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 } | null>(null);
 
+/**
+ * A modal that interrupts the user with a notice with a <strong>TTL</strong> of about 7 days. <br />
+ * It may not be showing because the user has already dismissed it.
+ */
 const NoticeModal = () => {
   const show = getLocalStorageWithExpiry("notice-modal-behavior");
   const [open, setOpen] = useState(show === "0" ? false : true);

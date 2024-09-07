@@ -66,7 +66,7 @@ const Actions = ({ criterion }: Props) => {
         onClose={onClose}
         onOpenChange={onOpenChange}
         label={`Are you sure you want to delete "${criterion.title || "[No Title]"}" ?`}
-        handleAction={handleDestruction}
+        onAction={handleDestruction}
         loading={isMutating}
       />
 

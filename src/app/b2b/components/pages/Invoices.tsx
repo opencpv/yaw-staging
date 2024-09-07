@@ -12,7 +12,7 @@ import { Button } from "@/components/__shared/ui/button";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { PDFTemplateObject } from "../__shared/InvoiceTemplate";
 import CaCard from "@/components/__shared/ui/icons/CaCard";
-import ArchivedButton from "@/components/__shared/ui/table/archived-button";
+import ArchivedButton from "@/components/__shared/ui/button/archived-button";
 
 type Status = "All" | "Paid" | "Pending";
 

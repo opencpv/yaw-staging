@@ -17,8 +17,8 @@ import {
 } from "@/components/__shared/ui/table";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { cn } from "@/lib/utils";
-import ArchivedButton from "@/components/__shared/ui/table/archived-button";
-import CallOut from "@/components/__shared/ui/callout";
+import ArchivedButton from "@/components/__shared/ui/button/archived-button";
+import Callout from "@/components/__shared/ui/callout";
 import SelectMobile from "../../../../../../components/__shared/ui/form/select-mobile";
 import AddItemButton from "../AddItemButton";
 import { useCurrentUserId } from "@/lib/custom-hooks/useCurrentUserId";
@@ -106,7 +106,7 @@ const ItemsPage = () => {
               Add Item
             </LinkButton>
           </div>
-          <CallOut
+          <Callout
             title="Important Notice !!"
             content="You will receive messages in your inbox on the platform whenever there is an interested buyer for your product"
             className="order-1 lg:order-2"
