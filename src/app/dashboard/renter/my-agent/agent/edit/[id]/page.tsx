@@ -10,7 +10,7 @@ const AgenEditPage = () => {
   return (
     <main className="flex flex-col gap-40">
       <BeMyAgentModal />
-      <Loader position="center" />
+      <Loader />
     </main>
   );
 };

@@ -49,7 +49,7 @@ export const WithMessage: Story = {
   },
 };
 
-export const MessageClassName: Story = {
+export const CustomMessage: Story = {
   args: {
     ...Default.args,
     message: <div>Message</div>,

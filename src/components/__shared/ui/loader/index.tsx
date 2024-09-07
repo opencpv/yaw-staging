@@ -4,7 +4,7 @@ import { LuLoader2 } from "react-icons/lu";
 
 const Loader = ({
   className,
-  position = "default",
+  position = "center",
 }: {
   className?: string;
   position?: "default" | "center";

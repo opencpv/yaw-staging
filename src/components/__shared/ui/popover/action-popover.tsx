@@ -12,12 +12,16 @@ const Popover = dynamic(() =>
 );
 
 type Props = {
-  placement?: any;
+  placement?: PopoverPlacement;
   children: React.ReactNode[];
   isOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
 };
 
+/**
+ * A popover specifically for action items. <br />
+ * Can be controlled or uncontrolled
+ */
 export const ActionPopover = (props: Props) => {
   return (
     <>

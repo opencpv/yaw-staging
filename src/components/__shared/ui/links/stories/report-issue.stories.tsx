@@ -1,17 +1,13 @@
-import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import ReportIssue from '../report-issue';
-
-/**
- * Navigates to contact us page when clicked
- */
+import React from "react";
+import { Meta, StoryObj } from "@storybook/react";
+import ReportIssue from "../report-issue";
 
 const meta: Meta<typeof ReportIssue> = {
-  title: 'Components/Links/ReportIssue',
+  title: "Components/Links/ReportIssue",
   component: ReportIssue,
-  tags: ['autodocs'],
-  argTypes: {
-    className: { control: 'text' },
+  tags: ["autodocs"],
+  parameters: {
+    layout: "centered",
   },
 };
 
@@ -19,8 +15,4 @@ export default meta;
 
 type Story = StoryObj<typeof ReportIssue>;
 
-export const Default: Story = {
-  args: {
-    className: 'text-blue-500',
-  },
-};
+export const Default: Story = {};

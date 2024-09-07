@@ -129,7 +129,7 @@ const UpdateItemPage = () => {
         <h2 className="capitalize">Update Product</h2>
       </div>
       {isLoading ? (
-        <Loader position="center" />
+        <Loader />
       ) : (
         <>
           {products.length > 0 && files.length > 0 && (

@@ -8,20 +8,6 @@ const meta: Meta<typeof LikeButton> = {
   parameters: {
     layout: "centered",
   },
-  argTypes: {
-    liked: {
-      control: "boolean",
-    },
-    propertyId: {
-      control: "number",
-    },
-    userId: {
-      control: "number",
-    },
-    className: {
-      control: "text",
-    },
-  },
 };
 
 export default meta;

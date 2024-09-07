@@ -38,7 +38,7 @@ const page = (props: Props) => {
           </p>
         </div>
       </header>
-      <Suspense fallback={<Loader position="center" />}>
+      <Suspense fallback={<Loader />}>
         <MatchDetail matchId={matchId} actionType={actionType as string} />
       </Suspense>
     </main>

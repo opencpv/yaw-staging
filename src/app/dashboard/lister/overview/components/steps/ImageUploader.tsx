@@ -264,7 +264,7 @@ const Preview = ({ file }: { file: any }) => {
             <ActionPopover
               isOpen={isOpen}
               onOpenChange={setIsOpen}
-              placement="bottom-start"
+              placement="bottom"
             >
               <ActionItemTrigger
                 onClick={() => setIsOpen(true)}

@@ -8,6 +8,9 @@ type Props = {
   className?: string;
 };
 
+/**
+ * Navigates to Report tab on contact us page and tries to get the current url
+ */
 const ReportIssue = ({ className }: Props) => {
   const href = location.href;
   const { setReportIssueHref } = useContactStore();

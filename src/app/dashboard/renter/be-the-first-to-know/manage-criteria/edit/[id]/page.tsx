@@ -10,7 +10,7 @@ const CriteriaEditPage = () => {
   return (
     <main className="flex flex-col gap-40">
       <BTFTKModal />
-      <Loader position="center" />
+      <Loader />
     </main>
   );
 };

@@ -49,7 +49,7 @@ const FilterModalBody = () => {
     <main className="space-y-10 pb-10">
       <ItemsFilterModalOption title="Categories">
         {isLoading ? (
-          <Loader position="center" />
+          <Loader />
         ) : (
           <CategoryCheckboxes
             options={categories?.map(({ category }) => category) || []}

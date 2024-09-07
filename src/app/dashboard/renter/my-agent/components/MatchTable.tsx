@@ -83,7 +83,7 @@ export default function MatchTable() {
 
   return (
     <>
-      {isRefetching && <Loader position="center" />}
+      {isRefetching && <Loader />}
       <section
         className="fade-in flex min-h-[400px] w-full flex-col gap-8 pt-20 sm:min-h-[600px]"
         ref={matchesRef}

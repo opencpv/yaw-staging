@@ -57,7 +57,7 @@ const SideContentGroup = ({ ads, blogPost }: Props) => {
         className="mb-10"
         classNames={{ body: "max-h-80 custom-scrollbar overflow-y-scroll" }}
       >
-        <Suspense fallback={<Loader position="center" />}>
+        <Suspense fallback={<Loader />}>
           <SideContentCategories />
         </Suspense>
       </SideContent>

@@ -93,7 +93,7 @@ const AddItemPage = () => {
         <h2 className="capitalize">Add item for sale</h2>
       </div>
       {isLoading ? (
-        <Loader position="center" />
+        <Loader />
       ) : (
         <Formik
           initialValues={initialValues}

@@ -4,14 +4,13 @@ import FetchingStates from "../fetching-states";
 import Loader from "../../loader";
 import FetchErrorMessage from "../fetch-error-message";
 
-
 const meta: Meta<typeof FetchingStates> = {
-  title: 'Components/DataFetching/FetchingStates',
+  title: "Components/DataFetching/FetchingStates",
   component: FetchingStates,
   tags: ["autodocs"],
 
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
 };
 
@@ -25,7 +24,7 @@ export const Loading: Story = {
     isValidating: false,
     error: null,
     data: undefined,
-    isLoadingComponent: <Loader position="center" className="flex w-full justify-center" />,
+    isLoadingComponent: <Loader className="flex w-full justify-center" />,
   },
 };
 
@@ -35,7 +34,7 @@ export const Validating: Story = {
     isValidating: true,
     error: null,
     data: undefined,
-    isLoadingComponent: <Loader position="center" className="flex w-full justify-center" />,
+    isLoadingComponent: <Loader className="flex w-full justify-center" />,
   },
 };
 
@@ -45,7 +44,9 @@ export const ErrorState: Story = {
     isValidating: false,
     error: new Error("Something went wrong"),
     data: undefined,
-    errorComponent: <FetchErrorMessage specificData="data" className="text-red-500" />,
+    errorComponent: (
+      <FetchErrorMessage specificData="data" className="text-red-500" />
+    ),
   },
 };
 
@@ -64,8 +65,8 @@ export const CompleteExample: Story = {
     isLoading: false,
     isValidating: false,
     error: null,
-    data: [{ id: 1, name: 'Sample Data' }],
-    isLoadingComponent: <Loader position="center" className="flex w-full justify-center" />,
+    data: [{ id: 1, name: "Sample Data" }],
+    isLoadingComponent: <Loader className="flex w-full justify-center" />,
     emptyStateComponent: <div className="text-gray-500">No data available</div>,
   },
 };
