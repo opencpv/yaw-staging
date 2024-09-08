@@ -9,7 +9,7 @@ type Props = {
 };
 
 /**
- * Use to show a placeholder while item content is loading.
+ * Use to show a placeholder while item card content is loading.
  */
 const SkeletonItem = ({ count, className }: Props) => {
   let countArray = Array.from({ length: count as number }, (_, idx) => idx + 1);

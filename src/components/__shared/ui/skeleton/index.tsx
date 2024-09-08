@@ -1,5 +1,8 @@
 import { cn } from "@/lib/utils";
 
+/**
+ * Use to show a placeholder while content is loading.
+ */
 function Skeleton({
   className,
   children,

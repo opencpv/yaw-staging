@@ -13,27 +13,29 @@ import Link from "next/link";
 import { createUUID } from "@/lib/utils/stringManipulation";
 import { SLIDER_AUTOPLAY_DELAY } from "@/constants";
 import { SliderPaginationOnlyProps } from "./types";
+import { cn } from "@/lib/utils";
 
+/**
+ * A Slider with only pagination dots and characterized by its slim width.
+ */
 const SliderPaginationOnly = ({
   images,
   className,
-  disabledOnInteraction,
+  disableOnInteraction,
 }: SliderPaginationOnlyProps) => {
   return (
-    <div className={`relative h-80 w-72 ${className}`}>
+    <div className={cn("relative h-80 w-72", className)}>
       <Swiper
         autoplay={{
           delay: SLIDER_AUTOPLAY_DELAY,
-          disableOnInteraction: disabledOnInteraction
-            ? disabledOnInteraction
-            : false,
+          disableOnInteraction,
           waitForTransition: false,
         }}
         pagination={{
           clickable: true,
         }}
         modules={[Pagination, Autoplay]}
-        className={`slider-pagination-only h-80 w-72 rounded-lg ${className}`}
+        className={cn("slider-pagination-only h-80 w-72 rounded-lg", className)}
         key={createUUID()}
       >
         {images?.map((image, idx) => (

@@ -19,7 +19,7 @@ type Props = {
 };
 
 /**
- * Round slider navigation button
+ * Rounded navigation button for the slider
  */
 const SliderNav = ({
   position,

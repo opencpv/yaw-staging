@@ -2,10 +2,6 @@ import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import SkeletonItem from "../skeleton-product";
 
-/**
- * Use to show a placeholder while content is loading.
-
- */
 const meta: Meta<typeof SkeletonItem> = {
   title: "Components/Skeletons/SkeletonItem",
   component: SkeletonItem,

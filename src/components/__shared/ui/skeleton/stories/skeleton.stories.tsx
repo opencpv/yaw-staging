@@ -1,62 +1,75 @@
-
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import { cn } from "@/lib/utils";
 import { Skeleton } from "..";
-
-/**
- * Use to show a placeholder while content is loading.
-
- */
 
 const meta: Meta<typeof Skeleton> = {
   title: "Components/Skeletons/Skeleton",
   component: Skeleton,
   tags: ["autodocs"],
+  argTypes: {
+    children: {
+      control: "object",
+    },
+  },
 };
 
 export default meta;
 
 type Story = StoryObj<typeof Skeleton>;
 
-// Default story for the Skeleton component
 export const Default: Story = {
   render: (args) => (
     <Skeleton {...args}>
-      <div className="p-4">
+      <div>
+        <p>This content is hidden by the Skeleton loader.</p>
+        <p>This content is hidden by the Skeleton loader.</p>
+        <p>This content is hidden by the Skeleton loader.</p>
+        <p>This content is hidden by the Skeleton loader.</p>
+        <p>This content is hidden by the Skeleton loader.</p>
+        <p>This content is hidden by the Skeleton loader.</p>
+        <p>This content is hidden by the Skeleton loader.</p>
         <p>This content is hidden by the Skeleton loader.</p>
       </div>
     </Skeleton>
   ),
-  args: {
-    className: "w-48 h-24",
-  },
+};
+
+/**
+ * The skeleton takes the shape of its content by default.
+ */
+export const ShapeOfContent: Story = {
+  render: (args) => (
+    // Example 1
+    <div className="flex gap-5">
+      <Skeleton {...args} className="aspect-square h-fit rounded-full">
+        <p>Lorem, ip</p>
+        <p>Lorem, ip</p>
+      </Skeleton>
+      <div className="flex flex-col gap-3">
+        <Skeleton {...args}>
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+        </Skeleton>
+        <Skeleton {...args}>
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+        </Skeleton>
+        <Skeleton {...args}>
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+        </Skeleton>
+      </div>
+    </div>
+  ),
 };
 
 // Story with custom width and height
-export const CustomSize: Story = {
+export const FixedDimension: Story = {
   render: (args) => (
-    <Skeleton {...args}>
-      <div className="p-4">
-        <p>This content is hidden by the Skeleton loader.</p>
+    <div className="flex gap-5">
+      <Skeleton {...args} className="size-12 rounded-full" />
+      <div className="flex flex-col gap-3">
+        <Skeleton {...args} className="h-6 w-80" />
+        <Skeleton {...args} className="h-6 w-80" />
+        <Skeleton {...args} className="h-6 w-80" />
       </div>
-    </Skeleton>
+    </div>
   ),
-  args: {
-    className: "w-64 h-32",
-  },
-};
-
-// Story with additional styling
-export const CustomStyling: Story = {
-  render: (args) => (
-    <Skeleton {...args}>
-      <div className="p-4">
-        <p>This content is hidden by the Skeleton loader.</p>
-      </div>
-    </Skeleton>
-  ),
-  args: {
-    className: "w-48 h-24 bg-gray-300 border border-gray-400",
-  },
 };

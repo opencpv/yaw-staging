@@ -1,13 +1,13 @@
-
-import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import SliderNav from "../slider-nav";
 
 const meta: Meta<typeof SliderNav> = {
   title: "Components/Sliders/SliderNav",
   component: SliderNav,
-  tags: ['autodocs'],
-
+  tags: ["autodocs"],
+  parameters: {
+    layout: "centered",
+  },
   argTypes: {
     position: {
       description: "Position of the navigation button (left or right)",
@@ -23,14 +23,12 @@ const meta: Meta<typeof SliderNav> = {
     },
     hidden: {
       description: "Toggle visibility of the button",
-      control: { type: "boolean" },
     },
     isAbsolute: {
-      description: "If true, button is positioned absolutely",
-      control: { type: "boolean" },
+      description:
+        "If true, button is positioned absolutely. Use when working on a slider",
     },
     onClick: {
-      action: "clicked",
       description: "Callback function when button is clicked",
     },
   },
@@ -44,34 +42,54 @@ type Story = StoryObj<typeof SliderNav>;
 export const Default: Story = {
   args: {
     position: "left",
-    size: "md",
-    color: "white",
-    hidden: false,
-    isAbsolute: true,
-    onClick: () => console.log("Button clicked"),
+    color: "accent",
   },
 };
 
-export const LargeAccentRight: Story = {
+export const Left: Story = {
+  args: {
+    ...Default.args,
+    color: "accent",
+  },
+};
+
+export const Right: Story = {
   args: {
     ...Default.args,
     position: "right",
+    color: "accent",
+  },
+};
+
+export const Small: Story = {
+  args: {
+    ...Default.args,
+    size: "sm",
+    color: "accent",
+  },
+};
+
+export const Large: Story = {
+  args: {
+    ...Default.args,
     size: "lg",
     color: "accent",
   },
 };
 
-export const Hidden: Story = {
+export const Accent: Story = {
   args: {
     ...Default.args,
-    hidden: true,
   },
 };
 
-export const SmallWhiteButton: Story = {
+/**
+ * Button is statically position, like a normal element.
+ */
+export const StaticPosition: Story = {
   args: {
     ...Default.args,
-    size: "sm",
-    color: "white",
+    isAbsolute: false,
+    color: "accent",
   },
 };
