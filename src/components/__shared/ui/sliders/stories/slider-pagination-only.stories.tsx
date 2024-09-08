@@ -4,20 +4,19 @@ import SliderPaginationOnly from "../slider-pagination-only";
 const meta: Meta<typeof SliderPaginationOnly> = {
   title: "Components/Sliders/SliderPaginationOnly",
   component: SliderPaginationOnly,
-  tags: ['autodocs'],
-
+  tags: ["autodocs"],
+  parameters: {
+    layout: "centered",
+  },
   argTypes: {
     images: {
       description: "Array of image objects for the slider.",
-      control: "text",
     },
     className: {
       description: "Additional CSS class names for styling.",
-      control: "text",
     },
-    disabledOnInteraction: {
+    disableOnInteraction: {
       description: "Whether autoplay is disabled on user interaction.",
-      control: "boolean",
     },
   },
 };
@@ -44,14 +43,20 @@ export const Default: Story = {
         name: "Image 3",
       },
     ],
-    className: "",
-    disabledOnInteraction: false,
+    disableOnInteraction: false,
   },
 };
 
-export const NoAutoplayOnInteraction: Story = {
+export const DisableAutoplay: Story = {
   args: {
     ...Default.args,
-    disabledOnInteraction: true,
+    autoplay: false,
+  },
+};
+
+export const DisableAutoplayOnInteraction: Story = {
+  args: {
+    ...Default.args,
+    disableOnInteraction: true,
   },
 };

@@ -1,12 +1,8 @@
-
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import TableSkeleton from "../skeleton-table";
+import { Table, TableBodyRowGroup } from "../../table";
 
-/**
- * Use to show a placeholder while content is loading.
-
- */
 const meta: Meta<typeof TableSkeleton> = {
   title: "Components/Skeletons/TableSkeleton",
   component: TableSkeleton,
@@ -19,28 +15,15 @@ type Story = StoryObj<typeof TableSkeleton>;
 
 // Default story with a specific number of rows and columns
 export const Default: Story = {
-  render: (args) => <TableSkeleton {...args} />,
+  render: (args) => (
+    <Table className="grid grid-cols-4">
+      <TableBodyRowGroup>
+        <TableSkeleton {...args} />
+      </TableBodyRowGroup>
+    </Table>
+  ),
   args: {
-    rows: 5,       // Default number of rows
-    columns: 3,    // Default number of columns
+    rows: 3,
+    columns: 4,
   },
 };
-
-// Story with a custom number of rows and columns
-export const CustomTable: Story = {
-  render: (args) => <TableSkeleton {...args} />,
-  args: {
-    rows: 10,      // Custom number of rows
-    columns: 5,    // Custom number of columns
-  },
-};
-
-// Story with minimal rows and columns
-export const MinimalTable: Story = {
-  render: (args) => <TableSkeleton {...args} />,
-  args: {
-    rows: 2,       // Minimal number of rows
-    columns: 2,    // Minimal number of columns
-  },
-};
-

@@ -13,7 +13,7 @@ const ContactFormSideContent = dynamic(
 
 const ContactForm = dynamic(() => import("../components/ContactForm"), {
   ssr: false,
-  loading: () => <Loader position="center" />,
+  loading: () => <Loader />,
 });
 
 type Props = {
@@ -36,7 +36,7 @@ export default async function page({ params }: Props) {
 
   return (
     <>
-      <Suspense fallback={<Loader position="center" />}>
+      <Suspense fallback={<Loader />}>
         <ContactForm tag={params.tag as ContactTabActiveKey} />
       </Suspense>
       <ContactFormSideContent

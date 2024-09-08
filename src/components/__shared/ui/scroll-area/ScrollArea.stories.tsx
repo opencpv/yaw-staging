@@ -10,7 +10,8 @@ const meta: Meta<typeof ScrollArea> = {
   },
   argTypes: {
     orientation: {
-      control: "select",
+      type: "string",
+      control: "radio",
       options: ["horizontal", "vertical"],
       description: "The orientation of the scroll area",
     },

@@ -1,9 +1,12 @@
 "use client";
-import { useField } from "formik";
+import { FieldHelperProps, useField, useFormikContext } from "formik";
 import React, { useState } from "react";
 import { FaThumbsDown, FaThumbsUp } from "react-icons/fa";
 
 type Props = {
+  /**
+   * Required when used in a Formik context
+   */
   name: string;
   thumbsUpChecked: boolean;
   thumbsDownChecked: boolean;
@@ -11,6 +14,10 @@ type Props = {
   handleThumbsDownChecked: () => void;
 };
 
+/**
+ * Radio states with thumbs. <br />
+ * Either used in a <strong>Formik</strong> context or standalone
+ */
 const Thumbs = ({
   name,
   thumbsUpChecked,
@@ -18,15 +25,19 @@ const Thumbs = ({
   handleThumbsUpChecked,
   handleThumbsDownChecked,
 }: Props) => {
-  const [field, meta, helpers] = useField(name);
-  const { setValue } = helpers;
+  const formikContext = useFormikContext();
+  let helpers: FieldHelperProps<any> | undefined;
+
+  if (formikContext) {
+    helpers = formikContext.getFieldHelpers(name as string);
+  }
 
   return (
     <div className="flex items-center gap-10">
       <button
         type="button"
         onClick={() => {
-          setValue(false);
+          helpers?.setValue(false);
           handleThumbsDownChecked();
         }}
       >
@@ -41,7 +52,7 @@ const Thumbs = ({
       <button
         type="button"
         onClick={() => {
-          setValue(true);
+          helpers?.setValue(true);
           handleThumbsUpChecked();
         }}
       >

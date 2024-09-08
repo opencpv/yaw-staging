@@ -8,6 +8,9 @@ type Props = {
   onClick?: () => void;
 };
 
+/**
+ * Navigates to Report tab on contact us page and tries to get the current url
+ */
 const ReportFraud = ({ className, onClick }: Props) => {
   const href = location.href;
   const { setReportIssueHref } = useContactStore();

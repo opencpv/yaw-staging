@@ -7,7 +7,6 @@ const meta: Meta<typeof Thumbs> = {
   title: "Components/Feedback/Thumbs",
   component: Thumbs,
   tags: ["autodocs"],
-
   parameters: {
     layout: "centered",
   },
@@ -22,8 +21,14 @@ export const Default: Story = {
     const [thumbsUpChecked, setThumbsUpChecked] = useState(false);
     const [thumbsDownChecked, setThumbsDownChecked] = useState(false);
 
-    const handleThumbsUpChecked = () => setThumbsUpChecked(true);
-    const handleThumbsDownChecked = () => setThumbsDownChecked(true);
+    const handleThumbsUpChecked = () => {
+      setThumbsUpChecked(!thumbsUpChecked);
+      setThumbsDownChecked(false);
+    };
+    const handleThumbsDownChecked = () => {
+      setThumbsDownChecked(!thumbsDownChecked);
+      setThumbsUpChecked(false);
+    };
 
     return (
       <Formik initialValues={{}} onSubmit={() => {}}>
@@ -38,32 +43,37 @@ export const Default: Story = {
     );
   },
   args: {
-    name: "thumbs",
+    name: "value_c",
   },
 };
 
+/**
+ * Not used in Formik context
+ */
 export const ThumbsUpChecked: Story = {
+  ...Default.render,
   render: (args) => {
     const [thumbsUpChecked, setThumbsUpChecked] = useState(true);
     const [thumbsDownChecked, setThumbsDownChecked] = useState(false);
 
-    const handleThumbsUpChecked = () => setThumbsUpChecked(true);
-    const handleThumbsDownChecked = () => setThumbsDownChecked(true);
+    const handleThumbsUpChecked = () => {
+      setThumbsUpChecked(!thumbsUpChecked);
+      setThumbsDownChecked(false);
+    };
+    const handleThumbsDownChecked = () => {
+      setThumbsDownChecked(!thumbsDownChecked);
+      setThumbsUpChecked(false);
+    };
 
     return (
-      <Formik initialValues={{}} onSubmit={() => {}}>
-        <Thumbs
-          {...args}
-          thumbsUpChecked={thumbsUpChecked}
-          thumbsDownChecked={thumbsDownChecked}
-          handleThumbsUpChecked={handleThumbsUpChecked}
-          handleThumbsDownChecked={handleThumbsDownChecked}
-        />
-      </Formik>
+      <Thumbs
+        {...args}
+        thumbsUpChecked={thumbsUpChecked}
+        thumbsDownChecked={thumbsDownChecked}
+        handleThumbsUpChecked={handleThumbsUpChecked}
+        handleThumbsDownChecked={handleThumbsDownChecked}
+      />
     );
-  },
-  args: {
-    name: "thumbs",
   },
 };
 
@@ -72,8 +82,14 @@ export const ThumbsDownChecked: Story = {
     const [thumbsUpChecked, setThumbsUpChecked] = useState(false);
     const [thumbsDownChecked, setThumbsDownChecked] = useState(true);
 
-    const handleThumbsUpChecked = () => setThumbsUpChecked(true);
-    const handleThumbsDownChecked = () => setThumbsDownChecked(true);
+    const handleThumbsUpChecked = () => {
+      setThumbsUpChecked(!thumbsUpChecked);
+      setThumbsDownChecked(false);
+    };
+    const handleThumbsDownChecked = () => {
+      setThumbsDownChecked(!thumbsDownChecked);
+      setThumbsUpChecked(false);
+    };
 
     return (
       <Formik initialValues={{}} onSubmit={() => {}}>
@@ -88,6 +104,6 @@ export const ThumbsDownChecked: Story = {
     );
   },
   args: {
-    name: "thumbs",
+    ...Default.args,
   },
 };

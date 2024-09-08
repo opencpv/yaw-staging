@@ -1,17 +1,17 @@
-
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import TableSkeletonSm from "../skeleton-table-mobile";
 
 /**
- * Use to show a placeholder while content is loading.
-
+ * Use to show a placeholder while table content is loading on mobile.
  */
-
 const meta: Meta<typeof TableSkeletonSm> = {
   title: "Components/Skeletons/TableSkeletonSm",
   component: TableSkeletonSm,
   tags: ["autodocs"],
+  parameters: {
+    layout: "centered",
+  },
 };
 
 export default meta;
@@ -20,24 +20,7 @@ type Story = StoryObj<typeof TableSkeletonSm>;
 
 // Default story with a specific number of rows
 export const Default: Story = {
-  render: (args) => <TableSkeletonSm {...args} />,
   args: {
-    rows: 5,  // Default number of rows
-  },
-};
-
-// Story with a custom number of rows
-export const CustomRows: Story = {
-  render: (args) => <TableSkeletonSm {...args} />,
-  args: {
-    rows: 10,  // Custom number of rows
-  },
-};
-
-// Story with minimal number of rows
-export const MinimalRows: Story = {
-  render: (args) => <TableSkeletonSm {...args} />,
-  args: {
-    rows: 1,  // Minimal number of rows
+    rows: 3, // Default number of rows
   },
 };

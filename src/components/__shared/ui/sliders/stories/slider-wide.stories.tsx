@@ -3,50 +3,43 @@ import SliderWide from "../slider-wide";
 
 const meta: Meta<typeof SliderWide> = {
   tags: ["autodocs"],
-
   title: "Components/Sliders/SliderWide",
   component: SliderWide,
+  parameters: {
+    layout: "centered",
+  },
   argTypes: {
     images: {
       description: "Array of image objects for the slider.",
-      control: "object",
     },
     className: {
       description: "Additional CSS class names for styling.",
-      control: "text",
     },
     navigation: {
       description: "Enable navigation buttons.",
-      control: "boolean",
     },
     pagination: {
       description: "Enable pagination bullets.",
-      control: "boolean",
     },
     autoplay: {
       description: "Enable autoplay.",
-      control: "boolean",
     },
     overlay: {
       description: "Whether to show overlay on images.",
-      control: "boolean",
     },
     loop: {
-      description: "Enable loop mode.",
-      control: "boolean",
+      description:
+        "Enable loop mode. See https://swiperjs.com/swiper-api to learn how loop works.",
     },
     onSlideChange: {
       description: "Callback for slide change event.",
-      action: "slide change",
     },
     onClick: {
       description: "Callback for image click event.",
-      action: "image click",
     },
     classNames: {
       description:
         "Additional class names for specific parts of the component.",
-      control: "object",
     },
   },
 };
@@ -73,20 +66,44 @@ export const Default: Story = {
         name: "Image 3",
       },
     ],
-    className: "",
-    navigation: true,
-    pagination: true,
     autoplay: true,
-    overlay: true,
-    loop: true,
-    classNames: {},
   },
 };
 
-export const NoAutoplayOnInteraction: Story = {
+export const DisableAutoplay: Story = {
   args: {
     ...Default.args,
     autoplay: false,
+  },
+};
+
+/**
+ * Loop slides instead of starting from the beginning
+ */
+export const LoopSlides: Story = {
+  args: {
+    ...Default.args,
+    loop: true,
+  },
+};
+
+/**
+ * Shows pagination bullets
+ */
+export const WithPagination: Story = {
+  args: {
+    ...Default.args,
+    pagination: true,
+  },
+};
+
+/**
+ * Show navigation buttons
+ */
+export const WithNavigation: Story = {
+  args: {
+    ...Default.args,
+    navigation: true,
   },
 };
 
@@ -94,5 +111,14 @@ export const NoOverlay: Story = {
   args: {
     ...Default.args,
     overlay: false,
+  },
+};
+
+export const CustomOverlay: Story = {
+  args: {
+    ...Default.args,
+    classNames: {
+      overlay: "bg-red-500/20",
+    },
   },
 };

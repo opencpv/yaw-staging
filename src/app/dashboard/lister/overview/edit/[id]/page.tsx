@@ -10,7 +10,7 @@ const ListingEditPage = () => {
   return (
     <main className="flex flex-col gap-40">
       <ListingModal />
-      <Loader position="center" />
+      <Loader />
     </main>
   );
 };

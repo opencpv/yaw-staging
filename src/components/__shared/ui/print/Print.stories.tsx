@@ -8,11 +8,6 @@ const meta: Meta<typeof Print> = {
   parameters: {
     layout: "centered",
   },
-  argTypes: {
-    className: {
-      control: "text",
-    },
-  },
 };
 
 export default meta;

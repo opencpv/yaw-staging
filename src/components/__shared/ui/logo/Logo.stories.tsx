@@ -12,15 +12,6 @@ const meta: Meta<typeof Logo> = {
     size: {
       control: "select",
     },
-    url: {
-      control: "text",
-    },
-    onClick: {
-      type: "function",
-    },
-    className: {
-      control: "text",
-    },
   },
 };
 

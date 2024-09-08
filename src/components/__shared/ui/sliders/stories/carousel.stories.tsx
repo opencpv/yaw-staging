@@ -1,29 +1,33 @@
-import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import Carousel from '../carousel';
-import { CarouselProps } from '../types';
+import React, { useState } from "react";
+import { Meta, StoryObj } from "@storybook/react";
+import Carousel from "../carousel";
+import { CarouselProps } from "../types";
 
 const meta: Meta<typeof Carousel> = {
-  title: 'Components/Sliders/Carousel',
+  title: "Components/Sliders/Carousel",
   component: Carousel,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
+  parameters: {
+    layout: "centered",
+    nextjs: { appDirectory: true },
+  },
   argTypes: {
     images: {
-      control: { type: 'text' },
-      description: 'Array of image URLs to display in the carousel.',
+      control: { type: "text" },
+      description: "Array of image URLs to display in the carousel.",
       table: {
-        type: { summary: 'string[]' },
+        type: { summary: "string[]" },
       },
     },
     isCover: {
-      control: { type: 'boolean' },
-      description: 'Determines if images should be displayed in cover mode.',
+      control: { type: "boolean" },
+      description: "Determines if images should be displayed in cover mode.",
       table: {
-        type: { summary: 'boolean' },
+        type: { summary: "boolean" },
         defaultValue: { summary: "false" },
       },
     },
-    setActiveIndex: { action: 'activeIndexChanged' },
+    setActiveIndex: { action: "activeIndexChanged" },
   },
 };
 
@@ -32,7 +36,10 @@ type Story = StoryObj<typeof Carousel>;
 
 // Helper function to generate images for the stories
 const generateImages = (count: number): string[] =>
-  Array.from({ length: count }, (_, i) => `https://picsum.photos/800/800?random=${i + 1}`);
+  Array.from(
+    { length: count },
+    (_, i) => `https://picsum.photos/800/800?random=${i + 1}`,
+  );
 
 // Default story for the Carousel component
 export const Default: Story = {
@@ -75,7 +82,7 @@ export const ResponsiveCarousel: Story = {
   render: (args: CarouselProps) => {
     const [activeIndex, setActiveIndex] = useState(0);
     return (
-      <div style={{ maxWidth: '600px' }}>
+      <div style={{ maxWidth: "600px" }}>
         <Carousel {...args} setActiveIndex={setActiveIndex} />
       </div>
     );

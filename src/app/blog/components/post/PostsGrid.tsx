@@ -1,10 +1,10 @@
 "use client";
 import * as React from "react";
 import { urlForImage } from "@/lib/utils/sanity/utils";
-import SkeletonLong from "@/components/__shared/ui/skeleton/skeleton-long";
 import slugify from "@/lib/utils/slugify";
 import SkeletonTextual from "@/components/__shared/ui/skeleton/skeleton-textual";
 import dynamic from "next/dynamic";
+import SkeletonRectangle from "@/components/__shared/ui/skeleton/skeleton-rectangle";
 const PostSummary = dynamic(() => import("./PostSummary"));
 
 interface IPostsGridProps {
@@ -25,7 +25,7 @@ const PostsGrid: React.FunctionComponent<IPostsGridProps> = ({
           <>
             {Array.from(Array(3).keys()).map((n) => (
               <div key={n} className="grid gap-x-10 gap-y-5 lg:grid-cols-3">
-                <SkeletonLong
+                <SkeletonRectangle
                   count={1}
                   className="aspect-video w-full md:h-full lg:col-span-1 lg:max-w-full"
                 />

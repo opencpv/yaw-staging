@@ -27,7 +27,7 @@ const FetchingStates = ({
     <>
       {isLoading
         ? isLoadingComponent || (
-            <Loader position="center" className="flex w-full justify-center" />
+            <Loader className="flex w-full justify-center" />
           )
         : error
           ? errorComponent || <FetchErrorMessage />

@@ -7,8 +7,8 @@ const meta: Meta<typeof FixedSocials> = {
   tags: ["autodocs"],
   argTypes: {
     thresholdMin: {
-      control: "number",
-      description: "The minimum scroll threshold in pixels",
+      description:
+        "The minimum scroll threshold until the socials appear in pixels",
     },
   },
 };
@@ -27,9 +27,9 @@ export const Default: Story = {
   },
 };
 
-export const MinimmumThreshold: Story = {
+export const MinimumThreshold: Story = {
   args: {
-    thresholdMin: 800,
+    thresholdMin: 1200,
   },
   render: (args) => {
     return (

@@ -14,6 +14,9 @@ import { SLIDER_AUTOPLAY_DELAY } from "@/constants";
 import { SliderWideProps } from "./types";
 import SliderNav from "./slider-nav";
 
+/**
+ * A Slider characterized by its wide view.
+ */
 const SliderWide = ({
   images,
   className,
@@ -30,7 +33,7 @@ const SliderWide = ({
   const lastIndex = images.lastIndexOf(images[images.length - 1]);
 
   return (
-    <div className={`relative aspect-video w-full sm:h-80 ${className}`}>
+    <div className={cn("relative aspect-video w-full sm:h-80", className)}>
       <Swiper
         navigation={
           navigation && {
@@ -50,7 +53,7 @@ const SliderWide = ({
         }
         loop={loop}
         modules={[Navigation, Pagination, Autoplay]}
-        className={`slider-wide aspect-video w-full rounded-3xl ${className}`}
+        className={cn("slider-wide aspect-video w-full rounded-3xl", className)}
         onSlideChange={(swiper) => {
           setActiveIndex(swiper.activeIndex);
           onSlideChange && onSlideChange(swiper);

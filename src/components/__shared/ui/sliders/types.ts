@@ -12,7 +12,7 @@ export type SliderPaginationOnlyProps = {
     overlay?: string;
   };
   autoplay?: boolean;
-  disabledOnInteraction?: boolean;
+  disableOnInteraction?: boolean;
 };
 
 export interface SliderWideProps extends SliderPaginationOnlyProps {

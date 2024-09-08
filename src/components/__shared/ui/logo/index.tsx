@@ -9,10 +9,13 @@ import React from "react";
 type Props = {
   className?: string;
   size?: "xs" | "sm" | "md" | "lg";
-  onClick?: () => void;
   url?: string;
+  onClick?: () => void;
 };
 
+/**
+ * The logo for the website
+ */
 const Logo = ({ className, size = "sm", onClick, url = "/" }: Props) => {
   const { icons } = useAssets();
   const { setToggle } = useMenuStore();

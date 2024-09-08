@@ -5,8 +5,10 @@ import Link from "next/link";
 type Props = {
   text?: string;
   arrowPosition?: "left" | "right";
-  hideText?: boolean;
   href?: string;
+  /**
+   * Color of the link. <strong>NOT</strong> in tailwindcss format
+   */
   color?: string;
   className?: string;
   onClick?: () => void;
@@ -18,7 +20,7 @@ const ArrowLink = ({
   text,
   className,
   onClick,
-  arrowPosition,
+  arrowPosition = "right",
 }: Props) => {
   return (
     <Link
