@@ -27,11 +27,12 @@ const meta: Meta<typeof SliderGrid> = {
   title: "Components/Sliders/SliderGrid",
   component: SliderGrid,
   tags: ["autodocs"],
-
+  parameters: {
+    layout: "centered",
+  },
   argTypes: {
     items: {
       description: "Array of items to display in the slider grid",
-      control: { type: "text" },
     },
   },
 };
@@ -43,40 +44,5 @@ type Story = StoryObj<typeof SliderGrid>;
 export const Default: Story = {
   args: {
     items,
-  },
-};
-
-// Responsive View Story
-export const Responsive: Story = {
-  args: {
-    items,
-  },
-  parameters: {
-    viewport: {
-      defaultViewport: "mobile2",
-    },
-  },
-};
-
-// Story with Fewer Items
-export const FewItems: Story = {
-  args: {
-    items: items.slice(0, 2),
-  },
-};
-
-// Story with Many Items
-export const ManyItems: Story = {
-  args: {
-    items: [
-      ...items,
-      ...items,
-      ...items,
-      ...items,
-      ...items,
-      ...items,
-      ...items,
-      ...items,
-    ],
   },
 };

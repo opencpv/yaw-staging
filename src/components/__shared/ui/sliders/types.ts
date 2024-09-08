@@ -36,7 +36,6 @@ export type SliderMultiItemsProps = {
   //@ts-ignore
   breakpoints?: { [key: number]: { [key: any]: any } };
   hasNavAndPagination?: boolean;
-  autoplay?: boolean;
   /** class for a swiper slide item */
   swiperSlideClassName?: string;
   centeredSlides?: boolean;
