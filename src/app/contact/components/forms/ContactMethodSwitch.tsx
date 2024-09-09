@@ -12,8 +12,8 @@ import { cn } from "@/lib/utils";
 type Contact = "Email" | "WhatsApp";
 
 type Props = {
-  name: string;
-  placeholder: string;
+  name?: string;
+  placeholder?: string;
   className?: string;
 };
 
