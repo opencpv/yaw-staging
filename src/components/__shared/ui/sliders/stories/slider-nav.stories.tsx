@@ -44,12 +44,26 @@ export const Default: Story = {
     position: "left",
     color: "accent",
   },
+  render: (args) => {
+    return (
+      <div className="aspect-video w-52 rounded-lg p-5 shadow-card">
+        <SliderNav {...args} />
+      </div>
+    );
+  },
 };
 
 export const Left: Story = {
   args: {
     ...Default.args,
     color: "accent",
+  },
+  render: (args) => {
+    return (
+      <div className="aspect-video w-52 rounded-lg p-5 shadow-card">
+        <SliderNav {...args} />
+      </div>
+    );
   },
 };
 
@@ -59,6 +73,13 @@ export const Right: Story = {
     position: "right",
     color: "accent",
   },
+  render: (args) => {
+    return (
+      <div className="aspect-video w-52 rounded-lg p-5 shadow-card">
+        <SliderNav {...args} />
+      </div>
+    );
+  },
 };
 
 export const Small: Story = {
@@ -66,6 +87,13 @@ export const Small: Story = {
     ...Default.args,
     size: "sm",
     color: "accent",
+  },
+  render: (args) => {
+    return (
+      <div className="aspect-video w-52 rounded-lg p-5 shadow-card">
+        <SliderNav {...args} />
+      </div>
+    );
   },
 };
 
@@ -75,11 +103,25 @@ export const Large: Story = {
     size: "lg",
     color: "accent",
   },
+  render: (args) => {
+    return (
+      <div className="aspect-video w-52 rounded-lg p-5 shadow-card">
+        <SliderNav {...args} />
+      </div>
+    );
+  },
 };
 
 export const Accent: Story = {
   args: {
     ...Default.args,
+  },
+  render: (args) => {
+    return (
+      <div className="aspect-video w-52 rounded-lg p-5 shadow-card">
+        <SliderNav {...args} />
+      </div>
+    );
   },
 };
 
@@ -91,5 +133,13 @@ export const StaticPosition: Story = {
     ...Default.args,
     isAbsolute: false,
     color: "accent",
+  },
+  render: (args) => {
+    return (
+      <>
+        <div className="aspect-video w-52 rounded-lg p-5 shadow-card"></div>
+        <SliderNav {...args} />
+      </>
+    );
   },
 };

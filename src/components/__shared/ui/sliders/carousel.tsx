@@ -11,6 +11,7 @@ import { createUUID } from "@/lib/utils/stringManipulation";
 import { cn } from "@/lib/utils";
 
 import { CarouselProps } from "./types";
+import SliderNav from "./slider-nav";
 
 const Carousel = (props: CarouselProps) => {
   return (
@@ -52,21 +53,16 @@ const Carousel = (props: CarouselProps) => {
 
 const NavButton = ({ position }: { position: "left" | "right" }) => {
   return (
-    <button
+    <SliderNav
       className={cn(
-        "absolute bottom-60 z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-shade text-shade hover:bg-shade-50 hover:text-shade-300 max-lg:bg-shade max-lg:text-shade-300",
+        "border-2 border-shade text-shade hover:bg-shade-50 hover:text-shade-300 max-lg:text-shade-300 lg:bg-transparent",
         {
-          "custom-l-prev left-[5%]": position === "left",
-          "custom-l-next right-[5%]": position === "right",
+          "custom-l-prev": position === "left",
+          "custom-l-next": position === "right",
         },
       )}
-    >
-      {position === "right" ? (
-        <MdChevronRight className="text-xl" />
-      ) : (
-        <MdChevronLeft className="text-xl" />
-      )}
-    </button>
+      position={position}
+    ></SliderNav>
   );
 };
 

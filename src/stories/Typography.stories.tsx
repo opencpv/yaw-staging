@@ -44,7 +44,7 @@ export const P: Story = {
   render: (args) => <p>The lazy fox</p>,
 };
 
-export const P_Card_: Story = {
+export const InsideACard: Story = {
   render: (args) => (
     <>
       <p>

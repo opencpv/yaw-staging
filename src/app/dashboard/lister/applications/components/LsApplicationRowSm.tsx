@@ -95,7 +95,7 @@ const LsApplicationRowSm = ({
         </TableBodySm>
         Actions
         <TableBodySm className="flex justify-center gap-1.5 pt-3">
-          <DeleteButton handleDestruction={() => {}} loading={false} />
+          <DeleteButton onDestruction={() => {}} loading={false} />
         </TableBodySm>
       </TableRowSm>
     </>

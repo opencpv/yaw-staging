@@ -4,9 +4,9 @@ import { cn } from "@/lib/utils";
 import { MdOutlineEdit } from "react-icons/md";
 
 type Props = {
-  onClick?: () => void;
   className?: string;
   variant?: "default" | "ghost";
+  onClick?: () => void;
 };
 
 const EditButton = ({ onClick, variant = "default", className }: Props) => {

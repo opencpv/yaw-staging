@@ -1,7 +1,7 @@
 "use client";
 import emojiStates from "@/enum/feedback/feedbackStates";
 import React from "react";
-import { Slider } from "../slider";
+import { RangeSlider } from "../range-slider";
 import Image from "next/image";
 import { useField } from "formik";
 
@@ -72,7 +72,7 @@ const FeedbackSlider = ({ onChange, value, setValue, name }: Props) => {
             })}
           </div>
           <div>
-            <Slider
+            <RangeSlider
               value={[value]}
               onValueChange={(val) => {
                 onChange(val[0]);

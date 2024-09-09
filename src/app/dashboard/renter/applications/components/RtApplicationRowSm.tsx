@@ -96,7 +96,7 @@ const RtApplicationRowSm = ({
           {status === "Incomplete" ? (
             <>
               <EditButton variant="ghost" onClick={() => ""} />
-              <DeleteButton handleDestruction={() => {}} loading={false} />
+              <DeleteButton onDestruction={() => {}} loading={false} />
             </>
           ) : (
             <MessageButton isIcon />

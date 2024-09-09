@@ -98,7 +98,7 @@ export const WithPagination: Story = {
 };
 
 /**
- * Show navigation buttons
+ * Show navigation buttons. Caution must be taken when used with <strong>loop</strong>. See https://swiperjs.com/swiper-api
  */
 export const WithNavigation: Story = {
   args: {

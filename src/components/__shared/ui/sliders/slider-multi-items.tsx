@@ -13,31 +13,21 @@ import SliderNav from "./slider-nav";
 
 const SliderMultiItems = ({
   items,
-  slidesPerView,
+  slidesPerView = 1.5,
   breakpoints,
-  hasNavAndPagination,
-  autoplay,
+  hasNavAndPagination = true,
   swiperSlideClassName,
-  centeredSlides,
-  spaceBetween,
+  centeredSlides = true,
+  spaceBetween = 15,
 }: SliderMultiItemsProps) => {
   return (
     <>
       {/* lg breakpoint and above */}
       <div className="hidden lg:block">
         <Swiper
-          autoplay={
-            autoplay === false || autoplay === undefined
-              ? false
-              : {
-                  delay: 100,
-                  disableOnInteraction: true,
-                  pauseOnMouseEnter: true,
-                }
-          }
-          slidesPerView={slidesPerView ? slidesPerView : 1.5}
-          spaceBetween={spaceBetween || 15}
-          centeredSlides={centeredSlides || true}
+          slidesPerView={slidesPerView}
+          spaceBetween={spaceBetween}
+          centeredSlides={centeredSlides}
           breakpoints={{
             ...breakpoints,
             330: {
@@ -46,12 +36,10 @@ const SliderMultiItems = ({
           }}
           cssMode
           freeMode={{
-            enabled:
-              autoplay === false || autoplay === undefined ? false : true,
+            enabled: true,
             // momentumRatio: 0.4,
             // momentumVelocityRatio: 0.4,
           }}
-          speed={autoplay ? 30000 : undefined}
           pagination={{
             clickable: true,
             el: ".slider-multi-items-pagination-lg",

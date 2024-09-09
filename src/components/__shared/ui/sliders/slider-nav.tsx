@@ -37,7 +37,7 @@ const SliderNav = ({
       className={cn(
         "flex shrink-0 items-center justify-center rounded-full",
         {
-          "absolute bottom-[40%] z-20": isAbsolute,
+          "absolute bottom-[50%] z-20 translate-y-1/2": isAbsolute,
           "left-[5%]": position === "left",
           "right-[5%]": position === "right",
           "size-10": size === "sm",

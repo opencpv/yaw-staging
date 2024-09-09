@@ -47,13 +47,6 @@ export const Default: Story = {
   },
 };
 
-export const DisableAutoplay: Story = {
-  args: {
-    ...Default.args,
-    autoplay: false,
-  },
-};
-
 export const DisableAutoplayOnInteraction: Story = {
   args: {
     ...Default.args,

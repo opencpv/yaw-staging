@@ -76,19 +76,3 @@ export const WithManyImages: Story = {
     isCover: true,
   },
 };
-
-// Story for a specific responsive design
-export const ResponsiveCarousel: Story = {
-  render: (args: CarouselProps) => {
-    const [activeIndex, setActiveIndex] = useState(0);
-    return (
-      <div style={{ maxWidth: "600px" }}>
-        <Carousel {...args} setActiveIndex={setActiveIndex} />
-      </div>
-    );
-  },
-  args: {
-    images: generateImages(4),
-    isCover: true,
-  },
-};
