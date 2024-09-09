@@ -1,5 +1,5 @@
-import ReviewStarsFixed from "@/app/dashboard/renter/my-reviews/components/ReviewStarsFixed";
 import CaREviewsReply2 from "@/app/dashboard/renter/my-reviews/components/icons/CaReviewsReply2";
+import ReviewStarsFixed from "@/app/dashboard/renter/my-reviews/components/ReviewStarsFixed";
 import Image from "next/image";
 
 type Props = {
@@ -9,11 +9,11 @@ type Props = {
 
 export default function AllReviewCard({ data }: Props) {
   return (
-    <div className="flex w-full max-w-[1431px] flex-col items-start gap-4 pb-4">
-      <div className="flex w-full flex-col items-start gap-4 border-l-4 border-l-[#00974A] pl-4">
+    <div className="flex w-full max-w-[1431px] flex-col items-start   gap-4 pb-4 ">
+      <div className="flex w-full flex-col items-start gap-4  border-l-4  border-l-[#00974A]  pl-4">
         <div className="flex w-full items-center justify-start gap-4">
           <div
-            className={`relative aspect-square h-full w-full max-w-[100px] overflow-hidden rounded-full`}
+            className={`relative aspect-square h-full  w-full max-w-[100px] overflow-hidden rounded-full `}
           >
             <Image
               fill
@@ -23,40 +23,53 @@ export default function AllReviewCard({ data }: Props) {
             />
           </div>
           <div className="flex w-full flex-col gap-1 2xl:gap-2">
-            <h3 className="font-semibold 2xl:text-2xl">{data?.name}</h3>
+            <p className=" font-semibold 2xl:text-2xl">
+              {data?.name}
+            </p>
             <p className="text-sm 2xl:text-base">{data?.date}</p>
             {<ReviewStarsFixed rating={data?.ratings} />}
           </div>
         </div>
 
         <div className="flex w-full gap-1">
-          <p className="max-w-full text-base text-shade-300">{data?.review}</p>
+
+          <p className="text-base text-[#333] m">
+          
+            {data?.review}
+          </p>
         </div>
       </div>
 
-      <div className="flex flex-col items-start justify-center gap-[1.3125rem] border-b-[1px] border-b-[#E9ECEF] pb-6 pl-2">
-        {data?.replies && (
-          <div className="flex items-center gap-1">
-            <p className="text-base font-semibold text-primary">
-              Response from John Doe
-            </p>
-            <CaREviewsReply2 />
-          </div>
-        )}
-        {data?.replies?.map((r: any, index: number) => (
-          <div
-            className="flex w-full items-center justify-start gap-2"
-            key={index}
-          >
-            <div className="relative aspect-square h-full w-full max-w-[50px] overflow-hidden rounded-full">
-              <Image fill alt="Person image" src={r?.image} objectFit="cover" />
+      {data?.replies && (
+        <div className="flex flex-col items-start justify-center gap-[1.3125rem] border-b-[1px] border-b-[#E9ECEF] pb-4 pl-2 ">
+          {data?.replies && (
+            <div className="flex items-center gap-1">
+              <p className="text-base font-semibold text-primary">
+                Response from John Doe
+              </p>
+              <CaREviewsReply2 />
             </div>
-            <div>
-              <p className="text-base">{r?.reply}</p>
+          )}
+          {data?.replies?.map((r: any, index: number) => (
+            <div
+              className="flex w-full items-center justify-start    gap-2"
+              key={index}
+            >
+              <div className="relative aspect-square h-full w-full max-w-[50px] overflow-hidden rounded-full">
+                <Image
+                  fill
+                  alt="Person image"
+                  src={r?.image}
+                  objectFit="cover"
+                />
+              </div>
+              <div>
+                <p className="text-base">{r?.reply}</p>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
