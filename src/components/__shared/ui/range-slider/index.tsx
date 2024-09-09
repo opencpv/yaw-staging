@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 /**
  *An input where the user selects a value from within a given range.
  */
-const Slider = React.forwardRef<
+const RangeSlider = React.forwardRef<
   React.ElementRef<typeof SliderPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>
 >(({ className, ...props }, ref) => (
@@ -26,6 +26,6 @@ const Slider = React.forwardRef<
     <SliderPrimitive.Thumb className="ring-offset-background block h-5 w-5 rounded-full border-2 border-primary bg-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50" />
   </SliderPrimitive.Root>
 ));
-Slider.displayName = SliderPrimitive.Root.displayName;
+RangeSlider.displayName = SliderPrimitive.Root.displayName;
 
-export { Slider };
+export { RangeSlider };

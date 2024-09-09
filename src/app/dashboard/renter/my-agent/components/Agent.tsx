@@ -106,7 +106,7 @@ export default function Agent({
           <ClientOnly>
             <div className="flex gap-2">
               <DeleteButton
-                handleDestruction={handleDelete}
+                onDestruction={handleDelete}
                 loading={isPending}
                 classNames={{ icon: "text-error" }}
                 className="relative top-[0.1rem]"

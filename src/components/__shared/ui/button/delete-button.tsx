@@ -16,7 +16,6 @@ type Props = {
   classNames?: {
     icon?: string;
   };
-  handleDestruction: () => void;
   /**
    * Indicates if the modal's action button is loading
    */
@@ -26,13 +25,14 @@ type Props = {
    */
   label?: string;
   variant?: "default" | "ghost";
+  onDestruction: () => void;
 };
 
 const DeleteButton = ({
   className,
   loading,
   label,
-  handleDestruction,
+  onDestruction,
   classNames,
   variant = "default",
 }: Props) => {
@@ -45,7 +45,7 @@ const DeleteButton = ({
         onClose={onClose}
         onOpenChange={onOpenChange}
         label={label ?? "Are you sure you want to delete this item?"}
-        onAction={handleDestruction}
+        onAction={onDestruction}
         loading={loading}
       />
       <Button

@@ -6,7 +6,7 @@ import { useFetchItems } from "../services";
 import { useSearchParams } from "next/navigation";
 import FetchingStates from "@/components/__shared/ui/data_fetching/fetching-states";
 import EmptyState from "@/components/__shared/ui/states/empty-state";
-import SkeletonItem from "@/components/__shared/ui/skeleton/skeleton-product";
+import SkeletonItem from "@/components/__shared/ui/skeleton/skeleton-item";
 import { cn } from "@/lib/utils";
 import { pluralize } from "@/lib/utils/stringManipulation";
 import { SanityDocument } from "next-sanity";

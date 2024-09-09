@@ -11,8 +11,8 @@ type Props = {
   iconPosition?: "left" | "right";
 } & ButtonProps;
 
-const ButtonCall = ({
-  color,
+const CallButton = ({
+  variant,
   phoneNumber,
   className,
   iconPosition = "left",
@@ -39,7 +39,7 @@ const ButtonCall = ({
   return (
     <div ref={buttonRef} className="flex w-full justify-center">
       <Button
-        color={color}
+        variant={variant}
         size="full"
         className={cn(className)}
         onClick={() => initiatePhoneCall(phoneNumber)}
@@ -64,4 +64,4 @@ const ButtonCall = ({
   );
 };
 
-export default ButtonCall;
+export default CallButton;

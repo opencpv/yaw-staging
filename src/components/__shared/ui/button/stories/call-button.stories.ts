@@ -1,9 +1,9 @@
-import ButtonCall from "@/components/__shared/ui/button/call-button";
+import CallButton from "@/components/__shared/ui/button/call-button";
 import type { Meta, StoryObj } from "@storybook/react";
 
-const meta: Meta<typeof ButtonCall> = {
+const meta: Meta<typeof CallButton> = {
   title: "Components/Buttons/CallButton",
-  component: ButtonCall,
+  component: CallButton,
   tags: ["autodocs"],
   parameters: {
     layout: "centered",

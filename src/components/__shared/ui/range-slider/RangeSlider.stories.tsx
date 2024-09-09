@@ -1,10 +1,10 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { Slider } from ".";
+import { RangeSlider } from ".";
 import React from "react";
 
-const meta: Meta<typeof Slider> = {
-  title: "Components/Slider", // Title for the Storybook sidebar
-  component: Slider,
+const meta: Meta<typeof RangeSlider> = {
+  title: "Components/RangeSlider", // Title for the Storybook sidebar
+  component: RangeSlider,
   tags: ["autodocs"],
   argTypes: {
     value: {
@@ -21,7 +21,7 @@ const meta: Meta<typeof Slider> = {
 
 export default meta;
 
-type Story = StoryObj<typeof Slider>;
+type Story = StoryObj<typeof RangeSlider>;
 
 export const Default: Story = {
   args: {
@@ -32,7 +32,7 @@ export const Default: Story = {
     const [value, setValue] = React.useState([50]);
 
     return (
-      <Slider
+      <RangeSlider
         value={value}
         onValueChange={setValue}
         className={args.className}

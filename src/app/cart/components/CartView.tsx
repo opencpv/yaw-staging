@@ -66,7 +66,7 @@ const CartView = () => {
                 </div>
                 <DeleteButton
                   loading={false}
-                  handleDestruction={() => {
+                  onDestruction={() => {
                     removeItem(item_index);
                   }}
                   className="ssm:hidden"
@@ -80,7 +80,7 @@ const CartView = () => {
             ) : null}
             <DeleteButton
               loading={false}
-              handleDestruction={() => {
+              onDestruction={() => {
                 removeItem(item_index);
               }}
               className="rounded-md bg-secondary-50 p-4 max-ssm:hidden"

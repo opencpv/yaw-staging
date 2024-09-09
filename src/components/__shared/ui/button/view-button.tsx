@@ -4,8 +4,8 @@ import { cn } from "@/lib/utils";
 import { AiOutlineEye } from "react-icons/ai";
 
 type Props = {
-  onOpen: () => void;
   className?: string;
+  onOpen: () => void;
 };
 
 const ViewButton = ({ onOpen, className }: Props) => {

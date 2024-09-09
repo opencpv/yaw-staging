@@ -91,7 +91,7 @@ const LsApplicationRow = ({
         <TableBody className="col-span-1 flex items-center justify-center">
           <div className="flex gap-1.5">
             <DeleteButton
-              handleDestruction={() => {}}
+              onDestruction={() => {}}
               loading={false}
               variant="ghost"
               className="w-fit"

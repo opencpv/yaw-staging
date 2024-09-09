@@ -88,7 +88,7 @@ const TargetedSearchCard = ({ href, property, state, count }: Props) => {
           <EditButton onClick={() => ""} />
           <DeleteButton
             loading={false}
-            handleDestruction={() => {}}
+            onDestruction={() => {}}
             variant="ghost"
           />
         </div>
