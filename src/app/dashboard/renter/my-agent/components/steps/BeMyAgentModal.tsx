@@ -52,12 +52,12 @@ const BeMyAgentValidationSchema = Yup.object({
   convicted: Yup.string().required("Screening & Other Details is Required"),
   has_pets: Yup.string().required("Screening & Other Details is Required"),
   has_vehicles: Yup.string().required("Screening & Other Details is Required"),
-  phone: Yup.string().when("preferred_contact_method", {
-    is: "whatsapp",
+  phone: Yup.string().when("preferredContactMethod", {
+    is: "WhatsApp",
     then: (schema) => schema.required("WhatsApp Number is required"),
   }),
-  email: Yup.string().when("preferred_contact_method", {
-    is: "email",
+  email: Yup.string().when("preferredContactMethod", {
+    is: "Email",
     then: (schema) => schema.email().required("Email must be a valid email"),
   }),
 });

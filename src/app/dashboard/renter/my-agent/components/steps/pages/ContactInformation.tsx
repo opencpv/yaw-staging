@@ -5,13 +5,8 @@ import { Input } from "@/components/__shared/ui/form/input";
 import CountryInput from "@/components/__shared/ui/form/country-input";
 import { Textarea } from "@/components/__shared/ui/form/textarea";
 import style from "../../../index.module.css";
-import { Tabs } from "@/components/__shared/ui/tabs";
-import PhoneNumberInput from "@/components/__shared/ui/form/phone-number-input";
-import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
-import { MdOutlineMailOutline, MdOutlineWhatsapp } from "react-icons/md";
-import { E164Number } from "libphonenumber-js/core";
-import { useField } from "formik";
 import { BeMyAgentDefaultValues } from "@/store/dashboard/BeMyAgentStepsStore";
+import ContactMethodSwitch from "@/app/contact/components/forms/ContactMethodSwitch";
 
 type Props = {};
 
@@ -19,11 +14,6 @@ const ContactInformation = React.forwardRef<HTMLInputElement, Props>(
   ({}, ref) => {
     const [BeMyAgentCreationSteps, setBeMyAgentCreationSteps] =
       useLocalStorage<typeof BeMyAgentDefaultValues>("bma-creation-steps");
-
-    const { handlePhone, handleCountryChange, phone } =
-      usePhoneInputDisclosure();
-
-    const [field, meta, helpers] = useField("preferred_contact_method");
 
     return (
       <Root>
@@ -82,69 +72,7 @@ const ContactInformation = React.forwardRef<HTMLInputElement, Props>(
               <label className="text-shade-300">
                 Preferred Method of Contact
               </label>
-              <div className="w-fit rounded-full bg-primary-600/5 p-2">
-                <Tabs
-                  options={[
-                    {
-                      label: "Email",
-                      icon: <MdOutlineMailOutline />,
-                    },
-                    {
-                      label: "WhatsApp",
-                      icon: <MdOutlineWhatsapp />,
-                    },
-                  ]}
-                  variant="rounded"
-                  selectedKey={field.value}
-                  onSelectionChange={(key) => {
-                    helpers.setValue(key as any);
-                    setBeMyAgentCreationSteps({
-                      ...BeMyAgentCreationSteps,
-                      preferred_contact_method: key as any,
-                    });
-                  }}
-                />
-              </div>
-              {/* email */}
-              <div
-                className={
-                  field.value?.toLowerCase() === "whatsapp" ? "hidden" : "block"
-                }
-              >
-                <Input
-                  name="email"
-                  type="email"
-                  placeholder="Enter your email address"
-                  onChange={(e) =>
-                    setBeMyAgentCreationSteps({
-                      ...BeMyAgentCreationSteps,
-                      email: e.target.value,
-                    })
-                  }
-                />
-              </div>
-              {/* whatsapp */}
-              <div
-                className={
-                  field.value?.toLowerCase() === "whatsapp"
-                    ? "block pt-2"
-                    : "hidden"
-                }
-              >
-                <PhoneNumberInput
-                  id=""
-                  name="whatsApp"
-                  value={phone}
-                  onChange={(val) => {
-                    handlePhone(val);
-                    setBeMyAgentCreationSteps({
-                      ...BeMyAgentCreationSteps,
-                      phone: val as E164Number,
-                    });
-                  }}
-                  onCountryChange={handleCountryChange}
-                />
-              </div>
+              <ContactMethodSwitch />
             </div>
             <Textarea
               name="moving_reason"

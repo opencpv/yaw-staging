@@ -18,7 +18,6 @@ import { useAddSearchCriteria } from "../../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { usePathname } from "next/navigation";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import capitalizeName from "@/lib/utils/stringManipulation";
 import { views as BTFTKViews } from "./BTFTKForm";
 import Link from "next/link";
 import { getFormValues } from "../../utils";
@@ -38,13 +37,13 @@ const BTFTKValidationSchema = Yup.object({
   preferredType: Yup.array().min(1, "Preferred Type of Place is required"),
   requiredFeatures: Yup.array().min(1, "Features is required"),
   location: Yup.array().min(1, "Location is required"),
-  preferredMethodOfContact: Yup.string(),
-  whatsApp: Yup.string().when("preferredMethodOfContact", {
-    is: "whatsapp",
+  preferredContactMethod: Yup.string(),
+  whatsApp: Yup.string().when("preferredContactMethod", {
+    is: "WhatsApp",
     then: (schema) => schema.required("WhatsApp number is required"),
   }),
-  email: Yup.string().when("preferredMethodOfContact", {
-    is: "email",
+  email: Yup.string().when("preferredContactMethod", {
+    is: "Email",
     then: (schema) => schema.email().required("Email must be a valid email"),
   }),
 });
@@ -196,18 +195,18 @@ const BTFTKModal = (props: Props) => {
             criterion?.keywords ||
             BTFTKCreationSteps?.specialKeywords ||
             BTFTKDefaultValues.specialKeywords,
-          preferredMethodOfContact:
+          preferredContactMethod:
             criterion?.preferred_contact_method ||
-            BTFTKCreationSteps?.preferredMethodOfContact ||
-            BTFTKDefaultValues.preferredMethodOfContact,
+            BTFTKCreationSteps?.preferredContactMethod ||
+            BTFTKDefaultValues.preferredContactMethod,
           email:
             criterion?.email ||
             BTFTKCreationSteps?.email ||
             BTFTKDefaultValues.email,
           whatsApp:
             criterion?.phone ||
-            BTFTKCreationSteps?.whatsApp ||
-            BTFTKDefaultValues.whatsApp,
+            BTFTKCreationSteps?.phone ||
+            BTFTKDefaultValues.phone,
         }}
         validationSchema={BTFTKValidationSchema}
         onSubmit={(values) => {

@@ -29,8 +29,6 @@ const FormGeneral = () => {
     contactFormSession,
   } = useContactForm();
 
-  const { handleCountryChange } = usePhoneInputDisclosure();
-
   return (
     <Formik
       initialValues={{
@@ -108,7 +106,7 @@ const FormGeneral = () => {
             <ContactFullNameField />
           </div>
           <div className="form-div">
-            <ContactPhoneField handleCountryChange={handleCountryChange} />
+            <ContactPhoneField />
           </div>
           <div>
             <ContactMessageField />

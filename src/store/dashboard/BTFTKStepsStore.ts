@@ -28,7 +28,7 @@ export const BTFTKDefaultValues = {
   specialKeywords: "",
   location: [],
   email: "",
-  whatsApp: "",
+  phone: "",
   priceRangeMinimum: "1000",
   priceRangeMaximum: "4000",
   bedMinimum: "1",
@@ -37,7 +37,7 @@ export const BTFTKDefaultValues = {
   bathroomMaximum: "1",
   preferredType: [],
   requiredFeatures: [],
-  preferredMethodOfContact: "email",
+  preferredContactMethod: "email",
 };
 
 export const BTFTKStepsStore = create<BTFTKStepsStore>((set) => ({

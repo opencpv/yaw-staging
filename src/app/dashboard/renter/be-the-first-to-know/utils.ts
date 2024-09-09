@@ -1,6 +1,4 @@
-import capitalizeName, {
-  convertYesNoToBoolean,
-} from "@/lib/utils/stringManipulation";
+import capitalizeName from "@/lib/utils/stringManipulation";
 import { BTFTKDefaultValues } from "@/store/dashboard/BTFTKStepsStore";
 
 export const getFormValues = (values: typeof BTFTKDefaultValues) => {
@@ -14,8 +12,8 @@ export const getFormValues = (values: typeof BTFTKDefaultValues) => {
     max_bathrooms: values.bathroomMaximum,
     property_type: values.preferredType,
     email: values.email,
-    phone: values.whatsApp,
-    preferred_contact_method: capitalizeName(values.preferredMethodOfContact),
+    phone: values.phone,
+    preferred_contact_method: capitalizeName(values.preferredContactMethod),
     features: values.requiredFeatures,
     keywords: values.specialKeywords,
   };

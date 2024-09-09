@@ -3,28 +3,40 @@ import PhoneNumberInput from "@/components/__shared/ui/form/phone-number-input";
 import { Input } from "@/components/__shared/ui/form/input";
 import { Tabs } from "@/components/__shared/ui/tabs";
 import { MdOutlineMailOutline, MdOutlineWhatsapp } from "react-icons/md";
-import { useField } from "formik";
-import { E164Number, CountryCode } from "libphonenumber-js/core";
+import { FieldHelperProps, FieldInputProps, useFormikContext } from "formik";
+import { E164Number } from "libphonenumber-js/core";
 import { useContactForm } from "./hooks/useContactForm";
+import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import { cn } from "@/lib/utils";
 
 type Contact = "Email" | "WhatsApp";
 
 type Props = {
-  selectedKey?: Contact;
-  handleCountryChange: (country: CountryCode | undefined) => void;
+  name: string;
+  placeholder: string;
+  className?: string;
 };
 
-const PreferredContactMethod = ({
-  handleCountryChange,
-}: Props & React.HTMLProps<HTMLInputElement>) => {
-  const [field, meta, helpers] = useField("preferredContactMethod");
+/**
+ * A switch component that allows users to select their preferred contact method.
+ */
+const ContactMethodSwitch = ({ name, placeholder, className }: Props) => {
+  const formikContext = useFormikContext();
+  let helpers: FieldHelperProps<any> | undefined;
+  let field: FieldInputProps<any> | undefined;
+
+  if (formikContext) {
+    field = formikContext.getFieldProps(name as string);
+    helpers = formikContext.getFieldHelpers(name as string);
+  }
   const { handleSessionChange, contactFormSession } = useContactForm();
   const selectedKey =
-    (contactFormSession.preferredContactMethod as Contact) || field.value;
+    (contactFormSession.preferredContactMethod as Contact) || field?.value;
+  const { handleCountryChange } = usePhoneInputDisclosure();
 
   return (
     <>
-      <div className="w-fit rounded-full bg-primary-600/5 p-2">
+      <div className={cn("w-fit rounded-full bg-primary-600/5 p-2", className)}>
         <Tabs
           options={[
             {
@@ -38,7 +50,7 @@ const PreferredContactMethod = ({
           ]}
           selectedKey={selectedKey}
           onSelectionChange={(key) => {
-            helpers.setValue(key as any);
+            helpers?.setValue(key);
             handleSessionChange("preferredContactMethod", key);
           }}
           variant="rounded"
@@ -63,10 +75,11 @@ const PreferredContactMethod = ({
             handleSessionChange("phone", value as E164Number);
           }}
           onCountryChange={handleCountryChange}
+          placeholder={"WhatsApp" || placeholder}
         />
       </div>
     </>
   );
 };
 
-export default PreferredContactMethod;
+export default ContactMethodSwitch;

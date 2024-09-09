@@ -15,7 +15,6 @@ import Loader from "@/components/__shared/ui/loader";
 
 const ContactForm = () => {
   const [loading, setLoading] = useState(false);
-  const { handleCountryChange } = usePhoneInputDisclosure();
   const { contactFormSession } = useContactForm();
   const [faqFormSession] = useSessionStorage("faqFormSession", {
     message: "",
@@ -62,7 +61,7 @@ const ContactForm = () => {
             <ContactFullNameField />
           </div>
           <div className="w-full">
-            <ContactPhoneField handleCountryChange={handleCountryChange} />
+            <ContactPhoneField />
           </div>
           <div>
             <FaqMessageField />

@@ -31,8 +31,6 @@ const FormReport = () => {
     handleSessionChange,
   } = useContactForm();
 
-  const { handleCountryChange } = usePhoneInputDisclosure();
-
   const { reportIssueHref, setReportIssueHref } = useContactStore();
 
   useEffect(() => {
@@ -124,7 +122,7 @@ const FormReport = () => {
             <ContactFullNameField />
           </div>
           <div className="form-div">
-            <ContactPhoneField handleCountryChange={handleCountryChange} />
+            <ContactPhoneField />
           </div>
           <div>
             <ContactMessageField />

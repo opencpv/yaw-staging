@@ -213,7 +213,9 @@ const AddItemPage = () => {
                   color="primary"
                 />
                 <div className="flex flex-col gap-y-2">
-                  <h3 className="text-grayText">Preferred Method of contact</h3>{" "}
+                  <h3 className="text-shade-900">
+                    Preferred Method of contact
+                  </h3>{" "}
                   <Checkbox
                     name="inAppCheck"
                     defaultChecked

@@ -301,7 +301,7 @@ const UpdateItemPage = () => {
                     />
 
                     <div className="flex flex-col gap-y-2">
-                      <p className="text-grayText">
+                      <p className="text-shade-900">
                         Preferred Method of contact
                       </p>
                       <Checkbox
