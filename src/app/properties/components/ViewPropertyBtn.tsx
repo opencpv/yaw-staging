@@ -1,0 +1,92 @@
+"use client";
+import Link from "next/link";
+import React from "react";
+import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
+import { useModalFullscreenStore } from "@/store/modal/useModalStore";
+import dynamic from "next/dynamic";
+import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+const PropertyGalleryModal = dynamic(() => import("./PropertyGalleryModal"));
+
+type Props = {
+  href: string;
+  className?: string;
+  disabled?: boolean;
+};
+
+const ViewPropertyBtn = ({ href, className, disabled }: Props) => {
+  const { isOpen, onClose, onOpen, onOpenChange } = useDisclosure();
+  const setHideWindowScrollbar = useModalFullscreenStore(
+    (state) => state.setHideWindowScrollbar,
+  );
+
+  const pathname = usePathname();
+  return (
+    <>
+      <PropertyGalleryModal
+        onOpenChange={onOpenChange}
+        onClose={onClose}
+        isOpen={isOpen}
+        itemData={{} as any}
+      />
+      {pathname === "/" ? (
+        <Link
+          href={`${href}`}
+          className={`absolute bottom-20 right-5 z-10 scale-75 transition-all hover:-translate-y-2 ssm:right-80 sm:bottom-64 md:scale-100 lg:bottom-72 lg:right-20 ${className}`}
+        >
+          <div
+            className={`flex h-32 w-32 items-center justify-center rounded-full border border-white`}
+          >
+            <motion.div
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 0.4 }}
+              transition={{
+                repeat: Infinity,
+                duration: 3,
+                ease: "linear",
+                repeatType: "reverse",
+              }}
+              className={`flex h-24 w-24 items-center justify-center rounded-full bg-[#305A61] text-white`}
+            >
+              View
+            </motion.div>
+          </div>
+        </Link>
+      ) : (
+        <div
+          className={`absolute bottom-32 right-10 scale-75 cursor-pointer transition-all hover:-translate-y-2 md:bottom-20 md:right-32 md:scale-100 ${
+            disabled && "pointer-events-none cursor-not-allowed"
+          } ${className}`}
+          onClick={() => {
+            onOpen();
+            setHideWindowScrollbar(true);
+          }}
+        >
+          <div
+            className={`flex h-48 w-48 items-center justify-center rounded-full border ${
+              disabled ? "border-neutral-700" : "border-[#305A61]"
+            }`}
+          >
+            <motion.div
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 0.4 }}
+              transition={{
+                repeat: Infinity,
+                duration: 3,
+                ease: "linear",
+                repeatType: "reverse",
+              }}
+              className={`flex h-32 w-32 items-center justify-center rounded-full ${
+                disabled ? "bg-neutral-700" : "bg-[#305A61]"
+              } text-white`}
+            >
+              View
+            </motion.div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
+export default ViewPropertyBtn;

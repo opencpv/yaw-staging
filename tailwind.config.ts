@@ -1,0 +1,155 @@
+import type { Config } from "tailwindcss";
+import defaultTheme from "tailwindcss/defaultTheme";
+import { mauve, violet, green, blackA } from "@radix-ui/colors";
+
+const config: Config = {
+  content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-conic":
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "plane-pattern": "url('/assets/images/13783 1.png')",
+        "terms-bg": "url('/assets/images/legalbg2.jpg')",
+        "about-bg": "url('/assets/images/about-bg.png')",
+        "my-search-bg": "url('/assets/images/my-search-bg.png')",
+        "menu-sm": "url('/assets/svgs/bgMenuSmall.svg')",
+        "menu-lg": "url('/assets/images/menu-bg.png')",
+      },
+      colors: {
+        ...mauve,
+        ...violet,
+        ...green,
+        ...blackA,
+        modalOverlay: "#02020275",
+        primary: {
+          DEFAULT: "#11605E",
+          50: "#E7EFEF",
+          100: "#21A19F",
+          200: "#45808B",
+          300: "#E6F6EE",
+          400: "#396261",
+          500: "#11605E",
+          600: "#063635",
+          800: "#0B6E4F",
+          900: "#273A2F",
+        },
+        secondary: {
+          50: "#F1F1F1",
+          300: "#DFE7E7",
+          400: "#99B3B2",
+          500: "#ECF2F3",
+        },
+        accent: {
+          DEFAULT: "#DDB771",
+          50: "#DDB771",
+          100: "#F1B346",
+          200: "#AD842A",
+        },
+        shade: {
+          DEFAULT: "#F8F8F8",
+          50: "#E6E6E6",
+          200: "#8A8A8A",
+          300: "#545454",
+          500: "#262626",
+          900: "#6A6968",
+        },
+        success: {
+          DEFAULT: "#287D3C",
+          bg: "#EDF9F0",
+          100: "#B0E3C9",
+        },
+        warning: {
+          DEFAULT: "#B95000",
+          bg: "#FFF4EC",
+          400: "#FFB733",
+        },
+        error: {
+          DEFAULT: "#DA1414",
+          bg: "#FEEFEF",
+          50: "#FEF3F2",
+          100: "#851e1e",
+        },
+        info: {
+          DEFAULT: "#2E5AAC",
+          bg: "#EEF2FA",
+        },
+      },
+      gridTemplateColumns: {
+        "autofit-listing-card": "repeat(auto-fit, minmax(380px, 1fr))",
+        "autofit-ad-card": "repeat(1, minmax(200px, 1fr))",
+      },
+      fontFamily: {
+        sans: ["var(--font-open-sans)", ...defaultTheme.fontFamily.sans],
+        montserrat: ["var(--font-montserrat)", ...defaultTheme.fontFamily.sans],
+        pacifico: ["var(--font-pacifico)", ...defaultTheme.fontFamily.mono],
+      },
+      screens: {
+        xxs: "280px",
+        xsm: "360px", // :-D
+        xs: "425px",
+        ssm: "540px", // : -(
+        ...defaultTheme.screens,
+        llg: "1150px",
+        hd: "1670px",
+        "3xl": "1728px",
+        fhd: "1920px",
+      },
+      boxShadow: {
+        card: "6px 4px 36px 10px #2F2B2B0D, -6px 4px 200px 10px #2F2B2B0D",
+      },
+      scale: {
+        102: "1.02",
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        "fade-in": {
+          from: { opacity: "0" },
+          to: { opacity: "1" },
+        },
+        "fade-out": {
+          from: { opacity: "1" },
+          to: { opacity: "0" },
+        },
+        "zoom-in": {
+          from: {
+            transform: "scale(0.95)",
+            opacity: "0",
+            transformOrigin: "50% 0% 0px",
+          },
+          to: {
+            transform: "scale(1)",
+            opacity: "1",
+            transformOrigin: "50% 0% 0px",
+          },
+        },
+        "zoom-out": {
+          from: { transform: "scale(1)" },
+          to: { transform: "scale(0.95)" },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+        "fade-in": "fade-in 0.2s ease-out",
+        "fade-out": "fade-out 0.2s ease-out",
+        "zoom-in": "zoom-in 0.2s ease-out",
+        "zoom-out": "zoom-out 0.1s ease-out",
+      },
+    },
+  },
+  plugins: [],
+};
+export default config;

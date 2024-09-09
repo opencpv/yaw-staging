@@ -1,0 +1,41 @@
+"use client";
+import { LinkButton } from "@/components/__shared/ui/button";
+import { useAssets } from "@/lib/custom-hooks/useAssets";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import React from "react";
+import { FaArrowRight } from "react-icons/fa";
+const FramerWrapper = dynamic(
+  () => import("@/components/__shared/hoc/framer-wrapper"),
+);
+
+const SellYourItem = () => {
+  const { icons } = useAssets();
+  return (
+    <div className="flex w-full items-center justify-center rounded-xl py-24 shadow-card">
+      <div className="flex flex-wrap justify-center gap-y-3 px-8 xs:px-16">
+        <FramerWrapper>
+          <Image
+            src={icons.PeopleSell}
+            alt="Two people handshaking"
+            width={200}
+            height={200}
+          />
+        </FramerWrapper>
+        <div className="space-y-3">
+          <h4 className="font-[600] capitalize">
+            Moving? Sell slightly used items
+          </h4>
+          <p className="mb-1 text-sm capitalize text-neutral-600">
+            Your Exclusive Marketplace, Completely Fee-Free
+          </p>
+          <LinkButton href="sell-products" size={"full"} className="capitalize">
+            Add Sale Item <FaArrowRight />
+          </LinkButton>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default SellYourItem;

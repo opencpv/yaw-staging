@@ -1,0 +1,69 @@
+import { Meta, StoryObj } from "@storybook/react";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from ".";
+import React from "react";
+
+const meta: Meta<typeof Command> = {
+  title: "Components/Command", // Title for the Storybook sidebar
+  component: Command,
+  tags: ["autodocs"],
+  parameters: {
+    layout: "centered",
+  },
+  argTypes: {
+    children: {
+      control: "object",
+    },
+  },
+};
+
+export default meta;
+
+type Story = StoryObj<typeof Command>;
+
+export const Default: Story = {
+  args: {
+    onValueChange: () => {},
+    className: "max-h-[200px] w-full",
+  },
+  render: (args) => {
+    const countryData = [
+      {
+        value: "Afghanistan",
+        label: "Afghanistan",
+      },
+      {
+        value: "Albania",
+        label: "Albania",
+      },
+      {
+        value: "Ghana",
+        label: "Ghana",
+      },
+    ];
+    return (
+      <Command {...args}>
+        <CommandInput
+          className="focus:outline-none"
+          placeholder="Search data..."
+        />
+        <CommandList>
+          <CommandEmpty>No data found.</CommandEmpty>
+          <CommandGroup>
+            {countryData?.map((data) => (
+              <CommandItem key={data?.value} onSelect={() => {}}>
+                {data?.label}
+              </CommandItem>
+            ))}
+          </CommandGroup>
+        </CommandList>
+      </Command>
+    );
+  },
+};

@@ -1,0 +1,34 @@
+.paginationMenu {
+  @apply fixed inset-0 z-[9999] h-screen max-h-screen space-y-14 overflow-y-auto bg-cover bg-no-repeat p-10 shadow-2xl;
+  transition: clip-path 1.1s;
+}
+
+.paginationMenuHidden {
+  clip-path: circle(0 at 100% 0);
+  animation: fadeOut 1s;
+}
+
+.paginationMenuVisible {
+  clip-path: circle(150% at 100% 0);
+  opacity: 1;
+}
+
+.visibleMobileSearch {
+  @apply visible translate-y-full;
+}
+
+.hiddenMobileSearch {
+  transform: scaleY(0);
+  @apply -translate-y-full;
+  visibility: hidden;
+  opacity: 0;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

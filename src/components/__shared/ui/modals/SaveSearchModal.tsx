@@ -1,0 +1,145 @@
+import React from "react";
+import { HiSaveAs } from "react-icons/hi";
+import { Button } from "../button";
+import { BiDotsVerticalRounded } from "react-icons/bi";
+import { FiTrash2 } from "react-icons/fi";
+import { cn } from "@/lib/utils";
+import CloseModalIcon from "../icons/CloseModalIcon";
+import dynamic from "next/dynamic";
+import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
+import {
+  ActionContent,
+  ActionItem,
+  ActionItemTrigger,
+  ActionPopover,
+} from "@/components/__shared/ui/popover/action-popover";
+const Modal = dynamic(() => import("./dialog").then((mod) => mod.Modal));
+const PopupModal = dynamic(() =>
+  import("../alert-dialog").then((mod) => mod.PopupModal),
+);
+
+type Props = {
+  className?: string;
+};
+
+let recentSearchDemo = true;
+
+const SaveSearchModal = (props: Props) => {
+  const { isOpen, onOpenChange, onOpen } = useDisclosure();
+
+  return (
+    <>
+      <Button size={"icon"} variant={"ghost"}>
+        <HiSaveAs
+          className={cn("cursor-pointer text-[#21A19F]", props.className)}
+          title="Saved search"
+          size={20}
+          onClick={onOpen}
+        />
+      </Button>
+      <Modal
+        closeButton={<CloseModalIcon />}
+        header={<ModalHeader />}
+        body={<ModalBody />}
+        footer={<ModalFooter />}
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        size="xl"
+        className="max-w-2xl"
+      />
+    </>
+  );
+};
+
+const ModalHeader = () => {
+  return <h2>Save search</h2>;
+};
+
+const ModalBody = () => {
+  return (
+    <div>
+      <h3 className="font-normal text-neutral-500">Provide a search Name</h3>
+      <div className="mt-4 grid grid-cols-5 gap-2">
+        <input
+          type="text"
+          className="col-span-5 rounded-sm border p-3 outline-none xs:col-span-4"
+          placeholder="Bantama search"
+        />
+        <Button className="col-span-1">Save</Button>
+      </div>
+      <div className="mt-8 border-t pt-4">
+        <h3 className="font-medium">Your saved searches</h3>
+        <div className="mt-4 space-y-9 px-1.5 ssm:space-y-5">
+          {recentSearchDemo ? (
+            <>
+              {[1, 2, 4].map((idx) => (
+                <RecentSearch
+                  key={idx}
+                  title="Bantama Search One"
+                  date="30 Jan, 2024"
+                />
+              ))}
+            </>
+          ) : (
+            <div className="flex h-40 items-center justify-center">
+              No Saved search
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ModalFooter = () => {
+  return (
+    <Button variant="ghost" className="mb-5 text-neutral-800 underline">
+      View All
+    </Button>
+  );
+};
+
+const RecentSearch = ({ title, date }: { title: string; date: string }) => {
+  const { isOpen, onOpenChange, onOpen, onClose } = useDisclosure();
+
+  return (
+    <div className="grid grid-cols-9 gap-6 ssm:items-center">
+      <div className="col-span-5 xs:col-span-6 ssm:col-span-4">
+        <p className="truncate font-medium text-shade-300" title={title}>
+          {title}
+        </p>
+        {/* shows only on mobile */}
+        <p className="mt-2 text-shade-200 ssm:hidden">{date}</p>
+      </div>
+      <p className="col-span-2 hidden text-shade-200 ssm:inline-grid">{date}</p>
+      <Button
+        variant="outline"
+        color="primary"
+        className="col-span-3 px-1 font-normal xs:col-span-2"
+      >
+        Run Search
+      </Button>
+      <ActionPopover>
+        <ActionItemTrigger className="col-span-1 ml-auto p-2">
+          <BiDotsVerticalRounded />
+        </ActionItemTrigger>
+        <ActionContent className="rounded-md bg-[#fefefe]">
+          <ActionItem onClick={onOpen}>
+            Delete
+            <FiTrash2 />
+          </ActionItem>
+        </ActionContent>
+      </ActionPopover>
+
+      <PopupModal
+        label="Are you sure you want to delete this saved search?"
+        onClose={onClose}
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        onAction={() => {}}
+      />
+    </div>
+  );
+};
+
+export default SaveSearchModal;
