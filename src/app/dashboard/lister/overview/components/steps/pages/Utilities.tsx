@@ -6,7 +6,7 @@ import { useField } from "formik";
 import { utilities } from "../../../../../components/shared/content";
 import { ListingDefaultValues } from "@/store/dashboard/ListingStepsStore";
 import UtilitiesIncludedModal from "../../UtilitiesIncludedModal";
-// import { useDisclosure } from "@nextui-org/react";
+import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import React, { useEffect, useRef } from "react";
 import toast from "react-hot-toast";
 
@@ -16,7 +16,7 @@ export default function Utilities() {
     typeof ListingDefaultValues
   >("listing-creation-steps");
 
-  // const { onOpenChange, isOpen, onOpen, onClose } = useDisclosure();
+  const { onOpenChange, isOpen, onOpen, onClose } = useDisclosure();
   const [selectedUtility, setSelectedUtility] = React.useState("");
   const [field, meta, helpers] = useField("utilities");
   const [fieldUtilityInc, _, helpersUtilityInc] =
@@ -51,7 +51,7 @@ export default function Utilities() {
 
   const openModal = (utility: string) => {
     setSelectedUtility(utility);
-    // onOpen();
+    onOpen();
   };
 
   const handleYes = () => {
@@ -98,13 +98,13 @@ export default function Utilities() {
 
   return (
     <>
-      {/* <UtilitiesIncludedModal
+      <UtilitiesIncludedModal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         handleYes={handleYes}
         handleNo={onClose}
         utility={selectedUtility}
-      /> */}
+      />
       <div ref={bodyRef} className={style.container}>
         <div className={style.titleCallOutContainer}>
           <h2 className={`${style.titleNoMargin}`}>

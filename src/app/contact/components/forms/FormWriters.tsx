@@ -108,7 +108,7 @@ const FormWriters = () => {
             <ContactFullNameField />
           </div>
           <div className="form-div">
-            <ContactPhoneField handleCountryChange={handleCountryChange} />
+            <ContactPhoneField />
           </div>
           <div>
             <ContactMessageField />

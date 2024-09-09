@@ -3,7 +3,7 @@ import React from "react";
 import { formatDate } from "@/lib/utils/stringManipulation";
 import RtApplicationStatus from "./RtApplicationStatus";
 import { useDaysDifference } from "@/lib/custom-hooks/useDaysDifference";
-// import { useDisclosure } from "@nextui-org/react";
+import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { RenterApplicationsInterface } from "../../../../../../interfaces";
 import { TableBodySm, TableRowSm } from "@/components/__shared/ui/table";
 import TbPropertyImageSm from "@/app/dashboard/components/shared/ui/TbPropertyImageSm";
@@ -29,7 +29,7 @@ const RtApplicationRowSm = ({
   status,
 }: RenterApplicationsInterface) => {
   const { images } = useAssets();
-  // const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
+  const { onClose, isOpen, onOpenChange, onOpen } = useDisclosure();
 
   const daysDifference = useDaysDifference(date);
 
