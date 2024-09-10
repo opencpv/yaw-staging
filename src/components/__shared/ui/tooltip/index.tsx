@@ -58,8 +58,10 @@ const Tooltip = React.forwardRef<
     {/* Popover used as Tooltip on mobile since tooltip works only on hover */}
     <span className="md:hidden">
       <Popover>
-        <PopoverTrigger className="h-fit w-fit">
-          <button className="h-fit w-fit">{children}</button>
+        <PopoverTrigger className="h-fit w-fit" asChild>
+          <button type="button" className="h-fit w-fit">
+            {children}
+          </button>
         </PopoverTrigger>
         <PopoverContent
           side={side}

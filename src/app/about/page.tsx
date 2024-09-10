@@ -7,6 +7,7 @@ import { loadQuery } from "@/lib/utils/sanity/sanityStore";
 import { SanityDocument } from "next-sanity";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import dynamic from "next/dynamic";
+import Loader from "@/components/__shared/ui/loader";
 const SimpleSlider = dynamic(() => import("./components/Slider/SimpleSlider"));
 const FramerWrapper = dynamic(
   () => import("@/components/__shared/hoc/framer-wrapper"),
@@ -19,6 +20,9 @@ const Navbar = dynamic(() => import("@/components/__shared/ui/Navbar"));
 const Footer = dynamic(() => import("@/components/__shared/ui/footer"));
 const FeaturedListings = dynamic(
   () => import("@/components/__shared/ui/listing/featured-listings"),
+  {
+    loading: () => <Loader />,
+  },
 );
 const AboutOurTags = dynamic(() => import("./components/AboutOurTags"));
 
@@ -72,7 +76,7 @@ const About = async () => {
             </div>
           </div>
         </div>
-        <div className="mt-14 flex items-center justify-center">
+        <section className="fade-in-bottom mt-14 flex items-center justify-center">
           <div className="relative h-60 w-full md:h-[30rem]">
             <Image
               src={urlForImage(featuredImage)?.url() as string}
@@ -81,7 +85,7 @@ const About = async () => {
               style={{ objectFit: "cover" }}
             />
           </div>
-        </div>
+        </section>
 
         <div
           id="QePYkSphjGkugQ=="

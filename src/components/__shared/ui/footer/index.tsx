@@ -98,10 +98,10 @@ const Footer = (props: Props) => {
           )}
         </section>
 
-        <div className="w-fit px-8">
+        <section className="w-fit px-8">
           <Logo size="lg" />
-        </div>
-        <div className="mx-auto flex flex-col items-center gap-10 px-6 text-[#fff] lg:w-8/12">
+        </section>
+        <section className="mx-auto flex flex-col items-center gap-10 px-6 text-white lg:w-8/12">
           <p
             className={
               "max-w-[1077px] text-[32px] font-[500] leading-normal xl:text-[48px] 2xl:tracking-[-1.92px]"
@@ -120,7 +120,7 @@ const Footer = (props: Props) => {
             .
           </p>
           <SubscribeForm onSubmit={handleSubmit} />
-        </div>
+        </section>
 
         <div className="mt-10 flex flex-col items-center gap-10 pb-14 text-[32px] text-[#fff]">
           <h2 className="font-bold">

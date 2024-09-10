@@ -3,14 +3,15 @@ import { Button } from "@/components/__shared/ui/button";
 import style from "../Contact.module.css";
 import { Tabs, TabsList, TabsTrigger } from "@/components/__shared/ui/tabs";
 import { cn } from "@/lib/utils";
-import { ContactTabActiveKey, tag } from "@/store/contact/useContactStore";
-import { usePathname, useRouter } from "next/navigation";
+import { ContactTabActiveKey } from "@/store/contact/useContactStore";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import { BiRightArrowCircle } from "react-icons/bi";
+import { useContactForm } from "./forms/hooks/useContactForm";
 
 const ContactTabs = () => {
   const router = useRouter();
-  const pathname = usePathname();
+  const { tag } = useContactForm();
   const [active, setActive] = useState<ContactTabActiveKey>(tag || "general");
   const [isEndOfContainer, setIsEndOfContainer] = useState<boolean>(false);
 

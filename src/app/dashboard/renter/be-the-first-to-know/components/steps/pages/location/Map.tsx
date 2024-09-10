@@ -9,20 +9,9 @@ import { motion } from "framer-motion";
 import { useField } from "formik";
 import { BTFTKDefaultValues } from "@/store/dashboard/BTFTKStepsStore";
 import { useLocalStorage } from "@uidotdev/usehooks";
+import { debounce } from "@/lib/utils";
 
 type Props = {};
-
-const debounce = (func: any, delay: number) => {
-  let timeoutId: any;
-  return (...args: any) => {
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-    }
-    timeoutId = setTimeout(() => {
-      func(...args);
-    }, delay);
-  };
-};
 
 // Function to change the map view
 const ChangeView = ({ center }: { center: any }) => {
@@ -71,7 +60,7 @@ const Map = (props: Props) => {
     }
   };
 
-  const debouncedHandleInputChange = debounce(handleInputChange, 300); // 300 milliseconds debounce delay
+  const debouncedHandleInputChange = debounce(handleInputChange); // 300 milliseconds debounce delay
 
   const handleSuggestionClick = (lat: any, lon: any, display_name: any) => {
     const truncatedName = display_name.split(",").slice(0, 2).join("");

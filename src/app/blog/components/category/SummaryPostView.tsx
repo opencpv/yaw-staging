@@ -5,6 +5,8 @@ import PostsGrid from "../post/PostsGrid";
 import Pagination, { usePagination } from "@/components/__shared/ui/pagination";
 import { usePathname } from "next/navigation";
 import slugify from "@/lib/utils/slugify";
+import { debounce } from "@/lib/utils";
+import toast from "react-hot-toast";
 
 type Props = {
   categories: string[];
@@ -29,6 +31,7 @@ const SummaryPostView = (props: Props) => {
     const res = await fetch(`${location.origin}/api/blog?search=${searchText}`);
 
     if (!res.ok) {
+      toast.error("Failed to fetch data");
       throw new Error("Failed to fetch data");
     }
     const data = await res.json();
@@ -71,7 +74,10 @@ const SummaryPostView = (props: Props) => {
           (category: any) => category.category_title,
         )}
         handleSearch={handleSearch}
-        onChange={(e) => setSearchText(e.target.value)}
+        onChange={(e) => {
+          setSearchText(e.target.value);
+          debounce(handleSearch());
+        }}
       />
       <div className="flex items-center justify-center text-neutral-500">
         <PostsGrid

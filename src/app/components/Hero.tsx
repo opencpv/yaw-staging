@@ -15,7 +15,7 @@ type Props = {
   data: any;
 };
 
-const Landing = (props: Props) => {
+const Hero = (props: Props) => {
   const title = props.data.title.split(" ").slice(0, -1).join(" ");
   const titleHighlight = props.data.title.split(" ").slice(-1)[0];
 
@@ -96,4 +96,4 @@ const Landing = (props: Props) => {
   );
 };
 
-export default Landing;
+export default Hero;

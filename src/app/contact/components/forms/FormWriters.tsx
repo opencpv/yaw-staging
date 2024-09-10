@@ -7,7 +7,6 @@ import { useContactForm } from "./hooks/useContactForm";
 import ContactMessageField from "./ContactMessageField";
 import ContactFullNameField from "./ContactFullNameField";
 import ContactPhoneField from "./ContactPhoneField";
-import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import { generateString } from "@/lib/utils";
 import slugify from "@/lib/utils/slugify";
@@ -15,21 +14,12 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { Button } from "@/components/__shared/ui/button";
 import { UploadFile } from "../UploadFile";
-import { tag } from "@/store/contact/useContactStore";
 
 const FormWriters = () => {
-  const {
-    file,
-    formRef,
-    loading,
-    setLoading,
-    tableName,
-    handleFileUpload,
-    handleFileRemove,
-    contactFormSession,
-  } = useContactForm();
+  const { tag } = useContactForm();
 
-  const { handleCountryChange } = usePhoneInputDisclosure();
+  const { file, formRef, loading, setLoading, tableName, contactFormSession } =
+    useContactForm();
 
   return (
     <Formik
@@ -102,7 +92,7 @@ const FormWriters = () => {
           });
       }}
     >
-      <Form ref={formRef} className="w-full pt-8">
+      <Form ref={formRef} className="fade-in w-full pt-8">
         <div className="flex flex-col gap-10">
           <div className="form-div">
             <ContactFullNameField />
@@ -113,11 +103,7 @@ const FormWriters = () => {
           <div>
             <ContactMessageField />
           </div>
-          <UploadFile
-            file={file as File}
-            handleFileUpload={handleFileUpload}
-            handleFileRemove={handleFileRemove}
-          />
+          <UploadFile />
 
           <Button
             className="max-w-full xs:max-w-fit"

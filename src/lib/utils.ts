@@ -31,3 +31,15 @@ export const updateFilename = (file: File, newFileName: string) => {
     lastModified: file.lastModified,
   });
 };
+
+export const debounce = (func: any, delay: number = 300) => {
+  let timeoutId: any;
+  return (...args: any) => {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+    timeoutId = setTimeout(() => {
+      func(...args);
+    }, delay);
+  };
+};
