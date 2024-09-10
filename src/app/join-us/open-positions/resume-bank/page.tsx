@@ -1,11 +1,16 @@
-import JobApplicationForm from "../components/JobApplicationForm";
 import styles from "./index.module.css";
-import JoinUsButtons from "../../components/JoinUsButtons";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import { LinkButton } from "@/components/__shared/ui/button";
 import CaJoinUsIconLeft from "../components/icons/CaJoinUsIconLongLeft";
+import Loader from "@/components/__shared/ui/loader";
+const JobApplicationForm = dynamic(
+  () => import("../components/JobApplicationForm"),
+  {
+    loading: () => <Loader />,
+  },
+);
 const Footer = dynamic(() => import("@/components/__shared/ui/footer"));
 
 export const metadata: Metadata = {

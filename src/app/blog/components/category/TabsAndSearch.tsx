@@ -13,7 +13,11 @@ const TabsAndSearch = ({ handleSearch, categories, onChange }: Props) => {
   return (
     <div className="mb-10 flex flex-col gap-5">
       <div className="w-full max-w-2xl flex-1">
-        <SearchInput onEnter={handleSearch} onChange={onChange} />
+        <SearchInput
+          placeholder="Search blog posts..."
+          onEnter={handleSearch}
+          onChange={onChange}
+        />
       </div>
       <div className="hidden-scrollbar flex-1 overflow-x-auto">
         <CategoryTabs categories={categories} />

@@ -63,7 +63,10 @@ const FixedSocials = ({ thresholdMin }: Props) => {
   };
 
   return (
-    <div className={`fixed left-0 top-40 z-50`} ref={socialsRef}>
+    <div
+      className={`fixed left-0 top-1/2 z-50 translate-y-1/2`}
+      ref={socialsRef}
+    >
       <motion.section
         variants={variants}
         animate={showSocials ? "show" : "hide"}

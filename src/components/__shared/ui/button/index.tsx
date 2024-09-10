@@ -80,7 +80,7 @@ const Button = React.forwardRef<
   React.ButtonHTMLAttributes<HTMLButtonElement> & ButtonProps
 >(({ children, isLoading, ...props }, ref) => {
   return (
-    <BaseButton ref={ref} disabled={isLoading} {...props}>
+    <BaseButton ref={ref} disabled={isLoading} type="button" {...props}>
       <>
         {isLoading && <LuLoader2 className="mr-2 h-4 w-4 animate-spin" />}
         {children}

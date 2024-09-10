@@ -47,11 +47,12 @@ const Navbar = (props: any) => {
     <>
       <nav
         className={cn(
-          `no-print sticky top-0 z-40 w-full bg-primary px-3 py-3 transition-all duration-300 sm:px-8`,
+          `no-print fade-in-top sticky top-0 z-40 w-full bg-primary px-3 py-3 transition-all duration-300 sm:px-8`,
           {
             absolute: props.isMenuOpen,
           },
         )}
+        style={{ animationDuration: "0.3s" }}
       >
         <div className="flex items-center justify-between">
           <Logo />

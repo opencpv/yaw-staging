@@ -7,27 +7,19 @@ import { useContactForm } from "./hooks/useContactForm";
 import ContactMessageField from "./ContactMessageField";
 import ContactFullNameField from "./ContactFullNameField";
 import ContactPhoneField from "./ContactPhoneField";
-import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import capitalizeName from "@/lib/utils/stringManipulation";
 import { UploadFile } from "../UploadFile";
 import axios from "axios";
 import { generateString } from "@/lib/utils";
 import slugify from "@/lib/utils/slugify";
 import { toast } from "react-hot-toast";
-import { tag } from "@/store/contact/useContactStore";
 import { Button } from "@/components/__shared/ui/button";
 
 const FormGeneral = () => {
-  const {
-    file,
-    formRef,
-    loading,
-    setLoading,
-    tableName,
-    handleFileUpload,
-    handleFileRemove,
-    contactFormSession,
-  } = useContactForm();
+  const { tag } = useContactForm();
+
+  const { file, formRef, loading, setLoading, tableName, contactFormSession } =
+    useContactForm();
 
   return (
     <Formik
@@ -98,9 +90,8 @@ const FormGeneral = () => {
             toast.error("Something went wrong.");
           });
       }}
-      className=""
     >
-      <Form ref={formRef} className="w-full pt-8">
+      <Form ref={formRef} className="fade-in w-full pt-8">
         <div className="flex flex-col gap-10">
           <div className="form-div">
             <ContactFullNameField />
@@ -111,11 +102,7 @@ const FormGeneral = () => {
           <div>
             <ContactMessageField />
           </div>
-          <UploadFile
-            file={file as File}
-            handleFileUpload={handleFileUpload}
-            handleFileRemove={handleFileRemove}
-          />
+          <UploadFile />
           <Button
             className="max-w-full xs:max-w-fit"
             variant="accent"

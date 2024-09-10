@@ -38,13 +38,14 @@ const RecommendedListings = ({ className, hideShowAll }: Props) => {
       )}
     >
       <div
-        className="mb-8 flex flex-wrap items-center justify-between gap-5"
+        className="mb-8 flex flex-wrap items-center justify-between gap-x-5 gap-y-2"
         ref={ref as unknown as React.LegacyRef<HTMLDivElement>}
       >
         <h2 className="text-shade-500">Recommended Listings</h2>
         <LinkButton
           href="/properties"
           variant="link"
+          size="fit"
           className={cn(`text-shade-500`, {
             hidden: hideShowAll || isLoading,
           })}

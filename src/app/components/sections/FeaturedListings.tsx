@@ -43,44 +43,42 @@ const FeaturedListings = (props: Props) => {
             : "block",
       }}
     >
-      <div className="space-y-10">
-        <div className="flex items-center justify-between gap-5">
-          <h2 className="uppercase">Featured Listings</h2>
-          <LinkButton
-            variant="link"
-            href={`/properties?${new URLSearchParams({ tag: "featured" })}`}
-            className="max-ssm:hidden"
-          >
-            View all <HiChevronRight size={24} />
-          </LinkButton>
-        </div>
-        {/* Listing Slider */}
-        <FramerWrapper className="relative mx-auto h-fit max-w-screen-xl">
-          <FetchingStates data={listings} error={error} />
-          <SliderGrid
-            items={
-              isLoading
-                ? Array.from({ length: 5 }, (_, idx) => (
-                    <SkeletonListing key={idx} cardType={1} />
-                  ))
-                : listings?.map((listing) => (
-                    <ListingCard
-                      key={listing?.id}
-                      {...getListingProps(listing, user as UserType)}
-                      cardType="1"
-                    />
-                  ))
-            }
-          />
-        </FramerWrapper>
+      <div className="mb-10 flex items-center justify-between gap-5">
+        <h2 className="uppercase">Featured Listings</h2>
         <LinkButton
           variant="link"
           href={`/properties?${new URLSearchParams({ tag: "featured" })}`}
-          className="ssm:hidden"
+          className="max-ssm:hidden"
         >
           View all <HiChevronRight size={24} />
         </LinkButton>
       </div>
+      {/* Listing Slider */}
+      <FramerWrapper className="relative mx-auto h-fit max-w-screen-xl">
+        <FetchingStates data={listings} error={error} />
+        <SliderGrid
+          items={
+            isLoading
+              ? Array.from({ length: 5 }, (_, idx) => (
+                  <SkeletonListing key={idx} cardType={1} />
+                ))
+              : listings?.map((listing) => (
+                  <ListingCard
+                    key={listing?.id}
+                    {...getListingProps(listing, user as UserType)}
+                    cardType="1"
+                  />
+                ))
+          }
+        />
+      </FramerWrapper>
+      <LinkButton
+        variant="link"
+        href={`/properties?${new URLSearchParams({ tag: "featured" })}`}
+        className="ssm:hidden"
+      >
+        View all <HiChevronRight size={24} />
+      </LinkButton>
     </section>
   );
 };

@@ -41,7 +41,7 @@ function FileInput({
     }
   };
   return (
-    <label className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4">
       {label && (
         <div className="flex gap-x-1.5">
           <h5 className="font-normal capitalize text-shade-300">{label}</h5>
@@ -102,7 +102,7 @@ function FileInput({
         type="file"
         style={{ display: "none" }} // NOTICE!
       />
-    </label>
+    </div>
   );
 }
 

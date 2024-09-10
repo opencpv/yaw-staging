@@ -53,7 +53,7 @@ export const ExpandCircle = {
       type: "spring",
       stiffness: 100,
       damping: 40,
-      duration: 0,
+      duration: 0.2,
     },
     opacity: 0,
     pointerEvent: "none",
