@@ -9,7 +9,12 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/__shared/ui/popover";
-import { useField } from "formik";
+import {
+  FieldHelperProps,
+  FieldInputProps,
+  useField,
+  useFormikContext,
+} from "formik";
 import { formatDate } from "@/lib/utils/stringManipulation";
 import toast from "react-hot-toast";
 import dynamic from "next/dynamic";
@@ -27,6 +32,10 @@ type Props = {
   value?: string;
 };
 
+/**
+ *A date picker component with range and presets. <br />
+ *Name is required if used in a Formik context.
+ */
 export function DatePicker({
   label,
   onChange,
@@ -38,7 +47,15 @@ export function DatePicker({
 }: Props) {
   const [date, setDate] = React.useState<Date>();
   const [open, setOpen] = React.useState(false);
-  const [field, meta, helpers] = useField(name as string);
+
+  const formikContext = useFormikContext();
+  let field: FieldInputProps<any> | undefined;
+  let helpers: FieldHelperProps<any> | undefined;
+
+  if (formikContext) {
+    field = formikContext.getFieldProps(name as string);
+    helpers = formikContext.getFieldHelpers(name as string);
+  }
 
   React.useEffect(() => {
     if (placeholderDate) {
@@ -73,7 +90,7 @@ export function DatePicker({
           >
             <CalendarIcon className="mr-2 h-4 w-4" />
             {/* {field.value ? format(field.value, "PPP") : <span>DD/MM/YYYY</span>} */}
-            {field.value
+            {field?.value
               ? formatDate(field.value)
               : formatDate(value as string)}
           </Button>
@@ -81,13 +98,13 @@ export function DatePicker({
         <PopoverContent className="w-full p-0" align="start">
           <Calendar
             mode="single"
-            selected={field.value}
+            selected={field?.value}
             onSelect={(value) => {
               if (isBefore(value as Date)) {
                 toast.error("Please select a future date");
                 return;
               }
-              helpers.setValue(value);
+              helpers?.setValue(value);
               setDate(value);
               onChange?.(value);
               setOpen(false);

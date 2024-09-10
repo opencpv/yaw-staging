@@ -1,14 +1,28 @@
-import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { Input } from '../input';
+import { Meta, StoryObj } from "@storybook/react";
+import { Input } from "../input";
 
 const meta: Meta<typeof Input> = {
-  title: 'Components/Form/Input',
+  title: "Components/Form/Input",
   component: Input,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
+  parameters: {
+    layout: "centered",
+  },
   argTypes: {
-    onChange: { action: 'changed' },
-    onBlur: { action: 'blurred' },
+    value: {
+      description: "Value of the input",
+      control: "text",
+    },
+    disabled: {
+      control: "boolean",
+    },
+    placeholder: {
+      control: "text",
+    },
+    label: {
+      description: "Label for the input field",
+      control: "text",
+    },
   },
 };
 
@@ -18,38 +32,37 @@ type Story = StoryObj<typeof Input>;
 
 export const Default: Story = {
   args: {
-    label: 'Default Input',
-    placeholder: 'Enter text',
+    placeholder: "Enter text",
+  },
+};
+
+export const WithLabel: Story = {
+  args: {
+    label: "Input with Label",
+    placeholder: "Enter text",
   },
 };
 
 export const WithPrefix: Story = {
   args: {
-    label: 'Input with Prefix',
-    prefix: '$',
-    placeholder: 'Enter amount',
+    label: "Input with Prefix",
+    prefix: "$",
+    placeholder: "Enter amount",
   },
 };
 
 export const Required: Story = {
   args: {
-    label: 'Required Input',
+    label: "Required Input",
     required: true,
-    placeholder: 'Required field',
+    placeholder: "Required field",
   },
 };
 
 export const WithTooltip: Story = {
   args: {
-    label: 'Input with Tooltip',
-    tooltip: 'This is a tooltip',
-    placeholder: 'Hover for info',
-  },
-};
-
-export const WithError: Story = {
-  args: {
-    label: 'Input with Error',
-    placeholder: 'Enter text',
+    label: "Input with Tooltip",
+    tooltip: "This is a tooltip",
+    placeholder: "Hover for info",
   },
 };

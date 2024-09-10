@@ -76,7 +76,7 @@ const About = async () => {
             </div>
           </div>
         </div>
-        <section className="fade-in-bottom mt-14 flex items-center justify-center">
+        <section className="mt-14 flex items-center justify-center">
           <div className="relative h-60 w-full md:h-[30rem]">
             <Image
               src={urlForImage(featuredImage)?.url() as string}
