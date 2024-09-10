@@ -67,10 +67,9 @@ const ContactTabs = () => {
         </TabsList>
       </Tabs>
       <Button
-        variant={"ghost"}
         size="sm"
         className={cn(
-          `sc-button absolute right-0 bg-white pl-5 opacity-50 transition-all md:hidden`,
+          `sc-button absolute -right-3 top-6 bg-white pl-5 opacity-90 shadow-md transition-all md:hidden`,
           {
             "pointer-events-none opacity-0": isEndOfContainer,
           },
