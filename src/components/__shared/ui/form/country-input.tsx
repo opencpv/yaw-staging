@@ -48,6 +48,10 @@ type Props = {
   value?: string;
 };
 
+/**
+ * A component that allows the user to select a country. <br />
+ * Name is required if used in a Formik context.
+ */
 const CountryInput = ({
   initialValue,
   placeholder = "Select your country",

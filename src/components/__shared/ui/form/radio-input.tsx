@@ -5,7 +5,13 @@ import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
 import { LuCircle } from "react-icons/lu";
 
 import { cn } from "@/lib/utils";
-import { useField } from "formik";
+import {
+  FieldHelperProps,
+  FieldInputProps,
+  FieldMetaProps,
+  useField,
+  useFormikContext,
+} from "formik";
 import ErrorMessage from "../states/error-message";
 
 type RadioInputProps = {
@@ -61,6 +67,10 @@ const RadioGroupItem = React.forwardRef<
 });
 RadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName;
 
+/**
+ *A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time. <br />
+ * Name is required if used in a Formik context.
+ */
 const RadioInput = React.forwardRef<
   React.ElementRef<typeof RadioGroupPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root> &
@@ -81,16 +91,25 @@ const RadioInput = React.forwardRef<
     },
     ref,
   ) => {
-    const [field, meta, helpers] = useField(name as string);
+    const formikContext = useFormikContext();
+    let field: FieldInputProps<any> | undefined;
+    let helpers: FieldHelperProps<any> | undefined;
+    let meta: FieldMetaProps<any> | undefined;
+
+    if (formikContext) {
+      field = formikContext.getFieldProps(name as string);
+      helpers = formikContext.getFieldHelpers(name as string);
+      meta = formikContext.getFieldMeta(name as string);
+    }
 
     return (
       <RadioGroup
         onValueChange={(value) => {
-          helpers.setValue(value);
+          helpers?.setValue(value);
           onValueChange?.(value);
         }}
-        value={field.value}
-        name={field.name}
+        value={field?.value}
+        name={field?.name}
         className="flex flex-col gap-4 text-shade-300"
         {...props}
         ref={ref}
@@ -115,7 +134,7 @@ const RadioInput = React.forwardRef<
             </label>
           ))}
         </div>
-        {meta.touched && meta.error ? (
+        {meta?.touched && meta?.error ? (
           <ErrorMessage name={meta.error}>{meta.error}</ErrorMessage>
         ) : null}
       </RadioGroup>
