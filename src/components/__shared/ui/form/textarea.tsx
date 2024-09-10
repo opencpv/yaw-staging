@@ -10,6 +10,10 @@ export interface TextareaProps
   characterLimit?: number;
 }
 
+/**
+ * Displays a form textarea. <br />
+ * Name is required if used in a Formik context.
+ */
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   (
     {
@@ -121,8 +125,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
                   (meta?.touched && meta.error),
               })}
             >
-              {field?.value?.length || (value as string)?.length} /{" "}
-              {characterLimit}
+              {fieldLength} / {characterLimit}
             </small>
           )}
         </div>

@@ -1,30 +1,23 @@
-import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import SearchInput from '../search-input';
+import { Meta, StoryObj } from "@storybook/react";
+import SearchInput from "../search-input";
 
 const meta: Meta<typeof SearchInput> = {
-  title: 'Components/Form/SearchInput',
+  title: "Components/Form/SearchInput",
   component: SearchInput,
-  tags: ['autodocs'],
-  argTypes: {
-    onEnter: { action: 'entered' },
-    onChange: { action: 'changed' },
+  parameters: {
+    layout: "centered",
   },
+  tags: ["autodocs"],
 };
 
 export default meta;
 
 type Story = StoryObj<typeof SearchInput>;
 
-export const Default: Story = {
-  args: {
-    placeholder: 'Search...',
-  },
-};
+export const Default: Story = {};
 
-export const WithCustomClassName: Story = {
+export const WithCustomPlaceholder: Story = {
   args: {
-    placeholder: 'Search...',
-    className: 'border border-primary rounded-lg px-4 py-2',
+    placeholder: "Search for blogs",
   },
 };

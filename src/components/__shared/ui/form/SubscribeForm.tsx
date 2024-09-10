@@ -6,6 +6,9 @@ type Props = {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 };
 
+/**
+ * A component that allows the user to subscribe to our newsletter.
+ */
 const SubscribeForm = ({ onSubmit }: Props) => {
   return (
     <form

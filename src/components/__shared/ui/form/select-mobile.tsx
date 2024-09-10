@@ -12,6 +12,9 @@ type Props = {
   placeholder?: string;
 };
 
+/**
+ * A component that allows the user to select an option from a list, usually on mobile screens.
+ */
 export default function SelectMobile(props: Props) {
   return (
     <Select
