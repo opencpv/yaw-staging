@@ -7,7 +7,7 @@ import ReviewBanner from "./review-banner";
 // Mock data for Storybook
 const mockData = {
   variant_: "property",
-  title: "Beautiful Apartment in NYC",
+  name: "Beautiful Apartment in NYC",
   image: "https://picsum.photos/800/800?random=5",
   rating: 4.5,
 };
@@ -35,7 +35,7 @@ const meta: Meta<typeof ReviewBanner> = {
       options: ["person", "property"],
       description: "Type of review banner, either for a person or a property.",
     },
-    title: {
+    name: {
       control: "text",
       description: "Title of the review banner.",
     },
@@ -70,7 +70,7 @@ export const PersonVariant: Story = {
   args: {
     ...mockData,
     variant_: "person",
-    title: "John Doe",
+    name: "John Doe",
     image: "https://picsum.photos/800/800?random=2",
     rating: 5,
   },
@@ -79,7 +79,7 @@ export const PersonVariantLister: Story = {
     args: {
       ...mockData,
       variant_: "person",
-      title: "John Doe",
+      name: "John Doe",
       image: "https://picsum.photos/800/800?random=2",
       rating: 5,
       lister: true
@@ -91,7 +91,7 @@ export const PropertyHighRating: Story = {
   args: {
     ...mockData,
     variant_: "property",
-    title: "Luxury Villa in LA",
+    name: "Luxury Villa in LA",
     image: "https://picsum.photos/800/800?random=4",
     rating: 4.9,
   },

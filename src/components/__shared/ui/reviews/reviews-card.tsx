@@ -27,7 +27,9 @@ export default function ReviewCard({ withBanner, data }: Props) {
           onRateClick={() => {
             setCurrentProperty(data)
           }}
-          data={data}
+          image={data?.image}
+          name={data?.name}
+          rating={data?.rating}
           variant_="person"
    
         />
