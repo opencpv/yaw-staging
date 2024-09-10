@@ -1,10 +1,5 @@
-import AllReviewCard from "../../../reviews/reviews-card";
-import Image from "next/image";
-import { FaStar } from "react-icons/fa";
-import { useState } from "react";
 import { useRatingsModalStore } from "@/store/modal/useRatingsModalStore";
 import { CustomScroll } from "@/app/dashboard/renter/notifications/components/CustomScroll";
-import SlideEnter from "@/app/dashboard/components/shared/SlideEnter";
 import ReviewSummary from "@/components/__shared/ui/reviews/review-summary";
 import { mockReviewData } from "@/app/dashboard/renter/my-reviews/components/content";
 import ReviewBanner from "../../../reviews/review-banner";
@@ -12,13 +7,13 @@ import ReviewCard from "../../../reviews/reviews-card";
 
 function AllReviewsData() {
   const {
-    openRatingsForm,
-    setOpenRatingsForm,
-    openAllRatings,
-    setOpenAllRatings,
+    // openRatingsForm,
+    // setOpenRatingsForm,
+    // openAllRatings,
+    // setOpenAllRatings,
     currentProperty,
-    setCurrentProperty,
-    variant,
+    // setCurrentProperty,
+    // variant,
   } = useRatingsModalStore();
 
   return (
@@ -32,9 +27,9 @@ function AllReviewsData() {
         />
         
         <div className="flex flex-col gap-6">
-          <p className="text-xl font-semibold">
+          <h3 className="text-xl font-semibold">
             ( {currentProperty?.ratingCount} ) Reviews
-          </p>
+          </h3>
 
           <ReviewSummary className="border-secondary-50" />
 

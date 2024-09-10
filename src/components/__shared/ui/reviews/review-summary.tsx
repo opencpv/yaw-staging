@@ -1,17 +1,17 @@
 "use client";
 import { styled } from "@stitches/react";
-import CaReviewHead from "../../../../app/dashboard/renter/my-reviews/components/icons/CaReviewHead";
 import CaReviewSummary from "../../../../app/dashboard/renter/my-reviews/components/icons/CaReviewSummary";
 
+import { BiCommentEdit } from "react-icons/bi";
 type Props = {
   className?: string;
 };
 export default function ReviewSummary({ className }: Props) {
   return (
     <div className="mb-8 flex w-full max-w-[1103px] flex-col items-start gap-3 border-[1px] border-shade-50 px-6 py-8 rounded-2xl">
-      <div className="flex items-center justify-start gap-5">
-        <CaReviewSummary />
-        <p className="text-xl font-semibold text-primary">Review Summary</p>
+      <div className="flex items-center justify-start gap-3 text-primary">
+        <BiCommentEdit className="text-2xl font-bold" />
+        <p className="text-xl font-semibold ">Review Summary</p>
       </div>
 
       <div >

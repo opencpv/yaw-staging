@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 import { useRatingsModalStore } from "@/store/modal/useRatingsModalStore";
 import { ListingCardInterface } from "../../../../../../interfaces";
-import { FaRegStar } from "react-icons/fa";
+// import { FaRegStar } from "react-icons/fa";
 import { IoStar } from "react-icons/io5";
 type Props = {
   value?: number;

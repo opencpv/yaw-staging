@@ -1,6 +1,6 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import ReviewCard from "./reviews-card";
+import ReviewCard from "../reviews-card";
 
 // Mock data for storybook
 const mockData = {

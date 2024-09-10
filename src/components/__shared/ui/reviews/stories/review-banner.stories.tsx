@@ -2,7 +2,7 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { useRatingsModalStore } from "@/store/modal/useRatingsModalStore";
-import ReviewBanner from "./review-banner";
+import ReviewBanner from "../review-banner";
 
 // Mock data for Storybook
 const mockData = {
