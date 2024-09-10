@@ -15,7 +15,7 @@ type Props = {
   data: any;
 };
 
-const Landing = (props: Props) => {
+const Hero = (props: Props) => {
   const title = props.data.title.split(" ").slice(0, -1).join(" ");
   const titleHighlight = props.data.title.split(" ").slice(-1)[0];
 
@@ -26,7 +26,7 @@ const Landing = (props: Props) => {
           {title}{" "}
           <span
             className="tracking-in-contract text-accent-100"
-            style={{ animationDelay: "1.5s" }}
+            style={{ animationDuration: "1.5s" }}
           >
             {titleHighlight}
           </span>
@@ -36,7 +36,7 @@ const Landing = (props: Props) => {
       <FramerWrapper className={`${styles.rect}`}>
         <Image
           src={urlForImage(props.data.bgImage)?.url() as string}
-          alt="Main banner" // TODO: change
+          alt="Main banner" // TODO: change alt text
           fill
           className="rounded-[inherit] object-cover"
         />
@@ -96,4 +96,4 @@ const Landing = (props: Props) => {
   );
 };
 
-export default Landing;
+export default Hero;

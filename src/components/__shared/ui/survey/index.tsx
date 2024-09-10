@@ -71,9 +71,12 @@ const Survey = () => {
       <motion.div
         variants={variants}
         animate={showButton && !timedOut ? "open" : "closed"}
-        className={cn("fixed -right-16 top-96 z-10 rotate-90", {
-          "pointer-events-none": !showButton || timedOut,
-        })}
+        className={cn(
+          "fixed -right-12 top-1/2 z-10 translate-y-1/2 rotate-90",
+          {
+            "pointer-events-none": !showButton || timedOut,
+          },
+        )}
       >
         <Button
           className="h-10 gap-2 rounded-sm rounded-b-2xl bg-gradient-to-t from-primary-500 to-primary-400 text-xl opacity-70 hover:opacity-100"

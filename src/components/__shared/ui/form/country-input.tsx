@@ -142,7 +142,7 @@ const CountryInput = ({
                       setOpen(false);
                     }}
                   >
-                    <div className="relative aspect-square w-[20px]">
+                    <div className="relative mr-1.5 aspect-square w-[20px]">
                       <Image
                         src={data?.flags}
                         alt={data?.label + " flag"}

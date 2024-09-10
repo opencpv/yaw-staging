@@ -8,9 +8,8 @@ import { useContactForm } from "./hooks/useContactForm";
 import ContactMessageField from "./ContactMessageField";
 import ContactFullNameField from "./ContactFullNameField";
 import ContactPhoneField from "./ContactPhoneField";
-import { usePhoneInputDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import capitalizeName from "@/lib/utils/stringManipulation";
-import { tag, useContactStore } from "@/store/contact/useContactStore";
+import { useContactStore } from "@/store/contact/useContactStore";
 import { generateString } from "@/lib/utils";
 import slugify from "@/lib/utils/slugify";
 import axios from "axios";
@@ -19,14 +18,14 @@ import { Button } from "@/components/__shared/ui/button";
 import { UploadFile } from "../UploadFile";
 
 const FormReport = () => {
+  const { tag } = useContactForm();
+
   const {
     file,
     formRef,
     loading,
     setLoading,
     tableName,
-    handleFileUpload,
-    handleFileRemove,
     contactFormSession,
     handleSessionChange,
   } = useContactForm();
@@ -114,9 +113,8 @@ const FormReport = () => {
             toast.error("Something went wrong.");
           });
       }}
-      className=""
     >
-      <Form ref={formRef} className="w-full pt-8">
+      <Form ref={formRef} className="fade-in w-full pt-8">
         <div className="flex flex-col gap-10">
           <div className="form-div">
             <ContactFullNameField />
@@ -127,11 +125,7 @@ const FormReport = () => {
           <div>
             <ContactMessageField />
           </div>
-          <UploadFile
-            file={file as File}
-            handleFileUpload={handleFileUpload}
-            handleFileRemove={handleFileRemove}
-          />
+          <UploadFile />
 
           <div className="form-div" title="Paste URL link here (optional)">
             <Input

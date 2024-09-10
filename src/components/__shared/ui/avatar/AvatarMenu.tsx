@@ -17,7 +17,6 @@ import { createClient } from "@/lib/utils/supabase/auth/client";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import toast from "react-hot-toast";
 import dynamic from "next/dynamic";
-const Tooltip = dynamic(() => import("../tooltip").then((mod) => mod.Tooltip));
 const Popover = dynamic(() =>
   import("@/components/__shared/ui/popover").then((mod) => mod.Popover),
 );
@@ -67,16 +66,14 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
             />
           </div>
         ) : (
-          <div className="p-1">
-            <Tooltip content="Please upload your profile image">
-              <Avatar
-                image={images.NoProfilePH}
-                name={user?.full_name || ""}
-                email={user?.email}
-                className={cn("object-contain", className)}
-                display={user ? true : false}
-              />
-            </Tooltip>
+          <div className="p-1" title="Please upload your profile image">
+            <Avatar
+              image={images.NoProfilePH}
+              name={user?.full_name || ""}
+              email={user?.email}
+              className={cn("object-contain", className)}
+              display={user ? true : false}
+            />
           </div>
         )}
       </PopoverTrigger>

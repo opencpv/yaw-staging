@@ -40,6 +40,7 @@ const Share = ({
         className={cn(
           "flex items-center gap-3 text-neutral-800",
           classNames?.base,
+          className,
         )}
         onClick={onOpen}
       >
@@ -51,7 +52,7 @@ const Share = ({
                 {
                   hidden: hideLabel,
                 },
-                className,
+                classNames?.label,
               )}
             >
               {label}

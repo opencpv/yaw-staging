@@ -28,6 +28,10 @@ type ModalProps = {
   isDismissible?: boolean;
   hideCloseButton?: boolean;
   className?: string;
+  /**
+   * Event handler called when auto-focusing on open. Can be prevented.
+   */
+  onOpenAutoFocus?: (event: Event) => void;
 };
 
 const Dialog = DialogPrimitive.Root;
@@ -65,7 +69,7 @@ const DialogContent = React.forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        "hidden-scrollbar fixed left-[50%] top-[50%] z-50 grid max-h-[calc(100%_-_7.5rem)] w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 overflow-y-auto border bg-white p-6 shadow-lg duration-200 sm:rounded-lg text-black",
+        "hidden-scrollbar fixed left-[50%] top-[50%] z-50 grid max-h-[calc(100%_-_7.5rem)] w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 overflow-y-auto border bg-white p-6 text-black shadow-lg duration-200 sm:rounded-lg",
         className,
       )}
       {...props}
@@ -145,11 +149,12 @@ const Modal = ({
   header,
   body,
   footer,
-  size = "md",
+  size = "2xl",
   closeButton,
   isDismissible = true,
   className,
   hideCloseButton,
+  onOpenAutoFocus,
 }: ModalProps) => {
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
@@ -170,6 +175,8 @@ const Modal = ({
           className,
         )}
         closeButton={closeButton}
+        hideCloseButton={hideCloseButton}
+        onOpenAutoFocus={onOpenAutoFocus}
         onEscapeKeyDown={(e) => {
           !isDismissible && e.preventDefault();
         }}
@@ -179,7 +186,6 @@ const Modal = ({
         onPointerDownOutside={(e) => {
           !isDismissible && e.preventDefault();
         }}
-        hideCloseButton={hideCloseButton}
       >
         <DialogHeader>
           {header && <DialogTitle>{header}</DialogTitle>}

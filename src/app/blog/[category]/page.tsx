@@ -12,9 +12,13 @@ import { loadQuery } from "@sanity/react-loader";
 import { Metadata, ResolvingMetadata } from "next";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import dynamic from "next/dynamic";
+import Loader from "@/components/__shared/ui/loader";
 const Survey = dynamic(() => import("@/components/__shared/ui/survey"));
 const SummaryPostView = dynamic(
   () => import("../components/category/SummaryPostView"),
+  {
+    loading: () => <Loader />,
+  },
 );
 
 type Props = {

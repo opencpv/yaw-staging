@@ -7,6 +7,7 @@ type ShareDataProps = {
   classNames?: {
     base?: string;
     icon?: string;
+    label?: string;
   };
   label?: string;
   children?: React.ReactNode;
