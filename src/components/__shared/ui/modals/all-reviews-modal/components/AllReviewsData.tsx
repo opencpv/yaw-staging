@@ -26,10 +26,11 @@ function AllReviewsData() {
       <div className="flex w-full flex-col items-start justify-center gap-8">
         <ReviewBanner
           variant_="person"
-          title="Property Title"
+          name="Property Title"
           rating={3.5}
           image={currentProperty?.images?.[0] ?? ""}
         />
+        
         <div className="flex flex-col gap-6">
           <p className="text-xl font-semibold">
             ( {currentProperty?.ratingCount} ) Reviews

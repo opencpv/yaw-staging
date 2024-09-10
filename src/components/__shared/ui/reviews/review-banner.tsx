@@ -5,14 +5,19 @@ import { FaStar } from "react-icons/fa6";
 type Props = {
   variant_: "property" | "person";
   lister?: boolean;
-  data: {
-    name: string;
-    ratings: string;
-    image: string;
-  };
-  onRateClick: () => void
+  name: string;
+  rating: number;
+  image: string;
+  onRateClick?: () => void;
 };
-function ReviewBanner({ variant_, lister, data, onRateClick }: Props) {
+function ReviewBanner({
+  variant_,
+  lister,
+  name,
+  rating,
+  image,
+  onRateClick,
+}: Props) {
   const {
     openRatingsForm,
     setOpenRatingsForm,
@@ -29,7 +34,7 @@ function ReviewBanner({ variant_, lister, data, onRateClick }: Props) {
       >
         <Image
           objectFit="cover"
-          src={(currentProperty?.images?.[0] || data?.image) ?? ""}
+          src={(currentProperty?.images?.[0] || image) ?? ""}
           fill
           alt="Image"
         />
@@ -38,7 +43,7 @@ function ReviewBanner({ variant_, lister, data, onRateClick }: Props) {
       <div className="flex w-full flex-col items-start justify-center gap-1">
         <div className="flex items-center justify-center gap-2.5">
           <h4 className="text-base font-semibold lg:text-xl 2xl:text-2xl">
-            {currentProperty?.name || data?.name}
+            {currentProperty?.name || name}
           </h4>
 
           {(variant_ == "person" || variant == "person") && lister && (
@@ -50,14 +55,16 @@ function ReviewBanner({ variant_, lister, data, onRateClick }: Props) {
         <div className="flex items-center justify-start gap-1 rounded-xl bg-secondary-50 px-2 py-1 text-[1rem] font-semibold lg:text-[1.5625rem]">
           <FaStar color="#FFB800" size="24" />
 
-          <p className="text-[#363C91] underline">{currentProperty?.rating}</p>
+          <p className="text-[#363C91] underline">
+            {currentProperty?.rating || rating}
+          </p>
           <p className="text-shade-200">|</p>
 
           <button
             onClick={() => {
               setOpenAllRatings(false);
               setOpenRatingsForm(true);
-              onRateClick()
+              // onRateClick();
             }}
             className="appearance-none whitespace-nowrap text-lg text-primary 2xl:text-2xl"
           >
