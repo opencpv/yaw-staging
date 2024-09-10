@@ -30,11 +30,10 @@ const ListingInfo = (props: Partial<ListingCardInterface>) => {
           </div>
           {/* rating */}
           <div className="flex min-w-max items-center gap-2 min-[320px]:ml-auto">
-            <RatingsForm property={props} value={props.ratingCount} />
-
             {props?.ratingCount !== undefined && props.ratingCount > 0 && (
-              <AllReviewsModal property={props} value={props.ratingCount} />
+              <AllReviewsModal isListingCard property={props} value={props.ratingCount} />
             )}
+            <RatingsForm property={props} value={props.ratingCount} />
           </div>
         </div>
         {/* property name */}
