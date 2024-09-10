@@ -4,8 +4,9 @@ import { loadQuery } from "@/lib/utils/sanity/sanityStore";
 import { SanityDocument } from "next-sanity";
 import UserAboutUs from "./components/UserAboutUs";
 import UserImageAndDetails from "./components/UserImageAndDetails";
-import UserReviews from "./components/UserReviews";
 import UserImageAndDetailsSm from "./components/UserImageAndDetailsSm";
+import UserRenterReviews from "./components/UserReviewsRenter";
+import UserListerReviews from "./components/UserReviewsLister";
 
 type Props = {
   params: {
@@ -21,17 +22,17 @@ async function Page({ params }: Props) {
   );
 
   return (
-    <div className=" flex w-full flex-col  gap-5 !pt-0 bg-white">
+    <div className="flex w-full flex-col gap-5 bg-white !pt-0">
       <div className="hidden w-full md:flex">
         <UserImageAndDetails type={params.type} />
       </div>
-      <div className="md:hidden bg-white">
+      <div className="bg-white md:hidden">
         <UserImageAndDetailsSm type={params.type} />
       </div>{" "}
       <div className="wrapper flex w-full flex-col gap-5 !pt-0">
-        <div className="flex w-full flex-col gap-10 ">
+        <div className="flex w-full max-w-[1103px] flex-col gap-10">
           <UserAboutUs type={params.type} />
-          <UserReviews />
+          {params.type == "lister" ? <UserListerReviews /> : <UserRenterReviews />}{" "}
         </div>
         <div>
           <h2 className="text-2xl text-shade-300 2xl:text-3xl">

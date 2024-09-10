@@ -1,24 +1,25 @@
 "use client";
 import { mockReviewData } from "@/app/dashboard/renter/my-reviews/components/content";
-import ReviewSummary from "@/app/dashboard/renter/my-reviews/components/ReviewSummary";
+import ReviewSummary from "@/components/__shared/ui/reviews/review-summary";
 import FramerWrapper from "@/components/__shared/hoc/framer-wrapper";
 import { Button } from "@/components/__shared/ui/button";
-import AllReviewCard from "@/components/__shared/ui/modals/all-reviews-modal/components/AllReviewsCard";
+import AllReviewCard from "@/components/__shared/ui/reviews/reviews-card";
 import { fadeIn } from "@/lib/animations";
+import ReviewCard from "@/components/__shared/ui/reviews/reviews-card";
 
-function UserReviews() {
+function UserListerReviews() {
   return (
     <div className="flex flex-col items-start gap-5">
       <div className="flex flex-col gap-10">
         <h2 className="text-base text-shade-300 md:text-2xl 2xl:text-3xl">
-          ( {mockReviewData.length} ) Reviews
+          ( mockReviewData.length ) Reviews About Esther
         </h2>
 
         <ReviewSummary />
 
         {mockReviewData.map((r, index) => (
           <FramerWrapper {...fadeIn} key={index}>
-            <AllReviewCard data={r} index={index} />
+            <ReviewCard data={r} index={index} />
           </FramerWrapper>
         ))}
       </div>
@@ -33,4 +34,4 @@ function UserReviews() {
   );
 }
 
-export default UserReviews;
+export default UserListerReviews;

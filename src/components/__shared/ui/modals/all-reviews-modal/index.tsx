@@ -5,43 +5,48 @@ import { cn } from "@/lib/utils";
 import { useRatingsModalStore } from "@/store/modal/useRatingsModalStore";
 import { ListingCardInterface } from "../../../../../../interfaces";
 import { FaRegStar } from "react-icons/fa";
-import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 
 type Props = {
   value?: number;
   className?: string;
-
+  clickable?: boolean;
   property?: Partial<ListingCardInterface>;
 };
-export default function AllReviewsModal({ property, value, className }: Props) {
-  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
+export default function AllReviewsModal({
+  clickable = true,
+  property,
+  value,
+  className,
+}: Props) {
   const {
-    openRatingsForm,
-    setOpenRatingsForm,
-    openAllRatings,
+    // openRatingsForm,
+    // setOpenRatingsForm,
+    // openAllRatings,
     setOpenAllRatings,
-    currentProperty,
+    // currentProperty,
     setCurrentProperty,
   } = useRatingsModalStore();
 
   const ratingValue = useMemo(() => {
-    return value ?? 0 > 5 ? 5 : value;
+    return (value ?? 0 > 5) ? 5 : value;
   }, [value]);
 
   return (
     <>
       <button
-        className=""
+        className={`${!clickable && "cursor-text"}`}
         onClick={() => {
-          setCurrentProperty(property);
-          setOpenAllRatings(true);
+          if (clickable) {
+            setCurrentProperty(property);
+            setOpenAllRatings(true);
+          }
         }}
       >
         {/* <p>All reviews</p> */}
-        <div className="undefrline flex items-center gap-1 border-b-1 border-shade-300 leading-6">
+        <div className="undefrline border-b-1 flex items-center gap-1 border-shade-300 leading-6">
           <FaRegStar className="text-yellow-400" />
           {value !== undefined && value > 0 && (
-            <p className={cn("cursor-pointer text-lg ", className)}>
+            <p className={cn(" text-lg", className)}>
               {ratingValue} ( {value} reviews)
             </p>
           )}

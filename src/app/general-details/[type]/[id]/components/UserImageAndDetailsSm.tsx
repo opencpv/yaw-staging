@@ -17,7 +17,7 @@ function UserImageAndDetailsSm({ type }: Props) {
     <div>
       <div className="relative w-full">
         <motion.div
-          style={{ y }}
+          // style={{ y }}
           className="relative  aspect-[350/275] max-h-[275px] w-full overflow-hidden"
         >
           <Image

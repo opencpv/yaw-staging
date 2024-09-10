@@ -15,13 +15,13 @@ function UserAboutUs({ type }: Props) {
         </h2>
         {type == "lister" && (
           <div className="flex items-center gap-3">
-            <AllReviewsModal value={3} />
+            <AllReviewsModal value={3}  clickable={false}/>
             <Rating value={3} />
           </div>
         )}
       </div>
 
-      <p className="text-base leading-loose text-shade-300">
+      <p className="text-base leading-loose text-shade-300 !max-w-full">
         Lorem ipsum dolor sit amet consectetur. At vulputate etiam elementum
         luctus nulla arcu nulla leo in. At leo eros nam nisl a. Quam mauris
         lacus nisi pulvinar platea nec. Quis tincidunt varius nunc vestibulum

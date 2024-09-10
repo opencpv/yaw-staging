@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { mockReviewData } from "./content";
-import ReviewSummary from "./ReviewSummary";
+import ReviewSummary from "../../../../../components/__shared/ui/reviews/review-summary";
 import DelayEnter from "@/app/dashboard/components/shared/DelayEnter";
 import dynamic from "next/dynamic";
 const NoReviews = dynamic(() => import("./NoReviews"));

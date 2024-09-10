@@ -13,12 +13,6 @@ function Recommend() {
   const [thumbsUpHovered, setThumbsUpHovered] = useState(false);
   const [thumbsDownHovered, setThumbsDownHovered] = useState(false);
   const {
-    value1,
-    setValue1,
-    handleFirstSlideChange,
-    value2,
-    setValue2,
-    handleSecondSlideChange,
     handleThumbsDownChecked,
     handleThumbsUpChecked,
     thumbsDownChecked,
@@ -38,12 +32,12 @@ function Recommend() {
       {...fadeIn}
       className="flex flex-col items-center justify-center"
     >
-      <div className="flex h-full w-full flex-col items-center justify-center gap-4 ">
+      <div className="flex h-full w-full flex-col items-center justify-center gap-4">
         <p className="text-lg font-semibold text-shade-300 2xl:text-xl">
           Would you recommend{" "}
           <span className="font-bold">
             {" "}
-            {currentProperty?.bedrooms} Bedroom {currentProperty?.propertyType}
+            {currentProperty?.name}
           </span>{" "}
           to your friends?
         </p>
@@ -65,45 +59,7 @@ function Recommend() {
               />
             </Form>
           </Formik>
-          {/* <div
-            className=""
-            onClick={() => {
-              setRecommendation("yes");
-            }}
-            onMouseEnter={() => setThumbsUpHovered((init) => !init)}
-            onMouseLeave={() => setThumbsUpHovered((init) => !init)}
-          >
-            <CaThumbsUp filled={thumbsUpHovered || recommendation == "yes"} />
-          </div>{" "}
-          <div
-            className=""
-            onClick={() => {
-              setRecommendation("no");
-            }}
-            onMouseEnter={() => setThumbsDownHovered((init) => !init)}
-            onMouseLeave={() => setThumbsDownHovered((init) => !init)}
-          >
-            {" "}
-            <CaThumbsDown
-              filled={thumbsDownHovered || recommendation == "no"}
-            />
-          </div> */}
         </div>
-
-        {/* {(thumbsDownChecked || thumbsUpChecked) && (
-          <div className="flex w-full items-center justify-center gap-2">
-            <p className="text-[1.5625rem] font-semibold">
-              Thank you for response
-            </p>
-            <div className=" relative aspect-square w-full max-w-[44px]">
-              <Image
-                src={"/assets/images/review-form/cone 1.png"}
-                fill
-                alt="Success"
-              />
-            </div>
-          </div>
-        )} */}
       </div>
     </FramerWrapper>
   );
