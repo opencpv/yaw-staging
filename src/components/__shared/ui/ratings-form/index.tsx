@@ -5,25 +5,27 @@ import { useAppStore } from "@/store/dashboard/AppStore";
 import { ListingCardInterface } from "../../../../../interfaces";
 import { useRatingsModalStore } from "@/store/modal/useRatingsModalStore";
 import { useSignInModalStore } from "@/store/modal/useSignInModalStore";
+import { Separator } from "../separator";
 
 type Props = {
   variant?: "property" | "person";
   className?: string;
   value?: number;
   property?: Partial<ListingCardInterface>;
+  isListingCard: boolean
 };
-export default function Rating({ value, className, property }: Props) {
+export default function Rating({ value, className, property, isListingCard }: Props) {
   const { user } = useAppStore();
   const { openSignInModal, setOpenSignInModal } = useSignInModalStore();
 
 
 
   const {
-    openRatingsForm,
+    // openRatingsForm,
     setOpenRatingsForm,
-    openAllRatings,
-    setOpenAllRatings,
-    currentProperty,
+    // openAllRatings,
+    // setOpenAllRatings,
+    // currentProperty,
     setCurrentProperty,
   } = useRatingsModalStore();
 
@@ -45,8 +47,8 @@ export default function Rating({ value, className, property }: Props) {
         onClick={handleRating}
       >
       
-        <div className="flex items-center gap-2 text-primary">
-          <p>|</p>
+        <div className={`flex items-center ${isListingCard ? "gap-1" : "gap-2"}  text-primary`}>
+          <Separator orientation="vertical" className="h-6 text-shade-200"/>
           <p className="text-lg ">Rate</p>
         </div>
       </button>

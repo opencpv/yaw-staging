@@ -21,7 +21,7 @@ export default function ReviewCard({ withBanner, data }: Props) {
     variant,
   } = useRatingsModalStore();
   return (
-    <div className="flex w-full max-w-[1103px] flex-col items-start gap-6 pb-4">
+    <div className="flex w-full max-w-[1103px] flex-col items-start gap-6 pb-8 border-b-[1px]">
       {withBanner && (
         <ReviewBanner
           onRateClick={() => {
@@ -62,7 +62,7 @@ export default function ReviewCard({ withBanner, data }: Props) {
         </div>
 
         {data?.replies && (
-          <div className="flex flex-col items-start justify-center gap-[1.3125rem] border-b-[1px] border-b-[#E9ECEF] pb-4 pl-2">
+          <div className="flex flex-col items-start justify-center gap-[1.3125rem]  pl-2">
             {data?.replies && (
               <div className="flex items-center gap-1">
                 <p className="text-base font-semibold text-primary">

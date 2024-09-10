@@ -4,19 +4,21 @@ import { cn } from "@/lib/utils";
 
 import { useRatingsModalStore } from "@/store/modal/useRatingsModalStore";
 import { ListingCardInterface } from "../../../../../../interfaces";
-import { FaRegStar } from "react-icons/fa";
-
+// import { FaRegStar } from "react-icons/fa";
+import { IoStar } from "react-icons/io5";
 type Props = {
   value?: number;
   className?: string;
   clickable?: boolean;
   property?: Partial<ListingCardInterface>;
+  isListingCard?: boolean;
 };
 export default function AllReviewsModal({
   clickable = true,
   property,
   value,
   className,
+  isListingCard,
 }: Props) {
   const {
     // openRatingsForm,
@@ -43,11 +45,11 @@ export default function AllReviewsModal({
         }}
       >
         {/* <p>All reviews</p> */}
-        <div className="undefrline border-b-1 flex items-center gap-1 border-shade-300 leading-6">
-          <FaRegStar className="text-yellow-400" />
+        <div className="flex items-center gap-1 border-b-[1px] border-b-shade-300 leading-6">
+          <IoStar className="mr-1 text-yellow-400" />
           {value !== undefined && value > 0 && (
-            <p className={cn(" text-lg", className)}>
-              {ratingValue} ( {value} reviews)
+            <p className={cn("text-lg", className)}>
+              {ratingValue} ( {value} {isListingCard ? "+ " : "Reviews"})
             </p>
           )}
         </div>{" "}

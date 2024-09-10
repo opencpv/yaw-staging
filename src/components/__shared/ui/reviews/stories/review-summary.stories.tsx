@@ -1,7 +1,7 @@
 // ReviewSummary.stories.tsx
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import ReviewSummary from "./review-summary";
+import ReviewSummary from "../review-summary";
 
 // Metadata for Storybook
 const meta: Meta<typeof ReviewSummary> = {
