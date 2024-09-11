@@ -13,10 +13,6 @@ export interface InputProps
   tooltip?: string;
 }
 
-/**
- * Displays a form input field or a component that looks like an input field. <br />
- * Name is required if used in a Formik context.
- */
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {

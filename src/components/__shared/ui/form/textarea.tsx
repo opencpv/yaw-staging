@@ -10,10 +10,6 @@ export interface TextareaProps
   characterLimit?: number;
 }
 
-/**
- * Displays a form textarea. <br />
- * Name is required if used in a Formik context.
- */
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   (
     {
@@ -87,7 +83,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     };
 
     return (
-      <label className="flex flex-col gap-4 text-shade-300">
+      <label className="flex flex-col gap-4 text-shade-300 w-full">
         {label && (
           <h5 className="flex gap-x-1.5 font-normal capitalize">
             {label}
@@ -101,7 +97,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             name={field?.name || name}
             value={field?.value || value}
             className={cn(
-              "form-field-border flex h-[167px] min-h-[80px] w-full rounded-md bg-white px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:cursor-not-allowed disabled:opacity-50",
+              "form-field-border flex h-[167px] min-h-[80px] w-full rounded-md bg-white px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:cursor-not-allowed disabled:opacity-50 focus:border-2 focus:border-primary focus:outline-none focus-visible:!border-primary",
               className,
             )}
             onChange={(e) => {
@@ -125,7 +121,8 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
                   (meta?.touched && meta.error),
               })}
             >
-              {fieldLength} / {characterLimit}
+              {field?.value?.length || (value as string)?.length} /{" "}
+              {characterLimit}
             </small>
           )}
         </div>

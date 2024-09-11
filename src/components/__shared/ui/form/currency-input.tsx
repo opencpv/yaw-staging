@@ -58,10 +58,6 @@ type Props = {
   name2?: string;
 };
 
-/**
- *A component that allows the user to select a country. <br />
-Name is required if used in a Formik context.
- */
 const CurrencyInput = ({
   placeholder = "Select currency",
   label,

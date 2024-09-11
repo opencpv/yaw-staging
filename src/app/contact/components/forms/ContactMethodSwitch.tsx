@@ -18,8 +18,7 @@ type Props = {
 };
 
 /**
- * A switch component that allows users to select their preferred contact method. <br />
- * Name is required if used in a Formik context.
+ * A switch component that allows users to select their preferred contact method.
  */
 const ContactMethodSwitch = ({ name, placeholder, className }: Props) => {
   const formikContext = useFormikContext();

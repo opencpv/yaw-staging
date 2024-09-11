@@ -53,10 +53,6 @@ const BaseCheckbox = React.forwardRef<
 );
 BaseCheckbox.displayName = "BaseCheckbox";
 
-/**
- * A control that allows the user to toggle between checked and not checked. <br />
- * Name is required if used in a Formik context.
- */
 const Checkbox = React.forwardRef<
   HTMLLabelElement,
   React.ComponentPropsWithoutRef<typeof BaseCheckbox> &
@@ -104,7 +100,6 @@ const Checkbox = React.forwardRef<
           aria-readonly={disabled}
           color={color}
           radius={radius}
-          disabled={disabled}
           {...props}
         />
 

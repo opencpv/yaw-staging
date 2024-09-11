@@ -187,9 +187,6 @@ const SelectSeparator = React.forwardRef<
 ));
 SelectSeparator.displayName = SelectPrimitive.Separator.displayName;
 
-/**
- * Displays a list of options for the user to pick from—triggered by a button.
- */
 const Select = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Root> &
@@ -258,6 +255,7 @@ type Props = {
   options: string[];
   onChange?: (value: any) => void;
   label?: string;
+  fadeText?: boolean;
   className?: string;
   classNames?: {
     option?: string;
@@ -269,10 +267,6 @@ type Props = {
   prefix?: string;
 };
 
-/**
- * Displays a list of options for the user to pick from—triggered by a button. Preferrably used in a Formik context. <br />
- * Name is required if used in a Formik context.
- */
 const SelectInput = ({
   label,
   options,

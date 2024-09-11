@@ -7,14 +7,19 @@ import MessageButton from "@/components/__shared/ui/button/message-button";
  * When the user is not signed in, it alerts the user to signin
  */
 const meta: Meta<typeof MessageButton> = {
-  title: "Components/Buttons/MessageButton", 
-  component: MessageButton, 
+  title: "Components/Buttons/MessageButton",
+  component: MessageButton,
   tags: ["autodocs"],
 
   argTypes: {
-    id: { control: "text" }, 
+    id: { control: "text" },
     isIcon: { control: "boolean" },
-    className: { control: "text" }, 
+    className: { control: "text" },
+    withIconAndText: { control: "boolean" },
+    iconType: {
+      control: "select",
+      options: ["PiChatCenteredDots", "MdOutlineMessage"],
+    },
     variant: {
       control: "select",
       options: ["outline", "ghost", "default"],
@@ -27,15 +32,13 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: (args) => {
-    return (
-      <MessageButton {...args} />
-    );
+    return <MessageButton {...args} />;
   },
   args: {
     isIcon: false,
     id: "user123",
     children: "Send Message",
-    variant: "outline",
+    variant: "default",
   },
 };
 
@@ -46,13 +49,18 @@ export const IconButton: Story = {
   },
 };
 
+export const WithIconAndText: Story = {
+  args: {
+    withIconAndText: true,
+    variant: "default",
+  },
+};
+
 export const ModalOpen: Story = {
   render: (args) => {
-    const [isOpen, setIsOpen] = React.useState(true); 
+    const [isOpen, setIsOpen] = React.useState(true);
 
-    return (
-      <MessageButton {...args} />
-    );
+    return <MessageButton {...args} />;
   },
   args: {
     isIcon: false,

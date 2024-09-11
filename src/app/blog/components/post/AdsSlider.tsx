@@ -1,5 +1,4 @@
 "use client";
-import Loader from "@/components/__shared/ui/loader";
 import { cn } from "@/lib/utils";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import slugify from "@/lib/utils/slugify";
@@ -9,9 +8,6 @@ import React from "react";
 import { Swiper } from "swiper/types";
 const SliderWide = dynamic(
   () => import("@/components/__shared/ui/sliders/slider-wide"),
-  {
-    loading: () => <Loader />,
-  },
 );
 
 type Props = { posts: any[]; className?: string };

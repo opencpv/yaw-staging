@@ -90,7 +90,7 @@ const Footer = (props: Props) => {
               <Link
                 key={r?.label}
                 href={r?.href}
-                className={cn({ "text-accent": pathname === r?.href })}
+                className={cn({ "text-accent": pathname?.includes(r?.href) })}
               >
                 <h2 className="font-[400]">{r.label}</h2>
               </Link>

@@ -1,4 +1,8 @@
+// CountryInput.stories.tsx
+
+import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
+import { Formik } from "formik";
 import CountryInput from "../country-input";
 
 // Storybook metadata
@@ -6,9 +10,6 @@ const meta: Meta<typeof CountryInput> = {
   title: "Components/Form/CountryInput",
   component: CountryInput,
   tags: ["autodocs"],
-  parameters: {
-    layout: "centered",
-  },
   argTypes: {
     placeholder: {
       description: "Placeholder text for the input",
@@ -39,14 +40,77 @@ type Story = StoryObj<typeof CountryInput>;
 
 export const Default: Story = {
   args: {
+    label: "Country",
     placeholder: "Select your country",
   },
 };
 
 export const WithInitialValue: Story = {
   args: {
+    label: "Country",
     placeholder: "Select your country",
     initialValue: "United States",
-    value: "United States",
+  },
+};
+
+export const WithFormik: Story = {
+  args: {
+    label: "Country",
+    placeholder: "Select your country",
+    name: "country",
+  },
+  decorators: [
+    (Story) => {
+      return (
+        <Formik
+          initialValues={{ country: "" }}
+          onSubmit={(values) => console.log(values)}
+        >
+          {() => <Story />}
+        </Formik>
+      );
+    },
+  ],
+};
+
+export const WithErrorState: Story = {
+  args: {
+    label: "Country",
+    placeholder: "Select your country",
+    name: "country",
+  },
+  decorators: [
+    (Story) => {
+      return (
+        <Formik
+          initialValues={{ country: "" }}
+          validate={(values) => {
+            const errors: any = {};
+            if (!values.country) {
+              errors.country = "Country is required.";
+            }
+            return errors;
+          }}
+          onSubmit={(values) => console.log(values)}
+        >
+          {({ errors, touched }) => (
+            <>
+              <Story />
+              {touched.country && errors.country && (
+                <div style={{ color: "red" }}>{errors.country}</div>
+              )}
+            </>
+          )}
+        </Formik>
+      );
+    },
+  ],
+};
+
+export const Controlled: Story = {
+  args: {
+    label: "Country",
+    placeholder: "Select your country",
+    value: "Canada",
   },
 };

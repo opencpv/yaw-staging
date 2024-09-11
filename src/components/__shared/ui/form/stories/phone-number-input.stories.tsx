@@ -1,13 +1,16 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { E164Number } from "libphonenumber-js/core";
-import PhoneNumberInput from "../phone-number-input";
+import React from 'react';
+import { Meta, StoryObj } from '@storybook/react';
+import { E164Number } from 'libphonenumber-js/core';
+import PhoneNumberInput from '../phone-number-input';
 
 const meta: Meta<typeof PhoneNumberInput> = {
-  title: "Components/Form/PhoneNumberInput",
+  title: 'Components/Form/PhoneNumberInput',
   component: PhoneNumberInput,
-  tags: ["autodocs"],
-  parameters: {
-    layout: "centered",
+  tags: ['autodocs'],
+  argTypes: {
+    onChange: { action: 'valueChanged' },
+    onCountryChange: { action: 'countryChanged' },
+    onBlur: { action: 'blurred' },
   },
 };
 
@@ -17,20 +20,31 @@ type Story = StoryObj<typeof PhoneNumberInput>;
 
 export const Default: Story = {
   args: {
-    name: "phone",
+    name: 'phoneNumber',
+    placeholder: 'Enter phone number',
   },
 };
 
 export const WithValue: Story = {
   args: {
-    name: "phone",
-    value: "+233123456789" as E164Number,
+    name: 'phoneNumber',
+    value: '+233123456789' as E164Number,
+    placeholder: 'Enter phone number',
   },
 };
 
 export const Required: Story = {
   args: {
-    name: "phone",
+    name: 'phoneNumber',
     required: true,
+    placeholder: 'Enter phone number',
+  },
+};
+
+export const WithError: Story = {
+  args: {
+    name: 'phoneNumber',
+    showError: true,
+    placeholder: 'Enter phone number',
   },
 };

@@ -1,3 +1,5 @@
+// Checkbox.stories.tsx
+
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { Checkbox } from "../checkbox";
@@ -7,20 +9,11 @@ const meta: Meta<typeof Checkbox> = {
   title: "Components/Form/Checkbox",
   component: Checkbox,
   tags: ["autodocs"],
-  parameters: {
-    layout: "centered",
-  },
   argTypes: {
-    name: {
-      description: "Name of the checkbox",
-      control: "text",
-      type: "string",
-    },
     color: {
       description: "Color variant of the checkbox",
       control: {
         type: "select",
-        control: "select",
         options: ["accent", "primary", "white"],
       },
     },
@@ -54,21 +47,23 @@ type Story = StoryObj<typeof Checkbox>;
 export const Default: Story = {
   args: {
     label: "Default Checkbox",
+    color: "primary",
+    disabled: false,
   },
 };
 
 // Accent Checkbox Story
-export const Accent: Story = {
+export const AccentColor: Story = {
   args: {
-    label: "Accent",
+    label: "Accent Color Checkbox",
     color: "accent",
   },
 };
 
 // White Color Checkbox Story
-export const White: Story = {
+export const WhiteColor: Story = {
   args: {
-    label: "White",
+    label: "White Color Checkbox",
     color: "white",
   },
 };
@@ -77,15 +72,40 @@ export const White: Story = {
 export const Disabled: Story = {
   args: {
     label: "Disabled Checkbox",
+    color: "primary",
     disabled: true,
   },
 };
 
 // Checkbox with Rounded Corners
-export const MediumCheckbox: Story = {
+export const RoundedCheckbox: Story = {
   args: {
     label: "Rounded Checkbox",
     color: "primary",
     radius: "md",
   },
+};
+
+// Checkbox with Formik Integration
+export const WithFormik: Story = {
+  args: {
+    label: "Formik Checkbox",
+    color: "primary",
+    name: "formikCheckbox",
+  },
+  decorators: [
+    (Story) => {
+      // Formik decorator to provide context
+      const { Formik } = require("formik");
+
+      return (
+        <Formik
+          initialValues={{ formikCheckbox: false }}
+          onSubmit={(values: any) => console.log(values)}
+        >
+          {() => <Story />}
+        </Formik>
+      );
+    },
+  ],
 };
