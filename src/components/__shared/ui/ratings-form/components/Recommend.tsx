@@ -4,9 +4,11 @@ import { fadeIn } from "@/lib/animations";
 import { useFeedbackDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { Form, Formik } from "formik";
 import { useRatingsModalStore } from "@/store/modal/useRatingsModalStore";
-import FramerWrapper from "@/components/__shared/hoc/framer-wrapper";
 import Thumbs from "../../feedback/thumbs";
-
+import dynamic from "next/dynamic";
+const FramerWrapper = dynamic(
+  () => import("@/components/__shared/hoc/framer-wrapper"),
+);
 function Recommend() {
   const [recommendation, setRecommendation] = useState<"yes" | "no">();
 
@@ -35,11 +37,8 @@ function Recommend() {
       <div className="flex h-full w-full flex-col items-center justify-center gap-4">
         <p className="text-lg font-semibold text-shade-300 2xl:text-xl">
           Would you recommend{" "}
-          <span className="font-bold">
-            {" "}
-            {currentProperty?.name}
-          </span>{" "}
-          to your friends?
+          <span className="font-bold"> {currentProperty?.name}</span> to your
+          friends?
         </p>
 
         <div className="flex w-full items-center justify-center gap-10">
