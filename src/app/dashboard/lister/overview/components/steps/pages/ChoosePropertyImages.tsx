@@ -1,18 +1,12 @@
-import { useLocalStorage } from "@uidotdev/usehooks";
 import style from "../../../index.module.css";
 import Callout from "../../../../../../../components/__shared/ui/callout";
-import { useField } from "formik";
-import { ListingDefaultValues } from "@/store/dashboard/ListingStepsStore";
 import dynamic from "next/dynamic";
-const ImageUploader = dynamic(() => import("../ImageUploader"));
+import Loader from "@/components/__shared/ui/loader";
+const ImageUploader = dynamic(() => import("../ImageUploader"), {
+  loading: () => <Loader />,
+});
 
 export default function ChoosePropertyImages() {
-  const [field, meta, helpers] = useField("images");
-
-  const [ListingCreationSteps, setListingCreationSteps] = useLocalStorage<
-    typeof ListingDefaultValues
-  >("listing-creation-steps");
-
   return (
     <div className={style.container}>
       <div className="mb-10 flex w-full flex-col gap-8">

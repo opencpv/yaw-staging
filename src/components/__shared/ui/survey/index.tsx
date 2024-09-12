@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { Button } from "../button";
 import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import CloseModalIcon from "../icons/CloseModalIcon";
@@ -19,7 +19,7 @@ const Survey = () => {
   const [showButton, setShowButton] = useState(false);
   const [timedOut, setTimedOut] = useState(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const handleToggleButton = () => {
       if (window.scrollY >= 500) {
         setShowButton(true);
@@ -35,7 +35,7 @@ const Survey = () => {
     };
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setTimeout(() => {
       setTimedOut(true);
     }, 30000);

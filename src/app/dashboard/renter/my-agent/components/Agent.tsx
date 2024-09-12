@@ -1,7 +1,6 @@
 import Image from "next/image";
 import CaAgentTickGreenBg from "./icons/CaAgentTickGreenBg";
-import { Button } from "@/components/__shared/ui/button";
-import { ClientOnly } from "@/components/__shared/hoc/ClientOnly";
+import { Button, LinkButton } from "@/components/__shared/ui/button";
 import { cn } from "@/lib/utils";
 import {
   formatDateOnly,
@@ -10,11 +9,11 @@ import {
 import { FaHourglassHalf } from "react-icons/fa6";
 import { useRouter } from "next/navigation";
 import { BE_MY_AGENT_LAPSE_DAYS } from "@/constants";
-import { BeMyAgentStepsStore } from "@/store/dashboard/BeMyAgentStepsStore";
 import dynamic from "next/dynamic";
 import DeleteButton from "@/components/__shared/ui/button/delete-button";
 import { useDeleteAgentRequest } from "../services";
 import { useCallback, useEffect } from "react";
+import EditButton from "@/components/__shared/ui/button/edit-button";
 const BeMyAgentModal = dynamic(() => import("./steps/BeMyAgentModal"));
 
 type Props = {
@@ -35,7 +34,6 @@ export default function Agent({
     agentRequest.created_at,
     BE_MY_AGENT_LAPSE_DAYS,
   );
-  const { setAgentRequest } = BeMyAgentStepsStore();
 
   const { mutate: deleteAgentRequest, isPending } = useDeleteAgentRequest();
 
@@ -54,11 +52,6 @@ export default function Agent({
         });
       }, 500);
     }
-  };
-
-  const handleEdit = () => {
-    router.push(`/dashboard/renter/my-agent/agent/edit/181${agentRequest.id}`);
-    setAgentRequest(agentRequest);
   };
 
   const handleDelete = useCallback(() => {
@@ -100,20 +93,22 @@ export default function Agent({
         />
         {isActive ? (
           <BeMyAgentModal button="Edit" agentRequest={agentRequest}>
-            <Button className="bg-shade-50 px-4 text-shade-200">Summary</Button>
+            <LinkButton className="bg-shade-50 px-4 text-shade-200">
+              Summary
+            </LinkButton>
           </BeMyAgentModal>
         ) : (
-          <ClientOnly>
-            <div className="flex gap-2">
-              <DeleteButton
-                onDestruction={handleDelete}
-                loading={isPending}
-                classNames={{ icon: "text-error" }}
-                className="relative top-[0.1rem]"
-              />
-              <BeMyAgentModal button="Edit" onClick={handleEdit} />
-            </div>
-          </ClientOnly>
+          <div className="flex gap-2">
+            <DeleteButton
+              onDestruction={handleDelete}
+              loading={isPending}
+              classNames={{ icon: "text-error" }}
+              className="relative top-[0.1rem]"
+            />
+            <BeMyAgentModal button="Edit" agentRequest={agentRequest}>
+              <EditButton />
+            </BeMyAgentModal>
+          </div>
         )}
       </div>
       <div className="mb-auto space-y-1">

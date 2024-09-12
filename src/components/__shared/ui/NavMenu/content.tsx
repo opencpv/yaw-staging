@@ -72,7 +72,7 @@ export const useMenuLinks = () => {
           name: "How to",
         },
         {
-          url: "/contact",
+          url: "/contact/general",
           name: "Contact",
         },
         {
@@ -102,7 +102,7 @@ export const useMenuLinks = () => {
       name: "How to",
     },
     {
-      url: "/contact",
+      url: "/contact/general",
       name: "Contact",
     },
     {
@@ -118,7 +118,7 @@ export const useMenuLinks = () => {
       name: "Report Fraud",
     },
     {
-      url: "/contact",
+      url: "/contact/general",
       name: "Feedback",
     },
   ];
@@ -136,7 +136,7 @@ export const useMenuLinks = () => {
     //     { url: "#", name: "Artisan" },
     //   ],
     // },
-    { id: "#", url: "/contact", name: "CONTACT" },
+    { id: "#", url: "/contact/general", name: "CONTACT" },
     {
       id: "#",
       url: "#",

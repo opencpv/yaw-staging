@@ -90,7 +90,7 @@ const ManageSearchCriteria = () => {
                 </div>
               </TableBody>
               {/* Location */}
-              <TableBody className="col-span-1 line-clamp-1 text-center">
+              <TableBody className="col-span-1">
                 {criterion.location ? (
                   <span
                     className="line-clamp-1"

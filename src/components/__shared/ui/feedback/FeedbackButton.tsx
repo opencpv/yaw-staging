@@ -74,7 +74,7 @@ const FeedbackButton = (props: Props) => {
         })}
       >
         <Feedback data={props.data}>
-          <FeedbackIcon className="scale-80 fixed -left-2 top-[33rem] z-50" />
+          <FeedbackIcon className="scale-80 fixed -left-5 top-[33rem] z-50" />
         </Feedback>
       </div>
       <motion.div

@@ -73,20 +73,20 @@ export default function Utilities() {
       });
     }
 
-    // onClose();
+    onClose();
   };
 
   useEffect(() => {
     const bodyRefCurrent = bodyRef.current;
-    // if (isOpen && bodyRef.current) {
-    //   setTimeout(() => {
-    //     bodyRefCurrent?.classList.add("pointer-events-none");
-    //   }, 300);
-    // } else {
-    //   setTimeout(() => {
-    //     bodyRefCurrent?.classList.remove("pointer-events-none");
-    //   }, 300);
-    // }
+    if (isOpen && bodyRef.current) {
+      setTimeout(() => {
+        bodyRefCurrent?.classList.add("pointer-events-none");
+      }, 300);
+    } else {
+      setTimeout(() => {
+        bodyRefCurrent?.classList.remove("pointer-events-none");
+      }, 300);
+    }
 
     return () => {
       setTimeout(() => {

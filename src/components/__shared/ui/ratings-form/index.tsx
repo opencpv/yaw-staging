@@ -12,13 +12,16 @@ type Props = {
   className?: string;
   value?: number;
   property?: Partial<ListingCardInterface>;
-  isListingCard: boolean
+  isListingCard?: boolean;
 };
-export default function Rating({ value, className, property, isListingCard }: Props) {
+export default function Rating({
+  value,
+  className,
+  property,
+  isListingCard,
+}: Props) {
   const { user } = useAppStore();
   const { openSignInModal, setOpenSignInModal } = useSignInModalStore();
-
-
 
   const {
     // openRatingsForm,
@@ -46,10 +49,11 @@ export default function Rating({ value, className, property, isListingCard }: Pr
         className="flex appearance-none items-center gap-2"
         onClick={handleRating}
       >
-      
-        <div className={`flex items-center ${isListingCard ? "gap-1" : "gap-2"}  text-primary`}>
-          <Separator orientation="vertical" className="h-6 text-shade-200"/>
-          <p className="text-lg ">Rate</p>
+        <div
+          className={`flex items-center ${isListingCard ? "gap-1" : "gap-2"} text-primary`}
+        >
+          <Separator orientation="vertical" className="h-6 text-shade-200" />
+          <p className="text-lg">Rate</p>
         </div>
       </button>
     </>
