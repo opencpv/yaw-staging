@@ -52,7 +52,7 @@ export default function Rating({
         <div
           className={`flex items-center ${isListingCard ? "gap-1" : "gap-2"} text-primary`}
         >
-          <Separator orientation="vertical" className="h-6 text-shade-200" />
+          <Separator orientation="vertical" className="h-6" />
           <p className="text-lg">Rate</p>
         </div>
       </button>

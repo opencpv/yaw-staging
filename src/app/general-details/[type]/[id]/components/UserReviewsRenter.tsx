@@ -19,7 +19,7 @@ function UserRenterReviews() {
 
         {mockReviewData.map((r, index) => (
           <FramerWrapper {...fadeIn} key={index}>
-            <ReviewCard  withBanner data={r} index={index} />
+            <ReviewCard withBanner data={r} index={index} />
           </FramerWrapper>
         ))}
       </div>
