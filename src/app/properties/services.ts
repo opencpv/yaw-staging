@@ -1,4 +1,5 @@
 import { PROPERTY_DETAILS_SELECT_QUERY } from "@/constants";
+import capitalizeName, { unslugify } from "@/lib/utils/stringManipulation";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import {
   useOffsetInfiniteScrollQuery,
@@ -7,40 +8,50 @@ import {
 
 export const useFetchProperties = ({
   searchString = "",
-  filter = "all",
+  filter = "All",
+  propertyType = null,
 }: {
   searchString: string;
   filter: string;
+  propertyType?: string | null;
 }) => {
   const formattedSearchString = formatString(searchString);
+  const formattedPropertyType = capitalizeName(unslugify(propertyType || ""));
 
-  let query = supabase
-    .from("published_properties")
-    .select(PROPERTY_DETAILS_SELECT_QUERY)
-    .order("is_verified", { ascending: false })
-    .order("is_realtors_choice", { ascending: false })
-    .order("is_best_value", { ascending: false })
-    .order("profiles (is_certified)", { ascending: false })
-    .order("created_at", { ascending: false });
-  if (searchString) {
-    query = query.textSearch("query_string", `${formattedSearchString}`, {
-      config: "english",
-      type: "plain",
-    });
-  }
+  const query = supabase.rpc("get_all_properties", {
+    search: formattedSearchString,
+    filter,
+    type: formattedPropertyType || undefined,
+  });
 
-  if (filter === "realtor's choice") {
-    query = query.or(`is_realtors_choice.eq.true, is_best_value.eq.true`);
-  }
-  if (filter === "verified") {
-    query = query.or(`is_verified.eq.true, is_lister_certified.eq.true`);
-  }
-  if (filter === "no viewing fee") {
-    query = query.is("require_viewing_fee", false);
-  }
-  if (filter === "no advance") {
-    query = query.eq("payment_terms", "Monthly");
-  }
+  //let query = supabase
+  //  .from("published_properties")
+  //  .select(PROPERTY_DETAILS_SELECT_QUERY)
+  //  .order("is_verified", { ascending: false })
+  //  .order("is_realtors_choice", { ascending: false })
+  //  .order("is_best_value", { ascending: false })
+  //  .order("profiles (is_certified)", { ascending: false })
+  //  .order("created_at", { ascending: false });
+  //
+  //if (searchString) {
+  //  query = query.textSearch("query_string", `${formattedSearchString}`, {
+  //    config: "english",
+  //    type: "plain",
+  //  });
+  //}
+  //
+  //if (filter === "realtor's choice") {
+  //  query = query.or(`is_realtors_choice.eq.true, is_best_value.eq.true`);
+  //}
+  //if (filter === "verified") {
+  //  query = query.or(`is_verified.eq.true, is_lister_certified.eq.true`);
+  //}
+  //if (filter === "no viewing fee") {
+  //  query = query.is("require_viewing_fee", false);
+  //}
+  //if (filter === "no advance") {
+  //  query = query.eq("payment_terms", "Monthly");
+  //}
 
   return useOffsetInfiniteScrollQuery(query, {
     pageSize: 9,
@@ -50,9 +61,12 @@ export const useFetchProperties = ({
 
 export const useFetchFeaturedListings = ({
   limit,
-}: { limit?: number } = {}) => {
+  propertyType,
+}: { limit?: number; propertyType?: string | null } = {}) => {
+  const formattedPropertyType = capitalizeName(unslugify(propertyType || ""));
   const query = supabase.rpc("get_random_featured_properties", {
     limit_value: limit,
+    type: formattedPropertyType,
   });
 
   return useQuery(query);

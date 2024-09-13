@@ -16,15 +16,15 @@ export const useMenuLinks = () => {
           id: "#",
           label: "all-listings",
         },
-        {
-          name: "Self Contained ",
-          url: "/properties/self-contained",
-          id: "#",
-          label: "self-contained",
-        },
+        //{
+        //  name: "Self Contained",
+        //  url: "/properties/self-contained",
+        //  id: "#",
+        //  label: "self-contained",
+        //},
         {
           name: "Apartments",
-          url: "/properties/apartments",
+          url: "/properties/apartment",
           id: "#",
           label: "apartments",
         },
@@ -37,7 +37,7 @@ export const useMenuLinks = () => {
         {
           name: "Compound Houses",
           id: "#",
-          url: "/properties/compound-houses",
+          url: "/properties/compound-house",
           label: "compound-houses",
         },
       ],

@@ -29,6 +29,7 @@ const ArrowLink = ({
         "mt-5 inline-flex w-fit items-center gap-2.5 transition-all hover:scale-[1.02]",
         className,
       )}
+      scroll={false}
       style={{ color: color ?? "#222" }}
       onClick={onClick}
     >

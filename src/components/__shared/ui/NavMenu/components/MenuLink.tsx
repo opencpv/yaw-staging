@@ -33,8 +33,8 @@ const MenuLink = (props: Props) => {
         className={cn(
           `w-full cursor-pointer whitespace-nowrap text-white`,
           {
-            "text-accent-100": props.active,
-            "text-accent": pathname?.includes(props.linkObject?.url),
+            "text-accent-100":
+              props.active || pathname === props.linkObject?.url,
           },
           props.className,
         )}
@@ -42,7 +42,7 @@ const MenuLink = (props: Props) => {
         {hasSubMenu ? (
           <div
             className={cn(`flex w-full items-center`, {
-              "text-accent-100": activeSubLink == props.linkObject?.label,
+              "text-accent": activeSubLink === props.linkObject?.label,
             })}
           >
             {props.isSubLink ? (
