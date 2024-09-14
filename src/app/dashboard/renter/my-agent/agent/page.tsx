@@ -6,10 +6,12 @@ import SkeletonRectangle from "@/components/__shared/ui/skeleton/skeleton-rectan
 import { Skeleton } from "@/components/__shared/ui/skeleton";
 import React, { useEffect } from "react";
 import dynamic from "next/dynamic";
+import Loader from "@/components/__shared/ui/loader";
 const BeMyAgentModal = dynamic(
   () => import("../components/steps/BeMyAgentModal"),
   {
     ssr: false,
+    loading: () => <Loader position="default" size="sm" />,
   },
 );
 const MatchTable = dynamic(() => import("../components/MatchTable"));

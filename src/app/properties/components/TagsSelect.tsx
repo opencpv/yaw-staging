@@ -7,10 +7,11 @@ import capitalizeName from "@/lib/utils/stringManipulation";
 
 const TagsSelect = () => {
   const tabsRef = React.useRef<HTMLDivElement>(null);
-  const [isAdvancedActive, setIsAdvancedActive] = useState<boolean>(false);
   const searchParams = useSearchParams();
-  const tag = searchParams?.get("tag") || "all";
-  const search = searchParams?.get("search") || "";
+  const [isAdvancedActive, setIsAdvancedActive] = useState<boolean>(false);
+  const tag = searchParams?.get("tag") || "All";
+  const [filter, setFilter] = useState<string>(tag);
+  const search = searchParams?.get("q") || "";
   const router = useRouter();
   const handleIsActive = () => {
     setIsAdvancedActive((prevState) => !prevState);
@@ -36,18 +37,19 @@ const TagsSelect = () => {
         <section className="flex w-full flex-col flex-wrap items-center justify-center gap-8">
           <Tabs
             options={filterOptionArray}
-            selectedKey={capitalizeName(tag)}
-            onSelectionChange={(key) =>
+            selectedKey={capitalizeName(filter)}
+            onSelectionChange={(key) => {
+              setFilter(key as string);
               router.replace(
-                `/properties?${new URLSearchParams({
-                  search,
+                `?${new URLSearchParams({
+                  q: search as string,
                   tag: key as string,
                 })}`,
                 {
                   scroll: false,
                 },
-              )
-            }
+              );
+            }}
           />
           {/* !!! COMMENTED OUT FOR NOW */}
 

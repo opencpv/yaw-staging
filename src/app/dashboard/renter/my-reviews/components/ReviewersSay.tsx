@@ -8,7 +8,7 @@ const ReviewsReceivedCard = dynamic(() => import("./ReviewsReceivedCard"));
 const DelayEnter = dynamic(
   () => import("@/app/dashboard/components/shared/DelayEnter"),
   {
-    ssr: false, 
+    ssr: false,
   },
 );
 

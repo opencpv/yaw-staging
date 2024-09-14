@@ -16,15 +16,15 @@ export const useMenuLinks = () => {
           id: "#",
           label: "all-listings",
         },
-        {
-          name: "Self Contained ",
-          url: "/properties/self-contained",
-          id: "#",
-          label: "self-contained",
-        },
+        //{
+        //  name: "Self Contained",
+        //  url: "/properties/self-contained",
+        //  id: "#",
+        //  label: "self-contained",
+        //},
         {
           name: "Apartments",
-          url: "/properties/apartments",
+          url: "/properties/apartment",
           id: "#",
           label: "apartments",
         },
@@ -37,7 +37,7 @@ export const useMenuLinks = () => {
         {
           name: "Compound Houses",
           id: "#",
-          url: "/properties/compound-houses",
+          url: "/properties/compound-house",
           label: "compound-houses",
         },
       ],
@@ -72,7 +72,7 @@ export const useMenuLinks = () => {
           name: "How to",
         },
         {
-          url: "/contact",
+          url: "/contact/general",
           name: "Contact",
         },
         {
@@ -102,7 +102,7 @@ export const useMenuLinks = () => {
       name: "How to",
     },
     {
-      url: "/contact",
+      url: "/contact/general",
       name: "Contact",
     },
     {
@@ -118,7 +118,7 @@ export const useMenuLinks = () => {
       name: "Report Fraud",
     },
     {
-      url: "/contact",
+      url: "/contact/general",
       name: "Feedback",
     },
   ];
@@ -136,7 +136,7 @@ export const useMenuLinks = () => {
     //     { url: "#", name: "Artisan" },
     //   ],
     // },
-    { id: "#", url: "/contact", name: "CONTACT" },
+    { id: "#", url: "/contact/general", name: "CONTACT" },
     {
       id: "#",
       url: "#",

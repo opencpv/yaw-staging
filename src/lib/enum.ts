@@ -38,7 +38,7 @@ export const getListingProps = (listing: Partial<Listing>, user: UserType) => {
     images: images, // TODO: check database
     guarantee: listing?.is_verified
       ? ("Verified" as GuaranteeTag)
-      : listing?.profiles?.is_certified
+      : listing?.is_lister_certified
         ? ("Certified" as GuaranteeTag)
         : undefined,
     monthlyAmount: listing?.monthly_amount as number,

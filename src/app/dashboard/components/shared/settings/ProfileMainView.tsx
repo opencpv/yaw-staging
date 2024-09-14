@@ -9,7 +9,10 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/__shared/ui/tabs";
-const ProfileInfo = dynamic(() => import("./ProfileInfo"));
+import Loader from "@/components/__shared/ui/loader";
+const ProfileInfo = dynamic(() => import("./ProfileInfo"), {
+  loading: () => <Loader />,
+});
 
 const ProfileMainView = () => {
   const optionSelect = useManageAccountStore(
