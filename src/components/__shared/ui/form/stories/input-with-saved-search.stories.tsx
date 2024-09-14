@@ -6,6 +6,9 @@ const meta: Meta<typeof InputWithSavedSearch> = {
   title: "Components/Form/InputWithSavedSearch",
   component: InputWithSavedSearch,
   tags: ["autodocs"],
+  parameters: {
+    layout: "centered",
+  },
   argTypes: {
     onSubmit: { action: "submitted" },
     onInput: { action: "inputChanged" },
@@ -36,6 +39,7 @@ export const WithCustomStyles: Story = {
 export const WithHref: Story = {
   args: {
     placeholder: "Search...",
+    href: "#",
   },
 };
 

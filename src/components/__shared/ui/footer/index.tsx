@@ -83,21 +83,21 @@ const Footer = (props: Props) => {
                 "text-accent": pathname ===r?.href 
               })} />
             ) : LowerCase(r?.label) === "feedback" ? (
-                <Feedback data={data} key={r?.label}>
-                  <button>
-                    <h2 className="font-normal">Feedback</h2>
-                  </button>
-                </Feedback>
-              ) : (
-                  <Link
-                    key={r?.label}
-                    href={r?.href}
-                    className={cn({ "text-accent": pathname ===r?.href })}
-                  >
-                    <h2 className="font-[400]">{r.label}</h2>
-                  </Link>
-                ),
-          )}
+              <Feedback data={data} key={r?.label}>
+                <button>
+                  <h2 className="font-normal">Feedback</h2>
+                </button>
+              </Feedback>
+            ) : (
+              <Link
+                key={r?.label}
+                href={r?.href}
+                className={cn({ "text-accent": pathname === r?.href })}
+              >
+                <h2 className="font-[400]">{r.label}</h2>
+              </Link>
+            ),
+         )}
         </section>
 
         <section className="w-fit px-8">

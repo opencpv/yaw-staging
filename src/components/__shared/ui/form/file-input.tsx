@@ -9,6 +9,10 @@ type Props = {
   variant?: "primary" | "accent";
   placeholder?: string;
 };
+
+/**
+ * A component that allows the user to select a file.
+ */
 function FileInput({
   handleFile,
   label,
@@ -58,7 +62,7 @@ function FileInput({
           type="button"
         >
           <CaAttachment />
-          {!fileUploaded && <p>{placeholder || "upload"}</p>}
+          {!fileUploaded && <p>{placeholder || "Upload"}</p>}
           {fileUploaded && (
             <p className="w-8/12 overflow-x-hidden text-left">
               {fileUploaded.name}
