@@ -39,7 +39,6 @@ export const WithCustomStyles: Story = {
 export const WithHref: Story = {
   args: {
     placeholder: "Search...",
-    href: "#",
   },
 };
 
