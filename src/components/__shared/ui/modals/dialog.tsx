@@ -161,7 +161,7 @@ const Modal = ({
       <DialogContent
         className={cn(
           {
-            "min-h-screen max-w-full sm:rounded-none": size === "full",
+            "min-h-svh max-w-full sm:rounded-none": size === "full",
             "max-w-xs": size === "xs",
             "max-w-sm": size === "sm",
             "max-w-md": size === "md",

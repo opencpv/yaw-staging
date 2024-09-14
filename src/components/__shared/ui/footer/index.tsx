@@ -4,7 +4,7 @@ import quickLinks from "@/enum/footer/quickLinks";
 import { getCurrentYear } from "@/lib/utils/numberManipulation";
 import Logo from "@/components/__shared/ui/logo";
 import SubscribeForm from "../form/SubscribeForm";
-import Feedback from "@/components/__shared/ui/feedback/Feedback";
+import Feedback from "@/components/__shared/ui/feedback";
 import { LowerCase } from "@/lib/utils/stringManipulation";
 import legal from "@/enum/about/legal";
 import { FaEnvelope } from "react-icons/fa6";

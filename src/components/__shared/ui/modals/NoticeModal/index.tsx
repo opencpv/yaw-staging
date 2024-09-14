@@ -49,7 +49,7 @@ const NoticeModal = () => {
     <Context.Provider value={{ handleVisibility, setOpen }}>
       <Dialog open={open ?? true} onOpenChange={handleOpenChange}>
         <DialogContent
-          className="max-w-7xl p-0 max-md:max-h-screen"
+          className="max-w-7xl p-0 max-md:max-h-svh"
           closeButton={<CloseButton onClick={() => handleOpenChange(false)} />}
           onOpenAutoFocus={(e) => e.preventDefault()}
         >
@@ -128,11 +128,11 @@ const CloseButton = ({ onClick }: { onClick: () => void }) => {
     <Button
       variant={"ghost"}
       size={"icon"}
-      className="circle-hover text-white max-md:hover:text-shade-500 md:text-shade-500"
+      className="circle-hover"
       onClick={onClick}
       asChild
     >
-      <LiaTimesSolid size={24} />
+      <LiaTimesSolid size={24} className="text-white md:text-shade-500" />
     </Button>
   );
 };

@@ -5,6 +5,7 @@ import { Separator } from "@/components/__shared/ui/separator";
 import ArrowLink from "../../links/arrow-link";
 import { Skeleton } from "../../skeleton";
 import { useMemo } from "react";
+import { IoIosSearch } from "react-icons/io";
 
 function SubLinkResults() {
   const { activeSubLink, setToggle } = useMenuStore();
@@ -63,7 +64,7 @@ function SubLinkResults() {
               </div>
             ))}
         </div>
-        {!listings || (listings?.length === 0 && <p>Nothing to show</p>)}
+        {!listings || (listings?.length === 0 && <EmptyState />)}
         {listings && listings?.length > 0 && (
           <ArrowLink
             color="white"
@@ -73,6 +74,19 @@ function SubLinkResults() {
           />
         )}
       </div>
+    </div>
+  );
+}
+
+function EmptyState() {
+  return (
+    <div className="mx-auto flex flex-col items-center gap-6 text-white">
+      <IoIosSearch
+        size={60}
+        className="fade-in-bottom"
+        style={{ animationDuration: "0.3s" }}
+      />
+      <p className="font-semibold">Sorry, no results found.</p>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useMemo, useState } from "react";
 import { HiOutlineChatBubbleOvalLeftEllipsis } from "react-icons/hi2";
-import Feedback from "./Feedback";
+import Feedback from ".";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { floatItemsIntersectionStore } from "@/store/footer/footerStore";
