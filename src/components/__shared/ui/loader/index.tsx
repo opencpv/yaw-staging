@@ -5,16 +5,18 @@ import { LuLoader2 } from "react-icons/lu";
 const Loader = ({
   className,
   position = "center",
+  size = "default",
 }: {
   className?: string;
   position?: "default" | "center";
+  size?: "default" | "sm";
 }) => {
   if (position === "center") {
     return (
       <div className={cn("grid h-40 place-items-center", className)}>
         {/* <span className="loader"></span>*/}
         <LuLoader2
-          size={60}
+          size={size === "sm" ? 20 : 60}
           className={cn("animate-spin text-accent", className)}
         />
       </div>
@@ -22,7 +24,7 @@ const Loader = ({
   }
   return (
     <LuLoader2
-      size={60}
+      size={size === "sm" ? 20 : 60}
       className={cn("animate-spin text-accent", className)}
     />
   );

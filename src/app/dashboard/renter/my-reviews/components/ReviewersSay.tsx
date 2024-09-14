@@ -1,10 +1,16 @@
 import { useState } from "react";
 import { mockReviewData } from "./content";
-import ReviewSummary from "./ReviewSummary";
-import DelayEnter from "@/app/dashboard/components/shared/DelayEnter";
+import ReviewSummary from "../../../../../components/__shared/ui/reviews/review-summary";
 import dynamic from "next/dynamic";
 const NoReviews = dynamic(() => import("./NoReviews"));
 const ReviewsReceivedCard = dynamic(() => import("./ReviewsReceivedCard"));
+
+const DelayEnter = dynamic(
+  () => import("@/app/dashboard/components/shared/DelayEnter"),
+  {
+    ssr: false,
+  },
+);
 
 export default function ReviewersSay() {
   const [reviews, setReviews] = useState(true);

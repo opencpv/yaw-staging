@@ -9,8 +9,11 @@ import { useUserData } from "@/lib/custom-hooks/database/useUserData";
 import RoleSwitcherOverlay from "../../components/shared/RoleSwitcherOverlay";
 import { createClient } from "@/lib/utils/supabase/auth/client";
 import dynamic from "next/dynamic";
-const Navbar = dynamic(() => import("../../components/navbar"));
-const Pagination = dynamic(() => import("../pagination"));
+import PaginationLoadingState from "../pagination/PaginationLoadingState";
+import Navbar from "../navbar";
+const Pagination = dynamic(() => import("../pagination"), {
+  loading: () => <PaginationLoadingState />,
+});
 const CompleteYourLogin = dynamic(() => import("../CompleteYourLogin"));
 
 type LayoutProps = {

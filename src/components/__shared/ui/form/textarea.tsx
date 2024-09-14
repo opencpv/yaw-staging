@@ -87,7 +87,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     };
 
     return (
-      <label className="flex flex-col gap-4 text-shade-300">
+      <label className="flex w-full flex-col gap-4 text-shade-300">
         {label && (
           <h5 className="flex gap-x-1.5 font-normal capitalize">
             {label}

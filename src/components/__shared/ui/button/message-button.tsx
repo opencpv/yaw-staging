@@ -1,12 +1,9 @@
 "use client";
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, ButtonProps } from ".";
-// import { useMessageStore } from "@/store/dashboard/useMessageStore";
-// import { useUserDetails } from "@/lib/custom-hooks/message/useUserDetails";
-// import { useUserSession } from "@/lib/custom-hooks/database/useUserSession";
-// import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { PiChatCenteredDots } from "react-icons/pi";
+import { MdOutlineMessage } from "react-icons/md"; // Import the second icon
 import { useAppStore } from "@/store/dashboard/AppStore";
 import dynamic from "next/dynamic";
 
@@ -17,6 +14,8 @@ const SignInRequiredModal = dynamic(
 type Props = {
   id?: string;
   isIcon?: boolean;
+  withIconAndText?: boolean; // Make this optional
+  iconType?: "PiChatCenteredDots" | "MdOutlineMessage"; // New prop to specify the icon type
 } & ButtonProps;
 
 /** */
@@ -26,6 +25,8 @@ const MessageButton = ({
   id,
   children,
   isIcon,
+  withIconAndText,
+  iconType = "PiChatCenteredDots", // Default to PiChatCenteredDots
   variant = "outline",
   ...props
 }: Props) => {
@@ -51,13 +52,17 @@ const MessageButton = ({
 
   const handleClick = () => {
     if (user) {
-      //
+      // Handle click for logged-in users
     } else {
       setSignInModalOpen(true);
     }
   };
 
   useEffect(() => {}, []);
+
+  // Determine which icon to use based on the iconType prop
+  const IconComponent =
+    iconType === "MdOutlineMessage" ? MdOutlineMessage : PiChatCenteredDots;
 
   return (
     <>
@@ -75,7 +80,21 @@ const MessageButton = ({
           onClick={handleClick}
           {...props}
         >
-          <PiChatCenteredDots size={24} className="text-neutral-700" />
+          <IconComponent size={24} className="text-neutral-700" />
+        </Button>
+      ) : withIconAndText ? (
+        <Button
+          variant={variant}
+          color={color}
+          size="full"
+          title={"Send message"}
+          className={cn(className)}
+          onClick={handleClick}
+          isLoading={loadingMessage}
+          {...props}
+        >
+          <IconComponent size={20} />
+          {children ?? "Send Message"}
         </Button>
       ) : (
         <Button

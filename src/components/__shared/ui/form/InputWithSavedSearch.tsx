@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import React, { FormEvent } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import SaveSearchModal from "../modals/SaveSearchModal";
-import { LinkButton } from "../button";
+import { Button } from "../button";
 
 type Props = {
   className?: string;
@@ -12,7 +12,6 @@ type Props = {
   searchIconColor?: string;
   separatorClassName?: string;
   placeholder?: string;
-  href?: string;
   name?: string;
   value?: string;
   onSubmit?: (e: FormEvent<HTMLFormElement>) => void;
@@ -31,7 +30,6 @@ const InputWithSavedSearch = ({
   name,
   value,
   placeholder,
-  href,
 }: Props) => {
   const [showDivider, setShowDivider] = React.useState(false);
 
@@ -69,8 +67,8 @@ const InputWithSavedSearch = ({
           )}
           style={{ visibility: showDivider ? "visible" : "hidden" }}
         ></div>
-        <LinkButton
-          href={href}
+        <Button
+          //href={href}
           type="submit"
           variant={"ghost"}
           size={"icon"}
@@ -82,7 +80,7 @@ const InputWithSavedSearch = ({
             color={searchIconColor ?? "#737373"}
             className="mx-auto"
           />
-        </LinkButton>
+        </Button>
         {/* !!! COMMENTED OUT FOR NOW */}
         {/* <div className="deep-green-hover col-span-1 grid h-full w-full place-items-center">
           <SaveSearchModal className="mx-auto" />

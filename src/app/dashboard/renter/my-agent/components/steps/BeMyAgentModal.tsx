@@ -16,7 +16,7 @@ import {
   BeMyAgentStepsStore,
 } from "@/store/dashboard/BeMyAgentStepsStore";
 import * as Yup from "yup";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useAddAgentRequest } from "../../services";
 import { convertBooleanToYesNo } from "@/lib/utils/stringManipulation";
@@ -64,6 +64,7 @@ const BeMyAgentValidationSchema = Yup.object({
 
 const BeMyAgentModal = (props: Props) => {
   const pathname = usePathname();
+  const router = useRouter();
   const { user } = useAppStore();
   const [BeMyAgentCreationSteps] = useLocalStorage<
     typeof BeMyAgentDefaultValues | null
@@ -118,6 +119,7 @@ const BeMyAgentModal = (props: Props) => {
   const handleEdit = () => {
     setActiveSlide(BeMyAgentViews.length - 1);
     setAgentRequest(props.agentRequest as AgentRequest);
+    router.replace(`/dashboard/renter/my-agent/edit/${props.agentRequest?.id}`);
   };
 
   return (
@@ -143,13 +145,7 @@ const BeMyAgentModal = (props: Props) => {
           {props.content}
         </Button>
       ) : props.button === "Edit" ? (
-        <Link
-          href={`/dashboard/renter/my-agent/agent/edit/181${props.agentRequest?.id}`}
-          scroll={false}
-          onClick={handleEdit}
-        >
-          {props.children}
-        </Link>
+        <div onClick={handleEdit}>{props.children}</div>
       ) : props.button === "Hire Us Now" ? (
         <AgentButtons
           href="/dashboard/renter/my-agent/create"
@@ -163,7 +159,7 @@ const BeMyAgentModal = (props: Props) => {
           href="/dashboard/renter/my-agent/create"
           variant="price"
           content={formatPrice(props.content as number)}
-          className={props.buttonClassName}
+          className={cn("font-semibold", props.buttonClassName)}
           onClick={handleCreate}
         />
       ) : null}

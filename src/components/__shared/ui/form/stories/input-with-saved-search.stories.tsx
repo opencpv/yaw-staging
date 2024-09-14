@@ -1,3 +1,4 @@
+import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import InputWithSavedSearch from "../InputWithSavedSearch";
 
@@ -38,7 +39,6 @@ export const WithCustomStyles: Story = {
 export const WithHref: Story = {
   args: {
     placeholder: "Search...",
-    href: "#",
   },
 };
 

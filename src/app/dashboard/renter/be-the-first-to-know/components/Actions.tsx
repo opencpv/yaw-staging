@@ -15,12 +15,14 @@ import { useDeleteSearchCriteria } from "../services";
 import slugify from "@/lib/utils/slugify";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
+import Loader from "@/components/__shared/ui/loader";
 const PopupModal = dynamic(() =>
   import("@/components/__shared/ui/alert-dialog").then((mod) => mod.PopupModal),
 );
 
 const BTFTKModal = dynamic(() => import("./steps/BTFTKModal"), {
   ssr: false,
+  loading: () => <Loader position="default" size="sm" />,
 });
 
 type Props = {
@@ -78,7 +80,7 @@ const Actions = ({ criterion }: Props) => {
           <BiDotsVerticalRounded />
         </ActionItemTrigger>
         <ActionContent>
-          <ActionItem className="lg:hidden">
+          <ActionItem className="px-4 py-2 lg:hidden">
             <CriteriaStatus criterion={criterion} />
           </ActionItem>
           <ActionItem onClick={handleView} disabled={!canView}>

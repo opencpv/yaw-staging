@@ -112,14 +112,10 @@ const ModalBody = () => {
   const images = React.useContext(Context)?.images || [];
 
   return (
-    <div className="flex h-full items-center justify-center">
-      <div className="h-fit w-full">
-        <Carousel
-          images={images?.map((image) => image)}
-          setActiveIndex={setActiveIndex}
-        />
-      </div>
-    </div>
+    <Carousel
+      images={images?.map((image) => image)}
+      setActiveIndex={setActiveIndex}
+    />
   );
 };
 

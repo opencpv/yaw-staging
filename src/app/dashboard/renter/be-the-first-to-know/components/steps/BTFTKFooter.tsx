@@ -10,6 +10,7 @@ import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { useEffect } from "react";
 import dynamic from "next/dynamic";
+import FooterButtons from "@/components/__shared/ui/modals/steps/FooterButtons";
 const Modal = dynamic(() =>
   import("@/components/__shared/ui/modals/dialog").then((mod) => mod.Modal),
 );
@@ -79,30 +80,14 @@ const BTFTKFooter = () => {
           "ml-auto grid grid-cols-2 items-center gap-2 max-sm:w-full xs:justify-end",
         )}
       >
-        <Button
-          variant="outline"
-          className={cn(
-            "col-span-1 rounded-lg font-semibold focus:outline-none xs:text-base sm:h-[58px] sm:min-w-[16rem]",
-            {
-              invisible: firstSlide || lastSlide,
-            },
-          )}
-          onClick={handleBack}
-        >
-          Back
-        </Button>
-        <Button
-          className={cn(
-            "col-span-1 rounded-lg font-semibold focus:outline-none xs:text-base sm:h-[58px] sm:min-w-[16rem]",
-          )}
-          onClick={() => {
-            handleForward();
-          }}
-          type="submit"
-          isLoading={isSubmitting}
-        >
-          {lastButOneSlide ? "Finish" : "Continue"}
-        </Button>
+        <FooterButtons
+          firstSlide={firstSlide}
+          lastSlide={lastSlide}
+          onBackward={handleBack}
+          onForward={handleForward}
+          isSubmitting={isSubmitting}
+          forwardContent={lastButOneSlide ? "Finish" : "Continue"}
+        ></FooterButtons>
       </section>
     </>
   );

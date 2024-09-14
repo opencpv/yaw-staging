@@ -1,34 +1,58 @@
 "use client";
-import React from "react";
+import React, { useMemo, useState } from "react";
+import { cn } from "@/lib/utils";
+
 import { useRatingsModalStore } from "@/store/modal/useRatingsModalStore";
 import { ListingCardInterface } from "../../../../../../interfaces";
-
+// import { FaRegStar } from "react-icons/fa";
+import { IoStar } from "react-icons/io5";
 type Props = {
   value?: number;
+  className?: string;
+  clickable?: boolean;
   property?: Partial<ListingCardInterface>;
+  isListingCard?: boolean;
 };
-export default function AllReviewsModal({ property, value }: Props) {
+export default function AllReviewsModal({
+  clickable = true,
+  property,
+  value,
+  className,
+  isListingCard,
+}: Props) {
   const {
-    openRatingsForm,
-    setOpenRatingsForm,
-    openAllRatings,
+    // openRatingsForm,
+    // setOpenRatingsForm,
+    // openAllRatings,
     setOpenAllRatings,
-    currentProperty,
+    // currentProperty,
     setCurrentProperty,
   } = useRatingsModalStore();
+
+  const ratingValue = useMemo(() => {
+    return (value ?? 0 > 5) ? 5 : value;
+  }, [value]);
 
   return (
     <>
       <button
-        className=""
+        className={`${!clickable && "cursor-text"}`}
         onClick={() => {
-          setCurrentProperty(property);
-          setOpenAllRatings(true);
+          if (clickable) {
+            setCurrentProperty(property);
+            setOpenAllRatings(true);
+          }
         }}
       >
         {/* <p>All reviews</p> */}
-
-        <small>( {(value as number) > 0 ? `${value}+` : `${value}`} )</small>
+        <div className="flex items-center gap-1 border-b-[1px] border-b-shade-300 leading-6">
+          <IoStar className="mr-1 text-yellow-400" />
+          {value !== undefined && value > 0 && (
+            <p className={cn("text-lg", className)}>
+              {ratingValue} ( {value} {isListingCard ? "+ " : "Reviews"})
+            </p>
+          )}
+        </div>{" "}
       </button>
     </>
   );

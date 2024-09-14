@@ -19,7 +19,9 @@ const FramerWrapper = dynamic(
   () => import("@/components/__shared/hoc/framer-wrapper"),
 );
 const AdsSlider = dynamic(() => import("./components/post/AdsSlider"));
-const PostSlider = dynamic(() => import("./components/post/PostSlider"));
+const PostSlider = dynamic(() => import("./components/post/PostSlider"), {
+  loading: () => <Loader />,
+});
 const Authors = dynamic(() => import("./components/author/Authors"));
 
 const page = async () => {

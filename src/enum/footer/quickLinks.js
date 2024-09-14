@@ -9,7 +9,7 @@ const quickLinks = [
   },
   {
     label: "Contact",
-    href: "/contact",
+    href: "/contact/general",
   },
   {
     label: "Payments",
