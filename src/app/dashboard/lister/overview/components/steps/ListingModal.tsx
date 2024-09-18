@@ -18,8 +18,8 @@ import { useAddListing } from "../../services";
 import { getFormValues } from "../../utils";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-const ListingHeader = dynamic(() => import("./ListingHeader"));
-const ListingFooter = dynamic(() => import("./ListingFooter"));
+import ListingHeader from "./ListingHeader";
+import ListingFooter from "./ListingFooter";
 const StepsModal = dynamic(
   () => import("@/components/__shared/ui/modals/steps/steps-modal"),
 );

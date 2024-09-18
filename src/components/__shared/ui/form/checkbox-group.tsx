@@ -80,7 +80,7 @@ const CheckboxGroup = React.forwardRef<
         <p className="flex gap-2 whitespace-nowrap text-base">{label}</p>
         <div className="flex flex-wrap gap-x-10 gap-y-5">
           {options?.map((option) => (
-            <div key={option} className="flex items-center space-x-2">
+            <label key={option} className="flex items-center space-x-2">
               <Checkbox
                 name={field?.name + " " + option || name + " " + option}
                 value={option}
@@ -100,7 +100,7 @@ const CheckboxGroup = React.forwardRef<
               >
                 {option}
               </div>
-            </div>
+            </label>
           ))}
         </div>
         {meta?.touched && meta?.error ? (

@@ -10,7 +10,6 @@ import { useAddSearchCriteria } from "../../services";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { usePathname, useRouter } from "next/navigation";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import capitalizeName from "@/lib/utils/stringManipulation";
 import style from "../../index.module.css";
 import HeaderButtons from "@/components/__shared/ui/modals/steps/HeaderButtons";
 import { getFormValues } from "../../utils";

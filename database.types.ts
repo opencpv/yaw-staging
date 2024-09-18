@@ -2274,6 +2274,23 @@ export type Database = {
           monthly_amount: number
           currency: string
           banner_image: Json
+          suited_for: string[]
+          features: string[]
+          utilities: string[]
+          lease_options: string[]
+          incentives: string[]
+          furnish_level: string
+          description: string
+          renter_knowledge: string
+          property_size: string
+          available_date: string
+          total_amount: number
+          agent_fee: number
+          viewing_fee: number
+          require_refundable_security_deposit: boolean
+          require_additional_fees: boolean
+          require_agent_fee: boolean
+          require_viewing_fee: boolean
           payment_terms: string
           is_complete: boolean
           is_realtors_choice: boolean

@@ -1,3 +1,4 @@
+import "./tailwind.css";
 import "./globals.css";
 import "../styles/animations.css";
 import type { Metadata, Viewport } from "next";

@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply max-w-3xl text-3xl font-bold sm:text-6xl;
+  }
+
+  h2 {
+    @apply max-w-3xl text-2xl font-[600] leading-[2.2rem] sm:text-[1.763rem];
+  }
+
+  h3 {
+    @apply max-w-3xl text-[1.3rem] font-[600] leading-[1.75rem];
+  }
+
+  h4 {
+    @apply max-w-3xl text-lg font-[600];
+  }
+
+  h5 {
+    @apply max-w-3xl text-base font-[600];
+  }
+
+  h6 {
+    @apply max-w-3xl text-sm font-[600];
+  }
+
+  p {
+    @apply max-w-3xl text-base sm:text-lg;
+  }
+
+  small {
+    @apply block max-w-3xl text-sm;
+  }
+
+  li,
+  a:not(a[role="button"]),
+  textarea {
+    @apply focus:outline-accent-50;
+  }
+}
+
+@layer components {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 5px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply h-[20px] rounded-xl bg-primary/30;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply rounded-xl bg-primary/10;
+  }
+  .form-field-border {
+    @apply border border-neutral-300 hover:border-black/40 focus-visible:outline-accent;
+  }
+
+  .form-input {
+    @apply form-field-border rounded-md px-3 py-4 focus:outline-accent-50;
+  }
+
+  .form-textarea {
+    @apply form-field-border rounded-md px-3 py-4 focus:outline-accent-50;
+  }
+
+  .gradient-to-bottom {
+    @apply bg-gradient-to-b from-primary-500 to-primary-400/80;
+  }
+
+  .circle-hover {
+    @apply grid size-8 place-items-center justify-center rounded-full hover:bg-shade-50 focus:outline-accent;
+  }
+
+  .light-green-hover {
+    @apply hover:bg-primary-300/20;
+  }
+
+  .listing-grid {
+    @apply mx-auto mt-10 grid grid-cols-1 justify-center gap-x-5 gap-y-16 max-sm:max-w-[350px] sm:grid-cols-2 min-[950px]:grid-cols-3;
+  }
+
+  .deep-green-hover {
+    @apply hover:bg-primary-300/50;
+  }
+
+  .menu-bg {
+    @apply bg-primary-900 before:pointer-events-none before:fixed before:-left-64 before:top-28 before:h-[50rem] before:w-[50rem] before:rounded-full before:bg-primary-200 before:opacity-[0.12] after:pointer-events-none after:fixed after:-right-64 after:-top-60 after:hidden after:h-[45rem] after:w-[50rem] after:rounded-full after:bg-primary-200 after:opacity-[0.12] after:lg:block;
+  }
+
+  .overlay {
+    @apply relative before:absolute before:inset-0 before:h-full before:w-full before:bg-primary-500/60;
+  }
+
+  .overlay-rounded {
+    @apply relative before:absolute before:inset-0 before:z-10 before:h-full before:w-full before:rounded-2xl before:bg-gradient-to-b before:from-primary-500/60 before:to-primary-500/50;
+  }
+
+  .scale-hover {
+    @apply transition-transform hover:scale-[1.02];
+  }
+  .section {
+    @apply pt-20;
+  }
+
+  .skeleton-wrapper-swiper {
+    @apply grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3;
+  }
+
+  .skeleton-wrapper-grid {
+    @apply mx-auto grid grid-cols-1 justify-center gap-x-5 gap-y-16 md:grid-cols-2 lg:grid-cols-3;
+  }
+
+  .skeleton-wrapper-flex {
+    @apply flex gap-5 overflow-x-auto;
+  }
+
+  .skeleton-wrapper-flex > div {
+    @apply min-w-60;
+  }
+
+  .wrapper {
+    @apply mx-auto max-w-screen-hd px-5 pb-8 pt-12 sm:pb-14 lg:px-10;
+  }
+}
