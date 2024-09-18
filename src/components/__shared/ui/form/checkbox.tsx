@@ -109,7 +109,7 @@ const Checkbox = React.forwardRef<
         />
 
         {label && (
-          <span
+          <p
             className={cn(
               "text-base text-shade-200",
               {
@@ -119,7 +119,7 @@ const Checkbox = React.forwardRef<
             )}
           >
             {label}
-          </span>
+          </p>
         )}
       </label>
     );

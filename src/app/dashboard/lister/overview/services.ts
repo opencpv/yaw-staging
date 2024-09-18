@@ -36,6 +36,7 @@ export const useFetchListerListings = ({ listerId }: { listerId: string }) => {
     .select(PROPERTY_DETAILS_SELECT_QUERY)
     .match({ owner_uid: listerId, is_archived: false, is_suspended: false })
     .order("created_at", { ascending: false })
+    .order("is_published", { ascending: false })
     .limit(3);
 
   const result = useQuery({

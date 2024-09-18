@@ -12,6 +12,7 @@ import { IoIosCloseCircle } from "react-icons/io";
 import { useState } from "react";
 import { useDashboardMenuStore } from "@/store/navmenu/useDashboardMenuStore";
 import AvatarMenu from "@/components/__shared/ui/avatar/AvatarMenu";
+import { cn } from "@/lib/utils";
 // import useNotifications from "../../renter/notifications/useNotifications";
 
 const Navbar = () => {
@@ -23,9 +24,9 @@ const Navbar = () => {
   return (
     <>
       <Root
-        className={`relative ${
-          isOpen ? "z-[50]" : "max-md:z-[70]"
-        } flex h-fit flex-nowrap items-center gap-4 bg-primary-500 p-2 py-10 xs:gap-16 xs:p-4 2xl:p-[1.875rem]`}
+        className={cn(`relative flex h-fit flex-nowrap items-center gap-4 bg-primary-500 p-2 py-10 xs:gap-16 xs:p-4 2xl:p-[1.875rem]`, {
+          "z-50": isOpen
+        })}
       >
         <div className="flex items-center justify-start xs:gap-6 md:w-full md:gap-10 lg:gap-20">
           <Logo size="xs" />

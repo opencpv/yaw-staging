@@ -23,6 +23,11 @@ const meta: Meta<typeof Input> = {
       description: "Label for the input field",
       control: "text",
     },
+    classNames: {
+      description:
+        "Styles for the other part of the input i.e base, label, etc.",
+      control: "object",
+    },
   },
 };
 

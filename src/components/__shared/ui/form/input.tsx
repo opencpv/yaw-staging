@@ -11,6 +11,9 @@ export interface InputProps
   label?: string;
   prefix?: string;
   tooltip?: string;
+  classNames?: {
+    base?: string;
+  };
 }
 
 /**
@@ -21,6 +24,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {
       className,
+      classNames,
       type,
       label,
       prefix,
@@ -41,7 +45,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     }
 
     return (
-      <label className="flex flex-col gap-4 text-shade-300">
+      <label
+        className={cn("flex flex-col gap-4 text-shade-300", classNames?.base)}
+      >
         {label && (
           <div className="flex gap-x-1.5">
             <h5 className="font-normal capitalize">{label}</h5>

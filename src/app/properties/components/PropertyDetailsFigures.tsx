@@ -22,7 +22,7 @@ const PropertyDetailsFigures = ({ listing }: Props) => {
     ? "No Advance"
     : capitalizeName(
         wordifyNumber(
-          convertNumWithoutPlus(listing?.lease_duration?.slice(0, 1) as string),
+          convertNumWithoutPlus(listing?.payment_terms?.slice(0, 1) as string),
         ),
       ) + " Year Advance";
   return (

@@ -21,10 +21,8 @@ import {
   FieldHelperProps,
   FieldInputProps,
   FieldMetaProps,
-  useField,
   useFormikContext,
 } from "formik";
-import { styled } from "@stitches/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { SelectInput } from "@/components/__shared/ui/form/select";
@@ -40,22 +38,29 @@ type DataItem = {
 
 type Props = {
   value2?: string;
+  value3?: string;
   placeholder?: string;
   label: string;
   /** For first element */
   onChange: (value: any) => void;
   /** For second element */
   onChange2?: (value: any) => void;
+  /** For third element */
+  onChange3?: (value: any) => void;
   placeholderMonthlyIncomeCurrency?: string;
   placeholderMonthlyIncome?: string;
   infoBubble?: boolean;
   isSelectElement?: boolean;
   /** options to use when isSelectElement is true */
   options?: string[];
+  /** options for third element*/
+  options3?: string[];
   /** For first element */
   name?: string;
   /** For second element */
   name2?: string;
+  /** For third element */
+  name3?: string;
 };
 
 /**
@@ -67,12 +72,16 @@ const CurrencyInput = ({
   label,
   onChange,
   onChange2,
+  onChange3,
   value2,
+  value3,
   placeholderMonthlyIncomeCurrency,
   isSelectElement,
   options,
+  options3,
   name,
   name2,
+  name3,
 }: Props) => {
   const [currencyData, setCurrencyData] = useState<DataItem[]>();
   const [open, setOpen] = React.useState(false);
@@ -126,7 +135,11 @@ const CurrencyInput = ({
   return (
     <div className={cn("flex w-full flex-col gap-4 text-shade-300")}>
       {label && <label>{label}</label>}
-      <div className="grid grid-cols-3 gap-4">
+      <div
+        className={cn("grid grid-cols-4 gap-4", {
+          "grid-cols-3 lg:grid-cols-5": name3,
+        })}
+      >
         <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
             <Button
@@ -179,15 +192,31 @@ const CurrencyInput = ({
             name={name2}
             value={value2}
             options={options as string[]}
-            onChange={(value) => onChange2 && onChange2(value)}
-            className="col-span-2"
+            onChange={(value) => onChange2?.(value)}
+            className={cn("col-span-3", {
+              "max-lg:col-span-1": name3,
+            })}
           />
         ) : (
           <Input
             name={name2 as string}
-            onChange={(e) => onChange2 && onChange2(e.target.value)}
-            className="col-span-2"
+            onChange={(e) => onChange2?.(e.target.value)}
+            classNames={{
+              base: cn("col-span-3", {
+                "max-lg:col-span-1": name3,
+              }),
+            }}
+            placeholder={"100"}
             //value={value2}
+          />
+        )}
+        {name3 && (
+          <SelectInput
+            name={name3}
+            value={value3}
+            options={options3 as string[]}
+            onChange={(value) => onChange3?.(value)}
+            className="col-span-1"
           />
         )}
       </div>
