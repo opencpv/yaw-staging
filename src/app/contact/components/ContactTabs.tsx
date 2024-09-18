@@ -50,9 +50,9 @@ const ContactTabs = () => {
       <Tabs
         value={active}
         onValueChange={(value) => handleClick(value as ContactTabActiveKey)}
-        className="md:py-2"
+        className="py-2"
       >
-        <TabsList>
+        <TabsList className="gap-8">
           <TabsTrigger value="general" className={style.tabstrigger}>
             General
           </TabsTrigger>

@@ -46,7 +46,7 @@ const Hero = (props: Props) => {
           viewBox="0 0 360 153"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="absolute right-0 top-[-45.5px] z-10 max-sm:w-[150px] sm:right-[-1.1px] sm:top-[-1.6px]"
+          className="absolute -right-[0.3%] -top-[23px] z-10 -translate-x-[0.3%] -translate-y-[23px] max-sm:w-[150px] sm:-right-[0.3%] sm:-top-[0.3%] sm:-translate-x-[0.3%] sm:-translate-y-[0.3%]"
         >
           <path
             d="M0.5 1.00015C1.25281 0.968782 2.0556 0.967325 2.89984 1.00015H359V149.379C359.015 150.405 359.015 151.445 359 152.5V149.379C358.223 96.7143 317.935 81.8174 297.5 81L76 80.5C65.1667 80.5 42.8 72.4001 40 40.0001C37.3757 9.63274 15.5129 1.49055 2.89984 1.00015H0.5Z"

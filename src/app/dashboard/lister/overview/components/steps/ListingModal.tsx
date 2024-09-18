@@ -130,6 +130,7 @@ const ListingModal = (props: Props) => {
   ]);
 
   const handleCreate = () => {
+    setPreviousPath(pathname as string);
     setActiveSlide(0);
     setListing(null);
   };

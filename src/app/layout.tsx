@@ -1,4 +1,3 @@
-import "./tailwind.css";
 import "./globals.css";
 import "../styles/animations.css";
 import type { Metadata, Viewport } from "next";
@@ -6,9 +5,9 @@ import Script from "next/script";
 import { openSans } from "@/lib/utils/fonts";
 import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
-//const RatingsAndAllRatings = dynamic(
-//  () => import("@/components/RatingsAndAllRatings"),
-//);
+const RatingsAndAllRatings = dynamic(
+  () => import("@/components/RatingsAndAllRatings"),
+);
 const ToastConfig = dynamic(() => import("@/components/__shared/ToastConfig"));
 const Providers = dynamic(() => import("@/context/Providers"));
 const NoticeModal = dynamic(
@@ -88,12 +87,9 @@ export default function RootLayout({
             <LoadingIndicator />
             <NoticeModal />
             {children}
-            {/*
             <RatingsAndAllRatings />
-            */}
           </MenuWrapper>
         </Providers>
-        {/* <RatingsAndAllRatings /> */}
       </body>
     </html>
   );

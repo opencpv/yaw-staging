@@ -8,6 +8,7 @@ import { CiCalendar } from "react-icons/ci";
 import { formatPrice } from "@/lib/utils/numberManipulation";
 import { FaCirclePlus } from "react-icons/fa6";
 import { format } from "date-fns";
+import Callout from "@/components/__shared/ui/callout";
 
 type Props = {
   listing: Property;
@@ -28,7 +29,7 @@ const AdditionalInfo = ({ className, listing }: Props) => {
         className,
       )}
     >
-      <section className="flex w-full flex-col gap-5 pb-10">
+      <section className="flex w-full flex-col gap-5 pb-5">
         <Button size={"full"} className="flex-1">
           Apply Now
         </Button>
@@ -45,17 +46,22 @@ const AdditionalInfo = ({ className, listing }: Props) => {
             {format(new Date(listing?.available_date as string), "MMM dd yyyy")}
           </span>
         </div>
+        <LeaseOptions listing={listing} />
       </section>
       <section className={style.additionalInfoWrapper}>
-        <h3 className="pb-5">Additional Information</h3>
-        <h4>Agency Fee</h4>
+        <Callout>
+          <span className="font-bold">Pro tip: </span> To guard against scams,
+          insist on paying through the site. Refunds are guaranteed with cause
+          for 7 days.
+        </Callout>
+        <h4>Service Fees</h4>
         <div className="flex flex-col gap-5">
-          <AgencyFee
+          <ServiceFee
             title="Viewing Fee"
             amount={listing?.viewing_fee as number}
             currency={listing?.currency as string}
           />
-          <AgencyFee
+          <ServiceFee
             title="Agent Fee"
             amount={listing?.agent_fee as number}
             currency={listing?.currency as string}
@@ -96,7 +102,7 @@ const AdditionalInfo = ({ className, listing }: Props) => {
   );
 };
 
-const AgencyFee = (props: {
+const ServiceFee = (props: {
   title: string;
   amount: number | undefined;
   currency: string;
@@ -104,7 +110,7 @@ const AgencyFee = (props: {
   return (
     <div
       className={cn(
-        "flex flex-wrap items-center gap-3 rounded-2xl border-2 p-2.5 px-3",
+        "flex items-center gap-3 rounded-2xl border-2 p-2.5 px-3 max-llg:flex-wrap",
         style.feeTextSize,
       )}
     >
@@ -157,6 +163,16 @@ const PropertyFee = (props: {
       )}
     </div>
   );
+};
+
+const LeaseOptions = ({ listing }: { listing: Property }) => {
+  if (listing?.lease_options?.length)
+    return (
+      <section className="space-y-2">
+        <h4>Lease Options</h4>
+        <div>{listing?.lease_options.join(", ")}</div>
+      </section>
+    );
 };
 
 export default AdditionalInfo;

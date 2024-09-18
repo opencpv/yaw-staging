@@ -72,8 +72,10 @@ export const useFetchFeaturedListings = ({
   return useQuery(query);
 };
 
-export const useFetchRecommendedListings = () => {
-  const query = supabase
+export const useFetchRecommendedListings = ({
+  currentListingId,
+}: { currentListingId?: number } = {}) => {
+  let query = supabase
     .from("published_properties")
     .select(PROPERTY_DETAILS_SELECT_QUERY)
     // .eq("is_featured", true)
@@ -82,7 +84,11 @@ export const useFetchRecommendedListings = () => {
     .order("is_best_value", { ascending: false })
     .order("profiles (is_certified)", { ascending: false })
     .order("created_at", { ascending: false });
-
+  if (currentListingId) {
+    query = query.neq("id", currentListingId);
+  } else {
+    query = query;
+  }
   return useQuery(query);
 };
 

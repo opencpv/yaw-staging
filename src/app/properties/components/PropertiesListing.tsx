@@ -50,7 +50,7 @@ const PropertiesListing = (props: Props) => {
     // TODO: implement appropriately
     router.replace(
       `/properties?${new URLSearchParams({
-        search: "Accra",
+        q: "Accra",
         tag: "All",
       })}`,
       {

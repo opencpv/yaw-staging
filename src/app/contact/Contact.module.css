@@ -8,5 +8,5 @@
 }
 
 .tabstrigger {
-  @apply relative bg-transparent py-3 text-lg font-medium text-primary-200 duration-200 hover:bg-[#45808b1c] data-[state=active]:border-b-2 data-[state=active]:bg-transparent data-[state=active]:text-primary-200 data-[state=active]:shadow-none after:data-[state=active]:absolute after:data-[state=active]:bottom-0 after:data-[state=active]:left-[50%] after:data-[state=active]:z-10 after:data-[state=active]:h-2 after:data-[state=active]:w-8/12 after:data-[state=active]:translate-x-[-50%] after:data-[state=active]:border-b-4 after:data-[state=active]:bg-primary-200 after:data-[state=active]:transition-[wdith] after:data-[state=active]:duration-1000 data-[state=active]:hover:bg-[#45808b1c] md:py-4;
+  @apply relative rounded-none bg-transparent px-2 text-lg font-medium text-primary-200 duration-200 hover:bg-[#45808b1c] data-[state=active]:border-b-[3px] data-[state=active]:border-primary-200 data-[state=active]:bg-transparent data-[state=active]:text-primary-200 data-[state=active]:shadow-none data-[state=active]:transition-[border] after:data-[state=active]:duration-1000 data-[state=active]:hover:bg-[#45808b1c];
 }

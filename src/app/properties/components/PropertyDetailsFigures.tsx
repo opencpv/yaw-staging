@@ -34,11 +34,11 @@ const PropertyDetailsFigures = ({ listing }: Props) => {
         <FigureCard
           title="Monthly Rent"
           icon={<CiWallet size={24} />}
-          value={formatPrice(
+          value={`${formatPrice(
             listing?.monthly_amount as number,
             true,
             listing?.currency as string,
-          )}
+          )} / Month`}
           tag={advancePeriod}
         />
         <FigureCard
@@ -77,7 +77,9 @@ const FigureCard = (props: {
       )}
       {props.icon}
       <p className="text-base">{props.title}</p>
-      <p className="font-bold text-primary">{props.value || " - "}</p>
+      <p className="text-center font-bold text-primary">
+        {props.value || " - "}
+      </p>
     </div>
   );
 };

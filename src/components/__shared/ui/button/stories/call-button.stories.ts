@@ -31,13 +31,13 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    phoneNumber: "+1234567890",
+    phone: "+1234567890",
   },
 };
 
 export const IconPositionRight: Story = {
   args: {
-    phoneNumber: "+1234567890",
+    phone: "+1234567890",
     iconPosition: "right",
   },
 };

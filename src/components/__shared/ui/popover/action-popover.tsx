@@ -47,7 +47,7 @@ export const ActionItemTrigger = (props: TriggerProps) => {
       onMouseOver={props.onMouseOver}
       asChild
     >
-      <span>{props.children}</span>
+      <span className="cursor-pointer">{props.children}</span>
     </PopoverTrigger>
   );
 };
