@@ -15,13 +15,6 @@ const ProfileInfo = dynamic(() => import("./ProfileInfo"), {
 });
 
 const ProfileMainView = () => {
-  const optionSelect = useManageAccountStore(
-    (state: any) => state.filterOption,
-  );
-  const handleOptionChange = useManageAccountStore(
-    (state: any) => state.changeOption,
-  );
-
   return (
     <main>
       <h2 className="mb-5">Settings</h2>
