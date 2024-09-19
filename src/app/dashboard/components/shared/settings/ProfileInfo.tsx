@@ -1,5 +1,6 @@
 import { styled } from "@stitches/react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form } from "formik";
+import * as Yup from "yup";
 import { AiFillInstagram, AiOutlineLink } from "react-icons/ai";
 import { FaFacebook, FaLinkedin } from "react-icons/fa";
 import { useEffect, useState } from "react";
@@ -17,6 +18,8 @@ import { Checkbox } from "@/components/__shared/ui/form/checkbox";
 import ProfilePicture from "./ProfilePicture";
 import CountryInput from "@/components/__shared/ui/form/country-input";
 import toast from "react-hot-toast";
+import { Input } from "@/components/__shared/ui/form/input";
+import { Textarea } from "@/components/__shared/ui/form/textarea";
 
 interface Props {
   icon: any;
@@ -28,32 +31,16 @@ interface Props {
   defaultValue?: string;
 }
 
-const IconField = ({
-  icon,
-  label,
-  type,
-  name,
-  className,
-  placeholder,
-  defaultValue,
-}: Props) => {
+const IconField = ({ icon, label, type, name, placeholder }: Props) => {
   return (
-    <div className="form-div relative">
+    <label className="relative flex flex-col gap-4">
       <div className="relative flex items-center">
         <div className="absolute left-0 top-0">{icon}</div>
-        <label className="pl-8">{label}</label>
+        <p className="pl-8 text-base">{label}</p>
       </div>
       <AiOutlineLink className="link-icon absolute" size={16} color="#737373" />
-      <Field
-        type={type}
-        name={name}
-        className={`form-input ${className}`}
-        style={{ paddingInline: "2.5rem" }}
-        placeholder={placeholder}
-      />
-
-      <ErrorMessage name={name} />
-    </div>
+      <Input type={type} name={name} placeholder={placeholder} />
+    </label>
   );
 };
 
@@ -61,13 +48,9 @@ const ProfileInfo = () => {
   const [countries, setCountries] = useState([]);
   const [submitLoading, setSubmitLoading] = useState(false);
   const user = useAppStore((state) => state.user);
-  const { phone, handlePhone, handleCountryChange } = usePhoneInputDisclosure();
-  const {
-    phone: whatsApp,
-    handlePhone: handleWhatsApp,
-    handleCountryChange: handleWhatsAppCountryChange,
-  } = usePhoneInputDisclosure();
-  const [sameAsPhone, setSameAsPhone] = useState(false);
+  const { handleCountryChange } = usePhoneInputDisclosure();
+  const { handleCountryChange: handleWhatsAppCountryChange } =
+    usePhoneInputDisclosure();
   const router = useRouter();
   const supabase = createClient();
 
@@ -94,7 +77,13 @@ const ProfileInfo = () => {
     whatsapp: user?.whatsapp,
     bio: user?.bio,
     phone: user?.phone,
+    sameAsPhone: false,
   };
+
+  const validationSchema = Yup.object({
+    firstName: Yup.string().required("First Name is required"),
+    phone: Yup.string().required("Phone number is required"),
+  });
 
   return (
     <Root>
@@ -110,8 +99,11 @@ const ProfileInfo = () => {
             <Formik
               key={JSON.stringify(user)}
               initialValues={initialValues}
+              validationSchema={validationSchema}
               onSubmit={async (values) => {
-                const whatsApp = sameAsPhone ? values.phone : values.whatsapp;
+                const whatsApp = values.sameAsPhone
+                  ? values.phone
+                  : values.whatsapp;
                 setSubmitLoading(true);
                 try {
                   const { data, error } = await supabase
@@ -144,7 +136,7 @@ const ProfileInfo = () => {
               }}
               enableReinitialize={true}
             >
-              {({ handleChange, handleBlur, values, isSubmitting }) => (
+              {({ values, isSubmitting, dirty }) => (
                 <Form className="border-t-2 pt-8">
                   <div className="grid grid-cols-1 gap-x-20 gap-y-8 sm:grid-cols-2 xl:grid-cols-3">
                     {/* My Profile Summary */}
@@ -153,47 +145,30 @@ const ProfileInfo = () => {
                         My Profile Summary
                       </h3>
                       <div className="flex flex-col gap-x-5 gap-y-8">
-                        <div className="form-div">
-                          <label>First Name</label>
-                          <Field
-                            name="firstName"
-                            placeholder="Jane"
-                            className="form-input"
-                          />
-                          <ErrorMessage name="firstName" />
-                        </div>
-                        <div className="form-div">
-                          <label>Last Name</label>
-                          <Field
-                            name="lastName"
-                            placeholder="Doe"
-                            className="form-input"
-                          />
-                          <ErrorMessage name="lastName" />
-                        </div>
-                        <div className="form-div">
-                          <label>Email Address</label>
-                          <Field
-                            type="email"
-                            name="email"
-                            placeholder="johndoe@gmail.com"
-                            disabled
-                            className="form-input"
-                          />
-                          <ErrorMessage name="email" />
-                        </div>
-                        <div className="form-div">
-                          <CountryInput
-                            name="country"
-                            value={values.country}
-                            label="I Live In"
-                          />
-                          <ErrorMessage
-                            name="country"
-                            component="div"
-                            className="error"
-                          />
-                        </div>
+                        <Input
+                          name="firstName"
+                          label="First Name"
+                          placeholder="Jane"
+                        />
+                        <Input
+                          name="lastName"
+                          label="Last Name"
+                          placeholder="Doe"
+                        />
+
+                        <Input
+                          name="email"
+                          type="email"
+                          label="Email Address"
+                          placeholder="johndoe@gmail.com"
+                          disabled
+                        />
+                        <CountryInput
+                          name="country"
+                          value={values.country}
+                          label="I Live In"
+                        />
+
                         <div className="form-div">
                           <div className="relative flex items-center">
                             <RiPhoneFill
@@ -206,13 +181,6 @@ const ProfileInfo = () => {
                           <PhoneNumberInput
                             name="phone"
                             value={values.phone as E164Number}
-                            onChange={(val) => {
-                              handlePhone(val);
-                              handleChange({
-                                target: { name: "phone", value: val },
-                              });
-                            }}
-                            onBlur={handleBlur}
                             onCountryChange={handleCountryChange}
                           />
                         </div>
@@ -271,35 +239,19 @@ const ProfileInfo = () => {
                             <Checkbox
                               name="sameAsPhone"
                               label="Same as phone"
-                              onCheckedChange={(checked) =>
-                                setSameAsPhone(checked as boolean)
-                              }
+                              checked={values.sameAsPhone}
                             />
                           </div>
-                          {sameAsPhone ? (
+                          {values.sameAsPhone ? (
                             <PhoneNumberInput
                               name="phone"
                               value={values.phone as E164Number}
-                              onChange={(val) => {
-                                handlePhone(val);
-                                handleChange({
-                                  target: { name: "phone", value: val },
-                                });
-                              }}
-                              onBlur={handleBlur}
                               onCountryChange={handleCountryChange}
                             />
                           ) : (
                             <PhoneNumberInput
                               name="whatsapp"
                               value={values.whatsapp as E164Number}
-                              onChange={(val) => {
-                                handleWhatsApp(val);
-                                handleChange({
-                                  target: { name: "whatsapp", value: val },
-                                });
-                              }}
-                              onBlur={handleBlur}
                               onCountryChange={handleWhatsAppCountryChange}
                             />
                           )}
@@ -311,24 +263,21 @@ const ProfileInfo = () => {
                       <h3 className="invisible mb-5 text-shade-300 max-2xl:hidden">
                         Bio
                       </h3>
-                      <div className="form-div">
-                        <label>About me</label>
-                        <Field
-                          as="textarea"
-                          id="bio"
-                          name="bio"
-                          placeholder="Share a little about yourself. Where do you live? What are your hobbies? What is important to you? What do you do? Visitors to your profile page will be able to read this information."
-                          className="form-textarea text-[#737373]"
-                          rows="10"
-                          cols="50"
-                        />
-                      </div>
+                      <Textarea
+                        id="bio"
+                        name="bio"
+                        label="About me"
+                        placeholder="Share a little about yourself. Where do you live? What are your hobbies? What is important to you? What do you do? Visitors to your profile page will be able to read this information."
+                        rows={10}
+                        cols={50}
+                      />
                       <>
                         <Button
                           variant="accent"
                           type="submit"
                           className="mt-8"
                           isLoading={isSubmitting}
+                          disabled={!dirty}
                         >
                           Update Profile
                         </Button>

@@ -56,7 +56,7 @@ const ProfileMainView = () => {
           <Blocking />
         </TabsContent>
         <TabsContent value="account">
-          <div>Account</div>
+          <div className="min-h-screen">Account</div>
         </TabsContent>
       </Tabs>
     </main>

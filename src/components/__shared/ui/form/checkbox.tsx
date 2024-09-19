@@ -90,6 +90,7 @@ const Checkbox = React.forwardRef<
     if (formikContext) {
       field = formikContext.getFieldProps(name as string);
       meta = formikContext.getFieldMeta(name as string);
+      helpers = formikContext.getFieldHelpers(name as string);
     }
 
     return (
