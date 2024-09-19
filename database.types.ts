@@ -803,6 +803,7 @@ export type Database = {
           created_at: string
           customer: string
           id: number
+          is_archived: boolean
           is_paid: boolean
           payment_ref: string | null
           service: string
@@ -815,6 +816,7 @@ export type Database = {
           created_at?: string
           customer: string
           id?: number
+          is_archived?: boolean
           is_paid: boolean
           payment_ref?: string | null
           service: string
@@ -827,6 +829,7 @@ export type Database = {
           created_at?: string
           customer?: string
           id?: number
+          is_archived?: boolean
           is_paid?: boolean
           payment_ref?: string | null
           service?: string
@@ -2228,6 +2231,26 @@ export type Database = {
           length: number
         }
         Returns: string
+      }
+      get_all_products: {
+        Args: {
+          sort?: string
+          product_condition?: string
+          product_term?: string
+          price_from?: number
+          price_to?: number
+          categories?: string[]
+        }
+        Returns: {
+          id: number
+          title: string
+          description: string
+          category: string
+          term: string
+          price: number
+          condition: string
+          created_at: string
+        }[]
       }
       get_all_properties: {
         Args: {

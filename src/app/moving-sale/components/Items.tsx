@@ -38,7 +38,6 @@ function Items(props: Props) {
     isLoading,
     isValidating,
     loadMore,
-    mutate,
   } = useFetchItems({
     categories,
     condition,
@@ -84,7 +83,7 @@ function Items(props: Props) {
               term: item.term,
               price: item.price.toString(),
               condition: item.condition,
-              seller: item.profiles?.full_name as string,
+              //seller: item.profiles?.full_name as string,
               description: item.description,
             })}`}
             title={item.title}
@@ -109,7 +108,7 @@ function Items(props: Props) {
               term: item.term,
               price: item.price.toString(),
               condition: item.condition,
-              seller: item.profiles?.full_name as string,
+              //seller: item.profiles?.full_name as string,
               description: item.description,
             })}`}
             title={item.title}

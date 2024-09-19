@@ -62,7 +62,7 @@ const SortFilter = () => {
           value={sort as unknown as ItemSort}
           onValueChange={handleSelectionChange}
         />
-        <Button variant="accent" onClick={onOpen} className="h-unit-10">
+        <Button variant="accent" onClick={onOpen}>
           Filter
         </Button>
       </div>

@@ -27,47 +27,20 @@ export const useFetchItems = ({
   categories: string;
 }) => {
   const categoriesArray = categories
-    .split(",")
-    .map((item) => capitalizeName(item));
+    ? categories.split(",").map((item) => capitalizeName(item))
+    : undefined;
 
   const cleanedPriceFrom = extractNumericValue(priceRangeFrom);
   const cleanedPriceTo = extractNumericValue(priceRangeTo);
 
-  let query = supabase
-    .from("products")
-    .select("*, profiles!inner (id, full_name)");
-
-  if (categories) {
-    query = query.in("category", categoriesArray);
-  }
-
-  if (sort) {
-    if (sort === "Newest") {
-      query = query.order("created_at", { ascending: false });
-    } else if (sort === "Price: High to Low") {
-      query = query.order("price", { ascending: false });
-    } else if (sort === "Price: Low to High") {
-      query = query.order("price");
-    } else if (sort === "Popular") {
-      query = query.order("views", { ascending: false });
-    }
-  }
-
-  if (condition && condition !== "All") {
-    query = query.eq("condition", capitalizeName(condition));
-  }
-
-  if (term && term !== "All") {
-    query = query.eq("term", capitalizeName(term));
-  }
-
-  if (priceRangeFrom) {
-    query = query.gte("price", parseFloat(cleanedPriceFrom));
-  }
-
-  if (priceRangeTo) {
-    query = query.lte("price", parseFloat(cleanedPriceTo));
-  }
+  let query = supabase.rpc("get_all_products", {
+    categories: categoriesArray,
+    sort: sort || undefined,
+    product_condition: condition,
+    product_term: term,
+    price_from: Number(cleanedPriceFrom) || undefined,
+    price_to: Number(cleanedPriceTo) || undefined,
+  });
 
   return useOffsetInfiniteScrollQuery(query, {
     pageSize: 12,

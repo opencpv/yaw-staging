@@ -126,7 +126,7 @@ const UpdateItemPage = () => {
   return (
     <main className="wrapper">
       <div className="mb-10">
-        <h2 className="capitalize">Update Product</h2>
+        <h2>Update Product</h2>
       </div>
       {isLoading ? (
         <Loader />
@@ -145,7 +145,7 @@ const UpdateItemPage = () => {
                 primaryImage: products[0]?.primary_image.split("/").pop(),
                 category: products[0]?.category,
                 condition: products[0]?.condition,
-                term: products[0]?.term,
+                term: products[0]?.term === "Negotiable" ? "Yes" : "No",
               }}
               validationSchema={validationSchema}
               onSubmit={async (values) => {
@@ -226,7 +226,7 @@ const UpdateItemPage = () => {
                           condition: values.condition.toUpperCase(),
                           primary_image: `${process.env.NEXT_PUBLIC_DO_CDN_URL}${values.primaryImage}`,
                           term:
-                            values.term === "yes"
+                            values.term === "Yes"
                               ? "Negotiable"
                               : "Non-Negotiable",
                           images: images,
