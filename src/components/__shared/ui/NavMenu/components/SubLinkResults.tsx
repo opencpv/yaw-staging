@@ -4,11 +4,25 @@ import SubLinkResultsCard from "./SubLinkResultsCard";
 import { Separator } from "@/components/__shared/ui/separator";
 import ArrowLink from "../../links/arrow-link";
 import { Skeleton } from "../../skeleton";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
+import supabase from "@/lib/utils/supabase/supabaseClient";
 
 function SubLinkResults() {
+  const [allListings, setAllListings] = useState<Property[]>([]);
   const { activeSubLink, setToggle } = useMenuStore();
+
+  useEffect(() => {
+    const getListings = async () => {
+      const { data } = await supabase
+        .from("published_properties")
+        .select("*")
+        .limit(6);
+      setAllListings(data as Property[]);
+    };
+
+    getListings();
+  }, []);
 
   const propertyType = useMemo(() => {
     const subLink = activeSubLink.slice(0, -1); // strip 's' off word
@@ -32,10 +46,22 @@ function SubLinkResults() {
     }
   }, [activeSubLink]);
 
-  const { data: listings, isLoading } = useFetchFeaturedListings({
+  const { data: featuredListings, isLoading } = useFetchFeaturedListings({
     limit: 6,
     propertyType,
   });
+
+  // if featured listings are less than 6, show all listings instead
+  const optedListings = useMemo(() => {
+    if (
+      propertyType === "" &&
+      featuredListings &&
+      featuredListings?.length < 6
+    ) {
+      return allListings;
+    }
+    return featuredListings;
+  }, [allListings, featuredListings, propertyType]);
 
   return (
     <div className="main-menu-link flex w-full gap-12 text-white">
@@ -56,16 +82,16 @@ function SubLinkResults() {
               />
             ))}
 
-          {listings &&
-            listings?.length > 0 &&
-            listings.map((listing) => (
+          {optedListings &&
+            optedListings?.length > 0 &&
+            optedListings?.map((listing) => (
               <div key={listing?.id}>
                 <SubLinkResultsCard listing={listing as Property} />
               </div>
             ))}
         </div>
-        {!listings || (listings?.length === 0 && <EmptyState />)}
-        {listings && listings?.length > 0 && (
+        {!optedListings || (optedListings?.length === 0 && <EmptyState />)}
+        {optedListings && optedListings?.length > 0 && (
           <ArrowLink
             color="white"
             href={showAllLink}

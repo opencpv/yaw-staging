@@ -26,7 +26,10 @@ const PropertyRating = (props: Props) => {
         <h2 className={style.detailHeading}>All Reviews</h2>
         <Button>Write a review</Button>
       </div>
-      <FramerWrapper {...fadeUp} className="space-y-6 rounded-2xl border-2 p-6">
+      <FramerWrapper
+        {...fadeUp}
+        className="space-y-6 overflow-x-auto rounded-2xl border-2 p-6"
+      >
         <Tabs defaultValue={"property"}>
           <TabsList className="gap-8">
             <TabsTrigger value="property" className={style.reviewsTabsTrigger}>
@@ -36,12 +39,12 @@ const PropertyRating = (props: Props) => {
               About this Lister
             </TabsTrigger>
           </TabsList>
-            <TabsContent value="property">
-              <div>Property rating</div>
-            </TabsContent>
-            <TabsContent value="lister">
-              <div>Lister rating</div>
-            </TabsContent>
+          <TabsContent value="property">
+            <div>Property rating</div>
+          </TabsContent>
+          <TabsContent value="lister">
+            <div>Lister rating</div>
+          </TabsContent>
         </Tabs>
 
         {/*

@@ -110,7 +110,7 @@ const ServiceFee = (props: {
   return (
     <div
       className={cn(
-        "flex items-center gap-3 rounded-2xl border-2 p-2.5 px-3 max-llg:flex-wrap",
+        "flex items-center gap-3 rounded-2xl border-2 p-2.5 px-3 flex-wrap",
         style.feeTextSize,
       )}
     >
@@ -125,6 +125,7 @@ const ServiceFee = (props: {
               style.lightGreenBg,
               style.listerInfoButtonSecondary,
               style.feeTextSize,
+              "max-xs:w-full md:max-[820px]:w-full lg:max-xl:w-full",
             )}
           >
             Add to cart <FaCirclePlus size={18} />

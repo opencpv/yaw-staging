@@ -17,7 +17,7 @@ const CitySearchForm = ({
     const search = formData.get("search") || placeholder;
     router.push(
       `/properties?${new URLSearchParams({
-        search: search as string,
+        q: search as string,
         sk: String(true),
       })}`,
     );

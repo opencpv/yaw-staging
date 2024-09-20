@@ -8,7 +8,6 @@ import dynamic from "next/dynamic";
 import { updateRecentViews } from "../../_actions";
 import { generatePropertyTitle } from "@/lib/enum";
 import AdditionalInfo from "../AdditionalInfo";
-import AdditionalInfoMobile from "../AdditionalInfoMobile";
 import PropertySuitedFor from "../PropertySuitedFor";
 import { BsShieldFillCheck } from "react-icons/bs";
 import { createClient } from "@/lib/utils/supabase/auth/server";
@@ -24,6 +23,9 @@ const RecommendedListings = dynamic(
     loading: () => <Loader />,
   },
 );
+const AdditionalInfoMobile = dynamic(
+  () => import("../AdditionalInfoMobile"));
+
 const LikeShare = dynamic(() => import("../LikeShare"));
 
 // const ApplicationForm = dynamic(
