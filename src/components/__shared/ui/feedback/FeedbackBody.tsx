@@ -126,7 +126,7 @@ const FeedbackBody = ({
                 name="value_d"
                 thumbsDownChecked={thumbsDownChecked}
                 thumbsUpChecked={thumbsUpChecked}
-                placeholder={feedback.question4}
+                placeholder={feedback.question4 + " (optional)"}
               />
             )}
 

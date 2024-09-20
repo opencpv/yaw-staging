@@ -128,7 +128,7 @@ function JobApplicationForm({ variant, position }: Props) {
         }}
         onSubmit={(values, { setSubmitting }) => {}}
       >
-        {({ handleBlur, handleChange, values, errors }) => (
+        {({ handleChange }) => (
           <Form>
             <div className="flex flex-col gap-4 pt-8 lg:pt-16">
               <h2 className="hidden pt-5 text-shade-500 lg:flex">

@@ -35,7 +35,12 @@ function Page() {
               <CaJoinUsIconLeft />
               Go back
             </LinkButton>
-            <h2 className="capitalize text-white">Resume Bank</h2>
+            <h2
+              className="fade-in-top-slight capitalize text-white"
+              style={{ animationDelay: "0.3s" }}
+            >
+              Resume Bank
+            </h2>
           </div>
         </div>
         <div className="flex w-full flex-col gap-4">

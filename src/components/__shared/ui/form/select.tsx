@@ -12,6 +12,7 @@ import {
   useFormikContext,
 } from "formik";
 import ErrorMessage from "../states/error-message";
+import { Label } from "./label";
 
 type SelectContentProps = {
   position?: "popper" | "item-aligned";
@@ -162,6 +163,7 @@ const SelectItem = React.forwardRef<
       },
       className,
     )}
+    onClick={(e) => e.stopPropagation()}
     {...props}
   >
     <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
@@ -297,7 +299,7 @@ const SelectInput = ({
 
   return (
     <div className={cn("flex w-full flex-col gap-4 text-shade-300", className)}>
-      {label && <label>{label}</label>}
+      {label && <Label>{label}</Label>}
       <Select
         onValueChange={(value) => {
           helpers?.setValue(value);

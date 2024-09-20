@@ -3,6 +3,7 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { FieldInputProps, FieldMetaProps, useFormikContext } from "formik";
 import ErrorMessage from "../states/error-message";
+import { Label } from "./label";
 
 export interface TextareaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -89,12 +90,9 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     return (
       <label className="flex w-full flex-col gap-4 text-shade-300">
         {label && (
-          <h5 className="flex gap-x-1.5 font-normal capitalize">
+          <Label required={required} className="capitalize">
             {label}
-            {required && (
-              <span className="relative text-sm text-shade-300">*</span>
-            )}
-          </h5>
+          </Label>
         )}
         <div className={cn({ "flex flex-col gap-2": characterLimit })}>
           <textarea

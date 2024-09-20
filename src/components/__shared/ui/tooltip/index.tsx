@@ -24,7 +24,7 @@ const TooltipContent = React.forwardRef<
     ref={ref}
     sideOffset={sideOffset}
     className={cn(
-      "text-popover-foreground z-50 overflow-hidden rounded-md border bg-white p-5 text-sm shadow-md data-[state=closed]:animate-fade-out data-[state=opened]:animate-zoom-in",
+      "text-popover-foreground z-50 overflow-hidden rounded-md border bg-white p-5 text-sm text-shade-500 shadow-md data-[state=closed]:animate-fade-out data-[state=opened]:animate-zoom-in",
       className,
     )}
     {...props}
@@ -43,7 +43,9 @@ const Tooltip = React.forwardRef<
     <span className="max-md:hidden">
       <TooltipProvider>
         <BaseTooltip>
-          <TooltipTrigger type="button">{children}</TooltipTrigger>
+          <TooltipTrigger type="button" asChild>
+            {children}
+          </TooltipTrigger>
           <TooltipContent
             className={cn(className, { hidden: !content })}
             ref={ref}

@@ -15,7 +15,7 @@ function SubLinkResultsCard({ listing }: Props) {
   return (
     <Link
       href={getListingProps(listing, user as UserType)?.href}
-      className="main-menu-link relative line-clamp-3 flex aspect-[242/212] w-full min-w-[212px] max-w-[212px] cursor-pointer items-end rounded-lg bg-cover bg-no-repeat text-white transition-all hover:scale-[1.02]"
+      className="main-menu-link fade-in relative line-clamp-3 flex aspect-[242/212] w-full min-w-[212px] max-w-[212px] cursor-pointer items-end rounded-lg bg-cover bg-no-repeat text-white transition-all hover:scale-[1.02]"
       onClick={() => setToggle(false)}
       style={{ backgroundImage: `url(${images[0]})` }}
     >

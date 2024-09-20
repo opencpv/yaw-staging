@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Select } from "@/components/__shared/ui/form/select";
 import { Button } from "@/components/__shared/ui/button";
 import { useDisclosure } from "@/lib/custom-hooks/useCustomDisclosure";
@@ -17,6 +17,7 @@ type ItemSort =
 const SortFilter = () => {
   const router = useRouter();
   const { isOpen, onOpenChange, onOpen, onClose } = useDisclosure();
+  const [openFilter, setOpenFilter] = useState(false);
   const searchParams = useSearchParams();
   const sort = searchParams?.get("sort") || "Newest";
   const categories = searchParams?.get("categories") || "";
@@ -61,6 +62,12 @@ const SortFilter = () => {
           ]}
           value={sort as unknown as ItemSort}
           onValueChange={handleSelectionChange}
+          open={openFilter}
+          onOpenChange={() => {
+            setTimeout(() => {
+              setOpenFilter(!openFilter);
+            }, 100);
+          }}
         />
         <Button variant="accent" onClick={onOpen}>
           Filter

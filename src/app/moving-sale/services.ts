@@ -14,8 +14,8 @@ export const useFetchItemCategories = () => {
 export const useFetchItems = ({
   categories = "",
   sort = "Newest",
-  condition = "",
-  term = "",
+  condition = "All",
+  term = "All",
   priceRangeFrom = "",
   priceRangeTo = "",
 }: {

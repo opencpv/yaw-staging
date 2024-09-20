@@ -41,6 +41,7 @@ const AgencyInformation = React.forwardRef<HTMLInputElement, Props>(
               handleOnChange("require_agent_fee", value)
             }
             color="primary"
+            tooltip="This is a tooltip."
           />
           {caseInsensitiveCompare(values.require_agent_fee, "yes") && (
             <span className="fade-in-top">
@@ -61,6 +62,7 @@ const AgencyInformation = React.forwardRef<HTMLInputElement, Props>(
               handleOnChange("require_viewing_fee", value)
             }
             color="primary"
+            tooltip="This is a tooltip."
           />
           {caseInsensitiveCompare(values.require_viewing_fee, "yes") && (
             <span className="fade-in-top">

@@ -29,6 +29,7 @@ import { SelectInput } from "@/components/__shared/ui/form/select";
 import { Input } from "./input";
 import { cn } from "@/lib/utils";
 import ErrorMessage from "../states/error-message";
+import { Label } from "./label";
 
 type DataItem = {
   label: string;
@@ -134,7 +135,7 @@ const CurrencyInput = ({
 
   return (
     <div className={cn("flex w-full flex-col gap-4 text-shade-300")}>
-      {label && <label>{label}</label>}
+      {label && <Label>{label}</Label>}
       <div
         className={cn("grid grid-cols-4 gap-4", {
           "grid-cols-3 lg:grid-cols-5": name3,

@@ -27,6 +27,7 @@ const MySearch = ({ filter }: { filter: string }) => {
   const { user } = useAppStore();
   const router = useRouter();
   const [page, setPage] = React.useState(slugify(filter));
+  const [open, setOpen] = React.useState(false);
   const selected = capitalizeName(unslugify(page));
 
   const {
@@ -62,6 +63,12 @@ const MySearch = ({ filter }: { filter: string }) => {
           value={selected}
           color="primary"
           onValueChange={handleChange}
+          open={open}
+          onOpenChange={() => {
+            setTimeout(() => {
+              setOpen(!open);
+            }, 100);
+          }}
         />
       </div>
 

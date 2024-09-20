@@ -242,7 +242,7 @@ const Preview = ({ file }: { file: any }) => {
 
   return (
     <li
-      className={cn("relative aspect-video max-h-72 rounded-3xl", {
+      className={cn("relative aspect-video max-h-96 rounded-3xl", {
         "col-span-full w-full": file?.is_banner,
       })}
       onClick={(e) => e.stopPropagation()}

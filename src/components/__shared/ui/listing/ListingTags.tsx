@@ -18,13 +18,13 @@ const ListingTags = (props: Partial<ListingCardInterface>) => {
         })}
       >
         {/* Hint */}
-        <Tooltip content={props.hint as string}>
+        <Tooltip content={props.hint as string} className="xs:max-md:w-fit">
           <div className="flex items-center gap-2">
             {props.hint === "Realtor's Choice" ? (
               <>
                 <Image
                   src={icons.EditorsChoice}
-                  alt={props.hint?.toLowerCase()}
+                  alt={props.hint}
                   height={14}
                   width={14}
                 />
@@ -34,7 +34,7 @@ const ListingTags = (props: Partial<ListingCardInterface>) => {
               <>
                 <Image
                   src={icons.BestValue}
-                  alt={props.hint?.toLowerCase()}
+                  alt={props.hint}
                   height={14}
                   width={14}
                 />
@@ -44,7 +44,7 @@ const ListingTags = (props: Partial<ListingCardInterface>) => {
               <>
                 <Image
                   src={icons.BestValue} // TODO: change to best value
-                  alt={props.hint?.toLowerCase()}
+                  alt={props.hint}
                   height={14}
                   width={14}
                 />
@@ -55,31 +55,18 @@ const ListingTags = (props: Partial<ListingCardInterface>) => {
         </Tooltip>
       </div>
       {/* Guarantee */}
-      {props.guarantee === "Verified" ? (
-        <div className="mr-4 shadow-2xl">
-          <Tooltip content={props.guarantee}>
-            <Image
-              src={icons.Verified}
-              alt={props.guarantee?.toLowerCase()}
-              height={35}
-              width={35}
-              className="shadow-2xl"
-            />
-          </Tooltip>
-        </div>
-      ) : props.guarantee === "Certified" ? (
-        <div className="mr-4 shadow-2xl">
-          <Tooltip content={props.guarantee}>
-            <Image
-              src={icons.Certified}
-              alt={props.guarantee?.toLowerCase()}
-              height={35}
-              width={35}
-              className="shadow-2xl"
-            />
-          </Tooltip>
-        </div>
-      ) : null}
+      <Tooltip
+        content={props.guarantee}
+        className={cn({ hidden: !props.guarantee })}
+      >
+        <Image
+          src={icons[props.guarantee as GuaranteeTag]}
+          alt={props.guarantee || ""}
+          height={35}
+          width={35}
+          className={cn("mr-4 shadow-2xl", { hidden: !props.guarantee })}
+        />
+      </Tooltip>
     </div>
   );
 };

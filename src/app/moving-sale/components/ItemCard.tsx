@@ -7,7 +7,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 
-const ItemCard = ({ description, title, image, price, href, className }: ItemProps) => {
+const ItemCard = ({
+  description,
+  title,
+  image,
+  price,
+  href,
+  className,
+}: ItemProps) => {
   const { setPreviousPath } = useItemPathStore();
   const pathname = usePathname();
 
@@ -17,7 +24,7 @@ const ItemCard = ({ description, title, image, price, href, className }: ItemPro
       onClick={() =>
         pathname === "/moving-sale" && setPreviousPath(window.location.href)
       }
-      className={ cn( "block", className ) }
+      className={cn("block", className)}
     >
       <div className="text-sm">
         <div className="relative mb-5 h-60 w-full">

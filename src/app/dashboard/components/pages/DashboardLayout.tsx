@@ -30,9 +30,8 @@ const Wrapper = ({ children }: LayoutProps) => {
   const setNotifications = useNotificationStore(
     (state) => state.setNotifications,
   );
-  const [excludeWrapper, setExcludeWrapper] = useState(false);
 
-  const { setCurrentRole, isSwitchingRole, currentRole } = useDashboardStore();
+  const { setCurrentRole, isSwitchingRole } = useDashboardStore();
 
   useEffect(() => {
     if (!isSwitchingRole) {
@@ -43,21 +42,6 @@ const Wrapper = ({ children }: LayoutProps) => {
   }, [pathname, setCurrentRole, isSwitchingRole]);
 
   useUserData();
-
-  useEffect(() => {
-    const wrapperExclusionList = [
-      "/dashboard/renter/my-agent",
-      "/dashboard/lister/my-agent",
-      "/dashboard/renter/sell-products",
-      "/dashboard/lister/sell-products",
-      "/dashboard/renter/be-the-first-to-know",
-    ];
-
-    const shouldExcludeWrapper = wrapperExclusionList.some((path) =>
-      pathname?.includes(path),
-    );
-    setExcludeWrapper(shouldExcludeWrapper);
-  }, [pathname]);
 
   useEffect(() => {
     const supabase = createClient();
@@ -100,11 +84,7 @@ const Wrapper = ({ children }: LayoutProps) => {
           <Pagination />
         </div>
         {isSwitchingRole ? <RoleSwitcherOverlay /> : null}
-        {excludeWrapper ? (
-          <div className={`text-shade-500`}>{children}</div>
-        ) : (
-          <div className={`wrapper text-neutral-800`}>{children}</div>
-        )}
+        <div className={`wrapper text-shade-500`}>{children}</div>
         <ClientOnly>
           <CompleteYourLogin open={user?.is_first_time} />
         </ClientOnly>

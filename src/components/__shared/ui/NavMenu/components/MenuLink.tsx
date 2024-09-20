@@ -43,13 +43,17 @@ const MenuLink = (props: Props) => {
         {hasSubMenu ? (
           <div
             className={cn(`flex w-full items-center`, {
-              "text-accent-100": activeSubLink === props.linkObject?.label,
+              "text-accent": activeSubLink === props.linkObject?.label,
             })}
           >
             {props.isSubLink ? (
               <h4 className={`mr-10 font-normal`}>{props.linkObject?.name}</h4>
             ) : (
-              <h2 className="mr-10 text-2xl uppercase">
+              <h2
+                className={cn("mr-10 text-2xl uppercase", {
+                  "text-accent": props.active,
+                })}
+              >
                 {props.linkObject?.name}
               </h2>
             )}
