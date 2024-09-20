@@ -188,7 +188,8 @@ const Modal = ({
         }}
       >
         <DialogHeader>
-          {header && <DialogTitle>{header}</DialogTitle>}
+          <DialogTitle className="sr-only"></DialogTitle>
+          {header && header}
         </DialogHeader>
         <div className="mx-auto w-full">{body}</div>
         {footer && <DialogFooter>{footer}</DialogFooter>}

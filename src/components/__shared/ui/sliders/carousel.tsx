@@ -25,7 +25,7 @@ const Carousel = (props: CarouselProps) => {
           onActiveIndexChange={(slide) =>
             props.setActiveIndex(slide.activeIndex)
           }
-          className="carousel relative w-full max-w-4xl rounded-2xl shadow-sm"
+          className="carousel relative w-full rounded-2xl shadow-sm"
         >
           {props.images.map((image) => (
             <SwiperSlide key={createUUID()}>
