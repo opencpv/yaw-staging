@@ -1,6 +1,13 @@
-
-import AllReviewsModal from "@/components/__shared/ui/modals/all-reviews-modal";
-import Rating from "@/components/__shared/ui/ratings-form";
+import dynamic from "next/dynamic";
+const AllReviewsModal = dynamic(
+  () => import("@/components/__shared/ui/modals/all-reviews-modal"),
+  {
+    ssr: false,
+  },
+);
+const Rating = dynamic(() => import("@/components/__shared/ui/ratings-form"), {
+  ssr: false,
+});
 
 type Props = {
   type: string;
@@ -10,18 +17,18 @@ function UserAboutUs({ type }: Props) {
     <div className="flex flex-col gap-4">
       <div className="flex items-center gap-5">
         {" "}
-        <h2 className="text-base text-shade-300 md:text-2xl 2xl:text-3xl">
+        <h2 className=" text-shade-300 ">
           About Esther
         </h2>
         {type == "lister" && (
           <div className="flex items-center gap-3">
-            <AllReviewsModal value={3}  clickable={false}/>
+            <AllReviewsModal value={3} clickable={false} />
             <Rating value={3} />
           </div>
         )}
       </div>
 
-      <p className="text-base leading-loose text-shade-300 !max-w-full">
+      <p className="!max-w-full text-base leading-loose text-shade-300">
         Lorem ipsum dolor sit amet consectetur. At vulputate etiam elementum
         luctus nulla arcu nulla leo in. At leo eros nam nisl a. Quam mauris
         lacus nisi pulvinar platea nec. Quis tincidunt varius nunc vestibulum

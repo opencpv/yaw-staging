@@ -19,15 +19,9 @@ import axios from "axios";
 import routes from "@/lib/utils/route";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button, LinkButton } from "@/components/__shared/ui/button";
-import JoinUsButtons from "../../components/JoinUsButtons";
-import { BsInfoCircle } from "react-icons/bs";
 import emailjs from "@emailjs/browser";
 import slugify from "@/lib/utils/slugify";
-import dynamic from "next/dynamic";
 import CaJoinUsIconLeft from "./icons/CaJoinUsIconLongLeft";
-const Tooltip = dynamic(() =>
-  import("@/components/__shared/ui/tooltip").then((mod) => mod.Tooltip),
-);
 
 type Props = {
   variant: "application" | "resume";

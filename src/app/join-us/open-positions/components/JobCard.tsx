@@ -34,7 +34,7 @@ export default function JobCard({ job, jobs }: Props) {
     <>
       <Modal
         header={
-          <div className="flex justify-end pr-10 lg:hidden">
+          <div className="relative bottom-2 right-10 flex justify-end lg:hidden">
             <Share title={position as string} content={job.description_brief} />
           </div>
         }
@@ -46,6 +46,7 @@ export default function JobCard({ job, jobs }: Props) {
         isOpen={position ? true : false}
         onOpenChange={handleOpenChange}
         closeButton={<ModalCloseIcon />}
+        onOpenAutoFocus={(e) => e.preventDefault()}
       />
 
       <Link

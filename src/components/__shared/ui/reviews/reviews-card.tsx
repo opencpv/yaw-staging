@@ -50,7 +50,7 @@ export default function ReviewCard({ withBanner, data }: Props) {
               />
             </div>
             <div className="flex w-full flex-col gap-1 2xl:gap-2">
-              <p className="font-semibold 2xl:text-2xl">{data?.name}</p>
+              <h3 className="">{data?.name}</h3>
               <p className="text-sm 2xl:text-base">{data?.date}</p>
               {<ReviewStarsFixed rating={data?.ratings} />}
             </div>

@@ -11,7 +11,6 @@ import urlBuilder from "@sanity/image-url";
 import { client } from "@/lib/utils/sanity/client";
 import { headers } from "next/headers";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
-import Rate from "@/components/__shared/ui/Rate";
 import Rating from "../../components/post/Rating";
 import SideContentGroup from "../../components/post/SideContentGroup";
 import { Metadata, ResolvingMetadata } from "next";
@@ -32,10 +31,7 @@ export async function generateMetadata(
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
   // fetch data
-  const res = await loadQuery<SanityDocument>(
-    SINGLE_BLOG_POST(searchParams?.id as string),
-  );
-  const post = res.data[0];
+  const post = await client.fetch(SINGLE_BLOG_POST(searchParams?.id as string));
 
   // optionally access and extend (rather than replace) parent metadata
   const previousImages = (await parent).openGraph?.images || [];

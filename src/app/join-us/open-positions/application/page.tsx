@@ -1,10 +1,16 @@
 import styles from "./index.module.css";
-import JobApplicationForm from "../components/JobApplicationForm";
 import JoinUsButtons from "../../components/JoinUsButtons";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
+import Loader from "@/components/__shared/ui/loader";
 const Footer = dynamic(() => import("@/components/__shared/ui/footer"));
+const JobApplicationForm = dynamic(
+  () => import("../components/JobApplicationForm"),
+  {
+    loading: () => <Loader />,
+  },
+);
 
 export const metadata: Metadata = {
   title: "Application Form",

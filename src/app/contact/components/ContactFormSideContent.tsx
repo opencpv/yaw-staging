@@ -38,7 +38,7 @@ const ContactFormSideContent = (props: Props) => {
     if (sectionData) {
       if (sectionData.videoUrl) {
         return (
-          <div className="relative aspect-video w-full rounded-2xl md:mt-8 md:aspect-auto md:h-[40rem]">
+          <div className="relative aspect-video w-full rounded-2xl md:col-start-2 md:mt-8 md:aspect-auto md:h-[40rem]">
             <iframe
               src={sectionData.videoUrl}
               title={props.tag}
@@ -56,7 +56,7 @@ const ContactFormSideContent = (props: Props) => {
               name: "",
               href: "",
             }))}
-            className="aspect-square w-full md:mt-4 md:h-[40rem] md:w-full"
+            className="aspect-square w-full md:row-start-auto md:mt-4 md:h-[40rem] md:w-full"
           />
         );
       } else if (sectionData.pdfUrl) {
@@ -65,7 +65,7 @@ const ContactFormSideContent = (props: Props) => {
             href={sectionData.pdfUrl}
             target="_blank"
             title="brochure"
-            className="flex w-full items-center justify-center rounded-lg bg-neutral-200 shadow-2xl md:mt-8"
+            className="mt-auto flex w-full items-center justify-center rounded-lg bg-neutral-200 shadow-2xl md:row-start-auto md:mt-8"
           >
             <div className="relative aspect-square w-full md:right-2 md:h-fit">
               <Image
@@ -87,7 +87,7 @@ const ContactFormSideContent = (props: Props) => {
                 href: getListingProps(listing, user as UserType).href,
               })) as SliderPaginationOnlyImage[]
             }
-            className="aspect-square w-full md:mt-4 md:h-[40rem] md:w-full"
+            className="aspect-square w-full md:col-start-2 md:mt-4 md:h-[40rem] md:w-full"
           />
         );
       }

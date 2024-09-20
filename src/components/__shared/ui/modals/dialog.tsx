@@ -28,6 +28,10 @@ type ModalProps = {
   isDismissible?: boolean;
   hideCloseButton?: boolean;
   className?: string;
+  /**
+   * Event handler called when auto-focusing on open. Can be prevented.
+   */
+  onOpenAutoFocus?: (event: Event) => void;
 };
 
 const Dialog = DialogPrimitive.Root;
@@ -145,11 +149,12 @@ const Modal = ({
   header,
   body,
   footer,
-  size = "md",
+  size = "2xl",
   closeButton,
   isDismissible = true,
   className,
   hideCloseButton,
+  onOpenAutoFocus,
 }: ModalProps) => {
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
@@ -170,6 +175,8 @@ const Modal = ({
           className,
         )}
         closeButton={closeButton}
+        hideCloseButton={hideCloseButton}
+        onOpenAutoFocus={onOpenAutoFocus}
         onEscapeKeyDown={(e) => {
           !isDismissible && e.preventDefault();
         }}
@@ -179,7 +186,6 @@ const Modal = ({
         onPointerDownOutside={(e) => {
           !isDismissible && e.preventDefault();
         }}
-        hideCloseButton={hideCloseButton}
       >
         <DialogHeader>
           {header && <DialogTitle>{header}</DialogTitle>}

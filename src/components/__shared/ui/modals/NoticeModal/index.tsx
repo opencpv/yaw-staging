@@ -15,6 +15,7 @@ import { pacifico } from "@/lib/utils/fonts";
 import dynamic from "next/dynamic";
 import { Button } from "../../button";
 import { DialogContent } from "../dialog";
+import { LiaTimesSolid } from "react-icons/lia";
 const Dialog = dynamic(() => import("../dialog").then((mod) => mod.Dialog));
 
 const Context = createContext<{
@@ -47,7 +48,11 @@ const NoticeModal = () => {
   return (
     <Context.Provider value={{ handleVisibility, setOpen }}>
       <Dialog open={open ?? true} onOpenChange={handleOpenChange}>
-        <DialogContent className="max-w-7xl p-0 max-md:max-h-screen">
+        <DialogContent
+          className="max-w-7xl p-0 max-md:max-h-screen"
+          closeButton={<CloseButton onClick={() => handleOpenChange(false)} />}
+          onOpenAutoFocus={(e) => e.preventDefault()}
+        >
           <ModalBody />
         </DialogContent>
       </Dialog>
@@ -118,18 +123,18 @@ const ModalBody = () => {
   );
 };
 
-//const CloseButton = ({ onClick }: { onClick: () => void }) => {
-//  return (
-//    <Button
-//      variant={"ghost"}
-//      size={"icon"}
-//      className="circle-hover text-white max-md:hover:text-shade-500 md:text-shade-500"
-//      onClick={onClick}
-//      asChild
-//    >
-//      <LiaTimesSolid size={24} />
-//    </Button>
-//  );
-//};
+const CloseButton = ({ onClick }: { onClick: () => void }) => {
+  return (
+    <Button
+      variant={"ghost"}
+      size={"icon"}
+      className="circle-hover text-white max-md:hover:text-shade-500 md:text-shade-500"
+      onClick={onClick}
+      asChild
+    >
+      <LiaTimesSolid size={24} />
+    </Button>
+  );
+};
 
 export default NoticeModal;

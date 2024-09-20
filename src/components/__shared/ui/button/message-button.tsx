@@ -88,7 +88,7 @@ const MessageButton = ({
           color={color}
           size="full"
           title={"Send message"}
-          className={cn("flex items-center gap-2", className)}
+          className={cn(className)}
           onClick={handleClick}
           isLoading={loadingMessage}
           {...props}

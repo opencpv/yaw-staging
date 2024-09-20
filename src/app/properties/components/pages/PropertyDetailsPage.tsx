@@ -15,8 +15,12 @@ import { BsShieldFillCheck } from "react-icons/bs";
 import { createClient } from "@/lib/utils/supabase/auth/server";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import toast from "react-hot-toast";
+import Loader from "@/components/__shared/ui/loader";
 const RecommendedListings = dynamic(
   () => import("@/components/__shared/ui/listing/recommended-listings"),
+  {
+    loading: () => <Loader />,
+  },
 );
 const LikeShare = dynamic(() => import("../LikeShare"));
 

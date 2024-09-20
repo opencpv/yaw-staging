@@ -10,9 +10,13 @@ import RenterActivityCard from "./RenterActivityCard";
 import { useDashboardStore } from "@/store/dashboard/dashboardStore";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import dynamic from "next/dynamic";
+import Loader from "@/components/__shared/ui/loader";
 const ScrollTop = dynamic(() => import("@/components/__shared/ui/scroll-top"));
 const RecommendedListings = dynamic(
   () => import("@/components/__shared/ui/listing/recommended-listings"),
+  {
+    loading: () => <Loader />,
+  },
 );
 
 type Props = {};

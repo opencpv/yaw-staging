@@ -8,18 +8,29 @@ import {
   HOME_PAGE_QUERY,
 } from "@/lib/utils/sanity/queries";
 import dynamic from "next/dynamic";
-const Landing = dynamic(() => import("./components/Landing"));
+import Loader from "@/components/__shared/ui/loader";
+const Hero = dynamic(() => import("./components/Hero"), {
+  loading: () => <Loader />,
+});
 const Promotions = dynamic(() => import("./components/sections/Promotions"));
 const FeaturedListings = dynamic(
   () => import("./components/sections/FeaturedListings"),
+  {
+    loading: () => <Loader />,
+  },
 );
-const Ad = dynamic(() => import("./components/sections/Ad"));
+const Ad = dynamic(() => import("./components/sections/Ad"), {
+  loading: () => <Loader />,
+});
 const RentalDeals = dynamic(() => import("./components/sections/RentalDeals"));
 const ManagePropertiesSection = dynamic(
   () => import("./components/sections/ManagePropertiesSection"),
 );
 const PopularCities = dynamic(
   () => import("./components/sections/PopularCities"),
+  {
+    loading: () => <Loader />,
+  },
 );
 const Footer = dynamic(() => import("@/components/__shared/ui/footer"));
 const ScrollTopAndSocial = dynamic(
@@ -49,7 +60,7 @@ const page = async (props: Props) => {
   return (
     <ClientPageWrapper>
       <Navbar />
-      <Landing data={filteredHomeData[filteredHomeData.length - 1]} />
+      <Hero data={filteredHomeData[filteredHomeData.length - 1]} />
       <Promotions data={data} />
       <FeaturedListings data={filteredAdsData} />
       <Ad data={filteredAdsData} />
