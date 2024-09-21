@@ -103,7 +103,7 @@ const FilterModalFooter = ({ onClose }: FilterModalFooterProps) => {
   return (
     <span className="flex w-full flex-wrap items-center justify-between gap-5">
       <Button variant="accent" onClick={handleSubmit}>
-        Filter
+        Apply
       </Button>
       <Button
         variant="ghost"

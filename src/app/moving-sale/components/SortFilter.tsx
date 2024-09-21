@@ -70,7 +70,7 @@ const SortFilter = () => {
           }}
         />
         <Button variant="accent" onClick={onOpen}>
-          Apply
+          Filter
         </Button>
       </div>
     </>

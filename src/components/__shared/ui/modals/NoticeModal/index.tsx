@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
 import { pacifico } from "@/lib/utils/fonts";
 import dynamic from "next/dynamic";
 import { Button } from "../../button";
-import { DialogContent } from "../dialog";
+import { DialogContent, DialogTitle } from "../dialog";
 import { LiaTimesSolid } from "react-icons/lia";
 const Dialog = dynamic(() => import("../dialog").then((mod) => mod.Dialog));
 
@@ -48,6 +48,7 @@ const NoticeModal = () => {
   return (
     <Context.Provider value={{ handleVisibility, setOpen }}>
       <Dialog open={open ?? true} onOpenChange={handleOpenChange}>
+        <DialogTitle className="sr-only" />
         <DialogContent
           className="max-w-7xl p-0 max-md:max-h-svh"
           closeButton={<CloseButton onClick={() => handleOpenChange(false)} />}

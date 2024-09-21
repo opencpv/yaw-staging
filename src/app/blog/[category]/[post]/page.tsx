@@ -9,7 +9,6 @@ import { PortableText } from "@portabletext/react";
 import "../../style.css";
 import urlBuilder from "@sanity/image-url";
 import { client } from "@/lib/utils/sanity/client";
-import { headers } from "next/headers";
 import { useAssets } from "@/lib/custom-hooks/useAssets";
 import Rating from "../../components/post/Rating";
 import SideContentGroup from "../../components/post/SideContentGroup";
@@ -27,11 +26,14 @@ type Props = {
 };
 
 export async function generateMetadata(
-  { params, searchParams }: Props,
+  { searchParams }: Props,
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
   // fetch data
-  const post = await client.fetch(SINGLE_BLOG_POST(searchParams?.id as string));
+  const initialPostData = await loadQuery<SanityDocument[]>(
+    SINGLE_BLOG_POST(searchParams?.id as string),
+  );
+  const post = initialPostData.data[0];
 
   // optionally access and extend (rather than replace) parent metadata
   const previousImages = (await parent).openGraph?.images || [];
@@ -45,8 +47,8 @@ export async function generateMetadata(
   };
 }
 
-const StoryPage = async ({ params, searchParams }: Props) => {
-  const origin = headers().get("x-origin") || "https://www.rentrightgh.com";
+const StoryPage = async ({ searchParams }: Props) => {
+  //const origin = headers().get("x-origin") || "https://www.rentrightgh.com";
   const sanityClient = client;
   const initialPostData = await loadQuery<SanityDocument[]>(
     SINGLE_BLOG_POST(searchParams?.id as string),
@@ -71,7 +73,10 @@ const StoryPage = async ({ params, searchParams }: Props) => {
     isInline: boolean;
   }) => {
     return (
-      <div className="relative mb-8 mt-2 aspect-video w-full">
+      <div
+        className="fade-in-bottom-slight relative mb-8 mt-2 aspect-video w-full"
+        style={{ animationDelay: "1s" }}
+      >
         <Image
           src={urlBuilder(sanityClient)
             .image(value)

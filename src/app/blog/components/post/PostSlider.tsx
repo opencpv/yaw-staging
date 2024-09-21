@@ -24,7 +24,10 @@ const PostSlider = ({ posts }: Props) => {
   };
 
   return (
-    <section className="shape-polygon-parent relative h-fit w-full">
+    <section
+      className="shape-polygon-parent fade-in-bottom-slight relative h-fit w-full"
+      style={{ animationDelay: "1s" }}
+    >
       <SliderWide
         navigation
         images={posts.map((post) => ({
