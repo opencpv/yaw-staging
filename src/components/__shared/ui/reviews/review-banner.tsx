@@ -42,9 +42,9 @@ function ReviewBanner({
 
       <div className="flex w-full flex-col items-start justify-center gap-1">
         <div className="flex items-center justify-center gap-2.5">
-          <h4 className="text-base font-semibold lg:text-xl 2xl:text-2xl">
+          <h3 className=" font-semibold ">
             {currentProperty?.name || name}
-          </h4>
+          </h3>
 
           {(variant_ == "person" || variant == "person") && lister && (
             <div className="flex items-center justify-center rounded-2xl bg-primary px-4 py-1 text-base">
@@ -66,7 +66,7 @@ function ReviewBanner({
               setOpenRatingsForm(true);
               // onRateClick();
             }}
-            className="appearance-none whitespace-nowrap text-lg text-primary 2xl:text-2xl"
+            className="appearance-none whitespace-nowrap text-lg text-primary 2xl:text-xl"
           >
             Rate
           </button>

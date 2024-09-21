@@ -12,7 +12,7 @@ type Props = {
 function UserImageAndDetails({ type }: Props) {
   return (
     <div className="w-full">
-      <div className="block h-[330px] bg-[url('/assets/images/general-details/general-details-bg.png')] bg-fixed bg-no-repeat"></div>
+      <div className="block h-[330px] bg-[url('/assets/images/general-details/general-details-bg.png')] bg-fixed bg-no-repeat bg-contain"></div>
 
       <div className="wrapper px-10 pb-8 pt-10">
         <div className="flex h-fit flex-row items-end justify-start gap-6">

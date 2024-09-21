@@ -17,9 +17,9 @@ function UserAboutUs({ type }: Props) {
     <div className="flex flex-col gap-4">
       <div className="flex items-center gap-5">
         {" "}
-        <h3 className="text-base text-shade-300 md:text-2xl 2xl:text-3xl">
+        <h2 className=" text-shade-300 ">
           About Esther
-        </h3>
+        </h2>
         {type == "lister" && (
           <div className="flex items-center gap-3">
             <AllReviewsModal value={3} clickable={false} />
