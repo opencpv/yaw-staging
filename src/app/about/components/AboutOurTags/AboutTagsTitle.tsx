@@ -1,5 +1,7 @@
+import { cn } from "@/lib/utils";
+
 type TagsData = {
-  name: string;
+  title: string;
   description: string;
   image: string;
 };
@@ -12,14 +14,19 @@ type Props = {
 function AboutTagsTitle({ data, active }: Props) {
   return (
     <div
-      className={`flex w-full items-center justify-center rounded-lg px-4 py-2 transition-all duration-1000 lg:py-4 ${active && "bg-primary-50 focus:border-0 dark:bg-primary-50"} `}
+      className={cn(
+        "flex w-full items-center justify-center rounded-lg px-4 py-2 transition-all duration-1000 lg:py-4",
+        {
+          "bg-primary-50 focus:border-0 dark:bg-primary-50": active,
+        },
+      )}
     >
       <p
-        className={`capitalize text-shade-300 transition-all ${
-          active && "font-semibold"
-        } `}
+        className={cn("capitalize text-shade-300 transition-all", {
+          "font-semibold": active,
+        })}
       >
-        {data?.name}
+        {data?.title}
       </p>
     </div>
   );

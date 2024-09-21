@@ -22,11 +22,11 @@ const Hero = (props: Props) => {
   return (
     <section className="section wrapper space-y-8 pb-20 pt-10 text-shade-200">
       <div className="space-y-1">
-        <h1 className="text-2xl capitalize text-neutral-600 min-[300px]:text-3xl">
-          {title}{" "}
+        <h1 className="flex max-w-full gap-1.5 text-2xl capitalize text-neutral-600 min-[300px]:text-3xl">
+          <span>{title}</span>
           <span
             className="tracking-in-contract text-accent-100"
-            style={{ animationDuration: "1.5s" }}
+            style={{ animationDelay: "0.3s", animationDuration: "2s" }}
           >
             {titleHighlight}
           </span>
@@ -67,8 +67,10 @@ const Hero = (props: Props) => {
         </div>
 
         <div className="featured-info fade-in absolute bottom-10 left-10 z-10 space-y-2 *:line-clamp-1">
-          <h3 className="fade-in-bottom">Get this amazing 3 bedroom flat</h3>
-          <p className="fade-in-bottom" style={{ animationDelay: "0.5s" }}>
+          <h3 className="fade-in-bottom" style={{ animationDelay: "2.5s" }}>
+            Get this amazing 3 bedroom flat
+          </h3>
+          <p className="fade-in-bottom" style={{ animationDelay: "3s" }}>
             Get this amazing 3 bedroom flat
           </p>
         </div>
