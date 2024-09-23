@@ -22,10 +22,10 @@ const Hero = (props: Props) => {
   return (
     <section className="section wrapper space-y-8 pb-20 pt-10 text-shade-200">
       <div className="space-y-1">
-        <h1 className="flex max-w-full gap-1.5 text-2xl capitalize text-neutral-600 min-[300px]:text-3xl">
-          <span>{title}</span>
+        <h1 className="max-w-full text-2xl capitalize text-neutral-600 min-[300px]:text-3xl">
+          <span>{title}</span>{" "}
           <span
-            className="tracking-in-contract text-accent-100"
+            className="tracking-in-contract min-w-40 text-accent-100"
             style={{ animationDelay: "0.3s", animationDuration: "2s" }}
           >
             {titleHighlight}
@@ -33,7 +33,7 @@ const Hero = (props: Props) => {
         </h1>
         <h4>{props.data.description}</h4>
       </div>
-      <FramerWrapper className={`${styles.rect}`}>
+      <FramerWrapper className={styles.rect}>
         <Image
           src={urlForImage(props.data.bgImage)?.url() as string}
           alt="Main banner" // TODO: change alt text
