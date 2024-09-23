@@ -29,7 +29,7 @@ const LikeShare = ({ listing }: Props) => {
 
       <div
         className={cn(
-          "grid place-items-center rounded-md p-1 px-2 max-md:p-0 md:bg-primary/10",
+          "grid place-items-center rounded-md px-2 py-1 max-md:p-0 md:bg-primary/10",
         )}
       >
         <Share
@@ -38,8 +38,9 @@ const LikeShare = ({ listing }: Props) => {
           }, ${listing?.city as string}`}
           content={listing?.description as string}
           classNames={{
-            icon: "text-2xl text-primary fade-in-top-slight",
+            icon: "text-primary fade-in-top-slight",
           }}
+          size={20}
           hideLabel
         />
       </div>

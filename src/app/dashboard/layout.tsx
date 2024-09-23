@@ -24,16 +24,12 @@ const Layout = async ({ children }: LayoutProps) => {
   const { data, error } = await supabase.auth.getUser();
 
   // protected route
-  if ((error || !data.user) && pathname !== "/dashboard") {
+  if ((error || !data.user) && pathname?.includes("/dashboard")) {
     // dashboard/**/*
     redirect("/login");
   }
 
-  return (
-    <>
-      <DashboardLayout>{children}</DashboardLayout>
-    </>
-  );
+  return <DashboardLayout>{children}</DashboardLayout>;
 };
 
 export default Layout;

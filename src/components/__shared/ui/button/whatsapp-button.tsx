@@ -1,8 +1,7 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { Button, ButtonProps } from ".";
 import { FaWhatsapp } from "react-icons/fa";
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -11,7 +10,7 @@ type Props = {
 } & ButtonProps;
 
 const WhatsAppButton = ({
-  color,
+  variant,
   className,
   phone,
   iconPosition = "left",
@@ -19,18 +18,13 @@ const WhatsAppButton = ({
 }: Props) => {
   const [text, setText] = useState("WhatsApp");
 
-  const buttonRef = useRef<HTMLDivElement>(null);
+  const handleMouseEnter = () => {
+    setText(phone);
+  };
 
-  useEffect(() => {
-    if (buttonRef?.current) {
-      buttonRef.current.addEventListener("mouseenter", () => {
-        setText(phone);
-      });
-      buttonRef.current.addEventListener("mouseleave", () => {
-        setText("WhatsApp");
-      });
-    }
-  }, [phone]);
+  const handleMouseLeaeve = () => {
+    setText("WhatsApp");
+  };
 
   const handleSendWhatsAppMsg = () => {
     const href = `https://wa.me/${phone}`;
@@ -38,22 +32,19 @@ const WhatsAppButton = ({
   };
 
   return (
-    <div ref={buttonRef} className="flex w-full justify-center">
+    <div className="flex w-full justify-center">
       <Button
-        color={color}
+        variant={variant}
         className={cn(className)}
         onClick={handleSendWhatsAppMsg}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeaeve}
         {...props}
       >
         {iconPosition === "left" && <FaWhatsapp className="shrink-0 text-lg" />}
-        <motion.span
-          key={text}
-          whileInView={{ opacity: 1 }}
-          initial={{ opacity: 0 }}
-          className="truncate"
-        >
+        <span key={text} className="truncate">
           {text}
-        </motion.span>
+        </span>
         {iconPosition === "right" && (
           <FaWhatsapp className="shrink-0 text-lg" />
         )}

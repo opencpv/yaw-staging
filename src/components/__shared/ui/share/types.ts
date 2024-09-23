@@ -1,4 +1,7 @@
 type ShareDataProps = {
+  /**
+   * Default is the current url
+   */
   url?: string;
   title?: string;
   content?: string;
@@ -11,4 +14,8 @@ type ShareDataProps = {
   };
   label?: string;
   children?: React.ReactNode;
+  /**
+   * The size of the icon
+   */
+  size?: number | string;
 };

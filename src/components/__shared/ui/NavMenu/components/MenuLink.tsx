@@ -34,7 +34,8 @@ const MenuLink = (props: Props) => {
           `w-full cursor-pointer whitespace-nowrap text-white`,
           {
             "text-accent-100":
-              props.active || pathname === props.linkObject?.url,
+              !props.linkObject?.isSubLink &&
+              (props.active || pathname === props.linkObject?.url),
           },
           props.className,
         )}
@@ -46,11 +47,15 @@ const MenuLink = (props: Props) => {
             })}
           >
             {props.isSubLink ? (
-              // <Link href={props.linkObject?.url}>
               <h4 className={`mr-10 font-normal`}>{props.linkObject?.name}</h4>
             ) : (
-              // </Link>
-              <h2 className="mr-10 text-2xl">{props.linkObject?.name}</h2>
+              <h2
+                className={cn("mr-10 text-2xl uppercase", {
+                  "text-accent": props.active,
+                })}
+              >
+                {props.linkObject?.name}
+              </h2>
             )}
             <CaArrowRight />
           </div>
@@ -58,9 +63,9 @@ const MenuLink = (props: Props) => {
           <Link
             href={props.linkObject?.url}
             className={cn(
-              `flex text-2xl font-semibold`,
+              `flex text-2xl font-semibold uppercase`,
               {
-                "text-base font-normal": props.isSubLink,
+                "text-base font-normal capitalize": props.isSubLink,
               },
               props.className,
             )}

@@ -90,7 +90,6 @@ export default function RootLayout({
             <RatingsAndAllRatings />
           </MenuWrapper>
         </Providers>
-        {/* <RatingsAndAllRatings /> */}
       </body>
     </html>
   );

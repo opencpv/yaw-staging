@@ -43,7 +43,7 @@ export default function Blocking() {
         onAction={handleUnblockAll}
         loading={isPending}
       />
-      <section className="flex flex-col gap-5">
+      <section className="flex min-h-screen flex-col gap-5">
         <div className="border-b-2 py-6">
           <div className="flex max-w-[610px] flex-col gap-5">
             <h3>Block Users</h3>

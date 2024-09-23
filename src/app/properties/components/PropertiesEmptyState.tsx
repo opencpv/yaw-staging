@@ -12,7 +12,7 @@ const PropertiesEmptyState = ({ onClick }: Props) => {
       <IoIosSearch size={60} />
       <div className="text-center">
         <p className="font-semibold">
-          Sorry, we couldn’t find any matching results.
+          Sorry, we couldn&apos;t find any matching results.
         </p>
         <p className="text-sm text-shade-200">
           View similar results from surrounding neighborhoods.{" "}

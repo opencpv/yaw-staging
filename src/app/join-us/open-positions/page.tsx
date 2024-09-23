@@ -28,7 +28,10 @@ const Page = async () => {
         <div
           className={`flex h-[432px] w-full shrink-0 flex-col items-center justify-center gap-6 ${styles.open_positions_header} !bg-cover`}
         >
-          <h1 className="order-2 text-[1.5625rem] font-semibold capitalize text-white lg:order-1 lg:text-[1.9375rem]">
+          <h1
+            className="fade-in-top-slight order-2 text-[1.5625rem] font-semibold capitalize text-white lg:order-1 lg:text-[1.9375rem]"
+            style={{ animationDelay: "0.3s" }}
+          >
             Open Positions
           </h1>
 

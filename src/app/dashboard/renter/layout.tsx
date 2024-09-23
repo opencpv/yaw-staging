@@ -3,8 +3,8 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: {
-    template: `%s | Lister Dashboard - ${legal.websiteName}`,
-    default: "Lister Dashboard",
+    template: `%s | Renter Dashboard - ${legal.websiteName}`,
+    default: "Renter Dashboard",
   },
   description: "", // tentative
 };

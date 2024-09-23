@@ -6,6 +6,7 @@ import {
   DialogContent,
   DialogFooter,
   DialogHeader,
+  DialogTitle,
 } from "@/components/__shared/ui/modals/dialog";
 
 type Props = {
@@ -52,6 +53,7 @@ const StepsModal = ({
         hideCloseButton
         onEscapeKeyDown={(e) => e.preventDefault()}
       >
+        <DialogTitle className="sr-only" />
         <DialogHeader className="text-large flex flex-initial flex-col gap-1 px-6 py-4 font-semibold">
           {header}
         </DialogHeader>

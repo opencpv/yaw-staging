@@ -5,6 +5,7 @@ import { HiChevronRight } from "react-icons/hi";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import dynamic from "next/dynamic";
 import { LinkButton } from "@/components/__shared/ui/button";
+import { fadeIn } from "@/lib/animations";
 const FramerWrapper = dynamic(
   () => import("@/components/__shared/hoc/framer-wrapper"),
 );
@@ -34,9 +35,8 @@ const RentalDeals = (props: Props) => {
         <div className="mt-12 grid items-center gap-10 md:grid-cols-2 lg:grid-cols-3 lg:gap-5">
           {props.data.tags.map((tag: any) => {
             return (
-              <FramerWrapper key={tag._key}>
+              <FramerWrapper {...fadeIn} key={tag._key}>
                 <DealCard
-                  key={tag._key}
                   title={tag.title}
                   body={tag.description}
                   icon={urlForImage(tag.icon.customImageItem)?.url() as string}

@@ -1,5 +1,4 @@
 import "../../style.css";
-import style from "../../Template.module.css";
 import React, { cache } from "react";
 import PropertyDetailsFigures from "../PropertyDetailsFigures";
 import PropertyRating from "../PropertyRating";
@@ -9,19 +8,24 @@ import dynamic from "next/dynamic";
 import { updateRecentViews } from "../../_actions";
 import { generatePropertyTitle } from "@/lib/enum";
 import AdditionalInfo from "../AdditionalInfo";
-import AdditionalInfoMobile from "../AdditionalInfoMobile";
 import PropertySuitedFor from "../PropertySuitedFor";
 import { BsShieldFillCheck } from "react-icons/bs";
 import { createClient } from "@/lib/utils/supabase/auth/server";
 import supabase from "@/lib/utils/supabase/supabaseClient";
 import toast from "react-hot-toast";
 import Loader from "@/components/__shared/ui/loader";
+import PropertyDetailsIncentives from "../PropertyDetailsIncentives";
+import PropertyDetailsTTK from "../PropertyDetailsTTK";
+import PropertyDetailsDescription from "../PropertyDetailsDescription";
 const RecommendedListings = dynamic(
   () => import("@/components/__shared/ui/listing/recommended-listings"),
   {
     loading: () => <Loader />,
   },
 );
+const AdditionalInfoMobile = dynamic(
+  () => import("../AdditionalInfoMobile"));
+
 const LikeShare = dynamic(() => import("../LikeShare"));
 
 // const ApplicationForm = dynamic(
@@ -86,17 +90,15 @@ const PropertyDetailsPage = async ({ params }: Props) => {
       <PropertyDetailsImages listing={listing as Property} />
       <section className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         <div className="col-span-1 flex flex-col gap-10 lg:col-span-2">
-          <h2 className="font-semibold text-shade-500 sm:text-3xl">
-            Property Details
-          </h2>
+          <h2 className="text-shade-500 sm:text-3xl">Property Details</h2>
           <PropertySuitedFor listing={listing as unknown as Property} />
           <PropertyDetailsFigures listing={listing as unknown as Property} />
-          <section>{listing?.description}</section>
+          <PropertyDetailsIncentives listing={listing as unknown as Property} />
+          <PropertyDetailsDescription
+            listing={listing as unknown as Property}
+          />
           <PropertyDetailsFeatures listing={listing as unknown as Property} />
-          <section className={style.detailWrapper}>
-            <h2 className={style.detailHeading}>Things To Know</h2>
-            <p>{listing?.renter_knowledge}</p>
-          </section>
+          <PropertyDetailsTTK listing={listing as unknown as Property} />
         </div>
         <AdditionalInfo
           listing={listing as unknown as Property}
@@ -104,7 +106,7 @@ const PropertyDetailsPage = async ({ params }: Props) => {
         />
       </section>
       <PropertyRating />
-      <RecommendedListings />
+      <RecommendedListings currentListingId={Number(params.id)} />
       <AdditionalInfoMobile listing={listing as unknown as Property} />
     </main>
   );

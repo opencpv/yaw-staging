@@ -99,6 +99,8 @@ const AddItemPage = () => {
           initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={async (values) => {
+            values.term =
+              values.term === "Yes" ? "Negotiable" : "Non-Negotiable";
             setloading(true);
             const imageUrls: string[] = [];
             const imageUploadPromises: Promise<any>[] = [];

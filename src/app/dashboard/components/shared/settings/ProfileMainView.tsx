@@ -15,13 +15,6 @@ const ProfileInfo = dynamic(() => import("./ProfileInfo"), {
 });
 
 const ProfileMainView = () => {
-  const optionSelect = useManageAccountStore(
-    (state: any) => state.filterOption,
-  );
-  const handleOptionChange = useManageAccountStore(
-    (state: any) => state.changeOption,
-  );
-
   return (
     <main>
       <h2 className="mb-5">Settings</h2>
@@ -56,7 +49,7 @@ const ProfileMainView = () => {
           <Blocking />
         </TabsContent>
         <TabsContent value="account">
-          <div>Account</div>
+          <div className="min-h-screen">Account</div>
         </TabsContent>
       </Tabs>
     </main>

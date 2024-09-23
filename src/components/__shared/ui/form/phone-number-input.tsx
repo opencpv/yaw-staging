@@ -11,6 +11,7 @@ import {
 } from "formik";
 import ErrorMessage from "../states/error-message";
 import { cn } from "@/lib/utils";
+import { Label } from "./label";
 
 type Props = {
   name: string;
@@ -65,12 +66,9 @@ const PhoneNumberInput: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
   return (
     <label className="w-full space-y-4 text-sm">
       {props.label && (
-        <div className="flex gap-x-1.5 text-base text-shade-300">
+        <Label required={required} className="capitalize">
           {props.label}
-          {required && (
-            <span className="relative text-sm text-shade-300">*</span>
-          )}
-        </div>
+        </Label>
       )}
       <PhoneInput
         id={id}

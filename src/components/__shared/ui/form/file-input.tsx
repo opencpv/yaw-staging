@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import CaAttachment from "../icons/CaAttachment";
 import { cn } from "@/lib/utils";
+import { Label } from "./label";
 
 type Props = {
   handleFile?: (file: File | null) => void; // Specify the type of handleFile function
@@ -47,12 +48,9 @@ function FileInput({
   return (
     <div className="flex flex-col gap-4">
       {label && (
-        <div className="flex gap-x-1.5">
-          <h5 className="font-normal capitalize text-shade-300">{label}</h5>
-          {required && (
-            <span className="relative text-sm text-shade-300">*</span>
-          )}
-        </div>
+        <Label required={required} className="capitalize">
+          {label}
+        </Label>
       )}
       <div className="form-field-border relative flex w-full items-center justify-between rounded-[4px] pl-4">
         <button

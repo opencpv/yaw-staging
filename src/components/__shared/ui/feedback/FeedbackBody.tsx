@@ -47,7 +47,7 @@ const FeedbackBody = ({
         alt="group of people"
         width={128}
         height={128}
-        className="mx-auto mt-10 aspect-square w-40 sm:w-60"
+        className="fade-in-bottom-slight mx-auto mt-10 aspect-square w-40 sm:w-60"
       />
       <Formik
         initialValues={initialValues}
@@ -126,7 +126,7 @@ const FeedbackBody = ({
                 name="value_d"
                 thumbsDownChecked={thumbsDownChecked}
                 thumbsUpChecked={thumbsUpChecked}
-                placeholder={feedback.question4}
+                placeholder={feedback.question4 + " (optional)"}
               />
             )}
 

@@ -9,10 +9,10 @@ import {
   FieldHelperProps,
   FieldInputProps,
   FieldMetaProps,
-  useField,
   useFormikContext,
 } from "formik";
 import ErrorMessage from "../states/error-message";
+import { Label } from "./label";
 
 type RadioInputProps = {
   options?: string[];
@@ -76,6 +76,7 @@ const RadioInput = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root> &
     RadioInputProps & {
       label?: string;
+      tooltip?: string;
     }
 >(
   (
@@ -86,6 +87,7 @@ const RadioInput = React.forwardRef<
       color = "accent",
       name,
       options,
+      tooltip,
       onValueChange,
       ...props
     },
@@ -114,7 +116,9 @@ const RadioInput = React.forwardRef<
         {...props}
         ref={ref}
       >
-        <p className="flex gap-2 whitespace-nowrap text-base">{label}</p>
+        <Label className="flex whitespace-nowrap" tooltip={tooltip}>
+          {label}
+        </Label>
         <div className="flex flex-wrap gap-x-10 gap-y-5">
           {options?.map((option) => (
             <label key={option} className="flex items-center space-x-2">

@@ -29,9 +29,9 @@ function JobDescriptionModalContent({ jobs }: Props) {
             <div className="mt-2 flex flex-col gap-3 rounded-2xl border-[1px] border-shade-50 bg-shade px-4 py-2 lg:px-8">
               <div className="job-download flex flex-col gap-1">
                 <div className="flex items-center justify-between gap-5">
-                  <h2 className="py-3 font-semibold capitalize text-shade-300">
+                  <h3 className="py-3 font-semibold capitalize text-shade-300">
                     {job?.title}
-                  </h2>
+                  </h3>
                   <Share title={job?.title} className="max-lg:hidden" />
                 </div>
 

@@ -13,7 +13,7 @@ function RadioChoices<T extends string>(props: Props<T>) {
     <RadioGroup.Root
       value={props.value}
       onValueChange={props.onValueChange}
-      className="flex w-full flex-wrap gap-3"
+      className="flex w-full flex-wrap gap-2"
     >
       {props.options?.map((option) => (
         <RadioGroup.Item

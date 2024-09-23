@@ -8,12 +8,7 @@ import oauthSignIn from "../lib/oauthSignIn";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 
-export const LoginButton = ({
-  icon,
-  text,
-  onClick,
-  className,
-}: LoginButtonProps) => {
+export const LoginButton = ({ icon, text, className }: LoginButtonProps) => {
   const { icons } = useAssets();
   const [selectedIcon, setSelectedIcon] = useState<string>("");
   const [loader, setLoader] = useState<boolean>(false);
@@ -48,24 +43,24 @@ export const LoginButton = ({
     }
   }, [icons, icon]);
 
+  const handleClick = async () => {
+    setLoader(true);
+    const { error } = await oauthSignIn(icon, redirectURL);
+    if (error) {
+      setLoader(false);
+    }
+  };
+
   return (
     <button
       className={cn(
-        "flex h-fit min-h-fit w-full max-w-md flex-col items-center gap-5 rounded-lg bg-white px-4 py-5 transition-all duration-200 hover:opacity-90 focus:outline-accent-50 min-[310px]:flex-row min-[350px]:gap-x-16 lg:px-8",
+        "flex h-fit w-full max-w-md items-center gap-5 truncate rounded-lg bg-white px-4 py-5 transition-all duration-200 hover:opacity-90 max-xxs:flex-col xsm:gap-x-16 xs:min-h-20 lg:px-8",
         className,
       )}
-      onClick={async () => {
-        setLoader(true);
-        const { data, error } = await oauthSignIn(icon, redirectURL);
-        if (error) {
-          setLoader(false);
-        }
-      }}
+      onClick={handleClick}
     >
       {loader ? (
-        <div className="relative flex w-full justify-center py-2 lg:py-5">
-          <Loader />
-        </div>
+        <Loader position="default" size="sm" />
       ) : (
         <>
           {selectedIcon && (
@@ -79,13 +74,9 @@ export const LoginButton = ({
               className="size-[28px] xs:size-[41px]"
             />
           )}
-          <p
-            className={`flex-1 text-center text-lg font-semibold text-primary min-[310px]:text-start`}
-          >
-            {text}
-          </p>
         </>
       )}
+      <p className={`font-semibold text-primary max-xs:text-center`}>{text}</p>
     </button>
   );
 };

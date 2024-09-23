@@ -176,8 +176,8 @@ export const convertYesNoToBoolean = (value: string) => {
 };
 
 export const convertNumWithoutPlus = (number: string) => {
-  const result = number.includes("+")
-    ? number.slice(0, number.indexOf("+"))
+  const result = number?.includes("+")
+    ? number.slice(0, number?.indexOf("+"))
     : number;
   return Number(result);
 };

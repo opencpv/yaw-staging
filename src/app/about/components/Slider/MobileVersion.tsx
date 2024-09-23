@@ -1,4 +1,3 @@
-import { MdChevronRight, MdChevronLeft } from "react-icons/md";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useCallback, useRef, useState } from "react";
 import SlideItem from "./SlideItem";

@@ -37,7 +37,7 @@ const SearchCity = () => {
     search === "" &&
       router.replace(
         `/properties?${new URLSearchParams({
-          search: search,
+          q: search,
           tag,
         })}`,
         { scroll: false },

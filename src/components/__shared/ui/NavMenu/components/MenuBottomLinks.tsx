@@ -1,4 +1,4 @@
-import Feedback from "@/components/__shared/ui/feedback/Feedback";
+import Feedback from "@/components/__shared/ui/feedback";
 import { LowerCase } from "@/lib/utils/stringManipulation";
 import { useMenuStore } from "@/store/navmenu/useMenuStore";
 import Link from "next/link";
@@ -41,7 +41,7 @@ const MenuBottomLinks = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
           {LowerCase(r?.name) === "report fraud" ? (
             <ReportFraud
               className={cn(
-                "transition-all hover:scale-110 hover:text-accent-100 sm:text-2xl",
+                "capitalize transition-all hover:scale-110 hover:text-accent-100 sm:text-2xl",
               )}
               onClick={() => {
                 setToggle(false);
@@ -57,9 +57,9 @@ const MenuBottomLinks = (props: Props, ref: LegacyRef<HTMLDivElement>) => {
             <Link
               href={r?.url}
               className={cn(
-                "transition-all hover:scale-110 hover:text-accent-100",
+                "capitalize transition-all hover:scale-110 hover:text-accent-100",
                 {
-                  "text-accent": pathname?.includes(r?.url),
+                  "text-accent": pathname === r?.url,
                 },
               )}
               onClick={() => setToggle(false)}

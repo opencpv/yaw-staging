@@ -11,6 +11,7 @@ import {
   FieldMetaProps,
   useFormikContext,
 } from "formik";
+import { Label } from "./label";
 
 type CheckboxProps = {
   color?: "accent" | "primary" | "white";
@@ -90,6 +91,7 @@ const Checkbox = React.forwardRef<
     if (formikContext) {
       field = formikContext.getFieldProps(name as string);
       meta = formikContext.getFieldMeta(name as string);
+      helpers = formikContext.getFieldHelpers(name as string);
     }
 
     return (
@@ -109,17 +111,14 @@ const Checkbox = React.forwardRef<
         />
 
         {label && (
-          <span
+          <Label
             className={cn(
-              "text-base text-shade-200",
-              {
-                "cursor-not-allowed": disabled,
-              },
+              { "cursor-not-allowed": disabled },
               classNames?.label,
             )}
           >
             {label}
-          </span>
+          </Label>
         )}
       </label>
     );

@@ -28,12 +28,12 @@ type Props = {
 };
 
 const PropertiesListing = (props: Props) => {
+  const { user } = useAppStore();
   const searchParams = useSearchParams();
-  const search = searchParams?.get("q") || "";
   const tag = searchParams?.get("tag") || "All";
+  const search = searchParams?.get("q") || "";
   const router = useRouter();
   const [showAd, setShowAd] = useState(false);
-  const { user } = useAppStore();
   const {
     data: listings,
     error,
@@ -50,7 +50,7 @@ const PropertiesListing = (props: Props) => {
     // TODO: implement appropriately
     router.replace(
       `/properties?${new URLSearchParams({
-        search: "Accra",
+        q: "Accra",
         tag: "All",
       })}`,
       {

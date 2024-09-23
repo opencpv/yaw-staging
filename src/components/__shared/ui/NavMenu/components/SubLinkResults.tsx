@@ -4,10 +4,25 @@ import SubLinkResultsCard from "./SubLinkResultsCard";
 import { Separator } from "@/components/__shared/ui/separator";
 import ArrowLink from "../../links/arrow-link";
 import { Skeleton } from "../../skeleton";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { IoIosSearch } from "react-icons/io";
+import supabase from "@/lib/utils/supabase/supabaseClient";
 
 function SubLinkResults() {
+  const [allListings, setAllListings] = useState<Property[]>([]);
   const { activeSubLink, setToggle } = useMenuStore();
+
+  useEffect(() => {
+    const getListings = async () => {
+      const { data } = await supabase
+        .from("published_properties")
+        .select("*")
+        .limit(6);
+      setAllListings(data as Property[]);
+    };
+
+    getListings();
+  }, []);
 
   const propertyType = useMemo(() => {
     const subLink = activeSubLink.slice(0, -1); // strip 's' off word
@@ -31,10 +46,22 @@ function SubLinkResults() {
     }
   }, [activeSubLink]);
 
-  const { data: listings, isLoading } = useFetchFeaturedListings({
+  const { data: featuredListings, isLoading } = useFetchFeaturedListings({
     limit: 6,
     propertyType,
   });
+
+  // if featured listings are less than 6, show all listings instead
+  const optedListings = useMemo(() => {
+    if (
+      propertyType === "" &&
+      featuredListings &&
+      featuredListings?.length < 6
+    ) {
+      return allListings;
+    }
+    return featuredListings;
+  }, [allListings, featuredListings, propertyType]);
 
   return (
     <div className="main-menu-link flex w-full gap-12 text-white">
@@ -55,16 +82,16 @@ function SubLinkResults() {
               />
             ))}
 
-          {listings &&
-            listings?.length > 0 &&
-            listings.map((listing) => (
+          {optedListings &&
+            optedListings?.length > 0 &&
+            optedListings?.map((listing) => (
               <div key={listing?.id}>
                 <SubLinkResultsCard listing={listing as Property} />
               </div>
             ))}
         </div>
-        {!listings || (listings?.length === 0 && <p>Nothing to show</p>)}
-        {listings && listings?.length > 0 && (
+        {!optedListings || (optedListings?.length === 0 && <EmptyState />)}
+        {optedListings && optedListings?.length > 0 && (
           <ArrowLink
             color="white"
             href={showAllLink}
@@ -73,6 +100,19 @@ function SubLinkResults() {
           />
         )}
       </div>
+    </div>
+  );
+}
+
+function EmptyState() {
+  return (
+    <div className="mx-auto flex flex-col items-center gap-6 text-white">
+      <IoIosSearch
+        size={60}
+        className="fade-in-bottom"
+        style={{ animationDuration: "0.3s" }}
+      />
+      <p className="font-semibold">Sorry, no results found.</p>
     </div>
   );
 }

@@ -15,15 +15,13 @@ const Modal = dynamic(() =>
  */
 const Share = ({
   title,
-  /**
-   * Default is the current url
-   */
   url,
   className,
   classNames,
   label = "Share",
   hideLabel,
   children,
+  size = 18,
 }: ShareDataProps) => {
   const { onOpenChange, isOpen, onOpen } = useDisclosure();
 
@@ -58,7 +56,7 @@ const Share = ({
               {label}
             </p>
 
-            <IoIosShareAlt size={18} className={cn(classNames?.icon)} />
+            <IoIosShareAlt size={size} className={cn(classNames?.icon)} />
           </>
         )}
       </button>
@@ -70,10 +68,10 @@ const ShareModalHeader = ({ title }: { title: string }) => {
   return (
     <div className="space-y-3 border-b pb-2">
       <h1 className="text-2xl font-[700]">Share</h1>
-      <section className="flex items-center justify-between gap-5 pt-3">
-        <h2 className="truncate text-base font-semibold" title={title}>
+      <section className="flex flex-wrap items-center justify-between gap-5 pt-3">
+        <h5 className="truncate" title={title}>
           {title}
-        </h2>
+        </h5>
         <CopyButton />
       </section>
     </div>

@@ -1,5 +1,4 @@
 import { EffectCoverflow, Navigation } from "swiper/modules";
-import { MdChevronRight, MdChevronLeft } from "react-icons/md";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useCallback, useRef, useState } from "react";
 import "swiper/css";

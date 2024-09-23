@@ -22,18 +22,18 @@ const Hero = (props: Props) => {
   return (
     <section className="section wrapper space-y-8 pb-20 pt-10 text-shade-200">
       <div className="space-y-1">
-        <h1 className="text-2xl capitalize text-neutral-600 min-[300px]:text-3xl">
-          {title}{" "}
+        <h1 className="max-w-full text-2xl capitalize text-neutral-600 min-[300px]:text-3xl">
+          <span>{title}</span>{" "}
           <span
-            className="tracking-in-contract text-accent-100"
-            style={{ animationDuration: "1.5s" }}
+            className="tracking-in-contract min-w-40 text-accent-100"
+            style={{ animationDelay: "0.3s", animationDuration: "2s" }}
           >
             {titleHighlight}
           </span>
         </h1>
         <h4>{props.data.description}</h4>
       </div>
-      <FramerWrapper className={`${styles.rect}`}>
+      <FramerWrapper className={styles.rect}>
         <Image
           src={urlForImage(props.data.bgImage)?.url() as string}
           alt="Main banner" // TODO: change alt text
@@ -46,7 +46,7 @@ const Hero = (props: Props) => {
           viewBox="0 0 360 153"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="absolute right-0 top-[-45.5px] z-10 max-sm:w-[150px] sm:right-[-1.1px] sm:top-[-1.6px]"
+          className="absolute -right-[0.3%] -top-[23px] z-10 -translate-x-[0.3%] -translate-y-[23px] max-sm:w-[150px] sm:-right-[0.3%] sm:-top-[0.3%] sm:-translate-x-[0.3%] sm:-translate-y-[0.3%]"
         >
           <path
             d="M0.5 1.00015C1.25281 0.968782 2.0556 0.967325 2.89984 1.00015H359V149.379C359.015 150.405 359.015 151.445 359 152.5V149.379C358.223 96.7143 317.935 81.8174 297.5 81L76 80.5C65.1667 80.5 42.8 72.4001 40 40.0001C37.3757 9.63274 15.5129 1.49055 2.89984 1.00015H0.5Z"
@@ -67,8 +67,10 @@ const Hero = (props: Props) => {
         </div>
 
         <div className="featured-info fade-in absolute bottom-10 left-10 z-10 space-y-2 *:line-clamp-1">
-          <h3 className="fade-in-bottom">Get this amazing 3 bedroom flat</h3>
-          <p className="fade-in-bottom" style={{ animationDelay: "0.5s" }}>
+          <h3 className="fade-in-bottom" style={{ animationDelay: "2.5s" }}>
+            Get this amazing 3 bedroom flat
+          </h3>
+          <p className="fade-in-bottom" style={{ animationDelay: "3s" }}>
             Get this amazing 3 bedroom flat
           </p>
         </div>

@@ -37,8 +37,7 @@ const FeedbackButton = dynamic(
 );
 const Navbar = dynamic(() => import("@/components/__shared/ui/Navbar"));
 
-type Props = {};
-const page = async (props: Props) => {
+const page = async () => {
   const initial = await loadQuery<SanityDocument[]>(HOME_PAGE_QUERY);
   const data = initial.data[0];
   const homeBanner = await loadQuery<SanityDocument[]>(HOME_BANNER_QUERY);

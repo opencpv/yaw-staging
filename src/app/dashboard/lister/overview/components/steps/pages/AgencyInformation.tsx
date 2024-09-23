@@ -26,9 +26,12 @@ const AgencyInformation = React.forwardRef<HTMLInputElement, Props>(
 
     return (
       <div className={`mx-auto max-w-lg ${style.container}`}>
-        <h2 className={`${style.title}`}>
-          Agency Information <span className={style.asterisk}>*</span>
-        </h2>
+        <div className={style.titleCallOutContainer}>
+          <h2 className={`${style.titleNoMargin}`}>
+            Service Fees <span className={style.asterisk}>*</span>
+          </h2>
+          <Callout content="You can add more utilities after you publish your listing." />
+        </div>
         <div className={`fade-in-bottom flex flex-col ${style.fieldsBlockGap}`}>
           <RadioInput
             name="require_agent_fee"
@@ -38,20 +41,18 @@ const AgencyInformation = React.forwardRef<HTMLInputElement, Props>(
               handleOnChange("require_agent_fee", value)
             }
             color="primary"
+            tooltip="This is a tooltip."
           />
           {caseInsensitiveCompare(values.require_agent_fee, "yes") && (
-            <>
-              <Callout content="You can add more utilities after you publish your listing." />
-              <span className="fade-in-top">
-                <CurrencyInput
-                  name="currency"
-                  name2="agent_fee"
-                  label="Agent Fee"
-                  onChange={(value) => handleOnChange("currency", value)}
-                  onChange2={(value) => handleOnChange("agent_fee", value)}
-                />
-              </span>
-            </>
+            <span className="fade-in-top">
+              <CurrencyInput
+                name="currency"
+                name2="agent_fee"
+                label="Agent Fee"
+                onChange={(value) => handleOnChange("currency", value)}
+                onChange2={(value) => handleOnChange("agent_fee", value)}
+              />
+            </span>
           )}
           <RadioInput
             name="require_viewing_fee"
@@ -61,20 +62,18 @@ const AgencyInformation = React.forwardRef<HTMLInputElement, Props>(
               handleOnChange("require_viewing_fee", value)
             }
             color="primary"
+            tooltip="This is a tooltip."
           />
           {caseInsensitiveCompare(values.require_viewing_fee, "yes") && (
-            <>
-              <Callout content="You can add more utilities after you publish your listing." />
-              <span className="fade-in-top">
-                <CurrencyInput
-                  name="currency"
-                  name2="viewing_fee"
-                  label="Viewing Fee"
-                  onChange={(value) => handleOnChange("currency", value)}
-                  onChange2={(value) => handleOnChange("viewing_fee", value)}
-                />
-              </span>
-            </>
+            <span className="fade-in-top">
+              <CurrencyInput
+                name="currency"
+                name2="viewing_fee"
+                label="Viewing Fee"
+                onChange={(value) => handleOnChange("currency", value)}
+                onChange2={(value) => handleOnChange("viewing_fee", value)}
+              />
+            </span>
           )}
         </div>
       </div>

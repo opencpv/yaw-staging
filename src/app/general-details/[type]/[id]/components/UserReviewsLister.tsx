@@ -11,7 +11,7 @@ function UserListerReviews() {
   return (
     <div className="flex flex-col items-start gap-5">
       <div className="flex flex-col gap-10">
-        <h2 className="text-base text-shade-300 md:text-2xl 2xl:text-3xl">
+        <h2 className=" text-shade-300 ">
           ( {mockReviewData.length} ) Reviews About Esther
         </h2>
 
