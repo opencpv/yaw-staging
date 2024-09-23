@@ -1,15 +1,13 @@
 import { motion } from "framer-motion";
-import RecommendedListings from "../../../listing/recommended-listings";
-import { Button } from "../../../button";
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+
 import ListingCard from "../../../listing/listing-card";
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import { useFetchRecommendedListings } from "@/app/properties/services";
-import { EffectCoverflow } from "swiper/modules";
 import SkeletonListing from "../../../skeleton/skeleton-listing";
 import { getListingProps, Listing } from "@/lib/enum";
 import { useAppStore } from "@/store/dashboard/AppStore";
 import { useRef } from "react";
+import SliderNav from "../../../sliders/slider-nav";
 
 function PageNotFoundDiscover() {
   const { user } = useAppStore();
@@ -22,38 +20,40 @@ function PageNotFoundDiscover() {
       className="flex w-full flex-col items-center justify-start gap-16 lg:flex-row lg:items-start"
     >
       <div className="flex w-full flex-col justify-start gap-6 lg:w-[50%] lg:gap-[130px]">
-        <div className="flex flex-col gap-6">
-          <h2 className="font-bold capitalize text-[#1E1E1E] lg:text-4xl">
+        <div className="flex flex-col gap-4 lg:gap-6">
+          <h2 className="font-bold capitalize text-[#1E1E1E] text-3xl lg:text-4xl">
             Discover your new <br /> home with us
           </h2>
-          <h3 className="font-normal text-[#6F6F6F]">
+          <h5 className="font-normal text-[#6F6F6F] lg:text-xl">
             Browse through our genuine listings without stress
-          </h3>
+          </h5>
         </div>
 
         <div className="flex w-[216px] items-center justify-between">
-          <Button
-            size={"icon"}
-            radius={"full"}
-            className="h-[56px] w-[56px]"
-            variant={"outline"}
+     
+          <SliderNav
+            position="left"
+            isAbsolute={false}
+            className="size-[56px] border-[1px] border-primary"
+            classNames={{
+              icon: "text-2xl text-primary",
+            }}
             onClick={() => {
               ref.current?.swiper.slidePrev();
             }}
-          >
-            <MdKeyboardArrowLeft className="text-2xl" />
-          </Button>{" "}
-          <Button
-            size={"icon"}
-            className="h-[56px] w-[56px]"
-            radius={"full"}
-            variant={"outline"}
+          />
+          <SliderNav
+            position="right"
+            isAbsolute={false}
+            className="size-[56px] border-[1px] border-primary"
+            classNames={{
+              icon: "text-2xl text-primary",
+            }}
             onClick={() => {
               ref.current?.swiper.slideNext();
             }}
-          >
-            <MdKeyboardArrowRight className="text-2xl" />
-          </Button>
+          />
+      
         </div>
       </div>
       <div className="w-full">

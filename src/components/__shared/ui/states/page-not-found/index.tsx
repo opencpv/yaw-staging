@@ -13,7 +13,6 @@ type Props = {
 };
 
 function PageNotFound({ className }: Props) {
-  const router = useRouter();
 
   return (
     <div
@@ -29,13 +28,13 @@ function PageNotFound({ className }: Props) {
           <div className="hidden lg:flex">
             <PageNotFoundPill />
           </div>{" "}
-          <div className="flex flex-col gap-4 lg:gap-20 items-center lg:items-start">
+          <div className="flex flex-col gap-6 lg:gap-20 items-center lg:items-start">
             <div className="flex flex-col gap-1 items-center lg:items-start">
-              <h1 className="text-center capitalize text-primary lg:text-left lg:!leading-[80px]">
+              <h1 className="text-center capitalize text-primary lg:text-left leading-10 lg:!leading-[80px]">
                 <span className="text-accent">
                   404. <br />
                 </span>
-                This page does <br className="hidden lg:flex" /> not exist.``
+                This page does <br className="hidden lg:flex" /> not exist.
               </h1>
             </div>
 
@@ -49,7 +48,7 @@ function PageNotFound({ className }: Props) {
             </Link>
           </div>
         </div>
-        <div className="flex  order-1 lg:order-2 w-full flex-col gap-2 items-center max-w-[709px]">
+        <div className="flex  order-1 lg:order-2 w-full flex-col gap-6 items-center max-w-[709px]">
           <div className="lg:hidden">
             <PageNotFoundPill />
           </div>{" "}

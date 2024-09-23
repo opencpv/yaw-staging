@@ -31,7 +31,7 @@ const SliderNav = ({
   onClick,
   isAbsolute = true,
 }: Props) => {
-  return (
+  return ( 
     <button
       onClick={onClick}
       className={cn(
