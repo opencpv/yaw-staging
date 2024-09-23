@@ -22,9 +22,9 @@ function PageNotFound({ className }: Props) {
       )}
     >
       <div
-        className={`flex flex-col lg:flex-row w-full items-center justify-around gap-5 rounded-b-[50px] bg-[#DEFAF9] p-20 lg:rounded-b-[200px] ${styles.container} lg:pb-[170px] `}
+        className={`flex flex-col lg:flex-row w-full items-center justify-between gap-5 rounded-b-[50px] bg-[#DEFAF9] p-20  lg:rounded-b-[200px] ${styles.container} lg:pb-[170px] `}
       >
-        <div className="order-2 flex flex-col items-center lg:items-start gap-4 lg:order-1">
+        <div className="order-2 flex flex-col items-center lg:items-start gap-4 lg:order-1 2xl:py-[100px]">
           <div className="hidden lg:flex">
             <PageNotFoundPill />
           </div>{" "}
