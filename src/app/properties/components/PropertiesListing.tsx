@@ -24,39 +24,46 @@ const Ad = dynamic(() => import("@/app/components/sections/Ad"));
 
 type Props = {
   ads: SanityDocument[];
+  propertyType: string | undefined;
 };
 
 const PropertiesListing = (props: Props) => {
+  const { user } = useAppStore();
   const searchParams = useSearchParams();
-  const search = searchParams?.get("search") || "";
-  const tag = searchParams?.get("tag") || "all";
+  const tag = searchParams?.get("tag") || "All";
+  const search = searchParams?.get("q") || "";
   const router = useRouter();
   const [showAd, setShowAd] = useState(false);
-  const { user } = useAppStore();
   const {
     data: listings,
     error,
     isLoading,
     isValidating,
     loadMore,
-  } = useFetchProperties({ searchString: search as string, filter: tag });
+  } = useFetchProperties({
+    searchString: search as string,
+    filter: tag,
+    propertyType: props.propertyType,
+  });
 
   const handleViewSimilarResults = () => {
     // TODO: implement appropriately
     router.replace(
       `/properties?${new URLSearchParams({
-        search: "Accra",
-        tag: "all",
+        q: "Accra",
+        tag: "All",
       })}`,
       {
         scroll: false,
       },
     );
   };
+
   const handleLoadMore = () => {
     setShowAd(true);
     loadMore ? loadMore() : null;
   };
+
   return (
     <main className="wrapper mx-auto max-w-fit overflow-x-hidden max-sm:-mt-10">
       {/* Listing */}

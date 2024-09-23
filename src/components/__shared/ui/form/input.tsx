@@ -5,18 +5,27 @@ import { FieldInputProps, useFormikContext } from "formik";
 import ErrorMessage from "../states/error-message";
 import { Tooltip } from "../tooltip";
 import { BsInfoCircle } from "react-icons/bs";
+import { Label } from "./label";
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   prefix?: string;
   tooltip?: string;
+  classNames?: {
+    base?: string;
+  };
 }
 
+/**
+ * Displays a form input field or a component that looks like an input field. <br />
+ * Name is required if used in a Formik context.
+ */
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {
       className,
+      classNames,
       type,
       label,
       prefix,
@@ -37,19 +46,13 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     }
 
     return (
-      <label className="flex flex-col gap-4 text-shade-300">
+      <label
+        className={cn("flex flex-col gap-4 text-shade-300", classNames?.base)}
+      >
         {label && (
-          <div className="flex gap-x-1.5">
-            <h5 className="font-normal capitalize">{label}</h5>
-            {required && (
-              <span className="relative text-sm text-shade-300">*</span>
-            )}
-            {tooltip && (
-              <Tooltip content={tooltip}>
-                <BsInfoCircle className="text-accent" size={20} />
-              </Tooltip>
-            )}
-          </div>
+          <Label required={required} tooltip={tooltip} className="capitalize">
+            {label}
+          </Label>
         )}
         <small className="relative">
           {prefix && (

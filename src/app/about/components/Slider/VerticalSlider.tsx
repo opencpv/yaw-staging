@@ -47,7 +47,7 @@ const VerticalSlider = ({ data }: { data: any }) => {
         <div className="relative top-20 z-10 h-60 transition-all lg:left-10 lg:top-0 lg:h-80 min-[1120px]:left-28 xl:left-52">
           <Image
             src={urlForImage(data[activeIndex].featured_image)?.url() as string}
-            alt={data[activeIndex].featured_image.alt}
+            alt={data[activeIndex].featured_image.alt || ""}
             fill
             style={{ objectFit: "cover" }}
             className="rounded-[3rem]"

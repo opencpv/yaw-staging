@@ -58,7 +58,7 @@ const GalleryModal = ({
         isDismissible={false}
         header={<ModalHeader />}
         body={<ModalBody />}
-        // footer={<ModalFooter />}
+        footer={<ModalFooter />}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         hideCloseButton={true}
@@ -77,8 +77,8 @@ const ModalHeader = () => {
   const images = React.useContext(Context)?.images || [];
 
   return (
-    <div className="ml-auto flex w-full items-center justify-between gap-5 pr-5 pt-5 text-white max-xs:pl-5 xs:w-6/12 sm:pr-20">
-      <p className="w-full">
+    <div className="mx-auto flex w-full items-center justify-between gap-5 text-white sm:w-11/12">
+      <p className="max-sm:text-lg">
         {activeIndex + 1}/{images.length}
       </p>
       <div className="flex gap-5 text-2xl">
@@ -108,29 +108,28 @@ const ModalHeader = () => {
 };
 
 const ModalBody = () => {
-  const setActiveIndex = React.useContext(Context)!.setActiveIndex;
+  const setActiveIndex = React.useContext(Context)?.setActiveIndex;
   const images = React.useContext(Context)?.images || [];
 
   return (
-    <div className="flex h-full items-center justify-center">
-      <div className="h-fit w-full">
-        <Carousel
-          images={images?.map((image) => image)}
-          setActiveIndex={setActiveIndex}
-        />
-      </div>
-    </div>
+    <Carousel
+      images={images?.map((image) => image)}
+      setActiveIndex={
+        setActiveIndex as React.Dispatch<React.SetStateAction<number>>
+      }
+    />
   );
 };
 
-// const ModalFooter = ({ images }: { images: string[] }) => {
-//   // const { activeIndex } = carouselStore();
-//   return (
-//     // <div className="flex w-full items-center justify-center text-center text-lg text-white">
-//     //   {images[activeIndex].label}
-//     // </div>
-//     <></>
-//   );
-// };
+const ModalFooter = () => {
+  // const { activeIndex } = carouselStore();
+  //const activeIndex = React.useContext(Context)?.activeIndex || 0;
+
+  return (
+    <div className="flex w-full items-center justify-center text-center text-lg text-white">
+      Kitchen
+    </div>
+  );
+};
 
 export default GalleryModal;

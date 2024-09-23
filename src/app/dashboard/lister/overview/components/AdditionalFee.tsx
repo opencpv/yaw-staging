@@ -31,6 +31,11 @@ const AdditionalFee = ({
   const [field, meta, helpers] = useField("additional_fees");
 
   const handleInputChange = (name: string, value: string, index: number) => {
+    if (isNaN(Number(value))) {
+      alert("Please enter a valid amount");
+      helpers.setError("Please enter a valid amount");
+      return;
+    }
     const updatedFee = field.value?.map(
       (additionalFee: AdditionalFeeType, currentIndex: number) =>
         currentIndex === index
@@ -56,7 +61,7 @@ const AdditionalFee = ({
     });
   };
   return (
-    <div className="grid w-full grid-cols-2 gap-8">
+    <div className="grid w-full gap-8 ssm:max-sm:grid-cols-2 xl:grid-cols-2">
       <Input
         name={`fee_title ${index}`}
         label="Fee Title"

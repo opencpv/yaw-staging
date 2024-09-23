@@ -19,7 +19,7 @@ const Search = ({ className }: { className?: string }) => {
     setSearch(search);
     router.push(
       `/properties?${new URLSearchParams({
-        search: search || placeholder,
+        q: search || placeholder,
         sk: String(true),
       })}`,
     );

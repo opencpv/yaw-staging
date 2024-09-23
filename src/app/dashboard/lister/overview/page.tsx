@@ -18,6 +18,7 @@ import { useFetchListerActiveListings } from "./services";
 import { getListingProps } from "@/lib/enum";
 import SkeletonListing from "@/components/__shared/ui/skeleton/skeleton-listing";
 import dynamic from "next/dynamic";
+import { ScrollArea } from "@/components/__shared/ui/scroll-area";
 const ListingModal = dynamic(() => import("./components/steps/ListingModal"));
 const ActiveListingEmptyState = dynamic(
   () => import("./components/ActiveListingEmptyState"),
@@ -126,7 +127,7 @@ const ListerOverviewPage = () => {
         </section>
         <section className="space-y-3">
           <h3 className="mb-1">My Active Listings</h3>
-          <div className="hidden-scrollbar flex w-full gap-3 overflow-x-auto">
+          <ScrollArea>
             <FetchingStates
               data={listings}
               error={error}
@@ -139,9 +140,10 @@ const ListerOverviewPage = () => {
                 key={listing.id}
                 {...getListingProps(listing, user as UserType)}
                 showOnlyImage
+                className="min-w-[300px]"
               />
             ))}
-          </div>
+          </ScrollArea>
         </section>
       </div>
       <Sidebar className="fade-in-bottom max-lg:hidden" />

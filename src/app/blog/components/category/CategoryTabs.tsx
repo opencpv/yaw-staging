@@ -29,7 +29,7 @@ const CategoryTabs = (props: Props) => {
   return (
     <Tabs
       options={options}
-      selectedKey={unslugify(capitalizeName(categoryOption))}
+      selectedKey={capitalizeName(unslugify(categoryOption))}
       onSelectionChange={(selection) => {
         changeCategoryOption(selection);
         router.push(`/blog/${slugify(selection)}`, { scroll: false });

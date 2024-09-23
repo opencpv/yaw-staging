@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import style from "../../Dashboard.module.css";
 import Logo from "@/components/__shared/ui/logo";
 import { AiFillCloseCircle } from "react-icons/ai";
@@ -15,6 +15,19 @@ const PaginationMenu = () => {
   const paginationMenuRef = useRef<HTMLElement>(null);
 
   useHideDocumentScrollBar(isOpen);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (isOpen && e.code === "Escape") {
+        setIsOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen, setIsOpen]);
 
   return (
     <section

@@ -11,6 +11,7 @@ import {
 } from "formik";
 import ErrorMessage from "../states/error-message";
 import { cn } from "@/lib/utils";
+import { Label } from "./label";
 
 type Props = {
   name: string;
@@ -25,6 +26,10 @@ type Props = {
   required?: boolean;
 };
 
+/**
+ * A component that allows the user to input a phone number with a country code and flag. <br />
+ * Name is required if used in a Formik context.
+ */
 const PhoneNumberInput: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
   value,
   name,
@@ -61,12 +66,9 @@ const PhoneNumberInput: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
   return (
     <label className="w-full space-y-4 text-sm">
       {props.label && (
-        <div className="flex gap-x-1.5 text-base text-shade-300">
+        <Label required={required} className="capitalize">
           {props.label}
-          {required && (
-            <span className="relative text-sm text-shade-300">*</span>
-          )}
-        </div>
+        </Label>
       )}
       <PhoneInput
         id={id}
@@ -80,7 +82,7 @@ const PhoneNumberInput: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
         international={showCode}
         countryCallingCodeEditable={false}
         onCountryChange={onCountryChange}
-        placeholder={placeholder}
+        placeholder={placeholder || "Enter phone number"}
         onFocus={handleFocus}
         onBlur={onBlur}
         className={cn("text-base", className)}

@@ -18,9 +18,7 @@ const RecentPosts = dynamic(() => import("./components/post/RecentPosts"));
 const FramerWrapper = dynamic(
   () => import("@/components/__shared/hoc/framer-wrapper"),
 );
-const AdsSlider = dynamic(() => import("./components/post/AdsSlider"), {
-  loading: () => <Loader />,
-});
+const AdsSlider = dynamic(() => import("./components/post/AdsSlider"));
 const PostSlider = dynamic(() => import("./components/post/PostSlider"), {
   loading: () => <Loader />,
 });

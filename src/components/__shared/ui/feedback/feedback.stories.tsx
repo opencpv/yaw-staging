@@ -1,6 +1,6 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import Feedback from "./Feedback";
+import Feedback from ".";
 import { Form, Formik } from "formik";
 import { Button } from "../button";
 

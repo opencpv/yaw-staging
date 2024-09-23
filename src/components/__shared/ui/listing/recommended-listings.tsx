@@ -19,13 +19,25 @@ const ListingCard = dynamic(() => import("./listing-card"));
 type Props = {
   className?: string;
   hideShowAll?: boolean;
+  /**
+   * The current listing id if any
+   */
+  currentListingId?: number;
 };
 
-const RecommendedListings = ({ className, hideShowAll }: Props) => {
+const RecommendedListings = ({
+  className,
+  hideShowAll,
+  currentListingId,
+}: Props) => {
   const { ref, hasIntersected } = useIntersectionObserver();
 
   const { user } = useAppStore();
-  const { data: listings, error, isLoading } = useFetchRecommendedListings();
+  const {
+    data: listings,
+    error,
+    isLoading,
+  } = useFetchRecommendedListings({ currentListingId });
 
   return (
     <section

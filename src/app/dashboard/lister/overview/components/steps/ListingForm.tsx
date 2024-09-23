@@ -33,10 +33,10 @@ export const views = [
   <Features key={"features"} />,
   <Utilities key={"utilities"} />,
   <ChoosePropertyImages key={"choose-property-images"} />,
+  <FinishUp key={"finish-up"} />,
   <RentInformation key={"rent-information"} />,
   <AgencyInformation key={"agency-information"} />,
   <FinishUp key={"finish-up"} />,
-  <AgencyInformation key={"agency-information-temp"} />,
 ];
 
 export default function ListingForm() {
@@ -72,10 +72,12 @@ export default function ListingForm() {
   return (
     <ClientOnly>
       {/* Main area */}
-      <div className="h-full grid place-items-center" ref={ListingStepsRef}>
+      <div className="grid h-full place-items-center" ref={ListingStepsRef}>
         {/* Main area */}
         <section
-          className={cn("mx-auto mb-10 pb-20 w-full mt-5 lg:mt-10 max-w-screen-lg")}
+          className={cn(
+            "mx-auto mb-10 mt-5 w-full max-w-screen-lg pb-20 lg:mt-10",
+          )}
         >
           <div>
             <div>{views[activeSlide]}</div>

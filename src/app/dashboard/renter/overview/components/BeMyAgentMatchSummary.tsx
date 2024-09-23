@@ -121,6 +121,7 @@ const BeMyAgentMatchSummary = ({
                       <LinkButton
                         href={callOut.href}
                         variant="link"
+                        size="fit"
                         className={style.sideFeatureLearnMoreButton}
                       >
                         Learn more

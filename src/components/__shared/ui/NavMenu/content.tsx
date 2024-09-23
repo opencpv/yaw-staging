@@ -1,46 +1,11 @@
+import slugify from "@/lib/utils/slugify";
+
 export const useMenuLinks = () => {
   const linksAfterLogin = [
+    getMenuItem("hire us"),
     {
-      id: "#",
-      url: `/dashboard/renter/my-agent/explore`,
-      name: "HIRE US",
-    },
-    {
-      id: "#",
-      url: "#",
-      name: "HOMES FOR RENT",
-      sub: [
-        {
-          name: "View All Listings",
-          url: "/properties",
-          id: "#",
-          label: "all-listings",
-        },
-        {
-          name: "Self Contained ",
-          url: "/properties/self-contained",
-          id: "#",
-          label: "self-contained",
-        },
-        {
-          name: "Apartments",
-          url: "/properties/apartments",
-          id: "#",
-          label: "apartments",
-        },
-        {
-          name: "Flats",
-          id: "#",
-          url: "/properties/flats",
-          label: "flats",
-        },
-        {
-          name: "Compound Houses",
-          id: "#",
-          url: "/properties/compound-houses",
-          label: "compound-houses",
-        },
-      ],
+      name: "homes for rent",
+      sub: homesForRentSubLinks,
     },
     // COMMENTED OUT FOR NOW DON'T DELETE !!!
     // {
@@ -53,79 +18,37 @@ export const useMenuLinks = () => {
     //     { url: "#", name: "Artisan" },
     //   ],
     // },
-    { id: "#", url: "/moving-sale", name: "MOVING SALE" },
-    { id: "#", url: "/blog", name: "AREA VIBES" },
-    { id: "#", url: "/about", name: "OUR SERVICES" },
-    { id: "#", url: "/faq", name: "FAQ" },
-
+    getMenuItem("moving sale"),
+    getMenuItem("blog"),
+    getMenuItem("about"),
+    getMenuItem("faq"),
     {
-      id: "#",
-      url: "#",
-      name: "MORE",
+      name: "more",
       sub: [
-        {
-          url: "/faq",
-          name: "FAQ",
-        },
-        {
-          url: "/how-to",
-          name: "How to",
-        },
-        {
-          url: "/contact",
-          name: "Contact",
-        },
-        {
-          url: "/b2b",
-          name: "Payments",
-        },
-        {
-          url: "/join-us",
-          name: "Join Us",
-        },
-        {
-          url: "/contact/report",
-          name: "Report Fraud",
-        },
+        getMenuItem("faq"),
+        getMenuItem("how to"),
+        getMenuItem("contact"),
+        getMenuItem("payments"),
+        getMenuItem("join us"),
+        getMenuItem("report fraud"),
       ],
     },
   ];
 
   const bottomLinksAfterLogin = [
-    // COMMENTED OUT FOR NOW DON'T DELETE !!!
-    // {
-    //   url: "/about",
-    //   name: "Our Services",
-    // },
+    getMenuItem("how to"),
+    getMenuItem("contact"),
+    getMenuItem("payments"),
+    getMenuItem("join us"),
+    getMenuItem("report fraud"),
     {
-      url: "/how-to",
-      name: "How to",
-    },
-    {
-      url: "/contact",
-      name: "Contact",
-    },
-    {
-      url: "/b2b",
-      name: "Payments",
-    },
-    {
-      url: "/join-us",
-      name: "Join Us",
-    },
-    {
-      url: "/contact/report",
-      name: "Report Fraud",
-    },
-    {
-      url: "/contact",
       name: "Feedback",
     },
   ];
 
   const linksBeforeLogin = [
-    { id: "#", url: "/about", name: "OUR SERVICES" },
-    { id: "#", url: "/faq", name: "FAQ" },
+    getMenuItem("about"),
+    getMenuItem("faq"),
     // {
     //   id: "#",
     //   url: "",
@@ -136,83 +59,31 @@ export const useMenuLinks = () => {
     //     { url: "#", name: "Artisan" },
     //   ],
     // },
-    { id: "#", url: "/contact", name: "CONTACT" },
+    getMenuItem("contact"),
     {
-      id: "#",
-      url: "#",
-      name: "HOMES FOR RENT",
-      sub: [
-        {
-          url: "/properties",
-          name: "View All Listings",
-          id: "#",
-          label: "all-listings",
-        },
-
-        { name: "Self Contained ", id: "#", label: "self-contained" },
-        { name: "Apartments", id: "#", label: "apartments" },
-        { name: "Flats", id: "#", label: "flats" },
-        { name: "Compound Houses", id: "#", label: "compound-houses" },
-      ],
+      name: "homes for rent",
+      sub: homesForRentSubLinks,
     },
-    { id: "#", url: "/moving-sale", name: "MOVING SALE" },
-    { id: "#", url: "/blog", name: "AREA VIBES" },
+    getMenuItem("moving sale"),
+    getMenuItem("blog"),
     {
-      id: "#",
-      url: "",
-      name: "MORE",
+      name: "more",
       sub: [
-        {
-          url: "/blog",
-          name: "Area Vibes",
-        },
-        {
-          url: "/how-to",
-          name: "How To",
-        },
-        {
-          url: "/b2b",
-          name: "Payments",
-        },
-        {
-          url: "/join-us",
-          name: "Join Us",
-        },
-        {
-          url: "/contact/report",
-          name: "Report Fraud",
-        },
+        getMenuItem("blog"),
+        getMenuItem("how to"),
+        getMenuItem("payments"),
+        getMenuItem("join us"),
+        getMenuItem("report fraud"),
       ],
     },
   ];
 
   const bottomLinksBeforeLogin = [
+    getMenuItem("how to"),
+    getMenuItem("payments"),
+    getMenuItem("join us"),
+    getMenuItem("report fraud"),
     {
-      url: "/how-to",
-      name: "How To",
-    },
-    {
-      url: "/b2b",
-      name: "Payments",
-    },
-    // {
-    //   url: "/how-to",
-    //   name: "How to",
-    // },
-    // {
-    //   url: "/contact",
-    //   name: "Contact",
-    // },
-    {
-      url: "/join-us",
-      name: "Join Us",
-    },
-    {
-      url: "/contact/report",
-      name: "Report Fraud",
-    },
-    {
-      url: "",
       name: "Feedback",
     },
   ];
@@ -224,3 +95,80 @@ export const useMenuLinks = () => {
     bottomLinksBeforeLogin,
   };
 };
+
+const getMenuItem = (menu: string) => {
+  switch (menu) {
+    case "about":
+      return {
+        name: "our services",
+        url: "/about",
+      };
+    case "blog":
+      return {
+        name: "area vibes",
+        url: "/blog",
+      };
+    case "contact":
+      return {
+        name: "contact",
+        url: "/contact/general",
+      };
+    case "payments":
+      return {
+        name: "payments",
+        url: "/b2b",
+      };
+    case "report fraud":
+      return {
+        name: "report fraud",
+        url: "/contact/report",
+      };
+    case "hire us":
+      return {
+        name: "hire us",
+        url: `/dashboard/renter/my-agent/explore`,
+      };
+    default:
+      return {
+        name: menu,
+        url: `/${slugify(menu.toLowerCase())}`,
+      };
+  }
+};
+
+const homesForRentSubLinks = [
+  {
+    id: "#",
+    name: "View All Listings",
+    url: "/properties",
+    label: "all-listings",
+    isSubLink: true,
+  },
+  //{
+  //  name: "Self Contained",
+  //  url: "/properties/self-contained",
+  //  id: "#",
+  //  label: "self-contained",
+  //},
+  {
+    id: "#",
+    name: "Apartments",
+    url: "/properties/apartment",
+    label: "apartments",
+    isSubLink: true,
+  },
+  {
+    id: "#",
+    name: "Flats",
+    url: "/properties/flats",
+    label: "flats",
+    isSubLink: true,
+  },
+  {
+    id: "#",
+    name: "Compound Houses",
+    url: "/properties/compound-house",
+    label: "compound-houses",
+    isSubLink: true,
+  },
+];

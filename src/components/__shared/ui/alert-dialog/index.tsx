@@ -149,7 +149,7 @@ const PopupModal = ({
         <AlertDialogFooter>
           <AlertDialogCancel asChild>
             <Button
-              className="bg-neutral-200 text-neutral-500"
+              className="bg-neutral-200 text-neutral-500 max-sm:w-full"
               onClick={onClose}
             >
               No
@@ -159,6 +159,7 @@ const PopupModal = ({
             variant="destructive"
             onClick={handleAction}
             isLoading={loading}
+            className="max-sm:w-full"
           >
             Yes
           </Button>

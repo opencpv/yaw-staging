@@ -15,7 +15,7 @@ const GalleryModalBtn = (props: Props) => {
       size={"sm"}
     >
       View All
-      <MdWindow className="shrink-0 text-primary" size={32} />
+      <MdWindow className="shrink-0 text-primary" size={24} />
     </Button>
   );
 };

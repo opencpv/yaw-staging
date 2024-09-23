@@ -62,8 +62,12 @@ const EmptyState = ({
         width={150}
         className="aspect-square w-[100px] sm:w-[150px]"
       />
-      <h4>{tagLine || "Sorry, there are no results at the moment"}</h4>
-      {description && <p className="leading-3 text-shade-300">{description}</p>}
+      <h4 className="max-w-xs">
+        {tagLine || "Sorry, there are no results at the moment"}
+      </h4>
+      {description && (
+        <p className="max-w-xs leading-3 text-shade-300">{description}</p>
+      )}
       {buttonLabel && (
         <LinkButton href={href} onClick={onClick}>
           {buttonLabel}

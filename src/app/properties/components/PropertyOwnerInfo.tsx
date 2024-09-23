@@ -25,7 +25,7 @@ const PropertyOwnerInfo = ({ listing }: Props) => {
 
   return (
     <section className={style.additionalInfoWrapper}>
-      <h4>Contact this lister</h4>
+      <h4>Contact {listing.profiles?.full_name}</h4>
       <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 font-semibold">
         <Avatar
           size="sm"
@@ -36,8 +36,8 @@ const PropertyOwnerInfo = ({ listing }: Props) => {
         <p className={style.lightGreenText}>( {120} ) Reviews</p>
       </div>
       <div
-        className="grid grid-cols-3 gap-2 pt-2"
-        //style={{ gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))" }}
+        className="grid gap-2 pt-2"
+        style={{ gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))" }}
       >
         <MessageButton variant="default">Send Message</MessageButton>
         <WhatsAppButton
@@ -48,7 +48,7 @@ const PropertyOwnerInfo = ({ listing }: Props) => {
         />
         <CallButton
           iconPosition="right"
-          phoneNumber={listing?.profiles?.phone as string}
+          phone={listing?.profiles?.phone as string}
           className={cn(style.listerInfoButtonSecondary, style.lightGreenBg)}
           size="full"
         />

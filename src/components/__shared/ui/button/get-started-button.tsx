@@ -14,9 +14,10 @@ const GetStartedButton = ({ className }: Props) => {
     <LinkButton
       href="/login"
       variant={"outline"}
+      color="white"
       onClick={() => setToggle(false)}
       className={cn(
-        `hidden items-center justify-center border-white px-[initial] text-lg font-[600] capitalize hover:bg-neutral-300 hover:text-neutral-600 md:flex lg:inline-flex`,
+        `hidden items-center justify-center border-white px-[initial] text-lg font-[600] capitalize text-white hover:bg-neutral-300 hover:text-neutral-600 md:flex lg:inline-flex`,
         className,
       )}
     >

@@ -1,4 +1,5 @@
 "use client";
+import Loader from "@/components/__shared/ui/loader";
 import { urlForImage } from "@/lib/utils/sanity/utils";
 import slugify from "@/lib/utils/slugify";
 import { useBlogPostSlider } from "@/store/blog/blogStore";
@@ -7,6 +8,9 @@ import React from "react";
 import { Swiper } from "swiper/types";
 const SliderWide = dynamic(
   () => import("@/components/__shared/ui/sliders/slider-wide"),
+  {
+    loading: () => <Loader />,
+  },
 );
 
 type Props = { posts: any[] };
@@ -20,7 +24,10 @@ const PostSlider = ({ posts }: Props) => {
   };
 
   return (
-    <section className="shape-polygon-parent relative h-fit w-full">
+    <section
+      className="shape-polygon-parent fade-in-bottom-slight relative h-fit w-full"
+      style={{ animationDelay: "1s" }}
+    >
       <SliderWide
         navigation
         images={posts.map((post) => ({

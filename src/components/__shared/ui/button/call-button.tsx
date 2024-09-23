@@ -1,66 +1,52 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { Button, ButtonProps } from ".";
 import { initiatePhoneCall } from "@/lib/utils/initiatePhoneCall";
 import { MdOutlinePhone } from "react-icons/md";
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 type Props = {
-  phoneNumber: string;
+  phone: string;
   iconPosition?: "left" | "right";
 } & ButtonProps;
 
 const CallButton = ({
   variant,
-  phoneNumber,
+  phone,
   className,
   iconPosition = "left",
   ...props
 }: Props) => {
   const [text, setText] = useState("Call me");
 
-  const buttonRef = useRef<HTMLDivElement>(null);
+  const handleMouseEnter = () => {
+    setText(phone);
+  };
 
-  useEffect(() => {
-    if (buttonRef?.current) {
-      buttonRef.current.addEventListener("mouseenter", () => {
-        setText(phoneNumber);
-      });
-      buttonRef.current.addEventListener("mouseleave", () => {
-        setText("Call me");
-      });
-    }
-    return () => {
-      setText("Call me");
-    };
-  }, [phoneNumber]);
+  const handleMouseLeaeve = () => {
+    setText("Call me");
+  };
 
   return (
-    <div ref={buttonRef} className="flex w-full justify-center">
-      <Button
-        variant={variant}
-        size="full"
-        className={cn(className)}
-        onClick={() => initiatePhoneCall(phoneNumber)}
-        {...props}
-      >
-        {iconPosition === "left" && (
-          <MdOutlinePhone className="shrink-0 text-lg" />
-        )}
-        <motion.span
-          key={text}
-          whileInView={{ opacity: 1 }}
-          initial={{ opacity: 0 }}
-          className="truncate"
-        >
-          {text}
-        </motion.span>
-        {iconPosition === "right" && (
-          <MdOutlinePhone className="shrink-0 text-lg" />
-        )}
-      </Button>
-    </div>
+    <Button
+      variant={variant}
+      size="full"
+      className={cn(className)}
+      onClick={() => initiatePhoneCall(phone)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeaeve}
+      {...props}
+    >
+      {iconPosition === "left" && (
+        <MdOutlinePhone className="shrink-0 text-lg" />
+      )}
+      <span key={text} className="truncate">
+        {text}
+      </span>
+      {iconPosition === "right" && (
+        <MdOutlinePhone className="shrink-0 text-lg" />
+      )}
+    </Button>
   );
 };
 

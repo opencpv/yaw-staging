@@ -5,7 +5,9 @@ import Script from "next/script";
 import { openSans } from "@/lib/utils/fonts";
 import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
-import RatingsAndAllRatings from "@/components/RatingsAndAllRatings";
+const RatingsAndAllRatings = dynamic(
+  () => import("@/components/RatingsAndAllRatings"),
+);
 const ToastConfig = dynamic(() => import("@/components/__shared/ToastConfig"));
 const Providers = dynamic(() => import("@/context/Providers"));
 const NoticeModal = dynamic(
@@ -88,7 +90,6 @@ export default function RootLayout({
             <RatingsAndAllRatings />
           </MenuWrapper>
         </Providers>
-        {/* <RatingsAndAllRatings /> */}
       </body>
     </html>
   );

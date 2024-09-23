@@ -24,10 +24,10 @@ type Props = {
 
 function Items(props: Props) {
   const searchParams = useSearchParams();
-  const sort = searchParams?.get("sort") || "newest";
+  const sort = searchParams?.get("sort") || "Newest";
   const categories = searchParams?.get("categories") || "";
-  const condition = searchParams?.get("condition") || "";
-  const term = searchParams?.get("term") || "";
+  const condition = searchParams?.get("condition") || "All";
+  const term = searchParams?.get("term") || "All";
   const priceRangeFrom = searchParams?.get("priceRangeFrom") || "";
   const priceRangeTo = searchParams?.get("priceRangeTo") || "";
   const [showAd, setShowAd] = useState(false);
@@ -38,7 +38,6 @@ function Items(props: Props) {
     isLoading,
     isValidating,
     loadMore,
-    mutate,
   } = useFetchItems({
     categories,
     condition,
@@ -84,14 +83,14 @@ function Items(props: Props) {
               term: item.term,
               price: item.price.toString(),
               condition: item.condition,
-              seller: item.profiles?.full_name as string,
+              //seller: item.profiles?.full_name as string,
               description: item.description,
             })}`}
             title={item.title}
             description={item.description}
             image="/assets/images/about/young-couple.webp"
             price={item.price}
-            className="w-full max-sm:max-w-[350px]"
+            className="min-w-full xxs:max-sm:min-w-[300px]"
           />
         ))}
         {showAd && (
@@ -109,7 +108,7 @@ function Items(props: Props) {
               term: item.term,
               price: item.price.toString(),
               condition: item.condition,
-              seller: item.profiles?.full_name as string,
+              //seller: item.profiles?.full_name as string,
               description: item.description,
             })}`}
             title={item.title}

@@ -1,6 +1,7 @@
 "use client";
-import MobileVersion from "./MobileVersion";
-import DesktopVersion from "./DesktopVersion";
+import dynamic from "next/dynamic";
+const MobileVersion = dynamic(() => import("./MobileVersion"));
+const DesktopVersion = dynamic(() => import("./DesktopVersion"));
 
 const SimpleSlider = ({ data }: { data: any }) => {
   return (

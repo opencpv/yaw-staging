@@ -3,12 +3,10 @@ import InputWithSavedSearch from "@/components/__shared/ui/form/InputWithSavedSe
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-type Props = {};
-
-const SearchCity = (props: Props) => {
+const SearchCity = () => {
   const searchParams = useSearchParams();
   const tag = searchParams?.get("tag") as string;
-  const search = searchParams?.get("search") as string;
+  const search = searchParams?.get("q") as string;
   const router = useRouter();
   const [value, setValue] = useState<string>(search || "");
 
@@ -22,7 +20,7 @@ const SearchCity = (props: Props) => {
 
     router.replace(
       `/properties?${new URLSearchParams({
-        search: search as string,
+        q: search as string,
         tag,
       })}`,
       {
@@ -39,7 +37,7 @@ const SearchCity = (props: Props) => {
     search === "" &&
       router.replace(
         `/properties?${new URLSearchParams({
-          search: search,
+          q: search,
           tag,
         })}`,
         { scroll: false },

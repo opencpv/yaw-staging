@@ -36,7 +36,7 @@ const ListingCard = (props: Partial<ListingCardInterface>) => {
   return (
     <div
       className={cn(
-        `group/parent relative flex w-full max-w-sm cursor-default flex-col ssm:max-w-md`,
+        `group/parent fade-in relative flex w-full max-w-sm cursor-default flex-col ssm:max-w-md`,
         {
           "rounded-xl shadow-md": props.cardType === "1",
         },

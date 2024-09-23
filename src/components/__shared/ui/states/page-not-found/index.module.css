@@ -1,0 +1,5 @@
+.container {
+    @apply px-5 lg:px-[100px]
+
+
+}

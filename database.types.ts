@@ -9,6 +9,42 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      accounts: {
+        Row: {
+          alias: string | null
+          bank: string | null
+          created_at: string
+          id: number
+          name: string | null
+          number: string | null
+          phone: string | null
+          type: string | null
+          user: string | null
+        }
+        Insert: {
+          alias?: string | null
+          bank?: string | null
+          created_at?: string
+          id?: number
+          name?: string | null
+          number?: string | null
+          phone?: string | null
+          type?: string | null
+          user?: string | null
+        }
+        Update: {
+          alias?: string | null
+          bank?: string | null
+          created_at?: string
+          id?: number
+          name?: string | null
+          number?: string | null
+          phone?: string | null
+          type?: string | null
+          user?: string | null
+        }
+        Relationships: []
+      }
       agent_request: {
         Row: {
           age: string | null
@@ -767,6 +803,7 @@ export type Database = {
           created_at: string
           customer: string
           id: number
+          is_archived: boolean
           is_paid: boolean
           payment_ref: string | null
           service: string
@@ -779,6 +816,7 @@ export type Database = {
           created_at?: string
           customer: string
           id?: number
+          is_archived?: boolean
           is_paid: boolean
           payment_ref?: string | null
           service: string
@@ -791,6 +829,7 @@ export type Database = {
           created_at?: string
           customer?: string
           id?: number
+          is_archived?: boolean
           is_paid?: boolean
           payment_ref?: string | null
           service?: string
@@ -1196,6 +1235,7 @@ export type Database = {
           firstname: string | null
           full_name: string | null
           id: string
+          is_admin: boolean
           is_banned: boolean
           is_certified: boolean
           is_first_time: boolean
@@ -1216,6 +1256,7 @@ export type Database = {
           firstname?: string | null
           full_name?: string | null
           id: string
+          is_admin?: boolean
           is_banned?: boolean
           is_certified?: boolean
           is_first_time?: boolean
@@ -1236,6 +1277,7 @@ export type Database = {
           firstname?: string | null
           full_name?: string | null
           id?: string
+          is_admin?: boolean
           is_banned?: boolean
           is_certified?: boolean
           is_first_time?: boolean
@@ -1278,6 +1320,7 @@ export type Database = {
           gps: string
           id: number
           images: string[] | null
+          incentives: string[] | null
           is_admin_approved: boolean
           is_admin_property: boolean
           is_archived: boolean
@@ -1291,7 +1334,7 @@ export type Database = {
           is_realtors_choice: boolean
           is_suspended: boolean
           is_verified: boolean
-          lease_duration: string | null
+          lease_options: string[] | null
           monthly_amount: number | null
           neighbourhood: string | null
           owner_uid: string
@@ -1335,6 +1378,7 @@ export type Database = {
           gps?: string
           id?: number
           images?: string[] | null
+          incentives?: string[] | null
           is_admin_approved?: boolean
           is_admin_property?: boolean
           is_archived?: boolean
@@ -1348,7 +1392,7 @@ export type Database = {
           is_realtors_choice?: boolean
           is_suspended?: boolean
           is_verified?: boolean
-          lease_duration?: string | null
+          lease_options?: string[] | null
           monthly_amount?: number | null
           neighbourhood?: string | null
           owner_uid: string
@@ -1392,6 +1436,7 @@ export type Database = {
           gps?: string
           id?: number
           images?: string[] | null
+          incentives?: string[] | null
           is_admin_approved?: boolean
           is_admin_property?: boolean
           is_archived?: boolean
@@ -1405,7 +1450,7 @@ export type Database = {
           is_realtors_choice?: boolean
           is_suspended?: boolean
           is_verified?: boolean
-          lease_duration?: string | null
+          lease_options?: string[] | null
           monthly_amount?: number | null
           neighbourhood?: string | null
           owner_uid?: string
@@ -1954,6 +1999,7 @@ export type Database = {
           gps: string | null
           id: number | null
           images: string[] | null
+          incentives: string[] | null
           is_admin_approved: boolean | null
           is_admin_property: boolean | null
           is_archived: boolean | null
@@ -1967,7 +2013,7 @@ export type Database = {
           is_realtors_choice: boolean | null
           is_suspended: boolean | null
           is_verified: boolean | null
-          lease_duration: string | null
+          lease_options: string[] | null
           monthly_amount: number | null
           neighbourhood: string | null
           owner_uid: string | null
@@ -2011,6 +2057,7 @@ export type Database = {
           gps?: string | null
           id?: number | null
           images?: string[] | null
+          incentives?: string[] | null
           is_admin_approved?: boolean | null
           is_admin_property?: boolean | null
           is_archived?: boolean | null
@@ -2024,7 +2071,7 @@ export type Database = {
           is_realtors_choice?: boolean | null
           is_suspended?: boolean | null
           is_verified?: boolean | null
-          lease_duration?: string | null
+          lease_options?: string[] | null
           monthly_amount?: number | null
           neighbourhood?: string | null
           owner_uid?: string | null
@@ -2068,6 +2115,7 @@ export type Database = {
           gps?: string | null
           id?: number | null
           images?: string[] | null
+          incentives?: string[] | null
           is_admin_approved?: boolean | null
           is_admin_property?: boolean | null
           is_archived?: boolean | null
@@ -2081,7 +2129,7 @@ export type Database = {
           is_realtors_choice?: boolean | null
           is_suspended?: boolean | null
           is_verified?: boolean | null
-          lease_duration?: string | null
+          lease_options?: string[] | null
           monthly_amount?: number | null
           neighbourhood?: string | null
           owner_uid?: string | null
@@ -2149,11 +2197,89 @@ export type Database = {
         Args: Record<PropertyKey, never>
         Returns: undefined
       }
+      count_properties_by_publish_status_per_month: {
+        Args: {
+          year_input: number
+        }
+        Returns: {
+          month: number
+          published_count: number
+          unpublished_count: number
+        }[]
+      }
+      count_properties_by_status_per_month: {
+        Args: {
+          year_input: number
+        }
+        Returns: {
+          month: number
+          active_count: number
+          inactive_count: number
+        }[]
+      }
+      count_properties_per_month: {
+        Args: {
+          year_input: number
+        }
+        Returns: {
+          month: number
+          property_count: number
+        }[]
+      }
       generate_random_alphanumeric: {
         Args: {
           length: number
         }
         Returns: string
+      }
+      get_all_products: {
+        Args: {
+          sort?: string
+          product_condition?: string
+          product_term?: string
+          price_from?: number
+          price_to?: number
+          categories?: string[]
+        }
+        Returns: {
+          id: number
+          title: string
+          description: string
+          category: string
+          term: string
+          price: number
+          condition: string
+          created_at: string
+        }[]
+      }
+      get_all_properties: {
+        Args: {
+          filter?: string
+          search?: string
+          type?: string
+        }
+        Returns: {
+          id: number
+          property_name: string
+          property_type: string
+          bedrooms: string
+          city: string
+          neighbourhood: string
+          monthly_amount: number
+          payment_terms: string
+          lease_options: string[]
+          viewing_fee: number
+          currency: string
+          banner_image: Json
+          images: string[]
+          favorite_user_ids: string[]
+          is_realtors_choice: boolean
+          is_best_value: boolean
+          is_featured: boolean
+          is_verified: boolean
+          is_lister_certified: boolean
+          created_at: string
+        }[]
       }
       get_lister_properties: {
         Args: {
@@ -2171,6 +2297,24 @@ export type Database = {
           monthly_amount: number
           currency: string
           banner_image: Json
+          suited_for: string[]
+          features: string[]
+          utilities: string[]
+          lease_options: string[]
+          incentives: string[]
+          furnish_level: string
+          description: string
+          renter_knowledge: string
+          property_size: string
+          available_date: string
+          total_amount: number
+          agent_fee: number
+          viewing_fee: number
+          require_refundable_security_deposit: boolean
+          require_additional_fees: boolean
+          require_agent_fee: boolean
+          require_viewing_fee: boolean
+          payment_terms: string
           is_complete: boolean
           is_realtors_choice: boolean
           is_best_value: boolean
@@ -2205,38 +2349,118 @@ export type Database = {
           currency: string
         }[]
       }
-      get_random_featured_properties: {
-        Args: {
-          limit_value?: number
-        }
+      get_monthly_stats: {
+        Args: Record<PropertyKey, never>
         Returns: {
-          id: number
-          created_at: string
-          is_verified: boolean
-          is_best_value: boolean
-          is_realtors_choice: boolean
-          is_featured: boolean
-          property_type: string
-          property_name: string
-          bedrooms: string
-          bathrooms: string
-          city: string
-          lease_duration: string
-          total_amount: number
-          agent_fee: number
-          monthly_amount: number
-          payment_terms: string
-          require_viewing_fee: boolean
-          viewing_fee: number
-          neighbourhood: string
-          price_drop: boolean
-          favorite_user_ids: string[]
-          is_lister_certified: boolean
-          currency: string
-          banner_image: Json
-          images: string[]
+          total_revenue: number
+          revenue_percentage_increase: number
+          profiles_created: number
+          profiles_percentage_increase: number
+          unpaid_invoices_total: number
+          unpaid_invoices_percentage_increase: number
+          active_supabase_connections: number
+          active_listed_properties: number
+          active_listed_properties_percentage_increase: number
         }[]
       }
+      get_payments_and_count: {
+        Args: {
+          month: number
+          year: number
+        }
+        Returns: {
+          total_payments: number
+          payments_with_avatars: Json
+        }[]
+      }
+      get_payments_with_avatar: {
+        Args: {
+          year_input: number
+          month_input: number
+        }
+        Returns: {
+          payment_id: number
+          created_at: string
+          firstname: string
+          lastname: string
+          email: string
+          amount: number
+          phone: string
+          reference: string
+          status: string
+          address: string
+          address2: string
+          cart_items: Json
+          avatar_url: string
+          payment_count: number
+        }[]
+      }
+      get_random_featured_properties:
+        | {
+            Args: {
+              limit_value?: number
+            }
+            Returns: {
+              id: number
+              created_at: string
+              is_verified: boolean
+              is_best_value: boolean
+              is_realtors_choice: boolean
+              is_featured: boolean
+              property_type: string
+              property_name: string
+              bedrooms: string
+              bathrooms: string
+              city: string
+              lease_duration: string
+              total_amount: number
+              agent_fee: number
+              monthly_amount: number
+              payment_terms: string
+              require_viewing_fee: boolean
+              viewing_fee: number
+              neighbourhood: string
+              price_drop: boolean
+              favorite_user_ids: string[]
+              is_lister_certified: boolean
+              currency: string
+              banner_image: Json
+              images: string[]
+            }[]
+          }
+        | {
+            Args: {
+              limit_value?: number
+              type?: string
+            }
+            Returns: {
+              id: number
+              created_at: string
+              is_verified: boolean
+              is_best_value: boolean
+              is_realtors_choice: boolean
+              is_featured: boolean
+              property_type: string
+              property_name: string
+              bedrooms: string
+              bathrooms: string
+              city: string
+              lease_options: string[]
+              total_amount: number
+              agent_fee: number
+              monthly_amount: number
+              payment_terms: string
+              require_viewing_fee: boolean
+              viewing_fee: number
+              neighbourhood: string
+              price_drop: boolean
+              favorite_user_ids: string[]
+              is_lister_certified: boolean
+              currency: string
+              banner_image: Json
+              images: string[]
+            }[]
+          }
       get_search_criteria: {
         Args: {
           user_id?: string

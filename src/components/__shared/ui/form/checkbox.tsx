@@ -11,6 +11,7 @@ import {
   FieldMetaProps,
   useFormikContext,
 } from "formik";
+import { Label } from "./label";
 
 type CheckboxProps = {
   color?: "accent" | "primary" | "white";
@@ -53,6 +54,10 @@ const BaseCheckbox = React.forwardRef<
 );
 BaseCheckbox.displayName = "BaseCheckbox";
 
+/**
+ * A control that allows the user to toggle between checked and not checked. <br />
+ * Name is required if used in a Formik context.
+ */
 const Checkbox = React.forwardRef<
   HTMLLabelElement,
   React.ComponentPropsWithoutRef<typeof BaseCheckbox> &
@@ -86,6 +91,7 @@ const Checkbox = React.forwardRef<
     if (formikContext) {
       field = formikContext.getFieldProps(name as string);
       meta = formikContext.getFieldMeta(name as string);
+      helpers = formikContext.getFieldHelpers(name as string);
     }
 
     return (
@@ -100,21 +106,19 @@ const Checkbox = React.forwardRef<
           aria-readonly={disabled}
           color={color}
           radius={radius}
+          disabled={disabled}
           {...props}
         />
 
         {label && (
-          <span
+          <Label
             className={cn(
-              "text-base text-shade-200",
-              {
-                "cursor-not-allowed": disabled,
-              },
+              { "cursor-not-allowed": disabled },
               classNames?.label,
             )}
           >
             {label}
-          </span>
+          </Label>
         )}
       </label>
     );

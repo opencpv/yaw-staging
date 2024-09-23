@@ -2,7 +2,11 @@ import "swiper/css";
 import style from "./About.module.css";
 import Image from "next/image";
 import { Metadata } from "next";
-import { ABOUT_PAGE_QUERY, BLOG_QUERY } from "@/lib/utils/sanity/queries";
+import {
+  ABOUT_PAGE_QUERY,
+  BLOG_QUERY,
+  HOME_PAGE_QUERY,
+} from "@/lib/utils/sanity/queries";
 import { loadQuery } from "@/lib/utils/sanity/sanityStore";
 import { SanityDocument } from "next-sanity";
 import { urlForImage } from "@/lib/utils/sanity/utils";
@@ -33,6 +37,7 @@ export const metadata: Metadata = {
 
 const About = async () => {
   const initial = await loadQuery<SanityDocument[]>(ABOUT_PAGE_QUERY);
+  const homeData = await loadQuery<SanityDocument[]>(HOME_PAGE_QUERY);
   const data = initial.data[0];
   const heading1 = data.heading1;
   const heading2 = data.heading2;
@@ -76,7 +81,7 @@ const About = async () => {
             </div>
           </div>
         </div>
-        <section className="fade-in-bottom mt-14 flex items-center justify-center">
+        <section className="mt-14 flex items-center justify-center">
           <div className="relative h-60 w-full md:h-[30rem]">
             <Image
               src={urlForImage(featuredImage)?.url() as string}
@@ -106,7 +111,7 @@ const About = async () => {
         />
 
         <FramerWrapper>
-          <AboutOurTags />
+          <AboutOurTags data={homeData.data[0].tags} />
         </FramerWrapper>
 
         <section className="section pt-10 lg:pt-7">

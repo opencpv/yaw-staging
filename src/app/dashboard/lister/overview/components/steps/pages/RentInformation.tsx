@@ -7,7 +7,7 @@ import { RadioInput } from "@/components/__shared/ui/form/radio-input";
 import { useFormikContext } from "formik";
 import { caseInsensitiveCompare } from "@/lib/utils/stringManipulation";
 import AdditionalFees from "../../AdditionalFee";
-import { Input } from "@/components/__shared/ui/form/input";
+import { CheckboxGroup } from "@/components/__shared/ui/form/checkbox-group";
 
 type Props = {};
 
@@ -18,14 +18,17 @@ const RentInformation = React.forwardRef<HTMLInputElement, Props>(({}, ref) => {
 
   const { values } = useFormikContext<typeof ListingDefaultValues>();
 
-  const monthlyAmount = useMemo(() => {
-    const result =
-      Number(values?.total_amount) /
-      (Number(values?.lease_duration.slice(0, 1)) * 12);
-    return isNaN(result) ? null : Number(result?.toFixed(2))?.toString();
-  }, [values?.total_amount, values?.lease_duration]);
+  //const monthlyAmount = useMemo(() => {
+  //  const result =
+  //    Number(values?.total_amount) /
+  //    (Number(values?.payment_terms.slice(0, 1)) * 12);
+  //  return isNaN(result) ? null : Number(result?.toFixed(2))?.toString();
+  //}, [values?.total_amount, values?.payment_terms]);
 
-  const handleOnChange = (name: string, value: string | number) => {
+  const handleOnChange = (
+    name: string,
+    value: string | number | string[] | number[],
+  ) => {
     setListingCreationSteps({
       ...listingCreationSteps,
       [name]: value,
@@ -50,29 +53,47 @@ const RentInformation = React.forwardRef<HTMLInputElement, Props>(({}, ref) => {
     "5 Years",
   ];
 
+  const termOptions = [
+    "Monthly",
+    "1 Yr Advance",
+    "2 Yr Advance",
+    "3 Yr Advance",
+    "4 Yr Advance",
+    "5 Yr Advance",
+  ];
+
+  const incentiveOptions = ["Rent Financing Options", "First Month Free Rent"];
+
   return (
     <div className={style.container}>
       <h2 className={`${style.title}`}>
         Rent Information <span className={style.asterisk}>*</span>
       </h2>
-      <div className={`grid sm:grid-cols-2 ${style.fieldsInlineGap}`}>
+      <div className="grid gap-x-10 gap-y-8 sm:grid-cols-2">
         <div className={`fade-in-bottom flex flex-col ${style.fieldsBlockGap}`}>
-          <RadioInput
+          <CurrencyInput
+            name="currency"
+            name2="total_amount"
+            name3="payment_terms"
+            options3={termOptions}
+            label="How much is Rent?"
+            onChange={(value) => handleOnChange("currency", value)}
+            onChange2={(value) => {
+              handleOnChange("total_amount", value);
+            }}
+            onChange3={(value) => {
+              handleOnChange("payment_terms", value);
+            }}
+          />
+          {/*<RadioInput
             name="payment_terms"
             options={["Monthly", "Advance"]}
             label={"When is the Payment Due?"}
             onValueChange={(value) => handleOnChange("payment_terms", value)}
             color="primary"
           />
-          <CurrencyInput
-            name="currency"
-            name2="total_amount"
-            label="Amount Due at Payment"
-            onChange={(value) => handleOnChange("currency", value)}
-            onChange2={(value) => {
-              handleOnChange("total_amount", value);
-            }}
-          />
+          */}
+          {/* 
           <RadioInput
             name="lease_duration"
             options={options}
@@ -87,6 +108,48 @@ const RentInformation = React.forwardRef<HTMLInputElement, Props>(({}, ref) => {
             }}
             color="primary"
           />
+          */}
+          <CheckboxGroup
+            color="primary"
+            label="Lease Options"
+            name="lease_options"
+            options={options}
+            disabled={
+              (!caseInsensitiveCompare(values.payment_terms, "monthly")
+                ? handleDisabled([options[0]])
+                : undefined) as any // FIXME: any
+            }
+            onValueChange={(value, checked) => {
+              if (checked) {
+                handleOnChange("lease_options", [
+                  ...values.lease_options,
+                  value,
+                ]);
+              } else {
+                handleOnChange(
+                  "lease_options",
+                  values.lease_options.filter((v) => v !== value),
+                );
+              }
+            }}
+          />
+          <CheckboxGroup
+            color="primary"
+            label="Are you Offering any Incentives/Specials to renters?"
+            name="incentives"
+            options={incentiveOptions}
+            onValueChange={(value, checked) => {
+              if (checked) {
+                handleOnChange("incentives", [...values.incentives, value]);
+              } else {
+                handleOnChange(
+                  "incentives",
+                  values.incentives.filter((v) => v !== value),
+                );
+              }
+            }}
+          />
+          {/*
           <Input
             name="monthly_amount_calculation"
             label="Rent / Month"
@@ -98,6 +161,8 @@ const RentInformation = React.forwardRef<HTMLInputElement, Props>(({}, ref) => {
             disabled
             className="max-w-xs"
           />
+          */}
+
           <RadioInput
             name="require_refundable_security_deposit"
             options={["Yes", "No"]}

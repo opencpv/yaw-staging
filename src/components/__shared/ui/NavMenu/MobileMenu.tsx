@@ -1,3 +1,4 @@
+//@ts-nocheck
 "use client";
 
 import * as Collapsible from "@radix-ui/react-collapsible";
@@ -80,12 +81,11 @@ const MenuOption = ({
                   }}
                 />
               ) : (
-                // please make it properties and add r?.label to the get to the corresponding url
                 <Link
                   href={r?.url || ""}
                   onClick={() => setToggle(false)}
                   className={cn(
-                    "flex w-full items-center justify-between gap-10",
+                    "flex w-full items-center justify-between gap-10 capitalize",
                     {
                       "text-accent-100": pathname === r?.url,
                     },

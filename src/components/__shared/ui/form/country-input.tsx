@@ -28,6 +28,7 @@ import capitalizeName from "@/lib/utils/stringManipulation";
 import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
 import ErrorMessage from "../states/error-message";
+import { Label } from "./label";
 
 const Popover = dynamic(() =>
   import("@/components/__shared/ui/popover").then((mod) => mod.Popover),
@@ -48,6 +49,10 @@ type Props = {
   value?: string;
 };
 
+/**
+ * A component that allows the user to select a country. <br />
+ * Name is required if used in a Formik context.
+ */
 const CountryInput = ({
   initialValue,
   placeholder = "Select your country",
@@ -97,7 +102,7 @@ const CountryInput = ({
 
   return (
     <div className={cn("flex w-full flex-col gap-4 text-shade-300")}>
-      {label && <label>{label}</label>}
+      {label && <Label>{label}</Label>}
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button

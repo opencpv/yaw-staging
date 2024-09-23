@@ -18,8 +18,8 @@ import { useAddListing } from "../../services";
 import { getFormValues } from "../../utils";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-const ListingHeader = dynamic(() => import("./ListingHeader"));
-const ListingFooter = dynamic(() => import("./ListingFooter"));
+import ListingHeader from "./ListingHeader";
+import ListingFooter from "./ListingFooter";
 const StepsModal = dynamic(
   () => import("@/components/__shared/ui/modals/steps/steps-modal"),
 );
@@ -40,7 +40,7 @@ const ListingValidationSchema = Yup.object({
   property_type: Yup.string().required("Type of place is required"),
   suited_for: Yup.array().min(1, "Best Suited for is required"),
   furnish_level: Yup.string().required("Furnish level is required"),
-  property_size: Yup.string().required("Property size is required"),
+  property_size: Yup.number().required("Property size is required"),
   description: Yup.string().required("Description is required"),
   bedrooms: Yup.string().required("Bedrooms is required"),
   bathrooms: Yup.string().required("Bathrooms is required"),
@@ -130,6 +130,7 @@ const ListingModal = (props: Props) => {
   ]);
 
   const handleCreate = () => {
+    setPreviousPath(pathname as string);
     setActiveSlide(0);
     setListing(null);
   };
@@ -305,10 +306,14 @@ const ListingModal = (props: Props) => {
             listing?.currency ||
             listingCreationSteps?.currency ||
             ListingDefaultValues?.currency,
-          lease_duration:
-            listing?.lease_duration ||
-            listingCreationSteps?.lease_duration ||
-            ListingDefaultValues?.lease_duration,
+          lease_options:
+            listing?.lease_options ||
+            listingCreationSteps?.lease_options ||
+            ListingDefaultValues?.lease_options,
+          incentives:
+            listing?.incentives ||
+            listingCreationSteps?.incentives ||
+            ListingDefaultValues?.incentives,
         }}
         validationSchema={ListingValidationSchema}
         onSubmit={(values) => {

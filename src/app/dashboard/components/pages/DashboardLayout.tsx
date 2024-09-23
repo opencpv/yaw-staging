@@ -9,8 +9,11 @@ import { useUserData } from "@/lib/custom-hooks/database/useUserData";
 import RoleSwitcherOverlay from "../../components/shared/RoleSwitcherOverlay";
 import { createClient } from "@/lib/utils/supabase/auth/client";
 import dynamic from "next/dynamic";
-const Navbar = dynamic(() => import("../../components/navbar"));
-const Pagination = dynamic(() => import("../pagination"));
+import PaginationLoadingState from "../pagination/PaginationLoadingState";
+import Navbar from "../navbar";
+const Pagination = dynamic(() => import("../pagination"), {
+  loading: () => <PaginationLoadingState />,
+});
 const CompleteYourLogin = dynamic(() => import("../CompleteYourLogin"));
 
 type LayoutProps = {
@@ -27,9 +30,8 @@ const Wrapper = ({ children }: LayoutProps) => {
   const setNotifications = useNotificationStore(
     (state) => state.setNotifications,
   );
-  const [excludeWrapper, setExcludeWrapper] = useState(false);
 
-  const { setCurrentRole, isSwitchingRole, currentRole } = useDashboardStore();
+  const { setCurrentRole, isSwitchingRole } = useDashboardStore();
 
   useEffect(() => {
     if (!isSwitchingRole) {
@@ -40,21 +42,6 @@ const Wrapper = ({ children }: LayoutProps) => {
   }, [pathname, setCurrentRole, isSwitchingRole]);
 
   useUserData();
-
-  useEffect(() => {
-    const wrapperExclusionList = [
-      "/dashboard/renter/my-agent",
-      "/dashboard/lister/my-agent",
-      "/dashboard/renter/sell-products",
-      "/dashboard/lister/sell-products",
-      "/dashboard/renter/be-the-first-to-know",
-    ];
-
-    const shouldExcludeWrapper = wrapperExclusionList.some((path) =>
-      pathname?.includes(path),
-    );
-    setExcludeWrapper(shouldExcludeWrapper);
-  }, [pathname]);
 
   useEffect(() => {
     const supabase = createClient();
@@ -97,11 +84,7 @@ const Wrapper = ({ children }: LayoutProps) => {
           <Pagination />
         </div>
         {isSwitchingRole ? <RoleSwitcherOverlay /> : null}
-        {excludeWrapper ? (
-          <div className={`text-shade-500`}>{children}</div>
-        ) : (
-          <div className={`wrapper text-neutral-800`}>{children}</div>
-        )}
+        <div className={`wrapper text-shade-500`}>{children}</div>
         <ClientOnly>
           <CompleteYourLogin open={user?.is_first_time} />
         </ClientOnly>

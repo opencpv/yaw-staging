@@ -41,7 +41,7 @@ const DetailPage = (props: Props) => {
       {query.isLoading ? (
         <div className="flex flex-col gap-10">
           <Skeleton>
-            <div>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</div>
+            <div>Lorem ipsum dolor</div>
           </Skeleton>
           <Skeleton className="w-full max-w-3xl">
             <div className="aspect-video" />

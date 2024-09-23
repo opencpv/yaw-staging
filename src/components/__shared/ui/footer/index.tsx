@@ -4,7 +4,7 @@ import quickLinks from "@/enum/footer/quickLinks";
 import { getCurrentYear } from "@/lib/utils/numberManipulation";
 import Logo from "@/components/__shared/ui/logo";
 import SubscribeForm from "../form/SubscribeForm";
-import Feedback from "@/components/__shared/ui/feedback/Feedback";
+import Feedback from "@/components/__shared/ui/feedback";
 import { LowerCase } from "@/lib/utils/stringManipulation";
 import legal from "@/enum/about/legal";
 import { FaEnvelope } from "react-icons/fa6";
@@ -79,7 +79,12 @@ const Footer = (props: Props) => {
         <section className="flex flex-col justify-center gap-10 bg-[#333] px-5 py-8 text-[#8A8A8A] hover:*:text-accent [@media(min-width:950px)]:flex-row">
           {quickLinks.map((r) =>
             LowerCase(r.label) === "report fraud" ? (
-              <ReportFraud key={r?.label} className="font-[400]" />
+              <ReportFraud
+                key={r?.label}
+                className={cn("font-[400]", {
+                  "text-accent": pathname === r?.href,
+                })}
+              />
             ) : LowerCase(r?.label) === "feedback" ? (
               <Feedback data={data} key={r?.label}>
                 <button>
@@ -90,7 +95,7 @@ const Footer = (props: Props) => {
               <Link
                 key={r?.label}
                 href={r?.href}
-                className={cn({ "text-accent": pathname?.includes(r?.href) })}
+                className={cn({ "text-accent": pathname === r?.href })}
               >
                 <h2 className="font-[400]">{r.label}</h2>
               </Link>
@@ -169,6 +174,7 @@ const Footer = (props: Props) => {
                 <span> | </span>
                 <Link
                   href="/terms-of-service"
+                  target="_blank"
                   className="inline-block text-[#B0B0B0] hover:text-accent hover:underline"
                 >
                   Legal

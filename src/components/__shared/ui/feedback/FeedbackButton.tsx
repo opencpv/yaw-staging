@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useMemo, useState } from "react";
 import { HiOutlineChatBubbleOvalLeftEllipsis } from "react-icons/hi2";
-import Feedback from "./Feedback";
+import Feedback from ".";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { floatItemsIntersectionStore } from "@/store/footer/footerStore";
@@ -74,7 +74,7 @@ const FeedbackButton = (props: Props) => {
         })}
       >
         <Feedback data={props.data}>
-          <FeedbackIcon className="scale-80 fixed -left-2 top-[33rem] z-50" />
+          <FeedbackIcon className="scale-80 fixed -left-5 bottom-20 z-50" />
         </Feedback>
       </div>
       <motion.div

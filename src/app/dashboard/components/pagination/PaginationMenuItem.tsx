@@ -17,17 +17,15 @@ const PaginationMenuItem = ({ icon, label, href }: Props) => {
   return (
     <Link
       href={href}
-      className={`fade-in scale-hover min-h-[4rem] max-w-full justify-start rounded-xl px-5 py-2 sm:min-h-[6rem] sm:justify-center sm:px-10 sm:py-5 ${
+      className={`fade-in scale-hover flex min-h-[4rem] max-w-full items-center justify-start gap-5 rounded-xl px-5 py-2 sm:min-h-[6rem] sm:flex-col sm:justify-center sm:px-10 sm:py-5 ${
         pathname?.includes(href)
           ? "bg-primary-400 text-white"
           : "border border-[#B0B0B0] text-[#B0B0B0]"
       }`}
       onClick={() => setIsOpen(false)}
     >
-      <div className="flex flex-row gap-3 sm:flex-col sm:items-center">
-        <div className="shrink-0 text-3xl font-light">{icon}</div>
-        <h3 className="capitalize">{label}</h3>
-      </div>
+      <div className="shrink-0 text-3xl font-light">{icon}</div>
+      <h3 className="capitalize">{label}</h3>
     </Link>
   );
 };

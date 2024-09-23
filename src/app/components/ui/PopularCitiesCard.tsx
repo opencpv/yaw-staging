@@ -24,7 +24,7 @@ const PopularCitiesCard = ({
   return (
     <Link
       href={`/properties?${new URLSearchParams({
-        search: location as string,
+        q: location as string,
       })}`}
       className="group"
     >

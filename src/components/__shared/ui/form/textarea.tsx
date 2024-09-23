@@ -3,6 +3,7 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { FieldInputProps, FieldMetaProps, useFormikContext } from "formik";
 import ErrorMessage from "../states/error-message";
+import { Label } from "./label";
 
 export interface TextareaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -10,6 +11,10 @@ export interface TextareaProps
   characterLimit?: number;
 }
 
+/**
+ * Displays a form textarea. <br />
+ * Name is required if used in a Formik context.
+ */
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   (
     {
@@ -83,21 +88,18 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     };
 
     return (
-      <label className="flex flex-col gap-4 text-shade-300 w-full">
+      <label className="flex w-full flex-col gap-4 text-shade-300">
         {label && (
-          <h5 className="flex gap-x-1.5 font-normal capitalize">
+          <Label required={required} className="capitalize">
             {label}
-            {required && (
-              <span className="relative text-sm text-shade-300">*</span>
-            )}
-          </h5>
+          </Label>
         )}
         <div className={cn({ "flex flex-col gap-2": characterLimit })}>
           <textarea
             name={field?.name || name}
             value={field?.value || value}
             className={cn(
-              "form-field-border flex h-[167px] min-h-[80px] w-full rounded-md bg-white px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:cursor-not-allowed disabled:opacity-50 ",
+              "form-field-border flex h-[167px] min-h-[80px] w-full rounded-md bg-white px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:cursor-not-allowed disabled:opacity-50",
               className,
             )}
             onChange={(e) => {
@@ -121,8 +123,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
                   (meta?.touched && meta.error),
               })}
             >
-              {field?.value?.length || (value as string)?.length} /{" "}
-              {characterLimit}
+              {fieldLength} / {characterLimit}
             </small>
           )}
         </div>

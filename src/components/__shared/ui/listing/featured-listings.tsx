@@ -27,12 +27,7 @@ const FeaturedListings = ({ className, showAllButton }: Props) => {
 
   const { ref, hasIntersected } = useIntersectionObserver();
 
-  const {
-    data: listings,
-    error,
-    isLoading,
-    mutate,
-  } = useFetchFeaturedListings();
+  const { data: listings, error, isLoading } = useFetchFeaturedListings();
 
   return (
     <section

@@ -15,13 +15,8 @@ const Hero = dynamic(() => import("./components/Hero"), {
 const Promotions = dynamic(() => import("./components/sections/Promotions"));
 const FeaturedListings = dynamic(
   () => import("./components/sections/FeaturedListings"),
-  {
-    loading: () => <Loader />,
-  },
 );
-const Ad = dynamic(() => import("./components/sections/Ad"), {
-  loading: () => <Loader />,
-});
+const Ad = dynamic(() => import("./components/sections/Ad"));
 const RentalDeals = dynamic(() => import("./components/sections/RentalDeals"));
 const ManagePropertiesSection = dynamic(
   () => import("./components/sections/ManagePropertiesSection"),
@@ -42,8 +37,7 @@ const FeedbackButton = dynamic(
 );
 const Navbar = dynamic(() => import("@/components/__shared/ui/Navbar"));
 
-type Props = {};
-const page = async (props: Props) => {
+const page = async () => {
   const initial = await loadQuery<SanityDocument[]>(HOME_PAGE_QUERY);
   const data = initial.data[0];
   const homeBanner = await loadQuery<SanityDocument[]>(HOME_BANNER_QUERY);

@@ -12,6 +12,7 @@ import {
   useFormikContext,
 } from "formik";
 import ErrorMessage from "../states/error-message";
+import { Label } from "./label";
 
 type SelectContentProps = {
   position?: "popper" | "item-aligned";
@@ -162,6 +163,7 @@ const SelectItem = React.forwardRef<
       },
       className,
     )}
+    onClick={(e) => e.stopPropagation()}
     {...props}
   >
     <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
@@ -187,6 +189,9 @@ const SelectSeparator = React.forwardRef<
 ));
 SelectSeparator.displayName = SelectPrimitive.Separator.displayName;
 
+/**
+ * Displays a list of options for the user to pick from—triggered by a button.
+ */
 const Select = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Root> &
@@ -255,7 +260,6 @@ type Props = {
   options: string[];
   onChange?: (value: any) => void;
   label?: string;
-  fadeText?: boolean;
   className?: string;
   classNames?: {
     option?: string;
@@ -267,6 +271,10 @@ type Props = {
   prefix?: string;
 };
 
+/**
+ * Displays a list of options for the user to pick from—triggered by a button. Preferrably used in a Formik context. <br />
+ * Name is required if used in a Formik context.
+ */
 const SelectInput = ({
   label,
   options,
@@ -291,7 +299,7 @@ const SelectInput = ({
 
   return (
     <div className={cn("flex w-full flex-col gap-4 text-shade-300", className)}>
-      {label && <label>{label}</label>}
+      {label && <Label>{label}</Label>}
       <Select
         onValueChange={(value) => {
           helpers?.setValue(value);

@@ -27,5 +27,9 @@
 }
 
 .additionalInfoWrapper {
-  @apply space-y-4 pt-5 pb-8;
+  @apply space-y-4 pb-8 pt-5;
+}
+
+.reviewsTabsTrigger {
+  @apply relative rounded-none bg-transparent px-0 text-lg font-medium text-shade-200 shadow-none duration-200 hover:text-shade-500 data-[state=active]:border-b-[3px] data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:text-shade-300 data-[state=active]:shadow-none;
 }

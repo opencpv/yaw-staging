@@ -4,6 +4,7 @@ import * as React from "react";
 import * as SwitchPrimitives from "@radix-ui/react-switch";
 
 import { cn } from "@/lib/utils";
+import { Label } from "../form/label";
 
 const BaseSwitch = React.forwardRef<
   React.ElementRef<typeof SwitchPrimitives.Root>,
@@ -65,17 +66,11 @@ const Switch = React.forwardRef<
         <BaseSwitch checked={checked} onCheckedChange={onCheckedChange} />
       )}
       {label && (
-        <span
-          className={cn(
-            "text-shade-200",
-            {
-              "cursor-not-allowed": disabled,
-            },
-            classNames?.label,
-          )}
+        <Label
+          className={cn({ "cursor-not-allowed": disabled }, classNames?.label)}
         >
           {label}
-        </span>
+        </Label>
       )}
     </label>
   ),

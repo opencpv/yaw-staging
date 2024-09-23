@@ -87,7 +87,7 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
       >
         <ul>
           <li
-            className={cn("flex gap-4 p-5", {
+            className={cn("flex justify-center gap-4 p-5", {
               "items-start": user?.full_name,
               "items-center": !user?.full_name || user?.full_name === " ",
             })}
@@ -109,7 +109,7 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
             </div>
           </li>
           <hr className="mx-5" />
-          <li className="deep-green-hover pl-8 pr-4">
+          <li className="deep-green-hover px-4">
             {/* My Account */}
             {pathname?.includes("dashboard") ? (
               <Link href="/" className="flex items-center gap-2 pb-2.5 pt-4">
@@ -127,7 +127,7 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
             )}
           </li>
           {/* Settings */}
-          <li className="deep-green-hover pl-8 pr-4">
+          <li className="deep-green-hover px-4">
             <Link
               href={`/dashboard/${currentRole.toLowerCase()}/settings`}
               className="flex items-center gap-2 pb-4 pt-2.5"
@@ -139,7 +139,7 @@ const AvatarMenu: React.FC<Props> = ({ className, popoverClassName }) => {
           <hr className="mx-5" />
           {/* Logout */}
           <li
-            className="deep-green-hover cursor-pointer space-y-5 py-4 pb-5 pl-8 pr-4 pt-5"
+            className="deep-green-hover cursor-pointer space-y-5 px-4 py-4 pb-5 pt-5"
             onClick={handleSignOut}
           >
             <button className="flex w-full items-center gap-2 pt-5 focus:outline-red-400">
