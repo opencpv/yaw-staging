@@ -17,7 +17,7 @@ function PageNotFoundDiscover() {
   return (
     <motion.div
       layout
-      className="flex w-full flex-col items-center justify-start gap-16 lg:flex-row lg:items-start"
+      className="flex w-full flex-col items-center justify-start gap-14 lg:flex-row lg:items-start"
     >
       <div className="flex w-full flex-col justify-start gap-6 lg:w-[50%] lg:gap-[130px]">
         <div className="flex flex-col gap-4 lg:gap-6">
