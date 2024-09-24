@@ -29,7 +29,7 @@ function PageNotFoundDiscover() {
           </h5>
         </div>
 
-        <div className="flex w-[216px] items-center justify-between">
+        <div className="hidden lg:flex w-[216px] items-center justify-between">
      
           <SliderNav
             position="left"
